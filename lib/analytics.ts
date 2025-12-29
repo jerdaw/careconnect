@@ -36,6 +36,8 @@ export const logSearchEvent = (query: string, results: Service[]) => {
     }
 
     const topResult = results[0];
+    if (!topResult) return;
+
     const category = topResult.intent_category;
 
     // SENSITIVE CATEGORIES BLOCKLIST
