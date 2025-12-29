@@ -128,9 +128,16 @@ export default function Home() {
             <p className="text-sm text-neutral-500">
               Trusted by <strong>Queen&apos;s University</strong> students.
             </p>
-            <div className="mt-4 flex justify-center gap-4 text-xs text-neutral-400">
-              <span>Privacy First: No logging.</span>
-              <a href="https://forms.gle/placeholder" target="_blank" className="hover:text-neutral-600 underline">Report a Problem</a>
+            <div className="mt-8 text-center text-sm text-neutral-400">
+              <p>
+                Kingston Care Connect (Pilot v1.0) •{' '}
+                <a href="mailto:feedback@kingstoncare.ca?subject=Data%20Correction" className="underline hover:text-neutral-600">
+                  Report Incorrect Data
+                </a>
+              </p>
+              <p className="mt-2 text-xs">
+                Not a substitute for professional medical advice. In an emergency, call 911 or 988.
+              </p>
             </div>
           </div>
         )}

@@ -12,12 +12,12 @@ export default function BetaBanner() {
                 </div>
                 <div className="hidden sm:block">
                     <a
-                        href="https://forms.gle/YOUR_GOOGLE_FORM_ID"
+                        href="mailto:feedback@kingstoncare.ca?subject=Kingston%20Care%20Connect%20Pilot%20Feedback"
                         target="_blank"
-                        rel="noreferrer"
-                        className="underline decoration-white/50 hover:decoration-white"
+                        rel="noopener noreferrer"
+                        className="font-medium underline hover:text-blue-100"
                     >
-                        Report an Issue
+                        Report it here
                     </a>
                 </div>
             </div>
