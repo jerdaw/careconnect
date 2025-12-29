@@ -73,6 +73,23 @@ Built with modern web technologies for performance and maintainability:
 Copy `.env.example` to `.env.local` (if applicable) for standard setup.
 Note: Client-side features work without API keys. Data generation scripts may require an `OPENAI_API_KEY`.
 
+### Partner Platform Setup (Supabase)
+
+To enable the Partner Portal, Login, and Analytics:
+
+1.  **Create a Supabase Project:** [database.new](https://database.new)
+2.  **Add Credentials:** Update `.env.local` with:
+    ```env
+    NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+    SUPABASE_SERVICE_ROLE_KEY=your-service-role-key # For migration scripts only
+    ```
+3.  **Run Schema:** Copy `supabase/schema.sql` and run it in the Supabase SQL Editor.
+4.  **Migrate Data:** Run the migration script to populate the DB with local data:
+    ```bash
+    npx tsx scripts/migrate-data.ts
+    ```
+
 ---
 
 ## 🤝 Contributing & Governance
