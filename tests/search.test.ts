@@ -23,6 +23,7 @@ describe('Search Algorithm', () => {
         // Expecting one of the food banks
         // Note: The ID might be undefined if we don't access it correctly or if types match.
         // But assuming searchServices returns SearchResult[]
+        if (!topResult) throw new Error('No result found');
         expect(['ams-food-bank-queens', 'partners-in-mission-food-bank', 'marthas-table-kingston', 'lunch-by-george']).toContain(topResult.service.id);
         expect(topResult.score).toBeGreaterThan(0);
     });

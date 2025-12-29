@@ -98,4 +98,15 @@ export interface Service {
      * A self-advocacy script for reducing phone anxiety.
      */
     access_script?: string;
+
+    // --- Expanded Fields for Migration ---
+    hours?: string;
+    fees?: string;
+    eligibility?: string; // Raw text eligibility
+    application_process?: string;
+    languages?: string[];
+    bus_routes?: string[];
+    accessibility?: any; // Keeping loose for now, strictly it's Record<string, boolean>
+    last_verified?: string;
+    embedding?: number[]; // Vector embedding
 }

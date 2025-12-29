@@ -14,7 +14,7 @@ interface ServiceCardProps {
 
 import { useLocale, useTranslations } from 'next-intl';
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, score, matchReasons }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
     const locale = useLocale();
     const t = useTranslations('Common');
     const isVerified = service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3;
@@ -31,12 +31,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, score, matchReasons 
             exit={{ opacity: 0, y: -10 }}
             className="group relative overflow-hidden rounded-xl bg-white p-5 shadow-sm transition-all hover:shadow-md border border-neutral-100 dark:bg-neutral-900 dark:border-neutral-800"
         >
-            {/* Search Match Highlight (Optional - only if relevant reasons exist) */}
-            {matchReasons && matchReasons.length > 0 && resultIsHighlyRelevant(score) && (
+            {/* Search Match Highlight - Hidden per user request to avoid echoing sensitive queries */}
+            {/* {matchReasons && matchReasons.length > 0 && resultIsHighlyRelevant(score) && (
                 <div className="mb-3 text-xs font-medium text-emerald-600 dark:text-emerald-400">
                     ✨ {matchReasons[0]}
                 </div>
-            )}
+            )} */}
 
             <div className="flex items-start justify-between">
                 <div>
@@ -115,8 +115,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, score, matchReasons 
 };
 
 // Helper: Determine if we should show the "Magic Sparkle" reason
-function resultIsHighlyRelevant(score?: number) {
-    return score && score > 35;
-}
+// function resultIsHighlyRelevant(score?: number) {
+//     return score && score > 35;
+// }
 
 export default ServiceCard;

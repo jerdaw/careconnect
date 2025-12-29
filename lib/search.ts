@@ -1,10 +1,61 @@
 import { Service, VerificationLevel } from '../types/service';
 import servicesData from '../data/services.json';
 import embeddingsData from '../data/embeddings.json';
+import { supabase } from './supabase';
 
-// CAST: Ensure strict typing for the imported JSON data
-const services: Service[] = servicesData as unknown as Service[];
-const embeddings: Record<string, number[]> = embeddingsData as unknown as Record<string, number[]>;
+// Helper to ensure strict typing for the fallback JSON data
+const fallbackServices: Service[] = servicesData as unknown as Service[];
+const fallbackEmbeddings: Record<string, number[]> = embeddingsData as unknown as Record<string, number[]>;
+
+// In-memory cache for the server instance
+let dataCache: { services: Service[] } | null = null;
+
+/**
+ * Loads services from Supabase (if configured) or falls back to local JSON.
+ * Implements Stale-While-Revalidate or simple caching strategy.
+ */
+const loadServices = async (): Promise<Service[]> => {
+    // Return cache if available
+    if (dataCache) return dataCache.services;
+
+    try {
+        // Check if we have credentials to attempt DB fetch
+        const hasCredentials = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (hasCredentials) {
+            const { data, error } = await supabase
+                .from('services')
+                .select('*');
+
+            if (!error && data && data.length > 0) {
+                // Parse embedding strings if they come back as strings (pgvector behavior pending client version)
+                // mappedData ensures types match Service interface
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const mappedData: Service[] = data.map((row: any) => ({
+                    ...row,
+                    // Parse embedding if it's a string, or keep if array, or undefined
+                    embedding: typeof row.embedding === 'string' ? JSON.parse(row.embedding) : row.embedding,
+                    // Cast jsonb fields
+                    identity_tags: typeof row.tags === 'string' ? JSON.parse(row.tags) : row.tags,
+                    intent_category: row.category, // Map DB column back to TS property
+                    verification_level: row.verification_status,
+                }));
+
+                dataCache = { services: mappedData };
+                // console.log(`Distribution: Fetched ${mappedData.length} records from Supabase.`);
+                return mappedData;
+            } else if (error) {
+                console.warn("Supabase fetch error (falling back to JSON):", error.message);
+            }
+        }
+    } catch (err) {
+        console.warn("Data load failed (falling back to JSON):", err);
+    }
+
+    // Fallback to local JSON
+    dataCache = { services: fallbackServices };
+    return fallbackServices;
+};
 
 export interface SearchResult {
     service: Service;
@@ -98,21 +149,23 @@ const scoreServiceKeyword = (service: Service, tokens: string[]): { score: numbe
     const matchReasons: string[] = [];
 
     // 1. Check Synthetic Queries (High Impact) - Currently English Only
-    for (const query of service.synthetic_queries) {
-        const queryText = normalize(query);
-        let queryMatches = 0;
+    if (service.synthetic_queries) {
+        for (const query of service.synthetic_queries) {
+            const queryText = normalize(query);
+            let queryMatches = 0;
 
-        for (const token of tokens) {
-            if (queryText.includes(token)) {
-                queryMatches++;
+            for (const token of tokens) {
+                if (queryText.includes(token)) {
+                    queryMatches++;
+                }
             }
-        }
 
-        if (queryMatches > 0) {
-            const points = WEIGHTS.syntheticQuery * queryMatches;
-            score += points;
-            matchReasons.push(`Matched intent: "${query}" (+${points})`);
-            break;
+            if (queryMatches > 0) {
+                const points = WEIGHTS.syntheticQuery * queryMatches;
+                score += points;
+                matchReasons.push(`Matched intent: "${query}" (+${points})`);
+                break;
+            }
         }
     }
 
@@ -131,12 +184,14 @@ const scoreServiceKeyword = (service: Service, tokens: string[]): { score: numbe
     }
 
     // 3. Check Identity Tags (Boost)
-    for (const identity of service.identity_tags) {
-        const tagText = normalize(identity.tag);
-        for (const token of tokens) {
-            if (tagText.includes(token)) {
-                score += WEIGHTS.identityTag;
-                matchReasons.push(`Matched tag: "${identity.tag}" (+${WEIGHTS.identityTag})`);
+    if (service.identity_tags) {
+        for (const identity of service.identity_tags) {
+            const tagText = normalize(identity.tag);
+            for (const token of tokens) {
+                if (tagText.includes(token)) {
+                    score += WEIGHTS.identityTag;
+                    matchReasons.push(`Matched tag: "${identity.tag}" (+${WEIGHTS.identityTag})`);
+                }
             }
         }
     }
@@ -170,6 +225,7 @@ const scoreServiceKeyword = (service: Service, tokens: string[]): { score: numbe
  * 3. Only fetch Vector (Paid) if keywords fail to find relevant results.
  */
 export const searchServices = async (query: string, vectorOverride?: number[]): Promise<SearchResult[]> => {
+    const services = await loadServices();
     const tokens = tokenize(query);
     if (tokens.length === 0) return [];
 
@@ -217,9 +273,12 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
 
     for (const service of services) {
         if (service.verification_level === VerificationLevel.L0) continue;
-        if (!embeddings[service.id]) continue;
 
-        const similarity = cosineSimilarity(queryVector, embeddings[service.id]!);
+        // Use embedding from DB (on service object) OR fallback to local JSON
+        const serviceVector = service.embedding || fallbackEmbeddings[service.id];
+        if (!serviceVector) continue;
+
+        const similarity = cosineSimilarity(queryVector, serviceVector);
 
         // Semantic Threshold
         if (similarity > 0.01) {

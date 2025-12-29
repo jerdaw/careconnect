@@ -1,57 +1,31 @@
-# Roadmap V2: Community Expansion & Technical Maturity
+# Roadmap V3: Partner Platform & Data Sovereignty
 
-> **Status:** Completed
-> **Focus:** Generalizing for Kingston Community, Bilingual Support, and Data Completion.
+> **Status:** Active
+> **Focus:** Empowering service providers to manage their own data via a secure Partner Portal.
 
-## Phase 2: Community Expansion (Current)
+## Phase 30: Foundation & Infrastructure 🏗️
+- [ ] Initialize Supabase project (Auth + Postgres).
+- [ ] Migrate `services.json` to Postgres Database.
+- [ ] Create Database Types / ORM Layer (Prisma or Kysely).
+- [ ] Update `Search` to query DB instead of local JSON.
 
-The goal of Phase 2 is to transition from a student-focused pilot to a general community resource for all Kingston residents.
+## Phase 31: Authentication System 🔐
+- [ ] Implement Partner Login Page (Magic Link).
+- [ ] Create Auth Context / Protected Routes.
+- [ ] Implement "Claim Verification" flow (Database policies / RLS).
 
-### 2.1 Audience Shift (Completed)
-- [x] Remove "Student/Queen's" branding from landing page.
-- [x] Sanitize `services.json` of exclusive campus-only services.
-- [x] Update README and documentation to reflect community mission.
-- [x] Retarget "Beta" messaging.
+## Phase 32: Partner Dashboard & Editing ✏️
+- [ ] Create Dashboard Layout (Sidebar, User Profile).
+- [ ] Implement "My Services" list (CRUD - Read).
+- [ ] Implement "Edit Service" form (CRUD - Update).
+- [ ] Add "Verification Badge" logic for self-managed services.
 
-### 2.2 Data Verification ("The Kingston 150")
-- [ ] Complete the "Kingston 150" dataset (Add remaining ~100 high-impact services).
-- [ ] Audit existing data for freshness (verify phone numbers/hours).
-- [ ] Implement automated link checking.
-
-### 2.3 Bilingual Foundations
-- [ ] Implement `next-intl` routing.
-- [ ] Extract hardcoded UI strings to `messages/en.json`.
-- [ ] Translate core UI path to French (`messages/fr.json`).
-- [ ] *Stretch:* Auto-translate service descriptions (with manual review flag).
-
-### 2.4 EDIA Review & Upgrade (New)
-- [ ] Conduct reduced-barrier accessibility audit (WCAG AA).
-- [ ] Review content for inclusive language and representation.
-- [ ] Publish Transparency Statement / EDIA findings.
-
-### 2.5 Privacy & Trust Verification (New)
-- [ ] Formal "No-Tracking" Audit (Cookies/Network).
-- [ ] Add visible Privacy Badge to UI.
-- [ ] Publish plain-language Privacy Policy.
-
----
-
-## Phase 3: Technical Maturity (Q3 2025)
-
-### 3.1 Progressive Web App (PWA) (Active)
-- [ ] Install PWA support (Service Workers).
-- [ ] Create Manifest and Icons.
-- [ ] Verify installability (Lighthouse).
-
-### 3.2 Feedback Loop (Active)
-- [ ] Replace `mailto` links with structured feedback forms.
-- [ ] Implement "Report Inaccurate Information" button on service cards.
-
-### 3.3 Partner Portal (Concept) (Active)
-- [ ] Design simple auth flow for Service Providers.
-- [ ] Allow claim/edit functionality for verified organizations.
+## Phase 33: Analytics & Insights 📊
+- [ ] secure "View Count" tracking schema.
+- [ ] Implement "Analytics Card" on Partner Dashboard.
 
 ---
 
 ## Archive
-- [v1-pilot](archive/v1-pilot.md): Initial Queen's University focused pilot (Completed Dec 2024).
+- [v1-pilot](archive/v1-pilot.md): Queens Pilot (Dec 2024)
+- [v2-community](archive/v2-community-expansion.md): Community Expansion (Jan 2025)

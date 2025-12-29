@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import "../globals.css";
 import BetaBanner from "../../components/BetaBanner";
+import { AuthProvider } from "../../components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -38,8 +39,10 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <BetaBanner />
-          {children}
+          <AuthProvider>
+            <BetaBanner />
+            {children}
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>
