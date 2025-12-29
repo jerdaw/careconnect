@@ -1,28 +1,29 @@
+
 import { searchServices } from '../lib/search';
 
-const query = process.argv.slice(2).join(' ');
+const query = process.argv[2];
 
 if (!query) {
-    console.log('Usage: npm run search "<your query>"');
+    console.error('Please provide a search query.');
     process.exit(1);
 }
 
-console.log(`\n🔍 Searching for: "${query}"\n`);
-const startTime = performance.now();
-const results = searchServices(query);
-const endTime = performance.now();
+(async () => {
+    console.log(`\n🔍 Searching for: "${query}"\n`);
+    const startTime = performance.now();
 
-if (results.length === 0) {
-    console.log('No results found.');
-} else {
-    console.log(`Found ${results.length} results in ${(endTime - startTime).toFixed(2)}ms:\n`);
+    // Now we can await properly inside this async block
+    const results = await searchServices(query);
 
-    // Show Top 5
-    results.slice(0, 5).forEach((result, index) => {
-        console.log(`${index + 1}. [Score: ${result.score}] ${result.service.name}`);
-        console.log(`   Category: ${result.service.intent_category} | Level: ${result.service.verification_level}`);
-        console.log(`   Reasons: ${result.matchReasons.join(', ')}`);
-        console.log(`   Description: ${result.service.description.substring(0, 100)}...`);
-        console.log('');
-    });
-}
+    const endTime = performance.now();
+
+    if (results.length === 0) {
+        console.log('No results found.');
+    } else {
+        console.log(`Found ${results.length} results in ${(endTime - startTime).toFixed(2)}ms:\n`);
+        results.slice(0, 5).forEach((r, i) => {
+            console.log(`${i + 1}. [${r.score.toFixed(1)}] ${r.service.name}`);
+            console.log(`   Reasons: ${r.matchReasons.join(' | ')}\n`);
+        });
+    }
+})();
