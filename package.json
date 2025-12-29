@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "validate-data": "tsx scripts/validate-data.ts",
+    "search": "tsx scripts/search-cli.ts",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "test": "vitest",
@@ -42,7 +44,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^2.6.0",
-    "zod": "^3.24.4"
+    "tsx": "^4.21.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "15.1.6",
