@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Loader2, Plus, Save, RefreshCw } from 'lucide-react';
-import { Service, VerificationLevel, IntentCategory } from '../../types/service';
+import { Service, IntentCategory, VerificationLevel } from '../../types/service';
 
 export default function AdminPage() {
     const [services, setServices] = useState<Service[]>([]);
@@ -18,7 +18,7 @@ export default function AdminPage() {
         // BUT to get "write" capability we likely need to fetch from an endpoint 
         // that reads the file fresh.
         fetch('/api/admin/data')
-            .then(res => res.json())
+            .then(res => res.json() as Promise<{ services: Service[] }>)
             .then(data => {
                 setServices(data.services);
                 setIsLoading(false);
@@ -88,14 +88,20 @@ export default function AdminPage() {
                                 id: 'new-' + Date.now(),
                                 name: 'New Service',
                                 description: '',
-                                category: 'Food',
+                                url: '',
                                 phone: '',
-                                website: '',
                                 address: '',
-                                keywords: [],
-                                lastUpdated: new Date().toISOString(),
-                                coordinates: { lat: 0, lng: 0 }
-                            } as Service)}
+                                intent_category: IntentCategory.Food,
+                                verification_level: VerificationLevel.L0,
+                                synthetic_queries: [],
+                                identity_tags: [],
+                                provenance: {
+                                    verified_by: 'admin',
+                                    verified_at: new Date().toISOString(),
+                                    evidence_url: '',
+                                    method: 'manual-entry'
+                                }
+                            })}
                             className="rounded-full bg-blue-600 p-1 text-white hover:bg-blue-700"
                         >
                             <Plus className="h-5 w-5" />

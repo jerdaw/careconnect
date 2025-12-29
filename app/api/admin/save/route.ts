@@ -8,14 +8,15 @@ export async function POST(req: Request) {
     }
 
     try {
-        const { service } = await req.json();
+        const body = await req.json() as { service: { id: string } };
+        const { service } = body;
         if (!service || !service.id) {
             return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
         }
 
         const dataPath = path.join(process.cwd(), 'data', 'services.json');
         const fileContents = await fs.readFile(dataPath, 'utf8');
-        const services = JSON.parse(fileContents);
+        const services = JSON.parse(fileContents) as { id: string }[];
 
         // Update or Add
         const index = services.findIndex((s: { id: string }) => s.id === service.id);

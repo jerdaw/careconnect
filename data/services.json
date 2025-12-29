@@ -963,7 +963,14 @@
             "Panic attack help now",
             "Mental health emergency kingston",
             "Crisis line phone number",
-            "Help I can't stop crying"
+            "Help I can't stop crying",
+            "I'm sad",
+            "I feel sad",
+            "I feel empty",
+            "I feel lonely",
+            "I'm so depressed",
+            "I don't want to be here anymore",
+            "I feel hopeless"
         ],
         "eligibility_notes": "Inclusion: Anyone experiencing mental health or addiction crisis. Exclusion: None.",
         "access_script": "Hi, I'm feeling really overwhelmed and having suicidal thoughts. I need to talk to someone right away."
@@ -1213,7 +1220,11 @@
             "About to be evicted what do I do",
             "Housing support worker",
             "Emergency family shelter",
-            "Affordable housing list kingston"
+            "Affordable housing list kingston",
+            "Need a place to stay",
+            "Need somewhere to stay",
+            "I have nowhere to go",
+            "Homeless and need help"
         ],
         "eligibility_notes": "Inclusion: Homeless men, women, families. Transitional housing focus. Exclusion: Active substance use on site (dry shelter).",
         "access_script": "Hi, I have nowhere to sleep tonight. Do you have any beds available?"
