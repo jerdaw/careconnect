@@ -1,68 +1,66 @@
-import { IntentCategory, Service } from '../types/service';
+import { supabase } from './supabase';
+
+export type EventType = 'view_detail' | 'click_website' | 'click_call';
 
 /**
- * Privacy-First Analytics Module ("The Quiet Logger")
- * 
- * POLICY:
- * 1. SENSITIVE INTENTS (Crisis, Legal, Health-Sensitive) are NEVER logged with raw query or specific intent.
- *    We only log a generic "Safety Intercept" event to track volume of high-risk needs.
- * 2. SAFE INTENTS (Food, Housing, etc.) are logged with Category and Result Count.
- *    We do NOT log the raw user query text to persistent storage, only the inferred category.
+ * Tracks a privacy-preserving analytic event.
+ * No user identifiers or IPs are sent to Supabase by this function.
  */
+export async function trackEvent(serviceId: string, eventType: EventType) {
+    try {
+        await supabase.from('analytics_events').insert({
+            service_id: serviceId,
+            event_type: eventType,
+        });
+    } catch (error) {
+        // Analytics should fail silently to not disrupt user experience
+        console.warn('Analytics error:', error);
+    }
+}
 
-type LogEvent =
-    | { event: 'safety_intercept'; timestamp: number }
-    | { event: 'search_intent'; category: string; result_count: number; timestamp: number }
-    | { event: 'search_general'; result_count: number; timestamp: number };
-
-// In a real app, this would be PostHog or Plausible.
-// For the Pilot, we simulate a secure console logger.
-const logToSecureConsole = (event: LogEvent) => {
-    // In production, we would filter out console logs.
-    // Here we print to demonstrate the logic is working.
-    console.groupCollapsed(`[Analytics] Event: ${event.event}`);
-    console.log(event);
-    console.groupEnd();
+export type ServiceStats = {
+    serviceId: string;
+    totalViews: number;
+    recentViews: number;
 };
 
-export const logSearchEvent = (query: string, results: Service[]) => {
-    if (!results || results.length === 0) {
-        logToSecureConsole({
-            event: 'search_general',
-            result_count: 0,
-            timestamp: Date.now()
-        });
-        return;
+/**
+ * Fetches aggregated stats for a list of services.
+ * Currently does client-side aggregation suitable for small-medium scale.
+ * For larger scale, replace with an RPC or materialized view.
+ */
+export async function getAnalyticsForServices(serviceIds: string[]): Promise<Record<string, ServiceStats>> {
+    if (serviceIds.length === 0) return {};
+
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const { data, error } = await supabase
+        .from('analytics_events')
+        .select('service_id, created_at')
+        .in('service_id', serviceIds);
+
+    if (error || !data) {
+        console.error('Error fetching analytics:', error);
+        return {};
     }
 
-    const topResult = results[0];
-    if (!topResult) return;
+    const stats: Record<string, ServiceStats> = {};
 
-    const category = topResult.intent_category;
+    // Initialize default stats
+    serviceIds.forEach(id => {
+        stats[id] = { serviceId: id, totalViews: 0, recentViews: 0 };
+    });
 
-    // SENSITIVE CATEGORIES BLOCKLIST
-    // If the top result is in these categories, we DROP the intent info.
-    const SENSITIVE_CATEGORIES = [
-        IntentCategory.Crisis,
-        IntentCategory.Legal, // Often sensitive (eviction, criminal)
-        IntentCategory.Health, // Can be sensitive (sexual health, addiction)
-        IntentCategory.Wellness // Can be sensitive (mental health)
-    ];
+    // Aggregate
+    data.forEach(event => {
+        if (stats[event.service_id]) {
+            stats[event.service_id]!.totalViews++;
+            if (new Date(event.created_at) > thirtyDaysAgo) {
+                stats[event.service_id]!.recentViews++;
+            }
+        }
+    });
 
-    if (SENSITIVE_CATEGORIES.includes(category)) {
-        // Redact everything. Just log that a safety/sensitive search occurred.
-        logToSecureConsole({
-            event: 'safety_intercept',
-            timestamp: Date.now()
-        });
-    } else {
-        // Safe to log the Category (e.g. "Food") and count.
-        // Still NOT logging the raw query string.
-        logToSecureConsole({
-            event: 'search_intent',
-            category: category,
-            result_count: results.length,
-            timestamp: Date.now()
-        });
-    }
-};
+    return stats;
+}

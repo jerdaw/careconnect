@@ -59,3 +59,44 @@ create policy "Public services are viewable by everyone."
 create policy "Admins can insert services."
   on services for insert
   with check ( false ); -- Placeholder: locked down by default until Auth is ready
+
+-- Analytics (Privacy-First: No IPs, No User IDs)
+create table analytics_events (
+  id uuid default gen_random_uuid() primary key,
+  service_id text references services(id) on delete cascade not null,
+  event_type text not null, -- 'view_detail', 'click_website', 'click_call'
+  created_at timestamptz default now() not null
+);
+
+-- Index for faster aggregation by service
+create index idx_analytics_service_id on analytics_events(service_id);
+create index idx_analytics_created_at on analytics_events(created_at);
+
+-- RLS: Public can INSERT events, Partners can SELECT their own events
+alter table analytics_events enable row level security;
+
+create policy "Public can record views"
+  on analytics_events for insert
+  to anon, authenticated
+  with check (true);
+
+create policy "Partners can view their own service analytics"
+  on analytics_events for select
+  to authenticated
+  using (
+    exists (
+      select 1 from services
+      where services.id = analytics_events.service_id
+      and services.organization_id = auth.uid()
+    )
+  );
+
+-- Function to get simple view counts (optional helper)
+-- useful to avoid pulling all rows to client
+create or replace function get_service_views(service_id_param text)
+returns bigint
+language sql
+security definer
+as $$
+  select count(*) from analytics_events where service_id = service_id_param;
+$$;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Search, Loader2, ShieldCheck } from 'lucide-react';
 import { searchServices, SearchResult } from '../../lib/search';
 import ServiceCard from '../../components/ServiceCard';
-import { logSearchEvent } from '../../lib/analytics';
+// import { logSearchEvent } from '../../lib/analytics';
 import { useSemanticSearch } from '../../hooks/useSemanticSearch';
 import { useTranslations } from 'next-intl';
 import { Link } from '../../i18n/routing';
@@ -41,7 +41,7 @@ export default function Home() {
       }
 
       // Analytics (Privacy-Preserving)
-      logSearchEvent(query, initialResults.map(r => r.service));
+      // logSearchEvent(query, initialResults.map(r => r.service));
     }, 150);
 
     return () => clearTimeout(timer);

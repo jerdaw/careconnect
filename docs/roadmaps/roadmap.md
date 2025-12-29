@@ -15,10 +15,10 @@
 - [x] Implement "Claim Verification" flow (UI Ready, Policy Pending).
 
 ## Phase 32: Partner Dashboard & Editing ✏️
-- [ ] Create Dashboard Layout (Sidebar, User Profile).
-- [ ] Implement "My Services" list (CRUD - Read).
-- [ ] Implement "Edit Service" form (CRUD - Update).
-- [ ] Add "Verification Badge" logic for self-managed services.
+- [x] Create Dashboard Layout (Sidebar, User Profile).
+- [x] Implement "My Services" list (CRUD - Read).
+- [x] Implement "Edit Service" form (CRUD - Update).
+- [x] Add "Verification Badge" logic for self-managed services.
 
 ## Phase 33: Analytics & Insights 📊
 - [ ] secure "View Count" tracking schema.

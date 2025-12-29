@@ -2,9 +2,50 @@
 
 import { useAuth } from '@/components/AuthProvider';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
+import { getAnalyticsForServices } from '@/lib/analytics';
+import AnalyticsCard from '@/components/AnalyticsCard';
 
 export default function DashboardPage() {
     const { user } = useAuth();
+    const [stats, setStats] = useState<{ total: number; recent: number }>({ total: 0, recent: 0 });
+    const [serviceCount, setServiceCount] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadStats() {
+            if (!user) return;
+
+            // 1. Fetch user's services (IDs only)
+            // Mock: Fetching first 5 services as we did in services/page.tsx
+            const { data: services } = await supabase
+                .from('services')
+                .select('id')
+                .limit(5);
+
+            if (services && services.length > 0) {
+                setServiceCount(services.length);
+                const ids = services.map(s => s.id);
+
+                // 2. Fetch analytics for these services
+                const analyticsData = await getAnalyticsForServices(ids);
+
+                // 3. Aggregate
+                let total = 0;
+                let recent = 0;
+                Object.values(analyticsData).forEach(stat => {
+                    total += stat.totalViews;
+                    recent += stat.recentViews;
+                });
+
+                setStats({ total, recent });
+            }
+            setLoading(false);
+        }
+
+        loadStats();
+    }, [user]);
 
     return (
         <div className="space-y-6">
@@ -19,29 +60,18 @@ export default function DashboardPage() {
 
             {/* Quick Stats */}
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-                    <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                        Total Services
-                    </p>
-                    <p className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white">
-                        0
-                    </p>
-                    <div className="mt-4 flex items-center text-sm text-green-600">
-                        <span>Active</span>
-                    </div>
-                </div>
+                <AnalyticsCard
+                    title="Total Services"
+                    value={serviceCount}
+                    loading={loading}
+                />
 
-                <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-                    <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                        Total Views (30d)
-                    </p>
-                    <p className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white">
-                        --
-                    </p>
-                    <div className="mt-4 flex items-center text-sm text-neutral-500">
-                        <span>Coming soon</span>
-                    </div>
-                </div>
+                <AnalyticsCard
+                    title="Total Views (30d)"
+                    value={stats.recent}
+                    loading={loading}
+                    change={0} // TODO: Calculate change from previous period
+                />
 
                 <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
                     <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
@@ -64,7 +94,9 @@ export default function DashboardPage() {
                     Get Started
                 </h3>
                 <p className="mt-2 text-neutral-600 dark:text-neutral-400">
-                    You haven&apos;t claimed any services yet. Find your organization or create a new listing.
+                    {serviceCount === 0
+                        ? "You haven't claimed any services yet. Find your organization or create a new listing."
+                        : "Manage your existing services and keep your data up to date."}
                 </p>
                 <div className="mt-6">
                     <Link

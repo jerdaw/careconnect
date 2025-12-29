@@ -14,6 +14,8 @@ interface ServiceCardProps {
 
 import { useLocale, useTranslations } from 'next-intl';
 
+import { trackEvent } from '../lib/analytics';
+
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
     const locale = useLocale();
     const t = useTranslations('Common');
@@ -23,6 +25,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
     const name = (locale === 'fr' && service.name_fr) ? service.name_fr : service.name;
     const description = (locale === 'fr' && service.description_fr) ? service.description_fr : service.description;
     const address = (locale === 'fr' && service.address_fr) ? service.address_fr : service.address;
+
+    const handleTrack = (type: 'click_website' | 'click_call') => {
+        trackEvent(service.id, type);
+    };
 
     return (
         <motion.div
@@ -73,7 +79,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
                 {service.phone && (
                     <div className="flex items-center gap-2">
                         <Phone className="h-4 w-4 shrink-0 text-neutral-400" />
-                        <a href={`tel:${service.phone}`} className="hover:text-blue-600 hover:underline">
+                        <a
+                            href={`tel:${service.phone}`}
+                            className="hover:text-blue-600 hover:underline"
+                            onClick={() => handleTrack('click_call')}
+                        >
                             {service.phone}
                         </a>
                     </div>
@@ -105,6 +115,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                    onClick={() => handleTrack('click_website')}
                 >
                     Details <ExternalLink className="h-3 w-3" />
                     <span className="sr-only">{t('Common.openInNewTab')}</span>
