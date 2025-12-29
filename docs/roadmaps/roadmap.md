@@ -21,8 +21,8 @@
 - [x] Add "Verification Badge" logic for self-managed services.
 
 ## Phase 33: Analytics & Insights 📊
-- [ ] secure "View Count" tracking schema.
-- [ ] Implement "Analytics Card" on Partner Dashboard.
+- [x] Secure "View Count" tracking schema.
+- [x] Implement "Analytics Card" on Partner Dashboard.
 
 ---
 

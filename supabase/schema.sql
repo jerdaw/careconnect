@@ -87,7 +87,7 @@ create policy "Partners can view their own service analytics"
     exists (
       select 1 from services
       where services.id = analytics_events.service_id
-      and services.organization_id = auth.uid()
+      and services.org_id = auth.uid()
     )
   );
 
