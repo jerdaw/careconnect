@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import "./globals.css";
+import BetaBanner from "../components/BetaBanner";
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -12,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <BetaBanner />
+        {children}
+      </body>
     </html>
   );
 }

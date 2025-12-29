@@ -128,9 +128,10 @@ export default function Home() {
             <p className="text-sm text-neutral-500">
               Trusted by <strong>Queen&apos;s University</strong> students.
             </p>
-            <p className="text-xs text-neutral-400 mt-2">
-              Privacy First: We do not log your searches. Matches are processed on your device.
-            </p>
+            <div className="mt-4 flex justify-center gap-4 text-xs text-neutral-400">
+              <span>Privacy First: No logging.</span>
+              <a href="https://forms.gle/placeholder" target="_blank" className="hover:text-neutral-600 underline">Report a Problem</a>
+            </div>
           </div>
         )}
       </div>
