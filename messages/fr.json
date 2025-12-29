@@ -28,5 +28,8 @@
             "noLogging": "Pas d'enregistrement de requêtes : Vos termes de recherche sont traités de manière anonyme et ne sont pas liés à votre identité."
         },
         "contact": "Des questions ? Contactez-nous à privacy@kingstoncare.ca"
+    },
+    "ServiceCard": {
+        "reportIssue": "Signaler un problème"
     }
 }

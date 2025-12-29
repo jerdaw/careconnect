@@ -1,6 +1,6 @@
 # Roadmap V2: Community Expansion & Technical Maturity
 
-> **Status:** Active
+> **Status:** Completed
 > **Focus:** Generalizing for Kingston Community, Bilingual Support, and Data Completion.
 
 ## Phase 2: Community Expansion (Current)
@@ -43,11 +43,11 @@ The goal of Phase 2 is to transition from a student-focused pilot to a general c
 - [ ] Create Manifest and Icons.
 - [ ] Verify installability (Lighthouse).
 
-### 3.2 Feedback Loop
+### 3.2 Feedback Loop (Active)
 - [ ] Replace `mailto` links with structured feedback forms.
 - [ ] Implement "Report Inaccurate Information" button on service cards.
 
-### 3.3 Partner Portal (Concept)
+### 3.3 Partner Portal (Concept) (Active)
 - [ ] Design simple auth flow for Service Providers.
 - [ ] Allow claim/edit functionality for verified organizations.
 

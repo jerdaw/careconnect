@@ -28,5 +28,8 @@
             "noLogging": "No Query Logging: Your search terms are processed anonymously and are not linked to your identity."
         },
         "contact": "Questions? Contact us at privacy@kingstoncare.ca"
+    },
+    "ServiceCard": {
+        "reportIssue": "Report Issue"
     }
 }

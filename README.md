@@ -22,8 +22,9 @@ We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Service
 
 -   **🧠 Semantic Search:** Type "I feel unsafe" instead of guessing keywords like "Shelter Intake." We use local embeddings to understand intent.
 -   **🔒 Privacy-First:** No cookies, no tracking, and no search logs. All inference happens in your browser or anonymously.
+-   **📱 Installable App (PWA):** Works offline and can be installed on your home screen.
+-   **🗣️ Community Governance:** Built-in feedback loops allow residents to flag incorrect data instantly.
 -   **⚡ Zero-Latency:** optimized for instant loads even on poor data connections.
--   **📱 Mobile-First:** Designed for verify accessibility on any device.
 
 ---
 

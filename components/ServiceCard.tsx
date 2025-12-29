@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, ExternalLink, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, ExternalLink, ShieldCheck, Flag } from 'lucide-react';
 import { Service, VerificationLevel } from '../types/service';
+import { generateFeedbackLink } from '../lib/feedback';
 
 interface ServiceCardProps {
     service: Service;
@@ -90,7 +91,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, score, matchReasons 
                 ))}
             </div>
 
-            <div className="mt-4 flex justify-end">
+            <div className="mt-4 flex items-center justify-between border-t border-neutral-100 pt-3 dark:border-neutral-800">
+                <a
+                    href={generateFeedbackLink(service)}
+                    className="inline-flex items-center gap-1 text-xs font-medium text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300"
+                >
+                    <Flag className="h-3 w-3" />
+                    {t('ServiceCard.reportIssue')}
+                </a>
+
                 <a
                     href={service.url}
                     target="_blank"
@@ -98,7 +107,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, score, matchReasons 
                     className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
                 >
                     Details <ExternalLink className="h-3 w-3" />
-                    <span className="sr-only">{t('openInNewTab')}</span>
+                    <span className="sr-only">{t('Common.openInNewTab')}</span>
                 </a>
             </div>
         </motion.div>
