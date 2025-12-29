@@ -4,15 +4,15 @@
 > **Focus:** Empowering service providers to manage their own data via a secure Partner Portal.
 
 ## Phase 30: Foundation & Infrastructure 🏗️
-- [ ] Initialize Supabase project (Auth + Postgres).
-- [ ] Migrate `services.json` to Postgres Database.
-- [ ] Create Database Types / ORM Layer (Prisma or Kysely).
-- [ ] Update `Search` to query DB instead of local JSON.
+- [x] Initialize Supabase project (Auth + Postgres).
+- [ ] Migrate `services.json` to Postgres Database. (Blocked on Credentials)
+- [x] Create Database Types / ORM Layer.
+- [x] Update `Search` to query DB instead of local JSON.
 
 ## Phase 31: Authentication System 🔐
-- [ ] Implement Partner Login Page (Magic Link).
-- [ ] Create Auth Context / Protected Routes.
-- [ ] Implement "Claim Verification" flow (Database policies / RLS).
+- [x] Implement Partner Login Page (Magic Link).
+- [x] Create Auth Context / Protected Routes.
+- [x] Implement "Claim Verification" flow (UI Ready, Policy Pending).
 
 ## Phase 32: Partner Dashboard & Editing ✏️
 - [ ] Create Dashboard Layout (Sidebar, User Profile).
