@@ -1,0 +1,36 @@
+[
+    {
+        "id": "ams-food-bank-queens",
+        "name": "AMS Food Bank",
+        "description": "The AMS Food Bank provides confidential, non-judgmental food service to Queen's University students. We aim to ensure that students can stay healthy and focus on their academic potential.",
+        "url": "https://ams.queensu.ca/services/food-bank",
+        "email": "foodbank@ams.queensu.ca",
+        "phone": "(613) 533-6000",
+        "address": "John Deutsch University Centre (JDUC), Room 343, 99 University Ave, Kingston, ON K7L 3N6",
+        "verification_level": "L3",
+        "intent_category": "Food",
+        "provenance": {
+            "verified_by": "Kingston Care Connect Governance Team",
+            "verified_at": "2025-10-15T14:30:00Z",
+            "evidence_url": "https://ams.queensu.ca/services/food-bank",
+            "method": "Direct partnership confirmation"
+        },
+        "identity_tags": [
+            {
+                "tag": "Queen's University Student",
+                "evidence_url": "https://ams.queensu.ca/services/food-bank"
+            },
+            {
+                "tag": "Kingston Resident",
+                "evidence_url": "https://ams.queensu.ca/services/food-bank"
+            }
+        ],
+        "synthetic_queries": [
+            "I am a student at Queen's and I ran out of grocery money",
+            "Free food for students in Kingston near campus",
+            "Where can I get food assistance at Queen's University?",
+            "AMS food support services",
+            "Emergency food for unexpected expenses student"
+        ]
+    }
+]
