@@ -1,23 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Loader2 } from 'lucide-react';
 import { searchServices, SearchResult } from '../lib/search';
 import ServiceCard from '../components/ServiceCard';
-// import { Service } from '../types/service';
-
 import { logSearchEvent } from '../lib/analytics';
-
-// Import all data once (Client Side Load - acceptable for small dataset)
-// import servicesData from '../data/services.json';
-
-// We need to cast this because we are importing directly from JSON
-// const ALL_SERVICES = servicesData as unknown as Service[];
+import { useSemanticSearch } from '../hooks/useSemanticSearch';
 
 export default function Home() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+
+  // Progressive Search Hook
+  const { isReady, progress, generateEmbedding } = useSemanticSearch();
 
   useEffect(() => {
     if (query.trim().length === 0) {
@@ -26,17 +22,27 @@ export default function Home() {
       return;
     }
 
-    const timer = setTimeout(() => {
-      const searchResults = searchServices(query);
-      setResults(searchResults);
+    const timer = setTimeout(async () => {
+      // 1. Instant Keyword Search (First Pass)
+      const initialResults = await searchServices(query);
+      setResults(initialResults);
       setHasSearched(true);
 
+      // 2. Progressive Upgrade (If Model Ready)
+      if (isReady) {
+        const embedding = await generateEmbedding(query);
+        if (embedding) {
+          const enhancedResults = await searchServices(query, embedding);
+          setResults(enhancedResults);
+        }
+      }
+
       // Analytics (Privacy-Preserving)
-      logSearchEvent(query, searchResults.map(r => r.service));
-    }, 150); // 150ms debounce for smoothness
+      logSearchEvent(query, initialResults.map(r => r.service));
+    }, 150);
 
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, isReady, generateEmbedding]);
 
   // Suggested Chips
   const startSearch = (term: string) => {
@@ -52,6 +58,19 @@ export default function Home() {
         <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
           The fastest way to find verified food, crisis, and housing support in Kingston.
         </p>
+
+        {/* Model Status Indicator (Subtle) */}
+        {!isReady && progress !== null && progress < 100 && (
+          <div className="mt-2 flex items-center justify-center gap-2 text-xs text-blue-600 dark:text-blue-400">
+            <Loader2 className="h-3 w-3 animate-spin" />
+            <span>Enhancing search capability... {Math.round(progress)}%</span>
+          </div>
+        )}
+        {isReady && (
+          <div className="mt-2 text-xs text-green-600 dark:text-green-500 animate-in fade-in duration-1000">
+            ⚡ Private Neural Search Active
+          </div>
+        )}
 
         <div className="mt-8 relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
