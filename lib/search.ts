@@ -224,7 +224,7 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
                 } else {
                     // New Semantic-only result
                     // Only add if it's a decent match to avoid noise
-                    if (vectorPoints > 35) {
+                    if (vectorPoints > 25) {
                         resultsMap.set(service.id, {
                             service,
                             score: vectorPoints,
