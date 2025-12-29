@@ -32,5 +32,414 @@
             "AMS food support services",
             "Emergency food for unexpected expenses student"
         ]
+    },
+    {
+        "id": "partners-in-mission-food-bank",
+        "name": "Partners in Mission Food Bank",
+        "description": "Partners in Mission Food Bank is a Registered Charity providing food hamper services to Kingston residents in need.",
+        "url": "https://kingstonfoodbank.ca",
+        "email": "info@kingstonfoodbank.ca",
+        "phone": "613.544.4100",
+        "address": "4 Harvey Street, Kingston, ON, K7K 5B9",
+        "verification_level": "L2",
+        "intent_category": "Food",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:50:00Z",
+            "evidence_url": "https://kingstonfoodbank.ca/get-assistance",
+            "method": "Web Scrape & Manual Verification of Eligibility Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Kingston Resident",
+                "evidence_url": "https://kingstonfoodbank.ca/get-assistance"
+            }
+        ],
+        "synthetic_queries": [
+            "Free groceries kingston",
+            "Empty fridge no money to buy food",
+            "Food hamper help near me",
+            "Can't afford food this week due to rent",
+            "Emergency food assistance Kingston"
+        ]
+    },
+    {
+        "id": "marthas-table-kingston",
+        "name": "Martha's Table",
+        "description": "A caring place where people in need can have access to a nutritious meal and find community social support. Serving Breakfast, Lunch, and Dinner.",
+        "url": "https://marthastable.ca",
+        "phone": "613-546-0320",
+        "address": "629 Princess Street, Kingston, ON",
+        "verification_level": "L2",
+        "intent_category": "Food",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:50:00Z",
+            "evidence_url": "https://marthastable.ca",
+            "method": "Web Scrape & Manual Verification of Hours"
+        },
+        "identity_tags": [
+            {
+                "tag": "Open Access",
+                "evidence_url": "https://marthastable.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Free hot meal kingston",
+            "Place to eat for free downtown",
+            "Soup kitchen kingston open now",
+            "Hungry and broke student",
+            "Community meal program"
+        ]
+    },
+    {
+        "id": "good-food-box-kingston",
+        "name": "The Good Food Box",
+        "description": "Non-profit program powered by KCHC offering fresh fruits and vegetables at an affordable cost. Order online and pick up at volunteer host sites.",
+        "url": "https://goodfoodboxkingston.com",
+        "email": "goodfoodbox@kchc.ca",
+        "phone": "613-530-2239",
+        "address": "263 Weller Ave., Kingston, ON K7K 2V2",
+        "verification_level": "L2",
+        "intent_category": "Food",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:50:00Z",
+            "evidence_url": "https://goodfoodboxkingston.com",
+            "method": "Web Scrape & Manual Verification of Store"
+        },
+        "identity_tags": [
+            {
+                "tag": "Kingston Community Health Centres Program",
+                "evidence_url": "https://goodfoodboxkingston.com"
+            }
+        ],
+        "synthetic_queries": [
+            "Cheap vegetables kingston",
+            "Affordable produce box delivery",
+            "Grocery deals for students on a budget",
+            "Healthy food box KCHC",
+            "Where to buy cheap fruit in Kingston"
+        ]
+    },
+    {
+        "id": "amhs-kfla-crisis-line",
+        "name": "AMHS-KFLA 24/7 Crisis Line",
+        "description": "Immediate and urgent support for individuals experiencing emotional or mental distress. Staffed by mental health and addiction specialists.",
+        "url": "https://amhs-kfla.ca",
+        "phone": "613-544-4229",
+        "address": "552 Princess Street, Kingston, ON K7L 1C7",
+        "verification_level": "L2",
+        "intent_category": "Crisis",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:55:00Z",
+            "evidence_url": "https://amhs-kfla.ca",
+            "method": "Web Scrape & Manual Verification of Crisis Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Open Access",
+                "evidence_url": "https://amhs-kfla.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "I want to kill myself",
+            "Panic attack help now",
+            "Mental health emergency kingston",
+            "Crisis line phone number",
+            "Help I can't stop crying"
+        ]
+    },
+    {
+        "id": "kingston-detox-centre",
+        "name": "Kingston Detoxification Centre",
+        "description": "Short-term, non-medical treatment service for detoxification from alcohol and/or street drugs. Open 24/7.",
+        "url": "https://kingstonhsc.ca/programs-and-departments/detoxification-centre",
+        "phone": "613-549-6461",
+        "address": "240 Brock St, Kingston, ON K7L 5G2",
+        "verification_level": "L2",
+        "intent_category": "Crisis",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:55:00Z",
+            "evidence_url": "https://kingstonhsc.ca/programs-and-departments/detoxification-centre",
+            "method": "Web Scrape & Manual Verification of Program Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Age 16+",
+                "evidence_url": "https://kingstonhsc.ca/programs-and-departments/detoxification-centre"
+            }
+        ],
+        "synthetic_queries": [
+            "Sobering up center kingston",
+            "Detox bed availability",
+            "Withdrawal help alcohol",
+            "Where to go for drug detox",
+            "Safe place to get sober"
+        ]
+    },
+    {
+        "id": "kingston-youth-shelter",
+        "name": "Kingston Youth Shelter",
+        "description": "Emergency overnight shelter and transitional housing for youth aged 16-24. Open 24/7.",
+        "url": "https://kingstonyouthshelter.com",
+        "phone": "613-549-4236",
+        "address": "234 Brock St, Kingston, ON K7L 1S4",
+        "verification_level": "L2",
+        "intent_category": "Housing",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:55:00Z",
+            "evidence_url": "https://kingstonyouthshelter.com",
+            "method": "Web Scrape & Manual Verification of Mission Statement"
+        },
+        "identity_tags": [
+            {
+                "tag": "Youth (16-24)",
+                "evidence_url": "https://kingstonyouthshelter.com"
+            }
+        ],
+        "synthetic_queries": [
+            "Homeless youth shelter kingston",
+            "Kicked out of parents house",
+            "Place to sleep tonight for teenager",
+            "Emergency youth housing",
+            "19 year old homeless help"
+        ]
+    },
+    {
+        "id": "sack-sexual-assault-centre",
+        "name": "Sexual Assault Centre Kingston (SACK)",
+        "description": "Free, confidential support for survivors of sexual violence aged 12+. Crisis line, counselling, and advocacy.",
+        "url": "https://www.sackingston.com",
+        "phone": "613-544-6424",
+        "address": "400 Elliott Avenue, Unit 1, Kingston, ON K7K 6M9",
+        "verification_level": "L2",
+        "intent_category": "Crisis",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T22:55:00Z",
+            "evidence_url": "https://www.sackingston.com",
+            "method": "Web Scrape & Manual Verification of Services Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Survivors 12+",
+                "evidence_url": "https://www.sackingston.com"
+            },
+            {
+                "tag": "Inclusive (All Genders)",
+                "evidence_url": "https://www.sackingston.com"
+            }
+        ],
+        "synthetic_queries": [
+            "Raped and need help",
+            "Sexual assault crisis line kingston",
+            "Counselling for sexual abuse",
+            "Support for survivors of violence",
+            "Confidential help after assault"
+        ]
+    },
+    {
+        "id": "queens-student-wellness",
+        "name": "Queen's Student Wellness Services (QSWS)",
+        "description": "Medical, mental health, and wellness coaching services for Queen's students. Urgent appointments available.",
+        "url": "https://www.queensu.ca/studentwellness/",
+        "email": "wellness.services@queensu.ca",
+        "address": "Mitchell Hall, 69 Union St, Kingston, ON K7L 3N6",
+        "verification_level": "L2",
+        "intent_category": "Health",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://www.queensu.ca/studentwellness/",
+            "method": "Web Scrape & Manual Verification of Services Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Queen's University Student",
+                "evidence_url": "https://www.queensu.ca/studentwellness/"
+            }
+        ],
+        "synthetic_queries": [
+            "See a doctor on campus",
+            "Stressed about exams need to talk",
+            "Queen's therapy appointment",
+            "Book counsellor queensu",
+            "Medical note for missed exam"
+        ]
+    },
+    {
+        "id": "maltby-centre-mental-health",
+        "name": "Maltby Centre",
+        "description": "Mental health and autism services for children and youth (0-24) and their families. Free, confidential counselling.",
+        "url": "https://maltbycentre.ca",
+        "phone": "613-546-8535",
+        "address": "31 Hyperion Court, Suite 100, Kingston, ON K7K 7G3",
+        "verification_level": "L2",
+        "intent_category": "Wellness",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://maltbycentre.ca",
+            "method": "Web Search & Verification of Eligibility (Search Result)"
+        },
+        "identity_tags": [
+            {
+                "tag": "Youth (0-24)",
+                "evidence_url": "https://maltbycentre.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Child therapy kingston",
+            "Free youth counselling near me",
+            "Help for teenager with anxiety",
+            "Autism support kingston",
+            "Mental health help for kids free"
+        ]
+    },
+    {
+        "id": "resolve-counselling",
+        "name": "Resolve Counselling Services",
+        "description": "Confidential, non-judgmental mental health and financial counselling for individuals, families, and workplaces.",
+        "url": "https://resolvecounselling.org",
+        "phone": "613-549-7850",
+        "address": "417 Bagot Street, Kingston, ON K7K 3C1",
+        "verification_level": "L2",
+        "intent_category": "Wellness",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://resolvecounselling.org",
+            "method": "Web Scrape & Manual Verification of Services Page"
+        },
+        "identity_tags": [
+            {
+                "tag": "Open Access",
+                "evidence_url": "https://resolvecounselling.org"
+            }
+        ],
+        "synthetic_queries": [
+            "Couples therapy kingston",
+            "Credit counselling help",
+            "Family counsellor near me",
+            "Depression help not expensive",
+            "Employee assistance program counselling"
+        ]
+    },
+    {
+        "id": "good2talk-ontario",
+        "name": "Good2Talk",
+        "description": "Free, confidential support services for post-secondary students in Ontario. 24/7 professional counselling and crisis support.",
+        "url": "https://good2talk.ca",
+        "phone": "1-866-925-5454",
+        "verification_level": "L2",
+        "intent_category": "Crisis",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://good2talk.ca",
+            "method": "Web Scrape & Manual Verification of Eligibility"
+        },
+        "identity_tags": [
+            {
+                "tag": "Post-Secondary Student",
+                "evidence_url": "https://good2talk.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Student distress line ontario",
+            "Talk to someone late at night",
+            "Exam stress help phone",
+            "Suicidal thoughts student helpline",
+            "Confidential counselling for uni students"
+        ]
+    },
+    {
+        "id": "kingston-home-base-housing",
+        "name": "Kingston Home Base Housing",
+        "description": "Supportive and transitional housing, emergency shelters, and support services for youth, adults, and families at risk of homelessness.",
+        "url": "https://kingstonhomebase.ca",
+        "phone": "613-542-6672",
+        "verification_level": "L2",
+        "intent_category": "Housing",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://kingstonhomebase.ca",
+            "method": "Web Scrape & Manual Verification of Services"
+        },
+        "identity_tags": [
+            {
+                "tag": "Open Access (Housing Risk)",
+                "evidence_url": "https://kingstonhomebase.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Help finding an apartment kingston",
+            "About to be evicted what do I do",
+            "Housing support worker",
+            "Emergency family shelter",
+            "Affordable housing list kingston"
+        ]
+    },
+    {
+        "id": "ryandale-shelter",
+        "name": "Ryandale Shelter",
+        "description": "Transitional housing for men experiencing homelessness. Focus on healing, life skills, and sobriety.",
+        "url": "https://ryandale.ca",
+        "phone": "613-766-1925",
+        "address": "494 Fieldstone Drive, Kingston, ON",
+        "verification_level": "L2",
+        "intent_category": "Housing",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://ryandale.ca",
+            "method": "Web Scrape & Manual Verification of Mission"
+        },
+        "identity_tags": [
+            {
+                "tag": "Men (Transitional)",
+                "evidence_url": "https://ryandale.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Men's shelter kingston",
+            "Transitional housing for men recovering",
+            "Sober living house kingston",
+            "Homeless man needs place to stay",
+            "Housing support for men"
+        ]
+    },
+    {
+        "id": "dawn-house-womens-shelter",
+        "name": "Dawn House",
+        "description": "Transitional and supportive housing for marginalized or vulnerably housed women. Empowering women to find permanent solutions.",
+        "url": "https://dawnhouse.ca",
+        "address": "965 Milford Drive, Kingston, ON",
+        "verification_level": "L2",
+        "intent_category": "Housing",
+        "provenance": {
+            "verified_by": "Antigravity (AI Agent)",
+            "verified_at": "2025-12-28T23:00:00Z",
+            "evidence_url": "https://dawnhouse.ca",
+            "method": "Web Scrape & Manual Verification of Vision"
+        },
+        "identity_tags": [
+            {
+                "tag": "Women",
+                "evidence_url": "https://dawnhouse.ca"
+            }
+        ],
+        "synthetic_queries": [
+            "Women's shelter kingston",
+            "Safe housing for woman fleeing violence",
+            "Homeless support for women",
+            "Transitional housing dawn house",
+            "Emergency bed for woman"
+        ]
     }
 ]
