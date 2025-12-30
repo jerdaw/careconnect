@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 import { createApiResponse, createApiError, handleApiError } from '@/lib/api-utils';
+import { logger } from '@/lib/logger';
 
 /**
  * GET /api/v1/services
@@ -60,7 +61,7 @@ export async function GET(request: NextRequest) {
         const { data, count, error } = await query;
 
         if (error) {
-            console.error('API /v1/services error:', error.message);
+            logger.error('API /v1/services error:', error.message, { component: 'api-v1-services', action: 'GET', query: q, category });
             return createApiError('Database query failed', 500);
         }
 
@@ -127,7 +128,7 @@ export async function POST(request: NextRequest) {
             .single();
 
         if (error) {
-            console.error('API /v1/services POST error:', error);
+            logger.error('API /v1/services POST error:', error, { component: 'api-v1-services', action: 'POST', user: user.id });
             return createApiError('Failed to create service', 500, error.message);
         }
 

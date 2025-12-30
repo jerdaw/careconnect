@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
 import { LayoutDashboard, List, Settings, LogOut, ExternalLink, Bell, BarChart3 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardSidebar() {
     const pathname = usePathname();
@@ -114,13 +115,14 @@ export default function DashboardSidebar() {
                         View Public Site
                     </Link>
 
-                    <button
+                    <Button
+                        variant="ghost"
+                        className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
                         onClick={handleSignOut}
-                        className="group flex w-full items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
                     >
                         <LogOut className="h-4 w-4" />
                         Sign Out
-                    </button>
+                    </Button>
                 </div>
             </div>
         </aside>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Loader2, Plus, Save, RefreshCw } from 'lucide-react';
 import { Service, IntentCategory, VerificationLevel } from '../../../types/service';
+import { Button } from '@/components/ui/button';
 
 export default function AdminPage() {
     const [services, setServices] = useState<Service[]>([]);
@@ -69,12 +70,12 @@ export default function AdminPage() {
                 <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Admin Dashboard 🛠️</h1>
                 <div className="flex gap-4">
                     <span className="text-sm text-red-500 font-mono">{status}</span>
-                    <button
+                    <Button
+                        variant="secondary"
                         onClick={handleReindex}
-                        className="flex items-center gap-2 rounded bg-neutral-200 px-4 py-2 text-sm font-medium hover:bg-neutral-300"
                     >
                         <RefreshCw className="h-4 w-4" /> Re-Index AI
-                    </button>
+                    </Button>
                 </div>
             </header>
 
@@ -83,7 +84,10 @@ export default function AdminPage() {
                 <div className="space-y-4 lg:col-span-1">
                     <div className="flex items-center justify-between">
                         <h2 className="font-semibold text-neutral-500">All Services ({services.length})</h2>
-                        <button
+                        <Button
+                            variant="default"
+                            size="icon"
+                            className="rounded-full"
                             onClick={() => setSelectedService({
                                 id: 'new-' + Date.now(),
                                 name: 'New Service',
@@ -102,10 +106,9 @@ export default function AdminPage() {
                                     method: 'manual-entry'
                                 }
                             })}
-                            className="rounded-full bg-blue-600 p-1 text-white hover:bg-blue-700"
                         >
                             <Plus className="h-5 w-5" />
-                        </button>
+                        </Button>
                     </div>
                     <div className="h-[80vh] overflow-y-auto space-y-2 pr-2">
                         {services.map(s => (
@@ -157,14 +160,13 @@ function ServiceEditor({ service, onSave, isSaving }: { service: Service, onSave
         <div className="space-y-4">
             <div className="flex justify-between">
                 <span className="text-xs font-mono text-neutral-400">ID: {formData.id}</span>
-                <button
+                <Button
                     onClick={() => onSave(formData)}
                     disabled={isSaving}
-                    className="flex items-center gap-2 rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:opacity-50"
                 >
                     {isSaving ? <Loader2 className="animate-spin h-4 w-4" /> : <Save className="h-4 w-4" />}
                     Save Changes
-                </button>
+                </Button>
             </div>
 
             <div className="grid gap-4">

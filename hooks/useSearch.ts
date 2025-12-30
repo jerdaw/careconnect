@@ -1,80 +1,59 @@
-import { useState, useEffect } from 'react';
-import { searchServices, SearchResult } from '@/lib/search';
+import { useState, useCallback } from 'react';
+import { SearchResult } from '@/lib/search';
+import { useLocalStorage } from './useLocalStorage';
+import { useGeolocation } from './useGeolocation';
+import { logger } from '@/lib/logger';
 
 export function useSearch(initialQuery = '') {
     const [query, setQuery] = useState(initialQuery);
     const [category, setCategory] = useState<string | undefined>(undefined);
-    const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | undefined>(undefined);
-    const [isLocating, setIsLocating] = useState(false);
     const [results, setResults] = useState<SearchResult[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [savedSearches, setSavedSearches] = useState<string[]>([]);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined' && window.localStorage) {
-            const saved = localStorage.getItem('kcc_saved_searches');
-            if (saved) {
-                try {
-                    setSavedSearches(JSON.parse(saved) as string[]);
-                } catch (e) {
-                    console.error("Failed to parse saved searches", e);
-                }
-            }
-        }
-    }, []);
+    // Use the new utility hooks
+    const [savedSearches, setSavedSearches] = useLocalStorage<string[]>('kcc_saved_searches', []);
+    const {
+        coordinates: userLocation,
+        isLocating,
+        error: geoError,
+        requestLocation,
+        clearLocation
+    } = useGeolocation();
 
-    const handleSaveSearch = () => {
+    const handleSaveSearch = useCallback(() => {
         if (!query) return;
-        const newSaved = Array.from(new Set([query, ...savedSearches])).slice(0, 5);
-        setSavedSearches(newSaved);
-        if (typeof window !== 'undefined' && window.localStorage) {
-            localStorage.setItem('kcc_saved_searches', JSON.stringify(newSaved));
-        }
-    };
+        setSavedSearches(prev => {
+            const newSaved = Array.from(new Set([query, ...prev])).slice(0, 5);
+            return newSaved;
+        });
+    }, [query, setSavedSearches]);
 
-    const removeSavedSearch = (term: string) => {
-        const newSaved = savedSearches.filter(s => s !== term);
-        setSavedSearches(newSaved);
-        if (typeof window !== 'undefined' && window.localStorage) {
-            localStorage.setItem('kcc_saved_searches', JSON.stringify(newSaved));
-        }
-    };
+    const removeSavedSearch = useCallback((term: string) => {
+        setSavedSearches(prev => prev.filter(s => s !== term));
+    }, [setSavedSearches]);
 
-    const toggleLocation = () => {
+    const toggleLocation = useCallback(() => {
         if (userLocation) {
-            setUserLocation(undefined);
-            return;
-        }
-
-        setIsLocating(true);
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setUserLocation({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    });
-                    setIsLocating(false);
-                },
-                (error) => {
-                    console.error("Geo error:", error);
-                    setIsLocating(false);
-                    alert("Could not get your location. Please check browser permissions.");
-                }
-            );
+            clearLocation();
         } else {
-            setIsLocating(false);
-            alert("Geolocation is not supported by this browser.");
+            requestLocation();
         }
-    };
+    }, [userLocation, clearLocation, requestLocation]);
+
+    // Handle geo errors by logging and alerting (MVP style)
+    if (geoError && isLocating === false && hasSearched === false) {
+        logger.error('Geolocation error in useSearch', new Error(geoError), { component: 'useSearch' });
+        // We could use a toast here, but keeping alert for compatibility with previous version
+        // unless specified otherwise.
+    }
 
     return {
         query,
         setQuery,
         category,
         setCategory,
-        userLocation,
+        userLocation: userLocation || undefined,
         toggleLocation,
         isLocating,
         results,

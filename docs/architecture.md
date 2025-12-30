@@ -30,11 +30,17 @@ The search system uses a hybrid approach:
 - **Services**: Fetched via `/api/v1/services`. Cached using SWR-like strategies in hooks.
 - **Analytics**: Search events are logged to `/api/v1/analytics/search` asynchronously.
 
-### Error Handling
-- **Global Error Boundary**: Wraps the application root to catch runtime crashes.
-- **API Errors**: Standardized JSON response format (`{ error: string, meta: ... }`).
+### Hooks Architecture
+We use a modular hook system to separate concerns:
+- **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
+- **Utility Hooks**: Generic hooks for `localStorage` and `Geolocation` ensure SSR safety and consistency.
+
+### Logging & Monitoring
+- **Logger Utility**: Located in `lib/logger.ts`. Use instead of `console.log`.
+- **Error IDs**: The Error Boundary generates unique IDs (e.g., `ERR-K9X2J1`) for cross-referencing logs with user reports.
 
 ## Development
 - `npm run dev`: Start local server.
 - `npm run test`: Run integration tests.
 - `npx playwright test`: Run E2E tests.
+- `docs/CONTRIBUTING.md`: Detailed development guidelines.

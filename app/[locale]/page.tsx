@@ -86,32 +86,33 @@ export default function Home() {
               onChange={(e) => setQuery(e.target.value)}
             />
             {query.length > 0 && (
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={handleSaveSearch}
-                className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-400 hover:text-red-500"
+                className="absolute inset-y-0 right-4 my-auto h-8 w-8 text-neutral-400 hover:text-red-500"
                 title="Save this search"
                 aria-label="Save this search"
               >
                 <Heart className="h-5 w-5" />
-              </button>
+              </Button>
             )}
           </div>
 
           {/* Controls Row */}
           <div className="flex flex-wrap items-center justify-center gap-2">
             {/* Location Toggle */}
-            <button
+            <Button
+              variant={userLocation ? "default" : "pill"}
+              size="pill"
               onClick={toggleLocation}
               aria-pressed={!!userLocation}
               aria-label={userLocation ? "Clear location filter" : "Filter by current location"}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${userLocation
-                ? 'bg-blue-100 text-blue-700 ring-1 ring-blue-300 dark:bg-blue-900/30 dark:text-blue-300'
-                : 'bg-white text-neutral-600 ring-1 ring-neutral-200 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-800'
-                }`}
+              className={userLocation ? 'rounded-full' : ''}
             >
               {isLocating ? <Loader2 className="h-4 w-4 animate-spin" /> : <MapPin className="h-4 w-4" />}
               {userLocation ? 'Near Me' : 'Use Location'}
-            </button>
+            </Button>
 
             {/* Category Scroll */}
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide max-w-full" role="group" aria-label="Filter by category">
@@ -148,15 +149,23 @@ export default function Home() {
               <div className="flex flex-wrap justify-center gap-2">
                 <div className="w-full text-xs font-semibold uppercase text-neutral-400 tracking-wider">Saved</div>
                 {savedSearches.map(s => (
-                  <div key={s} className="group flex items-center gap-1 rounded-full bg-blue-50 pl-3 pr-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-800">
-                    <button onClick={() => setQuery(s)}>{s}</button>
-                    <button
+                  <div key={s} className="group flex items-center gap-1 rounded-full bg-blue-50 pl-3 pr-1 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-800">
+                    <Button
+                      variant="link"
+                      className="h-auto p-0 text-xs text-blue-700 dark:text-blue-300"
+                      onClick={() => setQuery(s)}
+                    >
+                      {s}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-5 w-5 text-blue-400 hover:text-blue-600"
                       onClick={(e) => { e.stopPropagation(); removeSavedSearch(s); }}
-                      className="text-blue-400 hover:text-blue-600"
                       aria-label={`Remove saved search ${s}`}
                     >
                       <X className="h-3 w-3" />
-                    </button>
+                    </Button>
                   </div>
                 ))}
               </div>

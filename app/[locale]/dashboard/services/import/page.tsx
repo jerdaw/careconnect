@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { Upload, FileText, Check, X, Download } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
 
 export default function BulkImportPage() {
     const [dragActive, setDragActive] = useState(false);
@@ -167,12 +168,13 @@ export default function BulkImportPage() {
                             <Upload className="h-12 w-12 text-neutral-400 mb-4" />
                             <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                                 Drag and drop your CSV file here, or{' '}
-                                <button
-                                    className="text-blue-600 hover:text-blue-500 underline"
+                                <Button
+                                    variant="link"
+                                    className="p-0 h-auto"
                                     onClick={() => inputRef.current?.click()}
                                 >
                                     browse
-                                </button>
+                                </Button>
                             </p>
                             <p className="mt-2 text-xs text-neutral-500">
                                 Supports: .csv (Max 5MB)
@@ -183,12 +185,14 @@ export default function BulkImportPage() {
                             <FileText className="h-12 w-12 text-blue-600 mb-4" />
                             <p className="font-medium text-neutral-900 dark:text-white">{file.name}</p>
                             <p className="text-xs text-neutral-500 mt-1">{(file.size / 1024).toFixed(1)} KB</p>
-                            <button
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                className="mt-4"
                                 onClick={() => { setFile(null); setParsedData([]); }}
-                                className="mt-4 text-xs text-red-600 hover:text-red-500 flex items-center gap-1"
                             >
                                 <X className="h-3 w-3" /> Remove File
-                            </button>
+                            </Button>
                         </div>
                     )}
                     <input
@@ -211,12 +215,13 @@ export default function BulkImportPage() {
                     <p className="mt-2 text-green-700 dark:text-green-400">
                         Your file has been uploaded and is being processed. You will be notified once the services are added.
                     </p>
-                    <button
+                    <Button
+                        variant="outline"
+                        className="mt-6"
                         onClick={() => setUploadStatus('idle')}
-                        className="mt-6 inline-flex items-center justify-center rounded-md bg-white border border-green-200 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-50 shadow-sm"
                     >
                         Import Another
-                    </button>
+                    </Button>
                 </div>
             )}
 
@@ -257,13 +262,12 @@ export default function BulkImportPage() {
                         </table>
                     </div>
                     <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 flex justify-end">
-                        <button
+                        <Button
                             onClick={handleStartImport}
                             disabled={isProcessing}
-                            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isProcessing ? 'Processing...' : 'Complete Import'}
-                        </button>
+                        </Button>
                     </div>
                 </div>
             )}

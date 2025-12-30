@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { logger } from '@/lib/logger';
 
 export interface WorkerStatus {
     isReady: boolean;
@@ -25,12 +26,12 @@ export const useSemanticSearch = () => {
                 }
 
                 if (status === 'ready') {
-                    console.log('🧠 Semantic Search Model Ready');
+                    logger.info('🧠 Semantic Search Model Ready', { component: 'useSemanticSearch' });
                     setStatus({ isReady: true, progress: 100, error: null });
                 }
 
                 if (status === 'error') {
-                    console.error('Worker Error:', error);
+                    logger.error('Worker Error:', error, { component: 'useSemanticSearch' });
                     setStatus(prev => ({ ...prev, error: 'Failed to load model' }));
                 }
             });

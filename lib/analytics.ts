@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { logger } from './logger';
 
 export type EventType = 'view_detail' | 'click_website' | 'click_call';
 
@@ -14,7 +15,7 @@ export async function trackEvent(serviceId: string, eventType: EventType) {
         });
     } catch (error) {
         // Analytics should fail silently to not disrupt user experience
-        console.warn('Analytics error:', error);
+        logger.warn('Analytics error:', { error, serviceId, eventType, component: 'analytics' });
     }
 }
 
@@ -45,7 +46,7 @@ export async function getAnalyticsForServices(serviceIds: string[]): Promise<Rec
         .in('service_id', serviceIds);
 
     if (error || !data) {
-        console.error('Error fetching analytics:', error);
+        logger.error('Error fetching analytics:', error, { component: 'analytics', serviceIds });
         return {};
     }
 

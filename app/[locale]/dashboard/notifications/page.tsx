@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Check, Info, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Notification {
     id: string;
@@ -71,12 +72,9 @@ export default function NotificationsPage() {
                         Stay updated on your services and account status.
                     </p>
                 </div>
-                <button
-                    onClick={markAllAsRead}
-                    className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
-                >
+                <Button variant="link" onClick={markAllAsRead}>
                     Mark all as read
-                </button>
+                </Button>
             </header>
 
             <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
@@ -101,13 +99,15 @@ export default function NotificationsPage() {
                                 </p>
                             </div>
                             {!notification.read && (
-                                <button
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
                                     onClick={() => markAsRead(notification.id)}
-                                    className="flex-shrink-0 rounded-full p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 dark:hover:bg-neutral-800"
+                                    className="flex-shrink-0 rounded-full h-8 w-8"
                                     title="Mark as read"
                                 >
                                     <Check className="h-4 w-4" />
-                                </button>
+                                </Button>
                             )}
                         </li>
                     ))}

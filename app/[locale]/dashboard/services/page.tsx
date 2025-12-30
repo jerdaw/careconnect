@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase';
 import { Service } from '@/types/service';
 import Link from 'next/link';
 import { Plus, ExternalLink, AlertCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 // import { useTranslations } from 'next-intl';
 
 export default function ServicesPage() {
@@ -70,13 +71,10 @@ export default function ServicesPage() {
                         Manage your organization&apos;s listings.
                     </p>
                 </div>
-                <button
-                    disabled
-                    className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
+                <Button disabled>
                     <Plus className="h-4 w-4" />
                     Add Service
-                </button>
+                </Button>
             </div>
 
             {services.length === 0 ? (

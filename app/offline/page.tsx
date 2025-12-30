@@ -1,6 +1,7 @@
 'use client';
 
 import { WifiOff, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function OfflinePage() {
     return (
@@ -45,12 +46,12 @@ export default function OfflinePage() {
                 </div>
 
                 <div className="flex justify-center">
-                    <button
+                    <Button
+                        variant="link"
                         onClick={() => window.location.reload()}
-                        className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
                     >
                         Try connecting again
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

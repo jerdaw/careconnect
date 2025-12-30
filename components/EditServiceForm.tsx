@@ -6,6 +6,7 @@ import { serviceSchema, ServiceFormData } from '@/lib/schemas';
 import { Service } from '@/types/service';
 import { useState } from 'react';
 import { Save } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface EditServiceFormProps {
     service?: Service; // Optional for creation mode
@@ -185,10 +186,10 @@ export default function EditServiceForm({ service, onSubmit }: EditServiceFormPr
             )}
 
             <div className="flex justify-end pt-5">
-                <button
+                <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50"
+                    size="lg"
                 >
                     {isSubmitting ? (
                         <>Saving...</>
@@ -198,7 +199,7 @@ export default function EditServiceForm({ service, onSubmit }: EditServiceFormPr
                             Save Changes
                         </>
                     )}
-                </button>
+                </Button>
             </div>
         </form>
     );

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
+import { logger, generateErrorId } from './logger';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ApiResponse<T = any> = {
@@ -12,6 +13,8 @@ export type ApiResponse<T = any> = {
         limit?: number;
         total?: number;
         offset?: number;
+        timestamp?: string;
+        requestId?: string;
     };
 };
 
@@ -29,8 +32,14 @@ export function createApiResponse<T = any>(
 ) {
     const { status = 200, headers, meta } = options;
 
+    const responseMeta = {
+        timestamp: new Date().toISOString(),
+        requestId: generateErrorId(), // Reusing error ID generator for request IDs
+        ...meta
+    };
+
     return NextResponse.json(
-        { data, ...(meta && { meta }) },
+        { data, meta: responseMeta },
         { status, headers }
     );
 }
@@ -44,8 +53,20 @@ export function createApiError(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     details?: any
 ) {
+    const meta = {
+        timestamp: new Date().toISOString(),
+        requestId: generateErrorId(),
+    };
+
     return NextResponse.json(
-        { error: message, ...(details && { details }) },
+        {
+            error: {
+                message,
+                code: status,
+                details
+            },
+            meta
+        },
         { status }
     );
 }
@@ -55,14 +76,13 @@ export function createApiError(
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function handleApiError(error: any) {
-    console.error('API Error:', error);
+    logger.error('API Error:', error, { component: 'api-utils' });
 
     if (error instanceof ZodError) {
         return createApiError('Validation Error', 400, error.errors);
     }
 
     if (error instanceof Error) {
-        // Handle specific supabase errors or known exceptions here if needed
         return createApiError(error.message, 500);
     }
 

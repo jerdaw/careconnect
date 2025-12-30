@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { searchServices, SearchResult } from '@/lib/search';
+import { logger } from '@/lib/logger';
 
 interface UseServicesProps {
     query: string;
@@ -64,9 +65,9 @@ export function useServices({
                         hasLocation: !!userLocation,
                         resultCount: initialResults.length
                     })
-                }).catch(err => console.error(err));
+                }).catch(err => logger.error('Analytics tracking failed', err, { component: 'useServices', action: 'analytics' }));
             } catch (err) {
-                console.error("Search failed", err);
+                logger.error("Search failed", err, { component: 'useServices', action: 'performSearch' });
                 setIsLoading(false);
             }
         };
