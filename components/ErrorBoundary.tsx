@@ -50,7 +50,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 await navigator.clipboard.writeText(this.state.errorId);
                 this.setState({ copied: true });
                 setTimeout(() => this.setState({ copied: false }), 2000);
-            } catch (err) {
+            } catch {
                 logger.warn('Failed to copy error ID to clipboard', { component: 'ErrorBoundary' });
             }
         }

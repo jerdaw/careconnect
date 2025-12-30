@@ -2,7 +2,7 @@
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { Button } from './ui/button';
-import { AlertCircle, RefreshCcw, Copy, Check } from 'lucide-react';
+import { AlertCircle, RefreshCcw, Copy } from 'lucide-react';
 import { logger } from '@/lib/logger';
 
 interface Props {
@@ -33,9 +33,10 @@ export class AsyncErrorBoundary extends Component<Props, State> {
     }
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        const state = this.state;
         logger.error(`Async Error in ${this.props.componentName || 'Unknown Component'}`, error, {
             errorInfo,
-            errorId: (this.state as any).errorId,
+            errorId: state.hasError ? state.errorId : 'unknown',
             component: this.props.componentName
         });
     }
@@ -81,14 +82,14 @@ export class AsyncErrorBoundary extends Component<Props, State> {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => {
-                                    navigator.clipboard.writeText((this.state as any).errorId);
-                                    // Visual feedback handled by state or just simple toast if we had one
-                                    // For now, localized text update or just the icon change
+                                    if (this.state.hasError) {
+                                        navigator.clipboard.writeText(this.state.errorId);
+                                    }
                                 }}
                                 className="h-8 gap-1.5 text-[10px] text-red-600/60 hover:text-red-600 dark:text-red-400/60"
                             >
                                 <Copy className="h-3 w-3" />
-                                ID: {(this.state as any).errorId}
+                                ID: {this.state.hasError ? this.state.errorId : ''}
                             </Button>
                         </div>
                     </div>
