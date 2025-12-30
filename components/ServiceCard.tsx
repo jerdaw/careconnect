@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, ExternalLink, ShieldCheck, Flag } from 'lucide-react';
 import { Service, VerificationLevel } from '../types/service';
 import { generateFeedbackLink } from '../lib/feedback';
+import { Link } from '../i18n/routing';
 
 interface ServiceCardProps {
     service: Service;
@@ -110,16 +111,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
                     {t('ServiceCard.reportIssue')}
                 </a>
 
-                <a
-                    href={service.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href={`/service/${service.id}`}
                     className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
                     onClick={() => handleTrack('click_website')}
                 >
                     Details <ExternalLink className="h-3 w-3" />
-                    <span className="sr-only">{t('Common.openInNewTab')}</span>
-                </a>
+                </Link>
             </div>
         </motion.div>
     );

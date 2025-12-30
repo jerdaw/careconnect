@@ -98,6 +98,7 @@ export interface Service {
      * A self-advocacy script for reducing phone anxiety.
      */
     access_script?: string;
+    org_id?: string;
 
     // --- Expanded Fields for Migration ---
     hours?: string;
