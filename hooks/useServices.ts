@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { searchServices, SearchResult } from '@/lib/search';
+import { searchServices, SearchResult, getSuggestion } from '@/lib/search';
 import { logger } from '@/lib/logger';
 
 interface UseServicesProps {
@@ -11,6 +11,7 @@ interface UseServicesProps {
     setResults: (results: SearchResult[]) => void;
     setIsLoading: (loading: boolean) => void;
     setHasSearched: (searched: boolean) => void;
+    setSuggestion: (suggestion: string | null) => void;
 }
 
 export function useServices({
@@ -21,7 +22,8 @@ export function useServices({
     generateEmbedding,
     setResults,
     setIsLoading,
-    setHasSearched
+    setHasSearched,
+    setSuggestion
 }: UseServicesProps) {
 
     useEffect(() => {
@@ -30,6 +32,7 @@ export function useServices({
             if (query.trim().length === 0 && !category && !userLocation) {
                 setResults([]);
                 setHasSearched(false);
+                setSuggestion(null);
                 return;
             }
 
@@ -41,6 +44,10 @@ export function useServices({
                 const initialResults = await searchServices(query, { category, location: userLocation });
                 setResults(initialResults);
                 setIsLoading(false); // Show initial results immediately
+
+                // 2. Spelling Suggestion
+                const suggestion = getSuggestion(query);
+                setSuggestion(suggestion);
 
                 // 2. Progressive Upgrade (If Model Ready & Query exists)
                 if (isReady && query.trim().length > 0) {

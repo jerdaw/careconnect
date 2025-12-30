@@ -418,3 +418,67 @@ const resortByDistance = (results: SearchResult[], userLoc: { lat: number, lng: 
         return distA - distB;
     });
 }
+
+/**
+ * Simple Levenshtein distance for fuzzy matching
+ */
+const levenshteinDistance = (a: string, b: string): number => {
+    const matrix = Array.from({ length: a.length + 1 }, () =>
+        Array.from({ length: b.length + 1 }, (_, i) => i)
+    );
+    for (let i = 0; i <= a.length; i++) matrix[i]![0] = i;
+
+    for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[i]![j] = Math.min(
+                matrix[i - 1]![j]! + 1,
+                matrix[i]![j - 1]! + 1,
+                matrix[i - 1]![j - 1]! + cost
+            );
+        }
+    }
+    return matrix[a.length]![b.length]!;
+};
+
+const DICTIONARY = [
+    'food', 'shelter', 'housing', 'health', 'mental health', 'crisis',
+    'financial', 'employment', 'legal', 'youth', 'senior', 'disability',
+    'transportation', 'addiction', 'clothing', 'education', 'immigrant',
+    'refugee', 'family', 'parenting', 'childcare', 'elderly',
+    'harm reduction', 'outreach', 'drop-in'
+];
+
+/**
+ * Returns a suggested query if the current query seems to have a typo
+ */
+export const getSuggestion = (query: string): string | null => {
+    if (!query || query.length < 3) return null;
+
+    const words = query.toLowerCase().split(/\s+/);
+    let changed = false;
+
+    const suggestedWords = words.map(word => {
+        // Only try to correct words that are at least 3 chars and not purely numeric
+        if (word.length < 3 || /^\d+$/.test(word)) return word;
+        if (DICTIONARY.includes(word)) return word;
+
+        let bestMatch = word;
+        let minDistance = 2; // Threshold for suggestion (1 char diff for small words)
+
+        for (const term of DICTIONARY) {
+            const dist = levenshteinDistance(word, term);
+            if (dist < minDistance) {
+                minDistance = dist;
+                bestMatch = term;
+            }
+        }
+
+        if (bestMatch !== word) {
+            changed = true;
+        }
+        return bestMatch;
+    });
+
+    return changed ? suggestedWords.join(' ') : null;
+};

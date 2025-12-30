@@ -10,6 +10,7 @@ export function useSearch(initialQuery = '') {
     const [results, setResults] = useState<SearchResult[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [suggestion, setSuggestion] = useState<string | null>(null);
 
     // Use the new utility hooks
     const [savedSearches, setSavedSearches] = useLocalStorage<string[]>('kcc_saved_searches', []);
@@ -62,6 +63,8 @@ export function useSearch(initialQuery = '') {
         setHasSearched,
         isLoading,
         setIsLoading,
+        suggestion,
+        setSuggestion,
         savedSearches,
         handleSaveSearch,
         removeSavedSearch

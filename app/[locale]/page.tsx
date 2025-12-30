@@ -25,6 +25,7 @@ export default function Home() {
     results, setResults,
     hasSearched, setHasSearched,
     isLoading, setIsLoading,
+    suggestion, setSuggestion,
     savedSearches, handleSaveSearch, removeSavedSearch
   } = useSearch();
 
@@ -40,7 +41,8 @@ export default function Home() {
     generateEmbedding,
     setResults,
     setIsLoading,
-    setHasSearched
+    setHasSearched,
+    setSuggestion
   });
 
   // Suggested Chips
@@ -195,6 +197,19 @@ export default function Home() {
             <ServiceCardSkeleton />
             <ServiceCardSkeleton />
           </>
+        )}
+
+        {suggestion && !isLoading && (
+          <div className="rounded-lg bg-blue-50 p-4 text-center dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800/50">
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              Did you mean: <button
+                onClick={() => setQuery(suggestion)}
+                className="font-bold underline decoration-blue-400 hover:text-blue-600 dark:hover:text-blue-200"
+              >
+                {suggestion}
+              </button>?
+            </p>
+          </div>
         )}
 
         {!isLoading && hasSearched && results.length === 0 && (
