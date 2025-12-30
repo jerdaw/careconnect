@@ -67,7 +67,8 @@ export async function GET(request: NextRequest) {
         // Aggregate events by service_id and event_type
         const aggregated: Record<string, { views: number; clicks: number }> = {};
 
-        for (const event of (events || []) as any[]) {
+        const typedEvents = (events || []) as Array<{ service_id: string | null; event_type: string | null }>;
+        for (const event of typedEvents) {
             if (!event.service_id) continue;
             if (!aggregated[event.service_id]) {
                 aggregated[event.service_id] = { views: 0, clicks: 0 };
