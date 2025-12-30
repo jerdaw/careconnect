@@ -152,8 +152,6 @@ import BetaBanner from '@/components/BetaBanner';
 
 ---
 
-## Layout Components
-
 ### DashboardSidebar
 Navigation sidebar for partner dashboard.
 
@@ -162,6 +160,18 @@ import DashboardSidebar from '@/components/DashboardSidebar';
 
 <DashboardSidebar />
 ```
+
+### ServiceDetailPage
+Dedicated public route for detailed service information, contact details, and claiming.
+
+```tsx
+// Route: /service/[id]
+import ServiceDetailPage from '@/app/[locale]/service/[id]/page.tsx';
+```
+
+---
+
+## Layout Components
 
 ### Tooltip
 Accessible tooltip component.

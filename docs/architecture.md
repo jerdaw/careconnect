@@ -30,6 +30,15 @@ The search system uses a hybrid approach:
 - **Services**: Fetched via `/api/v1/services`. Cached using SWR-like strategies in hooks.
 - **Analytics**: Search events are logged to `/api/v1/analytics/search` asynchronously.
 
+### Routing & Discovery
+- **Public Routes**: `/service/[id]` provides a rich detail page with contact info and eligibility.
+- **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
+
+### Partner Claim Workflow
+- **Claim Logic**: Unclaimed services can be claimed by authenticated organizations.
+- **Verification**: Claiming a service automatically elevates its status to `L1`.
+- **Atomic Operations**: `lib/services.ts` handles the claim logic with database consistency checks.
+
 ### Hooks Architecture
 We use a modular hook system to separate concerns:
 - **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.

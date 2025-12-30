@@ -10,7 +10,8 @@
 ## 2. Implementation Status (Pilot)
 - **Current Mode:** English-First.
 - **Requirement:** All new UI components must accept content as props or use a dictionary object, ensuring future translatability.
-- **Note:** The current codebase contains hardcoded English. This is a technical debt item to be resolved in Phase 3.
+- **Progress:** `ServiceDetail` and `Search.didYouMean` namespaces added to locales.
+- **Note:** The current codebase contains hardcoded English. Transition to full bilingual support is ongoing.
 
 ## 3. Rules
 1. Do not hardcode "Click Here". Use variables.

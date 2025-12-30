@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 export default function ServiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const { user } = useAuth();
-    const t = useTranslations('Common');
+    const t = useTranslations('ServiceDetail');
     const locale = useLocale();
     const [service, setService] = useState<Service | null>(null);
     const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
 
     useEffect(() => {
         async function fetchService() {
-            const { data, error } = await supabase
+            const { data, error: _error } = await supabase
                 .from('services')
                 .select('*')
                 .eq('id', id)
@@ -99,10 +99,10 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
         return (
             <div className="flex min-h-screen flex-col items-center justify-center bg-stone-50 p-6 text-center dark:bg-neutral-950">
                 <AlertCircle className="mb-4 h-16 w-16 text-neutral-300" />
-                <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Service Not Found</h1>
-                <p className="mt-2 text-neutral-600 dark:text-neutral-400">The service you are looking for does not exist or has been removed.</p>
+                <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">{t('notFound')}</h1>
+                <p className="mt-2 text-neutral-600 dark:text-neutral-400">{t('notFoundText')}</p>
                 <Button asChild className="mt-8">
-                    <Link href="/">&larr; Back to Search</Link>
+                    <Link href="/">&larr; {t('backToSearch')}</Link>
                 </Button>
             </div>
         );
@@ -121,13 +121,13 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                     <Button variant="ghost" size="sm" asChild className="gap-2">
                         <Link href="/">
                             <ArrowLeft className="h-4 w-4" />
-                            Back
+                            {t('back')}
                         </Link>
                     </Button>
                     <div className="flex gap-2">
                         <Button variant="outline" size="sm" onClick={handleShare} className="gap-2">
                             <Share2 className="h-4 w-4" />
-                            {copying ? 'Copied!' : 'Share'}
+                            {copying ? t('shareSuccess') : t('share')}
                         </Button>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                 {isVerified && (
                                     <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
                                         <ShieldCheck className="h-3.5 w-3.5" />
-                                        Official Provider
+                                        {t('officialProvider')}
                                     </span>
                                 )}
                                 <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
@@ -169,7 +169,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                 <div className="rounded-xl border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
                                     <div className="flex items-center gap-3 mb-3 text-neutral-900 dark:text-white font-semibold">
                                         <Clock className="h-5 w-5 text-blue-600" />
-                                        Hours
+                                        {t('hours')}
                                     </div>
                                     <p className="text-sm text-neutral-600 dark:text-neutral-400 whitespace-pre-wrap">{service.hours}</p>
                                 </div>
@@ -178,7 +178,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                 <div className="rounded-xl border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
                                     <div className="flex items-center gap-3 mb-3 text-neutral-900 dark:text-white font-semibold">
                                         <Building2 className="h-5 w-5 text-blue-600" />
-                                        Fees
+                                        {t('fees')}
                                     </div>
                                     <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.fees}</p>
                                 </div>
@@ -189,7 +189,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                             <section className="rounded-xl border border-blue-100 bg-blue-50/30 p-6 dark:border-blue-900/20 dark:bg-blue-900/10">
                                 <div className="flex items-center gap-3 mb-3 text-blue-900 dark:text-blue-100 font-semibold">
                                     <Info className="h-5 w-5 text-blue-600" />
-                                    Eligibility & Requirements
+                                    {t('eligibility')}
                                 </div>
                                 <p className="text-sm text-blue-800/80 dark:text-blue-300/80 leading-relaxed italic">
                                     {service.eligibility}
@@ -199,14 +199,14 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
 
                         {service.application_process && (
                             <section>
-                                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3">How to Access</h3>
+                                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3">{t('access')}</h3>
                                 <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.application_process}</p>
                             </section>
                         )}
 
                         {/* Tags */}
                         <section>
-                            <h3 className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-4">Focused On</h3>
+                            <h3 className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-4">{t('focusedOn')}</h3>
                             <div className="flex flex-wrap gap-2">
                                 {service.identity_tags.map((tag, idx) => (
                                     <span key={idx} className="rounded-lg bg-white px-3 py-1.5 text-xs font-medium text-neutral-600 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800">
@@ -220,7 +220,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                     {/* Sidebar / Quick Actions */}
                     <div className="space-y-6">
                         <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-                            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">Contact Information</h3>
+                            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">{t('contactInfo')}</h3>
 
                             <div className="space-y-4">
                                 {address && (
@@ -229,7 +229,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                             <MapPin className="h-4 w-4 text-neutral-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">Location</div>
+                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">{t('location')}</div>
                                             <p className="text-sm text-neutral-900 dark:text-white mt-0.5">{address}</p>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                             <Phone className="h-4 w-4 text-neutral-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">Phone</div>
+                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">{t('phone')}</div>
                                             <a href={`tel:${service.phone}`} className="text-sm text-blue-600 hover:underline hover:text-blue-500 dark:text-blue-400 block mt-0.5">{service.phone}</a>
                                         </div>
                                     </div>
@@ -253,7 +253,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                             <Globe className="h-4 w-4 text-neutral-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">Website</div>
+                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">{t('website')}</div>
                                             <a href={service.url} target="_blank" rel="noopener" className="text-sm text-blue-600 hover:underline hover:text-blue-500 dark:text-blue-400 block mt-0.5 break-all">
                                                 {new URL(service.url).hostname}
                                             </a>
@@ -267,7 +267,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                             <Mail className="h-4 w-4 text-neutral-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">Email</div>
+                                            <div className="text-xs font-medium text-neutral-400 uppercase tracking-tighter">{t('email')}</div>
                                             <a href={`mailto:${service.email}`} className="text-sm text-blue-600 hover:underline hover:text-blue-500 dark:text-blue-400 block mt-0.5 break-all">{service.email}</a>
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
 
                             <div className="mt-8 pt-6 border-t border-neutral-100 dark:border-neutral-800">
                                 <Button asChild className="w-full">
-                                    <a href={service.url} target="_blank" rel="noopener">Visit Provider Website</a>
+                                    <a href={service.url} target="_blank" rel="noopener">{t('visitWebsite')}</a>
                                 </Button>
                             </div>
                         </div>
@@ -284,12 +284,12 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                         {/* Help / Reporting */}
                         <div className="rounded-xl border border-dashed border-neutral-300 p-4 dark:border-neutral-700">
                             <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-4">
-                                Is this information incorrect or outdated?
+                                {t('incorrectInfo')}
                             </p>
                             <Button variant="outline" size="sm" className="w-full gap-2 text-xs" asChild>
                                 <a href={`mailto:feedback@kingstoncare.ca?subject=Data%20Update:%20${service.name}`}>
                                     <Flag className="h-3 w-3" />
-                                    Report an Issue
+                                    {t('reportIssue')}
                                 </a>
                             </Button>
                         </div>
@@ -297,9 +297,9 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                         {/* Claim CTA (If unverified/unclaimed) */}
                         {!service.org_id && !isVerified && (
                             <div className="rounded-xl bg-emerald-50 p-6 border border-emerald-100 dark:bg-emerald-900/10 dark:border-emerald-900/20">
-                                <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-100 mb-2">Own this organization?</h4>
+                                <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-100 mb-2">{t('claimTitle')}</h4>
                                 <p className="text-xs text-emerald-700 dark:text-emerald-300 mb-4">
-                                    Claim this listing to keep your information up to date and gain access to analytics.
+                                    {t('claimText')}
                                 </p>
 
                                 {user ? (
@@ -308,11 +308,11 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                         disabled={claiming || claimSuccess}
                                         className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
                                     >
-                                        {claiming ? 'Claiming...' : claimSuccess ? 'Claimed!' : 'Confirm Claim'}
+                                        {claiming ? t('claiming') : claimSuccess ? t('claimed') : t('confirmClaim')}
                                     </Button>
                                 ) : (
                                     <Button variant="secondary" size="sm" className="w-full bg-white hover:bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-neutral-900 dark:text-emerald-400 dark:border-emerald-800" asChild>
-                                        <Link href={`/login?claim=${service.id}`}>Claim Listing</Link>
+                                        <Link href={`/login?claim=${service.id}`}>{t('claimListing')}</Link>
                                     </Button>
                                 )}
 
