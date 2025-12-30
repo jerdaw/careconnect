@@ -76,7 +76,7 @@ export async function PUT(
             return createApiError('Unauthorized', 401);
         }
 
-        const body = await request.json() as any;
+        const body = await request.json() as Record<string, unknown>;
 
         // Prevent updating ID
         delete body.id;

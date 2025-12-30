@@ -1,3 +1,5 @@
+'use client';
+
 import { WifiOff, Phone } from 'lucide-react';
 
 export default function OfflinePage() {

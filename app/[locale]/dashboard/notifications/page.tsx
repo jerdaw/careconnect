@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Bell, Check, Info, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Check, Info, AlertTriangle, CheckCircle } from 'lucide-react';
 
 interface Notification {
     id: string;

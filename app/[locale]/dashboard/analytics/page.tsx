@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Search, MapPin, Users } from 'lucide-react';
+import { ArrowUpRight, Search, Users } from 'lucide-react';
 
 const TOP_SEARCH_TERMS = [
     { term: 'food bank', count: 124, growth: '+12%' },
@@ -102,7 +102,7 @@ const AnalyticsPage = () => {
                     <div className="space-y-4">
                         {TOP_SEARCH_TERMS.map((item) => (
                             <div key={item.term} className="flex items-center justify-between border-b border-neutral-100 pb-2 last:border-0 dark:border-neutral-800">
-                                <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">"{item.term}"</span>
+                                <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">&quot;{item.term}&quot;</span>
                                 <div className="flex items-center gap-3">
                                     <span className="text-sm text-neutral-500">{item.count}</span>
                                     <span className={`text-xs font-medium ${item.growth.startsWith('+') ? 'text-green-600' : 'text-red-500'}`}>

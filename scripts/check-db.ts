@@ -25,7 +25,7 @@ async function checkDb() {
     // Check one row for embedding
     const { data } = await supabase.from('services').select('embedding').limit(1);
     if (data && data.length > 0) {
-        const hasEmbedding = !!data[0].embedding;
+        const hasEmbedding = !!data[0]?.embedding;
         console.log(`✅ Embedding Column Populated: ${hasEmbedding}`);
     }
 }

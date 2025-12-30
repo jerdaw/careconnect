@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Upload, FileText, Check, AlertCircle, X, Download } from 'lucide-react';
+import { Upload, FileText, Check, X, Download } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
 export default function BulkImportPage() {
     const [dragActive, setDragActive] = useState(false);
     const [file, setFile] = useState<File | null>(null);
-    const [parsedData, setParsedData] = useState<any[]>([]);
+    const [parsedData, setParsedData] = useState<Record<string, string>[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
     const [uploadStatus, setUploadStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -56,7 +56,7 @@ export default function BulkImportPage() {
 
             const lines = text.split('\n');
             const headers = lines[0]?.split(',') || [];
-            const data: any[] = [];
+            const data: Record<string, string>[] = [];
 
             // Limit preview to 5 rows
             // Loop starts at 1 to skip header, check if line exists
@@ -66,7 +66,7 @@ export default function BulkImportPage() {
 
                 const row = line.split(',');
                 if (row.length === headers.length) {
-                    const obj: any = {};
+                    const obj: Record<string, string> = {};
                     headers.forEach((h, index) => {
                         const key = h?.trim();
                         if (key) {
@@ -238,7 +238,7 @@ export default function BulkImportPage() {
                         <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
                             <thead className="bg-neutral-50 dark:bg-neutral-800/50">
                                 <tr>
-                                    {Object.keys(parsedData[0]).map(h => (
+                                    {parsedData[0] && Object.keys(parsedData[0]).map(h => (
                                         <th key={h} className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">{h}</th>
                                     ))}
                                 </tr>
@@ -246,7 +246,7 @@ export default function BulkImportPage() {
                             <tbody className="bg-white divide-y divide-neutral-200 dark:bg-neutral-900 dark:divide-neutral-800">
                                 {parsedData.map((row, i) => (
                                     <tr key={i}>
-                                        {Object.values(row).map((val: any, j) => (
+                                        {Object.values(row).map((val: string, j) => (
                                             <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-neutral-600 dark:text-neutral-400">
                                                 {val}
                                             </td>
