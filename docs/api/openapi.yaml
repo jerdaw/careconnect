@@ -1,0 +1,360 @@
+openapi: 3.0.3
+info:
+  title: Kingston Care Connect API
+  description: |
+    Public API for accessing community services in Kingston, Ontario.
+    
+    **Base URL:** `https://kingston-care-connect.vercel.app/api/v1`
+    
+    ## Authentication
+    - Public endpoints (services) require no authentication.
+    - Analytics endpoints require a valid session cookie (Magic Link login).
+  version: 1.0.0
+  contact:
+    email: support@kingstoncare.ca
+
+servers:
+  - url: https://kingston-care-connect.vercel.app/api/v1
+    description: Production
+  - url: http://localhost:3000/api/v1
+    description: Local Development
+
+paths:
+  /services:
+    get:
+      summary: List Services
+      description: Retrieve a paginated list of community services with optional filtering.
+      operationId: listServices
+      tags:
+        - Services
+      parameters:
+        - name: q
+          in: query
+          description: Search query (searches name and description)
+          schema:
+            type: string
+            example: "food bank"
+        - name: category
+          in: query
+          description: Filter by service category
+          schema:
+            type: string
+            enum: [Food, Shelter, Crisis, Legal, Employment, Health, Youth, Seniors, Newcomer, General]
+        - name: limit
+          in: query
+          description: Max results per page (default 20, max 100)
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServiceSummary'
+                  total:
+                    type: integer
+                    description: Total number of matching services
+                  limit:
+                    type: integer
+                  offset:
+                    type: integer
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      summary: Create Service (Authenticated)
+      description: Create a new service. Requires authentication.
+      operationId: createService
+      tags:
+        - Services
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceSummary'
+      responses:
+        '201':
+          description: Service created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ServiceDetail'
+        '400':
+          description: Validation error
+          content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /services/{id}:
+    get:
+      summary: Get Service by ID
+      description: Retrieve detailed information about a specific service.
+      operationId: getServiceById
+      tags:
+        - Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique service identifier
+          schema:
+            type: string
+            example: "kingston-food-bank"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ServiceDetail'
+        '404':
+          description: Service not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    
+    put:
+      summary: Update Service (Authenticated)
+      description: Update an existing service. Requires authentication.
+      operationId: updateService
+      tags:
+        - Services
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique service identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDetail'
+      responses:
+        '200':
+          description: Service updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ServiceDetail'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Service not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      summary: Delete Service (Authenticated)
+      description: Delete an existing service. Requires authentication.
+      operationId: deleteService
+      tags:
+        - Services
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique service identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+        '404':
+          description: Service not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /analytics:
+    get:
+      summary: Get Analytics (Authenticated)
+      description: |
+        Retrieve analytics data for services. Requires authentication via Magic Link.
+        Partners can view aggregated view/click counts for their services.
+      operationId: getAnalytics
+      tags:
+        - Analytics
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: service_id
+          in: query
+          description: Filter by specific service ID
+          schema:
+            type: string
+        - name: days
+          in: query
+          description: Number of days to look back (default 30, max 90)
+          schema:
+            type: integer
+            default: 30
+            maximum: 90
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AnalyticsEntry'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sb-access-token
+      description: Supabase session cookie (set after Magic Link login)
+
+  schemas:
+    ServiceSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        name_fr:
+          type: string
+        description:
+          type: string
+        description_fr:
+          type: string
+        address:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        category:
+          type: string
+        verification_status:
+          type: string
+          enum: [L0, L1, L2, L3]
+
+    ServiceDetail:
+      allOf:
+        - $ref: '#/components/schemas/ServiceSummary'
+        - type: object
+          properties:
+            email:
+              type: string
+              nullable: true
+            hours:
+              type: string
+              nullable: true
+            fees:
+              type: string
+              nullable: true
+            eligibility:
+              type: string
+              nullable: true
+            application_process:
+              type: string
+              nullable: true
+            languages:
+              type: string
+              nullable: true
+            bus_routes:
+              type: string
+              nullable: true
+            accessibility:
+              type: string
+              nullable: true
+            last_verified:
+              type: string
+              format: date-time
+              nullable: true
+
+    AnalyticsEntry:
+      type: object
+      properties:
+        service_id:
+          type: string
+        views:
+          type: integer
+          description: Number of detail page views
+        clicks:
+          type: integer
+          description: Number of website/call clicks
+        period_days:
+          type: integer
+          description: Lookback period in days
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+
+  responses:
+    InternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

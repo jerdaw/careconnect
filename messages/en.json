@@ -31,5 +31,22 @@
     },
     "ServiceCard": {
         "reportIssue": "Report Issue"
+    },
+    "Dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome back, {email}",
+        "verificationStatus": "Verification Status",
+        "pending": "Pending",
+        "completeProfile": "Complete Profile",
+        "getStarted": "Get Started",
+        "noServices": "You haven't claimed any services yet. Find your organization or create a new listing.",
+        "hasServices": "Manage your existing services and keep your data up to date.",
+        "manageServices": "Manage Services"
+    },
+    "Analytics": {
+        "totalServices": "Total Services",
+        "totalViews": "Total Views (30d)",
+        "vsPeriod": "vs {period}",
+        "totalAllTime": "Total all time"
     }
 }

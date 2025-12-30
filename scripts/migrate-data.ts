@@ -34,6 +34,13 @@ async function migrate() {
 
     console.log(`📦 Found ${services.length} services to migrate.`);
 
+    // Read Embeddings
+    const embeddingsPath = path.join(__dirname, '../data/embeddings.json');
+    const embeddingsRaw = fs.readFileSync(embeddingsPath, 'utf-8');
+    const embeddings = JSON.parse(embeddingsRaw) as Record<string, number[]>;
+
+    console.log(`📦 Found ${Object.keys(embeddings).length} embeddings to merge.`);
+
     let successCount = 0;
     let errorCount = 0;
 
@@ -67,8 +74,8 @@ async function migrate() {
             tags: service.identity_tags as any, // Cast to Json compatible
 
             // Embedding
-            // Note: pgvector expects a string like "[0.1, 0.2, ...]" or simple array
-            embedding: JSON.stringify(service.embedding) as any // Supabase handles vector as string often in JS client
+            // Lookup from embeddings file if not present on service object
+            embedding: JSON.stringify(service.embedding || embeddings[service.id]) as any
         };
 
         const { error } = await supabase

@@ -1,4 +1,5 @@
 import { ArrowUp, ArrowDown, Minus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface AnalyticsCardProps {
     title: string;
@@ -9,6 +10,8 @@ interface AnalyticsCardProps {
 }
 
 export default function AnalyticsCard({ title, value, change, loading, period = 'last 30 days' }: AnalyticsCardProps) {
+    const t = useTranslations('Analytics');
+
     if (loading) {
         return (
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
@@ -46,12 +49,12 @@ export default function AnalyticsCard({ title, value, change, loading, period = 
                             </span>
                         )}
                         <span className="ml-2 text-neutral-500 dark:text-neutral-400">
-                            vs {period}
+                            {t('vsPeriod', { period })}
                         </span>
                     </>
                 ) : (
                     <span className="text-neutral-500 dark:text-neutral-400">
-                        Total all time
+                        {t('totalAllTime')}
                     </span>
                 )}
             </div>

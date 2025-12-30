@@ -271,6 +271,10 @@
         "url": "https://kingstonhsc.ca",
         "phone": "613-546-1240",
         "address": "144 Brock Street, Kingston, ON K7L 5G2",
+        "coordinates": {
+            "lat": 44.2298,
+            "lng": -76.4889
+        },
         "verification_level": "L1",
         "intent_category": "Health",
         "provenance": {
@@ -304,6 +308,10 @@
         "url": "https://kingstonhsc.ca/emergency-care",
         "phone": "613-548-2333",
         "address": "41 King Street West, Kingston, ON K7L 2V7",
+        "coordinates": {
+            "lat": 44.2239,
+            "lng": -76.4939
+        },
         "verification_level": "L1",
         "intent_category": "Health",
         "provenance": {
@@ -730,6 +738,10 @@
         "url": "https://marthastable.ca",
         "phone": "613-546-0320",
         "address": "629 Princess Street, Kingston, ON",
+        "coordinates": {
+            "lat": 44.2373,
+            "lng": -76.5028
+        },
         "verification_level": "L2",
         "intent_category": "Food",
         "provenance": {

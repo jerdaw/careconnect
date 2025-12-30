@@ -1,31 +1,56 @@
-# Roadmap V3: Partner Platform & Data Sovereignty
+# Roadmap V4: Expansion & Mobile-Ready Architecture 🚀
 
-> **Status:** Completed (v1.0 Partner Launch)
-> **Focus:** Empowering service providers to manage their own data via a secure Partner Portal.
+> **Status:** Active  
+> **Focus:** Enhance functionality, improve architecture, and prepare for future mobile expansion.
 
-## Phase 30: Foundation & Infrastructure 🏗️
-- [x] Initialize Supabase project (Auth + Postgres).
-- [x] Migrate `services.json` to Postgres Database.
-- [x] Create Database Types / ORM Layer.
-- [x] Update `Search` to query DB instead of local JSON.
+## Phase 40: API Layer & Data Architecture 🏛️ (Completed)
+- [x] RESTful API Audit
+- [x] Create `/api/v1/services` endpoint
+- [x] Create `/api/v1/analytics` endpoint
+- [x] API Documentation (OpenAPI)
+- [x] Rate Limiting & Caching
 
-## Phase 31: Authentication System 🔐
-- [x] Implement Partner Login Page (Magic Link).
-- [x] Create Auth Context / Protected Routes.
-- [x] Implement "Claim Verification" flow (UI Ready, Policy Pending).
+## Phase 41: Search & Discovery Enhancements 🔍 (Completed)
+- [x] Category Filters
+- [x] Geolocation ("Services near me")
+- [x] Search Analytics
+- [x] "Did you mean?" suggestions
+- [x] Saved Searches / Favorites
 
-## Phase 32: Partner Dashboard & Editing ✏️
-- [x] Create Dashboard Layout (Sidebar, User Profile).
-- [x] Implement "My Services" list (CRUD - Read).
-- [x] Implement "Edit Service" form (CRUD - Update).
-- [x] Add "Verification Badge" logic for self-managed services.
+## Phase 42: Partner Dashboard UX 💼 (Active)
+- [ ] Bulk Service Import
+- [ ] Notification Center
+- [ ] Claim Workflow Completion
+- [ ] Service Preview
+- [ ] Analytics Deep Dive
 
-## Phase 33: Analytics & Insights 📊
-- [x] Secure "View Count" tracking schema.
-- [x] Implement "Analytics Card" on Partner Dashboard.
+## Phase 43: Accessibility & Performance 🌐
+- [ ] Lighthouse Audit (90+ target)
+- [ ] Skeleton Loaders
+- [ ] Image Optimization
+- [ ] Keyboard Navigation
+- [ ] Screen Reader Testing
 
----
+## Phase 44: PWA & Offline Capabilities 📴
+- [ ] Service Worker Audit
+- [ ] Offline Fallback Page
+- [ ] Cache Service Data
+- [ ] Background Sync (Stretch)
+
+## Phase 45: Testing & CI/CD 🧪
+- [ ] E2E Tests (Playwright)
+- [ ] Integration Tests
+- [ ] CI Pipeline (GitHub Actions)
+- [ ] Coverage Reporting
+
+## Phase 46: Code Quality & Refactoring 🧹
+- [ ] Component Library Audit
+- [ ] Extract Shared Hooks
+- [ ] Error Boundary Implementation
+- [ ] Logging & Monitoring (Stretch)
+- [ ] Documentation
 
 ## Archive
-- [v1-pilot](archive/v1-pilot.md): Queens Pilot (Dec 2024)
-- [v2-community](archive/v2-community-expansion.md): Community Expansion (Jan 2025)
+- [v1-pilot](archive/v1-pilot.md): Queens Pilot
+- [v2-community](archive/v2-community-expansion.md): Community Expansion
+- [v3-partner-platform](archive/v3-partner-platform.md): Partner Portal & Analytics

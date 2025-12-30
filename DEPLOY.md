@@ -26,6 +26,13 @@ This project is optimized for deployment on **Vercel**.
 
 7.  **Deploy:** Click **"Deploy"**.
 
+8.  **Data Integrity Check (Mandatory):**
+    After any data migration or deployment, run this script locally to ensure the database is healthy:
+    ```bash
+    npm run verify-db
+    ```
+    *Expect "🎉 Verification PASSED"*
+
 ## 3. Post-Deployment Verification
 -   Visit the URL provided by Vercel (e.g., `kingston-care-connect.vercel.app`).
 -   **Test Search:** Type "Food".

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "validate-data": "tsx scripts/validate-data.ts",
+    "verify-db": "tsx scripts/verify-db-integrity.ts",
     "search": "tsx scripts/search-cli.ts",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",

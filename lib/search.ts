@@ -42,7 +42,7 @@ const loadServices = async (): Promise<Service[]> => {
                 }));
 
                 dataCache = { services: mappedData };
-                // console.log(`Distribution: Fetched ${mappedData.length} records from Supabase.`);
+
                 return mappedData;
             } else if (error) {
                 console.warn("Supabase fetch error (falling back to JSON):", error.message);
@@ -139,6 +139,22 @@ const fetchQueryEmbedding = async (query: string): Promise<number[] | null> => {
     }
 };
 
+// --- GEOLOCATION MATH (Haversine) ---
+
+const toRad = (value: number) => (value * Math.PI) / 180;
+
+const calculateDistanceKm = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+    const R = 6371; // Radius of Earth in km
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+};
+
 // --- SCORING ---
 
 /**
@@ -217,6 +233,12 @@ const scoreServiceKeyword = (service: Service, tokens: string[]): { score: numbe
     return { score, reasons: matchReasons };
 };
 
+export interface SearchOptions {
+    category?: string;
+    location?: { lat: number; lng: number };
+    vectorOverride?: number[];
+}
+
 /**
  * Main Hybrid Search Function (Optimized for Cost)
  * Strategy: "Lazy Semantic"
@@ -224,15 +246,49 @@ const scoreServiceKeyword = (service: Service, tokens: string[]): { score: numbe
  * 2. If good matches found (> threshold), return immediately. Ssaves API cost.
  * 3. Only fetch Vector (Paid) if keywords fail to find relevant results.
  */
-export const searchServices = async (query: string, vectorOverride?: number[]): Promise<SearchResult[]> => {
+export const searchServices = async (query: string, options: SearchOptions = {}): Promise<SearchResult[]> => {
     const services = await loadServices();
     const tokens = tokenize(query);
+
+    // Category Filter (Hard filter)
+    const filteredServices = options.category
+        ? services.filter(s => s.intent_category === options.category)
+        : services;
+
+    // Special Case: Empty Query but Category/Location selected
+    if (query.trim().length === 0) {
+        if (options.category || options.location) {
+            // Return everything matching filter
+            let results = filteredServices.map(service => ({
+                service,
+                score: 1,
+                matchReasons: ['Filter Match']
+            }));
+
+            // Sort by Distance if available
+            if (options.location) {
+                results = results.map(r => {
+                    if (r.service.coordinates) {
+                        const dist = calculateDistanceKm(
+                            options.location!.lat, options.location!.lng,
+                            r.service.coordinates.lat, r.service.coordinates.lng
+                        );
+                        return { ...r, distance: dist };
+                    }
+                    return { ...r, distance: Infinity };
+                }).sort((a, b) => (a as any).distance - (b as any).distance);
+            }
+            return results;
+        }
+        return [];
+    }
+
     if (tokens.length === 0) return [];
 
     // 1. First Pass: Keyword Only (Zero Cost)
     const results: SearchResult[] = [];
 
-    for (const service of services) {
+    for (const service of filteredServices) {
         if (service.verification_level === VerificationLevel.L0) continue;
 
         const keywordResult = scoreServiceKeyword(service, tokens);
@@ -244,16 +300,22 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
     // Sort by Keyword Score
     results.sort((a, b) => b.score - a.score);
 
-    let queryVector: number[] | null = vectorOverride || null;
+    let queryVector: number[] | null = options.vectorOverride || null;
 
     // 2. Cost Optimization Check (Only if no override provided)
-    if (!vectorOverride) {
+    if (!options.vectorOverride) {
         // 30 points = Name Match. 50 points = Intent Match.
         const KEYWORD_CONFIDENCE_THRESHOLD = 40;
         const bestScore = results.length > 0 ? results[0]!.score : 0;
 
         if (bestScore >= KEYWORD_CONFIDENCE_THRESHOLD) {
             // High confidence! Skip expensive vector search.
+            // Apply Geo Sort if needed
+            if (options.location) {
+                // If scores are similar (within 20%), prefer closer result
+                // This is a simple re-rank
+                return resortByDistance(results, options.location);
+            }
             return results;
         }
 
@@ -263,7 +325,7 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
     }
 
     if (!queryVector) {
-        return results; // Fallback if API fails/no key
+        return options.location ? resortByDistance(results, options.location) : results; // Fallback
     }
 
     // We need to re-score or add semantic matches that weren't found by keywords
@@ -271,7 +333,7 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
     const resultsMap = new Map<string, SearchResult>();
     results.forEach(r => resultsMap.set(r.service.id, r));
 
-    for (const service of services) {
+    for (const service of filteredServices) {
         if (service.verification_level === VerificationLevel.L0) continue;
 
         // Use embedding from DB (on service object) OR fallback to local JSON
@@ -308,6 +370,36 @@ export const searchServices = async (query: string, vectorOverride?: number[]): 
         }
     }
 
-    // Convert back to array and re-sort
-    return Array.from(resultsMap.values()).sort((a, b) => b.score - a.score);
+    // Convert back to array
+    let finalResults = Array.from(resultsMap.values());
+
+    // Sort
+    if (options.location) {
+        finalResults = resortByDistance(finalResults, options.location);
+    } else {
+        finalResults.sort((a, b) => b.score - a.score);
+    }
+
+    return finalResults;
 };
+
+// Helper: Hybrid re-ranking for Geolocation
+const resortByDistance = (results: SearchResult[], userLoc: { lat: number, lng: number }) => {
+    return results.sort((a, b) => {
+        // Calculate distances
+        const distA = a.service.coordinates
+            ? calculateDistanceKm(userLoc.lat, userLoc.lng, a.service.coordinates.lat, a.service.coordinates.lng)
+            : Infinity;
+        const distB = b.service.coordinates
+            ? calculateDistanceKm(userLoc.lat, userLoc.lng, b.service.coordinates.lat, b.service.coordinates.lng)
+            : Infinity;
+
+        // Bucket scores: if relevance is significantly different (> 50 points), respect relevance.
+        // Otherwise, prioritize distance.
+        if (Math.abs(a.score - b.score) > 50) {
+            return b.score - a.score;
+        }
+
+        return distA - distB;
+    });
+}

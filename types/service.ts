@@ -109,4 +109,8 @@ export interface Service {
     accessibility?: any; // Keeping loose for now, strictly it's Record<string, boolean>
     last_verified?: string;
     embedding?: number[]; // Vector embedding
+    coordinates?: {
+        lat: number;
+        lng: number;
+    };
 }

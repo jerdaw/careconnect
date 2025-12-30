@@ -31,5 +31,22 @@
     },
     "ServiceCard": {
         "reportIssue": "Signaler un problème"
+    },
+    "Dashboard": {
+        "title": "Tableau de bord",
+        "welcome": "Bon retour, {email}",
+        "verificationStatus": "Statut de vérification",
+        "pending": "En attente",
+        "completeProfile": "Compléter le profil",
+        "getStarted": "Commencer",
+        "noServices": "Vous n'avez pas encore réclamé de services. Trouvez votre organisation ou créez une nouvelle fiche.",
+        "hasServices": "Gérez vos services existants et tenez vos données à jour.",
+        "manageServices": "Gérer les services"
+    },
+    "Analytics": {
+        "totalServices": "Total des services",
+        "totalViews": "Vues totales (30j)",
+        "vsPeriod": "vs {period}",
+        "totalAllTime": "Total de tous les temps"
     }
 }

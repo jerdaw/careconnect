@@ -1,4 +1,7 @@
 
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
+
 import { searchServices } from '../lib/search';
 
 const query = process.argv[2];
