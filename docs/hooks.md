@@ -15,9 +15,14 @@ const {
   results, setResults,
   hasSearched, setHasSearched,
   isLoading, setIsLoading,
+  suggestion, setSuggestion,
   savedSearches, handleSaveSearch, removeSavedSearch
 } = useSearch();
 ```
+
+**State Details:**
+- `suggestion`: `string | null` - A fuzzy-matched query suggestion.
+- `setSuggestion`: `(suggestion: string | null) => void` - Updates the suggestion state.
 
 ### useServices
 Performs search with progressive enhancement (keyword → semantic).
@@ -33,7 +38,8 @@ useServices({
   generateEmbedding,
   setResults,
   setIsLoading,
-  setHasSearched
+  setHasSearched,
+  setSuggestion
 });
 ```
 

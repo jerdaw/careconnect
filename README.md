@@ -18,13 +18,13 @@ We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Service
 
 ---
 
-## ✨ Features
-
--   **🧠 Semantic Search:** Type "I feel unsafe" instead of guessing keywords like "Shelter Intake." We use local embeddings to understand intent.
+-   **🧠 Semantic & Fuzzy Search:** Multi-layered search experience. Type natural language like "I feel unsafe" (Semantic) or fix typos like "fod" (Fuzzy).
 -   **🔒 Privacy-First:** No cookies, no tracking, and no search logs. All inference happens in your browser or anonymously.
+-   **📄 Internal Detail Pages:** High-resolution public service pages with rich metadata, contact info, and localized content.
+-   **💼 Partner Claiming:** Built-in workflow for local organizations to claim, verify, and maintain their listings.
 -   **📱 Installable App (PWA):** Works offline and can be installed on your home screen.
 -   **🗣️ Community Governance:** Built-in feedback loops allow residents to flag incorrect data instantly.
--   **⚡ Zero-Latency:** optimized for instant loads even on poor data connections.
+-   **⚡ Zero-Latency:** Optimized for instant loads even on poor data connections.
 
 ---
 

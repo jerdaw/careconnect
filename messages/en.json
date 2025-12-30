@@ -9,7 +9,8 @@
         "placeholder": "Search for help...",
         "label": "Search for services",
         "loading": "Enhancing search capability...",
-        "active": "Private Neural Search Active"
+        "active": "Private Neural Search Active",
+        "didYouMean": "Did you mean:"
     },
     "Navigation": {
         "home": "Home",
@@ -48,5 +49,33 @@
         "totalViews": "Total Views (30d)",
         "vsPeriod": "vs {period}",
         "totalAllTime": "Total all time"
+    },
+    "ServiceDetail": {
+        "back": "Back",
+        "share": "Share",
+        "shareSuccess": "Copied!",
+        "officialProvider": "Official Provider",
+        "hours": "Hours",
+        "fees": "Fees",
+        "eligibility": "Eligibility & Requirements",
+        "access": "How to Access",
+        "focusedOn": "Focused On",
+        "contactInfo": "Contact Information",
+        "location": "Location",
+        "phone": "Phone",
+        "website": "Website",
+        "email": "Email",
+        "visitWebsite": "Visit Provider Website",
+        "incorrectInfo": "Is this information incorrect or outdated?",
+        "reportIssue": "Report an Issue",
+        "claimTitle": "Own this organization?",
+        "claimText": "Claim this listing to keep your information up to date and gain access to analytics.",
+        "confirmClaim": "Confirm Claim",
+        "claiming": "Claiming...",
+        "claimed": "Claimed!",
+        "claimListing": "Claim Listing",
+        "notFound": "Service Not Found",
+        "notFoundText": "The service you are looking for does not exist or has been removed.",
+        "backToSearch": "Back to Search"
     }
 }

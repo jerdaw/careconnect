@@ -9,7 +9,8 @@
         "placeholder": "Chercher de l'aide...",
         "label": "Rechercher des services",
         "loading": "Amélioration de la capacité de recherche...",
-        "active": "Recherche neuronale privée active"
+        "active": "Recherche neuronale privée active",
+        "didYouMean": "Vouliez-vous dire :"
     },
     "Navigation": {
         "home": "Accueil",
@@ -48,5 +49,33 @@
         "totalViews": "Vues totales (30j)",
         "vsPeriod": "vs {period}",
         "totalAllTime": "Total de tous les temps"
+    },
+    "ServiceDetail": {
+        "back": "Retour",
+        "share": "Partager",
+        "shareSuccess": "Copié !",
+        "officialProvider": "Fournisseur officiel",
+        "hours": "Heures",
+        "fees": "Frais",
+        "eligibility": "Admissibilité et exigences",
+        "access": "Comment y accéder",
+        "focusedOn": "Concentré sur",
+        "contactInfo": "Informations de contact",
+        "location": "Emplacement",
+        "phone": "Téléphone",
+        "website": "Site web",
+        "email": "Email",
+        "visitWebsite": "Visiter le site web du fournisseur",
+        "incorrectInfo": "Ces informations sont-elles incorrectes ou obsolètes ?",
+        "reportIssue": "Signaler un problème",
+        "claimTitle": "Vous possédez cette organisation ?",
+        "claimText": "Réclamez cette fiche pour maintenir vos informations à jour et accéder aux analyses.",
+        "confirmClaim": "Confirmer la réclamation",
+        "claiming": "Réclamation en cours...",
+        "claimed": "Réclamé !",
+        "claimListing": "Réclamer la fiche",
+        "notFound": "Service introuvable",
+        "notFoundText": "Le service que vous recherchez n'existe plus ou a été supprimé.",
+        "backToSearch": "Retour à la recherche"
     }
 }
