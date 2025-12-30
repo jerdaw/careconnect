@@ -1,135 +1,47 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { Search, Loader2, ShieldCheck, MapPin, Heart, X } from 'lucide-react';
-import { searchServices, SearchResult } from '../../lib/search';
+
+
+// import { searchServices, SearchResult } from '../../lib/search';
 import ServiceCard from '../../components/ServiceCard';
 import ServiceCardSkeleton from '../../components/ServiceCardSkeleton';
 import { useSemanticSearch } from '../../hooks/useSemanticSearch';
+import { useSearch } from '../../hooks/useSearch';
+import { useServices } from '../../hooks/useServices';
 import { useTranslations } from 'next-intl';
 import { Link } from '../../i18n/routing';
 import { IntentCategory } from '../../types/service';
+import { Button } from '../../components/ui/button';
 
 const CATEGORIES = Object.values(IntentCategory);
 
 export default function Home() {
   const t = useTranslations();
-  const [query, setQuery] = useState('');
-  const [category, setCategory] = useState<string | undefined>(undefined);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | undefined>(undefined);
-  const [isLocating, setIsLocating] = useState(false);
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [savedSearches, setSavedSearches] = useState<string[]>([]);
+  const {
+    query, setQuery,
+    category, setCategory,
+    userLocation, toggleLocation, isLocating,
+    results, setResults,
+    hasSearched, setHasSearched,
+    isLoading, setIsLoading,
+    savedSearches, handleSaveSearch, removeSavedSearch
+  } = useSearch();
 
   // Progressive Search Hook
   const { isReady, progress, generateEmbedding } = useSemanticSearch();
 
-  // Load saved searches
-  useEffect(() => {
-    const saved = localStorage.getItem('kcc_saved_searches');
-    if (saved) {
-      try {
-        setSavedSearches(JSON.parse(saved) as string[]);
-      } catch (e) {
-        console.error("Failed to parse saved searches", e);
-      }
-    }
-  }, []);
-
-  const handleSaveSearch = () => {
-    if (!query) return;
-    const newSaved = Array.from(new Set([query, ...savedSearches])).slice(0, 5);
-    setSavedSearches(newSaved);
-    localStorage.setItem('kcc_saved_searches', JSON.stringify(newSaved));
-  };
-
-  const removeSavedSearch = (term: string) => {
-    const newSaved = savedSearches.filter(s => s !== term);
-    setSavedSearches(newSaved);
-    localStorage.setItem('kcc_saved_searches', JSON.stringify(newSaved));
-  };
-
-  const toggleLocation = () => {
-    if (userLocation) {
-      setUserLocation(undefined);
-      return;
-    }
-
-    setIsLocating(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-          setIsLocating(false);
-        },
-        (error) => {
-          console.error("Geo error:", error);
-          setIsLocating(false);
-          alert("Could not get your location. Please check browser permissions.");
-        }
-      );
-    } else {
-      setIsLocating(false);
-      alert("Geolocation is not supported by this browser.");
-    }
-  };
-
-  useEffect(() => {
-    const performSearch = async () => {
-      // Allow empty query if filters are active
-      if (query.trim().length === 0 && !category && !userLocation) {
-        setResults([]);
-        setHasSearched(false);
-        return;
-      }
-
-      setHasSearched(true);
-      setIsLoading(true);
-
-      try {
-        // 1. Instant Keyword/Filter Search (First Pass)
-        const initialResults = await searchServices(query, { category, location: userLocation });
-        setResults(initialResults);
-        setIsLoading(false); // Show initial results immediately
-
-        // 2. Progressive Upgrade (If Model Ready & Query exists)
-        if (isReady && query.trim().length > 0) {
-          const embedding = await generateEmbedding(query);
-          if (embedding) {
-            const enhancedResults = await searchServices(query, {
-              category,
-              location: userLocation,
-              vectorOverride: embedding
-            });
-            setResults(enhancedResults);
-          }
-        }
-
-        // Analytics
-        fetch('/api/v1/analytics/search', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            query,
-            category,
-            hasLocation: !!userLocation,
-            resultCount: initialResults.length
-          })
-        }).catch(err => console.error(err));
-      } catch (err) {
-        console.error("Search failed", err);
-        setIsLoading(false);
-      }
-    };
-
-    const timer = setTimeout(performSearch, 150);
-    return () => clearTimeout(timer);
-  }, [query, category, userLocation, isReady, generateEmbedding]);
+  // Perform Search Logic
+  useServices({
+    query,
+    category,
+    userLocation,
+    isReady,
+    generateEmbedding,
+    setResults,
+    setIsLoading,
+    setHasSearched
+  });
 
   // Suggested Chips
   const startSearch = (term: string) => {
@@ -203,28 +115,26 @@ export default function Home() {
 
             {/* Category Scroll */}
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide max-w-full" role="group" aria-label="Filter by category">
-              <button
+              <Button
+                variant={!category ? "default" : "secondary"}
+                size="sm"
                 onClick={() => setCategory(undefined)}
                 aria-pressed={!category}
-                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium ${!category
-                  ? 'bg-neutral-900 text-white dark:bg-white dark:text-black'
-                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400'
-                  }`}
+                className="rounded-full"
               >
                 All
-              </button>
+              </Button>
               {CATEGORIES.map(cat => (
-                <button
+                <Button
                   key={cat}
+                  variant={category === cat ? "default" : "secondary"}
+                  size="sm"
                   onClick={() => setCategory(cat === category ? undefined : cat)}
                   aria-pressed={category === cat}
-                  className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${category === cat
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400'
-                    }`}
+                  className="rounded-full whitespace-nowrap"
                 >
                   {cat}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -255,15 +165,15 @@ export default function Home() {
             {/* Default Suggestions */}
             <div className="flex flex-wrap justify-center gap-2">
               <div className="w-full text-xs font-semibold uppercase text-neutral-400 tracking-wider">Popular</div>
-              <button onClick={() => startSearch("I need food")} className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-neutral-600 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-800">
+              <Button variant="pill" onClick={() => startSearch("I need food")}>
                 🍞 I need food
-              </button>
-              <button onClick={() => startSearch("I need to talk to someone")} className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-neutral-600 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-800">
+              </Button>
+              <Button variant="pill" onClick={() => startSearch("I need to talk to someone")}>
                 🗣️ Crisis Support
-              </button>
-              <button onClick={() => startSearch("See a doctor")} className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-neutral-600 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-800">
+              </Button>
+              <Button variant="pill" onClick={() => startSearch("See a doctor")}>
                 🩺 Medical Care
-              </button>
+              </Button>
             </div>
           </div>
         )}

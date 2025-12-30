@@ -12,4 +12,8 @@ if (!supabaseUrl || !supabaseKey) {
  * Universal Supabase Client
  * Safe to use in Client Components and Static Generation.
  */
-export const supabase = createClient(supabaseUrl || '', supabaseKey || '');
+export const supabase = createClient(supabaseUrl || '', supabaseKey || '', {
+    auth: {
+        persistSession: typeof window !== 'undefined',
+    }
+});

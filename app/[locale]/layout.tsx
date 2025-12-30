@@ -4,6 +4,7 @@ import { getMessages } from 'next-intl/server';
 import "../globals.css";
 import BetaBanner from "../../components/BetaBanner";
 import { AuthProvider } from "../../components/AuthProvider";
+import { ErrorBoundary } from "../../components/ErrorBoundary";
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -45,7 +46,9 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             <BetaBanner />
-            {children}
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
           </AuthProvider>
         </NextIntlClientProvider>
       </body>
