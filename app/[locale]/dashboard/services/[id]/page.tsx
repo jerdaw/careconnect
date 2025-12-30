@@ -7,7 +7,7 @@ import { Service } from '@/types/service';
 import EditServiceForm from '@/components/EditServiceForm';
 import { ServiceFormData } from '@/lib/schemas';
 import { useAuth } from '@/components/AuthProvider';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Eye } from 'lucide-react';
 import Link from 'next/link';
 
 export default function EditServicePage({ params }: { params: Promise<{ id: string }> }) {
@@ -105,21 +105,32 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center gap-4">
-                <Link
-                    href="/dashboard/services"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-neutral-800 dark:ring-neutral-700 dark:hover:bg-neutral-700"
-                >
-                    <ArrowLeft className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                </Link>
-                <div>
-                    <h1 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
-                        Edit Service
-                    </h1>
-                    <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-                        {service.name}
-                    </p>
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                    <Link
+                        href="/dashboard/services"
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-neutral-800 dark:ring-neutral-700 dark:hover:bg-neutral-700"
+                    >
+                        <ArrowLeft className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                    </Link>
+                    <div>
+                        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                            Edit Service
+                        </h1>
+                        <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                            {service.name}
+                        </p>
+                    </div>
                 </div>
+                <a
+                    href={`/services/${id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md bg-white border border-neutral-300 px-3 py-2 text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700"
+                >
+                    <Eye className="h-4 w-4" />
+                    Preview
+                </a>
             </div>
 
             <EditServiceForm service={service} onSubmit={handleUpdate} />

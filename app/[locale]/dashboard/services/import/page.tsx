@@ -1,0 +1,232 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import { Upload, FileText, Check, AlertCircle, X, Download } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+
+export default function BulkImportPage() {
+    const [dragActive, setDragActive] = useState(false);
+    const [file, setFile] = useState<File | null>(null);
+    const [parsedData, setParsedData] = useState<any[]>([]);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [uploadStatus, setUploadStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleDrag = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === "dragenter" || e.type === "dragover") {
+            setDragActive(true);
+        } else if (e.type === "dragleave") {
+            setDragActive(false);
+        }
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFile(e.dataTransfer.files[0]);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        if (e.target.files && e.target.files[0]) {
+            handleFile(e.target.files[0]);
+        }
+    };
+
+    const handleFile = (file: File) => {
+        if (file.type !== "text/csv") {
+            alert("Only CSV files are allowed.");
+            return;
+        }
+        setFile(file);
+        parseCSV(file);
+    };
+
+    // Quick & Dirty CSV Parser (Client Side)
+    const parseCSV = (file: File) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const text = e.target?.result as string;
+            if (!text) return;
+
+            const lines = text.split('\n');
+            const headers = lines[0]?.split(',') || [];
+            const data: any[] = [];
+
+            // Limit preview to 5 rows
+            // Loop starts at 1 to skip header, check if line exists
+            for (let i = 1; i < Math.min(lines.length, 6); i++) {
+                const line = lines[i];
+                if (!line || !line.trim()) continue;
+
+                const row = line.split(',');
+                if (row.length === headers.length) {
+                    const obj: any = {};
+                    headers.forEach((h, index) => {
+                        const key = h?.trim();
+                        if (key) {
+                            obj[key] = row[index]?.trim() || '';
+                        }
+                    });
+                    data.push(obj);
+                }
+            }
+            setParsedData(data);
+        };
+        reader.readAsText(file);
+    };
+
+    const handleStartImport = () => {
+        setIsProcessing(true);
+        // Simulate API call
+        setTimeout(() => {
+            setIsProcessing(false);
+            setUploadStatus('success');
+            setFile(null);
+            setParsedData([]);
+        }, 2000);
+    };
+
+    return (
+        <div className="space-y-6 max-w-4xl mx-auto">
+            <div className="flex items-center justify-between">
+                <div>
+                    <nav className="flex items-center text-sm text-neutral-500 mb-2">
+                        <Link href="/dashboard/services" className="hover:text-neutral-900 transition-colors">My Services</Link>
+                        <span className="mx-2">/</span>
+                        <span className="text-neutral-900 font-medium">Import</span>
+                    </nav>
+                    <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                        Bulk Import Services
+                    </h1>
+                    <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">
+                        Upload a CSV file to add multiple services at once.
+                    </p>
+                </div>
+            </div>
+
+            {/* Upload Area */}
+            {uploadStatus === 'idle' && (
+                <div
+                    className={`relative flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl transition-all ${dragActive
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        : 'border-neutral-300 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900'
+                        }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                >
+                    {!file ? (
+                        <>
+                            <Upload className="h-12 w-12 text-neutral-400 mb-4" />
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                                Drag and drop your CSV file here, or{' '}
+                                <button
+                                    className="text-blue-600 hover:text-blue-500 underline"
+                                    onClick={() => inputRef.current?.click()}
+                                >
+                                    browse
+                                </button>
+                            </p>
+                            <p className="mt-2 text-xs text-neutral-500">
+                                Supports: .csv (Max 5MB)
+                            </p>
+                        </>
+                    ) : (
+                        <div className="flex flex-col items-center">
+                            <FileText className="h-12 w-12 text-blue-600 mb-4" />
+                            <p className="font-medium text-neutral-900 dark:text-white">{file.name}</p>
+                            <p className="text-xs text-neutral-500 mt-1">{(file.size / 1024).toFixed(1)} KB</p>
+                            <button
+                                onClick={() => { setFile(null); setParsedData([]); }}
+                                className="mt-4 text-xs text-red-600 hover:text-red-500 flex items-center gap-1"
+                            >
+                                <X className="h-3 w-3" /> Remove File
+                            </button>
+                        </div>
+                    )}
+                    <input
+                        ref={inputRef}
+                        type="file"
+                        accept=".csv"
+                        className="hidden"
+                        onChange={handleChange}
+                    />
+                </div>
+            )}
+
+            {/* Success Message */}
+            {uploadStatus === 'success' && (
+                <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:bg-green-900/20 dark:border-green-800">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                        <Check className="h-6 w-6 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h3 className="mt-4 text-lg font-semibold text-green-800 dark:text-green-300">Import Successful</h3>
+                    <p className="mt-2 text-green-700 dark:text-green-400">
+                        Your file has been uploaded and is being processed. You will be notified once the services are added.
+                    </p>
+                    <button
+                        onClick={() => setUploadStatus('idle')}
+                        className="mt-6 inline-flex items-center justify-center rounded-md bg-white border border-green-200 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-50 shadow-sm"
+                    >
+                        Import Another
+                    </button>
+                </div>
+            )}
+
+            {/* Template Download */}
+            <div className="flex justify-start">
+                <a href="#" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-500">
+                    <Download className="h-4 w-4" /> Download CSV Template
+                </a>
+            </div>
+
+            {/* parsed Data Preview */}
+            {file && parsedData.length > 0 && uploadStatus === 'idle' && (
+                <div className="rounded-xl border border-neutral-200 bg-white overflow-hidden dark:border-neutral-800 dark:bg-neutral-900">
+                    <div className="border-b border-neutral-200 px-6 py-4 dark:border-neutral-800 flex items-center justify-between">
+                        <h3 className="font-semibold text-neutral-900 dark:text-white">Data Preview</h3>
+                        <span className="text-xs text-neutral-500">Showing first 5 rows</span>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
+                            <thead className="bg-neutral-50 dark:bg-neutral-800/50">
+                                <tr>
+                                    {Object.keys(parsedData[0]).map(h => (
+                                        <th key={h} className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">{h}</th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-neutral-200 dark:bg-neutral-900 dark:divide-neutral-800">
+                                {parsedData.map((row, i) => (
+                                    <tr key={i}>
+                                        {Object.values(row).map((val: any, j) => (
+                                            <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-neutral-600 dark:text-neutral-400">
+                                                {val}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 flex justify-end">
+                        <button
+                            onClick={handleStartImport}
+                            disabled={isProcessing}
+                            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {isProcessing ? 'Processing...' : 'Complete Import'}
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}

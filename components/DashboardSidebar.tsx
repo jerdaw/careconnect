@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
-import { LayoutDashboard, List, Settings, LogOut, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, List, Settings, LogOut, ExternalLink, Bell, BarChart3 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function DashboardSidebar() {
@@ -49,6 +49,31 @@ export default function DashboardSidebar() {
                 >
                     <List className="h-5 w-5" />
                     My Services
+                </Link>
+
+                <Link
+                    href="/dashboard/notifications"
+                    className={`group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${isActive('/dashboard/notifications')
+                        ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
+                        : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800'
+                        }`}
+                >
+                    <div className="relative">
+                        <Bell className="h-5 w-5" />
+                        <span className="absolute -right-1 -top-1 flex h-3 w-3 items-center justify-center rounded-full bg-red-500 text-[8px] font-bold text-white">2</span>
+                    </div>
+                    Notifications
+                </Link>
+
+                <Link
+                    href="/dashboard/analytics"
+                    className={`group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${isActive('/dashboard/analytics')
+                        ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
+                        : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800'
+                        }`}
+                >
+                    <BarChart3 className="h-5 w-5" />
+                    Analytics
                 </Link>
 
                 <Link
