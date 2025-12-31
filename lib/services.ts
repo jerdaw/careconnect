@@ -68,3 +68,38 @@ export async function getServiceById(id: string): Promise<Service | null> {
         return null;
     }
 }
+/**
+ * Updates an existing service record.
+ */
+export async function updateService(id: string, updates: Partial<Service>) {
+    try {
+        const { error } = await supabase
+            .from('services')
+            .update({
+                name: updates.name,
+                description: updates.description,
+                address: updates.address,
+                phone: updates.phone,
+                url: updates.url,
+                email: updates.email,
+                hours: typeof updates.hours === 'object' ? JSON.stringify(updates.hours) : updates.hours,
+                fees: updates.fees,
+                eligibility: updates.eligibility_notes, // Note: DB uses 'eligibility' for 'eligibility_notes' in JSON mappings sometimes
+                application_process: updates.application_process,
+                category: updates.intent_category,
+                tags: updates.identity_tags,
+                last_verified: new Date().toISOString()
+            })
+            .eq('id', id);
+
+        if (error) {
+            logger.error('Failed to update service', error, { id, updates });
+            return { error: error.message };
+        }
+
+        return { success: true };
+    } catch (err) {
+        logger.error('Unexpected error in updateService', err as Error, { id, updates });
+        return { error: 'An unexpected error occurred' };
+    }
+}
