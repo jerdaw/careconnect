@@ -161,7 +161,20 @@
       "veteran": "Veteran",
       "disability": "Person with a disability"
     },
-    "clearProfile": "Clear My Profile"
+    "clearProfile": "Clear My Profile",
+    "Notifications": {
+      "title": "Notifications",
+      "enable": "Enable Push Notifications",
+      "permissions": "Permissions Required",
+      "permissionsDesc": "We need your permission to send alerts.",
+      "categories": {
+        "crisis": "Emergency Alerts",
+        "food": "Food Banks",
+        "housing": "Shelter & Housing",
+        "health": "Health Alerts",
+        "general": "General Updates"
+      }
+    }
   },
   "Eligibility": {
     "likelyQualify": "✓ You likely qualify"
