@@ -1,6 +1,7 @@
 # Kingston Care Connect - Architecture Overview
 
 ## Tech Stack
+
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
@@ -9,6 +10,7 @@
 - **Testing**: Playwright (E2E), Vitest (Unit)
 
 ## Directory Structure
+
 - `app/`: Next.js App Router pages and API routes.
   - `[locale]/`: Localized routes.
   - `api/v1/`: RESTful API endpoints.
@@ -24,33 +26,52 @@
 ## Core Concepts
 
 ### Search Architecture
+
 The search system uses a hybrid approach:
+
 1.  **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2.  **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
 
+### AI Architecture (Phase 4)
+
+- **Engine**: [WebLLM](https://webllm.mlc.ai/) (Phi-3 Mini via WebGPU/WASM).
+- **Strategy**: Retrieval Augmented Generation (RAG).
+- **Privacy**: Zero data egress. The model runs locally; the vector store (`IndexedDB`) is local.
+- **Lifecycle**:
+  - `useAI` hook manages the singleton `AIEngine`.
+  - `ChatAssistant` hydrates the vector store on load.
+  - 5-minute idle timer unloads the heavy model (~2GB) to free VRAM.
+
 ### Data Flow
+
 - **Services**: Fetched via `/api/v1/services`. Cached using SWR-like strategies in hooks.
 - **Analytics**: Search events are logged to `/api/v1/analytics/search` asynchronously.
 
 ### Routing & Discovery
+
 - **Public Routes**: `/service/[id]` provides a rich detail page with contact info and eligibility.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 
 ### Partner Claim Workflow
+
 - **Claim Logic**: Unclaimed services can be claimed by authenticated organizations.
 - **Verification**: Claiming a service automatically elevates its status to `L1`.
 - **Atomic Operations**: `lib/services.ts` handles the claim logic with database consistency checks.
 
 ### Hooks Architecture
+
 We use a modular hook system to separate concerns:
+
 - **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
 - **Utility Hooks**: Generic hooks for `localStorage` and `Geolocation` ensure SSR safety and consistency.
 
 ### Logging & Monitoring
+
 - **Logger Utility**: Located in `lib/logger.ts`. Use instead of `console.log`.
 - **Error IDs**: The Error Boundary generates unique IDs (e.g., `ERR-K9X2J1`) for cross-referencing logs with user reports.
 
 ## Development
+
 - `npm run dev`: Start local server.
 - `npm run test`: Run integration tests.
 - `npx playwright test`: Run E2E tests.

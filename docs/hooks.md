@@ -3,32 +3,45 @@
 ## Search Hooks
 
 ### useSearch
+
 Manages search state including query, filters, saved searches, and geolocation.
 
 ```tsx
-import { useSearch } from '@/hooks/useSearch';
+import { useSearch } from "@/hooks/useSearch"
 
 const {
-  query, setQuery,
-  category, setCategory,
-  userLocation, toggleLocation, isLocating,
-  results, setResults,
-  hasSearched, setHasSearched,
-  isLoading, setIsLoading,
-  suggestion, setSuggestion,
-  savedSearches, handleSaveSearch, removeSavedSearch
-} = useSearch();
+  query,
+  setQuery,
+  category,
+  setCategory,
+  userLocation,
+  toggleLocation,
+  isLocating,
+  results,
+  setResults,
+  hasSearched,
+  setHasSearched,
+  isLoading,
+  setIsLoading,
+  suggestion,
+  setSuggestion,
+  savedSearches,
+  handleSaveSearch,
+  removeSavedSearch,
+} = useSearch()
 ```
 
 **State Details:**
+
 - `suggestion`: `string | null` - A fuzzy-matched query suggestion.
 - `setSuggestion`: `(suggestion: string | null) => void` - Updates the suggestion state.
 
 ### useServices
+
 Performs search with progressive enhancement (keyword → semantic).
 
 ```tsx
-import { useServices } from '@/hooks/useServices';
+import { useServices } from "@/hooks/useServices"
 
 useServices({
   query,
@@ -39,17 +52,34 @@ useServices({
   setResults,
   setIsLoading,
   setHasSearched,
-  setSuggestion
-});
+  setSuggestion,
+})
 ```
 
 ### useSemanticSearch
+
 Web Worker-based semantic search with embedding model.
 
 ```tsx
-import { useSemanticSearch } from '@/hooks/useSemanticSearch';
+import { useSemanticSearch } from "@/hooks/useSemanticSearch"
 
-const { isReady, progress, generateEmbedding } = useSemanticSearch();
+const { isReady, progress, generateEmbedding } = useSemanticSearch()
+```
+
+### useAI
+
+Manages the local WebLLM engine state (loading, chat, error handling).
+
+```tsx
+import { useAI } from "@/hooks/useAI"
+
+const {
+  isReady, // boolean: is model loaded?
+  isLoading, // boolean: is downloading?
+  progress, // number: 0-1 download progress
+  chat, // (messages[]) => Promise<string>
+  initAI, // () => void: trigger download
+} = useAI()
 ```
 
 ---
@@ -57,51 +87,55 @@ const { isReady, progress, generateEmbedding } = useSemanticSearch();
 ## Utility Hooks
 
 ### useLocalStorage
+
 SSR-safe localStorage hook with JSON serialization.
 
 ```tsx
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
-const [value, setValue, removeValue] = useLocalStorage('key', initialValue);
+const [value, setValue, removeValue] = useLocalStorage("key", initialValue)
 
 // Update value
-setValue('new value');
+setValue("new value")
 
 // Update with callback
-setValue(prev => [...prev, 'item']);
+setValue((prev) => [...prev, "item"])
 
 // Remove from storage
-removeValue();
+removeValue()
 ```
 
 **Features:**
+
 - SSR-safe (no hydration mismatch)
 - Automatic JSON serialization
 - Functional updates supported
 - TypeScript generics
 
 ### useGeolocation
+
 Browser Geolocation API hook with loading and error states.
 
 ```tsx
-import { useGeolocation } from '@/hooks/useGeolocation';
+import { useGeolocation } from "@/hooks/useGeolocation"
 
 const {
-  coordinates,    // { lat, lng } | null
-  isLocating,     // boolean
-  error,          // string | null
+  coordinates, // { lat, lng } | null
+  isLocating, // boolean
+  error, // string | null
   requestLocation,
-  clearLocation
-} = useGeolocation();
+  clearLocation,
+} = useGeolocation()
 
 // Request user's location
-requestLocation();
+requestLocation()
 
 // Clear stored location
-clearLocation();
+clearLocation()
 ```
 
 **Features:**
+
 - SSR-safe
 - Detailed error messages
 - Support for PositionOptions

@@ -25,18 +25,22 @@ We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Service
   - **"Open Now" Filter**: Real-time filtering based on structured operating hours.
   - **Privacy-First Analytics**: Anonymously tracks unmet needs (Zero-Result patterns) without logging queries.
   - **Crisis Detection**: Instant boosting of emergency services for high-risk queries.
+- **Decentralized AI Assistant**:
+  - **Client-Side RAG**: Runs a local LLM (Phi-3) directly in the browser via WebGPU.
+  - **Zero-Knowledge**: No user queries ever leave the device.
+  - **Offline Vector Store**: Instant semantic search even without internet.
 - **Bilingual Ready**: Full support for English and French content switching.
 - **Global Deployment**: Specialized Crisis Mode instantly boosts emergency services.
 
 ---
 
--   **🧠 Semantic & Fuzzy Search:** Multi-layered search experience. Type natural language like "I feel unsafe" (Semantic) or fix typos like "fod" (Fuzzy).
--   **🔒 Privacy-First:** No cookies, no tracking, and no search logs. All inference happens in your browser or anonymously.
--   **📄 Internal Detail Pages:** High-resolution public service pages with rich metadata, contact info, and localized content.
--   **💼 Partner Claiming:** Built-in workflow for local organizations to claim, verify, and maintain their listings.
--   **📱 Installable App (PWA):** Works offline and can be installed on your home screen.
--   **🗣️ Community Governance:** Built-in feedback loops allow residents to flag incorrect data instantly.
--   **⚡ Zero-Latency:** Optimized for instant loads even on poor data connections.
+- **🧠 Semantic & Fuzzy Search:** Multi-layered search experience. Type natural language like "I feel unsafe" (Semantic) or fix typos like "fod" (Fuzzy).
+- **🔒 Privacy-First:** No cookies, no tracking, and no search logs. All inference happens in your browser or anonymously.
+- **📄 Internal Detail Pages:** High-resolution public service pages with rich metadata, contact info, and localized content.
+- **💼 Partner Claiming:** Built-in workflow for local organizations to claim, verify, and maintain their listings.
+- **📱 Installable App (PWA):** Works offline and can be installed on your home screen.
+- **🗣️ Community Governance:** Built-in feedback loops allow residents to flag incorrect data instantly.
+- **⚡ Zero-Latency:** Optimized for instant loads even on poor data connections.
 
 ---
 
@@ -44,13 +48,13 @@ We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Service
 
 Built with modern web technologies for performance and maintainability:
 
--   **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
--   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
--   **UI Components:** [Radix UI](https://www.radix-ui.com/)
--   **AI/Embeddings:** [@xenova/transformers](https://huggingface.co/docs/transformers.js/) (Client-side execution)
--   **Testing:** [Vitest](https://vitest.dev/) (Unit/Integration), [Playwright](https://playwright.dev/) (E2E)
--   **Database:** [Supabase](https://supabase.com/) (PostgreSQL + Vector)
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components:** [Radix UI](https://www.radix-ui.com/)
+- **AI/Embeddings:** [@xenova/transformers](https://huggingface.co/docs/transformers.js/) (Client-side execution)
+- **Testing:** [Vitest](https://vitest.dev/) (Unit/Integration), [Playwright](https://playwright.dev/) (E2E)
+- **Database:** [Supabase](https://supabase.com/) (PostgreSQL + Vector)
 
 ---
 
@@ -58,23 +62,26 @@ Built with modern web technologies for performance and maintainability:
 
 ### Prerequisites
 
--   Node.js 20+
--   npm 10+
+- Node.js 20+
+- npm 10+
 
 ### Installation
 
 1.  **Clone the repository:**
+
     ```bash
     git clone https://github.com/jerdaw/kingston-care-connect.git
     cd kingston-care-connect
     ```
 
 2.  **Install dependencies:**
+
     ```bash
     npm install
     ```
 
 3.  **Run the development server:**
+
     ```bash
     npm run dev
     ```
@@ -83,16 +90,16 @@ Built with modern web technologies for performance and maintainability:
 
 ### Available Scripts
 
-| Command | Purpose |
-| :--- | :--- |
-| `npm run dev` | Starts development server with Turbo |
-| `npm run build` | Builds the production application |
-| `npm test` | Runs unit and integration tests (Vitest) |
-| `npx playwright test` | Runs end-to-end tests |
-| `npm run type-check` | Runs TypeScript compiler check |
-| `npm run lint` | Runs ESLint for code quality |
-| `npm run validate-data` | Validates local services JSON data |
-| `npm run analyze` | Analyzes production bundle size |
+| Command                 | Purpose                                  |
+| :---------------------- | :--------------------------------------- |
+| `npm run dev`           | Starts development server with Turbo     |
+| `npm run build`         | Builds the production application        |
+| `npm test`              | Runs unit and integration tests (Vitest) |
+| `npx playwright test`   | Runs end-to-end tests                    |
+| `npm run type-check`    | Runs TypeScript compiler check           |
+| `npm run lint`          | Runs ESLint for code quality             |
+| `npm run validate-data` | Validates local services JSON data       |
+| `npm run analyze`       | Analyzes production bundle size          |
 
 ### Environment Variables
 
@@ -122,16 +129,18 @@ To enable the Partner Portal, Login, and Analytics:
 
 This project is community-led. We prioritize safety and accuracy over quantity.
 
--   **[Documentation Guidelines](docs/documentation-guidelines.md):** How we write and maintain docs.
--   **[Testing Guidelines](docs/development/testing.md):** Our testing standards.
--   **[Bilingual Guide](bilingual-dev-guide.md):** Our approach to English/French support.
+- **[Documentation Guidelines](docs/documentation-guidelines.md):** How we write and maintain docs.
+- **[Testing Guidelines](docs/development/testing.md):** Our testing standards.
+- **[Bilingual Guide](bilingual-dev-guide.md):** Our approach to English/French support.
 
 ### Adding a Service
+
 To propose a new service, please ensure it meets our "High Impact" criteria:
--   Must physically serve the Kingston, ON area.
--   Must have a verifiable phone number or physical address.
--   Must be free or low-cost (subsidized).
+
+- Must physically serve the Kingston, ON area.
+- Must have a verifiable phone number or physical address.
+- Must be free or low-cost (subsidized).
 
 ---
 
-*Built with ❤️ for Kingston.*
+_Built with ❤️ for Kingston._

@@ -3,6 +3,7 @@
 ## UI Primitives (`components/ui`)
 
 ### Button
+
 Standardized button component supporting variants and sizes.
 
 ```tsx
@@ -27,6 +28,7 @@ import { Button } from '@/components/ui/button';
 ```
 
 **Variants:**
+
 - `default`: Primary blue action.
 - `destructive`: Red/Warning action.
 - `outline`: Bordered, transparent background.
@@ -36,6 +38,7 @@ import { Button } from '@/components/ui/button';
 - `pill`: Rounded chip style (white with shadow).
 
 **Sizes:**
+
 - `default`: Standard padding.
 - `sm`: Smaller padding.
 - `lg`: Larger padding.
@@ -47,34 +50,51 @@ import { Button } from '@/components/ui/button';
 ## Feature Components
 
 ### ServiceCard
+
 Displays a service with score, match reasons, and action buttons.
 
 ```tsx
-import ServiceCard from '@/components/ServiceCard';
+import ServiceCard from "@/components/ServiceCard"
 
-<ServiceCard
+;<ServiceCard
   service={service}
   score={result.score}
+  matchReasons={result.matchReasons}
   matchReasons={result.matchReasons}
 />
 ```
 
+### ChatAssistant
+
+Local RAG-powered AI chat interface.
+
+```tsx
+import ChatAssistant from "@/components/ai/ChatAssistant"
+
+// Must be wrapped in ClientOnly due to WebGPU/WASM
+;<ClientOnly>
+  <ChatAssistant />
+</ClientOnly>
+```
+
 ### ServiceCardSkeleton
+
 Loading placeholder for ServiceCard.
 
 ```tsx
-import ServiceCardSkeleton from '@/components/ServiceCardSkeleton';
+import ServiceCardSkeleton from "@/components/ServiceCardSkeleton"
 
-<ServiceCardSkeleton />
+;<ServiceCardSkeleton />
 ```
 
 ### ErrorBoundary
+
 Catches React errors and displays a fallback UI with error ID for support.
 
 ```tsx
-import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorBoundary } from "@/components/ErrorBoundary"
 
-<ErrorBoundary
+;<ErrorBoundary
   fallback={<CustomErrorUI />}
   onError={(error, errorInfo, errorId) => {
     // Optional error reporting
@@ -85,12 +105,13 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 ```
 
 ### AsyncErrorBoundary
+
 Specialized error boundary for async components and Suspense. Includes a built-in retry mechanism and error ID copy function.
 
 ```tsx
-import { AsyncErrorBoundary } from '@/components/AsyncErrorBoundary';
+import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
 
-<AsyncErrorBoundary componentName="ServiceList">
+;<AsyncErrorBoundary componentName="ServiceList">
   <Suspense fallback={<Loading />}>
     <ServiceList />
   </Suspense>
@@ -98,27 +119,27 @@ import { AsyncErrorBoundary } from '@/components/AsyncErrorBoundary';
 ```
 
 ### AnalyticsCard
+
 Displays analytics metrics in a card format.
 
 ```tsx
-import AnalyticsCard from '@/components/AnalyticsCard';
+import AnalyticsCard from "@/components/AnalyticsCard"
 
-<AnalyticsCard
-  title="Total Searches"
-  value={1234}
-  change={+12.5}
-/>
+;<AnalyticsCard title="Total Searches" value={1234} change={+12.5} />
 ```
 
 ### EditServiceForm
+
 Form for creating/editing services with validation.
 
 ```tsx
-import EditServiceForm from '@/components/EditServiceForm';
+import EditServiceForm from "@/components/EditServiceForm"
 
-<EditServiceForm
+;<EditServiceForm
   service={existingService}
-  onSubmit={async (data) => { /* save */ }}
+  onSubmit={async (data) => {
+    /* save */
+  }}
 />
 ```
 
@@ -127,36 +148,39 @@ import EditServiceForm from '@/components/EditServiceForm';
 ## Provider Components
 
 ### AuthProvider
+
 Provides authentication context throughout the app.
 
 ```tsx
-import { AuthProvider, useAuth } from '@/components/AuthProvider';
+import { AuthProvider, useAuth } from "@/components/AuthProvider"
 
 // Wrap app
-<AuthProvider>
+;<AuthProvider>
   <App />
 </AuthProvider>
 
 // Use in components
-const { user, signOut } = useAuth();
+const { user, signOut } = useAuth()
 ```
 
 ### BetaBanner
+
 Displays a beta warning banner at the top of the app.
 
 ```tsx
-import BetaBanner from '@/components/BetaBanner';
+import BetaBanner from "@/components/BetaBanner"
 
-<BetaBanner />
+;<BetaBanner />
 ```
 
 ### ThemeProvider
+
 Manages light/dark mode state using `next-themes`.
 
 ```tsx
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from "@/components/ThemeProvider"
 
-<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+;<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
   <App />
 </ThemeProvider>
 ```
@@ -164,20 +188,22 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 ---
 
 ### DashboardSidebar
+
 Navigation sidebar for partner dashboard.
 
 ```tsx
-import DashboardSidebar from '@/components/DashboardSidebar';
+import DashboardSidebar from "@/components/DashboardSidebar"
 
-<DashboardSidebar />
+;<DashboardSidebar />
 ```
 
 ### ServiceDetailPage
+
 Dedicated public route for service information.
 
 ```tsx
 // Route: /service/[id]
-import ServiceDetailPage from '@/app/[locale]/service/[id]/page.tsx';
+import ServiceDetailPage from "@/app/[locale]/service/[id]/page.tsx"
 ```
 
 ---
@@ -185,21 +211,23 @@ import ServiceDetailPage from '@/app/[locale]/service/[id]/page.tsx';
 ## Layout Components
 
 ### Header & Footer
+
 Global shell components.
 
 ```tsx
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { Header } from "@/components/layout/Header"
+import { Footer } from "@/components/layout/Footer"
+import { ThemeToggle } from "@/components/layout/ThemeToggle"
 ```
 
 ### Tooltip
+
 Accessible tooltip component.
 
 ```tsx
-import { Tooltip } from '@/components/Tooltip';
+import { Tooltip } from "@/components/Tooltip"
 
-<Tooltip content="Helpful info">
+;<Tooltip content="Helpful info">
   <button>Hover me</button>
 </Tooltip>
 ```
