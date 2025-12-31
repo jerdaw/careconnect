@@ -132,24 +132,7 @@ All features continue to adhere to **strict privacy principles** (no user data e
 
 ## Phase 7: Community & Partner Features (Est. 1-2 Months)
 
-### 7.1 Partner Organization Dashboard
-
-**Goal**: Allow claimed organizations to update their own service information.
-
-| Component          | Description                                             |
-| ------------------ | ------------------------------------------------------- |
-| **Claim Flow**     | Existing claim workflow → require email verification.   |
-| **Edit Form**      | CRUD interface for service details, hours, eligibility. |
-| **Approval Queue** | (Optional) Admin approval before changes go live.       |
-
-**Files to Create**:
-
-- `[NEW] app/[locale]/dashboard/services/edit/[id]/page.tsx`
-- `[MODIFY] app/api/v1/services/[id]/route.ts` (add PATCH)
-
----
-
-### 7.2 Service Submission Form (Public)
+### 7.1 Service Submission Form (Public)
 
 **Goal**: Allow community members to suggest new services.
 
@@ -165,7 +148,7 @@ All features continue to adhere to **strict privacy principles** (no user data e
 
 ---
 
-### 7.3 Analytics Dashboard for Partners
+### 7.2 Analytics Dashboard for Partners
 
 **Goal**: Show claimed organizations how often their service is viewed/clicked.
 
@@ -213,6 +196,21 @@ Achieve 100% French translation coverage for all dynamic service data (automated
 ### 9.3 Automated Verification Bot
 
 A background worker that periodically checks if phone numbers and URLs are still active, flagging broken ones for review.
+
+### 9.4 Partner Organization Dashboard
+
+**Goal**: Allow claimed organizations to update their own service information.
+
+| Component          | Description                                             |
+| ------------------ | ------------------------------------------------------- |
+| **Claim Flow**     | Existing claim workflow → require email verification.   |
+| **Edit Form**      | CRUD interface for service details, hours, eligibility. |
+| **Approval Queue** | (Optional) Admin approval before changes go live.       |
+
+**Files to Create**:
+
+- `[NEW] app/[locale]/dashboard/services/edit/[id]/page.tsx`
+- `[MODIFY] app/api/v1/services/[id]/route.ts` (add PATCH)
 
 ---
 
