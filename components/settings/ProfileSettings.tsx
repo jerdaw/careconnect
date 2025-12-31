@@ -111,6 +111,28 @@ export function ProfileSettings() {
 
 
                         <section>
+                            <h4 className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mb-3">{t('identities')}</h4>
+                            <div className="flex flex-wrap gap-2">
+                                {IDENTITY_OPTIONS.map((id) => (
+                                    <Button
+                                        key={id}
+                                        variant={context.identities.includes(id) ? 'default' : 'outline'}
+                                        size="sm"
+                                        onClick={() => toggleIdentity(id)}
+                                        className={cn(
+                                            "h-7 text-xs px-2.5",
+                                            context.identities.includes(id)
+                                                ? "bg-indigo-600 hover:bg-indigo-700 text-white border-transparent"
+                                                : "hover:bg-neutral-50 dark:hover:bg-neutral-800 border-neutral-200 dark:border-neutral-700"
+                                        )}
+                                    >
+                                        {t(`identityTags.${id}`)}
+                                    </Button>
+                                ))}
+                            </div>
+                        </section>
+
+                        <section>
                             <h4 className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mb-3">{t('Notifications.title')}</h4>
 
                             {/* Master Toggle */}

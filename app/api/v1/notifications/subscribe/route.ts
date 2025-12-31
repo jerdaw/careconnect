@@ -5,7 +5,7 @@ import { NotificationCategory } from "@/types/notifications"
 export async function POST(req: NextRequest) {
     try {
         const { subscription, categories, locale } = await req.json() as {
-            subscription: { endpoint: string; keys: any },
+            subscription: { endpoint: string; keys: { p256dh: string; auth: string } },
             categories: NotificationCategory[],
             locale: string
         }
@@ -27,26 +27,29 @@ export async function POST(req: NextRequest) {
 
         if (existing) {
             // Update existing
-            const { error: updateError } = await supabase
-                .from('push_subscriptions')
+            const { error: updateError } = await (supabase
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                .from('push_subscriptions') as any)
                 .update({
                     categories,
                     keys: subscription.keys, // Ensure keys are fresh
                     locale,
                     updated_at: new Date().toISOString()
-                } as any)
-                .eq('id', existing.id)
+                })
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                .eq('id', (existing as any).id)
             error = updateError;
         } else {
             // Insert new
-            const { error: insertError } = await supabase
-                .from('push_subscriptions')
+            const { error: insertError } = await (supabase
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                .from('push_subscriptions') as any)
                 .insert({
                     endpoint: subscription.endpoint,
                     keys: subscription.keys,
                     categories,
                     locale
-                } as any)
+                })
             error = insertError;
         }
 
