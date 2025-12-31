@@ -161,7 +161,20 @@
       "veteran": "Vétéran",
       "disability": "Personne handicapée"
     },
-    "clearProfile": "Effacer mon profil"
+    "clearProfile": "Effacer mon profil",
+    "Notifications": {
+      "title": "Notifications",
+      "enable": "Activer les notifications push",
+      "permissions": "Permissions requises",
+      "permissionsDesc": "Nous avons besoin de votre permission pour envoyer des alertes.",
+      "categories": {
+        "crisis": "Alertes d'urgence",
+        "food": "Banques alimentaires",
+        "housing": "Refuge et Logement",
+        "health": "Alertes santé",
+        "general": "Mises à jour générales"
+      }
+    }
   },
   "Eligibility": {
     "likelyQualify": "✓ Vous êtes probablement admissible"

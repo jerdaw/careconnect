@@ -4,7 +4,9 @@ import { useUserContext } from '@/hooks/useUserContext';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { User, ShieldCheck } from 'lucide-react';
+import { User, ShieldCheck, Bell, BellOff, Loader2 } from 'lucide-react';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
+import { NotificationCategory } from '@/types/notifications';
 import { useState } from 'react';
 import {
     Popover,
@@ -14,11 +16,37 @@ import {
 
 const AGE_GROUPS = ['youth', 'adult', 'senior'] as const;
 const IDENTITY_OPTIONS = ['indigenous', 'newcomer', '2slgbtqi+', 'veteran', 'disability'] as const;
+const NOTIFICATION_CATEGORIES: NotificationCategory[] = ['crisis', 'food', 'housing', 'health', 'general'];
 
 export function ProfileSettings() {
     const t = useTranslations('Settings');
     const { context, updateAgeGroup, toggleIdentity, optIn, optOut } = useUserContext();
+    const { isSupported, isSubscribed, subscribedCategories, isLoading, subscribe, unsubscribe } = usePushNotifications();
     const [open, setOpen] = useState(false);
+
+    const toggleSubscription = async () => {
+        if (isSubscribed) {
+            await unsubscribe();
+        } else {
+            await subscribe(NOTIFICATION_CATEGORIES); // Subscribe to all by default initially
+        }
+    };
+
+    const toggleCategory = async (category: NotificationCategory) => {
+        if (!isSubscribed) return;
+
+        const newCategories = subscribedCategories.includes(category)
+            ? subscribedCategories.filter(c => c !== category)
+            : [...subscribedCategories, category];
+
+        // If removing last category, could unsubscribe, but let's keep it simple for now
+        // and just update the subscription with the new list
+        if (newCategories.length === 0) {
+            await unsubscribe();
+        } else {
+            await subscribe(newCategories);
+        }
+    };
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -81,26 +109,50 @@ export function ProfileSettings() {
                             </div>
                         </section>
 
+
                         <section>
-                            <h4 className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mb-3">{t('identities')}</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {IDENTITY_OPTIONS.map((id) => (
-                                    <Button
-                                        key={id}
-                                        variant={context.identities.includes(id) ? 'default' : 'outline'}
-                                        size="sm"
-                                        onClick={() => toggleIdentity(id)}
-                                        className={cn(
-                                            "h-7 text-xs px-2.5",
-                                            context.identities.includes(id)
-                                                ? "bg-indigo-600 hover:bg-indigo-700 text-white border-transparent"
-                                                : "hover:bg-neutral-50 dark:hover:bg-neutral-800 border-neutral-200 dark:border-neutral-700"
-                                        )}
-                                    >
-                                        {t(`identityTags.${id}`)}
-                                    </Button>
-                                ))}
+                            <h4 className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mb-3">{t('Notifications.title')}</h4>
+
+                            {/* Master Toggle */}
+                            <div className="flex items-center justify-between mb-3 p-2 rounded-lg bg-neutral-50 dark:bg-neutral-800">
+                                <div className="flex items-center gap-2">
+                                    {isSubscribed ? <Bell className="w-4 h-4 text-primary-600" /> : <BellOff className="w-4 h-4 text-neutral-500" />}
+                                    <span className="text-sm font-medium">{t('Notifications.enable')}</span>
+                                </div>
+                                <Button
+                                    size="sm"
+                                    variant={isSubscribed ? "default" : "secondary"}
+                                    className="h-7 text-xs"
+                                    onClick={toggleSubscription}
+                                    disabled={!isSupported || isLoading}
+                                >
+                                    {isLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : (isSubscribed ? 'On' : 'Off')}
+                                </Button>
                             </div>
+
+                            {!isSupported && (
+                                <p className="text-xs text-amber-600 mb-2">Push notifications not supported on this browser.</p>
+                            )}
+
+                            {/* Categories */}
+                            {isSubscribed && (
+                                <div className="space-y-1 pl-1">
+                                    {NOTIFICATION_CATEGORIES.map((cat) => (
+                                        <div key={cat} className="flex items-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                id={`notif-${cat}`}
+                                                checked={subscribedCategories.includes(cat)}
+                                                onChange={() => toggleCategory(cat)}
+                                                className="w-3 h-3 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                                            />
+                                            <label htmlFor={`notif-${cat}`} className="text-sm cursor-pointer select-none">
+                                                {t(`Notifications.categories.${cat}`)}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </section>
 
                         <div className="pt-2">
