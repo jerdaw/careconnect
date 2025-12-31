@@ -86,7 +86,15 @@
     "getStarted": "Get Started",
     "noServices": "You haven't claimed any services yet. Find your organization or create a new listing.",
     "hasServices": "Manage your existing services and keep your data up to date.",
-    "manageServices": "Manage Services"
+    "manageServices": "Manage Services",
+    "editService": "Edit Service",
+    "services": {
+      "title": "My Services",
+      "edit": "Edit",
+      "view": "View",
+      "lastUpdated": "Last updated",
+      "noServices": "No services claimed yet"
+    }
   },
   "ServiceDetail": {
     "back": "Back",

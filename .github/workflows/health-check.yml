@@ -1,0 +1,63 @@
+name: Monthly Health Check
+
+on:
+  schedule:
+    - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
+  workflow_dispatch:
+
+jobs:
+  url-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Run URL Health Check
+        id: health-check
+        run: npx tsx scripts/check-links.ts
+        continue-on-error: true
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: url-health-report
+          path: data/url-health-report.json
+          if-no-files-found: ignore
+
+      - name: Create Issue on Failure
+        if: steps.health-check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '## URL Health Check Failed\n\nThe monthly health check found issues with service URLs. Please review the attached artifact for details.';
+            
+            try {
+              if (fs.existsSync('data/url-health-report.json')) {
+                const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
+                if (report.broken && report.broken.length > 0) {
+                  const brokenList = report.broken
+                    .slice(0, 20)
+                    .map(b => `- [ ] **${b.serviceName}** - ${b.url}`)
+                    .join('\n');
+                  body = `## URL Health Check Report\n\n**Found ${report.summary?.broken || report.broken.length} broken URLs**\n\n${brokenList}`;
+                }
+              }
+            } catch (e) {
+              console.log('Could not parse report:', e);
+            }
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔗 Monthly Health Check: Broken URLs Found`,
+              body,
+              labels: ['data-quality', 'automated']
+            });

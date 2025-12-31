@@ -86,7 +86,15 @@
     "getStarted": "Commencer",
     "noServices": "Vous n'avez pas encore réclamé de services. Trouvez votre organisation ou créez une nouvelle fiche.",
     "hasServices": "Gérez vos services existants et tenez vos données à jour.",
-    "manageServices": "Gérer les services"
+    "manageServices": "Gérer les services",
+    "editService": "Modifier le service",
+    "services": {
+      "title": "Mes services",
+      "edit": "Modifier",
+      "view": "Voir",
+      "lastUpdated": "Dernière mise à jour",
+      "noServices": "Aucun service réclamé"
+    }
   },
   "ServiceDetail": {
     "back": "Retour",
