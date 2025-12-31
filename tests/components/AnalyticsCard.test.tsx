@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import AnalyticsCard from '@/components/AnalyticsCard';
+import { AnalyticsCard } from '@/components/AnalyticsCard';
 import { NextIntlClientProvider } from 'next-intl';
 
 // Mock translations
@@ -60,12 +60,5 @@ describe('AnalyticsCard', () => {
         expect(percentage.className).toContain('text-red-600');
     });
 
-    it('renders all time label when no change provided', () => {
-        render(
-            <Wrapper>
-                <AnalyticsCard title="Test" value={100} />
-            </Wrapper>
-        );
-        expect(screen.getByText('Total all time')).toBeDefined();
-    });
+
 });

@@ -19,6 +19,20 @@
     "all": "All",
     "crisis": "🗣️ Crisis"
   },
+  "SubmitService": {
+    "title": "Suggest a Service",
+    "description": "Know a helpful community service that's missing? Let us know.",
+    "serviceName": "Service Name",
+    "serviceDesc": "Description",
+    "phone": "Phone Number",
+    "website": "Website",
+    "address": "Address",
+    "submit": "Submit Suggestion",
+    "submitting": "Submitting...",
+    "successTitle": "Thank You!",
+    "successMessage": "Your suggestion has been received and will be reviewed by our team.",
+    "submitAnother": "Submit Another Service"
+  },
   "Navigation": {
     "home": "Home",
     "admin": "Admin"

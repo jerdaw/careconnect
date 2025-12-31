@@ -67,6 +67,12 @@ export function Header() {
                     )}>
                         For Partners
                     </Link>
+                    <Link href="/submit-service" className={cn(
+                        "text-sm font-medium transition-colors hover:text-primary-500",
+                        "text-neutral-600 dark:text-neutral-300"
+                    )}>
+                        Suggest Service
+                    </Link>
 
                     <a href="tel:911" className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50">
                         <span className="relative flex h-2 w-2">
