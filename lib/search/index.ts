@@ -6,6 +6,7 @@ import { scoreServiceKeyword, WEIGHTS } from './scoring';
 import { cosineSimilarity } from './vector';
 import { resortByDistance, calculateDistanceKm } from './geo';
 import { detectCrisis, boostCrisisResults } from './crisis';
+// import { UserContext } from '@/types/user-context';
 
 import { isOpenNow } from './hours';
 import { expandQuery } from './synonyms';
@@ -75,7 +76,9 @@ export const searchServices = async (query: string, options: SearchOptions = {})
     for (const service of filteredServices) {
         if (service.verification_level === VerificationLevel.L0) continue;
 
-        const keywordResult = scoreServiceKeyword(service, tokens);
+        // Pass userContext to scoring
+        const keywordResult = scoreServiceKeyword(service, tokens, options.category, { userContext: options.userContext });
+
         if (keywordResult.score > 0) {
             results.push({ service, score: keywordResult.score, matchReasons: keywordResult.reasons });
         }

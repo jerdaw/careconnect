@@ -12,6 +12,7 @@ export interface SearchOptions {
     vectorOverride?: number[] | null;
     openNow?: boolean;
     limit?: number;
+    userContext?: import('@/types/user-context').UserContext;
 }
 
 export interface ScoringWeights {

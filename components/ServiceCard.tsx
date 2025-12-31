@@ -12,6 +12,8 @@ import { scaleOnHover } from '@/lib/motion';
 import { useLocale, useTranslations } from 'next-intl';
 import { trackEvent } from '../lib/analytics';
 import { highlightMatches } from '../lib/search/highlight';
+import { useUserContext } from '@/hooks/useUserContext';
+import { checkEligibility } from '@/lib/eligibility/checker';
 
 /**
  * Props for the ServiceCard component.
@@ -81,6 +83,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                                     className="text-lg font-bold text-neutral-900 dark:text-white truncate leading-tight"
                                     dangerouslySetInnerHTML={{ __html: nameHtml }}
                                 />
+                                {checkEligibility(service, useUserContext().context) === 'eligible' && (
+                                    <Badge variant="secondary" size="sm" className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 gap-1 px-1.5 py-0 border-green-200 dark:border-green-800">
+                                        {t('Eligibility.likelyQualify')}
+                                    </Badge>
+                                )}
                                 {isVerified && (
                                     <Badge variant="primary" size="sm" className="gap-1 px-1.5 py-0">
                                         <ShieldCheck className="w-3 h-3" /> Verified

@@ -3,6 +3,7 @@ import { SearchResult } from '@/lib/search';
 import { useLocalStorage } from './useLocalStorage';
 import { useGeolocation } from './useGeolocation';
 import { logger } from '@/lib/logger';
+import { useUserContext } from './useUserContext';
 
 /**
  * Primary search state management hook.
@@ -32,6 +33,9 @@ export function useSearch(initialQuery = '') {
         requestLocation,
         clearLocation
     } = useGeolocation();
+
+    // Import User Context for personalization
+    const { context: userContext } = useUserContext();
 
     const handleSaveSearch = useCallback(() => {
         if (!query) return;
@@ -80,6 +84,7 @@ export function useSearch(initialQuery = '') {
         setSuggestion,
         savedSearches,
         handleSaveSearch,
-        removeSavedSearch
+        removeSavedSearch,
+        userContext
     };
-}
+};

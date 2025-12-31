@@ -1,13 +1,17 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Link } from '@/i18n/routing';
+import { Link as I18nLink } from '@/i18n/routing'; // Renamed to avoid conflict with next/link
 import { useAuth } from '@/components/AuthProvider';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+// import { useTranslations } from 'next-intl';
+// import LanguageSwitcher from './LanguageSwitcher'; 
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { ThemeToggle } from './ThemeToggle';
+import { ProfileSettings } from '@/components/settings';
 import BetaBanner from '@/components/BetaBanner';
 
 export function Header() {
@@ -88,6 +92,7 @@ export function Header() {
                 {/* Mobile Menu Button */}
                 <div className="flex items-center gap-4 md:hidden">
                     <ThemeToggle />
+                    {user && <ProfileSettings />} {/* Show ProfileSettings on mobile if logged in */}
                     <button
                         className="p-2 text-neutral-600 dark:text-neutral-300"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -113,6 +118,11 @@ export function Header() {
                             <Link href="/partners" className="text-sm font-medium text-neutral-600 dark:text-neutral-300 p-2">
                                 For Partners
                             </Link>
+                            {user && (
+                                <div className="pt-2">
+                                    <ProfileSettings />
+                                </div>
+                            )}
                             {user ? (
                                 <Button className="w-full" asChild>
                                     <Link href="/dashboard">Dashboard</Link>

@@ -102,5 +102,28 @@
     "contextIntro": "Here are some relevant local services I found:",
     "noMatches": "No direct matches found in our database.",
     "crisisPrompt": "If the user is in crisis, urge them to call 911."
+  },
+  "Settings": {
+    "personalizePrompt": "Personalize your results",
+    "personalizeDescription": "Optionally share your situation to see services you may qualify for. This data never leaves your device.",
+    "enablePersonalization": "Enable Personalization",
+    "ageGroup": "Age Group",
+    "ageGroups": {
+      "youth": "Youth (under 30)",
+      "adult": "Adult (18-64)",
+      "senior": "Senior (55+)"
+    },
+    "identities": "I identify as...",
+    "identityTags": {
+      "indigenous": "Indigenous",
+      "newcomer": "Newcomer to Canada",
+      "2slgbtqi+": "2SLGBTQI+",
+      "veteran": "Veteran",
+      "disability": "Person with a disability"
+    },
+    "clearProfile": "Clear My Profile"
+  },
+  "Eligibility": {
+    "likelyQualify": "✓ You likely qualify"
   }
 }

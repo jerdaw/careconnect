@@ -102,5 +102,28 @@
     "contextIntro": "Voici quelques services locaux pertinents que j'ai trouvés :",
     "noMatches": "Aucune correspondance directe trouvée dans notre base de données.",
     "crisisPrompt": "Si l'utilisateur est en crise, incitez-le à appeler le 911."
+  },
+  "Settings": {
+    "personalizePrompt": "Personnalisez vos résultats",
+    "personalizeDescription": "Partagez votre situation pour voir les services auxquels vous pourriez être admissible. Ces données ne quittent jamais votre appareil.",
+    "enablePersonalization": "Activer la personnalisation",
+    "ageGroup": "Groupe d'âge",
+    "ageGroups": {
+      "youth": "Jeunes (moins de 30 ans)",
+      "adult": "Adulte (18-64 ans)",
+      "senior": "Aîné (55 ans et plus)"
+    },
+    "identities": "Je m'identifie comme...",
+    "identityTags": {
+      "indigenous": "Autochtone",
+      "newcomer": "Nouvel arrivant au Canada",
+      "2slgbtqi+": "2SLGBTQI+",
+      "veteran": "Vétéran",
+      "disability": "Personne handicapée"
+    },
+    "clearProfile": "Effacer mon profil"
+  },
+  "Eligibility": {
+    "likelyQualify": "✓ Vous êtes probablement admissible"
   }
 }

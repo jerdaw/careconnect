@@ -32,15 +32,22 @@ The search system uses a hybrid approach:
 1.  **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2.  **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
 
-### AI Architecture (Phase 4)
-
-- **Engine**: [WebLLM](https://webllm.mlc.ai/) (Phi-3 Mini via WebGPU/WASM).
-- **Strategy**: Retrieval Augmented Generation (RAG).
-- **Privacy**: Zero data egress. The model runs locally; the vector store (`IndexedDB`) is local.
+### 7. AI Assistant Architecture (Phase 4)
+- **Engine**: `@mlc-ai/web-llm` running `Phi-3-mini` (2GB) via WebGPU.
+- **Strategy**: RAG (Retrieval Augmented Generation).
+- **Privacy**: 
+  - **Local-Only**: Inference runs entirely in the user's browser.
+  - **No Data Egress**: Chat history and queries never leave the device.
+  - **Zero-Knowledge**: Server knows *that* a user is chatting, but not *what* they are saying.
 - **Lifecycle**:
-  - `useAI` hook manages the singleton `AIEngine`.
-  - `ChatAssistant` hydrates the vector store on load.
-  - 5-minute idle timer unloads the heavy model (~2GB) to free VRAM.
+  - **Opt-In**: Model download only triggered by explicit user action.
+  - **Idle Cleanup**: VRAM released after 5 minutes of inactivity.
+
+### 8. Privacy-Preserving Personalization (Phase 5)
+- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`kcc_user_context`).
+- **Zero PII**: No user accounts, login, or cookies required for basic personalization.
+- **Local Eligibility**: "Likely Qualify" checks run locally by parsing cached service data against the local profile.
+- **Identity Boosting**: Search ranking adjustments happen on the client-side `WebWorker`.
 
 ### Data Flow
 
