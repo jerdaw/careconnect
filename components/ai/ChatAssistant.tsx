@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useAI } from '@/hooks/useAI';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -8,19 +8,26 @@ import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown } from 'lucide-r
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ReactMarkdown from 'react-markdown';
+import { useTranslations, useLocale } from 'next-intl';
+import { aiEngine } from '@/lib/ai/engine';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
 
+const IDLE_TIMEOUT_MS = 5 * 60 * 1000; // 5 Minutes
+
 export default function ChatAssistant() {
+    const t = useTranslations('AI');
+    const locale = useLocale();
     const { isReady, isLoading, progress, text, error, initAI, chat } = useAI();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [isThinking, setIsThinking] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
 
     // Auto-scroll to bottom
     useEffect(() => {
@@ -33,6 +40,28 @@ export default function ChatAssistant() {
     useEffect(() => {
         import('@/lib/search/lifecycle').then(mod => mod.initializeVectorStore());
     }, []);
+
+    // VRAM Management: Idle Timer
+    const resetIdleTimer = useCallback(() => {
+        if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+
+        // If chat is closed, set a timer to unload the model
+        if (!isOpen && isReady) {
+            idleTimerRef.current = setTimeout(() => {
+                console.log('[AI] Unloading model due to inactivity...');
+                aiEngine.unload();
+            }, IDLE_TIMEOUT_MS);
+        }
+    }, [isOpen, isReady]);
+
+    // Monitor open state for idle timer
+    useEffect(() => {
+        resetIdleTimer();
+        return () => {
+            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+        };
+    }, [isOpen, resetIdleTimer]);
+
 
     const handleSend = async () => {
         if (!input.trim() || isThinking) return;
@@ -52,14 +81,21 @@ export default function ChatAssistant() {
             const searchResults = await searchServices(userMsg, { limit: 3 });
 
             // Format context
+            const contextIntro = t('contextIntro'); // Localized intro
+            const noMatches = t('noMatches');
+
             const contextText = searchResults.length > 0
-                ? `Here are some relevant local services I found:\n${searchResults.map(r => ` - ${r.service.name}: ${r.service.description} (Category: ${r.service.intent_category})`).join('\n')}`
-                : "No direct matches found in our database.";
+                ? `${contextIntro}\n${searchResults.map(r => ` - ${r.service.name}: ${r.service.description} (Category: ${r.service.intent_category})`).join('\n')}`
+                : noMatches;
 
             // System prompt + Context to ground the AI
+            // We pull the localized system prompt from messages
+            const systemPromptContent = t('systemPrompt');
+            const crisisPrompt = t('crisisPrompt');
+
             const systemPrompt = {
                 role: 'system' as const,
-                content: `You are a helpful assistant for Kingston Care Connect. You help people find social services in Kingston, Ontario.
+                content: `${systemPromptContent}
                 
 CONTEXT from database:
 ${contextText}
@@ -68,7 +104,7 @@ INSTRUCTIONS:
 - Answer based on the CONTEXT provided above if possible.
 - If the context matches the user's need, recommend those specific services.
 - Be kind, concise, and safe.
-- If the user is in crisis, urge them to call 911.`
+- ${crisisPrompt}`
             };
 
             const fullContext = [
@@ -80,7 +116,7 @@ INSTRUCTIONS:
             const reply = await chat(fullContext);
             setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
         } catch {
-            setMessages(prev => [...prev, { role: 'assistant', content: "I'm having trouble thinking right now. Please try searching instead." }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: t('errorThinking') }]);
         } finally {
             setIsThinking(false);
         }
@@ -103,7 +139,7 @@ INSTRUCTIONS:
                             <div className="p-4 bg-gradient-to-r from-primary-600 to-primary-500 text-white flex items-center justify-between shadow-sm">
                                 <div className="flex items-center gap-2">
                                     <Sparkles className="w-5 h-5 text-yellow-300" />
-                                    <h3 className="font-semibold text-sm">Care Assistant</h3>
+                                    <h3 className="font-semibold text-sm">{t('title')}</h3>
                                 </div>
                                 <Button
                                     size="icon"
@@ -131,27 +167,27 @@ INSTRUCTIONS:
                                                     </div>
                                                 </div>
                                                 <div className="space-y-1">
-                                                    <p className="font-medium text-sm text-neutral-900 dark:text-neutral-100">Initializing AI Brain...</p>
+                                                    <p className="font-medium text-sm text-neutral-900 dark:text-neutral-100">{t('initializing')}</p>
                                                     <p className="text-xs text-neutral-500 dark:text-neutral-400 max-w-[200px]">{text}</p>
                                                 </div>
                                             </>
                                         ) : error ? (
                                             <div className="text-center text-red-500">
-                                                <p className="text-sm font-bold">Initialization Failed</p>
+                                                <p className="text-sm font-bold">{t('initFailed')}</p>
                                                 <p className="text-xs mt-1">{error}</p>
-                                                <Button size="sm" variant="outline" onClick={initAI} className="mt-4">Retry</Button>
+                                                <Button size="sm" variant="outline" onClick={initAI} className="mt-4">{t('retry')}</Button>
                                             </div>
                                         ) : (
                                             <div className="text-center space-y-4">
                                                 <Sparkles className="w-12 h-12 text-primary-300 mx-auto" />
                                                 <div className="space-y-2">
-                                                    <p className="text-sm font-medium">Privacy-First AI</p>
+                                                    <p className="text-sm font-medium">{t('privacyNote')}</p>
                                                     <p className="text-xs text-neutral-500">
-                                                        This assistant runs 100% on your device. No data is sent to the cloud. It requires a ~2GB download once.
+                                                        {t('privacyDesc')}
                                                     </p>
                                                 </div>
                                                 <Button onClick={initAI} className="w-full">
-                                                    Enable Assistant
+                                                    {t('enable')}
                                                 </Button>
                                             </div>
                                         )}
@@ -160,8 +196,8 @@ INSTRUCTIONS:
                                     <>
                                         {messages.length === 0 && (
                                             <div className="text-center py-8 text-neutral-500 text-sm">
-                                                <p>👋 Hi! I can help you find services.</p>
-                                                <p className="text-xs mt-2 opacity-70">Try asking: &quot;Where can I find food?&quot; or &quot;I need youth shelter.&quot;</p>
+                                                <p>{t('welcome')}</p>
+                                                <p className="text-xs mt-2 opacity-70">{t('suggestion')}</p>
                                             </div>
                                         )}
                                         {messages.map((m, i) => (
@@ -197,7 +233,7 @@ INSTRUCTIONS:
                                         type="text"
                                         value={input}
                                         onChange={(e) => setInput(e.target.value)}
-                                        placeholder={isReady ? "Type a message..." : "Waiting for AI..."}
+                                        placeholder={isReady ? t('placeholderReady') : t('placeholderWaiting')}
                                         disabled={!isReady || isThinking}
                                         className="flex-1 bg-neutral-100 dark:bg-neutral-800 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none disabled:opacity-50"
                                     />
