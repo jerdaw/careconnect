@@ -49,6 +49,7 @@ export function calculateScore(
     // 6. Identity Match Boost (Personalization)
     if (options.userContext?.identities.length && service.identity_tags) {
         const matchingTags = service.identity_tags.filter((tag) =>
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             options.userContext!.identities.includes(tag.tag.toLowerCase() as any)
         );
         if (matchingTags.length > 0) {

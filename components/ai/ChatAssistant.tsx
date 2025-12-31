@@ -8,7 +8,7 @@ import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown } from 'lucide-r
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ReactMarkdown from 'react-markdown';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { aiEngine } from '@/lib/ai/engine';
 
 interface Message {
@@ -20,7 +20,6 @@ const IDLE_TIMEOUT_MS = 5 * 60 * 1000; // 5 Minutes
 
 export default function ChatAssistant() {
     const t = useTranslations('AI');
-    const locale = useLocale();
     const { isReady, isLoading, progress, text, error, initAI, chat } = useAI();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);

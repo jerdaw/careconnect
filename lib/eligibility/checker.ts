@@ -11,7 +11,7 @@ export function parseEligibility(notes: string): EligibilityCriteria {
     const criteria: EligibilityCriteria = {};
     // Pattern: "Ages 18-29" or "Must be Indigenous"
     const ageMatch = notes.match(/Ages?\s*(\d+)(?:\s*[-–]\s*(\d+))?/i);
-    if (ageMatch) {
+    if (ageMatch && ageMatch[1]) {
         criteria.minAge = parseInt(ageMatch[1], 10);
         if (ageMatch[2]) {
             criteria.maxAge = parseInt(ageMatch[2], 10);

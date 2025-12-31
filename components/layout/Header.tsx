@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Link as I18nLink } from '@/i18n/routing'; // Renamed to avoid conflict with next/link
+// import { Link as I18nLink } from '@/i18n/routing'; 
 import { useAuth } from '@/components/AuthProvider';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
