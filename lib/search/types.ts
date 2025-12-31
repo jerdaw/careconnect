@@ -11,8 +11,10 @@ export interface SearchOptions {
     location?: { lat: number; lng: number };
     vectorOverride?: number[] | null;
     openNow?: boolean;
+
     limit?: number;
     userContext?: import('@/types/user-context').UserContext;
+    useAIExpansion?: boolean;
 }
 
 export interface ScoringWeights {

@@ -9,7 +9,8 @@ import { detectCrisis, boostCrisisResults } from './crisis';
 // import { UserContext } from '@/types/user-context';
 
 import { isOpenNow } from './hours';
-import { expandQuery } from './synonyms';
+import { expandQuery as expandSynonyms } from './synonyms';
+import { expandQuery as expandQueryAI } from '@/lib/ai/query-expander';
 
 /**
  * Main Hybrid Search Function (Optimized for Cost)
@@ -19,9 +20,21 @@ import { expandQuery } from './synonyms';
  * 3. Only fetch Vector (Paid) if keywords fail to find relevant results.
  */
 export const searchServices = async (query: string, options: SearchOptions = {}): Promise<SearchResult[]> => {
+    // 0. AI Query Expansion (Optional)
+    let searchInput = query;
+    if (options.useAIExpansion) {
+        const { expanded } = await expandQueryAI(query);
+        if (expanded.length > 0) {
+            // Append expanded terms to the query for tokenization
+            // We use a lower weight? content scoring treats all tokens roughly equally currently.
+            // This is a simple, effective boost.
+            searchInput += " " + expanded.join(" ");
+        }
+    }
+
     const services = await loadServices();
-    const rawTokens = tokenize(query);
-    const tokens = expandQuery(rawTokens);
+    const rawTokens = tokenize(searchInput);
+    const tokens = expandSynonyms(rawTokens);
 
     // Initial Filter: Category + Open Now
     let filteredServices = services;

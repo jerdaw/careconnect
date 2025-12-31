@@ -60,9 +60,28 @@ import ServiceCard from "@/components/ServiceCard"
   service={service}
   score={result.score}
   matchReasons={result.matchReasons}
+  score={result.score}
   matchReasons={result.matchReasons}
 />
 ```
+
+### SearchBar
+
+Includes integrated voice search capability.
+
+```tsx
+import SearchBar from "@/components/home/SearchBar"
+
+<SearchBar
+  query={query}
+  setQuery={setQuery}
+  placeholder="Search..."
+/>
+```
+
+**Sub-components:**
+- `VoiceSearchButton`: Manages microphone state and local Whisper transcription.
+
 
 ### ChatAssistant
 

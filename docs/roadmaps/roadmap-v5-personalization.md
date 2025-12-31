@@ -504,240 +504,388 @@ main()
 
 ## Phase 7: Community & Partner Features (Est. 1-2 Months)
 
-### 7.1 Service Submission Form (Public)
+### 7.1 Service Submission System (Crowdsourcing)
 
-#### [NEW] `app/[locale]/submit-service/page.tsx`
+**Goal**: Enable community members and organizations to suggest new services or updates, creating a self-healing directory.
 
-```tsx
-"use client"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { useTranslations } from "next-intl"
+#### User Flow
 
-export default function SubmitServicePage() {
-  const t = useTranslations("SubmitService")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [success, setSuccess] = useState(false)
+1.  **Entry Point**: "Suggest Service" link in global header/footer.
+2.  **Form**: Public `SubmitServicePage` capturing:
+    - **Core Info**: Name, Description (min 10 chars).
+    - **Contact**: Phone, Website, Address.
+    - **Validation**: Strict schema validation using `zod`.
+3.  **Submission**:
+    - Data POSTed to `/api/v1/submissions`.
+    - Stored in `service_submissions` table (status: `pending`).
+4.  **Feedback**: Instant success UI with "Submit Another" option.
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    const formData = new FormData(e.currentTarget)
+#### Technical Implementation
 
-    const res = await fetch("/api/v1/submissions", {
-      method: "POST",
-      body: JSON.stringify(Object.fromEntries(formData)),
-      headers: { "Content-Type": "application/json" },
-    })
-
-    setIsSubmitting(false)
-    if (res.ok) setSuccess(true)
-  }
-
-  if (success) return <p className="text-green-600">{t("successMessage")}</p>
-
-  return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-4 p-6">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <input name="name" placeholder={t("serviceName")} required className="w-full rounded border p-2" />
-      <textarea name="description" placeholder={t("description")} required className="w-full rounded border p-2" />
-      <input name="phone" placeholder={t("phone")} className="w-full rounded border p-2" />
-      <input name="url" placeholder={t("website")} type="url" className="w-full rounded border p-2" />
-      <input name="address" placeholder={t("address")} className="w-full rounded border p-2" />
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? t("submitting") : t("submit")}
-      </Button>
-    </form>
-  )
-}
-```
-
----
-
-#### [NEW] `app/api/v1/submissions/route.ts`
+**Schema (`types/submission.ts`)**:
 
 ```typescript
-import { NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase"
-import { z } from "zod"
-
-const SubmissionSchema = z.object({
+export const SubmissionSchema = z.object({
   name: z.string().min(3),
   description: z.string().min(10),
   phone: z.string().optional(),
   url: z.string().url().optional(),
   address: z.string().optional(),
 })
-
-export async function POST(request: Request) {
-  const body = await request.json()
-  const parsed = SubmissionSchema.safeParse(body)
-
-  if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 })
-  }
-
-  const supabase = createClient()
-  const { error } = await supabase.from("service_submissions").insert({
-    ...parsed.data,
-    status: "pending",
-    submitted_at: new Date().toISOString(),
-  })
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json({ success: true }, { status: 201 })
-}
 ```
+
+**API Route (`app/api/v1/submissions/route.ts`)**:
+
+- **Authentication**: Public (rate-limited in Phase 9).
+- **Storage**: Supabase `insert`. mocked fallback if DB unavailable.
 
 ---
 
-### 7.2 Analytics Dashboard for Partners
+### 7.2 Partner Analytics Dashboard
 
-#### [NEW] `app/[locale]/dashboard/analytics/page.tsx`
+**Goal**: Provide value to service providers by showing them demand for their services and general community needs.
 
-```tsx
-import { createClient } from "@/lib/supabase"
-import { AnalyticsCard } from "@/components/AnalyticsCard"
+#### Dashboard UI (`app/[locale]/dashboard/analytics`)
 
-export default async function PartnerAnalyticsPage() {
-  const supabase = createClient()
-  const { data } = await supabase
-    .from("search_analytics")
-    .select("category, result_bucket")
-    .gte("created_at", new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
+- **KPI Cards**:
+  - `Total Searches`: Volume of intent in the last 30 days.
+  - `Top Category`: Most needed service type (e.g., Food, Housing).
+  - `Zero Results`: Percentage of searches that found nothing (gap analysis).
+- **Trend Indicators**:
+  - Visual delta (e.g., "↑ 12%") vs previous period.
+  - Color-coded (Green = Growth/Positive, Red = Decline/Negative).
 
-  const categoryBreakdown = data?.reduce(
-    (acc, row) => {
-      acc[row.category || "Other"] = (acc[row.category || "Other"] || 0) + 1
-      return acc
-    },
-    {} as Record<string, number>
-  )
+#### Component Architecture
 
-  return (
-    <div className="grid grid-cols-1 gap-4 p-6 md:grid-cols-3">
-      <AnalyticsCard title="Total Searches (30d)" value={data?.length || 0} />
-      <AnalyticsCard title="Top Category" value={Object.keys(categoryBreakdown || {})[0] || "N/A"} />
-      <AnalyticsCard
-        title="Zero Results %"
-        value={`${(((data?.filter((d) => d.result_bucket === "0").length || 0) / (data?.length || 1)) * 100).toFixed(
-          1
-        )}%`}
-      />
-    </div>
-  )
-}
-```
+- **`AnalyticsCard.tsx`**: Reusable component supporting:
+  - `loading`: Skeleton state for async data fetching.
+  - `change`: Numeric trend with automatic color formatting.
+  - `description`: Contextual label (e.g., "vs last month").
+
+#### Data Source
+
+- **Real**: Aggregated counts from `search_analytics` table in Supabase.
+- **Mock**: Fallback static data for development/preview.
 
 ---
 
-## Phase 8: Advanced AI (Est. Ongoing)
+## Phase 8: Advanced AI — Voice & Intelligence (Est. 2-3 Weeks)
 
-### 8.1 LLM-Powered Query Expansion
+> **Goal**: Enhance user interaction through voice input and intelligent query understanding, all while maintaining strict **privacy-first** principles (no server-side data egress).
 
-**Goal**: Use a local model to semantically expand user queries before search.
+### Executive Summary
 
-#### [NEW] `lib/ai/query-expander.ts`
+Phase 8 introduces two transformative features:
+1. **Voice Input**: Allows users to speak their queries instead of typing, dramatically improving accessibility for users with mobility impairments, low literacy, or those in hands-free situations.
+2. **LLM Query Expansion**: Uses the existing local AI engine (Phi-3 Mini via `web-llm`) to semantically expand user queries before search, improving recall for vague or underspecified inputs.
+
+Both features run **entirely client-side**, ensuring user privacy is preserved.
+
+---
+
+### 8.1 Voice Input (Speech-to-Text)
+
+### 8.1 Voice Input (Privacy-First)
+
+**Goal**: Enable hands-free search via **100% Local Processing**.
+
+#### 8.1.1 Local-Only Architecture
+
+We have explicitly chosen **NOT** to use the native Web Speech API (Chrome/Edge) because it transmits audio data to Google/Microsoft servers. Instead, we use an in-browser Whisper model for **all users**.
+
+| Technology | Browsers | Privacy | Notes |
+|------------|----------|---------|-------|
+| **On-Device Whisper** | **All (Chrome, Safari, Firefox, Edge)** | **100% Private** | Runs via WebAssembly (`@xenova/transformers`). Required ~30MB download once. |
+
+**Strategy**:
+1. Check for `MediaRecorder` support.
+2. Record audio locally.
+3. Transcribe audio using the local Whisper model.
+
+#### 8.1.2 User Experience Design
+
+1. **Entry Point**: Microphone icon inside search bar.
+2. **First Use**:
+   - "Downloading private speech model (30MB)..." tooltip/indicator.
+   - Once cached, start-up is instant.
+3. **States**:
+   - **Idle**: Gray Mic.
+   - **Listening**: Red Pulse.
+   - **Processing**: "Transcribing..." (Visible processing time for local model).
+
+#### 8.1.3 Technical Implementation
+
+**[NEW] `lib/ai/transcriber.ts`**
+- Loads `Xenova/whisper-tiny.en` (Quantized).
+- Handles audio conversion.
+
+**[MODIFY] `hooks/useVoiceInput.ts`**
+- Removed "Native" mode.
+- Forces "Whisper" mode for all browsers.
+- Manages local model loading state.
+
+---
+
+### 8.2 LLM Query Expansion
+
+**Goal**: Use the local AI engine to semantically expand vague queries, improving search recall.
+
+#### 8.2.1 Problem Statement
+
+| User Query | Current Search | Desired Expansion |
+|------------|----------------|-------------------|
+| "I'm hungry" | Keyword: "hungry" | ["food bank", "meal programs", "grocery assistance"] |
+| "help with bills" | Keyword: "bills" | ["utility assistance", "rent help", "financial aid"] |
+| "mental health" | Keyword: "mental health" | ["counseling", "therapy", "crisis support", "psychiatrist"] |
+
+#### 8.2.2 Expansion Strategies
+
+1. **Synonym Expansion** (Already Implemented in Phase 3 via `lib/search/synonyms.ts`)
+2. **LLM-Based Multi-Query Generation** (New)
+3. **Hypothetical Document Embeddings (HyDE)** (Future consideration)
+
+#### 8.2.3 Technical Implementation
+
+**[NEW] `lib/ai/query-expander.ts`**
 
 ```typescript
 import { aiEngine } from "./engine"
 
-const EXPANSION_PROMPT = `You are a social services search assistant. Given a user query, output 3-5 related search terms as a JSON array. Only output the array, nothing else.
+const EXPANSION_PROMPT = `You are a social services search assistant for Kingston, Ontario. Given a user query, generate 3-5 semantically related search terms that would help find relevant community services.
 
-Query: "{query}"
-Related terms:`
+Rules:
+- Output ONLY a JSON array of strings, nothing else.
+- Include synonyms, related concepts, and specific service types.
+- Consider local Canadian terminology (e.g., "ODSP" for disability, "OW" for Ontario Works).
 
-export async function expandQuery(query: string): Promise<string[]> {
+User Query: "{query}"
+Related Terms:`
+
+export interface QueryExpansionResult {
+  original: string
+  expanded: string[]
+  fromCache: boolean
+}
+
+// Simple in-memory cache to avoid redundant LLM calls
+const expansionCache = new Map<string, string[]>()
+
+export async function expandQuery(query: string): Promise<QueryExpansionResult> {
+  const normalizedQuery = query.toLowerCase().trim()
+
+  // Check cache first
+  if (expansionCache.has(normalizedQuery)) {
+    return {
+      original: query,
+      expanded: expansionCache.get(normalizedQuery)!,
+      fromCache: true
+    }
+  }
+
   try {
+    // Only expand if AI engine is ready and query is non-trivial
+    if (!aiEngine.isReady() || query.length < 3) {
+      return { original: query, expanded: [], fromCache: false }
+    }
+
     const prompt = EXPANSION_PROMPT.replace("{query}", query)
     const response = await aiEngine.chat([{ role: "user", content: prompt }])
-    const parsed = JSON.parse(response)
-    return Array.isArray(parsed) ? parsed : []
-  } catch {
-    return [] // Fail silently, use original query
+
+    // Parse JSON response with fallback
+    let parsed: string[]
+    try {
+      parsed = JSON.parse(response)
+      if (!Array.isArray(parsed)) throw new Error("Not an array")
+    } catch {
+      // Attempt to extract array from response
+      const match = response.match(/\[.*\]/s)
+      parsed = match ? JSON.parse(match[0]) : []
+    }
+
+    // Sanitize results (max 5, no duplicates, no empty strings)
+    const sanitized = [...new Set(parsed.filter(Boolean).slice(0, 5))]
+
+    // Cache result
+    expansionCache.set(normalizedQuery, sanitized)
+
+    return { original: query, expanded: sanitized, fromCache: false }
+  } catch (error) {
+    console.warn("[QueryExpander] Failed to expand query:", error)
+    return { original: query, expanded: [], fromCache: false }
   }
 }
+
+// Clear cache (useful for testing or memory management)
+export function clearExpansionCache() {
+  expansionCache.clear()
+}
 ```
+
+**[MODIFY] `lib/search/index.ts`**
+
+```typescript
+import { expandQuery } from "@/lib/ai/query-expander"
+
+export async function search(query: string, options: SearchOptions): Promise<SearchResult[]> {
+  // Step 1: Expand query using LLM (if available)
+  let searchTerms = [query]
+  if (options.useAIExpansion !== false) {
+    const expansion = await expandQuery(query)
+    searchTerms = [query, ...expansion.expanded]
+  }
+
+  // Step 2: Run hybrid search (keyword + vector) across all terms
+  const results = await hybridSearch(searchTerms, options)
+
+  // Step 3: Deduplicate and merge scores
+  return deduplicateResults(results)
+}
+```
+
+#### 8.2.4 User-Facing Transparency
+
+When query expansion is used, optionally display:
+```
+Searching for: "hungry" + food bank, meal programs, grocery assistance
+```
+
+This builds trust by showing users *why* they're seeing certain results.
 
 ---
 
-### 8.2 Multi-Turn Conversational Memory
+### 8.3 Multi-Turn Conversational Memory
 
-#### [MODIFY] `components/ai/ChatAssistant.tsx`
+**Goal**: Allow the Chat Assistant to remember context within a session for follow-up questions.
+
+#### 8.3.1 Conversation Flow Example
+
+| Turn | User | Assistant |
+|------|------|-----------|
+| 1 | "Where can I get free food?" | "Martha's Table offers free meals Mon-Fri..." |
+| 2 | "What about weekends?" | "On weekends, you can visit One Roof or Salvation Army..." |
+| 3 | "Are any of those near downtown?" | "Martha's Table and Salvation Army are both downtown..." |
+
+#### 8.3.2 Technical Implementation
+
+**[MODIFY] `components/ai/ChatAssistant.tsx`**
 
 ```typescript
-// Add session-scoped memory
+interface Message {
+  role: "user" | "assistant" | "system"
+  content: string
+  timestamp?: number
+}
+
+const MAX_CONTEXT_MESSAGES = 10 // Keep last 10 messages in context window
+const CONTEXT_EXPIRY_MS = 30 * 60 * 1000 // Clear context after 30 min of inactivity
+
 const [conversationHistory, setConversationHistory] = useState<Message[]>([])
+const lastActivityRef = useRef<number>(Date.now())
+
+// Check for stale context on mount
+useEffect(() => {
+  if (Date.now() - lastActivityRef.current > CONTEXT_EXPIRY_MS) {
+    setConversationHistory([])
+  }
+}, [])
 
 const sendMessage = async (userMessage: string) => {
-  const newHistory = [...conversationHistory, { role: "user", content: userMessage }]
-  setConversationHistory(newHistory)
+  lastActivityRef.current = Date.now()
 
-  const response = await aiEngine.chat([
+  const newMessage: Message = {
+    role: "user",
+    content: userMessage,
+    timestamp: Date.now()
+  }
+
+  const updatedHistory = [...conversationHistory, newMessage]
+  setConversationHistory(updatedHistory)
+
+  // Build context window (system prompt + last N messages)
+  const contextWindow = [
     { role: "system", content: systemPrompt },
-    ...newHistory.slice(-10), // Keep last 10 messages for context window
+    ...updatedHistory.slice(-MAX_CONTEXT_MESSAGES)
+  ]
+
+  const response = await aiEngine.chat(contextWindow)
+
+  setConversationHistory([
+    ...updatedHistory,
+    { role: "assistant", content: response, timestamp: Date.now() }
   ])
-
-  setConversationHistory([...newHistory, { role: "assistant", content: response }])
 }
+
+// Clear conversation button
+const clearConversation = () => {
+  setConversationHistory([])
+  lastActivityRef.current = Date.now()
+}
+```
+
+#### 8.3.3 Memory Management
+
+- **Context Window Limit**: Keep only the last 10 messages to stay within the model's token limit (~4k for Phi-3 Mini).
+- **Session Expiry**: Auto-clear after 30 minutes of inactivity.
+- **Explicit Clear**: "New Conversation" button to reset context.
+
+---
+
+### 8.4 Verification Plan
+
+| Feature | Test Type | Method |
+|---------|-----------|--------|
+| Voice Input | Unit | `tests/hooks/useVoiceInput.test.ts` — mock `SpeechRecognition` API |
+| Voice Input | E2E | Manual test in Chrome/Safari with real microphone |
+| Query Expansion | Unit | `tests/ai/query-expander.test.ts` — mock AI engine responses |
+| Query Expansion | Integration | Verify expanded terms appear in search logs |
+| Conversational Memory | Unit | `tests/ai/chat-memory.test.ts` — verify context window behavior |
+| Conversational Memory | E2E | Manual multi-turn conversation test |
+
+**Verification Commands**:
+```bash
+# Unit tests
+npm test -- tests/hooks/useVoiceInput.test.ts
+npm test -- tests/ai/query-expander.test.ts
+
+# E2E manual checklist
+# 1. Click microphone in Chrome → speak "I need food" → verify results appear
+# 2. In Safari, verify fallback message appears
+# 3. In Chat Assistant, ask follow-up questions → verify context is maintained
 ```
 
 ---
 
-### 8.3 Voice Input
+### 8.5 Localization Requirements
 
-#### [NEW] `hooks/useVoiceInput.ts`
-
-```typescript
-"use client"
-import { useState, useCallback } from "react"
-
-export function useVoiceInput(onResult: (text: string) => void) {
-  const [isListening, setIsListening] = useState(false)
-
-  const startListening = useCallback(() => {
-    if (!("webkitSpeechRecognition" in window)) {
-      alert("Voice input not supported in this browser.")
-      return
-    }
-
-    const recognition = new (window as any).webkitSpeechRecognition()
-    recognition.lang = "en-CA"
-    recognition.interimResults = false
-
-    recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript
-      onResult(transcript)
-      setIsListening(false)
-    }
-
-    recognition.onerror = () => setIsListening(false)
-    recognition.onend = () => setIsListening(false)
-
-    recognition.start()
-    setIsListening(true)
-  }, [onResult])
-
-  return { isListening, startListening }
-}
-```
-
-#### [MODIFY] Search Input
-
-```tsx
-import { useVoiceInput } from "@/hooks/useVoiceInput"
-import { MicIcon } from "lucide-react"
-
-// In SearchBar component:
-const { isListening, startListening } = useVoiceInput(setQuery)
-
-// Add button next to search input:
-;<button onClick={startListening} aria-label="Voice search" className="p-2">
-  <MicIcon className={isListening ? "animate-pulse text-red-500" : ""} />
-</button>
-```
+| Key | English | French |
+|-----|---------|--------|
+| `VoiceInput.start` | Start voice search | Commencer la recherche vocale |
+| `VoiceInput.stop` | Stop listening | Arrêter l'écoute |
+| `VoiceInput.notSupported` | Voice input not supported in this browser | Entrée vocale non prise en charge dans ce navigateur |
+| `VoiceInput.noSpeech` | No speech detected. Try again. | Aucune parole détectée. Réessayez. |
+| `VoiceInput.micDenied` | Microphone access denied | Accès au microphone refusé |
+| `Chat.newConversation` | New Conversation | Nouvelle conversation |
+| `Search.expandedFor` | Also searching for: {terms} | Recherche également : {terms} |
 
 ---
+
+### 8.6 File Summary
+
+| Action | Path | Description |
+|--------|------|-------------|
+| NEW | `hooks/useVoiceInput.ts` | Voice input hook with full state management |
+| NEW | `lib/ai/query-expander.ts` | LLM-based query expansion with caching |
+| MODIFY | `components/search/SearchBar.tsx` | Add microphone button with states |
+| MODIFY | `components/ai/ChatAssistant.tsx` | Add conversational memory |
+| MODIFY | `lib/search/index.ts` | Integrate query expansion into search pipeline |
+| MODIFY | `messages/en.json` | Add voice/chat localization keys |
+| MODIFY | `messages/fr.json` | Add French translations |
+| NEW | `tests/hooks/useVoiceInput.test.ts` | Unit tests for voice hook |
+| NEW | `tests/ai/query-expander.test.ts` | Unit tests for query expansion |
+
+---
+
+
 
 ## Phase 9: Long-Term Backlog
 

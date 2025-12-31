@@ -1,4 +1,4 @@
-import type { Service } from "@/types/service"
+import { Service, VerificationLevel } from "@/types/service"
 
 const API_BASE = "https://api.211ontario.ca/v1" // Placeholder URL
 
@@ -67,8 +67,9 @@ function mapToService(raw: Raw211Service): Service {
         phone: raw.phone,
         url: raw.url,
         address: `${raw.address.street}, ${raw.address.city} ${raw.address.postal}`,
-        verification_level: "L2",
-        intent_category: mapTaxonomyToCategory(raw.taxonomy) as any, // Cast to avoid strict literal mismatch if types differ
+        verification_level: VerificationLevel.L2,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        intent_category: mapTaxonomyToCategory(raw.taxonomy) as any,
         provenance: {
             verified_by: "211 Ontario API",
             verified_at: new Date().toISOString(),
@@ -90,6 +91,7 @@ function mapTaxonomyToCategory(taxonomy: { code: string; name: string }[]): stri
         RP: "Crisis",
     }
 
-    const code = taxonomy[0]?.code?.substring(0, 2)
+    const firstCode = taxonomy[0]?.code;
+    const code = firstCode ? firstCode.substring(0, 2) : "";
     return categoryMap[code] || "Other"
 }

@@ -19,6 +19,13 @@
     "all": "All",
     "crisis": "🗣️ Crisis"
   },
+  "VoiceInput": {
+    "start": "Start Private Voice Search",
+    "stop": "Stop Listening",
+    "processing": "Transcribing on device...",
+    "error": "Error",
+    "notSupported": "Voice input not supported"
+  },
   "SubmitService": {
     "title": "Suggest a Service",
     "description": "Know a helpful community service that's missing? Let us know.",
@@ -32,6 +39,22 @@
     "successTitle": "Thank You!",
     "successMessage": "Your suggestion has been received and will be reviewed by our team.",
     "submitAnother": "Submit Another Service"
+  },
+  "Analytics": {
+    "title": "Partner Analytics",
+    "description": "Insights into community needs and service gaps.",
+    "totalSearches": "Total Searches (30d)",
+    "topCategory": "Top Category",
+    "zeroResults": "Zero Results Rate",
+    "description_searches": "+12% from last month",
+    "description_top": "Most requested service type",
+    "description_zero": "Searches with no matches",
+    "betaAccess": "Beta Access",
+    "betaMessage": "These metrics are currently based on aggregated platform usage. Once your organization is verified, you will see specific traffic to your services.",
+    "totalServices": "Total Services",
+    "totalViews": "Total Views (30d)",
+    "vsPeriod": "vs {period}",
+    "totalAllTime": "Total all time"
   },
   "Navigation": {
     "home": "Home",
@@ -64,12 +87,6 @@
     "noServices": "You haven't claimed any services yet. Find your organization or create a new listing.",
     "hasServices": "Manage your existing services and keep your data up to date.",
     "manageServices": "Manage Services"
-  },
-  "Analytics": {
-    "totalServices": "Total Services",
-    "totalViews": "Total Views (30d)",
-    "vsPeriod": "vs {period}",
-    "totalAllTime": "Total all time"
   },
   "ServiceDetail": {
     "back": "Back",
@@ -115,7 +132,8 @@
     "systemPrompt": "You are a helpful, kind assistant for Kingston Care Connect. You help people find social services in Kingston, Ontario. Keep answers concise, safe, and empathetic. If you don't know something, advise them to use the search bar.",
     "contextIntro": "Here are some relevant local services I found:",
     "noMatches": "No direct matches found in our database.",
-    "crisisPrompt": "If the user is in crisis, urge them to call 911."
+    "crisisPrompt": "If the user is in crisis, urge them to call 911.",
+    "clearChat": "Clear conversation"
   },
   "Settings": {
     "personalizePrompt": "Personalize your results",

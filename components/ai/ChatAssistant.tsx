@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useAI } from '@/hooks/useAI';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown } from 'lucide-react';
+import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ReactMarkdown from 'react-markdown';
@@ -17,6 +17,7 @@ interface Message {
 }
 
 const IDLE_TIMEOUT_MS = 5 * 60 * 1000; // 5 Minutes
+const MAX_CONTEXT_MESSAGES = 10; // Limit context window
 
 export default function ChatAssistant() {
     const t = useTranslations('AI');
@@ -71,13 +72,13 @@ export default function ChatAssistant() {
         setIsThinking(true);
 
         try {
-            // Build conversation history for the context
-            const history = messages.map(m => ({ role: m.role, content: m.content }));
+            // Build conversation history for the context (Limit to last N messages)
+            const history = messages.slice(-MAX_CONTEXT_MESSAGES).map(m => ({ role: m.role, content: m.content }));
 
             // RAG: Perform a local search to find relevant services
             // We dynamic import to avoid bundling search logic if not needed initially
             const { searchServices } = await import('@/lib/search');
-            const searchResults = await searchServices(userMsg, { limit: 3 });
+            const searchResults = await searchServices(userMsg, { limit: 3, useAIExpansion: true });
 
             // Format context
             const contextIntro = t('contextIntro'); // Localized intro
@@ -140,14 +141,25 @@ INSTRUCTIONS:
                                     <Sparkles className="w-5 h-5 text-yellow-300" />
                                     <h3 className="font-semibold text-sm">{t('title')}</h3>
                                 </div>
-                                <Button
-                                    size="icon"
-                                    variant="ghost"
-                                    className="h-6 w-6 text-white hover:bg-white/20"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    <X className="w-4 h-4" />
-                                </Button>
+                                <div className="flex gap-1">
+                                    <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        className="h-6 w-6 text-white hover:bg-white/20"
+                                        onClick={() => setMessages([])}
+                                        title={t('clearChat')}
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                    <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        className="h-6 w-6 text-white hover:bg-white/20"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </Button>
+                                </div>
                             </div>
 
                             {/* Content Area */}

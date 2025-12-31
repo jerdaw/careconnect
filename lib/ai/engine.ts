@@ -43,6 +43,10 @@ class AIEngine {
         };
     }
 
+    public get isReady(): boolean {
+        return this.state.isReady;
+    }
+
     private updateState(newState: Partial<AIState>) {
         this.state = { ...this.state, ...newState };
         this.listeners.forEach(l => l(this.state));

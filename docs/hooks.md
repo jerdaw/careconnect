@@ -82,6 +82,22 @@ const {
 } = useAI()
 ```
 
+### useVoiceInput
+
+Manages local audio recording and transcription using in-browser Whisper model.
+
+```tsx
+import { useVoiceInput } from "@/hooks/useVoiceInput"
+
+const {
+  state, // "idle" | "listening" | "processing" | "error"
+  startListening,
+  stopListening,
+  error
+} = useVoiceInput((text) => setQuery(text))
+```
+
+
 ---
 
 ## Utility Hooks

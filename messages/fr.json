@@ -19,6 +19,43 @@
     "all": "Tous",
     "crisis": "🗣️ Crise"
   },
+  "VoiceInput": {
+    "start": "Démarrer la recherche vocale privée",
+    "stop": "Arrêter l'écoute",
+    "processing": "Transcription sur l'appareil...",
+    "error": "Erreur",
+    "notSupported": "Entrée vocale non prise en charge"
+  },
+  "SubmitService": {
+    "title": "Suggérer un service",
+    "description": "Connaissez-vous un service communautaire utile qui manque ? Faites-le nous savoir.",
+    "serviceName": "Nom du service",
+    "serviceDesc": "Description",
+    "phone": "Numéro de téléphone",
+    "website": "Site web",
+    "address": "Adresse",
+    "submit": "Soumettre la suggestion",
+    "submitting": "Envoi en cours...",
+    "successTitle": "Merci !",
+    "successMessage": "Votre suggestion a été reçue et sera examinée par notre équipe.",
+    "submitAnother": "Soumettre un autre service"
+  },
+  "Analytics": {
+    "title": "Analyses des partenaires",
+    "description": "Aperçu des besoins de la communauté et des lacunes dans les services.",
+    "totalSearches": "Total des recherches (30j)",
+    "topCategory": "Catégorie principale",
+    "zeroResults": "Taux de zéro résultat",
+    "description_searches": "+12% par rapport au mois dernier",
+    "description_top": "Type de service le plus demandé",
+    "description_zero": "Recherches sans correspondance",
+    "betaAccess": "Accès bêta",
+    "betaMessage": "Ces mesures sont actuellement basées sur l'utilisation globale de la plateforme. Une fois votre organisation vérifiée, vous verrez le trafic spécifique à vos services.",
+    "totalServices": "Total des services",
+    "totalViews": "Vues totales (30j)",
+    "vsPeriod": "vs {period}",
+    "totalAllTime": "Total de tous les temps"
+  },
   "Navigation": {
     "home": "Accueil",
     "admin": "Admin"
@@ -50,12 +87,6 @@
     "noServices": "Vous n'avez pas encore réclamé de services. Trouvez votre organisation ou créez une nouvelle fiche.",
     "hasServices": "Gérez vos services existants et tenez vos données à jour.",
     "manageServices": "Gérer les services"
-  },
-  "Analytics": {
-    "totalServices": "Total des services",
-    "totalViews": "Vues totales (30j)",
-    "vsPeriod": "vs {period}",
-    "totalAllTime": "Total de tous les temps"
   },
   "ServiceDetail": {
     "back": "Retour",
@@ -101,7 +132,8 @@
     "systemPrompt": "Vous êtes un assistant utile et bienveillant pour Kingston Care Connect. Vous aidez les gens à trouver des services sociaux à Kingston, Ontario. Gardez les réponses concises, sûres et empathiques. Si vous ne savez pas, conseillez-leur d'utiliser la barre de recherche.",
     "contextIntro": "Voici quelques services locaux pertinents que j'ai trouvés :",
     "noMatches": "Aucune correspondance directe trouvée dans notre base de données.",
-    "crisisPrompt": "Si l'utilisateur est en crise, incitez-le à appeler le 911."
+    "crisisPrompt": "Si l'utilisateur est en crise, incitez-le à appeler le 911.",
+    "clearChat": "Effacer la conversation"
   },
   "Settings": {
     "personalizePrompt": "Personnalisez vos résultats",

@@ -40,13 +40,58 @@ export default function SearchBar({
                     variant="ghost"
                     size="icon"
                     onClick={handleSaveSearch}
-                    className="absolute inset-y-0 right-2 my-auto h-10 w-10 text-neutral-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                    className="absolute inset-y-0 right-12 my-auto h-10 w-10 text-neutral-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
                     title="Save this search"
                     aria-label="Save this search"
                 >
                     <Heart className="h-5 w-5" />
                 </Button>
             )}
+            <VoiceSearchButton onResult={(text) => setQuery(text)} />
         </div>
     );
+}
+
+import { Mic, MicOff, Loader2 } from 'lucide-react';
+import { useVoiceInput } from '@/hooks/useVoiceInput';
+import { useTranslations } from 'next-intl';
+import { cn } from "@/lib/utils"
+
+function VoiceSearchButton({ onResult }: { onResult: (text: string) => void }) {
+    const t = useTranslations('VoiceInput');
+    const { state, isSupported, startListening, stopListening, error } = useVoiceInput(onResult);
+
+    if (!isSupported) return null;
+
+    const isActive = state === 'listening';
+    const isProcessing = state === 'processing';
+
+    const getTooltip = () => {
+        if (error) return error;
+        if (isActive) return t('stop');
+        return t('start');
+    };
+
+    return (
+        <Button
+            variant="ghost"
+            size="icon"
+            onClick={isActive ? stopListening : startListening}
+            className={cn(
+                "absolute inset-y-0 right-2 my-auto h-10 w-10 transition-colors",
+                isActive ? "text-red-600 bg-red-50 dark:bg-red-900/20 animate-pulse" : "text-neutral-400 hover:text-primary-500",
+                isProcessing && "animate-spin text-primary-500"
+            )}
+            title={getTooltip()}
+            aria-label={getTooltip()}
+        >
+            {isProcessing ? (
+                <Loader2 className="h-5 w-5" />
+            ) : isActive ? (
+                <Mic className="h-5 w-5" />
+            ) : (
+                <MicOff className="h-5 w-5" />
+            )}
+        </Button>
+    )
 }

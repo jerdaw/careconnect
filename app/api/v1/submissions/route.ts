@@ -1,13 +1,7 @@
 import { NextResponse } from "next/server"
-import { z } from "zod"
 
-const SubmissionSchema = z.object({
-    name: z.string().min(3),
-    description: z.string().min(10),
-    phone: z.string().optional(),
-    url: z.string().url().optional().or(z.literal("")),
-    address: z.string().optional(),
-})
+
+import { SubmissionSchema } from "@/types/submission"
 
 export async function POST(request: Request) {
     try {

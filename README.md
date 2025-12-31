@@ -27,7 +27,7 @@ We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Service
   - **Crisis Detection**: Instant boosting of emergency services for high-risk queries.
 - **Decentralized AI Assistant**:
   - **Client-Side RAG**: Runs a local LLM (Phi-3) directly in the browser via WebGPU.
-  - **Zero-Knowledge**: No user queries ever leave the device.
+  - **Zero-Knowledge**: Voice and text queries never leave the device.
   - **Offline Vector Store**: Instant semantic search even without internet.
 - **Bilingual Ready**: Full support for English and French content switching.
 - **Global Deployment**: Specialized Crisis Mode instantly boosts emergency services.
