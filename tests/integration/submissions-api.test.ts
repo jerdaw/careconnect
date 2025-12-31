@@ -13,7 +13,8 @@ describe("Submission API", () => {
     })
 
     const res = await POST(req)
-    const data = await res.json()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = (await res.json()) as any
 
     expect(res.status).toBe(201)
     expect(data.success).toBe(true)
@@ -29,7 +30,8 @@ describe("Submission API", () => {
     })
 
     const res = await POST(req)
-    const data = await res.json()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = (await res.json()) as any
 
     expect(res.status).toBe(400)
     expect(data.error).toBeDefined()

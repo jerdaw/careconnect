@@ -111,7 +111,7 @@
   "packageManager": "npm@10.0.0",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "next lint --fix",
+      "next lint --fix --file",
       "vitest related --run"
     ],
     "*.{json,md,css}": [

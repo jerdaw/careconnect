@@ -63,9 +63,9 @@ export async function transcribeAudio(audioBlob: Blob): Promise<string> {
 
     // Output format is { text: "..." } or [{ text: "..." }] depending on version
     // Output format requires casting as the pipeline return type is generic
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const anyOutput = output as any
-    const text = Array.isArray(anyOutput) ? anyOutput[0].text : anyOutput.text
+    type TranscriberResult = { text: string }
+    const result = output as TranscriberResult | TranscriberResult[]
+    const text = Array.isArray(result) ? (result[0]?.text ?? "") : result.text
     return text.trim()
   } catch (error) {
     console.error("Transcription failed:", error)
