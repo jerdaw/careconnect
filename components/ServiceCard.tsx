@@ -7,6 +7,7 @@ import { Link } from "../i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { FreshnessBadge } from "@/components/ui/FreshnessBadge"
 import { scaleOnHover } from "@/lib/motion"
 
 import { useLocale, useTranslations } from "next-intl"
@@ -72,7 +73,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
       animate={{ opacity: 1, y: 0 }}
       className="h-full"
     >
-      <Card className="group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+      <Card className="service-card-print group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
         {/* Top Gradient Line on Hover */}
         <div className="from-primary-500 to-accent-500 absolute top-0 right-0 left-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r transition-transform duration-300 group-hover:scale-x-100" />
 
@@ -105,6 +106,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                   <Badge variant="primary" size="sm" className="gap-1 px-1.5 py-0">
                     <ShieldCheck className="h-3 w-3" /> Verified
                   </Badge>
+                )}
+                {service.last_verified && (
+                  <FreshnessBadge lastVerified={service.last_verified} />
                 )}
               </div>
               <div className="mt-1 flex items-center gap-2">

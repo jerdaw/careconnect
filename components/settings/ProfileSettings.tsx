@@ -4,8 +4,9 @@ import { useUserContext } from "@/hooks/useUserContext"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
-import { User, ShieldCheck, Bell, BellOff, Loader2 } from "lucide-react"
+import { User, ShieldCheck, Bell, BellOff, Loader2, Eye } from "lucide-react"
 import { usePushNotifications } from "@/hooks/usePushNotifications"
+import { useHighContrast } from "@/hooks/useHighContrast"
 import { NotificationCategory } from "@/types/notifications"
 import { useState } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -24,6 +25,8 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
   const t = useTranslations("Settings")
   const { context, updateAgeGroup, toggleIdentity, optIn, optOut } = useUserContext()
   const { isSupported, isSubscribed, subscribedCategories, isLoading, subscribe, unsubscribe } = usePushNotifications()
+  const { isHighContrast, toggleHighContrast } = useHighContrast()
+  const tAccess = useTranslations("Accessibility")
   const [open, setOpen] = useState(false)
 
   const toggleSubscription = async () => {
@@ -203,6 +206,26 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
                   ))}
                 </div>
               )}
+            </section>
+
+            <section>
+              <h4 className="mb-3 text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                {tAccess("title")}
+              </h4>
+              <div className="flex items-center justify-between rounded-lg bg-neutral-50 p-2 dark:bg-neutral-800">
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4 text-neutral-500" />
+                  <span className="text-sm font-medium">{tAccess("highContrast")}</span>
+                </div>
+                <Button
+                  size="sm"
+                  variant={isHighContrast ? "default" : "secondary"}
+                  className="h-7 text-xs"
+                  onClick={toggleHighContrast}
+                >
+                  {isHighContrast ? "On" : "Off"}
+                </Button>
+              </div>
             </section>
 
             <div className="pt-2">

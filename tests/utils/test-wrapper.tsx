@@ -11,6 +11,8 @@ const defaultMessages = {
     // Add other common namespaces here as needed
 }
 
+import { render, RenderOptions } from "@testing-library/react"
+
 interface TestWrapperProps {
     children: React.ReactNode
     locale?: string
@@ -28,3 +30,18 @@ export const TestWrapper = ({
         </NextIntlClientProvider>
     )
 }
+
+export const renderWithProviders = (
+    ui: React.ReactElement,
+    options?: Omit<RenderOptions, "wrapper"> & { locale?: string; messages?: Record<string, any> }
+) => {
+    const { locale, messages, ...rest } = options || {}
+    return render(ui, {
+        wrapper: (props) => (
+            <TestWrapper {...props} locale={locale} messages={messages} />
+        ),
+        ...rest,
+    })
+}
+
+export * from "@testing-library/react"

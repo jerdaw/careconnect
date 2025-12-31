@@ -346,6 +346,67 @@ body {
   background-color: rgba(71, 85, 105, 0.6);
 }
 
+/* High Contrast Mode for Accessibility */
+.high-contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+
+  --surface-glass: rgba(0, 0, 0, 0.95);
+  --surface-glass-strong: rgba(0, 0, 0, 1);
+  --surface-elevated: #000000;
+
+  --border-glass: #ffffff;
+  --border-glass-inner: #ffffff;
+
+  /* Override primary colors to pure white/black */
+  --color-primary-50: #ffffff;
+  --color-primary-100: #ffffff;
+  --color-primary-200: #ffffff;
+  --color-primary-300: #ffffff;
+  --color-primary-400: #ffffff;
+  --color-primary-500: #ffffff;
+  --color-primary-600: #ffffff;
+  --color-primary-700: #ffffff;
+
+  /* Accent colors - high visibility yellow */
+  --color-accent-400: #ffff00;
+  --color-accent-500: #ffff00;
+
+  --shadow-glow: none;
+  --shadow-inner-light: none;
+}
+
+.high-contrast .glass,
+.high-contrast .glass-card,
+.high-contrast .glass-panel {
+  background: #000000;
+  border: 2px solid #ffffff;
+  backdrop-filter: none;
+}
+
+/* Ensure text is always high contrast */
+.high-contrast * {
+  text-shadow: none !important;
+}
+
+/* Links must be visually distinct */
+.high-contrast a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Focus states must be highly visible */
+.high-contrast *:focus {
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+}
+
+/* Buttons need clear borders */
+.high-contrast button,
+.high-contrast [role="button"] {
+  border: 2px solid #ffffff !important;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -357,4 +418,92 @@ body {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+/* Print Stylesheet */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  footer,
+  nav,
+  .bg-noise,
+  [data-print-hide],
+  button:not([data-print-show]),
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and colors for ink efficiency */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  /* Ensure all text is black */
+  * {
+    color: #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Service cards should stack vertically */
+  .service-grid {
+    display: block !important;
+  }
+
+  /* Each service card gets its own section */
+  .service-card-print {
+    page-break-inside: avoid;
+    border: 1px solid #cccccc !important;
+    padding: 12pt;
+    margin-bottom: 12pt;
+  }
+
+  /* Show full URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  /* Don't print URL for internal links */
+  a[href^="/"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* Print header for branding */
+  .print-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 24pt;
+    border-bottom: 2pt solid #000000;
+    padding-bottom: 12pt;
+  }
+
+  .print-header h1 {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  .print-header p {
+    font-size: 10pt;
+    color: #666666 !important;
+  }
+
+  /* Print footer with date */
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9pt;
+    border-top: 1pt solid #cccccc;
+    padding-top: 6pt;
+  }
 }

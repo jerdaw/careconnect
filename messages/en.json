@@ -61,7 +61,8 @@
     "admin": "Admin"
   },
   "Common": {
-    "openInNewTab": "(opens in a new tab)"
+    "openInNewTab": "(opens in a new tab)",
+    "printResults": "Print Results"
   },
   "Privacy": {
     "title": "Privacy Policy",
@@ -194,5 +195,15 @@
   },
   "Eligibility": {
     "likelyQualify": "✓ You likely qualify"
+  },
+  "Freshness": {
+    "verified": "Verified",
+    "unknown": "Not verified",
+    "verifiedOn": "Last verified",
+    "neverVerified": "This service has not been verified recently"
+  },
+  "Accessibility": {
+    "title": "Accessibility",
+    "highContrast": "High Contrast Mode"
   }
 }
