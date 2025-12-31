@@ -18,13 +18,7 @@ export default defineConfig({
         lines: 80,
         statements: 80,
       },
-      exclude: [
-        "node_modules/**",
-        "dist/**",
-        ".next/**",
-        "**/*.d.ts",
-        "tests/**",
-      ],
+      exclude: ["node_modules/**", "dist/**", ".next/**", "**/*.d.ts", "tests/**"],
     },
   },
 })

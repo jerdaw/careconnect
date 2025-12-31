@@ -16,9 +16,13 @@
 - **UI Components:** Major components (`ServiceCard`, `SearchControls`) use `next-intl` hooks.
 - **Hours:** Timestamps are stored as data (`09:00`); formatting (AM/PM vs 24h) is handled by the UI based on locale.
 - **AI Assistant**: System prompts must be localized dynamically (e.g., passing a French prompt to the AI if locale is `fr`). Use `useTranslations('AI')` for all chat UI.
+- **Validation**: Use `npm run bilingual-check` to identify missing French content in `data/services.json`.
+- **RBAC & Edits**: Partners can manage bilingual fields via the Dashboard. Ensure `ServiceEditForm` includes `*_fr` fields for all text-heavy properties.
 
 ## 3. Rules
 
 1. Do not hardcode "Click Here". Use variables.
 2. Ensure layout supports text expansion (French is often 20% longer).
 3. Dates/Currencies must be localized.
+4. **Content Fallbacks**: If `name_fr` is missing, the UI should default to `name` but flag it for review (Audit Script behavior).
+5. **Form Field Alignment**: Side-by-side or stacked EN/FR fields in CMS/Dashboard should be clearly labeled to prevent input errors.

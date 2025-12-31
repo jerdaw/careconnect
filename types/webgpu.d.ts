@@ -1,7 +1,7 @@
-export { };
+export {}
 
 declare global {
-    interface Navigator {
-        gpu: any;
-    }
+  interface Navigator {
+    gpu: any
+  }
 }

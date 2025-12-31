@@ -1,13 +1,13 @@
-import type { Metadata, Viewport } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import "../globals.css";
-import { AuthProvider } from "../../components/AuthProvider";
-import { ErrorBoundary } from "../../components/ErrorBoundary";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Outfit, Inter } from "next/font/google";
-import { ClientOnly } from "@/components/ClientOnly";
-import ChatAssistant from "@/components/ai/ChatAssistant";
+import type { Metadata, Viewport } from "next"
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages } from "next-intl/server"
+import "../globals.css"
+import { AuthProvider } from "../../components/AuthProvider"
+import { ErrorBoundary } from "../../components/ErrorBoundary"
+import { ThemeProvider } from "@/components/ThemeProvider"
+import { Outfit, Inter } from "next/font/google"
+import { ClientOnly } from "@/components/ClientOnly"
+import ChatAssistant from "@/components/ai/ChatAssistant"
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -18,37 +18,37 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "KCC",
   },
-};
+}
 
 export const viewport: Viewport = {
   themeColor: "#2563eb",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-};
+}
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   display: "swap",
-});
+})
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-});
+})
 
 export default async function RootLayout({
   children,
-  params
+  params,
 }: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params;
+  const { locale } = await params
 
-  const messages = await getMessages();
+  const messages = await getMessages()
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -67,5 +67,5 @@ export default async function RootLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  );
+  )
 }

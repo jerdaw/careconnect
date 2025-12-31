@@ -67,7 +67,8 @@
         "close": "23:59"
       },
       "notes": "24/7 Service"
-    }
+    },
+    "eligibility_notes_fr": "Inclusion : All youth (5-29) in Canada. Hommestal health support. Exclusion : Aucune (24/7 anonymous)."
   },
   {
     "id": "trans-lifeline-canada",
@@ -136,7 +137,8 @@
         "open": "10:00",
         "close": "22:00"
       }
-    }
+    },
+    "eligibility_notes_fr": "Inclusion : Trans, non-binary, and questioning individuals. Peer support. Exclusion : Cisgender individuals seeking info (refer to allies line)."
   },
   {
     "id": "hope-for-wellness-helpline",
@@ -168,7 +170,8 @@
       "Mental health chat indigenous"
     ],
     "eligibility_notes": "Inclusion: First Nations, Inuit, and Métis peoples across Canada. Culturally competent counselling.",
-    "access_script": "Hi, I am Indigenous and I'm having a hard time. I'd like to speak with a culturally safe counsellor."
+    "access_script": "Hi, I am Indigenous and I'm having a hard time. I'd like to speak with a culturally safe counsellor.",
+    "eligibility_notes_fr": "Inclusion : Premières Nations, Inuit, and Métis peoples across Canada. Culturally competent counselling."
   },
   {
     "id": "assaulted-womens-helpline",
@@ -200,7 +203,8 @@
       "Safety planning for women"
     ],
     "eligibility_notes": "Inclusion: Women in Ontario experiencing abuse/violence. Exclusion: Men (refer to other lines).",
-    "access_script": "Hello, I am in an unsafe situation at home and I need to know my options for leaving."
+    "access_script": "Hello, I am in an unsafe situation at home and I need to know my options for leaving.",
+    "eligibility_notes_fr": "Inclusion : Femmes in Ontario experiencing abuse/violence. Exclusion : Hommes (refer to other lines)."
   },
   {
     "id": "iska-newcomer-support",
@@ -244,7 +248,8 @@
       "lng": -76.5161
     },
     "eligibility_notes": "Inclusion: Newcomers, immigrants, refugees in KFL&A. Settlement support. Exclusion: None.",
-    "access_script": "Hi, I'm new to Kingston and looking for help with settlement and housing. Do I need an appointment?"
+    "access_script": "Hi, I'm new to Kingston and looking for help with settlement and housing. Do I need an appointment?",
+    "eligibility_notes_fr": "Inclusion : Newcomers, immigrants, refugees in KFL&A. Settlement support. Exclusion : Aucune."
   },
   {
     "id": "trellis-hiv-community-care",
@@ -292,7 +297,8 @@
       "lng": -76.5164
     },
     "eligibility_notes": "Inclusion: Open to all. Focus on HIV/STBBI and substance use. Exclusion: None.",
-    "access_script": "Hi, I'd like to pick up some harm reduction supplies. Do I need an appointment or can I just drop in?"
+    "access_script": "Hi, I'd like to pick up some harm reduction supplies. Do I need an appointment or can I just drop in?",
+    "eligibility_notes_fr": "Inclusion : Ouvert à tous. Focus on HIV/STBBI and substance use. Exclusion : Aucune."
   },
   {
     "id": "one-roof-youth-hub",
@@ -336,7 +342,8 @@
       "lng": -76.5022
     },
     "eligibility_notes": "Inclusion: Youth 16-24. Housing, employment, mental health. Drop-in available. Exclusion: Adults 25+.",
-    "access_script": "Hi, I'm 20 and having a hard time finding a job and a place to live. Can I drop by to see a worker?"
+    "access_script": "Hi, I'm 20 and having a hard time finding a job and a place to live. Can I drop by to see a worker?",
+    "eligibility_notes_fr": "Inclusion : Jeunes 16-24. Housing, employment, mental health. Drop-in available. Exclusion : Adultes 25+."
   },
   {
     "id": "victim-services-kingston",
@@ -368,7 +375,8 @@
       "Immediate crisis assistance"
     ],
     "eligibility_notes": "Inclusion: Victims of crime/tragedy in Frontenac. Exclusion: Non-victims.",
-    "access_script": "Hi, I was recently a victim of a crime and the police mentioned I could call you for support. What kind of help do you offer?"
+    "access_script": "Hi, I was recently a victim of a crime and the police mentioned I could call you for support. What kind of help do you offer?",
+    "eligibility_notes_fr": "Inclusion : Victims of crime/tragedy in Frontenac. Exclusion : Non-victims."
   },
   {
     "id": "hotel-dieu-urgent-care",
@@ -405,7 +413,8 @@
       "Infection need antibiotics now"
     ],
     "eligibility_notes": "Inclusion: Non-life-threatening urgent issues (cuts, breaks). Exclusion: Critical trauma (Go to KGH). Note: Registration closes when capacity reached.",
-    "access_script": "Hi, I think I have a minor bone break. Are you still accepting patients for today, or is capacity reached?"
+    "access_script": "Hi, I think I have a minor bone break. Are you still accepting patients for today, or is capacity reached?",
+    "eligibility_notes_fr": "Inclusion : Non-life-threatening urgent issues (cuts, breaks). Exclusion : Critical trauma (Go to KGH). Note: Registration closes when capacity reached."
   },
   {
     "id": "kgh-emergency-department",
@@ -442,7 +451,8 @@
       "Life threatening injury"
     ],
     "eligibility_notes": "Inclusion: Life-threatening injuries, trauma, critical care. Exclusion: Minor ailments (Go to Urgent Care/Walk-in).",
-    "access_script": "Hi, I'm bringing in a friend who is having severe chest pain. Where is the best place to drop them off?"
+    "access_script": "Hi, I'm bringing in a friend who is having severe chest pain. Where is the best place to drop them off?",
+    "eligibility_notes_fr": "Inclusion : Life-threatening injuries, trauma, critical care. Exclusion : Minor ailments (Go to Urgent Care/Sans rendez-vous)."
   },
   {
     "id": "kfla-public-health-dental",
@@ -475,7 +485,8 @@
       "Emergency dental public health"
     ],
     "eligibility_notes": "Inclusion: Low-income (HSO/OSDCP) or adults on OW/ODSP with emergency. Exclusion: General public without coverage.",
-    "access_script": "Hi, I have a severe toothache and I am on Ontario Works. Can I book an emergency appointment?"
+    "access_script": "Hi, I have a severe toothache and I am on Ontario Works. Can I book an emergency appointment?",
+    "eligibility_notes_fr": "Inclusion : Low-income (HSO/OSDCP) or adults on OW/ODSP with emergency. Exclusion : General public without coverage."
   },
   {
     "id": "community-legal-clinic-kingston",
@@ -508,7 +519,8 @@
       "Help with ontario works appeal"
     ],
     "eligibility_notes": "Inclusion: Low-income Kingston residents. Housing, OW/ODSP, Employment law. Exclusion: Criminal/Family law (Refer to Legal Aid).",
-    "access_script": "Hi, my landlord is threatening to evict me and I'd like to speak to a lawyer about my rights."
+    "access_script": "Hi, my landlord is threatening to evict me and I'd like to speak to a lawyer about my rights.",
+    "eligibility_notes_fr": "Inclusion : Low-income Kingston residents. Housing, OW/ODSP, Employment law. Exclusion : Criminal/Family law (Refer to Legal Aid)."
   },
   {
     "id": "salvation-army-housing-help",
@@ -552,7 +564,8 @@
       "lng": -76.4913
     },
     "eligibility_notes": "Inclusion: At risk of homelessness or low-income. Rent/Utility arrears. Exclusion: Must meet income cap for grants.",
-    "access_script": "Hi, I'm behind on my rent and worried about losing my apartment. Can I apply for the rent bank?"
+    "access_script": "Hi, I'm behind on my rent and worried about losing my apartment. Can I apply for the rent bank?",
+    "eligibility_notes_fr": "Inclusion : At risk of homelessness or low-income. Rent/Utility arrears. Exclusion : Must meet income cap for grants."
   },
   {
     "id": "kchc-transgender-health-care",
@@ -585,7 +598,8 @@
       "Transgender health clinic"
     ],
     "eligibility_notes": "Inclusion: Trans/Gender-diverse individuals (12+). Self-referral accepted. Exclusion: None stated.",
-    "access_script": "Hi, I am looking to start hormone therapy. Are you currently accepting new patients for gender-affirming care?"
+    "access_script": "Hi, I am looking to start hormone therapy. Are you currently accepting new patients for gender-affirming care?",
+    "eligibility_notes_fr": "Inclusion : Trans/Gender-diverse individuals (12+). Self-referral accepted. Exclusion : Aucune stated."
   },
   {
     "id": "street-health-centre",
@@ -629,7 +643,8 @@
       "lng": -76.4831
     },
     "eligibility_notes": "Inclusion: Vulnerable populations, substance use, homelessness. Open access. Exclusion: None.",
-    "access_script": "Hi, I'm helping a friend who uses substances and I want to find out about your needle exchange hours."
+    "access_script": "Hi, I'm helping a friend who uses substances and I want to find out about your needle exchange hours.",
+    "eligibility_notes_fr": "Inclusion : Populations vulnérables, substance use, homelessness. Open access. Exclusion : Aucune."
   },
   {
     "id": "kingston-interval-house",
@@ -661,7 +676,8 @@
       "Emergency women's housing"
     ],
     "eligibility_notes": "Inclusion: Women and children escaping violence/abuse. Exclusion: Men (Refer to other shelters).",
-    "access_script": "I need a safe place to stay tonight away from my partner. Do you have any beds available?"
+    "access_script": "I need a safe place to stay tonight away from my partner. Do you have any beds available?",
+    "eligibility_notes_fr": "Inclusion : Femmes and children escaping violence/abuse. Exclusion : Hommes (Refer to other shelters)."
   },
   {
     "id": "telephone-aid-line-kingston-talk",
@@ -693,7 +709,8 @@
       "Night time distress line"
     ],
     "eligibility_notes": "Inclusion: Anyone needing a listening ear. 6pm-2am. Exclusion: None.",
-    "access_script": "Hi, I'm just feeling really lonely tonight and need someone to listen."
+    "access_script": "Hi, I'm just feeling really lonely tonight and need someone to listen.",
+    "eligibility_notes_fr": "Inclusion : Anyone needing a listening ear. 6pm-2am. Exclusion : Aucune."
   },
   {
     "id": "elizabeth-fry-society-kingston",
@@ -726,7 +743,8 @@
       "Elizabeth Fry contact"
     ],
     "eligibility_notes": "Inclusion: Women (18+) at risk of homelessness or in justice system. Exclusion: Men.",
-    "access_script": "Hi, I am being released soon and will have nowhere to go. Do you have any supportive housing units available?"
+    "access_script": "Hi, I am being released soon and will have nowhere to go. Do you have any supportive housing units available?",
+    "eligibility_notes_fr": "Inclusion : Femmes (18+) at risk of homelessness or in justice system. Exclusion : Hommes."
   },
   {
     "id": "st-vincent-de-paul-kingston",
@@ -759,7 +777,8 @@
       "Help with food and supplies"
     ],
     "eligibility_notes": "Inclusion: Anyone in need. Daily lunch & pantry (once/month). Exclusion: None.",
-    "access_script": "Hi, I'm struggling with groceries this month. What do I need to bring to access the pantry?"
+    "access_script": "Hi, I'm struggling with groceries this month. What do I need to bring to access the pantry?",
+    "eligibility_notes_fr": "Inclusion : Toute personne dans le besoin. Daily lunch & pantry (once/month). Exclusion : Aucune."
   },
   {
     "id": "lunch-by-george",
@@ -790,7 +809,8 @@
       "Soup kitchen downtown"
     ],
     "eligibility_notes": "Inclusion: Anyone hungry. Drop-in breakfast/lunch. Exclusion: None.",
-    "access_script": "Hi, I heard you offer a hot lunch. What time do you start serving?"
+    "access_script": "Hi, I heard you offer a hot lunch. What time do you start serving?",
+    "eligibility_notes_fr": "Inclusion : Anyone hungry. Drop-in breakfast/lunch. Exclusion : Aucune."
   },
   {
     "id": "salvation-army-rideau-heights",
@@ -823,7 +843,8 @@
       "Emergency food box sign up"
     ],
     "eligibility_notes": "Inclusion: Catchment area residents (Rideau Heights). Income verification required. By Appointment.",
-    "access_script": "Hi, I live in Rideau Heights and need food assistance. Can I book an appointment for a hamper?"
+    "access_script": "Hi, I live in Rideau Heights and need food assistance. Can I book an appointment for a hamper?",
+    "eligibility_notes_fr": "Inclusion : Catchment area residents (Rideau Heights). Vérification du revenu requise. By Rendez-vous."
   },
   {
     "id": "partners-in-mission-food-bank",
@@ -868,7 +889,8 @@
       "lng": -76.4917
     },
     "eligibility_notes": "Inclusion: Kingston residents. Hamper program. Exclusion: Frequency limits apply.",
-    "access_script": "Hi, I'd like to register for a food hamper. What documents do you need me to bring?"
+    "access_script": "Hi, I'd like to register for a food hamper. What documents do you need me to bring?",
+    "eligibility_notes_fr": "Inclusion : Kingston residents. Hamper program. Exclusion : Frequency limits apply."
   },
   {
     "id": "marthas-table-kingston",
@@ -905,7 +927,8 @@
       "Community meal program"
     ],
     "eligibility_notes": "Inclusion: Anyone in need of a meal. Small fee ($2) or free meal ticket. Social hub.",
-    "access_script": "Hi, I don't have any money for lunch today. Do you accept meal tickets?"
+    "access_script": "Hi, I don't have any money for lunch today. Do you accept meal tickets?",
+    "eligibility_notes_fr": "Inclusion : Toute personne dans le besoin of a meal. Small fee ($2) or free meal ticket. Social hub."
   },
   {
     "id": "good-food-box-kingston",
@@ -939,7 +962,8 @@
       "Where to buy cheap fruit in Kingston"
     ],
     "eligibility_notes": "Inclusion: fresh produce box (low cost). Open to all. Exclusion: Not a free food bank (subsidy available).",
-    "access_script": "Hi, I'd like to order a Good Food Box for this month. When is the deadline?"
+    "access_script": "Hi, I'd like to order a Good Food Box for this month. When is the deadline?",
+    "eligibility_notes_fr": "Inclusion : fresh produce box (low cost). Ouvert à tous. Exclusion : Not a free food bank (subsidy available)."
   },
   {
     "id": "amhs-kfla-crisis-line",
@@ -979,7 +1003,8 @@
       "I feel hopeless"
     ],
     "eligibility_notes": "Inclusion: Anyone experiencing mental health or addiction crisis. Exclusion: None.",
-    "access_script": "Hi, I'm feeling really overwhelmed and having suicidal thoughts. I need to talk to someone right away."
+    "access_script": "Hi, I'm feeling really overwhelmed and having suicidal thoughts. I need to talk to someone right away.",
+    "eligibility_notes_fr": "Inclusion : Anyone experiencing mental health or addiction crisis. Exclusion : Aucune."
   },
   {
     "id": "kingston-detox-centre",
@@ -1012,7 +1037,8 @@
       "Safe place to get sober"
     ],
     "eligibility_notes": "Inclusion: Individuals 16+ seeking non-medical detox from alcohol/drugs. Exclusion: Medical detox needs (refer to hospital).",
-    "access_script": "Hi, I'm looking to get sober and need a safe place to detox. Do you have any beds available?"
+    "access_script": "Hi, I'm looking to get sober and need a safe place to detox. Do you have any beds available?",
+    "eligibility_notes_fr": "Inclusion : Individuals 16+ seeking non-medical detox from alcohol/drugs. Exclusion : Medical detox needs (refer to hospital)."
   },
   {
     "id": "kingston-youth-shelter",
@@ -1045,7 +1071,8 @@
       "19 year old help for those experiencing homelessness"
     ],
     "eligibility_notes": "Inclusion: Youth aged 16-24. Experiencing homelessness or unsafe at home. Exclusion: Adults 25+.",
-    "access_script": "Hi, I'm 19 and I got kicked out of my house. Can I stay at the shelter tonight?"
+    "access_script": "Hi, I'm 19 and I got kicked out of my house. Can I stay at the shelter tonight?",
+    "eligibility_notes_fr": "Inclusion : Jeunes aged 16-24. Experiencing homelessness or unsafe at home. Exclusion : Adultes 25+."
   },
   {
     "id": "sack-sexual-assault-centre",
@@ -1082,7 +1109,8 @@
       "Confidential help after assault"
     ],
     "eligibility_notes": "Inclusion: Survivors of sexual violence (12+). All genders. Exclusion: None.",
-    "access_script": "Hi, I experienced sexual assault and need to talk to someone confidentially. Can I get counselling here?"
+    "access_script": "Hi, I experienced sexual assault and need to talk to someone confidentially. Can I get counselling here?",
+    "eligibility_notes_fr": "Inclusion : Survivant(e)s of sexual violence (12+). All genders. Exclusion : Aucune."
   },
   {
     "id": "maltby-centre-mental-health",
@@ -1115,7 +1143,8 @@
       "Mental health help for kids free"
     ],
     "eligibility_notes": "Inclusion: Children/Youth (0-24) in KFL&A. Mental health & autism services. Exclusion: Adults 25+.",
-    "access_script": "Hi, I'm 17 and struggling with anxiety. Can I set up an appointment to talk to a counsellor?"
+    "access_script": "Hi, I'm 17 and struggling with anxiety. Can I set up an appointment to talk to a counsellor?",
+    "eligibility_notes_fr": "Inclusion : Enfants/Jeunes (0-24) in KFL&A. Hommestal health & autism services. Exclusion : Adultes 25+."
   },
   {
     "id": "resolve-counselling",
@@ -1148,7 +1177,8 @@
       "Employee assistance program counselling"
     ],
     "eligibility_notes": "Inclusion: All residents. Sliding scale counselling. Exclusion: None.",
-    "access_script": "Hi, I'm looking for counselling but I don't have insurance. Can you tell me about your sliding scale options?"
+    "access_script": "Hi, I'm looking for counselling but I don't have insurance. Can you tell me about your sliding scale options?",
+    "eligibility_notes_fr": "Inclusion : All residents. Sliding scale counselling. Exclusion : Aucune."
   },
   {
     "id": "kingston-home-base-housing",
@@ -1184,7 +1214,8 @@
       "Experiencing homelessness and need help"
     ],
     "eligibility_notes": "Inclusion: Men experiencing homelessness, families. Transitional housing focus. Exclusion: Active substance use on site (dry shelter).",
-    "access_script": "Hi, I have nowhere to sleep tonight. Do you have any beds available?"
+    "access_script": "Hi, I have nowhere to sleep tonight. Do you have any beds available?",
+    "eligibility_notes_fr": "Inclusion : Hommes experiencing homelessness, families. Transitional housing focus. Exclusion : Active substance use on site (dry shelter)."
   },
   {
     "id": "ryandale-shelter",
@@ -1217,7 +1248,8 @@
       "Housing support for men"
     ],
     "eligibility_notes": "Inclusion: Adults (18+). Low-barrier shelter services. Housing first approach.",
-    "access_script": "Hi, I'm currently on the street and need a place to warm up. Are you open for drop-in?"
+    "access_script": "Hi, I'm currently on the street and need a place to warm up. Are you open for drop-in?",
+    "eligibility_notes_fr": "Inclusion : Adultes (18+). Low-barrier shelter services. Housing first approach."
   },
   {
     "id": "dawn-house-womens-shelter",
@@ -1249,7 +1281,8 @@
       "Emergency bed for woman"
     ],
     "eligibility_notes": "Inclusion: Women (16+) who are experiencing homelessness. Long-term supportive housing. Exclusion: Not an emergency drop-in (application based).",
-    "access_script": "Hi, I'm looking for long-term housing support for women. How can I get on your waitlist?"
+    "access_script": "Hi, I'm looking for long-term housing support for women. How can I get on your waitlist?",
+    "eligibility_notes_fr": "Inclusion : Femmes (16+) who are experiencing homelessness. Long-term supportive housing. Exclusion : Not an emergency drop-in (application based)."
   },
   {
     "id": "kchc-weller-clinic",
@@ -1282,7 +1315,8 @@
       "See a nurse practitioner"
     ],
     "eligibility_notes": "Inclusion: Pregnant individuals without a family doctor. Comprehensive prenatal care. Exclusion: None.",
-    "access_script": "Hi, I'm pregnant and don't have a family doctor. Are you accepting new patients for prenatal care?"
+    "access_script": "Hi, I'm pregnant and don't have a family doctor. Are you accepting new patients for prenatal care?",
+    "eligibility_notes_fr": "Inclusion : Enceinte individuals without a family doctor. Comprehensive prenatal care. Exclusion : Aucune."
   },
   {
     "id": "kfla-sexual-health-clinic",
@@ -1314,7 +1348,8 @@
       "Birth control clinic public health"
     ],
     "eligibility_notes": "Inclusion: All individuals seeking sexual health services. Confidential. No health card required. Exclusion: None.",
-    "access_script": "Hi, I'd like to get tested for STIs. Do I need an appointment or can I just walk in?"
+    "access_script": "Hi, I'd like to get tested for STIs. Do I need an appointment or can I just walk in?",
+    "eligibility_notes_fr": "Inclusion : All individuals seeking sexual health services. Confidential. Aucune carte santé requise. Exclusion : Aucune."
   },
   {
     "id": "cdk-family-medicine-walk-in",
@@ -1347,7 +1382,8 @@
       "CDK wait times"
     ],
     "eligibility_notes": "Inclusion: Patients without a family doctor or with urgent, non-emergency issues. Exclusion: Life-threatening conditions (Go to ER).",
-    "access_script": "Hi, I have a bad cough and fever and need to see a doctor today. Are you accepting walk-ins?"
+    "access_script": "Hi, I have a bad cough and fever and need to see a doctor today. Are you accepting walk-ins?",
+    "eligibility_notes_fr": "Inclusion : Patients without a family doctor or with urgent, non-emergency issues. Exclusion : Life-threatening conditions (Go to ER)."
   },
   {
     "id": "queens-legal-aid",
@@ -1379,7 +1415,8 @@
       "Disability benefits appeal lawyer"
     ],
     "eligibility_notes": "Inclusion: Students and low-income residents. Criminal/Tenant/Academic law. Exclusion: Family law (Refer to private bar).",
-    "access_script": "Hi, I've been charged with an offence and I can't afford a lawyer. Can I speak to someone at the clinic?"
+    "access_script": "Hi, I've been charged with an offence and I can't afford a lawyer. Can I speak to someone at the clinic?",
+    "eligibility_notes_fr": "Inclusion : Étudiants and low-income residents. Criminal/Tenant/Academic law. Exclusion : Family law (Refer to private bar)."
   },
   {
     "id": "ontario-works-kingston",
@@ -1412,7 +1449,8 @@
       "Social assistance application"
     ],
     "eligibility_notes": "Inclusion: Residents of Kingston in immediate financial need. Employment assistance. Exclusion: None.",
-    "access_script": "Hi, I'm currently unemployed and have no income. How do I apply for Ontario Works?"
+    "access_script": "Hi, I'm currently unemployed and have no income. How do I apply for Ontario Works?",
+    "eligibility_notes_fr": "Inclusion : Résidents de Kingston in immediate financial need. Employment assistance. Exclusion : Aucune."
   },
   {
     "id": "kfpl-central-branch",
@@ -1445,7 +1483,8 @@
       "Community programs for kids"
     ],
     "eligibility_notes": "Inclusion: Open to all. Library card required for borrowing. Exclusion: None.",
-    "access_script": "Hi, I'd like to sign up for a library card. What ID do I need to bring?"
+    "access_script": "Hi, I'd like to sign up for a library card. What ID do I need to bring?",
+    "eligibility_notes_fr": "Inclusion : Ouvert à tous. Library card required for borrowing. Exclusion : Aucune."
   },
   {
     "id": "keys-job-centre",
@@ -1478,7 +1517,8 @@
       "Youth employment help"
     ],
     "eligibility_notes": "Inclusion: Unemployed or underemployed individuals. Exclusion: None.",
-    "access_script": "Hi, I'm looking for work and need help with my resume. Can I book an appointment with a counsellor?"
+    "access_script": "Hi, I'm looking for work and need help with my resume. Can I book an appointment with a counsellor?",
+    "eligibility_notes_fr": "Inclusion : Sans emploi or underemployed individuals. Exclusion : Aucune."
   },
   {
     "id": "seniors-association-kingston",
@@ -1511,7 +1551,8 @@
       "Seniors centre events"
     ],
     "eligibility_notes": "Inclusion: Adults 50+. Membership fees may apply for some programs. Exclusion: Under 50.",
-    "access_script": "Hi, I'm interested in joining the Seniors Association. Can I come in for a tour?"
+    "access_script": "Hi, I'm interested in joining the Seniors Association. Can I come in for a tour?",
+    "eligibility_notes_fr": "Inclusion : Adultes 50+. Membership fees may apply for some programs. Exclusion : Under 50."
   },
   {
     "id": "community-living-kingston",
@@ -1544,7 +1585,8 @@
       "Group home information"
     ],
     "eligibility_notes": "Inclusion: Individuals with intellectual disabilities and their families. Exclusion: None.",
-    "access_script": "Hi, I'm looking for support services for my adult child with an intellectual disability. Who can I speak to?"
+    "access_script": "Hi, I'm looking for support services for my adult child with an intellectual disability. Who can I speak to?",
+    "eligibility_notes_fr": "Inclusion : Individuals with intellectual disabilities and their families. Exclusion : Aucune."
   },
   {
     "id": "restart-kingston",
@@ -1577,7 +1619,8 @@
       "Career counselling"
     ],
     "eligibility_notes": "Inclusion: Unemployed or underemployed individuals. Exclusion: None.",
-    "access_script": "Hi, I need help finding a job. Do I need an appointment to see an employment counsellor?"
+    "access_script": "Hi, I need help finding a job. Do I need an appointment to see an employment counsellor?",
+    "eligibility_notes_fr": "Inclusion : Sans emploi or underemployed individuals. Exclusion : Aucune."
   },
   {
     "id": "acfomi-kingston",
@@ -1608,7 +1651,10 @@
       "Aide à l'emploi"
     ],
     "eligibility_notes": "Inclusion: French-speaking individuals, authorized to work in Canada. Exclusion: None.",
-    "access_script": "Bonjour, je cherche de l'aide pour trouver un emploi à Kingston. Offrez-vous des services en français?"
+    "access_script": "Bonjour, je cherche de l'aide pour trouver un emploi à Kingston. Offrez-vous des services en français?",
+    "name_fr": "ACFOMI",
+    "description_fr": "Services bilingues d'emploi et d'établissement. Aide à l'intégration des nouveaux arrivants et des demandeurs d'emploi francophones.",
+    "eligibility_notes_fr": "Inclusion : French-speaking individuals, authorized to work in Canada. Exclusion : Aucune."
   },
   {
     "id": "ymca-eastern-ontario",
@@ -1641,7 +1687,8 @@
       "Family fitness activities"
     ],
     "eligibility_notes": "Inclusion: Open to all. Membership fees apply (financial assistance available). Exclusion: None.",
-    "access_script": "Hi, I'm interested in a gym membership. Do you offer financial assistance or subsidized rates?"
+    "access_script": "Hi, I'm interested in a gym membership. Do you offer financial assistance or subsidized rates?",
+    "eligibility_notes_fr": "Inclusion : Ouvert à tous. Membership fees apply (financial assistance available). Exclusion : Aucune."
   },
   {
     "id": "bgc-south-east",
@@ -1674,7 +1721,8 @@
       "Safe place for teens"
     ],
     "eligibility_notes": "Inclusion: Children and youth. Membership required (often low cost/free access). Exclusion: Adults (except for specific programs).",
-    "access_script": "Hi, I'd like to register my child for the after-school program. Is there space available?"
+    "access_script": "Hi, I'd like to register my child for the after-school program. Is there space available?",
+    "eligibility_notes_fr": "Inclusion : Enfants and youth. Membership required (often low cost/free access). Exclusion : Adultes (except for specific programs)."
   },
   {
     "id": "hart-centre",
@@ -1707,7 +1755,8 @@
       "Volunteer art opportunities"
     ],
     "eligibility_notes": "Inclusion: Adults with intellectual/physical disabilities. Exclusion: None.",
-    "access_script": "Hi, I'm interested in your art programs for my sibling with a disability. Can we visit the studio?"
+    "access_script": "Hi, I'm interested in your art programs for my sibling with a disability. Can we visit the studio?",
+    "eligibility_notes_fr": "Inclusion : Adultes with intellectual/physical disabilities. Exclusion : Aucune."
   },
   {
     "id": "loving-spoonful",
@@ -1740,7 +1789,8 @@
       "Volunteer for food rescue"
     ],
     "eligibility_notes": "Inclusion: Open to community members interested in food security. Programs vary. Exclusion: None.",
-    "access_script": "Hi, I'd like to learn more about joining a community garden or cooking workshop."
+    "access_script": "Hi, I'd like to learn more about joining a community garden or cooking workshop.",
+    "eligibility_notes_fr": "Inclusion : Open to community members interested in food security. Programs vary. Exclusion : Aucune."
   },
   {
     "id": "ongwanada",
@@ -1773,7 +1823,8 @@
       "Ongwanada resource centre"
     ],
     "eligibility_notes": "Inclusion: Individuals with developmental disabilities. Referral required for some services. Exclusion: None.",
-    "access_script": "Hi, I need information about support services for my child with a developmental disability."
+    "access_script": "Hi, I need information about support services for my child with a developmental disability.",
+    "eligibility_notes_fr": "Inclusion : Individuals with developmental disabilities. Référence requise for some services. Exclusion : Aucune."
   },
   {
     "id": "kmfrc",
@@ -1806,7 +1857,8 @@
       "New to base integration"
     ],
     "eligibility_notes": "Inclusion: Canadian Armed Forces members and their families. Exclusion: General public (some programs may be open).",
-    "access_script": "Hi, my partner is being deployed and I'm looking for support resources for our family."
+    "access_script": "Hi, my partner is being deployed and I'm looking for support resources for our family.",
+    "eligibility_notes_fr": "Inclusion : Canadian Armed Forces members and their families. Exclusion : General public (some programs may be open)."
   },
   {
     "id": "earlyon-kchc",
@@ -1839,7 +1891,8 @@
       "Drop in centre for kids"
     ],
     "eligibility_notes": "Inclusion: Children 0-6 years and their parents/caregivers. Free. Exclusion: Children over 6.",
-    "access_script": "Hi, I have a 2-year-old and I'm looking for a playgroup. Do I need to register for the drop-in?"
+    "access_script": "Hi, I have a 2-year-old and I'm looking for a playgroup. Do I need to register for the drop-in?",
+    "eligibility_notes_fr": "Inclusion : Enfants 0-6 years and their parents/caregivers. Free. Exclusion : Children over 6."
   },
   {
     "id": "habitat-restore-kingston",
@@ -1872,7 +1925,8 @@
       "Habitat for humanity store"
     ],
     "eligibility_notes": "Inclusion: Open to the public. Exclusion: None.",
-    "access_script": "Hi, I have some furniture I'd like to donate. Do you offer pick-up services?"
+    "access_script": "Hi, I have some furniture I'd like to donate. Do you offer pick-up services?",
+    "eligibility_notes_fr": "Inclusion : Open to the public. Exclusion : Aucune."
   },
   {
     "id": "kingston-access-bus",
@@ -1903,7 +1957,10 @@
       "Accessible transit application"
     ],
     "eligibility_notes": "Inclusion: Registered clients with disabilities preventing use of regular transit. Application required. Exclusion: General public.",
-    "access_script": "Hi, I'd like to apply for the Access Bus service. How do I start the registration process?"
+    "access_script": "Hi, I'd like to apply for the Access Bus service. How do I start the registration process?",
+    "name_fr": "Services d'accès de Kingston (Bus spécialisé)",
+    "description_fr": "Service de transport spécialisé pour les personnes handicapées incapables d'utiliser le transport conventionnel.",
+    "eligibility_notes_fr": "Inclusion : Clients enregistrés with disabilities preventing use of regular transit. Application required. Exclusion : General public."
   },
   {
     "id": "kingston-community-medical-clinic",
@@ -1921,12 +1978,7 @@
       "method": "Data Expansion Phase 2"
     },
     "identity_tags": [],
-    "synthetic_queries": [
-      "Doctor walk in",
-      "Medical help no doctor",
-      "Prescription renewal",
-      "Sick need doctor"
-    ],
+    "synthetic_queries": ["Doctor walk in", "Medical help no doctor", "Prescription renewal", "Sick need doctor"],
     "hours": {
       "monday": {
         "open": "09:00",
@@ -1948,7 +2000,9 @@
         "open": "09:00",
         "close": "16:00"
       }
-    }
+    },
+    "name_fr": "Clinique médicale communautaire de Kingston",
+    "description_fr": "Clinique médicale sans rendez-vous offrant des soins primaires aux résidents sans médecin de famille."
   },
   {
     "id": "downtown-legal-clinic",
@@ -1966,12 +2020,7 @@
       "method": "Data Expansion Phase 2"
     },
     "identity_tags": [],
-    "synthetic_queries": [
-      "Legal aid",
-      "Eviction help",
-      "Tenant rights lawyer",
-      "Free legal advice"
-    ],
+    "synthetic_queries": ["Legal aid", "Eviction help", "Tenant rights lawyer", "Free legal advice"],
     "hours": {
       "monday": {
         "open": "10:00",
@@ -1985,7 +2034,9 @@
         "open": "10:00",
         "close": "14:00"
       }
-    }
+    },
+    "name_fr": "Clinique juridique du centre-ville",
+    "description_fr": "Conseils juridiques pro bono pour les résidents à faible revenu concernant les droits des locataires et le droit du travail."
   },
   {
     "id": "youth-employment-centre-kton",
@@ -2008,12 +2059,7 @@
         "evidence_url": ""
       }
     ],
-    "synthetic_queries": [
-      "Find a job",
-      "Resume help",
-      "Student jobs",
-      "Work for teens"
-    ],
+    "synthetic_queries": ["Find a job", "Resume help", "Student jobs", "Work for teens"],
     "hours": {
       "monday": {
         "open": "08:30",
@@ -2035,7 +2081,9 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "name_fr": "Centre d'emploi pour jeunes de Kingston",
+    "description_fr": "Ateliers de CV, aide à la recherche d'emploi et préparation aux entrevues pour les jeunes de 15 à 29 ans."
   },
   {
     "id": "senior-support-services",
@@ -2058,12 +2106,7 @@
         "evidence_url": ""
       }
     ],
-    "synthetic_queries": [
-      "Help for elderly",
-      "Senior center",
-      "Meals on wheels info",
-      "Social activities seniors"
-    ],
+    "synthetic_queries": ["Help for elderly", "Senior center", "Meals on wheels info", "Social activities seniors"],
     "hours": {
       "monday": {
         "open": "09:00",
@@ -2085,7 +2128,9 @@
         "open": "09:00",
         "close": "15:00"
       }
-    }
+    },
+    "name_fr": "Services de soutien aux aînés",
+    "description_fr": "Activités sociales, coordination de la livraison de repas et visites amicales pour les aînés."
   },
   {
     "id": "emergency-dental-clinic",
@@ -2103,12 +2148,7 @@
       "method": "Data Expansion Phase 2"
     },
     "identity_tags": [],
-    "synthetic_queries": [
-      "Toothache help",
-      "Broken tooth",
-      "Emergency dentist cheap",
-      "Dental pain"
-    ],
+    "synthetic_queries": ["Toothache help", "Broken tooth", "Emergency dentist cheap", "Dental pain"],
     "hours": {
       "monday": {
         "open": "08:00",
@@ -2134,7 +2174,9 @@
         "open": "10:00",
         "close": "16:00"
       }
-    }
+    },
+    "name_fr": "Clinique dentaire d'urgence",
+    "description_fr": "Soins dentaires urgents pour les personnes à faible revenu souffrant de douleur ou d'infection."
   },
   {
     "id": "211-mock-1",
@@ -2153,7 +2195,9 @@
     },
     "synthetic_queries": [],
     "identity_tags": [],
-    "last_verified": "2025-12-31T14:53:02.568Z"
+    "last_verified": "2025-12-31T14:53:02.568Z",
+    "name_fr": "Refuge pour jeunes de Kingston (Simulé)",
+    "description_fr": "Refuge d'urgence pour les jeunes de 16 à 24 ans."
   },
   {
     "id": "211-mock-2",
@@ -2172,6 +2216,8 @@
     },
     "synthetic_queries": [],
     "identity_tags": [],
-    "last_verified": "2025-12-31T14:53:02.568Z"
+    "last_verified": "2025-12-31T14:53:02.568Z",
+    "name_fr": "Livraison de repas pour aînés (Simulé)",
+    "description_fr": "Popote roulante pour les aînés de 65 ans et plus."
   }
 ]

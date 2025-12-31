@@ -89,8 +89,27 @@
     "manageServices": "Gérer les services",
     "editService": "Modifier le service",
     "services": {
-      "title": "Mes services",
+      "title": "Mes Services",
+      "emptyState": {
+        "title": "Aucun service trouvé",
+        "description": "Vous n'avez pas encore revendiqué de service."
+      },
+      "createFirst": "Revendiquer un service",
+      "colName": "Nom du service",
+      "colStatus": "Statut",
+      "colActions": "Actions",
       "edit": "Modifier",
+      "saveChanges": "Enregistrer",
+      "statusActive": "Actif",
+      "englishLabel": "EN",
+      "frenchLabel": "FR",
+      "name": "Nom",
+      "description": "Description",
+      "phone": "Téléphone",
+      "website": "Site Web",
+      "address": "Adresse",
+      "hours": "Heures d'ouverture",
+      "eligibility": "Critères d'admissibilité",
       "view": "Voir",
       "lastUpdated": "Dernière mise à jour",
       "noServices": "Aucun service réclamé"

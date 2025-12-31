@@ -93,10 +93,9 @@ const {
   state, // "idle" | "listening" | "processing" | "error"
   startListening,
   stopListening,
-  error
+  error,
 } = useVoiceInput((text) => setQuery(text))
 ```
-
 
 ---
 

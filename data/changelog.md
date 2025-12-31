@@ -1,6 +1,5 @@
 # Service Data Changelog
 
-
 ## 2025-12-31
 
 ```diff
@@ -48,6 +47,6 @@ index 919fc83..1b296bb 100644
 -        ],
 -        "eligibility_notes": "Inclusion: All youth (5-29) in Canada. Mental health support. Exclusion: None (24/7 anonymous).",
 -        "access_script": "Hi, I'm feeling really overwhelmed right now and just need someone to talk to. Is this a safe place to share?",
--        
+-
 ... (truncated)
 ```

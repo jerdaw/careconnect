@@ -55,7 +55,6 @@ Displays a service with score, match reasons, and action buttons.
 
 ```tsx
 import ServiceCard from "@/components/ServiceCard"
-
 ;<ServiceCard
   service={service}
   score={result.score}
@@ -72,16 +71,12 @@ Includes integrated voice search capability.
 ```tsx
 import SearchBar from "@/components/home/SearchBar"
 
-<SearchBar
-  query={query}
-  setQuery={setQuery}
-  placeholder="Search..."
-/>
+;<SearchBar query={query} setQuery={setQuery} placeholder="Search..." />
 ```
 
 **Sub-components:**
-- `VoiceSearchButton`: Manages microphone state and local Whisper transcription.
 
+- `VoiceSearchButton`: Manages microphone state and local Whisper transcription.
 
 ### ChatAssistant
 
@@ -102,7 +97,6 @@ Loading placeholder for ServiceCard.
 
 ```tsx
 import ServiceCardSkeleton from "@/components/ServiceCardSkeleton"
-
 ;<ServiceCardSkeleton />
 ```
 
@@ -112,7 +106,6 @@ Catches React errors and displays a fallback UI with error ID for support.
 
 ```tsx
 import { ErrorBoundary } from "@/components/ErrorBoundary"
-
 ;<ErrorBoundary
   fallback={<CustomErrorUI />}
   onError={(error, errorInfo, errorId) => {
@@ -129,7 +122,6 @@ Specialized error boundary for async components and Suspense. Includes a built-i
 
 ```tsx
 import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
-
 ;<AsyncErrorBoundary componentName="ServiceList">
   <Suspense fallback={<Loading />}>
     <ServiceList />
@@ -137,47 +129,39 @@ import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
 </AsyncErrorBoundary>
 ```
 
-### AnalyticsCard
+### ServiceEditForm (Partner-Focused)
 
-Displays analytics metrics in a card format.
-
-```tsx
-import AnalyticsCard from "@/components/AnalyticsCard"
-
-;<AnalyticsCard title="Total Searches" value={1234} change={+12.5} />
-```
-
-### EditServiceForm
-
-Form for creating/editing services with validation.
+New bilingual-aware form for service editing. Located in `components/partner/ServiceEditForm.tsx`.
 
 ```tsx
-import EditServiceForm from "@/components/EditServiceForm"
+import { ServiceEditForm } from "@/components/partner/ServiceEditForm"
 
-;<EditServiceForm
-  service={existingService}
-  onSubmit={async (data) => {
-    /* save */
-  }}
-  onSubmit={async (data) => {
-    /* save */
+;<ServiceEditForm
+  service={serviceData}
+  onSave={async (data) => {
+    // Save logic
   }}
 />
 ```
 
-### AnalyticsCard
+### PartnerServiceList
 
-Visualizes a single metric with trend indicator.
+Data table for displaying an organization's services on the dashboard.
 
 ```tsx
-import AnalyticsCard from "@/components/AnalyticsCard"
+import { PartnerServiceList } from "@/components/partner/PartnerServiceList"
 
-<AnalyticsCard 
-  title="Total Views" 
-  value={1200} 
-  change={5.2} 
-  loading={false} 
-/>
+;<PartnerServiceList partnerId={user.id} />
+```
+
+### AnalyticsCard (Advanced)
+
+Visualizes a single metric with trend indicator. Supports glassmorphism styling.
+
+```tsx
+import { AnalyticsCard } from "@/components/AnalyticsCard"
+
+;<AnalyticsCard title="Total Views" value={1200} change={5.2} loading={false} />
 ```
 
 ### VoiceSearchButton
@@ -210,7 +194,6 @@ Displays a beta warning banner at the top of the app.
 
 ```tsx
 import BetaBanner from "@/components/BetaBanner"
-
 ;<BetaBanner />
 ```
 
@@ -220,7 +203,6 @@ Manages light/dark mode state using `next-themes`.
 
 ```tsx
 import { ThemeProvider } from "@/components/ThemeProvider"
-
 ;<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
   <App />
 </ThemeProvider>
@@ -234,7 +216,6 @@ Navigation sidebar for partner dashboard.
 
 ```tsx
 import DashboardSidebar from "@/components/DashboardSidebar"
-
 ;<DashboardSidebar />
 ```
 
@@ -267,7 +248,6 @@ Accessible tooltip component.
 
 ```tsx
 import { Tooltip } from "@/components/Tooltip"
-
 ;<Tooltip content="Helpful info">
   <button>Hover me</button>
 </Tooltip>

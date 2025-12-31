@@ -1,23 +1,23 @@
 {
-    "name": "Kingston Care Connect",
-    "short_name": "KCC",
-    "description": "Find community services in Kingston. Free, confidential, and instant.",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#2563eb",
-    "orientation": "portrait",
-    "icons": [
-        {
-            "src": "/icon?w=192",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon?w=512",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "screenshots": []
+  "name": "Kingston Care Connect",
+  "short_name": "KCC",
+  "description": "Find community services in Kingston. Free, confidential, and instant.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon?w=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon?w=512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": []
 }

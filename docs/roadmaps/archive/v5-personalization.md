@@ -576,6 +576,7 @@ export const SubmissionSchema = z.object({
 ### Executive Summary
 
 Phase 8 introduces two transformative features:
+
 1. **Voice Input**: Allows users to speak their queries instead of typing, dramatically improving accessibility for users with mobility impairments, low literacy, or those in hands-free situations.
 2. **LLM Query Expansion**: Uses the existing local AI engine (Phi-3 Mini via `web-llm`) to semantically expand user queries before search, improving recall for vague or underspecified inputs.
 
@@ -593,11 +594,12 @@ Both features run **entirely client-side**, ensuring user privacy is preserved.
 
 We have explicitly chosen **NOT** to use the native Web Speech API (Chrome/Edge) because it transmits audio data to Google/Microsoft servers. Instead, we use an in-browser Whisper model for **all users**.
 
-| Technology | Browsers | Privacy | Notes |
-|------------|----------|---------|-------|
+| Technology            | Browsers                                | Privacy          | Notes                                                                        |
+| --------------------- | --------------------------------------- | ---------------- | ---------------------------------------------------------------------------- |
 | **On-Device Whisper** | **All (Chrome, Safari, Firefox, Edge)** | **100% Private** | Runs via WebAssembly (`@xenova/transformers`). Required ~30MB download once. |
 
 **Strategy**:
+
 1. Check for `MediaRecorder` support.
 2. Record audio locally.
 3. Transcribe audio using the local Whisper model.
@@ -616,10 +618,12 @@ We have explicitly chosen **NOT** to use the native Web Speech API (Chrome/Edge)
 #### 8.1.3 Technical Implementation
 
 **[NEW] `lib/ai/transcriber.ts`**
+
 - Loads `Xenova/whisper-tiny.en` (Quantized).
 - Handles audio conversion.
 
 **[MODIFY] `hooks/useVoiceInput.ts`**
+
 - Removed "Native" mode.
 - Forces "Whisper" mode for all browsers.
 - Manages local model loading state.
@@ -632,11 +636,11 @@ We have explicitly chosen **NOT** to use the native Web Speech API (Chrome/Edge)
 
 #### 8.2.1 Problem Statement
 
-| User Query | Current Search | Desired Expansion |
-|------------|----------------|-------------------|
-| "I'm hungry" | Keyword: "hungry" | ["food bank", "meal programs", "grocery assistance"] |
-| "help with bills" | Keyword: "bills" | ["utility assistance", "rent help", "financial aid"] |
-| "mental health" | Keyword: "mental health" | ["counseling", "therapy", "crisis support", "psychiatrist"] |
+| User Query        | Current Search           | Desired Expansion                                           |
+| ----------------- | ------------------------ | ----------------------------------------------------------- |
+| "I'm hungry"      | Keyword: "hungry"        | ["food bank", "meal programs", "grocery assistance"]        |
+| "help with bills" | Keyword: "bills"         | ["utility assistance", "rent help", "financial aid"]        |
+| "mental health"   | Keyword: "mental health" | ["counseling", "therapy", "crisis support", "psychiatrist"] |
 
 #### 8.2.2 Expansion Strategies
 
@@ -678,7 +682,7 @@ export async function expandQuery(query: string): Promise<QueryExpansionResult> 
     return {
       original: query,
       expanded: expansionCache.get(normalizedQuery)!,
-      fromCache: true
+      fromCache: true,
     }
   }
 
@@ -745,11 +749,12 @@ export async function search(query: string, options: SearchOptions): Promise<Sea
 #### 8.2.4 User-Facing Transparency
 
 When query expansion is used, optionally display:
+
 ```
 Searching for: "hungry" + food bank, meal programs, grocery assistance
 ```
 
-This builds trust by showing users *why* they're seeing certain results.
+This builds trust by showing users _why_ they're seeing certain results.
 
 ---
 
@@ -759,11 +764,11 @@ This builds trust by showing users *why* they're seeing certain results.
 
 #### 8.3.1 Conversation Flow Example
 
-| Turn | User | Assistant |
-|------|------|-----------|
-| 1 | "Where can I get free food?" | "Martha's Table offers free meals Mon-Fri..." |
-| 2 | "What about weekends?" | "On weekends, you can visit One Roof or Salvation Army..." |
-| 3 | "Are any of those near downtown?" | "Martha's Table and Salvation Army are both downtown..." |
+| Turn | User                              | Assistant                                                  |
+| ---- | --------------------------------- | ---------------------------------------------------------- |
+| 1    | "Where can I get free food?"      | "Martha's Table offers free meals Mon-Fri..."              |
+| 2    | "What about weekends?"            | "On weekends, you can visit One Roof or Salvation Army..." |
+| 3    | "Are any of those near downtown?" | "Martha's Table and Salvation Army are both downtown..."   |
 
 #### 8.3.2 Technical Implementation
 
@@ -795,24 +800,18 @@ const sendMessage = async (userMessage: string) => {
   const newMessage: Message = {
     role: "user",
     content: userMessage,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   }
 
   const updatedHistory = [...conversationHistory, newMessage]
   setConversationHistory(updatedHistory)
 
   // Build context window (system prompt + last N messages)
-  const contextWindow = [
-    { role: "system", content: systemPrompt },
-    ...updatedHistory.slice(-MAX_CONTEXT_MESSAGES)
-  ]
+  const contextWindow = [{ role: "system", content: systemPrompt }, ...updatedHistory.slice(-MAX_CONTEXT_MESSAGES)]
 
   const response = await aiEngine.chat(contextWindow)
 
-  setConversationHistory([
-    ...updatedHistory,
-    { role: "assistant", content: response, timestamp: Date.now() }
-  ])
+  setConversationHistory([...updatedHistory, { role: "assistant", content: response, timestamp: Date.now() }])
 }
 
 // Clear conversation button
@@ -832,16 +831,17 @@ const clearConversation = () => {
 
 ### 8.4 Verification Plan
 
-| Feature | Test Type | Method |
-|---------|-----------|--------|
-| Voice Input | Unit | `tests/hooks/useVoiceInput.test.ts` — mock `SpeechRecognition` API |
-| Voice Input | E2E | Manual test in Chrome/Safari with real microphone |
-| Query Expansion | Unit | `tests/ai/query-expander.test.ts` — mock AI engine responses |
-| Query Expansion | Integration | Verify expanded terms appear in search logs |
-| Conversational Memory | Unit | `tests/ai/chat-memory.test.ts` — verify context window behavior |
-| Conversational Memory | E2E | Manual multi-turn conversation test |
+| Feature               | Test Type   | Method                                                             |
+| --------------------- | ----------- | ------------------------------------------------------------------ |
+| Voice Input           | Unit        | `tests/hooks/useVoiceInput.test.ts` — mock `SpeechRecognition` API |
+| Voice Input           | E2E         | Manual test in Chrome/Safari with real microphone                  |
+| Query Expansion       | Unit        | `tests/ai/query-expander.test.ts` — mock AI engine responses       |
+| Query Expansion       | Integration | Verify expanded terms appear in search logs                        |
+| Conversational Memory | Unit        | `tests/ai/chat-memory.test.ts` — verify context window behavior    |
+| Conversational Memory | E2E         | Manual multi-turn conversation test                                |
 
 **Verification Commands**:
+
 ```bash
 # Unit tests
 npm test -- tests/hooks/useVoiceInput.test.ts
@@ -857,35 +857,33 @@ npm test -- tests/ai/query-expander.test.ts
 
 ### 8.5 Localization Requirements
 
-| Key | English | French |
-|-----|---------|--------|
-| `VoiceInput.start` | Start voice search | Commencer la recherche vocale |
-| `VoiceInput.stop` | Stop listening | Arrêter l'écoute |
+| Key                       | English                                   | French                                               |
+| ------------------------- | ----------------------------------------- | ---------------------------------------------------- |
+| `VoiceInput.start`        | Start voice search                        | Commencer la recherche vocale                        |
+| `VoiceInput.stop`         | Stop listening                            | Arrêter l'écoute                                     |
 | `VoiceInput.notSupported` | Voice input not supported in this browser | Entrée vocale non prise en charge dans ce navigateur |
-| `VoiceInput.noSpeech` | No speech detected. Try again. | Aucune parole détectée. Réessayez. |
-| `VoiceInput.micDenied` | Microphone access denied | Accès au microphone refusé |
-| `Chat.newConversation` | New Conversation | Nouvelle conversation |
-| `Search.expandedFor` | Also searching for: {terms} | Recherche également : {terms} |
+| `VoiceInput.noSpeech`     | No speech detected. Try again.            | Aucune parole détectée. Réessayez.                   |
+| `VoiceInput.micDenied`    | Microphone access denied                  | Accès au microphone refusé                           |
+| `Chat.newConversation`    | New Conversation                          | Nouvelle conversation                                |
+| `Search.expandedFor`      | Also searching for: {terms}               | Recherche également : {terms}                        |
 
 ---
 
 ### 8.6 File Summary
 
-| Action | Path | Description |
-|--------|------|-------------|
-| NEW | `hooks/useVoiceInput.ts` | Voice input hook with full state management |
-| NEW | `lib/ai/query-expander.ts` | LLM-based query expansion with caching |
-| MODIFY | `components/search/SearchBar.tsx` | Add microphone button with states |
-| MODIFY | `components/ai/ChatAssistant.tsx` | Add conversational memory |
-| MODIFY | `lib/search/index.ts` | Integrate query expansion into search pipeline |
-| MODIFY | `messages/en.json` | Add voice/chat localization keys |
-| MODIFY | `messages/fr.json` | Add French translations |
-| NEW | `tests/hooks/useVoiceInput.test.ts` | Unit tests for voice hook |
-| NEW | `tests/ai/query-expander.test.ts` | Unit tests for query expansion |
+| Action | Path                                | Description                                    |
+| ------ | ----------------------------------- | ---------------------------------------------- |
+| NEW    | `hooks/useVoiceInput.ts`            | Voice input hook with full state management    |
+| NEW    | `lib/ai/query-expander.ts`          | LLM-based query expansion with caching         |
+| MODIFY | `components/search/SearchBar.tsx`   | Add microphone button with states              |
+| MODIFY | `components/ai/ChatAssistant.tsx`   | Add conversational memory                      |
+| MODIFY | `lib/search/index.ts`               | Integrate query expansion into search pipeline |
+| MODIFY | `messages/en.json`                  | Add voice/chat localization keys               |
+| MODIFY | `messages/fr.json`                  | Add French translations                        |
+| NEW    | `tests/hooks/useVoiceInput.test.ts` | Unit tests for voice hook                      |
+| NEW    | `tests/ai/query-expander.test.ts`   | Unit tests for query expansion                 |
 
 ---
-
-
 
 ## Phase 9: Long-Term Backlog
 

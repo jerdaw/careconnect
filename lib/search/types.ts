@@ -1,26 +1,26 @@
-import { Service } from '@/types/service';
+import { Service } from "@/types/service"
 
 export interface SearchResult {
-    service: Service;
-    score: number;
-    matchReasons: string[];
+  service: Service
+  score: number
+  matchReasons: string[]
 }
 
 export interface SearchOptions {
-    category?: string;
-    location?: { lat: number; lng: number };
-    vectorOverride?: number[] | null;
-    openNow?: boolean;
+  category?: string
+  location?: { lat: number; lng: number }
+  vectorOverride?: number[] | null
+  openNow?: boolean
 
-    limit?: number;
-    userContext?: import('@/types/user-context').UserContext;
-    useAIExpansion?: boolean;
+  limit?: number
+  userContext?: import("@/types/user-context").UserContext
+  useAIExpansion?: boolean
 }
 
 export interface ScoringWeights {
-    vector: number;
-    syntheticQuery: number;
-    name: number;
-    identityTag: number;
-    description: number;
+  vector: number
+  syntheticQuery: number
+  name: number
+  identityTag: number
+  description: number
 }

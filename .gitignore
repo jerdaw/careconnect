@@ -44,3 +44,5 @@ public/workbox-*.js
 public/fallback-*.js
 
 /.npm-only-allow
+# data reports
+data/*-report.json

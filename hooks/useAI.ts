@@ -1,33 +1,31 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from 'react';
-import { aiEngine, AIState } from '@/lib/ai/engine';
+import { useEffect, useState } from "react"
+import { aiEngine, AIState } from "@/lib/ai/engine"
 
 export function useAI() {
-    const [state, setState] = useState<AIState>({
-        isLoading: false,
-        progress: 0,
-        text: 'Waiting...',
-        isReady: false,
-        error: null
-    });
+  const [state, setState] = useState<AIState>({
+    isLoading: false,
+    progress: 0,
+    text: "Waiting...",
+    isReady: false,
+    error: null,
+  })
 
-    useEffect(() => {
-        const unsubscribe = aiEngine.subscribe(setState);
-        return unsubscribe;
-    }, []);
+  useEffect(() => {
+    const unsubscribe = aiEngine.subscribe(setState)
+    return unsubscribe
+  }, [])
 
-    const initAI = () => aiEngine.init();
+  const initAI = () => aiEngine.init()
 
-    const chat = async (
-        messages: { role: 'user' | 'assistant' | 'system', content: string }[]
-    ) => {
-        return aiEngine.chat(messages);
-    };
+  const chat = async (messages: { role: "user" | "assistant" | "system"; content: string }[]) => {
+    return aiEngine.chat(messages)
+  }
 
-    return {
-        ...state,
-        initAI,
-        chat
-    };
+  return {
+    ...state,
+    initAI,
+    chat,
+  }
 }

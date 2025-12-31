@@ -1,6 +1,6 @@
 /**
  * Search Library Entry Point
- * 
+ *
  * Modularized architecture:
  * - data: Loading and caching
  * - scoring: Keyword matching logic
@@ -10,8 +10,8 @@
  * - utils: Shared normalization/tokenization
  */
 
-export * from './search/index';
-export * from './search/types';
-export { getSuggestion } from './search/fuzzy';
-export { loadServices } from './search/data';
-export { tokenize, normalize } from './search/utils';
+export * from "./search/index"
+export * from "./search/types"
+export { getSuggestion } from "./search/fuzzy"
+export { loadServices } from "./search/data"
+export { tokenize, normalize } from "./search/utils"

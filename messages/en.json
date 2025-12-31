@@ -90,10 +90,26 @@
     "editService": "Edit Service",
     "services": {
       "title": "My Services",
+      "emptyState": {
+        "title": "No services found",
+        "description": "You haven't claimed any services yet."
+      },
+      "createFirst": "Claim a Service",
+      "colName": "Service Name",
+      "colStatus": "Status",
+      "colActions": "Actions",
       "edit": "Edit",
-      "view": "View",
-      "lastUpdated": "Last updated",
-      "noServices": "No services claimed yet"
+      "saveChanges": "Save Changes",
+      "statusActive": "Active",
+      "englishLabel": "EN",
+      "frenchLabel": "FR",
+      "name": "Name",
+      "description": "Description",
+      "phone": "Phone",
+      "website": "Website",
+      "address": "Address",
+      "hours": "Operating Hours",
+      "eligibility": "Eligibility Criteria"
     }
   },
   "ServiceDetail": {

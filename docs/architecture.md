@@ -33,32 +33,52 @@ The search system uses a hybrid approach:
 2.  **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
 
 ### 7. AI Assistant Architecture (Phase 4)
+
 - **Engine**: `@mlc-ai/web-llm` running `Phi-3-mini` (2GB) via WebGPU.
 - **Strategy**: RAG (Retrieval Augmented Generation).
-- **Privacy**: 
+- **Privacy**:
   - **Local-Only**: Inference runs entirely in the user's browser.
   - **No Data Egress**: Chat history and queries never leave the device.
-  - **Zero-Knowledge**: Server knows *that* a user is chatting, but not *what* they are saying.
+  - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
 - **Lifecycle**:
   - **Opt-In**: Model download only triggered by explicit user action.
   - **Idle Cleanup**: VRAM released after 5 minutes of inactivity.
 
 ### 8. Privacy-Preserving Personalization (Phase 5)
+
 - **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`kcc_user_context`).
 - **Zero PII**: No user accounts, login, or cookies required for basic personalization.
 - **Local Eligibility**: "Likely Qualify" checks run locally by parsing cached service data against the local profile.
 - **Identity Boosting**: Search ranking adjustments happen on the client-side `WebWorker`.
 
 ### 9. Data Pipelines (Phase 6)
+
 - **Source of Truth**: 211 Ontario API (Raw Data) + Manual Verification (Golden Dataset).
 - **Ingestion**:
   - `scripts/sync-211.ts`: Fetches, cleans, and maps external data to the `Service` schema.
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
 
-### 10. Partner Analytics (Phase 7)
-- **Privacy-First**: Tracks aggregate trends (e.g., "Top searched category") without logging User IDs or raw queries.
-- **Pipeline**: Client -> Next.js API function -> Supabase (Mocked for now).
+- **Pipeline**: Client -> Next.js API function -> Supabase.
+
+### 11. Push Notifications (Phase 9)
+
+- **Technology**: Web Push API + Service Worker (`app/worker.ts`).
+- **Flow**: User Opt-In -> Service Worker Subscribes -> Endpoint stored in `push_subscriptions` -> Server-side trigger via VAPID keys.
+- **Privacy**: No PII linked to subscriptions. User can revoked at any time via browser settings.
+
+### 12. Automated Maintenance Bots (Phase 11)
+
+- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`).
+- **Phone Validator**: Connectivity checks using Twilio Lookup API (`scripts/validate-phones.ts`).
+- **Automation**: GitHub Actions (`.github/workflows/health-check.yml`) create issues for human review upon detection of failures.
+
+### 13. Partner Dashboard & RBAC (Phase 12)
+
+- **Access Control**: Role-Based Access Control (RBAC) implemented via `organization_members` table.
+- **Roles**: `owner`, `admin`, `editor`, `viewer`.
+- **Functions**: CRUD operations for listings, member invites (invite/accept flow), and analytics viewing.
+- **Bilingual Content**: Self-service editing for both English and French fields.
 
 ### Data Flow
 
@@ -67,7 +87,7 @@ The search system uses a hybrid approach:
 
 ### Routing & Discovery
 
-- **Public Routes**: 
+- **Public Routes**:
   - `/service/[id]`: Rich detail page.
   - `/submit-service`: Public crowdsourcing form.
   - `/dashboard`: Partner portal.

@@ -90,16 +90,17 @@ Built with modern web technologies for performance and maintainability:
 
 ### Available Scripts
 
-| Command                 | Purpose                                  |
-| :---------------------- | :--------------------------------------- |
-| `npm run dev`           | Starts development server with Turbo     |
-| `npm run build`         | Builds the production application        |
-| `npm test`              | Runs unit and integration tests (Vitest) |
-| `npx playwright test`   | Runs end-to-end tests                    |
-| `npm run type-check`    | Runs TypeScript compiler check           |
-| `npm run lint`          | Runs ESLint for code quality             |
-| `npm run validate-data` | Validates local services JSON data       |
-| `npm run analyze`       | Analyzes production bundle size          |
+| Command                  | Purpose                                  |
+| :----------------------- | :--------------------------------------- |
+| `npm run dev`            | Starts development server with Turbo     |
+| `npm run build`          | Builds the production application        |
+| `npm test`               | Runs unit and integration tests (Vitest) |
+| `npx playwright test`    | Runs end-to-end tests                    |
+| `npm run type-check`     | Runs TypeScript compiler check           |
+| `npm run lint`           | Runs ESLint for code quality             |
+| `npm run health-check`   | Validates all service URLs (automated)   |
+| `npm run phone-validate` | Validates phone numbers (Twilio)         |
+| `npm run analyze`        | Analyzes production bundle size          |
 
 ### Environment Variables
 
@@ -129,6 +130,7 @@ To enable the Partner Portal, Login, and Analytics:
 
 This project is community-led. We prioritize safety and accuracy over quantity.
 
+- **[Roadmap](docs/roadmaps/roadmap.md):** Current status and action items.
 - **[Documentation Guidelines](docs/documentation-guidelines.md):** How we write and maintain docs.
 - **[Testing Guidelines](docs/development/testing.md):** Our testing standards.
 - **[Bilingual Guide](bilingual-dev-guide.md):** Our approach to English/French support.

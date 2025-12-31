@@ -260,7 +260,7 @@ describe("useVoiceInput", () => {
 
   it("handles missing MediaRecorder gracefully", async () => {
     ;(global as any).MediaRecorder = undefined
-    
+
     // Re-import to get fresh module
     vi.resetModules()
     const { useVoiceInput } = await import("@/hooks/useVoiceInput")
@@ -524,7 +524,7 @@ jobs:
           script: |
             const fs = require('fs');
             let body = '## URL Health Check Failed\n\nThe monthly health check found issues with service URLs. Please review the attached artifact for details.';
-            
+
             try {
               const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
               const brokenList = report.broken
@@ -535,7 +535,7 @@ jobs:
             } catch (e) {
               console.log('Could not parse report:', e);
             }
-            
+
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -706,6 +706,7 @@ CREATE POLICY "Admins can manage members" ON organization_members
 #### [MODIFY] `messages/en.json`
 
 Add to Dashboard section:
+
 ```json
 {
   "Dashboard": {
@@ -724,6 +725,7 @@ Add to Dashboard section:
 #### [MODIFY] `messages/fr.json`
 
 Add to Dashboard section:
+
 ```json
 {
   "Dashboard": {
@@ -743,30 +745,30 @@ Add to Dashboard section:
 
 ### Phase 8 Verification Plan
 
-| Task | Test Type | Verification Method |
-|------|-----------|---------------------|
-| 8.1 Query Expander Tests | Unit | `npm test -- tests/ai/query-expander.test.ts` |
-| 8.1 Eligibility Tests | Unit | `npm test -- tests/eligibility.test.ts` |
-| 8.1 Voice Input Tests | Unit | `npm test -- tests/hooks/useVoiceInput.test.ts` |
-| 8.2 NPM Scripts | Manual | Run `npm run bilingual-check` |
-| 8.3 Bilingual Audit | Integration | Script produces valid JSON report |
-| 8.4 Health Check Workflow | Manual | Trigger workflow_dispatch in GitHub |
-| 8.5 Edit Form | E2E | Navigate to `/dashboard/services/[id]/edit` |
-| 8.6 Database Migration | Manual | Run migration in Supabase SQL Editor |
+| Task                      | Test Type   | Verification Method                             |
+| ------------------------- | ----------- | ----------------------------------------------- |
+| 8.1 Query Expander Tests  | Unit        | `npm test -- tests/ai/query-expander.test.ts`   |
+| 8.1 Eligibility Tests     | Unit        | `npm test -- tests/eligibility.test.ts`         |
+| 8.1 Voice Input Tests     | Unit        | `npm test -- tests/hooks/useVoiceInput.test.ts` |
+| 8.2 NPM Scripts           | Manual      | Run `npm run bilingual-check`                   |
+| 8.3 Bilingual Audit       | Integration | Script produces valid JSON report               |
+| 8.4 Health Check Workflow | Manual      | Trigger workflow_dispatch in GitHub             |
+| 8.5 Edit Form             | E2E         | Navigate to `/dashboard/services/[id]/edit`     |
+| 8.6 Database Migration    | Manual      | Run migration in Supabase SQL Editor            |
 
 ---
 
 ### Phase 8 Timeline
 
-| Task | Effort | Priority |
-|------|--------|----------|
-| 8.1 Missing Tests | 2-3 hours | High |
-| 8.2 NPM Scripts | 15 min | High |
-| 8.3 Audit Scripts | 1 hour | High |
-| 8.4 Health Check Workflow | 30 min | Medium |
-| 8.5 Wire Edit Form | 1 hour | Medium |
-| 8.6 Database Migration | 30 min | Medium |
-| 8.7 Localization Keys | 15 min | Low |
+| Task                      | Effort    | Priority |
+| ------------------------- | --------- | -------- |
+| 8.1 Missing Tests         | 2-3 hours | High     |
+| 8.2 NPM Scripts           | 15 min    | High     |
+| 8.3 Audit Scripts         | 1 hour    | High     |
+| 8.4 Health Check Workflow | 30 min    | Medium   |
+| 8.5 Wire Edit Form        | 1 hour    | Medium   |
+| 8.6 Database Migration    | 30 min    | Medium   |
+| 8.7 Localization Keys     | 15 min    | Low      |
 
 **Total Estimated Time**: 1 week (including testing and validation)
 
@@ -783,11 +785,11 @@ Add to Dashboard section:
 > [!IMPORTANT]
 > Push notifications require a server-side component (VAPID keys) and user opt-in. We will use Web Push API with Supabase Edge Functions for delivery.
 
-| Component | Technology | Privacy Implications |
-|-----------|------------|---------------------|
-| Client Subscription | Web Push API | Subscription tokens stored in Supabase (no PII) |
-| Notification Delivery | Supabase Edge Functions | Server knows device tokens, not user identity |
-| Topic Subscription | Category-based opt-in | Users choose categories (e.g., "Food", "Crisis") |
+| Component             | Technology              | Privacy Implications                             |
+| --------------------- | ----------------------- | ------------------------------------------------ |
+| Client Subscription   | Web Push API            | Subscription tokens stored in Supabase (no PII)  |
+| Notification Delivery | Supabase Edge Functions | Server knows device tokens, not user identity    |
+| Topic Subscription    | Category-based opt-in   | Users choose categories (e.g., "Food", "Crisis") |
 
 #### 9.1.2 TypeScript Interfaces
 
@@ -946,10 +948,7 @@ export function usePushNotifications() {
     isLoading: true,
   })
 
-  const [preferences, setPreferences] = useLocalStorage<NotificationCategory[]>(
-    "kcc_notification_prefs",
-    []
-  )
+  const [preferences, setPreferences] = useLocalStorage<NotificationCategory[]>("kcc_notification_prefs", [])
 
   useEffect(() => {
     const checkState = async () => {
@@ -975,31 +974,34 @@ export function usePushNotifications() {
     checkState()
   }, [preferences])
 
-  const subscribe = useCallback(async (categories: NotificationCategory[]) => {
-    setState((prev) => ({ ...prev, isLoading: true }))
+  const subscribe = useCallback(
+    async (categories: NotificationCategory[]) => {
+      setState((prev) => ({ ...prev, isLoading: true }))
 
-    const hasPermission = await pushManager.requestPermission()
-    if (!hasPermission) {
-      setState((prev) => ({ ...prev, permission: "denied", isLoading: false }))
+      const hasPermission = await pushManager.requestPermission()
+      if (!hasPermission) {
+        setState((prev) => ({ ...prev, permission: "denied", isLoading: false }))
+        return false
+      }
+
+      const subscription = await pushManager.subscribe(categories)
+      if (subscription) {
+        setPreferences(categories)
+        setState((prev) => ({
+          ...prev,
+          permission: "granted",
+          isSubscribed: true,
+          subscribedCategories: categories,
+          isLoading: false,
+        }))
+        return true
+      }
+
+      setState((prev) => ({ ...prev, isLoading: false }))
       return false
-    }
-
-    const subscription = await pushManager.subscribe(categories)
-    if (subscription) {
-      setPreferences(categories)
-      setState((prev) => ({
-        ...prev,
-        permission: "granted",
-        isSubscribed: true,
-        subscribedCategories: categories,
-        isLoading: false,
-      }))
-      return true
-    }
-
-    setState((prev) => ({ ...prev, isLoading: false }))
-    return false
-  }, [setPreferences])
+    },
+    [setPreferences]
+  )
 
   const unsubscribe = useCallback(async () => {
     setState((prev) => ({ ...prev, isLoading: true }))
@@ -1656,9 +1658,11 @@ interface HealthCheckResult {
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
 const REPORT_PATH = path.join(process.cwd(), "data/url-health-report.json")
 
-async function checkUrl(url: string): Promise<{ status: number | "error"; errorMessage?: string; responseTime: number }> {
+async function checkUrl(
+  url: string
+): Promise<{ status: number | "error"; errorMessage?: string; responseTime: number }> {
   const start = Date.now()
-  
+
   try {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 10000) // 10s timeout
@@ -1805,11 +1809,11 @@ jobs:
           script: |
             const fs = require('fs');
             const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
-            
+
             const brokenList = report.broken
               .map(b => `- [ ] **${b.serviceName}** (ID: \`${b.serviceId}\`)\n  - URL: ${b.url}\n  - Error: ${b.errorMessage || `HTTP ${b.status}`}`)
               .join('\n');
-            
+
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -2150,12 +2154,12 @@ export function ServiceEditForm({ service, onSave }: Props) {
 
 #### 12.2.1 Role Definitions
 
-| Role | Permissions |
-|------|-------------|
-| `owner` | Full access, can manage members, delete organization |
-| `admin` | Edit all listings, invite members |
-| `editor` | Edit assigned listings only |
-| `viewer` | Read-only access to analytics |
+| Role     | Permissions                                          |
+| -------- | ---------------------------------------------------- |
+| `owner`  | Full access, can manage members, delete organization |
+| `admin`  | Edit all listings, invite members                    |
+| `editor` | Edit assigned listings only                          |
+| `viewer` | Read-only access to analytics                        |
 
 #### Database Schema
 
@@ -2205,36 +2209,35 @@ CREATE POLICY "Admins can invite members" ON organization_members
 
 ## Verification Plan
 
-| Phase | Test Type | Method |
-|-------|-----------|--------|
-| 8.1-8.3 Tests & Scripts | Unit | `npm test` (new test files) |
-| 8.4 Health Check Workflow | Manual | Trigger `workflow_dispatch` in GitHub |
-| 8.5 Edit Form | E2E | Navigate to `/dashboard/services/[id]/edit` |
-| 8.6 Database Migration | Manual | Run migration in Supabase SQL Editor |
-| 9.1 Push Notifications | E2E | Playwright tests for permission flow and subscription API |
-| 9.2 Background Sync | Integration | Mock SW and verify IndexedDB updates |
-| 10.1 Content Audit | Script | `npm run bilingual-check` in CI |
-| 10.2 UI Audit | Script | `npm run i18n-audit` in CI |
-| 11.1 URL Checker | Integration | Monthly GitHub Action with issue creation |
-| 11.2 Phone Validator | Integration | Quarterly manual run (Twilio costs) |
-| 12.1 Listing CRUD | E2E | Full edit → submit → approval flow |
-| 12.2 Member Management | Unit + E2E | Permission checks and invite flow |
+| Phase                     | Test Type   | Method                                                    |
+| ------------------------- | ----------- | --------------------------------------------------------- |
+| 8.1-8.3 Tests & Scripts   | Unit        | `npm test` (new test files)                               |
+| 8.4 Health Check Workflow | Manual      | Trigger `workflow_dispatch` in GitHub                     |
+| 8.5 Edit Form             | E2E         | Navigate to `/dashboard/services/[id]/edit`               |
+| 8.6 Database Migration    | Manual      | Run migration in Supabase SQL Editor                      |
+| 9.1 Push Notifications    | E2E         | Playwright tests for permission flow and subscription API |
+| 9.2 Background Sync       | Integration | Mock SW and verify IndexedDB updates                      |
+| 10.1 Content Audit        | Script      | `npm run bilingual-check` in CI                           |
+| 10.2 UI Audit             | Script      | `npm run i18n-audit` in CI                                |
+| 11.1 URL Checker          | Integration | Monthly GitHub Action with issue creation                 |
+| 11.2 Phone Validator      | Integration | Quarterly manual run (Twilio costs)                       |
+| 12.1 Listing CRUD         | E2E         | Full edit → submit → approval flow                        |
+| 12.2 Member Management    | Unit + E2E  | Permission checks and invite flow                         |
 
 ---
 
 ## Timeline Summary
 
-| Activity | Duration | Complexity | Dependencies |
-|----------|----------|------------|--------------|
-| **Phase 8: Foundation Hardening** | **1 Week** | **Low-Medium** | **None (prerequisite)** |
-| Phase 9: Mobile Excellence | 2-3 Weeks | High | Phase 8 complete, SW expertise |
-| Phase 10: Bilingual Audit | 1-2 Weeks | Medium | Phase 8 scripts ready |
-| Phase 11: Verification Bots | 2-3 Weeks | Medium | Twilio API agreement |
-| Phase 12: Partner Dashboard | 3-4 Weeks | High | Phase 8 DB migration, Auth system |
+| Activity                          | Duration   | Complexity     | Dependencies                      |
+| --------------------------------- | ---------- | -------------- | --------------------------------- |
+| **Phase 8: Foundation Hardening** | **1 Week** | **Low-Medium** | **None (prerequisite)**           |
+| Phase 9: Mobile Excellence        | 2-3 Weeks  | High           | Phase 8 complete, SW expertise    |
+| Phase 10: Bilingual Audit         | 1-2 Weeks  | Medium         | Phase 8 scripts ready             |
+| Phase 11: Verification Bots       | 2-3 Weeks  | Medium         | Twilio API agreement              |
+| Phase 12: Partner Dashboard       | 3-4 Weeks  | High           | Phase 8 DB migration, Auth system |
 
-> [!NOTE]
-> **Recommended Order**: Phase 8 → Phase 10 → Phase 9 → Phase 11 → Phase 12
-> 
+> [!NOTE] > **Recommended Order**: Phase 8 → Phase 10 → Phase 9 → Phase 11 → Phase 12
+>
 > Complete Phase 8 first as it has no dependencies and enables all subsequent phases. Phase 10 can run in parallel with Phase 9 since they're independent.
 
 ---
@@ -2255,10 +2258,10 @@ TWILIO_AUTH_TOKEN=...
 
 ## Risk Assessment
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| VAPID key management | High | Store in GitHub Secrets, rotate annually |
+| Risk                       | Impact | Mitigation                                 |
+| -------------------------- | ------ | ------------------------------------------ |
+| VAPID key management       | High   | Store in GitHub Secrets, rotate annually   |
 | Twilio costs exceed budget | Medium | Set monthly caps, cache validation results |
-| French translation quality | Medium | Partner with local francophone community |
-| Service worker conflicts | High | Comprehensive testing, staged rollout |
-| Partner abuse (spam edits) | Medium | Moderation queue, rate limiting |
+| French translation quality | Medium | Partner with local francophone community   |
+| Service worker conflicts   | High   | Comprehensive testing, staged rollout      |
+| Partner abuse (spam edits) | Medium | Moderation queue, rate limiting            |
