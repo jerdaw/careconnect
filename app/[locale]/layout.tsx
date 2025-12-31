@@ -6,12 +6,13 @@ import { AuthProvider } from "../../components/AuthProvider";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Outfit, Inter } from "next/font/google";
+import { ClientOnly } from "@/components/ClientOnly";
+import ChatAssistant from "@/components/ai/ChatAssistant";
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
   description: "Find local support services for food, housing, crisis, and health in Kingston, Ontario.",
   manifest: "/manifest.json",
-  themeColor: "#2563eb",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -57,6 +58,9 @@ export default async function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <ErrorBoundary>
                 {children}
+                <ClientOnly>
+                  <ChatAssistant />
+                </ClientOnly>
               </ErrorBoundary>
             </ThemeProvider>
           </AuthProvider>

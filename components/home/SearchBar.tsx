@@ -7,9 +7,19 @@ interface SearchBarProps {
     handleSaveSearch: () => void;
     placeholder: string;
     label: string;
+    onFocus?: () => void;
+    onBlur?: () => void;
 }
 
-export default function SearchBar({ query, setQuery, handleSaveSearch, placeholder, label }: SearchBarProps) {
+export default function SearchBar({
+    query,
+    setQuery,
+    handleSaveSearch,
+    placeholder,
+    label,
+    onFocus,
+    onBlur
+}: SearchBarProps) {
     return (
         <div className="relative group">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
@@ -17,11 +27,13 @@ export default function SearchBar({ query, setQuery, handleSaveSearch, placehold
             </div>
             <input
                 type="text"
-                className="block w-full rounded-2xl border-0 bg-transparent py-4 pl-14 pr-14 text-neutral-900 placeholder:text-neutral-400 focus:ring-0 sm:text-lg sm:leading-6 dark:text-white"
+                className="block w-full rounded-2xl border-0 bg-transparent py-4 pl-14 pr-14 text-neutral-900 placeholder:text-neutral-400 focus:ring-0 focus:outline-none outline-none sm:text-lg sm:leading-6 dark:text-white"
                 placeholder={placeholder}
                 aria-label={label}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onFocus={onFocus}
+                onBlur={onBlur}
             />
             {query.length > 0 && (
                 <Button

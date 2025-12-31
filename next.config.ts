@@ -8,6 +8,28 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
   },
+  transpilePackages: [
+    'react-markdown',
+    'vfile',
+    'vfile-message',
+    'unist-util-is',
+    'unist-util-visit',
+    'property-information',
+    'mdast-util-to-hast',
+    'hast-util-whitespace',
+    'hast-util-to-html',
+    'space-separated-tokens',
+    'comma-separated-tokens',
+    'decode-named-character-reference',
+    'ccount',
+    'escape-string-regexp',
+    'markdown-table',
+    'micromark',
+    'mdast-util-from-markdown',
+    'mdast-util-to-markdown',
+    'mdast-util-to-string',
+    'devlop'
+  ],
   serverExternalPackages: ['@xenova/transformers'],
   webpack: (config) => {
     // See https://webpack.js.org/configuration/resolve/#resolvealias

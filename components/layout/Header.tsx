@@ -23,10 +23,10 @@ export function Header() {
 
     return (
         <header className={cn(
-            "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+            "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
             scrolled
-                ? "glass shadow-md border-b border-neutral-200/50 dark:border-neutral-800/50"
-                : "bg-transparent"
+                ? "bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-neutral-200/50 dark:border-white/10 shadow-sm"
+                : "bg-transparent border-transparent"
         )}>
             <div className={cn("transition-all duration-300", scrolled ? "h-0 overflow-hidden opacity-0" : "h-auto opacity-100")}>
                 <BetaBanner />

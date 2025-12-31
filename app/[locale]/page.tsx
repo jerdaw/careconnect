@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react';
 import { useSemanticSearch } from '../../hooks/useSemanticSearch';
 import { useSearch } from '../../hooks/useSearch';
 import { useServices } from '../../hooks/useServices';
@@ -8,6 +9,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Section } from '@/components/ui/section';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 // Modular Components
 import ModelStatus from '../../components/home/ModelStatus';
@@ -19,6 +21,7 @@ import SafetyAlert from '../../components/home/SafetyAlert';
 
 export default function Home() {
   const t = useTranslations();
+  const [isFocused, setIsFocused] = useState(false);
   const {
     query, setQuery,
     category, setCategory,
@@ -48,6 +51,8 @@ export default function Home() {
     setSuggestion
   });
 
+  const isActive = isFocused || query.length > 0;
+
   return (
     <main className="min-h-screen flex flex-col relative overflow-hidden">
       <div className="bg-noise" />
@@ -57,9 +62,9 @@ export default function Home() {
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32">
         {/* Mesh Gradient Background */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-400/40 rounded-full blur-[100px] mix-blend-multiply animate-float dark:bg-primary-900/30 dark:mix-blend-screen" />
-          <div className="absolute top-[10%] right-[-10%] w-[50%] h-[50%] bg-accent-400/40 rounded-full blur-[100px] mix-blend-multiply animate-float-delayed dark:bg-accent-900/30 dark:mix-blend-screen" />
-          <div className="absolute bottom-[-10%] left-[20%] w-[60%] h-[60%] bg-indigo-300/40 rounded-full blur-[100px] mix-blend-multiply animate-pulse-glow dark:bg-indigo-900/30 dark:mix-blend-screen" />
+          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-400/40 rounded-full blur-[100px] mix-blend-multiply animate-float dark:bg-primary-900/30 dark:mix-blend-screen" />
+          <div className="absolute top-[10%] left-[-10%] w-[50%] h-[50%] bg-accent-400/40 rounded-full blur-[100px] mix-blend-multiply animate-float-delayed dark:bg-accent-900/30 dark:mix-blend-screen" />
+          <div className="absolute bottom-[-10%] right-[20%] w-[60%] h-[60%] bg-indigo-300/40 rounded-full blur-[100px] mix-blend-multiply animate-pulse-glow dark:bg-indigo-900/30 dark:mix-blend-screen" />
         </div>
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -96,15 +101,41 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-12"
           >
-            <div className="glass-card p-2 rounded-[2rem] shadow-2xl shadow-primary-900/5 ring-1 ring-white/50 dark:ring-white/10 relative overflow-hidden transform transition-transform hover:scale-[1.01] duration-500">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer" />
-              <SearchBar
-                query={query}
-                setQuery={setQuery}
-                handleSaveSearch={handleSaveSearch}
-                placeholder={t('Search.placeholder')}
-                label={t('Search.label')}
+            <div className="relative rounded-[2rem] p-[2px] overflow-hidden transform transition-all duration-500 hover:scale-[1.01] shadow-2xl shadow-primary-900/5">
+              {/* Moving Multicolor Border (Inactive) */}
+              <div
+                className={cn(
+                  "absolute inset-[-50%] bg-[conic-gradient(from_0deg,var(--color-primary-500),var(--color-accent-500),var(--color-primary-500))] animate-[spin_10s_linear_infinite]",
+                  "transition-opacity duration-700 ease-in-out",
+                  isActive ? "opacity-0" : "opacity-60 dark:opacity-40"
+                )}
               />
+
+              {/* Static Full Gradient (Active) */}
+              <div
+                className={cn(
+                  "absolute inset-0 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500",
+                  "transition-opacity duration-700 ease-in-out",
+                  isActive ? "opacity-100" : "opacity-0"
+                )}
+              />
+
+              <div className={cn(
+                "relative p-2 rounded-[2rem] h-full w-full transition-all duration-300",
+                isActive
+                  ? "bg-white dark:bg-slate-900 shadow-none border-0 ring-0 outline-none"
+                  : "glass-card bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-white/50 dark:border-white/5"
+              )}>
+                <SearchBar
+                  query={query}
+                  setQuery={setQuery}
+                  handleSaveSearch={handleSaveSearch}
+                  placeholder={t('Search.placeholder')}
+                  label={t('Search.label')}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                />
+              </div>
             </div>
 
             <div className="mt-6">

@@ -11,6 +11,7 @@ export interface SearchOptions {
     location?: { lat: number; lng: number };
     vectorOverride?: number[] | null;
     openNow?: boolean;
+    limit?: number;
 }
 
 export interface ScoringWeights {

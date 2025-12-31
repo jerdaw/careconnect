@@ -159,5 +159,9 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         finalResults = boostCrisisResults(finalResults, true);
     }
 
+    if (options.limit && options.limit > 0) {
+        return finalResults.slice(0, options.limit);
+    }
+
     return finalResults;
 };

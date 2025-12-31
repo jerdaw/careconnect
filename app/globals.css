@@ -225,7 +225,7 @@ body {
 }
 
 .dark .bg-noise {
-  opacity: 0.04;
+  opacity: 0;
 }
 
 /* Typography Utilities */
