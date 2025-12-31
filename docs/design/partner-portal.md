@@ -1,80 +1,62 @@
-# Partner Portal Design Document
+# Partner Portal Architecture
 
-**Status:** Draft (Concept Phase)
-**Date:** Winter 2024
-**Target:** Phase 4 Implementation
+**Status:** Implemented (Phase 12)
+**Date:** Updated December 2025
+**Access:** `/dashboard`
 
 ## 1. Overview
 
 The Partner Portal is a dedicated interface for community organizations ("Partners") to manage their own service listings on Kingston Care Connect. This shifts the maintenance burden from a central administrator to the distributed network of service providers, ensuring data freshness and accuracy.
 
-## 2. User Stories
+## 2. Architecture
 
-- **As a Service Provider**, I want to "Claim" my organization's profile so that I can update our hours, phone number, and description.
-- **As a Service Provider**, I want to see how many people are finding our service via KCC so that I understand the value of the platform.
-- **As an Admin**, I want to vet claim requests so that unauthorized users cannot alter critical community data.
+### 2.1 Authentication & RBAC
 
-## 3. Architecture
+We use **Supabase Auth** with a "Magic Link" strategy (Passwordless) for low-friction access.
 
-### 3.1 Authentication
+- **Authentication**: Email/Magic Link via Supabase.
+- **Access Control**: Role-Based Access Control (RBAC) stored in the `organization_members` table.
+- **Roles**:
+  - `owner`: Full control, can invite/remove members.
+  - `admin`: Can edit services and view analytics.
+  - `editor`: Can edit services.
+  - `viewer`: Read-only access to analytics.
 
-We will use a **Passwordless "Magic Link"** strategy.
+### 2.2 Database Schema
 
-- **Why?** reduces friction for non-technical staff; no passwords to forget/reset; inherently verifies email ownership.
-- **Provider:** Supabase Auth or NextAuth (Auth.js) with Email Provider.
+The system uses a relational structure in Supabase:
 
-### 3.2 Database Schema (Proposed)
+- **organizations**: Stores verified partner entities.
+- **organization_members**: Links `auth.users` to `organizations` with a `role`.
+- **services**: The core service records. Linked to organizations via `organization_id`.
+- **claims**: Stores temporary claims for unclaimed services awaiting admin verification.
 
-Moving from `services.json` to a relational DB (Supabase/Postgres).
+## 3. Key Flows
 
-#### Table: `organizations`
+### 3.1 Claiming a Service
 
-| Column   | Type | Description                                  |
-| -------- | ---- | -------------------------------------------- |
-| id       | uuid | Primary Key                                  |
-| name     | text | Org Name                                     |
-| domain   | text | e.g., `unitedway.ca` (For auto-verification) |
-| verified | bool | Trust status                                 |
+1. **Unclaimed Service**: A partner finds their service on the public site and clicks "Claim this Service".
+2. **Verification**: If the user is logged in with a domain matching the service's website (e.g., `@unitedway.ca`), the claim can be auto-verified (optional config). Otherwise, it creates a `claim` record.
+3. **Approval**: An admin reviews the claim and links the user's organization to the service.
 
-#### Table: `users`
+### 3.2 Service Management
 
-| Column | Type | Description                 |
-| ------ | ---- | --------------------------- |
-| id     | uuid | Links to Auth Provider      |
-| email  | text |                             |
-| org_id | uuid | FK to organizations         |
-| role   | enum | `admin`, `editor`, `viewer` |
+- **Edit Form**: Partners use the `ServiceEditForm` to update details.
+- **Bilingual Support**: The form explicitly separates English and French fields (`name` vs `name_fr`) to ensure compliance with the [Bilingual Dev Guide](../../bilingual-dev-guide.md).
+- **Validation**: Zod schemas ensure data integrity before submission.
 
-#### Table: `services` (Migration)
+## 4. Analytics
 
-Existing JSON structure becomes columns: `name`, `description`, `address`, `tags` (array), `embedding` (vector).
+Partners have access to privacy-preserving analytics for their listings:
 
-## 4. Verification Flow
+- **Metrics**: Search Views, Detail Views, Click-throughs (Call/Website).
+- **Privacy**: We do not track individual users. Analytics are aggregated counts stored in the `analytics` table.
 
-### 4.1 "The Golden Path" (Domain Matching)
+## 5. UI Components
 
-1. User logs in with `jane@youthshelter.ca`.
-2. System checks `organizations` table for domain `youthshelter.ca`.
-3. If match found + Org is "Trusted", user is automatically granted `pending` access or fully verified depending on policy.
+- **DashboardSidebar**: Main navigation for the authenticated zone.
+- **PartnerServiceList**: Data table for managing listings.
+- **ServiceEditForm**: Comprehensive form for editing service details.
+- **AnalyticsCard**: Visualizes performance metrics.
 
-### 4.2 Manual Claim
-
-1. User logs in with generic email (e.g., gmail) or non-matched domain.
-2. User searches for "Kingston Youth Shelter" and clicks "Claim this Service".
-3. KCC Admin receives notification.
-4. KCC Admin manually calls/emails to verify identity.
-5. KCC Admin links User to Org.
-
-## 5. UI/UX Concepts
-
-### Login
-
-- Simple email input.
-- "Send Magic Link" button.
-- Clean, trust-inspiring aesthetic (Blue/White).
-
-### Dashboard
-
-- **Stats Card:** "342 views this month" (driven by `analytics.ts` events).
-- **Service List:** Cards showing managed services with "Edit" button.
-- **Health Check:** Profile completeness score (e.g., "Add French translation to reach 100%").
+For design patterns, refer to [Components Documentation](../components.md).

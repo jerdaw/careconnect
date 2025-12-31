@@ -21,10 +21,10 @@ This project is optimized for deployment on **Vercel**.
 6.  **Environment Variables (Crucial):**
 
     - Expand the **"Environment Variables"** section.
-    - Add `OPENAI_API_KEY` = `sk-...` (Your key).
+    - Add `OPENAI_API_KEY` = `sk-...` (Recommended for AI features, though core search can run without it).
     - Add `NEXT_PUBLIC_SUPABASE_URL` = `https://...` (Your Supabase Project URL).
     - Add `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` = `sb_publishable_...` (Your Supabase Publishable Key).
-    - _Reason:_ The build process runs `generate-embeddings.ts` (via the "Lazy" logic logic check) or simply needs the types to be valid. Even if using "Zero Cost", the build might strict check env vars.
+    - _Reason:_ The build process may check environment variable types.
 
 7.  **Deploy:** Click **"Deploy"**.
 

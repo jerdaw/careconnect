@@ -101,6 +101,39 @@ const {
 
 ## Utility Hooks
 
+### usePushNotifications
+
+Manages Web Push API subscription state and permissions.
+
+```tsx
+import { usePushNotifications } from "@/hooks/usePushNotifications"
+
+const {
+  isSupported, // boolean: is Push API available?
+  permission, // "default" | "granted" | "denied"
+  isSubscribed, // boolean: is current user subscribed?
+  isLoading, // boolean
+  subscribe, // (categories: string[]) => Promise<boolean>
+  unsubscribe, // () => Promise<boolean>
+} = usePushNotifications()
+```
+
+### useUserContext
+
+Manages the client-side user profile for privacy-preserving personalization.
+
+```tsx
+import { useUserContext } from "@/hooks/useUserContext"
+
+const {
+  context, // { ageGroup, identities, hasOptedIn }
+  updateAgeGroup, // (age: AgeGroup) => void
+  toggleIdentity, // (tag: IdentityTag) => void
+  optIn, // () => void
+  optOut, // () => void
+} = useUserContext()
+```
+
 ### useLocalStorage
 
 SSR-safe localStorage hook with JSON serialization.

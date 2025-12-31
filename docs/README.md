@@ -25,5 +25,6 @@
 
 ## Roadmaps
 
-- [Backlog (Future)](roadmaps/future-roadmap.md)
+- [Current Roadmap](roadmaps/roadmap.md)
+- [API Reference](../docs/api/openapi.yaml)
 - [Archive](roadmaps/archive/)

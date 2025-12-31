@@ -64,4 +64,4 @@ We have built the "Progressive Web Brain" — a privacy-first, zero-cost search 
 
 ## 📜 Governance & Standards
 
-See [Governance Protocol](../docs/governance_protocol.md) for details on L0-L4 verification and data ethics.
+See [Governance Protocol](../../governance.md) for details on L0-L4 verification and data ethics.

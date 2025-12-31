@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
-import { ProfileSettings } from "@/components/settings"
 import BetaBanner from "@/components/BetaBanner"
 
 export function Header() {
@@ -48,16 +47,16 @@ export function Header() {
       >
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2">
-          <div className="from-primary-500 to-primary-600 group-hover:shadow-primary-500/30 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-lg font-bold text-white shadow-lg transition-shadow">
+          {/* <div className="from-primary-500 to-primary-600 group-hover:shadow-primary-500/30 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-lg font-bold text-white shadow-lg transition-shadow">
             K
-          </div>
+          </div> */}
           <span
             className={cn(
               "heading-display text-xl font-bold tracking-tight transition-colors",
               "text-neutral-900 dark:text-white"
             )}
           >
-            Care Connect
+            Kingston Care Connect
           </span>
         </Link>
 
@@ -102,7 +101,6 @@ export function Header() {
             Emergency: 911
           </a>
 
-          <ProfileSettings />
           <ThemeToggle />
 
           {user ? (
@@ -119,7 +117,6 @@ export function Header() {
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-4 md:hidden">
           <ThemeToggle />
-          <ProfileSettings />
           <button
             className="p-2 text-neutral-600 dark:text-neutral-300"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -145,9 +142,6 @@ export function Header() {
               <Link href="/partners" className="p-2 text-sm font-medium text-neutral-600 dark:text-neutral-300">
                 For Partners
               </Link>
-              <div className="pt-2">
-                <ProfileSettings />
-              </div>
               {user ? (
                 <Button className="w-full" asChild>
                   <Link href="/dashboard">Dashboard</Link>

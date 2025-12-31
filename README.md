@@ -5,6 +5,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
+![Coverage](https://img.shields.io/badge/Coverage-28%25-red.svg)
 
 ## 🎯 The Mission: "The Kingston 150"
 

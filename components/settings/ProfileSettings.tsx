@@ -14,7 +14,13 @@ const AGE_GROUPS = ["youth", "adult", "senior"] as const
 const IDENTITY_OPTIONS = ["indigenous", "newcomer", "2slgbtqi+", "veteran", "disability"] as const
 const NOTIFICATION_CATEGORIES: NotificationCategory[] = ["crisis", "food", "housing", "health", "general"]
 
-export function ProfileSettings() {
+interface ProfileSettingsProps {
+  variant?: "ghost" | "default" | "outline" | "secondary" | "link" | "pill" | "gradient" | "glass"
+  size?: "default" | "sm" | "lg" | "icon" | "pill"
+  showText?: boolean
+}
+
+export function ProfileSettings({ variant = "ghost", size = "sm", showText = true }: ProfileSettingsProps) {
   const t = useTranslations("Settings")
   const { context, updateAgeGroup, toggleIdentity, optIn, optOut } = useUserContext()
   const { isSupported, isSubscribed, subscribedCategories, isLoading, subscribe, unsubscribe } = usePushNotifications()
@@ -48,23 +54,30 @@ export function ProfileSettings() {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="ghost"
-          size="sm"
-          className="gap-2 text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+          variant={variant}
+          size={size}
+          className={cn(
+            "gap-2",
+            variant === "ghost" && "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800",
+            variant === "pill" && context.hasOptedIn && "rounded-full"
+          )}
         >
           <div
             className={cn(
-              "flex h-6 w-6 items-center justify-center rounded-full transition-colors",
+              "flex items-center justify-center rounded-full transition-colors",
+              size === "pill" ? "h-4 w-4" : "h-6 w-6",
               context.hasOptedIn
                 ? "bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400"
                 : "bg-neutral-100 text-neutral-500 dark:bg-neutral-800"
             )}
           >
-            {context.hasOptedIn ? <User className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
+            {context.hasOptedIn ? <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} /> : <ShieldCheck className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />}
           </div>
-          <span className="hidden font-medium sm:inline-block">
-            {context.hasOptedIn ? t("personalizePrompt") : t("enablePersonalization")}
-          </span>
+          {showText && (
+            <span className="hidden font-medium sm:inline-block">
+              {context.hasOptedIn ? t("personalizePrompt") : t("enablePersonalization")}
+            </span>
+          )}
         </Button>
       </PopoverTrigger>
 

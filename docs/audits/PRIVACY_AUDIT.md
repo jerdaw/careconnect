@@ -1,4 +1,4 @@
-# Privacy & Trust Audit (Phase 20)
+# Privacy & Trust Audit
 
 **Date:** December 29, 2025
 **Goal:** Verify "Privacy-First" architecture (0 Cookies, No 3rd Party Tracking).
@@ -24,9 +24,11 @@
 
 ## 3. Local Storage / Session Storage
 
-| Key | Purpose | Status      |
-| --- | ------- | ----------- |
-| -   | -       | **Pending** |
+| Key                                 | Purpose                                                                 | Status                   |
+| ----------------------------------- | ----------------------------------------------------------------------- | ------------------------ |
+| `kcc_user_context`                  | Stores user personalization (Age, Identities) for client-side boosting. | **Verified (Essential)** |
+| `preferred_notification_categories` | Stores opt-in choices for push notifications.                           | **Verified**             |
+| `theme`                             | Stores light/dark mode preference.                                      | **Verified**             |
 
 ## 4. Findings & Action Items
 

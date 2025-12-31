@@ -85,14 +85,6 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-8"
           >
-            <div className="text-primary-700 dark:text-primary-300 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/40 px-3 py-1.5 text-xs font-semibold shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-              <span className="relative flex h-2 w-2">
-                <span className="bg-primary-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                <span className="bg-primary-500 relative inline-flex h-2 w-2 rounded-full"></span>
-              </span>
-              Pilot v1.0 Live
-            </div>
-
             <h1 className="heading-1 heading-display relative text-neutral-900 dark:text-white">
               <span className="relative z-10">Kingston</span>
               <span className="from-primary-600 via-primary-500 to-accent-500 relative z-10 bg-gradient-to-r bg-clip-text text-transparent">

@@ -32,5 +32,5 @@
 
 ## Archive
 
-- [v1-pilot](archive/v1-pilot.md): Queens Pilot (Dec 2024)
-- [v2-community](archive/v2-community-expansion.md): Community Expansion (Jan 2025)
+- [v1-pilot](v1-pilot.md): Queens Pilot (Dec 2024)
+- [v2-community](v2-community-expansion.md): Community Expansion (Jan 2025)

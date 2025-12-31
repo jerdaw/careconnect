@@ -88,7 +88,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
   if (tokens.length === 0) return []
 
   // 1. First Pass: Keyword Only (Zero Cost)
-  const results: SearchResult[] = []
+  let results: SearchResult[] = []
 
   for (const service of filteredServices) {
     if (service.verification_level === VerificationLevel.L0) continue
@@ -110,6 +110,12 @@ export const searchServices = async (query: string, options: SearchOptions = {})
   if (!options.vectorOverride) {
     // Privacy: We do NOT fetch embeddings from server/OpenAI.
     // If no vector passed from client, we fall back to pure keyword search.
+
+    // Safety Override: Check for Crisis intent
+    const isCrisis = detectCrisis(query)
+    if (isCrisis) {
+      results = boostCrisisResults(results, true)
+    }
 
     // Apply Geo Sort if needed
     if (options.location) {

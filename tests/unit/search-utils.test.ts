@@ -21,7 +21,12 @@ describe("Crisis Detection", () => {
       url: "",
       verification_level: VerificationLevel.L2,
       intent_category: IntentCategory.Crisis,
-      provenance: {} as any,
+      provenance: {
+        verified_by: "system",
+        verified_at: new Date().toISOString(),
+        evidence_url: "",
+        method: "manual"
+      },
       identity_tags: [],
       synthetic_queries: [],
     }
@@ -32,7 +37,12 @@ describe("Crisis Detection", () => {
       url: "",
       verification_level: VerificationLevel.L2,
       intent_category: IntentCategory.Food,
-      provenance: {} as any,
+      provenance: {
+        verified_by: "system",
+        verified_at: new Date().toISOString(),
+        evidence_url: "",
+        method: "manual"
+      },
       identity_tags: [],
       synthetic_queries: [],
     }
