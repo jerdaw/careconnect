@@ -17,7 +17,16 @@
     "clearLocation": "Clear location filter",
     "filterByLocation": "Filter by current location",
     "all": "All",
-    "crisis": "🗣️ Crisis"
+    "crisis": "🗣️ Crisis",
+    "food": "Food",
+    "housing": "Housing",
+    "health": "Health",
+    "legal": "Legal",
+    "wellness": "Wellness",
+    "financial": "Financial",
+    "employment": "Employment",
+    "community": "Community",
+    "indigenous": "Indigenous"
   },
   "VoiceInput": {
     "start": "Start Private Voice Search",
@@ -231,6 +240,11 @@
     "hero": {
       "title": "The Kingston 150",
       "subtitle": "A governance-first search engine for Kingston's most essential social services. Verified, accessible, and privacy-focused."
+    },
+    "governanceText": "This platform adheres to the Kingston 150 Governance Schema (V7), ensuring all service data is verified, categorized, and provenance-tracked.",
+    "landAcknowledgment": {
+      "title": "Land Acknowledgment",
+      "text": "Kingston, known as Katarokwi, is situated on the ancestral and traditional homelands of the Huron-Wendat, Anishinaabe, and Haudenosaunee Confederacy. We acknowledge our responsibility to honour the land, water, and skies with respect and preservation."
     },
     "metrics": {
       "verified": {

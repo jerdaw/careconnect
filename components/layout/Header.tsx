@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
+import { LanguageSelector } from "./LanguageSelector"
 import BetaBanner from "@/components/BetaBanner"
 
 export function Header() {
@@ -110,6 +111,7 @@ export function Header() {
             Emergency: 911
           </a>
 
+          <LanguageSelector />
           <ThemeToggle />
 
           {user ? (

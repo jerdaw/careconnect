@@ -12,7 +12,9 @@
 
 - **Current Mode:** Hybrid (English/French).
 - **Data Layer:** Schema successfully updated. `Service` objects now support `name_fr`, `description_fr`, and `address_fr` overrides.
-- **Search:** "Open Now", "Crisis", and "Did you mean?" suggestions are fully localized.
+- **Search:** "Open Now", "Crisis", and- **"Did you mean?"**: Fuzzy matching suggestions are localized.
+- **Indigenous Filter**: "Indigenous" -> "Services autochtones" mapped in translation files.
+- **Land Acknowledgment**: Full EN/FR text available on About page.
 - **UI Components:** Major components (`ServiceCard`, `SearchControls`, `FeedbackModal`) use `next-intl` hooks.
 - **Accessibility:** All ARIA labels and skip-links are properly localized in `en.json` and `fr.json`.
 - **Hours:** Timestamps are stored as data (`09:00`); formatting (AM/PM vs 24h) is handled by the UI based on locale.

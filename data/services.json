@@ -2005,180 +2005,6 @@
     "description_fr": "Clinique médicale sans rendez-vous offrant des soins primaires aux résidents sans médecin de famille."
   },
   {
-    "id": "downtown-legal-clinic",
-    "name": "Downtown Legal Clinic",
-    "description": "Pro bono legal advice for low-income residents regarding tenant rights and employment law.",
-    "url": "https://legal.example.com",
-    "phone": "613-555-0102",
-    "address": "456 Queen St, Kingston, ON K7K 1B1",
-    "verification_level": "L1",
-    "intent_category": "Legal",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent)",
-      "verified_at": "2025-12-30T12:00:00Z",
-      "evidence_url": "https://legal.example.com",
-      "method": "Data Expansion Phase 2"
-    },
-    "identity_tags": [],
-    "synthetic_queries": ["Legal aid", "Eviction help", "Tenant rights lawyer", "Free legal advice"],
-    "hours": {
-      "monday": {
-        "open": "10:00",
-        "close": "16:00"
-      },
-      "wednesday": {
-        "open": "10:00",
-        "close": "16:00"
-      },
-      "friday": {
-        "open": "10:00",
-        "close": "14:00"
-      }
-    },
-    "name_fr": "Clinique juridique du centre-ville",
-    "description_fr": "Conseils juridiques pro bono pour les résidents à faible revenu concernant les droits des locataires et le droit du travail."
-  },
-  {
-    "id": "youth-employment-centre-kton",
-    "name": "Youth Employment Centre Kingston",
-    "description": "Resume workshops, job search assistance, and interview prep for youth aged 15-29.",
-    "url": "https://youthjob.example.com",
-    "phone": "613-555-0103",
-    "address": "789 Division St, Kingston, ON K7L 3M6",
-    "verification_level": "L1",
-    "intent_category": "Employment",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent)",
-      "verified_at": "2025-12-30T12:00:00Z",
-      "evidence_url": "https://youthjob.example.com",
-      "method": "Data Expansion Phase 2"
-    },
-    "identity_tags": [
-      {
-        "tag": "Youth",
-        "evidence_url": ""
-      }
-    ],
-    "synthetic_queries": ["Find a job", "Resume help", "Student jobs", "Work for teens"],
-    "hours": {
-      "monday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "tuesday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "wednesday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "thursday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "friday": {
-        "open": "08:30",
-        "close": "16:30"
-      }
-    },
-    "name_fr": "Centre d'emploi pour jeunes de Kingston",
-    "description_fr": "Ateliers de CV, aide à la recherche d'emploi et préparation aux entrevues pour les jeunes de 15 à 29 ans."
-  },
-  {
-    "id": "senior-support-services",
-    "name": "Senior Support Services",
-    "description": "Social activities, meal delivery coordination, and friendly visiting for seniors.",
-    "url": "https://seniors.example.com",
-    "phone": "613-555-0104",
-    "address": "321 Bath Rd, Kingston, ON K7M 2L1",
-    "verification_level": "L1",
-    "intent_category": "Community",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent)",
-      "verified_at": "2025-12-30T12:00:00Z",
-      "evidence_url": "https://seniors.example.com",
-      "method": "Data Expansion Phase 2"
-    },
-    "identity_tags": [
-      {
-        "tag": "Seniors",
-        "evidence_url": ""
-      }
-    ],
-    "synthetic_queries": ["Help for elderly", "Senior center", "Meals on wheels info", "Social activities seniors"],
-    "hours": {
-      "monday": {
-        "open": "09:00",
-        "close": "15:00"
-      },
-      "tuesday": {
-        "open": "09:00",
-        "close": "15:00"
-      },
-      "wednesday": {
-        "open": "09:00",
-        "close": "15:00"
-      },
-      "thursday": {
-        "open": "09:00",
-        "close": "15:00"
-      },
-      "friday": {
-        "open": "09:00",
-        "close": "15:00"
-      }
-    },
-    "name_fr": "Services de soutien aux aînés",
-    "description_fr": "Activités sociales, coordination de la livraison de repas et visites amicales pour les aînés."
-  },
-  {
-    "id": "emergency-dental-clinic",
-    "name": "Emergency Dental Clinic",
-    "description": "Urgent dental care for low-income individuals in pain/infection.",
-    "url": "https://dental.example.com",
-    "phone": "613-555-0105",
-    "address": "654 Victoria St, Kingston, ON K7L 4V1",
-    "verification_level": "L1",
-    "intent_category": "Health",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent)",
-      "verified_at": "2025-12-30T12:00:00Z",
-      "evidence_url": "https://dental.example.com",
-      "method": "Data Expansion Phase 2"
-    },
-    "identity_tags": [],
-    "synthetic_queries": ["Toothache help", "Broken tooth", "Emergency dentist cheap", "Dental pain"],
-    "hours": {
-      "monday": {
-        "open": "08:00",
-        "close": "20:00"
-      },
-      "tuesday": {
-        "open": "08:00",
-        "close": "20:00"
-      },
-      "wednesday": {
-        "open": "08:00",
-        "close": "20:00"
-      },
-      "thursday": {
-        "open": "08:00",
-        "close": "20:00"
-      },
-      "friday": {
-        "open": "08:00",
-        "close": "20:00"
-      },
-      "saturday": {
-        "open": "10:00",
-        "close": "16:00"
-      }
-    },
-    "name_fr": "Clinique dentaire d'urgence",
-    "description_fr": "Soins dentaires urgents pour les personnes à faible revenu souffrant de douleur ou d'infection."
-  },
-  {
     "id": "211-mock-1",
     "name": "Kingston Youth Shelter (Mock)",
     "description": "Emergency shelter for youth ages 16-24.",
@@ -2219,5 +2045,776 @@
     "last_verified": "2025-12-31T14:53:02.568Z",
     "name_fr": "Livraison de repas pour aînés (Simulé)",
     "description_fr": "Popote roulante pour les aînés de 65 ans et plus."
+  },
+  {
+    "id": "integrated-care-hub",
+    "name": "Integrated Care Hub (ICH)",
+    "description": "Low-barrier access to safety, food, rest, and harm reduction services. Includes Consumption and Treatment Services (CTS).",
+    "url": "https://integratedcarehub.ca",
+    "phone": "613-329-6417",
+    "address": "661 Montreal St, Kingston, ON K7K 3J4",
+    "verification_level": "L1",
+    "intent_category": "Health",
+    "provenance": {
+      "verified_by": "Antigravity (City of Kingston Import)",
+      "verified_at": "2026-01-01T22:12:30.611Z",
+      "evidence_url": "https://integratedcarehub.ca",
+      "method": "Open Data Import via Manual Curation"
+    },
+    "identity_tags": [
+      {
+        "tag": "Harm Reduction",
+        "evidence_url": "https://integratedcarehub.ca"
+      },
+      {
+        "tag": "Homelessness",
+        "evidence_url": "https://integratedcarehub.ca"
+      },
+      {
+        "tag": "Open Access",
+        "evidence_url": "https://integratedcarehub.ca"
+      }
+    ],
+    "synthetic_queries": [
+      "Integrated Care Hub (ICH) help",
+      "Health kingston",
+      "Services at 661 Montreal St, Kingston, ON K7K 3J4"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2487,
+      "lng": -76.4951
+    },
+    "hours": {
+      "notes": "Hub open 23/7 (closed 10-11am daily). CTS open 9am-9pm daily."
+    },
+    "name_fr": "Centre de soins intégrés (ICH)",
+    "description_fr": "Accès à bas seuil à la sécurité, à la nourriture, au repos et aux services de réduction des méfaits. Comprend les services de consommation et de traitement (CTS).",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "marthas-table",
+    "name": "Martha's Table",
+    "description": "Community centre providing nutritious meals and social support. Breakfast, lunch, and meal delivery available.",
+    "url": "https://marthastable.ca",
+    "phone": "613-546-0320",
+    "address": "629 Princess St, Kingston, ON K7L 1E2",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "Antigravity (City of Kingston Import)",
+      "verified_at": "2026-01-01T22:12:30.611Z",
+      "evidence_url": "https://marthastable.ca",
+      "method": "Open Data Import via Manual Curation"
+    },
+    "identity_tags": [
+      {
+        "tag": "Meals",
+        "evidence_url": "https://marthastable.ca"
+      },
+      {
+        "tag": "Open Access",
+        "evidence_url": "https://marthastable.ca"
+      },
+      {
+        "tag": "Community",
+        "evidence_url": "https://marthastable.ca"
+      }
+    ],
+    "synthetic_queries": ["Martha's Table help", "Food kingston", "Services at 629 Princess St, Kingston, ON K7L 1E2"],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2375,
+      "lng": -76.5029
+    },
+    "hours": {
+      "notes": "Lunch: Mon-Fri 12pm-2pm. Take-out: Daily 12pm-2pm."
+    },
+    "name_fr": "Martha's Table",
+    "description_fr": "Centre communautaire offrant des repas nutritifs et un soutien social. Petit-déjeuner, déjeuner et livraison de repas disponibles.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "dawn-house-shelter",
+    "name": "Dawn House Women's Shelter",
+    "description": "Emergency shelter and transitional housing for women experienced homelessness. 24/7 support.",
+    "url": "https://dawnhouse.ca",
+    "phone": "613-766-6222",
+    "address": "2320 Princess St, Kingston, ON K7M 3G4",
+    "verification_level": "L1",
+    "intent_category": "Crisis",
+    "provenance": {
+      "verified_by": "Antigravity (City of Kingston Import)",
+      "verified_at": "2026-01-01T22:12:30.611Z",
+      "evidence_url": "https://dawnhouse.ca",
+      "method": "Open Data Import via Manual Curation"
+    },
+    "identity_tags": [
+      {
+        "tag": "Women",
+        "evidence_url": "https://dawnhouse.ca"
+      },
+      {
+        "tag": "Homelessness",
+        "evidence_url": "https://dawnhouse.ca"
+      },
+      {
+        "tag": "Shelter",
+        "evidence_url": "https://dawnhouse.ca"
+      }
+    ],
+    "synthetic_queries": [
+      "Dawn House Women's Shelter help",
+      "Crisis kingston",
+      "Services at 2320 Princess St, Kingston, ON K7M 3G4"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2568,
+      "lng": -76.5682
+    },
+    "hours": {
+      "notes": "24/7 Emergency Shelter."
+    },
+    "name_fr": "Refuge pour femmes Dawn House",
+    "description_fr": "Refuge d'urgence et logement de transition pour les femmes ayant vécu l'itinérance. Soutien 24/7.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "kiln-language-nest",
+    "name": "Kingston Indigenous Languages Nest (KILN)",
+    "description": "Urban language revitalization and friendship centre providing cultural teachings, workshops, and social activities.",
+    "url": "https://kncln.ca",
+    "phone": "613-544-3065",
+    "address": "218 Concession St, Kingston, ON K7K 2B5",
+    "verification_level": "L1",
+    "intent_category": "Community",
+    "provenance": {
+      "verified_by": "Antigravity (Manual GeoJSON Import)",
+      "verified_at": "2026-01-01T22:13:37.034Z",
+      "evidence_url": "https://kncln.ca",
+      "method": "Manual Curation & Import"
+    },
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://kncln.ca"
+      },
+      {
+        "tag": "Culture",
+        "evidence_url": "https://kncln.ca"
+      },
+      {
+        "tag": "Language",
+        "evidence_url": "https://kncln.ca"
+      }
+    ],
+    "synthetic_queries": [
+      "Kingston Indigenous Languages Nest (KILN) help",
+      "Community kingston",
+      "Services at 218 Concession St, Kingston, ON K7K 2B5"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2425,
+      "lng": -76.4957
+    },
+    "hours": {
+      "notes": "Mon-Fri 8:30am-4:30pm (Closed 12-1pm)"
+    },
+    "name_fr": "Nid de langues autochtones de Kingston (KILN)",
+    "description_fr": "Centre de revitalisation linguistique urbaine et d'amitié offrant des enseignements culturels, des ateliers et des activités sociales.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "kchc-iipct",
+    "name": "Indigenous Interprofessional Primary Care Team (IIPCT)",
+    "description": "Culturally appropriate primary healthcare combining traditional healing with Western medicine.",
+    "url": "https://kchc.ca/weller-avenue/iipct/",
+    "phone": "343-477-0256",
+    "address": "730 Front Rd, Unit 7, Kingston, ON K7M 6P7",
+    "verification_level": "L1",
+    "intent_category": "Health",
+    "provenance": {
+      "verified_by": "Antigravity (Manual GeoJSON Import)",
+      "verified_at": "2026-01-01T22:13:37.034Z",
+      "evidence_url": "https://kchc.ca/weller-avenue/iipct/",
+      "method": "Manual Curation & Import"
+    },
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+      },
+      {
+        "tag": "Health",
+        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+      },
+      {
+        "tag": "Culturally Safe",
+        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+      }
+    ],
+    "synthetic_queries": [
+      "Indigenous Interprofessional Primary Care Team (IIPCT) help",
+      "Health kingston",
+      "Services at 730 Front Rd, Unit 7, Kingston, ON K7M 6P7"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2206,
+      "lng": -76.5772
+    },
+    "hours": {
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
+    "name_fr": "Équipe de soins primaires interprofessionnels autochtones (ESPIA)",
+    "description_fr": "Soins de santé primaires culturellement appropriés combinant la guérison traditionnelle et la médecine occidentale.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "metis-nation-ontario-kingston",
+    "name": "Métis Nation of Ontario (Kingston Office)",
+    "description": "Support services for Métis citizens including healthy living programs, community support, housing, and employment training.",
+    "url": "https://www.metisnation.org",
+    "phone": "613-549-1674",
+    "address": "107-61 Hyperion Ct, Kingston, ON K7K 7K7",
+    "verification_level": "L1",
+    "intent_category": "Community",
+    "provenance": {
+      "verified_by": "Antigravity (Manual GeoJSON Import)",
+      "verified_at": "2026-01-01T22:13:37.035Z",
+      "evidence_url": "https://www.metisnation.org",
+      "method": "Manual Curation & Import"
+    },
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.metisnation.org"
+      },
+      {
+        "tag": "Métis",
+        "evidence_url": "https://www.metisnation.org"
+      },
+      {
+        "tag": "Housing",
+        "evidence_url": "https://www.metisnation.org"
+      }
+    ],
+    "synthetic_queries": [
+      "Métis Nation of Ontario (Kingston Office) help",
+      "Community kingston",
+      "Services at 107-61 Hyperion Ct, Kingston, ON K7K 7K7"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2562,
+      "lng": -76.4764
+    },
+    "hours": {
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
+    "name_fr": "Nation métisse de l'Ontario (Bureau de Kingston)",
+    "description_fr": "Services de soutien pour les citoyens métis, y compris des programmes de vie saine, de soutien communautaire, de logement et de formation à l'emploi.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "st-marys-cathedral-drop-in",
+    "name": "St. Mary's Cathedral Drop-In Centre",
+    "description": "Benevolent fund providing hot nutritious meals, snacks, groceries, and financial assistance. Shower/laundry available.",
+    "url": "https://stmaryscathedral.ca",
+    "phone": "613-546-5521",
+    "address": "260 Brock St, Kingston, ON K7L 1S3",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "Antigravity (Manual GeoJSON Import)",
+      "verified_at": "2026-01-01T22:13:37.720Z",
+      "evidence_url": "https://stmaryscathedral.ca",
+      "method": "Manual Curation & Import"
+    },
+    "identity_tags": [
+      {
+        "tag": "Faith-Based",
+        "evidence_url": "https://stmaryscathedral.ca"
+      },
+      {
+        "tag": "Meals",
+        "evidence_url": "https://stmaryscathedral.ca"
+      },
+      {
+        "tag": "Low Income",
+        "evidence_url": "https://stmaryscathedral.ca"
+      }
+    ],
+    "synthetic_queries": [
+      "St. Mary's Cathedral Drop-In Centre help",
+      "Food kingston",
+      "Services at 260 Brock St, Kingston, ON K7L 1S3"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2307,
+      "lng": -76.4914
+    },
+    "hours": {
+      "notes": "Mon-Fri 1:00pm-3:30pm"
+    },
+    "name_fr": "Centre d'accueil de la cathédrale St. Mary's",
+    "description_fr": "Fonds de bienfaisance offrant des repas chauds nutritifs, des collations, de l'épicerie et une aide financière. Douche/buanderie disponible.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "salvation-army-cfs",
+    "name": "Salvation Army Community & Family Services",
+    "description": "Emergency assistance, community choice pantry, and homelessness prevention. Distinct from Housing Help Centre.",
+    "url": "https://sacfs.ca",
+    "phone": "613-548-4411",
+    "address": "342 Patrick St, Kingston, ON K7K 6R6",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "Antigravity (Manual GeoJSON Import)",
+      "verified_at": "2026-01-01T22:13:37.720Z",
+      "evidence_url": "https://sacfs.ca",
+      "method": "Manual Curation & Import"
+    },
+    "identity_tags": [
+      {
+        "tag": "Faith-Based",
+        "evidence_url": "https://sacfs.ca"
+      },
+      {
+        "tag": "Food Hampers",
+        "evidence_url": "https://sacfs.ca"
+      },
+      {
+        "tag": "Emergency",
+        "evidence_url": "https://sacfs.ca"
+      }
+    ],
+    "synthetic_queries": [
+      "Salvation Army Community & Family Services help",
+      "Food kingston",
+      "Services at 342 Patrick St, Kingston, ON K7K 6R6"
+    ],
+    "eligibility_notes": "Open to eligible Kingston residents. See website for details.",
+    "coordinates": {
+      "lat": 44.2435,
+      "lng": -76.4905
+    },
+    "hours": {
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
+    "name_fr": "Services communautaires et familiaux de l'Armée du Salut",
+    "description_fr": "Aide d'urgence, garde-manger communautaire et prévention de l'itinérance. Distinct du Centre d'aide au logement.",
+    "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails."
+  },
+  {
+    "id": "crisis-988",
+    "name": "988 Suicide Crisis Helpline",
+    "name_fr": "Ligne de crise suicide 988",
+    "description": "Canada's national suicide crisis helpline. Call or text 988 for immediate support 24/7.",
+    "description_fr": "Ligne nationale de crise suicidaire du Canada. Appelez ou textez le 988 pour un soutien immédiat 24h/24.",
+    "phone": "988",
+    "url": "https://988.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://988.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["suicide help", "crisis line", "I want to die", "suicidal thoughts"],
+    "hours": {
+      "notes": "24/7"
+    }
+  },
+  {
+    "id": "crisis-connex-ontario",
+    "name": "ConnexOntario",
+    "name_fr": "ConnexOntario",
+    "description": "Ontario's mental health, addiction, and problem gambling helpline. Call, text, or chat 24/7.",
+    "description_fr": "Ligne d'aide de l'Ontario pour la santé mentale, les dépendances et le jeu compulsif. Appelez, textez ou clavardez 24h/24.",
+    "phone": "1-866-531-2600",
+    "url": "https://connexontario.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://connexontario.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["mental health help ontario", "addiction support", "gambling addiction"],
+    "hours": {
+      "notes": "24/7. Text CONNEX to 247247."
+    }
+  },
+  {
+    "id": "crisis-talk-suicide-canada",
+    "name": "Talk Suicide Canada",
+    "name_fr": "Parlons suicide Canada",
+    "description": "National suicide prevention service providing crisis support via phone and text.",
+    "description_fr": "Service national de prévention du suicide offrant un soutien de crise par téléphone et texto.",
+    "phone": "1-833-456-4566",
+    "url": "https://talksuicide.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://talksuicide.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["suicide prevention", "crisis support"],
+    "hours": {
+      "notes": "24/7. Text 45645 (4pm-12am ET)."
+    }
+  },
+  {
+    "id": "crisis-kids-help-phone",
+    "name": "Kids Help Phone",
+    "name_fr": "Jeunesse, J'écoute",
+    "description": "Canada's only 24/7 counselling and support service for young people. Call, text, or chat.",
+    "description_fr": "Le seul service de counseling et de soutien 24h/24 au Canada pour les jeunes. Appelez, textez ou clavardez.",
+    "phone": "1-800-668-6868",
+    "url": "https://kidshelpphone.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://kidshelpphone.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "Youth",
+        "evidence_url": "https://kidshelpphone.ca"
+      }
+    ],
+    "synthetic_queries": ["help for kids", "teen crisis", "youth mental health"],
+    "hours": {
+      "notes": "24/7. Text CONNECT to 686868."
+    }
+  },
+  {
+    "id": "crisis-good2talk",
+    "name": "Good2Talk",
+    "name_fr": "Good2Talk",
+    "description": "Free, confidential support for post-secondary students in Ontario. Mental health and addiction services.",
+    "description_fr": "Soutien gratuit et confidentiel pour les étudiants postsecondaires en Ontario. Services de santé mentale et de dépendance.",
+    "phone": "1-866-925-5454",
+    "url": "https://good2talk.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://good2talk.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "Youth",
+        "evidence_url": "https://good2talk.ca"
+      }
+    ],
+    "synthetic_queries": ["student mental health", "college crisis", "university support"],
+    "hours": {
+      "notes": "24/7. Text GOOD2TALKON to 686868."
+    }
+  },
+  {
+    "id": "crisis-hope-for-wellness",
+    "name": "Hope for Wellness Helpline",
+    "name_fr": "Ligne d'écoute d'espoir pour le mieux-être",
+    "description": "Immediate crisis intervention and counselling for Indigenous peoples across Canada. Available in multiple Indigenous languages.",
+    "description_fr": "Intervention de crise immédiate et counseling pour les peuples autochtones au Canada. Disponible en plusieurs langues autochtones.",
+    "phone": "1-855-242-3310",
+    "url": "https://www.hopeforwellness.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.hopeforwellness.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.hopeforwellness.ca"
+      }
+    ],
+    "synthetic_queries": ["Indigenous crisis", "First Nations mental health", "native support line"],
+    "hours": {
+      "notes": "24/7. Online chat available."
+    }
+  },
+  {
+    "id": "crisis-talk4healing",
+    "name": "Talk4Healing",
+    "name_fr": "Talk4Healing",
+    "description": "Helpline for Indigenous women across Ontario. Culturally grounded support for wellness, relationships, and crisis.",
+    "description_fr": "Ligne d'aide pour les femmes autochtones en Ontario. Soutien culturellement adapté pour le bien-être, les relations et les crises.",
+    "phone": "1-855-554-4325",
+    "url": "https://www.talk4healing.com",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.talk4healing.com",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.talk4healing.com"
+      },
+      {
+        "tag": "Women",
+        "evidence_url": "https://www.talk4healing.com"
+      }
+    ],
+    "synthetic_queries": ["Indigenous women help", "native women crisis"],
+    "hours": {
+      "notes": "24/7"
+    }
+  },
+  {
+    "id": "crisis-trans-lifeline",
+    "name": "Trans Lifeline",
+    "name_fr": "Ligne de vie trans",
+    "description": "Peer support hotline run by trans people for trans and questioning people. No non-consensual active rescue.",
+    "description_fr": "Ligne de soutien par les pairs gérée par des personnes trans pour les personnes trans et en questionnement.",
+    "phone": "1-877-330-6366",
+    "url": "https://translifeline.org",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://translifeline.org",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "2SLGBTQI+ Affirming",
+        "evidence_url": "https://translifeline.org"
+      }
+    ],
+    "synthetic_queries": ["trans crisis", "transgender support", "gender identity help"],
+    "hours": {
+      "notes": "Hours vary. Check website."
+    }
+  },
+  {
+    "id": "crisis-assaulted-womens-helpline",
+    "name": "Assaulted Women's Helpline",
+    "name_fr": "Ligne d'aide pour les femmes agressées",
+    "description": "Crisis counselling, safety planning, and referrals for women who have experienced abuse. Anonymous and confidential.",
+    "description_fr": "Counseling de crise, planification de sécurité et références pour les femmes victimes de violence. Anonyme et confidentiel.",
+    "phone": "1-866-863-0511",
+    "url": "https://www.awhl.org",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.awhl.org",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "Women",
+        "evidence_url": "https://www.awhl.org"
+      }
+    ],
+    "synthetic_queries": ["domestic violence help", "abuse hotline", "women's crisis"],
+    "hours": {
+      "notes": "24/7. TTY: 1-866-863-7868."
+    }
+  },
+  {
+    "id": "crisis-ontario-gambling",
+    "name": "Ontario Problem Gambling Helpline",
+    "name_fr": "Ligne d'aide pour le jeu compulsif de l'Ontario",
+    "description": "Confidential support for individuals and families affected by problem gambling.",
+    "description_fr": "Soutien confidentiel pour les personnes et les familles touchées par le jeu compulsif.",
+    "phone": "1-888-230-3505",
+    "url": "https://www.problemgamblinghelpline.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.problemgamblinghelpline.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["gambling addiction", "betting problem", "casino help"],
+    "hours": {
+      "notes": "24/7"
+    }
+  },
+  {
+    "id": "crisis-telehealth-ontario",
+    "name": "Telehealth Ontario",
+    "name_fr": "Télésanté Ontario",
+    "description": "Free, confidential health advice from a registered nurse. Available 24/7 for any health question.",
+    "description_fr": "Conseils de santé gratuits et confidentiels d'une infirmière autorisée. Disponible 24h/24 pour toute question de santé.",
+    "phone": "811",
+    "url": "https://www.ontario.ca/page/get-medical-advice-telehealth-ontario",
+    "intent_category": "Health",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.ontario.ca/page/get-medical-advice-telehealth-ontario",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["nurse advice", "health question", "should I go to ER"],
+    "hours": {
+      "notes": "24/7"
+    }
+  },
+  {
+    "id": "crisis-poison-control",
+    "name": "Ontario Poison Centre",
+    "name_fr": "Centre antipoison de l'Ontario",
+    "description": "Emergency poison information and treatment advice. For poisoning emergencies, call immediately.",
+    "description_fr": "Information sur les empoisonnements et conseils de traitement d'urgence. En cas d'empoisonnement, appelez immédiatement.",
+    "phone": "1-800-268-9017",
+    "url": "https://www.ontariopoisoncentre.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.ontariopoisoncentre.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["poisoning help", "my child ate", "overdose"],
+    "hours": {
+      "notes": "24/7"
+    }
+  },
+  {
+    "id": "crisis-eating-disorders",
+    "name": "National Eating Disorder Information Centre",
+    "name_fr": "Centre national d'information sur les troubles de l'alimentation",
+    "description": "Support, resources, and referrals for individuals affected by eating disorders.",
+    "description_fr": "Soutien, ressources et références pour les personnes touchées par les troubles de l'alimentation.",
+    "phone": "1-866-633-4220",
+    "url": "https://nedic.ca",
+    "intent_category": "Health",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://nedic.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["eating disorder help", "anorexia support", "bulimia"],
+    "hours": {
+      "notes": "Mon-Thu 9am-9pm, Fri 9am-5pm ET"
+    }
+  },
+  {
+    "id": "crisis-pflag-canada",
+    "name": "PFLAG Canada",
+    "name_fr": "PFLAG Canada",
+    "description": "Support for families, friends, and allies of LGBTQ2S+ people. Peer support and resources.",
+    "description_fr": "Soutien aux familles, amis et alliés des personnes LGBTQ2S+. Soutien par les pairs et ressources.",
+    "phone": "1-888-530-6777",
+    "url": "https://pflagcanada.ca",
+    "intent_category": "Community",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://pflagcanada.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [
+      {
+        "tag": "2SLGBTQI+ Affirming",
+        "evidence_url": "https://pflagcanada.ca"
+      }
+    ],
+    "synthetic_queries": ["LGBTQ family support", "my child came out", "ally resources"],
+    "hours": {
+      "notes": "Check website for hours."
+    }
+  },
+  {
+    "id": "crisis-text-line",
+    "name": "Crisis Text Line",
+    "name_fr": "Ligne de crise par texto",
+    "description": "Free, 24/7 text-based crisis support. Text HOME to 686868 to connect with a trained crisis responder.",
+    "description_fr": "Soutien de crise par texto gratuit 24h/24. Textez PARLER au 686868.",
+    "phone": "",
+    "url": "https://www.crisistextline.ca",
+    "intent_category": "Crisis",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://www.crisistextline.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["text crisis", "crisis text", "I need to text someone"],
+    "hours": {
+      "notes": "24/7. Text HOME to 686868."
+    }
+  },
+  {
+    "id": "crisis-211-ontario",
+    "name": "211 Ontario",
+    "name_fr": "211 Ontario",
+    "description": "Information and referral to community, government, social, and health services across Ontario.",
+    "description_fr": "Information et références vers les services communautaires, gouvernementaux, sociaux et de santé en Ontario.",
+    "phone": "211",
+    "url": "https://211ontario.ca",
+    "intent_category": "Community",
+    "verification_level": "L1",
+    "is_provincial": true,
+    "provenance": {
+      "verified_by": "Manual Curation (Tier 5)",
+      "verified_at": "2026-01-01T22:30:00Z",
+      "evidence_url": "https://211ontario.ca",
+      "method": "Official Website"
+    },
+    "identity_tags": [],
+    "synthetic_queries": ["community services", "find help ontario", "social services"],
+    "hours": {
+      "notes": "24/7"
+    }
   }
 ]

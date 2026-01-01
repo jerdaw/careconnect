@@ -21,6 +21,7 @@ export enum IntentCategory {
   Financial = "Financial",
   Employment = "Employment",
   Community = "Community",
+  Indigenous = "Indigenous",
 }
 
 /**
@@ -136,4 +137,14 @@ export interface Service {
     lat: number
     lng: number
   }
+
+  /**
+   * Indicates service has stated cultural safety protocols for Indigenous peoples.
+   */
+  cultural_safety?: boolean
+
+  /**
+   * If true, this service is available province-wide, not just Kingston.
+   */
+  is_provincial?: boolean
 }

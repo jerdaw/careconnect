@@ -92,7 +92,7 @@ export default function SearchControls({
               "border-transparent bg-red-600 text-white shadow-md shadow-red-500/30 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
             )}
           >
-            {cat === "Crisis" ? t("crisis") : cat}
+            {t(cat.toLowerCase())}
           </Button>
         ))}
       </div>

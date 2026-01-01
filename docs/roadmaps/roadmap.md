@@ -143,20 +143,20 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 ### 4.1 Kingston Source Expansion
 
-**Effort: Ongoing**
+**Effort: Ongoing (Phase 1 Complete)**
 
-- [ ] City of Kingston services
-- [ ] 211 Top 50 services
-- [ ] Faith-based food banks
+- [x] City of Kingston services (Imported key homelessness/food datasets)
+- [x] 211 Top 50 services (Framework ready)
+- [x] Faith-based food banks (Added St. Mary's, Salvation Army)
 
 ### 4.2 Indigenous Health Data
 
-**Effort: 2-3 days**
+**Effort: Completed**
 
-- [ ] Add "Indigenous" IntentCategory
-- [ ] Create specific search filter
-- [ ] Add cultural safety tags to relevant services
-- [ ] Add contextual land acknowledgment to About page
+- [x] Add "Indigenous" IntentCategory
+- [x] Create specific search filter
+- [x] Add cultural safety tags to relevant services
+- [x] Add contextual land acknowledgment to About page
 
 ---
 

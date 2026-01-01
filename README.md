@@ -18,7 +18,7 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 
 ---
 
-## Current Features (v4.1)
+## Current Features (v5.0)
 
 ### Search Intelligence
 
@@ -44,6 +44,10 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 - **Community Governance** — Residents can flag inaccurate data directly.
 - **Performance Optimized** — Loads instantly, even on slow connections.
 - **Bilingual Support** — Full English and French content switching.
+- **Multi-Lingual UI** — Arabic, Simplified Chinese, and Spanish interface translations.
+- **Indigenous Health Services** — Dedicated filters and culturally safe tags.
+- **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
+- **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
 
 ---
 

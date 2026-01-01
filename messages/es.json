@@ -1,0 +1,314 @@
+{
+  "BetaBanner": {
+    "title": "Este es un proyecto liderado por la comunidad"
+  },
+  "Footer": {
+    "disclaimer": "Apoyando a la comunidad de Kingston"
+  },
+  "Search": {
+    "placeholder": "Buscar ayuda...",
+    "label": "Buscar servicios",
+    "loading": "Mejorando la capacidad de búsqueda...",
+    "active": "Búsqueda Neural Privada Activa",
+    "didYouMean": "¿Quisiste decir:",
+    "openNow": "Abierto Ahora",
+    "nearMe": "Cerca de Mí",
+    "useLocation": "Usar Ubicación",
+    "clearLocation": "Limpiar filtro de ubicación",
+    "filterByLocation": "Filtrar por ubicación actual",
+    "all": "Todos",
+    "crisis": "🗣️ Crisis",
+    "food": "Alimentos",
+    "housing": "Vivienda",
+    "health": "Salud",
+    "legal": "Legal",
+    "wellness": "Bienestar",
+    "financial": "Financiero",
+    "employment": "Empleo",
+    "community": "Comunidad",
+    "indigenous": "Indígena"
+  },
+  "VoiceInput": {
+    "start": "Iniciar Búsqueda por Voz Privada",
+    "stop": "Dejar de Escuchar",
+    "processing": "Transcribiendo en el dispositivo...",
+    "error": "Error",
+    "notSupported": "Entrada de voz no soportada"
+  },
+  "SubmitService": {
+    "title": "Sugerir un Servicio",
+    "description": "¿Conoces un servicio comunitario útil que falta? Cuéntanos.",
+    "serviceName": "Nombre del Servicio",
+    "serviceDesc": "Descripción",
+    "phone": "Número de Teléfono",
+    "website": "Sitio Web",
+    "address": "Dirección",
+    "submit": "Enviar Sugerencia",
+    "submitting": "Enviando...",
+    "successTitle": "¡Gracias!",
+    "successMessage": "Tu sugerencia ha sido recibida y será revisada por nuestro equipo.",
+    "submitAnother": "Enviar Otro Servicio"
+  },
+  "Analytics": {
+    "title": "Análisis de Socios",
+    "description": "Información sobre las necesidades de la comunidad y brechas de servicios.",
+    "totalSearches": "Total de Búsquedas (30d)",
+    "topCategory": "Categoría Principal",
+    "zeroResults": "Tasa de Cero Resultados",
+    "description_searches": "+12% desde el mes pasado",
+    "description_top": "Tipo de servicio más solicitado",
+    "description_zero": "Búsquedas sin coincidencias",
+    "betaAccess": "Acceso Beta",
+    "betaMessage": "Estas métricas se basan actualmente en el uso agregado de la plataforma.",
+    "totalServices": "Total de Servicios",
+    "totalViews": "Total de Vistas (30d)",
+    "vsPeriod": "vs {period}",
+    "totalAllTime": "Total de todos los tiempos"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "suggest": "Sugerir Servicio",
+    "admin": "Admin"
+  },
+  "Common": {
+    "openInNewTab": "(abre en una nueva pestaña)",
+    "printResults": "Imprimir Resultados"
+  },
+  "Privacy": {
+    "title": "Política de Privacidad",
+    "simplified": "Privacidad Simplificada",
+    "intro": "En Kingston Care Connect, tu privacidad no es una ocurrencia tardía, es nuestra arquitectura central.",
+    "points": {
+      "noTracking": "Sin Rastreo: No usamos Google Analytics, Facebook Pixels, ni ningún rastreador de terceros.",
+      "noCookies": "Sin Cookies: No almacenamos datos personales en cookies.",
+      "noLogging": "Sin Registro de Consultas: Tus términos de búsqueda se procesan de forma anónima."
+    },
+    "contact": "¿Preguntas? Contáctanos en privacy@kingstoncare.ca"
+  },
+  "ServiceCard": {
+    "reportIssue": "Reportar Problema"
+  },
+  "Dashboard": {
+    "title": "Panel de Control",
+    "welcome": "Bienvenido de nuevo, {email}",
+    "verificationStatus": "Estado de Verificación",
+    "pending": "Pendiente",
+    "completeProfile": "Completar Perfil",
+    "getStarted": "Comenzar",
+    "noServices": "Aún no has reclamado ningún servicio.",
+    "hasServices": "Gestiona tus servicios existentes y mantén tus datos actualizados.",
+    "manageServices": "Gestionar Servicios",
+    "editService": "Editar Servicio",
+    "services": {
+      "title": "Mis Servicios",
+      "emptyState": {
+        "title": "No se encontraron servicios",
+        "description": "Aún no has reclamado ningún servicio."
+      },
+      "createFirst": "Reclamar un Servicio",
+      "colName": "Nombre del Servicio",
+      "colStatus": "Estado",
+      "colActions": "Acciones",
+      "edit": "Editar",
+      "saveChanges": "Guardar Cambios",
+      "statusActive": "Activo",
+      "englishLabel": "EN",
+      "frenchLabel": "FR",
+      "name": "Nombre",
+      "description": "Descripción",
+      "phone": "Teléfono",
+      "website": "Sitio Web",
+      "address": "Dirección",
+      "hours": "Horario de Operación",
+      "eligibility": "Criterios de Elegibilidad"
+    }
+  },
+  "ServiceDetail": {
+    "back": "Volver",
+    "share": "Compartir",
+    "shareSuccess": "¡Copiado!",
+    "officialProvider": "Proveedor Oficial",
+    "hours": "Horario",
+    "fees": "Tarifas",
+    "eligibility": "Elegibilidad y Requisitos",
+    "access": "Cómo Acceder",
+    "focusedOn": "Enfocado en",
+    "contactInfo": "Información de Contacto",
+    "location": "Ubicación",
+    "phone": "Teléfono",
+    "website": "Sitio Web",
+    "email": "Correo Electrónico",
+    "visitWebsite": "Visitar Sitio del Proveedor",
+    "incorrectInfo": "¿Esta información es incorrecta o está desactualizada?",
+    "reportIssue": "Reportar un Problema",
+    "claimTitle": "¿Eres dueño de esta organización?",
+    "claimText": "Reclama este listado para mantener tu información actualizada y obtener acceso a análisis.",
+    "confirmClaim": "Confirmar Reclamo",
+    "claiming": "Reclamando...",
+    "claimed": "¡Reclamado!",
+    "claimListing": "Reclamar Listado",
+    "notFound": "Servicio No Encontrado",
+    "notFoundText": "El servicio que buscas no existe o ha sido eliminado.",
+    "backToSearch": "Volver a Buscar"
+  },
+  "AI": {
+    "title": "Asistente de Cuidado",
+    "initializing": "Inicializando Cerebro IA...",
+    "privacyNote": "IA Privada Primero",
+    "privacyDesc": "Este asistente funciona 100% en tu dispositivo. No se envían datos a la nube.",
+    "enable": "Habilitar Asistente",
+    "retry": "Reintentar",
+    "initFailed": "Inicialización Fallida",
+    "placeholderReady": "Escribe un mensaje...",
+    "placeholderWaiting": "Esperando a la IA...",
+    "welcome": "👋 ¡Hola! Puedo ayudarte a encontrar servicios.",
+    "suggestion": "Intenta preguntar: \"¿Dónde puedo encontrar comida?\" o \"Necesito refugio para jóvenes.\"",
+    "errorThinking": "Tengo problemas para pensar ahora mismo. Por favor, intenta buscar en su lugar.",
+    "systemPrompt": "Eres un asistente amable para Kingston Care Connect.",
+    "contextIntro": "Aquí hay algunos servicios locales relevantes que encontré:",
+    "noMatches": "No se encontraron coincidencias directas en nuestra base de datos.",
+    "crisisPrompt": "Si el usuario está en crisis, insta a llamar al 911.",
+    "clearChat": "Limpiar conversación"
+  },
+  "Settings": {
+    "personalizePrompt": "Personaliza tus resultados",
+    "personalizeDescription": "Opcionalmente comparte tu situación para ver servicios para los que podrías calificar. Estos datos nunca salen de tu dispositivo.",
+    "enablePersonalization": "Habilitar Personalización",
+    "ageGroup": "Grupo de Edad",
+    "ageGroups": {
+      "youth": "Joven (menor de 30)",
+      "adult": "Adulto (18-64)",
+      "senior": "Adulto Mayor (55+)"
+    },
+    "identities": "Me identifico como...",
+    "identityTags": {
+      "indigenous": "Indígena",
+      "newcomer": "Recién llegado a Canadá",
+      "2slgbtqi+": "2SLGBTQI+",
+      "veteran": "Veterano",
+      "disability": "Persona con discapacidad"
+    },
+    "clearProfile": "Limpiar Mi Perfil",
+    "Notifications": {
+      "title": "Notificaciones",
+      "enable": "Habilitar Notificaciones Push",
+      "permissions": "Permisos Requeridos",
+      "permissionsDesc": "Necesitamos tu permiso para enviar alertas.",
+      "categories": {
+        "crisis": "Alertas de Emergencia",
+        "food": "Bancos de Alimentos",
+        "housing": "Refugio y Vivienda",
+        "health": "Alertas de Salud",
+        "general": "Actualizaciones Generales"
+      }
+    }
+  },
+  "Eligibility": {
+    "likelyQualify": "✓ Probablemente calificas"
+  },
+  "Freshness": {
+    "verified": "Verificado",
+    "unknown": "No verificado",
+    "verifiedOn": "Última verificación",
+    "neverVerified": "Este servicio no ha sido verificado recientemente"
+  },
+  "Feedback": {
+    "title": "Reportar un Problema",
+    "description": "Ayúdanos a mejorar el listado para {service}. Tu retroalimentación ayuda a la comunidad.",
+    "issueType": "¿Cuál es el problema?",
+    "types": {
+      "wrong_phone": "Número de Teléfono Incorrecto",
+      "wrong_address": "Dirección Incorrecta",
+      "service_closed": "Servicio Cerrado / Mudado",
+      "other": "Otro Problema"
+    },
+    "messageLabel": "Detalles Adicionales (Opcional)",
+    "messagePlaceholder": "Por favor proporciona la información correcta si la tienes...",
+    "cancel": "Cancelar",
+    "submit": "Enviar Reporte",
+    "successTitle": "¡Gracias!",
+    "successMessage": "Hemos recibido tu retroalimentación y la revisaremos pronto.",
+    "errorTitle": "Error",
+    "errorMessage": "Algo salió mal. Por favor, inténtalo de nuevo más tarde."
+  },
+  "Accessibility": {
+    "title": "Accesibilidad",
+    "highContrast": "Modo de Alto Contraste"
+  },
+  "About": {
+    "hero": {
+      "title": "Los 150 de Kingston",
+      "subtitle": "Un motor de búsqueda centrado en la gobernanza para los servicios sociales más esenciales de Kingston. Verificado, accesible y centrado en la privacidad."
+    },
+    "governanceText": "Esta plataforma se adhiere al Esquema de Gobernanza Kingston 150 (V7), asegurando que todos los datos de servicios estén verificados, categorizados y rastreados en su procedencia.",
+    "landAcknowledgment": {
+      "title": "Reconocimiento Territorial",
+      "text": "Kingston, conocida como Katarokwi, está situada en las tierras ancestrales y tradicionales de las confederaciones Huron-Wendat, Anishinaabe y Haudenosaunee."
+    },
+    "metrics": {
+      "verified": {
+        "title": "50+ Servicios Verificados",
+        "description": "Curados a mano para alto impacto. Sin ruido, solo ayuda."
+      },
+      "offline": {
+        "title": "Funciona Sin Conexión",
+        "description": "Instalable como aplicación. Busca sin conexión a internet."
+      },
+      "bilingual": {
+        "title": "Completamente Bilingüe",
+        "description": "Paridad completa entre inglés y francés para todos los listados."
+      },
+      "community": {
+        "title": "Liderado por la Comunidad",
+        "description": "Verificación de datos por socios locales, no por raspadores web."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "subtitle": "Hacemos que encontrar ayuda sea simple eliminando barreras y rastreo.",
+      "step1": {
+        "title": "Búsqueda Privada",
+        "description": "Usa palabras clave o habla con nuestro asistente de IA privado."
+      },
+      "step2": {
+        "title": "Filtra Resultados",
+        "description": "Ve instantáneamente qué está Abierto Ahora y Cerca de Ti."
+      },
+      "step3": {
+        "title": "Conecta",
+        "description": "Llama, obtén direcciones o visita sitios web con un toque."
+      }
+    },
+    "governance": {
+      "title": "Gobernanza de Datos",
+      "description": "A diferencia de los grandes motores de búsqueda, no vendemos tus datos. Kingston Care Connect está construido con una arquitectura de 'Privacidad Primero'."
+    },
+    "cta": {
+      "title": "¿Listo para encontrar ayuda?",
+      "search": "Explorar Servicios",
+      "partners": "Ver Socios"
+    }
+  },
+  "Partners": {
+    "link": "Para Socios"
+  },
+  "PartnersPage": {
+    "hero": {
+      "title": "Construido sobre Fuentes Confiables",
+      "subtitle": "Kingston Care Connect depende de datos verificados de socios comunitarios establecidos. No raspamos; colaboramos."
+    },
+    "verification": {
+      "title": "Nuestro Proceso de Verificación",
+      "step1": "Verificación de Fuente",
+      "step2": "Revisión Manual",
+      "step3": "Auditorías Mensuales",
+      "description": "Cada listado de servicio pasa por un riguroso proceso de verificación de 3 pasos para asegurar precisión y seguridad."
+    },
+    "cta": {
+      "title": "Conviértete en Socio",
+      "subtitle": "¿Eres un proveedor de servicios? Únete a nuestra red para llegar a más personas.",
+      "button": "Sugerir un Servicio"
+    }
+  }
+}

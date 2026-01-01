@@ -124,7 +124,15 @@ export default function AboutPage() {
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mb-8 text-3xl font-bold text-neutral-900 dark:text-white">{t("governance.title")}</h2>
             <div className="prose prose-lg mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
-              <p>{t("governance.description")}</p>
+              <p>{t("governanceText")}</p>
+            </div>
+            
+             {/* Land Acknowledgment */}
+            <div className="mt-16 border-t border-neutral-200 pt-16 dark:border-neutral-800">
+               <h2 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">{t("landAcknowledgment.title")}</h2>
+               <p className="mx-auto max-w-3xl text-neutral-600 dark:text-neutral-400">
+                 {t("landAcknowledgment.text")}
+               </p>
             </div>
           </div>
         </Section>

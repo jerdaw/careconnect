@@ -57,6 +57,7 @@ The search system uses a hybrid approach:
 - **Source of Truth**: 211 Ontario API (Raw Data) + Manual Verification (Golden Dataset).
 - **Ingestion**:
   - `scripts/sync-211.ts`: Fetches, cleans, and maps external data to the `Service` schema.
+  - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
 
@@ -96,7 +97,7 @@ The search system uses a hybrid approach:
   - `/service/[id]`: Rich detail page.
   - `/submit-service`: Public crowdsourcing form.
   - `/dashboard`: Partner portal.
-  - `/about`: Project mission and impact metrics.
+  - `/about`: Project mission and impact metrics. Includes **Katarokwi Land Acknowledgment**.
   - `/about/partners`: Data source transparency and verification process.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 

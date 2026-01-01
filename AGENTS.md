@@ -20,6 +20,7 @@
   - `docs/roadmaps/archive/tier-1-implementation.md` → Tier 1 detail.
   - `docs/roadmaps/archive/tier-2-implementation.md` → Tier 2 detail.
   - `docs/roadmaps/archive/tier-3-implementation.md` → Tier 3 detail.
+  - `docs/roadmaps/archive/tier-4-implementation.md` → Tier 4 detail.
 
 When in doubt about architecture or design design, **read `README.md` and `docs/**` first\*\*.
 
