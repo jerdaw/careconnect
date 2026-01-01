@@ -16,7 +16,7 @@ test.describe("Accessibility Audit", () => {
         await page.goto("/?query=food")
 
         // Wait for results
-        await page.waitForLoadState("networkidle")
+        await expect(page.locator("article h3").first()).toBeVisible()
 
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
         expect(accessibilityScanResults.violations).toEqual([])
@@ -26,12 +26,12 @@ test.describe("Accessibility Audit", () => {
         // Assuming a test service ID or slug exists in the mock/local data
         // We'll navigate via search for robustness
         await page.goto("/?query=food")
-        await page.waitForLoadState("networkidle")
+        await expect(page.locator("article h3").first()).toBeVisible()
 
         const firstResult = page.getByRole("link", { name: /View Details/i }).first()
         await firstResult.click()
-
-        await page.waitForLoadState("networkidle")
+        
+        await expect(page).toHaveURL(/\/services\//)
 
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
         expect(accessibilityScanResults.violations).toEqual([])
