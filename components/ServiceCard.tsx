@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { MapPin, Phone, ShieldCheck, Flag, ArrowRight, HeartPulse, Home, Utensils, AlertTriangle } from "lucide-react"
 import { Service, VerificationLevel, IntentCategory } from "../types/service"
-import { generateFeedbackLink } from "../lib/feedback"
+import { FeedbackModal } from "@/components/FeedbackModal"
 import { Link } from "../i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -42,6 +42,7 @@ const CategoryIcon = ({ category, className }: { category: string; className?: s
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = [] }) => {
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
   const locale = useLocale()
   const t = useTranslations("Common")
   const isVerified =
@@ -173,13 +174,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
 
           {/* Footer Actions - Reveal on Hover/Focus */}
           <div className="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4 dark:border-neutral-800">
-            <a
-              href={generateFeedbackLink(service)}
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 transition-colors hover:text-neutral-600 dark:hover:text-neutral-300"
+            <button
+              onClick={() => setFeedbackOpen(true)}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-500 transition-colors hover:text-neutral-600 dark:hover:text-neutral-300"
             >
               <Flag className="h-3 w-3" />
               {t("ServiceCard.reportIssue")}
-            </a>
+            </button>
+            <FeedbackModal
+              serviceId={service.id}
+              serviceName={service.name}
+              isOpen={feedbackOpen}
+              onClose={() => setFeedbackOpen(false)}
+            />
 
             <Button
               size="sm"

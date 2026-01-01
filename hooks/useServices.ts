@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import { searchServices, SearchResult, getSuggestion } from "@/lib/search"
+import { useEffect } from "react"
+import { searchServices, SearchResult } from "@/lib/search"
+import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
 import { logger } from "@/lib/logger"
 
 interface UseServicesProps {
@@ -42,13 +43,19 @@ export function useServices({
 
       try {
         // 1. Instant Keyword/Filter Search (First Pass)
-        const initialResults = await searchServices(query, { category, location: userLocation, openNow })
+        const initialResults = await searchServices(query, {
+          category,
+          location: userLocation,
+          openNow,
+          onSuggestion: setSuggestion,
+        })
         setResults(initialResults)
         setIsLoading(false) // Show initial results immediately
 
-        // 2. Spelling Suggestion
-        const suggestion = getSuggestion(query)
-        setSuggestion(suggestion)
+        // Cache successful results
+        if (initialResults.length > 0) {
+          setCachedServices(initialResults)
+        }
 
         // 2. Progressive Upgrade (If Model Ready & Query exists)
         if (isReady && query.trim().length > 0) {
@@ -80,10 +87,16 @@ export function useServices({
       } catch (err) {
         logger.error("Search failed", err, { component: "useServices", action: "performSearch" })
         setIsLoading(false)
+
+        // Offline fallback
+        const cached = getCachedServices<SearchResult[]>()
+        if (cached) {
+          setResults(cached)
+        }
       }
     }
 
     const timer = setTimeout(performSearch, 150)
     return () => clearTimeout(timer)
-  }, [query, category, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched])
+  }, [query, category, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion])
 }

@@ -151,6 +151,20 @@
   --color-accent-950: #083344;
 }
 
+/* Enhanced focus states for WCAG AA */
+*:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Ensure buttons have visible focus */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
 :root {
   /* Semantic Surfaces */
   --surface-glass: rgba(255, 255, 255, 0.7);

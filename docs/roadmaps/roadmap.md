@@ -56,28 +56,28 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 **Effort: 2-3 hours**
 
-- [ ] Add `.high-contrast` class to `globals.css`
-- [ ] Add toggle in user settings
+- [x] Add `.high-contrast` class to `globals.css`
+- [x] Add toggle in user settings
 
 ### 1.2 Print Stylesheet
 
 **Effort: 1-2 hours**
 
-- [ ] Add `@media print` styles
-- [ ] Add "Print Results" button
+- [x] Add `@media print` styles
+- [x] Add "Print Results" button
 
 ### 1.3 CONTRIBUTING.md
 
 **Effort: 30 minutes**
 
-- [ ] Create `CONTRIBUTING.md`
+- [x] Create `CONTRIBUTING.md`
 
 ### 1.4 Freshness Badge
 
 **Effort: 2-3 hours**
 
-- [ ] Create `components/ui/FreshnessBadge.tsx`
-- [ ] Add to ServiceCard
+- [x] Create `components/ui/FreshnessBadge.tsx`
+- [x] Add to ServiceCard
 
 ---
 
@@ -87,31 +87,31 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 **Effort: 1-2 days**
 
-- [ ] **DB**: `feedback` table
-- [ ] **UI**: `FeedbackModal` (replaces mailto)
-- [ ] **Partner**: Feedback management dashboard
+- [x] **DB**: `feedback` table
+- [x] **UI**: `FeedbackModal` (replaces mailto)
+- [x] **Partner**: Feedback management dashboard
 
 ### 2.2 "Did You Mean?" & Fuzzy Search
 
 **Effort: 1 day**
 
-- [ ] **Lib**: Levenshtein distance algorithm
-- [ ] **UI**: `NoResultsSuggestions` component
+- [x] **Lib**: Levenshtein distance algorithm
+- [x] **UI**: `NoResultsSuggestions` component
 
 ### 2.3 PWA Offline Polish
 
 **Effort: 1-2 days**
 
-- [ ] **SW**: Cache `services.json`
-- [ ] **Data**: `localStorage` fallback
-- [ ] **UI**: Enhanced offline page
+- [x] **SW**: Cache `services.json`
+- [x] **Data**: `localStorage` fallback
+- [x] **UI**: Enhanced offline page
 
 ### 2.4 WCAG 2.1 AA Compliance
 
 **Effort: 1 day**
 
-- [ ] Audit color contrast, focus states, aria-labels
-- [ ] Add skip-to-content link
+- [x] Audit color contrast, focus states, aria-labels
+- [x] Add skip-to-content link
 
 ---
 

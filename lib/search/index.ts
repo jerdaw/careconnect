@@ -11,6 +11,8 @@ import { detectCrisis, boostCrisisResults } from "./crisis"
 import { isOpenNow } from "./hours"
 import { expandQuery as expandSynonyms } from "./synonyms"
 import { expandQuery as expandQueryAI } from "@/lib/ai/query-expander"
+import { findClosestMatch } from "./levenshtein"
+import { getSearchTerms } from "./data"
 
 /**
  * Main Hybrid Search Function (Optimized for Cost)
@@ -186,6 +188,15 @@ export const searchServices = async (query: string, options: SearchOptions = {})
 
   if (options.limit && options.limit > 0) {
     return finalResults.slice(0, options.limit)
+  }
+
+  // Generate suggestion if no results
+  if (finalResults.length === 0 && query.trim().length > 2) {
+    const searchTerms = await getSearchTerms()
+    const suggestion = findClosestMatch(query, searchTerms)
+    if (suggestion) {
+      options.onSuggestion?.(suggestion)
+    }
   }
 
   return finalResults

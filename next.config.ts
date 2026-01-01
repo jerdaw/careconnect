@@ -42,16 +42,35 @@ const nextConfig: NextConfig = {
   },
 }
 
-const withPWA = require("@ducanh2912/next-pwa").default({
+import withPWAInit from "@ducanh2912/next-pwa"
+
+const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development" || !!process.env.CI,
   register: true,
-  skipWaiting: true,
   fallbacks: {
     document: "/offline",
   },
   workboxOptions: {
     importScripts: ["/custom-sw.js"],
+    runtimeCaching: [
+      {
+        urlPattern: /\/api\/services/,
+        handler: "StaleWhileRevalidate",
+        options: {
+          cacheName: "services-api-cache",
+          expiration: { maxAgeSeconds: 86400 }, // 24 hours
+        },
+      },
+      {
+        urlPattern: /\.json$/,
+        handler: "CacheFirst",
+        options: {
+          cacheName: "json-cache",
+          expiration: { maxAgeSeconds: 604800 }, // 7 days
+        },
+      },
+    ],
   },
 })
 
@@ -70,6 +89,7 @@ if (typeof window === "undefined") {
   }
 
   if (!global.localStorage || typeof global.localStorage.getItem !== "function") {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(global as any).localStorage = mockStorage
   }
 }

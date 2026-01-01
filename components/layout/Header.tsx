@@ -25,8 +25,15 @@ export function Header() {
   }, [])
 
   return (
-    <header
-      className={cn(
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+      <header
+        className={cn(
         "fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300",
         scrolled
           ? "border-neutral-200/50 bg-white/80 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/80"
@@ -156,5 +163,6 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   )
 }

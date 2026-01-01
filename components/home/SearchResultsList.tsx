@@ -1,6 +1,7 @@
 import ServiceCard from "../ServiceCard"
 import ServiceCardSkeleton from "../ServiceCardSkeleton"
 import { SearchResult } from "@/lib/search"
+import { PrintButton } from "@/components/ui/PrintButton"
 
 interface SearchResultsListProps {
   isLoading: boolean
@@ -43,8 +44,11 @@ export default function SearchResultsList({
     <div className="space-y-4">
       {/* Results Counter if filters active */}
       {hasSearched && results.length > 0 && (userLocation || category) && (
-        <div className="text-right text-xs text-neutral-400">
-          {results.length} results {userLocation && "sorted by distance"}
+        <div className="flex items-center justify-between text-xs text-neutral-400">
+          <PrintButton className="no-print" />
+          <span>
+            {results.length} results {userLocation && "sorted by distance"}
+          </span>
         </div>
       )}
 

@@ -70,3 +70,16 @@ export const loadServices = async (): Promise<Service[]> => {
   dataCache = { services: enrichedFallback }
   return enrichedFallback
 }
+
+export async function getSearchTerms(): Promise<string[]> {
+  const services = await loadServices()
+  const terms = new Set<string>()
+
+  for (const service of services) {
+    terms.add(service.name)
+    if (service.name_fr) terms.add(service.name_fr)
+    service.identity_tags.forEach((tag) => terms.add(tag.tag))
+  }
+
+  return Array.from(terms)
+}

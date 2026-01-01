@@ -202,6 +202,25 @@
     "verifiedOn": "Last verified",
     "neverVerified": "This service has not been verified recently"
   },
+  "Feedback": {
+    "title": "Report an Issue",
+    "description": "Help us improve the listing for {service}. Your feedback helps the community.",
+    "issueType": "What is the issue?",
+    "types": {
+      "wrong_phone": "Wrong Phone Number",
+      "wrong_address": "Wrong Address",
+      "service_closed": "Service Closed / Moved",
+      "other": "Other Issue"
+    },
+    "messageLabel": "Additional Details (Optional)",
+    "messagePlaceholder": "Please provide the correct information if you have it...",
+    "cancel": "Cancel",
+    "submit": "Submit Report",
+    "successTitle": "Thank you!",
+    "successMessage": "We've received your feedback and will review it shortly.",
+    "errorTitle": "Error",
+    "errorMessage": "Something went wrong. Please try again later."
+  },
   "Accessibility": {
     "title": "Accessibility",
     "highContrast": "High Contrast Mode"

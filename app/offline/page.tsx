@@ -3,7 +3,19 @@
 import { WifiOff, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { useEffect, useState } from "react"
+import { getCachedServices } from "@/lib/offline/cache"
+import ServiceCard from "@/components/ServiceCard" // Default import
+import { SearchResult } from "@/lib/search/types"
+
 export default function OfflinePage() {
+  const [cachedServices, setCached] = useState<SearchResult[]>([])
+
+  useEffect(() => {
+    const cached = getCachedServices<SearchResult[]>()
+    if (cached) setCached(cached)
+  }, [])
+
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-neutral-50 px-4 text-center dark:bg-neutral-900">
       <div className="rounded-full bg-neutral-200 p-6 dark:bg-neutral-800">
@@ -13,6 +25,17 @@ export default function OfflinePage() {
       <p className="mt-2 max-w-sm text-neutral-600 dark:text-neutral-400">
         It looks like you lost your internet connection. We can&apos;t search for new services right now.
       </p>
+
+      {cachedServices.length > 0 && (
+        <section className="mt-8 w-full max-w-md text-left">
+          <h2 className="mb-2 text-sm font-semibold text-neutral-500">Recently Viewed</h2>
+          <div className="space-y-4">
+            {cachedServices.slice(0, 3).map((r) => (
+              <ServiceCard key={r.service.id} service={r.service} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="mt-8 w-full max-w-md space-y-4">
         <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">

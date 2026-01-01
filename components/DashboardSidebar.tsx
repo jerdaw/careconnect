@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useAuth } from "@/components/AuthProvider"
-import { LayoutDashboard, List, Settings, LogOut, ExternalLink, Bell, BarChart3 } from "lucide-react"
+import { LayoutDashboard, List, Settings, LogOut, ExternalLink, Bell, BarChart3, MessageSquare } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -96,6 +96,24 @@ export default function DashboardSidebar() {
             </span>
           </div>
           Notifications
+        </Link>
+
+        <Link
+          href="/dashboard/feedback"
+          className={cn(
+            "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+            isActive("/dashboard/feedback")
+              ? "bg-primary-50 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 shadow-sm"
+              : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+          )}
+        >
+          <MessageSquare
+            className={cn(
+              "h-5 w-5 transition-colors",
+              isActive("/dashboard/feedback") ? "text-primary-600" : "text-neutral-400 group-hover:text-neutral-600"
+            )}
+          />
+          Feedback
         </Link>
 
         <Link

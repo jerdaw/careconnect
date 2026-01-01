@@ -65,7 +65,7 @@ export default function Home() {
   const isActive = isFocused || query.length > 0
 
   return (
-    <main className="relative flex min-h-screen flex-col overflow-hidden">
+    <main id="main-content" className="relative flex min-h-screen flex-col overflow-hidden">
       <div className="bg-noise" />
       <Header />
 

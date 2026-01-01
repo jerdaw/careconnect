@@ -15,6 +15,7 @@ export interface SearchOptions {
   limit?: number
   userContext?: import("@/types/user-context").UserContext
   useAIExpansion?: boolean
+  onSuggestion?: (suggestion: string) => void
 }
 
 export interface ScoringWeights {
