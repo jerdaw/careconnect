@@ -10,6 +10,12 @@ const DATA_DIR = path.join(process.cwd(), "data")
 
 async function main() {
   console.log("🧠 Loading embedding model...")
+  
+  if (process.env.CI || process.env.SKIP_EMBEDDINGS) {
+    console.log("⏩ Skipping embedding generation in CI/Test environment.")
+    return
+  }
+
   // feature-extraction task
   const embedder = await pipeline("feature-extraction", MODEL)
 
