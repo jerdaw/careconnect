@@ -1,37 +1,30 @@
 import { describe, it, expect } from "vitest"
 import { scoreServiceKeyword, WEIGHTS, calculateScore } from "@/lib/search/scoring"
-import { Service } from "@/types/service"
+import { Service, VerificationLevel, IntentCategory } from "@/types/service"
+import { UserContext } from "@/types/user-context"
 
 const createMockService = (overrides: Partial<Service> = {}): Service => ({
   id: "test-id",
-  slug: "test-service",
   name: "Kingston Food Bank",
   description: "Provides emergency food support for low income families.",
-  accessibility_profile: {},
-  address: "123 Main St",
-  carriers: [],
-  category_id: "food",
-  contact_email: null,
-  contact_name: null,
-  contact_phone: "555-0123",
-  created_at: new Date().toISOString(),
-  description_fr: "Fournit une aide alimentaire d'urgence.",
-  eligibility: "Low income",
-  fees: "Free",
-  hours: {},
-  identity_tags: [{ tag: "Youth" }, { tag: "Families" }],
-  languages: ["English"],
-  last_verified_at: new Date().toISOString(),
-  latitude: 0,
-  longitude: 0,
-  name_fr: "Banque Alimentaire",
-  organization_id: "org-1",
-  search_vector: null,
-  status: "verified",
+  url: "https://example.com",
+  verification_level: VerificationLevel.L1,
+  intent_category: IntentCategory.Food,
+  provenance: {
+    verified_by: "system",
+    verified_at: new Date().toISOString(),
+    evidence_url: "https://example.com",
+    method: "manual"
+  },
+  identity_tags: [
+    { tag: "Indigenous", evidence_url: "https://example.com/indigenous" },
+    { tag: "Families", evidence_url: "https://example.com/families" }
+  ],
   synthetic_queries: ["free food", "hungry help"],
   synthetic_queries_fr: ["nourriture gratuite"],
-  updated_at: new Date().toISOString(),
-  website: "https://example.com",
+  name_fr: "Banque Alimentaire",
+  description_fr: "Fournit une aide alimentaire d'urgence.",
+  hours: {},
   ...overrides,
 })
 
@@ -64,7 +57,7 @@ describe("Search Scoring", () => {
     })
 
     it("should match identity tags", () => {
-      const { score } = scoreServiceKeyword(mockService, ["youth"])
+      const { score } = scoreServiceKeyword(mockService, ["indigenous"])
       expect(score).toBeGreaterThanOrEqual(WEIGHTS.identityTag)
     })
 
@@ -83,13 +76,13 @@ describe("Search Scoring", () => {
     })
 
     it("should apply identity boost when user context matches", () => {
-      const context = {
-        identities: ["youth" as const],
-        requirements: [],
-        location: null
+      const context: UserContext = {
+        identities: ["indigenous"],
+        ageGroup: "youth",
+        hasOptedIn: true
       }
       
-      const { score } = scoreServiceKeyword(mockService, ["youth"], undefined, { userContext: context })
+      const { score } = scoreServiceKeyword(mockService, ["indigenous"], undefined, { userContext: context })
       // Base score from tag match (WEIGHTS.identityTag)
       // Multiplied by boost (1.1 for 1 matching tag)
       const baseScore = WEIGHTS.identityTag
@@ -124,10 +117,10 @@ describe("Search Scoring", () => {
     })
     
     it('should apply identity boost', () => {
-       const context = {
-        identities: ["youth" as const],
-        requirements: [],
-        location: null
+       const context: UserContext = {
+        identities: ["indigenous"],
+        ageGroup: "youth",
+        hasOptedIn: true
       }     
       // calculateScore has some identity boost logic in the placeholder
       // but base score is 0. 0 * boost = 0.

@@ -14,9 +14,9 @@ describe("isOpenNow", () => {
   const mockHours: ServiceHours = {
     monday: { open: "09:00", close: "17:00" },
     tuesday: { open: "13:00", close: "21:00" },
-    wednesday: "By appointment only", // String case
+    wednesday: "By appointment only" as any, // Cast to test defensive logic
     thursday: { open: "22:00", close: "02:00" }, // Overnight
-    friday: null,
+    friday: null as any,
   }
 
   it("should return false if no hours provided", () => {
