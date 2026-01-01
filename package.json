@@ -76,6 +76,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.0",
+    "@commitlint/cli": "^20.3.0",
+    "@commitlint/config-conventional": "^20.3.0",
     "@next/eslint-plugin-next": "15.1.6",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.5",
