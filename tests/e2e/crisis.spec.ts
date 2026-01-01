@@ -1,17 +1,23 @@
 import { test, expect } from "@playwright/test"
+import { mockSupabase } from "./utils"
 
-test("Crisis flow triggers safety banner", async ({ page }) => {
-    // 1. Visit homepage
-    await page.goto("/")
+test.describe("Crisis Flow", () => {
+    test.beforeEach(async ({ page }) => {
+        await mockSupabase(page)
+    })
 
-    // 2. Click "Crisis" quick link or search
-    // Using search as it's more robust
-    const searchInput = page.getByPlaceholder("Search for services...")
-    await searchInput.fill("suicide")
-    await searchInput.press("Enter")
+    test("Crisis flow triggers safety banner", async ({ page }) => {
+        // 1. Visit homepage
+        await page.goto("/")
 
-    // 3. Verify Crisis Detected Banner
-    // Look for text "Crisis Support" or "Call 911"
+        // 2. Click "Crisis" quick link or search
+        // Using search as it's more robust
+        const searchInput = page.getByPlaceholder(/search for help/i)
+        await searchInput.fill("suicide")
+        await searchInput.press("Enter")
+
+        // 3. Verify Crisis Detected Banner
+        // Look for text "Crisis Support" or "Call 911"
     const safetyBanner = page.locator("text=Emergency? Call 911") // Matches header badge or banner
     await expect(safetyBanner.first()).toBeVisible()
 
@@ -20,16 +26,17 @@ test("Crisis flow triggers safety banner", async ({ page }) => {
     await expect(page.getByText("Immediate help is available")).toBeVisible()
 })
 
-test("Crisis category quick link works", async ({ page }) => {
-    await page.goto("/")
+    test("Crisis category quick link works", async ({ page }) => {
+        await page.goto("/")
 
-    const crisisButton = page.getByRole("button", { name: /Crisis/i })
-    await crisisButton.click()
+        const crisisButton = page.getByRole("button", { name: /Crisis/i })
+        await crisisButton.click()
 
-    // Should filter by crisis category
-    // Verify URL or results
-    await expect(page).toHaveURL(/category=crisis/)
+        // Should filter by crisis category
+        // Verify URL or results
+        await expect(page).toHaveURL(/category=crisis/)
 
-    // Verify banner
-    await expect(page.getByText("Immediate help is available")).toBeVisible()
+        // Verify banner
+        await expect(page.getByText("Immediate help is available")).toBeVisible()
+    })
 })

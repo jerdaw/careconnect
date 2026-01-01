@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "Kingston Food Bank",
+    "slug": "kingston-food-bank",
+    "description": "Providing food assistance to those in need.",
+    "category": "Food",
+    "address": "123 Main St",
+    "phone": "555-0101",
+    "website": "https://kingstonfoodbank.example.com",
+    "hours": {
+      "monday": "9:00-17:00",
+      "tuesday": "9:00-17:00",
+      "wednesday": "9:00-17:00",
+      "thursday": "9:00-17:00",
+      "friday": "9:00-17:00"
+    },
+    "coordinates": { "lat": 44.2312, "lng": -76.486 },
+    "verification_status": "verified"
+  },
+  {
+    "id": "2",
+    "name": "Youth Shelter",
+    "slug": "youth-shelter",
+    "description": "Emergency shelter for youth.",
+    "category": "Housing",
+    "address": "456 Oak St",
+    "phone": "555-0102",
+    "website": "https://youthshelter.example.com",
+    "hours": {
+      "monday": "24h",
+      "tuesday": "24h",
+      "wednesday": "24h",
+      "thursday": "24h",
+      "friday": "24h",
+      "saturday": "24h",
+      "sunday": "24h"
+    },
+    "coordinates": { "lat": 44.234, "lng": -76.489 },
+    "verification_status": "verified"
+  }
+]
