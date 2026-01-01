@@ -1,65 +1,66 @@
-# Kingston Care Connect 🇨🇦
+# Kingston Care Connect
 
-> **The "Semantic Bridge" for Kingston Social Services.**
-> A verified, governance-first search engine for food, crisis, and housing support in Kingston, ON.
+> A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
 ![Coverage](https://img.shields.io/badge/Coverage-28%25-red.svg)
 
-## 🎯 The Mission: "The Kingston 150"
+## The Kingston 150
 
-Scraping 60,000 messy records helps no one. **Kingston Care Connect** takes a different approach: **Manual Curation over Automatic Extraction.**
+Large-scale scraping of municipal data produces noise, not value. Kingston Care Connect takes a different path: **manual curation over automated extraction**.
 
-We maintain a strict, hand-verified dataset of the **Top 150 High-Impact Services** for Kingston residents, ensuring that every result is:
+We maintain a hand-verified dataset of the **150 highest-impact services** available to Kingston residents. Every entry is:
 
-1.  **Verified** (No broken links or dead numbers).
-2.  **Accessible** (Clear eligibility criteria).
-3.  **Identity-Aware** (Evidence-backed safety tags).
-
----
-
-## 🚀 New Features (v4.1)
-
-- **Advanced Search Intelligence**:
-  - **Synonym Expansion**: Searches for "hungry" find food banks; "rent" finds eviction prevention.
-  - **"Open Now" Filter**: Real-time filtering based on structured operating hours.
-  - **Privacy-First Analytics**: Anonymously tracks unmet needs (Zero-Result patterns) without logging queries.
-  - **Crisis Detection**: Instant boosting of emergency services for high-risk queries.
-- **Decentralized AI Assistant**:
-  - **Client-Side RAG**: Runs a local LLM (Phi-3) directly in the browser via WebGPU.
-  - **Zero-Knowledge**: Voice and text queries never leave the device.
-  - **Offline Vector Store**: Instant semantic search even without internet.
-- **Bilingual Ready**: Full support for English and French content switching.
-- **Global Deployment**: Specialized Crisis Mode instantly boosts emergency services.
+- **Verified** — No broken links or disconnected phone numbers.
+- **Accessible** — Clear eligibility requirements.
+- **Identity-Aware** — Evidence-backed safety tags for vulnerable populations.
 
 ---
 
-- **🧠 Semantic & Fuzzy Search:** Multi-layered search experience. Type natural language like "I feel unsafe" (Semantic) or fix typos like "fod" (Fuzzy).
-- **🔒 Privacy-First:** No cookies, no tracking, and no search logs. All inference happens in your browser or anonymously.
-- **📄 Internal Detail Pages:** High-resolution public service pages with rich metadata, contact info, and localized content.
-- **💼 Partner Claiming:** Built-in workflow for local organizations to claim, verify, and maintain their listings.
-- **📱 Installable App (PWA):** Works offline and can be installed on your home screen.
-- **🗣️ Community Governance:** Built-in feedback loops allow residents to flag incorrect data instantly.
-- **⚡ Zero-Latency:** Optimized for instant loads even on poor data connections.
+## Current Features (v4.1)
+
+### Search Intelligence
+
+- **Synonym Expansion**: "Hungry" returns food banks; "rent" surfaces eviction prevention resources.
+- **Open Now Filter**: Real-time availability based on structured operating hours.
+- **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
+- **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
+
+### Decentralized AI Assistant
+
+- **Client-Side RAG**: Runs a local LLM (Phi-3) directly in the browser via WebGPU.
+- **Zero-Knowledge Architecture**: Voice and text queries never leave the device.
+- **Offline Vector Store**: Semantic search works without an internet connection.
+
+### Additional Capabilities
+
+- **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
+- **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
+- **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
+- **Partner Claiming Workflow** — Organizations can claim, verify, and maintain their own listings.
+- **Progressive Web App** — Installable, works offline.
+- **Community Governance** — Residents can flag inaccurate data directly.
+- **Performance Optimized** — Loads instantly, even on slow connections.
+- **Bilingual Support** — Full English and French content switching.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-Built with modern web technologies for performance and maintainability:
-
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [Radix UI](https://www.radix-ui.com/)
-- **AI/Embeddings:** [@xenova/transformers](https://huggingface.co/docs/transformers.js/) (Client-side execution)
-- **Testing:** [Vitest](https://vitest.dev/) (Unit/Integration), [Playwright](https://playwright.dev/) (E2E)
-- **Database:** [Supabase](https://supabase.com/) (PostgreSQL + Vector)
+| Layer           | Technology                                                                 |
+| :-------------- | :------------------------------------------------------------------------- |
+| Framework       | [Next.js 15](https://nextjs.org/) (App Router)                             |
+| Language        | [TypeScript](https://www.typescriptlang.org/)                              |
+| Styling         | [Tailwind CSS v4](https://tailwindcss.com/)                                |
+| UI Components   | [Radix UI](https://www.radix-ui.com/)                                      |
+| AI / Embeddings | [@xenova/transformers](https://huggingface.co/docs/transformers.js/)       |
+| Testing         | [Vitest](https://vitest.dev/) · [Playwright](https://playwright.dev/)      |
+| Database        | [Supabase](https://supabase.com/) (PostgreSQL + pgvector)                  |
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -68,82 +69,74 @@ Built with modern web technologies for performance and maintainability:
 
 ### Installation
 
-1.  **Clone the repository:**
+```bash
+git clone https://github.com/jerdaw/kingston-care-connect.git
+cd kingston-care-connect
+npm install
+npm run dev
+```
 
-    ```bash
-    git clone https://github.com/jerdaw/kingston-care-connect.git
-    cd kingston-care-connect
-    ```
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-2.  **Install dependencies:**
+### Scripts
 
-    ```bash
-    npm install
-    ```
-
-3.  **Run the development server:**
-
-    ```bash
-    npm run dev
-    ```
-
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### Available Scripts
-
-| Command                  | Purpose                                  |
+| Command                  | Description                              |
 | :----------------------- | :--------------------------------------- |
-| `npm run dev`            | Starts development server with Turbo     |
-| `npm run build`          | Builds the production application        |
-| `npm test`               | Runs unit and integration tests (Vitest) |
-| `npx playwright test`    | Runs end-to-end tests                    |
-| `npm run type-check`     | Runs TypeScript compiler check           |
-| `npm run lint`           | Runs ESLint for code quality             |
-| `npm run health-check`   | Validates all service URLs (automated)   |
-| `npm run phone-validate` | Validates phone numbers (Twilio)         |
-| `npm run analyze`        | Analyzes production bundle size          |
+| `npm run dev`            | Start development server (Turbo)         |
+| `npm run build`          | Build for production                     |
+| `npm test`               | Run unit and integration tests (Vitest)  |
+| `npx playwright test`    | Run end-to-end tests                     |
+| `npm run type-check`     | TypeScript compiler check                |
+| `npm run lint`           | ESLint code quality check                |
+| `npm run health-check`   | Validate all service URLs                |
+| `npm run phone-validate` | Validate phone numbers (Twilio)          |
+| `npm run analyze`        | Analyze production bundle size           |
 
 ### Environment Variables
 
-Copy `.env.example` to `.env.local` for standard setup.
-Note: Search and core features work without API keys. Database features require Supabase keys.
+Copy `.env.example` to `.env.local`. Core search functionality works without API keys; database features require Supabase credentials.
 
-### Partner Platform Setup (Supabase)
+### Partner Platform (Supabase)
 
-To enable the Partner Portal, Login, and Analytics:
+To enable the Partner Portal, authentication, and analytics:
 
-1.  **Create a Supabase Project:** [database.new](https://database.new)
-2.  **Add Credentials:** Update `.env.local` with:
-    ```env
-    NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
-    SUPABASE_SECRET_KEY=your-secret-key # For migration scripts only
-    ```
-3.  **Run Schema:** Copy `supabase/schema.sql` and run it in the Supabase SQL Editor.
-4.  **Migrate Data:** Run the migration script to populate the DB with local data:
-    ```bash
-    npx tsx scripts/migrate-data.ts
-    ```
+1. Create a project at [database.new](https://database.new).
+2. Add your credentials to `.env.local`:
+
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+   SUPABASE_SECRET_KEY=your-secret-key
+   ```
+
+3. Run `supabase/schema.sql` in the Supabase SQL Editor.
+4. Migrate local data:
+
+   ```bash
+   npx tsx scripts/migrate-data.ts
+   ```
 
 ---
 
-## 🤝 Contributing & Governance
+## Contributing
 
-This project is community-led. We prioritize safety and accuracy over quantity.
+This project is community-led. Safety and accuracy take precedence over volume.
 
-- **[Roadmap](docs/roadmaps/roadmap.md):** Current status and action items.
-- **[Documentation Guidelines](docs/documentation-guidelines.md):** How we write and maintain docs.
-- **[Testing Guidelines](docs/development/testing.md):** Our testing standards.
-- **[Bilingual Guide](bilingual-dev-guide.md):** Our approach to English/French support.
+### Documentation
+
+- [Roadmap](docs/roadmaps/roadmap.md)
+- [Documentation Guidelines](docs/documentation-guidelines.md)
+- [Testing Standards](docs/development/testing.md)
+- [Bilingual Development Guide](bilingual-dev-guide.md)
 
 ### Adding a Service
 
-To propose a new service, please ensure it meets our "High Impact" criteria:
+Proposed services must meet these criteria:
 
-- Must physically serve the Kingston, ON area.
-- Must have a verifiable phone number or physical address.
-- Must be free or low-cost (subsidized).
+- Serves the Kingston, Ontario area.
+- Has a verifiable phone number or physical address.
+- Free or subsidized.
 
 ---
 
-_Built with ❤️ for Kingston._
+MIT License
