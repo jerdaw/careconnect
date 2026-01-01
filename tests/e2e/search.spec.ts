@@ -7,7 +7,7 @@ test.describe("Search Flow", () => {
     await expect(page).toHaveTitle(/Kingston Care Connect/)
 
     // 2. Find search input and type query
-    const searchInput = page.getByPlaceholder(/search for services/i)
+    const searchInput = page.getByPlaceholder(/search for help/i)
     await searchInput.fill("food bank")
     await searchInput.press("Enter")
 
@@ -32,7 +32,7 @@ test.describe("Search Flow", () => {
 
   test("should verify empty search state", async ({ page }) => {
     await page.goto("/")
-    const searchInput = page.getByPlaceholder(/search for services/i)
+    const searchInput = page.getByPlaceholder(/search for help/i)
     await searchInput.fill("zxzxzxzx") // Non-existent term
     await searchInput.press("Enter")
 
