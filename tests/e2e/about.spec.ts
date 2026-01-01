@@ -41,19 +41,15 @@ test.describe("About & Partners Pages", () => {
   test("Navigation links work", async ({ page }) => {
     await page.goto("/")
     
-    // Desktop Nav
+    // Check About Link
     await page.getByRole("navigation").getByRole("link", { name: "About" }).click()
     await expect(page).toHaveURL(/.*\/about/)
     
-    // Navigate back to home
-    await page.getByRole("link", { name: "Kingston Care Connect" }).click()
-    
-    // Check Partners Link
-    await page.getByRole("navigation").getByRole("link", { name: "For Partners" }).click()
+    // Check Partners Link from About Page
+    await page.getByRole("link", { name: "View Partners" }).click()
     await expect(page).toHaveURL(/.*\/about\/partners/)
 
-    // Check Footer Link
-    await page.goto("/")
+    // Check Footer Link from Partners Page
     await page.getByRole("contentinfo").getByRole("link", { name: "About Us" }).click()
     await expect(page).toHaveURL(/.*\/about/)
   })

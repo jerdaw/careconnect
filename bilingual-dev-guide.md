@@ -20,6 +20,7 @@
 - **Validation**: Use `npm run bilingual-check` to identify missing French content in `data/services.json`.
 - **RBAC & Edits**: Partners can manage bilingual fields via the Dashboard. Ensure `ServiceEditForm` includes `*_fr` fields for all text-heavy properties.
 - **Feedback Loop**: Community feedback modal supports full bilingual reporting.
+- **Public Docs**: About and Partners pages are fully bilingual and indexed.
 
 ## 3. Rules
 

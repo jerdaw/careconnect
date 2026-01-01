@@ -96,6 +96,8 @@ The search system uses a hybrid approach:
   - `/service/[id]`: Rich detail page.
   - `/submit-service`: Public crowdsourcing form.
   - `/dashboard`: Partner portal.
+  - `/about`: Project mission and impact metrics.
+  - `/about/partners`: Data source transparency and verification process.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 
 ### Partner Claim Workflow

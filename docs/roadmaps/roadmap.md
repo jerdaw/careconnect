@@ -121,21 +121,21 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 **Effort: 2-3 hours**
 
-- [ ] Create `app/[locale]/about/page.tsx`
-- [ ] Highlight: "50+ verified services", "Privacy-first", "Bilingual"
+- [x] Create `app/[locale]/about/page.tsx`
+- [x] Highlight: "50+ verified services", "Privacy-first", "Bilingual"
 
 ### 3.2 Partners Page
 
 **Effort: 2-3 hours**
 
-- [ ] Create `app/[locale]/about/partners/page.tsx`
-- [ ] Logo grid of verified sources
+- [x] Create `app/[locale]/about/partners/page.tsx`
+- [x] Logo grid of verified sources
 
 ### 3.3 Advisory Board Documentation
 
 **Effort: 30 minutes**
 
-- [ ] Create `docs/acknowledgments.md`
+- [x] Create `docs/acknowledgments.md`
 
 ---
 
