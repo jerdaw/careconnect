@@ -8,11 +8,6 @@
 
 ## 📋 Table of Contents
 
-- [v6.1: Quick Wins](#-v61-quick-wins)
-- [v7.0: High-ROI Product Features](#-v70-high-roi-product-features)
-- [v7.1: OMSAS/Adcom Documentation](#-v71-omsasadcom-documentation)
-- [v8.0: Data & Accessibility](#-v80-data--accessibility)
-- [v9.0: Multi-Lingual & Provincial](#-v90-multi-lingual--provincial-reach)
 - [v10.0: Future Horizons](#-v100-future-horizons)
 
 ---
@@ -22,43 +17,6 @@
 Completed **Roadmap V9**: Fully bilingual (EN/FR) with added support for **Arabic, Chinese (Simplified), and Spanish**. Includes 16 **Ontario-wide crisis lines** and PWA capabilities.
 
 For details on completed features, see the [Archived Roadmaps](file:///home/jer/LocalSync/kingston-care-connect/docs/roadmaps/archive/).
-
----
-
-## � v6.1: Quick Wins
-
-### Database Migrations
-
-- [ ] Execute [002_v6_prerequisites.sql](file:///home/jer/LocalSync/kingston-care-connect/supabase/migrations/002_v6_prerequisites.sql)
-- [ ] Execute [003_org_members.sql](file:///home/jer/LocalSync/kingston-care-connect/supabase/migrations/003_org_members.sql)
-
-### Environment Variables
-
-Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVICE_ROLE_KEY` are configured.
-
----
-
-## 📈 v7.0: High-ROI Product Features
-
-(Content for v7.0 to be added)
-
----
-
-## 📝 v7.1: OMSAS/Adcom Documentation
-
-(Content for v7.1 to be added)
-
----
-
-## 🌟 v8.0: Data & Accessibility
-
-(Content for v8.0 to be added)
-
----
-
-## 🌐 v9.0: Multi-Lingual & Provincial Reach
-
-(Content for v9.0 to be added)
 
 ---
 
@@ -74,14 +32,9 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus                | Status    | Key Benefit      |
-| :-------- | :------------------- | :-------- | :--------------- |
-| **v6.1**  | Quick Wins           | Completed | Immediate polish |
-| **v7.0**  | High-ROI Product     | Completed | User experience  |
-| **v7.1**  | OMSAS Docs           | Completed | Adcom appeal     |
-| **v8.0**  | Data & Accessibility | Completed | Mission depth    |
-| **v9.0**  | Multi-Lingual        | Completed | Inclusivity      |
-| **v10.0** | Future Horizons      | TBD       | Long-term vision |
+| Version   | Focus           | Status | Key Benefit      |
+| :-------- | :-------------- | :----- | :--------------- |
+| **v10.0** | Future Horizons | TBD    | Long-term vision |
 
 ---
 
