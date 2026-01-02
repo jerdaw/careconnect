@@ -58,6 +58,20 @@ npm run test:e2e
 - Focus on critical user flows: Crisis support, Search, Language switching, Offline usage.
 - Use `data-testid` only when semantic queries (`getByRole`, `getByText`) fail.
 
+## CI/CD Strategy
+
+To balance speed and cost, our CI pipeline is split:
+
+1.  **Pull Requests (Fast Feedback)**:
+
+    - Runs **Linting**, **Type Checking**, and **Unit/Integration Tests**.
+    - Playwright E2E tests are **SKIPPED** to ensure rapid iteration loops.
+
+2.  **Main Branch (Regression)**:
+    - Runs **All Checks** from PR stage.
+    - Runs **Playwright E2E Tests**.
+    - **Optimization**: E2E tests run only on **Desktop Chromium** to minimize runtime while maintaining core coverage.
+
 ## Mocks & Best Practices
 
 - **Supabase**: Always mock `createClient`. Use `vi.hoisted` if mocking properties referenced in the factory.
