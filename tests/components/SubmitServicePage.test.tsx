@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import SubmitServicePage from "@/app/[locale]/submit-service/page"
+import SubmitServiceForm from "@/components/forms/SubmitServiceForm"
 import { NextIntlClientProvider } from "next-intl"
 
 // Mock translations
@@ -27,7 +27,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => (
   </NextIntlClientProvider>
 )
 
-describe("SubmitServicePage", () => {
+describe("SubmitServiceForm", () => {
   beforeEach(() => {
     global.fetch = vi.fn()
   })
@@ -35,7 +35,7 @@ describe("SubmitServicePage", () => {
   it("renders form fields correctly", () => {
     render(
       <Wrapper>
-        <SubmitServicePage />
+        <SubmitServiceForm />
       </Wrapper>
     )
 
@@ -55,7 +55,7 @@ describe("SubmitServicePage", () => {
 
     render(
       <Wrapper>
-        <SubmitServicePage />
+        <SubmitServiceForm />
       </Wrapper>
     )
 
@@ -84,7 +84,7 @@ describe("SubmitServicePage", () => {
 
     render(
       <Wrapper>
-        <SubmitServicePage />
+        <SubmitServiceForm />
       </Wrapper>
     )
 
