@@ -1,7 +1,7 @@
 # Kingston Care Connect: Roadmap (Final)
 
-> **Current Version**: v6.0.0  
-> **Last Updated**: 2025-12-31  
+> **Current Version**: v6.1.0  
+> **Last Updated**: 2026-01-01  
 > **Status**: Production-Ready / Active Development
 
 ---
@@ -162,8 +162,6 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 ## 🔮 Tier 5: Future Horizons
 
-- [ ] **Multi-lingual**: Browser-based translation first
-- [ ] **Provincial Services**: Crisis lines only (~20 items)
 - [ ] **211 API Integration**: Automated data sync (when partnership available)
 
 ---

@@ -77,7 +77,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
       <Card className="service-card-print group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
         {/* Top Gradient Line on Hover */}
         <div className="from-primary-500 to-accent-500 absolute top-0 right-0 left-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r transition-transform duration-300 group-hover:scale-x-100" />
-
+        
         <div className="flex h-full flex-col p-6">
           {/* Header */}
           <div className="flex items-start gap-4">
@@ -89,6 +89,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
             </div>
 
             <div className="min-w-0 flex-1">
+               {service.is_provincial && (
+                 <Badge variant="outline" className="mb-2 bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800">
+                   Province-Wide
+                 </Badge>
+               )}
               <div className="flex flex-wrap items-center gap-2">
                 <h3
                   className="truncate text-lg leading-tight font-bold text-neutral-900 dark:text-white"

@@ -1,7 +1,7 @@
 "use client"
 
 import { useLocale } from "next-intl"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter, usePathname } from "../../i18n/routing"
 
 const LOCALES = [
   { code: "en", label: "English", flag: "🇨🇦" },
@@ -17,11 +17,7 @@ export function LanguageSelector() {
   const pathname = usePathname()
 
   const handleChange = (newLocale: string) => {
-    // Replace the locale segment in the current path
-    const segments = pathname.split("/")
-    segments[1] = newLocale
-    const newPath = segments.join("/")
-    router.push(newPath)
+    router.replace(pathname, { locale: newLocale as "en" | "fr" | "ar" | "zh-Hans" | "es" })
   }
 
   return (
