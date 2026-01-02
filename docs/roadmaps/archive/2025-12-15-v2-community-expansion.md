@@ -63,4 +63,4 @@ The goal of Phase 2 is to transition from a student-focused pilot to a general c
 
 ## Archive
 
-- [v1-pilot](archive/v1-pilot.md): Initial Queen's University focused pilot (Completed Dec 2024).
+- [v1-pilot](2025-12-01-v1-pilot.md): Initial Queen's University focused pilot (Completed Dec 2024).

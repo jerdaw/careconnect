@@ -17,10 +17,11 @@
   - `docs/architecture.md` → Detailed system architecture and data flow.
   - `docs/components.md` → Guide to reusable UI components.
   - `docs/acknowledgments.md` → Advisory board and governance.
-  - `docs/roadmaps/archive/tier-1-implementation.md` → Tier 1 detail.
-  - `docs/roadmaps/archive/tier-2-implementation.md` → Tier 2 detail.
-  - `docs/roadmaps/archive/tier-3-implementation.md` → Tier 3 detail.
-  - `docs/roadmaps/archive/tier-4-implementation.md` → Tier 4 detail.
+  - `docs/roadmaps/archive/2025-12-27-tier-1-implementation.md` → Tier 1 detail.
+  - `docs/roadmaps/archive/2025-12-28-tier-2-implementation.md` → Tier 2 detail.
+  - `docs/roadmaps/archive/2025-12-29-tier-3-implementation.md` → Tier 3 detail.
+  - `docs/roadmaps/archive/2025-12-30-tier-4-implementation.md` → Tier 4 detail.
+  - `docs/roadmaps/archive/2026-01-01-tier-5-implementation.md` → Tier 5 detail.
 
 When in doubt about architecture or design design, **read `README.md` and `docs/**` first\*\*.
 
@@ -113,13 +114,16 @@ When you have full access (and `origin` is configured), **make regular best-prac
 
 ---
 
-## Localization (Bilingual)
+## Localization (Multi-Lingual)
 
-- **Policy**: English-First, but **design for bilingual support**.
+- **Policy**: English-First, but **design for full multi-lingual support**.
+- **Supported Locales**: `en` (English), `fr` (French), `ar` (Arabic - RTL), `zh-Hans` (Chinese), `es` (Spanish).
 - **Rules** (see `bilingual-dev-guide.md`):
-  - No hardcoded strings for user-facing text (use props or dictionaries).
-  - Ensure layouts accommodate text expansion (French is often 20% longer).
-  - Dates and currencies must be localized.
+  - No hardcoded strings for user-facing text (use `next-intl`).
+  - Use `LanguageSelector` component for locale switching.
+  - Support RTL (Arabic) via `dir="rtl"` in layouts.
+  - Localized fields in data: `name_fr`, `description_fr`, etc. (Provincial services only).
+  - UI labels must be present in all 5 message files.
 
 ---
 

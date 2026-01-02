@@ -59,6 +59,6 @@
 
 ## Archive
 
-- [v1-pilot](archive/v1-pilot.md): Queens Pilot
-- [v2-community](archive/v2-community-expansion.md): Community Expansion
-- [v3-partner-platform](archive/v3-partner-platform.md): Partner Portal & Analytics
+- [v1-pilot](2025-12-01-v1-pilot.md): Queens Pilot
+- [v2-community](2025-12-15-v2-community-expansion.md): Community Expansion
+- [v3-partner-platform](2025-12-20-v3-partner-platform.md): Partner Portal & Analytics

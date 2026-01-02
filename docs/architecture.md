@@ -6,7 +6,7 @@
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
 - **Database**: Supabase (PostgreSQL + Vector)
-- **Internationalization**: `next-intl`
+- **Internationalization**: `next-intl` (Support for EN, FR, AR, ZH-Hans, ES)
 - **Testing**: Playwright (E2E), Vitest (Unit)
 
 ## Directory Structure
@@ -21,6 +21,7 @@
 - `hooks/`: Custom React hooks (`useSearch`, `useServices`).
 - `lib/`: Utility functions (API helpers, search logic).
 - `types/`: TypeScript definitions.
+- `messages/`: Localization dictionaries (EN, FR, AR, ZH-Hans, ES).
 - `docs/`: Project documentation.
 
 ## Core Concepts
@@ -99,6 +100,12 @@ The search system uses a hybrid approach:
   - `/dashboard`: Partner portal.
   - `/about`: Project mission and impact metrics. Includes **Katarokwi Land Acknowledgment**.
   - `/about/partners`: Data source transparency and verification process.
+- **Provincial Services Discovery**:
+  - `is_provincial` flag allows services to be promoted in search results globally.
+  - Provincial services display a "Province-Wide" badge for clarity.
+- **Language Selection**:
+  - `LanguageSelector` component in `Header` provides 5-language switching.
+  - Arabic triggers RTL (Right-to-Left) direction in root layout.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 
 ### Partner Claim Workflow
