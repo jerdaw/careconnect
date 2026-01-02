@@ -8,9 +8,12 @@
 
 ## 📋 Table of Contents
 
-- [Current State](#-current-state)
-- [Immediate Action Items](#-immediate-action-items)
-- [Future Horizons](#-future-horizons)
+- [v6.1: Quick Wins](#-v61-quick-wins)
+- [v7.0: High-ROI Product Features](#-v70-high-roi-product-features)
+- [v7.1: OMSAS/Adcom Documentation](#-v71-omsasadcom-documentation)
+- [v8.0: Data & Accessibility](#-v80-data--accessibility)
+- [v9.0: Multi-Lingual & Provincial](#-v90-multi-lingual--provincial-reach)
+- [v10.0: Future Horizons](#-v100-future-horizons)
 
 ---
 
@@ -22,7 +25,7 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 ---
 
-## 🛠️ Immediate Action Items
+## � v6.1: Quick Wins
 
 ### Database Migrations
 
@@ -35,11 +38,50 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 ---
 
-## � Future Horizons
+## 📈 v7.0: High-ROI Product Features
+
+(Content for v7.0 to be added)
+
+---
+
+## 📝 v7.1: OMSAS/Adcom Documentation
+
+(Content for v7.1 to be added)
+
+---
+
+## 🌟 v8.0: Data & Accessibility
+
+(Content for v8.0 to be added)
+
+---
+
+## 🌐 v9.0: Multi-Lingual & Provincial Reach
+
+(Content for v9.0 to be added)
+
+---
+
+## 🔮 v10.0: Future Horizons
 
 ### 211 API Integration
 
 - [ ] Automated data sync (when partnership available)
+
+---
+
+## 📋 Roadmap Overview
+
+The following items represent the strategic phases of the roadmap:
+
+| Item      | Reason               |
+| :-------- | :------------------- | ---------- | ---------------- |
+| **v6.1**  | Quick Wins           | ~5-8 hours | Immediate polish |
+| **v7.0**  | High-ROI Product     | 1-2 weeks  | User experience  |
+| **v7.1**  | OMSAS Docs           | ~5-6 hours | Adcom appeal     |
+| **v8.0**  | Data & Accessibility | Ongoing    | Mission depth    |
+| **v9.0**  | Multi-Lingual        | Completed  | Inclusivity      |
+| **v10.0** | Future               | TBD        | Long-term vision |
 
 ---
 

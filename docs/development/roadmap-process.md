@@ -20,7 +20,7 @@ This document outlines the workflow for managing the Kingston Care Connect roadm
 
 - **Purpose**: detailed implementation planning for a specific roadmap item or tier.
 - **Location**: `docs/roadmaps/{description}.md` (initially)
-- **Naming**: Use kebab-case for the description (e.g., `tier-5-multi-lingual.md` or `v7-user-feedback.md`).
+- **Naming**: Use kebab-case for the description (e.g., `v9-0-multi-lingual.md` or `v7-0-user-feedback.md`).
 - **Content**:
   - **Goal**: What are we building?
   - **Design Decisions**: Key technical or product choices.
@@ -40,9 +40,9 @@ This document outlines the workflow for managing the Kingston Care Connect roadm
 - **Action**:
   1.  Move the definition document to `docs/roadmaps/archive/`.
   2.  **Rename** the file prepending the completion date: `YYYY-MM-DD-{original-name}.md`.
-      - **Format**: `YYYY-MM-DD-kebab-cased-description.md`
-      - **Example**: `2026-01-01-tier-5-implementation.md`
-      - **Note**: Keep archive files grouped by their original Roadmap Milestone/Tier. Do not split them into tiny per-feature files unless they are pure architectural references (which should go in `docs/architecture/`).
+      - **Format**: `YYYY-MM-DD-vX-Y-kebab-cased-description.md`
+      - **Example**: `2026-01-01-v9-0-multi-lingual.md`
+      - **Note**: Keep archive files grouped by their original Roadmap Version. Do not split them into tiny per-feature files unless they are pure architectural references (which should go in `docs/architecture/`).
   3.  Update `docs/roadmaps/roadmap.md`:
       - Remove the detailed checklists for the completed item.
       - Add a brief summary line to "Current State" or a "Completed" section.
@@ -50,8 +50,8 @@ This document outlines the workflow for managing the Kingston Care Connect roadm
 
 ## Naming Convention Summary
 
-| Type            | Path                                         | Example                                |
-| :-------------- | :------------------------------------------- | :------------------------------------- |
-| **Active Plan** | `docs/roadmaps/roadmap.md`                   | `roadmap.md`                           |
-| **Active Tier** | `docs/roadmaps/{name}.md`                    | `tier-6-api-integration.md`            |
-| **Archived**    | `docs/roadmaps/archive/YYYY-MM-DD-{name}.md` | `2026-02-15-tier-6-api-integration.md` |
+| Type            | Path                                         | Example                              |
+| :-------------- | :------------------------------------------- | :----------------------------------- |
+| **Active Plan** | `docs/roadmaps/roadmap.md`                   | `roadmap.md`                         |
+| **Active Tier** | `docs/roadmaps/{name}.md`                    | `v7-0-api-integration.md`            |
+| **Archived**    | `docs/roadmaps/archive/YYYY-MM-DD-{name}.md` | `2026-02-15-v7-0-api-integration.md` |

@@ -17,12 +17,12 @@
   - `docs/architecture.md` → Detailed system architecture and data flow.
   - `docs/components.md` → Guide to reusable UI components.
   - `docs/acknowledgments.md` → Advisory board and governance.
-  - `docs/roadmaps/archive/2025-12-27-tier-1-implementation.md` → Tier 1 detail.
-  - `docs/roadmaps/archive/2025-12-28-tier-2-implementation.md` → Tier 2 detail.
-  - `docs/roadmaps/archive/2025-12-29-tier-3-implementation.md` → Tier 3 detail.
-  - `docs/roadmaps/archive/2025-12-30-tier-4-data-accessibility.md` → Tier 4 detail.
-  - `docs/roadmaps/archive/2026-01-01-tier-5-multi-lingual.md` → Tier 5 detail.
-  - **Roadmap Strategy**: We group roadmap archives by **Milestone/Tier** (e.g., "Tier 1", "v2") rather than splitting them into small feature files. This preserves the historical context of releases.
+  - `docs/roadmaps/archive/2025-12-27-v6-1-quick-wins.md` → v6.1 (Quick Wins).
+  - `docs/roadmaps/archive/2025-12-28-v7-0-high-roi-features.md` → v7.0 (Product Features).
+  - `docs/roadmaps/archive/2025-12-29-v7-1-omsas-documentation.md` → v7.1 (Documentation).
+  - `docs/roadmaps/archive/2025-12-30-v8-0-data-accessibility.md` → v8.0 (Data/A11y).
+  - `docs/roadmaps/archive/2026-01-01-v9-0-multi-lingual.md` → v9.0 (Multi-lingual).
+  - **Roadmap Strategy**: We group roadmap archives by **Version** (e.g., "v6.1", "v7.0") rather than splitting them into small feature files. This preserves the historical context of releases.
 
 When in doubt about architecture or design design, **read `README.md` and `docs/**` first\*\*.
 
