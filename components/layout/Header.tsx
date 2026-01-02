@@ -66,8 +66,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <div 
               className={cn(
-                "relative flex h-9 items-center justify-center rounded-xl transition-all",
-                !scrolled && "bg-white px-2 shadow-sm group-hover:shadow-md dark:bg-slate-900/50"
+                "relative flex h-9 items-center justify-center rounded-xl transition-all"
               )}
             >
               <Image 

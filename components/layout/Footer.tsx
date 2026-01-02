@@ -4,8 +4,6 @@ import { Link } from "@/i18n/routing"
 // import { useTranslations } from 'next-intl';
 import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
 import Image from "next/image"
-import { cn } from "@/lib/utils"
-
 
 export function Footer() {
   // const t = useTranslations();
@@ -20,12 +18,7 @@ export function Footer() {
           {/* Logo & Mission */}
           <div className="space-y-6 md:col-span-2">
             <div className="flex items-center gap-3">
-              <div 
-                className={cn(
-                  "relative flex h-9 items-center justify-center rounded-xl transition-all",
-                  "bg-white px-2 shadow-sm dark:bg-slate-900/50"
-                )}
-              >
+              <div className="relative flex h-9 items-center justify-center transition-all">
                 <Image 
                   src="/logo.png" 
                   alt="KCC Logo" 
