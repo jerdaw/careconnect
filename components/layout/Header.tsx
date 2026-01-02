@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { useAuth } from "@/components/AuthProvider"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
 import { cn } from "@/lib/utils"
@@ -61,9 +62,23 @@ export function Header() {
         )}
       >
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2.5">
-          <div className="flex h-8 items-center justify-center rounded-lg bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 px-2.5 text-xs font-bold tracking-wider text-white shadow-md transition-all group-hover:shadow-lg group-hover:shadow-accent-500/25">
-            <span>K</span><span className="ml-[0.02em]">CC</span>
+        <Link href="/" className="group flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <div 
+              className={cn(
+                "relative flex h-9 items-center justify-center rounded-xl transition-all",
+                !scrolled && "bg-white px-2 shadow-sm group-hover:shadow-md dark:bg-slate-900/50"
+              )}
+            >
+              <Image 
+                src="/logo.png" 
+                alt="KCC Logo" 
+                width={64} 
+                height={32}
+                className="h-7 w-auto object-contain"
+                priority
+              />
+            </div>
           </div>
           {/* Full name - hidden on mobile unless scrolled, always visible on desktop */}
           <span
