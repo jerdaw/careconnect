@@ -74,14 +74,14 @@ Ensure `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `TWILIO_ACCOUNT_SID`, and `SUPABASE_SERVI
 
 The following items represent the strategic phases of the roadmap:
 
-| Item      | Reason               |
-| :-------- | :------------------- | ---------- | ---------------- |
-| **v6.1**  | Quick Wins           | ~5-8 hours | Immediate polish |
-| **v7.0**  | High-ROI Product     | 1-2 weeks  | User experience  |
-| **v7.1**  | OMSAS Docs           | ~5-6 hours | Adcom appeal     |
-| **v8.0**  | Data & Accessibility | Ongoing    | Mission depth    |
-| **v9.0**  | Multi-Lingual        | Completed  | Inclusivity      |
-| **v10.0** | Future               | TBD        | Long-term vision |
+| Version   | Focus                | Status    | Key Benefit      |
+| :-------- | :------------------- | :-------- | :--------------- |
+| **v6.1**  | Quick Wins           | Completed | Immediate polish |
+| **v7.0**  | High-ROI Product     | Completed | User experience  |
+| **v7.1**  | OMSAS Docs           | Completed | Adcom appeal     |
+| **v8.0**  | Data & Accessibility | Completed | Mission depth    |
+| **v9.0**  | Multi-Lingual        | Completed | Inclusivity      |
+| **v10.0** | Future Horizons      | TBD       | Long-term vision |
 
 ---
 

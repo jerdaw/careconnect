@@ -1,4 +1,4 @@
-# Implementation Plan Archive: Tier 3 (OMSAS/Adcom Documentation)
+# Roadmap Archive: v7.1 (OMSAS/Adcom Documentation)
 
 **Status**: Completed
 **Implementation Date**: 2025-12-29
@@ -9,7 +9,7 @@ Establish public-facing credibility for Kingston Care Connect by documenting the
 
 ## Background
 
-Tier 3 transitions the project from a technical tool to a recognized community resource with transparent governance and impact metrics.
+v7.1 transitions the project from a technical tool to a recognized community resource with transparent governance and impact metrics.
 
 ## Phases
 

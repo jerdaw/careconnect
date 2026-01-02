@@ -1,11 +1,8 @@
-# Tier 4 Implementation Plan: Data & Accessibility (V8)
+# Roadmap Archive: v8.0 (Data & Accessibility)
 
 ## Goal
 
 Expand the "Kingston 150" dataset with verified sources from municipal, 211, and faith-based organizations. Add culturally safe Indigenous health filters and a contextual land acknowledgment.
-
-**Status**: Completed
-**Date**: 2026-01-01
 
 **Status**: Completed
 **Implementation Date**: 2025-12-30
@@ -49,5 +46,5 @@ Updated `types/service.ts`:
 
 ## Next Steps
 
-- Proceed to Tier 5 (Future Horizons) or maintenance mode.
+- Proceed to v9.0 (Multi-Lingual) or maintenance mode.
 - Establish formal data partnership with 211 Ontario for automated sync.

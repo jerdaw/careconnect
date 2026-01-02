@@ -1,4 +1,4 @@
-# Tier 2 Implementation: High-ROI Features (Archived)
+# Roadmap Archive: v7.0 (High-ROI Features)
 
 **Status**: Completed
 **Implementation Date**: 2025-12-28
