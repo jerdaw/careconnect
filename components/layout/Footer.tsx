@@ -3,6 +3,9 @@
 import { Link } from "@/i18n/routing"
 // import { useTranslations } from 'next-intl';
 import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
+import Image from "next/image"
+import { cn } from "@/lib/utils"
+
 
 export function Footer() {
   // const t = useTranslations();
@@ -16,9 +19,20 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Logo & Mission */}
           <div className="space-y-6 md:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="from-primary-500 to-primary-600 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-lg font-bold text-white">
-                K
+            <div className="flex items-center gap-3">
+              <div 
+                className={cn(
+                  "relative flex h-9 items-center justify-center rounded-xl transition-all",
+                  "bg-white px-2 shadow-sm dark:bg-slate-900/50"
+                )}
+              >
+                <Image 
+                  src="/logo.png" 
+                  alt="KCC Logo" 
+                  width={64} 
+                  height={32}
+                  className="h-7 w-auto object-contain"
+                />
               </div>
               <span className="heading-display text-xl font-bold tracking-tight text-white">Kingston Care Connect</span>
             </div>
