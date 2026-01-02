@@ -85,17 +85,19 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ### Scripts
 
-| Command                  | Description                             |
-| :----------------------- | :-------------------------------------- |
-| `npm run dev`            | Start development server (Turbo)        |
-| `npm run build`          | Build for production                    |
-| `npm test`               | Run unit and integration tests (Vitest) |
-| `npx playwright test`    | Run end-to-end tests                    |
-| `npm run type-check`     | TypeScript compiler check               |
-| `npm run lint`           | ESLint code quality check               |
-| `npm run health-check`   | Validate all service URLs               |
-| `npm run phone-validate` | Validate phone numbers (Twilio)         |
-| `npm run analyze`        | Analyze production bundle size          |
+| Command                   | Description                             |
+| :------------------------ | :-------------------------------------- |
+| `npm run dev`             | Start development server (Turbo)        |
+| `npm run build`           | Build for production                    |
+| `npm test`                | Run unit and integration tests (Vitest) |
+| `npx playwright test`     | Run end-to-end tests                    |
+| `npm run type-check`      | TypeScript compiler check               |
+| `npm run lint`            | ESLint code quality check               |
+| `npm run health-check`    | Validate all service URLs               |
+| `npm run phone-validate`  | Validate phone numbers (Twilio)         |
+| `npm run validate-data`   | Validate data schema (Zod)              |
+| `npm run check-staleness` | Check for stale/unverified data         |
+| `npm run analyze`         | Analyze production bundle size          |
 
 ### Environment Variables
 

@@ -31,11 +31,33 @@ export const SYNONYMS: Record<string, string[]> = {
   job: ["work", "employment", "career", "hire", "wage", "travail", "emploi"],
   money: ["cash", "finance", "poverty", "low income", "welfare", "argent", "revenu"],
 
-  // Identities
-  youth: ["teen", "teenager", "young", "student", "child", "jeune", "ado"],
-  senior: ["elderly", "old", "aged", "retirement", "65+", "aîné"],
-  indigenous: ["aboriginal", "first nations", "metis", "inuit", "native", "autochtone"],
-  lgbt: ["gay", "queer", "trans", "transgender", "2slgbtqi+", "pride"],
+  // Mental Health (expanded)
+  anxiety: ["anxious", "panic", "worried", "nervous", "stress", "anxiété"],
+  depression: ["depressed", "sad", "hopeless", "suicidal", "dépression", "triste"],
+  counseling: ["therapy", "therapist", "counsellor", "psychologist", "conseil"],
+  addiction: ["substance", "drugs", "alcohol", "recovery", "rehab", "dépendance"],
+
+  // Youth Services (expanded)
+  teen: ["teenager", "adolescent", "youth", "young", "ado", "jeune"],
+  child: ["children", "kid", "kids", "minor", "enfant", "enfants"],
+  student: ["school", "university", "college", "études", "étudiant"],
+
+  // Financial (expanded)
+  welfare: ["ow", "ontario works", "social assistance", "aide sociale"],
+  disability: ["odsp", "disabled", "accessibility", "handicap", "invalidité"],
+  income: ["money", "cash", "financial", "low income", "revenu", "argent"],
+
+  // Identities (enhanced)
+  indigenous: ["aboriginal", "first nations", "metis", "inuit", "native", "autochtone", "premières nations"],
+  lgbt: ["gay", "queer", "trans", "transgender", "2slgbtqi+", "pride", "lgbtq", "fierté"],
+  newcomer: ["immigrant", "refugee", "new to canada", "immigrant", "réfugié", "nouvel arrivant"],
+  senior: ["elderly", "old", "aged", "retirement", "65+", "aîné", "personne âgée"],
+  veteran: ["military", "forces", "army", "vétéran", "militaire"],
+
+  // Common misspellings / abbreviations
+  er: ["emergency", "hospital", "urgence"],
+  doc: ["doctor", "physician", "médecin"],
+  apt: ["apartment", "housing", "appartement"],
 }
 
 /**

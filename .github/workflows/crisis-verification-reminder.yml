@@ -1,0 +1,59 @@
+name: Monthly Crisis Service Verification
+
+on:
+  schedule:
+    # Run at 9am ET on the 1st of each month
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+jobs:
+  create-reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Create verification reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date();
+            const month = today.toLocaleString('default', { month: 'long', year: 'numeric' });
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📞 Monthly Crisis Service Verification - ${month}`,
+              body: `## Crisis Service Verification Checklist
+            
+            Per the [Governance Protocol](docs/governance.md), crisis services must be verified **monthly**.
+            
+            ### Services to Verify
+            
+            - [ ] Kids Help Phone (1-800-668-6868)
+            - [ ] Trans Lifeline (1-877-330-6366)
+            - [ ] Hope for Wellness Helpline (1-855-242-3310)
+            - [ ] Assaulted Women's Helpline (1-866-863-0511)
+            - [ ] Kingston Interval House (613-546-1777)
+            - [ ] Telephone Aid Line Kingston (613-544-1771)
+            - [ ] Other crisis services in \`data/services.json\` with \`intent_category: "Crisis"\`
+            
+            ### Verification Steps
+            
+            For each service:
+            1. [ ] Call the phone number - does it connect?
+            2. [ ] Check the website - does it load?
+            3. [ ] Verify hours match what's in our data
+            4. [ ] Update \`provenance.verified_at\` to today's date
+            
+            ### After Verification
+            
+            - Commit changes to \`data/services.json\`
+            - Run \`npm run generate-embeddings\` if descriptions changed
+            - Close this issue
+            
+            ---
+            *Automatically created by verification reminder workflow.*
+            `,
+              labels: ['verification', 'crisis-services', 'monthly']
+            });

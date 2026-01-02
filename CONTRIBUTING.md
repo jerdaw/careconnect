@@ -33,3 +33,31 @@
 - [ ] All tests pass (`npm run test`).
 - [ ] Documentation is updated if necessary.
 - [ ] No raw `console` calls remain.
+
+## Adding Search Synonyms
+
+The search system uses synonym expansion to improve query matching. To add new synonyms:
+
+### 1. Edit the Synonyms Dictionary
+
+Location: `lib/search/synonyms.ts`
+
+```typescript
+export const SYNONYMS: Record<string, string[]> = {
+  // Add your new root word with its synonyms
+  newterm: ["synonym1", "synonym2", "french_équivalent"],
+}
+```
+
+### 2. Guidelines
+
+- **Include French terms** for all entries where applicable
+- **Add common misspellings** (e.g., "fod" for "food")
+- **Include abbreviations** (e.g., "er" for "emergency")
+- **Test before committing**: `npx tsx scripts/search-cli.ts "your query"`
+
+### 3. When to Add Synonyms
+
+- When analytics show zero-result queries
+- When user feedback indicates search gaps
+- When adding new service categories

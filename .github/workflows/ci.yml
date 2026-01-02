@@ -20,6 +20,8 @@ jobs:
         run: npm ci
       - name: Run Lint
         run: npm run lint
+      - name: Validate Service Data
+        run: npm run validate-data
       - name: Run Type Check
         run: npm run type-check
 

@@ -2777,7 +2777,7 @@
     "name_fr": "Ligne de crise par texto",
     "description": "Free, 24/7 text-based crisis support. Text HOME to 686868 to connect with a trained crisis responder.",
     "description_fr": "Soutien de crise par texto gratuit 24h/24. Textez PARLER au 686868.",
-    "phone": "",
+    "phone": "686868",
     "url": "https://www.crisistextline.ca",
     "intent_category": "Crisis",
     "verification_level": "L1",

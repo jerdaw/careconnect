@@ -46,6 +46,7 @@ From the repo root:
 - **Maintenance & Quality**:
   - Bilingual Content Audit: `npm run bilingual-check`
   - i18n Key Audit: `npm run i18n-audit`
+  - Staleness Audit: `npm run check-staleness`
   - URL Health Check: `npm run health-check`
   - Phone Validation: `npm run phone-validate`
 

@@ -1,18 +1,20 @@
 # Kingston Care Connect: Roadmap
 
-> **Current Version**: v9.0.0
-> **Last Updated**: 2026-01-01
+> **Current Version**: v10.0.0
+> **Last Updated**: 2026-01-02
 > **Status**: Production-Ready / Active Development
 
 ---
 
 ## 📋 Table of Contents
 
-- [v10.0: Future Horizons](#-v100-future-horizons)
+- [v11.0: Future Horizons](#-v110-future-horizons)
 
 ---
 
 ## 🛰️ Current State
+
+Completed **Roadmap V10**: Strengthened data governance with **schema validation (Zod)**, **staleness enforcement**, and **ranking improvements** (verification + freshness boosts).
 
 Completed **Roadmap V9**: Fully bilingual (EN/FR) with added support for **Arabic, Chinese (Simplified), and Spanish**. Includes 16 **Ontario-wide crisis lines** and PWA capabilities.
 
@@ -20,11 +22,30 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 ---
 
-## 🔮 v10.0: Future Horizons
+## 🔧 v10.0: Data Architecture & Governance (Completed)
+
+> **Status**: Implemented
+> **Definition**: [v10-0-data-architecture.md](archive/2026-01-02-v10-0-data-architecture.md)
+
+See archive for full implementation details.
+
+---
+
+## 🔮 v11.0: Future Horizons
 
 ### 211 API Integration
 
 - [ ] Automated data sync (when partnership available)
+- [ ] Additive-only ingestion (preserve manual edits)
+- [ ] L0 entry with human spot-check for L1 promotion
+
+### Conditional Features (Scale Triggers)
+
+| Feature                     | Trigger                        | Effort    |
+| :-------------------------- | :----------------------------- | :-------- |
+| IndexedDB for PWA           | >500 services                  | High      |
+| PostgreSQL-first migration  | Partner portal heavy usage     | Very High |
+| Server-side semantic search | Privacy policy change + budget | High      |
 
 ---
 
@@ -32,9 +53,10 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus           | Status | Key Benefit      |
-| :-------- | :-------------- | :----- | :--------------- |
-| **v10.0** | Future Horizons | TBD    | Long-term vision |
+| Version   | Focus                        | Status      | Key Benefit                     |
+| :-------- | :--------------------------- | :---------- | :------------------------------ |
+| **v10.0** | Data Architecture/Governance | In Planning | Data quality + search relevance |
+| **v11.0** | Future Horizons              | TBD         | Long-term vision                |
 
 ---
 

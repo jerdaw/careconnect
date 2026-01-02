@@ -1,0 +1,63 @@
+name: Quarterly General Service Verification
+
+on:
+  schedule:
+    # Run at 9am ET on Jan 1, Apr 1, Jul 1, Oct 1
+    - cron: "0 14 1 1,4,7,10 *"
+  workflow_dispatch:
+
+jobs:
+  create-reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Create verification reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date();
+            const quarter = Math.floor(today.getMonth() / 3) + 1;
+            const year = today.getFullYear();
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📋 Q${quarter} ${year} General Service Verification`,
+              body: `## Quarterly Service Verification
+            
+            Per the [Governance Protocol](docs/governance.md), general services must be verified **quarterly**.
+            
+            ### Categories to Review
+            
+            - [ ] Food (food banks, meal programs)
+            - [ ] Housing (shelters, housing help)
+            - [ ] Health (clinics, dental, mental health)
+            - [ ] Legal (legal clinics)
+            - [ ] Community (newcomer services, youth hubs)
+            - [ ] Indigenous (culturally-specific services)
+            
+            ### Verification Checklist
+            
+            For each service:
+            - [ ] Phone number connects
+            - [ ] Website loads and is current
+            - [ ] Address is correct
+            - [ ] Hours match current operations
+            - [ ] Eligibility criteria still accurate
+            - [ ] French translation is current
+            
+            ### Process
+            
+            1. Run \`npm run check-staleness\` to see which services are due
+            2. Verify each flagged service
+            3. Update \`provenance.verified_at\` in \`data/services.json\`
+            4. Commit changes
+            5. Close this issue
+            
+            ---
+            *Automatically created by quarterly verification workflow.*
+            `,
+              labels: ['verification', 'quarterly']
+            });

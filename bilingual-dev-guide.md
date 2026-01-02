@@ -38,5 +38,6 @@
 ## 4. Maintenance
 
 - **Bilingual Audit**: `npm run bilingual-check` identifies missing French content.
+- **Schema Validation**: `npm run validate-data` warns if `name_fr` is missing.
 - **Multi-lingual Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
 - **Accessibility**: ARIA labels must be descriptive in all languages.
