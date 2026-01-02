@@ -20,6 +20,8 @@ export enum IntentCategory {
   Wellness = "Wellness",
   Financial = "Financial",
   Employment = "Employment",
+  Education = "Education",
+  Transport = "Transport",
   Community = "Community",
   Indigenous = "Indigenous",
 }

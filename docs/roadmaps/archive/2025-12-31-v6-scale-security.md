@@ -11,11 +11,11 @@
 
 Roadmap V6 solidifies the foundation laid in V1-V5, ensuring the platform is ready for **wide-scale deployment** and **long-term maintenance**. It focuses on **five strategic pillars**:
 
-1.  **Foundation Hardening**: Complete documented-but-missing tests, scripts, and automation from V5 before adding new features.
-2.  **Mobile Excellence**: Transition from "installable PWA" to an "essential daily tool" with push notifications and background sync.
-3.  **Bilingual Integrity**: Achieve 100% parity between English and French across all content and UI.
-4.  **Automated Health**: Reduce manual maintenance via automated verification bots and data integrity checks.
-5.  **Partner Empowerment**: Expand the partner dashboard with full CRUD capabilities for self-service management.
+1. **Foundation Hardening**: Complete documented-but-missing tests, scripts, and automation from V5 before adding new features.
+2. **Mobile Excellence**: Transition from "installable PWA" to an "essential daily tool" with push notifications and background sync.
+3. **Bilingual Integrity**: Achieve 100% parity between English and French across all content and UI.
+4. **Automated Health**: Reduce manual maintenance via automated verification bots and data integrity checks.
+5. **Partner Empowerment**: Expand the partner dashboard with full CRUD capabilities for self-service management.
 
 All features continue to adhere to **strict privacy principles** established in earlier phases.
 
@@ -349,7 +349,7 @@ function auditServices(): AuditResult[] {
 }
 
 function main() {
-  console.log("🔍 Running bilingual content audit...")
+  console.log(" Running bilingual content audit...")
 
   const issues = auditServices()
 
@@ -358,7 +358,7 @@ function main() {
     process.exit(0)
   }
 
-  console.log(`\n⚠️  Found ${issues.length} services with missing French content:\n`)
+  console.log(`\n⚠️ Found ${issues.length} services with missing French content:\n`)
 
   const fieldCounts: Record<string, number> = {}
   for (const issue of issues) {
@@ -369,11 +369,11 @@ function main() {
 
   console.log("Missing Fields Summary:")
   for (const [field, count] of Object.entries(fieldCounts)) {
-    console.log(`  - ${field}: ${count} services`)
+    console.log(` - ${field}: ${count} services`)
   }
 
   writeFileSync(REPORT_PATH, JSON.stringify({ generated: new Date().toISOString(), issues }, null, 2))
-  console.log(`\n📝 Detailed report saved to: ${REPORT_PATH}`)
+  console.log(`\n Detailed report saved to: ${REPORT_PATH}`)
 
   process.exit(1)
 }
@@ -436,7 +436,7 @@ function findUsedKeys(dir: string): Set<string> {
 }
 
 function main() {
-  console.log("🌐 Running i18n key audit...\n")
+  console.log(" Running i18n key audit...\n")
 
   const enMessages = JSON.parse(readFileSync(path.join(MESSAGES_DIR, "en.json"), "utf-8"))
   const frMessages = JSON.parse(readFileSync(path.join(MESSAGES_DIR, "fr.json"), "utf-8"))
@@ -449,23 +449,23 @@ function main() {
 
   const usedKeys = new Set([...findUsedKeys(COMPONENTS_DIR), ...findUsedKeys(APP_DIR)])
 
-  console.log("📊 Audit Results:\n")
+  console.log(" Audit Results:\n")
 
   if (missingInFr.length > 0) {
     console.log(`❌ Missing in French (${missingInFr.length}):`)
-    missingInFr.slice(0, 10).forEach((k) => console.log(`   - ${k}`))
-    if (missingInFr.length > 10) console.log(`   ... and ${missingInFr.length - 10} more`)
+    missingInFr.slice(0, 10).forEach((k) => console.log(`  - ${k}`))
+    if (missingInFr.length > 10) console.log(`  ... and ${missingInFr.length - 10} more`)
   } else {
     console.log("✅ All English keys have French translations")
   }
 
   if (missingInEn.length > 0) {
     console.log(`\n❌ Missing in English (${missingInEn.length}):`)
-    missingInEn.forEach((k) => console.log(`   - ${k}`))
+    missingInEn.forEach((k) => console.log(`  - ${k}`))
   }
 
-  console.log(`\n📈 Total keys: EN=${enKeys.size}, FR=${frKeys.size}`)
-  console.log(`📈 Used keys found in code: ${usedKeys.size}`)
+  console.log(`\n Total keys: EN=${enKeys.size}, FR=${frKeys.size}`)
+  console.log(` Used keys found in code: ${usedKeys.size}`)
 
   if (missingInFr.length > 0 || missingInEn.length > 0) {
     process.exit(1)
@@ -487,62 +487,62 @@ main()
 name: Monthly Health Check
 
 on:
-  schedule:
-    - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
-  workflow_dispatch:
+ schedule:
+  - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
+ workflow_dispatch:
 
 jobs:
-  url-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+ url-check:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
+   - uses: actions/setup-node@v4
+    with:
+     node-version: 20
+     cache: "npm"
 
-      - run: npm ci
+   - run: npm ci
 
-      - name: Run URL Health Check
-        id: health-check
-        run: npx tsx scripts/check-links.ts
-        continue-on-error: true
+   - name: Run URL Health Check
+    id: health-check
+    run: npx tsx scripts/check-links.ts
+    continue-on-error: true
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: url-health-report
-          path: data/url-health-report.json
-          if-no-files-found: ignore
+   - name: Upload Report
+    uses: actions/upload-artifact@v4
+    if: always()
+    with:
+     name: url-health-report
+     path: data/url-health-report.json
+     if-no-files-found: ignore
 
-      - name: Create Issue on Failure
-        if: steps.health-check.outcome == 'failure'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            let body = '## URL Health Check Failed\n\nThe monthly health check found issues with service URLs. Please review the attached artifact for details.';
+   - name: Create Issue on Failure
+    if: steps.health-check.outcome == 'failure'
+    uses: actions/github-script@v7
+    with:
+     script: |
+      const fs = require('fs');
+      let body = '## URL Health Check Failed\n\nThe monthly health check found issues with service URLs. Please review the attached artifact for details.';
 
-            try {
-              const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
-              const brokenList = report.broken
-                .slice(0, 20)
-                .map(b => `- [ ] **${b.serviceName}** - ${b.url}`)
-                .join('\n');
-              body = `## URL Health Check Report\n\n**Found ${report.summary?.broken || 'N/A'} broken URLs**\n\n${brokenList}`;
-            } catch (e) {
-              console.log('Could not parse report:', e);
-            }
+      try {
+       const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
+       const brokenList = report.broken
+        .slice(0, 20)
+        .map(b => `- [ ] **${b.serviceName}** - ${b.url}`)
+        .join('\n');
+       body = `## URL Health Check Report\n\n**Found ${report.summary?.broken || 'N/A'} broken URLs**\n\n${brokenList}`;
+      } catch (e) {
+       console.log('Could not parse report:', e);
+      }
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔗 Monthly Health Check: Broken URLs Found`,
-              body,
-              labels: ['data-quality', 'automated']
-            });
+      await github.rest.issues.create({
+       owner: context.repo.owner,
+       repo: context.repo.repo,
+       title: ` Monthly Health Check: Broken URLs Found`,
+       body,
+       labels: ['data-quality', 'automated']
+      });
 ```
 
 ---
@@ -561,44 +561,44 @@ import { EditServiceForm } from "@/components/EditServiceForm"
 import { getServiceById } from "@/lib/services"
 
 interface Props {
-  params: Promise<{ id: string; locale: string }>
+ params: Promise<{ id: string; locale: string }>
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params
-  const t = await getTranslations("Dashboard")
-  return { title: `Edit Service: ${id}` }
+ const { id } = await params
+ const t = await getTranslations("Dashboard")
+ return { title: `Edit Service: ${id}` }
 }
 
 export default async function EditServicePage({ params }: Props) {
-  const { id, locale } = await params
-  const t = await getTranslations("Dashboard")
+ const { id, locale } = await params
+ const t = await getTranslations("Dashboard")
 
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+ const supabase = await createClient()
+ const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect(`/${locale}/login`)
-  }
+ if (!user) {
+  redirect(`/${locale}/login`)
+ }
 
-  const service = await getServiceById(id)
+ const service = await getServiceById(id)
 
-  if (!service) {
-    notFound()
-  }
+ if (!service) {
+  notFound()
+ }
 
-  // TODO: Verify user has permission to edit this service
-  // For now, allow any authenticated user
+ // TODO: Verify user has permission to edit this service
+ // For now, allow any authenticated user
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">{t("editService")}</h1>
-        <p className="text-muted-foreground">{service.name}</p>
-      </div>
-      <EditServiceForm service={service} locale={locale} />
-    </div>
-  )
+ return (
+  <div className="space-y-6">
+   <div>
+    <h1 className="text-2xl font-bold">{t("editService")}</h1>
+    <p className="text-muted-foreground">{service.name}</p>
+   </div>
+   <EditServiceForm service={service} locale={locale} />
+  </div>
+ )
 }
 ```
 
@@ -617,18 +617,18 @@ export default async function EditServicePage({ params }: Props) {
 
 -- Service Submissions (Crowdsourcing Queue)
 CREATE TABLE IF NOT EXISTS service_submissions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  phone TEXT,
-  url TEXT,
-  address TEXT,
-  submitted_by_email TEXT,
-  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
-  reviewed_by UUID REFERENCES auth.users(id),
-  reviewed_at TIMESTAMPTZ,
-  notes TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ name TEXT NOT NULL,
+ description TEXT NOT NULL,
+ phone TEXT,
+ url TEXT,
+ address TEXT,
+ submitted_by_email TEXT,
+ status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+ reviewed_by UUID REFERENCES auth.users(id),
+ reviewed_at TIMESTAMPTZ,
+ notes TEXT,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- Index for admin review queue
@@ -639,18 +639,18 @@ CREATE INDEX idx_submissions_created ON service_submissions(created_at DESC);
 ALTER TABLE service_submissions ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Public can submit" ON service_submissions
-  FOR INSERT TO anon, authenticated
-  WITH CHECK (true);
+ FOR INSERT TO anon, authenticated
+ WITH CHECK (true);
 
 -- Push Subscriptions (for Phase 9)
 CREATE TABLE IF NOT EXISTS push_subscriptions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  endpoint TEXT UNIQUE NOT NULL,
-  keys JSONB NOT NULL,
-  categories TEXT[] NOT NULL DEFAULT ARRAY['general'],
-  locale TEXT NOT NULL DEFAULT 'en',
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ endpoint TEXT UNIQUE NOT NULL,
+ keys JSONB NOT NULL,
+ categories TEXT[] NOT NULL DEFAULT ARRAY['general'],
+ locale TEXT NOT NULL DEFAULT 'en',
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE INDEX idx_push_subscriptions_categories ON push_subscriptions USING GIN (categories);
@@ -658,18 +658,18 @@ CREATE INDEX idx_push_subscriptions_categories ON push_subscriptions USING GIN (
 ALTER TABLE push_subscriptions ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Service role only" ON push_subscriptions
-  FOR ALL USING (auth.role() = 'service_role');
+ FOR ALL USING (auth.role() = 'service_role');
 
 -- Organization Members (for Phase 12)
 CREATE TABLE IF NOT EXISTS organization_members (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
-  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  role TEXT NOT NULL CHECK (role IN ('owner', 'admin', 'editor', 'viewer')),
-  invited_by UUID REFERENCES auth.users(id),
-  invited_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  accepted_at TIMESTAMPTZ,
-  UNIQUE(organization_id, user_id)
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+ user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+ role TEXT NOT NULL CHECK (role IN ('owner', 'admin', 'editor', 'viewer')),
+ invited_by UUID REFERENCES auth.users(id),
+ invited_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ accepted_at TIMESTAMPTZ,
+ UNIQUE(organization_id, user_id)
 );
 
 CREATE INDEX idx_org_members_org ON organization_members(organization_id);
@@ -678,23 +678,23 @@ CREATE INDEX idx_org_members_user ON organization_members(user_id);
 ALTER TABLE organization_members ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Members can view org members" ON organization_members
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM organization_members om
-      WHERE om.user_id = auth.uid()
-      AND om.organization_id = organization_members.organization_id
-    )
-  );
+ FOR SELECT USING (
+  EXISTS (
+   SELECT 1 FROM organization_members om
+   WHERE om.user_id = auth.uid()
+   AND om.organization_id = organization_members.organization_id
+  )
+ );
 
 CREATE POLICY "Admins can manage members" ON organization_members
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM organization_members om
-      WHERE om.user_id = auth.uid()
-      AND om.organization_id = organization_members.organization_id
-      AND om.role IN ('owner', 'admin')
-    )
-  );
+ FOR ALL USING (
+  EXISTS (
+   SELECT 1 FROM organization_members om
+   WHERE om.user_id = auth.uid()
+   AND om.organization_id = organization_members.organization_id
+   AND om.role IN ('owner', 'admin')
+  )
+ );
 ```
 
 ---
@@ -1102,102 +1102,102 @@ import { Bell, BellOff, Loader2 } from "lucide-react"
 import type { NotificationCategory } from "@/types/notifications"
 
 const CATEGORIES: { id: NotificationCategory; icon: string }[] = [
-  { id: "crisis", icon: "🚨" },
-  { id: "food", icon: "🍽️" },
-  { id: "housing", icon: "🏠" },
-  { id: "health", icon: "🏥" },
-  { id: "general", icon: "📢" },
+ { id: "crisis", icon: "" },
+ { id: "food", icon: "️" },
+ { id: "housing", icon: "" },
+ { id: "health", icon: "" },
+ { id: "general", icon: "" },
 ]
 
 export function NotificationSettings() {
-  const t = useTranslations("Settings.notifications")
-  const {
-    isSupported,
-    permission,
-    isSubscribed,
-    subscribedCategories,
-    isLoading,
-    subscribe,
-    unsubscribe,
-  } = usePushNotifications()
+ const t = useTranslations("Settings.notifications")
+ const {
+  isSupported,
+  permission,
+  isSubscribed,
+  subscribedCategories,
+  isLoading,
+  subscribe,
+  unsubscribe,
+ } = usePushNotifications()
 
-  if (!isSupported) {
-    return (
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950">
-        <p className="text-sm text-amber-800 dark:text-amber-200">
-          {t("notSupported")}
-        </p>
-      </div>
-    )
-  }
-
-  if (permission === "denied") {
-    return (
-      <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950">
-        <p className="text-sm text-red-800 dark:text-red-200">
-          {t("permissionDenied")}
-        </p>
-      </div>
-    )
-  }
-
-  const handleCategoryToggle = (category: NotificationCategory) => {
-    const newCategories = subscribedCategories.includes(category)
-      ? subscribedCategories.filter((c) => c !== category)
-      : [...subscribedCategories, category]
-    subscribe(newCategories)
-  }
-
-  if (!isSubscribed) {
-    return (
-      <div className="rounded-lg bg-blue-50 p-6 dark:bg-blue-950">
-        <div className="flex items-center gap-3 mb-4">
-          <Bell className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-          <h3 className="font-semibold">{t("enablePrompt")}</h3>
-        </div>
-        <p className="text-muted-foreground mb-4 text-sm">{t("enableDescription")}</p>
-        <Button
-          onClick={() => subscribe(["crisis", "general"])}
-          disabled={isLoading}
-        >
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {t("enableButton")}
-        </Button>
-      </div>
-    )
-  }
-
+ if (!isSupported) {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Bell className="h-5 w-5 text-green-600" />
-          <span className="font-medium">{t("enabled")}</span>
-        </div>
-        <Button variant="outline" size="sm" onClick={unsubscribe} disabled={isLoading}>
-          <BellOff className="mr-2 h-4 w-4" />
-          {t("disable")}
-        </Button>
-      </div>
-
-      <div>
-        <h4 className="mb-3 font-medium">{t("categories")}</h4>
-        <div className="flex flex-wrap gap-2">
-          {CATEGORIES.map(({ id, icon }) => (
-            <Button
-              key={id}
-              variant={subscribedCategories.includes(id) ? "default" : "outline"}
-              size="sm"
-              onClick={() => handleCategoryToggle(id)}
-              disabled={isLoading}
-            >
-              {icon} {t(`categoryLabels.${id}`)}
-            </Button>
-          ))}
-        </div>
-      </div>
-    </div>
+   <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950">
+    <p className="text-sm text-amber-800 dark:text-amber-200">
+     {t("notSupported")}
+    </p>
+   </div>
   )
+ }
+
+ if (permission === "denied") {
+  return (
+   <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950">
+    <p className="text-sm text-red-800 dark:text-red-200">
+     {t("permissionDenied")}
+    </p>
+   </div>
+  )
+ }
+
+ const handleCategoryToggle = (category: NotificationCategory) => {
+  const newCategories = subscribedCategories.includes(category)
+   ? subscribedCategories.filter((c) => c !== category)
+  : [...subscribedCategories, category]
+  subscribe(newCategories)
+ }
+
+ if (!isSubscribed) {
+  return (
+   <div className="rounded-lg bg-blue-50 p-6 dark:bg-blue-950">
+    <div className="flex items-center gap-3 mb-4">
+     <Bell className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+     <h3 className="font-semibold">{t("enablePrompt")}</h3>
+    </div>
+    <p className="text-muted-foreground mb-4 text-sm">{t("enableDescription")}</p>
+    <Button
+     onClick={() => subscribe(["crisis", "general"])}
+     disabled={isLoading}
+    >
+     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+     {t("enableButton")}
+    </Button>
+   </div>
+  )
+ }
+
+ return (
+  <div className="space-y-6">
+   <div className="flex items-center justify-between">
+    <div className="flex items-center gap-2">
+     <Bell className="h-5 w-5 text-green-600" />
+     <span className="font-medium">{t("enabled")}</span>
+    </div>
+    <Button variant="outline" size="sm" onClick={unsubscribe} disabled={isLoading}>
+     <BellOff className="mr-2 h-4 w-4" />
+     {t("disable")}
+    </Button>
+   </div>
+
+   <div>
+    <h4 className="mb-3 font-medium">{t("categories")}</h4>
+    <div className="flex flex-wrap gap-2">
+     {CATEGORIES.map(({ id, icon }) => (
+      <Button
+       key={id}
+       variant={subscribedCategories.includes(id) ? "default": "outline"}
+       size="sm"
+       onClick={() => handleCategoryToggle(id)}
+       disabled={isLoading}
+      >
+       {icon} {t(`categoryLabels.${id}`)}
+      </Button>
+     ))}
+    </div>
+   </div>
+  </div>
+ )
 }
 ```
 
@@ -1242,7 +1242,7 @@ export function NotificationSettings() {
       "enableButton": "Activer les notifications",
       "enabled": "Notifications activées",
       "disable": "Désactiver",
-      "categories": "Me notifier pour :",
+      "categories": "Me notifier pour:",
       "categoryLabels": {
         "crisis": "Crises et urgences",
         "food": "Services alimentaires",
@@ -1262,13 +1262,13 @@ export function NotificationSettings() {
 ```sql
 -- Push notification subscriptions table
 CREATE TABLE IF NOT EXISTS push_subscriptions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  endpoint TEXT UNIQUE NOT NULL,
-  keys JSONB NOT NULL,
-  categories TEXT[] NOT NULL DEFAULT ARRAY['general'],
-  locale TEXT NOT NULL DEFAULT 'en',
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ endpoint TEXT UNIQUE NOT NULL,
+ keys JSONB NOT NULL,
+ categories TEXT[] NOT NULL DEFAULT ARRAY['general'],
+ locale TEXT NOT NULL DEFAULT 'en',
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- Index for category-based broadcast queries
@@ -1279,7 +1279,7 @@ ALTER TABLE push_subscriptions ENABLE ROW LEVEL SECURITY;
 
 -- Only service role can read/write (for Edge Functions)
 CREATE POLICY "Service role only" ON push_subscriptions
-  FOR ALL USING (auth.role() = 'service_role');
+ FOR ALL USING (auth.role() = 'service_role');
 ```
 
 ---
@@ -1291,16 +1291,16 @@ CREATE POLICY "Service role only" ON push_subscriptions
 #### 9.2.1 Architecture
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  Service Worker │────>│  Background Sync │────>│ /api/v1/services│
-│   (sw.js)       │     │      API         │     │    (fetch)      │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
-        │                        │
-        v                        v
-┌─────────────────┐     ┌──────────────────┐
-│   IndexedDB     │<────│  Cache Update    │
-│ (services-cache)│     │                  │
-└─────────────────┘     └──────────────────┘
+┌─────────────────┐   ┌──────────────────┐   ┌─────────────────┐
+│ Service Worker │────>│ Background Sync │────>│ /api/v1/services│
+│  (sw.js)    │   │   API     │   │  (fetch)   │
+└─────────────────┘   └──────────────────┘   └─────────────────┘
+    │            │
+    v            v
+┌─────────────────┐   ┌──────────────────┐
+│  IndexedDB   │<────│ Cache Update  │
+│ (services-cache)│   │         │
+└─────────────────┘   └──────────────────┘
 ```
 
 #### [MODIFY] `public/sw.js`
@@ -1456,7 +1456,7 @@ function auditServices(): AuditResult[] {
 }
 
 function main() {
-  console.log("🔍 Running bilingual content audit...")
+  console.log(" Running bilingual content audit...")
 
   const issues = auditServices()
 
@@ -1465,7 +1465,7 @@ function main() {
     return
   }
 
-  console.log(`\n⚠️  Found ${issues.length} services with missing French content:\n`)
+  console.log(`\n⚠️ Found ${issues.length} services with missing French content:\n`)
 
   // Summary by field
   const fieldCounts: Record<string, number> = {}
@@ -1477,12 +1477,12 @@ function main() {
 
   console.log("Missing Fields Summary:")
   for (const [field, count] of Object.entries(fieldCounts)) {
-    console.log(`  - ${field}: ${count} services`)
+    console.log(` - ${field}: ${count} services`)
   }
 
   // Write detailed report
   writeFileSync(REPORT_PATH, JSON.stringify({ generated: new Date().toISOString(), issues }, null, 2))
-  console.log(`\n📝 Detailed report saved to: ${REPORT_PATH}`)
+  console.log(`\n Detailed report saved to: ${REPORT_PATH}`)
 
   // Exit with error code for CI integration
   process.exit(1)
@@ -1568,7 +1568,7 @@ function findUsedKeys(dir: string): Set<string> {
 }
 
 function main() {
-  console.log("🌐 Running i18n key audit...")
+  console.log(" Running i18n key audit...")
 
   const enMessages = JSON.parse(readFileSync(path.join(MESSAGES_DIR, "en.json"), "utf-8"))
   const frMessages = JSON.parse(readFileSync(path.join(MESSAGES_DIR, "fr.json"), "utf-8"))
@@ -1584,25 +1584,25 @@ function main() {
   const usedKeys = new Set([...findUsedKeys(COMPONENTS_DIR), ...findUsedKeys(APP_DIR)])
   const unusedKeys = [...enKeys].filter((k) => !usedKeys.has(k))
 
-  console.log("\n📊 Audit Results:\n")
+  console.log("\n Audit Results:\n")
 
   if (missingInFr.length > 0) {
     console.log(`❌ Missing in French (${missingInFr.length}):`)
-    missingInFr.forEach((k) => console.log(`   - ${k}`))
+    missingInFr.forEach((k) => console.log(`  - ${k}`))
   } else {
     console.log("✅ All English keys have French translations")
   }
 
   if (missingInEn.length > 0) {
     console.log(`\n❌ Missing in English (${missingInEn.length}):`)
-    missingInEn.forEach((k) => console.log(`   - ${k}`))
+    missingInEn.forEach((k) => console.log(`  - ${k}`))
   }
 
   if (unusedKeys.length > 0) {
-    console.log(`\n⚠️  Potentially unused keys (${unusedKeys.length}):`)
-    unusedKeys.slice(0, 10).forEach((k) => console.log(`   - ${k}`))
+    console.log(`\n⚠️ Potentially unused keys (${unusedKeys.length}):`)
+    unusedKeys.slice(0, 10).forEach((k) => console.log(`  - ${k}`))
     if (unusedKeys.length > 10) {
-      console.log(`   ... and ${unusedKeys.length - 10} more`)
+      console.log(`  ... and ${unusedKeys.length - 10} more`)
     }
   }
 
@@ -1626,10 +1626,10 @@ main()
 #### 11.1.1 Architecture
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│ GitHub Actions  │────>│  URL Checker     │────>│  Create Issue   │
-│ (Monthly Cron)  │     │  Script          │     │  with Report    │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
+┌─────────────────┐   ┌──────────────────┐   ┌─────────────────┐
+│ GitHub Actions │────>│ URL Checker   │────>│ Create Issue  │
+│ (Monthly Cron) │   │ Script     │   │ with Report  │
+└─────────────────┘   └──────────────────┘   └─────────────────┘
 ```
 
 #### [NEW] `scripts/health-check-urls.ts`
@@ -1690,7 +1690,7 @@ async function checkUrl(
 }
 
 async function main() {
-  console.log("🔗 Running URL health check...")
+  console.log(" Running URL health check...")
 
   const services: Service[] = JSON.parse(readFileSync(SERVICES_PATH, "utf-8"))
   const servicesWithUrls = services.filter((s) => s.url)
@@ -1717,22 +1717,22 @@ async function main() {
     await new Promise((r) => setTimeout(r, 500))
   }
 
-  console.log("\n\n📊 Results Summary:\n")
+  console.log("\n\n Results Summary:\n")
 
   const healthy = results.filter((r) => r.status === 200)
   const broken = results.filter((r) => r.status === "error" || (typeof r.status === "number" && r.status >= 400))
   const redirects = results.filter((r) => typeof r.status === "number" && r.status >= 300 && r.status < 400)
 
-  console.log(`  ✅ Healthy: ${healthy.length}`)
-  console.log(`  🔀 Redirects: ${redirects.length}`)
-  console.log(`  ❌ Broken: ${broken.length}`)
+  console.log(` ✅ Healthy: ${healthy.length}`)
+  console.log(`  Redirects: ${redirects.length}`)
+  console.log(` ❌ Broken: ${broken.length}`)
 
   if (broken.length > 0) {
     console.log("\n❌ Broken URLs:\n")
     for (const result of broken) {
-      console.log(`  - ${result.serviceName}`)
-      console.log(`    URL: ${result.url}`)
-      console.log(`    Error: ${result.errorMessage || `HTTP ${result.status}`}\n`)
+      console.log(` - ${result.serviceName}`)
+      console.log(`  URL: ${result.url}`)
+      console.log(`  Error: ${result.errorMessage || `HTTP ${result.status}`}\n`)
     }
   }
 
@@ -1756,7 +1756,7 @@ async function main() {
     )
   )
 
-  console.log(`📝 Report saved to: ${REPORT_PATH}`)
+  console.log(` Report saved to: ${REPORT_PATH}`)
 
   if (broken.length > 0) {
     process.exit(1)
@@ -1774,53 +1774,53 @@ main()
 name: Monthly Health Check
 
 on:
-  schedule:
-    - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
-  workflow_dispatch:
+ schedule:
+  - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
+ workflow_dispatch:
 
 jobs:
-  url-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+ url-check:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
+   - uses: actions/setup-node@v4
+    with:
+     node-version: 20
+     cache: "npm"
 
-      - run: npm ci
+   - run: npm ci
 
-      - name: Run URL Health Check
-        id: health-check
-        run: npx tsx scripts/health-check-urls.ts
-        continue-on-error: true
+   - name: Run URL Health Check
+    id: health-check
+    run: npx tsx scripts/health-check-urls.ts
+    continue-on-error: true
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: url-health-report
-          path: data/url-health-report.json
+   - name: Upload Report
+    uses: actions/upload-artifact@v4
+    with:
+     name: url-health-report
+     path: data/url-health-report.json
 
-      - name: Create Issue on Failure
-        if: steps.health-check.outcome == 'failure'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
+   - name: Create Issue on Failure
+    if: steps.health-check.outcome == 'failure'
+    uses: actions/github-script@v7
+    with:
+     script: |
+      const fs = require('fs');
+      const report = JSON.parse(fs.readFileSync('data/url-health-report.json', 'utf-8'));
 
-            const brokenList = report.broken
-              .map(b => `- [ ] **${b.serviceName}** (ID: \`${b.serviceId}\`)\n  - URL: ${b.url}\n  - Error: ${b.errorMessage || `HTTP ${b.status}`}`)
-              .join('\n');
+      const brokenList = report.broken
+       .map(b => `- [ ] **${b.serviceName}** (ID: \`${b.serviceId}\`)\n - URL: ${b.url}\n - Error: ${b.errorMessage || `HTTP ${b.status}`}`)
+       .join('\n');
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔗 Monthly Health Check: ${report.broken.length} Broken URLs Found`,
-              body: `## URL Health Check Report\n\n**Generated**: ${report.generated}\n\n### Summary\n- ✅ Healthy: ${report.summary.healthy}\n- 🔀 Redirects: ${report.summary.redirects}\n- ❌ Broken: ${report.summary.broken}\n\n### Broken URLs\n\n${brokenList}\n\n---\n*This issue was automatically generated by the monthly health check workflow.*`,
-              labels: ['data-quality', 'automated']
-            });
+      await github.rest.issues.create({
+       owner: context.repo.owner,
+       repo: context.repo.repo,
+       title: ` Monthly Health Check: ${report.broken.length} Broken URLs Found`,
+       body: `## URL Health Check Report\n\n**Generated**: ${report.generated}\n\n### Summary\n- ✅ Healthy: ${report.summary.healthy}\n- Redirects: ${report.summary.redirects}\n- ❌ Broken: ${report.summary.broken}\n\n### Broken URLs\n\n${brokenList}\n\n---\n*This issue was automatically generated by the monthly health check workflow.*`,
+       labels: ['data-quality', 'automated']
+      });
 ```
 
 ---
@@ -1901,7 +1901,7 @@ async function validatePhone(phone: string): Promise<Partial<PhoneValidationResu
 }
 
 async function main() {
-  console.log("📞 Running phone validation...")
+  console.log(" Running phone validation...")
 
   const services: Service[] = JSON.parse(readFileSync(SERVICES_PATH, "utf-8"))
   const servicesWithPhones = services.filter((s) => s.phone)
@@ -1927,9 +1927,9 @@ async function main() {
   const valid = results.filter((r) => r.isValid)
   const invalid = results.filter((r) => !r.isValid)
 
-  console.log("\n📊 Results:")
-  console.log(`  ✅ Valid: ${valid.length}`)
-  console.log(`  ❌ Invalid: ${invalid.length}`)
+  console.log("\n Results:")
+  console.log(` ✅ Valid: ${valid.length}`)
+  console.log(` ❌ Invalid: ${invalid.length}`)
 
   writeFileSync(
     REPORT_PATH,
@@ -1974,32 +1974,32 @@ import { PartnerServiceList } from "@/components/partner/PartnerServiceList"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export async function generateMetadata() {
-  const t = await getTranslations("Dashboard")
-  return { title: t("services.title") }
+ const t = await getTranslations("Dashboard")
+ return { title: t("services.title") }
 }
 
 export default async function PartnerServicesPage() {
-  const t = await getTranslations("Dashboard")
-  const supabase = await createClient()
+ const t = await getTranslations("Dashboard")
+ const supabase = await createClient()
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+ const {
+  data: { user },
+ } = await supabase.auth.getUser()
 
-  if (!user) {
-    return <div>Unauthorized</div>
-  }
+ if (!user) {
+  return <div>Unauthorized</div>
+ }
 
-  return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{t("services.title")}</h1>
-      </div>
-      <Suspense fallback={<Skeleton className="h-64 w-full" />}>
-        <PartnerServiceList partnerId={user.id} />
-      </Suspense>
-    </div>
-  )
+ return (
+  <div className="space-y-6">
+   <div className="flex items-center justify-between">
+    <h1 className="text-2xl font-bold">{t("services.title")}</h1>
+   </div>
+   <Suspense fallback={<Skeleton className="h-64 w-full" />}>
+    <PartnerServiceList partnerId={user.id} />
+   </Suspense>
+  </div>
+ )
 }
 ```
 
@@ -2021,128 +2021,128 @@ import { useTranslations } from "next-intl"
 import { Save, Loader2 } from "lucide-react"
 
 const ServiceEditSchema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters"),
-  name_fr: z.string().min(3, "French name must be at least 3 characters"),
-  description: z.string().min(20, "Description must be at least 20 characters"),
-  description_fr: z.string().min(20, "French description must be at least 20 characters"),
-  phone: z.string().optional(),
-  url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
-  address: z.string().optional(),
-  operating_hours: z.string().optional(),
-  eligibility_notes: z.string().optional(),
-  eligibility_notes_fr: z.string().optional(),
+ name: z.string().min(3, "Name must be at least 3 characters"),
+ name_fr: z.string().min(3, "French name must be at least 3 characters"),
+ description: z.string().min(20, "Description must be at least 20 characters"),
+ description_fr: z.string().min(20, "French description must be at least 20 characters"),
+ phone: z.string().optional(),
+ url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+ address: z.string().optional(),
+ operating_hours: z.string().optional(),
+ eligibility_notes: z.string().optional(),
+ eligibility_notes_fr: z.string().optional(),
 })
 
 type ServiceEditFormData = z.infer<typeof ServiceEditSchema>
 
 interface Props {
-  service: ServiceEditFormData & { id: string }
-  onSave: (data: ServiceEditFormData) => Promise<void>
+ service: ServiceEditFormData & { id: string }
+ onSave: (data: ServiceEditFormData) => Promise<void>
 }
 
 export function ServiceEditForm({ service, onSave }: Props) {
-  const t = useTranslations("Dashboard.services")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+ const t = useTranslations("Dashboard.services")
+ const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isDirty },
-  } = useForm<ServiceEditFormData>({
-    resolver: zodResolver(ServiceEditSchema),
-    defaultValues: service,
-  })
+ const {
+  register,
+  handleSubmit,
+  formState: { errors, isDirty },
+ } = useForm<ServiceEditFormData>({
+  resolver: zodResolver(ServiceEditSchema),
+  defaultValues: service,
+ })
 
-  const onSubmit = async (data: ServiceEditFormData) => {
-    setIsSubmitting(true)
-    try {
-      await onSave(data)
-    } finally {
-      setIsSubmitting(false)
-    }
+ const onSubmit = async (data: ServiceEditFormData) => {
+  setIsSubmitting(true)
+  try {
+   await onSave(data)
+  } finally {
+   setIsSubmitting(false)
   }
+ }
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* English Name */}
-        <div>
-          <label className="text-sm font-medium">{t("name")} (EN)</label>
-          <Input {...register("name")} />
-          {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
-        </div>
+ return (
+  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+   <div className="grid gap-6 md:grid-cols-2">
+    {/* English Name */}
+    <div>
+     <label className="text-sm font-medium">{t("name")} (EN)</label>
+     <Input {...register("name")} />
+     {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
+    </div>
 
-        {/* French Name */}
-        <div>
-          <label className="text-sm font-medium">{t("name")} (FR)</label>
-          <Input {...register("name_fr")} />
-          {errors.name_fr && <p className="mt-1 text-sm text-red-500">{errors.name_fr.message}</p>}
-        </div>
+    {/* French Name */}
+    <div>
+     <label className="text-sm font-medium">{t("name")} (FR)</label>
+     <Input {...register("name_fr")} />
+     {errors.name_fr && <p className="mt-1 text-sm text-red-500">{errors.name_fr.message}</p>}
+    </div>
 
-        {/* English Description */}
-        <div className="md:col-span-2">
-          <label className="text-sm font-medium">{t("description")} (EN)</label>
-          <Textarea {...register("description")} rows={4} />
-          {errors.description && (
-            <p className="mt-1 text-sm text-red-500">{errors.description.message}</p>
-          )}
-        </div>
+    {/* English Description */}
+    <div className="md:col-span-2">
+     <label className="text-sm font-medium">{t("description")} (EN)</label>
+     <Textarea {...register("description")} rows={4} />
+     {errors.description && (
+      <p className="mt-1 text-sm text-red-500">{errors.description.message}</p>
+     )}
+    </div>
 
-        {/* French Description */}
-        <div className="md:col-span-2">
-          <label className="text-sm font-medium">{t("description")} (FR)</label>
-          <Textarea {...register("description_fr")} rows={4} />
-          {errors.description_fr && (
-            <p className="mt-1 text-sm text-red-500">{errors.description_fr.message}</p>
-          )}
-        </div>
+    {/* French Description */}
+    <div className="md:col-span-2">
+     <label className="text-sm font-medium">{t("description")} (FR)</label>
+     <Textarea {...register("description_fr")} rows={4} />
+     {errors.description_fr && (
+      <p className="mt-1 text-sm text-red-500">{errors.description_fr.message}</p>
+     )}
+    </div>
 
-        {/* Contact Info */}
-        <div>
-          <label className="text-sm font-medium">{t("phone")}</label>
-          <Input {...register("phone")} type="tel" />
-        </div>
+    {/* Contact Info */}
+    <div>
+     <label className="text-sm font-medium">{t("phone")}</label>
+     <Input {...register("phone")} type="tel" />
+    </div>
 
-        <div>
-          <label className="text-sm font-medium">{t("website")}</label>
-          <Input {...register("url")} type="url" placeholder="https://" />
-          {errors.url && <p className="mt-1 text-sm text-red-500">{errors.url.message}</p>}
-        </div>
+    <div>
+     <label className="text-sm font-medium">{t("website")}</label>
+     <Input {...register("url")} type="url" placeholder="https://" />
+     {errors.url && <p className="mt-1 text-sm text-red-500">{errors.url.message}</p>}
+    </div>
 
-        <div className="md:col-span-2">
-          <label className="text-sm font-medium">{t("address")}</label>
-          <Input {...register("address")} />
-        </div>
+    <div className="md:col-span-2">
+     <label className="text-sm font-medium">{t("address")}</label>
+     <Input {...register("address")} />
+    </div>
 
-        <div className="md:col-span-2">
-          <label className="text-sm font-medium">{t("hours")}</label>
-          <Input {...register("operating_hours")} placeholder="Mon-Fri 9am-5pm" />
-        </div>
+    <div className="md:col-span-2">
+     <label className="text-sm font-medium">{t("hours")}</label>
+     <Input {...register("operating_hours")} placeholder="Mon-Fri 9am-5pm" />
+    </div>
 
-        {/* Eligibility Notes */}
-        <div>
-          <label className="text-sm font-medium">{t("eligibility")} (EN)</label>
-          <Textarea {...register("eligibility_notes")} rows={3} />
-        </div>
+    {/* Eligibility Notes */}
+    <div>
+     <label className="text-sm font-medium">{t("eligibility")} (EN)</label>
+     <Textarea {...register("eligibility_notes")} rows={3} />
+    </div>
 
-        <div>
-          <label className="text-sm font-medium">{t("eligibility")} (FR)</label>
-          <Textarea {...register("eligibility_notes_fr")} rows={3} />
-        </div>
-      </div>
+    <div>
+     <label className="text-sm font-medium">{t("eligibility")} (FR)</label>
+     <Textarea {...register("eligibility_notes_fr")} rows={3} />
+    </div>
+   </div>
 
-      <div className="flex justify-end gap-3">
-        <Button type="submit" disabled={!isDirty || isSubmitting}>
-          {isSubmitting ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <Save className="mr-2 h-4 w-4" />
-          )}
-          {t("saveChanges")}
-        </Button>
-      </div>
-    </form>
-  )
+   <div className="flex justify-end gap-3">
+    <Button type="submit" disabled={!isDirty || isSubmitting}>
+     {isSubmitting ? (
+      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+     ): (
+      <Save className="mr-2 h-4 w-4" />
+     )}
+     {t("saveChanges")}
+    </Button>
+   </div>
+  </form>
+ )
 }
 ```
 
@@ -2166,14 +2166,14 @@ export function ServiceEditForm({ service, onSave }: Props) {
 ```sql
 -- Organization members table
 CREATE TABLE IF NOT EXISTS organization_members (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
-  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  role TEXT NOT NULL CHECK (role IN ('owner', 'admin', 'editor', 'viewer')),
-  invited_by UUID REFERENCES auth.users(id),
-  invited_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  accepted_at TIMESTAMPTZ,
-  UNIQUE(organization_id, user_id)
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+ user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+ role TEXT NOT NULL CHECK (role IN ('owner', 'admin', 'editor', 'viewer')),
+ invited_by UUID REFERENCES auth.users(id),
+ invited_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ accepted_at TIMESTAMPTZ,
+ UNIQUE(organization_id, user_id)
 );
 
 -- Indexes
@@ -2185,24 +2185,24 @@ ALTER TABLE organization_members ENABLE ROW LEVEL SECURITY;
 
 -- Members can see their own organization's members
 CREATE POLICY "Members can view org members" ON organization_members
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM organization_members om
-      WHERE om.user_id = auth.uid()
-      AND om.organization_id = organization_members.organization_id
-    )
-  );
+ FOR SELECT USING (
+  EXISTS (
+   SELECT 1 FROM organization_members om
+   WHERE om.user_id = auth.uid()
+   AND om.organization_id = organization_members.organization_id
+  )
+ );
 
 -- Only admins/owners can insert
 CREATE POLICY "Admins can invite members" ON organization_members
-  FOR INSERT WITH CHECK (
-    EXISTS (
-      SELECT 1 FROM organization_members om
-      WHERE om.user_id = auth.uid()
-      AND om.organization_id = organization_members.organization_id
-      AND om.role IN ('owner', 'admin')
-    )
-  );
+ FOR INSERT WITH CHECK (
+  EXISTS (
+   SELECT 1 FROM organization_members om
+   WHERE om.user_id = auth.uid()
+   AND om.organization_id = organization_members.organization_id
+   AND om.role IN ('owner', 'admin')
+  )
+ );
 ```
 
 ---

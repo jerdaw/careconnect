@@ -26,14 +26,15 @@ export function Footer() {
               Connecting Kingston residents with the support services they need. Built with care for our community.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
+              <a href="#" aria-label="GitHub" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
                 <Github className="h-5 w-5 text-neutral-400" />
               </a>
-              <a href="#" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
+              <a href="#" aria-label="Twitter" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
                 <Twitter className="h-5 w-5 text-neutral-400" />
               </a>
               <a
                 href="mailto:feedback@kingstoncare.ca"
+                aria-label="Contact by Email"
                 className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
               >
                 <Mail className="h-5 w-5 text-neutral-400" />
@@ -91,7 +92,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-500">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
           <p>© 2024 Kingston Care Connect (Pilot v1.0)</p>
 
           <div className="flex items-center gap-2">

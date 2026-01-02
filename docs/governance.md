@@ -27,7 +27,7 @@ Every service in the database must be assigned a verification level.
 
 | Level  | Definition                                                                                                        | Display Policy             |
 | :----- | :---------------------------------------------------------------------------------------------------------------- | :------------------------- |
-| **L0** | **Unverified.** Raw data scraped from web or submitted by public.                                                 | ⛔ **HIDDEN**              |
+| **L0** | **Unverified.** Raw data scraped from web or submitted by public.                                                 | **HIDDEN**                 |
 | **L1** | **Existence Verified.** Phone number calls through, Website loads. Confirmed active within 90 days.               | ✅ **VISIBLE**             |
 | **L2** | **Eligibility Verified.** Inclusion/Exclusion criteria verified against official documentation (PDF, About Page). | ✅ **VISIBLE**             |
 | **L3** | **Provider Confirmed.** Direct contact (email/phone) with service provider confirming details.                    | ✅ **VISIBLE** (Preferred) |

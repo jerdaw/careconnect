@@ -4,7 +4,7 @@ import { useUserContext } from "@/hooks/useUserContext"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
-import { User, ShieldCheck, Bell, BellOff, Loader2, Eye } from "lucide-react"
+import { User, Bell, BellOff, Loader2, Eye } from "lucide-react"
 import { usePushNotifications } from "@/hooks/usePushNotifications"
 import { useHighContrast } from "@/hooks/useHighContrast"
 import { NotificationCategory } from "@/types/notifications"
@@ -74,7 +74,7 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
                 : "bg-neutral-100 text-neutral-500 dark:bg-neutral-800"
             )}
           >
-            {context.hasOptedIn ? <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} /> : <ShieldCheck className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />}
+            {context.hasOptedIn ? <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} /> : <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />}
           </div>
           {showText && (
             <span className="hidden font-medium sm:inline-block">
@@ -89,7 +89,7 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
           <div className="bg-slate-50 p-6 dark:bg-slate-900/50">
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="rounded-full bg-white p-3 shadow-sm dark:bg-slate-800">
-                <ShieldCheck className="text-primary-600 h-8 w-8" />
+                <User className="text-primary-600 h-8 w-8" />
               </div>
               <div>
                 <h3 className="text-primary-900 mb-1 text-lg font-semibold dark:text-white">

@@ -1,9 +1,5 @@
-import { pipeline, env } from "@xenova/transformers"
-
 // Configure Transformers.js to use local models or CDN
-// For strict privacy, in production this should serve models from the public/ folder
-env.allowLocalModels = false // We'll fetch from Xenova CDN for this demo to minimize repo size
-env.useBrowserCache = true
+// We use dynamic imports to avoid loading the library on initial page load (and prevent test crashes)
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
@@ -24,6 +20,13 @@ class WhisperTranscriber {
 
     this.isLoading = true
     try {
+      // Dynamic import to prevent side effects during testing/SSG and optimize load time
+      const { pipeline, env } = await import("@xenova/transformers")
+
+      // Configure Transformers.js
+      env.allowLocalModels = false // We'll fetch from Xenova CDN for this demo to minimize repo size
+      env.useBrowserCache = true
+
       // Load Whisper Tiny (quantized) - ~40MB
       // Task: automatic-speech-recognition
       // Model: Xenova/whisper-tiny.en

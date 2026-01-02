@@ -1,8 +1,8 @@
 # Roadmap V5: Personalization & Data Pipelines
 
-> **Status**: Planning  
-> **Owner**: TBD  
-> **Start Date**: TBD  
+> **Status**: Planning
+> **Owner**: TBD
+> **Start Date**: TBD
 > **Last Updated**: 2025-12-31
 
 ---
@@ -11,10 +11,10 @@
 
 Roadmap V5 builds on the completed **Privacy-First Intelligent Assistant** (Phase 4) and focuses on:
 
-1.  **Personalized User Experience**: Allowing users to optionally store preferences locally for tailored results.
-2.  **Automated Data Pipelines**: Reducing manual effort in keeping services up-to-date.
-3.  **Community & Partner Features**: Enabling organizations to self-manage their listings.
-4.  **Advanced AI**: Enhancing the conversational assistant with memory and voice.
+1. **Personalized User Experience**: Allowing users to optionally store preferences locally for tailored results.
+2. **Automated Data Pipelines**: Reducing manual effort in keeping services up-to-date.
+3. **Community & Partner Features**: Enabling organizations to self-manage their listings.
+4. **Advanced AI**: Enhancing the conversational assistant with memory and voice.
 
 All features continue to adhere to **strict privacy principles** (no user data egress unless explicitly opted-in by partner organizations).
 
@@ -153,7 +153,7 @@ const eligibility = checkEligibility(service, context)
 {
   eligibility === "eligible" && (
     <span className="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-200">
-      ✓ You may qualify
+      You may qualify
     </span>
   )
 }
@@ -379,7 +379,7 @@ import path from "path"
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
 
 async function main() {
-  console.log("🔄 Fetching services from 211 Ontario...")
+  console.log(" Fetching services from 211 Ontario...")
   const newServices = await fetch211Services()
 
   const existing = JSON.parse(readFileSync(SERVICES_PATH, "utf-8"))
@@ -409,30 +409,30 @@ main().catch(console.error)
 name: Sync 211 Ontario Data
 
 on:
-  schedule:
-    - cron: "0 4 * * *" # 4 AM UTC daily
-  workflow_dispatch:
+ schedule:
+  - cron: "0 4 * * *" # 4 AM UTC daily
+ workflow_dispatch:
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+ sync:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+   - uses: actions/setup-node@v4
+    with:
+     node-version: 20
 
-      - run: npm ci
+   - run: npm ci
 
-      - run: npx tsx scripts/sync-211.ts
-        env:
-          API_211_KEY: ${{ secrets.API_211_KEY }}
+   - run: npx tsx scripts/sync-211.ts
+    env:
+     API_211_KEY: ${{ secrets.API_211_KEY }}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore(data): sync 211 Ontario services"
-          file_pattern: "data/services.json"
+   - uses: stefanzweifel/git-auto-commit-action@v5
+    with:
+     commit_message: "chore(data): sync 211 Ontario services"
+     file_pattern: "data/services.json"
 ```
 
 ---
@@ -453,7 +453,7 @@ const date = new Date().toISOString().split("T")[0]
 const entry = `\n## ${date}\n\n\`\`\`diff\n${diff.slice(0, 2000)}...\n\`\`\`\n`
 
 appendFileSync("data/changelog.md", entry)
-console.log("📝 Changelog updated.")
+console.log(" Changelog updated.")
 ```
 
 ---
@@ -470,7 +470,7 @@ import { readFileSync, writeFileSync } from "fs"
 const MODEL = "Xenova/all-MiniLM-L6-v2"
 
 async function main() {
-  console.log("🧠 Loading embedding model...")
+  console.log(" Loading embedding model...")
   const embedder = await pipeline("feature-extraction", MODEL)
 
   const services = JSON.parse(readFileSync("data/services.json", "utf-8"))
@@ -510,15 +510,19 @@ main()
 
 #### User Flow
 
-1.  **Entry Point**: "Suggest Service" link in global header/footer.
-2.  **Form**: Public `SubmitServicePage` capturing:
-    - **Core Info**: Name, Description (min 10 chars).
-    - **Contact**: Phone, Website, Address.
-    - **Validation**: Strict schema validation using `zod`.
-3.  **Submission**:
-    - Data POSTed to `/api/v1/submissions`.
-    - Stored in `service_submissions` table (status: `pending`).
-4.  **Feedback**: Instant success UI with "Submit Another" option.
+1. **Entry Point**: "Suggest Service" link in global header/footer.
+2. **Form**: Public `SubmitServicePage` capturing:
+
+- **Core Info**: Name, Description (min 10 chars).
+- **Contact**: Phone, Website, Address.
+- **Validation**: Strict schema validation using `zod`.
+
+3. **Submission**:
+
+- Data POSTed to `/api/v1/submissions`.
+- Stored in `service_submissions` table (status: `pending`).
+
+4. **Feedback**: Instant success UI with "Submit Another" option.
 
 #### Technical Implementation
 
@@ -548,19 +552,19 @@ export const SubmissionSchema = z.object({
 #### Dashboard UI (`app/[locale]/dashboard/analytics`)
 
 - **KPI Cards**:
-  - `Total Searches`: Volume of intent in the last 30 days.
-  - `Top Category`: Most needed service type (e.g., Food, Housing).
-  - `Zero Results`: Percentage of searches that found nothing (gap analysis).
+- `Total Searches`: Volume of intent in the last 30 days.
+- `Top Category`: Most needed service type (e.g., Food, Housing).
+- `Zero Results`: Percentage of searches that found nothing (gap analysis).
 - **Trend Indicators**:
-  - Visual delta (e.g., "↑ 12%") vs previous period.
-  - Color-coded (Green = Growth/Positive, Red = Decline/Negative).
+- Visual delta (e.g., "↑ 12%") vs previous period.
+- Color-coded (Green = Growth/Positive, Red = Decline/Negative).
 
 #### Component Architecture
 
 - **`AnalyticsCard.tsx`**: Reusable component supporting:
-  - `loading`: Skeleton state for async data fetching.
-  - `change`: Numeric trend with automatic color formatting.
-  - `description`: Contextual label (e.g., "vs last month").
+- `loading`: Skeleton state for async data fetching.
+- `change`: Numeric trend with automatic color formatting.
+- `description`: Contextual label (e.g., "vs last month").
 
 #### Data Source
 
@@ -608,12 +612,15 @@ We have explicitly chosen **NOT** to use the native Web Speech API (Chrome/Edge)
 
 1. **Entry Point**: Microphone icon inside search bar.
 2. **First Use**:
-   - "Downloading private speech model (30MB)..." tooltip/indicator.
-   - Once cached, start-up is instant.
+
+- "Downloading private speech model (30MB)..." tooltip/indicator.
+- Once cached, start-up is instant.
+
 3. **States**:
-   - **Idle**: Gray Mic.
-   - **Listening**: Red Pulse.
-   - **Processing**: "Transcribing..." (Visible processing time for local model).
+
+- **Idle**: Gray Mic.
+- **Listening**: Red Pulse.
+- **Processing**: "Transcribing..." (Visible processing time for local model).
 
 #### 8.1.3 Technical Implementation
 
@@ -865,7 +872,7 @@ npm test -- tests/ai/query-expander.test.ts
 | `VoiceInput.noSpeech`     | No speech detected. Try again.            | Aucune parole détectée. Réessayez.                   |
 | `VoiceInput.micDenied`    | Microphone access denied                  | Accès au microphone refusé                           |
 | `Chat.newConversation`    | New Conversation                          | Nouvelle conversation                                |
-| `Search.expandedFor`      | Also searching for: {terms}               | Recherche également : {terms}                        |
+| `Search.expandedFor`      | Also searching for: {terms}               | Recherche également: {terms}                         |
 
 ---
 

@@ -41,7 +41,7 @@ export default function SearchResultsList({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Results Counter if filters active */}
       {hasSearched && results.length > 0 && (userLocation || category) && (
         <div className="flex items-center justify-between text-xs text-neutral-400">

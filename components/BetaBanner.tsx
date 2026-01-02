@@ -7,7 +7,7 @@ export default function BetaBanner() {
     <aside
       role="complementary"
       aria-label="Beta Information"
-      className="bg-blue-600 px-4 py-2 text-white dark:bg-blue-800"
+      className="bg-blue-700 px-4 py-2 text-white dark:bg-blue-800"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between text-sm">
         <div className="flex items-center gap-2">
@@ -21,7 +21,7 @@ export default function BetaBanner() {
             rel="noopener noreferrer"
             className="font-medium underline hover:text-blue-100"
           >
-            Report it here
+            Share Feedback
           </a>
         </div>
       </div>

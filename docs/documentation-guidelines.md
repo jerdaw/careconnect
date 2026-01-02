@@ -20,6 +20,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **English-Only**: Internal documentation should be English-only.
 - **No Phase Labels**: Avoid "phase" labels in permanent docs. Documentation should describe **what exists and how to use it**, not the order it was implemented.
 - **Public-Safe**: No secrets, private emails, or internal IPs in public repos.
+- **Professional Emojis Only**: Use only professional symbols (e.g., ✅, ❌, ⚠️, ➡️, ⭐) for status and alerts. Avoid playful or conversational emojis.
 
 ## Roadmap workflow
 

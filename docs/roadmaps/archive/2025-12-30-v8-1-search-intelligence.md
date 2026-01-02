@@ -1,6 +1,6 @@
-# Roadmap Archive: v8.1 (Search Intelligence Upgrade) 🧠
+# Roadmap Archive: v8.1 (Search Intelligence Upgrade)
 
-> **Status:** Completed  
+> **Status:** Completed
 > **Focus:** Privacy-preserving AI, Semantic Search, and Offline Intelligence.
 
 ## Phase 1: Quick Wins (Completed)

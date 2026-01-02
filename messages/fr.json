@@ -25,6 +25,8 @@
     "wellness": "Bien-être",
     "financial": "Finances",
     "employment": "Emploi",
+    "education": "Éducation",
+    "transport": "Transport",
     "community": "Communauté",
     "indigenous": "Autochtones"
   },
@@ -73,7 +75,8 @@
   },
   "Common": {
     "openInNewTab": "(s'ouvre dans un nouvel onglet)",
-    "printResults": "Imprimer les résultats"
+    "printResults": "Imprimer les résultats",
+    "switchLanguage": "Changer de langue"
   },
   "Privacy": {
     "title": "Politique de confidentialité",

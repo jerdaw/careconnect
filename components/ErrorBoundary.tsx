@@ -74,7 +74,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
           {/* Error ID for support */}
           {this.state.errorId && (
-            <div className="mb-6 flex items-center gap-2 rounded-md bg-neutral-100 px-3 py-2 font-mono text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+            <div className="mb-6 flex items-center gap-2 rounded-md bg-neutral-100 px-3 py-2 font-mono text-xs text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
               <span>Error ID: {this.state.errorId}</span>
               <Button
                 variant="ghost"

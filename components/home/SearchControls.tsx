@@ -5,7 +5,20 @@ import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 import { ProfileSettings } from "@/components/settings"
 
-const CATEGORIES = Object.values(IntentCategory)
+const CATEGORIES = [
+  IntentCategory.Crisis,
+  IntentCategory.Food,
+  IntentCategory.Housing,
+  IntentCategory.Health,
+  IntentCategory.Financial,
+  IntentCategory.Legal,
+  IntentCategory.Education,
+  IntentCategory.Transport,
+  IntentCategory.Employment,
+  IntentCategory.Wellness,
+  IntentCategory.Community,
+  IntentCategory.Indigenous,
+]
 
 interface SearchControlsProps {
   userLocation: { lat: number; lng: number } | undefined
@@ -29,10 +42,9 @@ export default function SearchControls({
   const t = useTranslations("Search")
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-8">
       <div className="flex flex-wrap items-center justify-center gap-2">
-        {/* Personalization Toggle */}
-        <ProfileSettings variant="pill" size="pill" />
+
 
         {/* Open Now Toggle */}
         <Button
@@ -58,11 +70,14 @@ export default function SearchControls({
           {isLocating ? <Loader2 className="h-4 w-4 animate-spin" /> : <MapPin className="h-4 w-4" />}
           {userLocation ? t("nearMe") : t("useLocation")}
         </Button>
+
+        {/* Personalization Toggle */}
+        <ProfileSettings variant="pill" size="pill" />
       </div>
 
       {/* Category Scroll */}
       <div
-        className="scrollbar-hide flex max-w-full gap-2 overflow-x-auto pb-2"
+        className="flex flex-wrap justify-center gap-2"
         role="group"
         aria-label={t("label")}
       >

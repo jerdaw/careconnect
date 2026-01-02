@@ -38,7 +38,6 @@ export function useServices({
         return
       }
 
-      setHasSearched(true)
       setIsLoading(true)
 
       try {
@@ -50,6 +49,7 @@ export function useServices({
           onSuggestion: setSuggestion,
         })
         setResults(initialResults)
+        setHasSearched(true)
         setIsLoading(false) // Show initial results immediately
 
         // Cache successful results
@@ -87,6 +87,7 @@ export function useServices({
       } catch (err) {
         logger.error("Search failed", err, { component: "useServices", action: "performSearch" })
         setIsLoading(false)
+        setHasSearched(true)
 
         // Offline fallback
         const cached = getCachedServices<SearchResult[]>()

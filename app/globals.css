@@ -72,6 +72,15 @@
     }
   }
 
+  @keyframes pulse-border {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   @keyframes grain {
     0%,
     100% {

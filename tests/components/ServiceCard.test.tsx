@@ -61,7 +61,7 @@ describe("ServiceCard Component", () => {
 
     it("renders service information correctly", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" }, Eligibility: { likelyQualify: "Qualify" } }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
                 <ServiceCard service={mockService} />
             </TestWrapper>
         )
@@ -71,7 +71,7 @@ describe("ServiceCard Component", () => {
 
     it("tracks clicks on details button", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" }, Eligibility: { likelyQualify: "Qualify" } }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
                 <ServiceCard service={mockService} />
             </TestWrapper>
         )
@@ -88,12 +88,12 @@ describe("ServiceCard Component", () => {
     it("renders eligibility badge when eligible", () => {
         const messages = {
             Common: {
-                Eligibility: {
-                    likelyQualify: "Likely Qualify"
-                },
                 ServiceCard: {
                     reportIssue: "Report Issue"
                 }
+            },
+            Eligibility: {
+                likelyQualify: "Likely Qualify"
             }
         }
         render(
@@ -106,7 +106,7 @@ describe("ServiceCard Component", () => {
 
     it("highlights search tokens", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" }, Eligibility: { likelyQualify: "Qualify" } }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
                 <ServiceCard service={mockService} highlightTokens={["Food"]} />
             </TestWrapper>
         )

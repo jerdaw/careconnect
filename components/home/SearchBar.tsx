@@ -27,7 +27,7 @@ export default function SearchBar({
       </div>
       <input
         type="text"
-        className="block w-full rounded-2xl border-0 bg-transparent py-4 pr-14 pl-14 text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-0 focus:outline-none sm:text-lg sm:leading-6 dark:text-white"
+        className="block w-full rounded-2xl border-0 bg-transparent py-4 pr-14 pl-14 text-neutral-900 outline-none ring-0 focus:border-0 focus:ring-0 focus:outline-none focus:shadow-none placeholder:text-neutral-400 sm:text-lg sm:leading-6 dark:text-white !border-none !outline-none !ring-0 !shadow-none"
         placeholder={placeholder}
         aria-label={label}
         value={query}
@@ -52,7 +52,7 @@ export default function SearchBar({
   )
 }
 
-import { Mic, MicOff, Loader2 } from "lucide-react"
+import { Mic, Loader2 } from "lucide-react"
 import { useVoiceInput } from "@/hooks/useVoiceInput"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
@@ -92,7 +92,7 @@ function VoiceSearchButton({ onResult }: { onResult: (text: string) => void }) {
       ) : isActive ? (
         <Mic className="h-5 w-5" />
       ) : (
-        <MicOff className="h-5 w-5" />
+        <Mic className="h-5 w-5" />
       )}
     </Button>
   )

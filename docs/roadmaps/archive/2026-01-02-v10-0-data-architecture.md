@@ -1,8 +1,8 @@
 # Roadmap v10.0: Data Architecture & Governance
 
 > **Status**: Implemented
-> **Focus**: Strengthen data quality, enforce governance protocol, improve search ranking  
-> **Constraints**: Completely free, solo dev + AI assistance  
+> **Focus**: Strengthen data quality, enforce governance protocol, improve search ranking
+> **Constraints**: Completely free, solo dev + AI assistance
 > **Methodology**: Implemented based on comprehensive audit comparing ideal vs. current implementation
 
 ---
@@ -237,7 +237,7 @@ interface ValidationResult {
 }
 
 function validateServices(): ValidationResult {
-  console.log("🔍 Validating services.json...")
+  console.log(" Validating services.json...")
 
   const rawData = readFileSync(DATA_PATH, "utf-8")
   const services = JSON.parse(rawData)
@@ -286,14 +286,14 @@ function validateServices(): ValidationResult {
 }
 
 function printResults(result: ValidationResult) {
-  console.log("\n📊 Validation Results:")
-  console.log(`   Total services: ${result.summary.total}`)
-  console.log(`   ✅ Passed: ${result.summary.passed}`)
-  console.log(`   ❌ Failed: ${result.summary.failed}`)
-  console.log(`   ⚠️  Warnings: ${result.summary.warnings}`)
+  console.log("\n Validation Results:")
+  console.log(`  Total services: ${result.summary.total}`)
+  console.log(`  ✅ Passed: ${result.summary.passed}`)
+  console.log(`  ❌ Failed: ${result.summary.failed}`)
+  console.log(`  ⚠️ Warnings: ${result.summary.warnings}`)
 
   if (result.errors.length > 0) {
-    console.log("\n🔴 Errors and Warnings:\n")
+    console.log("\n Errors and Warnings:\n")
 
     // Group by service
     const grouped = result.errors.reduce(
@@ -307,10 +307,10 @@ function printResults(result: ValidationResult) {
     )
 
     for (const [service, errors] of Object.entries(grouped)) {
-      console.log(`  ${service}:`)
+      console.log(` ${service}:`)
       for (const err of errors) {
         const icon = err.severity === "error" ? "❌" : "⚠️"
-        console.log(`    ${icon} ${err.path}: ${err.message}`)
+        console.log(`  ${icon} ${err.path}: ${err.message}`)
       }
       console.log()
     }
@@ -339,28 +339,28 @@ Add after the lint step:
 
 ```yaml
 - name: Validate Service Data
-  run: npx tsx scripts/validate-services.ts
+ run: npx tsx scripts/validate-services.ts
 ```
 
 Full context (insert after lint, before build):
 
 ```yaml
 jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      # ... existing steps ...
+ ci:
+  runs-on: ubuntu-latest
+  steps:
+   # ... existing steps ...
 
-      - name: Lint
-        run: npm run lint
+   - name: Lint
+    run: npm run lint
 
-      - name: Validate Service Data
-        run: npx tsx scripts/validate-services.ts
+   - name: Validate Service Data
+    run: npx tsx scripts/validate-services.ts
 
-      - name: Type Check
-        run: npm run type-check
+   - name: Type Check
+    run: npm run type-check
 
-      # ... remaining steps ...
+   # ... remaining steps ...
 ```
 
 #### 1.4 Update package.json
@@ -423,9 +423,9 @@ function getDaysSince(date: Date | null): number | null {
 }
 
 function checkStaleness(): StalenessResult[] {
-  console.log("📅 Checking service staleness...")
+  console.log(" Checking service staleness...")
   console.log(
-    `   Thresholds: Crisis=${THRESHOLDS.CRISIS}d, General=${THRESHOLDS.GENERAL}d, Stale=${THRESHOLDS.STALE}d\n`
+    `  Thresholds: Crisis=${THRESHOLDS.CRISIS}d, General=${THRESHOLDS.GENERAL}d, Stale=${THRESHOLDS.STALE}d\n`
   )
 
   const rawData = readFileSync(DATA_PATH, "utf-8")
@@ -474,37 +474,37 @@ function printResults(results: StalenessResult[]) {
   const unknown = results.filter((r) => r.status === "unknown")
   const fresh = results.filter((r) => r.status === "fresh")
 
-  console.log("📊 Staleness Report:")
-  console.log(`   Total services: ${results.length}`)
-  console.log(`   ✅ Fresh: ${fresh.length}`)
-  console.log(`   ⏰ Due for verification: ${due.length}`)
-  console.log(`   🔴 STALE (>6 months): ${stale.length}`)
-  console.log(`   ❓ Unknown (no date): ${unknown.length}`)
+  console.log(" Staleness Report:")
+  console.log(`  Total services: ${results.length}`)
+  console.log(`  ✅ Fresh: ${fresh.length}`)
+  console.log(`  Due for verification: ${due.length}`)
+  console.log(`  STALE (>6 months): ${stale.length}`)
+  console.log(`  Unknown (no date): ${unknown.length}`)
 
   if (stale.length > 0) {
-    console.log("\n🔴 STALE SERVICES (require immediate attention):\n")
+    console.log("\n STALE SERVICES (require immediate attention):\n")
     for (const r of stale) {
-      console.log(`   ${r.service.id}`)
-      console.log(`      Name: ${r.service.name}`)
-      console.log(`      Category: ${r.service.intent_category}`)
-      console.log(`      Last verified: ${r.lastVerified?.toISOString().split("T")[0] || "never"}`)
-      console.log(`      Days since: ${r.daysSinceVerification}`)
-      console.log(`      Action: ${r.recommendation}`)
+      console.log(`  ${r.service.id}`)
+      console.log(`   Name: ${r.service.name}`)
+      console.log(`   Category: ${r.service.intent_category}`)
+      console.log(`   Last verified: ${r.lastVerified?.toISOString().split("T")[0] || "never"}`)
+      console.log(`   Days since: ${r.daysSinceVerification}`)
+      console.log(`   Action: ${r.recommendation}`)
       console.log()
     }
   }
 
   if (due.length > 0) {
-    console.log("\n⏰ SERVICES DUE FOR VERIFICATION:\n")
+    console.log("\n SERVICES DUE FOR VERIFICATION:\n")
     for (const r of due) {
-      console.log(`   - ${r.service.id} (${r.service.intent_category}): ${r.daysSinceVerification} days`)
+      console.log(`  - ${r.service.id} (${r.service.intent_category}): ${r.daysSinceVerification} days`)
     }
   }
 
   if (unknown.length > 0) {
-    console.log("\n❓ SERVICES WITH NO VERIFICATION DATE:\n")
+    console.log("\n SERVICES WITH NO VERIFICATION DATE:\n")
     for (const r of unknown) {
-      console.log(`   - ${r.service.id}`)
+      console.log(`  - ${r.service.id}`)
     }
   }
 
@@ -524,7 +524,7 @@ printResults(results)
 // Exit with warning if stale services found
 const staleCount = results.filter((r) => r.status === "stale").length
 if (staleCount > 0) {
-  console.log(`\n⚠️  ${staleCount} stale service(s) found. Consider downgrading to L0.`)
+  console.log(`\n⚠️ ${staleCount} stale service(s) found. Consider downgrading to L0.`)
 }
 ```
 
@@ -536,79 +536,79 @@ if (staleCount > 0) {
 name: Monthly Staleness Check
 
 on:
-  schedule:
-    # Run at 9am ET on the 1st of each month
-    - cron: "0 14 1 * *"
-  workflow_dispatch: # Allow manual trigger
+ schedule:
+  # Run at 9am ET on the 1st of each month
+  - cron: "0 14 1 * *"
+ workflow_dispatch: # Allow manual trigger
 
 jobs:
-  check-staleness:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      contents: read
+ check-staleness:
+  runs-on: ubuntu-latest
+  permissions:
+   issues: write
+   contents: read
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  steps:
+   - name: Checkout
+    uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
+   - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+     node-version: "20"
+     cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+   - name: Install dependencies
+    run: npm ci
 
-      - name: Run staleness check
-        id: staleness
-        run: npx tsx scripts/check-staleness.ts
+   - name: Run staleness check
+    id: staleness
+    run: npx tsx scripts/check-staleness.ts
 
-      - name: Create issue if stale services found
-        if: steps.staleness.outputs.stale_count > 0
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const staleIds = '${{ steps.staleness.outputs.stale_ids }}'.split(',');
-            const staleCount = parseInt('${{ steps.staleness.outputs.stale_count }}');
+   - name: Create issue if stale services found
+    if: steps.staleness.outputs.stale_count > 0
+    uses: actions/github-script@v7
+    with:
+     script: |
+      const staleIds = '${{ steps.staleness.outputs.stale_ids }}'.split(',');
+      const staleCount = parseInt('${{ steps.staleness.outputs.stale_count }}');
 
-            const body = `## 🔴 Stale Services Detected
+      const body = `## Stale Services Detected
 
-            **${staleCount} service(s)** have not been verified in over 6 months.
+      **${staleCount} service(s)** have not been verified in over 6 months.
 
-            Per the [Governance Protocol](docs/governance.md), services not verified in >6 months should be downgraded to L0 (hidden).
+      Per the [Governance Protocol](docs/governance.md), services not verified in >6 months should be downgraded to L0 (hidden).
 
-            ### Services Requiring Attention
+      ### Services Requiring Attention
 
-            ${staleIds.map(id => `- [ ] \`${id}\``).join('\n')}
+      ${staleIds.map(id => `- [ ] \`${id}\``).join('\n')}
 
-            ### Actions Required
+      ### Actions Required
 
-            For each service above:
-            1. Verify the service is still operating (call phone, check website)
-            2. Update \`provenance.verified_at\` in \`data/services.json\`
-            3. OR downgrade \`verification_level\` to "L0" if no longer valid
+      For each service above:
+      1. Verify the service is still operating (call phone, check website)
+      2. Update \`provenance.verified_at\` in \`data/services.json\`
+      3. OR downgrade \`verification_level\` to "L0" if no longer valid
 
-            ### Verification Checklist
+      ### Verification Checklist
 
-            - [ ] Phone number connects
-            - [ ] Website loads
-            - [ ] Hours are current
-            - [ ] Address is correct
-            - [ ] French translation is current
+      - [ ] Phone number connects
+      - [ ] Website loads
+      - [ ] Hours are current
+      - [ ] Address is correct
+      - [ ] French translation is current
 
-            ---
-            *This issue was automatically created by the staleness check workflow.*
-            `;
+      ---
+      *This issue was automatically created by the staleness check workflow.*
+      `;
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔴 Monthly Staleness Check: ${staleCount} stale service(s) found`,
-              body: body,
-              labels: ['data-quality', 'governance']
-            });
+      await github.rest.issues.create({
+       owner: context.repo.owner,
+       repo: context.repo.repo,
+       title: ` Monthly Staleness Check: ${staleCount} stale service(s) found`,
+       body: body,
+       labels: ['data-quality', 'governance']
+      });
 ```
 
 #### 2.3 Update package.json
@@ -845,62 +845,62 @@ describe("scoreServiceKeyword with boosts", () => {
 name: Monthly Crisis Service Verification
 
 on:
-  schedule:
-    # Run at 9am ET on the 1st of each month
-    - cron: "0 14 1 * *"
-  workflow_dispatch:
+ schedule:
+  # Run at 9am ET on the 1st of each month
+  - cron: "0 14 1 * *"
+ workflow_dispatch:
 
 jobs:
-  create-reminder:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
+ create-reminder:
+  runs-on: ubuntu-latest
+  permissions:
+   issues: write
 
-    steps:
-      - name: Create verification reminder issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const today = new Date();
-            const month = today.toLocaleString('default', { month: 'long', year: 'numeric' });
+  steps:
+   - name: Create verification reminder issue
+    uses: actions/github-script@v7
+    with:
+     script: |
+      const today = new Date();
+      const month = today.toLocaleString('default', { month: 'long', year: 'numeric' });
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `📞 Monthly Crisis Service Verification - ${month}`,
-              body: `## Crisis Service Verification Checklist
+      await github.rest.issues.create({
+       owner: context.repo.owner,
+       repo: context.repo.repo,
+       title: ` Monthly Crisis Service Verification - ${month}`,
+       body: `## Crisis Service Verification Checklist
 
-            Per the [Governance Protocol](docs/governance.md), crisis services must be verified **monthly**.
+      Per the [Governance Protocol](docs/governance.md), crisis services must be verified **monthly**.
 
-            ### Services to Verify
+      ### Services to Verify
 
-            - [ ] Kids Help Phone (1-800-668-6868)
-            - [ ] Trans Lifeline (1-877-330-6366)
-            - [ ] Hope for Wellness Helpline (1-855-242-3310)
-            - [ ] Assaulted Women's Helpline (1-866-863-0511)
-            - [ ] Kingston Interval House (613-546-1777)
-            - [ ] Telephone Aid Line Kingston (613-544-1771)
-            - [ ] Other crisis services in \`data/services.json\` with \`intent_category: "Crisis"\`
+      - [ ] Kids Help Phone (1-800-668-6868)
+      - [ ] Trans Lifeline (1-877-330-6366)
+      - [ ] Hope for Wellness Helpline (1-855-242-3310)
+      - [ ] Assaulted Women's Helpline (1-866-863-0511)
+      - [ ] Kingston Interval House (613-546-1777)
+      - [ ] Telephone Aid Line Kingston (613-544-1771)
+      - [ ] Other crisis services in \`data/services.json\` with \`intent_category: "Crisis"\`
 
-            ### Verification Steps
+      ### Verification Steps
 
-            For each service:
-            1. [ ] Call the phone number - does it connect?
-            2. [ ] Check the website - does it load?
-            3. [ ] Verify hours match what's in our data
-            4. [ ] Update \`provenance.verified_at\` to today's date
+      For each service:
+      1. [ ] Call the phone number - does it connect?
+      2. [ ] Check the website - does it load?
+      3. [ ] Verify hours match what's in our data
+      4. [ ] Update \`provenance.verified_at\` to today's date
 
-            ### After Verification
+      ### After Verification
 
-            - Commit changes to \`data/services.json\`
-            - Run \`npm run generate-embeddings\` if descriptions changed
-            - Close this issue
+      - Commit changes to \`data/services.json\`
+      - Run \`npm run generate-embeddings\` if descriptions changed
+      - Close this issue
 
-            ---
-            *Automatically created by verification reminder workflow.*
-            `,
-              labels: ['verification', 'crisis-services', 'monthly']
-            });
+      ---
+      *Automatically created by verification reminder workflow.*
+      `,
+       labels: ['verification', 'crisis-services', 'monthly']
+      });
 ```
 
 #### 4.2 Quarterly General Verification
@@ -911,66 +911,66 @@ jobs:
 name: Quarterly General Service Verification
 
 on:
-  schedule:
-    # Run at 9am ET on Jan 1, Apr 1, Jul 1, Oct 1
-    - cron: "0 14 1 1,4,7,10 *"
-  workflow_dispatch:
+ schedule:
+  # Run at 9am ET on Jan 1, Apr 1, Jul 1, Oct 1
+  - cron: "0 14 1 1,4,7,10 *"
+ workflow_dispatch:
 
 jobs:
-  create-reminder:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
+ create-reminder:
+  runs-on: ubuntu-latest
+  permissions:
+   issues: write
 
-    steps:
-      - name: Create verification reminder issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const today = new Date();
-            const quarter = Math.floor(today.getMonth() / 3) + 1;
-            const year = today.getFullYear();
+  steps:
+   - name: Create verification reminder issue
+    uses: actions/github-script@v7
+    with:
+     script: |
+      const today = new Date();
+      const quarter = Math.floor(today.getMonth() / 3) + 1;
+      const year = today.getFullYear();
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `📋 Q${quarter} ${year} General Service Verification`,
-              body: `## Quarterly Service Verification
+      await github.rest.issues.create({
+       owner: context.repo.owner,
+       repo: context.repo.repo,
+       title: ` Q${quarter} ${year} General Service Verification`,
+       body: `## Quarterly Service Verification
 
-            Per the [Governance Protocol](docs/governance.md), general services must be verified **quarterly**.
+      Per the [Governance Protocol](docs/governance.md), general services must be verified **quarterly**.
 
-            ### Categories to Review
+      ### Categories to Review
 
-            - [ ] Food (food banks, meal programs)
-            - [ ] Housing (shelters, housing help)
-            - [ ] Health (clinics, dental, mental health)
-            - [ ] Legal (legal clinics)
-            - [ ] Community (newcomer services, youth hubs)
-            - [ ] Indigenous (culturally-specific services)
+      - [ ] Food (food banks, meal programs)
+      - [ ] Housing (shelters, housing help)
+      - [ ] Health (clinics, dental, mental health)
+      - [ ] Legal (legal clinics)
+      - [ ] Community (newcomer services, youth hubs)
+      - [ ] Indigenous (culturally-specific services)
 
-            ### Verification Checklist
+      ### Verification Checklist
 
-            For each service:
-            - [ ] Phone number connects
-            - [ ] Website loads and is current
-            - [ ] Address is correct
-            - [ ] Hours match current operations
-            - [ ] Eligibility criteria still accurate
-            - [ ] French translation is current
+      For each service:
+      - [ ] Phone number connects
+      - [ ] Website loads and is current
+      - [ ] Address is correct
+      - [ ] Hours match current operations
+      - [ ] Eligibility criteria still accurate
+      - [ ] French translation is current
 
-            ### Process
+      ### Process
 
-            1. Run \`npm run check-staleness\` to see which services are due
-            2. Verify each flagged service
-            3. Update \`provenance.verified_at\` in \`data/services.json\`
-            4. Commit changes
-            5. Close this issue
+      1. Run \`npm run check-staleness\` to see which services are due
+      2. Verify each flagged service
+      3. Update \`provenance.verified_at\` in \`data/services.json\`
+      4. Commit changes
+      5. Close this issue
 
-            ---
-            *Automatically created by quarterly verification workflow.*
-            `,
-              labels: ['verification', 'quarterly']
-            });
+      ---
+      *Automatically created by quarterly verification workflow.*
+      `,
+       labels: ['verification', 'quarterly']
+      });
 ```
 
 #### 4.3 Issue Template for Verification
@@ -981,7 +981,7 @@ jobs:
 ---
 name: Service Verification
 about: Verify a specific service's information is current
-title: "🔍 Verify: [SERVICE NAME]"
+title: " Verify: [SERVICE NAME]"
 labels: verification
 assignees: ""
 ---
@@ -1023,13 +1023,13 @@ assignees: ""
 ## After Verification
 
 1. Update `data/services.json`:
-   - Set `provenance.verified_at` to today (ISO format)
-   - Set `provenance.verified_by` to your name/handle
-   - Update any changed information
+  - Set `provenance.verified_at` to today (ISO format)
+  - Set `provenance.verified_by` to your name/handle
+  - Update any changed information
 
 2. If descriptions changed significantly:
-   ```bash
-   npm run generate-embeddings
+  ```bash
+  npm run generate-embeddings
 ````
 
 3. Commit and push changes
@@ -1068,35 +1068,35 @@ assignees: ""
 // Add to lib/search/synonyms.ts
 
 export const SYNONYMS: Record<string, string[]> = {
-  // ... existing entries ...
+ // ... existing entries ...
 
-  // Mental Health (expanded)
-  anxiety: ["anxious", "panic", "worried", "nervous", "stress", "anxiété"],
-  depression: ["depressed", "sad", "hopeless", "suicidal", "dépression", "triste"],
-  counseling: ["therapy", "therapist", "counsellor", "psychologist", "conseil"],
-  addiction: ["substance", "drugs", "alcohol", "recovery", "rehab", "dépendance"],
+ // Mental Health (expanded)
+ anxiety: ["anxious", "panic", "worried", "nervous", "stress", "anxiété"],
+ depression: ["depressed", "sad", "hopeless", "suicidal", "dépression", "triste"],
+ counseling: ["therapy", "therapist", "counsellor", "psychologist", "conseil"],
+ addiction: ["substance", "drugs", "alcohol", "recovery", "rehab", "dépendance"],
 
-  // Youth Services (expanded)
-  teen: ["teenager", "adolescent", "youth", "young", "ado", "jeune"],
-  child: ["children", "kid", "kids", "minor", "enfant", "enfants"],
-  student: ["school", "university", "college", "études", "étudiant"],
+ // Youth Services (expanded)
+ teen: ["teenager", "adolescent", "youth", "young", "ado", "jeune"],
+ child: ["children", "kid", "kids", "minor", "enfant", "enfants"],
+ student: ["school", "university", "college", "études", "étudiant"],
 
-  // Financial (expanded)
-  welfare: ["ow", "ontario works", "social assistance", "aide sociale"],
-  disability: ["odsp", "disabled", "accessibility", "handicap", "invalidité"],
-  income: ["money", "cash", "financial", "low income", "revenu", "argent"],
+ // Financial (expanded)
+ welfare: ["ow", "ontario works", "social assistance", "aide sociale"],
+ disability: ["odsp", "disabled", "accessibility", "handicap", "invalidité"],
+ income: ["money", "cash", "financial", "low income", "revenu", "argent"],
 
-  // Identity (enhanced French)
-  indigenous: ["aboriginal", "first nations", "metis", "inuit", "native", "autochtone", "premières nations"],
-  lgbt: ["gay", "queer", "trans", "transgender", "2slgbtqi+", "pride", "lgbtq", "fierté"],
-  newcomer: ["immigrant", "refugee", "new to canada", "immigrant", "réfugié", "nouvel arrivant"],
-  senior: ["elderly", "old", "aged", "retirement", "65+", "aîné", "personne âgée"],
-  veteran: ["military", "forces", "army", "vétéran", "militaire"],
+ // Identity (enhanced French)
+ indigenous: ["aboriginal", "first nations", "metis", "inuit", "native", "autochtone", "premières nations"],
+ lgbt: ["gay", "queer", "trans", "transgender", "2slgbtqi+", "pride", "lgbtq", "fierté"],
+ newcomer: ["immigrant", "refugee", "new to canada", "immigrant", "réfugié", "nouvel arrivant"],
+ senior: ["elderly", "old", "aged", "retirement", "65+", "aîné", "personne âgée"],
+ veteran: ["military", "forces", "army", "vétéran", "militaire"],
 
-  // Common misspellings / abbreviations
-  er: ["emergency", "hospital", "urgence"],
-  doc: ["doctor", "physician", "médecin"],
-  apt: ["apartment", "housing", "appartement"],
+ // Common misspellings / abbreviations
+ er: ["emergency", "hospital", "urgence"],
+ doc: ["doctor", "physician", "médecin"],
+ apt: ["apartment", "housing", "appartement"],
 }
 ````
 
@@ -1141,7 +1141,7 @@ export const SYNONYMS: Record<string, string[]> = {
 ## Explicitly Not Implementing
 
 | Proposal | Reason |
-| :------- | :----- |
+|:------- |:----- |
 | Migrate to PostgreSQL-first | JSON-first better for solo dev + offline PWA |
 | Server-side semantic search | Privacy concerns + API costs |
 | Phone/URL normalization | Low value for ~50 services |
@@ -1157,34 +1157,35 @@ export const SYNONYMS: Record<string, string[]> = {
 
 ```bash
 # Run all checks
-npm test                              # Unit tests (including new scoring tests)
-npx tsx scripts/validate-services.ts  # Schema validation
-npx tsx scripts/check-staleness.ts    # Staleness report
-npm run type-check                    # TypeScript
-npm run lint                          # ESLint
+npm test               # Unit tests (including new scoring tests)
+npx tsx scripts/validate-services.ts # Schema validation
+npx tsx scripts/check-staleness.ts  # Staleness report
+npm run type-check          # TypeScript
+npm run lint             # ESLint
 ````
 
 ### Manual Verification
 
 1. **Search with Debug**: Search "food" and verify:
 
-   - Results include match reasons
-   - L3 services show "Verification Boost (+20%)"
-   - Recently verified services show "Fresh Data Boost (+10%)"
+- Results include match reasons
+- L3 services show "Verification Boost (+20%)"
+- Recently verified services show "Fresh Data Boost (+10%)"
 
 2. **Crisis Detection**: Search "I want to kill myself"
 
-   - Crisis services appear at top
-   - +1000 crisis boost visible in debug
+- Crisis services appear at top
+- +1000 crisis boost visible in debug
 
 3. **Staleness Report**: Run `npm run check-staleness`
 
-   - Report shows categorized results
-   - Stale services (if any) are flagged
+- Report shows categorized results
+- Stale services (if any) are flagged
 
 4. **GitHub Actions**: Navigate to Actions tab
-   - Scheduled workflows visible
-   - Manual trigger works
+
+- Scheduled workflows visible
+- Manual trigger works
 
 ---
 
@@ -1217,6 +1218,6 @@ npm run lint                          # ESLint
 
 ---
 
-> **Created**: 2026-01-02  
-> **Author**: Antigravity + Jeremy  
+> **Created**: 2026-01-02
+> **Author**: Antigravity + Jeremy
 > **Version**: 1.0 (Full Implementation Details)

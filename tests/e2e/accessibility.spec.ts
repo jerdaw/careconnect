@@ -9,6 +9,13 @@ test.describe("WCAG 2.1 AA Compliance", () => {
 
     test("homepage has no critical accessibility violations", async ({ page }) => {
         await page.goto("/")
+        await page.waitForURL(/.*\/en/) // Wait for redirect to english locale
+        await page.waitForLoadState("domcontentloaded")
+        await page.waitForSelector("#main-content") 
+        
+        // Allow extra time for any secondary client-side hydration or animations
+        await page.waitForTimeout(5000) 
+        
         const results = await new AxeBuilder({ page })
             .withTags(["wcag2a", "wcag2aa"])
             .analyze()
@@ -25,10 +32,20 @@ test.describe("WCAG 2.1 AA Compliance", () => {
 
     test("skip link is keyboard accessible", async ({ page }) => {
         await page.goto("/")
+        await page.waitForURL(/.*\/en/)
+        await page.waitForLoadState("domcontentloaded")
+        await page.waitForSelector("#main-content")
+        
+        // Allow extra time for any secondary client-side hydration or animations
+        await page.waitForTimeout(5000)
+        
+        // Ensure initial focus is on the document body or reset
+        await page.bringToFront()
+        
         await page.keyboard.press("Tab")
         
         const skipLink = page.getByRole("link", { name: /skip to main/i })
-        await expect(skipLink).toBeFocused()
         await expect(skipLink).toBeVisible()
+        await expect(skipLink).toBeFocused()
     })
 })

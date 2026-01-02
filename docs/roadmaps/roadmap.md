@@ -6,13 +6,13 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [v11.0: Future Horizons](#-v110-future-horizons)
 
 ---
 
-## 🛰️ Current State
+## ️ Current State
 
 Completed **Roadmap V10**: Strengthened data governance with **schema validation (Zod)**, **staleness enforcement**, and **ranking improvements** (verification + freshness boosts).
 
@@ -22,7 +22,7 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 ---
 
-## 🔧 v10.0: Data Architecture & Governance (Completed)
+## v10.0: Data Architecture & Governance (Completed)
 
 > **Status**: Implemented
 > **Definition**: [v10-0-data-architecture.md](archive/2026-01-02-v10-0-data-architecture.md)
@@ -31,7 +31,7 @@ See archive for full implementation details.
 
 ---
 
-## 🔮 v11.0: Future Horizons
+## v11.0: Future Horizons
 
 ### 211 API Integration
 
@@ -49,7 +49,7 @@ See archive for full implementation details.
 
 ---
 
-## 📋 Roadmap Overview
+## Roadmap Overview
 
 The following items represent the strategic phases of the roadmap:
 
@@ -60,7 +60,7 @@ The following items represent the strategic phases of the roadmap:
 
 ---
 
-## 📋 Removed Items (Feasibility/Scope)
+## Removed Items (Feasibility/Scope)
 
 The following items were evaluated and removed during previous roadmap cycles:
 

@@ -3,7 +3,7 @@
     "title": "This is a community-led project"
   },
   "Footer": {
-    "disclaimer": "Supporting the Kingston community"
+    "disclaimer": "Find verified local services and community resources."
   },
   "Search": {
     "placeholder": "Search for help...",
@@ -25,6 +25,8 @@
     "wellness": "Wellness",
     "financial": "Financial",
     "employment": "Employment",
+    "education": "Education",
+    "transport": "Transport",
     "community": "Community",
     "indigenous": "Indigenous"
   },
@@ -73,7 +75,8 @@
   },
   "Common": {
     "openInNewTab": "(opens in a new tab)",
-    "printResults": "Print Results"
+    "printResults": "Print Results",
+    "switchLanguage": "Switch Language"
   },
   "Privacy": {
     "title": "Privacy Policy",
