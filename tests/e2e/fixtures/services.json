@@ -16,7 +16,8 @@
       "friday": "9:00-17:00"
     },
     "coordinates": { "lat": 44.2312, "lng": -76.486 },
-    "verification_status": "verified"
+    "verification_status": "verified",
+    "tags": [{ "tag": "Food" }, { "tag": "Community" }]
   },
   {
     "id": "2",
@@ -37,6 +38,7 @@
       "sunday": "24h"
     },
     "coordinates": { "lat": 44.234, "lng": -76.489 },
-    "verification_status": "verified"
+    "verification_status": "verified",
+    "tags": [{ "tag": "Housing" }, { "tag": "Youth" }]
   }
 ]
