@@ -18,7 +18,7 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 
 ---
 
-## Current Features (v5.0)
+## Current Features (v10.1)
 
 ### Search Intelligence
 
@@ -26,6 +26,7 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 - **Open Now Filter**: Real-time availability based on structured operating hours.
 - **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
+- **Map Integration**: Embedded Google Maps on service detail pages for location context.
 
 ### Decentralized AI Assistant
 
@@ -35,6 +36,7 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 
 ### Additional Capabilities
 
+- **89 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.

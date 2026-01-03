@@ -3067,34 +3067,6 @@
     ]
   },
   {
-    "id": "kingston-access-bus",
-    "name": "Kingston Access Bus",
-    "name_fr": "Service d'autobus accessible de Kingston",
-    "description": "Door-to-door accessible transit for persons with disabilities who cannot use conventional transit. Advance booking required.",
-    "description_fr": "Transport accessible porte-à-porte pour les personnes handicapées qui ne peuvent pas utiliser le transport conventionnel. Réservation préalable requise.",
-    "url": "https://www.cityofkingston.ca/residents/transit/accessible-transit",
-    "phone": "613-546-7225",
-    "intent_category": "Transport",
-    "verification_level": "L1",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent)",
-      "verified_at": "2026-01-02T00:00:00Z",
-      "evidence_url": "https://www.cityofkingston.ca/residents/transit/accessible-transit",
-      "method": "Web Search"
-    },
-    "identity_tags": [
-      {
-        "tag": "Disability",
-        "evidence_url": "https://www.cityofkingston.ca/residents/transit/accessible-transit"
-      }
-    ],
-    "synthetic_queries": [
-      "Wheelchair accessible bus Kingston",
-      "Disabled transit service",
-      "Paratransit Kingston"
-    ]
-  },
-  {
     "id": "kingston-transit-mfap",
     "name": "Kingston Transit Affordable Pass (MFAP)",
     "name_fr": "Laissez-passer abordable de Kingston Transit (MFAP)",

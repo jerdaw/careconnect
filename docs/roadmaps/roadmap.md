@@ -1,14 +1,15 @@
 # Kingston Care Connect: Roadmap
 
-> **Current Version**: v10.0.0
+> **Current Version**: v10.1
 > **Last Updated**: 2026-01-02
-> **Status**: Production-Ready / Active Development
+> **Status**: Production-Ready / Maintenance Mode
 
 ---
 
 ## Table of Contents
 
-- [v11.0: Future Horizons](#-v110-future-horizons)
+- [v12.0: Legal & Compliance Infrastructure](#v120-legal--compliance-infrastructure-in-planning)
+- [v11.0: Future Horizons](#v110-future-horizons)
 
 ---
 
@@ -27,17 +28,36 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 > **Status**: Implemented
 > **Definition**: [v10-0-data-architecture.md](archive/2026-01-02-v10-0-data-architecture.md)
 
-See archive for full implementation details.
+---
+
+## v12.0: Legal & Compliance Infrastructure (In Planning)
+
+> **Status**: In Planning
+> **Definition**: [v12-0-legal-compliance.md](v12-0-legal-compliance.md)
+
+Establish fundamental legal protections, regulatory compliance (PIPEDA, AODA, PHIPA), and liability mitigation for the platform and its organizers.
+
+**Phase 1 (Week 1)**: Terms of Service, Privacy Policy, Emergency Disclaimers, Incorporation Research, Insurance Quotes
+
+**Phase 2 (Weeks 2-4)**: Accessibility Policy, Partner Terms, Verification Protocol, Breach Response Plan, File Incorporation
+
+**Phase 3 (Months 2-3)**: Privacy Impact Assessment, Content Moderation Policy, AI Disclaimers, Procure Insurance
+
+See [v12-0-legal-compliance.md](v12-0-legal-compliance.md) for full implementation details.
 
 ---
 
 ## v11.0: Future Horizons
 
-### 211 API Integration
+### 1. Ontario-wide Service Expansion (Deferred from v10.1)
+- [ ] **Goal**: Expand from 16 crisis lines to 50+ provincial resources.
+- [ ] **Scope**: Legal aid, disability support, senior care, and specialized health services operational across Ontario.
+- [ ] **Method**: Manual verification or 211 API integration (see below).
 
-- [ ] Automated data sync (when partnership available)
-- [ ] Additive-only ingestion (preserve manual edits)
-- [ ] L0 entry with human spot-check for L1 promotion
+### 2. 211 API Integration (Automation)
+- [ ] Automated data sync (when partnership available).
+- [ ] Additive-only ingestion (preserve manual edits).
+- [ ] L0 entry with human spot-check for L1 promotion.
 
 ### Conditional Features (Scale Triggers)
 
@@ -53,10 +73,13 @@ See archive for full implementation details.
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus                        | Status      | Key Benefit                     |
-| :-------- | :--------------------------- | :---------- | :------------------------------ |
-| **v10.0** | Data Architecture/Governance | In Planning | Data quality + search relevance |
-| **v11.0** | Future Horizons              | TBD         | Long-term vision                |
+| Version   | Focus                        | Status      | Key Benefit                        |
+| :-------- | :--------------------------- | :---------- | :--------------------------------- |
+| **v10.0** | Data Architecture/Governance | Completed   | Data quality + search relevance    |
+| **v10.1** | UI Polish & Data Expansion   | Completed   | 159 services + Map + Bilingual     |
+| **v12.0** | Legal & Compliance           | In Planning | Liability protection + compliance  |
+| **v11.0** | Future Horizons (Ontario)    | Planned     | Provincial scale + Automation      |
+
 
 ---
 

@@ -17,25 +17,25 @@ export default function PartnersPage() {
       name: "211 Ontario",
       url: "https://211ontario.ca",
       description: "Primary data source for provincial social services.",
-      color: "red",
+      logo: "/partners/211-ontario.svg",
     },
     {
       name: "City of Kingston",
       url: "https://www.cityofkingston.ca",
       description: "Municipal housing and social support programs.",
-      color: "blue",
+      logo: "/partners/city-of-kingston.svg",
     },
     {
       name: "United Way KFL&A",
       url: "https://www.unitedwaykfla.ca",
       description: "Community funding and verified impact data.",
-      color: "rose",
+      logo: "/partners/united-way-kfla.svg",
     },
     {
       name: "Kingston Community Health Centres",
       url: "https://kchc.ca",
       description: "Health and wellness resource verification.",
-      color: "emerald",
+      logo: "/partners/kchc.svg",
     },
   ]
 
