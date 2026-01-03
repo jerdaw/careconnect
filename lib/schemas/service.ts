@@ -13,6 +13,8 @@ export const IntentCategorySchema = z.enum([
   "Wellness",
   "Financial",
   "Employment",
+  "Education",
+  "Transport",
   "Community",
   "Indigenous",
 ])

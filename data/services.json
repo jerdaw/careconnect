@@ -3676,7 +3676,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified phone extension."
+      "verification_notes": "Verified phone extension.",
+      "evidence_url": "https://jobwell.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["mental health jobs", "work support"],
@@ -3703,7 +3704,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Matches Telehealth/Health811."
+      "verification_notes": "Matches Telehealth/Health811.",
+      "evidence_url": "https://health811.ontario.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["medical advice", "nurse hotline"],
@@ -3728,7 +3730,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified hours."
+      "verification_notes": "Verified hours.",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["library north kingston", "youth drop in"],
@@ -3754,7 +3757,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified."
+      "verification_notes": "Verified.",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["cheap gym", "swimming pool", "subsidized fitness"],
@@ -3780,7 +3784,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified."
+      "verification_notes": "Verified.",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["hockey rink", "community rooms"],
@@ -3806,7 +3811,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified."
+      "verification_notes": "Verified.",
+      "evidence_url": "https://www.kfpl.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["free wifi", "public computer"],
@@ -3833,7 +3839,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified."
+      "verification_notes": "Verified.",
+      "evidence_url": "https://www.kfpl.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["library west end", "study space"],
@@ -3860,7 +3867,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
       "method": "Direct verification",
-      "verification_notes": "Verified extended hours."
+      "verification_notes": "Verified extended hours.",
+      "evidence_url": "https://www.kfpl.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["library east end", "family time"],
@@ -3886,7 +3894,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.kfpl.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["tech help", "reading group"],
@@ -3904,7 +3913,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://kingstonpcc.com"
     },
     "identity_tags": [],
     "synthetic_queries": ["baby clothes", "pregnant help"],
@@ -3923,7 +3933,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Integrated with Providence Care. Residence at 152 Phillips St."
+      "verification_notes": "Integrated with Providence Care. Residence at 152 Phillips St.",
+      "evidence_url": "https://providencecare.ca/hospice-kingston"
     },
     "identity_tags": [],
     "synthetic_queries": ["end of life care", "grief counseling"],
@@ -3947,7 +3958,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://alzheimer.ca/kfla"
     },
     "identity_tags": [],
     "synthetic_queries": ["dementia help", "caregiver support"],
@@ -3966,7 +3978,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Administrative/Coordination office."
+      "verification_notes": "Administrative/Coordination office.",
+      "evidence_url": "https://www.strokenetworkseo.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["stroke recovery", "rehab"],
@@ -3990,7 +4003,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.autismontario.com"
     },
     "identity_tags": [],
     "synthetic_queries": ["autism help", "asd resources"],
@@ -4008,7 +4022,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://cnib.ca"
     },
     "identity_tags": [
       {
@@ -4032,7 +4047,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Employment division verified."
+      "verification_notes": "Employment division verified.",
+      "evidence_url": "https://www.marchofdimes.ca"
     },
     "identity_tags": [
       {
@@ -4062,7 +4078,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Hours subject to academic calendar changes. PEACH Market located at New Medical Building."
+      "verification_notes": "Hours subject to academic calendar changes. PEACH Market located at New Medical Building.",
+      "evidence_url": "https://www.amsfoodbank.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["student food", "campus pantry"],
@@ -4087,7 +4104,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Access limited to once every 30 days."
+      "verification_notes": "Access limited to once every 30 days.",
+      "evidence_url": "https://www.slc.me"
     },
     "identity_tags": [],
     "synthetic_queries": ["college food help"],
@@ -4112,7 +4130,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Distinguished from US-based entity."
+      "verification_notes": "Distinguished from US-based entity.",
+      "evidence_url": "https://www.kchc.ca/community-harvest"
     },
     "identity_tags": [],
     "synthetic_queries": ["fresh vegetables", "cheap fruit"],
@@ -4137,7 +4156,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Year-round operation."
+      "verification_notes": "Year-round operation.",
+      "evidence_url": "https://www.memorialcentrefarmersmarket.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["local food", "farmers market"],
@@ -4162,7 +4182,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Student-run clinic."
+      "verification_notes": "Student-run clinic.",
+      "evidence_url": "https://queenslawclinics.ca/queens-legal-aid"
     },
     "identity_tags": [],
     "synthetic_queries": ["student lawyer", "university legal help"],
@@ -4188,7 +4209,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Clinic days specified."
+      "verification_notes": "Clinic days specified.",
+      "evidence_url": "https://www.kflaph.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["flu shot", "vaccine clinic"],
@@ -4214,7 +4236,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.663Z",
       "method": "Direct verification",
-      "verification_notes": "Verified Quick Test Clinic."
+      "verification_notes": "Verified Quick Test Clinic.",
+      "evidence_url": "https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx"
     },
     "identity_tags": [],
     "synthetic_queries": ["std test", "birth control"],
@@ -4240,7 +4263,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.663Z",
       "method": "Direct verification",
-      "verification_notes": "Chat service can be accessed via website or texting the crisis number."
+      "verification_notes": "Chat service can be accessed via website or texting the crisis number.",
+      "evidence_url": "https://www.sackingston.com"
     },
     "identity_tags": [],
     "synthetic_queries": ["rape crisis", "sexual trauma"],
@@ -4266,7 +4290,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.663Z",
       "method": "Direct verification",
-      "verification_notes": "Verified 24/7 Status."
+      "verification_notes": "Verified 24/7 Status.",
+      "evidence_url": "https://kingstonhsc.ca/emergency-care"
     },
     "identity_tags": [],
     "synthetic_queries": ["emergency room", "hospital"],
@@ -4292,7 +4317,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.663Z",
       "method": "Direct verification",
-      "verification_notes": "Users should call to check current status before attending."
+      "verification_notes": "Users should call to check current status before attending.",
+      "evidence_url": "https://kingstonhsc.ca/programs-and-departments/urgent-care-centre"
     },
     "identity_tags": [],
     "synthetic_queries": ["urgent care", "clinic"],
@@ -4318,7 +4344,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Specialized care facility."
+      "verification_notes": "Specialized care facility.",
+      "evidence_url": "https://providencecare.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["mental hospital", "rehab centre"],
@@ -4343,7 +4370,8 @@
     "provenance": {
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T16:57:50.847Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://cfmws.ca/kingston"
     },
     "identity_tags": [],
     "synthetic_queries": ["military support", "base services"],
@@ -4369,7 +4397,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Correction from 'Transgender Network Kingston'. Grassroots peer support model."
+      "verification_notes": "Correction from 'Transgender Network Kingston'. Grassroots peer support model.",
+      "evidence_url": "https://transfamilykingston.com"
     },
     "identity_tags": [],
     "synthetic_queries": ["trans group", "lgbtq social"],
@@ -4394,7 +4423,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["daycare subsidy", "child support"],
@@ -4413,7 +4443,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Head office in Sharbot Lake."
+      "verification_notes": "Head office in Sharbot Lake.",
+      "evidence_url": "https://rfcs.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["rural help", "sydenham services"],
@@ -4439,7 +4470,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Grace Centre location."
+      "verification_notes": "Grace Centre location.",
+      "evidence_url": "https://www.sfcsc.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["sydenham food bank", "rural transport"],
@@ -4464,7 +4496,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["east end gym", "community activities"],
@@ -4483,7 +4516,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "EarlyON."
+      "verification_notes": "EarlyON.",
+      "evidence_url": "https://kchc.ca/weller-avenue/earlyon/"
     },
     "identity_tags": [],
     "synthetic_queries": ["playgroup", "toddler activities"],
@@ -4508,7 +4542,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "West End Hub."
+      "verification_notes": "West End Hub.",
+      "evidence_url": "https://www.bgcsoutheast.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["kids club", "summer camp"],
@@ -4533,7 +4568,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Verified hours."
+      "verification_notes": "Verified hours.",
+      "evidence_url": "https://eo.ymca.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["gym membership help", "swim lessons"],
@@ -4558,7 +4594,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://kingstonhumanesociety.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["pet food bank", "adopt dog"],
@@ -4576,7 +4613,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.sja.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["first aid course", "medical volunteers"],
@@ -4594,7 +4632,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.redcross.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["disaster help", "meals on wheels"],
@@ -4613,7 +4652,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Co-located with Resolve Counselling."
+      "verification_notes": "Co-located with Resolve Counselling.",
+      "evidence_url": "https://www.unitedwaykfla.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["charity help", "social planning"],
@@ -4639,7 +4679,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Grant-making focus."
+      "verification_notes": "Grant-making focus.",
+      "evidence_url": "https://cfka.org"
     },
     "identity_tags": [],
     "synthetic_queries": ["grants", "funding"],
@@ -4663,7 +4704,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://habitatkingston.com"
     },
     "identity_tags": [],
     "synthetic_queries": ["cheap furniture", "build home"],
@@ -4682,7 +4724,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "LINC program provider."
+      "verification_notes": "LINC program provider.",
+      "evidence_url": "https://www.klsread.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["learn to read", "ged help"],
@@ -4707,7 +4750,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Detailed hours verified."
+      "verification_notes": "Detailed hours verified.",
+      "evidence_url": "https://keys.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["find a job", "resume help"],
@@ -4733,7 +4777,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Verified hours."
+      "verification_notes": "Verified hours.",
+      "evidence_url": "https://acfomi.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["french job help", "bilingual work"],
@@ -4759,7 +4804,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Verified."
+      "verification_notes": "Verified.",
+      "evidence_url": "https://restartnow.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["job verification", "work gear"],
@@ -4785,7 +4831,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Relocated to main campus."
+      "verification_notes": "Relocated to main campus.",
+      "evidence_url": "https://employmentservice.sl.on.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["student jobs", "career counseling"],
@@ -4810,7 +4857,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Verified centralized intake."
+      "verification_notes": "Verified centralized intake.",
+      "evidence_url": "https://www.cityofkingston.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["welfare", "social assistance"],
@@ -4835,7 +4883,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.ontario.ca"
     },
     "identity_tags": [
       {
@@ -4858,7 +4907,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.canada.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["unemployment", "pension"],
@@ -4876,7 +4926,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.ontario.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["health card renewal", "drivers license"],
@@ -4894,7 +4945,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.kpf.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["report theft", "police check"],
@@ -4912,7 +4964,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.opp.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["police rural", "opp report"],
@@ -4925,12 +4978,14 @@
     "description": "Mobile crisis intervention team partnering mental health workers with police.",
     "description_fr": "Équipe mobile d'intervention de crise associant des travailleurs en santé mentale à la police.",
     "url": "https://amhs-kfla.ca",
+    "phone": "613-544-4229",
     "verification_level": "L2",
     "intent_category": "Crisis",
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://amhs-kfla.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["mobile crisis", "mental health police"],
@@ -4949,7 +5004,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:03:10.690Z",
       "method": "Direct verification",
-      "verification_notes": "Covers both MH and Autism."
+      "verification_notes": "Covers both MH and Autism.",
+      "evidence_url": "https://maltbycentre.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["child autism", "behavioral therapy"],
@@ -4975,7 +5031,8 @@
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
-      "verification_notes": "Entity no longer exists distinct from Maltby."
+      "verification_notes": "Entity no longer exists distinct from Maltby.",
+      "evidence_url": "https://maltbycentre.ca"
     },
     "identity_tags": [],
     "synthetic_queries": ["youth counselor", "kids mental health"],
@@ -4999,7 +5056,8 @@
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
-      "method": "Direct verification"
+      "method": "Direct verification",
+      "evidence_url": "https://www.autism.net"
     },
     "identity_tags": [],
     "synthetic_queries": ["autism course", "parent training"],
