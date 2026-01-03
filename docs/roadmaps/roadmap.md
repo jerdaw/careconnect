@@ -76,13 +76,13 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus                        | Status      | Key Benefit                       |
-| :-------- | :--------------------------- | :---------- | :-------------------------------- |
-| **v10.0** | Data Architecture/Governance | Completed   | Data quality + search relevance   |
-| **v10.1** | UI Polish & Data Expansion   | Completed   | 159 services + Map + Bilingual    |
-| **v12.0** | Legal & Compliance           | In Planning | Liability protection + compliance |
-| **v11.0** | Future Horizons (Ontario)    | Planned     | Provincial scale + Automation     |
-| **v13.0** | Secure Data Architecture     | Planned     | Privacy + Infinite Scale          |
+| Version   | Focus                        | Status      | Key Benefit                        |
+| :-------- | :--------------------------- | :---------- | :--------------------------------- |
+| **v10.0** | Data Architecture/Governance | Completed   | Data quality + search relevance    |
+| **v10.1** | UI Polish & Data Expansion   | Completed   | 159 services + Map + Multi-lingual |
+| **v12.0** | Legal & Compliance           | In Planning | Liability protection + compliance  |
+| **v11.0** | Future Horizons (Ontario)    | Planned     | Provincial scale + Automation      |
+| **v13.0** | Secure Data Architecture     | Planned     | Privacy + Infinite Scale           |
 
 ---
 

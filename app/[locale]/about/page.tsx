@@ -27,8 +27,8 @@ export default function AboutPage() {
     },
     {
       icon: Globe,
-      title: t("metrics.bilingual.title"),
-      description: t("metrics.bilingual.description"),
+      title: t("metrics.multilingual.title"),
+      description: t("metrics.multilingual.description"),
       color: "emerald",
     },
     {

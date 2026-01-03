@@ -6,7 +6,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 
 - **Architecture & Logic**: `docs/architecture.md`
 - **UI Components**: `docs/components.md`
-- **Localization**: `bilingual-dev-guide.md`
+- **Localization**: `bilingual-dev-guide.md` (Multi-lingual development guide)
 - **Governance**: `docs/governance.md`
 - **Hooks & Utilities**: `docs/hooks.md`
 - **Roadmap**: `docs/roadmaps/roadmap.md` (Active Plan)
@@ -39,4 +39,4 @@ This project separates **backlog** vs **implementation plans** vs **canonical do
 - **Roadmaps**: Put active plans in `docs/roadmaps/`.
 - **Archive**: Put completed plans in `docs/roadmaps/archive/`.
 - **Deployment**: `DEPLOY.md` (Root) or `docs/deployment/` (Future).
-- **Development**: `AGENTS.md` (Root), `bilingual-dev-guide.md` (Root), or `docs/development/` (Future).
+- **Development**: `AGENTS.md` (Root), `bilingual-dev-guide.md` (Multi-lingual guide), or `docs/development/` (Future).

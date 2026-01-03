@@ -305,9 +305,9 @@
         "title": "Fonctionne hors ligne",
         "description": "Installable comme une application. Recherchez sans connexion internet."
       },
-      "bilingual": {
-        "title": "Entièrement bilingue",
-        "description": "Parité complète entre l'anglais et le français pour tous les services."
+      "multilingual": {
+        "title": "Multilingue",
+        "description": "Prise en charge complète de 5 langues, dont le français canadien."
       },
       "community": {
         "title": "Géré par la communauté",

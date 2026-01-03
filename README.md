@@ -54,8 +54,7 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 - **WCAG 2.1 AA Compliant** — High-contrast, skip-links, and keyboard navigation.
 - **Community Governance** — Residents can flag inaccurate data directly.
 - **Performance Optimized** — Loads instantly, even on slow connections.
-- **Bilingual Support** — Full English and French content switching.
-- **Multi-Lingual UI** — Arabic, Simplified Chinese, and Spanish interface translations.
+- **Multi-Lingual Support** — Full support for 5 languages: English, Canadian French, Arabic, Simplified Chinese, and Spanish.
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.
 - **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
 - **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
@@ -145,7 +144,7 @@ This project is community-led. Safety and accuracy take precedence over volume.
 - [Roadmap](docs/roadmaps/roadmap.md)
 - [Documentation Guidelines](docs/documentation-guidelines.md)
 - [Testing Standards](docs/development/testing.md)
-- [Bilingual Development Guide](bilingual-dev-guide.md)
+- [Multi-Lingual Development Guide](bilingual-dev-guide.md)
 - [Acknowledgments & Governance](docs/acknowledgments.md)
 
 ### Adding a Service

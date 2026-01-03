@@ -130,7 +130,7 @@ import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
 
 ### ServiceEditForm (Partner-Focused)
 
-New bilingual-aware form for service editing. Located in `components/partner/ServiceEditForm.tsx`.
+New multi-lingual-aware form for service editing (EN/FR fields). Located in `components/partner/ServiceEditForm.tsx`.
 
 ```tsx
 import { ServiceEditForm } from "@/components/partner/ServiceEditForm"
