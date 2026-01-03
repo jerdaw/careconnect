@@ -233,7 +233,7 @@ export default async function ServicePage({ params }: Props) {
                     <div className="shrink-0 rounded-lg bg-neutral-100 p-2 text-neutral-600 dark:bg-neutral-800">
                       <Navigation className="h-5 w-5" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm font-medium text-neutral-500">Address</p>
                       <p className="text-neutral-900 dark:text-neutral-200">{address}</p>
                       <Button variant="link" className="mt-1 h-auto p-0 text-xs" asChild>
@@ -245,6 +245,17 @@ export default async function ServicePage({ params }: Props) {
                           Get Directions
                         </a>
                       </Button>
+                      <div className="mt-3 overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700">
+                        <iframe
+                          title={`Map location for ${name}`}
+                          width="100%"
+                          height="180"
+                          frameBorder="0"
+                          scrolling="no"
+                          src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                          className="grayscale-[50%] transition-all hover:grayscale-0 dark:invert dark:hue-rotate-180"
+                        />
+                      </div>
                     </div>
                   </div>
                 )}

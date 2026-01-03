@@ -20,6 +20,8 @@
     "tools:search": "tsx scripts/search-cli.ts",
     "prepare": "husky",
     "bilingual-check": "npx tsx scripts/bilingual-audit.ts",
+    "audit:qa": "npx tsx scripts/qa-audit.ts",
+    "audit:bilingual": "npx tsx scripts/bilingual-audit.ts",
     "i18n-audit": "npx tsx scripts/i18n-key-audit.ts",
     "health-check": "npx tsx scripts/health-check-urls.ts",
     "phone-validate": "npx tsx scripts/validate-phones.ts",
