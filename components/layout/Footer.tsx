@@ -104,12 +104,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
-          <p>© 2024 Kingston Care Connect (Pilot v1.0)</p>
+        <div className="mt-16 flex flex-col gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
+          <p className="text-center text-neutral-500">
+            {t("emergencyDisclaimer")}
+          </p>
+          
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <p>© 2024 Kingston Care Connect (Pilot v1.0)</p>
 
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4" />
-            <span>Privacy First • No Tracking • Open Source</span>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4" />
+              <span>Privacy First • No Tracking • Open Source</span>
+            </div>
           </div>
         </div>
       </div>

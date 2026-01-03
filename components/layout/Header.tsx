@@ -14,13 +14,16 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
 // import { LanguageSelector } from "./LanguageSelector"
 import BetaBanner from "@/components/BetaBanner"
+import { EmergencyModal } from "@/components/ui/EmergencyModal"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [emergencyModalOpen, setEmergencyModalOpen] = useState(false)
   const { user } = useAuth()
   const t = useTranslations("Navigation")
   const tPartners = useTranslations("Partners")
+  const tEmergency = useTranslations("EmergencyModal")
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -95,16 +98,16 @@ export function Header() {
         {/* Desktop Nav */}
         <div className="hidden items-center md:flex">
           {/* Emergency - High priority, always visible */}
-          <a
-            href="tel:911"
+          <button
+            onClick={() => setEmergencyModalOpen(true)}
             className="mr-6 inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
             </span>
-            911
-          </a>
+            {tEmergency("buttonLabel")}
+          </button>
 
           {/* Navigation Links Group */}
           <nav className="flex items-center gap-5" aria-label="Main navigation">
@@ -181,16 +184,19 @@ export function Header() {
           >
             <div className="flex flex-col space-y-2 p-4">
               {/* Emergency - prominent at top */}
-              <a
-                href="tel:911"
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  setEmergencyModalOpen(true)
+                }}
                 className="flex items-center justify-center gap-2 rounded-lg bg-red-100 px-4 py-3 text-sm font-bold text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300"
               >
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500"></span>
                 </span>
-                Emergency: 911
-              </a>
+                {tEmergency("buttonLabel")}
+              </button>
 
               <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />
 
@@ -230,6 +236,12 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
+
+      {/* Emergency Modal */}
+      <EmergencyModal 
+        isOpen={emergencyModalOpen} 
+        onClose={() => setEmergencyModalOpen(false)} 
+      />
     </>
   )
 }

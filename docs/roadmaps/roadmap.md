@@ -54,6 +54,24 @@ For details on completed features, see the [Archived Roadmaps](file:///home/jer/
 
 ---
 
+## v13.0: Secure Data Architecture (Supabase Migration)
+
+> **Status**: Planned
+> **Focus**: Privacy & Scalability
+
+### 1. Privacy-First Data Fetching ("Librarian Model")
+
+- [ ] **Goal**: Stop sending the full database (JSON) to the client.
+- [ ] **Method**: Migrate public search to use Supabase API (server-side).
+- **Benefit**: Internal notes, draft services, and verification metadata remain strictly on the server.
+
+### 2. On-Demand Scalability
+
+- [ ] **Goal**: Support 1000+ services without increasing initial page load size.
+- [ ] **Method**: Paginated fetching and server-side filtering.
+
+---
+
 ## Roadmap Overview
 
 The following items represent the strategic phases of the roadmap:
@@ -64,6 +82,7 @@ The following items represent the strategic phases of the roadmap:
 | **v10.1** | UI Polish & Data Expansion   | Completed   | 159 services + Map + Bilingual    |
 | **v12.0** | Legal & Compliance           | In Planning | Liability protection + compliance |
 | **v11.0** | Future Horizons (Ontario)    | Planned     | Provincial scale + Automation     |
+| **v13.0** | Secure Data Architecture     | Planned     | Privacy + Infinite Scale          |
 
 ---
 

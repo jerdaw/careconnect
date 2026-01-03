@@ -45,10 +45,10 @@ export default function SearchResultsList({
       {/* Results Counter if filters active */}
       {hasSearched && results.length > 0 && (userLocation || category) && (
         <div className="flex items-center justify-between text-xs text-neutral-400">
-          <PrintButton className="no-print" />
           <span>
             {results.length} results {userLocation && "sorted by distance"}
           </span>
+          <PrintButton className="no-print" />
         </div>
       )}
 

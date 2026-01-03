@@ -1,5 +1,7 @@
-import { AlertTriangle, Phone } from "lucide-react"
+import { AlertTriangle, Phone
+ } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 interface SafetyAlertProps {
   query: string
@@ -21,6 +23,7 @@ const CRISIS_KEYWORDS = [
 ]
 
 export default function SafetyAlert({ query, category }: SafetyAlertProps) {
+  const t = useTranslations("CrisisAlert")
   const isCrisisSearch =
     category === "Crisis" || CRISIS_KEYWORDS.some((keyword) => query.toLowerCase().includes(keyword))
 
@@ -43,19 +46,31 @@ export default function SafetyAlert({ query, category }: SafetyAlertProps) {
               </div>
 
               <div className="flex-1">
-                <h3 className="text-xl leading-tight font-bold">Are you in immediate danger?</h3>
+                <h3 className="text-xl leading-tight font-bold">{t("title")}</h3>
                 <p className="mt-1 font-medium text-red-50 opacity-90">
-                  If you or someone else is at risk of harm, please call emergency services immediately.
+                  {t("message")}
+                </p>
+                <p className="mt-2 text-sm text-red-100/80">
+                  {t("disclaimer")}
                 </p>
               </div>
 
-              <a
-                href="tel:911"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-red-600 shadow-lg transition-transform hover:scale-105 active:scale-95 md:w-auto"
-              >
-                <Phone className="h-5 w-5 fill-current" />
-                Call 911 Now
-              </a>
+              <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row">
+                <a
+                  href="tel:911"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-red-600 shadow-lg transition-transform hover:scale-105 active:scale-95"
+                >
+                  <Phone className="h-5 w-5 fill-current" />
+                  {t("callButton")}
+                </a>
+                <a
+                  href="tel:988"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/30"
+                >
+                  <Phone className="h-5 w-5" />
+                  {t("crisisLine")}
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

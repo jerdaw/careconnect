@@ -4,6 +4,7 @@
   },
   "Footer": {
     "disclaimer": "Find verified local services and community resources.",
+    "emergencyDisclaimer": "Kingston Care Connect is an information directory only. Always verify information with service providers. For emergencies, call 911.",
     "quickLinks": {
       "community": "Community",
       "food": "Food Access",
@@ -478,6 +479,23 @@
     "inlineMessage": "This is an information directory only. Always verify information with service providers. For emergencies, call 911.",
     "bannerTitle": "EMERGENCY NOTICE",
     "bannerMessage": "If you are experiencing a life-threatening emergency, call 911 immediately. For mental health crises, call 988 (Suicide Crisis Helpline). Kingston Care Connect is an information directory and is not a substitute for emergency services, medical care, or professional counseling."
+  },
+  "CrisisAlert": {
+    "title": "Are you in immediate danger?",
+    "message": "If you or someone else is at risk of harm, please call emergency services immediately.",
+    "disclaimer": "Kingston Care Connect is an information directory only. Always verify information with service providers.",
+    "callButton": "Emergency: 911",
+    "crisisLine": "Suicide Crisis Helpline: 988"
+  },
+  "EmergencyModal": {
+    "buttonLabel": "Emergency",
+    "title": "Need Emergency Help?",
+    "message": "If you or someone else is in immediate danger, please call emergency services. Use your phone to dial the numbers below.",
+    "emergency": "Emergency Services",
+    "crisisLine": "Suicide Crisis Helpline",
+    "crisisCanada": "Crisis Services Canada",
+    "disclaimer": "Kingston Care Connect is an information directory only. These links will attempt to dial from your device.",
+    "close": "Close"
   },
   "AccessibilityPolicy": {
     "title": "Accessibility Policy",

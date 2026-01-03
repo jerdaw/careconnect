@@ -4,6 +4,7 @@
   },
   "Footer": {
     "disclaimer": "Soutenir la communauté de Kingston",
+    "emergencyDisclaimer": "Kingston Care Connect est un répertoire d'informations uniquement. Vérifiez toujours les informations auprès des fournisseurs de services. Pour les urgences, composez le 911.",
     "quickLinks": {
       "community": "Communauté",
       "food": "Accès alimentaire",
@@ -478,6 +479,23 @@
     "inlineMessage": "Ceci est un répertoire d'informations uniquement. Vérifiez toujours les informations. Pour les urgences, composez le 911.",
     "bannerTitle": "AVIS D'URGENCE",
     "bannerMessage": "Si vous vivez une urgence mettant votre vie en danger, composez immédiatement le 911. Pour les crises de santé mentale, composez le 988 (Ligne d'aide en cas de crise de suicide). Kingston Care Connect est un répertoire d'informations et ne remplace pas les services d'urgence, les soins médicaux ou les conseils professionnels."
+  },
+  "CrisisAlert": {
+    "title": "Êtes-vous en danger immédiat ?",
+    "message": "Si vous ou quelqu'un d'autre êtes en danger, veuillez appeler les services d'urgence immédiatement.",
+    "disclaimer": "Kingston Care Connect est un répertoire d'informations uniquement. Vérifiez toujours les informations auprès des fournisseurs.",
+    "callButton": "Urgence : 911",
+    "crisisLine": "Ligne d'aide en cas de crise de suicide : 988"
+  },
+  "EmergencyModal": {
+    "buttonLabel": "Urgence",
+    "title": "Besoin d'aide urgente ?",
+    "message": "Si vous ou quelqu'un d'autre êtes en danger immédiat, veuillez appeler les services d'urgence. Utilisez votre téléphone pour composer les numéros ci-dessous.",
+    "emergency": "Services d'urgence",
+    "crisisLine": "9-8-8 : Ligne d'aide en cas de crise de suicide",
+    "crisisCanada": "Services de crise Canada",
+    "disclaimer": "Kingston Care Connect est un répertoire d'informations uniquement. Ces liens tenteront de composer depuis votre appareil.",
+    "close": "Fermer"
   },
   "AccessibilityPolicy": {
     "title": "Politique d'accessibilité",

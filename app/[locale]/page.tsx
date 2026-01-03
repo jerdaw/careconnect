@@ -10,7 +10,7 @@ import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { EmergencyDisclaimer } from "@/components/ui/EmergencyDisclaimer"
+
 
 // Modular Components
 import ModelStatus from "../../components/home/ModelStatus"
@@ -64,7 +64,6 @@ export default function Home() {
   })
 
   const isActive = isFocused || query.length > 0
-  const isCrisisSearch = category === "Crisis" || ["suicide", "kill", "die", "harm", "crisis", "emergency", "911"].some(k => query.toLowerCase().includes(k))
 
   return (
     <main id="main-content" className="relative flex min-h-screen flex-col overflow-hidden">
@@ -86,11 +85,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          {!hasSearched && (
-            <div className="mb-8 text-left">
-              <EmergencyDisclaimer variant="banner" showCrisisLines={false} />
-            </div>
-          )}
+
           <AnimatePresence mode="wait">
             {!hasSearched && (
               <motion.div
@@ -209,11 +204,7 @@ export default function Home() {
 
         <SafetyAlert query={query} category={category} />
 
-        {isCrisisSearch && (
-          <div className="mb-6">
-            <EmergencyDisclaimer variant="inline" />
-          </div>
-        )}
+
 
         <SearchResultsList
           isLoading={isLoading}
