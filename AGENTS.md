@@ -47,8 +47,8 @@ From the repo root:
   - Migrate local data: `npx tsx scripts/migrate-data.ts`
   - Verify DB integrity: `npm run db:verify`
 - **Maintenance & Quality**:
-  - Bilingual Content Audit: `npm run bilingual-check`
-  - i18n Key Audit: `npm run i18n-audit`
+  - Service Data Audit (EN/FR): `npm run bilingual-check`
+  - Multi-lingual UI Audit: `npm run i18n-audit`
   - Staleness Audit: `npm run check-staleness`
   - URL Health Check: `npm run health-check`
   - Phone Validation: `npm run phone-validate`
@@ -123,7 +123,7 @@ When you have full access (and `origin` is configured), **make regular best-prac
 
 - **Policy**: English-First, but **design for full multi-lingual support**.
 - **Supported Locales**: `en` (English), `fr` (French), `ar` (Arabic - RTL), `zh-Hans` (Chinese), `es` (Spanish).
-- **Rules** (see `bilingual-dev-guide.md`):
+- **Rules** (see `bilingual-dev-guide.md` - Multi-lingual Development Guide):
   - No hardcoded strings for user-facing text (use `next-intl`).
   - Use `LanguageSelector` component for locale switching.
   - Support RTL (Arabic) via `dir="rtl"` in layouts.

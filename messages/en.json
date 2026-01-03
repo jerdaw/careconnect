@@ -305,9 +305,9 @@
         "title": "Works Offline",
         "description": "Installable as an app. Search without an internet connection."
       },
-      "bilingual": {
-        "title": "Fully Bilingual",
-        "description": "Complete parity between English and French for all listings."
+      "multilingual": {
+        "title": "Multi-Lingual",
+        "description": "Full support for 5 languages, including Canadian French."
       },
       "community": {
         "title": "Community Led",

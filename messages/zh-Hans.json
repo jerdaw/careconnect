@@ -260,9 +260,9 @@
         "title": "离线工作",
         "description": "可安装为应用程序。无需互联网连接即可搜索。"
       },
-      "bilingual": {
-        "title": "完全双语",
-        "description": "所有列表的英语和法语完全对等。"
+      "multilingual": {
+        "title": "多语言",
+        "description": "全面支持5种语言，包括加拿大法语。"
       },
       "community": {
         "title": "社区主导",

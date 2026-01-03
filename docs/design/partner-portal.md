@@ -42,7 +42,7 @@ The system uses a relational structure in Supabase:
 ### 3.2 Service Management
 
 - **Edit Form**: Partners use the `ServiceEditForm` to update details.
-- **Bilingual Support**: The form explicitly separates English and French fields (`name` vs `name_fr`) to ensure compliance with the [Bilingual Dev Guide](../../bilingual-dev-guide.md).
+- **Multi-Lingual Support**: The form explicitly separates English and French fields (`name` vs `name_fr`) to ensure compliance with the [Multi-Lingual Dev Guide](../../bilingual-dev-guide.md).
 - **Validation**: Zod schemas ensure data integrity before submission.
 
 ## 4. Analytics

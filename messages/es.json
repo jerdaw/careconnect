@@ -260,9 +260,9 @@
         "title": "Funciona Sin Conexión",
         "description": "Instalable como aplicación. Busca sin conexión a internet."
       },
-      "bilingual": {
-        "title": "Completamente Bilingüe",
-        "description": "Paridad completa entre inglés y francés para todos los listados."
+      "multilingual": {
+        "title": "Multilingüe",
+        "description": "Soporte completo para 5 idiomas, incluido el francés canadiense."
       },
       "community": {
         "title": "Liderado por la Comunidad",

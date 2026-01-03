@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 const LOCALES = [
   { code: "en", label: "English", flag: "🇨🇦" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "fr", label: "Français (CA)", flag: "🇨🇦" },
   { code: "ar", label: "العربية", flag: "🇸🇦", dir: "rtl" },
   { code: "zh-Hans", label: "中文", flag: "🇨🇳" },
   { code: "es", label: "Español", flag: "🇪🇸" },

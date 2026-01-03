@@ -85,7 +85,7 @@ The search system uses a hybrid approach:
 - **Access Control**: Role-Based Access Control (RBAC) implemented via `organization_members` table.
 - **Roles**: `owner`, `admin`, `editor`, `viewer`.
 - **Functions**: CRUD operations for listings, member invites (invite/accept flow), and analytics viewing.
-- **Bilingual Content**: Self-service editing for both English and French fields.
+- **Multi-Lingual Content**: Self-service editing for English and French fields (local services are EN/FR only).
 
 ### Data Flow
 
