@@ -123,7 +123,10 @@
       "website": "网站",
       "address": "地址",
       "hours": "营业时间",
-      "eligibility": "资格标准"
+      "eligibility": "资格标准",
+      "view": "查看",
+      "lastUpdated": "最后更新",
+      "noServices": "尚未认领任何服务"
     }
   },
   "ServiceDetail": {
@@ -241,16 +244,16 @@
   "About": {
     "hero": {
       "title": "金斯顿150",
-      "subtitle": "金斯顿最重要社会服务的治理优先搜索引擎。经过验证、可访问且注重隐私。"
-    },
-    "governanceText": "该平台遵循金斯顿150治理方案（V7），确保所有服务数据经过验证、分类和来源跟踪。",
-    "landAcknowledgment": {
-      "title": "土地承认",
-      "text": "金斯顿，也称为卡塔罗魁，位于休伦-温达特、阿尼西纳贝和豪德诺索尼联盟的祖传土地上。"
+      "subtitle": "金斯顿最重要社会服务的治理优先搜索引擎。经过验证、可访问且注重隐私。",
+      "governanceText": "该平台遵循金斯顿150治理方案（V7），确保所有服务数据经过验证、分类和来源跟踪。",
+      "landAcknowledgment": {
+        "title": "土地承认",
+        "text": "金斯顿，也称为卡塔罗魁，位于休伦-温达特、阿尼西纳贝和豪德诺索尼联盟的祖传土地上。我们承认有责任以尊重和保护的态度对待土地、水和天空。"
+      }
     },
     "metrics": {
       "verified": {
-        "title": "50+ 验证服务",
+        "title": "153 验证服务",
         "description": "手工策划以获得高影响力。没有噪音，只有帮助。"
       },
       "offline": {
@@ -312,5 +315,52 @@
       "subtitle": "您是服务提供者吗？加入我们的网络以接触更多人。",
       "button": "建议服务"
     }
+  },
+  "Terms": {
+    "title": "服务条款",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "acceptance": { "title": "Acceptance of Terms", "content": "English version available in Terms of Service." }
+    }
+  },
+  "Emergency": {
+    "compact": "紧急情况请拨打 911",
+    "title": "非紧急服务",
+    "inlineMessage": "这仅是一个信息目录。遇到紧急情况请务必拨打 911。",
+    "bannerTitle": "紧急通知",
+    "bannerMessage": "如果您遇到危及生命的紧急情况，请立即拨打 911。"
+  },
+  "AccessibilityPolicy": {
+    "title": "无障碍政策",
+    "lastUpdated": "Last Updated: {date}",
+    "commitment": "Kingston Care Connect is committed to ensuring equal access for people with disabilities."
+  },
+  "PartnerTerms": {
+    "title": "合作伙伴条款",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "eligibility": { "title": "Partner Eligibility", "content": "Authorized representatives only." }
+    }
+  },
+  "ContentPolicy": {
+    "title": "内容政策",
+    "description": "Our guidelines for maintaining a safe community directory.",
+    "lastUpdated": "Last Updated",
+    "sections": {
+      "prohibited": {
+        "title": "Prohibited Content",
+        "content": "Spam, hate speech, and fraudulent info are strictly prohibited."
+      }
+    }
+  },
+  "ClaimFlow": {
+    "button": "认领列表",
+    "title": "认领组织",
+    "description": "验证您的身份以管理此列表。",
+    "step1": "接受条款",
+    "step2": "验证邮箱",
+    "agreeLabel": "我同意合作伙伴服务条款",
+    "submit": "继续验证",
+    "success": "认领请求已提交。请查收电子邮件。"
   }
 }

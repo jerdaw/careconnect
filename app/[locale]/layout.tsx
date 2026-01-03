@@ -7,6 +7,7 @@ import { ErrorBoundary } from "../../components/ErrorBoundary"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { Outfit, Inter } from "next/font/google"
 import { ClientOnly } from "@/components/ClientOnly"
+import { Toaster } from "@/components/ui/toaster"
 import ChatAssistant from "@/components/ai/ChatAssistant"
 
 export const metadata: Metadata = {
@@ -60,6 +61,7 @@ export default async function RootLayout({
                 <ClientOnly>
                   <ChatAssistant />
                 </ClientOnly>
+                <Toaster />
               </ErrorBoundary>
             </ThemeProvider>
           </AuthProvider>

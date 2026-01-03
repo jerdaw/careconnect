@@ -16,14 +16,13 @@ test.describe("Crisis Flow", () => {
         await searchInput.fill("suicide")
         await searchInput.press("Enter")
 
-        // 3. Verify Crisis Detected Banner
-        // Look for text "Crisis Support" or "Call 911"
-    const safetyBanner = page.locator("text=Emergency? Call 911") // Matches header badge or banner
+    // 3. Verify Crisis Detected Banner
+    const safetyBanner = page.locator("text=EMERGENCY NOTICE") 
     await expect(safetyBanner.first()).toBeVisible()
 
-    // Check for specific alert content if possible
-    // "You are not alone" or "Immediate help"
-    await expect(page.getByText("Immediate help is available")).toBeVisible()
+    // Check for specific alert content
+    // "Life-threatening emergency" or "Call 911"
+    await expect(page.getByText("life-threatening emergency")).toBeVisible()
 })
 
     test("Crisis category quick link works", async ({ page }) => {
@@ -37,6 +36,6 @@ test.describe("Crisis Flow", () => {
         await expect(page).toHaveURL(/category=crisis/)
 
         // Verify banner
-        await expect(page.getByText("Immediate help is available")).toBeVisible()
+        await expect(page.getByText("EMERGENCY NOTICE")).toBeVisible()
     })
 })

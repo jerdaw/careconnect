@@ -11,22 +11,21 @@
 
 This roadmap addresses **critical legal infrastructure gaps** that currently expose Kingston Care Connect (KCC) and its organizers to significant liability. The platform serves vulnerable populations with crisis services, creating a heightened duty of care that requires robust legal protections.
 
-> [!WARNING]
-> **Critical Finding**: The platform currently operates without Terms of Service, comprehensive Privacy Policy, formal legal entity structure, or liability insurance. These gaps create significant personal liability exposure for organizers.
+> [!WARNING] > **Critical Finding**: The platform currently operates without Terms of Service, comprehensive Privacy Policy, formal legal entity structure, or liability insurance. These gaps create significant personal liability exposure for organizers.
 
 ### Risk Level Summary
 
-| Priority | Risks | Timeline |
-|:---------|:------|:---------|
-| **Critical** | 5 risks | Week 1 |
-| **High** | 4 risks | Weeks 2-4 |
-| **Medium** | 3 risks | Months 2-3 |
+| Priority     | Risks   | Timeline   |
+| :----------- | :------ | :--------- |
+| **Critical** | 5 risks | Week 1     |
+| **High**     | 4 risks | Weeks 2-4  |
+| **Medium**   | 3 risks | Months 2-3 |
 
 ### Budget Summary
 
-| Type | Low | High |
-|:-----|:----|:-----|
-| One-Time Costs | $7,500 | $20,000 |
+| Type             | Low    | High    |
+| :--------------- | :----- | :------ |
+| One-Time Costs   | $7,500 | $20,000 |
 | Annual Recurring | $4,500 | $11,500 |
 
 ---
@@ -47,34 +46,34 @@ Establish legal and compliance infrastructure that:
 
 ### Legal Entity: Ontario Non-Profit Corporation
 
-| Decision | Rationale |
-|:---------|:----------|
-| Provincial non-profit over federal | Simpler filing, lower cost, sufficient for Ontario-focused operations |
-| Non-profit over registered charity | Faster to establish; charity status can be added later for tax receipts |
-| Corporation over informal collective | Limited liability protection; required for insurance and funding |
-| Board of Directors | Governance credibility; distributes responsibility; funding requirement |
+| Decision                             | Rationale                                                               |
+| :----------------------------------- | :---------------------------------------------------------------------- |
+| Provincial non-profit over federal   | Simpler filing, lower cost, sufficient for Ontario-focused operations   |
+| Non-profit over registered charity   | Faster to establish; charity status can be added later for tax receipts |
+| Corporation over informal collective | Limited liability protection; required for insurance and funding        |
+| Board of Directors                   | Governance credibility; distributes responsibility; funding requirement |
 
 **Why not remain informal?** Personal liability exposure for organizers is unacceptable given the vulnerable populations served. A single claim could result in financial ruin.
 
 ### Disclaimer Strategy: Layered Approach
 
-| Decision | Rationale |
-|:---------|:----------|
-| Browse-wrap ToS + Click-wrap for partners | Maximum coverage for users; stronger enforceability for partners |
-| Contextual disclaimers throughout site | More effective than single page; addresses specific risks at point of use |
-| Emergency notices on every crisis page | Legal requirement for services that could delay emergency response |
-| AI-specific disclaimers | Emerging regulatory landscape; proactive compliance |
+| Decision                                  | Rationale                                                                 |
+| :---------------------------------------- | :------------------------------------------------------------------------ |
+| Browse-wrap ToS + Click-wrap for partners | Maximum coverage for users; stronger enforceability for partners          |
+| Contextual disclaimers throughout site    | More effective than single page; addresses specific risks at point of use |
+| Emergency notices on every crisis page    | Legal requirement for services that could delay emergency response        |
+| AI-specific disclaimers                   | Emerging regulatory landscape; proactive compliance                       |
 
 **Why not just a single ToS page?** Canadian courts require disclaimers to be prominent and timely. Contextual disclaimers at point of use are more defensible.
 
 ### Privacy Approach: Documentation-First
 
-| Decision | Rationale |
-|:---------|:----------|
+| Decision                     | Rationale                                                                            |
+| :--------------------------- | :----------------------------------------------------------------------------------- |
 | Comprehensive Privacy Policy | PIPEDA compliance requires formal documentation regardless of actual data collection |
-| Privacy Impact Assessment | Best practice; required for many funding sources; identifies hidden risks |
-| Data Processing Agreements | Required for partner portal access to feedback data |
-| Breach Response Plan | PIPEDA mandatory; proactive preparation prevents panic response |
+| Privacy Impact Assessment    | Best practice; required for many funding sources; identifies hidden risks            |
+| Data Processing Agreements   | Required for partner portal access to feedback data                                  |
+| Breach Response Plan         | PIPEDA mandatory; proactive preparation prevents panic response                      |
 
 **Why document when we collect minimal data?** Legal compliance is about demonstrable processes, not just technical implementation. Good architecture without documentation is indefensible.
 
@@ -100,7 +99,7 @@ const termsSections = [
     title: "Acceptance of Terms",
     content: `By accessing or using Kingston Care Connect ("KCC", "the Service"), 
     you agree to be bound by these Terms of Service. If you do not agree to 
-    these terms, do not use the Service.`
+    these terms, do not use the Service.`,
   },
   {
     id: "service-description",
@@ -114,7 +113,7 @@ const termsSections = [
     - Counseling or mental health treatment
     
     KCC is a directory only. We do not operate, control, or endorse any 
-    services listed on this platform.`
+    services listed on this platform.`,
   },
   {
     id: "disclaimer-warranties",
@@ -131,7 +130,7 @@ const termsSections = [
     - Service information is accurate, current, or complete
     - Services listed are available, safe, or appropriate for your needs
     - The platform will be uninterrupted or error-free
-    - Defects will be corrected`
+    - Defects will be corrected`,
   },
   {
     id: "limitation-liability",
@@ -145,7 +144,7 @@ const termsSections = [
     - Any damages exceeding $100 CAD in the aggregate
     
     YOU USE THIS SERVICE AT YOUR OWN RISK. You are solely responsible for 
-    verifying information with service providers before relying on it.`
+    verifying information with service providers before relying on it.`,
   },
   {
     id: "emergency-disclaimer",
@@ -156,7 +155,7 @@ const termsSections = [
     - A domestic violence emergency: CALL 911 or your local shelter hotline
     
     Do not rely on this directory for emergencies. Information may be 
-    outdated, incorrect, or unavailable.`
+    outdated, incorrect, or unavailable.`,
   },
   {
     id: "no-professional-advice",
@@ -164,7 +163,7 @@ const termsSections = [
     content: `Nothing on this platform constitutes professional advice of any 
     kind, including but not limited to medical, legal, financial, or 
     psychological advice. Always consult qualified professionals for 
-    specific concerns.`
+    specific concerns.`,
   },
   {
     id: "user-responsibilities",
@@ -174,7 +173,7 @@ const termsSections = [
     - Not rely solely on KCC information for critical decisions
     - Report inaccurate information through our feedback system
     - Use the Service only for lawful purposes
-    - Not attempt to circumvent security measures`
+    - Not attempt to circumvent security measures`,
   },
   {
     id: "indemnification",
@@ -185,7 +184,7 @@ const termsSections = [
     - Your use of the Service
     - Your reliance on information from the Service
     - Your violation of these Terms
-    - Your violation of any third-party rights`
+    - Your violation of any third-party rights`,
   },
   {
     id: "third-party-services",
@@ -197,7 +196,7 @@ const termsSections = [
     - Content on external websites linked from KCC
     - Experiences you have with listed services
     
-    Inclusion in this directory does not constitute endorsement.`
+    Inclusion in this directory does not constitute endorsement.`,
   },
   {
     id: "ai-assistant",
@@ -211,7 +210,7 @@ const termsSections = [
     The AI assistant is for informational purposes only. Always verify 
     critical information with service providers. For emergencies, call 
     911 immediately - the AI assistant cannot provide emergency assistance 
-    and is not monitored in real-time.`
+    and is not monitored in real-time.`,
   },
   {
     id: "modifications",
@@ -220,7 +219,7 @@ const termsSections = [
     will be effective immediately upon posting. Your continued use of the 
     Service after changes constitutes acceptance of the modified Terms.
     
-    Last Updated: [DATE]`
+    Last Updated: [DATE]`,
   },
   {
     id: "governing-law",
@@ -228,13 +227,13 @@ const termsSections = [
     content: `These Terms shall be governed by and construed in accordance 
     with the laws of the Province of Ontario and the federal laws of Canada 
     applicable therein. Any disputes shall be resolved in the courts of 
-    Ontario, and you consent to the exclusive jurisdiction of such courts.`
+    Ontario, and you consent to the exclusive jurisdiction of such courts.`,
   },
   {
     id: "severability",
     title: "Severability",
     content: `If any provision of these Terms is found to be unenforceable, 
-    the remaining provisions shall continue in full force and effect.`
+    the remaining provisions shall continue in full force and effect.`,
   },
   {
     id: "contact",
@@ -243,8 +242,8 @@ const termsSections = [
     Email: legal@kingstoncareconnect.ca
     
     For privacy concerns: privacy@kingstoncareconnect.ca
-    For accessibility concerns: accessibility@kingstoncareconnect.ca`
-  }
+    For accessibility concerns: accessibility@kingstoncareconnect.ca`,
+  },
 ]
 ```
 
@@ -287,7 +286,7 @@ const privacySections = [
     and protect information when you use our service.
     
     Effective Date: [DATE]
-    Last Updated: [DATE]`
+    Last Updated: [DATE]`,
   },
   {
     id: "data-collection",
@@ -302,7 +301,7 @@ const privacySections = [
         - **Partner Portal**: Partners who claim listings provide organization 
           name, contact information, and authentication credentials.
         - **Service Submissions**: Public submissions include service details 
-          you provide.`
+          you provide.`,
       },
       {
         title: "Information Collected Automatically",
@@ -313,7 +312,7 @@ const privacySections = [
         - **Technical Data**: Our hosting provider (Vercel) may collect 
           standard server logs (IP addresses, browser type, timestamps) 
           for security and performance purposes. We do not access or 
-          analyze these logs for user tracking.`
+          analyze these logs for user tracking.`,
       },
       {
         title: "Information We Do NOT Collect",
@@ -326,9 +325,9 @@ const privacySections = [
         - We do NOT collect sensitive health information
         
         For sensitive searches (crisis-related queries), we implement a 
-        Zero-Log Policy - no query text, metadata, or identifiers are recorded.`
-      }
-    ]
+        Zero-Log Policy - no query text, metadata, or identifiers are recorded.`,
+      },
+    ],
   },
   {
     id: "ai-privacy",
@@ -345,7 +344,7 @@ const privacySections = [
     - **Opt-In Only**: The AI model only downloads when you explicitly 
       choose to use the assistant.
     - **No Storage**: Conversations are not stored after you close the 
-      browser.`
+      browser.`,
   },
   {
     id: "use-of-information",
@@ -362,7 +361,7 @@ const privacySections = [
     We do NOT use your information for:
     - Advertising or marketing
     - Profiling or behavioral tracking
-    - Sale to third parties`
+    - Sale to third parties`,
   },
   {
     id: "data-sharing",
@@ -380,7 +379,7 @@ const privacySections = [
       law, court order, or government request.
     
     We do NOT sell your information. We do NOT share information with 
-    advertisers.`
+    advertisers.`,
   },
   {
     id: "data-retention",
@@ -393,7 +392,7 @@ const privacySections = [
     - **Local Storage**: Controlled by you; clear your browser data to 
       remove.
     - **Server Logs**: Managed by Vercel per their retention policy 
-      (typically 30 days).`
+      (typically 30 days).`,
   },
   {
     id: "your-rights",
@@ -409,7 +408,7 @@ const privacySections = [
     
     To exercise these rights, contact: privacy@kingstoncareconnect.ca
     
-    We will respond within 30 days.`
+    We will respond within 30 days.`,
   },
   {
     id: "data-security",
@@ -421,14 +420,14 @@ const privacySections = [
     - **Minimal Collection**: We collect only what is necessary.
     - **Privacy by Design**: Our architecture prioritizes privacy.
     
-    No system is perfectly secure. We cannot guarantee absolute security.`
+    No system is perfectly secure. We cannot guarantee absolute security.`,
   },
   {
     id: "childrens-privacy",
     title: "Children's Privacy",
     content: `KCC is not directed at children under 13. We do not knowingly 
     collect information from children. If you believe we have collected 
-    information from a child, please contact us immediately.`
+    information from a child, please contact us immediately.`,
   },
   {
     id: "cross-border",
@@ -436,7 +435,7 @@ const privacySections = [
     content: `Our service providers (Supabase, Vercel) may process data in 
     the United States. By using KCC, you consent to this transfer. These 
     providers are subject to their own privacy policies and applicable 
-    laws.`
+    laws.`,
   },
   {
     id: "cookies",
@@ -450,14 +449,14 @@ const privacySections = [
     - Tracking cookies
     - Advertising cookies
     - Analytics cookies
-    - Third-party cookies`
+    - Third-party cookies`,
   },
   {
     id: "changes",
     title: "Changes to This Policy",
     content: `We may update this policy periodically. Changes will be posted 
     on this page with an updated "Last Updated" date. Significant changes 
-    will be highlighted on the homepage.`
+    will be highlighted on the homepage.`,
   },
   {
     id: "contact",
@@ -467,8 +466,8 @@ const privacySections = [
     Email: privacy@kingstoncareconnect.ca
     
     Privacy Commissioner of Canada: https://www.priv.gc.ca
-    Information and Privacy Commissioner of Ontario: https://www.ipc.on.ca`
-  }
+    Information and Privacy Commissioner of Ontario: https://www.ipc.on.ca`,
+  },
 ]
 ```
 
@@ -503,18 +502,18 @@ interface EmergencyDisclaimerProps {
   showCrisisLines?: boolean
 }
 
-export function EmergencyDisclaimer({ 
+export function EmergencyDisclaimer({
   variant = "banner",
-  showCrisisLines = true 
+  showCrisisLines = true
 }: EmergencyDisclaimerProps) {
   const t = useTranslations("Emergency")
-  
+
   const crisisLines = [
     { name: "Emergency Services", number: "911", type: "emergency" },
     { name: "988 Suicide Crisis Helpline", number: "988", type: "crisis" },
     { name: "Crisis Services Canada", number: "1-833-456-4566", type: "crisis" },
   ]
-  
+
   if (variant === "compact") {
     return (
       <div className="flex items-center gap-2 text-sm text-amber-700 dark:text-amber-300">
@@ -525,7 +524,7 @@ export function EmergencyDisclaimer({
       </div>
     )
   }
-  
+
   if (variant === "inline") {
     return (
       <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950">
@@ -543,7 +542,7 @@ export function EmergencyDisclaimer({
       </div>
     )
   }
-  
+
   // Banner variant (default)
   return (
     <div className="rounded-lg border-2 border-red-300 bg-red-50 p-6 dark:border-red-800 dark:bg-red-950">
@@ -555,21 +554,21 @@ export function EmergencyDisclaimer({
           </h3>
           <p className="mt-2 text-red-700 dark:text-red-300">
             {t("bannerMessage")}
-            {/* "If you are experiencing a life-threatening emergency, 
-                call 911 immediately. For mental health crises, call 988. 
-                Kingston Care Connect is an information directory and is 
+            {/* "If you are experiencing a life-threatening emergency,
+                call 911 immediately. For mental health crises, call 988.
+                Kingston Care Connect is an information directory and is
                 not a substitute for emergency services." */}
           </p>
-          
+
           {showCrisisLines && (
             <div className="mt-4 grid gap-2 sm:grid-cols-3">
               {crisisLines.map((line) => (
                 <a
                   key={line.number}
                   href={`tel:${line.number}`}
-                  className="flex items-center gap-2 rounded-md bg-white px-3 py-2 
-                    text-sm font-medium text-red-700 shadow-sm 
-                    hover:bg-red-100 dark:bg-red-900 dark:text-red-200 
+                  className="flex items-center gap-2 rounded-md bg-white px-3 py-2
+                    text-sm font-medium text-red-700 shadow-sm
+                    hover:bg-red-100 dark:bg-red-900 dark:text-red-200
                     dark:hover:bg-red-800"
                 >
                   <Phone className="h-4 w-4" />
@@ -632,6 +631,7 @@ Create decision document: `docs/legal/incorporation-research.md`
 ## Option 1: Ontario Not-for-Profit Corporation
 
 ### Requirements
+
 - Minimum 3 directors
 - Registered office in Ontario
 - Articles of Incorporation
@@ -639,6 +639,7 @@ Create decision document: `docs/legal/incorporation-research.md`
 - Initial directors meeting
 
 ### Process
+
 1. NUANS name search ($20)
 2. File Articles online via Ontario Business Registry
 3. Filing fee: $155 (standard) or $55 (charitable)
@@ -647,14 +648,17 @@ Create decision document: `docs/legal/incorporation-research.md`
 6. Register for HST (if applicable)
 
 ### Timeline
+
 - Self-file: 1-2 weeks
 - Lawyer-assisted: 2-4 weeks
 
 ### Cost
+
 - Self-file: ~$175-$300
 - Lawyer-assisted: ~$1,000-$2,500
 
 ### Benefits
+
 - Limited liability protection
 - Credibility with funders
 - Can apply for grants
@@ -665,17 +669,20 @@ Create decision document: `docs/legal/incorporation-research.md`
 ## Option 2: Add Registered Charity Status
 
 ### Requirements
+
 - Must be incorporated first
 - Exclusively charitable purposes
 - CRA application (Form T2050)
 - 3-12 month approval process
 
 ### Benefits
+
 - Issue tax receipts
 - Exempt from income tax
 - Enhanced credibility
 
 ### Considerations
+
 - More regulatory requirements
 - Annual information returns
 - Restrictions on activities
@@ -693,11 +700,13 @@ Create decision document: `docs/legal/incorporation-research.md`
 ## Initial Board Composition
 
 ### Recommended Structure
+
 - 3-5 directors initially
 - Mix of: tech expertise, social services experience, community representation
 - At least one with non-profit governance experience
 
 ### Potential Candidates
+
 - [To be identified from advisory board discussions]
 
 ---
@@ -736,23 +745,27 @@ Create document: `docs/legal/insurance-research.md`
 ## Required Coverage Types
 
 ### 1. General Liability Insurance
+
 - **What it covers**: Third-party bodily injury and property damage
 - **Recommended coverage**: $2,000,000
 - **Estimated cost**: $500-$1,500/year
 
 ### 2. Errors & Omissions (E&O) Insurance
+
 - **What it covers**: Professional mistakes, negligent advice, inaccurate information
 - **Critical for**: Information services serving vulnerable populations
 - **Recommended coverage**: $1,000,000-$2,000,000
 - **Estimated cost**: $1,000-$3,000/year
 
 ### 3. Directors & Officers (D&O) Insurance
+
 - **What it covers**: Personal liability of board members
 - **Required for**: Non-profit governance
 - **Recommended coverage**: $1,000,000
 - **Estimated cost**: $1,000-$2,000/year
 
 ### 4. Cyber Liability Insurance (Future)
+
 - **What it covers**: Data breaches, privacy violations
 - **Recommended if**: Partner portal usage grows significantly
 - **Estimated cost**: $1,000-$2,500/year
@@ -762,11 +775,13 @@ Create document: `docs/legal/insurance-research.md`
 ## Insurance Providers to Contact
 
 ### Non-Profit Specialists
+
 1. **Hub International** - Non-profit division
 2. **Marsh Canada** - Community organization programs
 3. **BFL Canada** - Social enterprise coverage
 
 ### Brokers
+
 1. **OSIT (Ontario School Insurance Trust)** - Serves community organizations
 2. **Arthur J. Gallagher** - Specialty non-profit programs
 
@@ -778,11 +793,12 @@ Subject: Insurance Quote Request - Non-Profit Information Service
 
 Dear [Provider],
 
-We are seeking insurance quotes for Kingston Care Connect, a community-led 
-non-profit (incorporation pending) operating a social services directory 
+We are seeking insurance quotes for Kingston Care Connect, a community-led
+non-profit (incorporation pending) operating a social services directory
 in Kingston, Ontario.
 
 **Organization Details:**
+
 - Type: Information directory / search engine for social services
 - Users: General public, with focus on vulnerable populations
 - Annual Budget: Under $10,000
@@ -790,17 +806,20 @@ in Kingston, Ontario.
 - Location: Ontario (web-based service)
 
 **Coverage Requested:**
+
 1. General Liability: $2,000,000
 2. Errors & Omissions: $1,000,000
 3. Directors & Officers: $1,000,000
 
 **Key Activities:**
+
 - Maintain database of verified social service listings
 - Provide search interface for public
 - Partner portal for service providers to update listings
 - AI assistant (client-side only, no server-side processing)
 
 **Risk Considerations:**
+
 - Serve vulnerable populations seeking crisis services
 - Information accuracy is critical
 - No direct service provision (directory only)
@@ -841,13 +860,13 @@ const accessibilityContent = {
     participation for people with disabilities. We strive to meet the 
     accessibility needs of persons with disabilities in a timely manner.
   `,
-  
+
   standards: `
     We are committed to meeting the requirements of the Accessibility 
     for Ontarians with Disabilities Act (AODA) and the Web Content 
     Accessibility Guidelines (WCAG) 2.0 Level AA.
   `,
-  
+
   currentFeatures: [
     "High-contrast mode for improved readability",
     "Keyboard navigation for all interactive elements",
@@ -858,7 +877,7 @@ const accessibilityContent = {
     "Progressive Web App with offline capability",
     "Accessible form controls with proper labels",
   ],
-  
+
   multiYearPlan: {
     "2026": [
       "Maintain WCAG 2.0 Level AA compliance",
@@ -878,7 +897,7 @@ const accessibilityContent = {
       "Community accessibility advisory input",
     ],
   },
-  
+
   feedback: {
     email: "accessibility@kingstoncareconnect.ca",
     process: `
@@ -923,7 +942,7 @@ const partnerTermsSections = [
       - Have authority to bind the organization to these terms
       - Provide accurate identification and contact information
       - Operate a genuine social service in the Kingston area
-    `
+    `,
   },
   {
     id: "verification",
@@ -937,7 +956,7 @@ const partnerTermsSections = [
       
       Fraudulent claims will result in immediate account termination 
       and may be reported to law enforcement.
-    `
+    `,
   },
   {
     id: "accuracy-warranty",
@@ -948,7 +967,7 @@ const partnerTermsSections = [
       - You will update information promptly when it changes
       - You will not provide misleading information
       - You have the right to share the information provided
-    `
+    `,
   },
   {
     id: "license-grant",
@@ -962,7 +981,7 @@ const partnerTermsSections = [
       - Archive information for historical purposes
       
       You retain ownership of your organization's intellectual property.
-    `
+    `,
   },
   {
     id: "indemnification",
@@ -974,7 +993,7 @@ const partnerTermsSections = [
       - Your organization's services
       - Unauthorized claims of listings
       - Violation of these Partner Terms
-    `
+    `,
   },
   {
     id: "data-access",
@@ -989,7 +1008,7 @@ const partnerTermsSections = [
       - Not use feedback for marketing without consent
       - Report any data breaches immediately
       - Delete user data upon request
-    `
+    `,
   },
   {
     id: "termination",
@@ -1002,7 +1021,7 @@ const partnerTermsSections = [
       
       Upon termination, your listing will be unclaimed and may be 
       managed by KCC or hidden.
-    `
+    `,
   },
 ]
 ```
@@ -1016,28 +1035,28 @@ Add Terms acceptance before claim:
 ```typescript
 const ClaimFlow = () => {
   const [termsAccepted, setTermsAccepted] = useState(false)
-  
+
   const handleClaim = async () => {
     if (!termsAccepted) {
       showError("You must accept the Partner Terms of Service")
       return
     }
-    
+
     // Store acceptance in database
     await recordTermsAcceptance({
       partnerId: session.user.id,
       version: "1.0",
       acceptedAt: new Date().toISOString(),
     })
-    
+
     // Proceed with claim
     await claimListing(listingId)
   }
-  
+
   return (
     <div>
       {/* Existing claim UI */}
-      
+
       <div className="mt-4 flex items-start gap-3">
         <Checkbox
           id="terms-acceptance"
@@ -1049,11 +1068,11 @@ const ClaimFlow = () => {
           <Link href="/partner-terms" className="text-primary underline">
             Partner Terms of Service
           </Link>
-          . I confirm that I am authorized to represent this organization 
+          . I confirm that I am authorized to represent this organization
           and that the information I provide will be accurate.
         </label>
       </div>
-      
+
       <Button onClick={handleClaim} disabled={!termsAccepted}>
         Claim Listing
       </Button>
@@ -1099,26 +1118,27 @@ CREATE POLICY "Partners can insert own acceptance"
 
 **File**: `docs/governance/verification-protocol.md`
 
-```markdown
+````markdown
 # Service Verification Protocol
 
 ## Purpose
 
-This document establishes the formal verification procedures for services 
-listed in Kingston Care Connect. These procedures establish the standard 
-of care for data accuracy and provide an audit trail for verification 
+This document establishes the formal verification procedures for services
+listed in Kingston Care Connect. These procedures establish the standard
+of care for data accuracy and provide an audit trail for verification
 activities.
 
 ## Verification Levels
 
 ### L0: Unverified
 
-**Definition**: Raw data from web scraping, public submission, or 
+**Definition**: Raw data from web scraping, public submission, or
 unverified import.
 
 **Display Status**: HIDDEN from public
 
 **Requirements for Entry**:
+
 - Basic data structure (id, name, description)
 - At least one contact method
 
@@ -1128,12 +1148,13 @@ unverified import.
 
 ### L1: Existence Verified
 
-**Definition**: Confirmed that the service exists and is currently 
+**Definition**: Confirmed that the service exists and is currently
 operating. This is the minimum level for public visibility.
 
 **Display Status**: VISIBLE to public
 
 **Verification Criteria**:
+
 - [ ] Phone number connects (not disconnected, reaches organization)
 - [ ] Website loads (200 status, displays organization content)
 - [ ] Organization confirms they offer this service
@@ -1142,12 +1163,14 @@ operating. This is the minimum level for public visibility.
 **Verification Process**:
 
 1. **Phone Verification**
+
    - Call during business hours
    - Confirm organization name
    - Confirm service is offered
    - Document: Date, time, person spoken to (first name only)
 
 2. **Website Verification**
+
    - Navigate to URL
    - Confirm page loads without error
    - Confirm organization name matches
@@ -1161,6 +1184,7 @@ operating. This is the minimum level for public visibility.
    - Update `provenance.evidence_url` to organization website
 
 **Example Provenance Entry**:
+
 ```json
 {
   "provenance": {
@@ -1171,23 +1195,26 @@ operating. This is the minimum level for public visibility.
   }
 }
 ```
+````
 
 ---
 
 ### L2: Eligibility Verified
 
-**Definition**: Service details including eligibility criteria have been 
+**Definition**: Service details including eligibility criteria have been
 verified against official documentation.
 
 **Display Status**: VISIBLE to public
 
 **Additional Criteria (beyond L1)**:
+
 - [ ] Eligibility criteria confirmed against official documentation
 - [ ] Operating hours verified
 - [ ] Fees verified (if applicable)
 - [ ] Address verified (if physical location)
 
 **Evidence Requirements**:
+
 - PDF, official webpage, or published brochure
 - Evidence URL must be publicly accessible
 - Evidence must explicitly state eligibility criteria
@@ -1196,17 +1223,19 @@ verified against official documentation.
 
 ### L3: Provider Confirmed
 
-**Definition**: Direct confirmation from service provider with documented 
+**Definition**: Direct confirmation from service provider with documented
 communication.
 
 **Display Status**: VISIBLE to public (Preferred)
 
 **Additional Criteria (beyond L2)**:
+
 - [ ] Direct email from authorized representative
 - [ ] Confirmation of all listing details
 - [ ] Provider contact information on file
 
 **Evidence Requirements**:
+
 - Email from organization domain
 - Written confirmation of listing accuracy
 - Retain email record for audit purposes
@@ -1220,6 +1249,7 @@ communication.
 **Display Status**: FEATURED (with partner badge)
 
 **Requirements**:
+
 - [ ] Signed Memorandum of Understanding (MOU)
 - [ ] Data sharing agreement (if applicable)
 - [ ] Partner Terms of Service accepted
@@ -1232,23 +1262,23 @@ communication.
 
 ### Crisis Services (Intent Category: Crisis)
 
-| Verification Activity | Frequency |
-|:---------------------|:----------|
-| Phone connectivity check | Monthly |
-| Website availability check | Monthly |
-| Full verification (L1 re-verification) | Monthly |
-| Automated URL health check | Daily |
-| Automated phone validation | Monthly |
+| Verification Activity                  | Frequency |
+| :------------------------------------- | :-------- |
+| Phone connectivity check               | Monthly   |
+| Website availability check             | Monthly   |
+| Full verification (L1 re-verification) | Monthly   |
+| Automated URL health check             | Daily     |
+| Automated phone validation             | Monthly   |
 
 ### General Services (All other categories)
 
-| Verification Activity | Frequency |
-|:---------------------|:----------|
-| Phone connectivity check | Quarterly |
-| Website availability check | Quarterly |
+| Verification Activity                  | Frequency |
+| :------------------------------------- | :-------- |
+| Phone connectivity check               | Quarterly |
+| Website availability check             | Quarterly |
 | Full verification (L1 re-verification) | Quarterly |
-| Automated URL health check | Weekly |
-| Automated phone validation | Quarterly |
+| Automated URL health check             | Weekly    |
+| Automated phone validation             | Quarterly |
 
 ---
 
@@ -1256,12 +1286,12 @@ communication.
 
 Per the [Governance Protocol](governance.md):
 
-| Condition | Action |
-|:----------|:-------|
+| Condition                    | Action                        |
+| :--------------------------- | :---------------------------- |
 | No verification in >6 months | Auto-downgrade to L0 (Hidden) |
-| Phone disconnected | Immediate downgrade to L0 |
-| Website error (404, 500) | Flag for manual review |
-| Partner reports closure | Immediate downgrade to L0 |
+| Phone disconnected           | Immediate downgrade to L0     |
+| Website error (404, 500)     | Flag for manual review        |
+| Partner reports closure      | Immediate downgrade to L0     |
 
 ---
 
@@ -1270,12 +1300,14 @@ Per the [Governance Protocol](governance.md):
 All verification activities must be documented:
 
 1. **JSON Service Record**
+
    - `provenance.verified_at`: ISO 8601 datetime
    - `provenance.verified_by`: Verifier identifier
    - `provenance.method`: Verification method used
    - `provenance.evidence_url`: Link to evidence
 
 2. **Git History**
+
    - Commit message: "[verify] Service Name - method"
    - Git blame provides audit history
 
@@ -1327,10 +1359,12 @@ All verification activities must be documented:
 Format: `kcc-[role]-[number]`
 
 Examples:
+
 - `kcc-volunteer-001`
 - `kcc-admin-001`
 - `kcc-ai-assisted`
-```
+
+````
 
 ---
 
@@ -1343,7 +1377,7 @@ Examples:
 
 ## Purpose
 
-This plan establishes procedures for responding to data breaches in 
+This plan establishes procedures for responding to data breaches in
 compliance with PIPEDA requirements.
 
 ## Scope
@@ -1358,7 +1392,7 @@ This plan applies to any breach involving:
 
 ### Primary Contact
 - **Role**: Project Lead
-- **Responsibilities**: Initial assessment, notification decisions, 
+- **Responsibilities**: Initial assessment, notification decisions,
   external communications
 
 ### Technical Lead
@@ -1485,12 +1519,13 @@ Examples:
 - Information about complaints to Privacy Commissioner
 
 **Template**:
-```
+````
+
 Subject: Important Security Notice from Kingston Care Connect
 
 Dear [Name],
 
-We are writing to inform you of a data security incident that may affect 
+We are writing to inform you of a data security incident that may affect
 your personal information.
 
 What Happened:
@@ -1508,14 +1543,15 @@ What We Are Doing:
 What You Can Do:
 [Recommended actions]
 
-We sincerely apologize for this incident. If you have questions, 
+We sincerely apologize for this incident. If you have questions,
 please contact us at: privacy@kingstoncareconnect.ca
 
-You also have the right to file a complaint with the Privacy 
+You also have the right to file a complaint with the Privacy
 Commissioner of Canada: https://www.priv.gc.ca
 
 Sincerely,
 Kingston Care Connect
+
 ```
 
 ### Step 4: Remediation (Ongoing)
@@ -1628,6 +1664,7 @@ Create formal PIA report with findings and recommendations.
 Public-facing policy covering:
 
 1. **Prohibited Content**
+
    - Spam or commercial advertising
    - Defamatory or libelous content
    - Content that violates privacy
@@ -1635,16 +1672,19 @@ Public-facing policy covering:
    - Hateful or discriminatory content
 
 2. **User Submissions**
+
    - Service submissions reviewed before publication
    - Feedback reviewed for appropriateness
    - Right to edit or reject submissions
 
 3. **Reporting Process**
+
    - How to report problematic content
    - Response timeline (5 business days)
    - Anonymous reporting option
 
 4. **Appeals**
+
    - How to appeal moderation decisions
    - Review process
    - Final decision authority
@@ -1661,14 +1701,15 @@ Public-facing policy covering:
 
 Document all data sources and their licenses:
 
-| Source | License | Attribution Required | Commercial Use | Notes |
-|:-------|:--------|:--------------------|:---------------|:------|
-| 211 Ontario | TBD - Confirm | TBD | TBD | Contact for formal agreement |
-| OpenStreetMap | ODbL | Yes | Yes (share-alike) | Add attribution |
-| City of Kingston | Open Data License | Yes | Yes | Confirm terms |
-| Service Providers | Partner ToS | N/A | Yes | Via Partner agreement |
+| Source            | License           | Attribution Required | Commercial Use    | Notes                        |
+| :---------------- | :---------------- | :------------------- | :---------------- | :--------------------------- |
+| 211 Ontario       | TBD - Confirm     | TBD                  | TBD               | Contact for formal agreement |
+| OpenStreetMap     | ODbL              | Yes                  | Yes (share-alike) | Add attribution              |
+| City of Kingston  | Open Data License | Yes                  | Yes               | Confirm terms                |
+| Service Providers | Partner ToS       | N/A                  | Yes               | Via Partner agreement        |
 
 **Action Items**:
+
 1. Confirm 211 Ontario data sharing terms
 2. Implement OSM attribution on maps
 3. Review City of Kingston open data terms
@@ -1683,14 +1724,14 @@ Document all data sources and their licenses:
 ```typescript
 export function AiDisclaimer() {
   const t = useTranslations("AiDisclaimer")
-  
+
   return (
-    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 
+    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4
       dark:border-amber-800 dark:bg-amber-950">
       <h4 className="font-medium text-amber-800 dark:text-amber-200">
         {t("title")} {/* "About This AI Assistant" */}
       </h4>
-      
+
       <ul className="mt-2 space-y-1 text-sm text-amber-700 dark:text-amber-300">
         <li>{t("limitation1")}</li>
         {/* "This AI may provide inaccurate information" */}
@@ -1699,18 +1740,18 @@ export function AiDisclaimer() {
         <li>{t("limitation3")}</li>
         {/* "Always verify information with service providers" */}
       </ul>
-      
+
       <div className="mt-3 rounded bg-red-100 p-2 dark:bg-red-900">
         <p className="text-sm font-medium text-red-800 dark:text-red-200">
           {t("emergency")}
-          {/* "For emergencies, call 911 immediately. This assistant 
+          {/* "For emergencies, call 911 immediately. This assistant
               cannot provide emergency help." */}
         </p>
       </div>
-      
+
       <p className="mt-3 text-xs text-amber-600 dark:text-amber-400">
         {t("privacy")}
-        {/* "Your conversation stays on your device and is never sent 
+        {/* "Your conversation stays on your device and is never sent
             to our servers." */}
       </p>
     </div>
@@ -1729,16 +1770,19 @@ Display in chat interface before first message.
 Document formal processes for:
 
 1. **Service Information Feedback**
+
    - Report via button on service pages
    - Response within 5 business days
    - Status updates provided
 
 2. **Privacy Complaints**
+
    - Email: privacy@kingstoncareconnect.ca
    - Response within 10 business days
    - Escalation to Privacy Commissioner
 
 3. **Accessibility Complaints**
+
    - Email: accessibility@kingstoncareconnect.ca
    - Alternative formats available
    - Response within 5 business days
@@ -1753,35 +1797,35 @@ Document formal processes for:
 
 ### Automated Tests
 
-| Test | Type | Coverage |
-|:-----|:-----|:---------|
-| Terms page renders | E2E | All sections visible |
-| Privacy page renders | E2E | All sections visible |
-| Accessibility page renders | E2E | All sections visible |
-| Emergency disclaimer visibility | E2E | Crisis pages |
-| Partner ToS acceptance | Integration | Claim flow |
-| Footer links work | E2E | All legal pages |
-| Bilingual content | E2E | EN/FR parity |
+| Test                            | Type        | Coverage             |
+| :------------------------------ | :---------- | :------------------- |
+| Terms page renders              | E2E         | All sections visible |
+| Privacy page renders            | E2E         | All sections visible |
+| Accessibility page renders      | E2E         | All sections visible |
+| Emergency disclaimer visibility | E2E         | Crisis pages         |
+| Partner ToS acceptance          | Integration | Claim flow           |
+| Footer links work               | E2E         | All legal pages      |
+| Bilingual content               | E2E         | EN/FR parity         |
 
 ### Manual Verification
 
-| Item | Frequency | Responsible |
-|:-----|:----------|:------------|
-| Legal page content review | Quarterly | Project Lead |
-| Insurance coverage review | Annually | Finance |
-| Breach response drill | Annually | Security |
-| Accessibility audit | Annually | Accessibility Lead |
+| Item                      | Frequency | Responsible        |
+| :------------------------ | :-------- | :----------------- |
+| Legal page content review | Quarterly | Project Lead       |
+| Insurance coverage review | Annually  | Finance            |
+| Breach response drill     | Annually  | Security           |
+| Accessibility audit       | Annually  | Accessibility Lead |
 
 ---
 
 ## Dependencies
 
-| Item | Dependency | Notes |
-|:-----|:-----------|:------|
-| Partner ToS | Supabase database | Schema migration needed |
-| Insurance | Non-profit incorporation | Must incorporate first |
-| Formal emails | Domain DNS | Configure MX records |
-| Legal review | Pro bono lawyer | Identify legal support |
+| Item          | Dependency               | Notes                   |
+| :------------ | :----------------------- | :---------------------- |
+| Partner ToS   | Supabase database        | Schema migration needed |
+| Insurance     | Non-profit incorporation | Must incorporate first  |
+| Formal emails | Domain DNS               | Configure MX records    |
+| Legal review  | Pro bono lawyer          | Identify legal support  |
 
 ---
 
@@ -1789,22 +1833,22 @@ Document formal processes for:
 
 ### One-Time Costs
 
-| Item | Low | High | Notes |
-|:-----|:----|:-----|:------|
-| Legal consultation | $2,000 | $5,000 | Pro bono may reduce |
-| Non-profit incorporation | $175 | $2,000 | Self-file vs. lawyer |
-| Privacy Impact Assessment | $0 | $8,000 | Self vs. consultant |
-| Accessibility audit | $0 | $5,000 | Automated vs. manual |
-| **Total** | **$2,175** | **$20,000** | |
+| Item                      | Low        | High        | Notes                |
+| :------------------------ | :--------- | :---------- | :------------------- |
+| Legal consultation        | $2,000     | $5,000      | Pro bono may reduce  |
+| Non-profit incorporation  | $175       | $2,000      | Self-file vs. lawyer |
+| Privacy Impact Assessment | $0         | $8,000      | Self vs. consultant  |
+| Accessibility audit       | $0         | $5,000      | Automated vs. manual |
+| **Total**                 | **$2,175** | **$20,000** |                      |
 
 ### Annual Recurring
 
-| Item | Low | High | Notes |
-|:-----|:----|:-----|:------|
-| Insurance (GL + E&O) | $2,000 | $5,000 | Required |
-| Legal retainer | $0 | $3,000 | Pro bono available |
-| Corporate filings | $50 | $500 | Annual returns |
-| **Total** | **$2,050** | **$8,500** | |
+| Item                 | Low        | High       | Notes              |
+| :------------------- | :--------- | :--------- | :----------------- |
+| Insurance (GL + E&O) | $2,000     | $5,000     | Required           |
+| Legal retainer       | $0         | $3,000     | Pro bono available |
+| Corporate filings    | $50        | $500       | Annual returns     |
+| **Total**            | **$2,050** | **$8,500** |                    |
 
 ### Funding Strategies
 
@@ -1821,21 +1865,21 @@ Document formal processes for:
 gantt
     title v12.0 Legal & Compliance Timeline
     dateFormat  YYYY-MM-DD
-    
+
     section Week 1 (Critical)
     Terms of Service           :w1-1, 2026-01-06, 3d
     Privacy Policy             :w1-2, 2026-01-06, 3d
     Emergency Disclaimers      :w1-3, 2026-01-06, 2d
     Incorporation Research     :w1-4, 2026-01-08, 3d
     Insurance Quotes           :w1-5, 2026-01-08, 4d
-    
+
     section Weeks 2-4 (High)
     Accessibility Policy       :w2-1, 2026-01-13, 5d
     Partner Terms              :w2-2, 2026-01-13, 7d
     Verification Protocol      :w2-3, 2026-01-20, 5d
     Breach Response Plan       :w2-4, 2026-01-20, 5d
     File Incorporation         :w2-5, 2026-01-27, 5d
-    
+
     section Months 2-3 (Medium)
     Privacy Impact Assessment  :m2-1, 2026-02-03, 14d
     Content Moderation Policy  :m2-2, 2026-02-03, 7d
@@ -1850,6 +1894,7 @@ gantt
 ## Success Criteria
 
 ### Week 1 Completion
+
 - [ ] Terms of Service published (EN/FR)
 - [ ] Privacy Policy published (EN/FR)
 - [ ] Emergency disclaimers visible on all crisis pages
@@ -1857,6 +1902,7 @@ gantt
 - [ ] Insurance quotes received
 
 ### Month 1 Completion
+
 - [ ] Accessibility Policy published
 - [ ] Partner Terms published with click-wrap
 - [ ] Verification Protocol documented
@@ -1864,6 +1910,7 @@ gantt
 - [ ] Incorporation filed (if decided)
 
 ### Quarter 1 Completion
+
 - [ ] All legal pages published
 - [ ] Insurance policy in force
 - [ ] PIA completed
@@ -1899,3 +1946,14 @@ gantt
 **Document Version**: 1.0
 **Status**: In Planning
 **Next Review**: After Phase 1 completion
+
+### Phase 3: Content Moderation & Feedback
+
+## Administrative & IRL Tasks (Phase 2)
+
+- [ ] **Incorporation**
+  - [ ] Perform NUANS name search (~$20) at [Ontario Business Registry](https://www.ontario.ca/page/ontario-business-registry).
+  - [ ] File Articles of Incorporation (~$155).
+  - [ ] Update Footer to "Kingston Care Connect Inc." upon approval.
+- [ ] **Insurance**
+  - [ ] Request quotes using [Insurance Research](../docs/legal/insurance-research.md).

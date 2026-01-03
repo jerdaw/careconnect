@@ -1,0 +1,579 @@
+[
+  {
+    "id": "crisis-kids-help-phone",
+    "status": "Active",
+    "name_en": "Kids Help Phone",
+    "name_fr": "Jeunesse, J'écoute",
+    "contact": {
+      "website": "https://kidshelpphone.ca",
+      "phone": "1-800-668-6868",
+      "address": "1200 Ave McGill College, Suite 1680, Montréal, QC H3B 4G7"
+    },
+    "description": {
+      "en": "Canada’s only 24/7, national support service offering professional counselling, information, and referrals for young people. Services include crisis support via phone or text, professional counselling, and a peer-to-peer support community.",
+      "fr": "Le seul service national de soutien 24/7 au Canada offrant des conseils professionnels, de l'information et des références pour les jeunes. Les services comprennent un soutien de crise par téléphone ou par texto, des conseils professionnels et une communauté de soutien par les pairs."
+    },
+    "operations": {
+      "hours": "Phone: 24/7, 365 days/year. Text: 24/7. Live Chat: Daily 7:00 PM to Midnight ET.",
+      "eligibility": "Youth and young adults (ages 5 to 29). Available to all youth in Canada.",
+      "fees": "Free",
+      "application_process": "No referral required. Call 1-800-668-6868 or text the shortcode.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Discrepancies regarding the \"24/7\" nature of the service were clarified; only phone and text are 24/7. Live Chat has restricted hours."
+  },
+  {
+    "id": "crisis-trans-lifeline",
+    "status": "Active",
+    "name_en": "Trans Lifeline",
+    "name_fr": "Trans Lifeline",
+    "contact": {
+      "website": "https://translifeline.org",
+      "phone": "1-877-330-6366",
+      "address": "548 Market Street, PMB 15337, San Francisco, CA 94104"
+    },
+    "description": {
+      "en": "A grassroots hotline and non-profit organization offering direct emotional and financial support to trans people in crisis. Run by and for trans people, offering peer support without non-consensual active rescue (no calls to 911 without consent).",
+      "fr": "Une ligne d'assistance et une organisation à but non lucratif offrant un soutien émotionnel et financier direct aux personnes trans en crise. Géré par et pour les personnes trans."
+    },
+    "operations": {
+      "hours": "Hotline: Monday to Friday, 2:00 PM – 10:00 PM ET.",
+      "eligibility": "Transgender, non-binary, agender, and questioning individuals.",
+      "fees": "Free",
+      "application_process": "Call the toll-free number. No referral required.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Service hours are limited to late afternoon/evening in the Eastern Time zone. The policy against calling emergency services is a defining feature."
+  },
+  {
+    "id": "crisis-hope-for-wellness",
+    "status": "Active",
+    "name_en": "Hope for Wellness Helpline",
+    "name_fr": "Ligne d’écoute d’espoir pour le mieux-être",
+    "contact": {
+      "website": "https://www.hopeforwellness.ca",
+      "phone": "1-855-242-3310",
+      "address": "Virtual Service (National)"
+    },
+    "description": {
+      "en": "Offers immediate mental health counselling and crisis intervention to all Indigenous people across Canada. Services are available via telephone and online chat, provided by experienced and culturally competent counsellors.",
+      "fr": "Offre des conseils en santé mentale immédiats et une intervention en cas de crise à tous les peuples autochtones du Canada. Les services sont disponibles par téléphone et par clavardage en ligne."
+    },
+    "operations": {
+      "hours": "Phone & Chat: 24 hours a day, 7 days a week.",
+      "eligibility": "All Indigenous people (First Nations, Inuit, Métis) across Canada.",
+      "fees": "Free",
+      "application_process": "Call 1-855-242-3310 or visit website for chat.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Requests for services in Cree, Ojibway, and Inuktitut can be made, but availability varies."
+  },
+  {
+    "id": "crisis-assaulted-womens-helpline",
+    "status": "Active",
+    "name_en": "Assaulted Women's Helpline (AWHL)",
+    "name_fr": "Fem’aide",
+    "contact": {
+      "website": "https://www.awhl.org",
+      "phone": "1-866-863-0511",
+      "address": "P.O. Box 40569, Etobicoke, ON M9B 6K8"
+    },
+    "description": {
+      "en": "Provides anonymous and confidential crisis counselling, safety planning, emotional support, information, and referrals to women experiencing any form of abuse. Services are available in over 200 languages.",
+      "fr": "Fournit des conseils de crise anonymes et confidentiels, la planification de la sécurité, un soutien émotionnel, des informations et des références aux femmes victimes de toute forme de violence."
+    },
+    "operations": {
+      "hours": "24 hours a day, 7 days a week.",
+      "eligibility": "All women in Ontario who have experienced or are at risk of abuse.",
+      "fees": "Free",
+      "application_process": "Call or text. No referral required.",
+      "documents_required": "None"
+    },
+    "verification_notes": "The TTY number is 1-866-863-7868."
+  },
+  {
+    "id": "telephone-aid-line-kingston-talk",
+    "status": "Active",
+    "name_en": "Telephone Aid Line Kingston (TALK)",
+    "name_fr": "Telephone Aid Line Kingston",
+    "contact": {
+      "website": "https://telephoneaidlinekingston.com",
+      "phone": "613-544-1771",
+      "address": "Confidential / Virtual (Kingston based)"
+    },
+    "description": {
+      "en": "A confidential, anonymous, non-judgmental listening service for anyone who needs to talk. Run by volunteers to provide support and information.",
+      "fr": "Un service d'écoute confidentiel, anonyme et sans jugement."
+    },
+    "operations": {
+      "hours": "Daily: 6:00 PM – 2:00 AM.",
+      "eligibility": "No restrictions. Open to anyone in the Kingston community.",
+      "fees": "Free",
+      "application_process": "Call during operating hours.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Service is anonymous and volunteer-run."
+  },
+  {
+    "id": "amhs-kfla-crisis-line",
+    "status": "Active",
+    "name_en": "AMHS-KFLA 24/7 Crisis Line",
+    "name_fr": "Ligne de crise AMHS-KFLA 24/7",
+    "contact": {
+      "website": "https://amhs-kfla.ca",
+      "phone": "613-544-4229",
+      "address": "552 Princess Street, Kingston, ON K7L 1C7"
+    },
+    "description": {
+      "en": "Provides immediate response, assessment, and stabilization for individuals experiencing a mental health or addiction crisis. Mobile crisis team available.",
+      "fr": "Fournit une réponse immédiate, une évaluation et une stabilisation pour les personnes en crise de santé mentale ou de dépendance."
+    },
+    "operations": {
+      "hours": "Crisis Line: 24/7. Walk-in Office: Mon-Fri 8:30 AM – 4:30 PM.",
+      "eligibility": "Individuals 16+ experiencing mental health/addiction crisis in KFL&A.",
+      "fees": "Free",
+      "application_process": "Call the crisis line or walk in during office hours.",
+      "documents_required": "None required for crisis intervention."
+    },
+    "verification_notes": "The 552 Princess St location serves as the hub for walk-in crisis services."
+  },
+  {
+    "id": "victim-services-kingston",
+    "status": "Active",
+    "name_en": "Victim Services of Kingston and Frontenac",
+    "name_fr": "Services aux victimes de Kingston et Frontenac",
+    "contact": {
+      "website": "https://www.victimserviceskingston.ca",
+      "phone": "613-548-4834",
+      "address": "705 Division St, Kingston, ON K7K 4C2"
+    },
+    "description": {
+      "en": "Provides immediate crisis intervention, practical assistance, and support to victims of crime and tragic circumstances. Administers VQRP+ for financial assistance.",
+      "fr": "Fournit une intervention de crise immédiate et un soutien aux victimes d'actes criminels."
+    },
+    "operations": {
+      "hours": "Office: Mon-Fri 8:30 AM – 4:30 PM. Crisis: 24/7 via Emergency Services referral.",
+      "eligibility": "Victims of crime or tragedy in Kingston/Frontenac.",
+      "fees": "Free",
+      "application_process": "Call or referral by police/emergency services.",
+      "documents_required": "Police report or incident number often required for VQRP+ funding."
+    },
+    "verification_notes": "Co-located with Kingston Police but operates independently."
+  },
+  {
+    "id": "sexual-assault-centre-kingston",
+    "status": "Active",
+    "name_en": "Sexual Assault Centre Kingston (SACK)",
+    "name_fr": "Centre d'aide en cas d'agression sexuelle de Kingston",
+    "contact": {
+      "website": "https://www.sackingston.com",
+      "phone": "613-544-6424",
+      "address": "400 Elliott Avenue, Unit 1, Kingston, ON K7K 6M9"
+    },
+    "description": {
+      "en": "Provides free, confidential support for survivors of sexual violence. Services include 24/7 crisis line, counselling, and accompaniment to medical/legal appointments.",
+      "fr": "Fournit un soutien gratuit et confidentiel aux survivantes de violence sexuelle."
+    },
+    "operations": {
+      "hours": "Crisis Phone: 24/7. Chat/Text: Daily 12:00 PM – Midnight. Office: Mon-Fri 9:00 AM – 4:00 PM.",
+      "eligibility": "Survivors of sexual violence (recent or historic) aged 12+. All genders.",
+      "fees": "Free",
+      "application_process": "Call crisis line or office for intake.",
+      "documents_required": "None required"
+    },
+    "verification_notes": "Chat service can be accessed via website or texting the crisis number."
+  },
+  {
+    "id": "iska-newcomer-support",
+    "status": "Active",
+    "name_en": "Immigrant Services Kingston and Area (ISKA)",
+    "name_fr": "Services aux immigrants de Kingston et de la région",
+    "contact": {
+      "website": "https://kchc.ca/programs/immigrant-services/",
+      "phone": "613-544-4661",
+      "email": "info@kchc.ca",
+      "address": "837 Princess St, Unit 201, Kingston, ON K7L 1G9"
+    },
+    "description": {
+      "en": "Supports immigrants, refugees, and newcomers in adjusting to their new community. Services include settlement counselling, language assessment referrals, and connection to community resources.",
+      "fr": "Soutient les immigrants, les réfugiés et les nouveaux arrivants dans leur adaptation à leur nouvelle communauté. Les services comprennent des conseils d'établissement et une orientation vers des ressources communautaires."
+    },
+    "operations": {
+      "hours": "Monday - Friday: 8:30 AM – 4:30 PM. (Closed 12:00 PM – 1:00 PM for lunch).",
+      "eligibility": "Newcomers to Canada (Permanent Residents, Convention Refugees, Live-in Caregivers).",
+      "fees": "Free",
+      "application_process": "Call or visit to book an appointment.",
+      "documents_required": "Permanent Resident Card or landing papers required."
+    },
+    "verification_notes": "Confirmed lunch closure 12:00-1:00 PM."
+  },
+  {
+    "id": "trellis-hiv-community-care",
+    "status": "Active",
+    "name_en": "Trellis HIV & Community Care",
+    "name_fr": "Trellis HIV & Community Care",
+    "contact": {
+      "website": "https://trellishiv.ca",
+      "phone": "613-545-3698",
+      "email": "info@trellishiv.ca",
+      "address": "844a Princess St, Kingston, ON K7L 1G5"
+    },
+    "description": {
+      "en": "Provides support for people living with or at risk of HIV/AIDS and STBBIs. Services include harm reduction (needle exchange), naloxone distribution, supportive counselling, and education.",
+      "fr": "Fournit un soutien aux personnes vivant avec ou à risque du VIH/SIDA et des ITSS. Les services comprennent la réduction des méfaits, la distribution de naloxone et des conseils de soutien."
+    },
+    "operations": {
+      "hours": "Office: Mon-Fri 9:00 AM – 4:45 PM (Closed 12:00 PM – 1:00 PM). Needle Exchange: Mon-Fri 9:00 AM – 12:00 PM & 1:00 PM – 4:30 PM.",
+      "eligibility": "People living with HIV/AIDS, or at risk/affected by HIV/HCV. Harm reduction open to all.",
+      "fees": "Free",
+      "application_process": "Call or drop-in.",
+      "documents_required": "None required"
+    },
+    "verification_notes": "Office closes at 4:45 PM; Needle exchange specifically listed until 4:30 PM."
+  },
+  {
+    "id": "street-health-centre",
+    "status": "Active",
+    "name_en": "Street Health Centre (KCHC)",
+    "name_fr": "Centre de santé de rue (KCHC)",
+    "contact": {
+      "website": "https://kchc.ca/barrack-street/street-health-centre/",
+      "phone": "613-549-1440",
+      "address": "115 Barrack St, Kingston, ON K7K 1G2"
+    },
+    "description": {
+      "en": "Provides low-barrier health services for marginalized populations, including needle exchange, opioid substitution therapy, Hepatitis C treatment, and safer consumption services.",
+      "fr": "Fournit des services de santé à faible obstacle pour les populations marginalisées, y compris l'échange de seringues."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 9:00 AM – 4:00 PM (Closed 12-1 PM). Sat-Sun: 9:00 AM – 1:00 PM.",
+      "eligibility": "People facing barriers to mainstream health care, homeless, or using substances.",
+      "fees": "Medical services covered by OHIP (care provided regardless of card status).",
+      "application_process": "Walk-in or call.",
+      "documents_required": "None required for harm reduction; Health card preferred for medical."
+    },
+    "verification_notes": "Confirmed weekend hours."
+  },
+  {
+    "id": "kchc-transgender-health-care",
+    "status": "Active",
+    "name_en": "Transgender Health Program (KCHC)",
+    "name_fr": "Programme de santé transgenre (KCHC)",
+    "contact": {
+      "website": "https://kchc.ca/programs/transgender-health-program/",
+      "phone": "613-542-2949 ext. 4",
+      "address": "263 Weller Ave, Unit 4, Kingston, ON K7K 2V4"
+    },
+    "description": {
+      "en": "Provides gender-affirming health care including hormone therapy initiation, surgical planning/referrals, and social transition support.",
+      "fr": "Fournit des soins de santé d'affirmation de genre, y compris l'hormonothérapie et les références chirurgicales."
+    },
+    "operations": {
+      "hours": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM.",
+      "eligibility": "Individuals age 12+ residing in South Eastern Ontario seeking gender-affirming care.",
+      "fees": "Medical services covered by OHIP.",
+      "application_process": "Self-referral accepted. Call to book intake.",
+      "documents_required": "Health Card"
+    },
+    "verification_notes": "Confirmed ages 12+. Confirmed Wednesday evening hours."
+  },
+  {
+    "id": "kchc-weller-clinic",
+    "status": "Active",
+    "name_en": "Kingston Community Health Centres (KCHC) - Weller Clinic",
+    "name_fr": "Centre de santé communautaire de Kingston (KCHC) - Clinique Weller",
+    "contact": {
+      "website": "https://kchc.ca/weller-avenue/weller-clinic/",
+      "phone": "613-542-2949",
+      "address": "263 Weller Ave, Unit 4, Kingston, ON K7K 2V4"
+    },
+    "description": {
+      "en": "A primary health care clinic providing medical care, nutrition, and social work support to residents of North Kingston.",
+      "fr": "Une clinique de soins de santé primaires offrant des soins médicaux aux résidents de North Kingston."
+    },
+    "operations": {
+      "hours": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM. (Phones answered 9-12, 1-4).",
+      "eligibility": "Residents of North Kingston catchment area without a family doctor (intake dependent on capacity).",
+      "fees": "Covered by OHIP.",
+      "application_process": "Call for intake availability.",
+      "documents_required": "Health Card"
+    },
+    "verification_notes": "Phones operate on shorter hours (9am start) than the clinic doors (8am start)."
+  },
+  {
+    "id": "hotel-dieu-site",
+    "status": "Active",
+    "name_en": "Hotel Dieu Hospital Urgent Care Centre (KHSC)",
+    "name_fr": "Centre de soins urgents de l'hôpital Hôtel-Dieu (KHSC)",
+    "contact": {
+      "website": "https://kingstonhsc.ca/programs-and-departments/urgent-care-centre",
+      "phone": "613-546-1240",
+      "address": "144 Brock Street, Kingston, ON K7L 5G2"
+    },
+    "description": {
+      "en": "Provides assessment and treatment for non-life-threatening injuries and illnesses (e.g., cuts, sprains, infections) that cannot wait for a family doctor.",
+      "fr": "Fournit une évaluation et un traitement pour les blessures et maladies ne mettant pas la vie en danger."
+    },
+    "operations": {
+      "hours": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached).",
+      "eligibility": "Anyone requiring urgent, non-emergency medical care.",
+      "fees": "Covered by OHIP. Fees apply for non-residents.",
+      "application_process": "Walk-in.",
+      "documents_required": "Health Card (OHIP) and photo ID."
+    },
+    "verification_notes": "Users should call to check current status before attending."
+  },
+  {
+    "id": "kingston-general-hospital",
+    "status": "Active",
+    "name_en": "Kingston General Hospital (KGH) Emergency Department",
+    "name_fr": "Service des urgences de l'Hôpital général de Kingston",
+    "contact": {
+      "website": "https://kingstonhsc.ca/emergency-care",
+      "phone": "613-548-2333",
+      "address": "41 King Street West, Kingston, ON K7L 2V7"
+    },
+    "description": {
+      "en": "A full-service Level 1 Trauma Centre providing 24/7 care for life-threatening injuries and severe illnesses.",
+      "fr": "Un centre de traumatologie de niveau 1 offrant des soins 24/7 pour les blessures mettant la vie en danger et les maladies graves."
+    },
+    "operations": {
+      "hours": "24 hours a day, 7 days a week.",
+      "eligibility": "Anyone requiring emergency medical attention.",
+      "fees": "Covered by OHIP. Fees for non-residents/uninsured.",
+      "application_process": "Walk-in or via Ambulance (911).",
+      "documents_required": "Health Card (OHIP)."
+    },
+    "verification_notes": "Verified 24/7 Status."
+  },
+  {
+    "id": "kingston-detox-centre",
+    "status": "Active",
+    "name_en": "Kingston Detoxification Centre (KHSC)",
+    "name_fr": "Centre de désintoxication de Kingston (KHSC)",
+    "contact": {
+      "website": "https://kingstonhsc.ca/programs-and-departments/detoxification-centre",
+      "phone": "613-549-6461",
+      "address": "240 Brock St, Kingston, ON K7L 5G2"
+    },
+    "description": {
+      "en": "A short-term, non-medical residential service for individuals withdrawing from alcohol or drugs. Provides 24-hour support and monitoring.",
+      "fr": "Service résidentiel non médical à court terme pour le sevrage de l'alcool ou des drogues."
+    },
+    "operations": {
+      "hours": "24 hours a day, 7 days a week.",
+      "eligibility": "Age 16+. Must be intoxicated or in withdrawal. Voluntary admission only.",
+      "fees": "Free",
+      "application_process": "Self-referral. Call 613-549-6461 for bed availability.",
+      "documents_required": "Health card preferred but not required."
+    },
+    "verification_notes": "Verified 24/7."
+  },
+  {
+    "id": "kfla-public-health-dental",
+    "status": "Active",
+    "name_en": "KFL&A Public Health Dental Services",
+    "name_fr": "Services dentaires de santé publique KFL&A",
+    "contact": {
+      "website": "https://www.kflaph.ca/en/health-topics/dental-health.aspx",
+      "phone": "613-549-1232 ext. 1218",
+      "address": "221 Portsmouth Avenue, Kingston, ON K7M 1V5"
+    },
+    "description": {
+      "en": "Provides dental screening, cleaning, and fluoride for eligible children and seniors. Administers Healthy Smiles Ontario and OSDCP.",
+      "fr": "Fournit le dépistage dentaire, le nettoyage et le fluorure pour les enfants et les aînés admissibles."
+    },
+    "operations": {
+      "hours": "Monday - Friday: 8:30 AM – 4:30 PM (By appointment only).",
+      "eligibility": "Children: 17 and under (Healthy Smiles). Seniors: 65+ low income ($25k single/$41.5k couple) with no other insurance.",
+      "fees": "Free for eligible clients.",
+      "application_process": "Call to book appointment.",
+      "documents_required": "Health Card, proof of income."
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "kfl-public-health-sexual",
+    "status": "Active",
+    "name_en": "KFL&A Public Health: Sexual Health Clinic",
+    "name_fr": "Clinique de santé sexuelle de santé publique KFL&A",
+    "contact": {
+      "website": "https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx",
+      "phone": "613-549-1232 ext. 1275",
+      "address": "221 Portsmouth Ave, Kingston, ON K7M 1V5"
+    },
+    "description": {
+      "en": "Provides confidential sexual health services including STI testing, birth control, and emergency contraception.",
+      "fr": "Fournit des services de santé sexuelle confidentiels, y compris le dépistage des ITSS et la contraception."
+    },
+    "operations": {
+      "hours": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM.",
+      "eligibility": "No restrictions.",
+      "fees": "Most services free; some contraceptives at cost.",
+      "application_process": "Walk-in for Quick Test; Call for other appointments.",
+      "documents_required": "Health card not required for Quick Test."
+    },
+    "verification_notes": "Verified Quick Test Clinic."
+  },
+  {
+    "id": "cdk-family-medicine-walk-in",
+    "status": "Active",
+    "name_en": "CDK Family Medicine and Walk-In Clinic",
+    "name_fr": "Clinique sans rendez-vous de médecine familiale CDK",
+    "contact": {
+      "website": "https://cdkmd.com",
+      "phone": "613-766-0318",
+      "address": "175 Princess St, Kingston, ON K7L 1A9"
+    },
+    "description": {
+      "en": "A walk-in medical clinic treating minor illnesses and injuries for patients without a family doctor.",
+      "fr": "Une clinique médicale sans rendez-vous traitant les maladies mineures."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 9:00 AM – 5:00 PM. Sat-Sun: 10:00 AM – 2:00 PM.",
+      "eligibility": "Anyone requiring non-emergency medical care.",
+      "fees": "Covered by OHIP. Uninsured fees apply.",
+      "application_process": "Walk-in (First come, first served).",
+      "documents_required": "Health Card."
+    },
+    "verification_notes": "Confirmed 175 Princess St is the designated walk-in location."
+  },
+  {
+    "id": "kingston-home-base-housing",
+    "status": "Active",
+    "name_en": "Kingston Home Base Non-Profit Housing",
+    "name_fr": "Kingston Home Base Housing",
+    "contact": {
+      "website": "https://kingstonhomebase.ca",
+      "phone": "613-542-6672",
+      "address": "540 Montreal St, Kingston, ON K7K 3J2"
+    },
+    "description": {
+      "en": "Operates 'In From The Cold' emergency shelter (adults/families) and supportive housing programs.",
+      "fr": "Exploite le refuge d'urgence « In From The Cold » et des programmes de logement avec soutien."
+    },
+    "operations": {
+      "hours": "Office: Mon-Fri 8:30 AM – 4:30 PM. Shelter: 24/7 (Intake usually evening).",
+      "eligibility": "Adults 25+ (In From The Cold). Youth (16-24) referred to One Roof.",
+      "fees": "Shelter is free.",
+      "application_process": "Call or drop-in.",
+      "documents_required": "None required for shelter."
+    },
+    "verification_notes": "Clarified that 540 Montreal St is In From The Cold."
+  },
+  {
+    "id": "one-roof-youth-hub",
+    "status": "Active",
+    "name_en": "One Roof Kingston Youth Hub",
+    "name_fr": "One Roof Kingston Youth Hub",
+    "contact": {
+      "website": "https://kingstonhomebase.ca/one-roof/",
+      "phone": "613-542-6672",
+      "address": "620 Princess St, Kingston, ON K7L 1E3"
+    },
+    "description": {
+      "en": "A one-stop community hub providing wrap-around services for vulnerable and homeless youth, including mental health support, housing help, and life skills.",
+      "fr": "Un centre communautaire à guichet unique offrant des services complets aux jeunes vulnérables et sans abri."
+    },
+    "operations": {
+      "hours": "Drop-in: Mon-Fri 8:30 AM – 4:30 PM (Some programming until 7 PM).",
+      "eligibility": "Youth ages 16 to 24.",
+      "fees": "Free",
+      "application_process": "Drop-in.",
+      "documents_required": "None required"
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "kingston-youth-shelter",
+    "status": "Active",
+    "name_en": "Kingston Youth Shelter",
+    "name_fr": "Refuge pour les jeunes de Kingston",
+    "contact": {
+      "website": "https://kingstonyouthshelter.com",
+      "phone": "613-549-4236",
+      "address": "365 Nelson St, Kingston, ON K7K 4M9"
+    },
+    "description": {
+      "en": "Provides emergency shelter, food, and hygiene supplies for homeless youth. Also operates transition homes.",
+      "fr": "Fournit un abri d'urgence, de la nourriture et des produits d'hygiène pour les jeunes sans abri."
+    },
+    "operations": {
+      "hours": "24 hours a day, 7 days a week.",
+      "eligibility": "Youth ages 16 to 24.",
+      "fees": "Free",
+      "application_process": "Call or drop-in. First come, first served.",
+      "documents_required": "None required"
+    },
+    "verification_notes": "Critical Location Update: Emergency Shelter is at 365 Nelson St (not Brock St)."
+  },
+  {
+    "id": "dawn-house-shelter",
+    "status": "Active",
+    "name_en": "Dawn House Services and Housing for Women",
+    "name_fr": "Services et logement pour femmes Dawn House",
+    "contact": {
+      "website": "https://dawnhouse.ca",
+      "phone": "613-545-1379",
+      "address": "965 Milford Drive, Kingston, ON K7P 1S2"
+    },
+    "description": {
+      "en": "Provides emergency shelter, transitional housing, and supportive housing for vulnerable women.",
+      "fr": "Fournit un abri d'urgence, des logements de transition et des logements avec services de soutien pour les femmes vulnérables."
+    },
+    "operations": {
+      "hours": "Admin: Mon-Fri 9:00 AM – 5:00 PM. Shelter: 24/7.",
+      "eligibility": "Women 18+ who are homeless or vulnerably housed.",
+      "fees": "Shelter is free. Housing is rent-geared-to-income.",
+      "application_process": "Call 613-545-1379 or shelter line 613-929-3440.",
+      "documents_required": "Intake assessment required."
+    },
+    "verification_notes": "Admin office remains distinct from new shelter. New Emergency Shelter located at 2320 Princess Street."
+  },
+  {
+    "id": "kingston-interval-house",
+    "status": "Active",
+    "name_en": "Kingston Interval House",
+    "name_fr": "Maison Interval de Kingston",
+    "contact": {
+      "website": "https://kingstonintervalhouse.com",
+      "phone": "613-546-1777",
+      "address": "P.O. Box 21042, Kingston, ON K7L 5P5"
+    },
+    "description": {
+      "en": "Emergency shelter and support services for women, children, and youth experiencing domestic violence.",
+      "fr": "Refuge d'urgence et services de soutien pour les femmes, les enfants et les jeunes victimes de violence familiale."
+    },
+    "operations": {
+      "hours": "24 hours a day, 7 days a week.",
+      "eligibility": "Women and children escaping violence.",
+      "fees": "Free",
+      "application_process": "Call 613-546-1777 for intake.",
+      "documents_required": "None required for intake."
+    },
+    "verification_notes": "Address is confidential (PO Box)."
+  },
+  {
+    "id": "ryandale-shelter",
+    "status": "Active",
+    "name_en": "Ryandale Transitional Housing",
+    "name_fr": "Logement de transition Ryandale",
+    "contact": {
+      "website": "https://ryandale.ca",
+      "phone": "613-766-1925",
+      "address": "669 Victoria St, Kingston, ON K7K 4S6"
+    },
+    "description": {
+      "en": "Provides sober living transitional housing for men experiencing homelessness. Focus on life skills and stabilizing housing.",
+      "fr": "Fournit un logement de transition pour les hommes sans abri, axé sur la sobriété."
+    },
+    "operations": {
+      "hours": "Mon-Sun: 9:00 AM – 8:00 PM (Staffed hours).",
+      "eligibility": "Men aged 24+, clean and sober for 2 months, no history of violence/arson/sex offences.",
+      "fees": "Rent geared to income/shelter allowance.",
+      "application_process": "Referral required (often via ODSP/Ontario Works or BNL). Application form online.",
+      "documents_required": "Proof of income/status."
+    },
+    "verification_notes": "Corrected address to 669 Victoria St."
+  }
+]

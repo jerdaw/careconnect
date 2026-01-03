@@ -18,16 +18,17 @@
 - **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
-  - **Local Services**: English/French only (`name`, `name_fr`).
+  - **Local Services**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
   - **Provincial Services**: All 5 languages for name/description/eligibility fields.
   - **Schema**: `is_provincial: true` flag distinguishes provincial services.
 
 ## 3. Implementation Rules
 
-1. **Labels**: UI labels must be present in **all 5** message files. Use `npm run i18n-audit` to check for missing keys.
+1. **Labels**: UI labels must be present in **all 5** message files. This includes labels for legal policies, AI disclaimers, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
 2. **Text Expansion**: Layouts must accommodate French and Spanish (often 20-30% longer than English) and Chinese (shorter but taller).
-3. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
-4. **Content Fallbacks**:
+3. **Legal/Policy Pages**: While content may lead in English/French, the structural keys and headers for all policy pages (Privacy, Terms, Accessibility) MUST exist in all 5 languages to prevent UI crashes.
+4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
+5. **Content Fallbacks**:
 
 - For local services, the UI defaults to `name` if `name_fr` is missing.
 - For provincial services, specific localization logic exists to handle expanded content.

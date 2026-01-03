@@ -70,10 +70,12 @@ export default function PartnersPage() {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-4">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${partner.color}-100 text-${partner.color}-600 font-bold dark:bg-${partner.color}-900/30 dark:text-${partner.color}-400`}
-                    >
-                      {partner.name.charAt(0)}
+                    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-white p-1 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700">
+                      <img
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        className="h-full w-full object-contain"
+                      />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">

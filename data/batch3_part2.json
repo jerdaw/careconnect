@@ -1,0 +1,577 @@
+[
+  {
+    "id": "salvation-army-housing-help",
+    "status": "Active",
+    "name_en": "Salvation Army Housing Resource Centre",
+    "name_fr": "Centre de ressources en logement de l'Armée du Salut",
+    "contact": {
+      "website": "https://sacfs.ca/programs/housing",
+      "phone": "613-548-4411",
+      "address": "342 Patrick St, Kingston, ON K7K 6R6"
+    },
+    "description": {
+      "en": "Provides housing loss prevention, housing search assistance, and emergency homelessness diversion. Not an emergency shelter.",
+      "fr": "Fournit une prévention de la perte de logement et une aide à la recherche de logement."
+    },
+    "operations": {
+      "hours": "Mon, Tue, Thu, Fri: 8:30 AM – 4:30 PM. Wed: 1:00 PM – 4:30 PM.",
+      "eligibility": "Individuals or families homeless or at risk of homelessness.",
+      "fees": "Free",
+      "application_process": "Call or walk-in.",
+      "documents_required": "ID, proof of income/expenses for financial assistance."
+    },
+    "verification_notes": "Confirmed location at Patrick Street, distinct from shelter."
+  },
+  {
+    "id": "elizabeth-fry-society-kingston",
+    "status": "Active",
+    "name_en": "Elizabeth Fry Society of Kingston",
+    "name_fr": "Société Elizabeth Fry de Kingston",
+    "contact": {
+      "website": "https://efrykingston.ca",
+      "phone": "613-544-1744",
+      "address": "127 Charles St, Kingston, ON K7K 1V8"
+    },
+    "description": {
+      "en": "Provides housing support and community residential facilities for women, particularly those in conflict with the law or at risk.",
+      "fr": "Fournit un soutien au logement et des établissements résidentiels communautaires pour les femmes, en particulier celles qui ont des démêlés avec la justice."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM.",
+      "eligibility": "Women 18+ (Housing priority to those criminalized or at risk).",
+      "fees": "Rent-geared-to-income options available.",
+      "application_process": "Call for intake.",
+      "documents_required": "Assessment required."
+    },
+    "verification_notes": "Public office is at 127 Charles St."
+  },
+  {
+    "id": "partners-in-mission-food-bank",
+    "status": "Active",
+    "name_en": "Partners in Mission Food Bank",
+    "name_fr": "Banque alimentaire Partners in Mission",
+    "contact": {
+      "website": "https://kingstonfoodbank.ca",
+      "phone": "613-544-4100",
+      "address": "140 Hickson Ave, Kingston, ON K7K 4N8"
+    },
+    "description": {
+      "en": "Provides emergency food hampers (approx. 7 days of food) to Kingston residents.",
+      "fr": "Fournit des paniers de nourriture d'urgence aux résidents de Kingston."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM. (Closed 12:00 PM – 1:00 PM daily).",
+      "eligibility": "Residents of Kingston area in need of food.",
+      "fees": "Free",
+      "application_process": "Appointment required. Call to book. No walk-ins.",
+      "documents_required": "ID for every household member."
+    },
+    "verification_notes": "Corrected address to 140 Hickson Ave."
+  },
+  {
+    "id": "marthas-table",
+    "status": "Active",
+    "name_en": "Martha's Table",
+    "name_fr": "Martha's Table",
+    "contact": {
+      "website": "https://marthastable.ca",
+      "phone": "613-546-0320",
+      "address": "629 Princess Street, Kingston, ON K7L 1E2"
+    },
+    "description": {
+      "en": "Provides nutritious meals in a safe and welcoming environment. Offers indoor dining and takeout options.",
+      "fr": "Fournit des repas nutritifs dans un environnement sûr et accueillant."
+    },
+    "operations": {
+      "hours": "Mon-Fri: Breakfast 9-11 AM; Lunch 12-2 PM; Dinner 3-5 PM. Sat-Sun: Lunch 12-2 PM (Takeout).",
+      "eligibility": "Open to anyone in need.",
+      "fees": "Free",
+      "application_process": "Drop-in.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Returned to full indoor dining service."
+  },
+  {
+    "id": "salvation-army-rideau-heights",
+    "status": "Active",
+    "name_en": "Salvation Army Rideau Heights Corps",
+    "name_fr": "Armée du Salut - Rideau Heights",
+    "contact": {
+      "website": "https://salvationarmy.ca",
+      "phone": "613-541-3947",
+      "address": "183 Weller Ave, Kingston, ON K7K 2V2"
+    },
+    "description": {
+      "en": "Provides emergency food bank services and community meals to the Rideau Heights neighborhood.",
+      "fr": "Fournit des services de banque alimentaire d'urgence et des repas communautaires."
+    },
+    "operations": {
+      "hours": "Food Bank: Tue & Thu 11:00 AM – 12:00 PM (By Appointment).",
+      "eligibility": "Residents of Rideau Heights.",
+      "fees": "Free",
+      "application_process": "Call to book intake.",
+      "documents_required": "ID and proof of income/address."
+    },
+    "verification_notes": "Specific hours for food bank verified."
+  },
+  {
+    "id": "st-vincent-de-paul-kingston",
+    "status": "Active",
+    "name_en": "St. Vincent de Paul Society of Kingston",
+    "name_fr": "Société de Saint-Vincent-de-Paul de Kingston",
+    "contact": {
+      "website": "https://www.svdpkingston.com",
+      "phone": "613-766-8432",
+      "address": "85 Stephen St, Kingston, ON K7K 2C5"
+    },
+    "description": {
+      "en": "Offers emergency food pantry, free clothing (WearHouse), and a daily lunch program (Loretta Hospitality).",
+      "fr": "Offre un garde-manger d'urgence, des vêtements gratuits et un programme de déjeuner quotidien."
+    },
+    "operations": {
+      "hours": "Pantry/WearHouse: Mon-Fri 9:00 AM – 1:00 PM. Lunch: Mon-Fri 11:30 AM – 1:00 PM.",
+      "eligibility": "Disadvantaged individuals and families.",
+      "fees": "Free",
+      "application_process": "Drop-in for lunch/clothing. Register for pantry.",
+      "documents_required": "ID required for pantry registration."
+    },
+    "verification_notes": "Verified pantry vs lunch hours."
+  },
+  {
+    "id": "lunch-by-george",
+    "status": "Active",
+    "name_en": "Lunch by George (Outreach St. George's Kingston)",
+    "name_fr": "Lunch by George",
+    "contact": {
+      "website": "http://www.lunchbygeorge.ca",
+      "phone": "613-548-4617",
+      "address": "129 Wellington St, Kingston, ON K7L 3C9"
+    },
+    "description": {
+      "en": "Provides complimentary hot breakfast and lunch to those in need. Also offers clothing and social support.",
+      "fr": "Fournit un petit-déjeuner et un déjeuner chauds gratuits aux personnes dans le besoin."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 9:00 AM – 12:30 PM (Breakfast 9-10:30, Lunch 11-12:30).",
+      "eligibility": "No restrictions.",
+      "fees": "Free",
+      "application_process": "Drop-in.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "good-food-box-kingston",
+    "status": "Active",
+    "name_en": "The Good Food Box Kingston",
+    "name_fr": "La Boîte de bonne nourriture Kingston",
+    "contact": {
+      "website": "https://goodfoodboxkingston.com",
+      "phone": "613-530-2239",
+      "address": "263 Weller Ave, Kingston, ON K7K 2V2"
+    },
+    "description": {
+      "en": "Non-profit fresh fruit and vegetable distribution program. Participants order boxes at low cost and pick up on the third Thursday of the month.",
+      "fr": "Programme de distribution de fruits et légumes frais à but non lucratif."
+    },
+    "operations": {
+      "hours": "Pickup: 3rd Thursday of month. Office: Mon-Fri 8:30-4:30.",
+      "eligibility": "Open to everyone.",
+      "fees": "~$6 to $17 depending on box size.",
+      "application_process": "Order online or at host sites by 2nd Thursday of month.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Clarified it is a purchase program, not free."
+  },
+  {
+    "id": "loving-spoonful",
+    "status": "Active",
+    "name_en": "Loving Spoonful",
+    "name_fr": "Loving Spoonful",
+    "contact": {
+      "website": "https://www.lovingspoonful.org",
+      "phone": "613-507-8848",
+      "address": "263 Weller Ave, Kingston, ON K7K 2V4"
+    },
+    "description": {
+      "en": "Connects people with healthy food through fresh food reclamation, community gardens, and cooking workshops.",
+      "fr": "Relie les gens à une alimentation saine grâce à la récupération d'aliments frais, aux jardins communautaires et aux ateliers de cuisine."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 9:00 AM – 5:00 PM.",
+      "eligibility": "Varies by program.",
+      "fees": "Free",
+      "application_process": "Call or visit website.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Programming focus."
+  },
+  {
+    "id": "legal-aid-ontario-kingston",
+    "status": "Active",
+    "name_en": "Kingston Community Legal Clinic",
+    "name_fr": "Clinique juridique communautaire de Kingston",
+    "contact": {
+      "website": "https://kclc.ca",
+      "phone": "613-541-0777",
+      "address": "345 Bagot Street, Kingston, ON K7K 6T8"
+    },
+    "description": {
+      "en": "Provides free legal advice and representation to low-income residents regarding housing, income support, and employment law.",
+      "fr": "Fournit des conseils juridiques gratuits et une représentation aux résidents à faible revenu."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+      "eligibility": "Low-income residents of Kingston and Frontenac County.",
+      "fees": "Free",
+      "application_process": "Call for intake.",
+      "documents_required": "Proof of income."
+    },
+    "verification_notes": "Verified Friday afternoon hours."
+  },
+  {
+    "id": "legal-clinic-queens",
+    "status": "Active",
+    "name_en": "Queen's Legal Aid",
+    "name_fr": "Services juridiques de Queen's",
+    "contact": {
+      "website": "https://queenslawclinics.ca/queens-legal-aid",
+      "phone": "613-533-2102",
+      "address": "303 Bagot Street, Suite 500, Kingston, ON K7K 5W7"
+    },
+    "description": {
+      "en": "Provides legal services to low-income residents and students, handling summary conviction offences, tenant disputes, and tribunal hearings.",
+      "fr": "Fournit des services juridiques aux résidents à faible revenu et aux étudiants."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+      "eligibility": "Low-income residents and Queen's students.",
+      "fees": "Free",
+      "application_process": "Call for intake.",
+      "documents_required": "Proof of income/student status."
+    },
+    "verification_notes": "Student-run clinic."
+  },
+  {
+    "id": "keys-job-centre-2",
+    "status": "Active",
+    "name_en": "KEYS Job Centre",
+    "name_fr": "Centre d'emploi KEYS",
+    "contact": {
+      "website": "https://keys.ca",
+      "phone": "613-546-5559",
+      "address": "182 Sydenham St, Kingston, ON K7K 3M2"
+    },
+    "description": {
+      "en": "Employment and newcomer services offering job search assistance, workshops, and settlement support.",
+      "fr": "Services d'emploi et aux nouveaux arrivants offrant une aide à la recherche d'emploi."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM).",
+      "eligibility": "Job seekers, employers, newcomers.",
+      "fees": "Free",
+      "application_process": "Walk-in or call.",
+      "documents_required": "SIN/Work permit for some programs."
+    },
+    "verification_notes": "Detailed hours verified."
+  },
+  {
+    "id": "ontario-works-kb",
+    "status": "Active",
+    "name_en": "City of Kingston - Housing and Social Services (Ontario Works)",
+    "name_fr": "Ville de Kingston - Logement et services sociaux",
+    "contact": {
+      "website": "https://www.cityofkingston.ca",
+      "phone": "613-546-2695",
+      "address": "362 Montreal St, Kingston, ON K7K 3H5"
+    },
+    "description": {
+      "en": "Provides financial and employment assistance to people in financial need.",
+      "fr": "Fournit une aide financière et d'emploi aux personnes dans le besoin."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM.",
+      "eligibility": "Residents of Kingston/Frontenac in financial need.",
+      "fees": "Free",
+      "application_process": "Call or apply online.",
+      "documents_required": "Proof of income, assets, shelter costs, ID."
+    },
+    "verification_notes": "Verified centralized intake."
+  },
+  {
+    "id": "re-start-employment",
+    "status": "Active",
+    "name_en": "ReStart Employment Services",
+    "name_fr": "ReStart Employment Services",
+    "contact": {
+      "website": "https://restartnow.ca",
+      "phone": "613-542-7373",
+      "address": "900 Montreal St, Kingston, ON K7K 3J9"
+    },
+    "description": {
+      "en": "Offers employment services and housing support to help individuals find work and maintain housing.",
+      "fr": "Offre des services d'emploi et de soutien au logement."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM.",
+      "eligibility": "Unemployed or underemployed individuals.",
+      "fees": "Free",
+      "application_process": "Walk-in or call.",
+      "documents_required": "ID, SIN."
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "acls-kingston",
+    "status": "Active",
+    "name_en": "ACFOMI",
+    "name_fr": "ACFOMI",
+    "contact": {
+      "website": "https://acfomi.ca",
+      "phone": "613-546-7863",
+      "address": "760 Highway 15, Unit 11, Kingston, ON K7L 0C3"
+    },
+    "description": {
+      "en": "Provides employment and settlement services for French-speaking newcomers and residents.",
+      "fr": "Fournit des services d'emploi et d'établissement pour les nouveaux arrivants et résidents francophones."
+    },
+    "operations": {
+      "hours": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM.",
+      "eligibility": "French-speaking individuals.",
+      "fees": "Free",
+      "application_process": "Call or visit.",
+      "documents_required": "ID"
+    },
+    "verification_notes": "Verified hours."
+  },
+  {
+    "id": "maltby-centre-autism",
+    "status": "Active",
+    "name_en": "Maltby Centre",
+    "name_fr": "Centre Maltby",
+    "contact": {
+      "website": "https://maltbycentre.ca",
+      "phone": "613-546-8535",
+      "address": "31 Hyperion Court, Suite 100, Kingston, ON K7K 7G3"
+    },
+    "description": {
+      "en": "Provides mental health and autism services for children and youth.",
+      "fr": "Fournit des services de santé mentale et d'autisme pour les enfants et les jeunes."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM.",
+      "eligibility": "Mental Health: Ages 0-24. Autism: Ages 0-18.",
+      "fees": "Mental health is free. Some autism services fee-for-service.",
+      "application_process": "Call or self-refer online.",
+      "documents_required": "Health Card"
+    },
+    "verification_notes": "Covers both MH and Autism."
+  },
+  {
+    "id": "resolve-counselling",
+    "status": "Active",
+    "name_en": "Resolve Counselling Services Canada",
+    "name_fr": "Services de counseling Resolve",
+    "contact": {
+      "website": "https://resolvecounselling.org",
+      "phone": "613-549-7850",
+      "address": "417 Bagot Street, Kingston, ON K7K 3C1"
+    },
+    "description": {
+      "en": "Offers individual, family, and financial counselling.",
+      "fr": "Offre des conseils individuels, familiaux et financiers."
+    },
+    "operations": {
+      "hours": "Mon, Wed: 8:30 AM – 5:00 PM. Tue, Thu: 8:30 AM – 8:00 PM. Fri: 8:30 AM – 4:00 PM.",
+      "eligibility": "No restrictions.",
+      "fees": "Sliding scale (some programs free).",
+      "application_process": "Call.",
+      "documents_required": "Income info for subsidy."
+    },
+    "verification_notes": "Verified evening hours."
+  },
+  {
+    "id": "seniors-association-kingston",
+    "status": "Active",
+    "name_en": "Seniors Association Kingston Region",
+    "name_fr": "Association des aînés de Kingston",
+    "contact": {
+      "website": "https://seniorskingston.ca",
+      "phone": "613-548-7810",
+      "address": "56 Francis St, Kingston, ON K7M 1L7"
+    },
+    "description": {
+      "en": "A community centre for older adults offering recreation, education, and social programs.",
+      "fr": "Un centre communautaire pour les personnes âgées offrant des loisirs, de l'éducation et des programmes sociaux."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM.",
+      "eligibility": "Adults 50+.",
+      "fees": "Membership fees apply.",
+      "application_process": "Register online or in person.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "community-living-kingston",
+    "status": "Active",
+    "name_en": "Community Living Kingston and District",
+    "name_fr": "Community Living Kingston and District",
+    "contact": {
+      "website": "https://myclkd.ca",
+      "phone": "613-546-6613",
+      "address": "541 Days Rd, Unit 6, Kingston, ON K7M 3R8"
+    },
+    "description": {
+      "en": "Provides residential and community support services for individuals with intellectual disabilities.",
+      "fr": "Fournit des services résidentiels et de soutien communautaire aux personnes ayant une déficience intellectuelle."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 4:30 PM.",
+      "eligibility": "Individuals with intellectual disabilities.",
+      "fees": "Mostly free (MCSS funded).",
+      "application_process": "via Developmental Services Ontario (DSO).",
+      "documents_required": "DSO assessment."
+    },
+    "verification_notes": "Emphasis on DSO linkage."
+  },
+  {
+    "id": "ymca-kingston",
+    "status": "Active",
+    "name_en": "YMCA of Eastern Ontario - Kingston",
+    "name_fr": "YMCA de l'Est de l'Ontario - Kingston",
+    "contact": {
+      "website": "https://eo.ymca.ca",
+      "phone": "613-546-2647",
+      "address": "100 Wright Crescent, Kingston, ON K7L 4T9"
+    },
+    "description": {
+      "en": "Provides fitness, recreation, and childcare services.",
+      "fr": "Fournit des services de conditionnement physique, de loisirs et de garde d'enfants."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM.",
+      "eligibility": "Open to all.",
+      "fees": "Membership fees (Financial assistance available).",
+      "application_process": "Walk-in.",
+      "documents_required": "ID"
+    },
+    "verification_notes": "Verified hours."
+  },
+  {
+    "id": "bgc-south-east",
+    "status": "Active",
+    "name_en": "BGC South East",
+    "name_fr": "BGC Sud-Est",
+    "contact": {
+      "website": "https://www.bgcsoutheast.ca",
+      "phone": "613-507-3306",
+      "address": "1300 Bath Rd, Kingston, ON K7M 4X4"
+    },
+    "description": {
+      "en": "Provides after-school programs, camps, and recreation for children and youth.",
+      "fr": "Fournit des programmes parascolaires, des camps et des loisirs pour les enfants et les jeunes."
+    },
+    "operations": {
+      "hours": "Programs: Mon-Fri 3:00 PM – 8:00/8:30 PM.",
+      "eligibility": "Children and youth (ages 4-18).",
+      "fees": "Varies (Subsidies available).",
+      "application_process": "Register online.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Verified West End Clubhouse."
+  },
+  {
+    "id": "hart-centre",
+    "status": "Active",
+    "name_en": "H'art Centre",
+    "name_fr": "Centre H'art",
+    "contact": {
+      "website": "https://www.hartcentre.ca",
+      "phone": "613-545-1392",
+      "address": "1200 Princess St, Kingston, ON K7M 3C9"
+    },
+    "description": {
+      "en": "An arts hub providing programming for adults with developmental disabilities and those facing barriers.",
+      "fr": "Un carrefour artistique offrant une programmation pour les adultes ayant une déficience intellectuelle."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:30 AM – 3:30 PM.",
+      "eligibility": "Adults with disabilities.",
+      "fees": "Program fees apply (Bursaries available).",
+      "application_process": "Call or email.",
+      "documents_required": "None"
+    },
+    "verification_notes": "Verified."
+  },
+  {
+    "id": "ongwanada",
+    "status": "Active",
+    "name_en": "Ongwanada",
+    "name_fr": "Ongwanada",
+    "contact": {
+      "website": "https://www.ongwanada.com",
+      "phone": "613-548-4417",
+      "address": "191 Portsmouth Ave, Kingston, ON K7M 8A6"
+    },
+    "description": {
+      "en": "Supports people with developmental disabilities to lead full lives in their communities.",
+      "fr": "Soutient les personnes ayant une déficience intellectuelle."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:00 AM – 4:00 PM.",
+      "eligibility": "Developmental disabilities.",
+      "fees": "Free (Ministry funded).",
+      "application_process": "via DSO.",
+      "documents_required": "DSO referral."
+    },
+    "verification_notes": "Specialized support."
+  },
+  {
+    "id": "kmfrc",
+    "status": "Active",
+    "name_en": "Kingston Military Family Resource Centre (KMFRC)",
+    "name_fr": "Centre de ressources pour les familles des militaires de Kingston",
+    "contact": {
+      "website": "https://cfmws.ca/kingston",
+      "phone": "613-541-5010 ext. 271-5195",
+      "address": "32 Lundy's Lane, Kingston, ON K7K 5G2"
+    },
+    "description": {
+      "en": "Provides support services, childcare, and mental health resources for military families.",
+      "fr": "Fournit des services de soutien, des services de garde et des ressources en santé mentale pour les familles des militaires."
+    },
+    "operations": {
+      "hours": "Mon-Fri: 8:00 AM – 5:00 PM.",
+      "eligibility": "CAF members and their families.",
+      "fees": "Free",
+      "application_process": "Walk-in or call.",
+      "documents_required": "Military ID."
+    },
+    "verification_notes": "Located on Base."
+  },
+  {
+    "id": "kfpl-central-branch",
+    "status": "Active",
+    "name_en": "Kingston Frontenac Public Library - Central Branch",
+    "name_fr": "Bibliothèque publique Kingston Frontenac - Succursale centrale",
+    "contact": {
+      "website": "https://www.kfpl.ca",
+      "phone": "613-549-8888",
+      "address": "130 Johnson St, Kingston, ON K7L 1X8"
+    },
+    "description": {
+      "en": "Main public library branch offering books, internet access, and community programs.",
+      "fr": "Succursale principale de la bibliothèque publique."
+    },
+    "operations": {
+      "hours": "Mon-Thu: 9 AM – 8 PM. Fri-Sat: 9 AM – 5 PM. Sun: 1 PM – 5 PM.",
+      "eligibility": "Open to all. Borrowing requires membership.",
+      "fees": "Free",
+      "application_process": "Walk-in.",
+      "documents_required": "ID for card."
+    },
+    "verification_notes": "Sunday hours noted."
+  }
+]

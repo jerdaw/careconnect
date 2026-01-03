@@ -123,7 +123,10 @@
       "website": "الموقع الإلكتروني",
       "address": "العنوان",
       "hours": "ساعات العمل",
-      "eligibility": "معايير الأهلية"
+      "eligibility": "معايير الأهلية",
+      "view": "عرض",
+      "lastUpdated": "آخر تحديث",
+      "noServices": "لم يتم المطالبة بأي خدمات"
     }
   },
   "ServiceDetail": {
@@ -241,16 +244,16 @@
   "About": {
     "hero": {
       "title": "كينغستون 150",
-      "subtitle": "محرك بحث يركز على الحوكمة لخدمات كينغستون الاجتماعية الأكثر أهمية. موثق، متاح، ويحترم الخصوصية."
-    },
-    "governanceText": "تلتزم هذه المنصة بمخطط حوكمة كينغستون 150 (V7)، مما يضمن التحقق من جميع بيانات الخدمة وتصنيفها وتتبع مصدرها.",
-    "landAcknowledgment": {
-      "title": "الاعتراف بالأرض",
-      "text": "كينغستون، المعروفة باسم كاتاروكوي، تقع على الأراضي الموروثة والتقليدية لشعوب هورون-وندات وأنيشينابي واتحاد هاودينوسوني."
+      "subtitle": "محرك بحث يركز على الحوكمة لخدمات كينغستون الاجتماعية الأكثر أهمية. موثق، متاح، ويحترم الخصوصية.",
+      "governanceText": "تلتزم هذه المنصة بمخطط حوكمة كينغستون 150 (V7)، مما يضمن التحقق من جميع بيانات الخدمة وتصنيفها وتتبع مصدرها.",
+      "landAcknowledgment": {
+        "title": "الاعتراف بالأرض",
+        "text": "كينغستون، المعروفة باسم كاتاروكوي، تقع على الأراضي الموروثة والتقليدية لشعوب هورون-وندات وأنيشينابي واتحاد هاودينوسوني. نحن نعترف بمسؤوليتنا في احترام الأرض والماء والسماء والحفاظ عليها."
+      }
     },
     "metrics": {
       "verified": {
-        "title": "50+ خدمة موثقة",
+        "title": "153 خدمة موثقة",
         "description": "منتقاة يدوياً لتأثير كبير. لا ضوضاء، فقط مساعدة."
       },
       "offline": {
@@ -312,5 +315,52 @@
       "subtitle": "هل أنت مزود خدمة؟ انضم إلى شبكتنا للوصول إلى المزيد من الأشخاص.",
       "button": "اقتراح خدمة"
     }
+  },
+  "Terms": {
+    "title": "شروط الخدمة",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "acceptance": { "title": "Acceptance of Terms", "content": "English version available in Terms of Service." }
+    }
+  },
+  "Emergency": {
+    "compact": "لحالات الطوارئ، اتصل بـ 911",
+    "title": "ليس خدمة طوارئ",
+    "inlineMessage": "هذا دليل معلومات فقط. اتصل دائماً بـ 911 للحالات الطارئة.",
+    "bannerTitle": "تنبيه طوارئ",
+    "bannerMessage": "إذا كنت تعاني من حالة طارئة تهدد الحياة، فاتصل بالرقم 911 على الفور."
+  },
+  "AccessibilityPolicy": {
+    "title": "سياسة إمكانية الوصول",
+    "lastUpdated": "Last Updated: {date}",
+    "commitment": "Kingston Care Connect is committed to ensuring equal access for people with disabilities."
+  },
+  "PartnerTerms": {
+    "title": "شروط خدمة الشركاء",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "eligibility": { "title": "Partner Eligibility", "content": "Authorized representatives only." }
+    }
+  },
+  "ContentPolicy": {
+    "title": "سياسة المحتوى",
+    "description": "Our guidelines for maintaining a safe community directory.",
+    "lastUpdated": "Last Updated",
+    "sections": {
+      "prohibited": {
+        "title": "Prohibited Content",
+        "content": "Spam, hate speech, and fraudulent info are strictly prohibited."
+      }
+    }
+  },
+  "ClaimFlow": {
+    "button": "المطالبة بالإدراج",
+    "title": "المطالبة بالمنظمة",
+    "description": "تحقق من هويتك لإدارة هذا الإدراج.",
+    "step1": "قبول الشروط",
+    "step2": "التحقق من البريد",
+    "agreeLabel": "أوافق على شروط خدمة الشركاء",
+    "submit": "المتابعة للتحقق",
+    "success": "تم إرسال طلب المطالبة. تحقق من بريدك الإلكتروني."
   }
 }

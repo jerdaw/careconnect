@@ -10,7 +10,7 @@
 
 Large-scale scraping of municipal data produces noise, not value. Kingston Care Connect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **150 highest-impact services** available to Kingston residents. Every entry is:
+We maintain a hand-verified dataset of the **169 highest-impact services** available to Kingston residents. Every entry is:
 
 - **Verified** — No broken links or disconnected phone numbers.
 - **Accessible** — Clear eligibility requirements.
@@ -18,7 +18,16 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 
 ---
 
-## Current Features (v10.1)
+## Current Features (v12.0)
+
+### Legal & Compliance Infrastructure
+
+- **Enforceable Protections**: Robust Terms of Service and Privacy Policy (PIPEDA/PHIPA compliant).
+- **Emergency Safeguards**: Prominent disclaimers and immediate 911/988 access on crisis pages.
+- **AI Transparency**: Detailed disclaimers for browser-based AI features.
+- **AODA Compliance**: Dedicated Accessibility Policy and multi-year compliance plan.
+- **Governance Audit**: Public-facing Content Moderation Policy and Feedback Process.
+- **Entity Preparedness**: Documented research for Non-Profit incorporation and liability insurance.
 
 ### Search Intelligence
 
@@ -36,7 +45,7 @@ We maintain a hand-verified dataset of the **150 highest-impact services** avail
 
 ### Additional Capabilities
 
-- **89 Verified Services** — Hand-curated Kingston services across 12 categories.
+- **169 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -92,7 +101,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 | `npm run dev`             | Start development server (Turbo)        |
 | `npm run build`           | Build for production                    |
 | `npm test`                | Run unit and integration tests (Vitest) |
-| `npx playwright test`     | Run end-to-end tests                    |
+| `npm run test:e2e:local`  | Run E2E tests (Chromium only)           |
 | `npm run type-check`      | TypeScript compiler check               |
 | `npm run lint`            | ESLint code quality check               |
 | `npm run health-check`    | Validate all service URLs               |

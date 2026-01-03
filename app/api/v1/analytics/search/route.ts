@@ -11,7 +11,12 @@ const analyticsSchema = z.object({
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
+    // Check if body is empty
+    const text = await req.text()
+    if (!text) {
+        return NextResponse.json({ success: true, skipped: "empty_body" })
+    }
+    const body = JSON.parse(text)
 
     // Validate input
     const validation = analyticsSchema.safeParse(body)

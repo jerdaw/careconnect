@@ -9,14 +9,15 @@ test.describe("Multi-lingual Expansion & Provincial Services", () => {
     await expect(page.getByRole("heading", { name: "Kingston Care Connect" })).toBeVisible()
 
     // Switch to French
-    const selector = page.getByLabel("Select language")
-    await selector.selectOption("fr")
+    await page.getByLabel("Select language").click()
+    await page.getByRole("menuitem", { name: "Français" }).click()
     await page.waitForURL(/\/fr/)
     await expect(page).toHaveURL(/\/fr/)
     await expect(page.getByRole("heading", { name: "Kingston Care Connect" })).toBeVisible()
 
     // Switch to Arabic (RTL)
-    await selector.selectOption("ar")
+    await page.getByLabel("Select language", { exact: false }).click()
+    await page.getByRole("menuitem", { name: "Arabic" }).click()
     await page.waitForURL(/\/ar/)
     await expect(page).toHaveURL(/\/ar/)
     // "Search for services" in Arabic
@@ -26,14 +27,16 @@ test.describe("Multi-lingual Expansion & Provincial Services", () => {
     await expect(html).toHaveAttribute("dir", "rtl")
 
     // Switch to Chinese
-    await selector.selectOption("zh-Hans")
+    await page.getByLabel("Select language", { exact: false }).click()
+    await page.getByRole("menuitem", { name: "Chinese" }).click()
     await page.waitForURL(/\/zh-Hans/)
     await expect(page).toHaveURL(/\/zh-Hans/)
     // "Search for services" in Chinese
     await expect(page.getByText("搜索服务")).toBeVisible()
 
     // Switch to Spanish
-    await selector.selectOption("es")
+    await page.getByLabel("Select language", { exact: false }).click()
+    await page.getByRole("menuitem", { name: "Spanish" }).click()
     await page.waitForURL(/\/es/)
     await expect(page).toHaveURL(/\/es/)
     // "Search for services" in Spanish

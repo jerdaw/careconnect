@@ -30,8 +30,9 @@ npm test
 # Run tests with coverage
 npm run test:coverage
 
-# Run E2E tests (requires dev server or build)
-npm run test:e2e
+# Run E2E tests (Recommended: Run in CI)
+# Local execution via WSL is unsupported/unstable
+npm run test:e2e:local
 ```
 
 ## Writing Tests

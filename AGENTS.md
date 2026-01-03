@@ -24,9 +24,10 @@
   - `docs/roadmaps/archive/2026-01-01-v9-0-multi-lingual.md` → v9.0 (Multi-lingual).
   - `docs/roadmaps/archive/2026-01-02-v10-0-data-architecture.md` → v10.0 (Data Architecture).
   - `docs/roadmaps/archive/2026-01-02-v10-1-ui-polish-data-expansion.md` → v10.1 (UI Polish & Data Expansion).
+  - `docs/roadmaps/archive/2026-01-02-v12-0-legal-compliance.md` → v12.0 (Legal & Compliance).
   - **Roadmap Strategy**: We group roadmap archives by **Version** (e.g., "v6.1", "v7.0") rather than splitting them into small feature files. This preserves the historical context of releases.
 
-When in doubt about architecture or design design, **read `README.md` and `docs/**` first\*\*.
+When in doubt about architecture or design decisions, **read `README.md` and `docs/**` first\*\*.
 
 ---
 

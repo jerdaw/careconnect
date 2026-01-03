@@ -14,6 +14,9 @@ import {
   Navigation,
   Printer,
   Mail,
+  AlertTriangle,
+  FileText,
+  Wallet,
 } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { Header } from "@/components/layout/Header"
@@ -22,7 +25,9 @@ import { Section } from "@/components/ui/section"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
-import { VerificationLevel } from "@/types/service"
+import { VerificationLevel, IntentCategory } from "@/types/service"
+import { EmergencyDisclaimer } from "@/components/ui/EmergencyDisclaimer"
+import { ClaimFlow } from "@/components/partner/ClaimFlow"
 
 interface Props {
   params: Promise<{ id: string; locale: string }>
@@ -78,6 +83,11 @@ export default async function ServicePage({ params }: Props) {
       <div className="relative overflow-hidden border-b border-neutral-200 bg-white pt-32 pb-12 dark:border-neutral-800 dark:bg-neutral-900">
         <div className="from-primary-50/50 dark:from-primary-950/20 pointer-events-none absolute inset-0 bg-gradient-to-br to-transparent" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {(service.intent_category === IntentCategory.Crisis) && (
+            <div className="mb-8">
+              <EmergencyDisclaimer variant="banner" />
+            </div>
+          )}
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex-1 space-y-4">
               <div className="flex flex-wrap items-center gap-3">
@@ -91,14 +101,49 @@ export default async function ServicePage({ params }: Props) {
                 )}
               </div>
 
+              {(service.status === "Permanently Closed" || service.status === "Merged") && (
+                <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-200">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
+                    <div>
+                      <h3 className="font-semibold px-2">
+                        {service.status === "Merged" ? "Service Merged" : "Permanently Closed"}
+                      </h3>
+                      <p className="mt-1 text-sm px-2">
+                        {service.status === "Merged" 
+                          ? "This service has been merged with another organization. Please check the description for the new contact details." 
+                          : "This service is no longer operational. Please do not visit this location."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <h1 className="heading-display text-3xl leading-tight font-bold text-neutral-900 md:text-5xl dark:text-white">
                 {name}
               </h1>
 
               {address && (
-                <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                  <MapPin className="h-5 w-5 shrink-0" />
-                  <span className="text-lg">{address}</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                    <MapPin className="h-5 w-5 shrink-0" />
+                    <span className="text-lg">{address}</span>
+                  </div>
+                  
+                  {/* Map Integration */}
+                  <div className="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800">
+                    <iframe
+                      title={`Map location for ${name}`}
+                      width="100%"
+                      height="200"
+                      style={{ border: 0, filter: "grayscale(100%) invert(0.92) opacity(0.8)" }}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
+                      className="dark:invert"
+                    />
+                  </div>
                 </div>
               )}
             </div>
@@ -130,6 +175,30 @@ export default async function ServicePage({ params }: Props) {
                 ))}
               </div>
             </Card>
+
+            {/* Fees & Documents Grid */}
+            {(service.fees || service.documents_required) && (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {service.fees && (
+                  <Card className="p-8">
+                    <h2 className="mb-3 flex items-center gap-2 text-xl font-bold">
+                      <Wallet className="text-primary-600 h-6 w-6" />
+                      Fees
+                    </h2>
+                    <p className="text-neutral-600 dark:text-neutral-300">{service.fees}</p>
+                  </Card>
+                )}
+                {service.documents_required && (
+                  <Card className="p-8">
+                    <h2 className="mb-3 flex items-center gap-2 text-xl font-bold">
+                      <FileText className="text-primary-600 h-6 w-6" />
+                      Documents
+                    </h2>
+                    <p className="text-neutral-600 dark:text-neutral-300">{service.documents_required}</p>
+                  </Card>
+                )}
+              </div>
+            )}
 
             {/* Eligibility & Requirements */}
             {(service.eligibility || service.eligibility_notes) && (
@@ -260,7 +329,7 @@ export default async function ServicePage({ params }: Props) {
                   </div>
                 )}
 
-                {service.hours && (
+                {(service.hours || service.hours_text) && (
                   <div className="flex items-start gap-3">
                     <div className="shrink-0 rounded-lg bg-neutral-100 p-2 text-neutral-600 dark:bg-neutral-800">
                       <Clock className="h-5 w-5" />
@@ -268,7 +337,12 @@ export default async function ServicePage({ params }: Props) {
                     <div className="flex-1">
                       <p className="mb-2 text-sm font-medium text-neutral-500">Hours</p>
                       <div className="text-sm">
-                        {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => {
+                        {service.hours_text && (
+                          <div className="mb-3 whitespace-pre-line text-neutral-900 font-medium dark:text-neutral-200">
+                            {service.hours_text}
+                          </div>
+                        )}
+                        {service.hours && ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => {
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           const dayHours = (service.hours as any)[day]
                           if (!dayHours) return null
@@ -284,7 +358,7 @@ export default async function ServicePage({ params }: Props) {
                             </div>
                           )
                         })}
-                        {service.hours.notes && (
+                        {service.hours?.notes && (
                           <p className="mt-2 rounded bg-neutral-50 p-2 text-xs text-neutral-400 italic dark:bg-neutral-800/50">
                             Note: {service.hours.notes}
                           </p>
@@ -309,6 +383,13 @@ export default async function ServicePage({ params }: Props) {
                     {t("reportIssue")}
                   </a>
                 </div>
+
+                {!isVerified && (
+                  <div className="mt-4 border-t border-neutral-100 pt-4 text-center dark:border-neutral-800">
+                    <p className="mb-2 text-xs text-neutral-500">{t("claimText")}</p>
+                    <ClaimFlow serviceId={service.id} serviceName={name} />
+                  </div>
+                )}
               </div>
             </Card>
           </div>

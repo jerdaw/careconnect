@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
 import { useTranslations } from "next-intl"
 import { aiEngine } from "@/lib/ai/engine"
+import { AiDisclaimer } from "@/components/chat/AiDisclaimer"
 
 interface Message {
   role: "user" | "assistant"
@@ -231,6 +232,9 @@ INSTRUCTIONS:
                   <>
                     {messages.length === 0 && (
                       <div className="py-8 text-center text-sm text-neutral-500">
+                         <div className="px-4 text-left">
+                            <AiDisclaimer />
+                         </div>
                         <p>{t("welcome")}</p>
                         <p className="mt-2 text-xs opacity-70">{t("suggestion")}</p>
                       </div>

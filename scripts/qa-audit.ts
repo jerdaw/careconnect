@@ -7,7 +7,7 @@ async function runAudit() {
   
   const servicesPath = path.join(process.cwd(), "data", "services.json")
   const servicesRaw = await fs.readFile(servicesPath, "utf-8")
-  const services: Service[] = JSON.parse(servicesRaw)
+  const services = JSON.parse(servicesRaw) as Service[]
 
   const errors: string[] = []
   const warnings: string[] = []

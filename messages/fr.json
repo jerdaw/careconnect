@@ -3,7 +3,19 @@
     "title": "Ceci est un projet dirigé par la communauté"
   },
   "Footer": {
-    "disclaimer": "Soutenir la communauté de Kingston"
+    "disclaimer": "Soutenir la communauté de Kingston",
+    "quickLinks": {
+      "community": "Communauté",
+      "food": "Accès alimentaire",
+      "housing": "Soutien au logement",
+      "health": "Services de santé",
+      "crisis": "Soutien en cas de crise",
+      "legal": "Juridique",
+      "about": "À propos",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "contentPolicy": "Politique de contenu"
+    }
   },
   "Search": {
     "placeholder": "Chercher de l'aide...",
@@ -238,6 +250,37 @@
     "errorTitle": "Erreur",
     "errorMessage": "Un problème est survenu. Veuillez réessayer plus tard."
   },
+  "AiDisclaimer": {
+    "title": "À propos de cet assistant IA",
+    "limitation1": "Cette IA peut fournir des informations inexactes.",
+    "limitation2": "L'IA ne peut pas accéder à la disponibilité des services en temps réel.",
+    "limitation3": "Vérifiez toujours les informations auprès des fournisseurs de services.",
+    "emergency": "Pour les urgences, composez immédiatement le 911. Cet assistant ne peut pas fournir d'aide d'urgence.",
+    "privacy": "Votre conversation reste sur votre appareil et n'est jamais envoyée à nos serveurs."
+  },
+  "ContentPolicy": {
+    "title": "Politique de Modération du Contenu",
+    "description": "Nos directives pour maintenir un répertoire communautaire sûr, précis et digne de confiance.",
+    "lastUpdated": "Dernière mise à jour",
+    "sections": {
+      "prohibited": {
+        "title": "Contenu Interdit",
+        "content": "<p>Pour garantir que Kingston Care Connect reste une ressource sûre et fiable, le contenu suivant est strictement interdit :</p><ul><li><strong>Spam ou Publicité</strong> : Contenu commercial non sollicité ou matériel promotionnel sans rapport avec les services sociaux.</li><li><strong>Contenu Diffamatoire</strong> : Fausses informations destinées à nuire à la réputation d'une organisation ou d'un individu.</li><li><strong>Violations de la Vie Privée</strong> : Informations personnelles sur des individus (par exemple, adresses personnelles du personnel) sans leur consentement.</li><li><strong>Contenu Haineux</strong> : Discours incitant à la violence ou à la discrimination fondée sur la race, la religion, le handicap, le sexe ou l'orientation sexuelle.</li><li><strong>Informations Frauduleuses</strong> : Descriptions de services ou critères d'admissibilité intentionnellement trompeurs.</li></ul>"
+      },
+      "submissions": {
+        "title": "Soumissions des Utilisateurs",
+        "content": "<p>Lors de la soumission de services ou de commentaires à KCC :</p><ul><li>Toutes les soumissions sont examinées par notre équipe avant publication (sauf pour les commentaires immédiats qui restent internes).</li><li>Nous nous réservons le droit de modifier les soumissions pour plus de clarté, de longueur et de formatage (tout en maintenant l'exactitude).</li><li>Nous nous réservons le droit de rejeter les soumissions qui ne répondent pas à nos critères d'inclusion ou qui enfreignent cette politique.</li></ul>"
+      },
+      "reporting": {
+        "title": "Processus de Signalement",
+        "content": "<p>Si vous rencontrez du contenu problématique :</p><ul><li>Utilisez le bouton 'Signaler un problème' qui se trouve sur chaque page de liste de services.</li><li>Pour les problèmes de confidentialité ou de sécurité, envoyez un courriel à <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>Nous visons à examiner et à répondre aux rapports dans les 5 jours ouvrables.</li><li>Vous pouvez signaler du contenu de manière anonyme.</li></ul>"
+      },
+      "appeals": {
+        "title": "Processus d'Appel",
+        "content": "<p>Si votre soumission a été rejetée ou votre contenu supprimé :</p><ul><li>Vous pouvez faire appel de la décision en contactant <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>Veuillez fournir des preuves spécifiques à l'appui de votre appel.</li><li>Les décisions finales sont prises par le comité de gouvernance de KCC.</li></ul>"
+      }
+    }
+  },
   "Accessibility": {
     "title": "Accessibilité",
     "highContrast": "Mode contraste élevé"
@@ -254,7 +297,7 @@
     },
     "metrics": {
       "verified": {
-        "title": "50+ Services vérifiés",
+        "title": "153 Services vérifiés",
         "description": "Sélectionnés manuellement pour leur impact élevé. Pas de bruit, juste de l'aide."
       },
       "offline": {
@@ -316,5 +359,189 @@
   },
   "Partners": {
     "link": "Pour les partenaires"
+  },
+  "Terms": {
+    "title": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "sections": {
+      "acceptance": {
+        "title": "Acceptation des conditions",
+        "content": "En accédant ou en utilisant Kingston Care Connect (\"KCC\", \"le Service\"), vous acceptez d'être lié par ces conditions d'utilisation. Si vous n'acceptez pas ces conditions, n'utilisez pas le Service."
+      },
+      "serviceDescription": {
+        "title": "Description du service",
+        "content": "KCC est un répertoire d'informations fournissant les coordonnées des services sociaux à Kingston, Ontario. KCC ne fournit PAS : \n- De services d'urgence (pour les urgences, composez le 911)\n- De conseils médicaux ou de services de santé\n- De conseils ou de représentation juridiques\n- De conseils ou de services financiers\n- De counseling ou de traitement de santé mentale\n\nKCC est uniquement un répertoire. Nous n'exploitons, ne contrôlons ni n'approuvons aucun service répertorié sur cette plateforme."
+      },
+      "disclaimer": {
+        "title": "Exclusion de garanties",
+        "content": "LE SERVICE EST FOURNI \"TEL QUEL\" ET \"SELON LA DISPONIBILITÉ\" SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE. NOUS NE GARANTISSONS PAS QUE :\n- Les informations sur le service sont exactes, actuelles ou complètes\n- Les services répertoriés sont disponibles, sûrs ou adaptés à vos besoins\n- La plateforme sera ininterrompue ou exempte d'erreurs"
+      },
+      "liability": {
+        "title": "Limitation de responsabilité",
+        "content": "DANS TOUTE LA MESURE PERMISE PAR LA LOI, KINGSTON CARE CONNECT, SES ORGANISATEURS, CONTRIBUTEURS ET AFFILIÉS NE SERONT PAS RESPONSABLES DES DOMMAGES INDIRECTS, ACCESSOIRES, SPÉCIAUX, CONSÉCUTIFS OU PUNITIFS, NI DE TOUTE PERTE DE PROFITS OU DE REVENUS, QU'ILS SOIENT ENCOURUS DIRECTEMENT OU INDIRECTEMENT."
+      },
+      "emergency": {
+        "title": "Avis sur les services d'urgence",
+        "content": "CECI N'EST PAS UN SERVICE D'URGENCE. Si vous vivez une urgence mettant votre vie en danger, APPELEZ IMMÉDIATEMENT LE 911. Pour une crise de santé mentale, APPELEZ LE 988. Ne vous fiez pas à ce répertoire pour les urgences."
+      },
+      "advice": {
+        "title": "Aucun conseil professionnel",
+        "content": "Rien sur cette plateforme ne constitue un conseil professionnel de quelque nature que ce soit, y compris, mais sans s'y limiter, des conseils médicaux, juridiques, financiers ou psychologiques. Consultez toujours des professionnels qualifiés pour des questions spécifiques."
+      },
+      "responsibilities": {
+        "title": "Responsabilités de l'utilisateur",
+        "content": "En utilisant KCC, vous acceptez de :\n- Vérifier toutes les informations directement auprès des fournisseurs de services\n- Ne pas vous fier uniquement aux informations de KCC pour des décisions critiques\n- Signaler les informations inexactes via notre système de commentaires\n- Utiliser le Service uniquement à des fins légales"
+      },
+      "indemnification": {
+        "title": "Indemnisation",
+        "content": "Vous acceptez d'indemniser et de dégager de toute responsabilité Kingston Care Connect, ses organisateurs, contributeurs et affiliés de toute réclamation, dommage, perte ou dépense (y compris les frais juridiques raisonnables) découlant de votre utilisation du Service."
+      },
+      "thirdParty": {
+        "title": "Services tiers",
+        "content": "KCC répertorie des services tiers sur lesquels nous n'avons aucun contrôle. Nous ne sommes pas responsables de la disponibilité, de la qualité ou de la sécurité des services répertoriés. L'inclusion dans ce répertoire ne constitue pas une approbation."
+      },
+      "ai": {
+        "title": "Avis de non-responsabilité de l'assistant IA",
+        "content": "Notre assistant IA utilise un modèle de langage qui peut fournir des informations inexactes ou hallucinées. L'assistant IA est à titre informatif uniquement. Vérifiez toujours les informations critiques. L'assistant IA ne peut pas fournir d'assistance d'urgence."
+      },
+      "modifications": {
+        "title": "Modifications des conditions",
+        "content": "Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications prendront effet immédiatement après leur publication. Votre utilisation continue du Service après les modifications constitue une acceptation des conditions modifiées."
+      },
+      "governing": {
+        "title": "Loi applicable",
+        "content": "Ces conditions sont régies et interprétées conformément aux lois de la province de l'Ontario et aux lois fédérales du Canada qui s'y appliquent."
+      },
+      "severability": {
+        "title": "Divisibilité",
+        "content": "Si une disposition de ces conditions est jugée inapplicable, les autres dispositions resteront pleinement en vigueur."
+      },
+      "contact": {
+        "title": "Coordonnées",
+        "content": "Pour toute question concernant ces conditions : legal@kingstoncareconnect.ca"
+      }
+    }
+  },
+  "Privacy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "sections": {
+      "overview": {
+        "title": "Aperçu de la politique",
+        "content": "Kingston Care Connect (\"KCC\", \"nous\") s'engage à protéger votre vie privée. Cette politique explique comment nous recueillons, utilisons et protégeons les informations."
+      },
+      "dataCollection": {
+        "title": "Informations collectées",
+        "content": "**Informations fournies**\n- **Commentaires**: Informations rapportées.\n- **Portail partenaire**: Détails de l'organisation.\n\n**Collectées automatiquement**\n- **Stockage local**: Préférences sur votre appareil.\n- **Données techniques**: Journaux serveur standard (sans suivi).\n\n**Ce que nous NE collectons PAS**\n- Pas de journalisation des recherches\n- Pas de cookies de suivi\n- Politique Zéro-Log pour vos recherches."
+      },
+      "aiPrivacy": {
+        "title": "Confidentialité de l'IA",
+        "content": "Notre assistant IA fonctionne entièrement dans votre navigateur.\n- **Zéro sortie de données**: Les requêtes ne quittent jamais votre appareil.\n- **Zéro connaissance**: Nous ne savons pas ce dont vous discutez.\n- **Pas de stockage**: Conversations supprimées à la fermeture."
+      },
+      "useOfInfo": {
+        "title": "Utilisation des informations",
+        "content": "Nous utilisons les infos pour : Amélioration du service, Gestion des partenaires, Sécurité. Nous n'utilisons PAS pour : Publicité, Profilage, Vente à des tiers."
+      },
+      "sharing": {
+        "title": "Partage d'informations",
+        "content": "Nous partageons uniquement avec les Partenaires vérifiés (feedback) ou les Fournisseurs de services. Nous ne vendons PAS d'informations."
+      },
+      "retention": {
+        "title": "Conservation des données",
+        "content": "Commentaires supprimés après résolution (90 jours). Données partenaires conservées tant qu'actifs. Stockage local contrôlé par vous."
+      },
+      "rights": {
+        "title": "Vos droits",
+        "content": "En vertu de la LPRPDE, vous avez des droits d'accès, de correction, de suppression et de retrait du consentement. Contactez privacy@kingstoncareconnect.ca."
+      },
+      "security": {
+        "title": "Sécurité des données",
+        "content": "Nous mettons en œuvre le chiffrement, le contrôle d'accès et la collecte minimale."
+      },
+      "children": {
+        "title": "Confidentialité des enfants",
+        "content": "KCC ne s'adresse pas aux enfants de moins de 13 ans."
+      },
+      "cookies": {
+        "title": "Politique de cookies",
+        "content": "Nous utilisons des cookies minimaux (NEXT_LOCALE pour la langue). Pas de cookies de suivi ou publicitaires."
+      },
+      "contact": {
+        "title": "Contactez-nous",
+        "content": "Email : privacy@kingstoncareconnect.ca"
+      }
+    }
+  },
+  "Emergency": {
+    "compact": "Pour les urgences, composez le 911",
+    "title": "Pas un service d'urgence",
+    "inlineMessage": "Ceci est un répertoire d'informations uniquement. Vérifiez toujours les informations. Pour les urgences, composez le 911.",
+    "bannerTitle": "AVIS D'URGENCE",
+    "bannerMessage": "Si vous vivez une urgence mettant votre vie en danger, composez immédiatement le 911. Pour les crises de santé mentale, composez le 988 (Ligne d'aide en cas de crise de suicide). Kingston Care Connect est un répertoire d'informations et ne remplace pas les services d'urgence, les soins médicaux ou les conseils professionnels."
+  },
+  "AccessibilityPolicy": {
+    "title": "Politique d'accessibilité",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "commitment": "Kingston Care Connect s'engage à garantir l'égalité d'accès et de participation aux personnes handicapées. Nous nous efforçons de répondre aux besoins d'accessibilité en temps opportun.",
+    "standards": "Nous nous engageons à respecter les exigences de la Loi sur l'accessibilité pour les personnes handicapées de l'Ontario (LAPHO) et les Règles pour l'accessibilité des contenus Web (WCAG) 2.1 Niveau AA.",
+    "headings": {
+      "features": "Fonctionnalités d'accessibilité",
+      "multiYearPlan": "Plan d'accessibilité pluriannuel",
+      "feedback": "Processus de rétroaction"
+    },
+    "features": {
+      "contrast": "Mode contraste élevé pour une meilleure lisibilité",
+      "keyboard": "Navigation au clavier pour tous les éléments interactifs",
+      "skip": "Liens d'évitement pour les lecteurs d'écran",
+      "alt": "Texte alternatif pour toutes les images",
+      "semantic": "Structure HTML sémantique",
+      "responsive": "Conception adaptative pour toutes les tailles d'écran"
+    },
+    "plan": {
+      "y2026": "Maintenir la conformité WCAG 2.1 AA et audits trimestriels",
+      "y2027": "Mise à niveau vers WCAG 2.2 Niveau AA et audit externe",
+      "y2028": "Étendre le support linguistique et comité consultatif"
+    },
+    "feedback": {
+      "intro": "Nous accueillons vos commentaires sur l'accessibilité. Veuillez nous faire savoir si vous rencontrez des obstacles :",
+      "email": "Courriel : accessibility@kingstoncareconnect.ca",
+      "formats": "Les informations sur ce site sont disponibles dans des formats alternatifs sur demande."
+    }
+  },
+  "PartnerTerms": {
+    "title": "Conditions de service des partenaires",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "sections": {
+      "eligibility": {
+        "title": "Admissibilité des partenaires",
+        "content": "Pour revendiquer une fiche, vous devez être un représentant autorisé de l'organisation et exploiter un véritable service social à Kingston."
+      },
+      "verification": {
+        "title": "Vérification d'identité",
+        "content": "Nous vérifions l'identité via le domaine de courriel, le téléphone et les registres publics. Les réclamations frauduleuses entraînent une résiliation immédiate."
+      },
+      "accuracy": {
+        "title": "Garantie d'exactitude",
+        "content": "Vous garantissez que toutes les informations fournies sont exactes, actuelles et non trompeuses."
+      },
+      "license": {
+        "title": "Octroi de licence",
+        "content": "Vous accordez à KCC une licence non exclusive pour afficher et partager les informations de votre organisation."
+      },
+      "termination": {
+        "title": "Résiliation",
+        "content": "Chaque partie peut résilier ce partenariat. KCC peut résilier pour violation des conditions."
+      }
+    }
+  },
+  "ClaimFlow": {
+    "button": "Revendiquer cette fiche",
+    "title": "Revendiquer l'organisation",
+    "description": "Vérifiez votre identité pour gérer cette fiche.",
+    "step1": "Accepter les conditions",
+    "step2": "Vérifier le courriel",
+    "agreeLabel": "J'accepte les conditions de service des partenaires",
+    "submit": "Continuer vers la vérification",
+    "success": "Demande envoyée. Vérifiez votre courriel."
   }
 }

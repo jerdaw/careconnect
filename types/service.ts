@@ -126,10 +126,31 @@ export interface Service {
   org_id?: string
 
   // --- Expanded Fields for Migration ---
+  /**
+   * Operational status of the service (e.g., "Active", "Permanently Closed", "Merged").
+   */
+  status?: string
+
   hours?: ServiceHours // Updated from string to structured object
+  
+  /**
+   * Human-readable hours text (e.g. "Mon-Fri 9-5 (Closed 12-1)")
+   */
+  hours_text?: string
+  hours_text_fr?: string
+  
   fees?: string
+  fees_fr?: string
+
   eligibility?: string // Raw text eligibility
+  eligibility_fr?: string
+
   application_process?: string
+  application_process_fr?: string
+
+  documents_required?: string
+  documents_required_fr?: string
+
   languages?: string[]
   bus_routes?: string[]
   accessibility?: Record<string, boolean>

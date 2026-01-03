@@ -95,9 +95,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                   className="truncate text-sm leading-tight font-semibold text-neutral-900 dark:text-white"
                   dangerouslySetInnerHTML={{ __html: nameHtml }}
                 />
+                {/* Status Badge */}
+                {(service.status === "Permanently Closed" || service.status === "Merged") && (
+                   <Badge variant="destructive" size="sm" className="px-1.5 py-0 text-xs uppercase tracking-wider font-bold">
+                     {service.status === "Merged" ? "Merged" : "Closed"}
+                   </Badge>
+                )}
                 {service.is_provincial && (
                   <Badge variant="outline" size="sm" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800 px-1.5 py-0 text-xs">
                     Provincial
+                  </Badge>
+                )}
+                {/* Fees Badge - Only if explicitly Free */}
+                {(service.fees?.toLowerCase() === "free") && (
+                  <Badge variant="secondary" size="sm" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 px-1.5 py-0 text-xs">
+                    Free
                   </Badge>
                 )}
                 {checkEligibility(service, useUserContext().context) === "eligible" && (

@@ -48,4 +48,13 @@ test.describe("WCAG 2.1 AA Compliance", () => {
         await expect(skipLink).toBeVisible()
         await expect(skipLink).toBeFocused()
     })
+
+    test("Accessibility Policy page loads and contains AODA commitments", async ({ page }) => {
+        await page.goto("/accessibility")
+        
+        await expect(page.getByRole("heading", { name: "Accessibility Policy" })).toBeVisible()
+        await expect(page.getByText("Multi-Year Accessibility Plan")).toBeVisible()
+        await expect(page.getByText("2026")).toBeVisible()
+        await expect(page.getByText("AODA")).toBeVisible()
+    })
 })

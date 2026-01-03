@@ -2,7 +2,12 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
 import { useTranslations } from "next-intl"
+import { CheckCircle } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function SubmitServiceForm() {
   const t = useTranslations("SubmitService")
@@ -26,11 +31,24 @@ export default function SubmitServiceForm() {
 
   if (success) {
     return (
-      <div className="mx-auto max-w-lg p-6 text-center">
-        <div className="mb-4 text-4xl">🎉</div>
-        <h2 className="text-2xl font-bold text-green-700 dark:text-green-400">{t("successTitle")}</h2>
-        <p className="mt-2 text-neutral-600 dark:text-neutral-300">{t("successMessage")}</p>
-        <Button className="mt-6" variant="outline" onClick={() => setSuccess(false)}>
+      <div className="mx-auto max-w-lg py-12 text-center">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+          className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30"
+        >
+          <CheckCircle className="h-12 w-12 text-green-600 dark:text-green-400" />
+        </motion.div>
+        
+        <h2 className="mb-2 text-2xl font-bold text-neutral-900 dark:text-white">{t("successTitle")}</h2>
+        <p className="mb-8 text-neutral-600 dark:text-neutral-400">{t("successMessage")}</p>
+        
+        <Button onClick={() => setSuccess(false)} variant="outline" size="lg">
           {t("submitAnother")}
         </Button>
       </div>
@@ -38,75 +56,51 @@ export default function SubmitServiceForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-6 p-6">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-6 lg:p-6">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">{t("title")}</h1>
-        <p className="mt-2 text-neutral-600 dark:text-neutral-400">{t("description")}</p>
+        <h1 className="heading-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+          {t("title")}
+        </h1>
+        <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">
+          {t("description")}
+        </p>
       </div>
 
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="name" className="mb-1 block text-sm font-medium">
-            {t("serviceName")}
-          </label>
-          <input
-            name="name"
-            id="name"
-            required
-            className="w-full rounded-md border border-neutral-300 p-2 dark:border-neutral-700 dark:bg-neutral-800"
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="name">{t("serviceName")}</Label>
+          <Input name="name" id="name" required placeholder="e.g. Kingston Youth Shelter" />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="description">{t("serviceDesc")}</Label>
+          <Textarea 
+            name="description" 
+            id="description" 
+            required 
+            rows={4} 
+            placeholder="Briefly describe the services offered..."
           />
         </div>
 
-        <div>
-          <label htmlFor="description" className="mb-1 block text-sm font-medium">
-            {t("serviceDesc")}
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            required
-            rows={4}
-            className="w-full rounded-md border border-neutral-300 p-2 dark:border-neutral-700 dark:bg-neutral-800"
-          />
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="phone" className="mb-1 block text-sm font-medium">
-              {t("phone")}
-            </label>
-            <input
-              name="phone"
-              id="phone"
-              className="w-full rounded-md border border-neutral-300 p-2 dark:border-neutral-700 dark:bg-neutral-800"
-            />
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="phone">{t("phone")}</Label>
+            <Input name="phone" id="phone" type="tel" placeholder="(613) ..." />
           </div>
-          <div>
-            <label htmlFor="url" className="mb-1 block text-sm font-medium">
-              {t("website")}
-            </label>
-            <input
-              name="url"
-              id="url"
-              type="url"
-              className="w-full rounded-md border border-neutral-300 p-2 dark:border-neutral-700 dark:bg-neutral-800"
-            />
+          <div className="space-y-2">
+            <Label htmlFor="url">{t("website")}</Label>
+            <Input name="url" id="url" type="url" placeholder="https://..." />
           </div>
         </div>
 
-        <div>
-          <label htmlFor="address" className="mb-1 block text-sm font-medium">
-            {t("address")}
-          </label>
-          <input
-            name="address"
-            id="address"
-            className="w-full rounded-md border border-neutral-300 p-2 dark:border-neutral-700 dark:bg-neutral-800"
-          />
+        <div className="space-y-2">
+          <Label htmlFor="address">{t("address")}</Label>
+          <Input name="address" id="address" placeholder="123 Example St, Kingston" />
         </div>
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full">
+      <Button type="submit" disabled={isSubmitting} className="w-full" size="lg">
         {isSubmitting ? t("submitting") : t("submit")}
       </Button>
     </form>

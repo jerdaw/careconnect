@@ -123,7 +123,10 @@
       "website": "Sitio Web",
       "address": "Dirección",
       "hours": "Horario de Operación",
-      "eligibility": "Criterios de Elegibilidad"
+      "eligibility": "Criterios de Elegibilidad",
+      "view": "Ver",
+      "lastUpdated": "Última actualización",
+      "noServices": "No se han reclamado servicios"
     }
   },
   "ServiceDetail": {
@@ -241,16 +244,16 @@
   "About": {
     "hero": {
       "title": "Los 150 de Kingston",
-      "subtitle": "Un motor de búsqueda centrado en la gobernanza para los servicios sociales más esenciales de Kingston. Verificado, accesible y centrado en la privacidad."
-    },
-    "governanceText": "Esta plataforma se adhiere al Esquema de Gobernanza Kingston 150 (V7), asegurando que todos los datos de servicios estén verificados, categorizados y rastreados en su procedencia.",
-    "landAcknowledgment": {
-      "title": "Reconocimiento Territorial",
-      "text": "Kingston, conocida como Katarokwi, está situada en las tierras ancestrales y tradicionales de las confederaciones Huron-Wendat, Anishinaabe y Haudenosaunee."
+      "subtitle": "Un motor de búsqueda centrado en la gobernanza para los servicios sociales más esenciales de Kingston. Verificado, accesible y centrado en la privacidad.",
+      "governanceText": "Esta plataforma se adhiere al Esquema de Gobernanza Kingston 150 (V7), asegurando que todos los datos de servicios estén verificados, categorizados y rastreados en su procedencia.",
+      "landAcknowledgment": {
+        "title": "Reconocimiento Territorial",
+        "text": "Kingston, conocida como Katarokwi, está situada en las tierras ancestrales y tradicionales de las confederaciones Huron-Wendat, Anishinaabe y Haudenosaunee. Reconocemos nuestra responsabilidad de honrar la tierra, el agua y el cielo con respeto y preservación."
+      }
     },
     "metrics": {
       "verified": {
-        "title": "50+ Servicios Verificados",
+        "title": "153 Servicios Verificados",
         "description": "Curados a mano para alto impacto. Sin ruido, solo ayuda."
       },
       "offline": {
@@ -312,5 +315,52 @@
       "subtitle": "¿Eres un proveedor de servicios? Únete a nuestra red para llegar a más personas.",
       "button": "Sugerir un Servicio"
     }
+  },
+  "Terms": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "acceptance": { "title": "Acceptance of Terms", "content": "English version available in Terms of Service." }
+    }
+  },
+  "Emergency": {
+    "compact": "Para emergencias, llame al 911",
+    "title": "No es un Servicio de Emergencia",
+    "inlineMessage": "Este es solo un directorio de información. Siempre llame al 911 para emergencias.",
+    "bannerTitle": "AVISO DE EMERGENCIA",
+    "bannerMessage": "Si está experimentando una emergencia que pone en peligro su vida, llame al 911 inmediatamente."
+  },
+  "AccessibilityPolicy": {
+    "title": "Política de Accesibilidad",
+    "lastUpdated": "Last Updated: {date}",
+    "commitment": "Kingston Care Connect is committed to ensuring equal access for people with disabilities."
+  },
+  "PartnerTerms": {
+    "title": "Términos para Socios",
+    "lastUpdated": "Last Updated: {date}",
+    "sections": {
+      "eligibility": { "title": "Partner Eligibility", "content": "Authorized representatives only." }
+    }
+  },
+  "ContentPolicy": {
+    "title": "Política de Contenido",
+    "description": "Our guidelines for maintaining a safe community directory.",
+    "lastUpdated": "Last Updated",
+    "sections": {
+      "prohibited": {
+        "title": "Prohibited Content",
+        "content": "Spam, hate speech, and fraudulent info are strictly prohibited."
+      }
+    }
+  },
+  "ClaimFlow": {
+    "button": "Reclamar Listado",
+    "title": "Reclamar Organización",
+    "description": "Verifique su identidad para gestionar este listado.",
+    "step1": "Aceptar Términos",
+    "step2": "Verificar Correo",
+    "agreeLabel": "Acepto los Términos de Servicio para Socios",
+    "submit": "Continuar con la Verificación",
+    "success": "Solicitud de reclamo enviada. Revise su correo electrónico."
   }
 }

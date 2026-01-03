@@ -136,5 +136,5 @@ We use a modular hook system to separate concerns:
 
 - `npm run dev`: Start local server.
 - `npm run test`: Run integration tests.
-- `npx playwright test`: Run E2E tests.
+- `npm run test:e2e:local`: Run partial E2E tests (CI handles full suite).
 - `docs/CONTRIBUTING.md`: Detailed development guidelines.

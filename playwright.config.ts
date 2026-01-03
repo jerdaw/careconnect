@@ -6,9 +6,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: "html",
+  timeout: 60 * 1000, // 60s global timeout for WSL slow environment
   use: {
     baseURL: "http://localhost:3000",
     trace: "on-first-retry",
+    actionTimeout: 15000,
+  },
+  expect: {
+    timeout: 15 * 1000,
   },
   projects: [
     {

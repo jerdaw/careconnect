@@ -39,8 +39,10 @@ npm run coverage
 ### E2E Tests (Playwright)
 
 ```bash
-# Run all E2E tests (headless)
-npx playwright test
+# E2E Tests (Playwright)
+# ⚠️ Run primarily in GitHub CI to ensure consistent environment
+npm run test:e2e:local # Optional: Try locally (Chromium) if debugging
+
 
 # Run with UI mode (interactive debugging)
 npx playwright test --ui

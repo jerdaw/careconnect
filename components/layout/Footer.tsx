@@ -1,12 +1,12 @@
 "use client"
 
 import { Link } from "@/i18n/routing"
-// import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
-  // const t = useTranslations();
+  const t = useTranslations('Footer');
 
   return (
     <footer className="relative mt-24 overflow-hidden bg-neutral-950 text-white">
@@ -51,26 +51,26 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Community</h3>
+            <h3 className="text-lg font-semibold text-white">{t("quickLinks.community")}</h3>
             <ul className="space-y-3 text-neutral-400">
               <li>
                 <Link href="/search?category=food" className="hover:text-primary-400 transition-colors">
-                  Food Access
+                  {t("quickLinks.food")}
                 </Link>
               </li>
               <li>
                 <Link href="/search?category=housing" className="hover:text-primary-400 transition-colors">
-                  Housing Support
+                  {t("quickLinks.housing")}
                 </Link>
               </li>
               <li>
                 <Link href="/search?category=health" className="hover:text-primary-400 transition-colors">
-                  Health Services
+                  {t("quickLinks.health")}
                 </Link>
               </li>
               <li>
                 <Link href="/search?category=crisis" className="hover:text-primary-400 transition-colors">
-                  Crisis Support
+                  {t("quickLinks.crisis")}
                 </Link>
               </li>
             </ul>
@@ -78,21 +78,26 @@ export function Footer() {
 
           {/* Legal */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Legal</h3>
+            <h3 className="text-lg font-semibold text-white">{t("quickLinks.legal")}</h3>
             <ul className="space-y-3 text-neutral-400">
               <li>
                 <Link href="/about" className="hover:text-primary-400 transition-colors">
-                  About Us
+                  {t("quickLinks.about")}
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="hover:text-primary-400 transition-colors">
-                  Privacy Policy
+                  {t("quickLinks.privacy")}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-primary-400 transition-colors">
-                  Terms of Service
+                  {t("quickLinks.terms")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/content-policy" className="hover:text-primary-400 transition-colors">
+                  {t("quickLinks.contentPolicy")}
                 </Link>
               </li>
             </ul>
