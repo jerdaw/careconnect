@@ -13,16 +13,18 @@ test.describe("Crisis Flow", () => {
         // 2. Click "Crisis" quick link or search
         // Using search as it's more robust
         const searchInput = page.getByPlaceholder(/search for help/i)
-        await searchInput.fill("suicide")
+        await searchInput.click()
+        await searchInput.pressSequentially("suicide", { delay: 100 })
         await searchInput.press("Enter")
 
     // 3. Verify Crisis Detected Banner
-    const safetyBanner = page.locator("text=EMERGENCY NOTICE") 
+    // "CrisisAlert.title" in en.json is "Are you in immediate danger?"
+    const safetyBanner = page.getByText("Are you in immediate danger?")
     await expect(safetyBanner.first()).toBeVisible()
 
     // Check for specific alert content
-    // "Life-threatening emergency" or "Call 911"
-    await expect(page.getByText("life-threatening emergency")).toBeVisible()
+    // "CrisisAlert.message": "If you or someone else is at risk of harm..."
+    await expect(page.getByText(/risk of harm/i)).toBeVisible()
 })
 
     test("Crisis category quick link works", async ({ page }) => {
@@ -32,10 +34,10 @@ test.describe("Crisis Flow", () => {
         await crisisButton.click()
 
         // Should filter by crisis category
-        // Verify URL or results
-        await expect(page).toHaveURL(/category=crisis/)
+        // Verify UI state instead of URL since app doesn't sync URL for simple filtering
+        await expect(crisisButton).toHaveAttribute("aria-pressed", "true")
 
         // Verify banner
-        await expect(page.getByText("EMERGENCY NOTICE")).toBeVisible()
+        await expect(page.getByText("Are you in immediate danger?")).toBeVisible()
     })
 })
