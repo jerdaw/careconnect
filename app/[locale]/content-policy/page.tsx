@@ -1,16 +1,17 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import type { ReactNode } from "react"
 import PageSection from "@/components/PageSection"
 
 export default function ContentPolicyPage() {
   const t = useTranslations("ContentPolicy")
 
   const rich = {
-    p: (chunks) => <p className="mb-4">{chunks}</p>,
-    ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
-    li: (chunks) => <li>{chunks}</li>,
-    strong: (chunks) => <strong className="font-semibold">{chunks}</strong>,
+    p: (chunks: ReactNode) => <p className="mb-4">{chunks}</p>,
+    ul: (chunks: ReactNode) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
+    li: (chunks: ReactNode) => <li>{chunks}</li>,
+    strong: (chunks: ReactNode) => <strong className="font-semibold">{chunks}</strong>,
   }
 
   const policySections = [
