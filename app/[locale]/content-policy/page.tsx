@@ -6,38 +6,33 @@ import PageSection from "@/components/PageSection"
 export default function ContentPolicyPage() {
   const t = useTranslations("ContentPolicy")
 
+  const rich = {
+    p: (chunks) => <p className="mb-4">{chunks}</p>,
+    ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
+    li: (chunks) => <li>{chunks}</li>,
+    strong: (chunks) => <strong className="font-semibold">{chunks}</strong>,
+  }
+
   const policySections = [
     {
       id: "prohibited",
       title: t("sections.prohibited.title"),
-      content: t.rich("sections.prohibited.content", {
-        ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
-        li: (chunks) => <li>{chunks}</li>,
-      }),
+      content: t.rich("sections.prohibited.content", rich),
     },
     {
       id: "submissions",
       title: t("sections.submissions.title"),
-      content: t.rich("sections.submissions.content", {
-        ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
-        li: (chunks) => <li>{chunks}</li>,
-      }),
+      content: t.rich("sections.submissions.content", rich),
     },
     {
       id: "reporting",
       title: t("sections.reporting.title"),
-      content: t.rich("sections.reporting.content", {
-        ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
-        li: (chunks) => <li>{chunks}</li>,
-      }),
+      content: t.rich("sections.reporting.content", rich),
     },
     {
       id: "appeals",
       title: t("sections.appeals.title"),
-      content: t.rich("sections.appeals.content", {
-        ul: (chunks) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
-        li: (chunks) => <li>{chunks}</li>,
-      }),
+      content: t.rich("sections.appeals.content", rich),
     },
   ]
 
