@@ -46,3 +46,7 @@ public/fallback-*.js
 /.npm-only-allow
 # data reports
 data/*-report.json
+
+# supabase local config (added by CLI init)
+supabase/.temp/
+supabase/.branches/

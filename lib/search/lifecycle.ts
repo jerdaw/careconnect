@@ -24,8 +24,9 @@ export async function initializeVectorStore() {
   }
 
   if (count > 0) {
-    console.log(`[VectorStore] Hydrated ${count} new vectors into IndexedDB.`)
-  } else {
-    console.log(`[VectorStore] Warm. All vectors cached.`)
+    if (process.env.NODE_ENV === "development") {
+      console.log(`[VectorStore] Hydrated ${count} new vectors into IndexedDB.`)
+    }
   }
+  // Removed: "Warm" info log to reduce console noise
 }

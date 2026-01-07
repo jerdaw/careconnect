@@ -330,6 +330,17 @@
     "bannerTitle": "تنبيه طوارئ",
     "bannerMessage": "إذا كنت تعاني من حالة طارئة تهدد الحياة، فاتصل بالرقم 911 على الفور."
   },
+  "EmergencyModal": {
+    "buttonLabel": "طوارئ",
+    "title": "هل تحتاج مساعدة طارئة؟",
+    "message": "إذا كنت أنت أو شخص آخر في خطر فوري، يرجى الاتصال بخدمات الطوارئ. استخدم هاتفك لطلب الأرقام أدناه.",
+    "emergency": "خدمات الطوارئ",
+    "crisisLine": "خط مساعدة أزمات الانتحار",
+    "crisisFallback": "بديل: {number}",
+    "crisisCanada": "خدمات الأزمات في كندا",
+    "disclaimer": "Kingston Care Connect هو دليل معلومات فقط. ستحاول هذه الروابط الاتصال من جهازك.",
+    "close": "إغلاق"
+  },
   "AccessibilityPolicy": {
     "title": "سياسة إمكانية الوصول",
     "lastUpdated": "Last Updated: {date}",

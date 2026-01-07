@@ -33,6 +33,14 @@ The search system uses a hybrid approach:
 1.  **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2.  **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3.  **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
+4.  **Librarian API (v13.0)**: A server-side alternative (`POST /api/v1/search/services`) enabled via feature flag. It performs privacy-preserving queries against a strictly limited `services_public` view, ensuring no private metadata leaks to the client.
+
+### Search Modes
+
+The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MODE`:
+
+1.  **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
+2.  **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
 
 ### AI Assistant Architecture
 
@@ -42,6 +50,7 @@ The search system uses a hybrid approach:
   - **Local-Only**: Inference runs entirely in the user's browser.
   - **No Data Egress**: Chat history and queries never leave the device.
   - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
+  - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs) with `Cache-Control: no-store`. The database `services_public` view enforces a strict data boundary.
 - **Lifecycle**:
   - **Opt-In**: Model download only triggered by explicit user action.
   - **Idle Cleanup**: VRAM released after 5 minutes of inactivity.

@@ -26,5 +26,6 @@
 ## Roadmaps
 
 - [Current Roadmap](roadmaps/roadmap.md)
+- [v13.0 Plan: Librarian Model](roadmaps/v13-0-librarian-model.md)
 - [API Reference](../docs/api/openapi.yaml)
 - [Archive](roadmaps/archive/)

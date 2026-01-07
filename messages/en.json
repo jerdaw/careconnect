@@ -493,6 +493,7 @@
     "message": "If you or someone else is in immediate danger, please call emergency services. Use your phone to dial the numbers below.",
     "emergency": "Emergency Services",
     "crisisLine": "Suicide Crisis Helpline",
+    "crisisFallback": "Alt: {number}",
     "crisisCanada": "Crisis Services Canada",
     "disclaimer": "Kingston Care Connect is an information directory only. These links will attempt to dial from your device.",
     "close": "Close"

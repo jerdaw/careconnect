@@ -41,19 +41,62 @@ create table services (
   category text, -- intent_category
   tags jsonb, -- identity tags details
   embedding vector(384), -- For semantic search (matches OpenAI text-embedding-3-small or existing/local model)
+  
+  -- v13.0 Librarian Model
+  published boolean default true,
 
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
+
+-- Public Projection View (v13.0)
+create or replace view services_public as
+select
+  id,
+  name,
+  name_fr,
+  description,
+  description_fr,
+  address,
+  address_fr,
+  phone,
+  url,
+  email,
+  hours,
+  hours_text,
+  hours_text_fr,
+  fees,
+  fees_fr,
+  eligibility,
+  eligibility_fr,
+  application_process,
+  application_process_fr,
+  languages,
+  bus_routes,
+  accessibility,
+  last_verified,
+  verification_status,
+  category,
+  tags
+from services
+where 
+  published = true 
+  and verification_status != 'draft'
+  and verification_status != 'archived';
 
 -- Enable Row Level Security (RLS)
 alter table organizations enable row level security;
 alter table services enable row level security;
 
--- Policies (Draft)
--- Public can read all verified services
-create policy "Public services are viewable by everyone."
+-- Policies
+-- v13.0: Deny direct public access to services table
+create policy "Authenticated can select services"
   on services for select
+  to authenticated
   using ( true );
+
+-- v13.0: Allow public access to the projection view
+grant select on services_public to anon;
+grant select on services_public to authenticated;
 
 -- Only admins/partners can insert/update (To be refined with Auth)
 create policy "Admins can insert services."

@@ -43,6 +43,12 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 - **Zero-Knowledge Architecture**: Voice and text queries never leave the device.
 - **Offline Vector Store**: Semantic search works without an internet connection.
 
+### Librarian Model (v13.0)
+
+- **Server-Side Search API**: Privacy-focused, rate-limited POST endpoint for enhanced security.
+- **Zero-Logging**: Search queries are strictly `no-store` and never logged to the database.
+- **Dynamic Bundle**: Falls back to lightweight server queries, saving ~300KB on initial load.
+
 ### Additional Capabilities
 
 - **169 Verified Services** — Hand-curated Kingston services across 12 categories.
@@ -112,6 +118,14 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ### Environment Variables
 
 Copy `.env.example` to `.env.local`. Core search functionality works without API keys; database features require Supabase credentials.
+
+For **Librarian Model** (Server-Side Search):
+
+```env
+NEXT_PUBLIC_SEARCH_MODE=server
+```
+
+(Defaults to `local` if unset).
 
 ### Partner Platform (Supabase)
 

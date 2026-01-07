@@ -76,27 +76,25 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
                     <span className="text-xl font-bold">911</span>
                   </a>
 
-                  <a
-                    href="tel:988"
-                    className="flex items-center justify-between rounded-xl bg-white/20 px-4 py-3 text-white transition-colors hover:bg-white/30"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5" />
-                      <span className="font-medium">{t("crisisLine")}</span>
-                    </div>
-                    <span className="text-lg font-bold">988</span>
-                  </a>
+                  <div className="overflow-hidden rounded-xl bg-white/20 text-white">
+                    <a
+                      href="tel:988"
+                      className="flex items-center justify-between px-4 py-3 transition-colors hover:bg-white/10"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Phone className="h-5 w-5" />
+                        <span className="font-medium">{t("crisisLine")}</span>
+                      </div>
+                      <span className="text-xl font-bold">988</span>
+                    </a>
 
-                  <a
-                    href="tel:1-833-456-4566"
-                    className="flex items-center justify-between rounded-xl bg-white/20 px-4 py-3 text-white transition-colors hover:bg-white/30"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5" />
-                      <span className="font-medium">{t("crisisCanada")}</span>
-                    </div>
-                    <span className="text-lg font-bold">1-833-456-4566</span>
-                  </a>
+                    <a
+                      href="tel:+18334564566"
+                      className="block px-4 pb-3 text-right text-xs text-white/90 transition-colors hover:text-white hover:underline hover:decoration-white/50 hover:underline-offset-4"
+                    >
+                      {t("crisisFallback", { number: "1-833-456-4566" })}
+                    </a>
+                  </div>
                 </div>
 
                 {/* Disclaimer */}

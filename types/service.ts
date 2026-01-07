@@ -170,4 +170,11 @@ export interface Service {
    * If true, this service is available province-wide, not just Kingston.
    */
   is_provincial?: boolean
+
+  /**
+   * If true, the service is visible in the public index.
+   * Defaults to true. Set to false to hide without deleting.
+   */
+  published?: boolean
 }
+

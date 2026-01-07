@@ -493,6 +493,7 @@
     "message": "Si vous ou quelqu'un d'autre êtes en danger immédiat, veuillez appeler les services d'urgence. Utilisez votre téléphone pour composer les numéros ci-dessous.",
     "emergency": "Services d'urgence",
     "crisisLine": "9-8-8 : Ligne d'aide en cas de crise de suicide",
+    "crisisFallback": "Alternative : {number}",
     "crisisCanada": "Services de crise Canada",
     "disclaimer": "Kingston Care Connect est un répertoire d'informations uniquement. Ces liens tenteront de composer depuis votre appareil.",
     "close": "Fermer"

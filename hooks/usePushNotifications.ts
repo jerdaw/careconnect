@@ -27,26 +27,18 @@ export function usePushNotifications() {
 
   useEffect(() => {
     const checkState = async () => {
-      console.log("DEBUG: checkState start")
       // Basic browser support check
       if (typeof window === "undefined" || !("PushManager" in window) || !("serviceWorker" in navigator)) {
-        console.log("DEBUG: Not supported")
         setState((prev) => ({ ...prev, isSupported: false, isLoading: false }))
         return
       }
 
       // Feature support is true
-      console.log("DEBUG: Getting permission")
       const permission = await pushManager.getPermissionStatus()
-      console.log("DEBUG: Got permission", permission)
 
-      console.log("DEBUG: Waiting for SW ready")
       const registration = await navigator.serviceWorker.ready
-      console.log("DEBUG: SW ready", !!registration)
 
-      console.log("DEBUG: Getting subscription")
       const subscription = await registration.pushManager.getSubscription()
-      console.log("DEBUG: Got subscription", !!subscription)
 
       setState({
         isSupported: true,
@@ -55,7 +47,6 @@ export function usePushNotifications() {
         subscribedCategories: preferences,
         isLoading: false,
       })
-      console.log("DEBUG: State updated")
     }
 
     checkState()

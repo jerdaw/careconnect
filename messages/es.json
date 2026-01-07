@@ -330,6 +330,17 @@
     "bannerTitle": "AVISO DE EMERGENCIA",
     "bannerMessage": "Si está experimentando una emergencia que pone en peligro su vida, llame al 911 inmediatamente."
   },
+  "EmergencyModal": {
+    "buttonLabel": "Emergencia",
+    "title": "¿Necesitas ayuda de emergencia?",
+    "message": "Si tú o alguien más está en peligro inmediato, llama a los servicios de emergencia. Usa tu teléfono para marcar los números a continuación.",
+    "emergency": "Servicios de emergencia",
+    "crisisLine": "Línea de crisis por suicidio",
+    "crisisFallback": "Alternativa: {number}",
+    "crisisCanada": "Crisis Services Canada",
+    "disclaimer": "Kingston Care Connect es solo un directorio de información. Estos enlaces intentarán marcar desde tu dispositivo.",
+    "close": "Cerrar"
+  },
   "AccessibilityPolicy": {
     "title": "Política de Accesibilidad",
     "lastUpdated": "Last Updated: {date}",

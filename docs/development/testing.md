@@ -12,6 +12,7 @@
 ## 2. File Structure
 
 - `tests/unit/**/*`: Vitest unit tests (colocated with code is also acceptable for utils).
+- `tests/api/**/*`: API route tests (e.g., `tests/api/v1/search-api.test.ts`).
 - `tests/e2e/**/*`: Playwright E2E scenarios.
 - `scripts/search-qa.ts`: Specialized script for evaluating search relevance quality.
 

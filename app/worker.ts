@@ -36,13 +36,23 @@ self.addEventListener("message", async (event) => {
   }
 
   if (action === "embed") {
-    const pipe = await OptimizePipeline.getInstance(() => {})
-    const output = await pipe(text, { pooling: "mean", normalize: true })
+    try {
+      const pipe = await OptimizePipeline.getInstance(() => {})
+      const output = await pipe(text, { pooling: "mean", normalize: true })
 
-    // Convert Tensor to standard array
-    const embedding = Array.from(output.data)
+      // Defensive check for undefined data (Turbopack dev mode quirk)
+      if (!output?.data) {
+        self.postMessage({ status: "error", error: "Embedding output undefined" })
+        return
+      }
 
-    self.postMessage({ status: "complete", embedding, text })
+      // Convert Tensor to standard array
+      const embedding = Array.from(output.data)
+
+      self.postMessage({ status: "complete", embedding, text })
+    } catch (error) {
+      self.postMessage({ status: "error", error: String(error) })
+    }
     return
   }
 })

@@ -330,6 +330,17 @@
     "bannerTitle": "紧急通知",
     "bannerMessage": "如果您遇到危及生命的紧急情况，请立即拨打 911。"
   },
+  "EmergencyModal": {
+    "buttonLabel": "紧急",
+    "title": "需要紧急帮助？",
+    "message": "如果您或他人处于直接危险中，请联系紧急服务。请使用手机拨打下方号码。",
+    "emergency": "紧急服务",
+    "crisisLine": "自杀危机援助热线",
+    "crisisFallback": "备用：{number}",
+    "crisisCanada": "加拿大危机服务",
+    "disclaimer": "Kingston Care Connect 仅为信息目录。这些链接将尝试从您的设备拨号。",
+    "close": "关闭"
+  },
   "AccessibilityPolicy": {
     "title": "无障碍政策",
     "lastUpdated": "Last Updated: {date}",
