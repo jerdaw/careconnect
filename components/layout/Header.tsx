@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
 // import { LanguageSelector } from "./LanguageSelector"
 import BetaBanner from "@/components/BetaBanner"
+import { TranslationBanner } from "@/components/layout/TranslationBanner"
 import { EmergencyModal } from "@/components/ui/EmergencyModal"
 
 export function Header() {
@@ -52,9 +53,10 @@ export function Header() {
           "overflow-hidden transition-all duration-500 ease-out",
           scrolled 
             ? "max-h-0 opacity-0 -translate-y-2" 
-            : "max-h-12 opacity-100 translate-y-0"
+            : "max-h-24 opacity-100 translate-y-0"
         )}
       >
+        <TranslationBanner />
         <BetaBanner />
       </div>
 
