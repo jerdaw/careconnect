@@ -9,11 +9,6 @@
   color utility to any element that depends on these defaults.
 */
 @layer utilities {
-  @media (min-width: 48rem) {
-    .md\:py-24 {
-      padding-block: calc(var(--spacing) * 5);
-    }
-  }
 }
 
 @layer base {
