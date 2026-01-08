@@ -9,6 +9,7 @@ import { Outfit, Inter } from "next/font/google"
 import { ClientOnly } from "@/components/ClientOnly"
 import { Toaster } from "@/components/ui/toaster"
 import ChatAssistant from "@/components/ai/ChatAssistant"
+import { TranslationBanner } from "@/components/layout/TranslationBanner"
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -57,6 +58,7 @@ export default async function RootLayout({
           <AuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <ErrorBoundary>
+                <TranslationBanner />
                 {children}
                 <ClientOnly>
                   <ChatAssistant />

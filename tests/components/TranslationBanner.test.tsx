@@ -27,19 +27,19 @@ describe("TranslationBanner", () => {
   it("renders for EDIA locales (ar)", () => {
     vi.mocked(useLocale).mockReturnValue("ar")
     render(<TranslationBanner />)
-    expect(screen.getByText("Translation Notice:")).toBeInTheDocument()
+    expect(screen.getByText("Translation Notice")).toBeInTheDocument()
   })
 
   it("renders for EDIA locales (zh-Hans)", () => {
     vi.mocked(useLocale).mockReturnValue("zh-Hans")
     render(<TranslationBanner />)
-    expect(screen.getByText("Translation Notice:")).toBeInTheDocument()
+    expect(screen.getByText("Translation Notice")).toBeInTheDocument()
   })
 
   it("renders for EDIA locales (es)", () => {
     vi.mocked(useLocale).mockReturnValue("es")
     render(<TranslationBanner />)
-    expect(screen.getByText("Translation Notice:")).toBeInTheDocument()
+    expect(screen.getByText("Translation Notice")).toBeInTheDocument()
   })
 
   it("does NOT render for English locale", () => {
@@ -67,6 +67,6 @@ describe("TranslationBanner", () => {
     
     // Re-render and check it doesn't show
     rerender(<TranslationBanner />)
-    expect(screen.queryByText("Translation Notice:")).not.toBeInTheDocument()
+    expect(screen.queryByText("Translation Notice")).not.toBeInTheDocument()
   })
 })
