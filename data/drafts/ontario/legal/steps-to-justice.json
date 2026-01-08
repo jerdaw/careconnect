@@ -1,0 +1,14 @@
+{
+  "name": "Steps to Justice",
+  "name_fr": "Justice pas-à-pas",
+  "description": "A comprehensive online guide to law in Ontario. Features step-by-step information and a Live Chat service to help users find legal answers.",
+  "category": "Legal",
+  "phone": "",
+  "website": "https://stepstojustice.ca",
+  "scope": "ontario",
+  "address": "Online",
+  "keywords": ["legal info", "self-help", "forms", "chat", "guide", "family", "housing"],
+  "eligibility": "Anyone",
+  "fees": "Free",
+  "hours": "Website 24/7; Chat Mon-Fri"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Law Society Referral Service",
+  "name_fr": "Service de référence du Barreau",
+  "description": "Free referral to a lawyer or licensed paralegal who will provide a free 30-minute consultation. Operated by the Law Society of Ontario to connect people with legal professionals.",
+  "category": "Legal",
+  "phone": "1-855-947-5255",
+  "website": "https://findlegalhelp.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["lawyer", "paralegal", "referral", "consultation", "legal help", "find lawyer"],
+  "eligibility": "Anyone seeking legal help",
+  "fees": "Free referral; 30-minute consultation is free",
+  "hours": "Mon-Fri 9am-5pm"
+}

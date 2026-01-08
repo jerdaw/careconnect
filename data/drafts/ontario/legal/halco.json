@@ -1,0 +1,13 @@
+{
+  "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
+  "description": "Provides free legal services for people living with HIV/AIDS in Ontario. Covers privacy, human rights, immigration, and social assistance.",
+  "category": "Legal",
+  "phone": "1-888-705-8889",
+  "website": "https://www.halco.org",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["HIV", "AIDS", "legal clinic", "discrimination", "privacy", "immigration"],
+  "eligibility": "People living with HIV/AIDS in Ontario",
+  "fees": "Free",
+  "hours": "Intake: Mon, Wed, Fri 9am-5pm"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "ontario-trans-lifeline",
+  "name": "Trans Lifeline",
+  "description": "A peer support phone service run by trans people for our trans and questioning peers. No non-consensual active rescue policy.",
+  "phone": "1-877-330-6366",
+  "url": "https://translifeline.org",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "13:00", "close": "21:00" },
+    "tuesday": { "open": "13:00", "close": "21:00" },
+    "wednesday": { "open": "13:00", "close": "21:00" },
+    "thursday": { "open": "13:00", "close": "21:00" },
+    "friday": { "open": "13:00", "close": "21:00" },
+    "saturday": { "open": "13:00", "close": "21:00" },
+    "sunday": { "open": "13:00", "close": "21:00" },
+    "notes": "Hours roughly 1pm-9pm EST but fluctuate."
+  },
+  "eligibility_notes": "Trans and questioning individuals.",
+  "identity_tags": [{ "tag": "2SLGBTQI+", "evidence_url": "https://translifeline.org" }],
+  "synthetic_queries": ["trans suicide helpline", "gender dysphoria support", "trans peer support"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

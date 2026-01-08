@@ -1,0 +1,14 @@
+{
+  "name": "Talk Tobacco",
+  "description": "Culturally appropriate quit-smoking and vaping support for Indigenous peoples (First Nations, Inuit, Métis). Offers free, confidential counselling with respect for traditional tobacco use.",
+  "category": "Health",
+  "phone": "1-833-998-8255",
+  "website": "https://talktobacco.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["quit smoking", "tobacco", "Indigenous", "First Nations", "Inuit", "Métis", "vaping", "cessation"],
+  "eligibility": "Indigenous peoples seeking tobacco cessation support",
+  "fees": "Free",
+  "hours": "7 days a week (hours vary)",
+  "languages": ["English", "French", "Cree", "Ojibway", "Inuktitut"]
+}

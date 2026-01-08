@@ -1,0 +1,33 @@
+{
+  "id": "ontario-femaide",
+  "name": "Fem'aide",
+  "name_fr": "Fem'aide",
+  "description": "The provincial helpline for Francophone women dealing with violence. Offers support, referrals and information 24/7.",
+  "description_fr": "La ligne de soutien provinciale pour les femmes aux prises avec la violence. Offre soutien, références et information 24/7.",
+  "phone": "1-877-336-2433",
+  "url": "https://femaide.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 support via Phone and Text."
+  },
+  "primary_phone_label": "1-877-FEMAIDE",
+  "eligibility_notes": "Francophone women in Ontario dealing with violence.",
+  "synthetic_queries": ["violence faite aux femmes", "aide francophone violence", "french crisis line"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

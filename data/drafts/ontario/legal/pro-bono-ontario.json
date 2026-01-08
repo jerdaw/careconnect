@@ -1,0 +1,13 @@
+{
+  "name": "Pro Bono Ontario Hotline",
+  "description": "A free legal advice hotline for everyday civil legal needs (employment, housing, consumer debt, civil litigation). Provides up to 30 minutes of advice from volunteer lawyers.",
+  "category": "Legal",
+  "phone": "1-855-255-7256",
+  "website": "https://probonoontario.org",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["civil law", "employment", "small claims", "debt", "contract", "free legal advice"],
+  "eligibility": "Low-income Ontarians with civil legal issues",
+  "fees": "Free",
+  "hours": "Mon-Fri 9am-5pm"
+}

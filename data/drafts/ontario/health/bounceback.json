@@ -1,0 +1,14 @@
+{
+  "name": "BounceBack Ontario",
+  "name_fr": "Retrouver sa santé",
+  "description": "A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks.",
+  "category": "Health",
+  "phone": "1-866-345-0224",
+  "website": "https://bouncebackontario.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["mental health", "CBT", "depression", "anxiety", "coaching", "self-help"],
+  "eligibility": "Ontario residents 15+ with OHIP",
+  "fees": "Free",
+  "hours": "Registration: Mon-Fri 8:30am-5pm"
+}

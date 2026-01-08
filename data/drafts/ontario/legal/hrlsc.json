@@ -1,0 +1,14 @@
+{
+  "name": "Human Rights Legal Support Centre (HRLSC)",
+  "name_fr": "Centre d'assistance juridique en matière de droits de la personne",
+  "description": "Provides free legal advice and assistance to individuals who have experienced discrimination under the Ontario Human Rights Code.",
+  "category": "Legal",
+  "phone": "1-866-625-5179",
+  "website": "https://hrlsc.on.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["human rights", "discrimination", "racism", "harassment", "legal aid", "code"],
+  "eligibility": "Anyone in Ontario facing discrimination",
+  "fees": "Free",
+  "hours": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm"
+}

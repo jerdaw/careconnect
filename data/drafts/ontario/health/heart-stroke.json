@@ -1,0 +1,14 @@
+{
+  "name": "Heart and Stroke Foundation",
+  "name_fr": "Fondation des maladies du cœur et de l'AVC",
+  "description": "Provides evidence-based information on heart disease and stroke, including prevention, risk factors, recovery, and healthy living resources.",
+  "category": "Health",
+  "phone": "1-888-473-4636",
+  "website": "https://www.heartandstroke.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["heart disease", "stroke", "cardiovascular", "blood pressure", "cholesterol", "heart attack"],
+  "eligibility": "Anyone seeking heart or stroke information",
+  "fees": "Free",
+  "hours": "Mon-Fri 8:30am-5pm"
+}

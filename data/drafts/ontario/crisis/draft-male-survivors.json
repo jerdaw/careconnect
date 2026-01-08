@@ -1,0 +1,30 @@
+{
+  "id": "ontario-male-survivors",
+  "name": "Support Services for Male Survivors of Sexual Abuse",
+  "description": "A 24/7 multilingual crisis and referral line for male survivors of sexual abuse or assault in Ontario.",
+  "phone": "1-866-887-0015",
+  "url": "https://cleoconnect.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability."
+  },
+  "eligibility_notes": "Men and boys who have experienced sexual violence.",
+  "synthetic_queries": ["male abuse help", "sexual assault men", "male survivor support"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

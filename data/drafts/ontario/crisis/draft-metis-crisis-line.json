@@ -1,0 +1,31 @@
+{
+  "id": "ontario-metis-crisis-line",
+  "name": "Métis Nation of Ontario Crisis Line",
+  "description": "Mental health and addictions support for Métis citizens in Ontario. Entry point to MNO healing and wellness programs.",
+  "phone": "1-877-767-7572",
+  "url": "https://www.metisnation.org",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability."
+  },
+  "eligibility_notes": "Métis citizens in Ontario and their families.",
+  "identity_tags": [{ "tag": "Indigenous Peoples", "evidence_url": "https://www.metisnation.org" }],
+  "synthetic_queries": ["metis mental health", "metis crisis support"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:55:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

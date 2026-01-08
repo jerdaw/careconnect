@@ -1,0 +1,30 @@
+{
+  "id": "ontario-victim-support-line",
+  "name": "Victim Support Line (VSL)",
+  "description": "A provincial 24/7 information and support line for victims of crime, including survivors of sexual assault and domestic violence.",
+  "phone": "1-888-579-2888",
+  "url": "https://victimsupportdirectory.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7. 200+ languages via interpreters."
+  },
+  "eligibility_notes": "Victims of crime in Ontario.",
+  "synthetic_queries": ["crime victim help", "victim services ontario", "crime support line"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:55:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

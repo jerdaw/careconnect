@@ -1,0 +1,14 @@
+{
+  "name": "9-8-8 Suicide Crisis Helpline",
+  "name_fr": "9-8-8 Ligne d'aide en cas de crise de suicide",
+  "description": "A safe space to talk, 24 hours a day, every day of the year. Call or text 9-8-8 for trauma-informed and culturally appropriate support.",
+  "category": "Crisis",
+  "phone": "988",
+  "website": "https://988.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["suicide", "crisis", "988", "prevention", "help"],
+  "eligibility": "Anyone in Canada",
+  "fees": "Free",
+  "hours": "24/7"
+}

@@ -3692,32 +3692,6 @@
     "hours_text": "Mon-Fri 8:30 AM - 4:30 PM"
   },
   {
-    "id": "health-811-ontario",
-    "name": "Health811",
-    "name_fr": "Santé811",
-    "description": "Duplicate entry (see 'crisis-telehealth-ontario').",
-    "description_fr": "Doublon.",
-    "url": "https://health811.ontario.ca",
-    "verification_level": "L2",
-    "intent_category": "Health",
-    "provenance": {
-      "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
-      "verified_at": "2026-01-03T14:53:40.749Z",
-      "method": "Direct verification",
-      "verification_notes": "Matches Telehealth/Health811.",
-      "evidence_url": "https://health811.ontario.ca"
-    },
-    "identity_tags": [],
-    "synthetic_queries": ["medical advice", "nurse hotline"],
-    "synthetic_queries_fr": ["conseil médical", "ligne infirmière"],
-    "phone": "811",
-    "status": "Active",
-    "application_process": "Call",
-    "fees": "Free",
-    "documents_required": "None",
-    "hours_text": "24/7"
-  },
-  {
     "id": "rideau-heights-community-centre",
     "name": "Rideau Heights Community Centre",
     "name_fr": "Centre communautaire Rideau Heights",
@@ -5062,5 +5036,1336 @@
     "identity_tags": [],
     "synthetic_queries": ["autism course", "parent training"],
     "synthetic_queries_fr": ["cours autisme", "formation parents"]
+  },
+  {
+    "id": "ontario-211-ontario",
+    "name": "211 Ontario",
+    "name_fr": "211 Ontario",
+    "description": "A helpline and online database of Ontario's community and social services. 211 helps people find the right community and social services.",
+    "phone": "211",
+    "url": "https://211ontario.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Phone service 24/7. Chat hours vary."
+    },
+    "primary_phone_label": "Call 2-1-1",
+    "eligibility_notes": "Open to everyone.",
+    "synthetic_queries": ["community services", "social services", "food banks", "housing help"]
+  },
+  {
+    "id": "ontario-black-youth-helpline",
+    "name": "Black Youth Helpline",
+    "description": "Serves all youth and specifically responds to the need for a Black youth specific service. Focuses on family, schools, and community.",
+    "phone": "1-833-294-8650",
+    "url": "https://blackyouth.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "22:00"
+      },
+      "notes": "9am-10pm daily."
+    },
+    "eligibility_notes": "Black youth and families.",
+    "synthetic_queries": ["black youth support", "school help for black students"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-boots-on-the-ground",
+    "name": "Boots on the Ground",
+    "description": "Anonymous peer support for First Responders, by First Responders. Serving police, fire, EMS, and corrections personnel.",
+    "phone": "1-833-677-2668",
+    "url": "https://bootsontheground.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 peer support."
+    },
+    "eligibility_notes": "Serving and retired First Responders (Police, Fire, EMS, Corrections).",
+    "identity_tags": [
+      {
+        "tag": "First Responders",
+        "evidence_url": "https://bootsontheground.ca"
+      }
+    ],
+    "synthetic_queries": ["police mental health", "firefighter crisis", "first responder peer support"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-farmer-wellness",
+    "name": "Farmer Wellness Initiative",
+    "description": "24/7 confidential mental health support for Ontario farmers, farm families, and employees.",
+    "phone": "1-866-267-6255",
+    "url": "https://farmerwellnessinitiative.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability."
+    },
+    "eligibility_notes": "Ontario farmers and their families.",
+    "synthetic_queries": ["farmer crisis line", "rural mental health", "agriculture support"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-femaide",
+    "name": "Fem'aide",
+    "name_fr": "Fem'aide",
+    "description": "The provincial helpline for Francophone women dealing with violence. Offers support, referrals and information 24/7.",
+    "description_fr": "La ligne de soutien provinciale pour les femmes aux prises avec la violence. Offre soutien, références et information 24/7.",
+    "phone": "1-877-336-2433",
+    "url": "https://femaide.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 support via Phone and Text."
+    },
+    "primary_phone_label": "1-877-FEMAIDE",
+    "eligibility_notes": "Francophone women in Ontario dealing with violence.",
+    "synthetic_queries": ["violence faite aux femmes", "aide francophone violence", "french crisis line"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-irs-crisis-line",
+    "name": "Indian Residential Schools Crisis Line",
+    "name_fr": "Ligne de crise des pensionnats indiens",
+    "description": "A 24/7 crisis line for former residential school students and their families. Provides emotional support related to residential school trauma.",
+    "phone": "1-866-925-4419",
+    "url": "https://www.sac-isc.gc.ca",
+    "intent_category": "Crisis",
+    "scope": "canada",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7. Cree, Ojibway, Inuktitut available."
+    },
+    "eligibility_notes": "Residential school survivors and intergenerational family members.",
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.sac-isc.gc.ca"
+      }
+    ],
+    "synthetic_queries": ["residential school survivors", "intergenerational trauma help"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-lgbt-youthline",
+    "name": "LGBT YouthLine",
+    "description": "A Queer, Trans, Two-Spirit* youth-led organization that affirms and supports the experiences of youth (29 and under) across Ontario.",
+    "phone": "1-800-268-9688",
+    "url": "https://youthline.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "sunday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "monday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "tuesday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "wednesday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "thursday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "friday": {
+        "open": "16:00",
+        "close": "21:30"
+      },
+      "notes": "Closed Saturdays. Text 647-694-4275 available."
+    },
+    "eligibility_notes": "2SLGBTQ+ youth ages 29 and under in Ontario.",
+    "identity_tags": [
+      {
+        "tag": "2SLGBTQI+",
+        "evidence_url": "https://youthline.ca"
+      },
+      {
+        "tag": "Youth",
+        "evidence_url": "https://youthline.ca"
+      }
+    ],
+    "synthetic_queries": ["lgbt youth support", "trans youth help", "queer peer support", "coming out help"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-male-survivors",
+    "name": "Support Services for Male Survivors of Sexual Abuse",
+    "description": "A 24/7 multilingual crisis and referral line for male survivors of sexual abuse or assault in Ontario.",
+    "phone": "1-866-887-0015",
+    "url": "https://cleoconnect.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability."
+    },
+    "eligibility_notes": "Men and boys who have experienced sexual violence.",
+    "synthetic_queries": ["male abuse help", "sexual assault men", "male survivor support"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-metis-crisis-line",
+    "name": "Métis Nation of Ontario Crisis Line",
+    "description": "Mental health and addictions support for Métis citizens in Ontario. Entry point to MNO healing and wellness programs.",
+    "phone": "1-877-767-7572",
+    "url": "https://www.metisnation.org",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability."
+    },
+    "eligibility_notes": "Métis citizens in Ontario and their families.",
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.metisnation.org"
+      }
+    ],
+    "synthetic_queries": ["metis mental health", "metis crisis support"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-mmiwg-crisis-line",
+    "name": "MMIWG Crisis Line",
+    "name_fr": "Ligne de crise FFADA",
+    "description": "A national 24/7 support line for those impacted by missing and murdered Indigenous women, girls, and 2SLGBTQQIA+ people.",
+    "phone": "1-844-413-6649",
+    "url": "https://www.canada.ca",
+    "intent_category": "Crisis",
+    "scope": "canada",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7. Bilingual (English/French)."
+    },
+    "eligibility_notes": "Families, survivors, anyone affected by MMIWG.",
+    "identity_tags": [
+      {
+        "tag": "Indigenous Peoples",
+        "evidence_url": "https://www.canada.ca"
+      }
+    ],
+    "synthetic_queries": ["mmiwg support", "missing indigenous women support"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-naseeha",
+    "name": "Naseeha Mental Health",
+    "description": "Provides a confidential helpline for young Muslims to receive immediate, anonymous, and confidential support.",
+    "phone": "1-866-627-3342",
+    "url": "https://naseeha.org",
+    "intent_category": "Crisis",
+    "scope": "canada",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability."
+    },
+    "eligibility_notes": "Muslim youth and general public.",
+    "synthetic_queries": ["muslim crisis line", "islamic mental health"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-nors",
+    "name": "National Overdose Response Service (NORS)",
+    "description": "A 24/7 virtual safe consumption hotline. An operator stays on the line while you use drugs to prevent fatal overdoses.",
+    "phone": "1-888-688-6677",
+    "url": "https://nors.ca",
+    "intent_category": "Crisis",
+    "scope": "canada",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability via Call or Text."
+    },
+    "primary_phone_label": "Call or Text",
+    "eligibility_notes": "Anyone using drugs alone who wants safety monitoring.",
+    "synthetic_queries": ["overdose prevention", "safe consumption line", "using drugs alone"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-ontx-distress",
+    "name": "ONTX - Ontario Online & Text Crisis Services",
+    "description": "A provincial text and chat service for individuals experiencing distress, providing confidential support from trained responders.",
+    "phone": "258258",
+    "primary_phone_label": "Text SUPPORT to 258258",
+    "url": "https://dcontario.org",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "tuesday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "wednesday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "thursday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "friday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "saturday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "sunday": {
+        "open": "14:00",
+        "close": "02:00"
+      },
+      "notes": "Services available 2pm-2am daily."
+    },
+    "eligibility_notes": "Anyone in Ontario experiencing distress.",
+    "synthetic_queries": ["text crisis line", "online chat support", "emotional support text"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-sadv-navigation",
+    "name": "Sexual Assault/Domestic Violence Navigation Line",
+    "description": "Helps victims navigate the healthcare system after an assault. Staffed by nurses who connect survivors to SA/DV Treatment Centres for forensic evidence collection and medical care.",
+    "phone": "1-855-628-7238",
+    "url": "https://www.sadvtreatmentcentres.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7. Connects to 37 specialized treatment centres."
+    },
+    "primary_phone_label": "1-855-NAV-SADV",
+    "eligibility_notes": "Survivors of sexual assault or domestic violence in Ontario.",
+    "synthetic_queries": ["sexual assault hospital", "rape kit ontario", "domestic violence medical help"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-seniors-safety-line",
+    "name": "Seniors Safety Line",
+    "description": "A 24/7 confidential line for seniors suffering from abuse (physical, mental, sexual, neglect, or financial).",
+    "phone": "1-866-299-1011",
+    "url": "https://eapon.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 availability. Operated by AWHL."
+    },
+    "eligibility_notes": "Seniors in Ontario experiencing abuse or neglect.",
+    "identity_tags": [
+      {
+        "tag": "Seniors",
+        "evidence_url": "https://eapon.ca"
+      }
+    ],
+    "synthetic_queries": ["elder abuse help", "seniors crisis line", "financial abuse seniors"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-vac-assistance",
+    "name": "VAC Assistance Service",
+    "name_fr": "Service d'assistance d'ACC",
+    "description": "A 24/7 confidential counseling line for Veterans, Canadian Armed Forces members, RCMP members, and their families.",
+    "phone": "1-800-268-7708",
+    "url": "https://www.veterans.gc.ca",
+    "intent_category": "Crisis",
+    "scope": "canada",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7. Bilingual counselors available."
+    },
+    "eligibility_notes": "Veterans, CAF members, RCMP, and their families.",
+    "identity_tags": [
+      {
+        "tag": "Veterans",
+        "evidence_url": "https://www.veterans.gc.ca"
+      }
+    ],
+    "synthetic_queries": ["veteran mental health", "military crisis line", "PTSD support veterans"],
+    "status": "Active"
+  },
+  {
+    "id": "ontario-victim-support-line",
+    "name": "Victim Support Line (VSL)",
+    "description": "A provincial 24/7 information and support line for victims of crime, including survivors of sexual assault and domestic violence.",
+    "phone": "1-888-579-2888",
+    "url": "https://victimsupportdirectory.ca",
+    "intent_category": "Crisis",
+    "scope": "ontario",
+    "virtual_delivery": true,
+    "verification_level": "L1",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7. 200+ languages via interpreters."
+    },
+    "eligibility_notes": "Victims of crime in Ontario.",
+    "synthetic_queries": ["crime victim help", "victim services ontario", "crime support line"],
+    "status": "Active"
+  },
+  {
+    "name": "BounceBack Ontario",
+    "name_fr": "Retrouver sa santé",
+    "description": "A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks.",
+    "category": "Health",
+    "phone": "1-866-345-0224",
+    "website": "https://bouncebackontario.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["mental health", "CBT", "depression", "anxiety", "coaching", "self-help"],
+    "eligibility": "Ontario residents 15+ with OHIP",
+    "fees": "Free",
+    "hours": "Registration: Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "bounceback-ontario"
+  },
+  {
+    "name": "Cancer Information Helpline",
+    "description": "A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services.",
+    "category": "Health",
+    "phone": "1-888-939-3333",
+    "website": "https://cancer.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["cancer", "oncology", "treatment", "support", "navigation"],
+    "eligibility": "Cancer patients, families, and public",
+    "fees": "Free",
+    "hours": "Mon-Fri 8am-6pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "cancer-information-helpline"
+  },
+  {
+    "name": "Ontario Caregiver Helpline",
+    "description": "A 24/7 dedicated helpline for caregivers in Ontario, offering information, assessment, and referral to local services and support groups.",
+    "category": "Health",
+    "phone": "1-833-416-2273",
+    "website": "https://ontariocaregiver.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["caregiver", "support", "respite", "family", "exhaustion"],
+    "eligibility": "Caregivers in Ontario",
+    "fees": "Free",
+    "hours": "24/7",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "ontario-caregiver-helpline"
+  },
+  {
+    "name": "Diabetes Canada Information & Support",
+    "description": "Information and support for people living with diabetes, including access to the Ontario Monitoring for Health Program for financial assistance with supplies.",
+    "category": "Health",
+    "phone": "1-800-226-8464",
+    "website": "https://www.diabetes.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["diabetes", "insulin", "support", "chronic disease", "monitoring"],
+    "eligibility": "Anyone affected by diabetes",
+    "fees": "Free",
+    "hours": "Mon-Fri 9am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "diabetes-canada-information-support"
+  },
+  {
+    "name": "Jordan's Principle Call Centre",
+    "description": "A 24/7 federal helpline ensuring First Nations children get the health, social, and educational services they need without delays.",
+    "category": "Health",
+    "phone": "1-855-572-4453",
+    "website": "https://fncaringsociety.com/jordans-principle",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["indigenous", "children", "first nations", "funding", "health care", "access"],
+    "eligibility": "First Nations children",
+    "fees": "Free",
+    "hours": "24/7",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "jordan-s-principle-call-centre"
+  },
+  {
+    "name": "Lung Health Line",
+    "description": "Connects callers directly with Certified Respiratory Educators for guidance on asthma, COPD, and other lung conditions.",
+    "category": "Health",
+    "phone": "1-888-344-5864",
+    "website": "https://lunghealth.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["lung", "respiratory", "asthma", "COPD", "breathing"],
+    "eligibility": "Residents with lung health concerns",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-4:30pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "lung-health-line"
+  },
+  {
+    "name": "Sexual Health Infoline Ontario (SHILO)",
+    "name_fr": "Infoligne de santé sexuelle de l'Ontario",
+    "description": "Anonymous and confidential counselling and information on sexual health, including STIs, HIV/AIDS, birth control, pregnancy, and sexual orientation.",
+    "category": "Health",
+    "phone": "1-800-668-2437",
+    "website": "https://sexualhealthontario.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["sexual health", "STI", "HIV", "birth control", "pregnancy", "anonymous"],
+    "eligibility": "All Ontario residents",
+    "fees": "Free",
+    "hours": "Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "sexual-health-infoline-ontario-shilo-"
+  },
+  {
+    "name": "Advocacy Centre for the Elderly (ACE)",
+    "name_fr": "Centre de défense des aînés",
+    "description": "A specialty legal clinic providing legal services to seniors (60+) in Ontario. Focuses on elder law issues like long-term care, elder abuse, and health care consent.",
+    "category": "Legal",
+    "phone": "1-855-598-2656",
+    "website": "https://www.acelaw.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["seniors", "elder law", "abuse", "long-term care", "rights", "capacity"],
+    "eligibility": "Ontario residents aged 60+",
+    "fees": "Free",
+    "hours": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "advocacy-centre-for-the-elderly-ace-"
+  },
+  {
+    "name": "Employment Standards Information Centre",
+    "description": "Provides general information about Ontario's Employment Standards Act (ESA), covering minimum wage, hours of work, overtime, vacation, and termination pay.",
+    "category": "Legal",
+    "phone": "1-800-531-5551",
+    "website": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["employment", "work", "wages", "overtime", "labour", "rights"],
+    "eligibility": "Workers and employers in Ontario",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "employment-standards-information-centre"
+  },
+  {
+    "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
+    "description": "Provides free legal services for people living with HIV/AIDS in Ontario. Covers privacy, human rights, immigration, and social assistance.",
+    "category": "Legal",
+    "phone": "1-888-705-8889",
+    "website": "https://www.halco.org",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["HIV", "AIDS", "legal clinic", "discrimination", "privacy", "immigration"],
+    "eligibility": "People living with HIV/AIDS in Ontario",
+    "fees": "Free",
+    "hours": "Intake: Mon, Wed, Fri 9am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "hiv-aids-legal-clinic-ontario-halco-"
+  },
+  {
+    "name": "Human Rights Legal Support Centre (HRLSC)",
+    "name_fr": "Centre d'assistance juridique en matière de droits de la personne",
+    "description": "Provides free legal advice and assistance to individuals who have experienced discrimination under the Ontario Human Rights Code.",
+    "category": "Legal",
+    "phone": "1-866-625-5179",
+    "website": "https://hrlsc.on.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["human rights", "discrimination", "racism", "harassment", "legal aid", "code"],
+    "eligibility": "Anyone in Ontario facing discrimination",
+    "fees": "Free",
+    "hours": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "human-rights-legal-support-centre-hrlsc-"
+  },
+  {
+    "name": "Injured Workers Community Legal Clinic (IWC)",
+    "description": "Specializes in representing injured workers in WSIB disputes. Handles denied claims and benefit issues.",
+    "category": "Legal",
+    "phone": "1-833-461-2411",
+    "website": "https://iwclc.org",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["injured worker", "WSIB", "compensation", "appeal", "legal clinic"],
+    "eligibility": "Injured workers in Ontario",
+    "fees": "Free",
+    "hours": "Mon-Fri 9am-4:30pm (Wed afternoon only)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "injured-workers-community-legal-clinic-iwc-"
+  },
+  {
+    "name": "Justice for Children and Youth (JFCY)",
+    "description": "Protects the legal rights of minors (under 18) and homeless youth (under 25) in Ontario. Covers education, family, criminal, and social welfare law.",
+    "category": "Legal",
+    "phone": "1-866-999-5329",
+    "website": "https://jfcy.org",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["youth", "children", "legal rights", "homeless", "education", "criminal"],
+    "eligibility": "Youth under 18 (or under 25 if homeless)",
+    "fees": "Free",
+    "hours": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "justice-for-children-and-youth-jfcy-"
+  },
+  {
+    "name": "Landlord's Self-Help Centre",
+    "description": "A specialty legal clinic providing information, summary advice, and referrals to small-scale landlords in Ontario.",
+    "category": "Legal",
+    "phone": "1-800-730-3218",
+    "website": "https://landlordselfhelp.com",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["landlord", "small landlord", "tenant dispute", "rent", "forms"],
+    "eligibility": "Small-scale landlords in Ontario",
+    "fees": "Free",
+    "hours": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "landlord-s-self-help-centre"
+  },
+  {
+    "name": "Legal Aid Ontario",
+    "name_fr": "Aide juridique Ontario",
+    "description": "Ontario’s primary public legal assistance provider. Offers certificates for full representation, duty counsel in courts, and summary legal advice by phone for criminal, family, and immigration law.",
+    "category": "Legal",
+    "phone": "1-800-668-8258",
+    "website": "https://legalaid.on.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["legal aid", "lawyer", "certificate", "criminal", "family", "immigration", "court"],
+    "eligibility": "Low-income Ontarians (financial testing applies)",
+    "fees": "Free (if eligible)",
+    "hours": "Mon-Fri 8am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "legal-aid-ontario"
+  },
+  {
+    "name": "Landlord and Tenant Board Contact Centre",
+    "name_fr": "Commission de la location immobilière",
+    "description": "Provides information about the Residential Tenancies Act and LTB procedures. Staff can explain forms and the eviction process but cannot provide legal advice.",
+    "category": "Legal",
+    "phone": "1-888-332-3234",
+    "website": "https://tribunalsontario.ca/ltb",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["landlord", "tenant", "rent", "eviction", "tribunal", "housing"],
+    "eligibility": "Landlords and tenants in Ontario",
+    "fees": "Free information",
+    "hours": "Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "landlord-and-tenant-board-contact-centre"
+  },
+  {
+    "name": "Ontario Legal Information Centre",
+    "name_fr": "Centre d'information juridique de l'Ontario",
+    "description": "Offers a free 30-minute meeting with a lawyer to anyone in Ontario, regardless of income. Provides general legal information and referrals for any area of law.",
+    "category": "Legal",
+    "phone": "1-844-343-7462",
+    "website": "https://centreinfojuridique.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["legal info", "consultation", "referral", "general law", "30 minutes"],
+    "eligibility": "Anyone in Ontario",
+    "fees": "Free",
+    "hours": "Mon-Fri Business Hours (By Appointment)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "ontario-legal-information-centre"
+  },
+  {
+    "name": "Office of the Worker Adviser (OWA)",
+    "name_fr": "Bureau des conseillers des travailleurs",
+    "description": "Provides free legal advice and representation to non-unionized injured workers in WSIB cases and workers facing health and safety reprisals.",
+    "category": "Legal",
+    "phone": "1-800-435-8980",
+    "website": "https://www.owa.gov.on.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["worker", "injury", "WSIB", "reprisal", "safety", "legal representation"],
+    "eligibility": "Non-unionized injured workers",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "office-of-the-worker-adviser-owa-"
+  },
+  {
+    "name": "Steps to Justice",
+    "name_fr": "Justice pas-à-pas",
+    "description": "A comprehensive online guide to law in Ontario. Features step-by-step information and a Live Chat service to help users find legal answers.",
+    "category": "Legal",
+    "phone": "",
+    "website": "https://stepstojustice.ca",
+    "scope": "ontario",
+    "address": "Online",
+    "keywords": ["legal info", "self-help", "forms", "chat", "guide", "family", "housing"],
+    "eligibility": "Anyone",
+    "fees": "Free",
+    "hours": "Website 24/7; Chat Mon-Fri",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "steps-to-justice"
+  },
+  {
+    "name": "Workers Health & Safety Legal Clinic",
+    "description": "Assists non-unionized workers who face punishment or firing for raising health and safety concerns. Focuses on reprisals and unsafe work refusals.",
+    "category": "Legal",
+    "phone": "1-877-832-6090",
+    "website": "https://workers-safety.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["worker", "safety", "reprisal", "health", "unsafe work", "legal help"],
+    "eligibility": "Non-unionized workers in Ontario",
+    "fees": "Free",
+    "hours": "Mon-Fri 9am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "workers-health-safety-legal-clinic"
+  },
+  {
+    "name": "WSIB (Workplace Safety & Insurance Board)",
+    "name_fr": "CSPAAT",
+    "description": "Administers Ontario's no-fault workers' compensation system. Handles claims for workplace injuries and illnesses.",
+    "category": "Legal",
+    "phone": "1-800-387-0750",
+    "website": "https://www.wsib.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["worker", "injury", "compensation", "insurance", "claim"],
+    "eligibility": "Ontario workers and employers",
+    "fees": "Free for workers (employer funded)",
+    "hours": "Mon-Fri 7:30am-6pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "wsib-workplace-safety-insurance-board-"
+  },
+  {
+    "name": "Arthritis Society Canada",
+    "name_fr": "Société de l'arthrite",
+    "description": "Telephone and email support for people affected by arthritis. Trained volunteers provide information on arthritis types, treatment, pain management, and local resources.",
+    "category": "Health",
+    "phone": "1-800-321-1433",
+    "website": "https://arthritis.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["arthritis", "joint pain", "rheumatoid", "osteoarthritis", "chronic pain", "inflammation"],
+    "eligibility": "Anyone affected by arthritis",
+    "fees": "Free",
+    "hours": "Mon-Fri (messages returned within 1 business day)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "arthritis-society-canada"
+  },
+  {
+    "name": "Heart and Stroke Foundation",
+    "name_fr": "Fondation des maladies du cœur et de l'AVC",
+    "description": "Provides evidence-based information on heart disease and stroke, including prevention, risk factors, recovery, and healthy living resources.",
+    "category": "Health",
+    "phone": "1-888-473-4636",
+    "website": "https://www.heartandstroke.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["heart disease", "stroke", "cardiovascular", "blood pressure", "cholesterol", "heart attack"],
+    "eligibility": "Anyone seeking heart or stroke information",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "heart-and-stroke-foundation"
+  },
+  {
+    "name": "Hospice Palliative Care Ontario (HPCO)",
+    "name_fr": "Soins palliatifs Ontario",
+    "description": "Provincial helpline for palliative care information and navigation. Helps individuals, families, and caregivers find hospice programs, palliative care units, pain management services, and bereavement support.",
+    "category": "Health",
+    "phone": "1-833-621-0728",
+    "website": "https://www.hpco.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["palliative care", "hospice", "end of life", "bereavement", "terminal illness", "pain management"],
+    "eligibility": "Patients, families, and caregivers seeking palliative care",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-4:30pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "hospice-palliative-care-ontario-hpco-"
+  },
+  {
+    "name": "MS Knowledge Network (MS Canada)",
+    "name_fr": "Réseau de connaissances sur la SP",
+    "description": "National MS information and navigation service. Connects callers with MS Navigators who provide evidence-based information on multiple sclerosis, disease management, treatment, and local services.",
+    "category": "Health",
+    "phone": "1-844-859-6789",
+    "website": "https://mscanada.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["multiple sclerosis", "MS", "neurological", "autoimmune", "mobility"],
+    "eligibility": "Anyone affected by multiple sclerosis",
+    "fees": "Free",
+    "hours": "Mon-Fri 8am-8pm ET",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "ms-knowledge-network-ms-canada-"
+  },
+  {
+    "name": "Parkinson Canada",
+    "name_fr": "Parkinson Canada",
+    "description": "Helpline for people living with Parkinson's disease, caregivers, and healthcare providers. Offers information about symptoms, treatment options, community resources, and support programs.",
+    "category": "Health",
+    "phone": "1-888-664-1974",
+    "website": "https://www.parkinson.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["Parkinson's", "tremor", "movement disorder", "neurological", "dopamine"],
+    "eligibility": "Anyone affected by Parkinson's disease",
+    "fees": "Free",
+    "hours": "Mon-Fri 9am-4pm ET",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "parkinson-canada"
+  },
+  {
+    "name": "Talk Tobacco",
+    "description": "Culturally appropriate quit-smoking and vaping support for Indigenous peoples (First Nations, Inuit, Métis). Offers free, confidential counselling with respect for traditional tobacco use.",
+    "category": "Health",
+    "phone": "1-833-998-8255",
+    "website": "https://talktobacco.ca",
+    "scope": "canada",
+    "address": "Available across Canada",
+    "keywords": ["quit smoking", "tobacco", "Indigenous", "First Nations", "Inuit", "Métis", "vaping", "cessation"],
+    "eligibility": "Indigenous peoples seeking tobacco cessation support",
+    "fees": "Free",
+    "hours": "7 days a week (hours vary)",
+    "languages": ["English", "French", "Cree", "Ojibway", "Inuktitut"],
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "talk-tobacco"
+  },
+  {
+    "name": "Aboriginal Legal Services (ALS)",
+    "description": "Provincial legal clinic serving Indigenous peoples across Ontario. Provides legal advice, representation, police complaints assistance, child welfare support (Giiwedin Anang Council), and Gladue report writing.",
+    "category": "Legal",
+    "phone": "1-844-633-2886",
+    "website": "https://aboriginallegal.ca",
+    "scope": "ontario",
+    "address": "Toronto (serving province-wide)",
+    "keywords": ["Indigenous", "Aboriginal", "First Nations", "Métis", "Inuit", "Gladue", "child welfare"],
+    "eligibility": "Indigenous peoples in Ontario",
+    "fees": "Free",
+    "hours": "Mon, Wed, Fri 10am-3pm (intake)",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "aboriginal-legal-services-als-"
+  },
+  {
+    "name": "Consumer Protection Ontario",
+    "name_fr": "Protection du consommateur Ontario",
+    "description": "Provincial helpline providing free information on consumer rights and unfair business practices. Assists with door-to-door sales, car repairs, home renovations, collection agencies, contracts, and consumer complaints.",
+    "category": "Legal",
+    "phone": "1-800-889-9768",
+    "website": "https://ontario.ca/page/consumer-protection-ontario",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["consumer", "complaint", "refund", "scam", "contract", "business", "protection"],
+    "eligibility": "Any consumer in Ontario",
+    "fees": "Free",
+    "hours": "Mon-Fri 8:30am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "consumer-protection-ontario"
+  },
+  {
+    "name": "Law Society Referral Service",
+    "name_fr": "Service de référence du Barreau",
+    "description": "Free referral to a lawyer or licensed paralegal who will provide a free 30-minute consultation. Operated by the Law Society of Ontario to connect people with legal professionals.",
+    "category": "Legal",
+    "phone": "1-855-947-5255",
+    "website": "https://findlegalhelp.ca",
+    "scope": "ontario",
+    "address": "Province-wide",
+    "keywords": ["lawyer", "paralegal", "referral", "consultation", "legal help", "find lawyer"],
+    "eligibility": "Anyone seeking legal help",
+    "fees": "Free referral; 30-minute consultation is free",
+    "hours": "Mon-Fri 9am-5pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "law-society-referral-service"
+  },
+  {
+    "name": "Nishnawbe-Aski Legal Services (NALSC)",
+    "description": "Legal aid clinic serving Nishnawbe Aski Nation (NAN) communities in Northern Ontario. Provides legal advice, certificates, and restorative justice programs including Talking Together.",
+    "category": "Legal",
+    "phone": "1-800-465-5581",
+    "website": "https://nanlegal.on.ca",
+    "scope": "ontario",
+    "address": "Thunder Bay, ON (serving Northern Ontario)",
+    "keywords": ["Indigenous", "First Nations", "legal aid", "NAN", "Northern Ontario", "restorative justice"],
+    "eligibility": "Indigenous peoples in NAN territory (financial testing applies)",
+    "fees": "Free (if eligible)",
+    "hours": "Mon-Fri 8:30am-4:30pm",
+    "verification_level": "L1",
+    "status": "Active",
+    "id": "nishnawbe-aski-legal-services-nalsc-"
   }
 ]

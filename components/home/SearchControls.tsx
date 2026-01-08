@@ -45,7 +45,6 @@ export default function SearchControls({
     <div className="flex flex-col items-center gap-8">
       <div className="flex flex-wrap items-center justify-center gap-2">
 
-
         {/* Open Now Toggle */}
         <Button
           variant={openNow ? "default" : "pill"}
@@ -114,3 +113,4 @@ export default function SearchControls({
     </div>
   )
 }
+

@@ -1,0 +1,13 @@
+{
+  "name": "Cancer Information Helpline",
+  "description": "A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services.",
+  "category": "Health",
+  "phone": "1-888-939-3333",
+  "website": "https://cancer.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["cancer", "oncology", "treatment", "support", "navigation"],
+  "eligibility": "Cancer patients, families, and public",
+  "fees": "Free",
+  "hours": "Mon-Fri 8am-6pm"
+}

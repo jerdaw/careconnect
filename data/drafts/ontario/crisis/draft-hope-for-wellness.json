@@ -1,0 +1,32 @@
+{
+  "id": "ontario-hope-for-wellness",
+  "name": "Hope for Wellness Help Line",
+  "name_fr": "Ligne d’écoute d’espoir pour le mieux-être",
+  "description": "Offers immediate mental health counselling and crisis intervention to all Indigenous peoples across Canada.",
+  "phone": "1-855-242-3310",
+  "url": "https://hopeforwellness.ca",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability. Cree, Ojibway, Inuktitut available on request."
+  },
+  "eligibility_notes": "All Indigenous peoples across Canada.",
+  "identity_tags": [{ "tag": "Indigenous Peoples", "evidence_url": "https://hopeforwellness.ca" }],
+  "synthetic_queries": ["indigenous counselling", "first nations crisis line", "inuit help line"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

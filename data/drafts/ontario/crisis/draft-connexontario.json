@@ -1,0 +1,34 @@
+{
+  "id": "ontario-connexontario",
+  "name": "ConnexOntario",
+  "name_fr": "ConnexOntario",
+  "description": "A provincial 24/7 helpline providing free and confidential health services information for people experiencing problems with alcohol and drugs, mental illness, or gambling.",
+  "description_fr": "Service d'information sur la santé gratuit et confidentiel, disponible 24/7, pour les personnes éprouvant des problèmes liés à l'alcool et aux drogues, à la maladie mentale ou au jeu.",
+  "phone": "1-866-531-2600",
+  "url": "https://connexontario.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability."
+  },
+  "primary_phone_label": "Toll-Free",
+  "eligibility_notes": "Anyone in Ontario seeking mental health, addiction, or gambling support information.",
+  "identity_tags": [],
+  "synthetic_queries": ["mental health help", "addiction treatment", "gambling support", "detox centres ontario"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "ontario-lgbt-youthline",
+  "name": "LGBT YouthLine",
+  "description": "A Queer, Trans, Two-Spirit* youth-led organization that affirms and supports the experiences of youth (29 and under) across Ontario.",
+  "phone": "1-800-268-9688",
+  "url": "https://youthline.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "sunday": { "open": "16:00", "close": "21:30" },
+    "monday": { "open": "16:00", "close": "21:30" },
+    "tuesday": { "open": "16:00", "close": "21:30" },
+    "wednesday": { "open": "16:00", "close": "21:30" },
+    "thursday": { "open": "16:00", "close": "21:30" },
+    "friday": { "open": "16:00", "close": "21:30" },
+    "notes": "Closed Saturdays. Text 647-694-4275 available."
+  },
+  "eligibility_notes": "2SLGBTQ+ youth ages 29 and under in Ontario.",
+  "identity_tags": [
+    { "tag": "2SLGBTQI+", "evidence_url": "https://youthline.ca" },
+    { "tag": "Youth", "evidence_url": "https://youthline.ca" }
+  ],
+  "synthetic_queries": ["lgbt youth support", "trans youth help", "queer peer support", "coming out help"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

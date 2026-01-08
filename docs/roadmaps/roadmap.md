@@ -30,41 +30,23 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 ---
 
-## v11.0: Scope Expansion (Applies-to-Kingston First)
+## v11.0: Scope Expansion - Ontario-Wide Services (Completed)
 
-### 1) Ontario-wide services (incremental)
+> **Status**: ✅ Implemented (2026-01-08)
+> **Focus**: Ontario-wide services for Kingston residents
+> **Definition**: [archive/2026-01-08-v11-0-scope-expansion.md](archive/2026-01-08-v11-0-scope-expansion.md)
 
-- [ ] **Goal**: Build towards a comprehensive set of Ontario-wide services that apply anywhere in Ontario (including Kingston).
-- [ ] **Definition**: Province-wide availability (not city-specific) with a verifiable public source and stable operator.
-- [ ] **Priorities**: Crisis, mental health, substance use, domestic violence, legal aid, youth, seniors, disability, newcomer supports.
-- [ ] **Method**: Manual curation first; optionally add a 211 Ontario partnership for additive ingestion with human review.
+### Key Accomplishments
 
-### 2) Canada-wide services (incremental)
+- [x] Added `scope` enum (`kingston`, `ontario`, `canada`) to data model
+- [x] Ingested 47 Ontario-wide services (Crisis, Health, Legal)
+- [x] Scope filter UI with fallback handling
+- [x] 196 total services with 100% embedding coverage
 
-- [ ] **Goal**: Add Canada-wide services that apply regardless of city/province and remain useful for Kingston residents.
-- [ ] **Priorities**: National crisis and youth supports, Indigenous resources, newcomer/federal settlement supports, legal info, veterans.
-- [ ] **Method**: Same verification requirements as the Kingston dataset; tag and surface clearly as national resources.
+### Future Phases (Deferred to v15+)
 
-### 3) Major Ontario cities (true scope extension)
-
-- [ ] **Goal**: Add city-specific service directories for major Ontario population centres.
-- [ ] **Start set**: Toronto, Ottawa, Hamilton, London, Windsor, Kitchener-Waterloo (adjust based on partner readiness).
-- [ ] **Data strategy**: City-by-city ingestion via 211/open data, then manual L1 verification for high-impact services.
-- [ ] **Enablers**: 211 sync (additive-only, preserve manual edits) + partner update requests with audit trail + server-side data fetching as scale increases.
-
-### Shared guardrails
-
-- [ ] **Coverage taxonomy**: Standardize how we label services as `kingston`, `ontario`, `canada`, or `city` (and keep “applies to Kingston” explicit in UI).
-- [ ] **Privacy posture**: City selection should be user-driven (no background location tracking); keep public search query handling privacy-first.
-- [ ] **Verification**: Maintain staleness enforcement and provenance for every new scope so expansion does not dilute trust.
-
-### Conditional Features (Scale Triggers)
-
-| Feature                     | Trigger                        | Effort    |
-| :-------------------------- | :----------------------------- | :-------- |
-| IndexedDB for PWA           | >500 services                  | High      |
-| PostgreSQL-first migration  | Partner portal heavy usage     | Very High |
-| Server-side semantic search | Privacy policy change + budget | High      |
+- Canada-wide services expansion
+- Major Ontario cities (Toronto, Ottawa, etc.)
 
 ---
 
@@ -126,7 +108,7 @@ The following items represent the strategic phases of the roadmap:
 | **v10.1** | UI Polish & Data Expansion   | Completed | 159 services + Map + Multi-lingual |
 | **v12.0** | Legal & Compliance           | Completed | Liability protection + compliance  |
 | **v13.0** | Secure Data Architecture     | Completed | Privacy + Infinite Scale           |
-| **v11.0** | Scope Expansion              | Planned   | Ontario + Canada + major cities    |
+| **v11.0** | Scope Expansion              | Completed | Ontario-wide services (47)         |
 | **v14.0** | Impact, Equity & Trust       | Planned   | Verifiable outcomes + access       |
 
 ---

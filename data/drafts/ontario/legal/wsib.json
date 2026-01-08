@@ -1,0 +1,14 @@
+{
+  "name": "WSIB (Workplace Safety & Insurance Board)",
+  "name_fr": "CSPAAT",
+  "description": "Administers Ontario's no-fault workers' compensation system. Handles claims for workplace injuries and illnesses.",
+  "category": "Legal",
+  "phone": "1-800-387-0750",
+  "website": "https://www.wsib.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["worker", "injury", "compensation", "insurance", "claim"],
+  "eligibility": "Ontario workers and employers",
+  "fees": "Free for workers (employer funded)",
+  "hours": "Mon-Fri 7:30am-6pm"
+}

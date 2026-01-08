@@ -1,0 +1,19 @@
+{
+  "id": "ontario-mock-crisis-line",
+  "name": "Mock Ontario Crisis Line",
+  "name_fr": "Ligne de crise simulée",
+  "description": "A 24/7 crisis line for testing purposes.",
+  "phone": "1-800-555-0199",
+  "url": "https://example.com/crisis",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "_meta": {
+    "source": "Manual Test",
+    "researched_at": "2026-01-07T12:00:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": false
+  }
+}

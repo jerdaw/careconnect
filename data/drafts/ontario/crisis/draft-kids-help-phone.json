@@ -1,0 +1,33 @@
+{
+  "id": "ontario-kids-help-phone",
+  "name": "Kids Help Phone",
+  "name_fr": "Jeunesse, J'écoute",
+  "description": "Canada's only 24/7, national support service. We offer professional counselling, information and referrals and volunteer-led, text-based support to young people in both English and French.",
+  "phone": "1-800-668-6868",
+  "url": "https://kidshelpphone.ca",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 phone and text (text CONNECT to 686868)."
+  },
+  "primary_phone_label": "Toll-Free",
+  "eligibility_notes": "Youth and young adults (ages 5-29).",
+  "identity_tags": [{ "tag": "Youth", "evidence_url": "https://kidshelpphone.ca" }],
+  "synthetic_queries": ["kids crisis line", "teen help", "counselling for youth", "text support"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

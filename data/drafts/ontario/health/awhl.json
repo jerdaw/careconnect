@@ -1,0 +1,14 @@
+{
+  "name": "Assaulted Women's Helpline",
+  "name_fr": "Fem'aide",
+  "description": "A 24-hour telephone and TTY crisis line for all women in Ontario who have experienced any form of abuse.",
+  "category": "Crisis",
+  "phone": "1-866-863-0511",
+  "website": "https://www.awhl.org",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["women", "abuse", "violence", "domestic violence", "shelter"],
+  "eligibility": "Women in Ontario",
+  "fees": "Free",
+  "hours": "24/7"
+}

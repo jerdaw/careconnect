@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useCallback } from "react"
 import { searchServices, SearchResult } from "@/lib/search"
 import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
 import { logger } from "@/lib/logger"
@@ -7,6 +7,7 @@ import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
 interface UseServicesProps {
   query: string
   category?: string
+  scope?: 'all' | 'kingston' | 'provincial'
   userLocation?: { lat: number; lng: number }
   openNow?: boolean
   isReady: boolean
@@ -20,6 +21,7 @@ interface UseServicesProps {
 export function useServices({
   query,
   category,
+  scope = 'all',
   userLocation,
   openNow,
   isReady,
@@ -29,6 +31,19 @@ export function useServices({
   setHasSearched,
   setSuggestion,
 }: UseServicesProps) {
+
+  // Filter results by scope
+  const filterByScope = useCallback((results: SearchResult[]): SearchResult[] => {
+    if (scope === 'all') return results
+    if (scope === 'kingston') {
+      return results.filter(r => r.service.scope === 'kingston' || !r.service.scope)
+    }
+    if (scope === 'provincial') {
+      return results.filter(r => r.service.scope === 'ontario' || r.service.scope === 'canada')
+    }
+    return results
+  }, [scope])
+
   useEffect(() => {
     const performSearch = async () => {
       // Allow empty query if filters are active
@@ -75,13 +90,16 @@ export function useServices({
           })
         }
 
-        setResults(initialResults)
+        // Apply scope filter
+        const scopedResults = filterByScope(initialResults)
+
+        setResults(scopedResults)
         setHasSearched(true)
         setIsLoading(false)
 
         // Cache successful results
-        if (initialResults.length > 0) {
-          setCachedServices(initialResults)
+        if (scopedResults.length > 0) {
+          setCachedServices(scopedResults)
         }
 
         // 2. Client-Side Enhancement (Personalization & Distance)
@@ -132,5 +150,5 @@ export function useServices({
 
     const timer = setTimeout(performSearch, 150)
     return () => clearTimeout(timer)
-  }, [query, category, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion])
+  }, [query, category, scope, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion, filterByScope])
 }

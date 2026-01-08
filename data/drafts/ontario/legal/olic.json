@@ -1,0 +1,14 @@
+{
+  "name": "Ontario Legal Information Centre",
+  "name_fr": "Centre d'information juridique de l'Ontario",
+  "description": "Offers a free 30-minute meeting with a lawyer to anyone in Ontario, regardless of income. Provides general legal information and referrals for any area of law.",
+  "category": "Legal",
+  "phone": "1-844-343-7462",
+  "website": "https://centreinfojuridique.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["legal info", "consultation", "referral", "general law", "30 minutes"],
+  "eligibility": "Anyone in Ontario",
+  "fees": "Free",
+  "hours": "Mon-Fri Business Hours (By Appointment)"
+}

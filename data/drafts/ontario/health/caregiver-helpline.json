@@ -1,0 +1,13 @@
+{
+  "name": "Ontario Caregiver Helpline",
+  "description": "A 24/7 dedicated helpline for caregivers in Ontario, offering information, assessment, and referral to local services and support groups.",
+  "category": "Health",
+  "phone": "1-833-416-2273",
+  "website": "https://ontariocaregiver.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["caregiver", "support", "respite", "family", "exhaustion"],
+  "eligibility": "Caregivers in Ontario",
+  "fees": "Free",
+  "hours": "24/7"
+}

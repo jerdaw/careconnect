@@ -1,0 +1,13 @@
+{
+  "name": "Workers Health & Safety Legal Clinic",
+  "description": "Assists non-unionized workers who face punishment or firing for raising health and safety concerns. Focuses on reprisals and unsafe work refusals.",
+  "category": "Legal",
+  "phone": "1-877-832-6090",
+  "website": "https://workers-safety.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["worker", "safety", "reprisal", "health", "unsafe work", "legal help"],
+  "eligibility": "Non-unionized workers in Ontario",
+  "fees": "Free",
+  "hours": "Mon-Fri 9am-5pm"
+}

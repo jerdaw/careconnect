@@ -1,0 +1,14 @@
+{
+  "name": "Sexual Health Infoline Ontario (SHILO)",
+  "name_fr": "Infoligne de santé sexuelle de l'Ontario",
+  "description": "Anonymous and confidential counselling and information on sexual health, including STIs, HIV/AIDS, birth control, pregnancy, and sexual orientation.",
+  "category": "Health",
+  "phone": "1-800-668-2437",
+  "website": "https://sexualhealthontario.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["sexual health", "STI", "HIV", "birth control", "pregnancy", "anonymous"],
+  "eligibility": "All Ontario residents",
+  "fees": "Free",
+  "hours": "Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm"
+}

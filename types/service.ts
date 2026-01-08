@@ -27,6 +27,12 @@ export enum IntentCategory {
 }
 
 /**
+ * Service Scope for geographic availability.
+ * v11.0: Replaces is_provincial boolean with explicit scope enum.
+ */
+export type ServiceScope = "kingston" | "ontario" | "canada"
+
+/**
  * Identity Tag with evidence.
  */
 export interface IdentityTag {
@@ -167,6 +173,28 @@ export interface Service {
   cultural_safety?: boolean
 
   /**
+   * Geographic scope of service availability.
+   * v11.0: Replaces is_provincial boolean.
+   */
+  scope?: ServiceScope
+
+  /**
+   * If true, service is delivered virtually (phone/online) with no physical location required.
+   */
+  virtual_delivery?: boolean
+
+  /**
+   * Label for primary phone (e.g., "Provincial Toll-Free", "Kingston Local").
+   */
+  primary_phone_label?: string
+
+  /**
+   * Geographic service area description.
+   */
+  service_area?: string
+
+  /**
+   * @deprecated Use `scope` field instead. Will be removed in v12.0.
    * If true, this service is available province-wide, not just Kingston.
    */
   is_provincial?: boolean

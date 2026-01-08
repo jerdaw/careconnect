@@ -20,9 +20,9 @@
 - **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
-  - **Local Services**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
-  - **Provincial Services**: All 5 languages for name/description/eligibility fields.
-  - **Schema**: `is_provincial: true` flag distinguishes provincial services.
+  - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
+  - **Provincial Services (scope: 'ontario' or 'canada')**: All 5 languages for name/description/eligibility fields.
+  - **Schema**: The `scope` field (enum: `'kingston'`, `'ontario'`, `'canada'`) indicates geographic availability. The legacy `is_provincial` field is deprecated.
 
 ## 3. Implementation Rules
 

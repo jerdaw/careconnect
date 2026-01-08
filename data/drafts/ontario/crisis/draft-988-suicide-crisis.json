@@ -1,0 +1,33 @@
+{
+  "id": "ontario-988-suicide-crisis",
+  "name": "9-8-8 Suicide Crisis Helpline",
+  "name_fr": "9-8-8 : Ligne d’aide en cas de crise de suicide",
+  "description": "A national 24/7 suicide prevention and crisis line offering confidential support to anyone in emotional distress or thinking about suicide.",
+  "phone": "988",
+  "url": "https://988.ca",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7/365 availability via call or text."
+  },
+  "primary_phone_label": "Call or Text",
+  "eligibility_notes": "Anyone in Canada thinking about suicide or worried about someone who is.",
+  "identity_tags": [],
+  "synthetic_queries": ["suicide prevention", "crisis line", "help thinking about suicide", "988"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

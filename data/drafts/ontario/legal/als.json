@@ -1,0 +1,13 @@
+{
+  "name": "Aboriginal Legal Services (ALS)",
+  "description": "Provincial legal clinic serving Indigenous peoples across Ontario. Provides legal advice, representation, police complaints assistance, child welfare support (Giiwedin Anang Council), and Gladue report writing.",
+  "category": "Legal",
+  "phone": "1-844-633-2886",
+  "website": "https://aboriginallegal.ca",
+  "scope": "ontario",
+  "address": "Toronto (serving province-wide)",
+  "keywords": ["Indigenous", "Aboriginal", "First Nations", "Métis", "Inuit", "Gladue", "child welfare"],
+  "eligibility": "Indigenous peoples in Ontario",
+  "fees": "Free",
+  "hours": "Mon, Wed, Fri 10am-3pm (intake)"
+}

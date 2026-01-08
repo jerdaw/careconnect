@@ -1,0 +1,14 @@
+{
+  "name": "MS Knowledge Network (MS Canada)",
+  "name_fr": "Réseau de connaissances sur la SP",
+  "description": "National MS information and navigation service. Connects callers with MS Navigators who provide evidence-based information on multiple sclerosis, disease management, treatment, and local services.",
+  "category": "Health",
+  "phone": "1-844-859-6789",
+  "website": "https://mscanada.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["multiple sclerosis", "MS", "neurological", "autoimmune", "mobility"],
+  "eligibility": "Anyone affected by multiple sclerosis",
+  "fees": "Free",
+  "hours": "Mon-Fri 8am-8pm ET"
+}

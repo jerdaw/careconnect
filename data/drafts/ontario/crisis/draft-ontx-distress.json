@@ -1,0 +1,31 @@
+{
+  "id": "ontario-ontx-distress",
+  "name": "ONTX - Ontario Online & Text Crisis Services",
+  "description": "A provincial text and chat service for individuals experiencing distress, providing confidential support from trained responders.",
+  "phone": "258258",
+  "primary_phone_label": "Text SUPPORT to 258258",
+  "url": "https://dcontario.org",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "14:00", "close": "02:00" },
+    "tuesday": { "open": "14:00", "close": "02:00" },
+    "wednesday": { "open": "14:00", "close": "02:00" },
+    "thursday": { "open": "14:00", "close": "02:00" },
+    "friday": { "open": "14:00", "close": "02:00" },
+    "saturday": { "open": "14:00", "close": "02:00" },
+    "sunday": { "open": "14:00", "close": "02:00" },
+    "notes": "Services available 2pm-2am daily."
+  },
+  "eligibility_notes": "Anyone in Ontario experiencing distress.",
+  "synthetic_queries": ["text crisis line", "online chat support", "emotional support text"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

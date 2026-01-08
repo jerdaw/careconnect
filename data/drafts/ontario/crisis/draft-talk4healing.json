@@ -1,0 +1,32 @@
+{
+  "id": "ontario-talk4healing",
+  "name": "Talk4Healing",
+  "description": "A culturally grounded, fully confidential helpline for Indigenous women available in 14 languages across Ontario.",
+  "phone": "1-855-554-4325",
+  "url": "https://talk4healing.com",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 help. Text available at same number."
+  },
+  "primary_phone_label": "Call or Text",
+  "eligibility_notes": "Indigenous women in Ontario.",
+  "identity_tags": [{ "tag": "Indigenous Peoples", "evidence_url": "https://talk4healing.com" }],
+  "synthetic_queries": ["indigenous women help", "native crisis line", "ojibway crisis support"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

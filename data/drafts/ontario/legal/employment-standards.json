@@ -1,0 +1,13 @@
+{
+  "name": "Employment Standards Information Centre",
+  "description": "Provides general information about Ontario's Employment Standards Act (ESA), covering minimum wage, hours of work, overtime, vacation, and termination pay.",
+  "category": "Legal",
+  "phone": "1-800-531-5551",
+  "website": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["employment", "work", "wages", "overtime", "labour", "rights"],
+  "eligibility": "Workers and employers in Ontario",
+  "fees": "Free",
+  "hours": "Mon-Fri 8:30am-5pm"
+}

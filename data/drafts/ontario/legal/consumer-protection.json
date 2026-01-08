@@ -1,0 +1,14 @@
+{
+  "name": "Consumer Protection Ontario",
+  "name_fr": "Protection du consommateur Ontario",
+  "description": "Provincial helpline providing free information on consumer rights and unfair business practices. Assists with door-to-door sales, car repairs, home renovations, collection agencies, contracts, and consumer complaints.",
+  "category": "Legal",
+  "phone": "1-800-889-9768",
+  "website": "https://ontario.ca/page/consumer-protection-ontario",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["consumer", "complaint", "refund", "scam", "contract", "business", "protection"],
+  "eligibility": "Any consumer in Ontario",
+  "fees": "Free",
+  "hours": "Mon-Fri 8:30am-5pm"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Hospice Palliative Care Ontario (HPCO)",
+  "name_fr": "Soins palliatifs Ontario",
+  "description": "Provincial helpline for palliative care information and navigation. Helps individuals, families, and caregivers find hospice programs, palliative care units, pain management services, and bereavement support.",
+  "category": "Health",
+  "phone": "1-833-621-0728",
+  "website": "https://www.hpco.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["palliative care", "hospice", "end of life", "bereavement", "terminal illness", "pain management"],
+  "eligibility": "Patients, families, and caregivers seeking palliative care",
+  "fees": "Free",
+  "hours": "Mon-Fri 8:30am-4:30pm"
+}

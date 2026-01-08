@@ -1,0 +1,13 @@
+{
+  "name": "Talk4Healing",
+  "description": "A culturally safe helpline for Indigenous women and their families offering support for violence, housing, and mental health. Services available in 14 languages.",
+  "category": "Health",
+  "phone": "1-855-554-4325",
+  "website": "https://www.talk4healing.com",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["indigenous", "women", "violence", "housing", "support"],
+  "eligibility": "Indigenous women and families",
+  "fees": "Free",
+  "hours": "24/7"
+}

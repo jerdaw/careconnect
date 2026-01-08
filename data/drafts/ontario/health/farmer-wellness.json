@@ -1,0 +1,13 @@
+{
+  "name": "Farmer Wellness Initiative",
+  "description": "Unlimited free counselling for Ontario farmers and their families with professionals who understand the unique challenges of the agricultural lifestyle.",
+  "category": "Health",
+  "phone": "1-866-267-6255",
+  "website": "https://farmerwellnessinitiative.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["farmer", "agriculture", "mental health", "counselling", "rural"],
+  "eligibility": "Ontario farmers and families",
+  "fees": "Free",
+  "hours": "24/7"
+}

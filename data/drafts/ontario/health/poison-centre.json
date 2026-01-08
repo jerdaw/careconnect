@@ -1,0 +1,14 @@
+{
+  "name": "Ontario Poison Centre",
+  "name_fr": "Centre antipoison de l'Ontario",
+  "description": "A 24/7 emergency telephone service providing expert advice on the management of poisonings and drug overdoses. Staffed by nurses and pharmacists specially trained in toxicology.",
+  "category": "Health",
+  "phone": "1-800-268-9017",
+  "website": "https://www.ontariopoisoncentre.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["poison", "toxicology", "overdose", "chemicals", "emergency"],
+  "eligibility": "All Ontario residents",
+  "fees": "Free",
+  "hours": "24/7"
+}

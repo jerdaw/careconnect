@@ -1,0 +1,14 @@
+{
+  "name": "Advocacy Centre for the Elderly (ACE)",
+  "name_fr": "Centre de défense des aînés",
+  "description": "A specialty legal clinic providing legal services to seniors (60+) in Ontario. Focuses on elder law issues like long-term care, elder abuse, and health care consent.",
+  "category": "Legal",
+  "phone": "1-855-598-2656",
+  "website": "https://www.acelaw.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["seniors", "elder law", "abuse", "long-term care", "rights", "capacity"],
+  "eligibility": "Ontario residents aged 60+",
+  "fees": "Free",
+  "hours": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Lung Health Line",
+  "description": "Connects callers directly with Certified Respiratory Educators for guidance on asthma, COPD, and other lung conditions.",
+  "category": "Health",
+  "phone": "1-888-344-5864",
+  "website": "https://lunghealth.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["lung", "respiratory", "asthma", "COPD", "breathing"],
+  "eligibility": "Residents with lung health concerns",
+  "fees": "Free",
+  "hours": "Mon-Fri 8:30am-4:30pm"
+}

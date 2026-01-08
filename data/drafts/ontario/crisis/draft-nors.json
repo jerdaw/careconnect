@@ -1,0 +1,31 @@
+{
+  "id": "ontario-nors",
+  "name": "National Overdose Response Service (NORS)",
+  "description": "A 24/7 virtual safe consumption hotline. An operator stays on the line while you use drugs to prevent fatal overdoses.",
+  "phone": "1-888-688-6677",
+  "url": "https://nors.ca",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability via Call or Text."
+  },
+  "primary_phone_label": "Call or Text",
+  "eligibility_notes": "Anyone using drugs alone who wants safety monitoring.",
+  "synthetic_queries": ["overdose prevention", "safe consumption line", "using drugs alone"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:45:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

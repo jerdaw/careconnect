@@ -30,6 +30,18 @@
     "clearLocation": "Effacer le filtre de localisation",
     "filterByLocation": "Filtrer par position actuelle",
     "all": "Tous",
+    "scope": {
+      "all": "Tous",
+      "local": "Local",
+      "provincial": "Provincial"
+    },
+    "filterBar": {
+      "showing": "Affichage"
+    },
+    "noLocalResults": "Aucun service local trouvé pour cette recherche.",
+    "noResults": "Aucun résultat trouvé pour \"{query}\".",
+    "noResultsInCategory": "Aucun résultat trouvé pour \"{query}\" dans {category}.",
+    "showAllResults": "Afficher {count} résultats provinciaux",
     "crisis": "🗣️ Crise",
     "food": "Alimentation",
     "housing": "Logement",
@@ -104,6 +116,14 @@
   },
   "ServiceCard": {
     "reportIssue": "Signaler un problème"
+  },
+  "Badges": {
+    "ontarioWide": "À l'échelle de l'Ontario",
+    "canadaWide": "À l'échelle du Canada"
+  },
+  "Distance": {
+    "ontarioWide": "Disponible partout en Ontario",
+    "canadaWide": "Disponible partout au Canada"
   },
   "Dashboard": {
     "title": "Tableau de bord",

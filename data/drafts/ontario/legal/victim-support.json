@@ -1,0 +1,14 @@
+{
+  "name": "Victim Support Line",
+  "name_fr": "Ligne de soutien aux victimes",
+  "description": "A 24/7 province-wide line providing information and referrals to victims of crime. Access point for the Victim Quick Response Program+ (financial assistance).",
+  "category": "Legal",
+  "phone": "1-888-579-2888",
+  "website": "https://www.ontario.ca/page/victim-services",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["victim", "crime", "support", "financial assistance", "referral", "VQRP"],
+  "eligibility": "Victims of crime in Ontario",
+  "fees": "Free",
+  "hours": "24/7"
+}

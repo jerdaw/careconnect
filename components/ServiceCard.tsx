@@ -24,6 +24,7 @@ interface ServiceCardProps {
   score?: number
   matchReasons?: string[]
   highlightTokens?: string[]
+  onScopeFilter?: (scope: 'provincial') => void
 }
 
 const CategoryIcon = ({ category, className }: { category: string; className?: string }) => {
@@ -41,7 +42,7 @@ const CategoryIcon = ({ category, className }: { category: string; className?: s
   }
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = [] }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = [], onScopeFilter }) => {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const locale = useLocale()
   const t = useTranslations()
@@ -101,9 +102,30 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                      {service.status === "Merged" ? "Merged" : "Closed"}
                    </Badge>
                 )}
-                {service.is_provincial && (
-                  <Badge variant="outline" size="sm" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800 px-1.5 py-0 text-xs">
-                    Provincial
+                {service.scope === 'ontario' && (
+                  <Badge 
+                    variant="outline" 
+                    size="sm" 
+                    className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800 px-1.5 py-0 text-xs cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onScopeFilter?.('provincial')
+                    }}
+                  >
+                    {t('Badges.ontarioWide')}
+                  </Badge>
+                )}
+                {service.scope === 'canada' && (
+                  <Badge 
+                    variant="outline" 
+                    size="sm" 
+                    className="bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800 px-1.5 py-0 text-xs cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onScopeFilter?.('provincial')
+                    }}
+                  >
+                    {t('Badges.canadaWide')}
                   </Badge>
                 )}
                 {/* Fees Badge - Only if explicitly Free */}
@@ -130,12 +152,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                   <FreshnessBadge lastVerified={service.last_verified} />
                 )}
               </div>
-              {/* Meta row: category + distance */}
+              {/* Meta row: category + distance/scope */}
               <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-neutral-500">
                 <span className="font-medium">{service.intent_category}</span>
                 <span className="text-neutral-300">•</span>
                 <span>
-                  {serviceWithDistance.distance ? `${serviceWithDistance.distance.toFixed(1)} km` : "Kingston"}
+                  {service.scope === 'ontario' ? (
+                    t('Distance.ontarioWide')
+                  ) : service.scope === 'canada' ? (
+                    t('Distance.canadaWide')
+                  ) : serviceWithDistance.distance ? (
+                    `${serviceWithDistance.distance.toFixed(1)} km`
+                  ) : (
+                    "Kingston"
+                  )}
                 </span>
               </div>
             </div>

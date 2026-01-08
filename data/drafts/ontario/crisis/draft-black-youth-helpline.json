@@ -1,0 +1,30 @@
+{
+  "id": "ontario-black-youth-helpline",
+  "name": "Black Youth Helpline",
+  "description": "Serves all youth and specifically responds to the need for a Black youth specific service. Focuses on family, schools, and community.",
+  "phone": "1-833-294-8650",
+  "url": "https://blackyouth.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "09:00", "close": "22:00" },
+    "tuesday": { "open": "09:00", "close": "22:00" },
+    "wednesday": { "open": "09:00", "close": "22:00" },
+    "thursday": { "open": "09:00", "close": "22:00" },
+    "friday": { "open": "09:00", "close": "22:00" },
+    "saturday": { "open": "09:00", "close": "22:00" },
+    "sunday": { "open": "09:00", "close": "22:00" },
+    "notes": "9am-10pm daily."
+  },
+  "eligibility_notes": "Black youth and families.",
+  "synthetic_queries": ["black youth support", "school help for black students"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:50:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

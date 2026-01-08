@@ -19,6 +19,9 @@ export const IntentCategorySchema = z.enum([
   "Indigenous",
 ])
 
+// v11.0: Service scope for geographic availability
+export const ScopeSchema = z.enum(["kingston", "ontario", "canada"])
+
 // Identity tag with evidence
 export const IdentityTagSchema = z.object({
   tag: z.string().min(1, "Tag cannot be empty"),
@@ -94,6 +97,12 @@ export const ServiceSchema = z
     accessibility: z.record(z.boolean()).optional(),
     last_verified: z.string().optional(),
     cultural_safety: z.boolean().optional(),
+    // v11.0: Scope expansion fields
+    scope: ScopeSchema.optional(),
+    virtual_delivery: z.boolean().optional(),
+    primary_phone_label: z.string().optional(),
+    service_area: z.string().optional(),
+    // @deprecated: Use scope instead
     is_provincial: z.boolean().optional(),
     org_id: z.string().optional(),
     embedding: z.array(z.number()).optional(),

@@ -1,0 +1,14 @@
+{
+  "name": "Arthritis Society Canada",
+  "name_fr": "Société de l'arthrite",
+  "description": "Telephone and email support for people affected by arthritis. Trained volunteers provide information on arthritis types, treatment, pain management, and local resources.",
+  "category": "Health",
+  "phone": "1-800-321-1433",
+  "website": "https://arthritis.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["arthritis", "joint pain", "rheumatoid", "osteoarthritis", "chronic pain", "inflammation"],
+  "eligibility": "Anyone affected by arthritis",
+  "fees": "Free",
+  "hours": "Mon-Fri (messages returned within 1 business day)"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Kids Help Phone",
+  "name_fr": "Jeunesse, J'écoute",
+  "description": "Canada's only 24/7, national support service. We offer professional counselling, information and referrals and volunteer-led, text-based support to young people in English and French.",
+  "category": "Crisis",
+  "phone": "1-800-668-6868",
+  "website": "https://kidshelpphone.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["youth", "kids", "counselling", "text", "crisis", "mental health"],
+  "eligibility": "Youth and young adults (5-29)",
+  "fees": "Free",
+  "hours": "24/7"
+}

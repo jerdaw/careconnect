@@ -1,0 +1,13 @@
+{
+  "name": "Nishnawbe-Aski Legal Services (NALSC)",
+  "description": "Legal aid clinic serving Nishnawbe Aski Nation (NAN) communities in Northern Ontario. Provides legal advice, certificates, and restorative justice programs including Talking Together.",
+  "category": "Legal",
+  "phone": "1-800-465-5581",
+  "website": "https://nanlegal.on.ca",
+  "scope": "ontario",
+  "address": "Thunder Bay, ON (serving Northern Ontario)",
+  "keywords": ["Indigenous", "First Nations", "legal aid", "NAN", "Northern Ontario", "restorative justice"],
+  "eligibility": "Indigenous peoples in NAN territory (financial testing applies)",
+  "fees": "Free (if eligible)",
+  "hours": "Mon-Fri 8:30am-4:30pm"
+}

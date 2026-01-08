@@ -1,0 +1,14 @@
+{
+  "name": "Parkinson Canada",
+  "name_fr": "Parkinson Canada",
+  "description": "Helpline for people living with Parkinson's disease, caregivers, and healthcare providers. Offers information about symptoms, treatment options, community resources, and support programs.",
+  "category": "Health",
+  "phone": "1-888-664-1974",
+  "website": "https://www.parkinson.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["Parkinson's", "tremor", "movement disorder", "neurological", "dopamine"],
+  "eligibility": "Anyone affected by Parkinson's disease",
+  "fees": "Free",
+  "hours": "Mon-Fri 9am-4pm ET"
+}

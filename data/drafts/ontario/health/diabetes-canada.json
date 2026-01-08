@@ -1,0 +1,13 @@
+{
+  "name": "Diabetes Canada Information & Support",
+  "description": "Information and support for people living with diabetes, including access to the Ontario Monitoring for Health Program for financial assistance with supplies.",
+  "category": "Health",
+  "phone": "1-800-226-8464",
+  "website": "https://www.diabetes.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["diabetes", "insulin", "support", "chronic disease", "monitoring"],
+  "eligibility": "Anyone affected by diabetes",
+  "fees": "Free",
+  "hours": "Mon-Fri 9am-5pm"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ontario-211-ontario",
+  "name": "211 Ontario",
+  "name_fr": "211 Ontario",
+  "description": "A helpline and online database of Ontario's community and social services. 211 helps people find the right community and social services.",
+  "phone": "211",
+  "url": "https://211ontario.ca",
+  "intent_category": "Crisis",
+  "scope": "ontario",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "Phone service 24/7. Chat hours vary."
+  },
+  "primary_phone_label": "Call 2-1-1",
+  "eligibility_notes": "Open to everyone.",
+  "synthetic_queries": ["community services", "social services", "food banks", "housing help"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:40:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

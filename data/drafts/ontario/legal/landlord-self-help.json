@@ -1,0 +1,13 @@
+{
+  "name": "Landlord's Self-Help Centre",
+  "description": "A specialty legal clinic providing information, summary advice, and referrals to small-scale landlords in Ontario.",
+  "category": "Legal",
+  "phone": "1-800-730-3218",
+  "website": "https://landlordselfhelp.com",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["landlord", "small landlord", "tenant dispute", "rent", "forms"],
+  "eligibility": "Small-scale landlords in Ontario",
+  "fees": "Free",
+  "hours": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)"
+}

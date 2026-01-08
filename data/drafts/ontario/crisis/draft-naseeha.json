@@ -1,0 +1,30 @@
+{
+  "id": "ontario-naseeha",
+  "name": "Naseeha Mental Health",
+  "description": "Provides a confidential helpline for young Muslims to receive immediate, anonymous, and confidential support.",
+  "phone": "1-866-627-3342",
+  "url": "https://naseeha.org",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7 availability."
+  },
+  "eligibility_notes": "Muslim youth and general public.",
+  "synthetic_queries": ["muslim crisis line", "islamic mental health"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:50:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ConnexOntario",
+  "description": "A 24/7 information and referral service for mental health, addiction, and problem gambling services in Ontario. Provides navigation to treatment centers, support groups, and crisis services.",
+  "category": "Health",
+  "phone": "1-866-531-2600",
+  "website": "https://www.connexontario.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["mental health", "addiction", "gambling", "referral", "navigation", "drug", "alcohol"],
+  "eligibility": "All Ontario residents",
+  "fees": "Free",
+  "hours": "24/7"
+}

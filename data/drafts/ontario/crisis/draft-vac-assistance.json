@@ -1,0 +1,32 @@
+{
+  "id": "ontario-vac-assistance",
+  "name": "VAC Assistance Service",
+  "name_fr": "Service d'assistance d'ACC",
+  "description": "A 24/7 confidential counseling line for Veterans, Canadian Armed Forces members, RCMP members, and their families.",
+  "phone": "1-800-268-7708",
+  "url": "https://www.veterans.gc.ca",
+  "intent_category": "Crisis",
+  "scope": "canada",
+  "virtual_delivery": true,
+  "verification_level": "L0",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "24/7. Bilingual counselors available."
+  },
+  "eligibility_notes": "Veterans, CAF members, RCMP, and their families.",
+  "identity_tags": [{ "tag": "Veterans", "evidence_url": "https://www.veterans.gc.ca" }],
+  "synthetic_queries": ["veteran mental health", "military crisis line", "PTSD support veterans"],
+  "_meta": {
+    "source": "Deep Research Merge",
+    "researched_at": "2026-01-07T22:55:00Z",
+    "confidence": 1.0,
+    "needs_review": true,
+    "enriched": true
+  }
+}

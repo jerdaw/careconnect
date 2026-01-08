@@ -24,5 +24,10 @@ export interface ServicePublic {
   category: string | null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tags: any // JSON array
+  // v11.0: Scope expansion fields
+  scope: string | null
+  virtual_delivery: boolean | null
+  primary_phone_label: string | null
   created_at: string
 }
+

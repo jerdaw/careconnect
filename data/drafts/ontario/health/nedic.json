@@ -1,0 +1,14 @@
+{
+  "name": "National Eating Disorder Information Centre (NEDIC)",
+  "name_fr": "Centre national d'information sur les troubles de l'alimentation",
+  "description": "Provides information, resources, and referrals for eating disorders and weight preoccupation. Maintains a directory of treatment providers across Ontario.",
+  "category": "Health",
+  "phone": "1-866-633-4220",
+  "website": "https://nedic.ca",
+  "scope": "canada",
+  "address": "Available across Canada",
+  "keywords": ["eating disorder", "anorexia", "bulimia", "binge eating", "body image", "disordered eating"],
+  "eligibility": "Anyone affected by eating disorders",
+  "fees": "Free",
+  "hours": "Mon-Thu 9am-9pm, Fri 9am-5pm, Sat-Sun 12pm-5pm"
+}

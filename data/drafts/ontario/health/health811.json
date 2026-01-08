@@ -1,0 +1,14 @@
+{
+  "name": "Health811",
+  "name_fr": "Santé811",
+  "description": "A free, secure, and confidential service that Ontarians can access 24/7 to receive health advice from a registered nurse, find health services, or get general health information.",
+  "category": "Health",
+  "phone": "811",
+  "website": "https://health811.ontario.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["telehealth", "medical advice", "nurse", "triage", "811", "non-emergency"],
+  "eligibility": "All Ontario residents",
+  "fees": "Free",
+  "hours": "24/7"
+}

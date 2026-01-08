@@ -1,0 +1,14 @@
+{
+  "name": "Good2Talk",
+  "name_fr": "Allo J'écoute",
+  "description": "Confidential support services for post-secondary students in Ontario. Professional counselling and referrals for mental health, addictions, and well-being.",
+  "category": "Health",
+  "phone": "1-866-925-5454",
+  "website": "https://good2talk.ca",
+  "scope": "ontario",
+  "address": "Province-wide",
+  "keywords": ["student", "university", "college", "mental health", "counselling"],
+  "eligibility": "Post-secondary students in Ontario",
+  "fees": "Free",
+  "hours": "24/7"
+}
