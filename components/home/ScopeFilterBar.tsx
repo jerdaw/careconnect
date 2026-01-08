@@ -38,9 +38,9 @@ export default function ScopeFilterBar({
     <motion.div
       initial={{ opacity: 0, y: -5 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex justify-start py-2"
+      className="flex justify-center py-1"
     >
-      <div className="flex items-center gap-1 rounded-lg bg-neutral-100/50 p-1 dark:bg-neutral-900/50">
+      <div className="flex items-center gap-1 rounded-xl bg-neutral-100/50 p-1 dark:bg-neutral-900/50">
         {scopes.map((scope) => {
           const isActive = activeScope === scope.id
           return (
@@ -48,7 +48,7 @@ export default function ScopeFilterBar({
               key={scope.id}
               onClick={() => onScopeChange(scope.id)}
               className={cn(
-                "relative flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+                "relative flex items-center gap-2 rounded-xl px-3 py-1 text-sm font-medium transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
                 isActive
                   ? "text-primary-900 dark:text-primary-100"
                   : "text-muted-foreground hover:text-foreground hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50"
@@ -57,7 +57,7 @@ export default function ScopeFilterBar({
               {isActive && (
                 <motion.div
                   layoutId="activeScope"
-                  className="absolute inset-0 rounded-md bg-white shadow-sm ring-1 ring-black/5 dark:bg-neutral-800 dark:ring-white/10"
+                  className="absolute inset-0 rounded-xl bg-white shadow-sm ring-1 ring-black/5 dark:bg-neutral-800 dark:ring-white/10"
                   initial={false}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
