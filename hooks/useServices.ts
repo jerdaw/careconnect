@@ -39,7 +39,10 @@ export function useServices({
         return
       }
 
+      // Reset search state immediately when starting a new search
+      // This prevents showing stale "no results" from a previous search
       setIsLoading(true)
+      setHasSearched(false)
 
       try {
         const mode = getSearchMode()
