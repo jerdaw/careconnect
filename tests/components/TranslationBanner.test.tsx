@@ -9,7 +9,7 @@ vi.mock("next-intl", () => ({
     const translations: Record<string, string> = {
       title: "Translation Notice",
       message: "This page uses AI-assisted translations.",
-      dismiss: "Dismiss",
+      dismiss: "Got it",
     }
     return translations[key] || key
   }),
@@ -59,7 +59,7 @@ describe("TranslationBanner", () => {
     const { rerender } = render(<TranslationBanner />)
     
     // Find and click the dismiss button
-    const dismissButton = screen.getByRole("button", { name: /dismiss/i })
+    const dismissButton = screen.getByRole("button", { name: /got it/i })
     fireEvent.click(dismissButton)
     
     // Check localStorage was set
