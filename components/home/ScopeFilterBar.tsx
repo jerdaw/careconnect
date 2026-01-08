@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Globe, MapPin } from "lucide-react"
 
 export type ScopeFilter = 'all' | 'kingston' | 'provincial'
 
@@ -28,53 +29,47 @@ export default function ScopeFilterBar({
     return null
   }
 
-  const scopes: { id: ScopeFilter; label: string; count: number }[] = [
-    { id: 'all', label: t('scope.all'), count: counts.all },
-    { id: 'kingston', label: t('scope.local'), count: counts.local },
-    { id: 'provincial', label: t('scope.provincial'), count: counts.provincial },
-  ]
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: -5 }}
+      initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex justify-start py-2"
+      transition={{ duration: 0.2 }}
+      className="flex flex-wrap items-center justify-center gap-2 pb-2"
     >
-      <div className="inline-flex items-center rounded-full border bg-neutral-100/50 p-1 dark:bg-neutral-900/50">
-        {scopes.map((scope) => {
-          const isActive = activeScope === scope.id
-          return (
-            <button
-              key={scope.id}
-              onClick={() => onScopeChange(scope.id)}
-              className={cn(
-                "relative flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                isActive
-                  ? "text-primary-900 dark:text-primary-100"
-                  : "text-muted-foreground hover:text-foreground hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50"
-              )}
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="activeScope"
-                  className="absolute inset-0 rounded-full bg-white shadow-sm dark:bg-neutral-800"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{scope.label}</span>
-              <span className={cn(
-                "relative z-10 rounded-full px-1.5 py-0.5 text-[10px] leading-none",
-                isActive
-                  ? "bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
-                  : "bg-neutral-200 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400"
-              )}>
-                {scope.count}
-              </span>
-            </button>
-          )
-        })}
-      </div>
+      <Button
+        variant={activeScope === 'all' ? "default" : "secondary"}
+        size="sm"
+        onClick={() => onScopeChange('all')}
+        aria-pressed={activeScope === 'all'}
+        className="rounded-full"
+      >
+        {t('scope.all')}
+        <span className="ml-1 opacity-70">({counts.all})</span>
+      </Button>
+
+      <Button
+        variant={activeScope === 'kingston' ? "default" : "secondary"}
+        size="sm"
+        onClick={() => onScopeChange('kingston')}
+        aria-pressed={activeScope === 'kingston'}
+        className="rounded-full"
+      >
+        <MapPin className="h-3.5 w-3.5" />
+        {t('scope.local')}
+        <span className="ml-1 opacity-70">({counts.local})</span>
+      </Button>
+
+      <Button
+        variant={activeScope === 'provincial' ? "default" : "secondary"}
+        size="sm"
+        onClick={() => onScopeChange('provincial')}
+        aria-pressed={activeScope === 'provincial'}
+        className="rounded-full"
+      >
+        <Globe className="h-3.5 w-3.5" />
+        {t('scope.provincial')}
+        <span className="ml-1 opacity-70">({counts.provincial})</span>
+      </Button>
     </motion.div>
   )
 }
