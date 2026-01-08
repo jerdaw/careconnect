@@ -32,7 +32,7 @@ export function TranslationBanner() {
       className="fixed bottom-24 right-4 z-[40] max-w-[300px] animate-in fade-in slide-in-from-bottom-4 duration-500"
       role="status"
     >
-      <div className="relative overflow-hidden rounded-xl border border-neutral-200/50 bg-white/90 p-3.5 shadow-xl backdrop-blur-md dark:border-neutral-800/50 dark:bg-neutral-900/90">
+      <div className="relative overflow-hidden rounded-xl border border-white/20 bg-white/60 p-3.5 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
             <div className="flex-shrink-0">
