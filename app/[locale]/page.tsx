@@ -74,7 +74,7 @@ export default function Home() {
       <section className={cn(
         "relative transition-all duration-500",
         hasSearched
-          ? "pt-20 pb-6 md:pt-24 md:pb-8"
+          ? "pt-20 pb-2 md:pt-24 md:pb-4"
           : "pt-32 pb-20 md:pt-48 md:pb-32"
       )}>
         {/* Mesh Gradient Background */}
