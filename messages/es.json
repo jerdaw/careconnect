@@ -16,7 +16,8 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "contentPolicy": "Content Policy"
-    }
+    },
+    "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@kingstoncare.ca"
   },
   "Search": {
     "placeholder": "Buscar ayuda...",
@@ -579,5 +580,10 @@
     "disclaimer": "Kingston Care Connect is an information directory only. Always verify information with service providers.",
     "callButton": "Emergency: 911",
     "crisisLine": "Suicide Crisis Helpline: 988"
+  },
+  "TranslationBanner": {
+    "title": "Translation Notice",
+    "message": "This page uses AI-assisted translations. For critical information, please refer to the English version.",
+    "dismiss": "Dismiss"
   }
 }

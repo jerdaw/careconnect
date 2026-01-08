@@ -1,12 +1,14 @@
 "use client"
 
 import { Link } from "@/i18n/routing"
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
   const t = useTranslations('Footer');
+  const locale = useLocale();
+  const isNonEnglish = locale !== 'en';
 
   return (
     <footer className="relative mt-24 overflow-hidden bg-neutral-950 text-white">
@@ -108,6 +110,12 @@ export function Footer() {
           <p className="text-center text-neutral-400">
             {t("emergencyDisclaimer")}
           </p>
+          
+          {isNonEnglish && (
+            <p className="text-center text-neutral-500 text-xs italic">
+              {t("aiTranslationNote")}
+            </p>
+          )}
           
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p>© 2024 Kingston Care Connect (Pilot v1.0)</p>

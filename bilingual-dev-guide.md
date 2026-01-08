@@ -74,3 +74,38 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 - **EDIA Locales (ar, zh-Hans, es)**: Some legal content (Terms, Privacy sections) may only be available in EN/FR initially. The audit allows certain keys to be optional for EDIA locales.
 - **Accessibility**: ARIA labels must be descriptive in all languages.
 - **Human Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
+
+---
+
+## AI Translation Policy
+
+### Transparency Disclosures
+
+Kingston Care Connect uses AI-assisted translations for some content. To ensure users are informed:
+
+1. **EDIA Locale Banner** (`ar`, `zh-Hans`, `es`)
+
+   - A dismissible banner appears at the top of every page
+   - Informs users that the page uses AI-assisted translations
+   - Recommends referring to the English version for critical information
+   - Stored in localStorage to remember dismissal
+
+2. **Footer Disclaimer** (all non-English locales)
+   - A subtle note appears in the footer for fr/ar/zh-Hans/es
+   - Text: "Some translations are AI-assisted. Report errors to feedback@kingstoncare.ca"
+
+### Translation Quality Tiers
+
+| Tier     | Locales               | Quality Level              | Review Status |
+| -------- | --------------------- | -------------------------- | ------------- |
+| Primary  | `en`                  | Source of truth            | N/A           |
+| Official | `fr`                  | AI-assisted + human review | Reviewed      |
+| Preview  | `ar`, `zh-Hans`, `es` | AI-assisted, best effort   | Needs review  |
+
+### Reporting Translation Errors
+
+Users can report translation errors to `feedback@kingstoncare.ca`. Corrections should be prioritized based on:
+
+1. Health/safety information (highest priority)
+2. Legal/financial content
+3. General UI strings (lowest priority)
