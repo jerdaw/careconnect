@@ -5081,7 +5081,14 @@
     },
     "primary_phone_label": "Call 2-1-1",
     "eligibility_notes": "Open to everyone.",
-    "synthetic_queries": ["community services", "social services", "food banks", "housing help"]
+    "synthetic_queries": ["community services", "social services", "food banks", "housing help"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.312Z",
+      "evidence_url": "https://211ontario.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -5126,7 +5133,14 @@
     },
     "eligibility_notes": "Black youth and families.",
     "synthetic_queries": ["black youth support", "school help for black students"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.312Z",
+      "evidence_url": "https://blackyouth.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -5177,7 +5191,13 @@
       }
     ],
     "synthetic_queries": ["police mental health", "firefighter crisis", "first responder peer support"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://bootsontheground.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-farmer-wellness",
@@ -5222,7 +5242,14 @@
     },
     "eligibility_notes": "Ontario farmers and their families.",
     "synthetic_queries": ["farmer crisis line", "rural mental health", "agriculture support"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://farmerwellnessinitiative.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-femaide",
@@ -5270,7 +5297,14 @@
     "primary_phone_label": "1-877-FEMAIDE",
     "eligibility_notes": "Francophone women in Ontario dealing with violence.",
     "synthetic_queries": ["violence faite aux femmes", "aide francophone violence", "french crisis line"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://femaide.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -5322,7 +5356,13 @@
       }
     ],
     "synthetic_queries": ["residential school survivors", "intergenerational trauma help"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://www.sac-isc.gc.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -5373,7 +5413,13 @@
       }
     ],
     "synthetic_queries": ["lgbt youth support", "trans youth help", "queer peer support", "coming out help"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://youthline.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-male-survivors",
@@ -5418,7 +5464,14 @@
     },
     "eligibility_notes": "Men and boys who have experienced sexual violence.",
     "synthetic_queries": ["male abuse help", "sexual assault men", "male survivor support"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://cleoconnect.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -5469,7 +5522,13 @@
       }
     ],
     "synthetic_queries": ["metis mental health", "metis crisis support"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://www.metisnation.org",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -5521,7 +5580,13 @@
       }
     ],
     "synthetic_queries": ["mmiwg support", "missing indigenous women support"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://www.canada.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-naseeha",
@@ -5566,7 +5631,14 @@
     },
     "eligibility_notes": "Muslim youth and general public.",
     "synthetic_queries": ["muslim crisis line", "islamic mental health"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://naseeha.org",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-nors",
@@ -5612,7 +5684,14 @@
     "primary_phone_label": "Call or Text",
     "eligibility_notes": "Anyone using drugs alone who wants safety monitoring.",
     "synthetic_queries": ["overdose prevention", "safe consumption line", "using drugs alone"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://nors.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-ontx-distress",
@@ -5658,7 +5737,14 @@
     },
     "eligibility_notes": "Anyone in Ontario experiencing distress.",
     "synthetic_queries": ["text crisis line", "online chat support", "emotional support text"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://dcontario.org",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-sadv-navigation",
@@ -5704,7 +5790,14 @@
     "primary_phone_label": "1-855-NAV-SADV",
     "eligibility_notes": "Survivors of sexual assault or domestic violence in Ontario.",
     "synthetic_queries": ["sexual assault hospital", "rape kit ontario", "domestic violence medical help"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://www.sadvtreatmentcentres.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -5755,7 +5848,13 @@
       }
     ],
     "synthetic_queries": ["elder abuse help", "seniors crisis line", "financial abuse seniors"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://eapon.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-vac-assistance",
@@ -5807,7 +5906,13 @@
       }
     ],
     "synthetic_queries": ["veteran mental health", "military crisis line", "PTSD support veterans"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.313Z",
+      "evidence_url": "https://www.veterans.gc.ca",
+      "method": "Schema migration - requires verification"
+    }
   },
   {
     "id": "ontario-victim-support-line",
@@ -5852,562 +5957,1328 @@
     },
     "eligibility_notes": "Victims of crime in Ontario.",
     "synthetic_queries": ["crime victim help", "victim services ontario", "crime support line"],
-    "status": "Active"
+    "status": "Active",
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://victimsupportdirectory.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "BounceBack Ontario",
     "name_fr": "Retrouver sa santé",
     "description": "A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks.",
-    "category": "Health",
     "phone": "1-866-345-0224",
-    "website": "https://bouncebackontario.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["mental health", "CBT", "depression", "anxiety", "coaching", "self-help"],
     "eligibility": "Ontario residents 15+ with OHIP",
     "fees": "Free",
-    "hours": "Registration: Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Registration: Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
-    "id": "bounceback-ontario"
+    "id": "bounceback-ontario",
+    "url": "https://bouncebackontario.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["mental health", "CBT", "depression", "anxiety", "coaching", "self-help"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://bouncebackontario.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Cancer Information Helpline",
     "description": "A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services.",
-    "category": "Health",
     "phone": "1-888-939-3333",
-    "website": "https://cancer.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["cancer", "oncology", "treatment", "support", "navigation"],
     "eligibility": "Cancer patients, families, and public",
     "fees": "Free",
-    "hours": "Mon-Fri 8am-6pm",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "notes": "Mon-Fri 8am-6pm"
+    },
     "verification_level": "L1",
     "status": "Active",
-    "id": "cancer-information-helpline"
+    "id": "cancer-information-helpline",
+    "url": "https://cancer.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["cancer", "oncology", "treatment", "support", "navigation"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://cancer.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Ontario Caregiver Helpline",
     "description": "A 24/7 dedicated helpline for caregivers in Ontario, offering information, assessment, and referral to local services and support groups.",
-    "category": "Health",
     "phone": "1-833-416-2273",
-    "website": "https://ontariocaregiver.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["caregiver", "support", "respite", "family", "exhaustion"],
     "eligibility": "Caregivers in Ontario",
     "fees": "Free",
-    "hours": "24/7",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "ontario-caregiver-helpline",
     "name_fr": "Ligne d'assistance aux aidants naturels de l'Ontario",
-    "description_fr": "Une ligne d'assistance dédiée 24h/24 et 7j/7 pour les aidants naturels de l'Ontario, offrant information, évaluation et orientation vers des services locaux et des groupes de soutien."
+    "description_fr": "Une ligne d'assistance dédiée 24h/24 et 7j/7 pour les aidants naturels de l'Ontario, offrant information, évaluation et orientation vers des services locaux et des groupes de soutien.",
+    "url": "https://ontariocaregiver.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["caregiver", "support", "respite", "family", "exhaustion"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://ontariocaregiver.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Diabetes Canada Information & Support",
     "description": "Information and support for people living with diabetes, including access to the Ontario Monitoring for Health Program for financial assistance with supplies.",
-    "category": "Health",
     "phone": "1-800-226-8464",
-    "website": "https://www.diabetes.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["diabetes", "insulin", "support", "chronic disease", "monitoring"],
     "eligibility": "Anyone affected by diabetes",
     "fees": "Free",
-    "hours": "Mon-Fri 9am-5pm",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 9am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "diabetes-canada-information-support",
     "name_fr": "Diabète Canada - Information et soutien",
-    "description_fr": "Information et soutien pour les personnes vivant avec le diabète, y compris l'accès au Programme de surveillance de la santé de l'Ontario pour une aide financière concernant les fournitures."
+    "description_fr": "Information et soutien pour les personnes vivant avec le diabète, y compris l'accès au Programme de surveillance de la santé de l'Ontario pour une aide financière concernant les fournitures.",
+    "url": "https://www.diabetes.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["diabetes", "insulin", "support", "chronic disease", "monitoring"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://www.diabetes.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Jordan's Principle Call Centre",
     "description": "A 24/7 federal helpline ensuring First Nations children get the health, social, and educational services they need without delays.",
-    "category": "Health",
     "phone": "1-855-572-4453",
-    "website": "https://fncaringsociety.com/jordans-principle",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["indigenous", "children", "first nations", "funding", "health care", "access"],
     "eligibility": "First Nations children",
     "fees": "Free",
-    "hours": "24/7",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "jordan-s-principle-call-centre",
     "name_fr": "Centre d'appel du Principe de Jordan",
-    "description_fr": "Une ligne d'assistance fédérale 24h/24 et 7j/7 garantissant que les enfants des Premières Nations obtiennent les services de santé, sociaux et éducatifs dont ils ont besoin sans délai."
+    "description_fr": "Une ligne d'assistance fédérale 24h/24 et 7j/7 garantissant que les enfants des Premières Nations obtiennent les services de santé, sociaux et éducatifs dont ils ont besoin sans délai.",
+    "url": "https://fncaringsociety.com/jordans-principle",
+    "intent_category": "Health",
+    "synthetic_queries": ["indigenous", "children", "first nations", "funding", "health care", "access"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://fncaringsociety.com/jordans-principle",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Lung Health Line",
     "description": "Connects callers directly with Certified Respiratory Educators for guidance on asthma, COPD, and other lung conditions.",
-    "category": "Health",
     "phone": "1-888-344-5864",
-    "website": "https://lunghealth.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["lung", "respiratory", "asthma", "COPD", "breathing"],
     "eligibility": "Residents with lung health concerns",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-4:30pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "lung-health-line",
     "name_fr": "Ligne de santé pulmonaire",
-    "description_fr": "Met les appelants en contact direct avec des éducateurs certifiés dans le domaine respiratoire pour des conseils sur l'asthme, la MPOC et d'autres affections pulmonaires."
+    "description_fr": "Met les appelants en contact direct avec des éducateurs certifiés dans le domaine respiratoire pour des conseils sur l'asthme, la MPOC et d'autres affections pulmonaires.",
+    "url": "https://lunghealth.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["lung", "respiratory", "asthma", "COPD", "breathing"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.314Z",
+      "evidence_url": "https://lunghealth.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
     "name_fr": "Ligne info-santé sexuelle de l'Ontario (LISSO)",
     "description": "Anonymous and confidential counselling and information on sexual health, including STIs, HIV/AIDS, birth control, pregnancy, and sexual orientation.",
-    "category": "Health",
     "phone": "1-800-668-2437",
-    "website": "https://sexualhealthontario.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["sexual health", "STI", "HIV", "birth control", "pregnancy", "anonymous"],
     "eligibility": "All Ontario residents",
     "fees": "Free",
-    "hours": "Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm",
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "22:30"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "22:30"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "22:30"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "22:30"
+      },
+      "friday": {
+        "open": "10:00",
+        "close": "22:30"
+      },
+      "notes": "Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "sexual-health-infoline-ontario-shilo-",
-    "description_fr": "Counselling et information anonymes et confidentiels sur la santé sexuelle, y compris les ITS, le VIH/sida, la contraception, la grossesse et l'orientation sexuelle."
+    "description_fr": "Counselling et information anonymes et confidentiels sur la santé sexuelle, y compris les ITS, le VIH/sida, la contraception, la grossesse et l'orientation sexuelle.",
+    "url": "https://sexualhealthontario.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["sexual health", "STI", "HIV", "birth control", "pregnancy", "anonymous"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.315Z",
+      "evidence_url": "https://sexualhealthontario.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
     "name_fr": "Centre de défense des personnes âgées (ACE)",
     "description": "A specialty legal clinic providing legal services to seniors (60+) in Ontario. Focuses on elder law issues like long-term care, elder abuse, and health care consent.",
-    "category": "Legal",
     "phone": "1-855-598-2656",
-    "website": "https://www.acelaw.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["seniors", "elder law", "abuse", "long-term care", "rights", "capacity"],
     "eligibility": "Ontario residents aged 60+",
     "fees": "Free",
-    "hours": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm",
+    "hours": {
+      "notes": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "advocacy-centre-for-the-elderly-ace-",
-    "description_fr": "Une clinique juridique spécialisée fournissant des services juridiques aux aînés (60+) en Ontario. Se concentre sur le droit des aînés comme les soins de longue durée, la maltraitance des aînés et le consentement aux soins de santé."
+    "description_fr": "Une clinique juridique spécialisée fournissant des services juridiques aux aînés (60+) en Ontario. Se concentre sur le droit des aînés comme les soins de longue durée, la maltraitance des aînés et le consentement aux soins de santé.",
+    "url": "https://www.acelaw.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["seniors", "elder law", "abuse", "long-term care", "rights", "capacity"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.315Z",
+      "evidence_url": "https://www.acelaw.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Employment Standards Information Centre",
     "description": "Provides general information about Ontario's Employment Standards Act (ESA), covering minimum wage, hours of work, overtime, vacation, and termination pay.",
-    "category": "Legal",
     "phone": "1-800-531-5551",
-    "website": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["employment", "work", "wages", "overtime", "labour", "rights"],
     "eligibility": "Workers and employers in Ontario",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "employment-standards-information-centre",
     "name_fr": "Centre d'information sur les normes d'emploi",
-    "description_fr": "Fournit des renseignements généraux sur la Loi sur les normes d'emploi (LNE) de l'Ontario, couvrant le salaire minimum, les heures de travail, les heures supplémentaires, les vacances et les indemnités de licenciement."
+    "description_fr": "Fournit des renseignements généraux sur la Loi sur les normes d'emploi (LNE) de l'Ontario, couvrant le salaire minimum, les heures de travail, les heures supplémentaires, les vacances et les indemnités de licenciement.",
+    "url": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
+    "intent_category": "Legal",
+    "synthetic_queries": ["employment", "work", "wages", "overtime", "labour", "rights"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.315Z",
+      "evidence_url": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
     "description": "Provides free legal services for people living with HIV/AIDS in Ontario. Covers privacy, human rights, immigration, and social assistance.",
-    "category": "Legal",
     "phone": "1-888-705-8889",
-    "website": "https://www.halco.org",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["HIV", "AIDS", "legal clinic", "discrimination", "privacy", "immigration"],
     "eligibility": "People living with HIV/AIDS in Ontario",
     "fees": "Free",
-    "hours": "Intake: Mon, Wed, Fri 9am-5pm",
+    "hours": {
+      "notes": "Intake: Mon, Wed, Fri 9am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "hiv-aids-legal-clinic-ontario-halco-",
     "name_fr": "Clinique juridique VIH & sida de l'Ontario (HALCO)",
-    "description_fr": "Fournit des services juridiques gratuits aux personnes vivant avec le VIH/sida en Ontario. Couvre la protection de la vie privée, les droits de la personne, l'immigration et l'aide sociale."
+    "description_fr": "Fournit des services juridiques gratuits aux personnes vivant avec le VIH/sida en Ontario. Couvre la protection de la vie privée, les droits de la personne, l'immigration et l'aide sociale.",
+    "url": "https://www.halco.org",
+    "intent_category": "Legal",
+    "synthetic_queries": ["HIV", "AIDS", "legal clinic", "discrimination", "privacy", "immigration"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.315Z",
+      "evidence_url": "https://www.halco.org",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
     "name_fr": "Centre d'assistance juridique en matière de droits de la personne (CAJDP)",
     "description": "Provides free legal advice and assistance to individuals who have experienced discrimination under the Ontario Human Rights Code.",
-    "category": "Legal",
     "phone": "1-866-625-5179",
-    "website": "https://hrlsc.on.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["human rights", "discrimination", "racism", "harassment", "legal aid", "code"],
     "eligibility": "Anyone in Ontario facing discrimination",
     "fees": "Free",
-    "hours": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm",
+    "hours": {
+      "notes": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "human-rights-legal-support-centre-hrlsc-",
-    "description_fr": "Fournit des conseils et une assistance juridiques gratuits aux personnes ayant subi de la discrimination en vertu du Code des droits de la personne de l'Ontario."
+    "description_fr": "Fournit des conseils et une assistance juridiques gratuits aux personnes ayant subi de la discrimination en vertu du Code des droits de la personne de l'Ontario.",
+    "url": "https://hrlsc.on.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["human rights", "discrimination", "racism", "harassment", "legal aid", "code"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.315Z",
+      "evidence_url": "https://hrlsc.on.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
     "description": "Specializes in representing injured workers in WSIB disputes. Handles denied claims and benefit issues.",
-    "category": "Legal",
     "phone": "1-833-461-2411",
-    "website": "https://iwclc.org",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["injured worker", "WSIB", "compensation", "appeal", "legal clinic"],
     "eligibility": "Injured workers in Ontario",
     "fees": "Free",
-    "hours": "Mon-Fri 9am-4:30pm (Wed afternoon only)",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:30"
+      },
+      "notes": "Mon-Fri 9am-4:30pm (Wed afternoon only)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "injured-workers-community-legal-clinic-iwc-",
     "name_fr": "Clinique juridique communautaire pour accidentés du travail (IWC)",
-    "description_fr": "Spécialisée dans la représentation des travailleurs accidentés dans les litiges avec la CSPAAT. Traite les demandes refusées et les questions de prestations."
+    "description_fr": "Spécialisée dans la représentation des travailleurs accidentés dans les litiges avec la CSPAAT. Traite les demandes refusées et les questions de prestations.",
+    "url": "https://iwclc.org",
+    "intent_category": "Legal",
+    "synthetic_queries": ["injured worker", "WSIB", "compensation", "appeal", "legal clinic"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://iwclc.org",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
     "description": "Protects the legal rights of minors (under 18) and homeless youth (under 25) in Ontario. Covers education, family, criminal, and social welfare law.",
-    "category": "Legal",
     "phone": "1-866-999-5329",
-    "website": "https://jfcy.org",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["youth", "children", "legal rights", "homeless", "education", "criminal"],
     "eligibility": "Youth under 18 (or under 25 if homeless)",
     "fees": "Free",
-    "hours": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)",
+    "hours": {
+      "notes": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "justice-for-children-and-youth-jfcy-",
     "name_fr": "Justice pour enfants et jeunes (JFCY)",
-    "description_fr": "Protège les droits juridiques des mineurs (moins de 18 ans) et des jeunes sans-abri (moins de 25 ans) en Ontario. Couvre le droit de l'éducation, de la famille, criminel et de la protection sociale."
+    "description_fr": "Protège les droits juridiques des mineurs (moins de 18 ans) et des jeunes sans-abri (moins de 25 ans) en Ontario. Couvre le droit de l'éducation, de la famille, criminel et de la protection sociale.",
+    "url": "https://jfcy.org",
+    "intent_category": "Legal",
+    "synthetic_queries": ["youth", "children", "legal rights", "homeless", "education", "criminal"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://jfcy.org",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Landlord's Self-Help Centre",
     "description": "A specialty legal clinic providing information, summary advice, and referrals to small-scale landlords in Ontario.",
-    "category": "Legal",
     "phone": "1-800-730-3218",
-    "website": "https://landlordselfhelp.com",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["landlord", "small landlord", "tenant dispute", "rent", "forms"],
     "eligibility": "Small-scale landlords in Ontario",
     "fees": "Free",
-    "hours": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)",
+    "hours": {
+      "notes": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "landlord-s-self-help-centre",
     "name_fr": "Landlord's Self-Help Centre",
-    "description_fr": "Une clinique juridique spécialisée fournissant de l'information, des conseils sommaires et des références aux petits propriétaires en Ontario."
+    "description_fr": "Une clinique juridique spécialisée fournissant de l'information, des conseils sommaires et des références aux petits propriétaires en Ontario.",
+    "url": "https://landlordselfhelp.com",
+    "intent_category": "Legal",
+    "synthetic_queries": ["landlord", "small landlord", "tenant dispute", "rent", "forms"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://landlordselfhelp.com",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Legal Aid Ontario",
     "name_fr": "Aide juridique Ontario",
     "description": "Ontario’s primary public legal assistance provider. Offers certificates for full representation, duty counsel in courts, and summary legal advice by phone for criminal, family, and immigration law.",
-    "category": "Legal",
     "phone": "1-800-668-8258",
-    "website": "https://legalaid.on.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["legal aid", "lawyer", "certificate", "criminal", "family", "immigration", "court"],
     "eligibility": "Low-income Ontarians (financial testing applies)",
     "fees": "Free (if eligible)",
-    "hours": "Mon-Fri 8am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "legal-aid-ontario",
-    "description_fr": "Principal fournisseur d'aide juridique publique de l'Ontario. Offre des certificats pour une représentation complète, des avocats de service dans les tribunaux et des conseils juridiques sommaires par téléphone pour le droit criminel, de la famille et de l'immigration."
+    "description_fr": "Principal fournisseur d'aide juridique publique de l'Ontario. Offre des certificats pour une représentation complète, des avocats de service dans les tribunaux et des conseils juridiques sommaires par téléphone pour le droit criminel, de la famille et de l'immigration.",
+    "url": "https://legalaid.on.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["legal aid", "lawyer", "certificate", "criminal", "family", "immigration", "court"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://legalaid.on.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
     "name_fr": "Centre de contact de la Commission de la location immobilière",
     "description": "Provides information about the Residential Tenancies Act and LTB procedures. Staff can explain forms and the eviction process but cannot provide legal advice.",
-    "category": "Legal",
     "phone": "1-888-332-3234",
-    "website": "https://tribunalsontario.ca/ltb",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["landlord", "tenant", "rent", "eviction", "tribunal", "housing"],
     "eligibility": "Landlords and tenants in Ontario",
     "fees": "Free information",
-    "hours": "Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "landlord-and-tenant-board-contact-centre",
-    "description_fr": "Fournit de l'information sur la Loi sur la location à usage d'habitation et les procédures de la CLI. Le personnel peut expliquer les formulaires et le processus d'expulsion mais ne peut donner de conseils juridiques."
+    "description_fr": "Fournit de l'information sur la Loi sur la location à usage d'habitation et les procédures de la CLI. Le personnel peut expliquer les formulaires et le processus d'expulsion mais ne peut donner de conseils juridiques.",
+    "url": "https://tribunalsontario.ca/ltb",
+    "intent_category": "Legal",
+    "synthetic_queries": ["landlord", "tenant", "rent", "eviction", "tribunal", "housing"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://tribunalsontario.ca/ltb",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Ontario Legal Information Centre",
     "name_fr": "Centre d'information juridique de l'Ontario",
     "description": "Offers a free 30-minute meeting with a lawyer to anyone in Ontario, regardless of income. Provides general legal information and referrals for any area of law.",
-    "category": "Legal",
     "phone": "1-844-343-7462",
-    "website": "https://centreinfojuridique.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["legal info", "consultation", "referral", "general law", "30 minutes"],
     "eligibility": "Anyone in Ontario",
     "fees": "Free",
-    "hours": "Mon-Fri Business Hours (By Appointment)",
+    "hours": {
+      "notes": "Mon-Fri Business Hours (By Appointment)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "ontario-legal-information-centre",
-    "description_fr": "Offre une rencontre gratuite de 30 minutes avec un avocat à toute personne en Ontario, quel que soit son revenu. Fournit de l'information juridique générale et des références pour tout domaine du droit."
+    "description_fr": "Offre une rencontre gratuite de 30 minutes avec un avocat à toute personne en Ontario, quel que soit son revenu. Fournit de l'information juridique générale et des références pour tout domaine du droit.",
+    "url": "https://centreinfojuridique.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["legal info", "consultation", "referral", "general law", "30 minutes"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://centreinfojuridique.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
     "name_fr": "Bureau du conseiller des travailleurs (BCT)",
     "description": "Provides free legal advice and representation to non-unionized injured workers in WSIB cases and workers facing health and safety reprisals.",
-    "category": "Legal",
     "phone": "1-800-435-8980",
-    "website": "https://www.owa.gov.on.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["worker", "injury", "WSIB", "reprisal", "safety", "legal representation"],
     "eligibility": "Non-unionized injured workers",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "office-of-the-worker-adviser-owa-",
-    "description_fr": "Assure des conseils et une représentation juridiques gratuits aux travailleurs non syndiqués blessés dans les cas de la CSPAAT et aux travailleurs victimes de représailles en matière de santé et sécurité."
+    "description_fr": "Assure des conseils et une représentation juridiques gratuits aux travailleurs non syndiqués blessés dans les cas de la CSPAAT et aux travailleurs victimes de représailles en matière de santé et sécurité.",
+    "url": "https://www.owa.gov.on.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["worker", "injury", "WSIB", "reprisal", "safety", "legal representation"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://www.owa.gov.on.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Steps to Justice",
     "name_fr": "Justice pas-à-pas",
     "description": "A comprehensive online guide to law in Ontario. Features step-by-step information and a Live Chat service to help users find legal answers.",
-    "category": "Legal",
     "phone": "",
-    "website": "https://stepstojustice.ca",
     "scope": "ontario",
     "address": "Online",
-    "keywords": ["legal info", "self-help", "forms", "chat", "guide", "family", "housing"],
     "eligibility": "Anyone",
     "fees": "Free",
-    "hours": "Website 24/7; Chat Mon-Fri",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Website 24/7; Chat Mon-Fri"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "steps-to-justice",
-    "description_fr": "Un guide en ligne complet sur le droit en Ontario. Comprend des informations étape par étape et un service de clavardage en direct pour aider les utilisateurs à trouver des réponses juridiques."
+    "description_fr": "Un guide en ligne complet sur le droit en Ontario. Comprend des informations étape par étape et un service de clavardage en direct pour aider les utilisateurs à trouver des réponses juridiques.",
+    "url": "https://stepstojustice.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["legal info", "self-help", "forms", "chat", "guide", "family", "housing"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://stepstojustice.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
     "description": "Assists non-unionized workers who face punishment or firing for raising health and safety concerns. Focuses on reprisals and unsafe work refusals.",
-    "category": "Legal",
     "phone": "1-877-832-6090",
-    "website": "https://workers-safety.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["worker", "safety", "reprisal", "health", "unsafe work", "legal help"],
     "eligibility": "Non-unionized workers in Ontario",
     "fees": "Free",
-    "hours": "Mon-Fri 9am-5pm",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 9am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "workers-health-safety-legal-clinic",
     "name_fr": "Clinique juridique de la santé et sécurité au travail",
-    "description_fr": "Aide les travailleurs non syndiqués qui font face à des punitions ou à un licenciement pour avoir soulevé des préoccupations en matière de santé et sécurité. Se concentre sur les représailles et les refus de travail dangereux."
+    "description_fr": "Aide les travailleurs non syndiqués qui font face à des punitions ou à un licenciement pour avoir soulevé des préoccupations en matière de santé et sécurité. Se concentre sur les représailles et les refus de travail dangereux.",
+    "url": "https://workers-safety.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["worker", "safety", "reprisal", "health", "unsafe work", "legal help"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://workers-safety.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
     "name_fr": "CSPAAT (Commission de la sécurité professionnelle et de l'assurance contre les accidents du travail)",
     "description": "Administers Ontario's no-fault workers' compensation system. Handles claims for workplace injuries and illnesses.",
-    "category": "Legal",
     "phone": "1-800-387-0750",
-    "website": "https://www.wsib.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["worker", "injury", "compensation", "insurance", "claim"],
     "eligibility": "Ontario workers and employers",
     "fees": "Free for workers (employer funded)",
-    "hours": "Mon-Fri 7:30am-6pm",
+    "hours": {
+      "monday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "notes": "Mon-Fri 7:30am-6pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "wsib-workplace-safety-insurance-board-",
-    "description_fr": "Administre le système d'indemnisation des travailleurs sans égard à la faute de l'Ontario. Traite les demandes pour les blessures et maladies professionnelles."
+    "description_fr": "Administre le système d'indemnisation des travailleurs sans égard à la faute de l'Ontario. Traite les demandes pour les blessures et maladies professionnelles.",
+    "url": "https://www.wsib.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["worker", "injury", "compensation", "insurance", "claim"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://www.wsib.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Arthritis Society Canada",
     "name_fr": "Société de l’arthrite du Canada",
     "description": "Telephone and email support for people affected by arthritis. Trained volunteers provide information on arthritis types, treatment, pain management, and local resources.",
-    "category": "Health",
     "phone": "1-800-321-1433",
-    "website": "https://arthritis.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["arthritis", "joint pain", "rheumatoid", "osteoarthritis", "chronic pain", "inflammation"],
     "eligibility": "Anyone affected by arthritis",
     "fees": "Free",
-    "hours": "Mon-Fri (messages returned within 1 business day)",
+    "hours": {
+      "notes": "Mon-Fri (messages returned within 1 business day)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "arthritis-society-canada",
-    "description_fr": "Soutien par téléphone et courriel pour les personnes touchées par l'arthrite. Des bénévoles formés fournissent de l'information sur les types d'arthrite, les traitements, la gestion de la douleur et les ressources locales."
+    "description_fr": "Soutien par téléphone et courriel pour les personnes touchées par l'arthrite. Des bénévoles formés fournissent de l'information sur les types d'arthrite, les traitements, la gestion de la douleur et les ressources locales.",
+    "url": "https://arthritis.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["arthritis", "joint pain", "rheumatoid", "osteoarthritis", "chronic pain", "inflammation"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://arthritis.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Heart and Stroke Foundation",
     "name_fr": "Cœur + AVC (Fondation des maladies du cœur et de l'AVC)",
     "description": "Provides evidence-based information on heart disease and stroke, including prevention, risk factors, recovery, and healthy living resources.",
-    "category": "Health",
     "phone": "1-888-473-4636",
-    "website": "https://www.heartandstroke.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["heart disease", "stroke", "cardiovascular", "blood pressure", "cholesterol", "heart attack"],
     "eligibility": "Anyone seeking heart or stroke information",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "heart-and-stroke-foundation",
-    "description_fr": "Fournit de l'information fondée sur des données probantes sur les maladies du cœur et l'AVC, y compris la prévention, les facteurs de risque, le rétablissement et les ressources pour une vie saine."
+    "description_fr": "Fournit de l'information fondée sur des données probantes sur les maladies du cœur et l'AVC, y compris la prévention, les facteurs de risque, le rétablissement et les ressources pour une vie saine.",
+    "url": "https://www.heartandstroke.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["heart disease", "stroke", "cardiovascular", "blood pressure", "cholesterol", "heart attack"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://www.heartandstroke.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
     "name_fr": "Hospice Palliative Care Ontario (HPCO)",
     "description": "Provincial helpline for palliative care information and navigation. Helps individuals, families, and caregivers find hospice programs, palliative care units, pain management services, and bereavement support.",
-    "category": "Health",
     "phone": "1-833-621-0728",
-    "website": "https://www.hpco.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["palliative care", "hospice", "end of life", "bereavement", "terminal illness", "pain management"],
     "eligibility": "Patients, families, and caregivers seeking palliative care",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-4:30pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "hospice-palliative-care-ontario-hpco-",
-    "description_fr": "Ligne d'assistance provinciale pour l'information et la navigation en soins palliatifs. Aide les individus, les familles et les aidants à trouver des programmes de soins palliatifs, des unités de soins, la gestion de la douleur et du soutien au deuil."
+    "description_fr": "Ligne d'assistance provinciale pour l'information et la navigation en soins palliatifs. Aide les individus, les familles et les aidants à trouver des programmes de soins palliatifs, des unités de soins, la gestion de la douleur et du soutien au deuil.",
+    "url": "https://www.hpco.ca",
+    "intent_category": "Health",
+    "synthetic_queries": [
+      "palliative care",
+      "hospice",
+      "end of life",
+      "bereavement",
+      "terminal illness",
+      "pain management"
+    ],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://www.hpco.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
     "name_fr": "Réseau de connaissances sur la SP (SP Canada)",
     "description": "National MS information and navigation service. Connects callers with MS Navigators who provide evidence-based information on multiple sclerosis, disease management, treatment, and local services.",
-    "category": "Health",
     "phone": "1-844-859-6789",
-    "website": "https://mscanada.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["multiple sclerosis", "MS", "neurological", "autoimmune", "mobility"],
     "eligibility": "Anyone affected by multiple sclerosis",
     "fees": "Free",
-    "hours": "Mon-Fri 8am-8pm ET",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "notes": "Mon-Fri 8am-8pm ET"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "ms-knowledge-network-ms-canada-",
-    "description_fr": "Service national d'information et de navigation sur la SP. Met les appelants en contact avec des navigateurs SP qui fournissent de l'information fondée sur des données probantes sur la sclérose en plaques, la gestion de la maladie, les traitements et les services locaux."
+    "description_fr": "Service national d'information et de navigation sur la SP. Met les appelants en contact avec des navigateurs SP qui fournissent de l'information fondée sur des données probantes sur la sclérose en plaques, la gestion de la maladie, les traitements et les services locaux.",
+    "url": "https://mscanada.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["multiple sclerosis", "MS", "neurological", "autoimmune", "mobility"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.316Z",
+      "evidence_url": "https://mscanada.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Parkinson Canada",
     "name_fr": "Parkinson Canada",
     "description": "Helpline for people living with Parkinson's disease, caregivers, and healthcare providers. Offers information about symptoms, treatment options, community resources, and support programs.",
-    "category": "Health",
     "phone": "1-888-664-1974",
-    "website": "https://www.parkinson.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["Parkinson's", "tremor", "movement disorder", "neurological", "dopamine"],
     "eligibility": "Anyone affected by Parkinson's disease",
     "fees": "Free",
-    "hours": "Mon-Fri 9am-4pm ET",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "notes": "Mon-Fri 9am-4pm ET"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "parkinson-canada",
-    "description_fr": "Ligne d'assistance pour les personnes vivant avec la maladie de Parkinson, les aidants et les professionnels de la santé. Offre de l'information sur les symptômes, les options de traitement, les ressources communautaires et les programmes de soutien."
+    "description_fr": "Ligne d'assistance pour les personnes vivant avec la maladie de Parkinson, les aidants et les professionnels de la santé. Offre de l'information sur les symptômes, les options de traitement, les ressources communautaires et les programmes de soutien.",
+    "url": "https://www.parkinson.ca",
+    "intent_category": "Health",
+    "synthetic_queries": ["Parkinson's", "tremor", "movement disorder", "neurological", "dopamine"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://www.parkinson.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Talk Tobacco",
     "description": "Culturally appropriate quit-smoking and vaping support for Indigenous peoples (First Nations, Inuit, Métis). Offers free, confidential counselling with respect for traditional tobacco use.",
-    "category": "Health",
     "phone": "1-833-998-8255",
-    "website": "https://talktobacco.ca",
     "scope": "canada",
     "address": "Available across Canada",
-    "keywords": ["quit smoking", "tobacco", "Indigenous", "First Nations", "Inuit", "Métis", "vaping", "cessation"],
     "eligibility": "Indigenous peoples seeking tobacco cessation support",
     "fees": "Free",
-    "hours": "7 days a week (hours vary)",
+    "hours": {
+      "notes": "7 days a week (hours vary)"
+    },
     "languages": ["English", "French", "Cree", "Ojibway", "Inuktitut"],
     "verification_level": "L1",
     "status": "Active",
     "id": "talk-tobacco",
     "name_fr": "Parler tabac",
-    "description_fr": "Soutien culturellement adapté pour arrêter de fumer et de vapoter pour les peuples autochtones (Premières Nations, Inuits, Métis). Offre du counselling confidentiel et gratuit dans le respect de l'usage traditionnel du tabac."
+    "description_fr": "Soutien culturellement adapté pour arrêter de fumer et de vapoter pour les peuples autochtones (Premières Nations, Inuits, Métis). Offre du counselling confidentiel et gratuit dans le respect de l'usage traditionnel du tabac.",
+    "url": "https://talktobacco.ca",
+    "intent_category": "Health",
+    "synthetic_queries": [
+      "quit smoking",
+      "tobacco",
+      "Indigenous",
+      "First Nations",
+      "Inuit",
+      "Métis",
+      "vaping",
+      "cessation"
+    ],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://talktobacco.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
     "description": "Provincial legal clinic serving Indigenous peoples across Ontario. Provides legal advice, representation, police complaints assistance, child welfare support (Giiwedin Anang Council), and Gladue report writing.",
-    "category": "Legal",
     "phone": "1-844-633-2886",
-    "website": "https://aboriginallegal.ca",
     "scope": "ontario",
     "address": "Toronto (serving province-wide)",
-    "keywords": ["Indigenous", "Aboriginal", "First Nations", "Métis", "Inuit", "Gladue", "child welfare"],
     "eligibility": "Indigenous peoples in Ontario",
     "fees": "Free",
-    "hours": "Mon, Wed, Fri 10am-3pm (intake)",
+    "hours": {
+      "notes": "Mon, Wed, Fri 10am-3pm (intake)"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "aboriginal-legal-services-als-",
     "name_fr": "Aboriginal Legal Services (ALS)",
-    "description_fr": "Clinique juridique provinciale desservant les peuples autochtones de l'Ontario. Fournit des conseils juridiques, de la représentation, de l'aide pour les plaintes contre la police, du soutien au bien-être de l'enfance et la rédaction de rapports Gladue."
+    "description_fr": "Clinique juridique provinciale desservant les peuples autochtones de l'Ontario. Fournit des conseils juridiques, de la représentation, de l'aide pour les plaintes contre la police, du soutien au bien-être de l'enfance et la rédaction de rapports Gladue.",
+    "url": "https://aboriginallegal.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["Indigenous", "Aboriginal", "First Nations", "Métis", "Inuit", "Gladue", "child welfare"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://aboriginallegal.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Consumer Protection Ontario",
     "name_fr": "Protection du consommateur de l'Ontario",
     "description": "Provincial helpline providing free information on consumer rights and unfair business practices. Assists with door-to-door sales, car repairs, home renovations, collection agencies, contracts, and consumer complaints.",
-    "category": "Legal",
     "phone": "1-800-889-9768",
-    "website": "https://ontario.ca/page/consumer-protection-ontario",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["consumer", "complaint", "refund", "scam", "contract", "business", "protection"],
     "eligibility": "Any consumer in Ontario",
     "fees": "Free",
-    "hours": "Mon-Fri 8:30am-5pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 8:30am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "consumer-protection-ontario",
-    "description_fr": "Ligne d'assistance provinciale fournissant de l'information gratuite sur les droits des consommateurs et les pratiques commerciales déloyales. Aide pour les ventes à domicile, les réparations automobiles, les rénovations domiciliaires, les agences de recouvrement, les contrats et les plaintes des consommateurs."
+    "description_fr": "Ligne d'assistance provinciale fournissant de l'information gratuite sur les droits des consommateurs et les pratiques commerciales déloyales. Aide pour les ventes à domicile, les réparations automobiles, les rénovations domiciliaires, les agences de recouvrement, les contrats et les plaintes des consommateurs.",
+    "url": "https://ontario.ca/page/consumer-protection-ontario",
+    "intent_category": "Legal",
+    "synthetic_queries": ["consumer", "complaint", "refund", "scam", "contract", "business", "protection"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://ontario.ca/page/consumer-protection-ontario",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Law Society Referral Service",
     "name_fr": "Service de référence du Barreau",
     "description": "Free referral to a lawyer or licensed paralegal who will provide a free 30-minute consultation. Operated by the Law Society of Ontario to connect people with legal professionals.",
-    "category": "Legal",
     "phone": "1-855-947-5255",
-    "website": "https://findlegalhelp.ca",
     "scope": "ontario",
     "address": "Province-wide",
-    "keywords": ["lawyer", "paralegal", "referral", "consultation", "legal help", "find lawyer"],
     "eligibility": "Anyone seeking legal help",
     "fees": "Free referral; 30-minute consultation is free",
-    "hours": "Mon-Fri 9am-5pm",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "notes": "Mon-Fri 9am-5pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "law-society-referral-service",
-    "description_fr": "Référence gratuite vers un avocat ou un parajuriste autorisé qui fournira une consultation gratuite de 30 minutes. Géré par le Barreau de l'Ontario pour mettre les gens en contact avec des professionnels du droit."
+    "description_fr": "Référence gratuite vers un avocat ou un parajuriste autorisé qui fournira une consultation gratuite de 30 minutes. Géré par le Barreau de l'Ontario pour mettre les gens en contact avec des professionnels du droit.",
+    "url": "https://findlegalhelp.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["lawyer", "paralegal", "referral", "consultation", "legal help", "find lawyer"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://findlegalhelp.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
     "description": "Legal aid clinic serving Nishnawbe Aski Nation (NAN) communities in Northern Ontario. Provides legal advice, certificates, and restorative justice programs including Talking Together.",
-    "category": "Legal",
     "phone": "1-800-465-5581",
-    "website": "https://nanlegal.on.ca",
     "scope": "ontario",
     "address": "Thunder Bay, ON (serving Northern Ontario)",
-    "keywords": ["Indigenous", "First Nations", "legal aid", "NAN", "Northern Ontario", "restorative justice"],
     "eligibility": "Indigenous peoples in NAN territory (financial testing applies)",
     "fees": "Free (if eligible)",
-    "hours": "Mon-Fri 8:30am-4:30pm",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Mon-Fri 8:30am-4:30pm"
+    },
     "verification_level": "L1",
     "status": "Active",
     "id": "nishnawbe-aski-legal-services-nalsc-",
     "name_fr": "Nishnawbe-Aski Legal Services (NALSC)",
-    "description_fr": "Clinique d'aide juridique desservant les communautés de la Nation Nishnawbe Aski (NAN) dans le Nord de l'Ontario. Fournit des conseils juridiques, des certificats et des programmes de justice réparatrice."
+    "description_fr": "Clinique d'aide juridique desservant les communautés de la Nation Nishnawbe Aski (NAN) dans le Nord de l'Ontario. Fournit des conseils juridiques, des certificats et des programmes de justice réparatrice.",
+    "url": "https://nanlegal.on.ca",
+    "intent_category": "Legal",
+    "synthetic_queries": ["Indigenous", "First Nations", "legal aid", "NAN", "Northern Ontario", "restorative justice"],
+    "provenance": {
+      "verified_by": "Pending manual verification",
+      "verified_at": "2026-01-08T21:57:01.317Z",
+      "evidence_url": "https://nanlegal.on.ca",
+      "method": "Schema migration - requires verification"
+    },
+    "identity_tags": []
   }
 ]
