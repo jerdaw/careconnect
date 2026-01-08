@@ -1,4 +1,9 @@
 {
+  "TranslationBanner": {
+    "title": "Avis de traduction",
+    "message": "Cette page utilise des traductions assistées par IA. Pour les informations essentielles, veuillez consulter la version anglaise.",
+    "dismiss": "Fermer"
+  },
   "BetaBanner": {
     "title": "Ceci est un projet dirigé par la communauté"
   },
@@ -16,7 +21,8 @@
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
       "contentPolicy": "Politique de contenu"
-    }
+    },
+    "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@kingstoncare.ca"
   },
   "Search": {
     "placeholder": "Chercher de l'aide...",
