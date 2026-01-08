@@ -5901,7 +5901,9 @@
     "hours": "24/7",
     "verification_level": "L1",
     "status": "Active",
-    "id": "ontario-caregiver-helpline"
+    "id": "ontario-caregiver-helpline",
+    "name_fr": "Ligne d'assistance aux aidants naturels de l'Ontario",
+    "description_fr": "Une ligne d'assistance dédiée 24h/24 et 7j/7 pour les aidants naturels de l'Ontario, offrant information, évaluation et orientation vers des services locaux et des groupes de soutien."
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -5917,7 +5919,9 @@
     "hours": "Mon-Fri 9am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "diabetes-canada-information-support"
+    "id": "diabetes-canada-information-support",
+    "name_fr": "Diabète Canada - Information et soutien",
+    "description_fr": "Information et soutien pour les personnes vivant avec le diabète, y compris l'accès au Programme de surveillance de la santé de l'Ontario pour une aide financière concernant les fournitures."
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -5933,7 +5937,9 @@
     "hours": "24/7",
     "verification_level": "L1",
     "status": "Active",
-    "id": "jordan-s-principle-call-centre"
+    "id": "jordan-s-principle-call-centre",
+    "name_fr": "Centre d'appel du Principe de Jordan",
+    "description_fr": "Une ligne d'assistance fédérale 24h/24 et 7j/7 garantissant que les enfants des Premières Nations obtiennent les services de santé, sociaux et éducatifs dont ils ont besoin sans délai."
   },
   {
     "name": "Lung Health Line",
@@ -5949,11 +5955,13 @@
     "hours": "Mon-Fri 8:30am-4:30pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "lung-health-line"
+    "id": "lung-health-line",
+    "name_fr": "Ligne de santé pulmonaire",
+    "description_fr": "Met les appelants en contact direct avec des éducateurs certifiés dans le domaine respiratoire pour des conseils sur l'asthme, la MPOC et d'autres affections pulmonaires."
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
-    "name_fr": "Infoligne de santé sexuelle de l'Ontario",
+    "name_fr": "Ligne info-santé sexuelle de l'Ontario (LISSO)",
     "description": "Anonymous and confidential counselling and information on sexual health, including STIs, HIV/AIDS, birth control, pregnancy, and sexual orientation.",
     "category": "Health",
     "phone": "1-800-668-2437",
@@ -5966,11 +5974,12 @@
     "hours": "Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "sexual-health-infoline-ontario-shilo-"
+    "id": "sexual-health-infoline-ontario-shilo-",
+    "description_fr": "Counselling et information anonymes et confidentiels sur la santé sexuelle, y compris les ITS, le VIH/sida, la contraception, la grossesse et l'orientation sexuelle."
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
-    "name_fr": "Centre de défense des aînés",
+    "name_fr": "Centre de défense des personnes âgées (ACE)",
     "description": "A specialty legal clinic providing legal services to seniors (60+) in Ontario. Focuses on elder law issues like long-term care, elder abuse, and health care consent.",
     "category": "Legal",
     "phone": "1-855-598-2656",
@@ -5983,7 +5992,8 @@
     "hours": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "advocacy-centre-for-the-elderly-ace-"
+    "id": "advocacy-centre-for-the-elderly-ace-",
+    "description_fr": "Une clinique juridique spécialisée fournissant des services juridiques aux aînés (60+) en Ontario. Se concentre sur le droit des aînés comme les soins de longue durée, la maltraitance des aînés et le consentement aux soins de santé."
   },
   {
     "name": "Employment Standards Information Centre",
@@ -5999,7 +6009,9 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "employment-standards-information-centre"
+    "id": "employment-standards-information-centre",
+    "name_fr": "Centre d'information sur les normes d'emploi",
+    "description_fr": "Fournit des renseignements généraux sur la Loi sur les normes d'emploi (LNE) de l'Ontario, couvrant le salaire minimum, les heures de travail, les heures supplémentaires, les vacances et les indemnités de licenciement."
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -6015,11 +6027,13 @@
     "hours": "Intake: Mon, Wed, Fri 9am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "hiv-aids-legal-clinic-ontario-halco-"
+    "id": "hiv-aids-legal-clinic-ontario-halco-",
+    "name_fr": "Clinique juridique VIH & sida de l'Ontario (HALCO)",
+    "description_fr": "Fournit des services juridiques gratuits aux personnes vivant avec le VIH/sida en Ontario. Couvre la protection de la vie privée, les droits de la personne, l'immigration et l'aide sociale."
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
-    "name_fr": "Centre d'assistance juridique en matière de droits de la personne",
+    "name_fr": "Centre d'assistance juridique en matière de droits de la personne (CAJDP)",
     "description": "Provides free legal advice and assistance to individuals who have experienced discrimination under the Ontario Human Rights Code.",
     "category": "Legal",
     "phone": "1-866-625-5179",
@@ -6032,7 +6046,8 @@
     "hours": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "human-rights-legal-support-centre-hrlsc-"
+    "id": "human-rights-legal-support-centre-hrlsc-",
+    "description_fr": "Fournit des conseils et une assistance juridiques gratuits aux personnes ayant subi de la discrimination en vertu du Code des droits de la personne de l'Ontario."
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -6048,7 +6063,9 @@
     "hours": "Mon-Fri 9am-4:30pm (Wed afternoon only)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "injured-workers-community-legal-clinic-iwc-"
+    "id": "injured-workers-community-legal-clinic-iwc-",
+    "name_fr": "Clinique juridique communautaire pour accidentés du travail (IWC)",
+    "description_fr": "Spécialisée dans la représentation des travailleurs accidentés dans les litiges avec la CSPAAT. Traite les demandes refusées et les questions de prestations."
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -6064,7 +6081,9 @@
     "hours": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "justice-for-children-and-youth-jfcy-"
+    "id": "justice-for-children-and-youth-jfcy-",
+    "name_fr": "Justice pour enfants et jeunes (JFCY)",
+    "description_fr": "Protège les droits juridiques des mineurs (moins de 18 ans) et des jeunes sans-abri (moins de 25 ans) en Ontario. Couvre le droit de l'éducation, de la famille, criminel et de la protection sociale."
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -6080,7 +6099,9 @@
     "hours": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "landlord-s-self-help-centre"
+    "id": "landlord-s-self-help-centre",
+    "name_fr": "Landlord's Self-Help Centre",
+    "description_fr": "Une clinique juridique spécialisée fournissant de l'information, des conseils sommaires et des références aux petits propriétaires en Ontario."
   },
   {
     "name": "Legal Aid Ontario",
@@ -6097,11 +6118,12 @@
     "hours": "Mon-Fri 8am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "legal-aid-ontario"
+    "id": "legal-aid-ontario",
+    "description_fr": "Principal fournisseur d'aide juridique publique de l'Ontario. Offre des certificats pour une représentation complète, des avocats de service dans les tribunaux et des conseils juridiques sommaires par téléphone pour le droit criminel, de la famille et de l'immigration."
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
-    "name_fr": "Commission de la location immobilière",
+    "name_fr": "Centre de contact de la Commission de la location immobilière",
     "description": "Provides information about the Residential Tenancies Act and LTB procedures. Staff can explain forms and the eviction process but cannot provide legal advice.",
     "category": "Legal",
     "phone": "1-888-332-3234",
@@ -6114,7 +6136,8 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "landlord-and-tenant-board-contact-centre"
+    "id": "landlord-and-tenant-board-contact-centre",
+    "description_fr": "Fournit de l'information sur la Loi sur la location à usage d'habitation et les procédures de la CLI. Le personnel peut expliquer les formulaires et le processus d'expulsion mais ne peut donner de conseils juridiques."
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -6131,11 +6154,12 @@
     "hours": "Mon-Fri Business Hours (By Appointment)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "ontario-legal-information-centre"
+    "id": "ontario-legal-information-centre",
+    "description_fr": "Offre une rencontre gratuite de 30 minutes avec un avocat à toute personne en Ontario, quel que soit son revenu. Fournit de l'information juridique générale et des références pour tout domaine du droit."
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
-    "name_fr": "Bureau des conseillers des travailleurs",
+    "name_fr": "Bureau du conseiller des travailleurs (BCT)",
     "description": "Provides free legal advice and representation to non-unionized injured workers in WSIB cases and workers facing health and safety reprisals.",
     "category": "Legal",
     "phone": "1-800-435-8980",
@@ -6148,7 +6172,8 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "office-of-the-worker-adviser-owa-"
+    "id": "office-of-the-worker-adviser-owa-",
+    "description_fr": "Assure des conseils et une représentation juridiques gratuits aux travailleurs non syndiqués blessés dans les cas de la CSPAAT et aux travailleurs victimes de représailles en matière de santé et sécurité."
   },
   {
     "name": "Steps to Justice",
@@ -6165,7 +6190,8 @@
     "hours": "Website 24/7; Chat Mon-Fri",
     "verification_level": "L1",
     "status": "Active",
-    "id": "steps-to-justice"
+    "id": "steps-to-justice",
+    "description_fr": "Un guide en ligne complet sur le droit en Ontario. Comprend des informations étape par étape et un service de clavardage en direct pour aider les utilisateurs à trouver des réponses juridiques."
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -6181,11 +6207,13 @@
     "hours": "Mon-Fri 9am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "workers-health-safety-legal-clinic"
+    "id": "workers-health-safety-legal-clinic",
+    "name_fr": "Clinique juridique de la santé et sécurité au travail",
+    "description_fr": "Aide les travailleurs non syndiqués qui font face à des punitions ou à un licenciement pour avoir soulevé des préoccupations en matière de santé et sécurité. Se concentre sur les représailles et les refus de travail dangereux."
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
-    "name_fr": "CSPAAT",
+    "name_fr": "CSPAAT (Commission de la sécurité professionnelle et de l'assurance contre les accidents du travail)",
     "description": "Administers Ontario's no-fault workers' compensation system. Handles claims for workplace injuries and illnesses.",
     "category": "Legal",
     "phone": "1-800-387-0750",
@@ -6198,11 +6226,12 @@
     "hours": "Mon-Fri 7:30am-6pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "wsib-workplace-safety-insurance-board-"
+    "id": "wsib-workplace-safety-insurance-board-",
+    "description_fr": "Administre le système d'indemnisation des travailleurs sans égard à la faute de l'Ontario. Traite les demandes pour les blessures et maladies professionnelles."
   },
   {
     "name": "Arthritis Society Canada",
-    "name_fr": "Société de l'arthrite",
+    "name_fr": "Société de l’arthrite du Canada",
     "description": "Telephone and email support for people affected by arthritis. Trained volunteers provide information on arthritis types, treatment, pain management, and local resources.",
     "category": "Health",
     "phone": "1-800-321-1433",
@@ -6215,11 +6244,12 @@
     "hours": "Mon-Fri (messages returned within 1 business day)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "arthritis-society-canada"
+    "id": "arthritis-society-canada",
+    "description_fr": "Soutien par téléphone et courriel pour les personnes touchées par l'arthrite. Des bénévoles formés fournissent de l'information sur les types d'arthrite, les traitements, la gestion de la douleur et les ressources locales."
   },
   {
     "name": "Heart and Stroke Foundation",
-    "name_fr": "Fondation des maladies du cœur et de l'AVC",
+    "name_fr": "Cœur + AVC (Fondation des maladies du cœur et de l'AVC)",
     "description": "Provides evidence-based information on heart disease and stroke, including prevention, risk factors, recovery, and healthy living resources.",
     "category": "Health",
     "phone": "1-888-473-4636",
@@ -6232,11 +6262,12 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "heart-and-stroke-foundation"
+    "id": "heart-and-stroke-foundation",
+    "description_fr": "Fournit de l'information fondée sur des données probantes sur les maladies du cœur et l'AVC, y compris la prévention, les facteurs de risque, le rétablissement et les ressources pour une vie saine."
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
-    "name_fr": "Soins palliatifs Ontario",
+    "name_fr": "Hospice Palliative Care Ontario (HPCO)",
     "description": "Provincial helpline for palliative care information and navigation. Helps individuals, families, and caregivers find hospice programs, palliative care units, pain management services, and bereavement support.",
     "category": "Health",
     "phone": "1-833-621-0728",
@@ -6249,11 +6280,12 @@
     "hours": "Mon-Fri 8:30am-4:30pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "hospice-palliative-care-ontario-hpco-"
+    "id": "hospice-palliative-care-ontario-hpco-",
+    "description_fr": "Ligne d'assistance provinciale pour l'information et la navigation en soins palliatifs. Aide les individus, les familles et les aidants à trouver des programmes de soins palliatifs, des unités de soins, la gestion de la douleur et du soutien au deuil."
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
-    "name_fr": "Réseau de connaissances sur la SP",
+    "name_fr": "Réseau de connaissances sur la SP (SP Canada)",
     "description": "National MS information and navigation service. Connects callers with MS Navigators who provide evidence-based information on multiple sclerosis, disease management, treatment, and local services.",
     "category": "Health",
     "phone": "1-844-859-6789",
@@ -6266,7 +6298,8 @@
     "hours": "Mon-Fri 8am-8pm ET",
     "verification_level": "L1",
     "status": "Active",
-    "id": "ms-knowledge-network-ms-canada-"
+    "id": "ms-knowledge-network-ms-canada-",
+    "description_fr": "Service national d'information et de navigation sur la SP. Met les appelants en contact avec des navigateurs SP qui fournissent de l'information fondée sur des données probantes sur la sclérose en plaques, la gestion de la maladie, les traitements et les services locaux."
   },
   {
     "name": "Parkinson Canada",
@@ -6283,7 +6316,8 @@
     "hours": "Mon-Fri 9am-4pm ET",
     "verification_level": "L1",
     "status": "Active",
-    "id": "parkinson-canada"
+    "id": "parkinson-canada",
+    "description_fr": "Ligne d'assistance pour les personnes vivant avec la maladie de Parkinson, les aidants et les professionnels de la santé. Offre de l'information sur les symptômes, les options de traitement, les ressources communautaires et les programmes de soutien."
   },
   {
     "name": "Talk Tobacco",
@@ -6300,7 +6334,9 @@
     "languages": ["English", "French", "Cree", "Ojibway", "Inuktitut"],
     "verification_level": "L1",
     "status": "Active",
-    "id": "talk-tobacco"
+    "id": "talk-tobacco",
+    "name_fr": "Parler tabac",
+    "description_fr": "Soutien culturellement adapté pour arrêter de fumer et de vapoter pour les peuples autochtones (Premières Nations, Inuits, Métis). Offre du counselling confidentiel et gratuit dans le respect de l'usage traditionnel du tabac."
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -6316,11 +6352,13 @@
     "hours": "Mon, Wed, Fri 10am-3pm (intake)",
     "verification_level": "L1",
     "status": "Active",
-    "id": "aboriginal-legal-services-als-"
+    "id": "aboriginal-legal-services-als-",
+    "name_fr": "Aboriginal Legal Services (ALS)",
+    "description_fr": "Clinique juridique provinciale desservant les peuples autochtones de l'Ontario. Fournit des conseils juridiques, de la représentation, de l'aide pour les plaintes contre la police, du soutien au bien-être de l'enfance et la rédaction de rapports Gladue."
   },
   {
     "name": "Consumer Protection Ontario",
-    "name_fr": "Protection du consommateur Ontario",
+    "name_fr": "Protection du consommateur de l'Ontario",
     "description": "Provincial helpline providing free information on consumer rights and unfair business practices. Assists with door-to-door sales, car repairs, home renovations, collection agencies, contracts, and consumer complaints.",
     "category": "Legal",
     "phone": "1-800-889-9768",
@@ -6333,7 +6371,8 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "consumer-protection-ontario"
+    "id": "consumer-protection-ontario",
+    "description_fr": "Ligne d'assistance provinciale fournissant de l'information gratuite sur les droits des consommateurs et les pratiques commerciales déloyales. Aide pour les ventes à domicile, les réparations automobiles, les rénovations domiciliaires, les agences de recouvrement, les contrats et les plaintes des consommateurs."
   },
   {
     "name": "Law Society Referral Service",
@@ -6350,7 +6389,8 @@
     "hours": "Mon-Fri 9am-5pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "law-society-referral-service"
+    "id": "law-society-referral-service",
+    "description_fr": "Référence gratuite vers un avocat ou un parajuriste autorisé qui fournira une consultation gratuite de 30 minutes. Géré par le Barreau de l'Ontario pour mettre les gens en contact avec des professionnels du droit."
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -6366,6 +6406,8 @@
     "hours": "Mon-Fri 8:30am-4:30pm",
     "verification_level": "L1",
     "status": "Active",
-    "id": "nishnawbe-aski-legal-services-nalsc-"
+    "id": "nishnawbe-aski-legal-services-nalsc-",
+    "name_fr": "Nishnawbe-Aski Legal Services (NALSC)",
+    "description_fr": "Clinique d'aide juridique desservant les communautés de la Nation Nishnawbe Aski (NAN) dans le Nord de l'Ontario. Fournit des conseils juridiques, des certificats et des programmes de justice réparatrice."
   }
 ]
