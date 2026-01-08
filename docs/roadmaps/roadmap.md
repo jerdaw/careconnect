@@ -72,7 +72,7 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 > **Status**: ✅ Implemented (2026-01-07)
 > **Focus**: Privacy & Scalability
-> **Definition**: [v13-0-librarian-model.md](v13-0-librarian-model.md)
+> **Definition**: [archive/2026-01-07-v13-0-librarian-model.md](archive/2026-01-07-v13-0-librarian-model.md)
 
 ### 1. Privacy-First Data Fetching ("Librarian Model")
 
