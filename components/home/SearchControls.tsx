@@ -42,7 +42,7 @@ export default function SearchControls({
   const t = useTranslations("Search")
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap items-center justify-center gap-2">
 
         {/* Open Now Toggle */}
