@@ -83,11 +83,11 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 Kingston Care Connect uses AI-assisted translations for some content. To ensure users are informed:
 
-1. **EDIA Locale Banner** (`ar`, `zh-Hans`, `es`)
+1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
 
-   - A dismissible banner appears at the top of every page
+   - A dismissible floating pill appears at the bottom-right of every page
    - Informs users that the page uses AI-assisted translations
-   - Recommends referring to the English version for critical information
+   - Contains a "Got it" button for acknowledgment
    - Stored in localStorage to remember dismissal
 
 2. **Footer Disclaimer** (all non-English locales)
