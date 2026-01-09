@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 
@@ -74,7 +74,7 @@ export default function Home() {
       <section className={cn(
         "relative transition-all duration-500 scroll-mt-20",
         hasSearched
-          ? "pt-24 pb-4 md:pt-20 md:pb-6"
+          ? "pt-[5.5rem] pb-4 md:pt-[4.5rem] md:pb-6"
           : "pt-32 pb-20 md:pt-48 md:pb-32"
       )}>
         {/* Mesh Gradient Background */}
@@ -86,33 +86,28 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
 
-          <AnimatePresence mode="wait">
-            {!hasSearched && (
-              <motion.div
-                key="hero-content"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20, height: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="space-y-6"
-              >
-                <h1 className="heading-1 heading-display relative text-neutral-900 dark:text-white">
-                  <span className="relative z-10">Kingston</span>
-                  <span className="from-primary-600 via-primary-500 to-accent-500 relative z-10 bg-gradient-to-r bg-clip-text text-transparent">
-                    {" "}
-                    Care Connect
-                  </span>
-                  <div className="absolute -inset-x-8 -inset-y-4 -z-10 rounded-[50%] bg-white/30 blur-3xl dark:bg-white/5" />
-                </h1>
+          <motion.div
+            key="hero-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="space-y-6"
+          >
+            <h1 className="heading-1 heading-display relative text-neutral-900 dark:text-white">
+              <span className="relative z-10">Kingston</span>
+              <span className="from-primary-600 via-primary-500 to-accent-500 relative z-10 bg-gradient-to-r bg-clip-text text-transparent">
+                {" "}
+                Care Connect
+              </span>
+              <div className="absolute -inset-x-8 -inset-y-4 -z-10 rounded-[50%] bg-white/30 blur-3xl dark:bg-white/5" />
+            </h1>
 
-                <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl dark:text-neutral-300">
-                  {t("Footer.disclaimer")}
-                </p>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl dark:text-neutral-300">
+              {t("Footer.disclaimer")}
+            </p>
 
-                <ModelStatus isReady={isReady} progress={progress} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <ModelStatus isReady={isReady} progress={progress} />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
