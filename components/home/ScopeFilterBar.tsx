@@ -1,7 +1,6 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 export type ScopeFilter = 'all' | 'kingston' | 'provincial'
@@ -35,46 +34,26 @@ export default function ScopeFilterBar({
   ]
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -5 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex justify-center py-1"
-    >
-      <div className="flex items-center gap-1 rounded-xl bg-neutral-100/50 p-1 dark:bg-neutral-900/50">
-        {scopes.map((scope) => {
-          const isActive = activeScope === scope.id
-          return (
+    <div className="flex items-center gap-1">
+      {scopes.map((scope, index) => {
+        const isActive = activeScope === scope.id
+        return (
+          <span key={scope.id} className="flex items-center">
+            {index > 0 && <span className="mx-1 text-neutral-300 dark:text-neutral-600">•</span>}
             <button
-              key={scope.id}
               onClick={() => onScopeChange(scope.id)}
               className={cn(
-                "relative flex items-center gap-2 rounded-xl px-3 py-1 text-sm font-medium transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+                "transition-colors rounded px-1.5 py-0.5",
                 isActive
-                  ? "text-primary-900 dark:text-primary-100"
-                  : "text-muted-foreground hover:text-foreground hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50"
+                  ? "text-primary-600 dark:text-primary-400 font-medium"
+                  : "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
               )}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="activeScope"
-                  className="absolute inset-0 rounded-xl bg-white shadow-sm ring-1 ring-black/5 dark:bg-neutral-800 dark:ring-white/10"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{scope.label}</span>
-              <span className={cn(
-                "relative z-10 text-xs",
-                isActive
-                  ? "opacity-100 font-semibold"
-                  : "opacity-60"
-              )}>
-                {scope.count}
-              </span>
+              {scope.label} <span className="text-xs opacity-70">{scope.count}</span>
             </button>
-          )
-        })}
-      </div>
-    </motion.div>
+          </span>
+        )
+      })}
+    </div>
   )
 }

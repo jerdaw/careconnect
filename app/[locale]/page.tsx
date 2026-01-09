@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSemanticSearch } from "../../hooks/useSemanticSearch"
 import { useSearch } from "../../hooks/useSearch"
 import { useServices } from "../../hooks/useServices"
@@ -63,20 +63,26 @@ export default function Home() {
     setSuggestion,
   })
 
+  // Ref for the search bar to scroll to
+  const searchBarRef = useRef<HTMLDivElement>(null)
+
+  // Scroll to search bar when search is performed
+  useEffect(() => {
+    if (hasSearched && searchBarRef.current) {
+      // Scroll so search bar is visible just below the nav
+      searchBarRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [hasSearched])
+
   const isActive = isFocused || query.length > 0
 
   return (
     <main id="main-content" className="relative flex min-h-screen flex-col overflow-hidden">
       <div className="bg-noise" />
-      <Header forceSolid={hasSearched} />
+      <Header />
 
       {/* Hero Section */}
-      <section className={cn(
-        "relative transition-all duration-500 scroll-mt-20",
-        hasSearched
-          ? "pt-[5.5rem] pb-4 md:pt-[4.5rem] md:pb-6"
-          : "pt-32 pb-20 md:pt-48 md:pb-32"
-      )}>
+      <section className="relative transition-all duration-500 pt-32 pb-20 md:pt-48 md:pb-32">
         {/* Mesh Gradient Background */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div className="bg-primary-400/40 animate-float dark:bg-primary-700/40 absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:mix-blend-screen" />
@@ -113,7 +119,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-12"
+            className="mt-12 scroll-mt-24"
+            ref={searchBarRef}
           >
             <div className="shadow-primary-900/5 relative transform overflow-hidden rounded-[2rem] p-[2px] shadow-2xl transition-all duration-500 hover:scale-[1.01]">
               {/* Moving Multicolor Border (Idle - spinning segment) */}

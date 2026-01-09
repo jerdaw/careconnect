@@ -71,8 +71,8 @@ export default function SearchResultsList({
     return (
       <div className="rounded-lg bg-neutral-100 p-6 text-center dark:bg-neutral-900">
         <p className="text-neutral-600 dark:text-neutral-400">
-          {category 
-            ? t('noResultsInCategory', { query, category }) 
+          {category
+            ? t('noResultsInCategory', { query, category })
             : t('noResults', { query })}
         </p>
       </div>
@@ -86,8 +86,8 @@ export default function SearchResultsList({
         <p className="mb-4 text-neutral-600 dark:text-neutral-400">
           {t('noLocalResults')}
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           onClick={() => setActiveScope('all')}
         >
           {t('showAllResults', { count: results.length })}
@@ -98,21 +98,23 @@ export default function SearchResultsList({
 
   return (
     <div className="space-y-2">
-      {/* Contextual Scope Filter Bar - only shows for mixed-scope results */}
-      {hasSearched && (
-        <ScopeFilterBar
-          counts={scopeCounts}
-          activeScope={activeScope}
-          onScopeChange={setActiveScope}
-        />
-      )}
-
-      {/* Results Counter */}
-      {hasSearched && filteredResults.length > 0 && (userLocation || category) && (
-        <div className="flex items-center justify-between text-xs text-neutral-400">
-          <span>
-            {filteredResults.length} results {userLocation && "sorted by distance"}
+      {/* Results Header Row - count, scope filter, and print button */}
+      {hasSearched && filteredResults.length > 0 && (
+        <div className="flex items-center justify-between gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+          {/* Left: Results count */}
+          <span className="whitespace-nowrap">
+            {filteredResults.length} {filteredResults.length === 1 ? 'result' : 'results'}
+            {userLocation && " • sorted by distance"}
           </span>
+
+          {/* Center: Scope Filter */}
+          <ScopeFilterBar
+            counts={scopeCounts}
+            activeScope={activeScope}
+            onScopeChange={setActiveScope}
+          />
+
+          {/* Right: Print button */}
           <PrintButton className="no-print" />
         </div>
       )}
