@@ -30,7 +30,7 @@ export default function ScopeFilterBar({
 
   if (isHomogeneous) {
     return (
-      <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 px-3 dark:border-neutral-700">
+      <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
         <span className="text-sm font-medium text-primary-600 dark:text-primary-400">{totalCount}</span>
         <span className="text-sm text-neutral-500 dark:text-neutral-400">{totalCount === 1 ? 'Result' : 'Results'}</span>
       </div>
@@ -45,7 +45,7 @@ export default function ScopeFilterBar({
   ]
 
   return (
-    <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 px-1 dark:border-neutral-700">
+    <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-1 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
       {scopes.map((scope) => {
         const isActive = activeScope === scope.id
         return (
