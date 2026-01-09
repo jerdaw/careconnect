@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Zap, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -14,12 +14,17 @@ const messages = [
   { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
 ]
 
+// Synced to half of the 10-second spin cycle
+const HALF_CYCLE_DURATION = 5000 // 5 seconds
+
 export default function ModelStatus({ isReady }: ModelStatusProps) {
-  const [messageIndex, setMessageIndex] = useState(0) // Start with Privacy First
+  const [messageIndex, setMessageIndex] = useState(0)
   const [minDisplayTimeElapsed, setMinDisplayTimeElapsed] = useState(false)
   const [shouldCycle, setShouldCycle] = useState(false)
+  
+  const cycleStartTimeRef = useRef<number | null>(null)
 
-  // Initial 4-second timer
+  // Initial wait before cycling can start (show Privacy First for at least 4s)
   useEffect(() => {
     const timer = setTimeout(() => {
       setMinDisplayTimeElapsed(true)
@@ -27,28 +32,44 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
     return () => clearTimeout(timer)
   }, [])
 
-  // Check for readiness after min time elapsed
+  // Enable cycling when ready
   useEffect(() => {
     if (minDisplayTimeElapsed && isReady) {
-      // Move to the next message (Neural Search Active) and enable cycling
       setMessageIndex(1)
       setShouldCycle(true)
+      cycleStartTimeRef.current = Date.now()
     }
   }, [minDisplayTimeElapsed, isReady])
 
-  // Cycling logic
+  // Cycling logic: switch every 5 seconds (half of the 10s spin), starting at the middle point
   useEffect(() => {
     if (!shouldCycle) return
 
-    const interval = setInterval(() => {
-      setMessageIndex((prev) => (prev + 1) % messages.length)
-    }, 4000)
+    // Calculate time until next middle point (every 5 seconds, offset by 2.5s from spin start)
+    const MIDDLE_OFFSET = 2500 // 2.5s offset to hit the "middle" of each half-cycle
+    const now = Date.now()
+    const cycleStart = cycleStartTimeRef.current ?? now
+    const elapsed = (now - cycleStart) % HALF_CYCLE_DURATION
+    const timeUntilNext = (HALF_CYCLE_DURATION + MIDDLE_OFFSET - elapsed) % HALF_CYCLE_DURATION || HALF_CYCLE_DURATION
 
-    return () => clearInterval(interval)
+    const initialTimeout = setTimeout(() => {
+      setMessageIndex((prev) => (prev + 1) % messages.length)
+      
+      // Then continue at regular 5-second intervals
+      const interval = setInterval(() => {
+        setMessageIndex((prev) => (prev + 1) % messages.length)
+      }, HALF_CYCLE_DURATION)
+
+      ;(window as unknown as Record<string, unknown>).__modelStatusInterval = interval
+    }, timeUntilNext)
+
+    return () => {
+      clearTimeout(initialTimeout)
+      const interval = (window as unknown as Record<string, unknown>).__modelStatusInterval as ReturnType<typeof setInterval> | undefined
+      if (interval) clearInterval(interval)
+    }
   }, [shouldCycle])
 
-  // Always show a message if possible, falling back to just rendering nothing if something is really wrong
-  // but conceptually we always start with message 0 now.
   const currentMessage = messages[messageIndex % messages.length]
 
   if (!currentMessage) return null
@@ -71,3 +92,5 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
     </div>
   )
 }
+
+
