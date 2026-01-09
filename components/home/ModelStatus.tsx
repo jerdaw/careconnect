@@ -30,16 +30,19 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Start the checkpoint timer immediately on mount
-  // At each 5-second checkpoint, check if we should switch
+  // At each checkpoint, check if we should switch
   useEffect(() => {
-    // First checkpoint at 5 seconds (aligned with CSS animation)
+    // Offset to sync with the visual "middle" of the animation (1 second earlier)
+    const SYNC_OFFSET = 1000
+    
+    // First checkpoint at 4 seconds (5s - 1s offset)
     const firstCheckpointTimeout = setTimeout(() => {
       // First checkpoint: check if ready and start cycling
       if (isReadyRef.current) {
         setMessageIndex(1) // Switch to "Neural Search Active"
       }
       
-      // Continue checking at each subsequent checkpoint
+      // Continue checking at each subsequent checkpoint (every 5 seconds)
       intervalRef.current = setInterval(() => {
         if (!isReadyRef.current) {
           // Not ready yet, stay on message 0
@@ -49,7 +52,7 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
         // Ready: cycle between messages
         setMessageIndex((prev) => (prev + 1) % messages.length)
       }, HALF_CYCLE_DURATION)
-    }, HALF_CYCLE_DURATION)
+    }, HALF_CYCLE_DURATION - SYNC_OFFSET)
     
     return () => {
       clearTimeout(firstCheckpointTimeout)
