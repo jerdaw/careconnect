@@ -32,11 +32,17 @@ export const useSemanticSearch = () => {
 
         if (status === "error") {
           logger.error("Worker Error:", error, { component: "useSemanticSearch" })
-          setStatus((prev) => ({ ...prev, error: "Failed to load model" }))
+          setStatus((prev) => ({ ...prev, error: typeof error === 'string' ? error : "Failed to load model" }))
         }
       })
 
-      // Start Initialization
+      // Error Listener (catches worker script errors like syntax errors or throw)
+      worker.current.addEventListener("error", (event) => {
+          logger.error("Worker Script Error:", event.message, { component: "useSemanticSearch" })
+          setStatus((prev) => ({ ...prev, error: `Worker Error: ${event.message}` }))
+      });
+
+        // Start Initialization
       worker.current.postMessage({ action: "init" })
     }
 
@@ -70,5 +76,5 @@ export const useSemanticSearch = () => {
     [status.isReady]
   )
 
-  return { isReady: status.isReady, progress: status.progress, generateEmbedding }
+  return { isReady: status.isReady, progress: status.progress, error: status.error, generateEmbedding }
 }

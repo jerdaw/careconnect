@@ -4,11 +4,6 @@ import { useState, useEffect, useRef } from "react"
 import { Zap, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
-interface ModelStatusProps {
-  isReady: boolean
-  progress: number | null
-}
-
 const messages = [
   { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-green-600 dark:text-green-500" },
   { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
@@ -16,6 +11,11 @@ const messages = [
 
 // Synced to half of the 10-second spin cycle
 const HALF_CYCLE_DURATION = 5000 // 5 seconds
+
+interface ModelStatusProps {
+  isReady: boolean
+  progress: number | null
+}
 
 export default function ModelStatus({ isReady }: ModelStatusProps) {
   const [messageIndex, setMessageIndex] = useState(0)
@@ -32,8 +32,8 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
   // Start the checkpoint timer immediately on mount
   // At each checkpoint, check if we should switch
   useEffect(() => {
-    // Initial sync point at 4.25 seconds from mount
-    const FIRST_CHECKPOINT_DELAY = 4250
+    // Initial sync point at 4.35 seconds from mount
+    const FIRST_CHECKPOINT_DELAY = 4350
     
     const firstCheckpointTimeout = setTimeout(() => {
       // First checkpoint: check if ready and start cycling
