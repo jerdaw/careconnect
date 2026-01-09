@@ -10,24 +10,34 @@ interface ScopeFilterBarProps {
   counts: { all: number; local: number; provincial: number }
   activeScope: ScopeFilter
   onScopeChange: (scope: ScopeFilter) => void
+  totalCount: number
 }
 
 /**
- * Contextual filter bar that only appears when search results span multiple scopes.
- * Shows counts for All, Local (Kingston), and Provincial (Ontario/Canada) services.
+ * Contextual filter bar that shows scope options when results span multiple scopes,
+ * or a simple "XX Results" text when results are homogeneous.
  */
 export default function ScopeFilterBar({
   counts,
   activeScope,
   onScopeChange,
+  totalCount,
 }: ScopeFilterBarProps) {
   const t = useTranslations("Search")
 
-  // Don't render if results are homogeneous (all local or all provincial)
-  if (counts.local === 0 || counts.provincial === 0) {
-    return null
+  // If results are homogeneous (all local or all provincial), show simple count
+  const isHomogeneous = counts.local === 0 || counts.provincial === 0
+
+  if (isHomogeneous) {
+    return (
+      <span className="flex h-8 items-center text-sm text-neutral-500 dark:text-neutral-400">
+        <span className="font-medium text-neutral-700 dark:text-neutral-200">{totalCount}</span>
+        <span className="ml-1">{totalCount === 1 ? 'Result' : 'Results'}</span>
+      </span>
+    )
   }
 
+  // Mixed results - show scope selector with "All XX" as first option
   const scopes: { id: ScopeFilter; label: string; count: number }[] = [
     { id: 'all', label: t('scope.all'), count: counts.all },
     { id: 'kingston', label: t('scope.local'), count: counts.local },

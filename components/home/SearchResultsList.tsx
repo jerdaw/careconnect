@@ -24,7 +24,6 @@ export default function SearchResultsList({
   hasSearched,
   query,
   category,
-  userLocation,
 }: SearchResultsListProps) {
   const t = useTranslations("Search")
   const [activeScope, setActiveScope] = useState<ScopeFilter>('all')
@@ -98,21 +97,15 @@ export default function SearchResultsList({
 
   return (
     <div className="space-y-2">
-      {/* Results Header Row - count, scope filter, and print button */}
+      {/* Results Header Row - scope filter and print button */}
       {hasSearched && filteredResults.length > 0 && (
-        <div className="flex items-center justify-between gap-2 text-xs">
-          {/* Left: Results count */}
-          <span className="flex h-8 items-center text-sm text-neutral-500 dark:text-neutral-400">
-            <span className="font-medium text-neutral-700 dark:text-neutral-200">{filteredResults.length}</span>
-            <span className="ml-1">{filteredResults.length === 1 ? 'result' : 'results'}</span>
-            {userLocation && <span className="ml-1 opacity-60">• by distance</span>}
-          </span>
-
-          {/* Center: Scope Filter */}
+        <div className="flex items-center justify-between gap-2">
+          {/* Left: Scope Filter (or simple results count if homogeneous) */}
           <ScopeFilterBar
             counts={scopeCounts}
             activeScope={activeScope}
             onScopeChange={setActiveScope}
+            totalCount={filteredResults.length}
           />
 
           {/* Right: Print button */}
