@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Loader2, Shield } from "lucide-react"
+import { Loader2, Zap, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 interface ModelStatusProps {
@@ -10,8 +10,8 @@ interface ModelStatusProps {
 }
 
 const messages = [
-  { icon: "⚡", text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
-  { icon: null, iconComponent: Shield, text: "Privacy First • No Tracking • Open Source", color: "text-primary-600 dark:text-primary-400" },
+  { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
+  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-primary-600 dark:text-primary-400" },
 ]
 
 export default function ModelStatus({ isReady, progress }: ModelStatusProps) {
@@ -51,8 +51,7 @@ export default function ModelStatus({ isReady, progress }: ModelStatusProps) {
             transition={{ duration: 0.3 }}
             className={`flex items-center justify-center gap-1 text-xs ${currentMessage.color}`}
           >
-            {currentMessage.icon && <span>{currentMessage.icon}</span>}
-            {currentMessage.iconComponent && <currentMessage.iconComponent className="h-3 w-3" />}
+            <currentMessage.iconComponent className="h-3 w-3" />
             <span>{currentMessage.text}</span>
           </motion.div>
         </AnimatePresence>
