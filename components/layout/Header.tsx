@@ -64,7 +64,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
         <nav
           className={cn(
             "mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 sm:px-6 lg:px-8",
-            isSolid ? "py-3" : "py-5"
+            isSolid ? "py-2" : "py-4"
           )}
         >
           {/* Logo */}
@@ -154,11 +154,11 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
 
             {/* Primary CTA */}
             {user ? (
-              <Button variant={isSolid ? "default" : "secondary"} className="ml-4" asChild>
+              <Button variant={isSolid ? "default" : "secondary"} size="sm" className="ml-4" asChild>
                 <Link href="/dashboard">Dashboard</Link>
               </Button>
             ) : (
-              <Button variant={isSolid ? "default" : "secondary"} className="ml-4" asChild>
+              <Button variant={isSolid ? "default" : "secondary"} size="sm" className="ml-4" asChild>
                 <Link href="/login">Partner Login</Link>
               </Button>
             )}

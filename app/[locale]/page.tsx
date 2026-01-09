@@ -74,7 +74,7 @@ export default function Home() {
       <section className={cn(
         "relative transition-all duration-500 scroll-mt-20",
         hasSearched
-          ? "pt-20 pb-2 md:pt-6 md:pb-4"
+          ? "pt-24 pb-4 md:pt-20 md:pb-6"
           : "pt-32 pb-20 md:pt-48 md:pb-32"
       )}>
         {/* Mesh Gradient Background */}
