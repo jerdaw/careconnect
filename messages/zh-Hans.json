@@ -1,9 +1,13 @@
 {
   "BetaBanner": {
-    "title": "这是一个社区主导的项目"
+    "title": "这是一个社区主导的项目",
+    "shareFeedback": "分享反馈"
   },
   "Footer": {
-    "disclaimer": "支持金斯顿社区",
+    "disclaimer": "查找经过验证的本地服务和社区资源。",
+    "mission": "将金斯顿居民与他们所需的支持服务联系起来。为我们的社区精心打造。",
+    "privacyMessage": "隐私至上 • 无追踪 • 开源",
+    "copyright": "© 2024 Kingston Care Connect (试点版本 v1.0)",
     "emergencyDisclaimer": "Kingston Care Connect 仅供信息参考。请务必向服务提供商核实信息。如遇紧急情况，请拨打 911。",
     "quickLinks": {
       "community": "社区",
@@ -94,10 +98,16 @@
     "totalAllTime": "历史总计"
   },
   "Navigation": {
-    "home": "首页",
-    "about": "关于",
-    "suggest": "建议服务",
-    "admin": "管理员"
+    "home": "Home",
+    "about": "About",
+    "suggest": "Suggest Service",
+    "admin": "Admin",
+    "partnerLogin": "合作伙伴登录",
+    "dashboard": "仪表盘",
+    "language": "语言",
+    "closeMenu": "关闭菜单",
+    "openMenu": "打开菜单",
+    "skipToMain": "跳转到主要内容"
   },
   "Common": {
     "openInNewTab": "（在新标签页中打开）",
@@ -107,7 +117,7 @@
   "Privacy": {
     "title": "隐私政策",
     "simplified": "简化隐私",
-    "intro": "在金斯顿关怀连接，您的隐私不是事后考虑——它是我们的核心架构。",
+    "intro": "在金斯顿关怀连接，您的隐私不是事后考虑—它是我们的核心架构。",
     "points": {
       "noTracking": "无追踪：我们不使用 Google Analytics、Facebook Pixels 或任何第三方追踪器。",
       "noCookies": "无 Cookie：我们不在 Cookie 中存储个人数据。",
@@ -532,19 +542,19 @@
     "sections": {
       "prohibited": {
         "title": "禁止内容",
-        "content": "<p>为确保 Kingston Care Connect 仍然是一个安全可靠的资源，严禁以下内容：</p><ul><li><strong>垃圾邮件或广告</strong>：未经请求的商业内容或与社会服务无关的促销材料。</li><li><strong>诽谤内容</strong>：旨在损害组织或个人声誉的虚假信息。</li><li><strong>侵犯隐私</strong>：未经同意的个人信息（例如员工家庭住址）。</li><li><strong>仇恨言论</strong>：宣扬基于种族、宗教、残疾、性别或性取向的暴力或歧视的言论。</li><li><strong>欺诈信息</strong>：故意误导性的服务描述或资格标准。</li></ul>"
+        "content": "<p>为确保 Kingston Care Connect 仍然是一个安全可靠的资源，严禁以下内容：</p><ul><li><strong>垃圾邮件或广告</strong>：未经请求的商业内容或与社会服务无关的促销材料。</li><li><strong>诽谤内容</strong>：旨在损害组织或个人声誉的虚假信息。</li><li><strong>侵犯隐私</strong>：未经同意的个人信息（例如员工家庭住址）。</li><li><strong>仇恨言论</strong>：宣扬基于种族、宗教、残疾、性别或性取向的暴力或歧视的言论。</li><li><strong>欺诈信息</strong>：故意误导性的服务描述或资格标准。</ul>"
       },
       "submissions": {
         "title": "用户提交",
-        "content": "<p>向 KCC 提交服务或反馈时：</p><ul><li>所有提交在发布前均由我们的团队审核（内部即时反馈除外）。</li><li>我们保留编辑提交以确保清晰度、长度和格式（同时保持准确性）的权利。</li><li>我们保留拒绝不符合我们收录标准或违反本政策的提交的权利。</li></ul>"
+        "content": "<p>向 KCC 提交服务或反馈时：</p><ul><li>所有提交在发布前均由我们的团队审核（内部即时反馈除外）。</li><li>我们保留编辑提交以确保清晰度、长度和格式（同时保持准确性）的权利。</li><li>我们保留拒绝不符合我们收录标准或违反本政策的提交的权利。</ul>"
       },
       "reporting": {
         "title": "报告流程",
-        "content": "<p>如果您遇到有问题的内容：</p><ul><li>使用每个服务列表页面上的“报告问题”按钮。</li><li>对于隐私或安全问题，请发送电子邮件至 <strong>privacy@kingstoncareconnect.ca</strong>。</li><li>我们的目标是在 5 个工作日内审核并回复报告。</li><li>您可以匿名报告内容，即提供联系信息有助于我们核实索赔。</li></ul>"
+        "content": "<p>如果您遇到有问题的内容：</p><ul><li>使用每个服务列表页面上的“报告问题”按钮。</li><li>对于隐私或安全问题，请发送电子邮件至 <strong>privacy@kingstoncareconnect.ca</strong>。</li><li>我们的目标是在 5 个工作日内审核并回复报告。</li><li>您可以匿名报告内容，即提供联系信息有助于我们核实索赔。</ul>"
       },
       "appeals": {
         "title": "申诉流程",
-        "content": "<p>如果您的列表提交被拒绝或内容被删除：</p><ul><li>您可以通过联系 <strong>moderation@kingstoncareconnect.ca</strong> 申诉决定。</li><li>请提供支持您申诉的具体证据（例如，官方网站链接、注册文件）。</li><li>最终决定由 KCC 治理委员会做出。</li></ul>"
+        "content": "<p>如果您的列表提交被拒绝或内容被删除：</p><ul><li>您可以通过联系 <strong>moderation@kingstoncareconnect.ca</strong> 申诉决定。</li><li>请提供支持您申诉的具体证据（例如，官方网站链接、注册文件）。</li><li>最终决定由 KCC 治理委员会做出。</ul>"
       }
     }
   },
@@ -555,8 +565,19 @@
     "step1": "接受条款",
     "step2": "验证邮箱",
     "agreeLabel": "我同意合作伙伴服务条款",
-    "submit": "继续验证",
+    "submit": "Continue to Verification",
     "success": "认领请求已提交。请查收电子邮件。"
+  },
+  "Login": {
+    "title": "合作伙伴登录",
+    "subtitle": "访问您的仪表盘以管理服务",
+    "emailLabel": "电子邮件地址",
+    "emailPlaceholder": "you@organization.org",
+    "submit": "使用电子邮件登录",
+    "sending": "正在发送神奇链接...",
+    "newToKCC": "Care Connect 新手？",
+    "applyPartner": "申请合作伙伴账户",
+    "successMessage": "神奇链接已发送！请查收邮件以登录。"
   },
   "Badges": {
     "ontarioWide": "安大略省范围",

@@ -67,6 +67,14 @@ export async function POST(request: NextRequest) {
 
     // 8. Crisis detection (server-side boost)
     let results = (data as unknown as ServicePublic[]) || []
+
+    // ROBUSTNESS PATCH: Ensure 988 is always Canada-wide (fixes stale DB data in dev)
+    results = results.map(s => {
+      if (s.id === "crisis-988") {
+        return { ...s, scope: "canada" }
+      }
+      return s
+    })
     
     // Safety boost: if query indicates crisis, ensure crisis services are top
     if (query.trim() && detectCrisis(query)) {

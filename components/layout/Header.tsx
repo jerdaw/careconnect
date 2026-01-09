@@ -40,7 +40,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
       >
-        Skip to main content
+        {t("skipToMain")}
       </a>
       <header
         className={cn(
@@ -155,11 +155,11 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             {/* Primary CTA */}
             {user ? (
               <Button variant={isSolid ? "default" : "secondary"} size="sm" className="ml-4" asChild>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/dashboard">{t("dashboard")}</Link>
               </Button>
             ) : (
               <Button variant={isSolid ? "default" : "secondary"} size="sm" className="ml-4" asChild>
-                <Link href="/login">Partner Login</Link>
+                <Link href="/login">{t("partnerLogin")}</Link>
               </Button>
             )}
           </div>
@@ -170,7 +170,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             <button
               className="p-2 text-neutral-600 dark:text-neutral-300"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={mobileMenuOpen ? t("closeMenu") : t("openMenu")}
             >
               {mobileMenuOpen ? <X /> : <Menu className="text-neutral-900 dark:text-white" />}
             </button>
@@ -219,7 +219,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
 
                 {/* Language Switcher */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-neutral-500 dark:text-neutral-400">Language</span>
+                  <span className="text-sm text-neutral-500 dark:text-neutral-400">{t("language")}</span>
                   <LanguageSwitcher />
                 </div>
 
@@ -228,11 +228,11 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 {/* Primary CTA */}
                 {user ? (
                   <Button className="w-full" size="lg" asChild>
-                    <Link href="/dashboard">Dashboard</Link>
+                    <Link href="/dashboard">{t("dashboard")}</Link>
                   </Button>
                 ) : (
                   <Button className="w-full" size="lg" asChild>
-                    <Link href="/login">Partner Login</Link>
+                    <Link href="/login">{t("partnerLogin")}</Link>
                   </Button>
                 )}
               </div>

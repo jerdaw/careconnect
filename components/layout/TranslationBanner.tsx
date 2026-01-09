@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useState, useEffect } from "react"
 import { Sparkles } from "lucide-react"
 
-const EDIA_LOCALES = ["ar", "zh-Hans", "es"]
+const EDIA_LOCALES = ["ar", "zh-Hans", "es", "pa", "pt"]
 const STORAGE_KEY = "kcc-translation-banner-dismissed"
 
 export function TranslationBanner() {

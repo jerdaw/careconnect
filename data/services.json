@@ -2701,6 +2701,7 @@
     "intent_category": "Crisis",
     "verification_level": "L1",
     "is_provincial": true,
+    "scope": "canada",
     "provenance": {
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",

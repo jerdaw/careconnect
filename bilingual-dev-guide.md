@@ -1,16 +1,18 @@
 # Multi-lingual Development Guide
 
-**Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 5 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
+**Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 7 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
 
 ## 1. Supported Languages
 
-| Locale    | Language               | Direction | Purpose                     |
-| :-------- | :--------------------- | :-------- | :-------------------------- |
-| `en`      | English                | LTR       | Official / Primary          |
-| `fr`      | Français canadien (CA) | LTR       | Official / Secondary        |
-| `ar`      | العربية                | RTL       | EDIA / SWANA Community      |
-| `zh-Hans` | 中文                   | LTR       | EDIA / East Asian Community |
-| `es`      | Español                | LTR       | EDIA / Latinx Community     |
+| Locale    | Language               | Direction | Purpose                      |
+| :-------- | :--------------------- | :-------- | :--------------------------- |
+| `en`      | English                | LTR       | Official / Primary           |
+| `fr`      | Français canadien (CA) | LTR       | Official / Secondary         |
+| `ar`      | العربية                | RTL       | EDIA / SWANA Community       |
+| `zh-Hans` | 中文                   | LTR       | EDIA / East Asian Community  |
+| `es`      | Español                | LTR       | EDIA / Latinx Community      |
+| `pa`      | ਪੰਜਾਬੀ                 | LTR       | EDIA / South Asian Community |
+| `pt`      | Português              | LTR       | EDIA / Lusophone Community   |
 
 > **Note:** The `fr` locale uses Canadian French (fr-CA), not France French. This is a Kingston, Ontario project and follows Canadian French spelling, vocabulary, and conventions.
 
@@ -21,14 +23,14 @@
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
   - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
-  - **Provincial Services (scope: 'ontario' or 'canada')**: All 5 languages for name/description/eligibility fields.
+  - **Provincial Services (scope: 'ontario' or 'canada')**: All 7 languages for name/description/eligibility fields.
   - **Schema**: The `scope` field (enum: `'kingston'`, `'ontario'`, `'canada'`) indicates geographic availability. The legacy `is_provincial` field is deprecated.
 
 ## 3. Implementation Rules
 
-1. **Labels**: UI labels must be present in **all 5** message files. This includes labels for legal policies, AI disclaimers, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
+1. **Labels**: UI labels must be present in **all 7** message files. This includes labels for legal policies, AI disclaimers, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
 2. **Text Expansion**: Layouts must accommodate French and Spanish (often 20-30% longer than English) and Chinese (shorter but taller).
-3. **Legal/Policy Pages**: While content may lead in English/French, the structural keys and headers for all policy pages (Privacy, Terms, Accessibility) MUST exist in all 5 languages to prevent UI crashes.
+3. **Legal/Policy Pages**: While content may lead in English/French, the structural keys and headers for all policy pages (Privacy, Terms, Accessibility) MUST exist in all 7 languages to prevent UI crashes.
 4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
 5. **Content Fallbacks**:
 
@@ -44,7 +46,7 @@
 
 | Script                    | Purpose                                              | Scope                |
 | ------------------------- | ---------------------------------------------------- | -------------------- |
-| `npm run i18n-audit`      | Checks all 5 message files for missing keys          | UI translations      |
+| `npm run i18n-audit`      | Checks all 7 message files for missing keys          | UI translations      |
 | `npm run bilingual-check` | Checks EN/FR parity for service data                 | `data/services.json` |
 | `npm run validate-data`   | Validates service schema, warns if `name_fr` missing | `data/services.json` |
 
@@ -73,7 +75,7 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 - **Accessibility**: ARIA labels must be descriptive in all languages.
 - **Human Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
-- **Maintenance**: Ensure any new keys added to `en.json` are immediately propagated to all other 4 languages.
+- **Maintenance**: Ensure any new keys added to `en.json` are immediately propagated to all other 6 languages.
 
 ---
 

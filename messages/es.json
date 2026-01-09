@@ -1,9 +1,13 @@
 {
   "BetaBanner": {
-    "title": "Este es un proyecto liderado por la comunidad"
+    "title": "Este es un proyecto liderado por la comunidad",
+    "shareFeedback": "Compartir Comentarios"
   },
   "Footer": {
-    "disclaimer": "Apoyando a la comunidad de Kingston",
+    "disclaimer": "Encuentre servicios locales verificados y recursos comunitarios.",
+    "mission": "Conectando a los residentes de Kingston con los servicios de apoyo que necesitan. Construido con cuidado para nuestra comunidad.",
+    "privacyMessage": "Privacidad Primero • Sin Rastreo • Código Abierto",
+    "copyright": "© 2024 Kingston Care Connect (Piloto v1.0)",
     "emergencyDisclaimer": "Kingston Care Connect es solo un directorio de información. Verifique siempre la información con los proveedores de servicios. Para emergencias, llame al 911.",
     "quickLinks": {
       "community": "Comunidad",
@@ -12,7 +16,7 @@
       "health": "Servicios de Salud",
       "crisis": "Apoyo en Crisis",
       "legal": "Legal",
-      "about": "Sobre Nosotros",
+      "about": "Acerca de",
       "privacy": "Política de Privacidad",
       "terms": "Términos de Servicio",
       "contentPolicy": "Política de Contenido"
@@ -97,7 +101,13 @@
     "home": "Inicio",
     "about": "Acerca de",
     "suggest": "Sugerir Servicio",
-    "admin": "Admin"
+    "admin": "Admin",
+    "partnerLogin": "Acceso Socios",
+    "dashboard": "Panel de Control",
+    "language": "Idioma",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú",
+    "skipToMain": "Saltar al contenido principal"
   },
   "Common": {
     "openInNewTab": "(abre en nueva pestaña)",
@@ -555,8 +565,19 @@
     "step1": "Aceptar Términos",
     "step2": "Verificar Correo",
     "agreeLabel": "Acepto los Términos de Servicio para Socios",
-    "submit": "Continuar con la Verificación",
-    "success": "Solicitud de reclamo enviada. Revise su correo electrónico."
+    "submit": "Continue to Verification",
+    "success": "Claim request submitted. Check your email."
+  },
+  "Login": {
+    "title": "Acceso para Socios",
+    "subtitle": "Acceda a su panel para administrar servicios",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@organizacion.org",
+    "submit": "Iniciar sesión con correo",
+    "sending": "Enviando enlace mágico...",
+    "newToKCC": "¿Nuevo en Care Connect?",
+    "applyPartner": "Solicitar cuenta de socio",
+    "successMessage": "¡Enlace mágico enviado! Revisa tu correo para iniciar sesión."
   },
   "Badges": {
     "ontarioWide": "En todo Ontario",

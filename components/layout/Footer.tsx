@@ -32,7 +32,7 @@ export function Footer() {
               <span className="heading-display text-xl font-bold tracking-tight text-white">Kingston Care Connect</span>
             </div>
             <p className="max-w-md leading-relaxed text-neutral-400">
-              Connecting Kingston residents with the support services they need. Built with care for our community.
+              {t("mission")}
             </p>
             <div className="flex gap-4">
               <a href="#" aria-label="GitHub" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
@@ -118,11 +118,11 @@ export function Footer() {
           )}
           
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <p>© 2024 Kingston Care Connect (Pilot v1.0)</p>
+            <p>{t("copyright")}</p>
 
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4" />
-              <span>Privacy First • No Tracking • Open Source</span>
+              <span>{t("privacyMessage")}</span>
             </div>
           </div>
         </div>

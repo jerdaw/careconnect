@@ -5,10 +5,14 @@
     "dismiss": "Got it"
   },
   "BetaBanner": {
-    "title": "This is a community-led project"
+    "title": "This is a community-led project",
+    "shareFeedback": "Share Feedback"
   },
   "Footer": {
     "disclaimer": "Find verified local services and community resources.",
+    "mission": "Connecting Kingston residents with the support services they need. Built with care for our community.",
+    "privacyMessage": "Privacy First • No Tracking • Open Source",
+    "copyright": "© 2024 Kingston Care Connect (Pilot v1.0)",
     "emergencyDisclaimer": "Kingston Care Connect is an information directory only. Always verify information with service providers. For emergencies, call 911.",
     "quickLinks": {
       "community": "Community",
@@ -102,7 +106,13 @@
     "home": "Home",
     "about": "About",
     "suggest": "Suggest Service",
-    "admin": "Admin"
+    "admin": "Admin",
+    "partnerLogin": "Partner Login",
+    "dashboard": "Dashboard",
+    "language": "Language",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "skipToMain": "Skip to main content"
   },
   "Common": {
     "openInNewTab": "(opens in a new tab)",
@@ -588,5 +598,16 @@
     "agreeLabel": "I agree to the Partner Terms of Service",
     "submit": "Continue to Verification",
     "success": "Claim request submitted. Check your email."
+  },
+  "Login": {
+    "title": "Partner Login",
+    "subtitle": "Access your dashboard to manage services",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@organization.org",
+    "submit": "Sign in with Email",
+    "sending": "Sending Magic Link...",
+    "newToKCC": "New to Care Connect?",
+    "applyPartner": "Apply for a Partner Account",
+    "successMessage": "Magic link sent! Check your email to sign in."
   }
 }

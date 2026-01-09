@@ -7,11 +7,13 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { ShieldCheck, Mail, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react"
 import { Link } from "@/i18n/routing"
+import { useTranslations } from 'next-intl';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+  const t = useTranslations("Login")
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,9 +59,9 @@ export default function LoginPage() {
               <ShieldCheck className="h-6 w-6" />
             </div>
             <h2 className="heading-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
-              Partner Login
+              {t("title")}
             </h2>
-            <p className="mt-2 text-neutral-600 dark:text-neutral-400">Access your dashboard to manage services</p>
+            <p className="mt-2 text-neutral-600 dark:text-neutral-400">{t("subtitle")}</p>
           </div>
 
           <div className="mt-8">
@@ -67,7 +69,7 @@ export default function LoginPage() {
               <form className="space-y-6" onSubmit={handleLogin}>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                    Email address
+                    {t("emailLabel")}
                   </label>
                   <div className="relative mt-1 rounded-md shadow-sm">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -82,7 +84,7 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-xl border-neutral-300 py-3 pl-10 sm:text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-500"
-                      placeholder="you@organization.org"
+                      placeholder={t("emailPlaceholder")}
                     />
                   </div>
                 </div>
@@ -110,7 +112,7 @@ export default function LoginPage() {
                     disabled={loading}
                     className="shadow-primary-500/20 h-12 w-full text-base shadow-lg"
                   >
-                    {loading ? "Sending Magic Link..." : "Sign in with Email"}
+                    {loading ? t("sending") : t("submit")}
                     {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
                   </Button>
                 </div>
@@ -122,13 +124,13 @@ export default function LoginPage() {
                     <div className="w-full border-t border-neutral-200 dark:border-neutral-800" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-900">New to Care Connect?</span>
+                    <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-900">{t("newToKCC")}</span>
                   </div>
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-3">
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/contact">Apply for a Partner Account</Link>
+                    <Link href="/contact">{t("applyPartner")}</Link>
                   </Button>
                 </div>
               </div>

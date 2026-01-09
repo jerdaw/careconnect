@@ -21,7 +21,7 @@ export default function BetaBanner() {
             rel="noopener noreferrer"
             className="font-medium underline hover:text-blue-100"
           >
-            Share Feedback
+            {t("shareFeedback")}
           </a>
         </div>
       </div>

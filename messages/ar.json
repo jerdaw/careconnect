@@ -1,9 +1,13 @@
 {
   "BetaBanner": {
-    "title": "هذا مشروع بقيادة المجتمع"
+    "title": "هذا مشروع بقيادة المجتمع",
+    "shareFeedback": "شارك رأيك"
   },
   "Footer": {
-    "disclaimer": "دعم مجتمع كينغستون",
+    "disclaimer": "اعثر على خدمات محلية وموارد مجتمعية موثقة.",
+    "mission": "ربط سكان كينغستون بخدمات الدعم التي يحتاجونها. بنيت بعناية لمجتمعنا.",
+    "privacyMessage": "الخصوصية أولاً • لا تتبع • مفتوح المصدر",
+    "copyright": "© 2024 Kingston Care Connect (نسخة تجريبية v1.0)",
     "emergencyDisclaimer": "كينغستون كير كونكت هو دليل معلومات فقط. تحقق دائمًا من المعلومات مع مقدمي الخدمة. للطوارئ، اتصل بـ 911.",
     "quickLinks": {
       "community": "المجتمع",
@@ -94,10 +98,16 @@
     "totalAllTime": "مجموع كل الأوقات"
   },
   "Navigation": {
-    "home": "الرئيسية",
-    "about": "حول",
-    "suggest": "اقتراح خدمة",
-    "admin": "المسؤول"
+    "home": "Home",
+    "about": "About",
+    "suggest": "Suggest Service",
+    "admin": "Admin",
+    "partnerLogin": "دخول الشركاء",
+    "dashboard": "لوحة التحكم",
+    "language": "اللغة",
+    "closeMenu": "إغلاق القائمة",
+    "openMenu": "فتح القائمة",
+    "skipToMain": "تخطي إلى المحتوى الرئيسي"
   },
   "Common": {
     "openInNewTab": "(يفتح في علامة تبويب جديدة)",
@@ -555,8 +565,19 @@
     "step1": "قبول الشروط",
     "step2": "التحقق من البريد",
     "agreeLabel": "أوافق على شروط خدمة الشركاء",
-    "submit": "المتابعة للتحقق",
-    "success": "تم إرسال طلب المطالبة. تحقق من بريدك الإلكتروني."
+    "submit": "Continue to Verification",
+    "success": "Claim request submitted. Check your email."
+  },
+  "Login": {
+    "title": "دخول الشركاء",
+    "subtitle": "الوصول إلى لوحة التحكم لإدارة الخدمات",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "you@organization.org",
+    "submit": "تسجيل الدخول بالبريد الإلكتروني",
+    "sending": "جاري إرسال الرابط السحري...",
+    "newToKCC": "جديد في Care Connect؟",
+    "applyPartner": "تقدم بطلب لحساب شريك",
+    "successMessage": "تم إرسال الرابط السحري! تحقق من بريدك الإلكتروني لتسجيل الدخول."
   },
   "Badges": {
     "ontarioWide": "على مستوى أونتاريو",

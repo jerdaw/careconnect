@@ -1,7 +1,7 @@
 
 import { z } from "zod"
 
-export const SUPPORTED_LOCALES = ["en", "fr", "ar", "zh-Hans", "es"] as const
+export const SUPPORTED_LOCALES = ["en", "fr", "ar", "zh-Hans", "es", "pa", "pt"] as const
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
 
 export const searchRequestSchema = z.object({

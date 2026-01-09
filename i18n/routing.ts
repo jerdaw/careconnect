@@ -14,7 +14,7 @@ export const routing = defineRouting({
    * Note: Local Kingston services have EN/FR translations only.
    * Provincial services have all 5 languages for name/description/eligibility.
    */
-  locales: ["en", "fr", "ar", "zh-Hans", "es"],
+  locales: ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"],
 
   // Used when no locale matches
   defaultLocale: "en",

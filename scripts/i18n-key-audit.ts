@@ -15,7 +15,7 @@ const COMPONENTS_DIR = path.join(process.cwd(), "components")
 const APP_DIR = path.join(process.cwd(), "app")
 
 // All supported locales - English is the source of truth
-const LOCALES = ["en", "fr", "ar", "zh-Hans", "es"] as const
+const LOCALES = ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"] as const
 const SOURCE_LOCALE = "en"
 
 // Keys that are allowed to be missing in non-official languages (ar, zh-Hans, es)

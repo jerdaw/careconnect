@@ -5,10 +5,14 @@
     "dismiss": "Compris"
   },
   "BetaBanner": {
-    "title": "Ceci est un projet dirigé par la communauté"
+    "title": "Ceci est un projet dirigé par la communauté",
+    "shareFeedback": "Partager vos commentaires"
   },
   "Footer": {
-    "disclaimer": "Soutenir la communauté de Kingston",
+    "disclaimer": "Trouvez des services locaux vérifiés et des ressources communautaires.",
+    "mission": "Relier les résidents de Kingston aux services de soutien dont ils ont besoin. Construit avec soin pour notre communauté.",
+    "privacyMessage": "Confidentialité d'abord • Pas de suivi • Open Source",
+    "copyright": "© 2024 Kingston Care Connect (Pilot v1.0)",
     "emergencyDisclaimer": "Kingston Care Connect est un répertoire d'informations uniquement. Vérifiez toujours les informations auprès des fournisseurs de services. Pour les urgences, composez le 911.",
     "quickLinks": {
       "community": "Communauté",
@@ -102,7 +106,13 @@
     "home": "Accueil",
     "about": "À propos",
     "suggest": "Suggérer un service",
-    "admin": "Admin"
+    "admin": "Admin",
+    "partnerLogin": "Connexion partenaire",
+    "dashboard": "Tableau de bord",
+    "language": "Langue",
+    "closeMenu": "Fermer le menu",
+    "openMenu": "Ouvrir le menu",
+    "skipToMain": "Aller au contenu principal"
   },
   "Common": {
     "openInNewTab": "(s'ouvre dans un nouvel onglet)",
@@ -588,5 +598,16 @@
     "agreeLabel": "J'accepte les conditions de service des partenaires",
     "submit": "Continuer vers la vérification",
     "success": "Demande envoyée. Vérifiez votre courriel."
+  },
+  "Login": {
+    "title": "Connexion partenaire",
+    "subtitle": "Accédez à votre tableau de bord pour gérer les services",
+    "emailLabel": "Adresse courriel",
+    "emailPlaceholder": "vous@organisation.org",
+    "submit": "Se connecter avec un courriel",
+    "sending": "Envoi du lien magique...",
+    "newToKCC": "Nouveau sur Care Connect ?",
+    "applyPartner": "Demander un compte partenaire",
+    "successMessage": "Lien magique envoyé ! Vérifiez votre courriel pour vous connecter."
   }
 }
