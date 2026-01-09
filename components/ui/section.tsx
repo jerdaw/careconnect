@@ -19,11 +19,11 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
     // Animation props
     const animationProps = animate
       ? {
-          initial: "initial",
-          whileInView: "animate",
-          viewport: { once: true, margin: "-100px" },
-          variants: fadeInUp,
-        }
+        initial: "initial",
+        whileInView: "animate",
+        viewport: { once: true, margin: "-100px" },
+        variants: fadeInUp,
+      }
       : {}
 
     return (
@@ -31,7 +31,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         className={cn(
-          "relative overflow-hidden py-16 md:py-24",
+          "relative overflow-hidden py-6 md:py-6",
           variant === "alternate" && "bg-neutral-50 dark:bg-neutral-900/50",
           className
         )}
