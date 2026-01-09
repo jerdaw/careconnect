@@ -26,7 +26,6 @@ export const useSemanticSearch = () => {
         }
 
         if (status === "ready") {
-          logger.info("🧠 Semantic Search Model Ready", { component: "useSemanticSearch" })
           setStatus({ isReady: true, progress: 100, error: null })
         }
 

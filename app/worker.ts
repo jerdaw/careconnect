@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-console.log("[Worker] Worker script loaded (v3 - Robust Mock)");
+
 
 
 
@@ -15,13 +15,12 @@ class OptimizePipeline {
 
   static async loadLibrary() {
       if (!pipeline && !isMockMode) {
-          console.log("[Worker] Attempting to load @xenova/transformers...");
           try {
             let transformers: any;
              try {
                  // @ts-expect-error - URL imports are not typed in standard TS without config
-                 transformers = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
-                 console.log("[Worker] CDN Import successful", Object.keys(transformers));
+                 transformers = await import(/* webpackIgnore: true */ 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+
              } catch (cdnErr) {
                  console.warn("[Worker] CDN import failed, trying local", cdnErr);
                  transformers = await import('@xenova/transformers');
@@ -29,7 +28,6 @@ class OptimizePipeline {
 
             // Handle CJS vs ESM default exports
             if (transformers.default && !transformers.pipeline) {
-                console.log("[Worker] Detected default export structure");
                 transformers = transformers.default;
             }
 
@@ -40,14 +38,14 @@ class OptimizePipeline {
                 throw new Error("Pipeline undefined after import");
             }
 
-            console.log("[Worker] Library loaded successfully.");
+
             
             if (env) {
                 env.allowLocalModels = false;
                 env.useBrowserCache = true;
             }
           } catch (e: any) {
-              console.error("[Worker] CRITICAL: Failed to load transformers library.", e);
+              console.error("[Worker] CRITICAL: Failed to load transformers library. Message:", e?.message || String(e));
               console.warn("[Worker] Switching to MOCK MODE to allow UI testing.");
               isMockMode = true;
           }
@@ -84,13 +82,7 @@ self.addEventListener("message", async (event) => {
         self.postMessage({ status: "progress", data })
       })
       
-      if (isMockMode) {
-          console.log("[Worker] Sending MOCK ready signal");
-          self.postMessage({ status: "ready" })
-      } else {
-          console.log("[Worker] Sending REAL ready signal");
-          self.postMessage({ status: "ready" })
-      }
+      self.postMessage({ status: "ready" })
       
     } catch (error: any) {
         console.error("[Worker] Init error:", error);
@@ -104,7 +96,6 @@ self.addEventListener("message", async (event) => {
   if (action === "embed") {
     if (isMockMode) {
         // Return dummy embedding
-        console.log("[Worker] Returning mock embedding");
         self.postMessage({ status: "complete", embedding: new Array(384).fill(0.1), text })
         return;
     }
