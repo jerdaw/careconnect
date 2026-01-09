@@ -68,11 +68,11 @@ export default function Home() {
   return (
     <main id="main-content" className="relative flex min-h-screen flex-col overflow-hidden">
       <div className="bg-noise" />
-      <Header />
+      <Header forceSolid={hasSearched} />
 
       {/* Hero Section */}
       <section className={cn(
-        "relative transition-all duration-500",
+        "relative transition-all duration-500 scroll-mt-20",
         hasSearched
           ? "pt-20 pb-2 md:pt-6 md:pb-4"
           : "pt-32 pb-20 md:pt-48 md:pb-32"
