@@ -11,7 +11,7 @@ interface ModelStatusProps {
 
 const messages = [
   { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
-  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-primary-600 dark:text-primary-400" },
+  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-green-600 dark:text-green-500" },
 ]
 
 export default function ModelStatus({ isReady, progress }: ModelStatusProps) {
