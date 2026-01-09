@@ -82,7 +82,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative transition-all duration-500 pt-32 pb-20 md:pt-48 md:pb-32">
+      <section className="relative transition-all duration-500 pt-32 pb-4 md:pt-48 md:pb-5">
         {/* Mesh Gradient Background */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div className="bg-primary-400/40 animate-float dark:bg-primary-700/40 absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:mix-blend-screen" />
