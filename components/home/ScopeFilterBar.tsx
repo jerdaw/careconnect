@@ -25,15 +25,15 @@ export default function ScopeFilterBar({
 }: ScopeFilterBarProps) {
   const t = useTranslations("Search")
 
-  // If results are homogeneous (all local or all provincial), show simple count
+  // If results are homogeneous (all local or all provincial), show simple count in same style
   const isHomogeneous = counts.local === 0 || counts.provincial === 0
 
   if (isHomogeneous) {
     return (
-      <span className="flex h-8 items-center text-sm text-neutral-500 dark:text-neutral-400">
-        <span className="font-medium text-neutral-700 dark:text-neutral-200">{totalCount}</span>
-        <span className="ml-1">{totalCount === 1 ? 'Result' : 'Results'}</span>
-      </span>
+      <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 px-3 dark:border-neutral-700">
+        <span className="text-sm font-medium text-primary-600 dark:text-primary-400">{totalCount}</span>
+        <span className="text-sm text-neutral-500 dark:text-neutral-400">{totalCount === 1 ? 'Result' : 'Results'}</span>
+      </div>
     )
   }
 
