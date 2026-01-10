@@ -24,7 +24,7 @@ _For reporting errors in phone numbers, addresses, hours, etc._
 
 _For reporting data breaches, unauthorized information, or safety content._
 
-- **Method**: Email to `privacy@kingstoncareconnect.ca`.
+- **Method**: Email to `privacy@careconnect.ca`.
 - **Routing**: Immediate escalation to Privacy Officer.
 - **SLA**: Acknowledged within 24 hours; Investigation aimed for 72 hours.
 
@@ -32,7 +32,7 @@ _For reporting data breaches, unauthorized information, or safety content._
 
 _For reporting issues accessing the site or content._
 
-- **Method**: Email to `accessibility@kingstoncareconnect.ca` or Feedback Form.
+- **Method**: Email to `accessibility@careconnect.ca` or Feedback Form.
 - **Routing**: Accessibility Lead.
 - **SLA**: 5 business days.
 
@@ -40,7 +40,7 @@ _For reporting issues accessing the site or content._
 
 If a service provider disagrees with a moderation decision (e.g., listing removal, edits):
 
-1.  **Initial Appeal**: Contact `moderation@kingstoncareconnect.ca` with evidence.
+1.  **Initial Appeal**: Contact `moderation@careconnect.ca` with evidence.
 2.  **Review**: A different moderator than the original decision-maker reviews the case.
 3.  **Final Decision**: If unresolved, the issue goes to the KCC Governance Committee for a final binding decision.
 

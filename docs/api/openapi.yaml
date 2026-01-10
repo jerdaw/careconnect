@@ -11,7 +11,7 @@ info:
     - Analytics endpoints require a valid session cookie (Magic Link login).
   version: 1.0.0
   contact:
-    email: support@kingstoncare.ca
+    email: support@careconnect.ca
 
 servers:
   - url: https://kingston-care-connect.vercel.app/api/v1

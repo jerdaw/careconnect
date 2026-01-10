@@ -21,7 +21,7 @@
       "terms": "Términos de Servicio",
       "contentPolicy": "Política de Contenido"
     },
-    "aiTranslationNote": "Algunas traducciones son asistidas por IA. Reporte errores a feedback@kingstoncare.ca"
+    "aiTranslationNote": "Algunas traducciones son asistidas por IA. Reporte errores a feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "Buscar ayuda...",
@@ -123,7 +123,7 @@
       "noCookies": "Sin Cookies: No almacenamos datos personales en cookies.",
       "noLogging": "Sin Registro de Consultas: Tus términos de búsqueda se procesan de forma anónima."
     },
-    "contact": "¿Preguntas? Contáctanos en privacy@kingstoncare.ca",
+    "contact": "¿Preguntas? Contáctanos en privacy@careconnect.ca",
     "lastUpdated": "Last Updated: {date}",
     "sections": {
       "overview": {
@@ -152,7 +152,7 @@
       },
       "rights": {
         "title": "Sus Derechos de Privacidad",
-        "content": "Bajo PIPEDA, tiene derecho de Acceso, Corrección, Eliminación y Retirada del Consentimiento. Contacte a privacy@kingstoncareconnect.ca."
+        "content": "Bajo PIPEDA, tiene derecho de Acceso, Corrección, Eliminación y Retirada del Consentimiento. Contacte a privacy@careconnect.ca."
       },
       "security": {
         "title": "Seguridad de Datos",
@@ -168,7 +168,7 @@
       },
       "contact": {
         "title": "Contáctenos",
-        "content": "Correo electrónico: privacy@kingstoncareconnect.ca"
+        "content": "Correo electrónico: privacy@careconnect.ca"
       }
     }
   },
@@ -458,7 +458,7 @@
       },
       "contact": {
         "title": "Información de Contacto",
-        "content": "Para preguntas sobre estos Términos: legal@kingstoncareconnect.ca"
+        "content": "Para preguntas sobre estos Términos: legal@careconnect.ca"
       }
     }
   },
@@ -505,7 +505,7 @@
     },
     "feedback": {
       "intro": "Agradecemos los comentarios sobre la accesibilidad de Kingston Care Connect. Por favor, háganos saber si encuentra barreras de accesibilidad:",
-      "email": "Correo electrónico: accessibility@kingstoncareconnect.ca",
+      "email": "Correo electrónico: accessibility@careconnect.ca",
       "formats": "La información en este sitio web está disponible en formatos alternativos bajo petición."
     }
   },
@@ -550,11 +550,11 @@
       },
       "reporting": {
         "title": "Proceso de Reporte",
-        "content": "<p>Si encuentra contenido problemático:</p><ul><li>Utilice el botón 'Reportar Problema' que se encuentra en cada página de listado de servicios.</li><li>Para inquietudes de privacidad o seguridad, envíe un correo electrónico a <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>Nuestro objetivo es revisar y responder a los informes dentro de los 5 días hábiles.</li><li>Puede reportar contenido de forma anónima, aunque proporcionar información de contacto nos ayuda a verificar el reclamo.</li></ul>"
+        "content": "<p>Si encuentra contenido problemático:</p><ul><li>Utilice el botón 'Reportar Problema' que se encuentra en cada página de listado de servicios.</li><li>Para inquietudes de privacidad o seguridad, envíe un correo electrónico a <strong>privacy@careconnect.ca</strong>.</li><li>Nuestro objetivo es revisar y responder a los informes dentro de los 5 días hábiles.</li><li>Puede reportar contenido de forma anónima, aunque proporcionar información de contacto nos ayuda a verificar el reclamo.</li></ul>"
       },
       "appeals": {
         "title": "Proceso de Apelación",
-        "content": "<p>Si su envío de listado fue rechazado o su contenido eliminado:</p><ul><li>Puede apelar la decisión contactando a <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>Proporcione evidencia específica que respalde su apelación (por ejemplo, enlaces a sitios web oficiales, documentos de registro).</li><li>Las decisiones finales son tomadas por el Comité de Gobernanza de KCC.</li></ul>"
+        "content": "<p>Si su envío de listado fue rechazado o su contenido eliminado:</p><ul><li>Puede apelar la decisión contactando a <strong>moderation@careconnect.ca</strong>.</li><li>Proporcione evidencia específica que respalde su apelación (por ejemplo, enlaces a sitios web oficiales, documentos de registro).</li><li>Las decisiones finales son tomadas por el Comité de Gobernanza de KCC.</li></ul>"
       }
     }
   },

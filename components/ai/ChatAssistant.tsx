@@ -19,7 +19,7 @@ interface Message {
 }
 
 const IDLE_TIMEOUT_MS = 5 * 60 * 1000 // 5 Minutes
-const MAX_CONTEXT_MESSAGES = 10 // Limit context window
+
 
 export default function ChatAssistant() {
   const t = useTranslations("AI")
@@ -110,12 +110,10 @@ export default function ChatAssistant() {
     setIsThinking(true)
 
     try {
-      // Build conversation history for the context (Limit to last N messages)
-      const history = messages.slice(-MAX_CONTEXT_MESSAGES).map((m) => ({ role: m.role, content: m.content }))
-
       // RAG: Perform a local search to find relevant services
       const { searchServices } = await import("@/lib/search")
-      const searchResults = await searchServices(userMsg, { limit: 3, useAIExpansion: true })
+      // CRITICAL FIX: Disable AI Expansion to prevent recursive context bloat (8k+ tokens)
+      const searchResults = await searchServices(userMsg, { limit: 3, useAIExpansion: false })
 
       // Format context
       const contextIntro = t("contextIntro")
@@ -124,17 +122,62 @@ export default function ChatAssistant() {
       const contextText =
         searchResults.length > 0
           ? `${contextIntro}\n${searchResults
+              .slice(0, 3) // Double-safety: Hard cap results
               .map((r) => ` - [${r.service.name}](/service/${r.service.id}): ${r.service.description.substring(0, 300)}... (Category: ${r.service.intent_category})`)
               .join("\n")}`
           : noMatches
 
-      // System prompt + Context to ground the AI
+      // Build conversation history with Token Budgeting
+      // Strategy: 
+      // 1. Prioritize System Prompt + RAG Context + New User Message
+      // 2. Fill remaining budget with History (latest first)
+      // 3. Reserve space for the response (512 tokens)
+      
+      const MAX_TOTAL_TOKENS = 4096
+      const RESERVE_RESPONSE = 512
+      const CHARS_PER_TOKEN = 4 // Conservative estimate
+
+      // 1. Calculate Fixed Costs
       const systemPromptContent = String(t("systemPrompt"))
       const crisisPrompt = String(t("crisisPrompt"))
+      const fullSystemString = `${systemPromptContent}\n\nCONTEXT:\n${contextText}\n\n${crisisPrompt}`
+      
+      const systemCost = Math.ceil(fullSystemString.length / CHARS_PER_TOKEN)
+      const userCost = Math.ceil(userMsg.length / CHARS_PER_TOKEN)
+      
+      const availableForHistory = MAX_TOTAL_TOKENS - RESERVE_RESPONSE - systemCost - userCost
+
+      console.log(`[ChatAssistant] Token Budget: Max=${MAX_TOTAL_TOKENS}, System=${systemCost}, User=${userCost}, LeftForHistory=${availableForHistory}`)
+
+      let history: { role: "user" | "assistant"; content: string }[] = []
+      
+      if (availableForHistory > 0) {
+        let usedHistoryTokens = 0
+        const tempHistory: typeof history = []
+        
+        // Iterate backwards from newest
+        for (let i = messages.length - 1; i >= 0; i--) {
+          const msg = messages[i]
+          if (!msg) continue
+
+          const msgCost = Math.ceil(msg.content.length / CHARS_PER_TOKEN)
+          
+          if (usedHistoryTokens + msgCost <= availableForHistory) {
+            tempHistory.unshift({ role: msg.role, content: msg.content })
+            usedHistoryTokens += msgCost
+          } else {
+            console.log(`[ChatAssistant] Truncating history at message -${messages.length - 1 - i} due to token limit.`)
+            break
+          }
+        }
+        history = tempHistory
+      } else {
+        console.warn("[ChatAssistant] No token budget for history! Context might be too large.")
+      }
 
       const systemPrompt = {
         role: "system" as const,
-        content: `${systemPromptContent}\n\nCONTEXT:\n${contextText}\n\n${crisisPrompt}`,
+        content: fullSystemString,
       }
 
       const fullContext = [systemPrompt, ...history, { role: "user" as const, content: userMsg }]

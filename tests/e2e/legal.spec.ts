@@ -31,7 +31,7 @@ test.describe("Legal Pages", () => {
         await expect(page.getByText("AI Assistant Privacy")).toBeVisible()
         
         // Check Contact Info
-        await expect(page.getByText("privacy@kingstoncareconnect.ca")).toBeVisible()
+        await expect(page.getByText("privacy@careconnect.ca")).toBeVisible()
     })
 
     test("Legal pages are accessible from footer", async ({ page }) => {
@@ -60,6 +60,6 @@ test.describe("Legal Pages", () => {
         
         // Check Reporting
         await expect(page.getByText("Reporting Process")).toBeVisible()
-        await expect(page.getByText("privacy@kingstoncareconnect.ca")).toBeVisible()
+        await expect(page.getByText("privacy@careconnect.ca")).toBeVisible()
     })
 })

@@ -5,7 +5,7 @@ import { Service } from "../types/service"
  * Pre-fills the subject and body with service details to assist moderation.
  */
 export function generateFeedbackLink(service: Service): string {
-  const recipient = "feedback@kingstoncare.ca"
+  const recipient = "feedback@careconnect.ca"
   const subject = encodeURIComponent(`Correction: ${service.name} (ID: ${service.id})`)
 
   // Construct a helpful body template

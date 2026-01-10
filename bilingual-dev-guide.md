@@ -94,7 +94,7 @@ Kingston Care Connect uses AI-assisted translations for some content. To ensure 
 
 2. **Footer Disclaimer** (all non-English locales)
    - A subtle note appears in the footer for fr/ar/zh-Hans/es
-   - Text: "Some translations are AI-assisted. Report errors to feedback@kingstoncare.ca"
+   - Text: "Some translations are AI-assisted. Report errors to feedback@careconnect.ca"
 
 ### Translation Quality Tiers
 
@@ -106,7 +106,7 @@ Kingston Care Connect uses AI-assisted translations for some content. To ensure 
 
 ### Reporting Translation Errors
 
-Users can report translation errors to `feedback@kingstoncare.ca`. Corrections should be prioritized based on:
+Users can report translation errors to `feedback@careconnect.ca`. Corrections should be prioritized based on:
 
 1. Health/safety information (highest priority)
 2. Legal/financial content
