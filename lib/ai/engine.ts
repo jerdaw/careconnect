@@ -92,14 +92,14 @@ class AIEngine {
 
   public async chat(messages: { role: "user" | "assistant" | "system"; content: string }[]): Promise<string> {
     if (!this.engine) throw new Error("AI Engine not initialized")
-
+  
     try {
       const reply = await this.engine.chat.completions.create({
         messages,
         temperature: 0.7,
         max_tokens: 512, // Keep responses concise
       })
-
+  
       return reply.choices[0]?.message?.content || ""
     } catch (err) {
       console.error("Chat error:", err)

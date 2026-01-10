@@ -15,19 +15,24 @@ export async function middleware(request: NextRequest) {
     },
   })
 
+  if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
+    return intlMiddleware(request)
+  }
+
   const supabase = createServerClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, {
     cookies: {
       getAll() {
         return request.cookies.getAll()
       },
       setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+        cookiesToSet.forEach(({ name, value }: { name: string; value: string }) => request.cookies.set(name, value))
         response = NextResponse.next({
           request: {
             headers: request.headers,
           },
         })
-        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options))
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) => response.cookies.set(name, value, options))
       },
     },
   })
@@ -36,7 +41,7 @@ export async function middleware(request: NextRequest) {
   let user = null
   try {
     // Skip auth check if using placeholder (CI/Test)
-    if (env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")) {
+    if (env.NEXT_PUBLIC_SUPABASE_URL?.includes("placeholder")) {
        console.log("Skipping Supabase auth in middleware (Testing Mode)")
     } else {
       const { data } = await supabase.auth.getUser()

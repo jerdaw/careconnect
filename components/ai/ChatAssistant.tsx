@@ -4,13 +4,14 @@ import React, { useState, useRef, useEffect, useCallback } from "react"
 import { useAI } from "@/hooks/useAI"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown, Trash2 } from "lucide-react"
+import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown, Trash2, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
 import { useTranslations } from "next-intl"
 import { aiEngine } from "@/lib/ai/engine"
 import { AiDisclaimer } from "@/components/chat/AiDisclaimer"
+import { EmergencyModal } from "@/components/ui/EmergencyModal"
 
 interface Message {
   role: "user" | "assistant"
@@ -27,7 +28,10 @@ export default function ChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isThinking, setIsThinking] = useState(false)
+  const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const toggleButtonRef = useRef<HTMLButtonElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const idleTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Auto-scroll to bottom
@@ -63,10 +67,44 @@ export default function ChatAssistant() {
     }
   }, [isOpen, resetIdleTimer])
 
+  // Focus management: Return focus to toggle button when closed
+  useEffect(() => {
+    if (!isOpen && toggleButtonRef.current) {
+      toggleButtonRef.current.focus()
+    }
+  }, [isOpen])
+
   const handleSend = async () => {
     if (!input.trim() || isThinking) return
 
     const userMsg = input.trim()
+    
+    // --- CRISIS CIRCUIT BREAKER (Client-Side) ---
+    // Regex to detect immediate self-harm or crisis intent.
+    // This prevents the request from ever reaching the LLM (Good Samaritan Defense).
+    const crisisRegex = /(suicid|kill myself|harm|die|overdose)/i
+    if (crisisRegex.test(userMsg)) {
+      setInput("")
+      // 1. Show user message so they feel heard (but blocked)
+      setMessages((prev) => [...prev, { role: "user", content: userMsg }])
+      
+      // 2. Inject System Message explaining the block
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev, 
+          { 
+            role: "assistant", 
+            content: "🚨 **CRISIS DETECTED**\n\nI cannot assist with this request. Please contact **9-8-8** or emergency services immediately." 
+          }
+        ])
+      }, 500)
+
+      // 3. Trigger Modal
+      setIsEmergencyModalOpen(true)
+      return
+    }
+    // ---------------------------------------------
+
     setInput("")
     setMessages((prev) => [...prev, { role: "user", content: userMsg }])
     setIsThinking(true)
@@ -76,45 +114,35 @@ export default function ChatAssistant() {
       const history = messages.slice(-MAX_CONTEXT_MESSAGES).map((m) => ({ role: m.role, content: m.content }))
 
       // RAG: Perform a local search to find relevant services
-      // We dynamic import to avoid bundling search logic if not needed initially
       const { searchServices } = await import("@/lib/search")
       const searchResults = await searchServices(userMsg, { limit: 3, useAIExpansion: true })
 
       // Format context
-      const contextIntro = t("contextIntro") // Localized intro
+      const contextIntro = t("contextIntro")
       const noMatches = t("noMatches")
 
       const contextText =
         searchResults.length > 0
           ? `${contextIntro}\n${searchResults
-              .map((r) => ` - ${r.service.name}: ${r.service.description} (Category: ${r.service.intent_category})`)
+              .map((r) => ` - [${r.service.name}](/service/${r.service.id}): ${r.service.description.substring(0, 300)}... (Category: ${r.service.intent_category})`)
               .join("\n")}`
           : noMatches
 
       // System prompt + Context to ground the AI
-      // We pull the localized system prompt from messages
-      const systemPromptContent = t("systemPrompt")
-      const crisisPrompt = t("crisisPrompt")
+      const systemPromptContent = String(t("systemPrompt"))
+      const crisisPrompt = String(t("crisisPrompt"))
 
       const systemPrompt = {
         role: "system" as const,
-        content: `${systemPromptContent}
-                
-CONTEXT from database:
-${contextText}
-
-INSTRUCTIONS:
-- Answer based on the CONTEXT provided above if possible.
-- If the context matches the user's need, recommend those specific services.
-- Be kind, concise, and safe.
-- ${crisisPrompt}`,
+        content: `${systemPromptContent}\n\nCONTEXT:\n${contextText}\n\n${crisisPrompt}`,
       }
 
       const fullContext = [systemPrompt, ...history, { role: "user" as const, content: userMsg }]
 
       const reply = await chat(fullContext)
       setMessages((prev) => [...prev, { role: "assistant", content: reply }])
-    } catch {
+    } catch (error) {
+      console.error("[ChatAssistant] Error in handleSend:", error)
       setMessages((prev) => [...prev, { role: "assistant", content: t("errorThinking") }])
     } finally {
       setIsThinking(false)
@@ -127,6 +155,8 @@ INSTRUCTIONS:
       aria-label="AI Chat Assistant"
       className="fixed right-6 bottom-6 z-50 flex flex-col items-end"
     >
+      <EmergencyModal isOpen={isEmergencyModalOpen} onClose={() => setIsEmergencyModalOpen(false)} />
+      
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
@@ -164,10 +194,18 @@ INSTRUCTIONS:
                 </div>
               </div>
 
+              {/* Persistent Disclaimer Banner */}
+              <div className="bg-amber-50 px-4 py-2 text-xs text-amber-800 border-b border-amber-100 flex items-center justify-center gap-2 shrink-0">
+                <AlertTriangle className="h-3 w-3" />
+                <span className="font-medium">AI can make mistakes. Verify critical info.</span>
+              </div>
+
               {/* Content Area */}
               <div
                 className="flex-1 space-y-4 overflow-y-auto bg-neutral-50 p-4 dark:bg-neutral-900/50"
                 ref={scrollRef}
+                aria-live="polite"
+                aria-atomic="false"
               >
                 {!isReady ? (
                   <div className="flex h-full flex-col items-center justify-center space-y-4 p-4 text-center">
@@ -227,7 +265,7 @@ INSTRUCTIONS:
                         </Button>
                       </div>
                     )}
-                  </div>
+                  </div >
                 ) : (
                   <>
                     {messages.length === 0 && (
@@ -249,8 +287,27 @@ INSTRUCTIONS:
                               : "rounded-bl-none border border-neutral-100 bg-white text-neutral-800 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
                           )}
                         >
-                          <ReactMarkdown>{m.content}</ReactMarkdown>
+                          <ReactMarkdown 
+                            components={{
+                              a: ({ ...props }) => (
+                                <a {...props} target="_blank" rel="noopener noreferrer" className="text-primary-600 underline hover:text-primary-700 font-medium" />
+                              )
+                            }}
+                          >
+                            {m.content}
+                          </ReactMarkdown>
                         </div>
+                        {/* Outcome Feedback Loop (Visual Only) */}
+                        {m.role === "assistant" && (
+                          <div className="flex gap-1 mt-1 opacity-40 hover:opacity-100 transition-opacity px-2">
+                             <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800" title="Helpful">
+                               <ThumbsUp className="h-3 w-3" />
+                             </Button>
+                             <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800" title="Not Helpful">
+                               <ThumbsDown className="h-3 w-3" />
+                             </Button>
+                          </div>
+                        )}
                       </div>
                     ))}
                     {isThinking && (
@@ -275,6 +332,8 @@ INSTRUCTIONS:
                 >
                   <input
                     type="text"
+                    ref={inputRef}
+                    autoFocus
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={isReady ? t("placeholderReady") : t("placeholderWaiting")}
@@ -297,7 +356,8 @@ INSTRUCTIONS:
       </AnimatePresence>
 
       {/* Toggle Button */}
-      <motion.button
+       <motion.button
+        ref={toggleButtonRef}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
