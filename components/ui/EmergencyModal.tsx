@@ -3,6 +3,7 @@
 import { AlertTriangle, Phone, X } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef } from "react"
 
 interface EmergencyModalProps {
   isOpen: boolean
@@ -11,6 +12,56 @@ interface EmergencyModalProps {
 
 export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
   const t = useTranslations("EmergencyModal")
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocus = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      // Save previously focused element
+      previousFocus.current = document.activeElement as HTMLElement
+      
+      // Small delay to ensure modal is rendered and focusable
+      const focusTimer = setTimeout(() => {
+        const closeButton = modalRef.current?.querySelector('button[aria-label]') as HTMLElement
+        closeButton?.focus()
+      }, 50)
+
+      const handleTabKey = (e: KeyboardEvent) => {
+        if (e.key !== 'Tab') return
+
+        const focusableElements = modalRef.current?.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (!focusableElements || focusableElements.length === 0) return
+
+        const firstElement = focusableElements[0] as HTMLElement
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus()
+            e.preventDefault()
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus()
+            e.preventDefault()
+          }
+        }
+      }
+
+      window.addEventListener('keydown', handleTabKey)
+      
+      return () => {
+        window.removeEventListener('keydown', handleTabKey)
+        clearTimeout(focusTimer)
+        // Restore focus
+        if (previousFocus.current) {
+          previousFocus.current.focus()
+        }
+      }
+    }
+  }, [isOpen])
 
   return (
     <AnimatePresence>
@@ -27,6 +78,7 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
 
           {/* Modal */}
           <motion.div
+            ref={modalRef}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}

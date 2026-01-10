@@ -67,6 +67,27 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 - [x] **Goal**: Support 1000+ services without increasing initial page load size.
 - [x] **Method**: Paginated fetching and server-side filtering.
 
+- [x] **Method**: Paginated fetching and server-side filtering.
+
+---
+
+## v13.1: AI Compliance Audit Remediation (In Progress)
+
+> **Status**: 🚧 In Progress
+> **Focus**: Legal Risk Mitigation & Safety
+> **Definition**: [v13-1-ai-compliance-remediation.md](v13-1-ai-compliance-remediation.md)
+
+### 1. Liability Mitigation
+
+- [ ] **Safety Preamble**: Binding system protocol to prevent "professional advice" liability (Moffatt).
+- [ ] **Crisis Circuit Breaker**: Client-side hard block for self-harm inputs.
+- [ ] **ToS Upgrades**: "Crisis Waiver" and "Third-Party Liability" clauses.
+
+### 2. AODA & Safety UX
+
+- [ ] **Accessibility**: `aria-live` regions for screen readers.
+- [ ] **Friction**: Persistent disclaimers and outcome feedback loops.
+
 ---
 
 ## v14.0: Measurable Impact, Equity & Trust
@@ -98,18 +119,42 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 ---
 
+## v15.0: Mobile Apps (iOS/Android)
+
+> **Status**: Planned
+> **Focus**: Availability & Offline Access
+
+### 1. App Store Availability
+
+- [ ] **Goal**: Publish Kingston Care Connect on Apple App Store and Google Play Store.
+- [ ] **Technical Approach**: Use cross-platform technology (e.g., Capacitor) to wrap the existing web app, minimizing development overhead while ensuring native reach.
+
+### 2. Offline Capabilities
+
+- [ ] **Goal**: Enable core directory access (search & view details) without an active internet connection.
+- [ ] **Method**: Service Worker caching strategy for critical JSON data and assets.
+
+### 3. Native Integration
+
+- [ ] **Goal**: Leverage native device features where impactful.
+- [ ] **Features**: Push notifications for critical service updates (e.g., shelter capacity changes), home screen widgets.
+
+---
+
 ## Roadmap Overview
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus                        | Status    | Key Benefit                        |
-| :-------- | :--------------------------- | :-------- | :--------------------------------- |
-| **v10.0** | Data Architecture/Governance | Completed | Data quality + search relevance    |
-| **v10.1** | UI Polish & Data Expansion   | Completed | 159 services + Map + Multi-lingual |
-| **v12.0** | Legal & Compliance           | Completed | Liability protection + compliance  |
-| **v13.0** | Secure Data Architecture     | Completed | Privacy + Infinite Scale           |
-| **v11.0** | Scope Expansion              | Completed | Ontario-wide services (47)         |
-| **v14.0** | Impact, Equity & Trust       | Planned   | Verifiable outcomes + access       |
+| Version   | Focus                        | Status      | Key Benefit                        |
+| :-------- | :--------------------------- | :---------- | :--------------------------------- |
+| **v10.0** | Data Architecture/Governance | Completed   | Data quality + search relevance    |
+| **v10.1** | UI Polish & Data Expansion   | Completed   | 159 services + Map + Multi-lingual |
+| **v12.0** | Legal & Compliance           | Completed   | Liability protection + compliance  |
+| **v13.0** | Secure Data Architecture     | Completed   | Privacy + Infinite Scale           |
+| **v13.1** | AI Compliance Remediation    | In Progress | Moffatt/AODA Legal Safety          |
+| **v11.0** | Scope Expansion              | Completed   | Ontario-wide services (47)         |
+| **v14.0** | Impact, Equity & Trust       | Planned     | Verifiable outcomes + access       |
+| **v15.0** | Mobile Apps                  | Planned     | Offline access + App Store         |
 
 ---
 

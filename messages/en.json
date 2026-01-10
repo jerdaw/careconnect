@@ -218,12 +218,12 @@
     "placeholderReady": "Type a message...",
     "placeholderWaiting": "Waiting for AI...",
     "welcome": "👋 Hi! I can help you find services.",
-    "suggestion": "Try asking: \"Where can I find food?\" or \"I need youth shelter.\"",
+    "suggestion": "Currently in beta. Verify critical info.",
     "errorThinking": "I'm having trouble thinking right now. Please try searching instead.",
-    "systemPrompt": "You are a helpful, kind assistant for Kingston Care Connect. You help people find social services in Kingston, Ontario. Keep answers concise, safe, and empathetic. If you don't know something, advise them to use the search bar.",
-    "contextIntro": "Here are some relevant local services I found:",
-    "noMatches": "No direct matches found in our database.",
-    "crisisPrompt": "If the user is in crisis, urge them to call 911.",
+    "systemPrompt": "1. **Identity**: You are the Kingston Care Connect Assistant, an automated system. You are **NOT** a social worker, doctor, lawyer, or crisis counselor.\n2. **Scope**: Use ONLY the provided CONTEXT. If answer is missing, state: \"I do not have that information.\" Do not hallucinate.\n3. **Crisis**: If user mentions suicide/violence, output 9-8-8 info immediately and STOP.\n4. **Medical**: Do not diagnose. Refer to Health811.\n5. **Disclaimer**: Service details can change. Verify directly with providers.",
+    "contextIntro": "Use the following verified service data to answer:",
+    "noMatches": "No matches found in the local directory.",
+    "crisisPrompt": "IF CRISIS DETECTED: STOP. Output 9-8-8 INFO ONLY.",
     "clearChat": "Clear conversation"
   },
   "Settings": {
@@ -438,8 +438,8 @@
         "content": "KCC lists third-party services over which we have no control. We are not responsible for the availability, quality, or safety of listed services. Inclusion in this directory does not constitute endorsement."
       },
       "ai": {
-        "title": "AI Assistant Disclaimer",
-        "content": "Our AI assistant uses a language model that may provide inaccurate or hallucinated information. The AI assistant is for informational purposes only. Always verify critical information. The AI assistant cannot provide emergency assistance."
+        "title": "2. AI Assistant & Liability",
+        "content": "The AI assistant is for informational purposes only.\n\n- **No Professional Relationship**: The AI is not a doctor, lawyer, or social worker.\n\n- **Crisis Waiver**: This tool is unmonitored. Call 9-8-8 in a crisis.\n\n- **Volatility**: Availability is an estimate, not a guarantee.\n\n- **Device Security**: You are responsible for clearing your history on public devices.\n\n- **Liability**: KCC is not responsible for third-party data accuracy. Users agree to waive any claims related to reliance on AI-generated outputs."
       },
       "modifications": {
         "title": "Modifications to Terms",
