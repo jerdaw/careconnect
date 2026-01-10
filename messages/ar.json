@@ -21,7 +21,7 @@
       "terms": "شروط الخدمة",
       "contentPolicy": "سياسة المحتوى"
     },
-    "aiTranslationNote": "بعض الترجمات مدعومة بالذكاء الاصطناعي. أبلغ عن الأخطاء إلى feedback@kingstoncare.ca"
+    "aiTranslationNote": "بعض الترجمات مدعومة بالذكاء الاصطناعي. أبلغ عن الأخطاء إلى feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "ابحث عن مساعدة...",
@@ -123,7 +123,7 @@
       "noCookies": "لا ملفات تعريف الارتباط: نحن لا نخزن البيانات الشخصية في ملفات تعريف الارتباط.",
       "noLogging": "لا تسجيل للاستعلامات: تتم معالجة مصطلحات البحث الخاصة بك بشكل مجهول."
     },
-    "contact": "أسئلة؟ اتصل بنا على privacy@kingstoncare.ca",
+    "contact": "أسئلة؟ اتصل بنا على privacy@careconnect.ca",
     "lastUpdated": "Last Updated: {date}",
     "sections": {
       "overview": {
@@ -152,7 +152,7 @@
       },
       "rights": {
         "title": "حقوق الخصوصية الخاصة بك",
-        "content": "بموجب PIPEDA، لديك الحق في الوصول والتصحيح والحذف وسحب الموافقة. اتصل بـ privacy@kingstoncareconnect.ca."
+        "content": "بموجب PIPEDA، لديك الحق في الوصول والتصحيح والحذف وسحب الموافقة. اتصل بـ privacy@careconnect.ca."
       },
       "security": {
         "title": "أمن البيانات",
@@ -168,7 +168,7 @@
       },
       "contact": {
         "title": "اتصل بنا",
-        "content": "البريد الإلكتروني: privacy@kingstoncareconnect.ca"
+        "content": "البريد الإلكتروني: privacy@careconnect.ca"
       }
     }
   },
@@ -458,7 +458,7 @@
       },
       "contact": {
         "title": "معلومات الاتصال",
-        "content": "للأسئلة حول هذه الشروط: legal@kingstoncareconnect.ca"
+        "content": "للأسئلة حول هذه الشروط: legal@careconnect.ca"
       }
     }
   },
@@ -505,7 +505,7 @@
     },
     "feedback": {
       "intro": "نحن نرحب بالتعليقات حول إمكانية الوصول إلى Kingston Care Connect. يرجى إخبارنا إذا واجهت حواجز إمكانية الوصول:",
-      "email": "البريد الإلكتروني: accessibility@kingstoncareconnect.ca",
+      "email": "البريد الإلكتروني: accessibility@careconnect.ca",
       "formats": "المعلومات الموجودة على هذا الموقع متاحة بتنسيقات بديلة عند الطلب."
     }
   },
@@ -550,11 +550,11 @@
       },
       "reporting": {
         "title": "عملية الإبلاغ",
-        "content": "<p>إذا واجهت محتوى إشكاليًا:</p><ul><li>استخدم زر 'الإبلاغ عن مشكلة' الموجود في كل صفحة قائمة خدمات.</li><li>لمخاوف الخصوصية أو السلامة، أرسل بريدًا إلكترونيًا إلى <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>نهدف إلى مراجعة التقارير والرد عليها في غضون 5 أيام عمل.</li><li>يمكنك الإبلاغ عن المحتوى دون الكشف عن هويتك.</li></ul>"
+        "content": "<p>إذا واجهت محتوى إشكاليًا:</p><ul><li>استخدم زر 'الإبلاغ عن مشكلة' الموجود في كل صفحة قائمة خدمات.</li><li>لمخاوف الخصوصية أو السلامة، أرسل بريدًا إلكترونيًا إلى <strong>privacy@careconnect.ca</strong>.</li><li>نهدف إلى مراجعة التقارير والرد عليها في غضون 5 أيام عمل.</li><li>يمكنك الإبلاغ عن المحتوى دون الكشف عن هويتك.</li></ul>"
       },
       "appeals": {
         "title": "عملية الاستئناف",
-        "content": "<p>إذا تم رفض مشاركة قائمتك أو إزالة المحتوى الخاص بك:</p><ul><li>يمكنك استئناف القرار عن طريق الاتصال بـ <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>يرجى تقديم أدلة محددة تدعم استئناف (مثل روابط الموقع الرسمي ووثائق التسجيل).</li><li>يتم اتخاذ القرارات النهائية من قبل لجنة حوكمة KCC.</li></ul>"
+        "content": "<p>إذا تم رفض مشاركة قائمتك أو إزالة المحتوى الخاص بك:</p><ul><li>يمكنك استئناف القرار عن طريق الاتصال بـ <strong>moderation@careconnect.ca</strong>.</li><li>يرجى تقديم أدلة محددة تدعم استئناف (مثل روابط الموقع الرسمي ووثائق التسجيل).</li><li>يتم اتخاذ القرارات النهائية من قبل لجنة حوكمة KCC.</li></ul>"
       }
     }
   },

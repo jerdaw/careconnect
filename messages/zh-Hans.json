@@ -21,7 +21,7 @@
       "terms": "服务条款",
       "contentPolicy": "内容政策"
     },
-    "aiTranslationNote": "部分翻译由 AI 辅助。错误请报告至 feedback@kingstoncare.ca"
+    "aiTranslationNote": "部分翻译由 AI 辅助。错误请报告至 feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "搜索帮助...",
@@ -123,7 +123,7 @@
       "noCookies": "无 Cookie：我们不在 Cookie 中存储个人数据。",
       "noLogging": "无查询日志：您的搜索词是匿名处理的。"
     },
-    "contact": "有问题？请联系 privacy@kingstoncare.ca",
+    "contact": "有问题？请联系 privacy@careconnect.ca",
     "lastUpdated": "Last Updated: {date}",
     "sections": {
       "overview": {
@@ -152,7 +152,7 @@
       },
       "rights": {
         "title": "您的隐私权",
-        "content": "根据 PIPEDA，您拥有访问、更正、删除和撤回同意的权利。联系 privacy@kingstoncareconnect.ca。"
+        "content": "根据 PIPEDA，您拥有访问、更正、删除和撤回同意的权利。联系 privacy@careconnect.ca。"
       },
       "security": {
         "title": "数据安全",
@@ -168,7 +168,7 @@
       },
       "contact": {
         "title": "联系我们",
-        "content": "电子邮件：privacy@kingstoncareconnect.ca"
+        "content": "电子邮件：privacy@careconnect.ca"
       }
     }
   },
@@ -458,7 +458,7 @@
       },
       "contact": {
         "title": "联系信息",
-        "content": "有关这些条款的问题：legal@kingstoncareconnect.ca"
+        "content": "有关这些条款的问题：legal@careconnect.ca"
       }
     }
   },
@@ -505,7 +505,7 @@
     },
     "feedback": {
       "intro": "我们欢迎对 Kingston Care Connect 无障碍性的反馈。如果您遇到无障碍障碍，请告诉我们：",
-      "email": "电子邮件：accessibility@kingstoncareconnect.ca",
+      "email": "电子邮件：accessibility@careconnect.ca",
       "formats": "本网站上的信息可根据要求提供其他格式。"
     }
   },
@@ -550,11 +550,11 @@
       },
       "reporting": {
         "title": "报告流程",
-        "content": "<p>如果您遇到有问题的内容：</p><ul><li>使用每个服务列表页面上的“报告问题”按钮。</li><li>对于隐私或安全问题，请发送电子邮件至 <strong>privacy@kingstoncareconnect.ca</strong>。</li><li>我们的目标是在 5 个工作日内审核并回复报告。</li><li>您可以匿名报告内容，即提供联系信息有助于我们核实索赔。</ul>"
+        "content": "<p>如果您遇到有问题的内容：</p><ul><li>使用每个服务列表页面上的“报告问题”按钮。</li><li>对于隐私或安全问题，请发送电子邮件至 <strong>privacy@careconnect.ca</strong>。</li><li>我们的目标是在 5 个工作日内审核并回复报告。</li><li>您可以匿名报告内容，即提供联系信息有助于我们核实索赔。</ul>"
       },
       "appeals": {
         "title": "申诉流程",
-        "content": "<p>如果您的列表提交被拒绝或内容被删除：</p><ul><li>您可以通过联系 <strong>moderation@kingstoncareconnect.ca</strong> 申诉决定。</li><li>请提供支持您申诉的具体证据（例如，官方网站链接、注册文件）。</li><li>最终决定由 KCC 治理委员会做出。</ul>"
+        "content": "<p>如果您的列表提交被拒绝或内容被删除：</p><ul><li>您可以通过联系 <strong>moderation@careconnect.ca</strong> 申诉决定。</li><li>请提供支持您申诉的具体证据（例如，官方网站链接、注册文件）。</li><li>最终决定由 KCC 治理委员会做出。</ul>"
       }
     }
   },

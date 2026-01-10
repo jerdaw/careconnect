@@ -90,10 +90,26 @@ class AIEngine {
     }
   }
 
+  public async reset() {
+    if (this.engine) {
+      await this.engine.resetChat()
+    }
+  }
+
   public async chat(messages: { role: "user" | "assistant" | "system"; content: string }[]): Promise<string> {
     if (!this.engine) throw new Error("AI Engine not initialized")
   
     try {
+      // Diagnostic Logging
+      const estimatedToks = messages.reduce((acc, m) => acc + m.content.length / 4, 0)
+      console.log(`[AI Engine] Request: ${messages.length} msgs, ~${Math.round(estimatedToks)} tokens`)
+
+      // Force statelessness: Reset before providing full context
+      // This prevents "I'm hungry" -> "I'm hungry" + History duplication loop
+      // IF we are providing the full history every time.
+      // NOTE: Checking if resetChat exists on the engine instance (it should for MLCEngine)
+      await this.engine.resetChat()
+
       const reply = await this.engine.chat.completions.create({
         messages,
         temperature: 0.7,

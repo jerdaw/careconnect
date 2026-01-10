@@ -26,7 +26,7 @@
       "terms": "Conditions d'utilisation",
       "contentPolicy": "Politique de contenu"
     },
-    "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@kingstoncare.ca"
+    "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "Chercher de l'aide...",
@@ -128,7 +128,7 @@
       "noCookies": "Pas de cookies : Nous ne stockons pas de données personnelles dans les cookies. Nous utilisons un seul cookie essentiel pour mémoriser votre choix de langue.",
       "noLogging": "Pas d'enregistrement de requêtes : Vos termes de recherche sont traités de manière anonyme et ne sont pas liés à votre identité."
     },
-    "contact": "Des questions ? Contactez-nous à privacy@kingstoncare.ca"
+    "contact": "Des questions ? Contactez-nous à privacy@careconnect.ca"
   },
   "ServiceCard": {
     "reportIssue": "Signaler un problème"
@@ -310,11 +310,11 @@
       },
       "reporting": {
         "title": "Processus de Signalement",
-        "content": "<p>Si vous rencontrez du contenu problématique :</p><ul><li>Utilisez le bouton 'Signaler un problème' qui se trouve sur chaque page de liste de services.</li><li>Pour les problèmes de confidentialité ou de sécurité, envoyez un courriel à <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>Nous visons à examiner et à répondre aux rapports dans les 5 jours ouvrables.</li><li>Vous pouvez signaler du contenu de manière anonyme.</li></ul>"
+        "content": "<p>Si vous rencontrez du contenu problématique :</p><ul><li>Utilisez le bouton 'Signaler un problème' qui se trouve sur chaque page de liste de services.</li><li>Pour les problèmes de confidentialité ou de sécurité, envoyez un courriel à <strong>privacy@careconnect.ca</strong>.</li><li>Nous visons à examiner et à répondre aux rapports dans les 5 jours ouvrables.</li><li>Vous pouvez signaler du contenu de manière anonyme.</li></ul>"
       },
       "appeals": {
         "title": "Processus d'Appel",
-        "content": "<p>Si votre soumission a été rejetée ou votre contenu supprimé :</p><ul><li>Vous pouvez faire appel de la décision en contactant <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>Veuillez fournir des preuves spécifiques à l'appui de votre appel.</li><li>Les décisions finales sont prises par le comité de gouvernance de KCC.</li></ul>"
+        "content": "<p>Si votre soumission a été rejetée ou votre contenu supprimé :</p><ul><li>Vous pouvez faire appel de la décision en contactant <strong>moderation@careconnect.ca</strong>.</li><li>Veuillez fournir des preuves spécifiques à l'appui de votre appel.</li><li>Les décisions finales sont prises par le comité de gouvernance de KCC.</li></ul>"
       }
     }
   },
@@ -455,7 +455,7 @@
       },
       "contact": {
         "title": "Coordonnées",
-        "content": "Pour toute question concernant ces conditions : legal@kingstoncareconnect.ca"
+        "content": "Pour toute question concernant ces conditions : legal@careconnect.ca"
       }
     }
   },
@@ -489,7 +489,7 @@
       },
       "rights": {
         "title": "Vos droits",
-        "content": "En vertu de la LPRPDE, vous avez des droits d'accès, de correction, de suppression et de retrait du consentement. Contactez privacy@kingstoncareconnect.ca."
+        "content": "En vertu de la LPRPDE, vous avez des droits d'accès, de correction, de suppression et de retrait du consentement. Contactez privacy@careconnect.ca."
       },
       "security": {
         "title": "Sécurité des données",
@@ -505,7 +505,7 @@
       },
       "contact": {
         "title": "Contactez-nous",
-        "content": "Email : privacy@kingstoncareconnect.ca"
+        "content": "Email : privacy@careconnect.ca"
       }
     }
   },
@@ -559,7 +559,7 @@
     },
     "feedback": {
       "intro": "Nous accueillons vos commentaires sur l'accessibilité. Veuillez nous faire savoir si vous rencontrez des obstacles :",
-      "email": "Courriel : accessibility@kingstoncareconnect.ca",
+      "email": "Courriel : accessibility@careconnect.ca",
       "formats": "Les informations sur ce site sont disponibles dans des formats alternatifs sur demande."
     }
   },

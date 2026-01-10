@@ -26,7 +26,8 @@ describe("AIEngine", () => {
                     create: vi.fn()
                 }
             },
-            unload: vi.fn()
+            unload: vi.fn(),
+            resetChat: vi.fn()
         }
             ; (WebLLM.CreateMLCEngine as unknown as { mockResolvedValue: (val: unknown) => void }).mockResolvedValue(mockEngineInstance)
 

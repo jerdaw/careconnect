@@ -21,7 +21,7 @@
       "terms": "Termos de Serviço",
       "contentPolicy": "Política de Conteúdo"
     },
-    "aiTranslationNote": "Algumas traduções são assistidas por IA. Relate erros para feedback@kingstoncare.ca"
+    "aiTranslationNote": "Algumas traduções são assistidas por IA. Relate erros para feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "Encontrar ajuda...",
@@ -123,7 +123,7 @@
       "noCookies": "Sem Cookies: Não armazenamos dados pessoais em cookies.",
       "noLogging": "Sem Registo de Consultas: Os seus termos de pesquisa são processados anonimamente."
     },
-    "contact": "Dúvidas? Contacte-nos em privacy@kingstoncare.ca",
+    "contact": "Dúvidas? Contacte-nos em privacy@careconnect.ca",
     "lastUpdated": "Última atualização: {date}",
     "sections": {
       "overview": {
@@ -152,7 +152,7 @@
       },
       "rights": {
         "title": "Os Seus Direitos de Privacidade",
-        "content": "Ao abrigo da PIPEDA, tem o direito de aceder, corrigir, apagar e retirar o consentimento. Contacte privacy@kingstoncareconnect.ca."
+        "content": "Ao abrigo da PIPEDA, tem o direito de aceder, corrigir, apagar e retirar o consentimento. Contacte privacy@careconnect.ca."
       },
       "security": {
         "title": "Segurança de Dados",
@@ -168,7 +168,7 @@
       },
       "contact": {
         "title": "Contacte-nos",
-        "content": "Email: privacy@kingstoncareconnect.ca"
+        "content": "Email: privacy@careconnect.ca"
       }
     }
   },
@@ -458,7 +458,7 @@
       },
       "contact": {
         "title": "Informações de Contacto",
-        "content": "Para questões sobre estes termos: legal@kingstoncareconnect.ca"
+        "content": "Para questões sobre estes termos: legal@careconnect.ca"
       }
     }
   },
@@ -505,7 +505,7 @@
     },
     "feedback": {
       "intro": "Agradecemos feedback sobre a acessibilidade do Kingston Care Connect. Por favor, diga-nos se encontrar barreiras de acessibilidade:",
-      "email": "Email: accessibility@kingstoncareconnect.ca",
+      "email": "Email: accessibility@careconnect.ca",
       "formats": "Informações neste website estão disponíveis em formatos alternativos mediante pedido."
     }
   },
@@ -550,11 +550,11 @@
       },
       "reporting": {
         "title": "Processo de Denúncia",
-        "content": "<p>Se encontrar conteúdo problemático:</p><ul><li>Use o botão 'Reportar Problema' encontrado em cada página de listagem de serviço.</li><li>Para preocupações de privacidade ou segurança, envie um email para <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>O nosso objetivo é rever e responder às denúncias em 5 dias úteis.</li><li>Pode reportar conteúdo anonimamente, embora fornecer informações de contacto nos ajude a verificar a reivindicação.</li></ul>"
+        "content": "<p>Se encontrar conteúdo problemático:</p><ul><li>Use o botão 'Reportar Problema' encontrado em cada página de listagem de serviço.</li><li>Para preocupações de privacidade ou segurança, envie um email para <strong>privacy@careconnect.ca</strong>.</li><li>O nosso objetivo é rever e responder às denúncias em 5 dias úteis.</li><li>Pode reportar conteúdo anonimamente, embora fornecer informações de contacto nos ajude a verificar a reivindicação.</li></ul>"
       },
       "appeals": {
         "title": "Processo de Recurso",
-        "content": "<p>Se o seu pedido de listagem foi rejeitado ou o seu conteúdo foi removido:</p><ul><li>Pode recorrer da decisão contactando <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>Por favor, forneça provas específicas que apoiem o seu recurso (ex: links para websites oficiais, documentos de registo).</li><li>As decisões finais são tomadas pelo Comité de Governação do KCC.</li></ul>"
+        "content": "<p>Se o seu pedido de listagem foi rejeitado ou o seu conteúdo foi removido:</p><ul><li>Pode recorrer da decisão contactando <strong>moderation@careconnect.ca</strong>.</li><li>Por favor, forneça provas específicas que apoiem o seu recurso (ex: links para websites oficiais, documentos de registo).</li><li>As decisões finais são tomadas pelo Comité de Governação do KCC.</li></ul>"
       }
     }
   },

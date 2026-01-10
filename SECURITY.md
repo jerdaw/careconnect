@@ -4,7 +4,7 @@
 
 We take the security and privacy of Kingston Care Connect seriously. If you discover a security vulnerability, please do NOT create a public issue.
 
-Instead, please send an email to **security@kingstoncare.ca**.
+Instead, please send an email to **security@careconnect.ca**.
 
 We will acknowledge your report within 48 hours and provide a timeline for a fix.
 

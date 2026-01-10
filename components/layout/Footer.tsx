@@ -42,7 +42,7 @@ export function Footer() {
                 <Twitter className="h-5 w-5 text-neutral-400" />
               </a>
               <a
-                href="mailto:feedback@kingstoncare.ca"
+                href="mailto:feedback@careconnect.ca"
                 aria-label="Contact by Email"
                 className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
               >

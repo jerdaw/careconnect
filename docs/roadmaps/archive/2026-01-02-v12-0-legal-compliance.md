@@ -239,10 +239,10 @@ const termsSections = [
     id: "contact",
     title: "Contact Information",
     content: `For questions about these Terms:
-    Email: legal@kingstoncareconnect.ca
+    Email: legal@careconnect.ca
     
-    For privacy concerns: privacy@kingstoncareconnect.ca
-    For accessibility concerns: accessibility@kingstoncareconnect.ca`,
+    For privacy concerns: privacy@careconnect.ca
+    For accessibility concerns: accessibility@careconnect.ca`,
   },
 ]
 ```
@@ -406,7 +406,7 @@ const privacySections = [
     - **Complaint**: File a complaint with the Privacy Commissioner of 
       Canada or the Information and Privacy Commissioner of Ontario.
     
-    To exercise these rights, contact: privacy@kingstoncareconnect.ca
+    To exercise these rights, contact: privacy@careconnect.ca
     
     We will respond within 30 days.`,
   },
@@ -463,7 +463,7 @@ const privacySections = [
     title: "Contact Us",
     content: `For privacy questions or to exercise your rights:
     
-    Email: privacy@kingstoncareconnect.ca
+    Email: privacy@careconnect.ca
     
     Privacy Commissioner of Canada: https://www.priv.gc.ca
     Information and Privacy Commissioner of Ontario: https://www.ipc.on.ca`,
@@ -899,12 +899,12 @@ const accessibilityContent = {
   },
 
   feedback: {
-    email: "accessibility@kingstoncareconnect.ca",
+    email: "accessibility@careconnect.ca",
     process: `
       We welcome feedback on the accessibility of Kingston Care Connect. 
       Please let us know if you encounter accessibility barriers:
       
-      - Email: accessibility@kingstoncareconnect.ca
+      - Email: accessibility@careconnect.ca
       - Use the feedback form on any page
       
       We will respond within 5 business days.
@@ -1544,7 +1544,7 @@ What You Can Do:
 [Recommended actions]
 
 We sincerely apologize for this incident. If you have questions,
-please contact us at: privacy@kingstoncareconnect.ca
+please contact us at: privacy@careconnect.ca
 
 You also have the right to file a complaint with the Privacy
 Commissioner of Canada: https://www.priv.gc.ca
@@ -1629,7 +1629,7 @@ Review this plan:
 - Legal Counsel: [TBD - identify pro bono lawyer]
 
 ### Reporting
-- Report breaches to: security@kingstoncareconnect.ca
+- Report breaches to: security@careconnect.ca
 ```
 
 ---
@@ -1777,13 +1777,13 @@ Document formal processes for:
 
 2. **Privacy Complaints**
 
-   - Email: privacy@kingstoncareconnect.ca
+   - Email: privacy@careconnect.ca
    - Response within 10 business days
    - Escalation to Privacy Commissioner
 
 3. **Accessibility Complaints**
 
-   - Email: accessibility@kingstoncareconnect.ca
+   - Email: accessibility@careconnect.ca
    - Alternative formats available
    - Response within 5 business days
 

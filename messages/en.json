@@ -26,7 +26,7 @@
       "terms": "Terms of Service",
       "contentPolicy": "Content Policy"
     },
-    "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@kingstoncare.ca"
+    "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@careconnect.ca"
   },
   "Search": {
     "placeholder": "Search for help...",
@@ -128,7 +128,7 @@
       "noCookies": "No Cookies: We do not store personal data in cookies. We use a single essential cookie only to remember your language preference.",
       "noLogging": "No Query Logging: Your search terms are processed anonymously and are not linked to your identity."
     },
-    "contact": "Questions? Contact us at privacy@kingstoncare.ca"
+    "contact": "Questions? Contact us at privacy@careconnect.ca"
   },
   "ServiceCard": {
     "reportIssue": "Report Issue"
@@ -310,11 +310,11 @@
       },
       "reporting": {
         "title": "Reporting Process",
-        "content": "<p>If you encounter problematic content:</p><ul><li>Use the 'Report Issue' button found on every service listing page.</li><li>For privacy or safety concerns, email <strong>privacy@kingstoncareconnect.ca</strong>.</li><li>We aim to review and respond to reports within 5 business days.</li><li>You may report content anonymously, though providing contact info helps us verify the claim.</li></ul>"
+        "content": "<p>If you encounter problematic content:</p><ul><li>Use the 'Report Issue' button found on every service listing page.</li><li>For privacy or safety concerns, email <strong>privacy@careconnect.ca</strong>.</li><li>We aim to review and respond to reports within 5 business days.</li><li>You may report content anonymously, though providing contact info helps us verify the claim.</li></ul>"
       },
       "appeals": {
         "title": "Appeals Process",
-        "content": "<p>If your listing submission was rejected or your content removed:</p><ul><li>You may appeal the decision by contacting <strong>moderation@kingstoncareconnect.ca</strong>.</li><li>Please provide specific evidence supporting your appeal (e.g., official website links, registration documents).</li><li>Final decisions are made by the KCC Governance Committee.</li></ul>"
+        "content": "<p>If your listing submission was rejected or your content removed:</p><ul><li>You may appeal the decision by contacting <strong>moderation@careconnect.ca</strong>.</li><li>Please provide specific evidence supporting your appeal (e.g., official website links, registration documents).</li><li>Final decisions are made by the KCC Governance Committee.</li></ul>"
       }
     }
   },
@@ -455,7 +455,7 @@
       },
       "contact": {
         "title": "Contact Information",
-        "content": "For questions about these Terms: legal@kingstoncareconnect.ca"
+        "content": "For questions about these Terms: legal@careconnect.ca"
       }
     }
   },
@@ -489,7 +489,7 @@
       },
       "rights": {
         "title": "Your Privacy Rights",
-        "content": "Under PIPEDA, you have rights to Access, Correction, Deletion, and Withdrawal of Consent. Contact privacy@kingstoncareconnect.ca."
+        "content": "Under PIPEDA, you have rights to Access, Correction, Deletion, and Withdrawal of Consent. Contact privacy@careconnect.ca."
       },
       "security": {
         "title": "Data Security",
@@ -505,7 +505,7 @@
       },
       "contact": {
         "title": "Contact Us",
-        "content": "Email: privacy@kingstoncareconnect.ca"
+        "content": "Email: privacy@careconnect.ca"
       }
     }
   },
@@ -559,7 +559,7 @@
     },
     "feedback": {
       "intro": "We welcome feedback on the accessibility of Kingston Care Connect. Please let us know if you encounter accessibility barriers:",
-      "email": "Email: accessibility@kingstoncareconnect.ca",
+      "email": "Email: accessibility@careconnect.ca",
       "formats": "Information on this website is available in alternative formats upon request."
     }
   },
