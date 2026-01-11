@@ -5,13 +5,14 @@ import * as WebLLM from "@mlc-ai/web-llm"
 // Mock WebLLM
 vi.mock("@mlc-ai/web-llm", () => ({
     CreateMLCEngine: vi.fn(),
+    CreateWebWorkerMLCEngine: vi.fn(),
 }))
 
 describe("AIEngine", () => {
      
     let mockEngineInstance: Record<string, any>
 
-    beforeEach(() => {
+    beforeEach(async () => {
         vi.clearAllMocks()
         // Mock navigator.gpu
         Object.defineProperty(global.navigator, "gpu", {
@@ -19,6 +20,9 @@ describe("AIEngine", () => {
             writable: true,
             configurable: true
         })
+
+        // Reset the singleton between tests so each test controls the mock engine instance.
+        await aiEngine.unload()
 
         mockEngineInstance = {
             chat: {
@@ -95,5 +99,32 @@ describe("AIEngine", () => {
 
         const response = await aiEngine.chat([{ role: "user", content: "Hi" }])
         expect(response).toBe("AI Response")
+    })
+
+    it("refines search query from JSON response", async () => {
+        if (!aiEngine.isReady) {
+            Object.defineProperty(global.navigator, "gpu", { value: {} })
+            await aiEngine.init()
+        }
+
+        mockEngineInstance.chat.completions.create.mockResolvedValue({
+            choices: [{ message: { content: JSON.stringify({ query: "food bank", terms: ["meal program", "groceries"], category: "Food" }) } }],
+        })
+
+        const refined = await aiEngine.refineSearchQuery("I'm hungry")
+
+        expect(refined).toEqual({
+            query: "food bank",
+            terms: ["meal program", "groceries"],
+            category: "Food",
+        })
+
+        expect(mockEngineInstance.chat.completions.create).toHaveBeenCalledWith(
+            expect.objectContaining({
+                temperature: 0,
+                max_tokens: 160,
+                messages: expect.any(Array),
+            })
+        )
     })
 })
