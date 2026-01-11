@@ -23,9 +23,22 @@ export function useAI() {
     return aiEngine.chat(messages)
   }
 
+  const chatStream = async (
+    messages: { role: "user" | "assistant" | "system"; content: string }[],
+    onDelta: (delta: string) => void
+  ) => {
+    return aiEngine.chatStream(messages, onDelta)
+  }
+
+  const stop = async () => {
+    return aiEngine.interrupt()
+  }
+
   return {
     ...state,
     initAI,
     chat,
+    chatStream,
+    stop,
   }
 }

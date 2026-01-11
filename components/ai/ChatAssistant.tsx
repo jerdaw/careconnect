@@ -4,7 +4,19 @@ import React, { useState, useRef, useEffect, useCallback } from "react"
 import { useAI } from "@/hooks/useAI"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { MessageSquare, X, Send, Loader2, Sparkles, ChevronDown, Trash2, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react"
+import {
+  MessageSquare,
+  X,
+  Send,
+  Loader2,
+  Sparkles,
+  ChevronDown,
+  Trash2,
+  AlertTriangle,
+  ThumbsUp,
+  ThumbsDown,
+  StopCircle,
+} from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
@@ -12,6 +24,7 @@ import { useTranslations } from "next-intl"
 import { aiEngine } from "@/lib/ai/engine"
 import { AiDisclaimer } from "@/components/chat/AiDisclaimer"
 import { EmergencyModal } from "@/components/ui/EmergencyModal"
+import { detectCrisis } from "@/lib/search/crisis"
 
 interface Message {
   role: "user" | "assistant"
@@ -20,10 +33,9 @@ interface Message {
 
 const IDLE_TIMEOUT_MS = 5 * 60 * 1000 // 5 Minutes
 
-
 export default function ChatAssistant() {
   const t = useTranslations("AI")
-  const { isReady, isLoading, progress, text, error, initAI, chat } = useAI()
+  const { isReady, isLoading, progress, text, error, initAI, stop } = useAI()
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
@@ -33,6 +45,7 @@ export default function ChatAssistant() {
   const toggleButtonRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const idleTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const isStoppingRef = useRef(false)
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -40,11 +53,6 @@ export default function ChatAssistant() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages, isThinking])
-
-  // Hydrate Vector DB
-  useEffect(() => {
-    import("@/lib/search/lifecycle").then((mod) => mod.initializeVectorStore())
-  }, [])
 
   // VRAM Management: Idle Timer
   const resetIdleTimer = useCallback(() => {
@@ -74,16 +82,24 @@ export default function ChatAssistant() {
     }
   }, [isOpen])
 
+  const handleStop = useCallback(async () => {
+    if (!isThinking) return
+    isStoppingRef.current = true
+    try {
+      await stop()
+    } catch (err) {
+      console.warn("[ChatAssistant] Failed to stop generation:", err)
+    }
+  }, [isThinking, stop])
+
   const handleSend = async () => {
     if (!input.trim() || isThinking) return
 
     const userMsg = input.trim()
     
     // --- CRISIS CIRCUIT BREAKER (Client-Side) ---
-    // Regex to detect immediate self-harm or crisis intent.
-    // This prevents the request from ever reaching the LLM (Good Samaritan Defense).
-    const crisisRegex = /(suicid|kill myself|harm|die|overdose)/i
-    if (crisisRegex.test(userMsg)) {
+    // Deterministic safety: prevents the request from ever reaching the LLM (Good Samaritan Defense).
+    if (detectCrisis(userMsg)) {
       setInput("")
       // 1. Show user message so they feel heard (but blocked)
       setMessages((prev) => [...prev, { role: "user", content: userMsg }])
@@ -94,7 +110,7 @@ export default function ChatAssistant() {
           ...prev, 
           { 
             role: "assistant", 
-            content: "🚨 **CRISIS DETECTED**\n\nI cannot assist with this request. Please contact **9-8-8** or emergency services immediately." 
+            content: t("crisisBlocked"),
           }
         ])
       }, 500)
@@ -108,85 +124,53 @@ export default function ChatAssistant() {
     setInput("")
     setMessages((prev) => [...prev, { role: "user", content: userMsg }])
     setIsThinking(true)
+    isStoppingRef.current = false
 
     try {
-      // RAG: Perform a local search to find relevant services
-      const { searchServices } = await import("@/lib/search")
-      // CRITICAL FIX: Disable AI Expansion to prevent recursive context bloat (8k+ tokens)
-      const searchResults = await searchServices(userMsg, { limit: 3, useAIExpansion: false })
+      // "Smarter search" flow:
+      // 1) (Optional) LLM rewrites/expands the query (JSON), not user-facing.
+      // 2) Local search runs on the refined query.
+      // 3) UI renders deterministic results (no LLM answers shown).
 
-      // Format context
-      const contextIntro = t("contextIntro")
+      let searchQuery = userMsg
+      if (isReady) {
+        try {
+          const refined = await aiEngine.refineSearchQuery(userMsg)
+          if (refined && !isStoppingRef.current) {
+            const combined = [refined.query, ...refined.terms].join(" ").trim()
+            if (combined) searchQuery = combined
+          }
+        } catch (err) {
+          console.warn("[ChatAssistant] Query refinement failed; falling back to raw query:", err)
+        }
+      }
+
+      if (isStoppingRef.current) return
+
+      const { searchServices } = await import("@/lib/search")
+      // CRITICAL: Disable AI Expansion inside search to avoid recursion (LLM calling search that calls LLM).
+      const searchResults = await searchServices(searchQuery, { limit: 3, useAIExpansion: false })
+      if (isStoppingRef.current) return
+
       const noMatches = t("noMatches")
 
-      const contextText =
-        searchResults.length > 0
-          ? `${contextIntro}\n${searchResults
-              .slice(0, 3) // Double-safety: Hard cap results
-              .map((r) => ` - [${r.service.name}](/service/${r.service.id}): ${r.service.description.substring(0, 300)}... (Category: ${r.service.intent_category})`)
-              .join("\n")}`
-          : noMatches
-
-      // Build conversation history with Token Budgeting
-      // Strategy: 
-      // 1. Prioritize System Prompt + RAG Context + New User Message
-      // 2. Fill remaining budget with History (latest first)
-      // 3. Reserve space for the response (512 tokens)
-      
-      const MAX_TOTAL_TOKENS = 4096
-      const RESERVE_RESPONSE = 512
-      const CHARS_PER_TOKEN = 4 // Conservative estimate
-
-      // 1. Calculate Fixed Costs
-      const systemPromptContent = String(t("systemPrompt"))
-      const crisisPrompt = String(t("crisisPrompt"))
-      const fullSystemString = `${systemPromptContent}\n\nCONTEXT:\n${contextText}\n\n${crisisPrompt}`
-      
-      const systemCost = Math.ceil(fullSystemString.length / CHARS_PER_TOKEN)
-      const userCost = Math.ceil(userMsg.length / CHARS_PER_TOKEN)
-      
-      const availableForHistory = MAX_TOTAL_TOKENS - RESERVE_RESPONSE - systemCost - userCost
-
-      console.log(`[ChatAssistant] Token Budget: Max=${MAX_TOTAL_TOKENS}, System=${systemCost}, User=${userCost}, LeftForHistory=${availableForHistory}`)
-
-      let history: { role: "user" | "assistant"; content: string }[] = []
-      
-      if (availableForHistory > 0) {
-        let usedHistoryTokens = 0
-        const tempHistory: typeof history = []
-        
-        // Iterate backwards from newest
-        for (let i = messages.length - 1; i >= 0; i--) {
-          const msg = messages[i]
-          if (!msg) continue
-
-          const msgCost = Math.ceil(msg.content.length / CHARS_PER_TOKEN)
-          
-          if (usedHistoryTokens + msgCost <= availableForHistory) {
-            tempHistory.unshift({ role: msg.role, content: msg.content })
-            usedHistoryTokens += msgCost
-          } else {
-            console.log(`[ChatAssistant] Truncating history at message -${messages.length - 1 - i} due to token limit.`)
-            break
-          }
-        }
-        history = tempHistory
-      } else {
-        console.warn("[ChatAssistant] No token budget for history! Context might be too large.")
+      if (searchResults.length === 0) {
+        const message = `${noMatches}\n\n${t("clarifyQuestion")}`
+        setMessages((prev) => [...prev, { role: "assistant", content: message }])
+        setIsThinking(false)
+        return
       }
 
-      const systemPrompt = {
-        role: "system" as const,
-        content: fullSystemString,
-      }
+      const finalDisplay = `${t("resultsIntro")}\n${searchResults
+        .slice(0, 3)
+        .map((r) => `- [${r.service.name}](/service/${r.service.id}) — ${r.service.description.substring(0, 180)}…`)
+        .join("\n")}`
 
-      const fullContext = [systemPrompt, ...history, { role: "user" as const, content: userMsg }]
-
-      const reply = await chat(fullContext)
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }])
+      setMessages((prev) => [...prev, { role: "assistant", content: finalDisplay }])
     } catch (error) {
       console.error("[ChatAssistant] Error in handleSend:", error)
-      setMessages((prev) => [...prev, { role: "assistant", content: t("errorThinking") }])
+      const message = t("errorThinking")
+      setMessages((prev) => [...prev, { role: "assistant", content: message }])
     } finally {
       setIsThinking(false)
     }
@@ -221,7 +205,10 @@ export default function ChatAssistant() {
                     size="icon"
                     variant="ghost"
                     className="h-6 w-6 text-white hover:bg-white/20"
-                    onClick={() => setMessages([])}
+                    onClick={() => {
+                      setMessages([])
+                      aiEngine.reset()
+                    }}
                     title={t("clearChat")}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -240,7 +227,7 @@ export default function ChatAssistant() {
               {/* Persistent Disclaimer Banner */}
               <div className="bg-amber-50 px-4 py-2 text-xs text-amber-800 border-b border-amber-100 flex items-center justify-center gap-2 shrink-0">
                 <AlertTriangle className="h-3 w-3" />
-                <span className="font-medium">AI can make mistakes. Verify critical info.</span>
+                <span className="font-medium">{t("verifyBanner")}</span>
               </div>
 
               {/* Content Area */}
@@ -384,12 +371,14 @@ export default function ChatAssistant() {
                     className="focus:ring-primary-500 flex-1 rounded-full border-none bg-neutral-100 px-4 py-2 text-sm outline-none focus:ring-2 disabled:opacity-50 dark:bg-neutral-800"
                   />
                   <Button
-                    type="submit"
                     size="icon"
-                    disabled={!isReady || !input.trim() || isThinking}
+                    type={isThinking ? "button" : "submit"}
+                    onClick={isThinking ? handleStop : undefined}
+                    disabled={!isReady || (isThinking ? false : !input.trim())}
                     className="h-9 w-9 shrink-0 rounded-full"
+                    aria-label={isThinking ? t("ariaStopGenerating") : t("ariaSendMessage")}
                   >
-                    <Send className="h-4 w-4" />
+                    {isThinking ? <StopCircle className="h-4 w-4" /> : <Send className="h-4 w-4" />}
                   </Button>
                 </form>
               </div>
