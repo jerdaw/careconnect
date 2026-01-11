@@ -5,11 +5,12 @@
 - [Architecture](architecture.md) - System design and data flow.
 - [Components](components.md) - Reusable UI components.
 - [Governance](governance.md) - Verification levels and protocols.
+- [AI Context](llms.txt) - Consolidated docs for LLMs (Generated).
 - [Contributing](CONTRIBUTING.md) - How to contribute.
 
 ## Development
 
-- [Multi-Lingual Guide](../bilingual-dev-guide.md) - Localization rules.
+- [Multi-Lingual Guide](bilingual-dev-guide.md) - Localization rules.
 - [Testing Guidelines](development/testing.md) - Testing standards.
 - [Prompts](development/prompts.md) - AI/LLM prompting strategies.
 - [Hooks](hooks.md) - Custom React hooks.

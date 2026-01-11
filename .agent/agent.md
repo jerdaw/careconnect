@@ -18,5 +18,6 @@ This file provides context for AI agents working on the Kingston Care Connect pr
 
 - `docs/roadmaps/`: History of project growth.
 - `lib/search.ts`: Core hybrid search logic.
-- `bilingual-dev-guide.md`: Standardization of English/French support.
-- `testing-guidelines.md`: Expectations for feature coverage.
+- `docs/bilingual-dev-guide.md`: Standardization of English/French support.
+- `docs/testing-guidelines.md`: Expectations for feature coverage.
+- `docs/llms.txt`: Consolidated context for LLMs.
