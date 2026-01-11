@@ -44,11 +44,11 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 
 ### AI Assistant Architecture
 
-- **Engine**: `@mlc-ai/web-llm` running `Phi-3-mini` (2GB) via WebGPU.
-- **Strategy**: RAG (Retrieval Augmented Generation).
+- **Engine**: `@mlc-ai/web-llm` (WebGPU) running in a Web Worker for UI responsiveness.
+- **Strategy**: "LLM-as-Search" (query rewrite/expansion) + deterministic rendering of search results.
 - **Privacy**:
   - **Local-Only**: Inference runs entirely in the user's browser.
-  - **No Data Egress**: Chat history and queries never leave the device.
+  - **No Data Egress**: Queries never leave the device.
   - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
   - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs) with `Cache-Control: no-store`. The database `services_public` view enforces a strict data boundary.
 - **Lifecycle**:

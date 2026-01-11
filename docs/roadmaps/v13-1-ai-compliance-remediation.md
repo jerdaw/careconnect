@@ -13,14 +13,14 @@ To aggressively remediate legal and compliance risks identified in the "Legal & 
 
 ### 1. The "Safety Preamble" (Binding Protocol)
 
-**Objective**: Prevent "Negligent Misrepresentation" (_Queen v. Cognos_) and vicarious liability (_Moffatt_) by strictly fettering the AI's discretion.
-**Text**: (See Phase 1 Checklist)
+**Objective**: Prevent "Negligent Misrepresentation" (_Queen v. Cognos_) and vicarious liability (_Moffatt_) by minimizing stochastic output.
+**Implementation Note (Jan 2026)**: The assistant now renders **deterministic directory results** (service links/cards). The model is used only for **query rewrite/expansion** and model text is not shown to users.
 
 ### 2. Client-Side Crisis Interruption (Hard Block)
 
 **Objective**: Mitigate "Good Samaritan" negligence by strictly preventing the tool from attempting crisis counseling.
-**Regex Pattern**: `/(suicid|kill myself|harm|die|overdose)/i`
-**Action**: Block API -> Show Modal -> Inject System Message.
+**Detector**: `detectCrisis()` from `lib/search/crisis.ts` (deterministic keyword matching).
+**Action**: Block AI -> Show Emergency Modal -> Do not attempt search or query rewrite.
 
 ### 3. AODA "Live Regions"
 
@@ -37,26 +37,11 @@ _Focus: Preventing Gross Negligence and establishing the Legal Contract._
 
 #### 1.1 Hardening the System Prompt (`messages/en.json`)
 
-- [ ] **Inject Safety Preamble**: Replace `AI.systemPrompt` with this **exact** binding protocol:
-  > 1. **Identity & Scope**: You are the Kingston Care Connect Assistant, an automated information retrieval system. You are **NOT** a social worker, doctor, lawyer, or crisis counselor. You cannot take real-world actions.
-  > 2. **Zero-Hallucination Mandate**: You must ONLY provide information present in the provided context (Service Directory). If the answer is not in the context, state: "I do not have that information in my directory." Do not guess hours, location, or availability.
-  > 3. **Crisis Protocol**: If the user mentions suicide, self-harm, domestic violence, or immediate danger, you MUST immediately output the 'Crisis Handoff Block' (9-8-8 info) and CEASE generating further advice.
-  > 4. **No Medical Advice**: Do not diagnose or interpret symptoms. Provide contact info for 'Health811' but clarify: "I cannot provide medical advice."
-  > 5. **Volatility Disclaimer**: When stating hours or availability, preface with: "According to my last update..." to avoid creating a binding promise (Promissory Estoppel).
+- [x] **Query Refiner Contract**: Ensure the model is used only for JSON query rewrite/expansion and that model output is never rendered to users.
 
 #### 1.2 Crisis Circuit Breaker (`components/ai/ChatAssistant.tsx`)
 
-- [ ] **Implement Regex Guard**: Inside `handleSend()` (approx line 66), check input _before_ API call:
-  ```typescript
-  const crisisRegex = /(suicid|kill myself|harm|die|overdose)/i
-  if (crisisRegex.test(userMsg)) {
-    // 1. Add user msg to UI
-    // 2. Add System "Block" msg to UI
-    // 3. Show Modal
-    // 4. RETURN (Do not fetch AI)
-  }
-  ```
-- [ ] **Modal Trigger**: Ensure `setIsEmergencyModalOpen(true)` is called.
+- [x] **Implement Crisis Guard**: Before any AI/search work, block on `detectCrisis(userMsg)` and show `EmergencyModal`.
 
 #### 1.3 Terms of Service Updates (`messages/en.json`)
 
@@ -73,7 +58,7 @@ _Focus: Countering "Automation Bias" and "Promissory Estoppel"._
 
 #### 2.1 Persistent Disclaimer Banner (`components/ai/ChatAssistant.tsx`)
 
-- [ ] **Sticky Header**: Insert a "mini-disclaimer" _below_ the main header (inside the `Card`), but _above_ the scrollable content.
+- [x] **Sticky Header**: Insert a "mini-disclaimer" _below_ the main header (inside the `Card`), but _above_ the scrollable content.
   ```tsx
   <div className="flex items-center justify-center gap-2 border-b border-amber-100 bg-amber-50 px-4 py-2 text-xs text-amber-800">
     <AlertTriangle className="h-3 w-3" />
@@ -83,7 +68,7 @@ _Focus: Countering "Automation Bias" and "Promissory Estoppel"._
 
 #### 2.2 Source Pills & Context (`components/ai/ChatAssistant.tsx`)
 
-- [ ] **Context Injection**: Update `handleSend` to append Markdown links to service names.
+- [x] **Deterministic Links**: Render results as Markdown links to internal service pages.
   ```typescript
   // Old: ${r.service.name}:
   // New: [${r.service.name}](/service/${r.service.slug}):
@@ -121,7 +106,7 @@ _Focus: AODA/WCAG 2.1 & 2.2 mandates._
 
 #### 3.1 AODA: Streaming Text Compliance (`components/ai/ChatAssistant.tsx`)
 
-- [ ] **ARIA Live Regions**: Wrap the _Assistant's_ message text in a container with sensitive defaults.
+- [ ] **ARIA Live Regions**: Ensure the assistant output (results list) is announced appropriately for screen readers (no token streaming in current design).
 
   ```tsx
   // Inside the message map loop

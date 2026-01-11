@@ -3,13 +3,13 @@
 **Date:** January 10, 2026
 **Version:** 1.2
 **Status:** DRAFT (Pending Approval)
-**Scope:** Legal liability, privacy compliance (PIPEDA/PHIPA), and regulatory safety (AODA/Medical) for Kingston Care Connect's client-side AI chatbot.
+**Scope:** Legal liability, privacy compliance (PIPEDA/PHIPA), and regulatory safety (AODA/Medical) for Kingston Care Connect's client-side AI assistant (smart search).
 
 ---
 
 ## Executive Summary
 
-Kingston Care Connect (KCC) has deployed a "Privacy-First" AI Assistant using WebLLM technology (client-side execution). While this architecture significantly reduces data privacy risks by adhering to a "Zero Data Egress" model, it **does not absolve the organization of tort liability or duty of care obligations**.
+Kingston Care Connect (KCC) has deployed a "Privacy-First" AI Assistant using WebLLM technology (client-side execution). The current implementation uses the model only for _query refinement_ (rewrite/expansion) and renders **deterministic service links** from the verified directory (no free-form model answers shown to users). While this architecture significantly reduces data privacy and hallucination risks by adhering to a "Zero Data Egress" model, it **does not absolve the organization of tort liability or duty of care obligations**.
 
 **Critical Finding:** The landmark decision in _Moffatt v. Air Canada_ (2024) establishes that organizations are fully liable for the output of their automated agents. The defense that a chatbot is a "separate entity" or that users should "double-check" information has been legally dismantled. Given KCC's vulnerable user base (specifically those in crisis), the "reasonable reliance" threshold is high, creating a substantive duty of care to prevent negligent misrepresentation and foreseeable harm.
 
@@ -160,7 +160,7 @@ To break "Automation Bias" (the tendency to blindly trust computers), we must in
 
 **Phase 1: Immediate Actions (Day 1 - Zero Cost)**
 
-- [ ] **Prompt Injection:** Update `ChatAssistant.tsx` system prompt with the "Safety Preamble."
+- [ ] **Query Refiner Contract:** Ensure the model is used only for JSON query rewrite/expansion and that model output is never rendered to users.
 - [ ] **ToS Update:** Add the 5 critical clauses (Professional, Crisis, Volatility, Device, Third-Party).
 - [ ] **Static Disclaimer:** Hard-code a message above chat: _"I am an AI. Verify critical info."_
 - [ ] **Crisis Regex:** Implement basic client-side keyword blocking.
@@ -168,8 +168,8 @@ To break "Automation Bias" (the tendency to blindly trust computers), we must in
 
 **Phase 2: MVP Hardening (Month 1-3)**
 
-- [ ] **RAG Implementation:** Ensure AI strictly uses Retrieval-Augmented Generation (RAG) with `temperature=0`.
-- [ ] **AODA Remediation:** Modify WebLLM streaming to use `aria-live` regions for screen readers.
+- [ ] **Deterministic Rendering:** Ensure all user-facing outputs are rendered from directory data (service cards/links), not model text.
+- [ ] **AODA Remediation:** Ensure dynamic updates (results list + emergency modal) are accessible (focus, keyboard, `aria-live` where appropriate).
 - [ ] **Audit Trail:** Create technical whitepaper documenting "Zero Egress" architecture.
 
 **Phase 3: Scaling & Validation (Year 1+)**

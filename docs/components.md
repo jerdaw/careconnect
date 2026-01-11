@@ -79,7 +79,11 @@ import SearchBar from "@/components/home/SearchBar"
 
 ### ChatAssistant
 
-Local RAG-powered AI chat interface.
+On-device “smart search” assistant.
+
+- Uses a local LLM to rewrite/expand the user’s query (not shown to the user).
+- Runs the normal local search pipeline and renders deterministic service links (no free-form AI answers).
+- Enforces a client-side crisis circuit breaker that blocks the LLM and shows the emergency modal.
 
 ```tsx
 import ChatAssistant from "@/components/ai/ChatAssistant"

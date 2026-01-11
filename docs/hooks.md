@@ -68,7 +68,9 @@ const { isReady, progress, generateEmbedding } = useSemanticSearch()
 
 ### useAI
 
-Manages the local WebLLM engine state (loading, chat, error handling).
+Manages the local WebLLM engine state (loading, local inference, error handling).
+
+Primary use: on-device AI utilities (e.g. query rewrite/expansion for “smart search”).
 
 ```tsx
 import { useAI } from "@/hooks/useAI"
@@ -77,8 +79,8 @@ const {
   isReady, // boolean: is model loaded?
   isLoading, // boolean: is downloading?
   progress, // number: 0-1 download progress
-  chat, // (messages[]) => Promise<string>
   initAI, // () => void: trigger download
+  stop, // () => Promise<void>: interrupt generation
 } = useAI()
 ```
 

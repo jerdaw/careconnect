@@ -39,9 +39,10 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ### Decentralized AI Assistant
 
-- **Client-Side RAG**: Runs a local LLM (Phi-3) directly in the browser via WebGPU.
-- **Zero-Knowledge Architecture**: Voice and text queries never leave the device.
-- **Offline Vector Store**: Semantic search works without an internet connection.
+- **On-Device Smart Search**: Uses a small local LLM (WebLLM + WebGPU) to rewrite/expand natural-language queries for better matching.
+- **Deterministic Results**: The UI renders verified service links from the local directory (no free-form “chatbot answers” shown to users).
+- **Zero-Knowledge Architecture**: Queries never leave the device.
+- **Offline-Friendly**: The service directory and embeddings can be cached for offline search.
 
 ### Librarian Model (v13.0)
 
