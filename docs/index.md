@@ -92,11 +92,13 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 ### Installation
 
 ```bash
-git clone https://github.com/jerdaw/kingston-care-connect.git
+git clone https://github.com/jerdaw/kingston-care-connect.git # (1)
 cd kingston-care-connect
 npm install
 npm run dev
 ```
+
+1. This clones the main repository to your local machine.
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
@@ -156,11 +158,11 @@ This project is community-led. Safety and accuracy take precedence over volume.
 
 ### Documentation
 
-- [Roadmap](docs/roadmaps/roadmap.md)
-- [Documentation Guidelines](docs/documentation-guidelines.md)
-- [Testing Standards](docs/development/testing.md)
-- [Multi-Lingual Development Guide](docs/bilingual-dev-guide.md)
-- [Acknowledgments & Governance](docs/acknowledgments.md)
+- [Roadmap](roadmaps/roadmap.md)
+- [Documentation Guidelines](documentation-guidelines.md)
+- [Testing Standards](development/testing.md)
+- [Multi-Lingual Development Guide](bilingual-dev-guide.md)
+- [Acknowledgments & Governance](acknowledgments.md)
 
 ### Adding a Service
 

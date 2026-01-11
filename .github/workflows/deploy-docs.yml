@@ -1,0 +1,64 @@
+name: Deploy Documentation
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "docs/**"
+            - "mkdocs.yml"
+            - "README.md"
+
+permissions:
+    contents: write
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Configure Git Credentials
+              run: |
+                  git config user.name github-actions[bot]
+                  git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
+
+            - name: Install Node dependencies
+              run: npm install
+
+            - name: Generate llms.txt
+              run: npx tsx scripts/generate-llms-txt.ts
+
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: 3.x
+                  cache: "pip"
+
+            - name: Install imaging dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+
+            - name: Install dependencies
+              run: pip install -r requirements.txt
+
+            - name: Build documentation
+              run: mkdocs build
+
+            - name: Link Checker (Lychee)
+              uses: lycheeverse/lychee-action@v2.3.0
+              with:
+                  args: --verbose --no-progress './docs/**/*.md' './README.md'
+                  fail: true
+
+            - name: Deploy to GitHub Pages
+              run: mkdocs gh-deploy --force

@@ -30,17 +30,30 @@
 
 The search system uses a hybrid approach:
 
-1.  **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
-2.  **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
-3.  **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
-4.  **Librarian API (v13.0)**: A server-side alternative (`POST /api/v1/search/services`) enabled via feature flag. It performs privacy-preserving queries against a strictly limited `services_public` view, ensuring no private metadata leaks to the client.
+```mermaid
+graph TD
+    A[User Query] --> B{Keyword Search}
+    B -- Results Found --> C[Re-rank based on Relevance]
+    B -- Low/No Results --> D[Fuzzy Search Suggestion]
+    C --> E[Lazy Semantic Search Worker]
+    E --> F[Neural Re-ranking]
+    F --> G[Final Results Display]
+    A --> H[Librarian API POST - Optional]
+    H --> I[Server-side Privacy Search]
+    I --> G
+```
+
+1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
+2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
+3. **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
+4. **Librarian API (v13.0)**: A server-side alternative (`POST /api/v1/search/services`) enabled via feature flag. It performs privacy-preserving queries against a strictly limited `services_public` view, ensuring no private metadata leaks to the client.
 
 ### Search Modes
 
 The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MODE`:
 
-1.  **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
-2.  **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
+1. **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
+2. **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
 
 ### AI Assistant Architecture
 
@@ -65,6 +78,22 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 ### Data Pipelines
 
 - **Source of Truth**: 211 Ontario API (Raw Data) + Manual Verification (Golden Dataset).
+
+```mermaid
+sequenceDiagram
+    participant API as 211 Ontario API
+    participant Sync as sync-211 script
+    participant DB as Verified Database
+    participant Embed as Embedding Generator
+
+    API->>Sync: Raw JSON Data
+    Sync->>Sync: Clean & Map to Schema
+    Sync->>DB: Upsert Gold Records
+    DB->>Embed: Pull Verified Listings
+    Embed->>DB: Store Vector Embeddings
+    DB->>Client: JSON/API Delivery
+```
+
 - **Ingestion**:
   - `scripts/sync-211.ts`: Fetches, cleans, and maps external data to the `Service` schema.
   - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.

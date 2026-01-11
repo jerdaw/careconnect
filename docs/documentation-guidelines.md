@@ -6,17 +6,26 @@ Keep documentation accurate, minimal, and easy to maintain.
 
 - **Architecture & Logic**: `docs/architecture.md`
 - **UI Components**: `docs/components.md`
-- **Localization**: `bilingual-dev-guide.md` (Multi-lingual development guide)
+- **Localization**: `docs/bilingual-dev-guide.md` (Multi-lingual development guide)
 - **Governance**: `docs/governance.md`
 - **Hooks & Utilities**: `docs/hooks.md`
 - **Roadmap**: `docs/roadmaps/roadmap.md` (Active Plan)
 - **Historical Records**: `docs/roadmaps/archive/` (Completed work)
+- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
+
+## Advanced Features
+
+- **Code Annotations**: Use `(1)` in code blocks and a numbered list below to create floating explanations.
+- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
+- **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
+- **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api-reference.md`.
+- **AI Readiness**: The `llms.txt` file is auto-generated in CI to provide a "single source of truth" for agents.
 
 ## When adding or changing docs
 
 - **Prefer one canonical source**. Use pointers elsewhere instead of copying text.
 - **Keep docs close to the code** they describe.
-- **Update the index**: Update `README.md` or `AGENTS.md` if you add major new docs.
+- **Update the index**: Update `mkdocs.yml` nav if you add new pages. `README.md` and `AGENTS.md` should point to the MkDocs site URL where appropriate.
 - **English-Only**: Internal documentation should be English-only.
 - **No Phase Labels**: Avoid "phase" labels in permanent docs. Documentation should describe **what exists and how to use it**, not the order it was implemented.
 - **Public-Safe**: No secrets, private emails, or internal IPs in public repos.
