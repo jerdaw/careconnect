@@ -5,9 +5,9 @@ import { TestWrapper } from "@/tests/utils/test-wrapper"
 import { mockService } from "@/tests/utils/mocks"
 import { VerificationLevel } from "@/types/service"
 
-// Mock UpdateRequestModal to avoid complex UI rendering
-vi.mock("@/components/services/UpdateRequestModal", () => ({
-  UpdateRequestModal: () => <div data-testid="update-request-modal" />
+// Mock ReportIssueModal to avoid complex UI rendering
+vi.mock("@/components/feedback/ReportIssueModal", () => ({
+  ReportIssueModal: () => <div data-testid="report-issue-modal" />
 }))
 
 const mockTrustMessages = {
@@ -74,7 +74,7 @@ describe("TrustPanel Component", () => {
     const button = screen.getByText("Report wrong info")
     fireEvent.click(button)
 
-    expect(screen.getByTestId("update-request-modal")).toBeInTheDocument()
+    expect(screen.getByTestId("report-issue-modal")).toBeInTheDocument()
   })
 
   it("renders evidence link if provided", () => {

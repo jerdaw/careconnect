@@ -47,33 +47,28 @@ export default async function ImpactPage() {
   const ninetyDaysAgo = new Date()
   ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
 
-  // Fetch metrics using materialized view for better performance
-  const { data: viewData } = await supabase
-    .from("feedback_aggregations")
-    .select("helpful_yes_count, helpful_no_count, total_issues_count, resolved_issues_count")
+  // Fetch metrics directly from feedback table for accuracy
+  // We use Promise.all for parallel fetching
+  const [
+    { count: helpfulYes },
+    { count: helpfulNo },
+    { count: totalIssues },
+    { count: resolvedIssues }
+  ] = await Promise.all([
+    supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "helpful_yes"),
+    supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "helpful_no"),
+    supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "issue"),
+    supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "issue").eq("status", "resolved")
+  ])
 
-  let helpfulYes = 0
-  let helpfulNo = 0
-  let totalIssues = 0
-  let resolvedIssues = 0
+  const safeHelpfulYes = helpfulYes || 0
+  const safeHelpfulNo = helpfulNo || 0
+  const safeTotalIssues = totalIssues || 0
+  const safeResolvedIssues = resolvedIssues || 0
 
-  if (viewData) {
-    viewData.forEach((row: {
-      helpful_yes_count: number;
-      helpful_no_count: number;
-      total_issues_count: number;
-      resolved_issues_count: number;
-    }) => {
-      helpfulYes += row.helpful_yes_count || 0
-      helpfulNo += row.helpful_no_count || 0
-      totalIssues += row.total_issues_count || 0
-      resolvedIssues += row.resolved_issues_count || 0
-    })
-  }
-
-  const totalHelpful = helpfulYes + helpfulNo
-  const helpfulRate = totalHelpful > 0 ? Math.round((helpfulYes / totalHelpful) * 100) : 0
-  const totalFeedback = totalHelpful + totalIssues
+  const totalHelpful = safeHelpfulYes + safeHelpfulNo
+  const helpfulRate = totalHelpful > 0 ? Math.round((safeHelpfulYes / totalHelpful) * 100) : 0
+  const totalFeedback = totalHelpful + safeTotalIssues
 
   const { count: totalServices } = await supabase
     .from("services")
@@ -113,8 +108,8 @@ export default async function ImpactPage() {
             
             <MetricCard
               title={t("issuesResolvedTitle")}
-              value={resolvedIssues || 0}
-              description={t("issuesResolvedDesc", { total: totalIssues || 0 })}
+              value={safeResolvedIssues}
+              description={t("issuesResolvedDesc", { total: safeTotalIssues })}
               icon={<CheckCircle2 className="h-6 w-6 text-green-600" />}
             />
             

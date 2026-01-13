@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Service, VerificationLevel } from "@/types/service"
 import { formatDate } from "@/lib/utils"
 import { useTranslations } from "next-intl"
-import { UpdateRequestModal } from "./UpdateRequestModal"
+import { ReportIssueModal } from "../feedback/ReportIssueModal"
 
 interface TrustPanelProps {
   service: Service
@@ -17,7 +17,7 @@ interface TrustPanelProps {
 export function TrustPanel({ service, locale }: TrustPanelProps) {
   const t = useTranslations("Trust")
   const vt = useTranslations("VerificationLevels")
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+  const [isIssueModalOpen, setIsIssueModalOpen] = useState(false)
   
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const provenance = (service.provenance as any) || {}
@@ -91,7 +91,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
           
           <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
             <button 
-              onClick={() => setIsUpdateModalOpen(true)}
+              onClick={() => setIsIssueModalOpen(true)}
               className="text-[10px] text-neutral-500 hover:text-primary-600 flex items-center gap-1.5 transition-colors font-medium uppercase tracking-tight"
             >
               <HelpCircle className="w-3.5 h-3.5 text-neutral-400" />
@@ -101,11 +101,11 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
         </CardContent>
       </Card>
 
-      <UpdateRequestModal 
+      <ReportIssueModal 
         serviceId={service.id}
         serviceName={service.name}
-        isOpen={isUpdateModalOpen}
-        onClose={() => setIsUpdateModalOpen(false)}
+        isOpen={isIssueModalOpen}
+        onClose={() => setIsIssueModalOpen(false)}
       />
     </>
   )
