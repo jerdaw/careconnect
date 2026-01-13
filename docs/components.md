@@ -51,17 +51,38 @@ import { Button } from '@/components/ui/button';
 
 ### ServiceCard
 
-Displays a service with score, match reasons, and action buttons.
+Displays a service with score, match reasons, and trust signals.
 
 ```tsx
 import ServiceCard from "@/components/ServiceCard"
-;<ServiceCard
-  service={service}
-  score={result.score}
-  matchReasons={result.matchReasons}
-  score={result.score}
-  matchReasons={result.matchReasons}
-/>
+;<ServiceCard service={service} score={result.score} matchReasons={result.matchReasons} />
+```
+
+### TrustPanel (v14.0)
+
+Displays data provenance, verification status, and last verified dates.
+
+```tsx
+import { TrustPanel } from "@/components/services/TrustPanel"
+;<TrustPanel service={service} />
+```
+
+### SimplifiedServiceView (v14.0)
+
+Renders plain-language summaries and "How-to-use" step-by-step guides for higher literacy accessibility.
+
+```tsx
+import { SimplifiedServiceView } from "@/components/services/SimplifiedServiceView"
+;<SimplifiedServiceView serviceId={service.id} />
+```
+
+### FeedbackWidget (v14.0)
+
+Privacy-preserving feedback collection tool at the bottom of detail pages.
+
+```tsx
+import { FeedbackWidget } from "@/components/feedback/FeedbackWidget"
+;<FeedbackWidget serviceId={service.id} />
 ```
 
 ### SearchBar
@@ -144,6 +165,15 @@ import { ServiceEditForm } from "@/components/partner/ServiceEditForm"
     // Save logic
   }}
 />
+```
+
+### UpdateRequestModal (Partner-Focused, v14.0)
+
+Structured workflow for partners to request listing updates with justifications.
+
+```tsx
+import { UpdateRequestModal } from "@/components/services/UpdateRequestModal"
+;<UpdateRequestModal service={service} isOpen={isOpen} onClose={() => setIsOpen(false)} />
 ```
 
 ### PartnerServiceList
@@ -269,8 +299,4 @@ Optimized button for printing search results. Automatically hidden during print.
 ```tsx
 import { PrintButton } from "@/components/ui/PrintButton"
 ;<PrintButton />
-```
-
-```
-
 ```
