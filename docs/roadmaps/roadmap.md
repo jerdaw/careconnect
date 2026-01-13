@@ -120,25 +120,82 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 ---
 
-## v15.0: Mobile Apps (iOS/Android)
+## v15.0: Mobile-Ready Infrastructure
 
 > **Status**: Planned
-> **Focus**: Availability & Offline Access
+> **Focus**: Offline-First & Push Notifications (No macOS Required)
+> **Definition**: [v15-0-mobile-ready-infrastructure.md](v15-0-mobile-ready-infrastructure.md) > **Note**: ⚠️ **Do not implement until user explicitly requests it**
 
-### 1. App Store Availability
+### Overview
 
-- [ ] **Goal**: Publish Kingston Care Connect on Apple App Store and Google Play Store.
-- [ ] **Technical Approach**: Use cross-platform technology (e.g., Capacitor) to wrap the existing web app, minimizing development overhead while ensuring native reach.
+v15.0 builds the technical foundation for native mobile apps **without requiring macOS or App Store accounts**. This version improves the existing PWA immediately while preparing for future native app launch in v15.1.
 
-### 2. Offline Capabilities
+### 1. Offline-First Infrastructure
 
-- [ ] **Goal**: Enable core directory access (search & view details) without an active internet connection.
-- [ ] **Method**: Service Worker caching strategy for critical JSON data and assets.
+- [ ] **Goal**: Enable full offline access to the service directory without network connectivity.
+- [ ] **Implementation**: IndexedDB storage for all 196 services and embeddings, background sync, offline search.
+- [ ] **Benefit**: Front-line workers in shelters/drop-in centres can access directory with poor connectivity.
 
-### 3. Native Integration
+### 2. Push Notification Backend
 
-- [ ] **Goal**: Leverage native device features where impactful.
-- [ ] **Features**: Push notifications for critical service updates (e.g., shelter capacity changes), home screen widgets.
+- [ ] **Goal**: Build server-side push notification infrastructure (testable via PWA web push).
+- [ ] **Implementation**: OneSignal integration, admin console, web push registration flow.
+- [ ] **Benefit**: Proactive communication for critical service updates (shelter capacity, emergency closures).
+
+### 3. Mobile-Optimized API
+
+- [ ] **Goal**: Create API endpoints and data structures optimized for mobile performance.
+- [ ] **Implementation**: Bulk export endpoint, deep linking config files, share functionality prep.
+- [ ] **Benefit**: Infrastructure ready for v15.1 native app launch with minimal additional work.
+
+### What's Included vs. Deferred
+
+**✅ Included in v15.0 (No macOS Required)**:
+
+- Capacitor configuration (structure only)
+- IndexedDB offline storage
+- Network status detection and UI
+- Push notification backend (web push)
+- Mobile-optimized API endpoints
+- Enhanced PWA offline experience
+
+**❌ Deferred to v15.1 (Requires macOS + App Store Accounts)**:
+
+- iOS app builds and testing
+- App Store and Play Store submissions
+- Native app assets and metadata
+- Physical device testing on iOS
+
+---
+
+## v15.1: Mobile App Launch
+
+> **Status**: Future
+> **Focus**: App Store Distribution
+> **Prerequisites**: macOS access, Apple Developer Program ($99/year), Google Play Console ($25)
+> **Note**: ⚠️ **Only implement when user has macOS access and explicitly requests it**
+
+### Overview
+
+v15.1 completes the mobile app journey by publishing native iOS and Android apps to App Store and Google Play Store. All backend infrastructure is built in v15.0, so v15.1 focuses purely on native builds, assets, testing, and store submissions.
+
+### 1. Native App Builds
+
+- [ ] **Goal**: Create iOS and Android app builds using Capacitor wrapper.
+- [ ] **Requirements**: Xcode on macOS (iOS), Android Studio (Android).
+- [ ] **Timeline**: 4-6 weeks after v15.0 completion.
+
+### 2. App Store Submissions
+
+- [ ] **Goal**: Pass App Store Review and Google Play Review on first attempt.
+- [ ] **Deliverables**: App icons, screenshots, store metadata, privacy labels.
+- [ ] **Target**: 4.5+ star rating within first 90 days.
+
+### 3. Launch & Monitoring
+
+- [ ] **Goal**: Successful public launch with crash-free rate ≥ 99%.
+- [ ] **Activities**: ASO (App Store Optimization), social media announcement, partner outreach.
+- [ ] **Metrics**: 500+ installs in first 90 days, 20% 30-day retention.
 
 ---
 
@@ -146,16 +203,17 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 The following items represent the strategic phases of the roadmap:
 
-| Version   | Focus                        | Status    | Key Benefit                        |
-| :-------- | :--------------------------- | :-------- | :--------------------------------- |
-| **v10.0** | Data Architecture/Governance | Completed | Data quality + search relevance    |
-| **v10.1** | UI Polish & Data Expansion   | Completed | 159 services + Map + Multi-lingual |
-| **v12.0** | Legal & Compliance           | Completed | Liability protection + compliance  |
-| **v13.0** | Secure Data Architecture     | Completed | Privacy + Infinite Scale           |
-| **v13.1** | AI Compliance Remediation    | Completed | Moffatt/AODA Legal Safety          |
-| **v11.0** | Scope Expansion              | Completed | Ontario-wide services (47)         |
-| **v14.0** | Impact, Equity & Trust       | Completed | Verifiable outcomes + access       |
-| **v15.0** | Mobile Apps                  | Planned   | Offline access + App Store         |
+| Version   | Focus                        | Status    | Key Benefit                         |
+| :-------- | :--------------------------- | :-------- | :---------------------------------- |
+| **v10.0** | Data Architecture/Governance | Completed | Data quality + search relevance     |
+| **v10.1** | UI Polish & Data Expansion   | Completed | 159 services + Map + Multi-lingual  |
+| **v12.0** | Legal & Compliance           | Completed | Liability protection + compliance   |
+| **v13.0** | Secure Data Architecture     | Completed | Privacy + Infinite Scale            |
+| **v13.1** | AI Compliance Remediation    | Completed | Moffatt/AODA Legal Safety           |
+| **v11.0** | Scope Expansion              | Completed | Ontario-wide services (47)          |
+| **v14.0** | Impact, Equity & Trust       | Completed | Verifiable outcomes + access        |
+| **v15.0** | Mobile-Ready Infrastructure  | Planned   | Offline + Push (no macOS required)  |
+| **v15.1** | Mobile App Launch            | Future    | App Store + Play Store distribution |
 
 ---
 
