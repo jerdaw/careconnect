@@ -1,141 +1,119 @@
 import { renderHook, waitFor, act } from "@testing-library/react"
 import { usePushNotifications } from "@/hooks/usePushNotifications"
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { describe, it, expect, vi, beforeEach } from "vitest"
+import OneSignal from "react-onesignal"
 
-// Mock dependencies
-// Mock dependencies
-const mockSetPreferences = vi.fn()
-const mockPreferences: any[] = [] // Stable reference
-
-vi.mock("@/hooks/useLocalStorage", () => ({
-    useLocalStorage: () => [mockPreferences, mockSetPreferences],
-}))
-
-vi.mock("@/lib/notifications/push-manager", () => ({
-    pushManager: {
-        getPermissionStatus: vi.fn(),
-        requestPermission: vi.fn(),
-        subscribe: vi.fn(),
-        unsubscribe: vi.fn(),
+// Mock react-onesignal
+vi.mock("react-onesignal", () => {
+  const mockOneSignal = {
+    init: vi.fn().mockResolvedValue(undefined),
+    Notifications: {
+      requestPermission: vi.fn().mockResolvedValue(undefined),
     },
-}))
+    User: {
+      PushSubscription: {
+        id: "mock-id",
+        optIn: vi.fn().mockResolvedValue(undefined),
+        optOut: vi.fn().mockResolvedValue(undefined),
+        addEventListener: vi.fn(),
+      },
+    },
+  };
+  return {
+    __esModule: true,
+    default: mockOneSignal,
+    ...mockOneSignal
+  };
+});
 
-import { pushManager } from "@/lib/notifications/push-manager"
+// Mock env
+vi.mock("@/lib/env", () => ({
+  env: {
+    NEXT_PUBLIC_ONESIGNAL_APP_ID: "test-app-id",
+  },
+}));
 
 describe("usePushNotifications Hook", () => {
     beforeEach(() => {
         vi.clearAllMocks()
-
-        // Mock browser globals
-        Object.defineProperty(global.window, "PushManager", {
-            value: class PushManager { },
-            writable: true,
+        
+        // Mock window/navigator globals
+        Object.defineProperty(global, "Notification", {
+            value: {
+                permission: "default"
+            },
             configurable: true,
+            writable: true
         })
 
         Object.defineProperty(global.navigator, "serviceWorker", {
             value: {
-                ready: Promise.resolve({
-                    pushManager: {
-                        getSubscription: vi.fn().mockResolvedValue(null)
-                    }
-                })
+                register: vi.fn(),
             },
-            writable: true
+            writable: true,
+            configurable: true
+        })
+
+        Object.defineProperty(global.window, "PushManager", {
+            value: vi.fn(),
+            writable: true,
+            configurable: true
         })
     })
 
-    afterEach(() => {
-        // cleanup globals
-    })
-
-    it("initializes with loading state and checks support", async () => {
-        ; (pushManager.getPermissionStatus as any).mockResolvedValue("default")
-
-        const { result } = renderHook(() => usePushNotifications())
-
-        expect(result.current.isLoading).toBe(true)
-
+    it("initializes OneSignal on mount", async () => {
+        renderHook(() => usePushNotifications())
+        
         await waitFor(() => {
-            expect(result.current.isLoading).toBe(false)
-            expect(result.current.isSupported).toBe(true)
-            expect(result.current.permission).toBe("default")
+            expect(OneSignal.init).toHaveBeenCalledWith(expect.objectContaining({
+                appId: "test-app-id"
+            }))
         })
     })
 
-    it("handles unsupported browser", async () => {
+    it("checks support correctly", async () => {
+        const { result } = renderHook(() => usePushNotifications())
+        
+        await waitFor(() => {
+            expect(result.current.isSupported).toBe(true)
+        })
+    })
+
+    it("handles unsupported browsers", async () => {
         // @ts-ignore
         delete global.window.PushManager
-
+        
         const { result } = renderHook(() => usePushNotifications())
-
+        
         await waitFor(() => {
             expect(result.current.isSupported).toBe(false)
-            expect(result.current.isLoading).toBe(false)
         })
     })
 
-    it("subscribes successfully", async () => {
-        ; (pushManager.getPermissionStatus as any).mockResolvedValue("default")
-            ; (pushManager.requestPermission as any).mockResolvedValue(true)
-            ; (pushManager.subscribe as any).mockResolvedValue({ endpoint: "test" })
-
+    it("subscribes using OneSignal", async () => {
         const { result } = renderHook(() => usePushNotifications())
-
-        await waitFor(() => expect(result.current.isLoading).toBe(false))
+        
+        // Wait for init
+        await waitFor(() => expect(OneSignal.init).toHaveBeenCalled())
 
         await act(async () => {
-            const success = await result.current.subscribe(["crisis"])
-            expect(success).toBe(true)
+            await result.current.subscribe()
         })
 
-        expect(result.current.isSubscribed).toBe(true)
-        expect(result.current.permission).toBe("granted")
-        expect(result.current.subscribedCategories).toEqual(["crisis"])
-        expect(mockSetPreferences).toHaveBeenCalledWith(["crisis"])
+        expect(OneSignal.Notifications.requestPermission).toHaveBeenCalled()
+        expect(OneSignal.User.PushSubscription.optIn).toHaveBeenCalled()
     })
 
-    it("handles subscription denial", async () => {
-        ; (pushManager.getPermissionStatus as any).mockResolvedValue("default")
-            ; (pushManager.requestPermission as any).mockResolvedValue(false)
-
+    it("unsubscribes using OneSignal", async () => {
         const { result } = renderHook(() => usePushNotifications())
-        await waitFor(() => expect(result.current.isLoading).toBe(false))
+        
+        // Wait for init
+        await waitFor(() => expect(OneSignal.init).toHaveBeenCalled())
 
         await act(async () => {
-            const success = await result.current.subscribe(["crisis"])
-            expect(success).toBe(false)
+            await result.current.unsubscribe()
         })
 
-        expect(result.current.permission).toBe("denied")
-        expect(result.current.isSubscribed).toBe(false)
-    })
-
-    it("unsubscribes successfully", async () => {
-        // Start as subscribed
-        Object.defineProperty(global.navigator, "serviceWorker", {
-            value: {
-                ready: Promise.resolve({
-                    pushManager: {
-                        getSubscription: vi.fn().mockResolvedValue({ endpoint: "test" })
-                    }
-                })
-            },
-            writable: true
-        })
-            ; (pushManager.getPermissionStatus as any).mockResolvedValue("granted")
-            ; (pushManager.unsubscribe as any).mockResolvedValue(true)
-
-        const { result } = renderHook(() => usePushNotifications())
-        await waitFor(() => expect(result.current.isSubscribed).toBe(true))
-
-        await act(async () => {
-            const success = await result.current.unsubscribe()
-            expect(success).toBe(true)
-        })
-
-        expect(result.current.isSubscribed).toBe(false)
-        expect(result.current.subscribedCategories).toEqual([])
-        expect(mockSetPreferences).toHaveBeenCalledWith([])
+        expect(OneSignal.User.PushSubscription.optOut).toHaveBeenCalled()
     })
 })

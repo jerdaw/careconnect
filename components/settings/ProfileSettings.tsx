@@ -7,13 +7,11 @@ import { cn } from "@/lib/utils"
 import { User, Bell, BellOff, Loader2, Eye } from "lucide-react"
 import { usePushNotifications } from "@/hooks/usePushNotifications"
 import { useHighContrast } from "@/hooks/useHighContrast"
-import { NotificationCategory } from "@/types/notifications"
 import { useState } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 const AGE_GROUPS = ["youth", "adult", "senior"] as const
 const IDENTITY_OPTIONS = ["indigenous", "newcomer", "2slgbtqi+", "veteran", "disability"] as const
-const NOTIFICATION_CATEGORIES: NotificationCategory[] = ["crisis", "food", "housing", "health", "general"]
 
 interface ProfileSettingsProps {
   variant?: "ghost" | "default" | "outline" | "secondary" | "link" | "pill" | "gradient" | "glass"
@@ -24,32 +22,22 @@ interface ProfileSettingsProps {
 export function ProfileSettings({ variant = "ghost", size = "sm", showText = true }: ProfileSettingsProps) {
   const t = useTranslations("Settings")
   const { context, updateAgeGroup, toggleIdentity, optIn, optOut } = useUserContext()
-  const { isSupported, isSubscribed, subscribedCategories, isLoading, subscribe, unsubscribe } = usePushNotifications()
+  const { isSupported, isSubscribed, subscribe, unsubscribe } = usePushNotifications()
   const { isHighContrast, toggleHighContrast } = useHighContrast()
   const tAccess = useTranslations("Accessibility")
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const toggleSubscription = async () => {
-    if (isSubscribed) {
-      await unsubscribe()
-    } else {
-      await subscribe(NOTIFICATION_CATEGORIES) // Subscribe to all by default initially
-    }
-  }
-
-  const toggleCategory = async (category: NotificationCategory) => {
-    if (!isSubscribed) return
-
-    const newCategories = subscribedCategories.includes(category)
-      ? subscribedCategories.filter((c) => c !== category)
-      : [...subscribedCategories, category]
-
-    // If removing last category, could unsubscribe, but let's keep it simple for now
-    // and just update the subscription with the new list
-    if (newCategories.length === 0) {
-      await unsubscribe()
-    } else {
-      await subscribe(newCategories)
+    setLoading(true)
+    try {
+      if (isSubscribed) {
+        await unsubscribe()
+      } else {
+        await subscribe()
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -178,34 +166,14 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
                   variant={isSubscribed ? "default" : "secondary"}
                   className="h-7 text-xs"
                   onClick={toggleSubscription}
-                  disabled={!isSupported || isLoading}
+                  disabled={!isSupported || loading}
                 >
-                  {isLoading ? <Loader2 className="h-3 w-3 animate-spin" /> : isSubscribed ? "On" : "Off"}
+                  {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : isSubscribed ? "On" : "Off"}
                 </Button>
               </div>
 
               {!isSupported && (
                 <p className="mb-2 text-xs text-amber-600">Push notifications not supported on this browser.</p>
-              )}
-
-              {/* Categories */}
-              {isSubscribed && (
-                <div className="space-y-1 pl-1">
-                  {NOTIFICATION_CATEGORIES.map((cat) => (
-                    <div key={cat} className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        id={`notif-${cat}`}
-                        checked={subscribedCategories.includes(cat)}
-                        onChange={() => toggleCategory(cat)}
-                        className="text-primary-600 focus:ring-primary-500 h-3 w-3 rounded border-neutral-300"
-                      />
-                      <label htmlFor={`notif-${cat}`} className="cursor-pointer text-sm select-none">
-                        {t(`Notifications.categories.${cat}`)}
-                      </label>
-                    </div>
-                  ))}
-                </div>
               )}
             </section>
 

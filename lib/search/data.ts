@@ -2,6 +2,8 @@ import { Service } from "@/types/service"
 import { supabase } from "@/lib/supabase"
 import { env } from "@/lib/env"
 
+
+
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
 
@@ -13,8 +15,24 @@ export const loadServices = async (): Promise<Service[]> => {
   // Return cache if available
   if (dataCache) return dataCache.services
 
-  // Note: getSearchMode() can be used here if needed for mode-specific logic
-  // Currently, we use a unified approach: try DB -> fallback to JSON
+  // 0. Offline / Client-First Mode (v15.0)
+  // If we are in the browser, check IndexedDB first for the most up-to-date offline data
+  if (typeof window !== "undefined") {
+    try {
+      // Dynamic import to avoid server-side issues with 'idb'
+      const { getAllServices } = await import("@/lib/offline/db")
+      const offlineServices = await getAllServices()
+      
+      if (offlineServices && offlineServices.length > 0) {
+        // Enriched Services are already stored in IDB with embeddings
+        // We use this as the primary source of truth on the client
+        dataCache = { services: offlineServices }
+        return offlineServices
+      }
+    } catch (err) {
+      console.warn("Offline data load failed, falling back to network/static:", err)
+    }
+  }
 
   // 1. Server Mode: Fetch from API (if valid context) or fall back to dynamic JSON
   // Note: ideally servers use the API, but if this func is called on server, we might need local data

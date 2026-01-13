@@ -5,12 +5,14 @@ export const env = createEnv({
   server: {
     SUPABASE_SECRET_KEY: z.string().optional(),
     OPENAI_API_KEY: z.string().optional(),
+    ONESIGNAL_REST_API_KEY: z.string().optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional().or(z.literal("")),
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1).optional().or(z.literal("")),
     NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+    NEXT_PUBLIC_ONESIGNAL_APP_ID: z.string().optional(),
   },
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
   // runtimeEnv: {
@@ -23,5 +25,6 @@ export const env = createEnv({
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_ONESIGNAL_APP_ID: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
   },
 })

@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from "react"
 import { searchServices, SearchResult } from "@/lib/search"
+import { isOffline } from "@/lib/offline/status"
 import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
 import { logger } from "@/lib/logger"
 import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
@@ -61,10 +62,12 @@ export function useServices({
 
       try {
         const mode = getSearchMode()
+        const currentlyOffline = isOffline()
+        
         let initialResults: SearchResult[] = []
 
-        if (mode === "server") {
-          // Server-Side Search
+        if (mode === "server" && !currentlyOffline) {
+          // Server-Side Search (only if online)
           const serverServices = await serverSearch({
             query,
             locale: "en", // TODO: Get from context/hook
@@ -73,15 +76,14 @@ export function useServices({
           })
           
           // Map to SearchResult structure
-          // Server returns ranked list, so we assign a descending score
           initialResults = serverServices.map((service, index) => ({
             service,
-            score: 100 - index, // Simple ranking preservation
+            score: 100 - index,
             matchReasons: ["Server Match"]
           }))
 
         } else {
-          // Local Search (Legacy)
+          // Local Search (Always used if mode is local OR if we are offline)
           initialResults = await searchServices(query, {
             category,
             location: userLocation,

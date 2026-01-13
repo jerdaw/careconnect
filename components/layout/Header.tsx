@@ -141,6 +141,15 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
               >
                 {t("suggest")}
               </Link>
+              <Link
+                href="/settings"
+                className={cn(
+                  "hover:text-primary-500 text-sm font-medium transition-colors",
+                  "text-neutral-600 dark:text-neutral-300"
+                )}
+              >
+                Settings
+              </Link>
             </nav>
 
             {/* Separator */}
@@ -213,6 +222,9 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 </Link>
                 <Link href="/submit-service" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
                   {t("suggest")}
+                </Link>
+                <Link href="/settings" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                  Settings
                 </Link>
 
                 <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />

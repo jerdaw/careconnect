@@ -342,12 +342,17 @@
     "ariaSendMessage": "Send message"
   },
   "Settings": {
+    "title": "Settings",
+    "description": "Manage your application preferences and device settings.",
+    "connectionStatus": "Connection Status",
+    "onlineMessage": "You are currently online. Updates will be received automatically.",
+    "offlineMessage": "You are currently offline. Using cached data.",
     "personalizePrompt": "Personalize your results",
-    "personalizeDescription": "Optionally share your situation to see services you may qualify for. This data never leaves your device.",
+    "personalizeDescription": "Share your situation to see services you might qualify for. This data never leaves your device.",
     "enablePersonalization": "Enable Personalization",
     "ageGroup": "Age Group",
     "ageGroups": {
-      "youth": "Youth (under 30)",
+      "youth": "Youth (Under 30)",
       "adult": "Adult (18-64)",
       "senior": "Senior (55+)"
     },
@@ -357,12 +362,19 @@
       "newcomer": "Newcomer to Canada",
       "2slgbtqi+": "2SLGBTQI+",
       "veteran": "Veteran",
-      "disability": "Person with a disability"
+      "disability": "Person with disability"
     },
     "clearProfile": "Clear My Profile",
     "Notifications": {
       "title": "Notifications",
-      "enable": "Enable Push Notifications",
+      "keepMeUpdated": "Keep me updated",
+      "keepMeUpdatedDesc": "Receive alerts about shelter capacity and service changes.",
+      "notSupportedTitle": "Not Supported",
+      "notSupportedDesc": "Push notifications are not supported on this device or browser.",
+      "blockedTitle": "Notifications Blocked",
+      "blockedDesc": "You have blocked notifications for this site. To enable them, please update your browser site settings.",
+      "enable": "Enable",
+      "disable": "Disable",
       "permissions": "Permissions Required",
       "permissionsDesc": "We need your permission to send alerts.",
       "categories": {
@@ -769,5 +781,11 @@
       "admin": "Admin Verified",
       "partner": "Partner Confirmed"
     }
+  },
+  "Offline": {
+    "bannerMessage": "Using offline mode. Information may be outdated.",
+    "checkConnection": "Check Connection",
+    "savedForLater": "Saved for later",
+    "savedMessage": "Your feedback will be sent when you're back online."
   }
 }

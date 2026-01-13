@@ -17,6 +17,8 @@ import { useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
 import { FeedbackSubmitSchema, FeedbackApiResponse } from "@/types/feedback"
+import { useNetworkStatus } from "@/hooks/useNetworkStatus"
+import { queueFeedback } from "@/lib/offline/feedback"
 
 interface ReportIssueModalProps {
   serviceId: string
@@ -40,6 +42,8 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
   const [issueType, setIssueType] = useState<typeof ISSUE_TYPES[number]>("other")
   const [details, setDetails] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { isOffline } = useNetworkStatus()
+  const tOffline = useTranslations("Offline")
 
   const handleSubmit = async () => {
     setIsSubmitting(true)
@@ -54,6 +58,23 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
       const validation = FeedbackSubmitSchema.safeParse(payload)
       if (!validation.success) {
         throw new Error("Validation failed")
+      }
+
+      if (isOffline) {
+          await queueFeedback({
+              feedback_type: "issue",
+              service_id: serviceId,
+              message: payload.message,
+              category_searched: ""
+          })
+          toast({ 
+            title: tOffline("savedForLater"), 
+            description: tOffline("savedMessage") 
+          })
+          onClose()
+          setIssueType("other")
+          setDetails("")
+          return
       }
 
       const res = await fetch("/api/v1/feedback", {

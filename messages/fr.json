@@ -342,6 +342,11 @@
     "ariaSendMessage": "Envoyer le message"
   },
   "Settings": {
+    "title": "Paramètres",
+    "description": "Gérez vos préférences d'application et les paramètres de votre appareil.",
+    "connectionStatus": "Statut de la connexion",
+    "onlineMessage": "Vous êtes actuellement en ligne. Les mises à jour seront reçues automatiquement.",
+    "offlineMessage": "Vous êtes actuellement hors ligne. Utilisation des données mises en cache.",
     "personalizePrompt": "Personnalisez vos résultats",
     "personalizeDescription": "Partagez votre situation pour voir les services auxquels vous pourriez être admissible. Ces données ne quittent jamais votre appareil.",
     "enablePersonalization": "Activer la personnalisation",
@@ -362,7 +367,14 @@
     "clearProfile": "Effacer mon profil",
     "Notifications": {
       "title": "Notifications",
-      "enable": "Activer les notifications push",
+      "keepMeUpdated": "Tiens-moi au courant",
+      "keepMeUpdatedDesc": "Recevez des alertes sur la capacité des refuges et les changements de services.",
+      "notSupportedTitle": "Non pris en charge",
+      "notSupportedDesc": "Les notifications push ne sont pas prises en charge sur cet appareil ou ce navigateur.",
+      "blockedTitle": "Notifications bloquées",
+      "blockedDesc": "Vous avez bloqué les notifications pour ce site. Pour les activer, veuillez mettre à jour les paramètres de votre navigateur.",
+      "enable": "Activer",
+      "disable": "Désactiver",
       "permissions": "Permissions requises",
       "permissionsDesc": "Nous avons besoin de votre permission pour envoyer des alertes.",
       "categories": {
@@ -769,5 +781,11 @@
       "admin": "Vérifié par l'administrateur",
       "partner": "Confirmé par le partenaire"
     }
+  },
+  "Offline": {
+    "bannerMessage": "Mode hors ligne actif. Les données peuvent être obsolètes.",
+    "checkConnection": "Vérifier la connexion",
+    "savedForLater": "Enregistré pour plus tard",
+    "savedMessage": "Votre commentaire sera envoyé une fois en ligne."
   }
 }

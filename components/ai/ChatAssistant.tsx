@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react"
 import { useAI } from "@/hooks/useAI"
+import { useNetworkStatus } from "@/hooks/useNetworkStatus"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import {
@@ -37,6 +38,7 @@ const IDLE_TIMEOUT_MS = 5 * 60 * 1000 // 5 Minutes
 export default function ChatAssistant() {
   const t = useTranslations("AI")
   const { isReady, isLoading, progress, text, error, initAI, stop } = useAI()
+  const { isOffline } = useNetworkStatus()
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
@@ -391,15 +393,21 @@ export default function ChatAssistant() {
                     autoComplete="off"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder={isReady ? t("placeholderReady") : t("placeholderWaiting")}
-                    disabled={!isReady || isThinking}
+                    placeholder={
+                      isOffline 
+                        ? t("unavailableOffline") 
+                        : isReady 
+                          ? t("placeholderReady") 
+                          : t("placeholderWaiting")
+                    }
+                    disabled={!isReady || isThinking || isOffline}
                     className="focus:ring-primary-500 flex-1 rounded-full border-none bg-neutral-100 px-4 py-2 text-sm outline-none focus:ring-2 disabled:opacity-50 dark:bg-neutral-800"
                   />
                   <Button
                     size="icon"
                     type={isThinking ? "button" : "submit"}
                     onClick={isThinking ? handleStop : undefined}
-                    disabled={!isReady || (isThinking ? false : !input.trim())}
+                    disabled={!isReady || (isThinking ? false : !input.trim()) || isOffline}
                     className="h-9 w-9 shrink-0 rounded-full"
                     aria-label={isThinking ? t("ariaStopGenerating") : t("ariaSendMessage")}
                   >
@@ -408,12 +416,13 @@ export default function ChatAssistant() {
                 </form>
               </div>
             </Card>
+
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Toggle Button */}
-       <motion.button
+      <motion.button
         ref={toggleButtonRef}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}

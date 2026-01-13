@@ -120,11 +120,11 @@ For details on completed features, see the [Archived Roadmaps](archive/).
 
 ---
 
-## v15.0: Mobile-Ready Infrastructure
+## v15.0: Mobile-Ready Infrastructure (Completed)
 
-> **Status**: Planned
+> **Status**: ✅ Implemented (2026-01-13)
 > **Focus**: Offline-First & Push Notifications (No macOS Required)
-> **Definition**: [v15-0-mobile-ready-infrastructure.md](v15-0-mobile-ready-infrastructure.md) > **Note**: ⚠️ **Do not implement until user explicitly requests it**
+> **Definition**: [v15-0-mobile-ready-infrastructure.md](archive/v15-0-mobile-ready-infrastructure.md)
 
 ### Overview
 
@@ -132,21 +132,21 @@ v15.0 builds the technical foundation for native mobile apps **without requiring
 
 ### 1. Offline-First Infrastructure
 
-- [ ] **Goal**: Enable full offline access to the service directory without network connectivity.
-- [ ] **Implementation**: IndexedDB storage for all 196 services and embeddings, background sync, offline search.
-- [ ] **Benefit**: Front-line workers in shelters/drop-in centres can access directory with poor connectivity.
+- [x] **Goal**: Enable full offline access to the service directory without network connectivity.
+- [x] **Implementation**: IndexedDB storage for all 196 services and embeddings, background sync, offline search.
+- [x] **Benefit**: Front-line workers in shelters/drop-in centres can access directory with poor connectivity.
 
 ### 2. Push Notification Backend
 
-- [ ] **Goal**: Build server-side push notification infrastructure (testable via PWA web push).
-- [ ] **Implementation**: OneSignal integration, admin console, web push registration flow.
-- [ ] **Benefit**: Proactive communication for critical service updates (shelter capacity, emergency closures).
+- [x] **Goal**: Build server-side push notification infrastructure (testable via PWA web push).
+- [x] **Implementation**: OneSignal integration, admin console, web push registration flow.
+- [x] **Benefit**: Proactive communication for critical service updates (shelter capacity, emergency closures).
 
 ### 3. Mobile-Optimized API
 
-- [ ] **Goal**: Create API endpoints and data structures optimized for mobile performance.
-- [ ] **Implementation**: Bulk export endpoint, deep linking config files, share functionality prep.
-- [ ] **Benefit**: Infrastructure ready for v15.1 native app launch with minimal additional work.
+- [x] **Goal**: Create API endpoints and data structures optimized for mobile performance.
+- [x] **Implementation**: Bulk export endpoint, deep linking config files, share functionality prep.
+- [x] **Benefit**: Infrastructure ready for v15.1 native app launch with minimal additional work.
 
 ### What's Included vs. Deferred
 
@@ -212,7 +212,7 @@ The following items represent the strategic phases of the roadmap:
 | **v13.1** | AI Compliance Remediation    | Completed | Moffatt/AODA Legal Safety           |
 | **v11.0** | Scope Expansion              | Completed | Ontario-wide services (47)          |
 | **v14.0** | Impact, Equity & Trust       | Completed | Verifiable outcomes + access        |
-| **v15.0** | Mobile-Ready Infrastructure  | Planned   | Offline + Push (no macOS required)  |
+| **v15.0** | Mobile-Ready Infrastructure  | Completed | Offline + Push (no macOS required)  |
 | **v15.1** | Mobile App Launch            | Future    | App Store + Play Store distribution |
 
 ---

@@ -1,106 +1,106 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import { pushManager } from "@/lib/notifications/push-manager"
-import { useLocalStorage } from "@/hooks/useLocalStorage"
-import type { NotificationCategory } from "@/types/notifications"
-
-interface PushNotificationState {
-  isSupported: boolean
-  permission: NotificationPermission
-  isSubscribed: boolean
-  subscribedCategories: NotificationCategory[]
-  isLoading: boolean
-}
+import { useEffect, useState, useRef } from "react"
+import OneSignal from "react-onesignal"
+import { env } from "@/lib/env"
 
 export function usePushNotifications() {
-  const [state, setState] = useState<PushNotificationState>({
-    isSupported: false,
-    permission: "default",
-    isSubscribed: false,
-    subscribedCategories: [],
-    isLoading: true,
-  })
-
-  // We use this to persist user choices *before* we successfully sync with server
-  const [preferences, setPreferences] = useLocalStorage<NotificationCategory[]>("preferred_notification_categories", [])
+  const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isSupported, setIsSupported] = useState(false)
+  const [permission, setPermission] = useState<NotificationPermission>("default")
+  const initRef = useRef(false)
 
   useEffect(() => {
-    const checkState = async () => {
-      // Basic browser support check
-      if (typeof window === "undefined" || !("PushManager" in window) || !("serviceWorker" in navigator)) {
-        setState((prev) => ({ ...prev, isSupported: false, isLoading: false }))
+    // Client-side only
+    if (typeof window === "undefined" || initRef.current) return
+
+    // Check if push is supported
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
+        setIsSupported(false)
         return
-      }
-
-      // Feature support is true
-      const permission = await pushManager.getPermissionStatus()
-
-      const registration = await navigator.serviceWorker.ready
-
-      const subscription = await registration.pushManager.getSubscription()
-
-      setState({
-        isSupported: true,
-        permission,
-        isSubscribed: !!subscription,
-        subscribedCategories: preferences,
-        isLoading: false,
-      })
     }
 
-    checkState()
-  }, [preferences]) // Re-run when preferences change to keep UI in sync
+    setIsSupported(true)
 
-  const subscribe = useCallback(
-    async (categories: NotificationCategory[]) => {
-      setState((prev) => ({ ...prev, isLoading: true }))
+    // Init OneSignal
+    const initOneSignal = async () => {
+      try {
+        if (!env.NEXT_PUBLIC_ONESIGNAL_APP_ID) {
+           console.warn("[OneSignal] App ID not found.")
+           return
+        }
 
-      const hasPermission = await pushManager.requestPermission()
-      if (!hasPermission) {
-        setState((prev) => ({ ...prev, permission: "denied", isLoading: false }))
-        return false
+        await OneSignal.init({
+          appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
+          allowLocalhostAsSecureOrigin: true, // For dev
+        })
+        initRef.current = true
+
+        // Initial state check
+        const permissionState = Notification.permission
+        setPermission(permissionState)
+        
+        if (permissionState === "granted") {
+           // Check if we have a subscription ID
+           const id = await OneSignal.User.PushSubscription.id
+           setIsSubscribed(!!id)
+        }
+
+        // Listeners for changes
+        OneSignal.User.PushSubscription.addEventListener("change", (e) => {
+            setIsSubscribed(!!e.current.id)
+        })
+      } catch (err) {
+        console.error("[OneSignal] Init failed", err)
       }
-
-      const subscription = await pushManager.subscribe(categories)
-      if (subscription) {
-        setPreferences(categories)
-        setState((prev) => ({
-          ...prev,
-          permission: "granted",
-          isSubscribed: true,
-          subscribedCategories: categories,
-          isLoading: false,
-        }))
-        return true
-      }
-
-      setState((prev) => ({ ...prev, isLoading: false }))
-      return false
-    },
-    [setPreferences]
-  )
-
-  const unsubscribe = useCallback(async () => {
-    setState((prev) => ({ ...prev, isLoading: true }))
-    const success = await pushManager.unsubscribe()
-    if (success) {
-      setPreferences([])
-      setState((prev) => ({
-        ...prev,
-        isSubscribed: false,
-        subscribedCategories: [],
-        isLoading: false,
-      }))
-      return true
     }
-    setState((prev) => ({ ...prev, isLoading: false }))
-    return false
-  }, [setPreferences])
+
+    initOneSignal()
+  }, [])
+
+  /**
+   * Request permission and subscribe
+   */
+  const subscribe = async () => {
+    if (!initRef.current) return
+    try {
+      // 1. Request Browser Permission
+      await OneSignal.Notifications.requestPermission()
+      
+      // 2. Opt In (if not auto-subscribed)
+      const pushSubscription = OneSignal.User?.PushSubscription
+      if (pushSubscription) {
+        await pushSubscription.optIn()
+      }
+      
+      setPermission(Notification.permission)
+    } catch (err) {
+      console.error("[OneSignal] Subscription failed", err)
+    }
+  }
+
+  /**
+   * Unsubscribe (Opt Out)
+   */
+  const unsubscribe = async () => {
+    if (!initRef.current) return
+    try {
+        const pushSubscription = OneSignal.User?.PushSubscription
+        if (pushSubscription) {
+          await pushSubscription.optOut()
+          setIsSubscribed(false)
+        }
+    } catch (err) {
+        console.error("[OneSignal] Unsubscribe failed", err)
+    }
+  }
 
   return {
-    ...state,
+    isSupported,
+    isSubscribed,
+    permission,
     subscribe,
     unsubscribe,
+    OneSignal // Export instance if needed elsewhere
   }
 }

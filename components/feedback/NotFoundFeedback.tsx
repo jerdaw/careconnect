@@ -13,6 +13,8 @@ import { useToast } from "@/components/ui/use-toast"
 import { Loader2, SearchX } from "lucide-react"
 import { FeedbackCategoryEnum, FeedbackSubmitSchema } from "@/types/feedback"
 import { cn } from "@/lib/utils"
+import { useNetworkStatus } from "@/hooks/useNetworkStatus"
+import { queueFeedback } from "@/lib/offline/feedback"
 
 export function NotFoundFeedback({ className }: { className?: string }) {
   const t = useTranslations("Feedback")
@@ -22,6 +24,8 @@ export function NotFoundFeedback({ className }: { className?: string }) {
   const [details, setDetails] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const { isOffline } = useNetworkStatus()
+  const tOffline = useTranslations("Offline")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,6 +42,20 @@ export function NotFoundFeedback({ className }: { className?: string }) {
       const validation = FeedbackSubmitSchema.safeParse(payload)
       if (!validation.success) {
         throw new Error("Validation failed")
+      }
+
+      if (isOffline) {
+          await queueFeedback({
+              feedback_type: "not_found",
+              message: details,
+              category_searched: category || undefined
+          })
+          toast({ 
+            title: tOffline("savedForLater"), 
+            description: tOffline("savedMessage") 
+          })
+          setIsSuccess(true)
+          return
       }
 
       const res = await fetch("/api/v1/feedback", {

@@ -10,18 +10,14 @@ import {
   ShieldCheck,
   CheckCircle2,
   Flag,
-  Share2,
-  Navigation,
-  Printer,
-  Mail,
   AlertTriangle,
   FileText,
   Wallet,
-  BookOpen,
+  Mail,
+  Navigation,
 } from "lucide-react"
 import { SimplifiedServiceView } from "@/components/services/SimplifiedServiceView"
 import { getTranslations } from "next-intl/server"
-import Link from "next/link"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
@@ -33,6 +29,7 @@ import { EmergencyDisclaimer } from "@/components/ui/EmergencyDisclaimer"
 import { ClaimFlow } from "@/components/partner/ClaimFlow"
 import { FeedbackWidget } from "@/components/feedback/FeedbackWidget"
 import { TrustPanel } from "@/components/services/TrustPanel"
+import { ServiceActionBar } from "@/components/services/ServiceActionBar"
 
 interface Props {
   params: Promise<{ id: string; locale: string }>
@@ -168,20 +165,13 @@ export default async function ServicePage({ params, searchParams }: Props) {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <Link href="?view=simple" className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white px-4 text-sm font-semibold shadow-sm transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-                <BookOpen className="h-4 w-4" />
-                {t("plainLanguage")}
-              </Link>
-              <Button variant="outline" className="gap-2">
-                <Share2 className="h-4 w-4" /> {t("share")}
-              </Button>
-              <Button variant="outline" className="gap-2" asChild>
-                <a href={`/api/v1/services/${service.id}/printable`} target="_blank" rel="noopener noreferrer">
-                  <Printer className="h-4 w-4" /> {t("print")}
-                </a>
-              </Button>
-            </div>
+            <ServiceActionBar 
+              serviceId={service.id}
+              serviceName={name}
+              plainLanguageLabel={t("plainLanguage")}
+              shareLabel={t("share")}
+              printLabel={t("print")}
+            />
           </div>
         </div>
       </div>

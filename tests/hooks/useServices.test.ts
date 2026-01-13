@@ -5,12 +5,12 @@ import { SearchResult } from "@/lib/search"
 
 // Mock dependencies
 vi.mock("@/lib/search", () => ({
-    searchServices: vi.fn(async (query, options) => {
-        if (query === "fod" && options?.onSuggestion) {
-            options.onSuggestion("Food Bank")
-        }
-        return []
-    })
+    searchServices: vi.fn(),
+}))
+
+vi.mock("@/lib/search/search-mode", () => ({
+    getSearchMode: vi.fn(() => "local"),
+    serverSearch: vi.fn(),
 }))
 
 import { searchServices } from "@/lib/search"

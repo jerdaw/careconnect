@@ -37,6 +37,15 @@ npm run phone-validate   # Validate phone numbers via Twilio
 npm run check-staleness  # Check for stale/unverified data
 ```
 
+### Mobile Development
+
+```bash
+npm run mobile:sync      # Sync Capacitor config with build
+npm run mobile:build     # Build web assets and sync to Capacitor
+npm run mobile:open:android # Open Android project in Android Studio
+npx cap sync ios         # Sync iOS (requires macOS)
+```
+
 ### Utility Scripts
 
 ```bash
@@ -88,6 +97,15 @@ lib/search/index.ts::searchServices()
 - `lib/search/vector.ts` - Cosine similarity for semantic search
 - `lib/search/data.ts` - Data loader (Supabase fallback to JSON)
 - `lib/search/search-mode.ts` - Mode detection + server search client
+
+### Offline Infrastructure (v15.0)
+
+The platform is **Offline-Ready** via a multi-layer caching strategy:
+
+1. **IndexedDB** (`lib/offline/db.ts`): Stores full service directory and embeddings.
+2. **Synchronization** (`lib/offline/sync.ts`): Orchestrates background sync from `/api/v1/services/export`.
+3. **Hybrid Search** (`lib/search/data.ts`): Automatically falls back to IndexedDB if network fails or `isOffline` is true.
+4. **Offline Feedback**: Queueing logic ensures feedback is stored locally and synced when online.
 
 ### AI System (WebLLM)
 

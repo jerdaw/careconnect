@@ -10,6 +10,8 @@ import { ClientOnly } from "@/components/ClientOnly"
 import { Toaster } from "@/components/ui/toaster"
 import ChatAssistant from "@/components/ai/ChatAssistant"
 import { TranslationBanner } from "@/components/layout/TranslationBanner"
+import { OfflineSync } from "@/components/offline/OfflineSync"
+import { OfflineBanner } from "@/components/ui/OfflineBanner"
 
 export const metadata: Metadata = {
   title: "Kingston Care Connect",
@@ -59,8 +61,10 @@ export default async function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <ErrorBoundary>
                 <TranslationBanner />
+                <OfflineBanner />
                 {children}
                 <ClientOnly>
+                  <OfflineSync />
                   <ChatAssistant />
                 </ClientOnly>
                 <Toaster />

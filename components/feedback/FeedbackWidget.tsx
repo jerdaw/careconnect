@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
 import { ReportIssueModal } from "./ReportIssueModal"
 import { cn } from "@/lib/utils"
+import { useNetworkStatus } from "@/hooks/useNetworkStatus"
+import { queueFeedback } from "@/lib/offline/feedback"
 
 interface FeedbackWidgetProps {
   serviceId: string
@@ -17,6 +19,8 @@ interface FeedbackWidgetProps {
 export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWidgetProps) {
   const t = useTranslations("Feedback")
   const { toast } = useToast()
+  const { isOffline } = useNetworkStatus()
+  const tOffline = useTranslations("Offline")
   
   const [hasVoted, setHasVoted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -25,6 +29,21 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
   const handleVote = async (type: "helpful_yes" | "helpful_no") => {
     setIsSubmitting(true)
     try {
+      if (isOffline) {
+        await queueFeedback({
+          feedback_type: type,
+          service_id: serviceId,
+          message: "",
+          category_searched: ""
+        })
+        setHasVoted(true)
+        toast({
+          title: tOffline("savedForLater"), 
+          description: tOffline("savedMessage"),
+        })
+        return
+      }
+
       const res = await fetch("/api/v1/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -58,3 +58,7 @@ site/
 docs/llms.txt
 venv/
 .venv/
+
+# capacitor
+android/
+ios/

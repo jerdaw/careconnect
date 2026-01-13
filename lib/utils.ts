@@ -1,15 +1,15 @@
-import { type ClassValue, clsx } from "clsx"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const formatDate = (dateStr?: string, locale: string = "en") => {
-  if (!dateStr) return null
-  return new Date(dateStr).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
+export function formatDate(date: string | Date | undefined, locale: string = 'en'): string {
+  if (!date) return ''
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date(date))
 }
