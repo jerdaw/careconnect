@@ -99,6 +99,22 @@ const {
 } = useVoiceInput((text) => setQuery(text))
 ```
 
+### useServiceFeedback (v14.0)
+
+Fetches aggregated feedback statistics (helpful counts, open issues) from Supabase materialized views.
+
+```tsx
+import { useServiceFeedback } from "@/hooks/useServiceFeedback"
+
+const {
+  stats, // { helpful_yes_count, helpful_no_count, open_issues_count, last_feedback_at }
+  loading,
+  error,
+  helpfulPercentage,
+  totalVotes,
+} = useServiceFeedback(serviceId)
+```
+
 ---
 
 ## Utility Hooks
