@@ -1,3 +1,4 @@
+---
 openapi: 3.0.3
 info:
   title: Kingston Care Connect API
@@ -23,7 +24,8 @@ paths:
   /services:
     get:
       summary: List Services
-      description: Retrieve a paginated list of community services with optional filtering.
+      description: |
+        Retrieve a paginated list of community services with optional filtering.
       operationId: listServices
       tags:
         - Services
@@ -39,7 +41,17 @@ paths:
           description: Filter by service category
           schema:
             type: string
-            enum: [Food, Shelter, Crisis, Legal, Employment, Health, Youth, Seniors, Newcomer, General]
+            enum:
+              - Food
+              - Shelter
+              - Crisis
+              - Legal
+              - Employment
+              - Health
+              - Youth
+              - Seniors
+              - Newcomer
+              - General
         - name: limit
           in: query
           description: Max results per page (default 20, max 100)
@@ -214,12 +226,104 @@ paths:
         "500":
           $ref: "#/components/responses/InternalError"
 
+  /services/{id}/summary:
+    get:
+      summary: Get Simplified Summary
+      description: |
+        Retrieve a plain-language summary and "how-to-use" guide for a service.
+      operationId: getServiceSummary
+      tags:
+        - Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique service identifier
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: "#/components/schemas/PlainLanguageSummary"
+        "404":
+          description: Summary not found
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /services/{id}/printable:
+    get:
+      summary: Get Printable Resource Card
+      description: |
+        Render a print-optimized HTML resource card for a service.
+      operationId: getServicePrintable
+      tags:
+        - Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique service identifier
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns HTML document
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Service not found
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /feedback:
+    post:
+      summary: Submit User Feedback
+      description: Submit privacy-preserving feedback.
+      operationId: submitFeedback
+      tags:
+        - Feedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FeedbackSubmit"
+      responses:
+        "200":
+          description: Feedback received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        "400":
+          description: Validation error
+        "429":
+          description: Rate limited
+        "500":
+          $ref: "#/components/responses/InternalError"
+
   /analytics:
     get:
       summary: Get Analytics (Authenticated)
       description: |
-        Retrieve analytics data for services. Requires authentication via Magic Link.
-        Partners can view aggregated view/click counts for their services.
+        Retrieve analytics data for services. Requires authentication
+        via Magic Link. Partners can view aggregated view/click counts
+        for their services.
       operationId: getAnalytics
       tags:
         - Analytics
@@ -344,6 +448,53 @@ components:
         period_days:
           type: integer
           description: Lookback period in days
+
+    FeedbackSubmit:
+      type: object
+      required:
+        - feedback_type
+      properties:
+        service_id:
+          type: string
+          nullable: true
+        feedback_type:
+          type: string
+          enum: [helpful_yes, helpful_no, issue, not_found]
+        message:
+          type: string
+          maxLength: 1000
+          nullable: true
+        category_searched:
+          type: string
+          enum:
+            - Food
+            - Crisis
+            - Housing
+            - Health
+            - Legal
+            - Financial
+            - Employment
+            - Education
+            - Transport
+            - Community
+            - Indigenous
+          nullable: true
+
+    PlainLanguageSummary:
+      type: object
+      properties:
+        service_id:
+          type: string
+        summary_en:
+          type: string
+        summary_fr:
+          type: string
+          nullable: true
+        how_to_use_en:
+          type: string
+        how_to_use_fr:
+          type: string
+          nullable: true
 
     Error:
       type: object

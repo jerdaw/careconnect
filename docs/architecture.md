@@ -100,11 +100,28 @@ sequenceDiagram
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
 
-### User Feedback Loop
+### User Feedback & Impact Loop (v14.0)
 
-- **Pipeline**: Client (`FeedbackModal`) -> Next.js API (`/api/feedback`) -> Supabase (`feedback` table).
-- **Security**: Supabase RLS ensures partners only see feedback for their own services.
-- **Validation**: Zod schema in API route enforces data integrity and prevents spam.
+- **Architecture**: Privacy-preserving feedback system.
+- **Pipeline**: Client (`FeedbackWidget`) -> API (`/api/v1/feedback`) -> Supabase (`feedback` table).
+- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the [Impact Page](/impact) and Partner Dashboard.
+- **Privacy**: No PII, cookies, or persistent IDs are stored. Rate limiting is handled in-memory.
+
+### Equity-First Access (v14.0)
+
+- **Localization Parity**: Full UI translation coverage for all 7 supported locales. Mandatory EN/FR parity for all service data.
+- **Simplified Views**: Optional plain-language summaries (Grade 6-8 reading level) for high-impact services, stored in `plain_language_summaries`.
+- **Low-Bandwidth Outputs**: Printable "Resource Cards" optimized for physical distribution and accessibility.
+
+### Visible Verification & Trust Signals (v14.0)
+
+- **Provenance**: `TrustPanel` displays `last_verified` dates, verification methods, and source provenance to build user confidence.
+- **Verification Levels**:
+  - `L1`: Basic sync (211).
+  - `L2`: Manual verification by KCC team.
+  - `L3`: Partner-claimed and verified.
+  - `L4`: Gold-standard third-party audit.
+- **Partner Update Workflow**: Structured request-approval loop via `service_update_requests` ensures data integrity while engaging service providers.
 
 ### Push Notifications
 
