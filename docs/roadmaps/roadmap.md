@@ -1,170 +1,32 @@
 # Kingston Care Connect: Roadmap
 
-> **Current Version**: v14.0
+> **Current Version**: v15.0
 > **Last Updated**: 2026-01-13
-> **Status**: Production-Ready / Maintenance Mode
+> **Status**: Production-Ready
 
 ---
 
-## ️ Current State
+## Current State
 
-Completed **Roadmap V14**: Delivered Privacy-Preserving Impact metrics, Plain-Language summaries, Printable cards, and full Localization coverage.
+**v15.0 Mobile-Ready Infrastructure** is complete, delivering offline-first PWA capabilities, push notifications via OneSignal, and mobile-optimized APIs. The platform now supports full offline access to 196 services with background synchronization.
 
-By **Roadmap V12**: Established fundamental **legal protections**, **regulatory compliance (PIPEDA, AODA)**, and **liability mitigation**.
+**Previous milestones**: v14.0 (Impact & Trust), v13.1 (AI Compliance), v13.0 (Librarian Model), v12.0 (Legal & Compliance), v11.0 (Ontario Scope), v10.0 (Data Governance).
 
-Completed **Roadmap V10**: Strengthened data governance with **schema validation (Zod)**, **staleness enforcement**, and **ranking improvements**.
-
-For details on completed features, see the [Archived Roadmaps](archive/).
+For complete details on all implemented features, see the [Archived Roadmaps](archive/).
 
 ---
 
-## v12.0: Legal & Compliance Infrastructure (Completed)
+## Completed Versions
 
-> **Status**: Implemented
-> **Definition**: [2026-01-02-v12-0-legal-compliance.md](archive/2026-01-02-v12-0-legal-compliance.md)
+All completed versions (v10.0 through v15.0) have been archived with full implementation details:
 
----
-
-## v10.0: Data Architecture & Governance (Completed)
-
-> **Status**: Implemented
-> **Definition**: [archive/2026-01-02-v10-0-data-architecture.md](archive/2026-01-02-v10-0-data-architecture.md)
-
----
-
-## v11.0: Scope Expansion - Ontario-Wide Services (Completed)
-
-> **Status**: ✅ Implemented (2026-01-08)
-> **Focus**: Ontario-wide services for Kingston residents
-> **Definition**: [archive/2026-01-08-v11-0-scope-expansion.md](archive/2026-01-08-v11-0-scope-expansion.md)
-
-### Key Accomplishments
-
-- [x] Added `scope` enum (`kingston`, `ontario`, `canada`) to data model
-- [x] Ingested 47 Ontario-wide services (Crisis, Health, Legal)
-- [x] Scope filter UI with fallback handling
-- [x] 196 total services with 100% embedding coverage
-
-### Future Phases (Deferred to v15+)
-
-- Canada-wide services expansion
-- Major Ontario cities (Toronto, Ottawa, etc.)
-
----
-
-## v13.0: Secure Data Architecture (Completed)
-
-> **Status**: ✅ Implemented (2026-01-07)
-> **Focus**: Privacy & Scalability
-> **Definition**: [archive/2026-01-07-v13-0-librarian-model.md](archive/2026-01-07-v13-0-librarian-model.md)
-
-### 1. Privacy-First Data Fetching ("Librarian Model")
-
-- [x] **Goal**: Stop sending the full database (JSON) to the client.
-- [x] **Method**: Migrate public search to use Supabase API (server-side).
-- **Benefit**: Internal notes, draft services, and verification metadata remain strictly on the server.
-
-### 2. On-Demand Scalability
-
-- [x] **Goal**: Support 1000+ services without increasing initial page load size.
-- [x] **Method**: Paginated fetching and server-side filtering.
-
----
-
-## v13.1: AI Compliance Audit Remediation (Completed)
-
-> **Status**: ✅ Implemented (2026-01-12)
-> **Focus**: Legal Risk Mitigation & Safety
-> **Definition**: [archive/2026-01-12-v13-1-ai-compliance-remediation.md](archive/2026-01-12-v13-1-ai-compliance-remediation.md)
-
-### 1. Liability Mitigation
-
-- [x] **Safety Preamble**: Binding system protocol to prevent "professional advice" liability (Moffatt).
-- [x] **Crisis Circuit Breaker**: Client-side hard block for self-harm inputs.
-- [x] **ToS Upgrades**: "Crisis Waiver" and "Third-Party Liability" clauses.
-
-### 2. AODA & Safety UX
-
-- [x] **Accessibility**: `aria-live` regions for screen readers.
-- [x] **Friction**: Persistent disclaimers and outcome feedback loops.
-
----
-
-## v14.0: Measurable Impact, Equity & Trust (Completed)
-
-> **Status**: ✅ Implemented (2026-01-13)
-> **Focus**: Verifiable community impact without tracking
-> **Definition**: [archive/2026-01-13-v14-0-impact-equity-trust.md](archive/2026-01-13-v14-0-impact-equity-trust.md)
-
-### 1. Privacy-Preserving Outcomes + QI Loop
-
-- [x] **Goal**: Measure usefulness and continuously improve data quality without logging queries or tracking users.
-- [x] **User feedback**: "Was this helpful?", "Report an issue", and "Couldn't find a service" prompts (opt-in, no account required).
-- [x] **Data minimization**: Store only aggregated counts + user-submitted feedback content (no cookies, no persistent identifiers).
-- [x] **Operations**: Triage queue + resolution workflow (status, owner, timestamps) with staleness links back to the verification backlog.
-- [x] **Public reporting**: Quarterly "Impact & Data Quality" summary (e.g., reports resolved, median time-to-fix, % services verified in last 90 days).
-
-### 2. Equity-First Access Pack (TMU/Toronto-Ready)
-
-- [x] **Full UI localization**: Close remaining `next-intl` gaps for `en`, `fr` and added `npm run i18n-audit` to CI.
-- [x] **Plain-language mode**: Added simplified summaries and "how to use this service" steps for the highest-impact services, backed by a lightweight review workflow.
-- [x] **Low-bandwidth outputs**: Printable/text-only "resource cards" for service pages (phone/address/hours/eligibility), optimized for shelters and drop-in centres.
-- [x] **Accessibility upgrades**: Keyboard-first flows, reduced-motion support, and AODA-focused UX checks for critical pages (Search, Service Details).
-
-### 3. Visible Verification + Provenance (Trust Layer)
-
-- [x] **Service-level trust panel**: Display `verified_at` and "last reviewed" status directly on Service Details.
-- [x] **Partner update requests**: Structured change requests with audit trail (who/what/when) and human approval before publish.
-- [x] **Crisis-safe routing**: Consistent emergency escalation UI (e.g., 911/988) and clear scope disclaimers for crisis-related intents.
-- [x] **Narrative alignment**: McMaster = evaluation/QI; Queen's = Kingston governance & partners; Western = operational reliability at scale.
-
----
-
-## v15.0: Mobile-Ready Infrastructure (Completed)
-
-> **Status**: ✅ Implemented (2026-01-13)
-> **Focus**: Offline-First & Push Notifications (No macOS Required)
-> **Definition**: [v15-0-mobile-ready-infrastructure.md](archive/v15-0-mobile-ready-infrastructure.md)
-
-### Overview
-
-v15.0 builds the technical foundation for native mobile apps **without requiring macOS or App Store accounts**. This version improves the existing PWA immediately while preparing for future native app launch in v15.1.
-
-### 1. Offline-First Infrastructure
-
-- [x] **Goal**: Enable full offline access to the service directory without network connectivity.
-- [x] **Implementation**: IndexedDB storage for all 196 services and embeddings, background sync, offline search.
-- [x] **Benefit**: Front-line workers in shelters/drop-in centres can access directory with poor connectivity.
-
-### 2. Push Notification Backend
-
-- [x] **Goal**: Build server-side push notification infrastructure (testable via PWA web push).
-- [x] **Implementation**: OneSignal integration, admin console, web push registration flow.
-- [x] **Benefit**: Proactive communication for critical service updates (shelter capacity, emergency closures).
-
-### 3. Mobile-Optimized API
-
-- [x] **Goal**: Create API endpoints and data structures optimized for mobile performance.
-- [x] **Implementation**: Bulk export endpoint, deep linking config files, share functionality prep.
-- [x] **Benefit**: Infrastructure ready for v15.1 native app launch with minimal additional work.
-
-### What's Included vs. Deferred
-
-**✅ Included in v15.0 (No macOS Required)**:
-
-- Capacitor configuration (structure only)
-- IndexedDB offline storage
-- Network status detection and UI
-- Push notification backend (web push)
-- Mobile-optimized API endpoints
-- Enhanced PWA offline experience
-
-**❌ Deferred to v15.1 (Requires macOS + App Store Accounts)**:
-
-- iOS app builds and testing
-- App Store and Play Store submissions
-- Native app assets and metadata
-- Physical device testing on iOS
+- **[v15.0: Mobile-Ready Infrastructure](archive/v15-0-mobile-ready-infrastructure.md)** (2026-01-13) - Offline-first PWA, push notifications, mobile APIs
+- **[v14.0: Impact, Equity & Trust](archive/2026-01-13-v14-0-impact-equity-trust.md)** (2026-01-13) - Privacy-preserving metrics, plain language, trust signals
+- **[v13.1: AI Compliance Remediation](archive/2026-01-12-v13-1-ai-compliance-remediation.md)** (2026-01-12) - Legal safety, AODA compliance
+- **[v13.0: Secure Data Architecture](archive/2026-01-07-v13-0-librarian-model.md)** (2026-01-07) - Server-side search, privacy-first
+- **[v12.0: Legal & Compliance](archive/2026-01-02-v12-0-legal-compliance.md)** (2026-01-02) - PIPEDA, liability protection
+- **[v11.0: Scope Expansion](archive/2026-01-08-v11-0-scope-expansion.md)** (2026-01-08) - Ontario-wide services (196 total)
+- **[v10.0: Data Architecture](archive/2026-01-02-v10-0-data-architecture.md)** (2026-01-02) - Schema validation, data quality
 
 ---
 
