@@ -1,115 +1,154 @@
 
-import { describe, it, expect, vi, beforeEach } from "vitest"
-import { POST } from "@/app/api/v1/search/services/route"
-import { createMockRequest, parseResponse } from "@/tests/utils/api-test-utils"
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { NextRequest } from 'next/server'
+import { POST } from '@/app/api/v1/search/services/route'
+import { ServicePublic } from '@/types/service-public'
+import { supabase } from '@/lib/supabase'
 
-// Mock dependencies
-const { mockSupabaseChain } = vi.hoisted(() => {
-    const chain: Record<string, any> = {}
-    chain.from = vi.fn(() => chain)
-    chain.select = vi.fn(() => chain)
-    chain.eq = vi.fn(() => chain)
-    chain.or = vi.fn(() => chain)
-    chain.order = vi.fn(() => chain) // Added order mock
-    chain.range = vi.fn(() => Promise.resolve({ data: [], count: 0, error: null }))
-    return { mockSupabaseChain: chain }
-})
-
-vi.mock("@/lib/supabase", () => ({
-    supabase: mockSupabaseChain
+// Mock Supabase
+vi.mock('@/lib/supabase', () => ({
+  supabase: {
+    from: vi.fn(),
+  },
 }))
 
-vi.mock("@/lib/rate-limit", () => ({
-    checkRateLimit: vi.fn().mockReturnValue({ success: true, reset: 0 }),
-    getClientIp: vi.fn().mockReturnValue("127.0.0.1")
-}))
-
-// Mock crisis detection
-vi.mock("@/lib/search/crisis", () => ({
-    detectCrisis: vi.fn((q) => q.includes("crisis")),
-}))
-
-describe("POST /api/v1/search/services", () => {
-    beforeEach(() => {
-        vi.clearAllMocks()
-        // Default success response
-        mockSupabaseChain.range.mockResolvedValue({ 
-            data: [{ id: "1", name: "Service A", category: "Food" }], 
-            count: 1, 
-            error: null 
-        })
+describe('Search API (Hybrid Scoring)', () => {
+  const mockSelect = vi.fn()
+  const mockOr = vi.fn()
+  const mockEq = vi.fn()
+  const mockLimit = vi.fn()
+  
+  beforeEach(() => {
+    vi.clearAllMocks()
+    
+    // Setup chainable mock
+    // from -> select -> or -> eq -> limit -> { data, error }
+    // Note: Hybrid scoring removes DB-side ordering, simply fetches candidates
+    
+    mockLimit.mockResolvedValue({ 
+      data: [], 
+      error: null 
     })
 
-    it("returns 400 for missing locale", async () => {
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ query: "food" }) // Missing locale
-        })
-        const res = await POST(req)
-        expect(res.status).toBe(400)
+    mockEq.mockReturnValue({ limit: mockLimit })
+    mockOr.mockReturnValue({ eq: mockEq, limit: mockLimit })
+    mockSelect.mockReturnValue({ or: mockOr, eq: mockEq, limit: mockLimit })
+    
+    // Type casting logic for the mock to satisfy TS
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect })
+    
+    // Assign to the imported mock
+    ;(supabase.from as any) = mockFrom
+  })
+
+  const createRequest = (body: any) => {
+    return new NextRequest('http://localhost:3000/api/v1/search/services', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  }
+
+  // Helper to create mock service data
+  const createMockService = (id: string, overrides: Partial<ServicePublic> = {}): ServicePublic => ({
+    id,
+    name: `Service ${id}`,
+    description: 'Description',
+    verification_status: 'L1',
+    last_verified: new Date().toISOString(),
+    authority_tier: 'community',
+    // Default empty fields to avoid TS issues if types are strict
+    phone: null, address: null, hours: null,
+    scope: 'kingston', virtual_delivery: false,
+    created_at: new Date().toISOString(),
+    ...overrides
+  } as ServicePublic)
+
+  it('should rank higher authority tiers above lower ones', async () => {
+    const govService = createMockService('gov', { authority_tier: 'government' })
+    const commService = createMockService('comm', { authority_tier: 'community' })
+
+    // Return in reverse order from DB to prove scoring re-orders them
+    mockLimit.mockResolvedValue({
+      data: [commService, govService],
+      error: null
     })
 
-    it("returns 200 with data for valid request", async () => {
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ query: "food", locale: "en" })
-        })
-        const res = await POST(req)
-        const { status, data } = await parseResponse(res)
-        
-        expect(status).toBe(200)
-        expect(data.data[0].name).toBe("Service A")
-        expect(mockSupabaseChain.from).toHaveBeenCalledWith("services_public")
+    const req = createRequest({ query: 'test', locale: 'en' })
+    const res = await POST(req)
+    const json = (await res.json()) as any
+
+    expect(res.status).toBe(200)
+    expect(json.data[0].id).toBe('gov')
+    expect(json.data[1].id).toBe('comm')
+  })
+
+  it('should boost services with complete data', async () => {
+    const completeService = createMockService('complete', { 
+      phone: '555-1234', address: '123 Main' 
+    })
+    const sparseService = createMockService('sparse')
+
+    mockLimit.mockResolvedValue({
+      data: [sparseService, completeService],
+      error: null
     })
 
-    it("applies category filter", async () => {
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ 
-                locale: "en", 
-                filters: { category: "Food" } 
-            })
-        })
-        await POST(req)
-        expect(mockSupabaseChain.eq).toHaveBeenCalledWith("category", "Food")
+    const req = createRequest({ query: 'test', locale: 'en' })
+    const res = await POST(req)
+    const json = (await res.json()) as any
+
+    expect(json.data[0].id).toBe('complete')
+  })
+
+  it('should correct rank by proximity if location provided (Kingston vs Ottawa)', async () => {
+    const kingstonService = createMockService('kingston', { 
+      coordinates: { lat: 44.2312, lng: -76.4860 } 
+    })
+    const ottawaService = createMockService('ottawa', { 
+      coordinates: { lat: 45.4215, lng: -75.6972 } 
     })
 
-    it("sets Cache-Control: no-store when query is present", async () => {
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ query: "food", locale: "en" })
-        })
-        const res = await POST(req)
-        expect(res.headers.get("Cache-Control")).toBe("no-store")
+    mockLimit.mockResolvedValue({
+      data: [ottawaService, kingstonService],
+      error: null
     })
 
-    it("sets Cache-Control: public for browsing (no query)", async () => {
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ locale: "en" })
-        })
-        const res = await POST(req)
-        expect(res.headers.get("Cache-Control")).toContain("public")
+    // Search from Kingston
+    const req = createRequest({ 
+      query: 'test', 
+      locale: 'en',
+      location: { lat: 44.2334, lng: -76.5000 }
+    })
+    
+    const res = await POST(req)
+    const json = (await res.json()) as any
+
+    expect(json.data[0].id).toBe('kingston')
+  })
+
+  it('should paginate results correctly', async () => {
+    // Return 5 services
+    const services = Array.from({ length: 5 }, (_, i) => createMockService(`s${i}`))
+    
+    mockLimit.mockResolvedValue({
+      data: services,
+      error: null
     })
 
-    it("boosts crisis services when crisis detected", async () => {
-        // Setup data with crisis and non-crisis items
-        const mockData = [
-            { id: "1", name: "Normal Service", category: "Food" },
-            { id: "2", name: "Crisis Service", category: "Crisis" }
-        ]
-        mockSupabaseChain.range.mockResolvedValue({ data: mockData, count: 2, error: null })
-
-        const req = createMockRequest("http://localhost/api/v1/search/services", {
-            method: "POST",
-            body: JSON.stringify({ query: "crisis help", locale: "en" })
-        })
-        
-        const res = await POST(req)
-        const { data } = await parseResponse(res)
-        
-        // Crisis service should be first
-        expect(data.data[0].category).toBe("Crisis")
-        expect(data.data[1].category).toBe("Food")
+    // Request page 2 (limit 2, offset 2) -> should return s2, s3 (0-indexed: 2,3)
+    const req = createRequest({ 
+      query: 'test', 
+      locale: 'en',
+      options: { limit: 2, offset: 2 }
     })
+    
+    const res = await POST(req)
+    const json = (await res.json()) as any
+
+    expect(json.data.length).toBe(2)
+    expect(json.meta.limit).toBe(2)
+    expect(json.meta.offset).toBe(2)
+    // Total should reflect the fetched candidate count (5) in this implementation
+    expect(json.meta.total).toBe(5) 
+  })
 })

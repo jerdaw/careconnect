@@ -122,6 +122,34 @@ paths:
         "500":
           $ref: "#/components/responses/InternalError"
 
+  /search/services:
+    post:
+      summary: Search Services (Hybrid Ranking)
+      description: |
+        Perform an intelligent search for community services using keywords
+        and location. Implements v16.0 hybrid ranking with authority
+        tiers and transparency factors.
+      operationId: searchServices
+      tags:
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
+      responses:
+        "200":
+          description: Successful search results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+        "400":
+          description: Invalid search parameters
+        "500":
+          $ref: "#/components/responses/InternalError"
+
   /services/{id}:
     get:
       summary: Get Service by ID
@@ -433,6 +461,63 @@ components:
               type: string
               format: date-time
               nullable: true
+
+    SearchRequest:
+      type: object
+      required:
+        - locale
+      properties:
+        query:
+          type: string
+          description: Keyword search term
+          maxLength: 500
+          default: ""
+        locale:
+          type: string
+          enum: [en, fr, ar, zh-Hans, es, pa, pt]
+        filters:
+          type: object
+          properties:
+            category:
+              type: string
+        options:
+          type: object
+          properties:
+            limit:
+              type: integer
+              default: 20
+            offset:
+              type: integer
+              default: 0
+        location:
+          type: object
+          description: Latitude and longitude for proximity ranking (v16.0)
+          properties:
+            lat:
+              type: number
+              minimum: -90
+              maximum: 90
+            lng:
+              type: number
+              minimum: -180
+              maximum: 180
+
+    SearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceDetail"
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+            limit:
+              type: integer
+            offset:
+              type: integer
 
     AnalyticsEntry:
       type: object

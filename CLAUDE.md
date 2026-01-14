@@ -70,13 +70,13 @@ The platform supports two search modes controlled by `NEXT_PUBLIC_SEARCH_MODE` e
 
 2. **Server Mode**: Privacy-focused API search
    - POST endpoint at `/api/v1/search/services/route.ts`
-   - Queries Supabase `services_public` view
+   - **Hybrid Scoring**: Fetches candidates from DB, then scores in-memory (Authority, Completeness, Proximity)
    - Zero-logging (no-store cache headers)
    - Rate-limited (60 req/min per IP)
 
 ### Search Flow (Local Mode)
 
-```
+```text
 User Query
     ↓
 lib/search/index.ts::searchServices()

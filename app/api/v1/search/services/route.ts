@@ -5,6 +5,7 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
 import { createApiResponse, createApiError, handleApiError } from "@/lib/api-utils"
 import { searchRequestSchema } from "@/lib/schemas/search"
 import { detectCrisis } from "@/lib/search/crisis"
+import { scoreServicesServer } from "@/lib/search/server-scoring"
 import { ServicePublic } from "@/types/service-public"
 
 export async function POST(request: NextRequest) {
@@ -22,13 +23,15 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return createApiError("Invalid request", 400, parsed.error.flatten())
     }
-    const { query, locale, filters, options } = parsed.data
+    const { query, locale, filters, options, location } = parsed.data
 
     // 3. Build Supabase query against services_public view
+    // HYBRID STRATEGY: Fetch a larger candidate set (limit=100) then score/sort in memory
+    // This allows using complex TypeScript scoring logic (authority, proximity) not easily done in SQL
     let dbQuery = supabase
       .from("services_public")
-      .select("*", { count: "exact" })
-
+      .select("*") 
+    
     // 4. Apply text search (locale-aware)
     if (query.trim()) {
       const nameField = locale === "fr" ? "name_fr" : "name"
@@ -45,47 +48,57 @@ export async function POST(request: NextRequest) {
       dbQuery = dbQuery.eq("category", filters.category)
     }
 
-    // 6. Pagination & Sorting
-    const { limit, offset } = options
-    
-    // Default Sort: Verification Level (Highest first) -> Freshness (Newest first)
-    // Note: This approximates the client-side multipliers for L3/L2 and Freshness
-    dbQuery = dbQuery
-      .order("verification_status", { ascending: false }) // L3 > L2 > L1
-      .order("last_verified", { ascending: false })
-      .range(offset, offset + limit - 1)
+    // 6. Fetch Candidates
+    // Note: We don't perform SQL sorting or precise pagination here.
+    // We fetch enough candidates to likely contain the top results after re-scoring.
+    const CANDIDATE_LIMIT = 100
+    dbQuery = dbQuery.limit(CANDIDATE_LIMIT)
 
-    // 7. Execute
-    const { data, count, error } = await dbQuery
+    const { data, error } = await dbQuery
 
     if (error) {
-      // Log error but NOT the query (handled by createApiError/logging infra if extended)
-      // For now, simple return
       console.error("Supabase search error:", error.message) 
       return createApiError("Search failed", 500)
     }
 
-    // 8. Crisis detection (server-side boost)
-    let results = (data as unknown as ServicePublic[]) || []
+    let services = (data as unknown as ServicePublic[]) || []
 
     // ROBUSTNESS PATCH: Ensure 988 is always Canada-wide (fixes stale DB data in dev)
-    results = results.map(s => {
+    services = services.map(s => {
       if (s.id === "crisis-988") {
         return { ...s, scope: "canada" }
       }
       return s
     })
-    
-    // Safety boost: if query indicates crisis, ensure crisis services are top
-    if (query.trim() && detectCrisis(query)) {
-      const crisis = results.filter(s => s.category === "Crisis")
-      const nonCrisis = results.filter(s => s.category !== "Crisis")
-      results = [...crisis, ...nonCrisis]
+
+    // 7. Server-Side Scoring (The "Hybrid" Part)
+    // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent
+    let scoredResults = scoreServicesServer(services, query, {
+      location,
+      locale
+    })
+
+    // 8. Crisis Detection & Safety Boost (v14.0/v16.0)
+    // If query indicates crisis, ensure crisis services are ALWAYS top regardless of other scores
+    const isCrisis = query.trim() && detectCrisis(query)
+    if (isCrisis) {
+      const crisis = scoredResults.filter(r => r.service.category === "Crisis")
+      const nonCrisis = scoredResults.filter(r => r.service.category !== "Crisis")
+      // Within the crisis group, original scores (authority etc) still apply
+      scoredResults = [...crisis, ...nonCrisis]
     }
 
-    // 9. Response with privacy headers
+    // 9. Pagination (In-Memory)
+    const { limit, offset } = options
+    const total = scoredResults.length
+    const paginatedResults = scoredResults.slice(offset, offset + limit)
+
+    // Extract just the service objects for the response
+    const results = paginatedResults.map(r => r.service)
+
+    // 10. Response
     const response = createApiResponse(results, {
-      meta: { total: count || 0, limit, offset }
+      meta: { total, limit, offset } 
     })
     
     // Privacy: no caching when query present

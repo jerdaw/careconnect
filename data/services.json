@@ -72,7 +72,13 @@
     "address": "1200 Ave McGill College, Suite 1680, Montréal, QC H3B 4G7 (Head Office)",
     "status": "Active",
     "hours_text": "Phone: 24/7, 365 days/year. Text: 24/7. Live Chat: Daily 7:00 PM to Midnight ET.",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "trans-lifeline-canada",
@@ -150,7 +156,13 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "Hotline: Monday to Friday, 2:00 PM – 10:00 PM ET.",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "hope-for-wellness-helpline",
@@ -191,7 +203,13 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "Phone & Chat: 24 hours a day, 7 days a week.",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "assaulted-womens-helpline",
@@ -232,7 +250,13 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "24 hours a day, 7 days a week.",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "iska-newcomer-support",
@@ -284,7 +308,13 @@
     "application_process": "Call or drop-in.",
     "fees": "Free.",
     "documents_required": "None required.",
-    "hours_text": "Office: Mon-Fri 9:00 AM – 4:45 PM (Closed 12:00 PM – 1:00 PM). Needle Exchange: Mon-Fri 9:00 AM – 12:00 PM & 1:00 PM – 4:30 PM."
+    "hours_text": "Office: Mon-Fri 9:00 AM – 4:45 PM (Closed 12:00 PM – 1:00 PM). Needle Exchange: Mon-Fri 9:00 AM – 12:00 PM & 1:00 PM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "trellis-hiv-community-care",
@@ -340,7 +370,13 @@
     "application_process": "Call or drop-in.",
     "fees": "Free",
     "documents_required": "None required",
-    "hours_text": "Office: Mon-Fri 9:00 AM – 4:45 PM (Closed 12:00 PM – 1:00 PM). Needle Exchange: Mon-Fri 9:00 AM – 12:00 PM & 1:00 PM – 4:30 PM."
+    "hours_text": "Office: Mon-Fri 9:00 AM – 4:45 PM (Closed 12:00 PM – 1:00 PM). Needle Exchange: Mon-Fri 9:00 AM – 12:00 PM & 1:00 PM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "one-roof-youth-hub",
@@ -391,7 +427,13 @@
     "application_process": "Drop-in.",
     "fees": "Free.",
     "documents_required": "None required.",
-    "hours_text": "Drop-in: Mon-Fri 8:30 AM – 4:30 PM (Some programming until 7 PM)."
+    "hours_text": "Drop-in: Mon-Fri 8:30 AM – 4:30 PM (Some programming until 7 PM).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "victim-services-kingston",
@@ -432,7 +474,13 @@
     "fees": "Free.",
     "documents_required": "Police report or incident number often required for VQRP+ funding.",
     "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Crisis: 24/7 via Emergency Services referral.",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "hotel-dieu-urgent-care",
@@ -476,7 +524,13 @@
     "application_process": "Walk-in.",
     "fees": "apply for non-residents.",
     "documents_required": "Health Card (OHIP) and photo ID.",
-    "hours_text": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached)."
+    "hours_text": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached).",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kgh-emergency-department",
@@ -519,7 +573,13 @@
     "application_process": "Walk-in or via Ambulance (911).",
     "fees": "for non-residents/uninsured.",
     "documents_required": "Health Card (OHIP).",
-    "hours_text": "24 hours a day, 7 days a week."
+    "hours_text": "24 hours a day, 7 days a week.",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kfla-public-health-dental",
@@ -559,7 +619,13 @@
     "application_process": "Call to book appointment.",
     "fees": "Free for eligible clients.",
     "documents_required": "Health Card, proof of income (for seniors/Healthy Smiles application).",
-    "hours_text": "Monday - Friday: 8:30 AM – 4:30 PM (By appointment only)."
+    "hours_text": "Monday - Friday: 8:30 AM – 4:30 PM (By appointment only).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "community-legal-clinic-kingston",
@@ -598,7 +664,13 @@
     "application_process": "Call for intake.",
     "fees": "Free legal services (clients may pay disbursements).",
     "documents_required": "Proof of income.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "salvation-army-housing-help",
@@ -649,7 +721,13 @@
     "application_process": "Call or walk-in.",
     "fees": "Free.",
     "documents_required": "ID, proof of income/expenses for financial assistance.",
-    "hours_text": "Mon, Tue, Thu, Fri: 8:30 AM – 4:30 PM. Wed: 1:00 PM – 4:30 PM."
+    "hours_text": "Mon, Tue, Thu, Fri: 8:30 AM – 4:30 PM. Wed: 1:00 PM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kchc-transgender-health-care",
@@ -689,7 +767,13 @@
     "application_process": "Self-referral accepted. Call to book intake.",
     "fees": "Medical services covered by OHIP.",
     "documents_required": "Health Card.",
-    "hours_text": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM."
+    "hours_text": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "street-health-centre",
@@ -740,7 +824,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Medical services covered by OHIP (care provided regardless of card status).",
     "documents_required": "None required for harm reduction; Health card preferred for medical.",
-    "hours_text": "Mon-Fri: 9:00 AM – 4:00 PM (Closed 12-1 PM). Sat-Sun: 9:00 AM – 1:00 PM."
+    "hours_text": "Mon-Fri: 9:00 AM – 4:00 PM (Closed 12-1 PM). Sat-Sun: 9:00 AM – 1:00 PM.",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kingston-interval-house",
@@ -780,7 +870,13 @@
     "application_process": "Call 613-546-1777 for intake.",
     "fees": "Free.",
     "documents_required": "None required for intake.",
-    "hours_text": "24 hours a day, 7 days a week."
+    "hours_text": "24 hours a day, 7 days a week.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "telephone-aid-line-kingston-talk",
@@ -820,7 +916,13 @@
     "application_process": "Call during operating hours.",
     "fees": "Free.",
     "documents_required": "None.",
-    "hours_text": "Daily: 6:00 PM – 2:00 AM."
+    "hours_text": "Daily: 6:00 PM – 2:00 AM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "elizabeth-fry-society-kingston",
@@ -860,7 +962,13 @@
     "application_process": "Call for intake.",
     "fees": "Rent-geared-to-income options available.",
     "documents_required": "Assessment required.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "st-vincent-de-paul-kingston",
@@ -900,7 +1008,13 @@
     "application_process": "Drop-in for lunch/clothing. Register for pantry.",
     "fees": "Free.",
     "documents_required": "ID required for pantry registration.",
-    "hours_text": "Pantry/WearHouse: Mon-Fri 9:00 AM – 1:00 PM. Lunch: Mon-Fri 11:30 AM – 1:00 PM."
+    "hours_text": "Pantry/WearHouse: Mon-Fri 9:00 AM – 1:00 PM. Lunch: Mon-Fri 11:30 AM – 1:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "lunch-by-george",
@@ -940,7 +1054,13 @@
     "application_process": "Drop-in.",
     "fees": "Free.",
     "documents_required": "None.",
-    "hours_text": "Mon-Fri: 9:00 AM – 12:30 PM (Breakfast 9-10:30, Lunch 11-12:30)."
+    "hours_text": "Mon-Fri: 9:00 AM – 12:30 PM (Breakfast 9-10:30, Lunch 11-12:30).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "salvation-army-rideau-heights",
@@ -980,7 +1100,13 @@
     "application_process": "Call to book intake.",
     "fees": "Free.",
     "documents_required": "ID and proof of income/address.",
-    "hours_text": "Food Bank: Tue & Thu 11:00 AM – 12:00 PM (By Appointment)."
+    "hours_text": "Food Bank: Tue & Thu 11:00 AM – 12:00 PM (By Appointment).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "partners-in-mission-food-bank",
@@ -1032,7 +1158,13 @@
     "application_process": "Appointment required. Call to book. No walk-ins.",
     "fees": "Free.",
     "documents_required": "ID for every household member.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM. (Closed 12:00 PM – 1:00 PM daily)."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM. (Closed 12:00 PM – 1:00 PM daily).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "marthas-table-kingston",
@@ -1075,7 +1207,13 @@
     "application_process": "Drop-in.",
     "fees": "Free.",
     "documents_required": "None.",
-    "hours_text": "Mon-Fri: Breakfast 9-11 AM; Lunch 12-2 PM; Dinner 3-5 PM. Sat-Sun: Lunch 12-2 PM (Takeout)."
+    "hours_text": "Mon-Fri: Breakfast 9-11 AM; Lunch 12-2 PM; Dinner 3-5 PM. Sat-Sun: Lunch 12-2 PM (Takeout).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "good-food-box-kingston",
@@ -1116,7 +1254,13 @@
     "application_process": "Order online or at host sites by 2nd Thursday of month.",
     "fees": "~$6 to $17 depending on box size.",
     "documents_required": "None.",
-    "hours_text": "Pickup: 3rd Thursday of month. Office: Mon-Fri 8:30-4:30."
+    "hours_text": "Pickup: 3rd Thursday of month. Office: Mon-Fri 8:30-4:30.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "amhs-kfla-crisis-line",
@@ -1163,7 +1307,13 @@
     "application_process": "Call the crisis line or walk in during office hours.",
     "fees": "Free",
     "documents_required": "None required for crisis intervention.",
-    "hours_text": "Crisis Line: 24/"
+    "hours_text": "Crisis Line: 24/",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kingston-detox-centre",
@@ -1203,7 +1353,13 @@
     "application_process": "Self-referral. Call 613-549-6461 for bed availability.",
     "fees": "Free.",
     "documents_required": "Health card preferred but not required.",
-    "hours_text": "24 hours a day, 7 days a week."
+    "hours_text": "24 hours a day, 7 days a week.",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kingston-youth-shelter",
@@ -1243,7 +1399,13 @@
     "application_process": "Call or drop-in. First come, first served.",
     "fees": "Free.",
     "documents_required": "None required.",
-    "hours_text": "24 hours a day, 7 days a week."
+    "hours_text": "24 hours a day, 7 days a week.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "sack-sexual-assault-centre",
@@ -1283,7 +1445,13 @@
     "access_script": "Hi, I experienced sexual assault and need to talk to someone confidentially. Can I get counselling here?",
     "eligibility_notes_fr": "Inclusion : Survivant(e)s of sexual violence (12+). All genders. Exclusion : Aucune.",
     "status": "Active",
-    "hours_text": "Crisis Phone: 24/"
+    "hours_text": "Crisis Phone: 24/",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "maltby-centre-mental-health",
@@ -1319,7 +1487,13 @@
     "access_script": "Hi, I'm 17 and struggling with anxiety. Can I set up an appointment to talk to a counsellor?",
     "eligibility_notes_fr": "Inclusion : Enfants/Jeunes (0-24) in KFL&A. Hommestal health & autism services. Exclusion : Adultes 25+.",
     "status": "Active",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "resolve-counselling",
@@ -1359,7 +1533,13 @@
     "application_process": "Call.",
     "fees": "Sliding scale (some programs free).",
     "documents_required": "Income info for subsidy.",
-    "hours_text": "Mon, Wed: 8:30 AM – 5:00 PM. Tue, Thu: 8:30 AM – 8:00 PM. Fri: 8:30 AM – 4:00 PM."
+    "hours_text": "Mon, Wed: 8:30 AM – 5:00 PM. Tue, Thu: 8:30 AM – 8:00 PM. Fri: 8:30 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kingston-home-base-housing",
@@ -1403,7 +1583,13 @@
     "application_process": "Call or drop-in.",
     "fees": "Shelter is free.",
     "documents_required": "None required for shelter.",
-    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Shelter: 24/7 (Intake usually evening)."
+    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Shelter: 24/7 (Intake usually evening).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "ryandale-shelter",
@@ -1443,7 +1629,13 @@
     "application_process": "form online.",
     "fees": "Rent geared to income/shelter allowance.",
     "documents_required": "Proof of income/status.",
-    "hours_text": "Mon-Sun: 9:00 AM – 8:00 PM (Staffed hours)."
+    "hours_text": "Mon-Sun: 9:00 AM – 8:00 PM (Staffed hours).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "dawn-house-womens-shelter",
@@ -1478,7 +1670,13 @@
     "eligibility_notes": "Inclusion: Women (16+) who are experiencing homelessness. Long-term supportive housing. Exclusion: Not an emergency drop-in (application based).",
     "access_script": "Hi, I'm looking for long-term housing support for women. How can I get on your waitlist?",
     "eligibility_notes_fr": "Inclusion : Femmes (16+) who are experiencing homelessness. Long-term supportive housing. Exclusion : Nont an emergency drop-in (application based).",
-    "status": "Active"
+    "status": "Active",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kchc-weller-clinic",
@@ -1518,7 +1716,13 @@
     "application_process": "Call for intake availability.",
     "fees": "Covered by OHIP.",
     "documents_required": "Health Card.",
-    "hours_text": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM. (Phones answered 9-12, 1-4)."
+    "hours_text": "Mon/Tue/Thu/Fri: 8:00 AM – 4:00 PM. Wed: 8:00 AM – 7:30 PM. (Phones answered 9-12, 1-4).",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kfla-sexual-health-clinic",
@@ -1557,7 +1761,13 @@
     "application_process": "Walk-in for Quick Test; Call for other appointments.",
     "fees": "Most services free; some contraceptives at cost.",
     "documents_required": "Health card not required for Quick Test.",
-    "hours_text": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM."
+    "hours_text": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "cdk-family-medicine-walk-in",
@@ -1597,7 +1807,13 @@
     "application_process": "Walk-in (First come, first served).",
     "fees": "Covered by OHIP. Uninsured fees apply.",
     "documents_required": "Health Card.",
-    "hours_text": "Mon-Fri: 9:00 AM – 5:00 PM. Sat-Sun: 10:00 AM – 2:00 PM."
+    "hours_text": "Mon-Fri: 9:00 AM – 5:00 PM. Sat-Sun: 10:00 AM – 2:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "queens-legal-aid",
@@ -1635,7 +1851,13 @@
     "application_process": "Call for intake.",
     "fees": "Free.",
     "documents_required": "Proof of income/student status.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "ontario-works-kingston",
@@ -1674,7 +1896,13 @@
     "application_process": "Call or apply online.",
     "fees": "Free.",
     "documents_required": "Proof of income, assets, shelter costs, ID.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kfpl-central-branch",
@@ -1714,7 +1942,13 @@
     "application_process": "Walk-in.",
     "fees": "Free.",
     "documents_required": "ID for card.ConclusionThis audit confirms that the KFL&A community service sector is robust but complex. The primary risks for data accuracy—and consequently for user access—lie in the nuances of operating hours (e.g., chat vs. phone) and the shifting physical locations of housing services. Regular quarterly verification of these high-volatility data points is recommended to maintain the integrity of Kingston Care Connect. By adopting the precise address corrections and operational distinctions detailed in this report, the directory will significantly enhance its reliability as a navigation tool for Kingston's most vulnerable residents.",
-    "hours_text": "Mon-Thu: 9 AM – 8 PM. Fri-Sat: 9 AM – 5 PM. Sun: 1 PM – 5 PM."
+    "hours_text": "Mon-Thu: 9 AM – 8 PM. Fri-Sat: 9 AM – 5 PM. Sun: 1 PM – 5 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "keys-job-centre",
@@ -1753,7 +1987,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free.",
     "documents_required": "SIN/Work permit for some programs.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM)."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "seniors-association-kingston",
@@ -1793,7 +2033,13 @@
     "application_process": "Register online or in person.",
     "fees": "Membership fees apply.",
     "documents_required": "None.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "community-living-kingston",
@@ -1833,7 +2079,13 @@
     "application_process": "via Developmental Services Ontario (DSO).",
     "fees": "Mostly free (MCSS funded).",
     "documents_required": "DSO assessment.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "restart-kingston",
@@ -1872,7 +2124,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free.",
     "documents_required": "ID, SIN.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "acfomi-kingston",
@@ -1911,7 +2169,13 @@
     "application_process": "Call or visit.",
     "fees": "Free.",
     "documents_required": "ID.",
-    "hours_text": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM."
+    "hours_text": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ymca-eastern-ontario",
@@ -1950,7 +2214,13 @@
     "application_process": "Walk-in.",
     "fees": "Membership fees (Financial assistance available).",
     "documents_required": "ID.",
-    "hours_text": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM."
+    "hours_text": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "bgc-south-east",
@@ -1990,7 +2260,13 @@
     "application_process": "Register online.",
     "fees": "Varies (Subsidies available).",
     "documents_required": "None.",
-    "hours_text": "Programs: Mon-Fri 3:00 PM – 8:00/8:30 PM."
+    "hours_text": "Programs: Mon-Fri 3:00 PM – 8:00/8:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "hart-centre",
@@ -2030,7 +2306,13 @@
     "application_process": "Call or email.",
     "fees": "Program fees apply (Bursaries available).",
     "documents_required": "None.",
-    "hours_text": "Mon-Fri: 8:30 AM – 3:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 3:30 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "loving-spoonful",
@@ -2070,7 +2352,13 @@
     "application_process": "Call or visit website.",
     "fees": "Free.",
     "documents_required": "None.",
-    "hours_text": "Mon-Fri: 9:00 AM – 5:00 PM."
+    "hours_text": "Mon-Fri: 9:00 AM – 5:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ongwanada",
@@ -2110,7 +2398,13 @@
     "application_process": "via DSO.",
     "fees": "Free (Ministry funded).",
     "documents_required": "DSO referral.",
-    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM."
+    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kmfrc",
@@ -2150,7 +2444,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free",
     "documents_required": "Military ID.",
-    "hours_text": "Mon-Fri: 8:00 AM – 5:00 PM."
+    "hours_text": "Mon-Fri: 8:00 AM – 5:00 PM.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "earlyon-kchc",
@@ -2191,7 +2491,13 @@
     "application_process": "Drop-in for most programs; registration required for some workshops",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM [48]"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM [48]",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "habitat-restore-kingston",
@@ -2232,7 +2538,13 @@
     "application_process": "Drop-in",
     "fees": "Fixed fee (retail)",
     "documents_required": "None",
-    "hours_text": "Mon-Sat 10:00 AM - 6:00 PM, Sun 10:00 AM - 4:00 PM [49]"
+    "hours_text": "Mon-Sat 10:00 AM - 6:00 PM, Sun 10:00 AM - 4:00 PM [49]",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-access-bus",
@@ -2273,7 +2585,13 @@
     "application_process": "Application form + Professional medical referral required",
     "fees": "Fixed fee (per ride)",
     "documents_required": "Completed application, Medical assessment",
-    "hours_text": "Admin: Mon-Fri 7:30 AM - 8:00 PM, Sat 7:30 AM - 6:00 PM, Sun 7:30 AM - 2:00 PM [50]"
+    "hours_text": "Admin: Mon-Fri 7:30 AM - 8:00 PM, Sat 7:30 AM - 6:00 PM, Sun 7:30 AM - 2:00 PM [50]",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "integrated-care-hub",
@@ -2326,7 +2644,13 @@
     "application_process": "Drop-in",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Rest Zone: Daily 23 hours (Closed 10am-11am); CTS: Daily 9am-9pm [21]"
+    "hours_text": "Rest Zone: Daily 23 hours (Closed 10am-11am); CTS: Daily 9am-9pm [21]",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "marthas-table",
@@ -2375,7 +2699,13 @@
     "application_process": "Drop-in.",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: Breakfast 9-11 AM; Lunch 12-2 PM; Dinner 3-5 PM. Sat-Sun: Lunch 12-2 PM (Takeout)."
+    "hours_text": "Mon-Fri: Breakfast 9-11 AM; Lunch 12-2 PM; Dinner 3-5 PM. Sat-Sun: Lunch 12-2 PM (Takeout).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "dawn-house-shelter",
@@ -2428,7 +2758,13 @@
     "application_process": "Call 613-545-1379 or shelter line 613-929-3440.",
     "fees": "Shelter is free. Housing is rent-geared-to-income.",
     "documents_required": "Intake assessment required.",
-    "hours_text": "Admin: Mon-Fri 9:00 AM – 5:00 PM. Shelter: 24/7."
+    "hours_text": "Admin: Mon-Fri 9:00 AM – 5:00 PM. Shelter: 24/7.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kiln-language-nest",
@@ -2481,7 +2817,13 @@
     "application_process": "Call or Drop-in",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (Closed 12-1pm) "
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (Closed 12-1pm) ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kchc-iipct",
@@ -2534,7 +2876,13 @@
     "application_process": "Call to register",
     "fees": "Free (OHIP covered)",
     "documents_required": "OHIP Card",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM "
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "metis-nation-ontario-kingston",
@@ -2587,7 +2935,13 @@
     "application_process": "Call or Email",
     "fees": "Free",
     "documents_required": "MNO Citizenship card (for some programs)",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM "
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "st-marys-cathedral-drop-in",
@@ -2640,7 +2994,13 @@
     "application_process": "Drop-in",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 1:00 PM - 3:30 PM "
+    "hours_text": "Mon-Fri 1:00 PM - 3:30 PM ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "salvation-army-cfs",
@@ -2693,7 +3053,13 @@
     "application_process": "Call for appointment (Food Bank)",
     "fees": "Free",
     "documents_required": "ID, Proof of income/address",
-    "hours_text": "Mon-Fri 9:00 AM - 4:00 PM (Closed 12-1pm) [51]"
+    "hours_text": "Mon-Fri 9:00 AM - 4:00 PM (Closed 12-1pm) [51]",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "crisis-988",
@@ -2723,7 +3089,13 @@
     "application_process": "Call or Text",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-connex-ontario",
@@ -2752,7 +3124,13 @@
     "application_process": "Call, Text, or Chat Online",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "crisis-talk-suicide-canada",
@@ -2781,7 +3159,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-kids-help-phone",
@@ -2816,7 +3200,13 @@
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "Phone: 24/7, 365 days/year. Text: 24/7. Live Chat: Daily 7:00 PM to Midnight ET.",
-    "address": "1200 Ave McGill College, Suite 1680, Montréal, QC H3B 4G7"
+    "address": "1200 Ave McGill College, Suite 1680, Montréal, QC H3B 4G7",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "crisis-good2talk",
@@ -2850,7 +3240,13 @@
     "application_process": "Call or Text 'GOOD2TALKON' to 686868",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-hope-for-wellness",
@@ -2885,7 +3281,13 @@
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "Phone & Chat: 24 hours a day, 7 days a week.",
-    "address": "Virtual Service (National)"
+    "address": "Virtual Service (National)",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "crisis-talk4healing",
@@ -2923,7 +3325,13 @@
     "application_process": "Call, Text, or Chat",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-trans-lifeline",
@@ -2958,7 +3366,13 @@
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "Hotline: Monday to Friday, 2:00 PM – 10:00 PM ET.",
-    "address": "548 Market Street, PMB 15337, San Francisco, CA 94104"
+    "address": "548 Market Street, PMB 15337, San Francisco, CA 94104",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "crisis-assaulted-womens-helpline",
@@ -2993,7 +3407,13 @@
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "24 hours a day, 7 days a week.",
-    "address": "P.O. Box 40569, Etobicoke, ON M9B 6K8"
+    "address": "P.O. Box 40569, Etobicoke, ON M9B 6K8",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "crisis-ontario-gambling",
@@ -3022,7 +3442,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-telehealth-ontario",
@@ -3051,7 +3477,13 @@
     "application_process": "Call 811 or Chat Online",
     "fees": "Free",
     "documents_required": "OHIP Card helpful but not mandatory",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "crisis-poison-control",
@@ -3081,7 +3513,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-eating-disorders",
@@ -3111,7 +3549,13 @@
     "application_process": "Call or Chat",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Thu 9am-9pm, Fri 9am-5pm"
+    "hours_text": "Mon-Thu 9am-9pm, Fri 9am-5pm",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-pflag-canada",
@@ -3146,7 +3590,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Varies (Leave message or verify local chapter)"
+    "hours_text": "Varies (Leave message or verify local chapter)",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-text-line",
@@ -3175,7 +3625,13 @@
     "application_process": "Text 'HOME' to 686868",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "crisis-211-ontario",
@@ -3204,7 +3660,13 @@
     "application_process": "Call 2-1-1",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "four-directions-indigenous-centre",
@@ -3241,7 +3703,13 @@
     "application_process": "Drop-in or Appointment",
     "fees": "Free",
     "documents_required": "Student ID",
-    "hours_text": "Mon-Thu 8:30am-8pm, Fri 8:30am-4:30pm (Academic Year) "
+    "hours_text": "Mon-Thu 8:30am-8pm, Fri 8:30am-4:30pm (Academic Year) ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kfla-indigenous-health-team",
@@ -3274,7 +3742,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "OHIP",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-indigenous-friendship-centre",
@@ -3311,7 +3785,13 @@
     "application_process": "Call/Drop-in",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-literacy-skills",
@@ -3343,7 +3823,13 @@
     "application_process": "Call for assessment",
     "fees": "Free",
     "documents_required": "SIN, Status in Canada",
-    "hours_text": "Mon-Fri 8:30 AM - 3:00 PM "
+    "hours_text": "Mon-Fri 8:30 AM - 3:00 PM ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "slc-academic-upgrading",
@@ -3375,7 +3861,13 @@
     "application_process": "Online Application or Call",
     "fees": "Free (Funded by EO)",
     "documents_required": "Transcripts, ID",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (Office)"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (Office)",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kfpl-learning-programs",
@@ -3407,7 +3899,13 @@
     "application_process": "Drop-in or Register Online",
     "fees": "Free",
     "documents_required": "Library Card (for registration)",
-    "hours_text": "Varies by branch (Central: M-Th 9-8, F-S 9-5)"
+    "hours_text": "Varies by branch (Central: M-Th 9-8, F-S 9-5)",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-transit-mfap",
@@ -3439,7 +3937,13 @@
     "application_process": "Apply via MyKingston or in person",
     "fees": "Discounted Rates",
     "documents_required": "Proof of income, Address, ID",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (City Hall)"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM (City Hall)",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "von-transportation-kingston",
@@ -3474,7 +3978,13 @@
     "application_process": "Call to register",
     "fees": "User fees apply (distance based)",
     "documents_required": "Registration form",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "lionhearts-fresh-food-market",
@@ -3502,7 +4012,13 @@
     "application_process": "Drop-in",
     "fees": "Cost of goods (subsidized)",
     "documents_required": "None",
-    "hours_text": "Varies (e.g., Seniors Assoc Tue 10-1) "
+    "hours_text": "Varies (e.g., Seniors Assoc Tue 10-1) ",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "in-from-the-cold",
@@ -3530,7 +4046,13 @@
     "application_process": "Drop-in or Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "24/7"
+    "hours_text": "24/7",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "legal-aid-ontario-kingston",
@@ -3557,7 +4079,13 @@
     "application_process": "Call for intake.",
     "fees": "Free",
     "documents_required": "Proof of income.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "pro-bono-ontario",
@@ -3583,7 +4111,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM"
+    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "cleo-community-legal-education",
@@ -3608,7 +4142,13 @@
     "application_process": "Website",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Online 24/7"
+    "hours_text": "Online 24/7",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "arch-disability-law",
@@ -3640,7 +4180,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM"
+    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "justice-for-children-youth",
@@ -3667,7 +4213,13 @@
     "application_process": "Call",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM"
+    "hours_text": "Mon-Fri 9:00 AM - 5:00 PM",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "jobwell-kingston",
@@ -3695,7 +4247,13 @@
     "application_process": "Application form + Consent",
     "fees": "None",
     "documents_required": "Application form",
-    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM"
+    "hours_text": "Mon-Fri 8:30 AM - 4:30 PM",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "rideau-heights-community-centre",
@@ -3722,7 +4280,13 @@
     "application_process": "Drop-in",
     "fees": "Varies by program",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 8am-9pm, Sat-Sun 8am-5pm "
+    "hours_text": "Mon-Fri 8am-9pm, Sat-Sun 8am-5pm ",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "artillery-park-aquatic-centre",
@@ -3749,7 +4313,13 @@
     "application_process": "Drop-in",
     "fees": "Varies (Drop-in or Membership)",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 6am-9pm, Sat-Sun 8am-8pm [58]"
+    "hours_text": "Mon-Fri 6am-9pm, Sat-Sun 8am-8pm [58]",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "invista-centre",
@@ -3776,7 +4346,13 @@
     "application_process": "Drop-in",
     "fees": "Varies",
     "documents_required": "None",
-    "hours_text": "Mon-Fri 6am-9pm, Sat-Sun 7am-8pm [61]"
+    "hours_text": "Mon-Fri 6am-9pm, Sat-Sun 7am-8pm [61]",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kfpl-calvin-park",
@@ -3804,7 +4380,13 @@
     "application_process": "Drop-in",
     "fees": "Free",
     "documents_required": "Library Card for loans",
-    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm "
+    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm ",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfpl-isabel-turner",
@@ -3832,7 +4414,13 @@
     "application_process": "Drop-in",
     "fees": "Free",
     "documents_required": "Library Card for loans",
-    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm "
+    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm ",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfpl-pittsburgh",
@@ -3860,7 +4448,13 @@
     "application_process": "Drop-in",
     "fees": "Free",
     "documents_required": "Library Card for loans",
-    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm, Sun 1-5pm "
+    "hours_text": "Mon-Thu 9am-8pm, Fri-Sat 9am-5pm, Sun 1-5pm ",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfpl-rideau-heights",
@@ -3879,7 +4473,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["tech help", "reading group"],
-    "synthetic_queries_fr": ["aide techno", "groupe lecture"]
+    "synthetic_queries_fr": ["aide techno", "groupe lecture"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-pregnancy-care",
@@ -3898,7 +4498,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["baby clothes", "pregnant help"],
-    "synthetic_queries_fr": ["vêtements bébé", "aide enceinte"]
+    "synthetic_queries_fr": ["vêtements bébé", "aide enceinte"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "hospice-kingston",
@@ -3924,7 +4530,13 @@
     "application_process": "Referral required for residence. Self-referral for some community programs.",
     "fees": "Free",
     "documents_required": "Medical Referral",
-    "hours_text": "Residence: 24/7. Community Programs: Mon-Fri 8:30 AM – 4:30 PM."
+    "hours_text": "Residence: 24/7. Community Programs: Mon-Fri 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "alzheimer-society-kfla",
@@ -3943,7 +4555,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["dementia help", "caregiver support"],
-    "synthetic_queries_fr": ["aide démence", "soutien aidant"]
+    "synthetic_queries_fr": ["aide démence", "soutien aidant"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "stroke-network-sneo",
@@ -3969,7 +4587,13 @@
     "application_process": "Call or visit website.",
     "fees": "Free resources.",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM."
+    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "autism-ontario-east",
@@ -3988,7 +4612,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["autism help", "asd resources"],
-    "synthetic_queries_fr": ["aide autisme", "ressources tsa"]
+    "synthetic_queries_fr": ["aide autisme", "ressources tsa"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "cnib-kingston",
@@ -4012,7 +4642,13 @@
       }
     ],
     "synthetic_queries": ["blind support", "vision loss"],
-    "synthetic_queries_fr": ["soutien aveugle", "perte vision"]
+    "synthetic_queries_fr": ["soutien aveugle", "perte vision"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "march-of-dimes-kingston",
@@ -4043,7 +4679,13 @@
     "application_process": "Call for intake.",
     "fees": "Free",
     "documents_required": "Medical/Disability documentation",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "student-food-bank-queens",
@@ -4069,7 +4711,13 @@
     "application_process": "Drop-in with student ID.",
     "fees": "Free (PEACH Market is Pay-What-You-Can)",
     "documents_required": "Valid Queen's Student Card",
-    "hours_text": "Mon & Wed: 5:00 PM – 7:00 PM. Thu: 12:00 PM – 2:00 PM. (Fall 2025). PEACH Market: Mon/Wed/Fri 11am-2pm."
+    "hours_text": "Mon & Wed: 5:00 PM – 7:00 PM. Thu: 12:00 PM – 2:00 PM. (Fall 2025). PEACH Market: Mon/Wed/Fri 11am-2pm.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "st-lawrence-food-pantry",
@@ -4095,7 +4743,13 @@
     "application_process": "Online intake form to book collection time.",
     "fees": "Free",
     "documents_required": "Valid Student Identification",
-    "hours_text": "By Appointment Only"
+    "hours_text": "By Appointment Only",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "community-harvest-market",
@@ -4121,7 +4775,13 @@
     "application_process": "Pre-order for Good Food Box.",
     "fees": "Good Food Box is for purchase (cost-recovery).",
     "documents_required": "None",
-    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Good Food Box Pickup: 3rd Thursday of month."
+    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Good Food Box Pickup: 3rd Thursday of month.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "memorial-centre-market",
@@ -4147,7 +4807,13 @@
     "application_process": "Drop-in.",
     "fees": "Cost of goods sold.",
     "documents_required": "None",
-    "hours_text": "Sunday: 9:00 AM – 2:00 PM (May-Oct); 9:00 AM – 1:00 PM (Nov-Apr)."
+    "hours_text": "Sunday: 9:00 AM – 2:00 PM (May-Oct); 9:00 AM – 1:00 PM (Nov-Apr).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "legal-clinic-queens",
@@ -4174,7 +4840,13 @@
     "application_process": "Call for intake.",
     "fees": "Free",
     "documents_required": "Proof of income/student status.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfl-public-health-vaccine",
@@ -4201,7 +4873,13 @@
     "application_process": "Appointment required.",
     "fees": "Free (Publicly funded vaccines).",
     "documents_required": "Immunization Record/Health Card",
-    "hours_text": "Routine Clinics: Tue (All Ages), Wed (0-18). By Appointment Only. General: M-F 8:30-4:30."
+    "hours_text": "Routine Clinics: Tue (All Ages), Wed (0-18). By Appointment Only. General: M-F 8:30-4:30.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfl-public-health-sexual",
@@ -4228,7 +4906,13 @@
     "application_process": "Walk-in for Quick Test; Call for other appointments.",
     "fees": "Most services free; some contraceptives at cost.",
     "documents_required": "Health card not required for Quick Test.",
-    "hours_text": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM."
+    "hours_text": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "sexual-assault-centre-kingston",
@@ -4255,7 +4939,13 @@
     "application_process": "Call crisis line or office for intake.",
     "fees": "Free",
     "documents_required": "None required",
-    "hours_text": "Crisis Phone: 24/7. Chat/Text: Daily 12:00 PM – Midnight. Office: Mon-Fri 9:00 AM – 4:00 PM."
+    "hours_text": "Crisis Phone: 24/7. Chat/Text: Daily 12:00 PM – Midnight. Office: Mon-Fri 9:00 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kingston-general-hospital",
@@ -4282,7 +4972,13 @@
     "application_process": "Walk-in or via Ambulance (911).",
     "fees": "Covered by OHIP. Fees for non-residents/uninsured.",
     "documents_required": "Health Card (OHIP).",
-    "hours_text": "24 hours a day, 7 days a week."
+    "hours_text": "24 hours a day, 7 days a week.",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "hotel-dieu-site",
@@ -4309,7 +5005,13 @@
     "application_process": "Walk-in.",
     "fees": "Covered by OHIP. Fees apply for non-residents.",
     "documents_required": "Health Card (OHIP) and photo ID.",
-    "hours_text": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached)."
+    "hours_text": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached).",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "providence-care-hospital",
@@ -4336,7 +5038,13 @@
     "application_process": "Physician referral.",
     "fees": "Covered by OHIP.",
     "documents_required": "Health Card",
-    "hours_text": "Inpatient: 24/7. Outpatient clinics: Mon-Fri Business Hours."
+    "hours_text": "Inpatient: 24/7. Outpatient clinics: Mon-Fri Business Hours.",
+    "authority_tier": "healthcare",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kingston-military-family-resource",
@@ -4362,7 +5070,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free.",
     "documents_required": "Military ID.",
-    "hours_text": "Mon-Fri: 8:00 AM – 5:00 PM."
+    "hours_text": "Mon-Fri: 8:00 AM – 5:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "tnet-kingston",
@@ -4389,7 +5103,13 @@
     "application_process": "Email for meeting location.",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Support Meetings: Saturdays (Bi-weekly) 1:00 PM – 4:00 PM."
+    "hours_text": "Support Meetings: Saturdays (Bi-weekly) 1:00 PM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kfla-children-services",
@@ -4408,7 +5128,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["daycare subsidy", "child support"],
-    "synthetic_queries_fr": ["subvention garderie", "soutien enfant"]
+    "synthetic_queries_fr": ["subvention garderie", "soutien enfant"],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "rural-frontenac-community-services",
@@ -4435,7 +5161,13 @@
     "application_process": "Call.",
     "fees": "Varies by program (e.g. transportation fees).",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:00 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "south-frontenac-community-services",
@@ -4462,7 +5194,13 @@
     "application_process": "Call.",
     "fees": "Varies by program.",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kingston-east-community-centre",
@@ -4481,7 +5219,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["east end gym", "community activities"],
-    "synthetic_queries_fr": ["gym est", "activités communautaires"]
+    "synthetic_queries_fr": ["gym est", "activités communautaires"],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "earlyon-cosy",
@@ -4507,7 +5251,13 @@
     "application_process": "Drop-in.",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "boys-girls-club-kingston",
@@ -4533,7 +5283,13 @@
     "application_process": "Register online.",
     "fees": "Varies",
     "documents_required": "None",
-    "hours_text": "Admin: Mon-Fri 8:30 AM – 4:30 PM. Programs: 3:00 PM – 6:00 PM."
+    "hours_text": "Admin: Mon-Fri 8:30 AM – 4:30 PM. Programs: 3:00 PM – 6:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "ymca-kingston",
@@ -4560,7 +5316,13 @@
     "application_process": "Walk-in.",
     "fees": "Membership fees (Financial assistance available).",
     "documents_required": "ID",
-    "hours_text": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM."
+    "hours_text": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "kingston-humane-society",
@@ -4579,7 +5341,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["pet food bank", "adopt dog"],
-    "synthetic_queries_fr": ["banque nourriture animaux", "adopter chien"]
+    "synthetic_queries_fr": ["banque nourriture animaux", "adopter chien"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "st-john-ambulance-kingston",
@@ -4598,7 +5366,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["first aid course", "medical volunteers"],
-    "synthetic_queries_fr": ["cours secourisme", "bénévoles médicaux"]
+    "synthetic_queries_fr": ["cours secourisme", "bénévoles médicaux"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "red-cross-kingston",
@@ -4617,7 +5391,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["disaster help", "meals on wheels"],
-    "synthetic_queries_fr": ["aide catastrophe", "popote roulante"]
+    "synthetic_queries_fr": ["aide catastrophe", "popote roulante"],
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "united-way-kfla-office",
@@ -4644,7 +5424,13 @@
     "application_process": "Contact for program info.",
     "fees": "Free",
     "documents_required": "None",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "community-foundation-kingston",
@@ -4670,7 +5456,13 @@
     "application_process": "Grant application.",
     "fees": "N/A",
     "documents_required": "Charitable Status",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "habitat-for-humanity-kingston",
@@ -4689,7 +5481,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["cheap furniture", "build home"],
-    "synthetic_queries_fr": ["meubles pas chers", "construire maison"]
+    "synthetic_queries_fr": ["meubles pas chers", "construire maison"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "kingston-literacy-skills-2",
@@ -4715,7 +5513,13 @@
     "application_process": "Call for assessment.",
     "fees": "Free",
     "documents_required": "Status in Canada (for LINC).",
-    "hours_text": "Mon-Fri: 8:30 AM – 3:00 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 3:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "keys-job-centre-2",
@@ -4742,7 +5546,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free",
     "documents_required": "SIN/Work permit for some programs.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM)."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM).",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "acls-kingston",
@@ -4769,7 +5579,13 @@
     "application_process": "Call or visit.",
     "fees": "Free",
     "documents_required": "ID",
-    "hours_text": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM."
+    "hours_text": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "re-start-employment",
@@ -4796,7 +5612,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free",
     "documents_required": "ID, SIN.",
-    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM."
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "slc-employment-service",
@@ -4822,7 +5644,13 @@
     "application_process": "Walk-in or call.",
     "fees": "Free",
     "documents_required": "SIN/Work Status",
-    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM."
+    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "ontario-works-kb",
@@ -4849,7 +5677,13 @@
     "application_process": "Call or apply online.",
     "fees": "Free",
     "documents_required": "Proof of income, assets, shelter costs, ID.",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "odsp-kingston",
@@ -4873,7 +5707,13 @@
       }
     ],
     "synthetic_queries": ["disability money", "government support"],
-    "synthetic_queries_fr": ["argent invalidité", "soutien gouvernement"]
+    "synthetic_queries_fr": ["argent invalidité", "soutien gouvernement"],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "service-canada-kingston",
@@ -4892,7 +5732,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["unemployment", "pension"],
-    "synthetic_queries_fr": ["chômage", "pension"]
+    "synthetic_queries_fr": ["chômage", "pension"],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "service-ontario-kingston",
@@ -4911,7 +5757,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["health card renewal", "drivers license"],
-    "synthetic_queries_fr": ["renouvellement carte santé", "permis conduire"]
+    "synthetic_queries_fr": ["renouvellement carte santé", "permis conduire"],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
   },
   {
     "id": "kingston-police-non-emerg",
@@ -4930,7 +5782,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["report theft", "police check"],
-    "synthetic_queries_fr": ["signaler vol", "vérification police"]
+    "synthetic_queries_fr": ["signaler vol", "vérification police"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "opp-frontenac",
@@ -4949,7 +5807,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["police rural", "opp report"],
-    "synthetic_queries_fr": ["police rurale", "rapport ppo"]
+    "synthetic_queries_fr": ["police rurale", "rapport ppo"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "coast-mental-health",
@@ -4969,7 +5833,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["mobile crisis", "mental health police"],
-    "synthetic_queries_fr": ["crise mobile", "police santé mentale"]
+    "synthetic_queries_fr": ["crise mobile", "police santé mentale"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "maltby-centre-autism",
@@ -4996,7 +5866,13 @@
     "application_process": "Call or self-refer online.",
     "fees": "Mental health is free. Some autism services fee-for-service.",
     "documents_required": "Health Card",
-    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM."
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "pathways-for-children-youth",
@@ -5022,7 +5898,13 @@
     "application_process": "Contact Maltby Centre.",
     "fees": "N/A",
     "documents_required": "N/A",
-    "hours_text": "Closed"
+    "hours_text": "Closed",
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
   },
   {
     "id": "geneva-centre-autism",
@@ -5041,7 +5923,13 @@
     },
     "identity_tags": [],
     "synthetic_queries": ["autism course", "parent training"],
-    "synthetic_queries_fr": ["cours autisme", "formation parents"]
+    "synthetic_queries_fr": ["cours autisme", "formation parents"],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-211-ontario",
@@ -5096,7 +5984,13 @@
     },
     "identity_tags": [],
     "description_fr": "[Traduction en cours] A helpline and online database of Ontario's community and social services. 211 helps people find the right community and social services.",
-    "eligibility_notes_fr": "Open to everyone."
+    "eligibility_notes_fr": "Open to everyone.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -5151,7 +6045,13 @@
     "identity_tags": [],
     "name_fr": "Black Youth Helpline",
     "description_fr": "[Traduction en cours] Serves all youth and specifically responds to the need for a Black youth specific service. Focuses on family, schools, and community.",
-    "eligibility_notes_fr": "Black youth and families."
+    "eligibility_notes_fr": "Black youth and families.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -5211,7 +6111,13 @@
     },
     "name_fr": "Boots on the Ground",
     "description_fr": "[Traduction en cours] Anonymous peer support for First Responders, by First Responders. Serving police, fire, EMS, and corrections personnel.",
-    "eligibility_notes_fr": "Serving and retired First Responders (Police, Fire, EMS, Corrections)."
+    "eligibility_notes_fr": "Serving and retired First Responders (Police, Fire, EMS, Corrections).",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-farmer-wellness",
@@ -5266,7 +6172,13 @@
     "identity_tags": [],
     "name_fr": "Farmer Wellness Initiative",
     "description_fr": "[Traduction en cours] 24/7 confidential mental health support for Ontario farmers, farm families, and employees.",
-    "eligibility_notes_fr": "Ontario farmers and their families."
+    "eligibility_notes_fr": "Ontario farmers and their families.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-femaide",
@@ -5322,7 +6234,13 @@
       "method": "Schema migration - requires verification"
     },
     "identity_tags": [],
-    "eligibility_notes_fr": "Francophone women in Ontario dealing with violence."
+    "eligibility_notes_fr": "Francophone women in Ontario dealing with violence.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -5382,7 +6300,13 @@
       "method": "Schema migration - requires verification"
     },
     "description_fr": "[Traduction en cours] A 24/7 crisis line for former residential school students and their families. Provides emotional support related to residential school trauma.",
-    "eligibility_notes_fr": "Residential school survivors and intergenerational family members."
+    "eligibility_notes_fr": "Residential school survivors and intergenerational family members.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -5442,7 +6366,13 @@
     },
     "name_fr": "LGBT YouthLine",
     "description_fr": "[Traduction en cours] A Queer, Trans, Two-Spirit* youth-led organization that affirms and supports the experiences of youth (29 and under) across Ontario.",
-    "eligibility_notes_fr": "2SLGBTQ+ youth ages 29 and under in Ontario."
+    "eligibility_notes_fr": "2SLGBTQ+ youth ages 29 and under in Ontario.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-male-survivors",
@@ -5497,7 +6427,13 @@
     "identity_tags": [],
     "name_fr": "Support Services for Male Survivors of Sexual Abuse",
     "description_fr": "[Traduction en cours] A 24/7 multilingual crisis and referral line for male survivors of sexual abuse or assault in Ontario.",
-    "eligibility_notes_fr": "Men and boys who have experienced sexual violence."
+    "eligibility_notes_fr": "Men and boys who have experienced sexual violence.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -5557,7 +6493,13 @@
     },
     "name_fr": "Métis Nation of Ontario Crisis Line",
     "description_fr": "[Traduction en cours] Mental health and addictions support for Métis citizens in Ontario. Entry point to MNO healing and wellness programs.",
-    "eligibility_notes_fr": "Métis citizens in Ontario and their families."
+    "eligibility_notes_fr": "Métis citizens in Ontario and their families.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -5617,7 +6559,13 @@
       "method": "Schema migration - requires verification"
     },
     "description_fr": "[Traduction en cours] A national 24/7 support line for those impacted by missing and murdered Indigenous women, girls, and 2SLGBTQQIA+ people.",
-    "eligibility_notes_fr": "Families, survivors, anyone affected by MMIWG."
+    "eligibility_notes_fr": "Families, survivors, anyone affected by MMIWG.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-naseeha",
@@ -5672,7 +6620,13 @@
     "identity_tags": [],
     "name_fr": "Naseeha Mental Health",
     "description_fr": "[Traduction en cours] Provides a confidential helpline for young Muslims to receive immediate, anonymous, and confidential support.",
-    "eligibility_notes_fr": "Muslim youth and general public."
+    "eligibility_notes_fr": "Muslim youth and general public.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-nors",
@@ -5728,7 +6682,13 @@
     "identity_tags": [],
     "name_fr": "National Overdose Response Service (NORS)",
     "description_fr": "[Traduction en cours] A 24/7 virtual safe consumption hotline. An operator stays on the line while you use drugs to prevent fatal overdoses.",
-    "eligibility_notes_fr": "Anyone using drugs alone who wants safety monitoring."
+    "eligibility_notes_fr": "Anyone using drugs alone who wants safety monitoring.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-ontx-distress",
@@ -5784,7 +6744,13 @@
     "identity_tags": [],
     "name_fr": "ONTX - Ontario Online & Text Crisis Services",
     "description_fr": "[Traduction en cours] A provincial text and chat service for individuals experiencing distress, providing confidential support from trained responders.",
-    "eligibility_notes_fr": "Anyone in Ontario experiencing distress."
+    "eligibility_notes_fr": "Anyone in Ontario experiencing distress.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-sadv-navigation",
@@ -5840,7 +6806,13 @@
     "identity_tags": [],
     "name_fr": "Sexual Assault/Domestic Violence Navigation Line",
     "description_fr": "[Traduction en cours] Helps victims navigate the healthcare system after an assault. Staffed by nurses who connect survivors to SA/DV Treatment Centres for forensic evidence collection and medical care.",
-    "eligibility_notes_fr": "Survivors of sexual assault or domestic violence in Ontario."
+    "eligibility_notes_fr": "Survivors of sexual assault or domestic violence in Ontario.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -5900,7 +6872,13 @@
     },
     "name_fr": "Seniors Safety Line",
     "description_fr": "[Traduction en cours] A 24/7 confidential line for seniors suffering from abuse (physical, mental, sexual, neglect, or financial).",
-    "eligibility_notes_fr": "Aînés in Ontario experiencing abuse or neglect."
+    "eligibility_notes_fr": "Aînés in Ontario experiencing abuse or neglect.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-vac-assistance",
@@ -5960,7 +6938,13 @@
       "method": "Schema migration - requires verification"
     },
     "description_fr": "[Traduction en cours] A 24/7 confidential counseling line for Veterans, Canadian Armed Forces members, RCMP members, and their families.",
-    "eligibility_notes_fr": "Veterans, CAF members, RCMP, and their families."
+    "eligibility_notes_fr": "Veterans, CAF members, RCMP, and their families.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "id": "ontario-victim-support-line",
@@ -6015,7 +6999,13 @@
     "identity_tags": [],
     "name_fr": "Victim Support Line (VSL)",
     "description_fr": "[Traduction en cours] A provincial 24/7 information and support line for victims of crime, including survivors of sexual assault and domestic violence.",
-    "eligibility_notes_fr": "Victims of crime in Ontario."
+    "eligibility_notes_fr": "Victims of crime in Ontario.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "BounceBack Ontario",
@@ -6062,7 +7052,13 @@
       "method": "Schema migration - requires verification"
     },
     "identity_tags": [],
-    "description_fr": "[Traduction en cours] A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks."
+    "description_fr": "[Traduction en cours] A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks.",
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Cancer Information Helpline",
@@ -6109,7 +7105,13 @@
     },
     "identity_tags": [],
     "name_fr": "Cancer Information Helpline",
-    "description_fr": "[Traduction en cours] A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services."
+    "description_fr": "[Traduction en cours] A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services.",
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Ontario Caregiver Helpline",
@@ -6164,7 +7166,13 @@
       "evidence_url": "https://ontariocaregiver.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -6211,7 +7219,13 @@
       "evidence_url": "https://www.diabetes.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -6266,7 +7280,13 @@
       "evidence_url": "https://fncaringsociety.com/jordans-principle",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Lung Health Line",
@@ -6313,7 +7333,13 @@
       "evidence_url": "https://lunghealth.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
@@ -6360,7 +7386,13 @@
       "evidence_url": "https://sexualhealthontario.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
@@ -6387,7 +7419,13 @@
       "evidence_url": "https://www.acelaw.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Employment Standards Information Centre",
@@ -6434,7 +7472,13 @@
       "evidence_url": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -6461,7 +7505,13 @@
       "evidence_url": "https://www.halco.org",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
@@ -6488,7 +7538,13 @@
       "evidence_url": "https://hrlsc.on.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -6535,7 +7591,13 @@
       "evidence_url": "https://iwclc.org",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -6562,7 +7624,13 @@
       "evidence_url": "https://jfcy.org",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -6589,7 +7657,13 @@
       "evidence_url": "https://landlordselfhelp.com",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Legal Aid Ontario",
@@ -6636,7 +7710,13 @@
       "evidence_url": "https://legalaid.on.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
@@ -6683,7 +7763,13 @@
       "evidence_url": "https://tribunalsontario.ca/ltb",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -6710,7 +7796,13 @@
       "evidence_url": "https://centreinfojuridique.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
@@ -6757,7 +7849,13 @@
       "evidence_url": "https://www.owa.gov.on.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Steps to Justice",
@@ -6812,7 +7910,13 @@
       "evidence_url": "https://stepstojustice.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -6859,7 +7963,13 @@
       "evidence_url": "https://workers-safety.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
@@ -6906,7 +8016,13 @@
       "evidence_url": "https://www.wsib.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Arthritis Society Canada",
@@ -6933,7 +8049,13 @@
       "evidence_url": "https://arthritis.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Heart and Stroke Foundation",
@@ -6980,7 +8102,13 @@
       "evidence_url": "https://www.heartandstroke.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
@@ -7034,7 +8162,13 @@
       "evidence_url": "https://www.hpco.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
@@ -7081,7 +8215,13 @@
       "evidence_url": "https://mscanada.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Parkinson Canada",
@@ -7128,7 +8268,13 @@
       "evidence_url": "https://www.parkinson.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Talk Tobacco",
@@ -7165,7 +8311,13 @@
       "evidence_url": "https://talktobacco.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "national",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -7192,7 +8344,13 @@
       "evidence_url": "https://aboriginallegal.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Consumer Protection Ontario",
@@ -7239,7 +8397,13 @@
       "evidence_url": "https://ontario.ca/page/consumer-protection-ontario",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Law Society Referral Service",
@@ -7286,7 +8450,13 @@
       "evidence_url": "https://findlegalhelp.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -7333,6 +8503,12 @@
       "evidence_url": "https://nanlegal.on.ca",
       "method": "Schema migration - requires verification"
     },
-    "identity_tags": []
+    "identity_tags": [],
+    "authority_tier": "community",
+    "resource_indicators": {
+      "service_area_size": "provincial",
+      "staff_size": "small",
+      "annual_budget": "small"
+    }
   }
 ]

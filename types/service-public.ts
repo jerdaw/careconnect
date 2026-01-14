@@ -1,3 +1,4 @@
+import { ResourceIndicators } from "./service"
 
 export interface ServicePublic {
   id: string
@@ -14,6 +15,8 @@ export interface ServicePublic {
   hours: any // JSON object from DB
   fees: string | null
   eligibility: string | null
+  eligibility_notes: string | null
+  eligibility_notes_fr: string | null
   application_process: string | null
   languages: string[] | null
   bus_routes: string[] | null
@@ -29,5 +32,11 @@ export interface ServicePublic {
   virtual_delivery: boolean | null
   primary_phone_label: string | null
   created_at: string
+  // v16.0: Search ranking fields
+  synthetic_queries?: string[] | null
+  synthetic_queries_fr?: string[] | null
+  authority_tier?: string | null
+  resource_indicators?: ResourceIndicators | null // JSON object
+  coordinates?: { lat: number; lng: number } | null
 }
 

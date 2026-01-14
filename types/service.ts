@@ -33,6 +33,30 @@ export enum IntentCategory {
 export type ServiceScope = "kingston" | "ontario" | "canada"
 
 /**
+ * Authority categories for search ranking (v16.0).
+ * Used to prioritize official and healthcare sources over community data.
+ */
+export type AuthorityTier = 
+  | "government"           // Federal/provincial/municipal agencies
+  | "healthcare"           // Hospitals, LHIN, authorized clinics
+  | "established_nonprofit" // Registered charities, 5+ years operation
+  | "community"            // Grassroots, newer organizations
+  | "unverified"           // No organizational verification
+
+/**
+ * Indicators used to infer organizational capacity and resource availability (v16.0).
+ * These factors influence the "Resource Capacity" search boost.
+ */
+export interface ResourceIndicators {
+  /** Inferred number of full-time equivalent staff. Options: small (<10), medium (10-50), large (>50). */
+  staff_size?: "large" | "medium" | "small"
+  /** Estimated annual operating budget. Options: small (<$100k), medium ($100k-$1M), large (>$1M). */
+  annual_budget?: "large" | "medium" | "small"
+  /** Geographical scope of dedicated service delivery. */
+  service_area_size?: "national" | "provincial" | "regional" | "local"
+}
+
+/**
  * Identity Tag with evidence.
  */
 export interface IdentityTag {
@@ -204,5 +228,17 @@ export interface Service {
    * Defaults to true. Set to false to hide without deleting.
    */
   published?: boolean
+
+  /**
+   * Authority tier for ranking official sources higher.
+   * v16.0: Search ranking improvement.
+   */
+  authority_tier?: AuthorityTier
+
+  /**
+   * Resource/capacity indicators for ranking services.
+   * v16.0: Search ranking improvement.
+   */
+  resource_indicators?: ResourceIndicators
 }
 

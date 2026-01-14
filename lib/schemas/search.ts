@@ -15,6 +15,11 @@ export const searchRequestSchema = z.object({
     limit: z.number().min(1).max(100).optional().default(20),
     offset: z.number().min(0).optional().default(0),
   }).optional().default({}),
+  // NEW: Location for proximity scoring
+  location: z.object({
+    lat: z.number().min(-90).max(90),
+    lng: z.number().min(-180).max(180),
+  }).optional(),
 })
 
 export type SearchRequest = z.infer<typeof searchRequestSchema>

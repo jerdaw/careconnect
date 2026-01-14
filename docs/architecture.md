@@ -38,15 +38,15 @@ graph TD
     C --> E[Lazy Semantic Search Worker]
     E --> F[Neural Re-ranking]
     F --> G[Final Results Display]
-    A --> H[Librarian API POST - Optional]
-    H --> I[Server-side Privacy Search]
+    A --> H[Search API POST - v16.0 Hybrid]
+    H --> I[Server-side Hybrid Scoring]
     I --> G
 ```
 
 1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
-4. **Librarian API (v13.0)**: A server-side alternative (`POST /api/v1/search/services`) enabled via feature flag. It performs privacy-preserving queries against a strictly limited `services_public` view, ensuring no private metadata leaks to the client.
+4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
 
 ### Search Modes
 
