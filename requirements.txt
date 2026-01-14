@@ -1,4 +1,4 @@
 mkdocs-material[imaging]>=9.5.0
 mkdocs-minify-plugin>=0.7.0
 mkdocs-git-revision-date-localized-plugin>=1.2.0
-mkdocs-openapi-plugin>=0.1.0
+mkdocs-swagger-ui-tag>=0.6.0
