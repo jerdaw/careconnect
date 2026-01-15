@@ -1,0 +1,205 @@
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/feedback.test.ts
+   4:10  error  'NextResponse' is defined but never used  @typescript-eslint/no-unused-vars
+  24:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  55:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/analytics.test.ts
+  23:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  62:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  62:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/feedback-triage.test.ts
+   30:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   49:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   71:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   91:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  131:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/feedback.test.ts
+   17:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   29:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   31:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   49:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   51:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  100:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  102:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/search-api.test.ts
+   41:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   44:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   98:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  124:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  146:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/services-id.test.ts
+  52:63  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  53:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/services.test.ts
+    7:11  error  'chain' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   20:37  error  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+   79:86  error  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+  104:86  error  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/services/export.test.ts
+   2:36  error  'beforeEach' is defined but never used    @typescript-eslint/no-unused-vars
+  18:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/api/v1/summary.test.ts
+  11:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  26:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  37:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  38:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  53:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/AnalyticsCard.test.tsx
+  2:32  error  'vi' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/AsyncErrorBoundary.test.tsx
+   4:10  error  'logger' is defined but never used        @typescript-eslint/no-unused-vars
+  32:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/DashboardSidebar.test.tsx
+  24:44  error  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  32:31  error  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  45:27  error  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  46:17  error  'container' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/ErrorBoundary.test.tsx
+   1:37  error  'waitFor' is defined but never used       @typescript-eslint/no-unused-vars
+  43:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/FeedbackWidget.test.tsx
+  41:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  58:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  80:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  83:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  97:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/ServiceCard.test.tsx
+   17:27   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   22:47   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   29:41   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   64:169  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   74:169  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  100:87   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:169  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/SubmitServicePage.test.tsx
+  51:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  80:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/TrustPanel.test.tsx
+  56:108  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:108  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  92:108  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/components/ui/toast.test.tsx
+  3:89  error  'ToastAction' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/e2e/data-integrity.spec.ts
+  20:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/e2e/indigenous.spec.ts
+  27:11  error  'resultList' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/e2e/offline.spec.ts
+  17:11  error  'isSWRegistered' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useAI.test.ts
+  18:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:67  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  41:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useLocalStorage.test.ts
+  10:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/usePushNotifications.test.ts
+  83:9  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useSemanticSearch.test.ts
+   6:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  80:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  81:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useServiceFeedback.test.ts
+  40:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  84:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useServices.test.ts
+   1:22  error  'waitFor' is defined but never used       @typescript-eslint/no-unused-vars
+  39:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  41:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:72  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  84:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  84:80  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/hooks/useVoiceInput.test.ts
+  15:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  22:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  59:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/integration/api-utils.test.ts
+  20:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/integration/search.test.ts
+  22:8   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:8   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  42:8   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/integration/services.test.ts
+  30:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  53:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  63:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/lib/ai/engine.test.ts
+  13:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/lib/ai/transcriber.test.ts
+  34:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  50:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/lib/search/hours.test.ts
+   17:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   19:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  127:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/unit/feedback-schema.test.ts
+  2:32  error  'FeedbackTypeEnum' is defined but never used      @typescript-eslint/no-unused-vars
+  2:50  error  'FeedbackCategoryEnum' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/jer/LocalSync/kingston-care-connect/tests/unit/lib/offline/db.test.ts
+  55:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/unit/lib/offline/sync.test.ts
+  30:69  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/unit/query-expander.test.ts
+  39:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/jer/LocalSync/kingston-care-connect/tests/utils/test-wrapper.tsx
+  36:93  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 124 problems (124 errors, 0 warnings)
+

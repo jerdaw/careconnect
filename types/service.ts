@@ -240,5 +240,12 @@ export interface Service {
    * v16.0: Search ranking improvement.
    */
   resource_indicators?: ResourceIndicators
+
+  /**
+   * Calculated distance from user's location (in kilometers).
+   * Dynamically added during search when location is provided.
+   * @see lib/search/geo.ts::calculateDistanceKm
+   */
+  distance?: number
 }
 

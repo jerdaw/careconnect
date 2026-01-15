@@ -24,7 +24,7 @@ describe("API v1 Submissions", () => {
             body: JSON.stringify(validBody)
         })
         const res = await POST(req)
-        const { status, data } = await parseResponse(res)
+        const { status, data } = await parseResponse<{ success: boolean }>(res)
 
         expect(status).toBe(201)
         expect(data.success).toBe(true)

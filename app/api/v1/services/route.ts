@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
 import { createApiResponse, createApiError, handleApiError } from "@/lib/api-utils"
 import { logger } from "@/lib/logger"
+import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 
 /**
  * GET /api/v1/services
@@ -122,17 +123,34 @@ export async function POST(request: NextRequest) {
       return createApiError("Unauthorized", 401)
     }
 
-    // Parse body
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const body: any = await request.json()
-
-    // Basic validation
-    if (!body.name || !body.category) {
-      return createApiError("Name and Category are required", 400)
+    // Parse and validate body
+    const rawBody = await request.json()
+    const validation = ServiceCreateSchema.safeParse(rawBody)
+    
+    if (!validation.success) {
+      const errors = validation.error.errors.map(e => `${e.path.join(".")}: ${e.message}`).join(", ")
+      return createApiError(`Validation failed: ${errors}`, 400)
+    }
+    
+    const body = validation.data
+    
+    // Add server-managed fields
+    const serviceData = {
+      ...body,
+      id: crypto.randomUUID(),
+      verification_level: "L0", // New services start unverified
+      provenance: {
+        verified_by: user.id,
+        verified_at: new Date().toISOString(),
+        evidence_url: body.url || "",
+        method: "partner_submission"
+      },
+      identity_tags: body.identity_tags || [],
+      synthetic_queries: [],
     }
 
     // Insert
-    const { data, error } = await supabaseAuth.from("services").insert(body).select().single()
+    const { data, error } = await supabaseAuth.from("services").insert(serviceData).select().single()
 
     if (error) {
       logger.error("API /v1/services POST error:", error, {

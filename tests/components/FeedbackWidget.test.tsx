@@ -92,9 +92,9 @@ describe("FeedbackWidget Component", () => {
     })
   })
 
-  it("opens report issue modal", () => {
+  it("opens dialog on click", () => {
     render(
-      <TestWrapper messages={{ Feedback: mockFeedbackMessages } as any}>
+      <TestWrapper messages={{ Feedback: mockFeedbackMessages }}>
         <FeedbackWidget serviceId={serviceId} serviceName={serviceName} />
       </TestWrapper>
     )

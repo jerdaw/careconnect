@@ -4,19 +4,7 @@ import { createMockRequest, parseResponse } from "@/tests/utils/api-test-utils"
 
 // Hoist mock chain
 const { mockSupabaseChain } = vi.hoisted(() => {
-    const chain = {
-        from: vi.fn(),
-        select: vi.fn(),
-        eq: vi.fn(),
-        or: vi.fn(),
-        range: vi.fn(),
-        insert: vi.fn(),
-        single: vi.fn(),
-    }
     // Setup chain return values to return itself (this)
-    // BUT we can't easily reference 'chain' inside its own definition if we want to return 'chain'
-    // So we define mock function that return 'chain' object.
-    // Easier:
     const mockChain: Record<string, any> = {}
     mockChain.from = vi.fn(() => mockChain)
     mockChain.select = vi.fn(() => mockChain)
@@ -97,11 +85,16 @@ describe("API v1 Services", () => {
     it("POST creates service when authenticated", async () => {
         const req = createMockRequest("http://localhost/api/v1/services", {
             method: "POST",
-            body: JSON.stringify({ name: "New Service", category: "food" })
+            body: JSON.stringify({ 
+                name: "New Service", 
+                intent_category: "Food",
+                description: "This is a valid service description.",
+                url: "https://example.com"
+            })
         })
 
         const res = await POST(req)
-        const { status, data } = await parseResponse(res) as { status: number, data: any }
+        const { status, data } = await parseResponse<{ data: { id: string } }>(res)
 
         expect(status).toBe(201)
         expect(data.data.id).toBe("new-1")

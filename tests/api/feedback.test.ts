@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { POST } from "@/app/api/feedback/route"
 import { createClient } from "@/utils/supabase/server"
-import { NextResponse } from "next/server"
 
 vi.mock("@/utils/supabase/server", () => ({
   createClient: vi.fn(),

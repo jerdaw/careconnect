@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { logger } from "@/lib/logger"
 
 // Mock logger
 vi.mock("@/lib/logger", () => ({

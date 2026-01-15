@@ -24,7 +24,7 @@ test.describe("Indigenous Filter", () => {
     // We expect at least one of these to be visible.
     
     // Wait for list to update (implicit with web-first assertions, but good to be specific)
-    const resultList = page.getByTestId("service-list")
+    // const resultList = page.getByTestId("service-list")
     
     // Check for specific known Indigenous service
     await expect(page.getByText("Indigenous Interprofessional")).toBeVisible()

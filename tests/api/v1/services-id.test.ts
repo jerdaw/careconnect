@@ -81,7 +81,7 @@ describe("API v1 Services [id]", () => {
              const res = await GET(req, { params: Promise.resolve({ id: "123" }) })
              
              expect(res.status).toBe(200)
-             const { data: body } = await parseResponse(res)
+             const { data: body } = await parseResponse<{ data: { id: string } }>(res)
              expect(body.data).toHaveProperty("id", "123")
         })
     })
@@ -110,7 +110,7 @@ describe("API v1 Services [id]", () => {
             const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
             
             expect(res.status).toBe(200)
-            const { data: body } = await parseResponse(res)
+            const { data: body } = await parseResponse<{ data: { name: string } }>(res)
             expect(body.data.name).toBe("Updated")
             
             // const updateCall = mockChain.update.mock.calls[0]

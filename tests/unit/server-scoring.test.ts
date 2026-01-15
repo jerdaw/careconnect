@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { scoreServicesServer, ServerScoredResult } from '@/lib/search/server-scoring'
+import { scoreServicesServer } from '@/lib/search/server-scoring'
 import { ServicePublic } from '@/types/service-public'
 
 describe('Server-Side Scoring', () => {

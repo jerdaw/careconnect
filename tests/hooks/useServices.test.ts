@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react"
+import { renderHook } from "@testing-library/react"
 import { useServices } from "@/hooks/useServices"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { SearchResult } from "@/lib/search"
@@ -39,6 +39,10 @@ describe("useServices Hook", () => {
         ;(global.fetch as any).mockClear()
         // Default mock for searchServices
         ;(searchServices as any).mockResolvedValue([])
+
+        // Setup chain return values to return itself (this)
+        const mockChain: Record<string, any> = {}
+        mockChain.from = vi.fn(() => mockChain)
     })
 
     afterEach(() => {

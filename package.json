@@ -30,7 +30,9 @@
     "check-staleness": "npx tsx scripts/check-staleness.ts",
     "mobile:sync": "npx cap sync",
     "mobile:open:android": "npx cap open android",
-    "mobile:build": "next build && npx cap sync"
+    "mobile:build": "next build && npx cap sync",
+    "premobile:sync": "tsx scripts/check-mobile-environment.ts",
+    "premobile:build": "tsx scripts/check-mobile-environment.ts"
   },
   "overrides": {
     "react": "$react",

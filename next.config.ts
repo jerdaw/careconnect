@@ -55,22 +55,4 @@ const withPWA = withPWAInit({
 
 const finalConfig = withPWA(withNextIntl(nextConfig))
 
-// LocalStorage Polyfill for Node 25+ (SSR Safety)
-// In Node 25, a global localStorage may exist but can be broken or incomplete in Next.js SSR.
-if (typeof window === "undefined") {
-  const mockStorage = {
-    getItem: () => null,
-    setItem: () => {},
-    removeItem: () => {},
-    clear: () => {},
-    length: 0,
-    key: () => null,
-  }
-
-  if (!global.localStorage || typeof global.localStorage.getItem !== "function") {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(global as any).localStorage = mockStorage
-  }
-}
-
 export default finalConfig

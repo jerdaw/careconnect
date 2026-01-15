@@ -13,8 +13,7 @@ describe("Submission API", () => {
     })
 
     const res = await POST(req)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data = (await res.json()) as any
+    const data = (await res.json()) as { success: boolean }
 
     expect(res.status).toBe(201)
     expect(data.success).toBe(true)
@@ -30,8 +29,7 @@ describe("Submission API", () => {
     })
 
     const res = await POST(req)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data = (await res.json()) as any
+    const data = (await res.json()) as { error: { fieldErrors: Record<string, string[]> } }
 
     expect(res.status).toBe(400)
     expect(data.error).toBeDefined()

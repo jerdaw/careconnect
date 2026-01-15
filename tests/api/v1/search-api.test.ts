@@ -34,14 +34,11 @@ describe('Search API (Hybrid Scoring)', () => {
     mockOr.mockReturnValue({ eq: mockEq, limit: mockLimit })
     mockSelect.mockReturnValue({ or: mockOr, eq: mockEq, limit: mockLimit })
     
-    // Type casting logic for the mock to satisfy TS
-    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect })
-    
-    // Assign to the imported mock
-    ;(supabase.from as any) = mockFrom
+    const mockChain = { select: mockSelect }
+    vi.mocked(supabase.from).mockReturnValue(mockChain as any)
   })
 
-  const createRequest = (body: any) => {
+  const createRequest = (body: Record<string, unknown>) => {
     return new NextRequest('http://localhost:3000/api/v1/search/services', {
       method: 'POST',
       body: JSON.stringify(body),
@@ -75,11 +72,11 @@ describe('Search API (Hybrid Scoring)', () => {
 
     const req = createRequest({ query: 'test', locale: 'en' })
     const res = await POST(req)
-    const json = (await res.json()) as any
+    const json = (await res.json()) as { data: { id: string }[] }
 
     expect(res.status).toBe(200)
-    expect(json.data[0].id).toBe('gov')
-    expect(json.data[1].id).toBe('comm')
+    expect(json.data?.[0]?.id).toBe('gov')
+    expect(json.data?.[1]?.id).toBe('comm')
   })
 
   it('should boost services with complete data', async () => {
@@ -95,9 +92,9 @@ describe('Search API (Hybrid Scoring)', () => {
 
     const req = createRequest({ query: 'test', locale: 'en' })
     const res = await POST(req)
-    const json = (await res.json()) as any
+    const json = (await res.json()) as { data: { id: string }[] }
 
-    expect(json.data[0].id).toBe('complete')
+    expect(json.data?.[0]?.id).toBe('complete')
   })
 
   it('should correct rank by proximity if location provided (Kingston vs Ottawa)', async () => {
@@ -121,9 +118,9 @@ describe('Search API (Hybrid Scoring)', () => {
     })
     
     const res = await POST(req)
-    const json = (await res.json()) as any
+    const json = (await res.json()) as { data: { id: string }[] }
 
-    expect(json.data[0].id).toBe('kingston')
+    expect(json.data?.[0]?.id).toBe('kingston')
   })
 
   it('should paginate results correctly', async () => {
@@ -143,7 +140,7 @@ describe('Search API (Hybrid Scoring)', () => {
     })
     
     const res = await POST(req)
-    const json = (await res.json()) as any
+    const json = (await res.json()) as { data: { id: string }[], meta: { limit: number, offset: number, total: number } }
 
     expect(json.data.length).toBe(2)
     expect(json.meta.limit).toBe(2)

@@ -75,10 +75,8 @@ export const searchServices = async (query: string, options: SearchOptions = {})
             return { ...r, distance: Infinity }
           })
           .sort((a, b) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const distA = (a as any).distance ?? Infinity
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const distB = (b as any).distance ?? Infinity
+            const distA = a.distance ?? Infinity
+            const distB = b.distance ?? Infinity
             return distA - distB
           })
       }

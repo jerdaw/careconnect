@@ -13,6 +13,7 @@ export function TranslationBanner() {
   const [isDismissed, setIsDismissed] = useState(true)
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     const dismissed = localStorage.getItem(STORAGE_KEY)
     setIsDismissed(dismissed === "true")
   }, [])
@@ -22,7 +23,9 @@ export function TranslationBanner() {
   }
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "true")
+    if (typeof window !== "undefined") {
+      localStorage.setItem(STORAGE_KEY, "true")
+    }
     setIsDismissed(true)
   }
 

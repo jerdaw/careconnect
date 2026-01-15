@@ -19,14 +19,14 @@ vi.mock("@/lib/analytics", () => ({
 
 // Mock i18n routing
 vi.mock("@/components/ui/button", () => ({
-    Button: ({ children, asChild, ...props }: any) => {
+    Button: ({ children, asChild, ...props }: { children: React.ReactNode, asChild?: boolean }) => {
         if (asChild) return children
         return <button {...props}>{children}</button>
     }
 }))
 
 vi.mock("@/i18n/routing", () => ({
-    Link: ({ children, href, onClick }: any) => {
+    Link: ({ children, href, onClick }: { children: React.ReactNode, href: string, onClick?: (e: React.MouseEvent) => void }) => {
         return <a href={href} onClick={(e) => {
             e.preventDefault() // Prevent navigation in JSDOM
             if (onClick) onClick(e)
