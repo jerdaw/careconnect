@@ -780,7 +780,8 @@
       "email": "Courriel officiel",
       "site": "Audit du site web",
       "admin": "Vérifié par l'administrateur",
-      "partner": "Confirmé par le partenaire"
+      "partner": "Confirmé par le partenaire",
+      "manual": "Vérification manuelle"
     }
   },
   "Offline": {

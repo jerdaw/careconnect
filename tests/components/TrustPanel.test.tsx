@@ -22,7 +22,8 @@ const mockTrustMessages = {
   methods: {
     phone: "Phone",
     email: "Email",
-    site: "Website"
+    site: "Website",
+    manual: "Manual"
   }
 }
 
