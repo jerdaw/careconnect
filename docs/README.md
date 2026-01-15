@@ -39,7 +39,7 @@
 ## Audits
 
 - [EDIA Audit](audits/EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
-- [Privacy Audit](audits/PRIVACY_AUDIT.md) - Privacy compliance
+- [Privacy Audit](audits/privacy-technical-audit.md) - Privacy compliance
 
 ## Roadmaps
 

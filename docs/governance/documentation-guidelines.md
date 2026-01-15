@@ -6,7 +6,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 
 - **Architecture & Logic**: `docs/architecture.md`
 - **UI Components**: `docs/components.md`
-- **Localization**: `docs/bilingual-dev-guide.md` (Multi-lingual development guide)
+- **Localization**: `docs/development/bilingual-guide.md` (Multi-lingual development guide)
 - **Governance**: `docs/governance.md`
 - **Hooks & Utilities**: `docs/hooks.md`
 - **Roadmap**: `docs/roadmaps/roadmap.md` (Active Plan)
@@ -42,10 +42,16 @@ This project separates **backlog** vs **implementation plans** vs **canonical do
   1. Update canonical docs (`docs/architecture.md`, etc.) so the result is maintainable.
   2. Move the implementation plan into `docs/roadmaps/archive/` following the naming convention `YYYY-MM-DD-vX-Y-{description}.md`.
 
+## File Naming Conventions
+
+- **Dates**: Always use ISO 8601 format (`YYYY-MM-DD`) for files containing dates (e.g., `2026-01-15-meeting-notes.md`).
+- **Separators**: Use hyphens (`-`) rather than underscores or spaces.
+- **Case**: Use lowercase for general documentation.
+
 ## Naming and organization
 
 - **Descriptive Filenames**: Use `runbook`, `checklist`, `guidelines`. Avoid vague names.
 - **Roadmaps**: Put active plans in `docs/roadmaps/`.
 - **Archive**: Put completed plans in `docs/roadmaps/archive/`.
 - **Deployment**: `DEPLOY.md` (Root) or `docs/deployment/` (Future).
-- **Development**: `AGENTS.md` (Root), `bilingual-dev-guide.md` (Multi-lingual guide), or `docs/development/` (Future).
+- **Development**: `AGENTS.md` (Root), `docs/development/bilingual-guide.md` (Multi-lingual guide), or `docs/development/` (Future).
