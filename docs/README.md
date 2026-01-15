@@ -1,32 +1,47 @@
 # Documentation Index
 
-## Core
+## Quick Links
 
-- [Architecture](architecture.md) - System design and data flow.
-- [Components](components.md) - Reusable UI components.
-- [Governance](governance.md) - Verification levels and protocols.
-- [AI Context](llms.txt) - Consolidated docs for LLMs (Generated).
-- [Contributing](CONTRIBUTING.md) - How to contribute.
+- [Architecture](architecture.md) - System design, data flow, and core concepts
+- [AI Context](llms.txt) - Consolidated docs for LLMs (generated)
 
-## Development
+## Directories
 
-- [Multi-Lingual Guide](bilingual-dev-guide.md) - Localization rules.
-- [Testing Guidelines](development/testing.md) - Testing standards.
-- [Prompts](development/prompts.md) - AI/LLM prompting strategies.
-- [Hooks](hooks.md) - Custom React hooks.
+| Directory                      | Purpose                                                     |
+| ------------------------------ | ----------------------------------------------------------- |
+| [`adr/`](adr/)                 | Architecture Decision Records                               |
+| [`api/`](api/)                 | API reference and OpenAPI spec                              |
+| [`audits/`](audits/)           | Compliance audits (EDIA, Privacy)                           |
+| [`community/`](community/)     | Acknowledgments and community docs                          |
+| [`data/`](data/)               | Data formats and prioritization files                       |
+| [`development/`](development/) | Developer guides (testing, i18n, hooks, components)         |
+| [`governance/`](governance/)   | Standards, verification protocols, documentation guidelines |
+| [`legal/`](legal/)             | AI compliance, data licenses, insurance research            |
+| [`roadmaps/`](roadmaps/)       | Current roadmap and archived versions                       |
+| [`runbooks/`](runbooks/)       | Operational procedures                                      |
+| [`security/`](security/)       | Database security and breach response                       |
+| [`whitepapers/`](whitepapers/) | Privacy architecture and research papers                    |
 
-## Design
+## Development Guides
 
-- [Partner Portal](design/partner-portal.md) - Design specs for the partner area.
+- [Bilingual Guide](development/bilingual-guide.md) - Localization rules
+- [Testing Guidelines](development/testing-guidelines.md) - Testing standards
+- [Components](development/components.md) - Reusable UI components
+- [Hooks](development/hooks.md) - Custom React hooks
+- [Plain Language Guide](development/plain-language-guide.md) - Content accessibility
+
+## Governance
+
+- [Standards](governance/standards.md) - Verification levels (L0-L4)
+- [Documentation Guidelines](governance/documentation-guidelines.md) - How to write docs
+- [Verification Protocol](governance/verification-protocol.md)
 
 ## Audits
 
-- [EDIA Audit](audits/EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility.
-- [Privacy Audit](audits/PRIVACY_AUDIT.md) - Privacy compliance.
+- [EDIA Audit](audits/EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
+- [Privacy Audit](audits/PRIVACY_AUDIT.md) - Privacy compliance
 
 ## Roadmaps
 
 - [Current Roadmap](roadmaps/roadmap.md)
-- [v13.0 Plan: Librarian Model](roadmaps/v13-0-librarian-model.md)
-- [API Reference](../docs/api/openapi.yaml)
 - [Archive](roadmaps/archive/)
