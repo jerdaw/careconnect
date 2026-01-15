@@ -48,6 +48,7 @@ export async function GET(request: NextRequest) {
         { count: "exact" }
       )
 
+
     // Apply category filter
     if (category) {
       query = query.eq("category", category)
@@ -55,9 +56,13 @@ export async function GET(request: NextRequest) {
 
     // Apply search filter (basic text search)
     if (q) {
+      // SECURITY: Escape ILIKE wildcards to prevent query manipulation
+      const escapeIlike = (value: string) => value.replace(/[%_\\]/g, "\\$&")
+      const safeQ = escapeIlike(q)
       // Search in name, description (case-insensitive)
-      query = query.or(`name.ilike.%${q}%,description.ilike.%${q}%,name_fr.ilike.%${q}%,description_fr.ilike.%${q}%`)
+      query = query.or(`name.ilike.%${safeQ}%,description.ilike.%${safeQ}%,name_fr.ilike.%${safeQ}%,description_fr.ilike.%${safeQ}%`)
     }
+
 
     // Pagination
     query = query.range(offset, offset + limit - 1)

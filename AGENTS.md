@@ -93,6 +93,11 @@ When you have full access (and `origin` is configured), **make regular best-prac
   - **Manual Curation** means data quality is paramount.
 - **Validation**:
   - Use `scripts/validate-data.ts` to ensure JSON integrity.
+- **Security**:
+  - **Headers**: CSP, X-Frame-Options, and nosniff enabled in `next.config.ts`.
+  - **API**: `ILIKE` wildcards are escaped in search endpoints.
+  - **Auth**: Strong password requirements (8+ chars) in Supabase.
+  - **CI**: `npm audit` runs on every push.
 
 ---
 
