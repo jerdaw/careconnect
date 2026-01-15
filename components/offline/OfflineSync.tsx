@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { syncOfflineData } from "@/lib/offline/sync"
 import { syncPendingFeedback } from "@/lib/offline/feedback"
+import { logger } from "@/lib/logger"
 
 export function OfflineSync() {
   useEffect(() => {
@@ -12,13 +13,13 @@ export function OfflineSync() {
       syncOfflineData()
         .then((result) => {
            if (result.status === 'synced') {
-             console.log("Offline data synced successfully")
+             logger.info("Offline data synced successfully", { component: "OfflineSync", action: "initial_sync" })
            }
         })
-        .catch(console.error)
+        .catch((err) => logger.error("Offline sync failed", err, { component: "OfflineSync" }))
       
       // Also try to sync pending feedback
-      syncPendingFeedback().catch(console.error)
+      syncPendingFeedback().catch((err) => logger.error("Pending feedback sync failed", err, { component: "OfflineSync" }))
     }
 
     if ("requestIdleCallback" in window) {
@@ -29,7 +30,7 @@ export function OfflineSync() {
 
     // Optional: Listen for online event to re-sync
     const handleOnline = () => {
-        console.log("Network restored, checking for updates...")
+        logger.info("Network restored, checking for updates...", { component: "OfflineSync", action: "network_restore" })
         runSync()
     }
     

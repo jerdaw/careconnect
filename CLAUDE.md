@@ -62,7 +62,6 @@ npx tsx scripts/migrate-data.ts      # Migrate local JSON to Supabase
 The platform supports two search modes controlled by `NEXT_PUBLIC_SEARCH_MODE` env var:
 
 1. **Local Mode** (default): Client-side hybrid search
-
    - Fast keyword search in `lib/search/index.ts`
    - Optional semantic search via WebLLM + WebGPU (browser-based)
    - Zero-knowledge architecture (queries never leave device)
@@ -305,8 +304,9 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 ## Code Style
 
 - **TypeScript**: Strict mode enabled (`noUncheckedIndexedAccess: true`). Avoid `any` - especially in tests!
-- **Linting**: ESLint with Next.js + Prettier configs
+- **Linting**: ESLint with Next.js + Prettier configs (zero-warning policy enforced)
 - **Formatting**: Prettier with Tailwind plugin
 - **Import Style**: Prefer named imports, use `@/` alias
+- **Logging**: Use `lib/logger.ts` instead of `console.log`. Structure logs with metadata: `logger.info("Action", { context })`
 - **Components**: Functional components with TypeScript, hooks over classes
 - **Styling**: Tailwind CSS v4, use `cn()` helper from `lib/utils.ts` for conditional classes

@@ -26,6 +26,7 @@ import { aiEngine } from "@/lib/ai/engine"
 import { AiDisclaimer } from "@/components/chat/AiDisclaimer"
 import { EmergencyModal } from "@/components/ui/EmergencyModal"
 import { detectCrisis } from "@/lib/search/crisis"
+import { logger } from "@/lib/logger"
 
 interface Message {
   role: "user" | "assistant"
@@ -64,7 +65,7 @@ export default function ChatAssistant() {
     // If chat is closed, set a timer to unload the model
     if (!isOpen && isReady) {
       idleTimerRef.current = setTimeout(() => {
-        console.log("[AI] Unloading model due to inactivity...")
+        logger.info("Unloading AI model due to inactivity", { component: "ChatAssistant", action: "idle_unload" })
         aiEngine.unload()
       }, IDLE_TIMEOUT_MS)
     }
@@ -91,7 +92,7 @@ export default function ChatAssistant() {
     try {
       await stop()
     } catch (err) {
-      console.warn("[ChatAssistant] Failed to stop generation:", err)
+      logger.warn("Failed to stop generation", { component: "ChatAssistant", action: "stop_generation", error: err })
     }
   }, [isThinking, stop])
 
@@ -182,7 +183,7 @@ export default function ChatAssistant() {
 
       setMessages((prev) => [...prev, { role: "assistant", content: finalDisplay }])
     } catch (error) {
-      console.error("[ChatAssistant] Error in handleSend:", error)
+      logger.error("Error in chat handleSend", error, { component: "ChatAssistant", action: "send_message" })
       const message = t("errorThinking")
       setMessages((prev) => [...prev, { role: "assistant", content: message }])
     } finally {

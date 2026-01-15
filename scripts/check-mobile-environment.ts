@@ -18,7 +18,7 @@ function checkMobileEnvironment() {
   // 2. Check for Capacitor CLI
   try {
     execSync("npx cap --version", { stdio: "ignore" })
-  } catch (e) {
+  } catch {
     console.error("Error: Capacitor CLI (npx cap) is not available.")
     process.exit(1)
   }

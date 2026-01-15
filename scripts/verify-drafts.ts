@@ -1,5 +1,5 @@
 #!/usr/bin/env npx tsx
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import fs from 'fs';
 import path from 'path';
 import { parseArgs } from 'util';

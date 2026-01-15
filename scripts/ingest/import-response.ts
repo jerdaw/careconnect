@@ -1,5 +1,5 @@
 #!/usr/bin/env npx tsx
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 /**
  * Import Response - Parse AI output and save as draft files
  * 

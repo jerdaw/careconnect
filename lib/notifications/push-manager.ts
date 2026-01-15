@@ -1,6 +1,7 @@
 "use client"
 
 import type { NotificationCategory, PushSubscription } from "@/types/notifications"
+import { logger } from "@/lib/logger"
 
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
 
@@ -9,7 +10,7 @@ export class PushNotificationManager {
 
   async init(): Promise<boolean> {
     if (typeof window === "undefined" || !("PushManager" in window)) {
-      console.warn("[Push] PushManager not supported")
+      logger.warn("PushManager not supported", { component: "PushNotificationManager" })
       return false
     }
 
@@ -56,7 +57,7 @@ export class PushNotificationManager {
       if (!subscription) {
         subscription = await this.registration.pushManager.subscribe({
           userVisibleOnly: true,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+           
           applicationServerKey: this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as any,
         })
       }

@@ -1,5 +1,5 @@
 #!/usr/bin/env npx tsx
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 /**
  * Bulk Import Drafts - Auto-approve all drafts into services.json
  * 

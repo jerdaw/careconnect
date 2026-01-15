@@ -52,9 +52,9 @@ function validateServices(): ValidationResult {
           const isWarning = issue.message.includes("recommended")
           
           result.errors.push({
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             serviceId: (service as any).id || "UNKNOWN",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             serviceName: (service as any).name || "UNKNOWN",
             path: issue.path.join("."),
             message: issue.message,
