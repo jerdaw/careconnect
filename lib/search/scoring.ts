@@ -413,8 +413,7 @@ export const scoreServiceKeyword = (
   // 5. Identity Match Boost (Personalization)
   if (options.userContext?.identities.length && service.identity_tags) {
     const matchingTags = service.identity_tags.filter((tag) =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      options.userContext!.identities.includes(tag.tag.toLowerCase() as any)
+      options.userContext!.identities.includes(tag.tag.toLowerCase() as import("@/types/user-context").IdentityTag)
     )
     if (matchingTags.length > 0) {
       // 10% boost per matching tag, capped at 30%

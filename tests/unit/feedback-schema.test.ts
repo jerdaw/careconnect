@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { FeedbackSubmitSchema, FeedbackTypeEnum, FeedbackCategoryEnum } from "@/types/feedback";
+import { FeedbackSubmitSchema } from "@/types/feedback";
 
 describe("FeedbackSubmitSchema", () => {
   it("validates a simple helpful_yes vote", () => {

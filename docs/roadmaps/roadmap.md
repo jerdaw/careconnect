@@ -1,6 +1,6 @@
 # Kingston Care Connect: Roadmap
 
-> **Current Version**: v16.0 (Search Ranking Enhancements)
+> **Current Version**: v16.1 (Technical Debt & Quality Fixes)
 > **Last Updated**: 2026-01-14
 
 ---
@@ -69,6 +69,7 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
+- [v16.1: Technical Debt & Quality Fixes](archive/v16-1-technical-debt-fixes.md) (2026-01-14)
 - [v16.0: Search Ranking Enhancements](archive/v16-0-search-ranking-enhancements.md) (2026-01-14)
 - [v15.0: Mobile-Ready Infrastructure](archive/v15-0-mobile-ready-infrastructure.md) (2026-01-13)
 - [v14.0: Impact, Equity & Trust](archive/2026-01-13-v14-0-impact-equity-trust.md) (2026-01-13)

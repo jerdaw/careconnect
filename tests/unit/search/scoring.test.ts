@@ -67,7 +67,7 @@ describe("scoreServiceKeyword with boosts", () => {
     },
     identity_tags: [],
     synthetic_queries: ["free food", "food bank"],
-  } as any // Cast to any to avoid partial mock issues
+  } as import("@/types/service").Service
 
   it("applies verification boost for L3 services", () => {
     const l1Service = { ...baseService, verification_level: VerificationLevel.L1 }

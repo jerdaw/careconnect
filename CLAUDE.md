@@ -267,7 +267,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 1. **Search Engine**: `lib/search/index.ts`, `lib/search/scoring.ts`
 2. **AI System**: `lib/ai/engine.ts`, `components/ai/ChatAssistant.tsx`
 3. **Data Loading**: `lib/search/data.ts`
-4. **API Routes**: `app/api/v1/search/services/route.ts`
+4. **API Routes**: `app/api/v1/search/services/route.ts` - Note: All API mutations MUST use Zod (`lib/schemas/`)
 5. **Main Search UI**: `components/search/SearchInterface.tsx` (likely)
 6. **Service Schema**: `types/service.ts`
 7. **Middleware**: `middleware.ts`
@@ -298,7 +298,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 
 ## Code Style
 
-- **TypeScript**: Strict mode enabled (`noUncheckedIndexedAccess: true`)
+- **TypeScript**: Strict mode enabled (`noUncheckedIndexedAccess: true`). Avoid `any` - especially in tests!
 - **Linting**: ESLint with Next.js + Prettier configs
 - **Formatting**: Prettier with Tailwind plugin
 - **Import Style**: Prefer named imports, use `@/` alias

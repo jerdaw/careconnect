@@ -21,7 +21,7 @@ vi.mock("@/components/AuthProvider", () => ({
 
 // Mock next/link
 vi.mock("next/link", () => ({
-    default: ({ children, href, onClick }: any) => <a href={href} onClick={onClick}>{children}</a>
+    default: ({ children, href, onClick }: { children: React.ReactNode, href: string, onClick?: () => void }) => <a href={href} onClick={onClick}>{children}</a>
 }))
 
 import { usePathname } from "next/navigation"
@@ -29,7 +29,7 @@ import { usePathname } from "next/navigation"
 describe("DashboardSidebar Component", () => {
     beforeEach(() => {
         vi.clearAllMocks()
-            ; (usePathname as any).mockReturnValue("/dashboard")
+            ; (usePathname as import("vitest").Mock).mockReturnValue("/dashboard")
     })
 
     it("renders navigation links", () => {
@@ -42,8 +42,8 @@ describe("DashboardSidebar Component", () => {
     })
 
     it("highlights active link", () => {
-        ; (usePathname as any).mockReturnValue("/dashboard/services")
-        const { container } = render(<DashboardSidebar />)
+        ; (usePathname as import("vitest").Mock).mockReturnValue("/dashboard/services")
+        render(<DashboardSidebar />)
 
         // Check for active class styling logic via class checking or just ensuring it renders without error.
         // Verifying exact classes is brittle. We verify content is present.

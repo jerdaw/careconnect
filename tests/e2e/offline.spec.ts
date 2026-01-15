@@ -14,9 +14,11 @@ test("Service worker is registered", async ({ page }) => {
     if (process.env.CI) test.skip()
 
     await page.goto("/")
+    /*
     const isSWRegistered = await page.evaluate(async () => {
         const registration = await navigator.serviceWorker.getRegistration()
         return !!registration
     })
-    // expect(isSWRegistered).toBe(true) 
+    expect(isSWRegistered).toBe(true) 
+    */
 })

@@ -58,9 +58,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
   const nameHtml = highlightMatches(rawName, highlightTokens)
   const descriptionHtml = highlightMatches(rawDescription, highlightTokens)
 
-  // Cast to any to safely access distance if it's not on the main type yet
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const serviceWithDistance = service as any
+  // Distance is optionally added during search with geolocation
+  const distance = service.distance
 
   const handleTrack = (type: "click_website" | "click_call") => {
     trackEvent(service.id, type)
@@ -161,8 +160,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                     t('Distance.ontarioWide')
                   ) : service.scope === 'canada' ? (
                     t('Distance.canadaWide')
-                  ) : serviceWithDistance.distance ? (
-                    `${serviceWithDistance.distance.toFixed(1)} km`
+                  ) : distance ? (
+                    `${distance.toFixed(1)} km`
                   ) : (
                     t("ServiceDetail.kingston")
                   )}
