@@ -48,8 +48,7 @@ class WhisperTranscriber {
 // Helper to convert audio Blob to float32 array
 async function convertBlobToAudioData(blob: Blob): Promise<Float32Array> {
   const arrayBuffer = await blob.arrayBuffer()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({
+  const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)({
     sampleRate: 16000, // Whisper expects 16kHz
   })
 

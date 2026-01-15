@@ -1,4 +1,11 @@
-# ADR 001: Enhanced Type Safety and API Security
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [type-safety, validation, backend]
+---
+
+# ADR-005: Enhanced Type Safety and API Security
 
 ## Status
 
@@ -21,13 +28,13 @@ The application faced several technical debt issues related to type safety and c
 
 We have decided to enforce strict type safety and validation patterns across the application:
 
-1.  **Zod for API Validation**: All API write endpoints (POST, PUT, PATCH) must use Zod schemas to validate request bodies before processing.
-    - **Rationale**: Zod provides runtime validation that infers static TypeScript types, ensuring the runtime data matches our compile-time expectations.
-2.  **Linting in Tests**: The `tests/` directory is no longer excluded from ESLint.
-    - **Rationale**: Tests are first-class code. Ensuring they are linted prevents bit-rot (unused variables, imports) and ensures they remain maintainable.
-    - **Consequence**: We established a baseline of existing lint errors (mostly `any` in mocks) to be resolved incrementally, but new tests must be lint-free.
-3.  **Removal of Global Polyfills**: We removed the global SSR `localStorage` polyfill in favor of explicit checks (`typeof window !== 'undefined'`).
-    - **Rationale**: Global polyfills can mask real SSR issues. Explicit checks are safer and more transparent.
+1. **Zod for API Validation**: All API write endpoints (POST, PUT, PATCH) must use Zod schemas to validate request bodies before processing.
+   - **Rationale**: Zod provides runtime validation that infers static TypeScript types, ensuring the runtime data matches our compile-time expectations.
+2. **Linting in Tests**: The `tests/` directory is no longer excluded from ESLint.
+   - **Rationale**: Tests are first-class code. Ensuring they are linted prevents bit-rot (unused variables, imports) and ensures they remain maintainable.
+   - **Consequence**: We established a baseline of existing lint errors (mostly `any` in mocks) to be resolved incrementally, but new tests must be lint-free.
+3. **Removal of Global Polyfills**: We removed the global SSR `localStorage` polyfill in favor of explicit checks (`typeof window !== 'undefined'`).
+   - **Rationale**: Global polyfills can mask real SSR issues. Explicit checks are safer and more transparent.
 
 ## Consequences
 

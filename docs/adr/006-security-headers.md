@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [security, headers, compliance]
+---
+
 # ADR-006: Security Headers and Content Security Policy
 
 **Date:** 2026-01-15  
@@ -9,7 +16,6 @@
 Implement comprehensive security headers in `next.config.ts`:
 
 1. **Content-Security-Policy (CSP)**
-
    - Restricts script, style, image, font, and connection sources
    - Prevents clickjacking via `frame-ancestors 'none'`
    - Allows OneSignal for push notifications

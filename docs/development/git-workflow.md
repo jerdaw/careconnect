@@ -1,4 +1,11 @@
-# Git Workflow & CI/CD Guide
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, git, workflow]
+---
+
+# Git Workflow & Standards
 
 This project follows strict engineering best practices to ensure code quality and stability.
 

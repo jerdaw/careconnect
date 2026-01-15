@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [architecture, overview, system-design]
+---
+
 # Kingston Care Connect - Architecture Overview
 
 ## Tech Stack

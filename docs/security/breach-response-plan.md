@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [security, incident-response, playbook]
+---
+
 # Data Breach Response Plan
 
 **Version**: 1.0  

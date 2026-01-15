@@ -7,8 +7,34 @@ const defaultMessages = {
         loading: "Loading...",
         error: "Error",
         retry: "Retry",
+        ServiceCard: {
+            reportIssue: "Report Issue",
+            details: "Details",
+        },
     },
-    // Add other common namespaces here as needed
+    ServiceDetail: {
+        kingston: "Kingston",
+        report: "Report",
+        details: "Details",
+    },
+    Eligibility: {
+        likelyQualify: "Likely Qualify",
+    },
+    Feedback: {
+        title: "Report Issue",
+        description: "Help us improve",
+        issueType: "Issue Type",
+        types: {
+            wrong_phone: "Wrong phone",
+            wrong_address: "Wrong address",
+            service_closed: "Service closed",
+            other: "Other",
+        },
+        messageLabel: "Message",
+        messagePlaceholder: "Enter details...",
+        cancel: "Cancel",
+        submit: "Submit",
+    },
 }
 
 import { render, RenderOptions } from "@testing-library/react"

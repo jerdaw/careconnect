@@ -1,4 +1,11 @@
-# ADR 002: Strict Environment Validation
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [search, ranking, performance]
+---
+
+# ADR-004: Hybrid Search Ranking & Multipliers (v16.0)
 
 ## Status
 

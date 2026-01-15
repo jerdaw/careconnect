@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, components, ui]
+---
+
 # Component Usage Guide
 
 ## UI Primitives (`components/ui`)

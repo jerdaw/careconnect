@@ -1,4 +1,11 @@
-# Volunteer AI Advisory Board Charter: Kingston Care Connect
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, charter, advisory-board]
+---
+
+# Advisory Board Charter: Kingston Care Connect
 
 ## 1. Purpose
 

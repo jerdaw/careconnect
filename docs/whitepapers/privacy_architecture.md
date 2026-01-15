@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [whitepaper, privacy, architecture]
+---
+
 # Technical Whitepaper: Zero-Egress Privacy Architecture
 
 **Privacy by Design for Kingston Care Connect**

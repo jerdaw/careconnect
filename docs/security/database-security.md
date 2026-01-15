@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [security, database, rls]
+---
+
 # Database Security & Row Level Security (RLS)
 
 ## Overview
@@ -39,23 +46,24 @@ The `service_role` (backend/system) has elevated privileges for:
 **Security Note**: This view is intentionally created with `security_invoker = true` (not `SECURITY DEFINER`) to ensure it runs with the permissions of the querying user, not the view creator.
 
 ```sql
-CREATE VIEW services_public 
+CREATE VIEW services_public
 WITH (security_invoker = true)
 AS SELECT ... FROM services
-WHERE published = true 
+WHERE published = true
   AND (verification_status IS NULL OR verification_status NOT IN ('draft', 'archived'));
 ```
 
 ### `analytics_events` Table
 
 **INSERT Policy**: `Public can record views`
+
 - **Roles**: `anon`, `authenticated`
 - **Constraint**: Requires valid `service_id` that exists in `services_public`
 - **Purpose**: Prevents spam/invalid analytics events
 
 ```sql
 WITH CHECK (
-  service_id IS NOT NULL 
+  service_id IS NOT NULL
   AND service_id IN (SELECT id FROM services_public)
 )
 ```
@@ -63,16 +71,19 @@ WITH CHECK (
 ### `partner_terms_acceptance` Table
 
 **INSERT Policy**: `Enable insert for public claim flow`
+
 - **Constraint**: Requires valid `service_id` and non-empty `user_email`
 - **Purpose**: Ensures data quality for partner claims
 
 **SELECT Policy**: `Enable select for admins`
+
 - **Roles**: `service_role`
 - **Optimization**: Uses `(SELECT auth.role())` for performance
 
 ### `service_submissions` Table
 
 **INSERT Policy**: `Public can submit`
+
 - **Roles**: `anon`, `authenticated`
 - **Constraint**: Requires non-empty `name` and `description`
 - **Purpose**: Prevents empty submissions
@@ -80,29 +91,36 @@ WITH CHECK (
 ### `organizations` Table
 
 **SELECT Policy**: `Members can view own organization`
+
 - **Constraint**: User must be a member via `organization_members`
 
 **UPDATE/DELETE Policies**: `Admins can update/delete organization`
+
 - **Constraint**: User must have `owner` or `admin` role
 
 ### `organization_members` Table
 
 **SELECT Policy**: `Members can view org members`
+
 - **Constraint**: User must be a member of the organization
 
 **INSERT/UPDATE/DELETE Policies**: `Admins can manage members`
+
 - **Constraint**: User must have `owner` or `admin` role
 - **Note**: Separated into individual policies per operation to avoid "Multiple Permissive Policies" performance warning
 
 ### `service_update_requests` Table
 
 **SELECT Policy**: `Users can view service requests`
+
 - **Constraint**: User must be a member of the organization that owns the service
 
 **INSERT Policy**: `Partners can create requests`
+
 - **Constraint**: User must be a member of the organization that owns the service
 
 **UPDATE/DELETE Policies**: `Admins can update/delete requests`
+
 - **Constraint**: User must have `owner` or `admin` role in the organization
 
 ### `plain_language_summaries` Table
@@ -110,27 +128,32 @@ WITH CHECK (
 **SELECT Policy**: `Anyone can read summaries` (public)
 
 **INSERT/UPDATE/DELETE Policies**: `Authenticated can write/update/delete summaries`
+
 - **Constraint**: Requires valid `service_id` that exists in `services` table
 - **Note**: In practice, managed by backend/admin processes
 
 ### `notification_audit` Table
 
 **INSERT Policy**: `Service role can insert notifications`
+
 - **Roles**: `service_role` only
 - **Purpose**: System-only access for notification logging
 
 **SELECT Policy**: `Admins can view notification audit`
+
 - **Roles**: `service_role` only
 
 ### `push_subscriptions` Table
 
 **ALL Policy**: `Service role only`
+
 - **Roles**: `service_role`
 - **Optimization**: Uses `(SELECT auth.role())` for scalar subquery performance
 
 ### `feedback` Table
 
 **INSERT Policy**: `Anyone can submit feedback`
+
 - **Roles**: `anon`, `authenticated`
 - **Constraint**: Requires non-empty `feedback_type`
 - **Privacy**: No PII, no persistent user IDs

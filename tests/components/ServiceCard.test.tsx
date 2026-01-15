@@ -38,21 +38,6 @@ vi.mock("@/lib/eligibility/checker", () => ({
     checkEligibility: vi.fn().mockReturnValue("eligible")
 }))
 
-const mockFeedbackMessages = {
-    title: "Report",
-    description: "Desc",
-    issueType: "Type",
-    types: {
-        wrong_phone: "Phone",
-        wrong_address: "Address",
-        service_closed: "Closed",
-        other: "Other"
-    },
-    messageLabel: "Label",
-    messagePlaceholder: "Placeholder",
-    cancel: "Cancel",
-    submit: "Submit"
-}
 
 describe("ServiceCard Component", () => {
     beforeEach(() => {
@@ -61,7 +46,7 @@ describe("ServiceCard Component", () => {
 
     it("renders service information correctly", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper>
                 <ServiceCard service={mockService} />
             </TestWrapper>
         )
@@ -71,7 +56,7 @@ describe("ServiceCard Component", () => {
 
     it("tracks clicks on details button", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper>
                 <ServiceCard service={mockService} />
             </TestWrapper>
         )
@@ -86,18 +71,8 @@ describe("ServiceCard Component", () => {
     })
 
     it("renders eligibility badge when eligible", () => {
-        const messages = {
-            Common: {
-                ServiceCard: {
-                    reportIssue: "Report Issue"
-                }
-            },
-            Eligibility: {
-                likelyQualify: "Likely Qualify"
-            }
-        }
         render(
-            <TestWrapper messages={{ ...messages, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper>
                 <ServiceCard service={mockService} />
             </TestWrapper>
         )
@@ -106,7 +81,7 @@ describe("ServiceCard Component", () => {
 
     it("highlights search tokens", () => {
         render(
-            <TestWrapper messages={{ Common: { ServiceCard: { reportIssue: "Report" } }, Eligibility: { likelyQualify: "Qualify" }, Feedback: mockFeedbackMessages } as any}>
+            <TestWrapper>
                 <ServiceCard service={mockService} highlightTokens={["Food"]} />
             </TestWrapper>
         )

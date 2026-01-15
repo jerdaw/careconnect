@@ -1,4 +1,11 @@
-# Third-Party Data License Inventory
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [legal, data, licensing]
+---
+
+# Data Licenses & Source Inventory
 
 **Date**: January 2026
 **Purpose**: Compliance with third-party data usage terms and attribution requirements.

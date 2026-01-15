@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, documentation, guidelines]
+---
+
 # Documentation Guidelines (Internal)
 
 Keep documentation accurate, minimal, and easy to maintain.
@@ -13,6 +20,26 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Historical Records**: `docs/roadmaps/archive/` (Completed work)
 - **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
 
+## Document Metadata (Frontmatter)
+
+Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to improve discoverability and status tracking.
+
+- **Standard Fields**:
+  - `status`: `draft` | `stable` | `deprecated` | `archived`
+  - `last_updated`: `YYYY-MM-DD` (ISO 8601)
+  - `owner`: Primary maintainer (GitHub username or team)
+  - `tags`: Array of searchable keywords
+- **Example**:
+
+  ```yaml
+  ---
+  status: stable
+  last_updated: 2026-01-15
+  owner: jer
+  tags: [search, backend, api]
+  ---
+  ```
+
 ## Advanced Features
 
 - **Code Annotations**: Use `(1)` in code blocks and a numbered list below to create floating explanations.
@@ -20,6 +47,22 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api-reference.md`.
 - **AI Readiness**: The `llms.txt` file is auto-generated in CI to provide a "single source of truth" for agents.
+
+> [!IMPORTANT]
+> [Highlight breaking changes, deployment requirements, or decisions needing approval]
+>
+> [!WARNING]
+> [Call out compatibility issues or migration complexity]
+
+## Writing for AI Consumption
+
+To ensure documentation is effectively used by AI agents and LLMs:
+
+- **Context-Rich Headings**: Use specific, descriptive titles (e.g., `## Supabase RLS Configuration` instead of `## Security`).
+- **Explicit Cross-Links**: Use descriptive text for links and relative paths (e.g., `See [Bilingual Guide](../development/bilingual-guide.md)`).
+- **Structured Code Blocks**: Always specify the language for syntax highlighting.
+- **Decision Context**: Document the "why" behind technical choices, especially in ADRs.
+- **Avoid Ambiguity**: Use explicit nouns instead of pronouns (this/it/that) when describing architecture or logic.
 
 ## When adding or changing docs
 
@@ -47,6 +90,7 @@ This project separates **backlog** vs **implementation plans** vs **canonical do
 - **Dates**: Always use ISO 8601 format (`YYYY-MM-DD`) for files containing dates (e.g., `2026-01-15-meeting-notes.md`).
 - **Separators**: Use hyphens (`-`) rather than underscores or spaces.
 - **Case**: Use lowercase for general documentation.
+- **Templates**: Suffix template files with `-template.md` (e.g., `adr-template.md`).
 
 ## Naming and organization
 

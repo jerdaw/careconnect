@@ -578,7 +578,8 @@
       "title": "Become a Partner",
       "subtitle": "Are you a service provider? Join our network to reach more people.",
       "button": "Suggest a Service"
-    }
+    },
+    "logoAlt": "{name} logo"
   },
   "Terms": {
     "title": "Terms of Service",

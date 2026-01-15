@@ -7,20 +7,21 @@
 
 ## Directories
 
-| Directory                      | Purpose                                                     |
-| ------------------------------ | ----------------------------------------------------------- |
-| [`adr/`](adr/)                 | Architecture Decision Records                               |
-| [`api/`](api/)                 | API reference and OpenAPI spec                              |
-| [`audits/`](audits/)           | Compliance audits (EDIA, Privacy)                           |
-| [`community/`](community/)     | Acknowledgments and community docs                          |
-| [`data/`](data/)               | Data formats and prioritization files                       |
-| [`development/`](development/) | Developer guides (testing, i18n, hooks, components)         |
-| [`governance/`](governance/)   | Standards, verification protocols, documentation guidelines |
-| [`legal/`](legal/)             | AI compliance, data licenses, insurance research            |
-| [`roadmaps/`](roadmaps/)       | Current roadmap and archived versions                       |
-| [`runbooks/`](runbooks/)       | Operational procedures                                      |
-| [`security/`](security/)       | Database security and breach response                       |
-| [`whitepapers/`](whitepapers/) | Privacy architecture and research papers                    |
+| Directory                  | Purpose                            |
+| -------------------------- | ---------------------------------- |
+| [`adr/`](adr/)             | Architecture Decision Records      |
+| [`api/`](api/)             | API reference and OpenAPI spec     |
+| [`audits/`](audits/)       | Compliance audits (EDIA, Privacy)  |
+| [`community/`](community/) | Acknowledgments and community docs |
+
+| [`development/`](development/) | Developer guides (testing, i18n, hooks, components) |
+| [`governance/`](governance/) | Standards, verification protocols, documentation guidelines |
+| [`legal/`](legal/) | AI compliance, data licenses, insurance research |
+| [`roadmaps/`](roadmaps/) | Current roadmap and archived versions |
+| [`runbooks/`](runbooks/) | Operational procedures |
+| [`security/`](security/) | Database security and breach response |
+| [`templates/`](templates/) | Standard document templates (ADR, guides, plans) |
+| [`whitepapers/`](whitepapers/) | Privacy architecture and research papers |
 
 ## Development Guides
 

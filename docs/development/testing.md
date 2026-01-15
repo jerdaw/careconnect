@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, testing, standards]
+---
+
 # Testing Guidelines
 
 ## 1. Stack
@@ -20,7 +27,7 @@
 
 - **New Features**: Must have corresponding unit tests.
 - **Critical Paths**: Search, Partner Login, and Service Editing must be covered by E2E tests.
-- **Coverage**: Maintain minimum **80%** code coverage for critical modules (lib/search, lib/ai, hooks). General logic should target 65%+. Use `npm run test:coverage` to verify against per-path thresholds.
+- **Coverage**: Maintain minimum **75%** global code coverage (statements, branches, functions, lines). Critical modules (lib/search, lib/ai, hooks) may have higher strictness. Use `npm run test:coverage` to verify.
 
 ## 4. Running Tests
 

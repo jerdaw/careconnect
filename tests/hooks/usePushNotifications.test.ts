@@ -80,8 +80,8 @@ describe("usePushNotifications Hook", () => {
     })
 
     it("handles unsupported browsers", async () => {
-        // @ts-ignore
-        delete global.window.PushManager
+        const win = global.window as any
+        delete win.PushManager
         
         const { result } = renderHook(() => usePushNotifications())
         

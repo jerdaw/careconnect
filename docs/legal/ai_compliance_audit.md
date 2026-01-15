@@ -1,4 +1,11 @@
-# Legal & Compliance Audit: AI Assistant v1.0
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [legal, ai, compliance]
+---
+
+# AI Compliance Audit: AI Assistant v1.0
 
 **Date:** January 10, 2026
 **Version:** 1.2

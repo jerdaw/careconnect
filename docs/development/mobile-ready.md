@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, mobile, pwa]
+---
+
 # Mobile-Ready Infrastructure (v15.0)
 
 This document outlines the mobile architecture, offline capabilities, and push notification infrastructure introduced in v15.0. It serves as the primary reference for developers working on the mobile aspect of Kingston Care Connect.
