@@ -780,7 +780,8 @@
       "email": "Official Email",
       "site": "Website Audit",
       "admin": "Admin Verified",
-      "partner": "Partner Confirmed"
+      "partner": "Partner Confirmed",
+      "manual": "Manual Verification"
     }
   },
   "Offline": {
