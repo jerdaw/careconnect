@@ -37,11 +37,16 @@ export async function POST(request: NextRequest) {
       const nameField = locale === "fr" ? "name_fr" : "name"
       const descField = locale === "fr" ? "description_fr" : "description"
       
+      // SECURITY: Escape ILIKE wildcards to prevent query manipulation
+      const escapeIlike = (value: string) => value.replace(/[%_\\]/g, "\\$&")
+      const safeQuery = escapeIlike(query)
+      
       // ILIKE search on name OR description
       dbQuery = dbQuery.or(
-        `${nameField}.ilike.%${query}%,${descField}.ilike.%${query}%`
+        `${nameField}.ilike.%${safeQuery}%,${descField}.ilike.%${safeQuery}%`
       )
     }
+
 
     // 5. Apply category filter
     if (filters.category) {

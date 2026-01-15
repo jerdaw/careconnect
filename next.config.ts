@@ -3,6 +3,32 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin()
 
+// Security headers configuration
+const securityHeaders = [
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data:",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://onesignal.com https://cdn.onesignal.com",
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join("; "),
+  },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-DNS-Prefetch-Control", value: "on" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
+  },
+]
+
 const nextConfig: NextConfig = {
   // We will add image domains here later (e.g. forSupabase storage)
   images: {
@@ -19,7 +45,17 @@ const nextConfig: NextConfig = {
     }
     return config
   },
+  // Apply security headers to all routes
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: securityHeaders,
+      },
+    ]
+  },
 }
+
 
 import withPWAInit from "@ducanh2912/next-pwa"
 

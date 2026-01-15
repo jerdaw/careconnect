@@ -71,8 +71,11 @@ The platform supports two search modes controlled by `NEXT_PUBLIC_SEARCH_MODE` e
 2. **Server Mode**: Privacy-focused API search
    - POST endpoint at `/api/v1/search/services/route.ts`
    - **Hybrid Scoring**: Fetches candidates from DB, then scores in-memory (Authority, Completeness, Proximity)
-   - Zero-logging (no-store cache headers)
-   - Rate-limited (60 req/min per IP)
+   - **Security**:
+     - Zero-logging (no-store cache headers)
+     - Rate-limited (60 req/min per IP)
+     - **ILIKE Escaping**: Wildcards (`%`, `_`) are escaped to prevent query manipulation.
+     - **CSP**: Content Security Policy active in `next.config.ts`.
 
 ### Search Flow (Local Mode)
 
@@ -279,6 +282,9 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 - **Turbo Mode**: Dev server uses `--turbo` flag for fast refresh
 - **Commit Hooks**: Husky runs lint + related tests on pre-commit
 - **Commit Convention**: Conventional commits enforced (see `commitlint.config.js`)
+- **Security Audit**: CI runs `npm audit --audit-level=high` on every push.
+- **XSS Prevention**: `highlightMatches` escapes HTML entities before applying `<mark>` tags.
+- **Supabase Auth**: Strong password policies (8+ chars, Alphanumeric) are enforced in `config.toml`.
 
 ## Deployment
 

@@ -37,8 +37,8 @@
 - For local services, the UI defaults to `name` if `name_fr` is missing.
 - For provincial services, specific localization logic exists to handle expanded content.
 
-5. **Language Switching**: Use the `LanguageSelector` component in the `Header`. Do not use manual links.
-6. **Date/Time**: Use `Intl.DateTimeFormat` or `next-intl` formatting utilities to ensure cultural correctness.
+6. **Language Switching**: Use the `LanguageSelector` component in the `Header`. Do not use manual links.
+7. **Date/Time**: Use `Intl.DateTimeFormat` or `next-intl` formatting utilities to ensure cultural correctness.
 
 ## 4. Maintenance
 
@@ -61,7 +61,7 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 **Sample Output:**
 
-```
+```text
 📊 AUDIT RESULTS
 ═══════════════════════════════════════════════════════════════
 ✅ EN - 377 keys
@@ -111,3 +111,11 @@ Users can report translation errors to `feedback@careconnect.ca`. Corrections sh
 1. Health/safety information (highest priority)
 2. Legal/financial content
 3. General UI strings (lowest priority)
+
+## 6. Security Considerations
+
+Localized content in the database (e.g., `name_fr`, `description_fr`) is often rendered using `dangerouslySetInnerHTML` for term highlighting.
+
+1. **XSS Protection**: Always use `highlightMatches()` from `lib/search/highlight.ts` which escapes HTML entities before applying `<mark>` tags.
+2. **Injection**: Ensure localized search fields are included in ILIKE escaping logic in API routes.
+3. **Validation**: Zod schemas must validate that localized strings do not contain malicious script tags if they are to be rendered as HTML.
