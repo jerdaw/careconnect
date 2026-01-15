@@ -34,7 +34,7 @@ export async function syncPendingFeedback() {
           try {
               // Attempt submission to API
               // Payload is now exactly what the API expects
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+               
               const { id: _, syncAttempts: __, createdAt: ___, ...payload } = item;
               
               const response = await fetch('/api/v1/feedback', { 

@@ -27,9 +27,9 @@ export async function serverSearch(params: SearchRequest): Promise<Service[]> {
   return publicServices.map(s => ({
     ...s,
     // Map mismatched fields (enum string -> enum type requires cast)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     intent_category: s.category as any,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     verification_level: s.verification_status as any,
     identity_tags: s.tags || [],
     

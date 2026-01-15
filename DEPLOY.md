@@ -39,7 +39,18 @@ npm run db:verify
 
 _Expect " Verification PASSED"_
 
-## 3. Post-Deployment Verification
+## 3. Database Indexing (Zero-Downtime)
+
+To ensure zero-downtime when creating indexes on large tables, use the provided concurrent indexing script:
+
+1. **Access Supabase SQL Editor** or CLI.
+2. **Run the Script:**
+   ```bash
+   supabase db execute < supabase/scripts/create-indexes-concurrently.sql
+   ```
+   _Note: Creating indexes CONCURRENTLY can take several minutes but will not lock your tables._
+
+## 4. Post-Deployment Verification
 
 - Visit the URL provided by Vercel (e.g., `kingston-care-connect.vercel.app`).
 - **Test Search:** Type "Food".

@@ -3,7 +3,7 @@
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   private static instance: any = null
   private static isLoading = false
 

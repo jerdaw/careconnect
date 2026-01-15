@@ -73,7 +73,7 @@ async function verifyIntegrity() {
 
   // 3. Check Bilingual Health (Basic)
   // Check if name_fr is populated for a random sample or all
-  const { data: bilingualSample, error: frError } = await supabase
+  const { data: _bilingualSample, error: _frError } = await supabase
     .from("services")
     .select("id, name, name_fr")
     .not("name_fr", "is", null) // Filter where name_fr IS NOT NULL

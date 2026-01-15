@@ -56,7 +56,7 @@ export const loadServices = async (): Promise<Service[]> => {
         const fallbackServices = servicesData as unknown as Service[]
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         const mappedData: Service[] = data.map((row: any) => {
           // Find static metadata from services.json to overlay (AI metadata)
           const staticService = fallbackServices.find((s) => s.id === row.id)
