@@ -3,22 +3,27 @@
  * 
  * Tests Row Level Security policies to ensure proper data isolation
  * and access control across different user roles.
+ * 
+ * Note: These tests require SUPABASE_URL and SUPABASE_ANON_KEY to be set.
+ * Tests will be skipped if credentials are not available.
  */
 
 import { describe, it, expect, beforeAll, afterAll } from "vitest"
 import { createClient, SupabaseClient } from "@supabase/supabase-js"
 
-// Note: These tests require SUPABASE_URL and SUPABASE_ANON_KEY
-// to be set in .env.test for integration testing
-const supabaseUrl = process.env.SUPABASE_URL || "http://localhost:54321"
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || "test-key"
+// Check if Supabase credentials are available
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
+const hasSupabaseCredentials = !!supabaseUrl && !!supabaseAnonKey
 
-describe("RLS Policies", () => {
+describe.skipIf(!hasSupabaseCredentials)("RLS Policies", () => {
   let anonClient: SupabaseClient
   let serviceIds: string[] = []
 
   beforeAll(async () => {
-    anonClient = createClient(supabaseUrl, supabaseAnonKey)
+    if (!hasSupabaseCredentials) return
+    
+    anonClient = createClient(supabaseUrl!, supabaseAnonKey!)
     
     // Get published service IDs for testing
     const { data } = await anonClient
