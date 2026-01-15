@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, standards, verification]
+---
+
 # Governance Protocol: The Kingston 150 Standard 🛡️
 
 **Document Version:** 1.0
@@ -21,7 +28,7 @@ To protect user privacy, the following intent categories triggers a **Zero-Log P
 
 ---
 
-## 2. Verification Levels (L-Scale)
+## Data Standards & Verification Levels (L-Scale)
 
 Every service in the database must be assigned a verification level.
 

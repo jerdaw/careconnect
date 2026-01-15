@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, roadmap, process]
+---
+
 # Roadmap Process
 
 This document outlines the workflow for managing the Kingston Care Connect roadmap, ensuring we maintain a high-level strategic view while tracking detailed implementation steps.

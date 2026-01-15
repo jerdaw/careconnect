@@ -1,3 +1,11 @@
+```
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [search, ranking, performance]
+---
+
 # ADR 004: Hybrid Search Ranking & Multipliers (v16.0)
 
 ## Status
@@ -31,3 +39,4 @@ We implemented a **Hybrid Scoring Strategy** for the Search API (`/api/v1/search
 - **Positive**: Ability to handle non-geometric proximity (exempting virtual services from decay) easily.
 - **Negative**: Scalability limit of 100 candidates per query (though sufficient for the current dataset of ~200 services).
 - **Privacy**: No change to zero-knowledge guarantees; scoring happens in the ephemeral API execution context and is not logged.
+```

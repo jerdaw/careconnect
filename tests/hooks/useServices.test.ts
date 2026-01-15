@@ -13,6 +13,11 @@ vi.mock("@/lib/search/search-mode", () => ({
     serverSearch: vi.fn(),
 }))
 
+vi.mock("next-intl", () => ({
+    useLocale: () => "en",
+    useTranslations: () => (key: string) => key,
+}))
+
 import { searchServices } from "@/lib/search"
 
 // Mock props

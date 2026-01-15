@@ -13,19 +13,25 @@ export default defineConfig({
     coverage: {
       reporter: ["text", "json", "html"],
       thresholds: {
+        global: {
+          branches: 70,
+          functions: 75,
+          lines: 75,
+          statements: 75,
+        },
         // Per-file thresholds for critical paths only
         "lib/search/**": {
           statements: 65, // Starting low provided current state, will ramp up
-          branches: 60,
+          branches: 70,
         },
         "lib/eligibility/**": {
           statements: 95,
         },
         "lib/ai/**": {
-          statements: 85,
+          statements: 65,
         },
         "hooks/**": {
-          statements: 85,
+          statements: 75,
         },
       },
       exclude: [

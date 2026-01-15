@@ -159,10 +159,10 @@ This project is community-led. Safety and accuracy take precedence over volume.
 ### Documentation
 
 - [Roadmap](roadmaps/roadmap.md)
-- [Documentation Guidelines](documentation-guidelines.md)
+- [Documentation Guidelines](governance/documentation-guidelines.md)
 - [Testing Standards](development/testing.md)
-- [Multi-Lingual Development Guide](bilingual-dev-guide.md)
-- [Acknowledgments & Governance](acknowledgments.md)
+- [Multi-Lingual Development Guide](development/bilingual-guide.md)
+- [Acknowledgments & Governance](community/acknowledgments.md)
 
 ### Adding a Service
 

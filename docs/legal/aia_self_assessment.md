@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [legal, ai, assessment]
+---
+
 # Algorithmic Impact Assessment (AIA) - Self-Assessment
 
 **Project**: Kingston Care Connect AI Assistant (v13.1)

@@ -2,12 +2,10 @@ import { NextResponse } from "next/server"
 import { ZodError } from "zod"
 import { logger, generateErrorId } from "./logger"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ApiResponse<T = any> = {
+export type ApiResponse<T = unknown> = {
   data?: T
   error?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  details?: any
+  details?: Record<string, unknown> | unknown
   meta?: {
     page?: number
     limit?: number
@@ -21,8 +19,7 @@ export type ApiResponse<T = any> = {
 /**
  * Standard API Response helper
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createApiResponse<T = any>(
+export function createApiResponse<T = unknown>(
   data: T,
   options: {
     status?: number
@@ -47,8 +44,7 @@ export function createApiResponse<T = any>(
 export function createApiError(
   message: string,
   status: number = 500,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  details?: any
+  details?: Record<string, unknown> | unknown
 ) {
   const meta = {
     timestamp: new Date().toISOString(),
@@ -71,8 +67,7 @@ export function createApiError(
 /**
  * Global Error Handler for API routes
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function handleApiError(error: any) {
+export function handleApiError(error: unknown) {
   logger.error("API Error:", error, { component: "api-utils" })
 
   if (error instanceof ZodError) {

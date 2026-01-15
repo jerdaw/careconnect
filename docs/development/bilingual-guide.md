@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, localization, i18n]
+---
+
 # Multi-lingual Development Guide
 
 **Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 7 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
@@ -86,7 +93,6 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 Kingston Care Connect uses AI-assisted translations for some content. To ensure users are informed:
 
 1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
-
    - A dismissible floating pill appears at the bottom-right of every page
    - Informs users that the page uses AI-assisted translations
    - Contains a "Got it" button for acknowledgment
@@ -99,7 +105,7 @@ Kingston Care Connect uses AI-assisted translations for some content. To ensure 
 ### Translation Quality Tiers
 
 | Tier     | Locales               | Quality Level              | Review Status |
-| -------- | --------------------- | -------------------------- | ------------- |
+| :------- | :-------------------- | :------------------------- | :------------ |
 | Primary  | `en`                  | Source of truth            | N/A           |
 | Official | `fr`                  | AI-assisted + human review | Reviewed      |
 | Preview  | `ar`, `zh-Hans`, `es` | AI-assisted, best effort   | Needs review  |

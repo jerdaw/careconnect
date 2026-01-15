@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, testing, guidelines, vitest, playwright, rtl]
+---
+
 # Testing Guidelines
 
 ## Overview
@@ -54,17 +61,45 @@ npm run test:e2e:local
 - Use `tests/utils/api-test-utils.ts` to create mock requests.
 - Mock Supabase client deeply to avoid network calls.
 
+### Snapshot Testing
+
+- Use sparingly for complex UI output (e.g., generated HTML).
+- Prefer inline snapshots (`toMatchInlineSnapshot()`) for small outputs.
+- Review snapshot changes carefully in PRs; avoid blindly updating.
+- **Never** snapshot opaque objects like API responses—use explicit assertions.
+
+### Accessibility Testing
+
+#### Component Level
+
+- Use RTL semantic queries (`getByRole`, `getByLabelText`) as primary selectors.
+- These implicitly validate accessible names and roles.
+
+#### E2E Level
+
+- The `accessibility.spec.ts` file runs Playwright's built-in accessibility audits.
+- Critical flows (Search, Crisis, Language Switching) are covered.
+
+#### Future Enhancement
+
+Consider adding `axe-core` via `@axe-core/playwright` or `vitest-axe` for automated WCAG compliance checks.
+
 ### E2E Tests
 
 - Focus on critical user flows: Crisis support, Search, Language switching, Offline usage.
 - Use `data-testid` only when semantic queries (`getByRole`, `getByText`) fail.
+
+#### Page Object Model (POM)
+
+- Use the Page Object pattern to encapsulate page-specific selectors and interactions.
+- Place page objects in `tests/e2e/pages/`.
+- Example: `HomePage.ts` handles the search input and quick links.
 
 ## CI/CD Strategy
 
 To balance speed and cost, our CI pipeline is split:
 
 1.  **Pull Requests (Fast Feedback)**:
-
     - Runs **Linting**, **Type Checking**, and **Unit/Integration Tests**.
     - Playwright E2E tests are **SKIPPED** to ensure rapid iteration loops.
 

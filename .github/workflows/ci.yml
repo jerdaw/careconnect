@@ -21,6 +21,8 @@ jobs:
         run: npm ci
       - name: Security Audit
         run: npm audit --audit-level=high
+      - name: Run Prettier Check
+        run: npx prettier --check .
       - name: Run Lint
         run: npm run lint
       - name: Validate Service Data
@@ -63,11 +65,17 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install chromium --with-deps
       - name: Run Playwright tests
-        continue-on-error: true
         run: npx playwright test --project=chromium
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'placeholder-key' }}
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
 
   build:
     runs-on: ubuntu-latest

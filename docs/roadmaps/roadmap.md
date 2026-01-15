@@ -1,6 +1,6 @@
 # Kingston Care Connect: Roadmap
 
-> **Current Version**: v16.2 (Security Hardening)
+> **Current Version**: v16.3 (Quality & Tooling Refresh)
 > **Last Updated**: 2026-01-15
 
 ---
@@ -69,6 +69,7 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
+- [v16.3: Quality & Tooling Refresh](archive/2026-01-15-v16-3-quality-tooling-refresh.md) (2026-01-15)
 - [v16.2: Security Hardening](archive/2026-01-15-v16-2-security-hardening.md) (2026-01-15)
 - [v16.1: Technical Debt & Quality Fixes](archive/v16-1-technical-debt-fixes.md) (2026-01-14)
 

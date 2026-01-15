@@ -575,7 +575,8 @@
       "title": "Devenir partenaire",
       "subtitle": "Êtes-vous un fournisseur de services ? Rejoignez notre réseau pour atteindre plus de personnes.",
       "button": "Suggérer un service"
-    }
+    },
+    "logoAlt": "Logo de {name}"
   },
   "Partners": {
     "link": "Pour les partenaires"

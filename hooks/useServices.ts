@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from "react"
+import { useLocale } from "next-intl"
 import { searchServices, SearchResult } from "@/lib/search"
 import { isOffline } from "@/lib/offline/status"
 import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
@@ -32,6 +33,7 @@ export function useServices({
   setHasSearched,
   setSuggestion,
 }: UseServicesProps) {
+  const locale = useLocale()
 
   // Filter results by scope
   const filterByScope = useCallback((results: SearchResult[]): SearchResult[] => {
@@ -70,7 +72,8 @@ export function useServices({
           // Server-Side Search (only if online)
           const serverServices = await serverSearch({
             query,
-            locale: "en", // TODO: Get from context/hook
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            locale: locale as any, 
             filters: { category },
             options: { limit: 50, offset: 0 }
           })
@@ -152,5 +155,5 @@ export function useServices({
 
     const timer = setTimeout(performSearch, 150)
     return () => clearTimeout(timer)
-  }, [query, category, scope, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion, filterByScope])
+  }, [query, category, scope, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion, filterByScope, locale])
 }

@@ -43,6 +43,8 @@ From the repo root:
   - Migrate local data: `npx tsx scripts/migrate-data.ts`
   - Verify DB integrity: `npm run db:verify`
 - **Maintenance & Quality**:
+  - Code Formatting: `npx prettier --check .`
+  - Bundle Analysis: `npm run analyze`
   - Service Data Audit (EN/FR): `npm run bilingual-check`
   - Multi-lingual UI Audit: `npm run i18n-audit`
   - Staleness Audit: `npm run check-staleness`

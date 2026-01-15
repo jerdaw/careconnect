@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
@@ -71,10 +72,12 @@ export default function PartnersPage() {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-white p-1 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700">
-                      <img
-                        src={partner.logo}
-                        alt={`${partner.name} logo`}
-                        className="h-full w-full object-contain"
+                      <Image
+                        src={partner.logo} // Using dynamic partner.logo
+                        alt={t("logoAlt", { name: partner.name })} // Using dynamic partner.name
+                        width={48} // Adjusted to fit h-12 w-12 parent (12 * 4 = 48px)
+                        height={48} // Adjusted to fit h-12 w-12 parent
+                        className="h-full w-full object-contain" // Kept original styling for fitting
                       />
                     </div>
                     <div>

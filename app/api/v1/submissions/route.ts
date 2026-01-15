@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { logger } from "@/lib/logger"
 
 import { SubmissionSchema } from "@/types/submission"
 
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
     // MOCK DB INSERTION
     // Since Supabase isn't configured, we mimic a successful saved state.
     // In production, this would be: await supabase.from("submissions").insert(...)
-    console.log("📝 [MOCK] Saving submission:", parsed.data)
+    logger.info("📝 [MOCK] Saving submission:", parsed.data)
 
     // Simulate latency
     await new Promise((resolve) => setTimeout(resolve, 800))

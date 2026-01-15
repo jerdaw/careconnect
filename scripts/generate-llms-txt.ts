@@ -6,12 +6,13 @@ const OUTPUT_FILE = path.join(DOCS_DIR, 'llms.txt');
 
 const CORE_FILES = [
   'architecture.md',
-  'components.md',
-  'documentation-guidelines.md',
-  'testing-guidelines.md',
-  'bilingual-dev-guide.md',
-  'governance.md',
-  'hooks.md'
+  'development/components.md',
+  'governance/documentation-guidelines.md',
+  'development/testing-guidelines.md',
+  'development/bilingual-guide.md',
+  'governance/standards.md',
+  'development/hooks.md',
+  'roadmaps/roadmap.md'
 ];
 
 function generateLLMsTxt() {

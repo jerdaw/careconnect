@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [search, librarian-model, data-governance]
+---
+
 # ADR 003: Librarian Model for Public Search
 
 ## Status

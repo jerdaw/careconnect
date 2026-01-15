@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, verification, protocol]
+---
+
 # Service Verification Protocol
 
 **Version**: 1.0  
