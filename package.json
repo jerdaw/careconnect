@@ -32,7 +32,8 @@
     "mobile:open:android": "npx cap open android",
     "mobile:build": "next build && npx cap sync",
     "premobile:sync": "tsx scripts/check-mobile-environment.ts",
-    "premobile:build": "tsx scripts/check-mobile-environment.ts"
+    "premobile:build": "tsx scripts/check-mobile-environment.ts",
+    "check:root": "bash scripts/check-root-hygiene.sh"
   },
   "overrides": {
     "react": "$react",

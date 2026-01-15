@@ -62,3 +62,11 @@ venv/
 # capacitor
 android/
 ios/
+
+# temp/debug output files (prevent root clutter)
+*_keys.txt
+*_audit*.txt
+*_audit*.log
+*.audit.log
+lint_errors.txt
+graph.svg
