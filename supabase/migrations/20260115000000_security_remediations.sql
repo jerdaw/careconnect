@@ -6,6 +6,7 @@
 -- ============================================
 -- The view should use invoker's permissions, not definer's.
 -- We need to recreate it without SECURITY DEFINER property.
+-- NOTE: Only includes columns that exist in the services table.
 
 DROP VIEW IF EXISTS services_public;
 
@@ -22,14 +23,9 @@ SELECT
   url,
   email,
   hours,
-  hours_text,
-  hours_text_fr,
   fees,
-  fees_fr,
   eligibility,
-  eligibility_fr,
   application_process,
-  application_process_fr,
   languages,
   bus_routes,
   accessibility,
@@ -38,11 +34,9 @@ SELECT
   category,
   tags,
   created_at,
-  -- v14.0 Trust & Equity fields
-  scope,
+  -- v16.0 ranking fields
   authority_tier,
-  resource_indicators,
-  verification_level
+  resource_indicators
 FROM services
 WHERE 
   published = true 

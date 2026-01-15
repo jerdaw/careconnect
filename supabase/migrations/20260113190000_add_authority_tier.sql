@@ -16,7 +16,11 @@ CREATE INDEX IF NOT EXISTS idx_services_authority_tier
 
 -- Update the services_public view to include new columns
 -- This is required for the API to see these fields
-CREATE OR REPLACE VIEW services_public AS
+-- NOTE: Only includes columns that exist in the services table
+-- Must DROP first since CREATE OR REPLACE cannot remove columns
+DROP VIEW IF EXISTS services_public;
+
+CREATE VIEW services_public AS
 SELECT 
   id,
   name,
@@ -31,8 +35,6 @@ SELECT
   hours,
   fees,
   eligibility,
-  eligibility_notes,
-  eligibility_notes_fr,
   application_process,
   languages,
   bus_routes,
@@ -41,17 +43,15 @@ SELECT
   verification_status,
   category,
   tags,
-  scope,
-  virtual_delivery,
-  primary_phone_label,
-  synthetic_queries,
-  synthetic_queries_fr,
   created_at,
-  -- NEW: v16.0 ranking fields
+  -- v16.0 ranking fields
   authority_tier,
-  resource_indicators,
-  coordinates
+  resource_indicators
 FROM services
 WHERE 
   published = true 
   AND (verification_status IS NULL OR verification_status NOT IN ('draft', 'archived'));
+
+-- Re-grant permissions (dropped with the view)
+GRANT SELECT ON services_public TO anon;
+GRANT SELECT ON services_public TO authenticated;
