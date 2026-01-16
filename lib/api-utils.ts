@@ -41,11 +41,7 @@ export function createApiResponse<T = unknown>(
 /**
  * Standard API Error helper
  */
-export function createApiError(
-  message: string,
-  status: number = 500,
-  details?: Record<string, unknown> | unknown
-) {
+export function createApiError(message: string, status: number = 500, details?: Record<string, unknown> | unknown) {
   const meta = {
     timestamp: new Date().toISOString(),
     requestId: generateErrorId(),

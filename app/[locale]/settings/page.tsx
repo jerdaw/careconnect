@@ -10,27 +10,22 @@ export default function SettingsPage() {
   const { isOnline } = useNetworkStatus()
 
   return (
-    <div className="container py-10 max-w-2xl">
+    <div className="container max-w-2xl py-10">
       <div className="mb-8 space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="text-muted-foreground">
-          {t("description")}
-        </p>
+        <p className="text-muted-foreground">{t("description")}</p>
       </div>
 
       <div className="space-y-8">
-        
         {/* Network Status Section */}
         <section className="space-y-4">
-             <h2 className="text-lg font-semibold flex items-center gap-2">
-                {isOnline ? <Wifi className="h-5 w-5 text-green-600" /> : <WifiOff className="h-5 w-5 text-red-500" />}
-                {t("connectionStatus")}
-             </h2>
-             <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border">
-                <p className="text-sm">
-                    {isOnline ? t("onlineMessage") : t("offlineMessage")}
-                </p>
-             </div>
+          <h2 className="flex items-center gap-2 text-lg font-semibold">
+            {isOnline ? <Wifi className="h-5 w-5 text-green-600" /> : <WifiOff className="h-5 w-5 text-red-500" />}
+            {t("connectionStatus")}
+          </h2>
+          <div className="rounded-lg border bg-neutral-50 p-4 dark:bg-neutral-900">
+            <p className="text-sm">{isOnline ? t("onlineMessage") : t("offlineMessage")}</p>
+          </div>
         </section>
 
         {/* Notifications Section */}
@@ -38,10 +33,9 @@ export default function SettingsPage() {
           <h2 className="text-lg font-semibold">{t("Notifications.title")}</h2>
           <PushOptIn />
         </section>
-        
+
         {/* Localization/Personalization placeholder */}
         {/* We can move other settings here later */}
-
       </div>
     </div>
   )

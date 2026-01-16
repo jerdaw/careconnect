@@ -7,7 +7,7 @@ const PRIORITY_IDS = [
   "trans-lifeline-canada",
   "hope-for-wellness-helpline",
   "assaulted-womens-helpline",
-  "victim-services-kingston"
+  "victim-services-kingston",
 ]
 
 function enablePlainLanguage() {

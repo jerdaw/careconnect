@@ -5,28 +5,26 @@ import { createServerClient } from "@supabase/ssr"
 export async function POST(request: NextRequest) {
   // 1. Authenticate the admin user
   // In a real environment, we'd check if the user has the 'admin' role
-  const supabase = createServerClient(
-    env.NEXT_PUBLIC_SUPABASE_URL!,
-    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll() {
-             // Readonly in API route
-        }
+  const supabase = createServerClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll()
       },
-    }
-  )
+      setAll() {
+        // Readonly in API route
+      },
+    },
+  })
 
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   // 2. Validate request
-  const body = await request.json() as { title: string; message: string; url?: string; type?: string }
+  const body = (await request.json()) as { title: string; message: string; url?: string; type?: string }
   const { title, message, url, type } = body
 
   if (!title || !message) {
@@ -59,21 +57,25 @@ export async function POST(request: NextRequest) {
     })
 
     if (!response.ok) {
-        const errorData = await response.json()
-        return NextResponse.json({ error: "OneSignal API Error", details: errorData }, { status: response.status })
+      const errorData = await response.json()
+      return NextResponse.json({ error: "OneSignal API Error", details: errorData }, { status: response.status })
     }
 
-    const result = await response.json() as { id: string }
+    const result = (await response.json()) as { id: string }
 
     // 4. Log to Audit Table
-    await supabase.from("notification_audit").insert({
+    await supabase
+      .from("notification_audit")
+      .insert({
         title,
         message,
         notification_type: type,
         onesignal_id: result.id,
         sent_by: user.id,
-        sent_at: new Date().toISOString()
-    }).select().single()
+        sent_at: new Date().toISOString(),
+      })
+      .select()
+      .single()
 
     return NextResponse.json({ success: true, notificationId: result.id })
   } catch (err) {

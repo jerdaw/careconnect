@@ -1,10 +1,5 @@
 import { describe, it, expect } from "vitest"
-import {
-  getVerificationMultiplier,
-  getFreshnessMultiplier,
-  scoreServiceKeyword,
-  WEIGHTS,
-} from "@/lib/search/scoring"
+import { getVerificationMultiplier, getFreshnessMultiplier, scoreServiceKeyword, WEIGHTS } from "@/lib/search/scoring"
 import { VerificationLevel } from "@/types/service"
 
 describe("getVerificationMultiplier", () => {
@@ -80,13 +75,13 @@ describe("scoreServiceKeyword with boosts", () => {
     // L3 score should be higher
     expect(l3Result.score).toBeGreaterThan(l1Result.score)
     // Check for reason string
-    expect(l3Result.reasons.some(r => r.includes("Verification Boost"))).toBe(true)
+    expect(l3Result.reasons.some((r) => r.includes("Verification Boost"))).toBe(true)
   })
 
   it("applies freshness boost for recently verified services", () => {
     const recentDate = new Date()
     recentDate.setDate(recentDate.getDate() - 7)
-    
+
     const staleDate = new Date()
     staleDate.setDate(staleDate.getDate() - 120)
 
@@ -103,7 +98,7 @@ describe("scoreServiceKeyword with boosts", () => {
     const staleResult = scoreServiceKeyword(staleService, ["food"])
 
     expect(freshResult.score).toBeGreaterThan(staleResult.score)
-    expect(freshResult.reasons.some(r => r.includes("Fresh Data Boost"))).toBe(true)
+    expect(freshResult.reasons.some((r) => r.includes("Fresh Data Boost"))).toBe(true)
   })
 
   it("applies staleness penalty for old services", () => {
@@ -117,6 +112,6 @@ describe("scoreServiceKeyword with boosts", () => {
 
     const result = scoreServiceKeyword(staleService, ["food"])
     // Expect penalty reason
-    expect(result.reasons.some(r => r.includes("Stale Data Penalty"))).toBe(true)
+    expect(result.reasons.some((r) => r.includes("Stale Data Penalty"))).toBe(true)
   })
 })

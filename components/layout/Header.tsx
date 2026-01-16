@@ -6,8 +6,8 @@ import { useAuth } from "@/components/AuthProvider"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { useTranslations } from 'next-intl';
-import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations } from "next-intl"
+import LanguageSwitcher from "./LanguageSwitcher"
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -38,14 +38,14 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        className="focus:bg-primary-600 sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
       >
         {t("skipToMain")}
       </a>
       <header
         className={cn(
           "fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300",
-          (isSolid || mobileMenuOpen)
+          isSolid || mobileMenuOpen
             ? "border-neutral-200/50 bg-white shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-950"
             : "border-transparent bg-transparent"
         )}
@@ -53,9 +53,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
         <div
           className={cn(
             "overflow-hidden transition-all duration-500 ease-out",
-            isSolid
-              ? "max-h-0 opacity-0 -translate-y-2"
-              : "max-h-12 opacity-100 translate-y-0"
+            isSolid ? "max-h-0 -translate-y-2 opacity-0" : "max-h-12 translate-y-0 opacity-100"
           )}
         >
           <BetaBanner />
@@ -70,11 +68,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div
-                className={cn(
-                  "relative flex h-9 items-center justify-center rounded-xl transition-all"
-                )}
-              >
+              <div className={cn("relative flex h-9 items-center justify-center rounded-xl transition-all")}>
                 <Image
                   src="/logo.png"
                   alt="KCC Logo"
@@ -214,16 +208,28 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />
 
                 {/* Navigation Links */}
-                <Link href="/about" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                <Link
+                  href="/about"
+                  className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                >
                   {t("about")}
                 </Link>
-                <Link href="/about/partners" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                <Link
+                  href="/about/partners"
+                  className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                >
                   {tPartners("link")}
                 </Link>
-                <Link href="/submit-service" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                <Link
+                  href="/submit-service"
+                  className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                >
                   {t("suggest")}
                 </Link>
-                <Link href="/settings" className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                <Link
+                  href="/settings"
+                  className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                >
                   Settings
                 </Link>
 
@@ -254,10 +260,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
       </header>
 
       {/* Emergency Modal */}
-      <EmergencyModal
-        isOpen={emergencyModalOpen}
-        onClose={() => setEmergencyModalOpen(false)}
-      />
+      <EmergencyModal isOpen={emergencyModalOpen} onClose={() => setEmergencyModalOpen(false)} />
     </>
   )
 }

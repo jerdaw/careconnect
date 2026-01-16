@@ -35,7 +35,9 @@ function checkMobileEnvironment() {
   const hasIos = fs.existsSync(path.join(process.cwd(), "ios"))
 
   if (!hasAndroid && !hasIos) {
-    console.warn("Warning: No native platforms (android/ios) detected. Run 'npx cap add android' or 'npx cap add ios' first.")
+    console.warn(
+      "Warning: No native platforms (android/ios) detected. Run 'npx cap add android' or 'npx cap add ios' first."
+    )
   }
 
   console.log("Environment check passed (infrastructure only). Proceeding...\n")

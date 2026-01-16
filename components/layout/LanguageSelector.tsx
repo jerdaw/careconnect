@@ -25,7 +25,7 @@ export function LanguageSelector() {
       <select
         value={locale}
         onChange={(e) => handleChange(e.target.value)}
-        className="appearance-none rounded-md border border-neutral-200 bg-white px-3 py-1.5 pr-8 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-300 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:border-neutral-600"
+        className="focus:border-primary-500 focus:ring-primary-500 appearance-none rounded-md border border-neutral-200 bg-white px-3 py-1.5 pr-8 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-300 focus:ring-1 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:border-neutral-600"
         aria-label="Select language"
       >
         {LOCALES.map((loc) => (
@@ -35,12 +35,7 @@ export function LanguageSelector() {
         ))}
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-        <svg
-          className="h-4 w-4 text-neutral-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-4 w-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>

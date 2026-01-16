@@ -27,12 +27,12 @@ export default function SearchResultsList({
   category,
 }: SearchResultsListProps) {
   const t = useTranslations("Search")
-  const [activeScope, setActiveScope] = useState<ScopeFilter>('all')
+  const [activeScope, setActiveScope] = useState<ScopeFilter>("all")
 
   // Calculate scope counts
   const scopeCounts = useMemo(() => {
-    const local = results.filter(r => r.service.scope === 'kingston' || !r.service.scope).length
-    const provincial = results.filter(r => r.service.scope === 'ontario' || r.service.scope === 'canada').length
+    const local = results.filter((r) => r.service.scope === "kingston" || !r.service.scope).length
+    const provincial = results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada").length
     return { all: results.length, local, provincial }
   }, [results])
 
@@ -41,18 +41,18 @@ export default function SearchResultsList({
 
   // Filter results by active scope
   const filteredResults = useMemo(() => {
-    if (activeScope === 'all') return results
-    if (activeScope === 'kingston') {
-      return results.filter(r => r.service.scope === 'kingston' || !r.service.scope)
+    if (activeScope === "all") return results
+    if (activeScope === "kingston") {
+      return results.filter((r) => r.service.scope === "kingston" || !r.service.scope)
     }
-    if (activeScope === 'provincial') {
-      return results.filter(r => r.service.scope === 'ontario' || r.service.scope === 'canada')
+    if (activeScope === "provincial") {
+      return results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada")
     }
     return results
   }, [results, activeScope])
 
   // Handle scope change from badge click on ServiceCard
-  const handleScopeFilter = (scope: 'provincial') => {
+  const handleScopeFilter = (scope: "provincial") => {
     setActiveScope(scope)
   }
 
@@ -72,9 +72,7 @@ export default function SearchResultsList({
       <div className="space-y-6">
         <div className="rounded-lg bg-neutral-100 p-6 text-center dark:bg-neutral-900">
           <p className="text-neutral-600 dark:text-neutral-400">
-            {category
-              ? t('noResultsInCategory', { query, category })
-              : t('noResults', { query })}
+            {category ? t("noResultsInCategory", { query, category }) : t("noResults", { query })}
           </p>
         </div>
         <NotFoundFeedback />
@@ -86,14 +84,9 @@ export default function SearchResultsList({
   if (hasSearched && filteredResults.length === 0) {
     return (
       <div className="rounded-lg bg-neutral-100 p-8 text-center dark:bg-neutral-900">
-        <p className="mb-4 text-neutral-600 dark:text-neutral-400">
-          {t('noLocalResults')}
-        </p>
-        <Button
-          variant="outline"
-          onClick={() => setActiveScope('all')}
-        >
-          {t('showAllResults', { count: results.length })}
+        <p className="mb-4 text-neutral-600 dark:text-neutral-400">{t("noLocalResults")}</p>
+        <Button variant="outline" onClick={() => setActiveScope("all")}>
+          {t("showAllResults", { count: results.length })}
         </Button>
       </div>
     )
@@ -130,4 +123,3 @@ export default function SearchResultsList({
     </div>
   )
 }
-

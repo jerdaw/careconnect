@@ -1,6 +1,13 @@
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogDescription,
+} from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/components/ui/use-toast"
@@ -46,9 +53,11 @@ export function FeedbackDetail({ feedback, open, onClose }: FeedbackDetailProps)
 
       toast({
         title: t("statusUpdated"),
-        description: t("statusUpdatedMessage", { status: t(`status${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}`) }),
+        description: t("statusUpdatedMessage", {
+          status: t(`status${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}`),
+        }),
       })
-      
+
       router.refresh()
       onClose()
     } catch {
@@ -68,40 +77,40 @@ export function FeedbackDetail({ feedback, open, onClose }: FeedbackDetailProps)
         <DialogHeader>
           <DialogTitle>{t("feedbackDetail")}</DialogTitle>
           <DialogDescription>
-             {t("receivedOn", { date: new Date(feedback.created_at).toLocaleString() })}
+            {t("receivedOn", { date: new Date(feedback.created_at).toLocaleString() })}
           </DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <span className="font-bold text-sm">{t("service")}:</span>
+            <span className="text-sm font-bold">{t("service")}:</span>
             <span className="col-span-3 text-sm">
-              {feedback.services?.name || (feedback.feedback_type === 'not_found' ? t("general") : t("unknown"))}
+              {feedback.services?.name || (feedback.feedback_type === "not_found" ? t("general") : t("unknown"))}
             </span>
           </div>
-          
+
           <div className="grid grid-cols-4 items-center gap-4">
-            <span className="font-bold text-sm">{t("issueType")}:</span>
+            <span className="text-sm font-bold">{t("issueType")}:</span>
             <span className="col-span-3">
               <Badge variant="outline">
-                {t(`issueTypes.${feedback.feedback_type}`) === `Feedback.issueTypes.${feedback.feedback_type}` 
-                  ? feedback.feedback_type 
+                {t(`issueTypes.${feedback.feedback_type}`) === `Feedback.issueTypes.${feedback.feedback_type}`
+                  ? feedback.feedback_type
                   : t(`issueTypes.${feedback.feedback_type}`)}
               </Badge>
             </span>
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-             <span className="font-bold text-sm mt-1">{t("message")}:</span>
-             <div className="col-span-3 text-sm border p-3 rounded-md bg-muted/20 min-h-[100px]">
-               {feedback.message || <span className="text-muted-foreground italic">{t("noMessage")}</span>}
-             </div>
+            <span className="mt-1 text-sm font-bold">{t("message")}:</span>
+            <div className="bg-muted/20 col-span-3 min-h-[100px] rounded-md border p-3 text-sm">
+              {feedback.message || <span className="text-muted-foreground italic">{t("noMessage")}</span>}
+            </div>
           </div>
 
           <div className="grid grid-cols-4 items-center gap-4">
-            <span className="font-bold text-sm">{t("status")}:</span>
+            <span className="text-sm font-bold">{t("status")}:</span>
             <select
-              className="flex h-9 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex h-9 w-[180px] items-center justify-between rounded-md border px-3 py-2 text-sm shadow-sm focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               value={feedback.status}
               onChange={(e) => handleStatusUpdate(e.target.value)}
               disabled={updating}
@@ -118,11 +127,11 @@ export function FeedbackDetail({ feedback, open, onClose }: FeedbackDetailProps)
           <Button variant="outline" onClick={onClose} disabled={updating}>
             {t("close")}
           </Button>
-          {feedback.status === 'pending' && (
-             <Button onClick={() => handleStatusUpdate('resolved')} disabled={updating}>
-               {updating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-               {t("markResolved")}
-             </Button>
+          {feedback.status === "pending" && (
+            <Button onClick={() => handleStatusUpdate("resolved")} disabled={updating}>
+              {updating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {t("markResolved")}
+            </Button>
           )}
         </DialogFooter>
       </DialogContent>

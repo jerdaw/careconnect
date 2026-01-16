@@ -5,7 +5,11 @@ import { Zap, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 const messages = [
-  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-green-700 dark:text-green-500" },
+  {
+    iconComponent: ShieldCheck,
+    text: "Privacy First • No Tracking • Open Source",
+    color: "text-green-700 dark:text-green-500",
+  },
   { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-700 dark:text-green-500" },
 ]
 
@@ -19,13 +23,13 @@ interface ModelStatusProps {
 
 export default function ModelStatus({ isReady }: ModelStatusProps) {
   const [messageIndex, setMessageIndex] = useState(0)
-  
+
   // Use a ref to access the latest isReady value in the interval callback
   const isReadyRef = useRef(isReady)
   useEffect(() => {
     isReadyRef.current = isReady
   }, [isReady])
-  
+
   // Ref to store the interval for proper cleanup
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -34,25 +38,25 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
   useEffect(() => {
     // Initial sync point at 4.15 seconds from mount
     const FIRST_CHECKPOINT_DELAY = 4150
-    
+
     const firstCheckpointTimeout = setTimeout(() => {
       // First checkpoint: check if ready and start cycling
       if (isReadyRef.current) {
         setMessageIndex(1) // Switch to "Neural Search Active"
       }
-      
+
       // Continue checking at each subsequent checkpoint (every 5 seconds)
       intervalRef.current = setInterval(() => {
         if (!isReadyRef.current) {
           // Not ready yet, stay on message 0
           return
         }
-        
+
         // Ready: cycle between messages
         setMessageIndex((prev) => (prev + 1) % messages.length)
       }, HALF_CYCLE_DURATION)
     }, FIRST_CHECKPOINT_DELAY)
-    
+
     return () => {
       clearTimeout(firstCheckpointTimeout)
       if (intervalRef.current) {
@@ -66,7 +70,7 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
   if (!currentMessage) return null
 
   return (
-    <div className="mt-2 h-5 relative">
+    <div className="relative mt-2 h-5">
       <AnimatePresence mode="wait">
         <motion.div
           key={messageIndex}
@@ -83,6 +87,3 @@ export default function ModelStatus({ isReady }: ModelStatusProps) {
     </div>
   )
 }
-
-
-

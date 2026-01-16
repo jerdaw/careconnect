@@ -111,22 +111,22 @@ export default function ChatAssistant() {
     if (!input.trim() || isThinking) return
 
     const userMsg = input.trim()
-    
+
     // --- CRISIS CIRCUIT BREAKER (Client-Side) ---
     // Deterministic safety: prevents the request from ever reaching the LLM (Good Samaritan Defense).
     if (detectCrisis(userMsg)) {
       setInput("")
       // 1. Show user message so they feel heard (but blocked)
       setMessages((prev) => [...prev, { role: "user", content: userMsg }])
-      
+
       // 2. Inject System Message explaining the block
       setTimeout(() => {
         setMessages((prev) => [
-          ...prev, 
-          { 
-            role: "assistant", 
+          ...prev,
+          {
+            role: "assistant",
             content: t("crisisBlocked"),
-          }
+          },
         ])
       }, 500)
 
@@ -198,7 +198,7 @@ export default function ChatAssistant() {
       className="fixed right-6 bottom-6 z-50 flex flex-col items-end"
     >
       <EmergencyModal isOpen={isEmergencyModalOpen} onClose={() => setIsEmergencyModalOpen(false)} />
-      
+
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
@@ -240,7 +240,7 @@ export default function ChatAssistant() {
               </div>
 
               {/* Persistent Disclaimer Banner */}
-              <div className="bg-amber-50 px-4 py-2 text-xs text-amber-800 border-b border-amber-100 flex items-center justify-center gap-2 shrink-0">
+              <div className="flex shrink-0 items-center justify-center gap-2 border-b border-amber-100 bg-amber-50 px-4 py-2 text-xs text-amber-800">
                 <AlertTriangle className="h-3 w-3" />
                 <span className="font-medium">{t("verifyBanner")}</span>
               </div>
@@ -310,14 +310,14 @@ export default function ChatAssistant() {
                         </Button>
                       </div>
                     )}
-                  </div >
+                  </div>
                 ) : (
                   <>
                     {messages.length === 0 && (
                       <div className="py-8 text-center text-sm text-neutral-500">
-                         <div className="px-4 text-left">
-                            <AiDisclaimer />
-                         </div>
+                        <div className="px-4 text-left">
+                          <AiDisclaimer />
+                        </div>
                         <p>{t("welcome")}</p>
                         <p className="mt-2 text-xs opacity-70">{t("suggestion")}</p>
                       </div>
@@ -332,11 +332,16 @@ export default function ChatAssistant() {
                               : "rounded-bl-none border border-neutral-100 bg-white text-neutral-800 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
                           )}
                         >
-                          <ReactMarkdown 
+                          <ReactMarkdown
                             components={{
                               a: ({ ...props }) => (
-                                <a {...props} target="_blank" rel="noopener noreferrer" className="text-primary-600 underline hover:text-primary-700 font-medium" />
-                              )
+                                <a
+                                  {...props}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary-600 hover:text-primary-700 font-medium underline"
+                                />
+                              ),
                             }}
                           >
                             {m.content}
@@ -344,25 +349,31 @@ export default function ChatAssistant() {
                         </div>
                         {/* Outcome Feedback Loop (Visual Only) */}
                         {m.role === "assistant" && (
-                          <div className="flex gap-1 mt-1 opacity-40 hover:opacity-100 transition-opacity px-2">
-                             <Button 
-                               variant="ghost" 
-                               size="icon" 
-                               className={cn("h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800", m.feedback === "up" && "text-green-600 bg-green-50 dark:bg-green-900/20")} 
-                               title="Helpful"
-                               onClick={() => handleFeedback(i, "up")}
-                             >
-                               <ThumbsUp className="h-3 w-3" />
-                             </Button>
-                             <Button 
-                               variant="ghost" 
-                               size="icon" 
-                               className={cn("h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800", m.feedback === "down" && "text-red-600 bg-red-50 dark:bg-red-900/20")}
-                               title="Not Helpful"
-                               onClick={() => handleFeedback(i, "down")}
-                             >
-                               <ThumbsDown className="h-3 w-3" />
-                             </Button>
+                          <div className="mt-1 flex gap-1 px-2 opacity-40 transition-opacity hover:opacity-100">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={cn(
+                                "h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800",
+                                m.feedback === "up" && "bg-green-50 text-green-600 dark:bg-green-900/20"
+                              )}
+                              title="Helpful"
+                              onClick={() => handleFeedback(i, "up")}
+                            >
+                              <ThumbsUp className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={cn(
+                                "h-6 w-6 hover:bg-neutral-100 dark:hover:bg-neutral-800",
+                                m.feedback === "down" && "bg-red-50 text-red-600 dark:bg-red-900/20"
+                              )}
+                              title="Not Helpful"
+                              onClick={() => handleFeedback(i, "down")}
+                            >
+                              <ThumbsDown className="h-3 w-3" />
+                            </Button>
                           </div>
                         )}
                       </div>
@@ -395,11 +406,7 @@ export default function ChatAssistant() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={
-                      isOffline 
-                        ? t("unavailableOffline") 
-                        : isReady 
-                          ? t("placeholderReady") 
-                          : t("placeholderWaiting")
+                      isOffline ? t("unavailableOffline") : isReady ? t("placeholderReady") : t("placeholderWaiting")
                     }
                     disabled={!isReady || isThinking || isOffline}
                     className="focus:ring-primary-500 flex-1 rounded-full border-none bg-neutral-100 px-4 py-2 text-sm outline-none focus:ring-2 disabled:opacity-50 dark:bg-neutral-800"
@@ -417,7 +424,6 @@ export default function ChatAssistant() {
                 </form>
               </div>
             </Card>
-
           </motion.div>
         )}
       </AnimatePresence>

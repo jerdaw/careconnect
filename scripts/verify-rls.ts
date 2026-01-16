@@ -8,7 +8,9 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
 if (!supabaseUrl || !anonKey) {
-  console.error("❌ Missing Supabase credentials. Need NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local")
+  console.error(
+    "❌ Missing Supabase credentials. Need NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local"
+  )
   process.exit(1)
 }
 
@@ -21,7 +23,7 @@ async function verifyRLS() {
   // Test 1: Direct Table Access (Should FAIL or be Empty)
   console.log("\n1. Testing Direct Table Access (services)...")
   const { data: tableData, error: tableError } = await supabase.from("services").select("*").limit(1)
-  
+
   if (tableError) {
     console.log("✅ Success: Direct access blocked (" + tableError.message + ")")
   } else if (!tableData || tableData.length === 0) {

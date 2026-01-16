@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest"
 
 /**
  * Tests for ILIKE escaping in search APIs.
- * The escapeIlike function is inline in the route handlers, 
+ * The escapeIlike function is inline in the route handlers,
  * so we test the logic directly here.
  */
 describe("escapeIlike", () => {

@@ -20,7 +20,6 @@ logger.info("Action performed", { detail: "..." })
 ```
 
 1. **Hooks**:
-
    - Extract reusable logic into generic hooks in the `hooks/` directory.
    - Ensure hooks are SSR-safe (check `typeof window`).
 

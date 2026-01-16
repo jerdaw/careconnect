@@ -26,7 +26,7 @@ function fixServices() {
     let changed = false
 
     if (!service.name_fr || !service.name_fr.trim()) {
-      // For names, we usually keep the English name if it's a brand, 
+      // For names, we usually keep the English name if it's a brand,
       // but we can at least ensure it's not empty.
       service.name_fr = service.name
       changed = true

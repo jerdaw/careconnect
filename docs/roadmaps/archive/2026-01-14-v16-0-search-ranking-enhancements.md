@@ -799,18 +799,15 @@ The following 4 phases should be executed sequentially:
 > Before proceeding with implementation, confirm:
 
 1. **Database Access**: Do you have access to run migrations in Supabase?
-
    - [ ] Yes, I can run migrations
    - [ ] No, need to set up access
 
 2. **Enrichment Approach Preference**:
-
    - [ ] (A) Update `services.json` only (offline-first)
    - [ ] (B) SQL migration to update DB directly
    - [ ] (C) Both (recommended for full-stack consistency)
 
 3. **Deploy Timeline**:
-
    - [ ] (A) Implement immediately after approval
    - [ ] (B) Schedule for future sprint/version
 

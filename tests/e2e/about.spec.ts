@@ -40,14 +40,14 @@ test.describe("About & Partners Pages", () => {
 
   test("Navigation links work", async ({ page, isMobile }) => {
     await page.goto("/")
-    
+
     // Check About Link
     if (isMobile) {
       await page.getByRole("button", { name: "Open menu" }).click()
     }
     await page.getByRole("link", { name: "About" }).first().click()
     await expect(page).toHaveURL(/.*\/about/)
-    
+
     // Check Partners Link from About Page
     // On mobile, secondary navs might be different from desktop
     // But page content links should be accessible

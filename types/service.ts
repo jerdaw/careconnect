@@ -36,12 +36,12 @@ export type ServiceScope = "kingston" | "ontario" | "canada"
  * Authority categories for search ranking (v16.0).
  * Used to prioritize official and healthcare sources over community data.
  */
-export type AuthorityTier = 
-  | "government"           // Federal/provincial/municipal agencies
-  | "healthcare"           // Hospitals, LHIN, authorized clinics
+export type AuthorityTier =
+  | "government" // Federal/provincial/municipal agencies
+  | "healthcare" // Hospitals, LHIN, authorized clinics
   | "established_nonprofit" // Registered charities, 5+ years operation
-  | "community"            // Grassroots, newer organizations
-  | "unverified"           // No organizational verification
+  | "community" // Grassroots, newer organizations
+  | "unverified" // No organizational verification
 
 /**
  * Indicators used to infer organizational capacity and resource availability (v16.0).
@@ -162,13 +162,13 @@ export interface Service {
   status?: string
 
   hours?: ServiceHours // Updated from string to structured object
-  
+
   /**
    * Human-readable hours text (e.g. "Mon-Fri 9-5 (Closed 12-1)")
    */
   hours_text?: string
   hours_text_fr?: string
-  
+
   fees?: string
   fees_fr?: string
 
@@ -248,4 +248,3 @@ export interface Service {
    */
   distance?: number
 }
-

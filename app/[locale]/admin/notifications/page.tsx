@@ -12,7 +12,7 @@ import { BellRing, Send } from "lucide-react"
 
 export default function AdminNotificationsPage() {
   const { toast } = useToast()
-  
+
   const [title, setTitle] = useState("")
   const [message, setMessage] = useState("")
   const [type, setType] = useState("service_update")
@@ -20,7 +20,7 @@ export default function AdminNotificationsPage() {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [isSubmitting, setIsSubmitting] = useState(false)
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  
+
   const handleSend = async () => {
     setIsSubmitting(true)
     try {
@@ -31,7 +31,7 @@ export default function AdminNotificationsPage() {
           title,
           message,
           type,
-          url: "/" // Default to home
+          url: "/", // Default to home
         }),
       })
 
@@ -44,7 +44,7 @@ export default function AdminNotificationsPage() {
         setTitle("")
         setMessage("")
       } else {
-        const errorData = await response.json() as { error?: string }
+        const errorData = (await response.json()) as { error?: string }
         throw new Error(errorData.error || "Failed to send")
       }
     } catch (err) {
@@ -59,23 +59,19 @@ export default function AdminNotificationsPage() {
   }
 
   return (
-    <div className="container py-10 max-w-2xl">
+    <div className="container max-w-2xl py-10">
       <div className="mb-8 space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Notification Console</h1>
-        <p className="text-muted-foreground">
-          Send push notifications to all subscribed users.
-        </p>
+        <p className="text-muted-foreground">Send push notifications to all subscribed users.</p>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-             <BellRing className="h-5 w-5" />
-             Compose Message
+            <BellRing className="h-5 w-5" />
+            Compose Message
           </CardTitle>
-          <CardDescription>
-             This will be sent to all users who have opted in.
-          </CardDescription>
+          <CardDescription>This will be sent to all users who have opted in.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
@@ -93,35 +89,32 @@ export default function AdminNotificationsPage() {
           </div>
 
           <div className="space-y-2">
-             <Label>Title</Label>
-             <Input 
-                placeholder="e.g. Shelter Capacity Alert" 
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-             />
+            <Label>Title</Label>
+            <Input placeholder="e.g. Shelter Capacity Alert" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
 
           <div className="space-y-2">
-             <Label>Message Body</Label>
-             <Textarea 
-                placeholder="Details about the update..." 
-                value={message}
-                onChange={e => setMessage(e.target.value)}
-                rows={4}
-             />
+            <Label>Message Body</Label>
+            <Textarea
+              placeholder="Details about the update..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={4}
+            />
           </div>
 
-          <div className="pt-4 flex justify-end">
+          <div className="flex justify-end pt-4">
             <Button onClick={handleSend} disabled={!title || !message}>
-               <Send className="mr-2 h-4 w-4" />
-               Send Broadcast
+              <Send className="mr-2 h-4 w-4" />
+              Send Broadcast
             </Button>
           </div>
         </CardContent>
       </Card>
-      
-      <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 rounded text-sm">
-         <strong>Note:</strong> To make this functional, you need to implement a Next.js API route (`/api/admin/push`) that uses the **OneSignal REST API Key** to trigger the actual send.
+
+      <div className="mt-8 rounded bg-amber-50 p-4 text-sm text-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
+        <strong>Note:</strong> To make this functional, you need to implement a Next.js API route (`/api/admin/push`)
+        that uses the **OneSignal REST API Key** to trigger the actual send.
       </div>
     </div>
   )

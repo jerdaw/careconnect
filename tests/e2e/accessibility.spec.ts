@@ -3,59 +3,57 @@ import AxeBuilder from "@axe-core/playwright"
 import { mockSupabase } from "./utils"
 
 test.describe("WCAG 2.1 AA Compliance", () => {
-    test.beforeEach(async ({ page }) => {
-        await mockSupabase(page)
-    })
+  test.beforeEach(async ({ page }) => {
+    await mockSupabase(page)
+  })
 
-    test("homepage has no critical accessibility violations", async ({ page }) => {
-        await page.goto("/")
-        await page.waitForURL(/.*\/en/) // Wait for redirect to english locale
-        await page.waitForLoadState("domcontentloaded")
-        await page.waitForSelector("#main-content") 
-        
-        // Allow extra time for any secondary client-side hydration or animations
-        await page.waitForTimeout(5000) 
-        
-        const results = await new AxeBuilder({ page })
-            .withTags(["wcag2a", "wcag2aa"])
-            .analyze()
-        
-        // Filter for critical/serious issues to avoid failing on minor warnings
-        const violations = results.violations.filter(v => v.impact === "critical" || v.impact === "serious")
-        
-        if (violations.length > 0) {
-            console.log("Accessibility Violations:", JSON.stringify(violations, null, 2))
-        }
-        
-        expect(violations).toHaveLength(0)
-    })
+  test("homepage has no critical accessibility violations", async ({ page }) => {
+    await page.goto("/")
+    await page.waitForURL(/.*\/en/) // Wait for redirect to english locale
+    await page.waitForLoadState("domcontentloaded")
+    await page.waitForSelector("#main-content")
 
-    test("skip link is keyboard accessible", async ({ page }) => {
-        await page.goto("/")
-        await page.waitForURL(/.*\/en/)
-        await page.waitForLoadState("domcontentloaded")
-        await page.waitForSelector("#main-content")
-        
-        // Allow extra time for any secondary client-side hydration or animations
-        await page.waitForTimeout(5000)
-        
-        // Ensure initial focus is on the document body or reset
-        await page.bringToFront()
-        
-        await page.keyboard.press("Tab")
-        
-        const skipLink = page.getByRole("link", { name: /skip to main/i })
-        await expect(skipLink).toBeVisible()
-        // Note: Skip link visibility on Tab is tested, but focus state is browser-dependent
-    })
+    // Allow extra time for any secondary client-side hydration or animations
+    await page.waitForTimeout(5000)
 
-    test("Accessibility Policy page loads and contains AODA commitments", async ({ page }) => {
-        await page.goto("/accessibility")
-        await page.waitForLoadState("domcontentloaded")
-        
-        await expect(page.getByRole("heading", { name: "Accessibility Policy" })).toBeVisible()
-        await expect(page.getByText("Multi-Year Accessibility Plan")).toBeVisible()
-        await expect(page.getByText("2026", { exact: true })).toBeVisible()
-        await expect(page.getByText("AODA")).toBeVisible()
-    })
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze()
+
+    // Filter for critical/serious issues to avoid failing on minor warnings
+    const violations = results.violations.filter((v) => v.impact === "critical" || v.impact === "serious")
+
+    if (violations.length > 0) {
+      console.log("Accessibility Violations:", JSON.stringify(violations, null, 2))
+    }
+
+    expect(violations).toHaveLength(0)
+  })
+
+  test("skip link is keyboard accessible", async ({ page }) => {
+    await page.goto("/")
+    await page.waitForURL(/.*\/en/)
+    await page.waitForLoadState("domcontentloaded")
+    await page.waitForSelector("#main-content")
+
+    // Allow extra time for any secondary client-side hydration or animations
+    await page.waitForTimeout(5000)
+
+    // Ensure initial focus is on the document body or reset
+    await page.bringToFront()
+
+    await page.keyboard.press("Tab")
+
+    const skipLink = page.getByRole("link", { name: /skip to main/i })
+    await expect(skipLink).toBeVisible()
+    // Note: Skip link visibility on Tab is tested, but focus state is browser-dependent
+  })
+
+  test("Accessibility Policy page loads and contains AODA commitments", async ({ page }) => {
+    await page.goto("/accessibility")
+    await page.waitForLoadState("domcontentloaded")
+
+    await expect(page.getByRole("heading", { name: "Accessibility Policy" })).toBeVisible()
+    await expect(page.getByText("Multi-Year Accessibility Plan")).toBeVisible()
+    await expect(page.getByText("2026", { exact: true })).toBeVisible()
+    await expect(page.getByText("AODA")).toBeVisible()
+  })
 })

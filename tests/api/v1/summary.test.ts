@@ -17,14 +17,14 @@ describe("GET /api/v1/services/[id]/summary", () => {
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       single: vi.fn(),
-    };
-    (createClient as any).mockResolvedValue(mockSupabase)
+    }
+    ;(createClient as any).mockResolvedValue(mockSupabase)
   })
 
   it("returns 400 if service ID is missing", async () => {
     const req = new Request("http://localhost/api/v1/services//summary")
     const res = await GET(req as any, { params: Promise.resolve({ id: "" }) })
-    const json = await res.json() as any
+    const json = (await res.json()) as any
 
     expect(res.status).toBe(400)
     expect(json.success).toBe(false)
@@ -35,7 +35,7 @@ describe("GET /api/v1/services/[id]/summary", () => {
 
     const req = new Request("http://localhost/api/v1/services/svc-123/summary")
     const res = await GET(req as any, { params: Promise.resolve({ id: "svc-123" }) })
-    const json = await res.json() as any
+    const json = (await res.json()) as any
 
     expect(res.status).toBe(404)
     expect(json.success).toBe(false)
@@ -51,7 +51,7 @@ describe("GET /api/v1/services/[id]/summary", () => {
 
     const req = new Request("http://localhost/api/v1/services/svc-123/summary")
     const res = await GET(req as any, { params: Promise.resolve({ id: "svc-123" }) })
-    const json = await res.json() as any
+    const json = (await res.json()) as any
 
     expect(res.status).toBe(200)
     expect(json.success).toBe(true)

@@ -37,36 +37,36 @@ jobs:
           script: |
             const staleIds = '${{ steps.staleness.outputs.stale_ids }}'.split(',');
             const staleCount = parseInt('${{ steps.staleness.outputs.stale_count }}');
-            
+
             const body = `## 🔴 Stale Services Detected
-            
+
             **${staleCount} service(s)** have not been verified in over 6 months.
-            
+
             Per the [Governance Protocol](docs/governance.md), services not verified in >6 months should be downgraded to L0 (hidden).
-            
+
             ### Services Requiring Attention
-            
+
             ${staleIds.map(id => `- [ ] \`${id}\``).join('\n')}
-            
+
             ### Actions Required
-            
+
             For each service above:
             1. Verify the service is still operating (call phone, check website)
             2. Update \`provenance.verified_at\` in \`data/services.json\`
             3. OR downgrade \`verification_level\` to "L0" if no longer valid
-            
+
             ### Verification Checklist
-            
+
             - [ ] Phone number connects
             - [ ] Website loads
             - [ ] Hours are current
             - [ ] Address is correct
             - [ ] French translation is current
-            
+
             ---
             *This issue was automatically created by the staleness check workflow.*
             `;
-            
+
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,

@@ -63,19 +63,19 @@ export default async function ServicePage({ params, searchParams }: Props) {
 
   if (view === "simple") {
     return (
-        <SimplifiedServiceView
-            service={service}
-            locale={locale}
-            translations={{
-                standardView: t("standardView"),
-                whatIsIt: t("whatIsIt"),
-                howToGetHelp: t("howToGetHelp"),
-                callUs: t("callUs"),
-                visitUs: t("visitUs"),
-                openHours: t("openHours"),
-                summaryComingSoon: t("summaryComingSoon")
-            }}
-        />
+      <SimplifiedServiceView
+        service={service}
+        locale={locale}
+        translations={{
+          standardView: t("standardView"),
+          whatIsIt: t("whatIsIt"),
+          howToGetHelp: t("howToGetHelp"),
+          callUs: t("callUs"),
+          visitUs: t("visitUs"),
+          openHours: t("openHours"),
+          summaryComingSoon: t("summaryComingSoon"),
+        }}
+      />
     )
   }
 
@@ -96,7 +96,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
       <div className="relative overflow-hidden border-b border-neutral-200 bg-white pt-32 pb-12 dark:border-neutral-800 dark:bg-neutral-900">
         <div className="from-primary-50/50 dark:from-primary-950/20 pointer-events-none absolute inset-0 bg-gradient-to-br to-transparent" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {(service.intent_category === IntentCategory.Crisis) && (
+          {service.intent_category === IntentCategory.Crisis && (
             <div className="mb-8">
               <EmergencyDisclaimer variant="banner" />
             </div>
@@ -108,7 +108,10 @@ export default async function ServicePage({ params, searchParams }: Props) {
                   {service.intent_category}
                 </Badge>
                 {service.verification_level === VerificationLevel.L3 ? (
-                  <Badge variant="primary" className="gap-1.5 py-1 text-sm bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">
+                  <Badge
+                    variant="primary"
+                    className="gap-1.5 border-blue-200 bg-blue-50 py-1 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                  >
                     <ShieldCheck className="h-4 w-4" /> {tBadge("L3")}
                   </Badge>
                 ) : isVerified ? (
@@ -123,13 +126,11 @@ export default async function ServicePage({ params, searchParams }: Props) {
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
                     <div>
-                      <h3 className="font-semibold px-2">
+                      <h3 className="px-2 font-semibold">
                         {service.status === "Merged" ? t("serviceMerged") : t("permanentlyClosed")}
                       </h3>
-                      <p className="mt-1 text-sm px-2">
-                        {service.status === "Merged" 
-                          ? t("mergedDescription") 
-                          : t("closedDescription")}
+                      <p className="mt-1 px-2 text-sm">
+                        {service.status === "Merged" ? t("mergedDescription") : t("closedDescription")}
                       </p>
                     </div>
                   </div>
@@ -146,7 +147,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                     <MapPin className="h-5 w-5 shrink-0" />
                     <span className="text-lg">{address}</span>
                   </div>
-                  
+
                   {/* Map Integration */}
                   <div className="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800">
                     <iframe
@@ -165,7 +166,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
               )}
             </div>
 
-            <ServiceActionBar 
+            <ServiceActionBar
               serviceId={service.id}
               serviceName={name}
               plainLanguageLabel={t("plainLanguage")}
@@ -338,7 +339,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                           frameBorder="0"
                           scrolling="no"
                           src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                          className="grayscale-[50%] transition-all hover:grayscale-0 dark:invert dark:hue-rotate-180"
+                          className="grayscale-[50%] transition-all hover:grayscale-0 dark:hue-rotate-180 dark:invert"
                         />
                       </div>
                     </div>
@@ -354,26 +355,27 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       <p className="mb-2 text-sm font-medium text-neutral-500">{t("hours")}</p>
                       <div className="text-sm">
                         {service.hours_text && (
-                          <div className="mb-3 whitespace-pre-line text-neutral-900 font-medium dark:text-neutral-200">
+                          <div className="mb-3 font-medium whitespace-pre-line text-neutral-900 dark:text-neutral-200">
                             {service.hours_text}
                           </div>
                         )}
-                        {service.hours && ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => {
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          const dayHours = (service.hours as any)[day]
-                          if (!dayHours) return null
-                          return (
-                            <div
-                              key={day}
-                              className="flex justify-between border-b border-neutral-100 py-0.5 last:border-0 dark:border-neutral-800"
-                            >
-                              <span className="w-24 text-neutral-500 capitalize dark:text-neutral-400">{day}</span>
-                              <span className="font-medium text-neutral-900 dark:text-neutral-200">
-                                {dayHours.open} - {dayHours.close}
-                              </span>
-                            </div>
-                          )
-                        })}
+                        {service.hours &&
+                          ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const dayHours = (service.hours as any)[day]
+                            if (!dayHours) return null
+                            return (
+                              <div
+                                key={day}
+                                className="flex justify-between border-b border-neutral-100 py-0.5 last:border-0 dark:border-neutral-800"
+                              >
+                                <span className="w-24 text-neutral-500 capitalize dark:text-neutral-400">{day}</span>
+                                <span className="font-medium text-neutral-900 dark:text-neutral-200">
+                                  {dayHours.open} - {dayHours.close}
+                                </span>
+                              </div>
+                            )
+                          })}
                         {service.hours?.notes && (
                           <p className="mt-2 rounded bg-neutral-50 p-2 text-xs text-neutral-400 italic dark:bg-neutral-800/50">
                             {t("note")} {service.hours.notes}

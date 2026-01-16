@@ -14,11 +14,11 @@ const createMockService = (overrides: Partial<Service> = {}): Service => ({
     verified_by: "system",
     verified_at: new Date().toISOString(),
     evidence_url: "https://example.com",
-    method: "manual"
+    method: "manual",
   },
   identity_tags: [
     { tag: "Indigenous", evidence_url: "https://example.com/indigenous" },
-    { tag: "Families", evidence_url: "https://example.com/families" }
+    { tag: "Families", evidence_url: "https://example.com/families" },
   ],
   synthetic_queries: ["free food", "hungry help"],
   synthetic_queries_fr: ["nourriture gratuite"],
@@ -49,8 +49,8 @@ describe("Search Scoring", () => {
 
     it("should match synthetic queries (French)", () => {
       const { score } = scoreServiceKeyword(mockService, ["gratuit"])
-      // 'nourriture gratuite' contains 'gratuit' when normalized usually? 
-      // Actually normalized might keep 'e'. 
+      // 'nourriture gratuite' contains 'gratuit' when normalized usually?
+      // Actually normalized might keep 'e'.
       // Let's check logic: normalized 'nourriture gratuite' includes 'gratuit'?
       // If 'gratuit' is token. 'nourriture gratuite'.includes('gratuit') is true.
       expect(score).toBeGreaterThanOrEqual(WEIGHTS.syntheticQuery)
@@ -79,9 +79,9 @@ describe("Search Scoring", () => {
       const context: UserContext = {
         identities: ["indigenous"],
         ageGroup: "youth",
-        hasOptedIn: true
+        hasOptedIn: true,
       }
-      
+
       const { score } = scoreServiceKeyword(mockService, ["indigenous"], undefined, { userContext: context })
       // Base score from tag match (WEIGHTS.identityTag)
       // Multiplied by boost (1.1 for 1 matching tag)
@@ -100,28 +100,28 @@ describe("Search Scoring", () => {
         synthetic_queries_fr: undefined,
         identity_tags: undefined,
         description_fr: undefined,
-        name_fr: undefined
+        name_fr: undefined,
       })
-      
+
       // Should not throw
       const { score } = scoreServiceKeyword(sparseService, ["kingston"])
       expect(score).toBeGreaterThan(0) // Matches name
     })
   })
 
-  describe('calculateScore (Placeholder)', () => {
-    it('should return a non-negative score', () => {
+  describe("calculateScore (Placeholder)", () => {
+    it("should return a non-negative score", () => {
       // Current implementation is a placeholder but might have identity boost logic
       const score = calculateScore(mockService, "query")
       expect(score).toBeGreaterThanOrEqual(0)
     })
-    
-    it('should apply identity boost', () => {
-       const context: UserContext = {
+
+    it("should apply identity boost", () => {
+      const context: UserContext = {
         identities: ["indigenous"],
         ageGroup: "youth",
-        hasOptedIn: true
-      }     
+        hasOptedIn: true,
+      }
       // calculateScore has some identity boost logic in the placeholder
       // but base score is 0. 0 * boost = 0.
       // So this test might just verify it doesn't crash unless we modify the impl to have a base score.

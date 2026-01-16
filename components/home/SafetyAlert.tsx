@@ -1,5 +1,4 @@
-import { AlertTriangle, Phone
- } from "lucide-react"
+import { AlertTriangle, Phone } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
 
@@ -47,12 +46,8 @@ export default function SafetyAlert({ query, category }: SafetyAlertProps) {
 
               <div className="flex-1">
                 <h3 className="text-xl leading-tight font-bold">{t("title")}</h3>
-                <p className="mt-1 font-medium text-red-50 opacity-90">
-                  {t("message")}
-                </p>
-                <p className="mt-2 text-sm text-red-100/80">
-                  {t("disclaimer")}
-                </p>
+                <p className="mt-1 font-medium text-red-50 opacity-90">{t("message")}</p>
+                <p className="mt-2 text-sm text-red-100/80">{t("disclaimer")}</p>
               </div>
 
               <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row">

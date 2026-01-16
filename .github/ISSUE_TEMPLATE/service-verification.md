@@ -47,7 +47,6 @@ assignees: ""
 ## After Verification
 
 1. Update `data/services.json`:
-
    - Set `provenance.verified_at` to today (ISO format)
    - Set `provenance.verified_by` to your name/handle
    - Update any changed information

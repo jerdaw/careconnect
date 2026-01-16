@@ -367,7 +367,7 @@ ORDER BY request_count DESC;
 ```jsonc
 {
   "success": true,
-  "message": "Thank you for your feedback"
+  "message": "Thank you for your feedback",
 }
 ```
 
@@ -389,9 +389,9 @@ ORDER BY request_count DESC;
 {
   "fieldUpdates": {
     "phone": "+1-613-123-4567",
-    "hours": { "monday": { "open": "09:00", "close": "17:00" } }
+    "hours": { "monday": { "open": "09:00", "close": "17:00" } },
   },
-  "justification": "string (optional, max 500 chars)"
+  "justification": "string (optional, max 500 chars)",
 }
 ```
 
@@ -402,7 +402,7 @@ ORDER BY request_count DESC;
   "success": true,
   "requestId": "uuid",
   "status": "pending",
-  "message": "Update request submitted for review"
+  "message": "Update request submitted for review",
 }
 ```
 
@@ -1388,27 +1388,21 @@ v14.0 is considered "done" when:
 ## 14) Open Questions (Resolve During Planning)
 
 1. **Translation Budget**: Should we allocate budget for professional translation (FR, AR critical)? Or accept machine translation quality for v14.0?
-
    - **Recommendation**: Start with machine translation, budget $500 for FR review by certified translator (critical strings only)
 
 2. **Plain-Language Scope**: 50 services or reduce to 25 to ship faster?
-
    - **Recommendation**: Start with 25 (top priority services: Crisis, Food, Housing), expand to 50 in v14.1
 
 3. **Feedback Moderation**: Should we add profanity filter or manual review queue before partners see feedback?
-
    - **Recommendation**: Add simple keyword filter (blocklist), auto-dismiss obvious spam, manual review for edge cases
 
 4. **Update Request Auto-Approval**: Should we auto-approve simple changes (e.g., phone number) or require manual review for all?
-
    - **Recommendation**: Manual review for all in v14.0, implement auto-approval rules in v15.0 after observing patterns
 
 5. **Printable Cards Branding**: Should resource cards include QR code to service detail page?
-
    - **Recommendation**: Yes, add QR code in bottom-right corner for easy mobile access
 
 6. **Public QI Reports**: Should we publish raw metrics (e.g., "234 issues reported") or only positive framing (e.g., "234 issues resolved")?
-
    - **Recommendation**: Transparent but positive framing: "234 issues resolved" + "5 unmet needs identified" shows responsiveness
 
 7. **Crisis Escalation UI**: Should we add "Call 988" button directly on crisis service pages or just text?

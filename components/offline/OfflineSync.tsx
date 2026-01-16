@@ -12,14 +12,16 @@ export function OfflineSync() {
     const runSync = () => {
       syncOfflineData()
         .then((result) => {
-           if (result.status === 'synced') {
-             logger.info("Offline data synced successfully", { component: "OfflineSync", action: "initial_sync" })
-           }
+          if (result.status === "synced") {
+            logger.info("Offline data synced successfully", { component: "OfflineSync", action: "initial_sync" })
+          }
         })
         .catch((err) => logger.error("Offline sync failed", err, { component: "OfflineSync" }))
-      
+
       // Also try to sync pending feedback
-      syncPendingFeedback().catch((err) => logger.error("Pending feedback sync failed", err, { component: "OfflineSync" }))
+      syncPendingFeedback().catch((err) =>
+        logger.error("Pending feedback sync failed", err, { component: "OfflineSync" })
+      )
     }
 
     if ("requestIdleCallback" in window) {
@@ -30,12 +32,12 @@ export function OfflineSync() {
 
     // Optional: Listen for online event to re-sync
     const handleOnline = () => {
-        logger.info("Network restored, checking for updates...", { component: "OfflineSync", action: "network_restore" })
-        runSync()
+      logger.info("Network restored, checking for updates...", { component: "OfflineSync", action: "network_restore" })
+      runSync()
     }
-    
-    window.addEventListener('online', handleOnline)
-    return () => window.removeEventListener('online', handleOnline)
+
+    window.addEventListener("online", handleOnline)
+    return () => window.removeEventListener("online", handleOnline)
   }, [])
 
   return null

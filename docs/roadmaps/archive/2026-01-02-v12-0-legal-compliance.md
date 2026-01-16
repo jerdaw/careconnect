@@ -1163,14 +1163,12 @@ operating. This is the minimum level for public visibility.
 **Verification Process**:
 
 1. **Phone Verification**
-
    - Call during business hours
    - Confirm organization name
    - Confirm service is offered
    - Document: Date, time, person spoken to (first name only)
 
 2. **Website Verification**
-
    - Navigate to URL
    - Confirm page loads without error
    - Confirm organization name matches
@@ -1300,14 +1298,12 @@ Per the [Governance Protocol](governance.md):
 All verification activities must be documented:
 
 1. **JSON Service Record**
-
    - `provenance.verified_at`: ISO 8601 datetime
    - `provenance.verified_by`: Verifier identifier
    - `provenance.method`: Verification method used
    - `provenance.evidence_url`: Link to evidence
 
 2. **Git History**
-
    - Commit message: "[verify] Service Name - method"
    - Git blame provides audit history
 
@@ -1664,7 +1660,6 @@ Create formal PIA report with findings and recommendations.
 Public-facing policy covering:
 
 1. **Prohibited Content**
-
    - Spam or commercial advertising
    - Defamatory or libelous content
    - Content that violates privacy
@@ -1672,19 +1667,16 @@ Public-facing policy covering:
    - Hateful or discriminatory content
 
 2. **User Submissions**
-
    - Service submissions reviewed before publication
    - Feedback reviewed for appropriateness
    - Right to edit or reject submissions
 
 3. **Reporting Process**
-
    - How to report problematic content
    - Response timeline (5 business days)
    - Anonymous reporting option
 
 4. **Appeals**
-
    - How to appeal moderation decisions
    - Review process
    - Final decision authority
@@ -1770,19 +1762,16 @@ Display in chat interface before first message.
 Document formal processes for:
 
 1. **Service Information Feedback**
-
    - Report via button on service pages
    - Response within 5 business days
    - Status updates provided
 
 2. **Privacy Complaints**
-
    - Email: privacy@careconnect.ca
    - Response within 10 business days
    - Escalation to Privacy Commissioner
 
 3. **Accessibility Complaints**
-
    - Email: accessibility@careconnect.ca
    - Alternative formats available
    - Response within 5 business days

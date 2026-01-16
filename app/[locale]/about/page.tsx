@@ -89,9 +89,7 @@ export default function AboutPage() {
                   <metric.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-neutral-900 dark:text-white">{metric.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                  {metric.description}
-                </p>
+                <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">{metric.description}</p>
               </Card>
             ))}
           </div>
@@ -126,13 +124,13 @@ export default function AboutPage() {
             <div className="prose prose-lg mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
               <p>{t("governanceText")}</p>
             </div>
-            
-             {/* Land Acknowledgment */}
+
+            {/* Land Acknowledgment */}
             <div className="mt-16 border-t border-neutral-200 pt-16 dark:border-neutral-800">
-               <h2 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">{t("landAcknowledgment.title")}</h2>
-               <p className="mx-auto max-w-3xl text-neutral-600 dark:text-neutral-400">
-                 {t("landAcknowledgment.text")}
-               </p>
+              <h2 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">
+                {t("landAcknowledgment.title")}
+              </h2>
+              <p className="mx-auto max-w-3xl text-neutral-600 dark:text-neutral-400">{t("landAcknowledgment.text")}</p>
             </div>
           </div>
         </Section>

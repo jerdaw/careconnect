@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-export type ScopeFilter = 'all' | 'kingston' | 'provincial'
+export type ScopeFilter = "all" | "kingston" | "provincial"
 
 interface ScopeFilterBarProps {
   counts: { all: number; local: number; provincial: number }
@@ -17,12 +17,7 @@ interface ScopeFilterBarProps {
  * Contextual filter bar that shows scope options when results span multiple scopes,
  * or a simple "XX Results" text when results are homogeneous.
  */
-export default function ScopeFilterBar({
-  counts,
-  activeScope,
-  onScopeChange,
-  totalCount,
-}: ScopeFilterBarProps) {
+export default function ScopeFilterBar({ counts, activeScope, onScopeChange, totalCount }: ScopeFilterBarProps) {
   const t = useTranslations("Search")
 
   // If results are homogeneous (all local or all provincial), show simple count in same style
@@ -31,17 +26,19 @@ export default function ScopeFilterBar({
   if (isHomogeneous) {
     return (
       <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
-        <span className="text-sm font-medium text-primary-600 dark:text-primary-400">{totalCount}</span>
-        <span className="text-sm text-neutral-500 dark:text-neutral-400">{totalCount === 1 ? 'Result' : 'Results'}</span>
+        <span className="text-primary-600 dark:text-primary-400 text-sm font-medium">{totalCount}</span>
+        <span className="text-sm text-neutral-500 dark:text-neutral-400">
+          {totalCount === 1 ? "Result" : "Results"}
+        </span>
       </div>
     )
   }
 
   // Mixed results - show scope selector with "All XX" as first option
   const scopes: { id: ScopeFilter; label: string; count: number }[] = [
-    { id: 'all', label: t('scope.all'), count: counts.all },
-    { id: 'kingston', label: t('scope.local'), count: counts.local },
-    { id: 'provincial', label: t('scope.provincial'), count: counts.provincial },
+    { id: "all", label: t("scope.all"), count: counts.all },
+    { id: "kingston", label: t("scope.local"), count: counts.local },
+    { id: "provincial", label: t("scope.provincial"), count: counts.provincial },
   ]
 
   return (

@@ -21,16 +21,16 @@ function escapeRegex(string: string) {
 /**
  * Highlights matching tokens in text by wrapping them in <mark> tags.
  * Case-insensitive match.
- * 
- * Security: HTML entities are escaped FIRST to prevent XSS, 
+ *
+ * Security: HTML entities are escaped FIRST to prevent XSS,
  * then highlighting is applied.
  */
 export function highlightMatches(text: string, tokens: string[]): string {
   if (!text) return ""
-  
+
   // SECURITY: Always escape HTML first to prevent XSS
   let result = escapeHtml(text)
-  
+
   if (!tokens || tokens.length === 0) return result
 
   // Sort tokens by length (descending) to match longer phrases first if overlapping
@@ -48,4 +48,3 @@ export function highlightMatches(text: string, tokens: string[]): string {
 
   return result
 }
-

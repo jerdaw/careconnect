@@ -24,8 +24,11 @@ export function getCachedServices<T>(): T | null {
 export function setCachedServices<T>(data: T): void {
   if (typeof window === "undefined") return
 
-  localStorage.setItem(CACHE_KEY, JSON.stringify({
-    data,
-    timestamp: Date.now(),
-  }))
+  localStorage.setItem(
+    CACHE_KEY,
+    JSON.stringify({
+      data,
+      timestamp: Date.now(),
+    })
+  )
 }

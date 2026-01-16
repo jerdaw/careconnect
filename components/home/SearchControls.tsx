@@ -44,7 +44,6 @@ export default function SearchControls({
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap items-center justify-center gap-2">
-
         {/* Open Now Toggle */}
         <Button
           variant={openNow ? "default" : "pill"}
@@ -75,11 +74,7 @@ export default function SearchControls({
       </div>
 
       {/* Category Scroll */}
-      <div
-        className="flex flex-wrap justify-center gap-2"
-        role="group"
-        aria-label={t("label")}
-      >
+      <div className="flex flex-wrap justify-center gap-2" role="group" aria-label={t("label")}>
         <Button
           variant={!category ? "default" : "secondary"}
           size="sm"
@@ -99,11 +94,11 @@ export default function SearchControls({
             className={cn(
               "rounded-full whitespace-nowrap transition-all duration-300",
               cat === "Crisis" &&
-              !category &&
-              "border-red-200 bg-red-50 text-red-700 shadow-sm hover:bg-red-100 hover:text-red-800 dark:border-red-800/50 dark:bg-red-900/20 dark:text-red-300 dark:hover:bg-red-900/40",
+                !category &&
+                "border-red-200 bg-red-50 text-red-700 shadow-sm hover:bg-red-100 hover:text-red-800 dark:border-red-800/50 dark:bg-red-900/20 dark:text-red-300 dark:hover:bg-red-900/40",
               cat === "Crisis" &&
-              category === "Crisis" &&
-              "border-transparent bg-red-600 text-white shadow-md shadow-red-500/30 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+                category === "Crisis" &&
+                "border-transparent bg-red-600 text-white shadow-md shadow-red-500/30 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
             )}
           >
             {t(cat.toLowerCase())}
@@ -113,4 +108,3 @@ export default function SearchControls({
     </div>
   )
 }
-

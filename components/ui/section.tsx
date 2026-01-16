@@ -19,11 +19,11 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
     // Animation props
     const animationProps = animate
       ? {
-        initial: "initial",
-        whileInView: "animate",
-        viewport: { once: true, margin: "-100px" },
-        variants: fadeInUp,
-      }
+          initial: "initial",
+          whileInView: "animate",
+          viewport: { once: true, margin: "-100px" },
+          variants: fadeInUp,
+        }
       : {}
 
     return (

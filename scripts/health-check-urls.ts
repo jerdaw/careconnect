@@ -102,8 +102,8 @@ async function main() {
     const statusIcon = isOk
       ? `${GREEN}✅${RESET}`
       : result.status === "error"
-      ? `${RED}❌${RESET}`
-      : `${YELLOW}⚠️${RESET}`
+        ? `${RED}❌${RESET}`
+        : `${YELLOW}⚠️${RESET}`
 
     // Using a more readable multi-line output for CI/Terminal
     console.log(

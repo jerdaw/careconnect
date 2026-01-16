@@ -8,14 +8,17 @@ import { redirect } from "next/navigation"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) {
     redirect("/login")
   }
 
   // Fetch pending update requests for this user
-  const { count: pendingUpdates } = await supabase.from("service_update_requests")
+  const { count: pendingUpdates } = await supabase
+    .from("service_update_requests")
     .select("*", { count: "exact", head: true })
     .eq("requested_by", user.email || "")
     .eq("status", "pending")

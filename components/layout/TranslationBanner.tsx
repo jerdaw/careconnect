@@ -30,9 +30,9 @@ export function TranslationBanner() {
   }
 
   return (
-    <div 
+    <div
       // Positioned above the chat assistant (approx bottom-24, right-4)
-      className="fixed bottom-24 right-4 z-[40] max-w-[300px] animate-in fade-in slide-in-from-bottom-4 duration-500"
+      className="animate-in fade-in slide-in-from-bottom-4 fixed right-4 bottom-24 z-[40] max-w-[300px] duration-500"
       role="status"
     >
       {/* Adjust backdrop-blur-* to control glass effect intensity (sm, md, lg, xl) */}
@@ -44,19 +44,15 @@ export function TranslationBanner() {
                 <Sparkles className="h-4 w-4 text-indigo-700 dark:text-indigo-300" />
               </div>
             </div>
-            
+
             <div className="space-y-1">
-              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                {t("title")}
-              </p>
-              <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
-                {t("message")}
-              </p>
+              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">{t("title")}</p>
+              <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">{t("message")}</p>
             </div>
           </div>
 
           <div className="flex justify-end">
-             <button
+            <button
               onClick={handleDismiss}
               className="rounded-lg border border-white/20 bg-white/40 px-3 py-1.5 text-xs font-semibold text-neutral-800 shadow-sm transition-colors hover:bg-white/60 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
             >

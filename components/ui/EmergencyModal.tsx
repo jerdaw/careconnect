@@ -19,15 +19,15 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
     if (isOpen) {
       // Save previously focused element
       previousFocus.current = document.activeElement as HTMLElement
-      
+
       // Small delay to ensure modal is rendered and focusable
       const focusTimer = setTimeout(() => {
-        const closeButton = modalRef.current?.querySelector('button[aria-label]') as HTMLElement
+        const closeButton = modalRef.current?.querySelector("button[aria-label]") as HTMLElement
         closeButton?.focus()
       }, 50)
 
       const handleTabKey = (e: KeyboardEvent) => {
-        if (e.key !== 'Tab') return
+        if (e.key !== "Tab") return
 
         const focusableElements = modalRef.current?.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -50,10 +50,10 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
         }
       }
 
-      window.addEventListener('keydown', handleTabKey)
-      
+      window.addEventListener("keydown", handleTabKey)
+
       return () => {
-        window.removeEventListener('keydown', handleTabKey)
+        window.removeEventListener("keydown", handleTabKey)
         clearTimeout(focusTimer)
         // Restore focus
         if (previousFocus.current) {
@@ -83,7 +83,7 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.3 }}
-            className="fixed left-1/2 top-[10%] z-[101] w-full max-w-lg -translate-x-1/2 px-4"
+            className="fixed top-[10%] left-1/2 z-[101] w-full max-w-lg -translate-x-1/2 px-4"
           >
             <div className="relative overflow-hidden rounded-2xl bg-red-600 p-6 text-white shadow-2xl ring-1 ring-white/20">
               {/* Decorative blurs */}
@@ -106,12 +106,8 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
                   </div>
 
                   <div className="flex-1">
-                    <h2 className="text-xl font-bold leading-tight">
-                      {t("title")}
-                    </h2>
-                    <p className="mt-2 font-medium text-red-50 opacity-90">
-                      {t("message")}
-                    </p>
+                    <h2 className="text-xl leading-tight font-bold">{t("title")}</h2>
+                    <p className="mt-2 font-medium text-red-50 opacity-90">{t("message")}</p>
                   </div>
                 </div>
 
@@ -150,9 +146,7 @@ export function EmergencyModal({ isOpen, onClose }: EmergencyModalProps) {
                 </div>
 
                 {/* Disclaimer */}
-                <p className="mt-4 text-center text-sm text-red-100/80">
-                  {t("disclaimer")}
-                </p>
+                <p className="mt-4 text-center text-sm text-red-100/80">{t("disclaimer")}</p>
               </div>
             </div>
           </motion.div>

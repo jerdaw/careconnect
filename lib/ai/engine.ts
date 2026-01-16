@@ -143,7 +143,7 @@ class AIEngine {
 
   public async chat(messages: { role: "user" | "assistant" | "system"; content: string }[]): Promise<string> {
     if (!this.engine) throw new Error("AI Engine not initialized")
-  
+
     try {
       // Diagnostic Logging
       const estimatedToks = messages.reduce((acc, m) => acc + m.content.length / 4, 0)
@@ -160,7 +160,7 @@ class AIEngine {
           enable_latency_breakdown: process.env.NODE_ENV === "development",
         },
       })
-  
+
       return sanitizeModelOutput(reply.choices[0]?.message?.content || "")
     } catch (err) {
       console.error("Chat error:", err)
@@ -203,7 +203,7 @@ Rules:
       repetition_penalty: 1,
       max_tokens: 160,
       // Best-effort JSON mode (WebLLM supports OpenAI-compatible response_format).
-       
+
       response_format: { type: "json_object" } as any,
     })
 

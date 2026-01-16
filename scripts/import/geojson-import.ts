@@ -54,7 +54,7 @@ async function importData() {
 
     for (const feature of seedData.features) {
       const props = feature.properties
-      
+
       // Check for duplicate ID
       if (services.find((s) => s.id === props.id)) {
         console.log(`⚠️  Skipping duplicate ID: ${props.id}`)
@@ -75,25 +75,25 @@ async function importData() {
           verified_by: "Antigravity (Manual GeoJSON Import)",
           verified_at: new Date().toISOString(),
           evidence_url: props.website || "https://211ontario.ca",
-          method: "Manual Curation & Import"
+          method: "Manual Curation & Import",
         },
         identity_tags: (props.tags || []).map((tag: string) => ({
           tag: tag,
-          evidence_url: props.website || ""
+          evidence_url: props.website || "",
         })),
         synthetic_queries: [
           `${props.name} help`,
           `${props.category} kingston`,
-          props.address ? `Services at ${props.address}` : `${props.name} location`
+          props.address ? `Services at ${props.address}` : `${props.name} location`,
         ],
         eligibility_notes: "Open to eligible Kingston residents. See website for details.",
         coordinates: {
           lat: feature.geometry.coordinates[1],
-          lng: feature.geometry.coordinates[0]
+          lng: feature.geometry.coordinates[0],
         },
         hours: {
-           notes: props.hours_notes
-        }
+          notes: props.hours_notes,
+        },
       }
 
       services.push(newService)
@@ -104,7 +104,6 @@ async function importData() {
     // Write back
     await fs.writeFile(TARGET_FILE, JSON.stringify(services, null, 2))
     console.log(`\n🎉 Import complete! Added: ${addedCount}, Skipped: ${skippedCount}`)
-
   } catch (error) {
     console.error("❌ Import failed:", error)
   }

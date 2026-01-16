@@ -4,26 +4,23 @@ import { getServiceById } from "@/lib/services"
 // Format hours for display
 function formatHours(hours: Record<string, { open: string; close: string }> | null | undefined): string {
   if (!hours) return "Contact for hours"
-  
+
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
   const dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-  
+
   const formatted = days.map((day, i) => {
     const h = hours[day]
     if (!h) return `${dayLabels[i]}: Closed`
     return `${dayLabels[i]}: ${h.open} - ${h.close}`
   })
-  
+
   return formatted.join(" | ")
 }
 
-export async function GET(
-  _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const service = await getServiceById(id)
-  
+
   if (!service) {
     return new NextResponse("Service not found", { status: 404 })
   }
@@ -31,10 +28,11 @@ export async function GET(
   const name = service.name
   const phone = service.phone || "Not available"
   const address = service.address || "Not available"
-  const hoursText = service.hours_text || formatHours(service.hours as Record<string, { open: string; close: string }> | null)
+  const hoursText =
+    service.hours_text || formatHours(service.hours as Record<string, { open: string; close: string }> | null)
   const eligibility = service.eligibility_notes || service.eligibility || "Contact for eligibility information"
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(`https://kingstoncare.ca/service/${id}`)}`
-  
+
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>

@@ -5,26 +5,20 @@ import { Printer } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 interface PrintButtonProps {
-    className?: string
+  className?: string
 }
 
 export function PrintButton({ className }: PrintButtonProps) {
-    const t = useTranslations("Common")
+  const t = useTranslations("Common")
 
-    const handlePrint = () => {
-        window.print()
-    }
+  const handlePrint = () => {
+    window.print()
+  }
 
-    return (
-        <Button
-            variant="outline"
-            size="sm"
-            onClick={handlePrint}
-            className={className}
-            data-print-hide
-        >
-            <Printer className="mr-2 h-4 w-4" />
-            {t("printResults")}
-        </Button>
-    )
+  return (
+    <Button variant="outline" size="sm" onClick={handlePrint} className={className} data-print-hide>
+      <Printer className="mr-2 h-4 w-4" />
+      {t("printResults")}
+    </Button>
+  )
 }

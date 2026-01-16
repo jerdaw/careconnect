@@ -20,7 +20,7 @@ export function useServiceFeedback(serviceId: string) {
       try {
         setLoading(true)
         // Query the materialized view
-         
+
         const { data, error } = await supabase
           .from("feedback_aggregations")
           .select("*")
@@ -29,13 +29,13 @@ export function useServiceFeedback(serviceId: string) {
 
         if (error) {
           // If no aggregations yet, return zeros instead of error 406/404
-          if (error.code === 'PGRST116' || error.code === '406') {
-             setStats({
-               helpful_yes_count: 0,
-               helpful_no_count: 0,
-               open_issues_count: 0,
-               last_feedback_at: null
-             })
+          if (error.code === "PGRST116" || error.code === "406") {
+            setStats({
+              helpful_yes_count: 0,
+              helpful_no_count: 0,
+              open_issues_count: 0,
+              last_feedback_at: null,
+            })
           } else {
             console.error("Error fetching feedback stats:", error)
             setError(error as unknown as Error)
@@ -53,17 +53,17 @@ export function useServiceFeedback(serviceId: string) {
     fetchStats()
   }, [serviceId])
 
-  const helpfulPercentage = stats 
-    ? (stats.helpful_yes_count + stats.helpful_no_count > 0 
-        ? Math.round((stats.helpful_yes_count / (stats.helpful_yes_count + stats.helpful_no_count)) * 100) 
-        : null)
+  const helpfulPercentage = stats
+    ? stats.helpful_yes_count + stats.helpful_no_count > 0
+      ? Math.round((stats.helpful_yes_count / (stats.helpful_yes_count + stats.helpful_no_count)) * 100)
+      : null
     : null
 
-  return { 
-    stats, 
-    loading, 
-    error, 
+  return {
+    stats,
+    loading,
+    error,
     helpfulPercentage,
-    totalVotes: stats ? stats.helpful_yes_count + stats.helpful_no_count : 0
+    totalVotes: stats ? stats.helpful_yes_count + stats.helpful_no_count : 0,
   }
 }

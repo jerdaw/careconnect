@@ -24,7 +24,7 @@ interface ServiceCardProps {
   score?: number
   matchReasons?: string[]
   highlightTokens?: string[]
-  onScopeFilter?: (scope: 'provincial') => void
+  onScopeFilter?: (scope: "provincial") => void
 }
 
 const CategoryIcon = ({ category, className }: { category: string; className?: string }) => {
@@ -77,7 +77,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
       <Card className="service-card-print group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
         {/* Top Gradient Line on Hover */}
         <div className="from-primary-500 to-accent-500 absolute top-0 right-0 left-0 h-0.5 origin-left scale-x-0 transform bg-gradient-to-r transition-transform duration-300 group-hover:scale-x-100" />
-        
+
         <div className="flex h-full flex-col p-1.5">
           {/* Header Row - Icon + Title + Badges */}
           <div className="flex items-start gap-2">
@@ -97,39 +97,47 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                 />
                 {/* Status Badge */}
                 {(service.status === "Permanently Closed" || service.status === "Merged") && (
-                   <Badge variant="destructive" size="sm" className="px-1.5 py-0 text-xs uppercase tracking-wider font-bold">
-                     {service.status === "Merged" ? t("ServiceDetail.merged") : t("ServiceDetail.closed")}
-                   </Badge>
-                )}
-                {service.scope === 'ontario' && (
-                  <Badge 
-                    variant="outline" 
-                    size="sm" 
-                    className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800 px-1.5 py-0 text-xs cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      onScopeFilter?.('provincial')
-                    }}
+                  <Badge
+                    variant="destructive"
+                    size="sm"
+                    className="px-1.5 py-0 text-xs font-bold tracking-wider uppercase"
                   >
-                    {t('Badges.ontarioWide')}
+                    {service.status === "Merged" ? t("ServiceDetail.merged") : t("ServiceDetail.closed")}
                   </Badge>
                 )}
-                {service.scope === 'canada' && (
-                  <Badge 
-                    variant="outline" 
-                    size="sm" 
-                    className="bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800 px-1.5 py-0 text-xs cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
+                {service.scope === "ontario" && (
+                  <Badge
+                    variant="outline"
+                    size="sm"
+                    className="cursor-pointer border-blue-200 bg-blue-50 px-1.5 py-0 text-xs text-blue-700 transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300 dark:hover:bg-blue-900/40"
                     onClick={(e) => {
                       e.stopPropagation()
-                      onScopeFilter?.('provincial')
+                      onScopeFilter?.("provincial")
                     }}
                   >
-                    {t('Badges.canadaWide')}
+                    {t("Badges.ontarioWide")}
+                  </Badge>
+                )}
+                {service.scope === "canada" && (
+                  <Badge
+                    variant="outline"
+                    size="sm"
+                    className="cursor-pointer border-purple-200 bg-purple-50 px-1.5 py-0 text-xs text-purple-700 transition-colors hover:bg-purple-100 dark:border-purple-800 dark:bg-purple-900/20 dark:text-purple-300 dark:hover:bg-purple-900/40"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onScopeFilter?.("provincial")
+                    }}
+                  >
+                    {t("Badges.canadaWide")}
                   </Badge>
                 )}
                 {/* Fees Badge - Only if explicitly Free */}
-                {(service.fees?.toLowerCase() === "free") && (
-                  <Badge variant="secondary" size="sm" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 px-1.5 py-0 text-xs">
+                {service.fees?.toLowerCase() === "free" && (
+                  <Badge
+                    variant="secondary"
+                    size="sm"
+                    className="border-green-200 bg-green-50 px-1.5 py-0 text-xs text-green-700 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300"
+                  >
                     {t("ServiceDetail.free")}
                   </Badge>
                 )}
@@ -147,24 +155,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
                     <ShieldCheck className="h-3 w-3" /> {t("ServiceDetail.verified")}
                   </Badge>
                 )}
-                {service.last_verified && (
-                  <FreshnessBadge lastVerified={service.last_verified} />
-                )}
+                {service.last_verified && <FreshnessBadge lastVerified={service.last_verified} />}
               </div>
               {/* Meta row: category + distance/scope */}
               <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-neutral-500">
                 <span className="font-medium">{service.intent_category}</span>
                 <span className="text-neutral-300">•</span>
                 <span>
-                  {service.scope === 'ontario' ? (
-                    t('Distance.ontarioWide')
-                  ) : service.scope === 'canada' ? (
-                    t('Distance.canadaWide')
-                  ) : distance ? (
-                    `${distance.toFixed(1)} km`
-                  ) : (
-                    t("ServiceDetail.kingston")
-                  )}
+                  {service.scope === "ontario"
+                    ? t("Distance.ontarioWide")
+                    : service.scope === "canada"
+                      ? t("Distance.canadaWide")
+                      : distance
+                        ? `${distance.toFixed(1)} km`
+                        : t("ServiceDetail.kingston")}
                 </span>
               </div>
             </div>
@@ -181,7 +185,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
             {address && (
               <div className="flex items-center gap-1 truncate">
                 <MapPin className="h-3.5 w-3.5 shrink-0 text-neutral-400" />
-                <span className="truncate max-w-[180px]">{address}</span>
+                <span className="max-w-[180px] truncate">{address}</span>
               </div>
             )}
             {service.phone && (

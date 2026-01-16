@@ -22,13 +22,13 @@ export function useShare() {
   const share = async (options: ShareOptions) => {
     try {
       const canShare = await isSupported()
-      
+
       if (!canShare) {
         // Fallback for browsers that don't support Web Share API
         // Copy to clipboard or show a custom dialog
         if (options.url) {
-           await navigator.clipboard.writeText(options.url)
-           return { type: "copy", success: true }
+          await navigator.clipboard.writeText(options.url)
+          return { type: "copy", success: true }
         }
         return { type: "none", success: false }
       }

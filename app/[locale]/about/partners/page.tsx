@@ -81,7 +81,7 @@ export default function PartnersPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                      <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-lg font-bold text-neutral-900 dark:text-white">
                         {partner.name}
                       </h3>
                       <p className="text-sm text-neutral-500 dark:text-neutral-400">Verified Source</p>
@@ -120,9 +120,7 @@ export default function PartnersPage() {
         {/* CTA */}
         <Section className="py-24 text-center">
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white">{t("cta.title")}</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
-            {t("cta.subtitle")}
-          </p>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{t("cta.subtitle")}</p>
           <Link href="/submit-service">
             <Button size="lg">{t("cta.button")}</Button>
           </Link>

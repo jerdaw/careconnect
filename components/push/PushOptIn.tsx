@@ -24,12 +24,10 @@ export function PushOptIn() {
 
   if (!isSupported) {
     return (
-      <Alert className="bg-neutral-50 dark:bg-neutral-900 border-neutral-200">
-         <AlertCircle className="h-4 w-4 text-neutral-500" />
-         <AlertTitle>{t("notSupportedTitle")}</AlertTitle>
-         <AlertDescription>
-           {t("notSupportedDesc")}
-         </AlertDescription>
+      <Alert className="border-neutral-200 bg-neutral-50 dark:bg-neutral-900">
+        <AlertCircle className="h-4 w-4 text-neutral-500" />
+        <AlertTitle>{t("notSupportedTitle")}</AlertTitle>
+        <AlertDescription>{t("notSupportedDesc")}</AlertDescription>
       </Alert>
     )
   }
@@ -40,30 +38,22 @@ export function PushOptIn() {
       <Alert variant="destructive">
         <BellOff className="h-4 w-4" />
         <AlertTitle>{t("blockedTitle")}</AlertTitle>
-        <AlertDescription>
-          {t("blockedDesc")}
-        </AlertDescription>
+        <AlertDescription>{t("blockedDesc")}</AlertDescription>
       </Alert>
     )
   }
 
   return (
-    <div className="flex items-center justify-between rounded-lg border p-4 shadow-sm bg-white dark:bg-neutral-900 dark:border-neutral-800">
+    <div className="flex items-center justify-between rounded-lg border bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
       <div className="space-y-0.5">
-        <h3 className="text-base font-medium flex items-center gap-2">
-          <Bell className="h-4 w-4 text-primary-500" />
+        <h3 className="flex items-center gap-2 text-base font-medium">
+          <Bell className="text-primary-500 h-4 w-4" />
           {t("keepMeUpdated")}
         </h3>
-        <p className="text-sm text-muted-foreground">
-          {t("keepMeUpdatedDesc")}
-        </p>
+        <p className="text-muted-foreground text-sm">{t("keepMeUpdatedDesc")}</p>
       </div>
       <div>
-        <Button
-           variant={isSubscribed ? "outline" : "default"}
-           onClick={handleToggle}
-           disabled={isLoading}
-        >
+        <Button variant={isSubscribed ? "outline" : "default"} onClick={handleToggle} disabled={isLoading}>
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {isSubscribed ? t("disable") : t("enable")}
         </Button>

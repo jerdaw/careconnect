@@ -68,7 +68,7 @@ function mapToService(raw: Raw211Service): Service {
     url: raw.url,
     address: `${raw.address.street}, ${raw.address.city} ${raw.address.postal}`,
     verification_level: VerificationLevel.L2,
-     
+
     intent_category: mapTaxonomyToCategory(raw.taxonomy) as any,
     provenance: {
       verified_by: "211 Ontario API",

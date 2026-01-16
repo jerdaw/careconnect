@@ -4,24 +4,24 @@ import { ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, Toas
 import { Toaster } from "@/components/ui/toaster"
 
 describe("Toast", () => {
-    it("renders toast content", () => {
-        render(
-            <ToastProvider>
-                <Toast>
-                    <ToastTitle>Title</ToastTitle>
-                    <ToastDescription>Description</ToastDescription>
-                    <ToastClose />
-                </Toast>
-                <ToastViewport />
-            </ToastProvider>
-        )
-        expect(screen.getByText("Title")).toBeInTheDocument()
-        expect(screen.getByText("Description")).toBeInTheDocument()
-    })
+  it("renders toast content", () => {
+    render(
+      <ToastProvider>
+        <Toast>
+          <ToastTitle>Title</ToastTitle>
+          <ToastDescription>Description</ToastDescription>
+          <ToastClose />
+        </Toast>
+        <ToastViewport />
+      </ToastProvider>
+    )
+    expect(screen.getByText("Title")).toBeInTheDocument()
+    expect(screen.getByText("Description")).toBeInTheDocument()
+  })
 
-    it("Toaster renders without crashing", () => {
-        render(<Toaster />)
-        // Toaster uses useToast which returns empty array by default if no toasts triggered
-        // Just verify it doesn't crash
-    })
+  it("Toaster renders without crashing", () => {
+    render(<Toaster />)
+    // Toaster uses useToast which returns empty array by default if no toasts triggered
+    // Just verify it doesn't crash
+  })
 })

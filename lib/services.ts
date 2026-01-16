@@ -40,7 +40,6 @@ export async function getServiceById(id: string): Promise<Service | null> {
     // Query the public view (accessible by anon users) instead of the protected services table
     const { data, error } = await supabase.from("services_public").select("*").eq("id", id).single()
 
-
     if (error) {
       if (error.code !== "PGRST116") {
         // Not found code

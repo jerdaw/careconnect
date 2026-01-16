@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { ShieldCheck, Mail, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react"
 import { Link } from "@/i18n/routing"
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")

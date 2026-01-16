@@ -1,10 +1,10 @@
 #!/usr/bin/env npx tsx
 /**
  * Quarterly Impact (QI) Report Generator
- * 
+ *
  * This script queries the feedback table and generates a markdown report
  * with key metrics for public transparency reporting.
- * 
+ *
  * Usage: npx tsx scripts/generate-qi-report.ts
  * Output: docs/reports/qi-report-YYYY-QN.md
  */
@@ -46,10 +46,10 @@ async function generateReport() {
   const now = new Date()
   const ninetyDaysAgo = new Date()
   ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
-  
+
   console.log("📊 Generating QI Report...")
   console.log(`   Period: ${formatDate(ninetyDaysAgo)} to ${formatDate(now)}`)
-  
+
   // 1. Total feedback count
   const { count: totalFeedback } = await supabase
     .from("feedback")
@@ -86,9 +86,7 @@ async function generateReport() {
     .eq("status", "resolved")
     .gte("created_at", ninetyDaysAgo.toISOString())
 
-  const resolutionRate = (totalIssues || 0) > 0 
-    ? Math.round(((resolvedIssues || 0) / (totalIssues || 1)) * 100) 
-    : 0
+  const resolutionRate = (totalIssues || 0) > 0 ? Math.round(((resolvedIssues || 0) / (totalIssues || 1)) * 100) : 0
 
   // 4. Top services with issues
   const { data: topIssueServices } = await supabase
@@ -132,18 +130,15 @@ async function generateReport() {
     .slice(0, 5)
 
   // 6. Service verification stats
-  const { count: totalServices } = await supabase
-    .from("services")
-    .select("*", { count: "exact", head: true })
+  const { count: totalServices } = await supabase.from("services").select("*", { count: "exact", head: true })
 
   const { count: verifiedRecently } = await supabase
     .from("services")
     .select("*", { count: "exact", head: true })
     .gte("last_verified", ninetyDaysAgo.toISOString())
 
-  const verificationRate = (totalServices || 0) > 0
-    ? Math.round(((verifiedRecently || 0) / (totalServices || 1)) * 100)
-    : 0
+  const verificationRate =
+    (totalServices || 0) > 0 ? Math.round(((verifiedRecently || 0) / (totalServices || 1)) * 100) : 0
 
   // Generate report content
   const quarter = getQuarter(now)
@@ -182,9 +177,13 @@ This report provides transparency into how Kingston Care Connect is serving the 
 
 ## Top Services Needing Attention
 
-${topServices.length > 0 ? topServices.map(([, data], i) => 
-  `${i + 1}. **${data.name}** - ${data.count} open issue${data.count > 1 ? 's' : ''}`
-).join('\n') : '_No open issues reported_'}
+${
+  topServices.length > 0
+    ? topServices
+        .map(([, data], i) => `${i + 1}. **${data.name}** - ${data.count} open issue${data.count > 1 ? "s" : ""}`)
+        .join("\n")
+    : "_No open issues reported_"
+}
 
 ---
 
@@ -192,9 +191,13 @@ ${topServices.length > 0 ? topServices.map(([, data], i) =>
 
 These are the service categories users searched for but couldn't find:
 
-${topCategories.length > 0 ? topCategories.map(([category, count], i) => 
-  `${i + 1}. **${category}** - ${count} request${count > 1 ? 's' : ''}`
-).join('\n') : '_No unmet needs reported_'}
+${
+  topCategories.length > 0
+    ? topCategories
+        .map(([category, count], i) => `${i + 1}. **${category}** - ${count} request${count > 1 ? "s" : ""}`)
+        .join("\n")
+    : "_No unmet needs reported_"
+}
 
 ---
 
@@ -220,9 +223,9 @@ _This section will be updated manually with specific improvements made based on 
   // Write report
   const filename = `qi-report-${quarter}.md`
   const outputPath = path.join(process.cwd(), "docs", "reports", filename)
-  
+
   fs.writeFileSync(outputPath, reportContent)
-  
+
   console.log(`\n✅ Report generated: ${outputPath}`)
   console.log(`\n📈 Summary:`)
   console.log(`   Helpful Rate: ${helpfulRate}%`)

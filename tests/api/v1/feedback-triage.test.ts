@@ -25,8 +25,7 @@ describe("Feedback Triage API", () => {
       },
       from: mockFrom,
     }
-    
-     
+
     ;(createClient as any).mockResolvedValue(mockSupabase)
 
     mockFrom.mockReturnValue({
@@ -37,14 +36,14 @@ describe("Feedback Triage API", () => {
     mockSelect.mockReturnValue({
       eq: mockEq,
     })
-    
+
     mockUpdate.mockReturnValue({
       eq: mockEq,
     })
 
     mockEq.mockReturnValue({
       single: mockSingle,
-      // For update, eq usually returns a promise logic in real supabase, 
+      // For update, eq usually returns a promise logic in real supabase,
       // here we just return the spy or promise
       then: (cb: any) => Promise.resolve({ error: null }).then(cb),
     })

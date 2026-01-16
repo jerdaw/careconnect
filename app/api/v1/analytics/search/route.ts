@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     // Check if body is empty
     const text = await req.text()
     if (!text) {
-        return NextResponse.json({ success: true, skipped: "empty_body" })
+      return NextResponse.json({ success: true, skipped: "empty_body" })
     }
     const body = JSON.parse(text)
 

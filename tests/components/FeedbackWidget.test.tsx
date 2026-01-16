@@ -7,13 +7,13 @@ import { TestWrapper } from "@/tests/utils/test-wrapper"
 const mockToast = vi.fn()
 vi.mock("@/components/ui/use-toast", () => ({
   useToast: () => ({
-    toast: mockToast
-  })
+    toast: mockToast,
+  }),
 }))
 
 // Mock ReportIssueModal
 vi.mock("@/components/feedback/ReportIssueModal", () => ({
-  ReportIssueModal: () => <div data-testid="report-issue-modal" />
+  ReportIssueModal: () => <div data-testid="report-issue-modal" />,
 }))
 
 // Mock fetch
@@ -29,7 +29,7 @@ const mockFeedbackMessages = {
   voteSuccessTitle: "Success",
   voteSuccessMessage: "Vote saved",
   errorTitle: "Error",
-  errorMessage: "Something went wrong"
+  errorMessage: "Something went wrong",
 }
 
 describe("FeedbackWidget Component", () => {
@@ -63,13 +63,16 @@ describe("FeedbackWidget Component", () => {
     fireEvent.click(screen.getByRole("button", { name: "Yes" }))
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith("/api/v1/feedback", expect.objectContaining({
-        method: "POST",
-        body: JSON.stringify({
-          service_id: serviceId,
-          feedback_type: "helpful_yes"
+      expect(global.fetch).toHaveBeenCalledWith(
+        "/api/v1/feedback",
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({
+            service_id: serviceId,
+            feedback_type: "helpful_yes",
+          }),
         })
-      }))
+      )
     })
 
     expect(screen.getByText("Thanks for voting!")).toBeInTheDocument()

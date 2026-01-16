@@ -43,8 +43,8 @@ async function validatePhone(phone: string): Promise<Partial<PhoneValidationResu
       cleanPhone.length === 11 && cleanPhone.startsWith("1")
         ? `+${cleanPhone}`
         : cleanPhone.length === 10
-        ? `+1${cleanPhone}`
-        : `+${cleanPhone}`
+          ? `+1${cleanPhone}`
+          : `+${cleanPhone}`
 
     const response = await fetch(
       `https://lookups.twilio.com/v2/PhoneNumbers/${encodeURIComponent(e164)}?Fields=line_type_intelligence`,

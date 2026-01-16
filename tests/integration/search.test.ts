@@ -45,7 +45,7 @@ const mockServices: Service[] = [
 describe("Search Integration", () => {
   beforeEach(() => {
     vi.clearAllMocks()
-      ; (loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(mockServices)
   })
 
   it('should return Food Banks for "hungry"', async () => {

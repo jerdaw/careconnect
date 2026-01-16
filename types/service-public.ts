@@ -11,7 +11,7 @@ export interface ServicePublic {
   phone: string | null
   url: string | null
   email: string | null
-   
+
   hours: any // JSON object from DB
   fees: string | null
   eligibility: string | null
@@ -20,12 +20,12 @@ export interface ServicePublic {
   application_process: string | null
   languages: string[] | null
   bus_routes: string[] | null
-   
+
   accessibility: Record<string, boolean> | any | null
   last_verified: string | null
   verification_status: string | null
   category: string | null
-   
+
   tags: any // JSON array
   // v11.0: Scope expansion fields
   scope: string | null
@@ -39,4 +39,3 @@ export interface ServicePublic {
   resource_indicators?: ResourceIndicators | null // JSON object
   coordinates?: { lat: number; lng: number } | null
 }
-

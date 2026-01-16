@@ -7,9 +7,9 @@ const DATA_PATH = path.join(process.cwd(), "data/services.json")
 
 // Staleness thresholds (in days)
 const THRESHOLDS = {
-  CRISIS: 30,    // Crisis services: monthly verification
-  GENERAL: 90,   // General services: quarterly verification
-  STALE: 180,    // Auto-downgrade threshold: 6 months
+  CRISIS: 30, // Crisis services: monthly verification
+  GENERAL: 90, // General services: quarterly verification
+  STALE: 180, // Auto-downgrade threshold: 6 months
 }
 
 interface StalenessResult {
@@ -24,7 +24,7 @@ function getVerificationDate(service: Service): Date | null {
   // Try provenance.verified_at first, then last_verified
   const dateStr = service.provenance?.verified_at || service.last_verified
   if (!dateStr) return null
-  
+
   const date = new Date(dateStr)
   return isNaN(date.getTime()) ? null : date
 }
@@ -38,7 +38,9 @@ function getDaysSince(date: Date | null): number | null {
 
 function checkStaleness(): StalenessResult[] {
   console.log("📅 Checking service staleness...")
-  console.log(`   Thresholds: Crisis=${THRESHOLDS.CRISIS}d, General=${THRESHOLDS.GENERAL}d, Stale=${THRESHOLDS.STALE}d\n`)
+  console.log(
+    `   Thresholds: Crisis=${THRESHOLDS.CRISIS}d, General=${THRESHOLDS.GENERAL}d, Stale=${THRESHOLDS.STALE}d\n`
+  )
 
   const rawData = readFileSync(DATA_PATH, "utf-8")
   const services = JSON.parse(rawData) as Service[]
@@ -118,8 +120,8 @@ function printResults(results: StalenessResult[]) {
     for (const r of unknown) {
       // Just list the first 5 if there are many
       if (unknown.length > 10 && r === unknown[5]) {
-         console.log(`   ... and ${unknown.length - 5} more`)
-         return
+        console.log(`   ... and ${unknown.length - 5} more`)
+        return
       }
       if (unknown.length <= 10 || unknown.indexOf(r) < 5) {
         console.log(`   - ${r.service.id}`)
@@ -131,12 +133,12 @@ function printResults(results: StalenessResult[]) {
   if (process.env.GITHUB_OUTPUT) {
     // Safe handling for GITHUB_OUTPUT
     try {
-        appendFileSync(process.env.GITHUB_OUTPUT, `stale_count=${stale.length}\n`)
-        appendFileSync(process.env.GITHUB_OUTPUT, `due_count=${due.length}\n`)
-        const staleIds = stale.map((r) => r.service.id).join(",")
-        appendFileSync(process.env.GITHUB_OUTPUT, `stale_ids=${staleIds}\n`)
+      appendFileSync(process.env.GITHUB_OUTPUT, `stale_count=${stale.length}\n`)
+      appendFileSync(process.env.GITHUB_OUTPUT, `due_count=${due.length}\n`)
+      const staleIds = stale.map((r) => r.service.id).join(",")
+      appendFileSync(process.env.GITHUB_OUTPUT, `stale_ids=${staleIds}\n`)
     } catch {
-        // Ignore if not in GH Actions environment or permission issue
+      // Ignore if not in GH Actions environment or permission issue
     }
   }
 }

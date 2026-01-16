@@ -7,7 +7,7 @@ import { VerificationLevel } from "@/types/service"
 
 // Mock ReportIssueModal to avoid complex UI rendering
 vi.mock("@/components/feedback/ReportIssueModal", () => ({
-  ReportIssueModal: () => <div data-testid="report-issue-modal" />
+  ReportIssueModal: () => <div data-testid="report-issue-modal" />,
 }))
 
 const mockTrustMessages = {
@@ -23,8 +23,8 @@ const mockTrustMessages = {
     phone: "Phone",
     email: "Email",
     site: "Website",
-    manual: "Manual"
-  }
+    manual: "Manual",
+  },
 }
 
 const mockVerificationMessages = {
@@ -32,7 +32,7 @@ const mockVerificationMessages = {
   L1: "Basic",
   L2: "Verified",
   L3: "Partner Verified",
-  L4: "Audited"
+  L4: "Audited",
 }
 
 describe("TrustPanel Component", () => {
@@ -49,8 +49,8 @@ describe("TrustPanel Component", () => {
         verified_by: "KCC Admin",
         method: "phone",
         verified_at: "2026-01-01T00:00:00Z",
-        evidence_url: ""
-      }
+        evidence_url: "",
+      },
     }
 
     render(
@@ -85,8 +85,8 @@ describe("TrustPanel Component", () => {
         evidence_url: "https://example.com",
         verified_by: "Tester",
         verified_at: "2026-01-01T00:00:00Z",
-        method: "site"
-      }
+        method: "site",
+      },
     }
 
     render(

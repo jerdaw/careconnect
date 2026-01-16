@@ -48,7 +48,6 @@ export async function GET(request: NextRequest) {
         { count: "exact" }
       )
 
-
     // Apply category filter
     if (category) {
       query = query.eq("category", category)
@@ -60,9 +59,10 @@ export async function GET(request: NextRequest) {
       const escapeIlike = (value: string) => value.replace(/[%_\\]/g, "\\$&")
       const safeQ = escapeIlike(q)
       // Search in name, description (case-insensitive)
-      query = query.or(`name.ilike.%${safeQ}%,description.ilike.%${safeQ}%,name_fr.ilike.%${safeQ}%,description_fr.ilike.%${safeQ}%`)
+      query = query.or(
+        `name.ilike.%${safeQ}%,description.ilike.%${safeQ}%,name_fr.ilike.%${safeQ}%,description_fr.ilike.%${safeQ}%`
+      )
     }
-
 
     // Pagination
     query = query.range(offset, offset + limit - 1)
@@ -131,14 +131,14 @@ export async function POST(request: NextRequest) {
     // Parse and validate body
     const rawBody = await request.json()
     const validation = ServiceCreateSchema.safeParse(rawBody)
-    
+
     if (!validation.success) {
-      const errors = validation.error.errors.map(e => `${e.path.join(".")}: ${e.message}`).join(", ")
+      const errors = validation.error.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")
       return createApiError(`Validation failed: ${errors}`, 400)
     }
-    
+
     const body = validation.data
-    
+
     // Add server-managed fields
     const serviceData = {
       ...body,
@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         verified_by: user.id,
         verified_at: new Date().toISOString(),
         evidence_url: body.url || "",
-        method: "partner_submission"
+        method: "partner_submission",
       },
       identity_tags: body.identity_tags || [],
       synthetic_queries: [],

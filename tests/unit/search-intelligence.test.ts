@@ -2,12 +2,12 @@ import { describe, it, expect } from "vitest"
 import { expandQuery } from "@/lib/search/synonyms"
 import { detectQueryPattern } from "@/lib/analytics/zero-results"
 import { getSuggestion } from "@/lib/search/fuzzy"
-import { 
-  getAuthorityMultiplier, 
-  getCompletenessBoost, 
+import {
+  getAuthorityMultiplier,
+  getCompletenessBoost,
   getIntentTargetingBoost,
   getResourceBoost,
-  WEIGHTS
+  WEIGHTS,
 } from "@/lib/search/scoring"
 import { getProximityMultiplier, PROXIMITY_CONFIG } from "@/lib/search/geo"
 import { Service, VerificationLevel, IntentCategory } from "@/types/service"
@@ -92,7 +92,7 @@ describe("Authority Multiplier", () => {
 
   it("should return healthcare multiplier for healthcare tier", () => {
     expect(getAuthorityMultiplier("healthcare")).toBe(WEIGHTS.authorityHealthcare)
-    expect(getAuthorityMultiplier("healthcare")).toBe(1.20)
+    expect(getAuthorityMultiplier("healthcare")).toBe(1.2)
   })
 
   it("should return established nonprofit multiplier", () => {
@@ -141,11 +141,7 @@ describe("Completeness Boost", () => {
       eligibility_notes: "Open to all",
     })
     const result = getCompletenessBoost(service)
-    expect(result.boost).toBe(
-      WEIGHTS.completenessPhone + 
-      WEIGHTS.completenessAddress + 
-      WEIGHTS.completenessEligibility
-    )
+    expect(result.boost).toBe(WEIGHTS.completenessPhone + WEIGHTS.completenessAddress + WEIGHTS.completenessEligibility)
   })
 
   it("should cap at maximum", () => {
@@ -170,8 +166,8 @@ describe("Intent Targeting Boost", () => {
   })
 
   it("should return exact match bonus for substring match", () => {
-    const service = createTestService({ 
-      synthetic_queries: ["help with rent", "housing assistance"] 
+    const service = createTestService({
+      synthetic_queries: ["help with rent", "housing assistance"],
     })
     const result = getIntentTargetingBoost(service, "help with rent")
     expect(result.boost).toBe(WEIGHTS.intentExactMatch)
@@ -179,8 +175,8 @@ describe("Intent Targeting Boost", () => {
   })
 
   it("should return high overlap bonus for 75%+ token match", () => {
-    const service = createTestService({ 
-      synthetic_queries: ["emergency food assistance"] 
+    const service = createTestService({
+      synthetic_queries: ["emergency food assistance"],
     })
     // 3 of 3 tokens match = 100%
     const result = getIntentTargetingBoost(service, "food emergency")
@@ -188,8 +184,8 @@ describe("Intent Targeting Boost", () => {
   })
 
   it("should return 0 for no matching synthetic queries", () => {
-    const service = createTestService({ 
-      synthetic_queries: ["tax help", "legal aid"] 
+    const service = createTestService({
+      synthetic_queries: ["tax help", "legal aid"],
     })
     const result = getIntentTargetingBoost(service, "housing rent")
     expect(result.boost).toBe(0)
@@ -204,20 +200,20 @@ describe("Resource Boost", () => {
   })
 
   it("should boost for large staff size", () => {
-    const service = createTestService({ 
-      resource_indicators: { staff_size: "large" } 
+    const service = createTestService({
+      resource_indicators: { staff_size: "large" },
     })
     const result = getResourceBoost(service)
     expect(result.boost).toBe(WEIGHTS.resourceLarge)
   })
 
   it("should boost cumulatively for multiple indicators", () => {
-    const service = createTestService({ 
-      resource_indicators: { 
+    const service = createTestService({
+      resource_indicators: {
         staff_size: "large",
         annual_budget: "large",
-        service_area_size: "national"
-      } 
+        service_area_size: "national",
+      },
     })
     const result = getResourceBoost(service)
     expect(result.boost).toBe(WEIGHTS.resourceLarge * 3)

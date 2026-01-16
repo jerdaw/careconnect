@@ -108,13 +108,10 @@ export const ServiceSchema = z
     embedding: z.array(z.number()).optional(),
   })
   // Custom validation: at least one contact method
-  .refine(
-    (data) => data.url || data.phone || data.address,
-    {
-      message: "At least one contact method required (url, phone, or address)",
-      path: ["url"],
-    }
-  )
+  .refine((data) => data.url || data.phone || data.address, {
+    message: "At least one contact method required (url, phone, or address)",
+    path: ["url"],
+  })
   // Custom validation: Crisis services require phone
   .refine(
     (data) => {

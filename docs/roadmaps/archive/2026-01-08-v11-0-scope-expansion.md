@@ -710,21 +710,18 @@ npx playwright test search-scope.spec.ts
 ### Manual Verification
 
 1. **Badge Display**:
-
    - Search "ConnexOntario"
    - Verify "Ontario-wide" badge appears
    - Switch to French locale
    - Verify "À l'échelle de l'Ontario" appears
 
 2. **Scope Filter**:
-
    - Search "legal aid"
    - Toggle to "Local Only"
    - Verify provincial services disappear
    - Verify filter persists in URL (`?scope=kingston`)
 
 3. **Distance Display**:
-
    - View a Kingston service → shows "2.3 km"
    - View an Ontario service → shows "Available across Ontario"
 

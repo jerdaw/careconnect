@@ -377,7 +377,7 @@ interface OfflineDB {
   ],
   "embeddings": [
     /* { id, embedding }[] */
-  ]
+  ],
 }
 ```
 
@@ -402,8 +402,8 @@ interface OfflineDB {
   "data": {
     "type": "service_update",
     "serviceId": "kingston-food-bank",
-    "url": "/en/services/kingston-food-bank"
-  }
+    "url": "/en/services/kingston-food-bank",
+  },
 }
 ```
 
@@ -419,8 +419,8 @@ interface OfflineDB {
     "type": "critical_alert",
     "serviceId": "dawn-house",
     "url": "/en/services/dawn-house",
-    "priority": "high"
-  }
+    "priority": "high",
+  },
 }
 ```
 
@@ -1031,22 +1031,18 @@ v15.0 is considered "done" when:
 ## 11) Open Questions (Resolve Before Implementation)
 
 1. **OneSignal vs Self-Hosted**: Should we use OneSignal free tier or self-host push service?
-
    - **Recommendation**: OneSignal for simplicity; free tier sufficient for web push
    - **Note**: Can migrate to Firebase or self-hosted in v15.1 if needed
 
 2. **Android Testing**: Should we test Android in v15.0 or wait for v15.1?
-
    - **Recommendation**: Optional—if Android Studio available, test to validate Capacitor setup
    - **Note**: Not required for v15.0 completion
 
 3. **Push Notification Frequency**: How often should we send push notifications?
-
    - **Recommendation**: Max 1/day, only for critical updates (shelter capacity, emergency closures)
    - **Note**: Add rate limiting in admin console (5/day hard limit)
 
 4. **Offline Data Size**: What if services grow beyond 5MB?
-
    - **Current**: 196 services + embeddings ≈ 5MB
    - **Recommendation**: Monitor and implement data pruning if >10MB
    - **Note**: Not a current concern

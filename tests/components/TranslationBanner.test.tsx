@@ -57,14 +57,14 @@ describe("TranslationBanner", () => {
   it("can be dismissed and stays dismissed", () => {
     vi.mocked(useLocale).mockReturnValue("ar")
     const { rerender } = render(<TranslationBanner />)
-    
+
     // Find and click the dismiss button
     const dismissButton = screen.getByRole("button", { name: /got it/i })
     fireEvent.click(dismissButton)
-    
+
     // Check localStorage was set
     expect(localStorage.getItem("kcc-translation-banner-dismissed")).toBe("true")
-    
+
     // Re-render and check it doesn't show
     rerender(<TranslationBanner />)
     expect(screen.queryByText("Translation Notice")).not.toBeInTheDocument()

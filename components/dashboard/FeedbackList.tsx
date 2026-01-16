@@ -72,17 +72,17 @@ export function FeedbackList({ feedback }: FeedbackListProps) {
               {feedback.map((item) => (
                 <tr
                   key={item.id}
-                  className="border-b transition-colors hover:bg-neutral-100/50 cursor-pointer"
+                  className="cursor-pointer border-b transition-colors hover:bg-neutral-100/50"
                   onClick={() => setSelectedFeedback(item)}
                 >
                   <td className="p-4 align-middle font-medium">
                     {/* Fallback to raw type if translation missing */}
-                    {t(`types.${item.feedback_type}`) === `types.${item.feedback_type}` 
-                      ? item.feedback_type 
+                    {t(`types.${item.feedback_type}`) === `types.${item.feedback_type}`
+                      ? item.feedback_type
                       : t(`types.${item.feedback_type}`)}
                   </td>
                   <td className="p-4 align-middle">
-                    {item.services?.name || (item.feedback_type === 'not_found' ? t("general") : t("unknown"))}
+                    {item.services?.name || (item.feedback_type === "not_found" ? t("general") : t("unknown"))}
                   </td>
                   <td className="p-4 align-middle">
                     {item.services?.verification_level && (
@@ -91,17 +91,13 @@ export function FeedbackList({ feedback }: FeedbackListProps) {
                       </Badge>
                     )}
                   </td>
-                  <td className="p-4 align-middle max-w-xs truncate">
-                    {item.message || "-"}
-                  </td>
+                  <td className="max-w-xs truncate p-4 align-middle">{item.message || "-"}</td>
                   <td className="p-4 align-middle">
                     <Badge variant={getStatusVariant(item.status)}>
                       {t(`status${item.status.charAt(0).toUpperCase() + item.status.slice(1)}`)}
                     </Badge>
                   </td>
-                  <td className="p-4 align-middle">
-                    {new Date(item.created_at).toLocaleDateString()}
-                  </td>
+                  <td className="p-4 align-middle">{new Date(item.created_at).toLocaleDateString()}</td>
                 </tr>
               ))}
               {!feedback?.length && (
@@ -116,11 +112,7 @@ export function FeedbackList({ feedback }: FeedbackListProps) {
         </div>
       </div>
 
-      <FeedbackDetail 
-        feedback={selectedFeedback} 
-        open={!!selectedFeedback} 
-        onClose={() => setSelectedFeedback(null)} 
-      />
+      <FeedbackDetail feedback={selectedFeedback} open={!!selectedFeedback} onClose={() => setSelectedFeedback(null)} />
     </>
   )
 }

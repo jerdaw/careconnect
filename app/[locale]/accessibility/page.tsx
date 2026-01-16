@@ -17,8 +17,8 @@ export default function AccessibilityPage() {
         <Section className="py-20">
           <div className="mx-auto max-w-3xl rounded-2xl bg-white p-8 shadow-sm sm:p-12 dark:bg-neutral-900">
             <div className="mb-8 flex items-center gap-4">
-              <div className="rounded-full bg-primary-100 p-3 dark:bg-primary-900">
-                <Accessibility className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+              <div className="bg-primary-100 dark:bg-primary-900 rounded-full p-3">
+                <Accessibility className="text-primary-600 dark:text-primary-400 h-8 w-8" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
@@ -30,7 +30,7 @@ export default function AccessibilityPage() {
               </div>
             </div>
 
-            <div className="prose prose-neutral max-w-none text-neutral-600 dark:prose-invert dark:text-neutral-300">
+            <div className="prose prose-neutral dark:prose-invert max-w-none text-neutral-600 dark:text-neutral-300">
               <p className="lead text-lg">{t("commitment")}</p>
               <p>{t("standards")}</p>
 
@@ -47,27 +47,23 @@ export default function AccessibilityPage() {
               <h2>{t("headings.multiYearPlan")}</h2>
               <div className="not-prose grid gap-4 sm:grid-cols-3">
                 <div className="rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
-                  <span className="mb-2 block font-bold text-primary-600">2026</span>
+                  <span className="text-primary-600 mb-2 block font-bold">2026</span>
                   <p className="text-sm">{t("plan.y2026")}</p>
                 </div>
                 <div className="rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
-                    <span className="mb-2 block font-bold text-primary-600">2027</span>
+                  <span className="text-primary-600 mb-2 block font-bold">2027</span>
                   <p className="text-sm">{t("plan.y2027")}</p>
                 </div>
                 <div className="rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
-                    <span className="mb-2 block font-bold text-primary-600">2028</span>
+                  <span className="text-primary-600 mb-2 block font-bold">2028</span>
                   <p className="text-sm">{t("plan.y2028")}</p>
                 </div>
               </div>
 
               <h2>{t("headings.feedback")}</h2>
               <p>{t("feedback.intro")}</p>
-              <p className="font-medium text-neutral-900 dark:text-white">
-                {t("feedback.email")}
-              </p>
-              <p className="text-sm text-neutral-500 italic">
-                {t("feedback.formats")}
-              </p>
+              <p className="font-medium text-neutral-900 dark:text-white">{t("feedback.email")}</p>
+              <p className="text-sm text-neutral-500 italic">{t("feedback.formats")}</p>
             </div>
           </div>
         </Section>

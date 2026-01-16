@@ -1,14 +1,14 @@
 "use client"
 
 import { Link } from "@/i18n/routing"
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from "next-intl"
 import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
-  const t = useTranslations('Footer');
-  const locale = useLocale();
-  const isNonEnglish = locale !== 'en';
+  const t = useTranslations("Footer")
+  const locale = useLocale()
+  const isNonEnglish = locale !== "en"
 
   return (
     <footer className="relative mt-24 overflow-hidden bg-neutral-950 text-white">
@@ -21,24 +21,24 @@ export function Footer() {
           <div className="space-y-6 md:col-span-2">
             <div className="flex items-center gap-3">
               <div className="relative flex h-9 items-center justify-center transition-all">
-                <Image 
-                  src="/logo.png" 
-                  alt="KCC Logo" 
-                  width={64} 
-                  height={32}
-                  className="h-7 w-auto object-contain"
-                />
+                <Image src="/logo.png" alt="KCC Logo" width={64} height={32} className="h-7 w-auto object-contain" />
               </div>
               <span className="heading-display text-xl font-bold tracking-tight text-white">Kingston Care Connect</span>
             </div>
-            <p className="max-w-md leading-relaxed text-neutral-400">
-              {t("mission")}
-            </p>
+            <p className="max-w-md leading-relaxed text-neutral-400">{t("mission")}</p>
             <div className="flex gap-4">
-              <a href="#" aria-label="GitHub" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
+              <a
+                href="#"
+                aria-label="GitHub"
+                className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
+              >
                 <Github className="h-5 w-5 text-neutral-400" />
               </a>
-              <a href="#" aria-label="Twitter" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10">
+              <a
+                href="#"
+                aria-label="Twitter"
+                className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
+              >
                 <Twitter className="h-5 w-5 text-neutral-400" />
               </a>
               <a
@@ -107,16 +107,10 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
-          <p className="text-center text-neutral-400">
-            {t("emergencyDisclaimer")}
-          </p>
-          
-          {isNonEnglish && (
-            <p className="text-center text-neutral-500 text-xs italic">
-              {t("aiTranslationNote")}
-            </p>
-          )}
-          
+          <p className="text-center text-neutral-400">{t("emergencyDisclaimer")}</p>
+
+          {isNonEnglish && <p className="text-center text-xs text-neutral-500 italic">{t("aiTranslationNote")}</p>}
+
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p>{t("copyright")}</p>
 

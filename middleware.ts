@@ -32,7 +32,9 @@ export async function middleware(request: NextRequest) {
           },
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) => response.cookies.set(name, value, options))
+        cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) =>
+          response.cookies.set(name, value, options)
+        )
       },
     },
   })
@@ -42,7 +44,7 @@ export async function middleware(request: NextRequest) {
   try {
     // Skip auth check if using placeholder (CI/Test)
     if (env.NEXT_PUBLIC_SUPABASE_URL?.includes("placeholder")) {
-       console.log("Skipping Supabase auth in middleware (Testing Mode)")
+      console.log("Skipping Supabase auth in middleware (Testing Mode)")
     } else {
       const { data } = await supabase.auth.getUser()
       user = data.user

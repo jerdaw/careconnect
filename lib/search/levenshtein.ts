@@ -11,9 +11,7 @@ export function levenshtein(a: string, b: string): number {
   for (let i = 1; i <= a.length; i++) {
     let prev = i
     for (let j = 1; j <= b.length; j++) {
-      const curr = a[i - 1] === b[j - 1]
-        ? matrix[j - 1]!
-        : Math.min(matrix[j - 1]!, matrix[j]!, prev) + 1
+      const curr = a[i - 1] === b[j - 1] ? matrix[j - 1]! : Math.min(matrix[j - 1]!, matrix[j]!, prev) + 1
       matrix[j - 1] = prev
       prev = curr
     }
@@ -26,11 +24,7 @@ export function levenshtein(a: string, b: string): number {
  * Find the closest match from a list of candidates.
  * Returns null if no match is within the threshold.
  */
-export function findClosestMatch(
-  query: string,
-  candidates: string[],
-  maxDistance = 2
-): string | null {
+export function findClosestMatch(query: string, candidates: string[], maxDistance = 2): string | null {
   const normalized = query.toLowerCase().trim()
   let best: { term: string; distance: number } | null = null
 

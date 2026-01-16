@@ -29,7 +29,7 @@ const FEEDBACK_TYPES = ["wrong_phone", "wrong_address", "service_closed", "other
 export function FeedbackModal({ serviceId, serviceName, isOpen, onClose }: FeedbackModalProps) {
   const t = useTranslations("Feedback")
   const { toast } = useToast()
-  const [type, setType] = useState<typeof FEEDBACK_TYPES[number]>("other")
+  const [type, setType] = useState<(typeof FEEDBACK_TYPES)[number]>("other")
   const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -62,21 +62,16 @@ export function FeedbackModal({ serviceId, serviceName, isOpen, onClose }: Feedb
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription>
-            {t("description", { service: serviceName })}
-          </DialogDescription>
+          <DialogDescription>{t("description", { service: serviceName })}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label>{t("issueType")}</Label>
-            <RadioGroup
-              value={type}
-              onValueChange={(val) => setType(val as typeof FEEDBACK_TYPES[number])}
-            >
+            <RadioGroup value={type} onValueChange={(val) => setType(val as (typeof FEEDBACK_TYPES)[number])}>
               {FEEDBACK_TYPES.map((ft) => (
                 <div key={ft} className="flex items-center space-x-2">
                   <RadioGroupItem value={ft} id={ft} />
-                  <Label htmlFor={ft} className="font-normal cursor-pointer">
+                  <Label htmlFor={ft} className="cursor-pointer font-normal">
                     {t(`types.${ft}`)}
                   </Label>
                 </div>

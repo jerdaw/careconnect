@@ -27,7 +27,7 @@ function validateServices(): ValidationResult {
   console.log("🔍 Validating services.json...")
 
   const rawData = readFileSync(DATA_PATH, "utf-8")
-   
+
   const services = JSON.parse(rawData) as unknown[]
 
   const result: ValidationResult = {
@@ -50,11 +50,10 @@ function validateServices(): ValidationResult {
       if (error instanceof ZodError) {
         for (const issue of error.issues) {
           const isWarning = issue.message.includes("recommended")
-          
+
           result.errors.push({
-             
             serviceId: (service as any).id || "UNKNOWN",
-             
+
             serviceName: (service as any).name || "UNKNOWN",
             path: issue.path.join("."),
             message: issue.message,
@@ -84,14 +83,17 @@ function printResults(result: ValidationResult) {
 
   if (result.errors.length > 0) {
     console.log("\n🔴 Errors and Warnings:\n")
-    
+
     // Group by service
-    const grouped = result.errors.reduce((acc, err) => {
-      const key = `${err.serviceId} (${err.serviceName})`
-      if (!acc[key]) acc[key] = []
-      acc[key].push(err)
-      return acc
-    }, {} as Record<string, typeof result.errors>)
+    const grouped = result.errors.reduce(
+      (acc, err) => {
+        const key = `${err.serviceId} (${err.serviceName})`
+        if (!acc[key]) acc[key] = []
+        acc[key].push(err)
+        return acc
+      },
+      {} as Record<string, typeof result.errors>
+    )
 
     for (const [service, errors] of Object.entries(grouped)) {
       console.log(`  ${service}:`)

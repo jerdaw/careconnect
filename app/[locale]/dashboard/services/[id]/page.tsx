@@ -20,13 +20,13 @@ function FeedbackStats({ serviceId }: { serviceId: string }) {
   return (
     <div className="flex items-center gap-3 text-xs font-medium">
       {totalVotes > 0 && (
-        <span className="flex items-center gap-1 text-green-600 bg-green-50 px-2 py-0.5 rounded-full dark:bg-green-900/30 dark:text-green-400">
+        <span className="flex items-center gap-1 rounded-full bg-green-50 px-2 py-0.5 text-green-600 dark:bg-green-900/30 dark:text-green-400">
           <ThumbsUp className="h-3 w-3" />
           {helpfulPercentage}% ({totalVotes} votes)
         </span>
       )}
       {stats.open_issues_count > 0 && (
-        <span className="flex items-center gap-1 text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full dark:bg-amber-900/30 dark:text-amber-400">
+        <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
           <AlertTriangle className="h-3 w-3" />
           {stats.open_issues_count} open issues
         </span>
@@ -133,7 +133,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
           </Link>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">Edit Service</h1>
-            <div className="flex items-center gap-3 mt-1">
+            <div className="mt-1 flex items-center gap-3">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.name}</p>
               <FeedbackStats serviceId={id} />
             </div>

@@ -3,7 +3,6 @@
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
-   
   private static instance: any = null
   private static isLoading = false
 
@@ -48,7 +47,9 @@ class WhisperTranscriber {
 // Helper to convert audio Blob to float32 array
 async function convertBlobToAudioData(blob: Blob): Promise<Float32Array> {
   const arrayBuffer = await blob.arrayBuffer()
-  const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)({
+  const audioContext = new (
+    window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+  )({
     sampleRate: 16000, // Whisper expects 16kHz
   })
 

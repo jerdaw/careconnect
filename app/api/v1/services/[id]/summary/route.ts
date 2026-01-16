@@ -1,18 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id: serviceId } = await params
   const supabase = await createClient()
 
   if (!serviceId) {
-    return NextResponse.json(
-      { success: false, message: "Service ID is required" },
-      { status: 400 }
-    )
+    return NextResponse.json({ success: false, message: "Service ID is required" }, { status: 400 })
   }
 
   // Fetch summary
@@ -23,17 +17,12 @@ export async function GET(
     .single()
 
   if (error) {
-    if (error.code === 'PGRST116') { // Not found codes
-        return NextResponse.json(
-            { success: false, message: "Summary not found" },
-            { status: 404 }
-        )
+    if (error.code === "PGRST116") {
+      // Not found codes
+      return NextResponse.json({ success: false, message: "Summary not found" }, { status: 404 })
     }
     console.error("Error fetching summary:", error)
-    return NextResponse.json(
-      { success: false, message: "Internal Server Error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 })
   }
 
   return NextResponse.json({ success: true, data: summary })

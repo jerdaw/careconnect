@@ -21,16 +21,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   try {
     // Query the public view (accessible by anon users) instead of the protected services table
-    const { data, error } = await supabase
-      .from("services_public")
-      .select("*")
-      .eq("id", id)
-      .single()
+    const { data, error } = await supabase.from("services_public").select("*").eq("id", id).single()
 
     if (error || !data) {
       return createApiError("Service not found", 404)
     }
-
 
     const response = createApiResponse(data)
 

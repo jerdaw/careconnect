@@ -50,7 +50,8 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
           aria-label={context.hasOptedIn ? t("personalizePrompt") : t("enablePersonalization")}
           className={cn(
             "gap-2",
-            variant === "ghost" && "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800",
+            variant === "ghost" &&
+              "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800",
             variant === "pill" && context.hasOptedIn && "rounded-full"
           )}
         >
@@ -63,7 +64,11 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
                 : "bg-neutral-100 text-neutral-500 dark:bg-neutral-800"
             )}
           >
-            {context.hasOptedIn ? <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} /> : <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />}
+            {context.hasOptedIn ? (
+              <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />
+            ) : (
+              <User className={size === "pill" ? "h-3 w-3" : "h-4 w-4"} />
+            )}
           </div>
           {showText && (
             <span className="hidden font-medium sm:inline-block">

@@ -9,7 +9,7 @@ import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
 interface UseServicesProps {
   query: string
   category?: string
-  scope?: 'all' | 'kingston' | 'provincial'
+  scope?: "all" | "kingston" | "provincial"
   userLocation?: { lat: number; lng: number }
   openNow?: boolean
   isReady: boolean
@@ -23,7 +23,7 @@ interface UseServicesProps {
 export function useServices({
   query,
   category,
-  scope = 'all',
+  scope = "all",
   userLocation,
   openNow,
   isReady,
@@ -36,16 +36,19 @@ export function useServices({
   const locale = useLocale()
 
   // Filter results by scope
-  const filterByScope = useCallback((results: SearchResult[]): SearchResult[] => {
-    if (scope === 'all') return results
-    if (scope === 'kingston') {
-      return results.filter(r => r.service.scope === 'kingston' || !r.service.scope)
-    }
-    if (scope === 'provincial') {
-      return results.filter(r => r.service.scope === 'ontario' || r.service.scope === 'canada')
-    }
-    return results
-  }, [scope])
+  const filterByScope = useCallback(
+    (results: SearchResult[]): SearchResult[] => {
+      if (scope === "all") return results
+      if (scope === "kingston") {
+        return results.filter((r) => r.service.scope === "kingston" || !r.service.scope)
+      }
+      if (scope === "provincial") {
+        return results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada")
+      }
+      return results
+    },
+    [scope]
+  )
 
   useEffect(() => {
     const performSearch = async () => {
@@ -65,7 +68,7 @@ export function useServices({
       try {
         const mode = getSearchMode()
         const currentlyOffline = isOffline()
-        
+
         let initialResults: SearchResult[] = []
 
         if (mode === "server" && !currentlyOffline) {
@@ -73,18 +76,17 @@ export function useServices({
           const serverServices = await serverSearch({
             query,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            locale: locale as any, 
+            locale: locale as any,
             filters: { category },
-            options: { limit: 50, offset: 0 }
+            options: { limit: 50, offset: 0 },
           })
-          
+
           // Map to SearchResult structure
           initialResults = serverServices.map((service, index) => ({
             service,
             score: 100 - index,
-            matchReasons: ["Server Match"]
+            matchReasons: ["Server Match"],
           }))
-
         } else {
           // Local Search (Always used if mode is local OR if we are offline)
           initialResults = await searchServices(query, {
@@ -111,12 +113,12 @@ export function useServices({
         // We apply this for BOTH modes to ensure consistent UX
         // (Server returns raw results; Client re-ranks for distance/identity)
         // TODO: Move this to a shared "enhancer" function in Phase 5
-        
+
         // 3. Progressive Upgrade (Local Vector only for now)
         if (mode === "local" && isReady && query.trim().length > 0) {
           const embedding = await generateEmbedding(query)
           if (embedding) {
-             const enhancedResults = await searchServices(query, {
+            const enhancedResults = await searchServices(query, {
               category,
               location: userLocation,
               vectorOverride: embedding,
@@ -135,7 +137,7 @@ export function useServices({
             category,
             hasLocation: !!userLocation,
             resultCount: initialResults.length,
-            mode
+            mode,
           }),
         }).catch((err) =>
           logger.error("Analytics tracking failed", err, { component: "useServices", action: "analytics" })
@@ -155,5 +157,19 @@ export function useServices({
 
     const timer = setTimeout(performSearch, 150)
     return () => clearTimeout(timer)
-  }, [query, category, scope, userLocation, openNow, isReady, generateEmbedding, setResults, setIsLoading, setHasSearched, setSuggestion, filterByScope, locale])
+  }, [
+    query,
+    category,
+    scope,
+    userLocation,
+    openNow,
+    isReady,
+    generateEmbedding,
+    setResults,
+    setIsLoading,
+    setHasSearched,
+    setSuggestion,
+    filterByScope,
+    locale,
+  ])
 }

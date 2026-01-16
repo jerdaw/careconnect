@@ -57,7 +57,7 @@ export class PushNotificationManager {
       if (!subscription) {
         subscription = await this.registration.pushManager.subscribe({
           userVisibleOnly: true,
-           
+
           applicationServerKey: this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as any,
         })
       }

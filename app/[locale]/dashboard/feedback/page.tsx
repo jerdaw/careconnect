@@ -32,13 +32,15 @@ export default async function FeedbackPage() {
   // Fetch feedback for services owned by this user
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: feedback, error } = await (supabase.from("feedback" as any) as any)
-    .select(`
+    .select(
+      `
       *,
       services (
         name,
         verification_level
       )
-    `)
+    `
+    )
     .order("created_at", { ascending: false })
 
   if (error) {

@@ -21,7 +21,7 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
   const { toast } = useToast()
   const { isOffline } = useNetworkStatus()
   const tOffline = useTranslations("Offline")
-  
+
   const [hasVoted, setHasVoted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isIssueModalOpen, setIsIssueModalOpen] = useState(false)
@@ -34,11 +34,11 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
           feedback_type: type,
           service_id: serviceId,
           message: "",
-          category_searched: ""
+          category_searched: "",
         })
         setHasVoted(true)
         toast({
-          title: tOffline("savedForLater"), 
+          title: tOffline("savedForLater"),
           description: tOffline("savedMessage"),
         })
         return
@@ -75,22 +75,20 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
 
   if (hasVoted) {
     return (
-      <div className={cn("rounded-lg border bg-card p-4 text-center text-sm text-muted-foreground", className)}>
+      <div className={cn("bg-card text-muted-foreground rounded-lg border p-4 text-center text-sm", className)}>
         <p>{t("alreadyVotedMessage")}</p>
       </div>
     )
   }
 
   return (
-    <div className={cn("rounded-lg border bg-card p-6 shadow-sm", className)}>
+    <div className={cn("bg-card rounded-lg border p-6 shadow-sm", className)}>
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div>
           <h3 className="font-semibold">{t("widgetTitle")}</h3>
-          <p className="text-sm text-muted-foreground">
-            {t("widgetSubtitle")}
-          </p>
+          <p className="text-muted-foreground text-sm">{t("widgetSubtitle")}</p>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
@@ -102,7 +100,7 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
             {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ThumbsUp className="mr-2 h-4 w-4" />}
             {t("yes")}
           </Button>
-          
+
           <Button
             variant="outline"
             size="sm"
@@ -114,7 +112,7 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
             {t("no")}
           </Button>
 
-          <div className="mx-2 h-6 w-px bg-border" aria-hidden="true" />
+          <div className="bg-border mx-2 h-6 w-px" aria-hidden="true" />
 
           <Button
             variant="ghost"

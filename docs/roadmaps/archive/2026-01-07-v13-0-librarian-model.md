@@ -253,13 +253,13 @@ Why a new endpoint:
     "category": "Food|Crisis|Housing|... (optional)",
     "verificationLevels": ["L0", "L1", "L2", "L3"] /* optional */,
     "includeProvincial": true /* optional, default true */,
-    "openNow": false /* optional; ideally computed client-side */
+    "openNow": false /* optional; ideally computed client-side */,
   },
   "options": {
     "limit": 20,
     "offset": 0,
-    "includeEmbeddings": false
-  }
+    "includeEmbeddings": false,
+  },
 }
 ```
 
@@ -282,15 +282,15 @@ Why a new endpoint:
       "identity_tags": [{ "tag": "Youth", "evidence_url": "https://..." }],
       "embedding": [
         /* optional, only when requested */
-      ]
-    }
+      ],
+    },
   ],
   "meta": {
     "total": 123,
     "limit": 20,
     "offset": 0,
-    "mode": "server" /* or "fallback" during rollout */
-  }
+    "mode": "server" /* or "fallback" during rollout */,
+  },
 }
 ```
 

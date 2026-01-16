@@ -1,4 +1,4 @@
-import { CapacitorConfig } from "@capacitor/cli";
+import { CapacitorConfig } from "@capacitor/cli"
 
 const config: CapacitorConfig = {
   appId: "org.kingstoncareconnect.app",
@@ -20,6 +20,6 @@ const config: CapacitorConfig = {
       presentationOptions: ["badge", "sound", "alert"],
     },
   },
-};
+}
 
-export default config;
+export default config

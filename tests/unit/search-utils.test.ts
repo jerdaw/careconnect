@@ -25,7 +25,7 @@ describe("Crisis Detection", () => {
         verified_by: "system",
         verified_at: new Date().toISOString(),
         evidence_url: "",
-        method: "manual"
+        method: "manual",
       },
       identity_tags: [],
       synthetic_queries: [],
@@ -41,7 +41,7 @@ describe("Crisis Detection", () => {
         verified_by: "system",
         verified_at: new Date().toISOString(),
         evidence_url: "",
-        method: "manual"
+        method: "manual",
       },
       identity_tags: [],
       synthetic_queries: [],

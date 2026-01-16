@@ -20,9 +20,9 @@ describe("Feedback V1 API Route", () => {
   it("returns 400 for invalid zod schema", async () => {
     const request = new Request("http://localhost/api/v1/feedback", {
       method: "POST",
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         // Missing feedback_type
-        service_id: "123" 
+        service_id: "123",
       }),
     })
 
@@ -35,7 +35,7 @@ describe("Feedback V1 API Route", () => {
 
   it("successfully inserts valid feedback", async () => {
     mockInsert.mockResolvedValue({ error: null })
-    
+
     const payload = {
       service_id: "123",
       feedback_type: "helpful_yes",
@@ -52,18 +52,20 @@ describe("Feedback V1 API Route", () => {
     expect(json.success).toBe(true)
 
     expect(mockFrom).toHaveBeenCalledWith("feedback")
-    expect(mockInsert).toHaveBeenCalledWith([{
-      feedback_type: "helpful_yes",
-      message: null,
-      service_id: "123",
-      category_searched: null,
-      status: "pending",
-    }])
+    expect(mockInsert).toHaveBeenCalledWith([
+      {
+        feedback_type: "helpful_yes",
+        message: null,
+        service_id: "123",
+        category_searched: null,
+        status: "pending",
+      },
+    ])
   })
 
   it("successfully inserts global not_found feedback", async () => {
     mockInsert.mockResolvedValue({ error: null })
-    
+
     const payload = {
       feedback_type: "not_found",
       category_searched: "Food",
@@ -78,18 +80,20 @@ describe("Feedback V1 API Route", () => {
     const response = await POST(request as any)
     expect(response.status).toBe(200)
 
-    expect(mockInsert).toHaveBeenCalledWith([{
-      feedback_type: "not_found",
-      message: "Need more pantries",
-      service_id: null,
-      category_searched: "Food",
-      status: "pending",
-    }])
+    expect(mockInsert).toHaveBeenCalledWith([
+      {
+        feedback_type: "not_found",
+        message: "Need more pantries",
+        service_id: null,
+        category_searched: "Food",
+        status: "pending",
+      },
+    ])
   })
 
   it("returns 500 on database error", async () => {
     mockInsert.mockResolvedValue({ error: { message: "Supabase Error" } })
-    
+
     const request = new Request("http://localhost/api/v1/feedback", {
       method: "POST",
       body: JSON.stringify({

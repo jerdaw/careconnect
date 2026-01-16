@@ -35,7 +35,7 @@ describe("useServiceFeedback", () => {
       open_issues_count: 1,
       last_feedback_at: "2026-01-01T00:00:00Z",
     }
-    
+
     const mockSingle = vi.fn().mockResolvedValue({ data: mockData, error: null })
     ;(supabase.from as any).mockImplementation(() => ({
       select: vi.fn().mockReturnThis(),
@@ -53,9 +53,9 @@ describe("useServiceFeedback", () => {
   })
 
   it("handles missing stats (PGRST116) by returning zeros", async () => {
-    const mockSingle = vi.fn().mockResolvedValue({ 
-      data: null, 
-      error: { code: 'PGRST116', message: 'Not found' } 
+    const mockSingle = vi.fn().mockResolvedValue({
+      data: null,
+      error: { code: "PGRST116", message: "Not found" },
     })
     ;(supabase.from as any).mockImplementation(() => ({
       select: vi.fn().mockReturnThis(),
@@ -77,9 +77,9 @@ describe("useServiceFeedback", () => {
   })
 
   it("handles errors", async () => {
-    const mockSingle = vi.fn().mockResolvedValue({ 
-      data: null, 
-      error: { code: '500', message: 'Database error' } 
+    const mockSingle = vi.fn().mockResolvedValue({
+      data: null,
+      error: { code: "500", message: "Database error" },
     })
     ;(supabase.from as any).mockImplementation(() => ({
       select: vi.fn().mockReturnThis(),

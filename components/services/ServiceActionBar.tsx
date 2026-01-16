@@ -48,7 +48,7 @@ export function ServiceActionBar({
         <BookOpen className="h-4 w-4" />
         {plainLanguageLabel}
       </Link>
-      
+
       <Button variant="outline" className="gap-2" onClick={handleShare}>
         <Share2 className="h-4 w-4" /> {shareLabel}
       </Button>

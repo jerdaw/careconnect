@@ -44,10 +44,10 @@ export default function SubmitServiceForm() {
         >
           <CheckCircle className="h-12 w-12 text-green-600 dark:text-green-400" />
         </motion.div>
-        
+
         <h2 className="mb-2 text-2xl font-bold text-neutral-900 dark:text-white">{t("successTitle")}</h2>
         <p className="mb-8 text-neutral-600 dark:text-neutral-400">{t("successMessage")}</p>
-        
+
         <Button onClick={() => setSuccess(false)} variant="outline" size="lg">
           {t("submitAnother")}
         </Button>
@@ -61,9 +61,7 @@ export default function SubmitServiceForm() {
         <h1 className="heading-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
           {t("title")}
         </h1>
-        <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">
-          {t("description")}
-        </p>
+        <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">{t("description")}</p>
       </div>
 
       <div className="space-y-6">
@@ -74,11 +72,11 @@ export default function SubmitServiceForm() {
 
         <div className="space-y-2">
           <Label htmlFor="description">{t("serviceDesc")}</Label>
-          <Textarea 
-            name="description" 
-            id="description" 
-            required 
-            rows={4} 
+          <Textarea
+            name="description"
+            id="description"
+            required
+            rows={4}
             placeholder="Briefly describe the services offered..."
           />
         </div>

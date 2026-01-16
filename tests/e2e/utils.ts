@@ -18,20 +18,20 @@ export async function mockSupabase(page: Page) {
       contentType: "application/json",
       body: JSON.stringify({
         data: servicesFixture,
-        meta: { total: servicesFixture.length }
+        meta: { total: servicesFixture.length },
       }),
     })
   })
 
   // Mock all other Supabase REST requests to prevent polling/timeouts
   await page.route("**/rest/v1/**", async (route) => {
-      // Fallback for non-services requests (e.g. auth, other tables)
-      await route.fulfill({ status: 200, body: JSON.stringify([]) }) 
+    // Fallback for non-services requests (e.g. auth, other tables)
+    await route.fulfill({ status: 200, body: JSON.stringify([]) })
   })
-  
+
   // Create a proper auth session mock if needed, or just block auth endpoints
   await page.route("**/auth/v1/**", async (route) => {
-       await route.fulfill({ status: 200, body: JSON.stringify({ user: null }) })
+    await route.fulfill({ status: 200, body: JSON.stringify({ user: null }) })
   })
 
   // Block Analytics to prevent noise/errors

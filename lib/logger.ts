@@ -41,7 +41,7 @@ class Logger {
   endTimer(label: string): number | undefined {
     const startTime = this.timers.get(label)
     if (startTime === undefined) return undefined
-    
+
     this.timers.delete(label)
     return Math.round(performance.now() - startTime)
   }
@@ -65,10 +65,8 @@ class Logger {
    */
   error(message: string, error?: Error | unknown, meta?: LogMeta): void {
     const errorInfo =
-      error instanceof Error 
-        ? { errorName: error.name, errorMessage: error.message, stack: error.stack } 
-        : { error }
-    
+      error instanceof Error ? { errorName: error.name, errorMessage: error.message, stack: error.stack } : { error }
+
     this.log("error", message, { ...meta, ...errorInfo })
   }
 

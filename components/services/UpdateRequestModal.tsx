@@ -26,7 +26,7 @@ interface UpdateRequestModalProps {
 export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: UpdateRequestModalProps) {
   const t = useTranslations("Feedback")
   const { toast } = useToast()
-  
+
   const [updates, setUpdates] = useState("")
   const [justification, setJustification] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -46,9 +46,9 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
       const data = (await res.json()) as { success: boolean; message?: string }
 
       if (res.ok && data.success) {
-        toast({ 
-          title: t("requestSuccessTitle"), 
-          description: t("requestSuccessMessage") 
+        toast({
+          title: t("requestSuccessTitle"),
+          description: t("requestSuccessMessage"),
         })
         onClose()
         setUpdates("")
@@ -62,10 +62,10 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
     } catch (err: unknown) {
       console.error(err)
       const errorMessage = err instanceof Error ? err.message : t("errorMessage")
-      toast({ 
-        title: t("errorTitle"), 
-        description: errorMessage, 
-        variant: "destructive" 
+      toast({
+        title: t("errorTitle"),
+        description: errorMessage,
+        variant: "destructive",
       })
     } finally {
       setIsSubmitting(false)
@@ -77,9 +77,7 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t("requestUpdateTitle")}</DialogTitle>
-          <DialogDescription>
-            {t("requestUpdateDesc", { service: serviceName })}
-          </DialogDescription>
+          <DialogDescription>{t("requestUpdateDesc", { service: serviceName })}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">

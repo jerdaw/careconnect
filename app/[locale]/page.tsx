@@ -11,7 +11,6 @@ import { Section } from "@/components/ui/section"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-
 // Modular Components
 import ModelStatus from "../../components/home/ModelStatus"
 import SearchBar from "../../components/home/SearchBar"
@@ -70,7 +69,7 @@ export default function Home() {
   useEffect(() => {
     if (hasSearched && searchBarRef.current) {
       // Scroll so search bar is visible just below the nav
-      searchBarRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      searchBarRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }, [hasSearched])
 
@@ -82,7 +81,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative transition-all duration-500 pt-32 pb-4 md:pt-48 md:pb-5">
+      <section className="relative pt-32 pb-4 transition-all duration-500 md:pt-48 md:pb-5">
         {/* Mesh Gradient Background */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div className="bg-primary-400/40 animate-float dark:bg-primary-700/40 absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:mix-blend-screen" />
@@ -91,7 +90,6 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-
           <motion.div
             key="hero-content"
             initial={{ opacity: 0, y: 30 }}
@@ -143,10 +141,10 @@ export default function Home() {
 
               <div
                 className={cn(
-                  "relative h-full w-full rounded-[2rem] p-2 transition-all duration-300 border-0",
+                  "relative h-full w-full rounded-[2rem] border-0 p-2 transition-all duration-300",
                   isActive
-                    ? "bg-white/95 backdrop-blur-xl shadow-none ring-0 outline-none dark:bg-slate-900/95"
-                    : "bg-white/80 backdrop-blur-xl dark:bg-slate-900/80 shadow-none"
+                    ? "bg-white/95 shadow-none ring-0 backdrop-blur-xl outline-none dark:bg-slate-900/95"
+                    : "bg-white/80 shadow-none backdrop-blur-xl dark:bg-slate-900/80"
                 )}
               >
                 <SearchBar
@@ -205,8 +203,6 @@ export default function Home() {
         )}
 
         <SafetyAlert query={query} category={category} />
-
-
 
         <SearchResultsList
           isLoading={isLoading}

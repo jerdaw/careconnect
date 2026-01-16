@@ -10,7 +10,7 @@ describe("Logger", () => {
     infoSpy = vi.spyOn(console, "info").mockImplementation(() => {})
     errorSpy = vi.spyOn(console, "error").mockImplementation(() => {})
     debugSpy = vi.spyOn(console, "debug").mockImplementation(() => {})
-    
+
     // Reset global context
     logger.setContext({})
   })
@@ -21,7 +21,7 @@ describe("Logger", () => {
 
   it("should log info messages with metadata", () => {
     logger.info("test info", { component: "Test" })
-    
+
     expect(infoSpy).toHaveBeenCalledWith(
       expect.stringContaining("[INFO] test info"),
       expect.objectContaining({ component: "Test" })
@@ -31,7 +31,7 @@ describe("Logger", () => {
   it("should include global context in all logs", () => {
     logger.setContext({ sessionId: "123", userId: "abc" })
     logger.info("context test")
-    
+
     expect(infoSpy).toHaveBeenCalledWith(
       expect.stringContaining("[INFO] context test"),
       expect.objectContaining({ sessionId: "123", userId: "abc" })
@@ -41,14 +41,14 @@ describe("Logger", () => {
   it("should handle error objects correctly", () => {
     const error = new Error("oops")
     logger.error("something failed", error, { action: "fail" })
-    
+
     expect(errorSpy).toHaveBeenCalledWith(
       expect.stringContaining("[ERROR] something failed"),
       expect.objectContaining({
         action: "fail",
         errorName: "Error",
         errorMessage: "oops",
-        stack: expect.any(String)
+        stack: expect.any(String),
       })
     )
   })
@@ -56,11 +56,11 @@ describe("Logger", () => {
   it("should measure durations with timers", async () => {
     logger.startTimer("work")
     // Use a small delay to ensure measurable duration
-    await new Promise(r => setTimeout(r, 10))
+    await new Promise((r) => setTimeout(r, 10))
     const duration = logger.endTimer("work")
-    
+
     expect(duration).toBeGreaterThanOrEqual(10)
-    
+
     logger.info("work finished", { duration })
     expect(infoSpy).toHaveBeenCalledWith(
       expect.stringContaining("[INFO] work finished"),

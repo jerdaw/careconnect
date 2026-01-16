@@ -9,7 +9,7 @@ export default function ContentPolicyPage() {
 
   const rich = {
     p: (chunks: ReactNode) => <p className="mb-4">{chunks}</p>,
-    ul: (chunks: ReactNode) => <ul className="list-disc pl-6 space-y-2 mb-4">{chunks}</ul>,
+    ul: (chunks: ReactNode) => <ul className="mb-4 list-disc space-y-2 pl-6">{chunks}</ul>,
     li: (chunks: ReactNode) => <li>{chunks}</li>,
     strong: (chunks: ReactNode) => <strong className="font-semibold">{chunks}</strong>,
   }
@@ -40,32 +40,20 @@ export default function ContentPolicyPage() {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12">
       <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-          {t("title")}
-        </h1>
-        <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
-          {t("description")}
-        </p>
+        <h1 className="mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">{t("title")}</h1>
+        <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{t("description")}</p>
       </div>
 
       <div className="space-y-12">
         {policySections.map((section) => (
-          <PageSection 
-            key={section.id} 
-            title={section.title} 
-            id={section.id}
-          >
-            <div className="prose prose-neutral dark:prose-invert max-w-none">
-              {section.content}
-            </div>
+          <PageSection key={section.id} title={section.title} id={section.id}>
+            <div className="prose prose-neutral dark:prose-invert max-w-none">{section.content}</div>
           </PageSection>
         ))}
       </div>
 
       <div className="mt-16 rounded-2xl bg-neutral-50 p-8 text-center dark:bg-neutral-900">
-        <p className="text-sm text-neutral-500">
-          {t("lastUpdated")}: January 2026
-        </p>
+        <p className="text-sm text-neutral-500">{t("lastUpdated")}: January 2026</p>
       </div>
     </main>
   )

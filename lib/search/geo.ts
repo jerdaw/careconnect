@@ -30,7 +30,7 @@ export const PROXIMITY_CONFIG = {
  * Returns a proximity-based score multiplier.
  * Closer services get higher multipliers (up to 1.0).
  * v16.0: Search ranking improvement.
- * 
+ *
  * @param distanceKm - Distance in kilometers
  * @param isVirtual - If true, service has no physical location requirement
  * @param isWideArea - If true, service is provincial/national scope
@@ -45,10 +45,10 @@ export function getProximityMultiplier(
   if (isVirtual) {
     return PROXIMITY_CONFIG.virtualMultiplier
   }
-  
+
   // Use appropriate decay factor
   const k = isWideArea ? PROXIMITY_CONFIG.wideAreaDecayK : PROXIMITY_CONFIG.standardDecayK
-  
+
   // Decay formula: 1 / (1 + k * distance)
   // At distance 0: multiplier = 1.0
   // At distance d where k*d = 1: multiplier = 0.5
@@ -60,39 +60,31 @@ export function getProximityMultiplier(
  * Combines relevance score with proximity for final ranking.
  * v16.0: Enhanced from bucket-based to continuous decay.
  */
-export const resortByDistance = (
-  results: SearchResult[], 
-  userLoc: { lat: number; lng: number }
-): SearchResult[] => {
+export const resortByDistance = (results: SearchResult[], userLoc: { lat: number; lng: number }): SearchResult[] => {
   // Apply proximity decay to scores
-  const scoredResults = results.map(result => {
+  const scoredResults = results.map((result) => {
     const service = result.service
-    
+
     // Determine if service is virtual or wide-area
     const isVirtual = service.virtual_delivery === true
     const isWideArea = service.scope === "ontario" || service.scope === "canada"
-    
+
     // Calculate distance
     let distance = Infinity
     if (service.coordinates) {
-      distance = calculateDistanceKm(
-        userLoc.lat, 
-        userLoc.lng, 
-        service.coordinates.lat, 
-        service.coordinates.lng
-      )
+      distance = calculateDistanceKm(userLoc.lat, userLoc.lng, service.coordinates.lat, service.coordinates.lng)
     }
-    
+
     // Get proximity multiplier
     const proximityMultiplier = getProximityMultiplier(distance, isVirtual, isWideArea)
-    
+
     // Apply proximity decay to score
     const adjustedScore = result.score * proximityMultiplier
-    
+
     // Add proximity info to match reasons if significant
     const proximityPercent = Math.round(proximityMultiplier * 100)
     const updatedReasons = [...result.matchReasons]
-    
+
     if (isVirtual) {
       // Don't add reason for virtual services (no location impact)
     } else if (distance < Infinity && proximityPercent < 95) {
@@ -102,7 +94,7 @@ export const resortByDistance = (
         updatedReasons.push(`Distance Adjusted (${Math.round(distance)}km, ${proximityPercent}%)`)
       }
     }
-    
+
     return {
       ...result,
       score: adjustedScore,
@@ -110,7 +102,7 @@ export const resortByDistance = (
       distance, // Preserve for potential display
     }
   })
-  
+
   // Sort by adjusted score (descending)
   return scoredResults.sort((a, b) => b.score - a.score)
 }

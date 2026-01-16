@@ -2,8 +2,6 @@ import { Service } from "@/types/service"
 import { supabase } from "@/lib/supabase"
 import { env } from "@/lib/env"
 
-
-
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
 
@@ -22,7 +20,7 @@ export const loadServices = async (): Promise<Service[]> => {
       // Dynamic import to avoid server-side issues with 'idb'
       const { getAllServices } = await import("@/lib/offline/db")
       const offlineServices = await getAllServices()
-      
+
       if (offlineServices && offlineServices.length > 0) {
         // Enriched Services are already stored in IDB with embeddings
         // We use this as the primary source of truth on the client
@@ -52,11 +50,10 @@ export const loadServices = async (): Promise<Service[]> => {
         // TODO: Move this metadata to DB in future phases to remove JSON dependency entirely
         const { default: servicesData } = await import("@/data/services.json")
         const { default: embeddingsData } = await import("@/data/embeddings.json")
-        
+
         const fallbackServices = servicesData as unknown as Service[]
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-         
         const mappedData: Service[] = data.map((row: any) => {
           // Find static metadata from services.json to overlay (AI metadata)
           const staticService = fallbackServices.find((s) => s.id === row.id)
@@ -75,10 +72,10 @@ export const loadServices = async (): Promise<Service[]> => {
             synthetic_queries: staticService?.synthetic_queries || [],
             // If tags are missing in DB, use static
             ...(!row.tags && staticService?.identity_tags ? { identity_tags: staticService.identity_tags } : {}),
-            
+
             // Ensure boolean flags are present
             is_provincial: row.is_provincial || false,
-            published: row.published !== false 
+            published: row.published !== false,
           }
         })
 
@@ -95,7 +92,7 @@ export const loadServices = async (): Promise<Service[]> => {
   // Fallback: Dynamic Import of Local JSON
   const { default: servicesData } = await import("@/data/services.json")
   const { default: embeddingsData } = await import("@/data/embeddings.json")
-  
+
   const fallbackServices = servicesData as unknown as Service[]
   const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 

@@ -64,7 +64,6 @@ export default function LanguageSwitcher() {
               {locale === loc.code && <Check className="h-4 w-4" />}
             </button>
           ))}
-
         </div>
       </PopoverContent>
     </Popover>

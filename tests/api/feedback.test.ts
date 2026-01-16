@@ -37,7 +37,7 @@ describe("Feedback API Route", () => {
 
   it("successfully inserts feedback", async () => {
     mockInsert.mockResolvedValue({ error: null })
-    
+
     const feedbackData = {
       serviceId: "123",
       feedbackType: "wrong_phone",
@@ -64,7 +64,7 @@ describe("Feedback API Route", () => {
 
   it("returns 500 on database error", async () => {
     mockInsert.mockResolvedValue({ error: { message: "DB Error" } })
-    
+
     const request = new Request("http://localhost/api/feedback", {
       method: "POST",
       body: JSON.stringify({

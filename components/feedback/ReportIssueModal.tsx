@@ -27,19 +27,14 @@ interface ReportIssueModalProps {
   onClose: () => void
 }
 
-const ISSUE_TYPES = [
-  "wrong_contact_info",
-  "service_closed",
-  "eligibility_incorrect",
-  "other"
-] as const
+const ISSUE_TYPES = ["wrong_contact_info", "service_closed", "eligibility_incorrect", "other"] as const
 
 export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: ReportIssueModalProps) {
   const t = useTranslations("Feedback")
   const { toast } = useToast()
-  
+
   // Local state for the specific issue subtype (not sending to API as separate field, but as part of message)
-  const [issueType, setIssueType] = useState<typeof ISSUE_TYPES[number]>("other")
+  const [issueType, setIssueType] = useState<(typeof ISSUE_TYPES)[number]>("other")
   const [details, setDetails] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { isOffline } = useNetworkStatus()
@@ -54,27 +49,27 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
         feedback_type: "issue",
         message: `[Type: ${issueType}] ${details}`,
       }
-      
+
       const validation = FeedbackSubmitSchema.safeParse(payload)
       if (!validation.success) {
         throw new Error("Validation failed")
       }
 
       if (isOffline) {
-          await queueFeedback({
-              feedback_type: "issue",
-              service_id: serviceId,
-              message: payload.message,
-              category_searched: ""
-          })
-          toast({ 
-            title: tOffline("savedForLater"), 
-            description: tOffline("savedMessage") 
-          })
-          onClose()
-          setIssueType("other")
-          setDetails("")
-          return
+        await queueFeedback({
+          feedback_type: "issue",
+          service_id: serviceId,
+          message: payload.message,
+          category_searched: "",
+        })
+        toast({
+          title: tOffline("savedForLater"),
+          description: tOffline("savedMessage"),
+        })
+        onClose()
+        setIssueType("other")
+        setDetails("")
+        return
       }
 
       const res = await fetch("/api/v1/feedback", {
@@ -86,9 +81,9 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
       const data = (await res.json()) as FeedbackApiResponse
 
       if (res.ok && data.success) {
-        toast({ 
-          title: t("issueReportedTitle"), 
-          description: t("issueReportedMessage") 
+        toast({
+          title: t("issueReportedTitle"),
+          description: t("issueReportedMessage"),
         })
         onClose()
         // Reset form
@@ -99,10 +94,10 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
       }
     } catch (err) {
       console.error(err)
-      toast({ 
-        title: t("errorTitle"), 
-        description: t("errorMessage"), 
-        variant: "destructive" 
+      toast({
+        title: t("errorTitle"),
+        description: t("errorMessage"),
+        variant: "destructive",
       })
     } finally {
       setIsSubmitting(false)
@@ -114,21 +109,16 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t("reportIssueTitle")}</DialogTitle>
-          <DialogDescription>
-            {t("reportIssueDescription", { service: serviceName })}
-          </DialogDescription>
+          <DialogDescription>{t("reportIssueDescription", { service: serviceName })}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label>{t("issueTypeLabel")}</Label>
-            <RadioGroup
-              value={issueType}
-              onValueChange={(val) => setIssueType(val as typeof ISSUE_TYPES[number])}
-            >
+            <RadioGroup value={issueType} onValueChange={(val) => setIssueType(val as (typeof ISSUE_TYPES)[number])}>
               {ISSUE_TYPES.map((ft) => (
                 <div key={ft} className="flex items-center space-x-2">
                   <RadioGroupItem value={ft} id={ft} />
-                  <Label htmlFor={ft} className="font-normal cursor-pointer">
+                  <Label htmlFor={ft} className="cursor-pointer font-normal">
                     {t(`issueTypes.${ft}`)}
                   </Label>
                 </div>
