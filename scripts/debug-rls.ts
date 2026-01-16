@@ -18,12 +18,9 @@ const supabase = createClient<Database>(supabaseUrl, anonKey)
 
 async function checkVisibility() {
   console.log("Checking visibility of crisis-988 as ANON user...")
-  
+
   // Try to find it in services_public view
-  const { data, error } = await supabase
-    .from("services_public")
-    .select("*")
-    .eq("id", "crisis-988")
+  const { data, error } = await supabase.from("services_public").select("*").eq("id", "crisis-988")
 
   if (error) {
     console.error("Error:", error)
