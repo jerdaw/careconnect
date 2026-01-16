@@ -8,9 +8,11 @@ test.describe("Language Switching", () => {
 
     test("Language switching toggles translation", async ({ page }) => {
         await page.goto("/")
+        await page.waitForURL(/.*\/en/)
+        await page.waitForLoadState("domcontentloaded")
 
-        // Check initial English text
-        await expect(page.getByText("Find Services")).toBeVisible()
+        // Check initial English text (using actual i18n key)
+        await expect(page.getByText("Browse Services")).toBeVisible()
 
         // Switch to French
         // Look for language toggle. Usually a button "FR" or similar.
@@ -27,6 +29,6 @@ test.describe("Language Switching", () => {
 
         // Verify URL change or text change
         await expect(page).toHaveURL(/\/fr/)
-        await expect(page.getByText("Trouver des services")).toBeVisible() // Assumption
+        await expect(page.getByText("Parcourir les services")).toBeVisible() // French translation
     })
 })

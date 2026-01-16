@@ -7,7 +7,7 @@ test("Offline page renders", async ({ page }) => {
 
     // In CI, PWA is disabled, so we test the page directly instead of relying on SW interception
     await page.goto("/offline")
-    await expect(page.getByText(/offline/i)).toBeVisible()
+    await expect(page.getByText(/You are offline/i)).toBeVisible()
 })
 
 test("Service worker is registered", async ({ page }) => {

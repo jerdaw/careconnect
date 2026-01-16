@@ -3,6 +3,9 @@ import { test, expect } from "@playwright/test"
 
 test.describe("Data Integrity & API Verification", () => {
   test("Critical services have correct scope configuration", async ({ request }) => {
+    // Skip in CI - requires live Supabase connection
+    if (process.env.CI) test.skip()
+    
     // 1. Search for the 988 service via API
     const response = await request.post("/api/v1/search/services", {
       data: {
@@ -26,6 +29,9 @@ test.describe("Data Integrity & API Verification", () => {
   })
 
   test("Search API returns valid structure for all locales", async ({ request }) => {
+    // Skip in CI - requires live Supabase connection
+    if (process.env.CI) test.skip()
+    
     const locales = ["en", "fr", "ar", "zh-Hans", "es", "pa", "pt"]
 
     for (const locale of locales) {

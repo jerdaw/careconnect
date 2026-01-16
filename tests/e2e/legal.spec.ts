@@ -30,12 +30,14 @@ test.describe("Legal Pages", () => {
         await expect(page.getByText("Zero-Log Policy")).toBeVisible()
         await expect(page.getByText("AI Assistant Privacy")).toBeVisible()
         
-        // Check Contact Info
-        await expect(page.getByText("privacy@careconnect.ca")).toBeVisible()
+        // Check Contact Info (use .first() since this text appears multiple times)
+        await expect(page.getByText("privacy@careconnect.ca").first()).toBeVisible()
     })
 
     test("Legal pages are accessible from footer", async ({ page }) => {
         await page.goto("/")
+        await page.waitForURL(/.*\/en/)
+        await page.waitForLoadState("domcontentloaded")
         
         // Click Privacy
         await page.getByRole("contentinfo").getByRole("link", { name: "Privacy Policy" }).click()
@@ -43,6 +45,8 @@ test.describe("Legal Pages", () => {
         
         // Go back and Click Terms
         await page.goto("/")
+        await page.waitForURL(/.*\/en/)
+        await page.waitForLoadState("domcontentloaded")
         await page.getByRole("contentinfo").getByRole("link", { name: "Terms of Service" }).click()
         await expect(page).toHaveURL(/.*\/terms/)
     })
@@ -60,6 +64,6 @@ test.describe("Legal Pages", () => {
         
         // Check Reporting
         await expect(page.getByText("Reporting Process")).toBeVisible()
-        await expect(page.getByText("privacy@careconnect.ca")).toBeVisible()
+        await expect(page.getByText("privacy@careconnect.ca").first()).toBeVisible()
     })
 })

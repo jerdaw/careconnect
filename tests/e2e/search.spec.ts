@@ -6,6 +6,8 @@ test.describe("Search Flow", () => {
     // Mock the network layer to be deterministic
     await mockSupabase(page)
     await page.goto("/")
+    await page.waitForURL(/.*\/en/)
+    await page.waitForLoadState("domcontentloaded")
   })
 
   test("should allow user to search for services", async ({ page }) => {
@@ -24,7 +26,7 @@ test.describe("Search Flow", () => {
     await page.getByText("Kingston Food Bank").click()
 
     // 4. Verify detail page
-    await expect(page).toHaveURL(/\/services\/kingston-food-bank/)
+    await expect(page).toHaveURL(/\/service\/kingston-food-bank/)
     await expect(page.getByRole("heading", { name: "Kingston Food Bank" })).toBeVisible()
   })
 

@@ -11,6 +11,18 @@ export async function mockSupabase(page: Page) {
     })
   })
 
+  // Mock Search API
+  await page.route("**/api/v1/search/services", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        data: servicesFixture,
+        meta: { total: servicesFixture.length }
+      }),
+    })
+  })
+
   // Mock all other Supabase REST requests to prevent polling/timeouts
   await page.route("**/rest/v1/**", async (route) => {
       // Fallback for non-services requests (e.g. auth, other tables)

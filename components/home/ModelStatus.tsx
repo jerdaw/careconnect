@@ -5,8 +5,8 @@ import { Zap, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 const messages = [
-  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-green-600 dark:text-green-500" },
-  { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-600 dark:text-green-500" },
+  { iconComponent: ShieldCheck, text: "Privacy First • No Tracking • Open Source", color: "text-green-700 dark:text-green-500" },
+  { iconComponent: Zap, text: "Private Neural Search Active", color: "text-green-700 dark:text-green-500" },
 ]
 
 // Synced to half of the 10-second spin cycle
