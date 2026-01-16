@@ -11,4 +11,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npx cross-env ANALYZE=true npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'placeholder-key' }}
       - run: node scripts/report-bundle-size.js
