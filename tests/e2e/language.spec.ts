@@ -8,7 +8,6 @@ test.describe("Language Switching", () => {
 
   // TODO: Fix - Homepage doesn't display "Browse Services" text. Update selector.
   test.skip("Language switching toggles translation", async ({ page }) => {
-
     await page.goto("/")
     await page.waitForURL(/.*\/en/)
     await page.waitForLoadState("domcontentloaded")
