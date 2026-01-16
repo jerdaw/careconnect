@@ -1,69 +1,18 @@
 ---
-status: stable
-last_updated: 2026-01-15
+status: redirect
+last_updated: 2026-01-16
 owner: jer
-tags: [development, testing, standards]
+tags: [development, testing]
 ---
 
 # Testing Guidelines
 
-## 1. Stack
-
-- **Unit/Integration**: [Vitest](https://vitest.dev/)
-  - Fast, headless testing for components, hooks, and utility logic.
-  - Config: `vitest.config.mts`
-- **End-to-End (E2E)**: [Playwright](https://playwright.dev/)
-  - Browser-based testing for critical user flows (Search, Navigation, Login).
-  - Config: `playwright.config.ts`
-
-## 2. File Structure
-
-- `tests/unit/**/*`: Vitest unit tests (colocated with code is also acceptable for utils).
-- `tests/api/**/*`: API route tests (e.g., `tests/api/v1/search-api.test.ts`).
-- `tests/e2e/**/*`: Playwright E2E scenarios.
-- `scripts/search-qa.ts`: Specialized script for evaluating search relevance quality.
-
-## 3. Requirements
-
-- **New Features**: Must have corresponding unit tests.
-- **Critical Paths**: Search, Partner Login, and Service Editing must be covered by E2E tests.
-- **Coverage**: Maintain minimum **75%** global code coverage (statements, branches, functions, lines). Critical modules (lib/search, lib/ai, hooks) may have higher strictness. Use `npm run test:coverage` to verify.
-
-## 4. Running Tests
-
-### Unit Tests (Vitest)
-
-```bash
-# Run all unit tests
-npm test
-
-# Run in watch mode (dev)
-npm run test:watch
-
-# Check coverage
-npm run coverage
-```
-
-### E2E Tests (Playwright)
-
-```bash
-# E2E Tests (Playwright)
-# ⚠️ Run primarily in GitHub CI to ensure consistent environment
-npm run test:e2e:local # Optional: Try locally (Chromium) if debugging
-
-
-# Run with UI mode (interactive debugging)
-npx playwright test --ui
-
-# specific file
-npx playwright test tests/e2e/search.spec.ts
-```
-
-## 5. CI/CD
-
-GitHub Actions (`.github/workflows/`) automatically run:
-
-1. Linting & Type Checking
-2. Unit Tests
-3. E2E Tests (on deployment)
-4. Data Integrity Checks (`npm run validate-data`)
+> [!NOTE]
+> This file has been consolidated into **[testing-guidelines.md](./testing-guidelines.md)**.
+>
+> Please refer to that document for the complete testing strategy, including:
+>
+> - Tiered testing philosophy (Critical → Core → Polish)
+> - When to skip flaky tests
+> - CI/CD configuration (Chromium-only in CI)
+> - Coverage goals

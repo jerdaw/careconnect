@@ -1,8 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config({ path: ".env.local" })
 
-import { searchServices } from "../lib/search"
-
+// Import search dynamically after env is loaded
 const query = process.argv[2]
 
 if (!query) {
@@ -11,6 +10,8 @@ if (!query) {
 }
 
 ;(async () => {
+  const { searchServices } = await import("../lib/search")
+
   console.log(`\n🔍 Searching for: "${query}"\n`)
   const startTime = performance.now()
 
