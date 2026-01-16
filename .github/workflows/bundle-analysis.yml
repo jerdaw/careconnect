@@ -10,5 +10,5 @@ jobs:
           node-version: "22"
           cache: "npm"
       - run: npm ci
-      - run: cross-env ANALYZE=true npm run build
+      - run: npx cross-env ANALYZE=true npm run build
       - run: node scripts/report-bundle-size.js
