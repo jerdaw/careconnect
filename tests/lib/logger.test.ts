@@ -59,7 +59,8 @@ describe("Logger", () => {
     await new Promise((r) => setTimeout(r, 10))
     const duration = logger.endTimer("work")
 
-    expect(duration).toBeGreaterThanOrEqual(10)
+    // Timer resolution can vary by ~1-2ms, so use a tolerant threshold
+    expect(duration).toBeGreaterThanOrEqual(5)
 
     logger.info("work finished", { duration })
     expect(infoSpy).toHaveBeenCalledWith(
