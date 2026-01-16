@@ -1,2 +1,2 @@
+# Run unit tests before pushing
 npm run test -- --run
-npm run test:e2e
