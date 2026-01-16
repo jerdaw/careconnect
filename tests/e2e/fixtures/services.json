@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "kingston-food-bank",
     "name": "Kingston Food Bank",
     "slug": "kingston-food-bank",
     "description": "Providing food assistance to those in need.",
@@ -17,7 +17,10 @@
     },
     "coordinates": { "lat": 44.2312, "lng": -76.486 },
     "verification_status": "verified",
-    "tags": [{ "tag": "Food" }, { "tag": "Community" }]
+    "tags": [{ "tag": "Food" }, { "tag": "Community" }],
+    "synthetic_queries": ["food help", "hunger"],
+    "authority_tier": "community",
+    "resource_indicators": {}
   },
   {
     "id": "2",
@@ -39,6 +42,9 @@
     },
     "coordinates": { "lat": 44.234, "lng": -76.489 },
     "verification_status": "verified",
-    "tags": [{ "tag": "Housing" }, { "tag": "Youth" }]
+    "tags": [{ "tag": "Housing" }, { "tag": "Youth" }],
+    "synthetic_queries": ["shelter", "youth"],
+    "authority_tier": "community",
+    "resource_indicators": {}
   }
 ]

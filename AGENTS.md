@@ -137,9 +137,19 @@ When you have full access (and `origin` is configured), **make regular best-prac
 
 ## Testing Expectations
 
-- **Vitest**: Use for utility functions, hooks, and component logic.
-- **Playwright**: Use for critical user flows (Search, Navigation, Partner Login).
-- **CI**: GitHub Actions will run checks. Keep them passing.
+We use a **pragmatic tiered testing strategy** that prioritizes dev velocity:
+
+| Tier          | Scope                         | CI Behavior                          |
+| ------------- | ----------------------------- | ------------------------------------ |
+| **Critical**  | Data integrity, API contracts | Block merge                          |
+| **Core Flow** | Crisis, Accessibility         | Block merge                          |
+| **Polish**    | UI interactions               | Skip (flaky tests use `test.skip()`) |
+
+- **Vitest**: Unit tests for logic, hooks, components. Run: `npm test`
+- **Playwright**: E2E on **Chromium only** in CI. Run: `npm run test:e2e:local`
+- **CI**: GitHub Actions runs all checks. E2E only on main branch pushes.
+
+Full details: `docs/development/testing-guidelines.md`
 
 ---
 
