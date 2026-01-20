@@ -1,8 +1,37 @@
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
+import { createApiError } from "@/lib/api-utils"
+import { assertAdminRole } from "@/lib/auth/authorization"
 
 export async function GET(request: Request) {
   try {
+    const { createServerClient } = await import("@supabase/ssr")
+    const { cookies } = await import("next/headers")
+
+    const cookieStore = await cookies()
+    const supabaseAuth = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAuth.auth.getUser()
+
+    if (authError || !user) {
+      return createApiError("Unauthorized", 401)
+    }
+
+    // Verify admin role 
+    await assertAdminRole(supabaseAuth, user.id)
+
     const services = await loadServices()
 
     // Separate embeddings to reduce redundancy if needed, but for now we keep it simple

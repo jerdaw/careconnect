@@ -2,6 +2,27 @@ import { NextResponse } from "next/server"
 import { ZodError } from "zod"
 import { logger, generateErrorId } from "./logger"
 
+export class AuthorizationError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "AuthorizationError"
+  }
+}
+
+export class NotFoundError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "NotFoundError"
+  }
+}
+
+export class ValidationError extends Error {
+    constructor(message: string) {
+        super(message)
+        this.name = "ValidationError"
+    }
+}
+
 export type ApiResponse<T = unknown> = {
   data?: T
   error?: string
@@ -70,9 +91,32 @@ export function handleApiError(error: unknown) {
     return createApiError("Validation Error", 400, error.errors)
   }
 
+  if (error instanceof AuthorizationError) {
+    return createApiError(error.message, 403)
+  }
+
+  if (error instanceof NotFoundError) {
+    return createApiError(error.message, 404)
+  }
+
+  if (error instanceof ValidationError) {
+    return createApiError(error.message, 415)
+  }
+
   if (error instanceof Error) {
     return createApiError(error.message, 500)
   }
 
   return createApiError("Internal Server Error", 500)
+}
+
+/**
+ * Validates that the request has 'application/json' content-type.
+ * Throws ValidationError if invalid.
+ */
+export function validateContentType(request: Request) {
+    const contentType = request.headers.get("content-type")
+    if (!contentType || !contentType.includes("application/json")) {
+        throw new ValidationError("Content-Type must be application/json")
+    }
 }

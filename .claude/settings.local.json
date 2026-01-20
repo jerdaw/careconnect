@@ -1,5 +1,12 @@
 {
   "permissions": {
-    "allow": ["Bash(ls:*)"]
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(npm run test:coverage:*)",
+      "Bash(find:*)",
+      "Bash(npx tsx:*)",
+      "Bash(grep:*)",
+      "Bash(npm run i18n-audit:*)"
+    ]
   }
 }

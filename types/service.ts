@@ -247,4 +247,6 @@ export interface Service {
    * @see lib/search/geo.ts::calculateDistanceKm
    */
   distance?: number
+  deleted_at?: string | null
+  deleted_by?: string | null
 }

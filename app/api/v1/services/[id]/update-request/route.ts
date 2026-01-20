@@ -1,6 +1,9 @@
-import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/utils/supabase/server"
+import { NextRequest } from "next/server"
 import { z } from "zod"
+import { createApiError, handleApiError, createApiResponse, validateContentType } from "@/lib/api-utils"
+import { assertServiceOwnership } from "@/lib/auth/authorization"
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 const UpdateRequestSchema = z.object({
   field_updates: z.record(z.any()),
@@ -8,23 +11,45 @@ const UpdateRequestSchema = z.object({
 })
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { id: serviceId } = await params
-  const supabase = await createClient()
-
-  // Verify auth
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) {
-    return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 })
-  }
-
   try {
-    const body = await request.json()
-    const { field_updates, justification } = UpdateRequestSchema.parse(body)
+    const { id: serviceId } = await params
+    const cookieStore = await cookies()
+    const supabaseAuth = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error } = await (supabase.from("service_update_requests" as any) as any).insert({
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAuth.auth.getUser()
+
+    if (authError || !user) {
+      return createApiError("Unauthorized", 401)
+    }
+
+    // 1. Verify Ownership before allowing update request
+    // This prevents any user from submitting requests for services they don't own.
+    // If they want to submit a public correction, they should use the /feedback route (which is open for insert).
+    await assertServiceOwnership(supabaseAuth, user.id, serviceId)
+
+    validateContentType(request)
+    const body = await request.json()
+    const validation = UpdateRequestSchema.safeParse(body)
+
+    if (!validation.success) {
+      return createApiError("Invalid update data", 400, validation.error.flatten())
+    }
+
+    const { field_updates, justification } = validation.data
+
+    const { error } = await supabaseAuth.from("service_update_requests").insert({
       service_id: serviceId,
       requested_by: user.email,
       field_updates,
@@ -33,19 +58,11 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     })
 
     if (error) {
-      console.error("Error creating update request:", error)
-      return NextResponse.json({ success: false, message: error.message }, { status: 500 })
+      return createApiError("Failed to submit update request", 500, error.message)
     }
 
-    return NextResponse.json({ success: true, message: "Update request submitted" })
+    return createApiResponse({ success: true, message: "Update request submitted" })
   } catch (err) {
-    if (err instanceof z.ZodError) {
-      return NextResponse.json(
-        { success: false, message: "Invalid update data", errors: err.flatten() },
-        { status: 400 }
-      )
-    }
-    console.error("Unexpected error in update request route:", err)
-    return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 })
+    return handleApiError(err)
   }
 }

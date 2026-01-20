@@ -98,11 +98,14 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 ```bash
 git clone https://github.com/jerdaw/kingston-care-connect.git
 cd kingston-care-connect
-npm install
+npm install  # Installs dependencies and automatically sets up Git hooks
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+> [!NOTE]
+> Git hooks are managed by [Husky](https://typicode.github.io/husky/) and automatically configured during `npm install` via the `prepare` script. Hooks enforce code quality checks (linting, type-checking, i18n validation) before commits.
 
 ### Scripts
 

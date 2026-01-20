@@ -1,6 +1,9 @@
-import { createClient } from "@/utils/supabase/server"
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { z } from "zod"
+import { createApiError, handleApiError, createApiResponse, validateContentType } from "@/lib/api-utils"
+import { assertServiceOwnership } from "@/lib/auth/authorization"
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 const UpdateStatusSchema = z.object({
   status: z.enum(["pending", "reviewed", "resolved", "dismissed"]),
@@ -8,76 +11,67 @@ const UpdateStatusSchema = z.object({
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const supabase = await createClient()
     const { id: feedbackId } = await params
+    const cookieStore = await cookies()
+    const supabaseAuth = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
 
-    // 1. Authenticate
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser()
+    } = await supabaseAuth.auth.getUser()
 
     if (authError || !user) {
-      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 })
+      return createApiError("Unauthorized", 401)
     }
 
-    // 2. Validate Request Body
+    validateContentType(request)
     const body = await request.json()
     const validation = UpdateStatusSchema.safeParse(body)
 
     if (!validation.success) {
-      return NextResponse.json({ success: false, message: "Invalid status" }, { status: 400 })
+      return createApiError("Invalid status", 400)
     }
 
     const { status } = validation.data
 
-    // 3. Verify Ownership (Strict Check)
-    // Fetch feedback and associated service's org_id
-    // We use a raw query or join. Since we need to verify the service owner,
-    // we assume strict RLS might block us if we just try to update blindly.
-    // However, to be safe and give explicit 403, we check manually.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: feedback, error: fetchError } = await (supabase.from("feedback") as any)
-      .select(
-        `
-        id,
-        service_id,
-        services (
-          org_id
-        )
-      `
-      )
-      .eq("id", feedbackId)
-      .single()
-
-    if (fetchError || !feedback) {
-      return NextResponse.json({ success: false, message: "Feedback not found" }, { status: 404 })
+    // 1. Get feedback and verify ownership
+    const { data: feedbackData, error: feedbackError } = await supabaseAuth
+        .from("feedback")
+        .select("service_id")
+        .eq("id", feedbackId)
+        .single()
+    
+    if (feedbackError || !feedbackData) {
+        return createApiError("Feedback not found", 404)
     }
 
-    const service = feedback.services as unknown as { org_id: string } | null
+    await assertServiceOwnership(supabaseAuth, user.id, feedbackData.service_id)
 
-    // Check if the authenticated user owns the service
-    if (!service || service.org_id !== user.id) {
-      return NextResponse.json({ success: false, message: "Forbidden: You do not own this service" }, { status: 403 })
-    }
-
-    // 4. Update Status
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: updateError } = await (supabase.from("feedback") as any)
+    // 2. Update Status
+    const { error: updateError } = await supabaseAuth
+      .from("feedback")
       .update({
         status: status,
         resolved_at: status === "resolved" ? new Date().toISOString() : null,
-        resolved_by: user.email, // Store email for audit
+        resolved_by: user.email,
       })
       .eq("id", feedbackId)
 
     if (updateError) {
-      return NextResponse.json({ success: false, message: "Failed to update feedback" }, { status: 500 })
+      return createApiError("Failed to update feedback", 500, updateError.message)
     }
 
-    return NextResponse.json({ success: true, message: "Feedback updated" })
+    return createApiResponse({ success: true, message: "Feedback updated" })
   } catch (error) {
-    console.error("Feedback PATCH error:", error)
-    return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 })
+    return handleApiError(error)
   }
 }

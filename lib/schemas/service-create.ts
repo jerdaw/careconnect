@@ -48,6 +48,7 @@ export const ServiceCreateSchema = z
         lng: z.number().min(-180).max(180),
       })
       .optional(),
+    org_id: z.string().uuid().optional(),
   })
   .refine((data) => data.url || data.phone || data.address, {
     message: "At least one contact method required (url, phone, or address)",
