@@ -1,7 +1,3 @@
-import { NextRequest } from "next/server"
-// We re-use logic from our scripts, but we must be careful about imports in Next.js Server Actions/Routes
-// Ideally we would import the pipeline logic. For MVP, we can spawn the script or replicate the logic.
-// Spawning is safer to avoid pollution.
 import { exec } from "child_process"
 import util from "util"
 import { handleApiError, createApiResponse, createApiError } from "@/lib/api-utils"
@@ -11,7 +7,7 @@ import { cookies } from "next/headers"
 
 const execPromise = util.promisify(exec)
 
-export async function POST(_request: Request) {
+export async function POST() {
   try {
     const cookieStore = await cookies()
     const supabase = createServerClient(
