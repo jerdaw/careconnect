@@ -1,5 +1,5 @@
 ---
-status: completed
+status: Completed
 last_updated: 2026-01-20
 owner: jer
 tags: [roadmap, v17.2, i18n, translations, edia-locales]
@@ -45,7 +45,7 @@ npm run i18n-audit > i18n-gaps.txt
 
 **Current Output (Post-Completion):**
 
-```
+```text
 ✅ EN - 577 keys
 ✅ FR - 577 keys
 ✅ ZH-HANS - 582 keys (5 extra)

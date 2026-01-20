@@ -93,7 +93,7 @@ Key achievements:
 > [!NOTE]
 > **External Translation APIs (Future)**: Infrastructure for DeepL/Google Translate is documented in the detailed roadmap. Do not pursue without explicit user approval.
 
-See [2026-01-17-v17-2-internationalization.md](2026-01-17-v17-2-internationalization.md) for implementation details.
+See [archive/2026-01-20-v17-2-internationalization.md](archive/2026-01-20-v17-2-internationalization.md) for implementation details.
 
 ### Success Criteria
 
@@ -324,6 +324,7 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
+- [v17.2: Internationalization Completion](archive/2026-01-20-v17-2-internationalization.md) (2026-01-20)
 - [v17.1: Test Coverage & Quality Gates](archive/2026-01-19-v17-1-test-coverage.md) (2026-01-19)
 - [v17.0: Security & Authorization](archive/2026-01-17-v17-0-security-authorization.md) (2026-01-20)
 - [v16.4: High-Value Improvements](archive/2026-01-15-v16-4-high-value-improvements.md) (2026-01-15)
