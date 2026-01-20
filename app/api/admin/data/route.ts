@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server"
 import path from "path"
 import fs from "fs/promises"
 import { handleApiError, createApiResponse, createApiError } from "@/lib/api-utils"
@@ -6,7 +5,7 @@ import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
-export async function GET(_request: Request) {
+export async function GET() {
   try {
     const cookieStore = await cookies()
     const supabase = createServerClient(
