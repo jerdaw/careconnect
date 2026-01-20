@@ -88,83 +88,96 @@ CREATE POLICY "Partners see their analytics"
 
 ---
 
-### 1.3 Dashboard Data Filtering (Application Layer)
+### 1.3 Dashboard Data Access Strategy: RLS-First Approach
 
-#### 1.2.1 Dashboard Services Query
+> [!IMPORTANT]
+> **Security Architecture Decision:** This project uses Row Level Security (RLS) policies as the primary data filtering mechanism. Application-layer filters are **NOT REQUIRED** and should be avoided to prevent confusion.
 
-**Modify:** `lib/actions/services.ts`
+**Why RLS-First?**
+- ✅ **Single Source of Truth**: Security logic lives in one place (database)
+- ✅ **defense-in-depth**: RLS protects against bugs in application code
+- ✅ **Performance**: PostgreSQL optimizes RLS queries better than app-layer filters
+- ✅ **Auditability**: All data access controlled by auditable RLS policies
+
+#### 1.3.1 Correct Pattern: Trust RLS
+
+**DO THIS:**
 
 ```typescript
-// Current: Fetches ALL services
+// Dashboard Services - RLS automatically filters by organization
 export async function getDashboardServices() {
   const { data } = await supabase
     .from('services')
-    .select('*')  // TOO MUCH DATA
-    .neq('deleted_at', null)
+    .select('*')
+    .is('deleted_at', null)  // Filter soft-deleted only
+    .order('updated_at', { ascending: false })
+  
+  // RLS policy ensures user only sees their org's services
+  // No explicit org_id filter needed
+  return data
 }
+```
 
-// Required: Filter by organization
+**DON'T DO THIS:**
+
+```typescript
+// ❌ WRONG: Redundant application-layer filter
 export async function getDashboardServices(orgId: string) {
   const { data } = await supabase
     .from('services')
     .select('*')
-    .eq('org_id', orgId)      // NEW: Filter by org
-    .is('deleted_at', null)   // NEW: Exclude soft-deleted
+    .eq('org_id', orgId)      // ❌ Unnecessary - RLS handles this
+    .is('deleted_at', null)
+  return data
 }
 ```
 
-**Changes:**
-- [ ] Add `orgId` parameter (from authenticated user)
-- [ ] Filter by `org_id = orgId`
-- [ ] Exclude soft-deleted services (`deleted_at IS NULL`)
+#### 1.3.2 Dashboard Feedback Query
 
-#### 1.2.2 Dashboard Feedback Query
-
-**Modify:** `app/[locale]/dashboard/feedback/page.tsx`
+**DO THIS:**
 
 ```typescript
-// Current: Shows all feedback
+// app/[locale]/dashboard/feedback/page.tsx
 const { data: feedback } = await supabase
   .from('feedback')
-  .select('*')
+  .select('*, service:service_id(name, id)') 
   .order('created_at', { ascending: false })
 
-// Required: Filter to partner's services only
-const { data: feedback } = await supabase
-  .from('feedback')
-  .select(`
-    *,
-    service:service_id (
-      org_id
-    )
-  `)
-  .eq('service.org_id', partnerOrgId)  // NEW: Filter
-  .order('created_at', { ascending: false })
+// RLS policy "Partners see feedback on their services" automatically filters
 ```
 
-#### 1.2.3 Dashboard Analytics Query
+**Verification:**
 
-**Modify:** `app/[locale]/dashboard/analytics/page.tsx`
+```sql
+-- Verify RLS is working (run in Supabase SQL Editor)
+SET ROLE authenticated;
+SET request.jwt.claim.sub = 'test-user-id';
+
+SELECT * FROM feedback;
+-- Should only return feedback for services owned by test-user's org
+```
+
+#### 1.3.3 Dashboard Analytics Query
+
+**DO THIS:**
 
 ```typescript
-// Current: Global search analytics
+// app/[locale]/dashboard/analytics/page.tsx
 const { data: analytics } = await supabase
   .from('search_analytics')
   .select('*')
   .gte('created_at', weekAgo)
 
-// Required: Partner-specific analytics
-const { data: analytics } = await supabase
-  .from('search_analytics')
-  .select('*')
-  .in('service_id', partnerServiceIds)  // NEW: Filter
-  .gte('created_at', weekAgo)
+// RLS policy "Partners see their analytics" automatically filters
 ```
 
-**Testing:**
-- [ ] Verify dashboard shows only partner's services
-- [ ] Verify feedback filtered to partner's services
-- [ ] Verify analytics show only partner's search activity
+**Testing Strategy:**
+- [ ] Verify RLS policies are enabled (`SELECT tablename, rowsecurity FROM pg_tables`)
+- [ ] Test with multiple org users to ensure data isolation
+- [ ] Verify no cross-org data leakage via RLS policy tests (Phase 0 from v17.1)
+
+> [!WARNING]
+> **When to use app-layer filters:** ONLY for non-security purposes like pagination, sorting, or search. Never for authorization/access control.
 
 ---
 

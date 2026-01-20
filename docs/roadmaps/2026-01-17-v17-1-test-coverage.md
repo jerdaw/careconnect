@@ -103,6 +103,189 @@ describe('getEffectivePermissions', () => {
 
 ---
 
+## Phase 0.5: Next.js 15 App Router Testing Patterns (CRITICAL)
+
+**Goal:** Establish standardized mocking patterns for Next.js 15's async server component APIs to prevent test failures.
+
+> [!IMPORTANT]
+> **Lesson from v17.0:** All API route tests failed initially because `next/headers` and `@supabase/ssr` weren't mocked. This phase establishes the standard patterns to prevent similar issues.
+
+### 0.5.1 Standard Mock Setup
+
+**New file:** `tests/setup/next-mocks.ts`
+
+```typescript
+import { vi } from 'vitest'
+
+/**
+ * Standard Next.js 15 mocking setup for API route tests.
+ * Import this at the top of EVERY API route test file.
+ */
+
+// Mock next/headers (required for all route handlers using cookies/headers)
+vi.mock('next/headers', () => ({
+  cookies: vi.fn().mockReturnValue({
+    getAll: vi.fn().mockReturnValue([]),
+    get: vi.fn(),
+    set: vi.fn(),
+    delete: vi.fn(),
+  }),
+  headers: vi.fn().mockReturnValue(new Map()),
+}))
+
+// Mock @supabase/ssr (required for all auth-protected routes)
+vi.mock('@supabase/ssr', () => ({
+  createServerClient: vi.fn().mockReturnValue({
+    auth: {
+      getUser: vi.fn().mockResolvedValue({
+        data: { user: { id: 'test-user-id', email: 'test@example.com' } },
+        error: null,
+      }),
+    },
+    from: vi.fn().mockReturnValue({
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    }),
+  }),
+}))
+```
+
+**Estimated setup time:** 2 hours
+
+### 0.5.2 API Route Testing Template
+
+**All API route tests MUST follow this pattern:**
+
+```typescript
+/** @vitest-environment node */
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { NextRequest } from 'next/server'
+
+// CRITICAL: Import mocks BEFORE route handler
+vi.mock('next/headers', () => ({
+  cookies: vi.fn().mockReturnValue({
+    getAll: vi.fn().mockReturnValue([]),
+  }),
+}))
+
+vi.mock('@supabase/ssr', () => ({
+  createServerClient: vi.fn().mockReturnValue({
+    auth: {
+      getUser: vi.fn().mockResolvedValue({
+        data: { user: { id: 'test-user-id' } },
+        error: null,
+      }),
+    },
+  }),
+}))
+
+// Now import the route handler
+import { GET } from '@/app/api/v1/services/route'
+
+describe('GET /api/v1/services', () => {
+  it('returns 200 with services', async () => {
+    // CRITICAL: Set Content-Type header
+    const request = new NextRequest('http://localhost:3000/api/v1/services', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    
+    const response = await GET(request)
+    expect(response.status).toBe(200)
+  })
+})
+```
+
+**Key Requirements:**
+- ✅ Use `/** @vitest-environment node */` comment
+- ✅ Mock `next/headers` before importing route
+- ✅ Mock `@supabase/ssr` for auth routes
+- ✅ Set `Content-Type: application/json` header for POST/PUT/PATCH requests
+- ✅ Use `NextRequest` constructor for request objects
+
+### 0.5.3 Content-Type Validation Pattern
+
+All mutation endpoints (POST/PUT/PATCH) now enforce `Content-Type: application/json` (from v17.0).
+
+**Required pattern for POST/PUT/PATCH tests:**
+
+```typescript
+const request = new NextRequest('http://localhost:3000/api/v1/services', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',  // REQUIRED or you get 415
+  },
+  body: JSON.stringify({ name: 'Test Service' }),
+})
+```
+
+**Common error if missing:**
+```
+expected 415 to be 201 // Object.is equality
+```
+
+### 0.5.4 Authorization Mock Patterns
+
+**For routes using `assertServiceOwnership`:**
+
+```typescript
+vi.mock('@/lib/auth/authorization', () => ({
+  assertServiceOwnership: vi.fn().mockResolvedValue(true),
+  assertAdminRole: vi.fn().mockResolvedValue(true),
+}))
+```
+
+**For testing authorization failures:**
+
+```typescript
+import { AuthorizationError } from '@/lib/api-utils'
+
+vi.mock('@/lib/auth/authorization', () => ({
+  assertServiceOwnership: vi.fn().mockRejectedValue(
+    new AuthorizationError('Access denied')
+  ),
+}))
+```
+
+**Estimated test count:** 5-8 mock pattern tests
+**Priority:** P0 - Must be established before any test writing
+
+### 0.5.5 Verify Mock Setup
+
+**New file:** `tests/setup/verify-mocks.test.ts`
+
+```typescript
+import { describe, it, expect } from 'vitest'
+
+describe('Mock Setup Verification', () => {
+  it('next/headers is mocked', () => {
+    const { cookies } = require('next/headers')
+    expect(cookies).toBeDefined()
+    expect(typeof cookies).toBe('function')
+  })
+
+  it('@supabase/ssr is mocked', () => {
+    const { createServerClient } = require('@supabase/ssr')
+    expect(createServerClient).toBeDefined()
+  })
+
+  it('authorization utilities are mockable', () => {
+    const { assertServiceOwnership } = require('@/lib/auth/authorization')
+    expect(assertServiceOwnership).toBeDefined()
+  })
+})
+```
+
+**Success Criteria:**
+- [ ] All mock verification tests pass
+- [ ] Template pattern documented
+- [ ] At least 2 API route tests refactored to use pattern successfully
+
+---
+
 ## Phase 1: Library Core Coverage (1.5 weeks)
 
 ### 1.1 Search Engine Core (`lib/search/`)
@@ -391,35 +574,142 @@ describe('inference', () => {
 
 **Estimated test count:** 20-25 tests
 
-#### 1.2.2 WebLLM Worker (`lib/ai/webllm.worker.ts`)
+#### 1.2.2 WebLLM Engine Logic (`lib/ai/webllm-engine.ts`)
 
-**New file:** `tests/lib/ai/webllm-worker.test.ts`
+> [!IMPORTANT]
+> **Architectural Decision:** Vitest cannot reliably test Web Workers. Instead, extract testable logic from the worker into a separate module and test that module directly. E2E test the worker integration separately.
 
-Since this runs in a Worker thread, use worker mocking:
+**Step 1: Extract Worker Logic** (Refactor)
+
+Create **new file:** `lib/ai/webllm-engine.ts`
 
 ```typescript
-describe('webllm worker', () => {
-  describe('initialization', () => {
-    it('loads model on init message')
-    it('sends ready message when loaded')
-    it('handles load failure')
+/**
+ * Extracted WebLLM logic for unit testing.
+ * This logic will be called by the worker in lib/ai/webllm.worker.ts
+ */
+
+export class WebLLMEngine {
+  private model: any = null
+  private isInitialized = false
+
+  async loadModel(modelId: string) {
+    // Extract current worker logic here
+    // Return status
+  }
+
+  async runInference(prompt: string, options: any) {
+    if (!this.isInitialized) {
+      throw new Error('Model not loaded')
+    }
+    // Extract inference logic
+  }
+
+  unload() {
+    this.model = null
+    this.isInitialized = false
+  }
+
+  get ready() {
+    return this.isInitialized
+  }
+}
+```
+
+**Step 2: Refactor Worker to Use Engine**
+
+**Modify:** `lib/ai/webllm.worker.ts`
+
+```typescript
+import { WebLLMEngine } from './webllm-engine'
+
+const engine = new WebLLMEngine()
+
+self.onmessage = async (e) => {
+  if (e.data.type === 'load') {
+    try {
+      await engine.loadModel(e.data.modelId)
+      self.postMessage({ type: 'ready' })
+    } catch (error) {
+      self.postMessage({ type: 'error', error })
+    }
+  }
+
+  if (e.data.type === 'infer') {
+    try {
+      const result = await engine.runInference(e.data.prompt, e.data.options)
+      self.postMessage({ type: 'result', data: result })
+    } catch (error) {
+      self.postMessage({ type: 'error', error })
+    }
+  }
+}
+```
+
+**Step 3: Test the Extracted Engine**
+
+**New file:** `tests/lib/ai/webllm-engine.test.ts`
+
+```typescript
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { WebLLMEngine } from '@/lib/ai/webllm-engine'
+
+describe('WebLLMEngine', () => {
+  let engine: WebLLMEngine
+
+  beforeEach(() => {
+    engine = new WebLLMEngine()
   })
 
-  describe('inference', () => {
-    it('processes inference messages')
-    it('sends streaming responses')
-    it('sends complete message')
+  describe('loadModel', () => {
+    it('initializes engine', async () => {
+      await engine.loadModel('test-model-id')
+      expect(engine.ready).toBe(true)
+    })
+
+    it('throws on invalid modelId', async () => {
+      await expect(engine.loadModel('')).rejects.toThrow()
+    })
   })
 
-  describe('error handling', () => {
-    it('sends error message on failure')
-    it('continues accepting messages after error')
+  describe('runInference', () => {
+    it('runs inference when ready', async () => {
+      await engine.loadModel('test-model')
+      const result = await engine.runInference('test prompt', {})
+      expect(result).toBeDefined()
+    })
+
+    it('throws if model not loaded', async () => {
+      await expect(engine.runInference('test', {})).rejects.toThrow('Model not loaded')
+    })
+  })
+
+  describe('unload', () => {
+    it('resets engine state', async () => {
+      await engine.loadModel('test-model')
+      engine.unload()
+      expect(engine.ready).toBe(false)
+    })
   })
 })
 ```
 
-**Estimated test count:** 8-10 tests
-**Note:** Requires worker mocking library (consider: `jest-worker` or `vitest` worker support)
+**Step 4: E2E Test Worker Integration (Playwright)**
+
+Worker integration should be tested via E2E:
+
+```typescript
+// tests/e2e/ai-worker.spec.ts (Playwright)
+test('AI worker loads and responds', async ({ page }) => {
+  await page.goto('/chat')
+  await page.click('[data-testid="enable-ai"]')
+  await page.waitForSelector('[data-testid="ai-ready"]')
+  // Verify worker loaded successfully
+})
+```
+
+**Estimated test count:** 10-12 tests (engine logic only)
+**Note:** Worker integration verified via E2E, not unit tests
 
 ---
 
