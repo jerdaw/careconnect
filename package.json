@@ -40,7 +40,8 @@
   },
   "overrides": {
     "react": "$react",
-    "react-dom": "$react-dom"
+    "react-dom": "$react-dom",
+    "tar": "7.5.4"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
