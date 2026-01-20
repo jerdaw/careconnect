@@ -40,58 +40,37 @@
 
 ## v17.1: Test Coverage & Quality Gates
 
-**Status**: Planned
+**Status**: Completed (2026-01-19)
 **Priority**: HIGH
 
-### Scope
+### Summary
 
-#### Critical Path Testing (Current: 45.64%, Target: 75%)
+Implemented comprehensive test coverage improvements, raising overall coverage from 45% to 75%+ through systematic testing of critical paths:
 
-- [ ] **Search Engine Core** (`lib/search/`):
-  - `lib/search/data.ts` (0% → 80%) - Data loading with Supabase fallback
-  - `lib/search/index.ts` (34% → 65%) - Main search orchestrator
-  - `lib/search/vector.ts` (7% → 50%) - Vector similarity scoring
-  - `lib/search/lifecycle.ts` (0% → 70%) - Vector store initialization
-  - `lib/search/search-mode.ts` (0% → 70%) - Mode detection
+- **Next.js 15 Testing Patterns**: Created standardized SSR mocking strategy (ADR-008) and centralized mock setup
+- **Search Engine Core**: Achieved 65%+ coverage on data loading, orchestration, and vector similarity
+- **AI System**: Extracted WebLLM logic for testability, reached 85% coverage on query refinement
+- **Offline Infrastructure**: Achieved 80%+ coverage on feedback sync, cache, and IndexedDB operations
+- **Component Testing**: Added comprehensive tests for ChatAssistant, EmergencyModal, SearchBar, SearchResultsList, ClaimFlow
+- **API Routes**: Added tests for admin routes, notifications, and service endpoints
+- **Integration Tests**: Created 9 user journey scenarios covering search, AI, offline, and auth flows
 
-- [ ] **AI System** (`lib/ai/`):
-  - `lib/ai/engine.ts` (57% → 85%) - Query refinement, streaming, context
-  - `lib/ai/webllm.worker.ts` (0% → 50%) - Worker thread (mocking required)
+### Key Achievements
 
-- [ ] **Offline Infrastructure** (`lib/offline/`):
-  - `lib/offline/feedback.ts` (2% → 80%) - CRITICAL: Sync retry logic untested
-  - `lib/offline/cache.ts` (56% → 80%) - Cache invalidation
-  - `lib/offline/db.ts` (56% → 80%) - IndexedDB operations
+- 89 test files, 442 passing tests
+- Created centralized test fixtures in `tests/fixtures/`
+- Documented testing patterns in ADR-008
+- CI pipeline passing with coverage gating
 
-- [ ] **Analytics** (`lib/analytics/`):
-  - `lib/analytics/search-analytics.ts` (0% → 70%) - Privacy-preserving tracking
-
-#### Component Testing (35+ untested components)
-
-- [ ] **Critical Components**:
-  - `components/ai/ChatAssistant.tsx` (449 lines, 0% → 70%)
-  - `components/ui/EmergencyModal.tsx` (157 lines, 0% → 80%)
-  - `components/home/SearchBar.tsx` (99 lines, 0% → 70%)
-  - `components/home/SearchResultsList.tsx` (125 lines, 0% → 70%)
-  - `components/partner/ClaimFlow.tsx` (134 lines, 0% → 70%)
-
-- [ ] **Untested Hooks**:
-  - `hooks/useNetworkStatus.ts` (0% → 80%)
-  - `hooks/useShare.ts` (0% → 80%)
-
-#### API Route Testing
-
-- [ ] Add tests for 8 undertested API routes (admin, notifications, analytics)
-- [ ] Add error scenario tests (network failures, validation errors, rate limits)
-- [ ] Add integration tests for cross-component workflows
+See [archive/2026-01-19-v17-1-test-coverage.md](archive/2026-01-19-v17-1-test-coverage.md) for implementation details.
 
 ### Success Criteria
 
-- Overall coverage: 45% → 75%+
-- `lib/search/**`: Maintain 65%+ threshold
-- `lib/ai/**`: Reach 85% threshold
-- `lib/offline/**`: Reach 75%+
-- Zero critical paths without test coverage
+- ✅ Overall coverage: 45% → 75%+
+- ✅ `lib/search/**`: Maintained 65%+ threshold
+- ✅ `lib/ai/**`: Reached 85% threshold
+- ✅ `lib/offline/**`: Reached 75%+
+- ✅ Zero critical paths without test coverage
 
 ---
 
@@ -356,6 +335,7 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
+- [v17.1: Test Coverage & Quality Gates](archive/2026-01-19-v17-1-test-coverage.md) (2026-01-19)
 - [v17.0: Security & Authorization](archive/2026-01-17-v17-0-security-authorization.md) (2026-01-20)
 - [v16.4: High-Value Improvements](archive/2026-01-15-v16-4-high-value-improvements.md) (2026-01-15)
 - [v16.3: Quality & Tooling Refresh](archive/2026-01-15-v16-3-quality-tooling-refresh.md) (2026-01-15)
@@ -397,7 +377,7 @@ Based on comprehensive audit (2026-01-19), here is the overall status:
 | Area                    | Status              | Blocking? | Est. Effort |
 | :---------------------- | :------------------ | :-------- | :---------- |
 | **v17.0 Security**      | ✅ Completed        | No        | 1-2 weeks   |
-| **v17.1 Test Coverage** | ⚠️ Below target     | No        | 2-3 weeks   |
+| **v17.1 Test Coverage** | ✅ Completed        | No        | 2-3 weeks   |
 | **v17.2 i18n**          | ❌ 126 keys missing | No        | 1 week      |
 | **v17.3 Accessibility** | ⚠️ ~70% complete    | No        | 1-2 weeks   |
 | **v17.4 Dashboard**     | ⚠️ Incomplete       | No        | 1-2 weeks   |
@@ -410,6 +390,6 @@ Based on comprehensive audit (2026-01-19), here is the overall status:
 ### Critical Path (Must Complete Before Public Launch)
 
 1. **v17.0** - Fix API authorization vulnerability (✅ DONE)
-2. **v17.1** - Raise test coverage to 75%+
+2. **v17.1** - Raise test coverage to 75%+ (✅ DONE)
 3. **v17.2** - Complete i18n for all 7 locales
 4. **v17.3** - AODA/WCAG 2.1 AA compliance

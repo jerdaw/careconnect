@@ -20,4 +20,14 @@ This file provides context for AI agents working on the Kingston Care Connect pr
 - `lib/search.ts`: Core hybrid search logic.
 - `docs/bilingual-dev-guide.md`: Standardization of English/French support.
 - `docs/testing-guidelines.md`: Expectations for feature coverage.
+- `docs/adr/008-nextjs-testing-patterns.md`: Next.js 15 SSR testing patterns and WebLLM testing strategy.
+- `tests/setup/next-mocks.ts`: Centralized Next.js 15 mock definitions.
+- `tests/fixtures/`: Centralized test fixtures for services, feedback, and users.
 - `docs/llms.txt`: Consolidated context for LLMs.
+
+## Testing Patterns
+
+- **Next.js 15 SSR**: Use centralized mocks from `tests/setup/next-mocks.ts` for `cookies()`, `headers()`, and `createServerClient()`.
+- **Web Workers**: Extract logic from worker files (e.g., `webllm.worker.ts` → `webllm-engine.ts`) for unit testing.
+- **Coverage Target**: 75%+ overall, with higher thresholds (80-85%) for critical paths (search, AI, offline, auth).
+- **Test Location**: Mirror production structure (e.g., `lib/search/data.ts` → `tests/lib/search/data.test.ts`).
