@@ -1,60 +1,66 @@
-import { NextResponse, NextRequest } from "next/server"
+import { NextRequest } from "next/server"
+import { createApiError, handleApiError, createApiResponse } from "@/lib/api-utils"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
-import { Database } from "@/types/supabase"
 
 /**
  * GET /api/v1/analytics
  *
  * Authenticated endpoint for partners to fetch analytics for their services.
- *
- * Query Params:
- *   - service_id: Filter by specific service (optional)
- *   - days: Number of days to look back (default 30, max 90)
- *
- * Response:
- *   - 200: { data: AnalyticsData[] }
- *   - 401: { error: "Unauthorized" }
- *   - 500: { error: string }
  */
 export async function GET(request: NextRequest) {
-  const cookieStore = await cookies()
-
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: () => {}, // Read-only for API route
-      },
-    }
-  )
-
-  // Check authentication
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser()
-
-  if (authError || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  const serviceId = searchParams.get("service_id")
-  const days = Math.min(parseInt(searchParams.get("days") || "30", 10), 90)
-
-  // Calculate date range
-  const startDate = new Date()
-  startDate.setDate(startDate.getDate() - days)
-
   try {
-    // For now, fetch analytics for all services (future: filter by user's org)
+    const cookieStore = await cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return createApiError("Unauthorized", 401)
+    }
+
+    const { searchParams } = new URL(request.url)
+    const serviceId = searchParams.get("service_id")
+    const days = Math.min(parseInt(searchParams.get("days") || "30", 10), 90)
+
+    const startDate = new Date()
+    startDate.setDate(startDate.getDate() - days)
+
+    // 1. Get user's organization IDs
+    const { data: userOrgs } = await supabase
+        .from("organization_members")
+        .select("organization_id")
+        .eq("user_id", user.id)
+    
+    const allowedOrgIds = (userOrgs || []).map(o => o.organization_id)
+
+    if (allowedOrgIds.length === 0) {
+        return createApiResponse({ data: [] })
+    }
+
+    // 2. Fetch analytics only for services owned by these organizations
     let query = supabase
       .from("analytics_events")
-      .select("service_id, event_type, created_at")
+      .select(`
+        service_id, 
+        event_type, 
+        created_at,
+        services!inner(org_id)
+      `)
       .gte("created_at", startDate.toISOString())
+      .in("services.org_id", allowedOrgIds)
 
     if (serviceId) {
       query = query.eq("service_id", serviceId)
@@ -63,15 +69,13 @@ export async function GET(request: NextRequest) {
     const { data: events, error } = await query
 
     if (error) {
-      console.error("API /v1/analytics error:", error.message)
-      return NextResponse.json({ error: "Database query failed" }, { status: 500 })
+      return createApiError("Database query failed", 500, error.message)
     }
 
-    // Aggregate events by service_id and event_type
     const aggregated: Record<string, { views: number; clicks: number }> = {}
 
-    const typedEvents = (events || []) as Array<{ service_id: string | null; event_type: string | null }>
-    for (const event of typedEvents) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    for (const event of (events || []) as any[]) {
       if (!event.service_id) continue
       if (!aggregated[event.service_id]) {
         aggregated[event.service_id] = { views: 0, clicks: 0 }
@@ -84,7 +88,6 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Convert to array
     const data = Object.entries(aggregated).map(([id, stats]) => ({
       service_id: id,
       views: stats.views,
@@ -92,9 +95,8 @@ export async function GET(request: NextRequest) {
       period_days: days,
     }))
 
-    return NextResponse.json({ data })
+    return createApiResponse(data)
   } catch (err) {
-    console.error("API /v1/analytics unexpected error:", err)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    return handleApiError(err)
   }
 }

@@ -269,8 +269,9 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 1. **Search Engine**: `lib/search/index.ts`, `lib/search/scoring.ts`
 2. **AI System**: `lib/ai/engine.ts`, `components/ai/ChatAssistant.tsx`
 3. **Data Loading**: `lib/search/data.ts`
-4. **API Routes**: `app/api/v1/search/services/route.ts` - Note: All API mutations MUST use Zod (`lib/schemas/`)
-5. **Main Search UI**: `components/search/SearchInterface.tsx` (likely)
+4. **API Routes**: `app/api/v1/search/services/route.ts` - All mutations MUST use `lib/auth/authorization.ts` and Zod schemas.
+5. **Authorization**: `lib/auth/authorization.ts` - Centralized ownership/role checks.
+6. **Main Search UI**: `components/search/SearchInterface.tsx` (likely)
 6. **Service Schema**: `types/service.ts`
 7. **Middleware**: `middleware.ts`
 

@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server"
 import { supabase } from "@/lib/supabase"
-import { createApiResponse, createApiError, handleApiError } from "@/lib/api-utils"
+import { createApiResponse, createApiError, handleApiError, validateContentType } from "@/lib/api-utils"
+import { assertServiceOwnership } from "@/lib/auth/authorization"
 
 /**
  * GET /api/v1/services/[id]
@@ -70,6 +71,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return createApiError("Unauthorized", 401)
     }
 
+    // Verify ownership and permissions
+    await assertServiceOwnership(supabaseAuth, user.id, id)
+
+    validateContentType(request)
     const body = (await request.json()) as Record<string, unknown>
 
     // Prevent updating ID
@@ -79,6 +84,60 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     if (error) {
       return createApiError("Failed to update service", 500, error.message)
+    }
+
+    return createApiResponse(data)
+  } catch (err) {
+    return handleApiError(err)
+  }
+}
+
+/**
+ * PATCH /api/v1/services/[id]
+ *
+ * Protected endpoint for partial updates.
+ */
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params
+    const { createServerClient } = await import("@supabase/ssr")
+    const { cookies } = await import("next/headers")
+
+    const cookieStore = await cookies()
+    const supabaseAuth = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAuth.auth.getUser()
+
+    if (authError || !user) {
+      return createApiError("Unauthorized", 401)
+    }
+
+    // Verify ownership and permissions
+    await assertServiceOwnership(supabaseAuth, user.id, id)
+
+    validateContentType(request)
+    const body = (await request.json()) as Record<string, unknown>
+
+    // Prevent updating ID or org_id easily via partial (safety)
+    delete body.id
+    delete body.org_id
+
+    const { data, error } = await supabaseAuth.from("services").update(body).eq("id", id).select().single()
+
+    if (error) {
+      return createApiError("Failed to patch service", 500, error.message)
     }
 
     return createApiResponse(data)
@@ -119,13 +178,23 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
       return createApiError("Unauthorized", 401)
     }
 
-    const { error } = await supabaseAuth.from("services").delete().eq("id", id)
+    // Verify ownership and permissions - restricted to admin/owner
+    await assertServiceOwnership(supabaseAuth, user.id, id, ["owner", "admin"])
+
+    // Soft delete
+    const { error } = await supabaseAuth
+      .from("services")
+      .update({ 
+        deleted_at: new Date().toISOString(),
+        deleted_by: user.id
+      })
+      .eq("id", id)
 
     if (error) {
       return createApiError("Failed to delete service", 500, error.message)
     }
 
-    return createApiResponse({ success: true })
+    return createApiResponse({ success: true, message: "Service deleted (archived)" })
   } catch (err) {
     return handleApiError(err)
   }

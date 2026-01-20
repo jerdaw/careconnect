@@ -1,7 +1,8 @@
 import { NextRequest } from "next/server"
 import { supabase } from "@/lib/supabase"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
-import { createApiResponse, createApiError, handleApiError } from "@/lib/api-utils"
+import { createApiResponse, createApiError, handleApiError, validateContentType } from "@/lib/api-utils"
+import { assertOrganizationMembership } from "@/lib/auth/authorization"
 import { logger } from "@/lib/logger"
 import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 
@@ -24,7 +25,7 @@ import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 export async function GET(request: NextRequest) {
   // Rate limiting: 100 requests per minute per IP
   const clientIp = getClientIp(request)
-  const rateLimit = checkRateLimit(clientIp, 100, 60 * 1000)
+  const rateLimit = await checkRateLimit(clientIp, 100, 60 * 1000)
 
   if (!rateLimit.success) {
     const response = createApiError("Rate limit exceeded. Try again later.", 429)
@@ -129,8 +130,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse and validate body
-    const rawBody = await request.json()
-    const validation = ServiceCreateSchema.safeParse(rawBody)
+    validateContentType(request)
+    const json = await request.json()
+    const validation = ServiceCreateSchema.safeParse(json)
 
     if (!validation.success) {
       const errors = validation.error.errors.map((e) => `${e.path.join(".")}: ${e.message}`).join(", ")
@@ -138,6 +140,13 @@ export async function POST(request: NextRequest) {
     }
 
     const body = validation.data
+
+    // 1. Verify organization membership if an org_id is provided
+    // If not provided, it might be a public submission (Phase 0 logic)
+    // But for this endpoint, we assume the user is creating for an org they manage.
+    if (body.org_id) {
+        await assertOrganizationMembership(supabaseAuth, user.id, body.org_id)
+    }
 
     // Add server-managed fields
     const serviceData = {

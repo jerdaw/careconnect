@@ -10,6 +10,8 @@ const FeedbackSchema = z.object({
 })
 
 export async function POST(request: Request) {
+  logger.warn("Deprecated API usage: POST /api/feedback", { component: "API", deprecated: true })
+
   const json = await request.json()
   const parsed = FeedbackSchema.safeParse(json)
 
@@ -30,5 +32,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ success: true })
+  const response = NextResponse.json({ success: true })
+  response.headers.set("Warning", '299 - "Deprecated API"')
+  return response
 }

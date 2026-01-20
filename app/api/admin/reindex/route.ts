@@ -1,24 +1,50 @@
-import { NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 // We re-use logic from our scripts, but we must be careful about imports in Next.js Server Actions/Routes
 // Ideally we would import the pipeline logic. For MVP, we can spawn the script or replicate the logic.
 // Spawning is safer to avoid pollution.
 import { exec } from "child_process"
 import util from "util"
+import { handleApiError, createApiResponse, createApiError } from "@/lib/api-utils"
+import { assertAdminRole } from "@/lib/auth/authorization"
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 const execPromise = util.promisify(exec)
 
-export async function POST() {
-  if (process.env.NODE_ENV === "production") {
-    return NextResponse.json({ error: "Admin access disabled in production" }, { status: 403 })
-  }
-
+export async function POST(_request: Request) {
   try {
+    const cookieStore = await cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return createApiError("Unauthorized", 401)
+
+    await assertAdminRole(supabase, user.id)
+
     // Run the existing script
     // Note: This relies on the system having the environment set up correctly
     await execPromise("npm run generate-embeddings")
-    return NextResponse.json({ success: true })
+
+    // Audit Log
+    await supabase.from("audit_logs").insert({
+      table_name: "embeddings",
+      record_id: "global",
+      operation: "UPDATE",
+      performed_by: user.id,
+      metadata: { action: "reindex" }
+    })
+
+    return createApiResponse({ success: true })
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Failed to reindex" }, { status: 500 })
+    return handleApiError(error)
   }
 }

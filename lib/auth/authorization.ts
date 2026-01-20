@@ -1,0 +1,101 @@
+import { SupabaseClient } from "@supabase/supabase-js"
+import { AuthorizationError, NotFoundError } from "@/lib/api-utils"
+
+/**
+ * Asserts that a user has permission to modify a service based on organization membership.
+ * Throws AuthorizationError if access is denied.
+ */
+export async function assertServiceOwnership(
+  supabase: SupabaseClient,
+  userId: string,
+  serviceId: string,
+  allowedRoles: string[] = ["owner", "admin", "editor"]
+) {
+  // 1. Get the service's organization ID
+  const { data: service, error: serviceError } = await supabase
+    .from("services")
+    .select("org_id")
+    .eq("id", serviceId)
+    .single()
+
+  if (serviceError || !service) {
+    // If we can't find the service, it's a 404
+    throw new NotFoundError("Service not found")
+  }
+
+  if (!service.org_id) {
+     // System-owned or legacy service without org
+     throw new AuthorizationError("Service has no organization assigned")
+  }
+
+  // 2. Check if user is a member of that organization
+  const { data: member, error: memberError } = await supabase
+    .from("organization_members")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("organization_id", service.org_id)
+    .single()
+
+  if (memberError || !member) {
+    // Not a member of the org
+    throw new AuthorizationError("You do not have permission to access this service")
+  }
+
+  // 3. Check role
+  if (!allowedRoles.includes(member.role)) {
+    throw new AuthorizationError(`Access denied: Requires ${allowedRoles.join(" or ")} role`)
+  }
+
+  return true
+}
+
+/**
+ * Asserts that a user is a member of an organization with specific roles.
+ */
+export async function assertOrganizationMembership(
+    supabase: SupabaseClient,
+    userId: string,
+    orgId: string,
+    allowedRoles: string[] = ["owner", "admin", "editor", "viewer"]
+) {
+    const { data: member, error } = await supabase
+        .from("organization_members")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("organization_id", orgId)
+        .single()
+
+    if (error || !member) {
+        throw new AuthorizationError("You are not a member of this organization")
+    }
+
+    if (!allowedRoles.includes(member.role)) {
+        throw new AuthorizationError(`Access denied: Requires ${allowedRoles.join(" or ")} role`)
+    }
+
+    return true
+}
+
+/**
+ * Asserts that a user has the 'admin' role in their metadata.
+ * Uses the provided supabase client (ssr).
+ */
+export async function assertAdminRole(supabase: SupabaseClient, _userId: string) {
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser()
+
+  if (error || !user) {
+    throw new AuthorizationError("User profile not found")
+  }
+
+  // Check custom user_metadata or app_metadata for 'admin' role
+  const role = user.user_metadata?.role || user.app_metadata?.role
+  
+  if (role !== "admin") {
+    throw new AuthorizationError("Access denied: Requires admin role")
+  }
+
+  return true
+}

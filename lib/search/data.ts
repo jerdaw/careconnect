@@ -74,10 +74,12 @@ export const loadServices = async (): Promise<Service[]> => {
             ...(!row.tags && staticService?.identity_tags ? { identity_tags: staticService.identity_tags } : {}),
 
             // Ensure boolean flags are present
+            // Ensure boolean flags are present
             is_provincial: row.is_provincial || false,
             published: row.published !== false,
+            deleted_at: row.deleted_at,
           }
-        })
+        }).filter((s) => !s.deleted_at) // Filter soft deletes
 
         dataCache = { services: mappedData }
         return mappedData
