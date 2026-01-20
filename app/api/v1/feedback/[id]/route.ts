@@ -45,13 +45,13 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     // 1. Get feedback and verify ownership
     const { data: feedbackData, error: feedbackError } = await supabaseAuth
-        .from("feedback")
-        .select("service_id")
-        .eq("id", feedbackId)
-        .single()
-    
+      .from("feedback")
+      .select("service_id")
+      .eq("id", feedbackId)
+      .single()
+
     if (feedbackError || !feedbackData) {
-        return createApiError("Feedback not found", 404)
+      return createApiError("Feedback not found", 404)
     }
 
     await assertServiceOwnership(supabaseAuth, user.id, feedbackData.service_id)

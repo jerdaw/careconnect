@@ -1,14 +1,21 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { NextRequest } from "next/server"
 import { POST } from "@/app/api/v1/search/services/route"
 import { ServicePublic } from "@/types/service-public"
 import { supabase } from "@/lib/supabase"
 
-// Mock Supabase
+// Mock Supabase Singleton
 vi.mock("@/lib/supabase", () => ({
   supabase: {
     from: vi.fn(),
   },
+}))
+
+// Mock Rate Limit
+vi.mock("@/lib/rate-limit", () => ({
+  checkRateLimit: vi.fn().mockReturnValue({ success: true, reset: 0 }),
+  getClientIp: vi.fn().mockReturnValue("127.0.0.1"),
 }))
 
 describe("Search API (Hybrid Scoring)", () => {
@@ -21,9 +28,6 @@ describe("Search API (Hybrid Scoring)", () => {
     vi.clearAllMocks()
 
     // Setup chainable mock
-    // from -> select -> or -> eq -> limit -> { data, error }
-    // Note: Hybrid scoring removes DB-side ordering, simply fetches candidates
-
     mockLimit.mockResolvedValue({
       data: [],
       error: null,
@@ -40,6 +44,7 @@ describe("Search API (Hybrid Scoring)", () => {
   const createRequest = (body: Record<string, unknown>) => {
     return new NextRequest("http://localhost:3000/api/v1/search/services", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     })
   }
@@ -53,7 +58,6 @@ describe("Search API (Hybrid Scoring)", () => {
       verification_status: "L1",
       last_verified: new Date().toISOString(),
       authority_tier: "community",
-      // Default empty fields to avoid TS issues if types are strict
       phone: null,
       address: null,
       hours: null,
@@ -67,7 +71,6 @@ describe("Search API (Hybrid Scoring)", () => {
     const govService = createMockService("gov", { authority_tier: "government" })
     const commService = createMockService("comm", { authority_tier: "community" })
 
-    // Return in reverse order from DB to prove scoring re-orders them
     mockLimit.mockResolvedValue({
       data: [commService, govService],
       error: null,
@@ -114,7 +117,6 @@ describe("Search API (Hybrid Scoring)", () => {
       error: null,
     })
 
-    // Search from Kingston
     const req = createRequest({
       query: "test",
       locale: "en",
@@ -128,7 +130,6 @@ describe("Search API (Hybrid Scoring)", () => {
   })
 
   it("should paginate results correctly", async () => {
-    // Return 5 services
     const services = Array.from({ length: 5 }, (_, i) => createMockService(`s${i}`))
 
     mockLimit.mockResolvedValue({
@@ -136,7 +137,6 @@ describe("Search API (Hybrid Scoring)", () => {
       error: null,
     })
 
-    // Request page 2 (limit 2, offset 2) -> should return s2, s3 (0-indexed: 2,3)
     const req = createRequest({
       query: "test",
       locale: "en",
@@ -152,7 +152,6 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.data.length).toBe(2)
     expect(json.meta.limit).toBe(2)
     expect(json.meta.offset).toBe(2)
-    // Total should reflect the fetched candidate count (5) in this implementation
     expect(json.meta.total).toBe(5)
   })
 })

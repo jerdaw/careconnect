@@ -1,60 +1,61 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { GET } from "@/app/api/v1/analytics/route"
 import { createMockRequest, parseResponse } from "@/tests/utils/api-test-utils"
+import { createServerClient } from "@supabase/ssr"
 
 // Use a recursive proxy or a self-referencing object to simulate infinite chaining
 const mockBuilder: Record<string, unknown> = {
-  then: (resolve: (value: unknown) => void) => resolve({ data: [], error: null }), // Default promise-like behavior
+  then: (resolve: (value: unknown) => void) => resolve({ data: [], error: null }),
 }
-// Add methods
 mockBuilder.from = vi.fn().mockReturnValue(mockBuilder)
 mockBuilder.select = vi.fn().mockReturnValue(mockBuilder)
 mockBuilder.gte = vi.fn().mockReturnValue(mockBuilder)
 mockBuilder.eq = vi.fn().mockReturnValue(mockBuilder)
+mockBuilder.in = vi.fn().mockReturnValue(mockBuilder)
 
-// We need to be able to change the Resolved Value.
 let mockData = { data: [] as unknown[], error: null as unknown }
 mockBuilder.then = (resolve: (value: unknown) => void, reject: (reason?: unknown) => void) => {
   return Promise.resolve(mockData).then(resolve, reject)
 }
 
-// Supabase mock
 const { mockSupabaseChain } = vi.hoisted(() => {
   return { mockSupabaseChain: {} as Record<string, any> }
 })
 
 Object.assign(mockSupabaseChain, mockBuilder)
 
-const mockAuthGetValue = { data: { user: { id: "user-1" } }, error: null }
 const mockGetUser = vi.fn()
 
-// Mock Supabase SSR
-vi.mock("@supabase/ssr", () => ({
-  createServerClient: vi.fn(() => ({
-    auth: {
-      getUser: mockGetUser,
-    },
-    from: mockSupabaseChain.from,
-  })),
-}))
-
-vi.mock("next/headers", () => ({
-  cookies: vi.fn().mockResolvedValue({
-    getAll: vi.fn().mockReturnValue([]),
-  }),
-}))
+// Override next-mocks default
+vi.mocked(createServerClient).mockReturnValue({
+  auth: {
+    getUser: mockGetUser,
+  },
+  from: (table: string) => {
+    // Return different behavior based on table
+    if (table === "organization_members") {
+      return {
+        select: () => ({
+          eq: () => Promise.resolve({ data: [{ organization_id: "org-1" }], error: null }),
+        }),
+      }
+    }
+    return mockSupabaseChain
+  },
+} as any)
 
 describe("API v1 Analytics", () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    mockGetUser.mockResolvedValue(mockAuthGetValue)
-    mockData = { data: [], error: null } // Reset data
+    mockGetUser.mockResolvedValue({ data: { user: { id: "user-1" } }, error: null })
+    mockData = { data: [], error: null }
 
-    // Ensure methods return the builder (chainable)
     mockSupabaseChain.from.mockReturnValue(mockSupabaseChain)
     mockSupabaseChain.select.mockReturnValue(mockSupabaseChain)
     mockSupabaseChain.gte.mockReturnValue(mockSupabaseChain)
     mockSupabaseChain.eq.mockReturnValue(mockSupabaseChain)
+    mockSupabaseChain.in.mockReturnValue(mockSupabaseChain)
   })
 
   const setMockData = (data: any[], error: any = null) => {

@@ -111,6 +111,7 @@
 - [ ] **Complete PA** (Punjabi): 126 missing keys
 
 Missing key categories:
+
 - VerificationLevels (L0, L1, L2, L3)
 - Dashboard operations (logout, pending, profile)
 - Freshness badges (verified, unknown, verifiedOn)
@@ -124,7 +125,7 @@ Missing key categories:
 
 #### Cleanup
 
-- [ ] **Remove Extra Keys**: 10 extra keys in EDIA locales (Feedback.* duplicates)
+- [ ] **Remove Extra Keys**: 10 extra keys in EDIA locales (Feedback.\* duplicates)
 
 ### Success Criteria
 
@@ -393,16 +394,16 @@ Items removed from roadmap due to feasibility/scope concerns:
 
 Based on comprehensive audit (2026-01-19), here is the overall status:
 
-| Area                    | Status       | Blocking? | Est. Effort |
-| :---------------------- | :----------- | :-------- | :---------- |
-| **v17.0 Security**      | ✅ Completed | No        | 1-2 weeks   |
-| **v17.1 Test Coverage** | ⚠️ Below target | No     | 2-3 weeks   |
-| **v17.2 i18n**          | ❌ 126 keys missing | No  | 1 week      |
-| **v17.3 Accessibility** | ⚠️ ~70% complete | No    | 1-2 weeks   |
-| **v17.4 Dashboard**     | ⚠️ Incomplete | No       | 1-2 weeks   |
-| **v17.5 Data Quality**  | ⚠️ Gaps      | No        | 3-4 weeks   |
-| **v17.6 PWA**           | ⚠️ Basic     | No        | 1 week      |
-| **Mobile App**          | ⏸️ Paused    | N/A       | 4-6 weeks   |
+| Area                    | Status              | Blocking? | Est. Effort |
+| :---------------------- | :------------------ | :-------- | :---------- |
+| **v17.0 Security**      | ✅ Completed        | No        | 1-2 weeks   |
+| **v17.1 Test Coverage** | ⚠️ Below target     | No        | 2-3 weeks   |
+| **v17.2 i18n**          | ❌ 126 keys missing | No        | 1 week      |
+| **v17.3 Accessibility** | ⚠️ ~70% complete    | No        | 1-2 weeks   |
+| **v17.4 Dashboard**     | ⚠️ Incomplete       | No        | 1-2 weeks   |
+| **v17.5 Data Quality**  | ⚠️ Gaps             | No        | 3-4 weeks   |
+| **v17.6 PWA**           | ⚠️ Basic            | No        | 1 week      |
+| **Mobile App**          | ⏸️ Paused           | N/A       | 4-6 weeks   |
 
 **Estimated Total to Production**: 8-12 weeks of focused development
 

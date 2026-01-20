@@ -29,6 +29,7 @@ Achieve WCAG 2.1 Level AA accessibility compliance across the platform. Currentl
 ### 1.1 Automated Accessibility Scan
 
 **Tools:**
+
 - Axe-core (installed): Scans DOM for violations
 - WAVE browser extension: Visual feedback
 - Lighthouse: Chrome DevTools audit
@@ -74,6 +75,7 @@ npm test -- tests/e2e/accessibility-audit.spec.ts 2>&1 | tee a11y-report.txt
 ```
 
 **Expected findings:**
+
 - 30-50 critical violations
 - 20-40 serious violations
 - 50-100 moderate violations
@@ -88,24 +90,28 @@ npm test -- tests/e2e/accessibility-audit.spec.ts 2>&1 | tee a11y-report.txt
 ### Critical Issues (MUST FIX)
 
 #### 1. Form Accessibility (10-15 violations)
+
 - **Issue:** Form inputs missing labels
 - **Pages:** Services/[id]/page, submit-service/page
 - **Fix:** Add `aria-label` or `<label>` elements
 - **Standard:** WCAG 2.1 1.3.1 (Info and Relationships)
 
 #### 2. Color Contrast (5-10 violations)
+
 - **Issue:** Text contrast < 4.5:1 for normal text
 - **Pages:** Multiple (need specific audit)
 - **Fix:** Increase text darkness or background brightness
 - **Standard:** WCAG 2.1 1.4.3 (Contrast)
 
 #### 3. Image Alt Text (40+ violations)
+
 - **Issue:** Images missing alt text
 - **Pages:** Service listings, home page
 - **Fix:** Add meaningful alt text to 80+ images
 - **Standard:** WCAG 2.1 1.1.1 (Text Alternatives)
 
 #### 4. Modal Focus Management (5-8 violations)
+
 - **Issue:** Focus trap not implemented, escape key not handled
 - **Pages:** EmergencyModal, all modals
 - **Fix:** Use Radix Dialog or implement focus trap
@@ -114,16 +120,19 @@ npm test -- tests/e2e/accessibility-audit.spec.ts 2>&1 | tee a11y-report.txt
 ### Serious Issues (SHOULD FIX)
 
 #### 5. Heading Hierarchy (3-5 violations)
+
 - **Issue:** Skipped heading levels (h1 → h3)
 - **Fix:** Use proper hierarchy h1 → h2 → h3
 - **Standard:** WCAG 2.1 1.3.1
 
 #### 6. Link Context (5-10 violations)
+
 - **Issue:** Links without descriptive text ("click here")
 - **Fix:** Use descriptive link text
 - **Standard:** WCAG 2.1 2.4.4 (Link Purpose)
 
 #### 7. Focus Indicators (visible/missing)
+
 - **Issue:** Keyboard focus not visible
 - **Fix:** Ensure focus ring visible on all interactive elements
 - **Standard:** WCAG 2.1 2.4.7 (Focus Visible)
@@ -131,11 +140,13 @@ npm test -- tests/e2e/accessibility-audit.spec.ts 2>&1 | tee a11y-report.txt
 ### Moderate Issues (NICE TO HAVE)
 
 #### 8. Error Prevention & Help
+
 - **Issue:** Forms don't explain errors clearly
 - **Fix:** Add aria-describedby linking error messages
 - **Standard:** WCAG 2.1 3.3.4 (Error Prevention)
 
 #### 9. Language Declaration
+
 - **Issue:** Language not declared for multi-language content
 - **Fix:** Add `lang` attributes for content in other languages
 - **Standard:** WCAG 2.1 3.1.2 (Language of Parts)
@@ -235,6 +246,7 @@ export function TextField({ label, error, required, ...props }) {
 ```
 
 **Apply to:**
+
 - [ ] `components/forms/TextField.tsx`
 - [ ] `components/forms/TextArea.tsx`
 - [ ] `components/forms/Select.tsx`
@@ -304,35 +316,30 @@ export function ServiceEditForm() {
 **Script:** `scripts/audit-images.ts`
 
 ```typescript
-import { chromium } from 'playwright'
+import { chromium } from "playwright"
 
 async function auditImages() {
   const browser = await chromium.launch()
   const context = await browser.createBrowserContext()
   const page = await context.newPage()
 
-  const routes = [
-    '/en',
-    '/en/service/sample',
-    '/en/dashboard',
-    '/en/submit-service',
-  ]
+  const routes = ["/en", "/en/service/sample", "/en/dashboard", "/en/submit-service"]
 
   for (const route of routes) {
     await page.goto(`http://localhost:3000${route}`)
 
     const images = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('img')).map(img => ({
+      return Array.from(document.querySelectorAll("img")).map((img) => ({
         src: img.src,
         alt: img.alt,
-        ariaLabel: img.getAttribute('aria-label'),
-        isDecorative: img.getAttribute('role') === 'presentation',
+        ariaLabel: img.getAttribute("aria-label"),
+        isDecorative: img.getAttribute("role") === "presentation",
         visible: img.offsetParent !== null,
       }))
     })
 
     console.log(`${route}: ${images.length} images`)
-    images.forEach(img => {
+    images.forEach((img) => {
       if (!img.alt && !img.ariaLabel && !img.isDecorative) {
         console.log(`  ✗ MISSING ALT: ${img.src}`)
       }
@@ -347,24 +354,30 @@ async function auditImages() {
 
 **Reference:** `docs/ACCESSIBILITY_GUIDE.md`
 
-```markdown
+````markdown
 ## Alt Text Guidelines
 
 ### Decorative Images
+
 If image is purely decorative and doesn't convey information:
+
 ```html
 <img src="divider.png" alt="" aria-hidden="true" />
 ```
+````
 
 ### Functional Images (icons, buttons)
+
 If image functions as a button or interactive element:
+
 ```html
-<img src="icon-search.svg" alt="Search" />
-<img src="icon-menu.svg" alt="Open menu" />
+<img src="icon-search.svg" alt="Search" /> <img src="icon-menu.svg" alt="Open menu" />
 ```
 
 ### Informational Images
+
 If image conveys important information:
+
 ```html
 <!-- Good: Specific and concise -->
 <img src="service-photo.jpg" alt="Kingston Community Health Center building entrance" />
@@ -373,11 +386,16 @@ If image conveys important information:
 <img src="service-photo.jpg" alt="building" />
 
 <!-- Bad: Too long -->
-<img src="service-photo.jpg" alt="This is a photo of the building where Kingston Community Health Center is located at the corner of Main and Princess Street" />
+<img
+  src="service-photo.jpg"
+  alt="This is a photo of the building where Kingston Community Health Center is located at the corner of Main and Princess Street"
+/>
 ```
 
 ### Complex Images (maps, charts)
+
 Provide both alt text and longer description:
+
 ```html
 <figure>
   <img src="service-map.png" alt="Map of services across Kingston" />
@@ -391,7 +409,9 @@ Provide both alt text and longer description:
 ```
 
 ### Images in Links
+
 Alt text should describe link destination:
+
 ```html
 <!-- Good -->
 <a href="/service/123">
@@ -403,7 +423,8 @@ Alt text should describe link destination:
   <img src="icon-health.svg" alt="icon" />
 </a>
 ```
-```
+
+````
 
 ### 3.3 Update Images in Code
 
@@ -421,9 +442,10 @@ Alt text should describe link destination:
     className="service-icon"
   />
 )}
-```
+````
 
 **Files to update (80+ images):**
+
 - [ ] `components/home/*.tsx` (15 images)
 - [ ] `components/services/*.tsx` (20 images)
 - [ ] `components/ui/*.tsx` (10 images)
@@ -439,9 +461,10 @@ Alt text should describe link destination:
 **Tool:** Axe-core + WebAIM contrast checker
 
 **Common violations:**
+
 - Light gray text on white (#ccc on white)
 - Dark blue text on black
-- Required field indicators (red *)
+- Required field indicators (red \*)
 
 ### 4.2 Fix Contrast Issues
 
@@ -451,15 +474,15 @@ Alt text should describe link destination:
 // Colors with WCAG AA compliance (4.5:1 ratio)
 export const colors = {
   text: {
-    primary: '#1f2937',    // Dark gray on white
-    secondary: '#374151',  // Gray on white
-    muted: '#6b7280',      // Lighter gray on white (4.5:1 min)
-    onBrand: '#ffffff',    // White on brand color
+    primary: "#1f2937", // Dark gray on white
+    secondary: "#374151", // Gray on white
+    muted: "#6b7280", // Lighter gray on white (4.5:1 min)
+    onBrand: "#ffffff", // White on brand color
   },
   background: {
-    default: '#ffffff',
-    surface: '#f9fafb',
-    brand: '#2563eb',      // Blue
+    default: "#ffffff",
+    surface: "#f9fafb",
+    brand: "#2563eb", // Blue
   },
 }
 
@@ -468,6 +491,7 @@ export const colors = {
 ```
 
 **Update CSS/Tailwind:**
+
 - [ ] Text colors use `text-gray-900` or `text-gray-700`
 - [ ] Avoid `text-gray-500` on white backgrounds
 - [ ] Focus rings clearly visible (minimum 3px, high contrast)
@@ -520,6 +544,7 @@ export function EmergencyModal({
 ```
 
 **Benefits of Radix Dialog:**
+
 - ✓ Focus trap implemented
 - ✓ Escape key handling
 - ✓ Backdrop click handling
@@ -530,6 +555,7 @@ export function EmergencyModal({
 ### 5.2 Migrate All Modals to Radix
 
 **Files to update:**
+
 - [ ] `components/ui/EmergencyModal.tsx`
 - [ ] `components/ui/ConfirmDialog.tsx` (if custom)
 - [ ] `components/feedback/ReportIssueModal.tsx`
@@ -542,6 +568,7 @@ export function EmergencyModal({
 ### 6.1 Focus Indicator Testing
 
 **Checklist:**
+
 - [ ] Tab through entire page
 - [ ] Focus ring visible on every interactive element
 - [ ] Focus order logical (top-to-bottom, left-to-right)
@@ -556,6 +583,7 @@ export function EmergencyModal({
 ## Keyboard Shortcuts
 
 ### Navigation
+
 - **Tab** - Move to next interactive element
 - **Shift+Tab** - Move to previous element
 - **Enter** - Activate button or submit form
@@ -565,12 +593,14 @@ export function EmergencyModal({
 - **Alt+Shift+K** - Open keyboard shortcuts help (optional)
 
 ### Form-Specific
+
 - **Tab** - Move between form fields
 - **Shift+Tab** - Move to previous field
 - **Up/Down** - Change select options
 - **Home/End** - Jump to first/last option
 
 ### Search-Specific
+
 - **Enter** - Submit search
 - **Escape** - Clear search, collapse autocomplete
 - **Down** - Focus first search result
@@ -616,24 +646,25 @@ export function Header() {
 ```javascript
 module.exports = {
   extends: [
-    'next',
-    'plugin:jsx-a11y/recommended',  // NEW
+    "next",
+    "plugin:jsx-a11y/recommended", // NEW
   ],
-  plugins: ['jsx-a11y'],  // NEW
+  plugins: ["jsx-a11y"], // NEW
   rules: {
-    'jsx-a11y/alt-text': 'error',
-    'jsx-a11y/click-events-have-key-events': 'warn',
-    'jsx-a11y/no-static-element-interactions': 'warn',
-    'jsx-a11y/aria-role': 'error',
-    'jsx-a11y/aria-props': 'error',
-    'jsx-a11y/aria-unsupported-elements': 'error',
-    'jsx-a11y/heading-has-content': 'error',
-    'jsx-a11y/label-has-associated-control': 'error',
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/aria-role": "error",
+    "jsx-a11y/aria-props": "error",
+    "jsx-a11y/aria-unsupported-elements": "error",
+    "jsx-a11y/heading-has-content": "error",
+    "jsx-a11y/label-has-associated-control": "error",
   },
 }
 ```
 
 **Run:**
+
 ```bash
 npm run lint  # ESLint will now catch a11y violations
 ```
@@ -643,23 +674,24 @@ npm run lint  # ESLint will now catch a11y violations
 **New file:** `tests/e2e/accessibility.spec.ts` (modify existing)
 
 Add tests:
+
 ```typescript
-test('form accessibility', async ({ page }) => {
-  await page.goto('/en/submit-service')
+test("form accessibility", async ({ page }) => {
+  await page.goto("/en/submit-service")
 
   // Check form has proper labels
-  const inputs = page.locator('input')
+  const inputs = page.locator("input")
   for (const input of await inputs.all()) {
-    const ariaLabel = await input.getAttribute('aria-label')
-    const label = await page.locator(`label[for="${await input.getAttribute('id')}"]`)
+    const ariaLabel = await input.getAttribute("aria-label")
+    const label = await page.locator(`label[for="${await input.getAttribute("id")}"]`)
     expect(ariaLabel || label).toBeTruthy()
   }
 })
 
-test('modal accessibility', async ({ page }) => {
+test("modal accessibility", async ({ page }) => {
   // Trigger emergency modal
-  await page.fill('input[name="query"]', 'suicide')
-  await page.press('input[name="query"]', 'Enter')
+  await page.fill('input[name="query"]', "suicide")
+  await page.press('input[name="query"]', "Enter")
 
   const modal = page.locator('[role="alertdialog"]')
   expect(modal).toBeVisible()
@@ -669,19 +701,19 @@ test('modal accessibility', async ({ page }) => {
   expect(title).toBeTruthy()
 
   // Close modal with Escape key
-  await page.press('[role="alertdialog"]', 'Escape')
+  await page.press('[role="alertdialog"]', "Escape")
   expect(modal).not.toBeVisible()
 })
 
-test('keyboard navigation', async ({ page }) => {
-  await page.goto('/en')
+test("keyboard navigation", async ({ page }) => {
+  await page.goto("/en")
 
   // Tab through page
   let tabCount = 0
   while (tabCount < 20) {
-    await page.keyboard.press('Tab')
+    await page.keyboard.press("Tab")
     const focused = await page.evaluate(() => document.activeElement?.tagName)
-    expect(['BUTTON', 'A', 'INPUT', 'SELECT']).toContain(focused)
+    expect(["BUTTON", "A", "INPUT", "SELECT"]).toContain(focused)
     tabCount++
   }
 })
@@ -690,12 +722,14 @@ test('keyboard navigation', async ({ page }) => {
 ### 7.3 Screen Reader Testing (Manual)
 
 **Test with:**
+
 - NVDA (Windows, free)
 - JAWS (Windows, paid)
 - VoiceOver (macOS, built-in)
 - TalkBack (Android, built-in)
 
 **Checklist:**
+
 - [ ] Page title announced
 - [ ] Navigation landmarks announced
 - [ ] Form labels announced correctly
@@ -724,23 +758,27 @@ Kingston Care Connect is committed to providing a barrier-free service to people
 As of [DATE], Kingston Care Connect meets WCAG 2.1 Level AA standards:
 
 #### Perceivable
+
 - [x] Text Alternatives: All images have alt text (1.1.1)
 - [x] Time-based Media: N/A (no video)
 - [x] Adaptable: Content structure independent of presentation (1.3.1)
 - [x] Distinguishable: Color contrast 4.5:1 (1.4.3)
 
 #### Operable
+
 - [x] Keyboard Accessible: All functionality available via keyboard (2.1.1)
 - [x] Enough Time: No time limits (2.2.1)
 - [x] Seizures: No flashing content (2.3.1)
 - [x] Navigable: Clear structure, skip links (2.4.1)
 
 #### Understandable
+
 - [x] Readable: Plain language, FLESCH > 60 (3.1.3)
 - [x] Predictable: Consistent navigation (3.2.3)
 - [x] Input Assistance: Error messages and recovery (3.3.4)
 
 #### Robust
+
 - [x] Compatible: HTML valid, ARIA correct (4.1.1)
 
 ### Known Limitations
@@ -817,27 +855,29 @@ export default function AccessibilityPage() {
 
 ## File Changes Summary
 
-| Component | Change | Impact |
-|-----------|--------|--------|
-| FormField | Add ARIA attributes | All forms |
-| Images | Add alt text | 80+ locations |
-| CSS | Increase text contrast | Global styling |
-| Modals | Use Radix Dialog | EmergencyModal, others |
-| Header | Add skip link | All pages |
-| ESLint | Add jsx-a11y | Prevents new violations |
-| Documentation | AODA report + accessibility page | Legal compliance |
+| Component     | Change                           | Impact                  |
+| ------------- | -------------------------------- | ----------------------- |
+| FormField     | Add ARIA attributes              | All forms               |
+| Images        | Add alt text                     | 80+ locations           |
+| CSS           | Increase text contrast           | Global styling          |
+| Modals        | Use Radix Dialog                 | EmergencyModal, others  |
+| Header        | Add skip link                    | All pages               |
+| ESLint        | Add jsx-a11y                     | Prevents new violations |
+| Documentation | AODA report + accessibility page | Legal compliance        |
 
 ---
 
 ## Rollback Plan
 
 All a11y improvements are backward-compatible:
+
 - ARIA attributes don't break existing functionality
 - Alt text additions are non-breaking
 - CSS contrast changes maintain design
 - Radix Dialog is drop-in replacement for custom modals
 
 If issues arise:
+
 1. Revert specific component
 2. Use feature flags for gradual rollout
 3. Test extensively before full deployment

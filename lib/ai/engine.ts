@@ -15,14 +15,7 @@ const STOP_SEQUENCES = [
   "\n\nInstruction 2",
 ]
 
-function sanitizeModelOutput(text: string): string {
-  const leakMarkers = ["Instruction 2 (More difficult with added constraints):", "Instruction 2:"]
-  for (const marker of leakMarkers) {
-    const idx = text.indexOf(marker)
-    if (idx >= 0) return text.slice(0, idx).trim()
-  }
-  return text.trim()
-}
+import { parseRefinedQuery, sanitizeModelOutput } from "./parsing"
 
 export interface RefinedSearchQuery {
   query: string
@@ -203,50 +196,11 @@ Rules:
       repetition_penalty: 1,
       max_tokens: 160,
       // Best-effort JSON mode (WebLLM supports OpenAI-compatible response_format).
-
       response_format: { type: "json_object" } as any,
     })
 
     const text = (response.choices[0]?.message?.content || "").trim()
-    if (!text) return null
-
-    let parsed: unknown
-    try {
-      parsed = JSON.parse(text)
-    } catch {
-      const match = text.match(/\{[\s\S]*\}/)
-      if (!match) return null
-      try {
-        parsed = JSON.parse(match[0])
-      } catch {
-        return null
-      }
-    }
-
-    if (!parsed || typeof parsed !== "object") return null
-    const obj = parsed as Record<string, unknown>
-
-    const query = typeof obj.query === "string" ? obj.query.trim() : ""
-    const termsRaw = Array.isArray(obj.terms) ? obj.terms : []
-    const terms = termsRaw
-      .filter((t): t is string => typeof t === "string")
-      .map((t) => t.trim())
-      .filter(Boolean)
-      .slice(0, 8)
-
-    if (!query && terms.length === 0) return null
-
-    const category = typeof obj.category === "string" ? obj.category.trim() : undefined
-    const needsClarification = typeof obj.needsClarification === "boolean" ? obj.needsClarification : undefined
-    const clarifyingQuestion = typeof obj.clarifyingQuestion === "string" ? obj.clarifyingQuestion.trim() : undefined
-
-    return {
-      query: query || userQuery,
-      terms,
-      ...(category ? { category } : {}),
-      ...(needsClarification !== undefined ? { needsClarification } : {}),
-      ...(clarifyingQuestion ? { clarifyingQuestion } : {}),
-    }
+    return parseRefinedQuery(text, userQuery)
   }
 
   /**

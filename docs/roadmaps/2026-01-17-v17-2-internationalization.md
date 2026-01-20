@@ -33,6 +33,7 @@ npm run i18n-audit > i18n-gaps.txt
 ```
 
 **Current Output:**
+
 ```
 ZH-HANS (Simplified Chinese): 126 missing keys
 AR (Arabic): 126 missing keys
@@ -49,6 +50,7 @@ PA (Punjabi): 126 missing keys
 ## Missing Key Categories
 
 ### VerificationLevels (4 keys × 5 locales = 20 translations needed)
+
 - VerificationLevels.L0.label
 - VerificationLevels.L1.label
 - VerificationLevels.L2.label
@@ -56,6 +58,7 @@ PA (Punjabi): 126 missing keys
 - VerificationLevels.{level}.description (for each)
 
 ### Dashboard (15 keys × 5 = 75 translations)
+
 - Dashboard.logout
 - Dashboard.pending
 - Dashboard.completeProfile
@@ -68,6 +71,7 @@ PA (Punjabi): 126 missing keys
 - ... (15 total)
 
 ### Freshness Badges (5 keys × 5 = 25 translations)
+
 - ServiceFreshness.verified
 - ServiceFreshness.unknown
 - ServiceFreshness.verifiedOn
@@ -75,6 +79,7 @@ PA (Punjabi): 126 missing keys
 - ServiceFreshness.updateNeeded
 
 ### Feedback Form (10 keys × 5 = 50 translations)
+
 - Feedback.description
 - Feedback.types.wrong_phone
 - Feedback.types.wrong_address
@@ -83,6 +88,7 @@ PA (Punjabi): 126 missing keys
 - ... (10 total)
 
 ### Other UI (remaining 92 keys × 5 = 460 translations)
+
 - Settings pages
 - Partner forms
 - Admin panel
@@ -113,12 +119,12 @@ All EDIA locales have 10 extra keys:
 
 **Options:**
 
-| Tool | Cost | Quality | Workflow |
-|------|------|---------|----------|
-| Google Translate API | ~$15 for all | 70-80% | Auto + manual review |
-| DeepL API | ~$10 for all | 85-90% | Auto + manual review |
-| Human translators | $500-1000 | 100% | 2-week turnaround |
-| Community (Crowdin) | Free | Variable | Slow, uneven |
+| Tool                 | Cost         | Quality  | Workflow             |
+| -------------------- | ------------ | -------- | -------------------- |
+| Google Translate API | ~$15 for all | 70-80%   | Auto + manual review |
+| DeepL API            | ~$10 for all | 85-90%   | Auto + manual review |
+| Human translators    | $500-1000    | 100%     | 2-week turnaround    |
+| Community (Crowdin)  | Free         | Variable | Slow, uneven         |
 
 **Recommendation:** DeepL API for initial translations + community review
 
@@ -127,33 +133,33 @@ All EDIA locales have 10 extra keys:
 **New file:** `scripts/translate-missing-keys.ts`
 
 ```typescript
-import * as deepl from 'deepl-node'
+import * as deepl from "deepl-node"
 
 const translator = new deepl.Translator(process.env.DEEPL_API_KEY)
 
 const LANGUAGE_MAP = {
-  'zh-Hans': 'ZH',      // Simplified Chinese
-  'ar': 'AR',           // Arabic
-  'pt': 'PT',           // Portuguese
-  'es': 'ES',           // Spanish
-  'pa': 'PA',           // Punjabi (not supported by DeepL - use Google)
+  "zh-Hans": "ZH", // Simplified Chinese
+  ar: "AR", // Arabic
+  pt: "PT", // Portuguese
+  es: "ES", // Spanish
+  pa: "PA", // Punjabi (not supported by DeepL - use Google)
 }
 
 async function translateMissingKeys() {
-  const enMessages = loadJson('messages/en.json')
+  const enMessages = loadJson("messages/en.json")
   const missingKeys = [
-    'VerificationLevels.L0.label',
-    'VerificationLevels.L1.label',
-    'VerificationLevels.L2.label',
-    'VerificationLevels.L3.label',
-    'Dashboard.logout',
-    'Dashboard.pending',
+    "VerificationLevels.L0.label",
+    "VerificationLevels.L1.label",
+    "VerificationLevels.L2.label",
+    "VerificationLevels.L3.label",
+    "Dashboard.logout",
+    "Dashboard.pending",
     // ... all 126 keys
   ]
 
   const translations = {}
 
-  for (const locale of ['zh-Hans', 'ar', 'pt', 'es']) {
+  for (const locale of ["zh-Hans", "ar", "pt", "es"]) {
     translations[locale] = {}
     const targetLang = LANGUAGE_MAP[locale]
 
@@ -161,11 +167,7 @@ async function translateMissingKeys() {
       const englishText = getNestedValue(enMessages, key)
 
       try {
-        const translated = await translator.translateText(
-          englishText,
-          'EN',
-          targetLang
-        )
+        const translated = await translator.translateText(englishText, "EN", targetLang)
 
         setNestedValue(translations[locale], key, translated.text)
         console.log(`✓ ${locale}/${key}`)
@@ -182,11 +184,12 @@ async function translateMissingKeys() {
     saveJson(`messages/${locale}.json`, merged)
   }
 
-  console.log('Translation complete. Manual review required.')
+  console.log("Translation complete. Manual review required.")
 }
 ```
 
 **Run:**
+
 ```bash
 DEEPL_API_KEY=xxx npx tsx scripts/translate-missing-keys.ts
 ```
@@ -207,23 +210,27 @@ DEEPL_API_KEY=xxx npx tsx scripts/translate-missing-keys.ts
 ## Review Checklist for {locale}
 
 ### Terminology
+
 - [ ] Crisis/mental health terms correct
 - [ ] Medical terms appropriate
 - [ ] Culturally sensitive language used
 - [ ] Abbreviations (Kingston/KGH) not translated
 
 ### Consistency
+
 - [ ] Same English term always translates the same way
 - [ ] UI labels consistent with site tone
 - [ ] Formality level matches English
 
 ### Quality
+
 - [ ] No English words left in translation
 - [ ] Punctuation correct (esp. RTL languages)
 - [ ] Character encoding valid (UTF-8)
 - [ ] Line breaks preserved where needed
 
 ### Testing
+
 - [ ] Ran locally in that locale
 - [ ] Text doesn't overflow UI
 - [ ] Numbers/currencies formatted correctly
@@ -242,7 +249,7 @@ DEEPL_API_KEY=xxx npx tsx scripts/translate-missing-keys.ts
 
 ```typescript
 // For Punjabi, use Google Translate instead
-const googleTranslate = require('@google-cloud/translate').v2
+const googleTranslate = require("@google-cloud/translate").v2
 const translate = new googleTranslate.Translate({
   projectId: process.env.GCP_PROJECT_ID,
   keyFilename: process.env.GCP_KEY_FILE,
@@ -250,7 +257,7 @@ const translate = new googleTranslate.Translate({
 
 const [translationPa] = await translate.translate(
   englishText,
-  { to: 'pa' }  // Punjab language code
+  { to: "pa" } // Punjab language code
 )
 ```
 
@@ -263,6 +270,7 @@ const [translationPa] = await translate.translate(
 **Problem:** `/app/offline/layout.tsx` hardcoded to English
 
 **Current:**
+
 ```typescript
 export default function OfflineLayout({ children }) {
   return (
@@ -274,6 +282,7 @@ export default function OfflineLayout({ children }) {
 ```
 
 **Required:**
+
 ```typescript
 import { ReactNode } from 'react'
 
@@ -299,12 +308,14 @@ export default function OfflineLayout({
 **File:** `app/offline/page.tsx`
 
 **Current (English only):**
+
 ```typescript
 <h1>You are offline</h1>
 <p>Please reconnect to the internet to search for services.</p>
 ```
 
 **Required (i18n):**
+
 ```typescript
 import { useTranslations } from 'next-intl'
 
@@ -341,18 +352,21 @@ export default function OfflinePage() {
 ### 3.3 Move Offline Page Under Locale Router
 
 **Current structure:**
+
 ```
 app/offline/page.tsx
 app/offline/layout.tsx
 ```
 
 **Required structure:**
+
 ```
 app/[locale]/offline/page.tsx
 app/[locale]/offline/layout.tsx
 ```
 
 **Changes:**
+
 - [ ] Move `app/offline/` to `app/[locale]/offline/`
 - [ ] Update middleware to route `/offline` → `/{locale}/offline`
 - [ ] Update all links to offline page: `href="/offline"` → `href="/en/offline"`
@@ -366,19 +380,16 @@ app/[locale]/offline/layout.tsx
 **New file:** `scripts/cleanup-extra-i18n-keys.ts`
 
 ```typescript
-import { diffKeySets } from './i18n-audit'
+import { diffKeySets } from "./i18n-audit"
 
 async function cleanupExtraKeys() {
-  const enMessages = loadJson('messages/en.json')
-  const locales = ['zh-Hans', 'ar', 'pt', 'es', 'pa']
+  const enMessages = loadJson("messages/en.json")
+  const locales = ["zh-Hans", "ar", "pt", "es", "pa"]
 
   for (const locale of locales) {
     const localeMessages = loadJson(`messages/${locale}.json`)
 
-    const extraKeys = diffKeySets(
-      Object.keys(flattenObject(localeMessages)),
-      Object.keys(flattenObject(enMessages))
-    )
+    const extraKeys = diffKeySets(Object.keys(flattenObject(localeMessages)), Object.keys(flattenObject(enMessages)))
 
     console.log(`${locale}: ${extraKeys.length} extra keys`)
 
@@ -391,6 +402,7 @@ async function cleanupExtraKeys() {
 **Review decisions:**
 
 Option 1: Delete from EDIA locales (if not needed)
+
 ```json
 // Remove from ar.json, zh-Hans.json, etc.
 "Feedback": {
@@ -400,6 +412,7 @@ Option 1: Delete from EDIA locales (if not needed)
 ```
 
 Option 2: Add to English source (if needed)
+
 ```json
 // Add to messages/en.json if core functionality
 "Feedback": {
@@ -424,6 +437,7 @@ npm run i18n-audit
 ```
 
 **Expected output (PASS):**
+
 ```
 ✓ en.json: 569 keys
 ✓ fr.json: 569 keys (100%)
@@ -441,20 +455,24 @@ All locales complete!
 For each locale, check:
 
 **English (`/en`):**
+
 - [ ] All text displays correctly
 - [ ] Links work
 - [ ] Buttons responsive
 
 **French (`/fr`):**
+
 - [ ] French text displays
 - [ ] Accented characters (é, ç, etc.) render correctly
 
 **Chinese (`/zh-Hans`):**
+
 - [ ] Characters display correctly (not boxes)
 - [ ] Text wraps properly
 - [ ] Glyphs render
 
 **Arabic (`/ar`):**
+
 - [ ] Right-to-left layout active
 - [ ] Arabic text renders correctly
 - [ ] Numbers stay left-to-right
@@ -462,14 +480,17 @@ For each locale, check:
 - [ ] Offline page respects RTL
 
 **Portuguese (`/pt`):**
+
 - [ ] Portuguese-specific characters (ã, õ, ç)
 - [ ] Brazilian vs European Portuguese noted
 
 **Spanish (`/es`):**
+
 - [ ] Spanish characters (á, é, í, ó, ú, ñ, ¿, ¡)
 - [ ] Regional variations handled (México vs España)
 
 **Punjabi (`/pa`):**
+
 - [ ] Punjabi script (Gurmukhi) displays
 - [ ] Character combinations render
 - [ ] Ligatures work correctly
@@ -498,6 +519,7 @@ export default async function RootLayout({
 ```
 
 **Checklist for Arabic (RTL):**
+
 - [ ] Layout flips: sidebar moves to right
 - [ ] Text aligns right
 - [ ] Numbers still read left-to-right
@@ -537,6 +559,7 @@ files:
 ```
 
 Benefits:
+
 - Community translations
 - Translation memory
 - In-context preview
@@ -552,33 +575,39 @@ Benefits:
 # Translation Guidelines
 
 ## General
+
 - Translate meaning, not word-for-word
 - Keep tone: friendly, accessible, direct
 - No marketing hype
 - Plain language (Flesch Reading Ease > 60)
 
 ## Medical/Health Terms
+
 - Use official terminology in your language
 - If no official term, explain in parentheses
 - Example: "mental health" (not "brain health")
 
 ## Abbreviations
+
 - Keep Kingston/KGH abbreviations
 - Don't translate proper nouns
 - Explain local acronyms
 
 ## Punctuation
+
 - Follow locale conventions
 - Arabic: Use Arabic quotation marks
 - Chinese: Use CJK punctuation
 - RTL: Don't reverse punctuation direction
 
 ## Testing
+
 - Test in actual app before submitting
 - Check text wrapping in UI
 - Verify mobile display
 
 ## Examples to Match
+
 [Links to existing translated strings that set the tone]
 ```
 
@@ -599,19 +628,19 @@ Benefits:
 
 ## File Changes Summary
 
-| Action | File | Impact |
-|--------|------|--------|
-| UPDATE | `messages/zh-Hans.json` | +126 keys |
-| UPDATE | `messages/ar.json` | +126 keys, RTL tested |
-| UPDATE | `messages/pt.json` | +126 keys |
-| UPDATE | `messages/es.json` | +126 keys |
-| UPDATE | `messages/pa.json` | +126 keys |
-| CLEANUP | All EDIA locale files | -10 duplicate keys |
-| MOVE | `app/offline/` | → `app/[locale]/offline/` |
-| UPDATE | `app/[locale]/offline/layout.tsx` | Dynamic locale/dir |
-| NEW | `messages/*/Offline.json` | Offline page i18n |
-| UPDATE | `middleware.ts` | Route offline to locale |
-| NEW | `docs/adr/008-internationalization.md` | Document i18n strategy |
+| Action  | File                                   | Impact                    |
+| ------- | -------------------------------------- | ------------------------- |
+| UPDATE  | `messages/zh-Hans.json`                | +126 keys                 |
+| UPDATE  | `messages/ar.json`                     | +126 keys, RTL tested     |
+| UPDATE  | `messages/pt.json`                     | +126 keys                 |
+| UPDATE  | `messages/es.json`                     | +126 keys                 |
+| UPDATE  | `messages/pa.json`                     | +126 keys                 |
+| CLEANUP | All EDIA locale files                  | -10 duplicate keys        |
+| MOVE    | `app/offline/`                         | → `app/[locale]/offline/` |
+| UPDATE  | `app/[locale]/offline/layout.tsx`      | Dynamic locale/dir        |
+| NEW     | `messages/*/Offline.json`              | Offline page i18n         |
+| UPDATE  | `middleware.ts`                        | Route offline to locale   |
+| NEW     | `docs/adr/008-internationalization.md` | Document i18n strategy    |
 
 ---
 

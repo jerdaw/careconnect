@@ -20,7 +20,9 @@ export async function POST(req: NextRequest) {
       }
     )
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) return createApiError("Unauthorized", 401)
 
     // Phase 1.3: Strict admin check
@@ -38,7 +40,7 @@ export async function POST(req: NextRequest) {
     const services = JSON.parse(fileContents) as { id: string }[]
 
     const oldService = services.find((s: { id: string }) => s.id === service.id)
-    
+
     // Update or Add
     const index = services.findIndex((s: { id: string }) => s.id === service.id)
     if (index > -1) {
@@ -57,7 +59,7 @@ export async function POST(req: NextRequest) {
       operation: index > -1 ? "UPDATE" : "CREATE",
       old_data: oldService,
       new_data: service,
-      performed_by: user.id
+      performed_by: user.id,
     })
 
     return createApiResponse({ success: true })

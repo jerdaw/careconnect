@@ -21,7 +21,9 @@ export async function POST() {
       }
     )
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) return createApiError("Unauthorized", 401)
 
     await assertAdminRole(supabase, user.id)
@@ -36,7 +38,7 @@ export async function POST() {
       record_id: "global",
       operation: "UPDATE",
       performed_by: user.id,
-      metadata: { action: "reindex" }
+      metadata: { action: "reindex" },
     })
 
     return createApiResponse({ success: true })

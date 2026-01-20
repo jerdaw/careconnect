@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { searchServices } from "@/lib/search/index"
+import { loadServices } from "@/lib/search/data"
 
 // Mock dependencies
 vi.mock("@/lib/supabase", () => ({
@@ -71,5 +72,80 @@ describe("searchServices Logic", () => {
   it("handles no results", async () => {
     const results = await searchServices("xyz")
     expect(results).toEqual([])
+  })
+
+  it("filters by category", async () => {
+    const mockServices = [
+      { id: "1", name: "Food Bank", description: "Provides food", intent_category: "food", verification_level: 1 },
+      { id: "2", name: "Shelter", description: "Provides housing", intent_category: "housing", verification_level: 1 },
+    ]
+    ;(loadServices as any).mockResolvedValue(mockServices)
+
+    const results = await searchServices("", { category: "food" })
+    expect(results).toHaveLength(1)
+    expect(results[0]!.service.name).toBe("Food Bank")
+  })
+
+  it("detects crisis and boosts results", async () => {
+    const mockServices = [
+      { id: "1", name: "General Service", description: "General", verification_level: 1, intent_category: "food" },
+      {
+        id: "2",
+        name: "Crisis Hotline",
+        description: "Crisis",
+        verification_level: 1,
+        identity_tags: [{ tag: "suicide" }],
+        intent_category: "Crisis",
+      },
+    ]
+    ;(loadServices as any).mockResolvedValue(mockServices)
+
+    const results = await searchServices("suicide")
+
+    // Crisis results should be boosted to the top
+    expect(results.length).toBeGreaterThan(0)
+    expect(results[0]!.service.name).toBe("Crisis Hotline")
+  })
+
+  it("performs vector search when vectorOverride is provided", async () => {
+    const mockServices = [
+      { id: "1", name: "Service 1", description: "Service 1 desc", embedding: [0.1, 0.9], verification_level: 1 },
+    ]
+    ;(loadServices as any).mockResolvedValue(mockServices)
+
+    const results = await searchServices("query", {
+      vectorOverride: [0.1, 0.9],
+    })
+
+    expect(results.length).toBeGreaterThan(0)
+    expect(results[0]!.matchReasons.some((r) => r.includes("Semantic"))).toBe(true)
+  })
+
+  it("returns results sorted by distance if location provided", async () => {
+    const mockServices = [
+      {
+        id: "1",
+        name: "Far",
+        description: "Far desc",
+        coordinates: { lat: 45, lng: -77 },
+        verification_level: 1,
+        intent_category: "food",
+      },
+      {
+        id: "2",
+        name: "Near",
+        description: "Near desc",
+        coordinates: { lat: 44.23, lng: -76.48 },
+        verification_level: 1,
+        intent_category: "food",
+      },
+    ]
+    ;(loadServices as any).mockResolvedValue(mockServices)
+
+    const results = await searchServices("Near", {
+      location: { lat: 44.23, lng: -76.48 },
+    })
+
+    expect(results[0]!.service.name).toBe("Near")
   })
 })

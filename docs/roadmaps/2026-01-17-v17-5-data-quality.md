@@ -33,23 +33,23 @@ Audit and enrich 196 services with critical missing fields. Currently 75-91% of 
 **New file:** `scripts/audit-data-completeness.ts`
 
 ```typescript
-import { loadServices } from '@/lib/search/data'
+import { loadServices } from "@/lib/search/data"
 
 async function auditServices() {
   const services = await loadServices()
 
   const gaps = {
-    missing_scope: services.filter(s => !s.scope).length,
-    missing_coordinates: services.filter(s => !s.latitude || !s.longitude).length,
-    missing_access_script: services.filter(s => !s.access_script).length,
-    missing_plain_language: services.filter(s => !s.plain_language_available).length,
-    missing_hours: services.filter(s => !s.hours).length,
-    unverified_l0: services.filter(s => s.verification_level === 'L0').length,
+    missing_scope: services.filter((s) => !s.scope).length,
+    missing_coordinates: services.filter((s) => !s.latitude || !s.longitude).length,
+    missing_access_script: services.filter((s) => !s.access_script).length,
+    missing_plain_language: services.filter((s) => !s.plain_language_available).length,
+    missing_hours: services.filter((s) => !s.hours).length,
+    unverified_l0: services.filter((s) => s.verification_level === "L0").length,
     verification_breakdown: {
-      L0: services.filter(s => s.verification_level === 'L0').length,
-      L1: services.filter(s => s.verification_level === 'L1').length,
-      L2: services.filter(s => s.verification_level === 'L2').length,
-      L3: services.filter(s => s.verification_level === 'L3').length,
+      L0: services.filter((s) => s.verification_level === "L0").length,
+      L1: services.filter((s) => s.verification_level === "L1").length,
+      L2: services.filter((s) => s.verification_level === "L2").length,
+      L3: services.filter((s) => s.verification_level === "L3").length,
     },
     category_counts: Object.entries(
       services.reduce((acc, s) => {
@@ -74,11 +74,13 @@ async function auditServices() {
 ```
 
 **Run:**
+
 ```bash
 npx tsx scripts/audit-data-completeness.ts > data-audit.txt
 ```
 
 **Expected Output:**
+
 ```
 Missing Scope:             147 (75%)
 Missing Coordinates:       179 (91%)
@@ -96,6 +98,7 @@ L3 (Provider-Confirmed):   0
 **New file:** `data/audit/data-gaps-by-category.csv`
 
 Create spreadsheet with:
+
 - Service name
 - Category
 - Current fields (name, address, phone)
@@ -104,6 +107,7 @@ Create spreadsheet with:
 - Verification level
 
 **Categories needing expansion:**
+
 - [ ] Transport: 2 services (target: 5+)
 - [ ] Financial: 4 services (target: 8+)
 - [ ] Indigenous: 3 services (target: 8+)
@@ -117,12 +121,12 @@ Create spreadsheet with:
 **Modify:** `types/service.ts`
 
 ```typescript
-type GeographicScope = 'kingston' | 'eastern-ontario' | 'provincial' | 'national'
+type GeographicScope = "kingston" | "eastern-ontario" | "provincial" | "national"
 
 interface Service {
   // ... existing fields
   scope: GeographicScope
-  scope_description?: string  // "Serves Kingston and surrounding areas"
+  scope_description?: string // "Serves Kingston and surrounding areas"
 }
 ```
 
@@ -132,33 +136,33 @@ interface Service {
 
 ```typescript
 interface ScopeRules {
-  kingston: string[]        // Services with Kingston address
-  easternOntario: string[]  // Regional providers
-  provincial: string[]      // Serve multiple regions
-  national: string[]        // Telehealth, online services
+  kingston: string[] // Services with Kingston address
+  easternOntario: string[] // Regional providers
+  provincial: string[] // Serve multiple regions
+  national: string[] // Telehealth, online services
 }
 
 const scopeRules: ScopeRules = {
   kingston: [
-    'Kingston Shelter',
-    'KGH Emergency',
-    'Community Kitchen',
+    "Kingston Shelter",
+    "KGH Emergency",
+    "Community Kitchen",
     // ... 30 local services
   ],
   easternOntario: [
-    'Telehealth Ontario',
-    'Regional Hospital Network',
+    "Telehealth Ontario",
+    "Regional Hospital Network",
     // ... regional providers
   ],
   provincial: [
-    '211 Ontario',
-    'Ontario Crisis Line',
+    "211 Ontario",
+    "Ontario Crisis Line",
     // ... province-wide services
   ],
   national: [
-    'Kids Help Phone',
-    'Talk Suicide Canada',
-    'Crisis Text Line',
+    "Kids Help Phone",
+    "Talk Suicide Canada",
+    "Crisis Text Line",
     // ... 5-10 national services
   ],
 }
@@ -166,7 +170,7 @@ const scopeRules: ScopeRules = {
 export async function assignScopes() {
   const services = await loadServices()
 
-  const updated = services.map(service => {
+  const updated = services.map((service) => {
     // Check rules
     for (const [scope, names] of Object.entries(scopeRules)) {
       if (names.includes(service.name)) {
@@ -175,24 +179,22 @@ export async function assignScopes() {
     }
 
     // Default based on service type
-    if (service.category === 'crisis' || service.category === 'telehealth') {
-      return { ...service, scope: 'provincial' }
+    if (service.category === "crisis" || service.category === "telehealth") {
+      return { ...service, scope: "provincial" }
     }
 
-    return { ...service, scope: 'kingston' }  // Default local
+    return { ...service, scope: "kingston" } // Default local
   })
 
   // Save back to services.json
-  fs.writeFileSync(
-    'data/services.json',
-    JSON.stringify(updated, null, 2)
-  )
+  fs.writeFileSync("data/services.json", JSON.stringify(updated, null, 2))
 
   console.log(`Assigned scopes to ${updated.length} services`)
 }
 ```
 
 **Verification:**
+
 - [ ] Run script
 - [ ] Spot-check 20 random services
 - [ ] Verify crisis/telehealth services marked provincial
@@ -207,11 +209,11 @@ export async function assignScopes() {
 
 **Choose Geocoding Provider:**
 
-| Option | API Calls | Cost | Accuracy |
-|--------|-----------|------|----------|
-| Google Maps | 179 | ~$3-5 | ⭐⭐⭐⭐⭐ |
-| OpenCage | 179 | ~$1-2 (free tier: 2,500/day) | ⭐⭐⭐⭐ |
-| OSM Nominatim | 179 | Free (rate-limited) | ⭐⭐⭐ |
+| Option        | API Calls | Cost                         | Accuracy   |
+| ------------- | --------- | ---------------------------- | ---------- |
+| Google Maps   | 179       | ~$3-5                        | ⭐⭐⭐⭐⭐ |
+| OpenCage      | 179       | ~$1-2 (free tier: 2,500/day) | ⭐⭐⭐⭐   |
+| OSM Nominatim | 179       | Free (rate-limited)          | ⭐⭐⭐     |
 
 **Recommendation:** OpenCage (free tier sufficient for 179 services)
 
@@ -220,10 +222,10 @@ export async function assignScopes() {
 **New file:** `scripts/geocode-services.ts`
 
 ```typescript
-import axios from 'axios'
+import axios from "axios"
 
 const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY
-const GEOCACHE_FILE = 'data/geocode-cache.json'
+const GEOCACHE_FILE = "data/geocode-cache.json"
 
 interface GeocoderResult {
   lat: number
@@ -234,11 +236,11 @@ interface GeocoderResult {
 
 async function geocodeAddress(address: string): Promise<GeocoderResult | null> {
   try {
-    const response = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
+    const response = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
       params: {
         q: address,
         key: OPENCAGE_API_KEY,
-        countrycode: 'CA',
+        countrycode: "CA",
         limit: 1,
       },
     })
@@ -294,11 +296,11 @@ async function geocodeAllServices() {
     }
 
     // Rate limit: 1 request per second
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000))
   }
 
   // Save results
-  fs.writeFileSync('data/services.json', JSON.stringify(services, null, 2))
+  fs.writeFileSync("data/services.json", JSON.stringify(services, null, 2))
   fs.writeFileSync(GEOCACHE_FILE, JSON.stringify(geocodeCache, null, 2))
 
   console.log(`\nGeocoding complete: ${successCount} success, ${failureCount} failed`)
@@ -306,6 +308,7 @@ async function geocodeAllServices() {
 ```
 
 **Run:**
+
 ```bash
 OPENCAGE_API_KEY=xxx npx tsx scripts/geocode-services.ts
 ```
@@ -323,12 +326,13 @@ Kingston Shelter,"123 Main St",44.2314,-76.4860,Verified with Google Street View
 ```
 
 **Script to apply:**
+
 ```typescript
-const manualCoords = parseCsv('data/manual-coordinates.csv')
+const manualCoords = parseCsv("data/manual-coordinates.csv")
 const services = await loadServices()
 
-const updated = services.map(service => {
-  const manual = manualCoords.find(m => m['Service Name'] === service.name)
+const updated = services.map((service) => {
+  const manual = manualCoords.find((m) => m["Service Name"] === service.name)
   if (manual) {
     return {
       ...service,
@@ -351,7 +355,7 @@ const updated = services.map(service => {
 ```typescript
 interface Service {
   // ... existing
-  access_script?: string  // "Tips for calling this service"
+  access_script?: string // "Tips for calling this service"
   access_script_fr?: string
   phone_anxiety_tips?: string
   plain_language_available?: boolean
@@ -397,12 +401,12 @@ export async function assignAccessScripts() {
   const services = await loadServices()
 
   const scriptsByCategory = {
-    'crisis': 'crisis_line',
-    'mental_health': 'mental_health',
-    'health': 'health_clinic',
+    crisis: "crisis_line",
+    mental_health: "mental_health",
+    health: "health_clinic",
   }
 
-  const updated = services.map(service => {
+  const updated = services.map((service) => {
     const templateKey = scriptsByCategory[service.category]
     if (templateKey && !service.access_script) {
       return {
@@ -423,29 +427,26 @@ export async function assignAccessScripts() {
 
 ```typescript
 // Use readability analysis
-import readabilityScores from 'reading-level'
+import readabilityScores from "reading-level"
 
 async function auditPlainLanguage() {
   const services = await loadServices()
 
-  const audit = services.map(service => {
+  const audit = services.map((service) => {
     const descriptionScore = readabilityScores(service.description)
 
     return {
       name: service.name,
       plain_language_score: descriptionScore,
-      is_accessible: descriptionScore > 60,  // Flesch Reading Ease
-      suggestions: descriptionScore < 60 ? [
-        'Break into shorter sentences',
-        'Use simpler words',
-        'Define technical terms',
-      ] : [],
+      is_accessible: descriptionScore > 60, // Flesch Reading Ease
+      suggestions:
+        descriptionScore < 60 ? ["Break into shorter sentences", "Use simpler words", "Define technical terms"] : [],
     }
   })
 
   // Mark accessible descriptions
-  const updated = services.map(service => {
-    const auditResult = audit.find(a => a.name === service.name)
+  const updated = services.map((service) => {
+    const auditResult = audit.find((a) => a.name === service.name)
     return {
       ...service,
       plain_language_available: auditResult.is_accessible,
@@ -463,17 +464,19 @@ async function auditPlainLanguage() {
 ### 5.1 Convert Hours to Structured Format
 
 **Current State:** Hours stored as text string
+
 ```
 "Mon-Fri 9am-5pm, Sat 10am-3pm, Closed Sunday"
 ```
 
 **Desired State:** Structured format
+
 ```typescript
 interface ServiceHours {
-  monday: { open: string, close: string }
-  tuesday: { open: string, close: string }
+  monday: { open: string; close: string }
+  tuesday: { open: string; close: string }
   // ... etc
-  closed: string[]  // ["sunday"]
+  closed: string[] // ["sunday"]
   notes?: string
 }
 ```
@@ -497,7 +500,7 @@ export function parseHoursText(text: string): ServiceHours | null {
     closed: [],
   }
 
-  const lines = text.split(',').map(s => s.trim())
+  const lines = text.split(",").map((s) => s.trim())
 
   for (const line of lines) {
     // Match "Mon-Fri 9am-5pm"
@@ -515,8 +518,8 @@ export function parseHoursText(text: string): ServiceHours | null {
     }
 
     // Match "Closed Sunday"
-    if (line.includes('Closed')) {
-      const closedDay = line.replace('Closed', '').trim()
+    if (line.includes("Closed")) {
+      const closedDay = line.replace("Closed", "").trim()
       hours.closed.push(closedDay.toLowerCase())
     }
   }
@@ -533,8 +536,8 @@ export function parseHoursText(text: string): ServiceHours | null {
 async function convertHoursFormat() {
   const services = await loadServices()
 
-  const updated = services.map(service => {
-    if (service.hours) return service  // Already structured
+  const updated = services.map((service) => {
+    if (service.hours) return service // Already structured
 
     if (service.hours_text) {
       return {
@@ -547,7 +550,7 @@ async function convertHoursFormat() {
   })
 
   // Manual audit needed for 20-30 services with complex hours
-  const needsManualReview = updated.filter(s => !s.hours && s.hours_text)
+  const needsManualReview = updated.filter((s) => !s.hours && s.hours_text)
   console.log(`${needsManualReview.length} services need manual hours review`)
 
   return updated
@@ -560,22 +563,22 @@ async function convertHoursFormat() {
 
 ```typescript
 export function isOpenNow(hours: ServiceHours, now = new Date()): boolean {
-  const dayName = getDayName(now)  // "monday", "tuesday", etc.
+  const dayName = getDayName(now) // "monday", "tuesday", etc.
 
   if (hours.closed.includes(dayName)) {
     return false
   }
 
   const dayHours = hours[dayName]
-  if (!dayHours) return null  // Unknown hours
+  if (!dayHours) return null // Unknown hours
 
-  const nowTime = getTimeString(now)  // "09:30"
+  const nowTime = getTimeString(now) // "09:30"
   return nowTime >= dayHours.open && nowTime <= dayHours.close
 }
 
 // Then in search filters:
 if (filter.openNow) {
-  results = results.filter(s => isOpenNow(s.hours))
+  results = results.filter((s) => isOpenNow(s.hours))
 }
 ```
 
@@ -598,6 +601,7 @@ Kingston Shelter,housing,Essential community service,Not yet contacted
 ```
 
 **Criteria for L3:**
+
 - [ ] Official partnership signed
 - [ ] Provider-confirmed information
 - [ ] Recent verification (within 6 months)
@@ -629,11 +633,11 @@ If introducing L4 (Gold Standard):
 
 ```typescript
 const VERIFICATION_MULTIPLIERS: Record<VerificationLevel, number> = {
-  L0: 0,        // Filtered out
-  L1: 1.0,      // Basic
-  L2: 1.2,      // Vetted
-  L3: 1.5,      // Provider-confirmed
-  L4: 2.0,      // Third-party audited (stretch goal)
+  L0: 0, // Filtered out
+  L1: 1.0, // Basic
+  L2: 1.2, // Vetted
+  L3: 1.5, // Provider-confirmed
+  L4: 2.0, // Third-party audited (stretch goal)
 }
 ```
 
@@ -646,11 +650,11 @@ const VERIFICATION_MULTIPLIERS: Record<VerificationLevel, number> = {
 
 ### Ongoing Goals (Post-v17.5)
 
-| Category | Current | Target | Priority |
-|----------|---------|--------|----------|
-| Transport | 2 | 5+ | Medium |
-| Financial | 4 | 8+ | High |
-| Indigenous | 3 | 8+ | High (EDIA) |
+| Category   | Current | Target | Priority    |
+| ---------- | ------- | ------ | ----------- |
+| Transport  | 2       | 5+     | Medium      |
+| Financial  | 4       | 8+     | High        |
+| Indigenous | 3       | 8+     | High (EDIA) |
 
 ### Process for Adding New Services
 
@@ -663,16 +667,19 @@ const VERIFICATION_MULTIPLIERS: Record<VerificationLevel, number> = {
 ### Research Areas (for future reference)
 
 **Transport:**
+
 - Paratransit services
 - Medical transportation
 - Volunteer driver programs
 
 **Financial:**
+
 - Utility bill assistance
 - Rent assistance
 - Debt counseling
 
 **Indigenous:**
+
 - Indigenous-led health services
 - Cultural centers
 - Land-based programs
@@ -718,17 +725,20 @@ npm run validate-data -- --check-verification-levels
 ## Success Criteria
 
 ### Core Data Quality (Must Have)
+
 - [ ] 100% services have `scope` field
 - [ ] 90%+ services have coordinates (target: 180/196)
 - [ ] 70%+ services have structured hours (target: 140/196)
 - [ ] Data validation passes all automated checks
 
 ### Enhanced Metadata (Should Have)
+
 - [ ] 50%+ services have access scripts (target: 100/196)
 - [ ] 50%+ services marked with plain language availability
 - [ ] 10+ services at L3 verification level
 
 ### Removed from v17.5 (Ongoing Work)
+
 - ~~5+ transport services~~ → Ongoing
 - ~~8+ financial services~~ → Ongoing
 - ~~8+ indigenous services~~ → Ongoing
@@ -748,6 +758,7 @@ npm run validate-data -- --check-verification-levels
 ## Maintenance Plan
 
 After v17.5:
+
 - Monthly staleness audit: identify unverified services
 - Quarterly geocode verification: check coordinates still accurate
 - Annual verification audit: re-contact L2/L3 providers

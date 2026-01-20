@@ -1,37 +1,53 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { PATCH } from "@/app/api/v1/feedback/[id]/route"
 import { createClient } from "@/utils/supabase/server"
-
-// Mock Supabase
-vi.mock("@/utils/supabase/server", () => ({
-  createClient: vi.fn(),
-}))
+import { createServerClient } from "@supabase/ssr"
 
 const mockGetUser = vi.fn()
-const mockFrom = vi.fn()
 const mockSelect = vi.fn()
 const mockEq = vi.fn()
 const mockSingle = vi.fn()
 const mockUpdate = vi.fn()
 
 describe("Feedback Triage API", () => {
+  const mockSupabase = {
+    auth: {
+      getUser: mockGetUser,
+    },
+    from: (table: string) => {
+      if (table === "services") {
+        return {
+          select: () => ({
+            eq: () => ({
+              single: () => Promise.resolve({ data: { org_id: "partner-123" }, error: null }),
+            }),
+          }),
+        }
+      }
+      if (table === "organization_members") {
+        return {
+          select: () => ({
+            eq: () => ({
+              eq: () => ({
+                single: () => Promise.resolve({ data: { role: "admin" }, error: null }),
+              }),
+            }),
+          }),
+        }
+      }
+      return {
+        select: mockSelect,
+        update: mockUpdate,
+      }
+    },
+  }
+
+  // Standard SSR mocking via next-mocks
+  vi.mocked(createServerClient).mockReturnValue(mockSupabase as any)
+
   beforeEach(() => {
     vi.clearAllMocks()
-
-    // Setup Supabase Mock Chain
-    const mockSupabase = {
-      auth: {
-        getUser: mockGetUser,
-      },
-      from: mockFrom,
-    }
-
-    ;(createClient as any).mockResolvedValue(mockSupabase)
-
-    mockFrom.mockReturnValue({
-      select: mockSelect,
-      update: mockUpdate,
-    })
 
     mockSelect.mockReturnValue({
       eq: mockEq,
@@ -43,8 +59,6 @@ describe("Feedback Triage API", () => {
 
     mockEq.mockReturnValue({
       single: mockSingle,
-      // For update, eq usually returns a promise logic in real supabase,
-      // here we just return the spy or promise
       then: (cb: any) => Promise.resolve({ error: null }).then(cb),
     })
 
@@ -56,7 +70,6 @@ describe("Feedback Triage API", () => {
   })
 
   const feedbackId = "fb-123"
-  // Cast params to satisfy Next.js 15 async params requirement
   const params = Promise.resolve({ id: feedbackId }) as Promise<{ id: string }>
 
   it("returns 401 if not authenticated", async () => {
@@ -64,6 +77,7 @@ describe("Feedback Triage API", () => {
 
     const request = new Request(`http://localhost/api/v1/feedback/${feedbackId}`, {
       method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "resolved" }),
     })
 
@@ -72,18 +86,47 @@ describe("Feedback Triage API", () => {
   })
 
   it("returns 403 if user does not own the service", async () => {
-    // Mock finding feedback, but owned by different org
-    mockSingle.mockResolvedValue({
-      data: {
-        id: feedbackId,
-        service_id: "svc-999",
-        services: { org_id: "other-org-456" },
+    // Override the "from" behavior for this specific test to fail ownership
+    const restrictedSupabase = {
+      ...mockSupabase,
+      from: (table: string) => {
+        if (table === "feedback") {
+          return {
+            select: () => ({
+              eq: () => ({
+                single: () => Promise.resolve({ data: { service_id: "svc-999" }, error: null }),
+              }),
+            }),
+          }
+        }
+        if (table === "services") {
+          return {
+            select: () => ({
+              eq: () => ({
+                single: () => Promise.resolve({ data: { org_id: "other-org-456" }, error: null }),
+              }),
+            }),
+          }
+        }
+        if (table === "organization_members") {
+          return {
+            select: () => ({
+              eq: () => ({
+                eq: () => ({
+                  single: () => Promise.resolve({ data: null, error: { message: "Not a member" } }),
+                }),
+              }),
+            }),
+          }
+        }
+        return mockSupabase.from(table)
       },
-      error: null,
-    })
+    }
+    vi.mocked(createServerClient).mockReturnValueOnce(restrictedSupabase as any)
 
     const request = new Request(`http://localhost/api/v1/feedback/${feedbackId}`, {
       method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "resolved" }),
     })
 
@@ -92,28 +135,21 @@ describe("Feedback Triage API", () => {
   })
 
   it("returns 200 and updates status if authorized", async () => {
-    // Mock finding feedback owned by user
+    // Mock feedback data
     mockSingle.mockResolvedValue({
-      data: {
-        id: feedbackId,
-        service_id: "svc-123",
-        services: { org_id: "partner-123" },
-      },
+      data: { service_id: "svc-123" },
       error: null,
     })
 
-    // mockEq is already configured in beforeEach to return an object with .then check returning { error: null }
-    // so we don't need to override it, which breaks the select chain.
-
     const request = new Request(`http://localhost/api/v1/feedback/${feedbackId}`, {
       method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "resolved" }),
     })
 
     const response = await PATCH(request as any, { params })
     expect(response.status).toBe(200)
 
-    // Verify update called with correct params
     expect(mockUpdate).toHaveBeenCalledWith({
       status: "resolved",
       resolved_at: expect.any(String),
@@ -124,6 +160,7 @@ describe("Feedback Triage API", () => {
   it("returns 400 for invalid status", async () => {
     const request = new Request(`http://localhost/api/v1/feedback/${feedbackId}`, {
       method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "super-resolved" }),
     })
 

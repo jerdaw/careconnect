@@ -54,32 +54,34 @@ export const loadServices = async (): Promise<Service[]> => {
         const fallbackServices = servicesData as unknown as Service[]
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-        const mappedData: Service[] = data.map((row: any) => {
-          // Find static metadata from services.json to overlay (AI metadata)
-          const staticService = fallbackServices.find((s) => s.id === row.id)
+        const mappedData: Service[] = data
+          .map((row: any) => {
+            // Find static metadata from services.json to overlay (AI metadata)
+            const staticService = fallbackServices.find((s) => s.id === row.id)
 
-          return {
-            ...row,
-            // Parse embedding if it's a string, or keep if array, or use fallback
-            embedding:
-              (typeof row.embedding === "string" ? JSON.parse(row.embedding) : row.embedding) ||
-              fallbackEmbeddings[row.id],
-            // Cast jsonb fields
-            identity_tags: typeof row.tags === "string" ? JSON.parse(row.tags) : row.tags,
-            intent_category: row.category, // Map DB column back to TS property
-            verification_level: row.verification_status,
-            // Overlay rich metadata if missing in DB
-            synthetic_queries: staticService?.synthetic_queries || [],
-            // If tags are missing in DB, use static
-            ...(!row.tags && staticService?.identity_tags ? { identity_tags: staticService.identity_tags } : {}),
+            return {
+              ...row,
+              // Parse embedding if it's a string, or keep if array, or use fallback
+              embedding:
+                (typeof row.embedding === "string" ? JSON.parse(row.embedding) : row.embedding) ||
+                fallbackEmbeddings[row.id],
+              // Cast jsonb fields
+              identity_tags: typeof row.tags === "string" ? JSON.parse(row.tags) : row.tags,
+              intent_category: row.category, // Map DB column back to TS property
+              verification_level: row.verification_status,
+              // Overlay rich metadata if missing in DB
+              synthetic_queries: staticService?.synthetic_queries || [],
+              // If tags are missing in DB, use static
+              ...(!row.tags && staticService?.identity_tags ? { identity_tags: staticService.identity_tags } : {}),
 
-            // Ensure boolean flags are present
-            // Ensure boolean flags are present
-            is_provincial: row.is_provincial || false,
-            published: row.published !== false,
-            deleted_at: row.deleted_at,
-          }
-        }).filter((s) => !s.deleted_at) // Filter soft deletes
+              // Ensure boolean flags are present
+              // Ensure boolean flags are present
+              is_provincial: row.is_provincial || false,
+              published: row.published !== false,
+              deleted_at: row.deleted_at,
+            }
+          })
+          .filter((s) => !s.deleted_at) // Filter soft deletes
 
         dataCache = { services: mappedData }
         return mappedData

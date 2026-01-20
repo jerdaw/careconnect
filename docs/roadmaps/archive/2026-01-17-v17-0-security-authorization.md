@@ -17,6 +17,7 @@ tags: [roadmap, v17.0, security, authorization, critical, owasp]
 This release addresses critical security vulnerabilities that **must be resolved before public launch**. The most severe issue is a horizontal privilege escalation bug (OWASP API1:2023 - Broken Object Level Authorization) allowing any authenticated user to modify or delete any service in the database.
 
 **Defense in Depth Strategy:**
+
 1. **Layer 1 (Database):** Supabase Row Level Security (RLS) policies - primary defense
 2. **Layer 2 (Application):** Authorization utility with ownership checks - defense in depth
 3. **Layer 3 (API Gateway):** Rate limiting and input validation - abuse prevention
@@ -180,10 +181,7 @@ Create a centralized authorization utility for ownership checks:
 
 ```typescript
 // Proposed interface
-export async function assertServiceOwnership(
-  userId: string,
-  serviceId: string
-): Promise<void>
+export async function assertServiceOwnership(userId: string, serviceId: string): Promise<void>
 
 export async function assertOrganizationMembership(
   userId: string,
@@ -193,7 +191,7 @@ export async function assertOrganizationMembership(
 
 export async function getEffectivePermissions(
   userId: string,
-  resourceType: 'service' | 'feedback' | 'organization'
+  resourceType: "service" | "feedback" | "organization"
 ): Promise<Permission[]>
 ```
 
@@ -208,9 +206,12 @@ export async function getEffectivePermissions(
 #### [MODIFY] app/api/v1/services/[id]/route.ts
 
 **Current State (VULNERABLE):**
+
 ```typescript
 // Line ~45: Only checks if user exists
-const { data: { user } } = await supabase.auth.getUser()
+const {
+  data: { user },
+} = await supabase.auth.getUser()
 if (!user) return createApiError("Unauthorized", 401)
 // MISSING: Check if user owns this service!
 ```
@@ -223,6 +224,7 @@ if (!user) return createApiError("Unauthorized", 401)
 4. Return 403 Forbidden if ownership check fails
 
 **Implementation Steps:**
+
 - [x] Add `org_id` lookup from service record
 - [x] Query `organization_members` to verify user membership
 - [x] Check role permits the operation (editor+ for edit, admin+ for delete)
@@ -235,6 +237,7 @@ if (!user) return createApiError("Unauthorized", 401)
 #### [MODIFY] app/api/admin/save/route.ts
 
 **Current State (WEAK):**
+
 ```typescript
 if (process.env.NODE_ENV === "production") {
   return NextResponse.json({ error: "Not available" }, { status: 403 })
@@ -242,6 +245,7 @@ if (process.env.NODE_ENV === "production") {
 ```
 
 **Required Changes:**
+
 - [x] Check for actual admin role, not just environment
 - [x] Query user's role from `organization_members` or dedicated `admins` table
 - [x] Log admin actions to audit table
@@ -268,11 +272,11 @@ if (process.env.NODE_ENV === "production") {
 
 ### 2.1 Evaluate Storage Options
 
-| Option | Pros | Cons | Cost |
-|--------|------|------|------|
-| Vercel KV | Native integration, simple | Vendor lock-in | ~$1/mo for low usage |
-| Upstash Redis | Serverless-friendly, free tier | Additional account | Free tier: 10K/day |
-| Supabase | Already integrated | Not designed for this | Included |
+| Option        | Pros                           | Cons                  | Cost                 |
+| ------------- | ------------------------------ | --------------------- | -------------------- |
+| Vercel KV     | Native integration, simple     | Vendor lock-in        | ~$1/mo for low usage |
+| Upstash Redis | Serverless-friendly, free tier | Additional account    | Free tier: 10K/day   |
+| Supabase      | Already integrated             | Not designed for this | Included             |
 
 **Recommendation:** Upstash Redis (free tier sufficient for pilot)
 
@@ -281,6 +285,7 @@ if (process.env.NODE_ENV === "production") {
 #### [MODIFY] lib/rate-limit.ts
 
 **Current State:**
+
 ```typescript
 const requests = new Map<string, { count: number; resetTime: number }>()
 // In-memory only - resets on cold start
@@ -302,6 +307,7 @@ const requests = new Map<string, { count: number; resetTime: number }>()
 #### [MODIFY] .env.example
 
 Add Redis configuration:
+
 ```env
 UPSTASH_REDIS_REST_URL=
 UPSTASH_REDIS_REST_TOKEN=
@@ -320,12 +326,14 @@ UPSTASH_REDIS_REST_TOKEN=
 **Current State:** Unauthenticated endpoint exposes all service data + embeddings
 
 **Required Changes:**
+
 - [x] Require authentication for full export
 - [x] Create separate public endpoint with limited fields (no embeddings)
 - [x] Add rate limiting (stricter than search)
 - [x] Log export requests for audit
 
 **Alternative:** Split into two endpoints:
+
 - `/api/v1/services/export` - Authenticated, full data + embeddings
 - `/api/v1/services/public-export` - Unauthenticated, limited fields
 
@@ -340,10 +348,10 @@ Create standardized error response factory:
 ```typescript
 interface ApiErrorResponse {
   error: {
-    code: string        // e.g., "UNAUTHORIZED", "FORBIDDEN", "VALIDATION_ERROR"
-    message: string     // Human-readable message
-    details?: unknown   // Validation errors, field-specific info
-    requestId: string   // For log correlation
+    code: string // e.g., "UNAUTHORIZED", "FORBIDDEN", "VALIDATION_ERROR"
+    message: string // Human-readable message
+    details?: unknown // Validation errors, field-specific info
+    requestId: string // For log correlation
   }
 }
 ```
@@ -355,6 +363,7 @@ interface ApiErrorResponse {
 - [x] Ensure all routes use standardized format
 
 #### Routes to update:
+
 - [x] `app/api/v1/feedback/route.ts` - Currently returns `{ success: false, message }`
 - [x] `app/api/v1/services/route.ts` - Uses correct format
 - [x] `app/api/v1/search/services/route.ts` - Uses correct format
@@ -367,6 +376,7 @@ interface ApiErrorResponse {
 #### [MODIFY] app/api/v1/services/[id]/route.ts
 
 **Add PATCH handler:**
+
 - [x] Accept partial service object
 - [x] Validate only provided fields with Zod `.partial()`
 - [x] Merge with existing service data
@@ -379,6 +389,7 @@ interface ApiErrorResponse {
 #### [MODIFY] types/service.ts
 
 Add soft delete field:
+
 ```typescript
 interface Service {
   // ... existing fields
@@ -390,6 +401,7 @@ interface Service {
 #### [MODIFY] app/api/v1/services/[id]/route.ts
 
 **DELETE handler changes:**
+
 - [x] Set `deleted_at` timestamp instead of hard delete
 - [x] Record `deleted_by` user ID
 - [x] Return success with warning about soft delete
@@ -423,6 +435,7 @@ interface Service {
 #### [NEW] docs/adr/007-api-authorization.md
 
 Document:
+
 - Authorization model decisions
 - Role hierarchy
 - Rate limiting strategy
@@ -437,6 +450,7 @@ Document:
 #### [NEW] tests/api/authorization.test.ts
 
 Test cases:
+
 - [x] Authenticated user can only modify own organization's services
 - [x] Unauthenticated user receives 401 on protected endpoints
 - [x] User without ownership receives 403
@@ -452,6 +466,7 @@ npm test -- tests/api/authorization.test.ts
 #### [NEW] tests/lib/rate-limit-redis.test.ts
 
 Test cases:
+
 - [x] Redis store increments correctly
 - [x] TTL expires after window
 - [x] Fallback to in-memory on Redis failure
@@ -477,38 +492,38 @@ Test cases:
 
 ## File Change Summary
 
-| Action | File | Priority |
-|--------|------|----------|
-| **Database (Phase 0)** | | |
-| SQL | `supabase/migrations/XXX_rls_services.sql` | P0 |
-| SQL | `supabase/migrations/XXX_audit_logs.sql` | P0 |
-| SQL | `supabase/migrations/XXX_org_members.sql` | P0 |
-| **Application (Phase 1)** | | |
-| NEW | `lib/auth/authorization.ts` | P0 |
-| NEW | `lib/auth/audit.ts` | P0 |
-| MODIFY | `app/api/v1/services/[id]/route.ts` | P0 |
-| MODIFY | `app/api/admin/save/route.ts` | P0 |
-| MODIFY | `app/api/admin/push/route.ts` | P0 |
-| MODIFY | `app/api/admin/reindex/route.ts` | P1 |
-| MODIFY | `app/api/admin/data/route.ts` | P1 |
-| **Rate Limiting (Phase 2)** | | |
-| NEW | `lib/rate-limit/redis-store.ts` | P1 |
-| MODIFY | `lib/rate-limit.ts` | P1 |
-| **API Hardening (Phase 3)** | | |
-| MODIFY | `app/api/v1/services/export/route.ts` | P1 |
-| NEW | `lib/api/errors.ts` | P2 |
-| MODIFY | `lib/api-utils.ts` | P2 |
-| MODIFY | `app/api/v1/feedback/route.ts` | P2 |
-| MODIFY | `types/service.ts` | P2 |
-| MODIFY | `lib/search/data.ts` | P2 |
-| **Cleanup (Phase 4)** | | |
-| MODIFY | `app/api/feedback/route.ts` | P3 |
-| DELETE | `app/api/v1/submissions/route.ts` | P3 |
-| NEW | `docs/adr/007-api-authorization.md` | P3 |
-| **Tests** | | |
-| NEW | `tests/api/authorization.test.ts` | P0 |
-| NEW | `tests/api/rls-policies.test.ts` | P0 |
-| NEW | `tests/lib/rate-limit-redis.test.ts` | P1 |
+| Action                      | File                                       | Priority |
+| --------------------------- | ------------------------------------------ | -------- |
+| **Database (Phase 0)**      |                                            |          |
+| SQL                         | `supabase/migrations/XXX_rls_services.sql` | P0       |
+| SQL                         | `supabase/migrations/XXX_audit_logs.sql`   | P0       |
+| SQL                         | `supabase/migrations/XXX_org_members.sql`  | P0       |
+| **Application (Phase 1)**   |                                            |          |
+| NEW                         | `lib/auth/authorization.ts`                | P0       |
+| NEW                         | `lib/auth/audit.ts`                        | P0       |
+| MODIFY                      | `app/api/v1/services/[id]/route.ts`        | P0       |
+| MODIFY                      | `app/api/admin/save/route.ts`              | P0       |
+| MODIFY                      | `app/api/admin/push/route.ts`              | P0       |
+| MODIFY                      | `app/api/admin/reindex/route.ts`           | P1       |
+| MODIFY                      | `app/api/admin/data/route.ts`              | P1       |
+| **Rate Limiting (Phase 2)** |                                            |          |
+| NEW                         | `lib/rate-limit/redis-store.ts`            | P1       |
+| MODIFY                      | `lib/rate-limit.ts`                        | P1       |
+| **API Hardening (Phase 3)** |                                            |          |
+| MODIFY                      | `app/api/v1/services/export/route.ts`      | P1       |
+| NEW                         | `lib/api/errors.ts`                        | P2       |
+| MODIFY                      | `lib/api-utils.ts`                         | P2       |
+| MODIFY                      | `app/api/v1/feedback/route.ts`             | P2       |
+| MODIFY                      | `types/service.ts`                         | P2       |
+| MODIFY                      | `lib/search/data.ts`                       | P2       |
+| **Cleanup (Phase 4)**       |                                            |          |
+| MODIFY                      | `app/api/feedback/route.ts`                | P3       |
+| DELETE                      | `app/api/v1/submissions/route.ts`          | P3       |
+| NEW                         | `docs/adr/007-api-authorization.md`        | P3       |
+| **Tests**                   |                                            |          |
+| NEW                         | `tests/api/authorization.test.ts`          | P0       |
+| NEW                         | `tests/api/rls-policies.test.ts`           | P0       |
+| NEW                         | `tests/lib/rate-limit-redis.test.ts`       | P1       |
 
 ---
 
@@ -542,13 +557,13 @@ Test cases:
 
 Set up monitoring for these security events:
 
-| Event | Threshold | Action |
-|-------|-----------|--------|
-| Failed auth attempts | >10/min from same IP | Rate limit, notify |
-| RLS policy denials | Any | Log for review |
-| Admin endpoint access | Any | Log + notify |
-| Rate limit exceeded | >100/hour same user | Investigate |
-| Audit log gaps | Missing expected entries | Alert immediately |
+| Event                 | Threshold                | Action             |
+| --------------------- | ------------------------ | ------------------ |
+| Failed auth attempts  | >10/min from same IP     | Rate limit, notify |
+| RLS policy denials    | Any                      | Log for review     |
+| Admin endpoint access | Any                      | Log + notify       |
+| Rate limit exceeded   | >100/hour same user      | Investigate        |
+| Audit log gaps        | Missing expected entries | Alert immediately  |
 
 ### Audit Log Review Cadence
 
@@ -559,6 +574,7 @@ Set up monitoring for these security events:
 ## Rollback Plan
 
 If issues discovered post-deploy:
+
 1. **RLS breaking app:** Temporarily disable specific policy (not all RLS)
 2. **Authorization bugs:** Revert to previous route handlers, RLS still protects
 3. **Rate limiting issues:** Fallback automatically uses in-memory
@@ -568,10 +584,10 @@ If issues discovered post-deploy:
 
 This plan addresses the following OWASP API Security Top 10 (2023) risks:
 
-| Risk | Status | How Addressed |
-|------|--------|---------------|
-| API1: Broken Object Level Authorization | ✅ Fixed | RLS + ownership checks |
-| API2: Broken Authentication | ⬜ Out of scope | Handled by Supabase Auth |
-| API4: Unrestricted Resource Consumption | ✅ Fixed | Rate limiting |
-| API5: Broken Function Level Authorization | ✅ Fixed | Admin role checks |
-| API8: Security Misconfiguration | ✅ Fixed | Standardized errors, no info leakage |
+| Risk                                      | Status          | How Addressed                        |
+| ----------------------------------------- | --------------- | ------------------------------------ |
+| API1: Broken Object Level Authorization   | ✅ Fixed        | RLS + ownership checks               |
+| API2: Broken Authentication               | ⬜ Out of scope | Handled by Supabase Auth             |
+| API4: Unrestricted Resource Consumption   | ✅ Fixed        | Rate limiting                        |
+| API5: Broken Function Level Authorization | ✅ Fixed        | Admin role checks                    |
+| API8: Security Misconfiguration           | ✅ Fixed        | Standardized errors, no info leakage |

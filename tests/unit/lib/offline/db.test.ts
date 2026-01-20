@@ -1,5 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { saveAllServices, getAllServices, getServiceById, setMeta, getMeta } from "@/lib/offline/db"
+import {
+  saveAllServices,
+  getAllServices,
+  getServiceById,
+  setMeta,
+  getMeta,
+  saveAllEmbeddings,
+  getAllEmbeddings,
+} from "@/lib/offline/db"
 import { VerificationLevel, IntentCategory } from "@/types/service"
 
 const mocks = vi.hoisted(() => ({
@@ -48,6 +56,9 @@ const mockServices = [
 describe("Offline DB", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mocks.put.mockResolvedValue(undefined)
+    mocks.get.mockResolvedValue(undefined)
+    mocks.getAll.mockResolvedValue([])
   })
 
   describe("saveAllServices", () => {
@@ -74,6 +85,21 @@ describe("Offline DB", () => {
       const result = await getServiceById("s1")
       expect(mocks.get).toHaveBeenCalledWith("services", "s1")
       expect(result).toEqual(mockServices[0])
+    })
+  })
+
+  describe("Embeddings", () => {
+    it("should save all embeddings", async () => {
+      const embeddings = [{ id: "s1", embedding: [0.1, 0.2] }]
+      await saveAllEmbeddings(embeddings)
+      expect(mocks.put).toHaveBeenCalledWith(embeddings[0])
+    })
+
+    it("should get all embeddings", async () => {
+      const embeddings = [{ id: "s1", embedding: [0.1, 0.2] }]
+      mocks.getAll.mockResolvedValue(embeddings)
+      const result = await getAllEmbeddings()
+      expect(result).toEqual(embeddings)
     })
   })
 

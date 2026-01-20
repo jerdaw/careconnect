@@ -29,7 +29,7 @@ export async function GET(request: Request) {
       return createApiError("Unauthorized", 401)
     }
 
-    // Verify admin role 
+    // Verify admin role
     await assertAdminRole(supabaseAuth, user.id)
 
     const services = await loadServices()

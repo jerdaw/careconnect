@@ -114,6 +114,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 | `npm run dev`             | Start development server (Turbo)        |
 | `npm run build`           | Build for production                    |
 | `npm test`                | Run unit and integration tests (Vitest) |
+| `npm run test:coverage`   | Generate coverage report                |
 | `npm run test:e2e:local`  | Run E2E tests (Chromium only)           |
 | `npm run type-check`      | TypeScript compiler check               |
 | `npm run lint`            | ESLint code quality check               |
@@ -167,7 +168,7 @@ This project is community-led. Safety and accuracy take precedence over volume.
 
 - [Roadmap](docs/roadmaps/roadmap.md)
 - [Documentation Guidelines](docs/documentation-guidelines.md)
-- [Testing Standards](docs/development/testing.md)
+- [Testing Standards](docs/development/testing-guidelines.md)
 - [Multi-Lingual Development Guide](docs/bilingual-dev-guide.md)
 - [Acknowledgments & Governance](docs/acknowledgments.md)
 
