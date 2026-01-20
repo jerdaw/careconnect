@@ -8,7 +8,7 @@
 // edited to work with the appdir by @raphaelbadia
 
 const gzSize = require("gzip-size")
-const mkdirp = require("mkdirp")
+// const mkdirp = require("mkdirp")
 const fs = require("fs")
 const path = require("path")
 
@@ -71,7 +71,8 @@ const rawData = JSON.stringify({
 // log ouputs to the gh actions panel
 console.log(rawData)
 
-mkdirp.sync(path.join(nextMetaRoot, "analyze/"))
+// mkdirp.sync(path.join(nextMetaRoot, "analyze/"))
+fs.mkdirSync(path.join(nextMetaRoot, "analyze/"), { recursive: true })
 fs.writeFileSync(path.join(nextMetaRoot, "analyze/__bundle_analysis.json"), rawData)
 
 // --------------
