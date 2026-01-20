@@ -301,6 +301,9 @@ export const metadata: Metadata = {
 
 ## Phase 2: Service Worker Enhancement (2 days)
 
+> [!IMPORTANT]
+> **Architecture Decision:** This project uses `@ducanh2912/next-pwa` which auto-generates service workers. Custom service worker logic must go in `public/custom-sw.js`; Workbox configuration goes in `next.config.ts`. **Do not modify auto-generated files.**
+
 ### 2.1 Current Service Worker
 
 **File:** `public/custom-sw.js`
@@ -499,6 +502,9 @@ const withPWA = withPWAInit({
 ```
 
 ### 4.2 Verify Cache Strategies
+
+> [!NOTE]
+> **Custom cache strategies:** Modify `next.config.ts` Workbox configuration, NOT the generated service worker files.
 
 Workbox automatically configures:
 
