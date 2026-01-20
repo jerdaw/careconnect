@@ -184,9 +184,9 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     // Soft delete
     const { error } = await supabaseAuth
       .from("services")
-      .update({ 
+      .update({
         deleted_at: new Date().toISOString(),
-        deleted_by: user.id
+        deleted_by: user.id,
       })
       .eq("id", id)
 

@@ -1,10 +1,11 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { GET, POST } from "@/app/api/v1/services/route"
 import { createMockRequest, parseResponse } from "@/tests/utils/api-test-utils"
+import { createServerClient } from "@supabase/ssr"
 
 // Hoist mock chain
 const { mockSupabaseChain } = vi.hoisted(() => {
-  // Setup chain return values to return itself (this)
   const mockChain: Record<string, any> = {}
   mockChain.from = vi.fn(() => mockChain)
   mockChain.select = vi.fn(() => mockChain)
@@ -26,29 +27,13 @@ vi.mock("@/lib/rate-limit", () => ({
   getClientIp: vi.fn().mockReturnValue("127.0.0.1"),
 }))
 
-// Mock Supabase SSR
-vi.mock("@supabase/ssr", () => ({
-  createServerClient: vi.fn(() => ({
-    auth: {
-      getUser: vi.fn().mockResolvedValue({ data: { user: { id: "user-1" } }, error: null }),
-    },
-    from: mockSupabaseChain.from, // Reuse chain logic?
-    // Or better, define strict behavior for createServerClient
-    // The endpoint creates a NEW client.
-  })),
-}))
-
-// We need to ensure createServerClient returns an object where .from() works.
-// In the hoister above, mockSupabaseChain.from() returns mockSupabaseChain.
-// So if createServerClient returns { from: mockSupabaseChain.from }, then .from() returns mockSupabaseChain...
-// which has .insert(), .select(), .single().
-// It seems compatible with POST logic: .from().insert().select().single()
-
-vi.mock("next/headers", () => ({
-  cookies: vi.fn().mockResolvedValue({
-    getAll: vi.fn().mockReturnValue([]),
-  }),
-}))
+// Standard SSR mocking via next-mocks
+vi.mocked(createServerClient).mockReturnValue({
+  auth: {
+    getUser: vi.fn().mockResolvedValue({ data: { user: { id: "user-1" } }, error: null }),
+  },
+  from: mockSupabaseChain.from,
+} as any)
 
 describe("API v1 Services", () => {
   beforeEach(() => {
@@ -88,6 +73,7 @@ describe("API v1 Services", () => {
   it("POST creates service when authenticated", async () => {
     const req = createMockRequest("http://localhost/api/v1/services", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: "New Service",
         intent_category: "Food",

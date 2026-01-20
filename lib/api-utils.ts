@@ -17,10 +17,10 @@ export class NotFoundError extends Error {
 }
 
 export class ValidationError extends Error {
-    constructor(message: string) {
-        super(message)
-        this.name = "ValidationError"
-    }
+  constructor(message: string) {
+    super(message)
+    this.name = "ValidationError"
+  }
 }
 
 export type ApiResponse<T = unknown> = {
@@ -115,8 +115,8 @@ export function handleApiError(error: unknown) {
  * Throws ValidationError if invalid.
  */
 export function validateContentType(request: Request) {
-    const contentType = request.headers.get("content-type")
-    if (!contentType || !contentType.includes("application/json")) {
-        throw new ValidationError("Content-Type must be application/json")
-    }
+  const contentType = request.headers.get("content-type")
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new ValidationError("Content-Type must be application/json")
+  }
 }

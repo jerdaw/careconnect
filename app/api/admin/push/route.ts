@@ -71,16 +71,14 @@ export async function POST(request: NextRequest) {
     const result = (await response.json()) as { id: string }
 
     // 4. Log to Legacy Audit Table
-    await supabase
-      .from("notification_audit")
-      .insert({
-        title,
-        message,
-        notification_type: type,
-        onesignal_id: result.id,
-        sent_by: user.id,
-        sent_at: new Date().toISOString(),
-      })
+    await supabase.from("notification_audit").insert({
+      title,
+      message,
+      notification_type: type,
+      onesignal_id: result.id,
+      sent_by: user.id,
+      sent_at: new Date().toISOString(),
+    })
 
     // 5. Log to Unified Audit Table (Phase 1.3)
     await supabase.from("audit_logs").insert({
@@ -88,7 +86,7 @@ export async function POST(request: NextRequest) {
       record_id: result.id,
       operation: "CREATE",
       performed_by: user.id,
-      metadata: { title, type }
+      metadata: { title, type },
     })
 
     return createApiResponse({ success: true, notificationId: result.id })

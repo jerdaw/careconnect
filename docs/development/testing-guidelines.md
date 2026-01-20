@@ -122,6 +122,25 @@ npx playwright test
 
 ## Mocks & Best Practices
 
+### Next.js 15 SSR Mocks (CRITICAL)
+
+Next.js 15 `cookies()` and `headers()` are async. Use the standardized mock setup:
+
+- Import `tests/setup/next-mocks.ts` mocking logic (or copy the pattern)
+- Mock `@supabase/ssr` using the Builder Pattern to support method chaining (`.from().select().eq()`)
+
+### Web Workers
+
+- **Do not test `*.worker.ts` files directly.**
+- Extract logic into a class (e.g., `webllm-engine.ts`) and unit test that class.
+- The worker file should only handle message passing.
+
+### Test Data
+
+- **Do not define ad-hoc mock data.**
+- Use centralized fixtures from `tests/fixtures/`
+- Use factory functions (e.g., `createMockService()`) to override specific fields.
+
 - **Supabase**: Always mock `createClient`
 - **AI Engine**: Mock `lib/ai/engine.ts`
 - **Globals**: `vitest.setup.ts` provides global mocks

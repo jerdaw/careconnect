@@ -24,8 +24,8 @@ export async function assertServiceOwnership(
   }
 
   if (!service.org_id) {
-     // System-owned or legacy service without org
-     throw new AuthorizationError("Service has no organization assigned")
+    // System-owned or legacy service without org
+    throw new AuthorizationError("Service has no organization assigned")
   }
 
   // 2. Check if user is a member of that organization
@@ -53,27 +53,27 @@ export async function assertServiceOwnership(
  * Asserts that a user is a member of an organization with specific roles.
  */
 export async function assertOrganizationMembership(
-    supabase: SupabaseClient,
-    userId: string,
-    orgId: string,
-    allowedRoles: string[] = ["owner", "admin", "editor", "viewer"]
+  supabase: SupabaseClient,
+  userId: string,
+  orgId: string,
+  allowedRoles: string[] = ["owner", "admin", "editor", "viewer"]
 ) {
-    const { data: member, error } = await supabase
-        .from("organization_members")
-        .select("role")
-        .eq("user_id", userId)
-        .eq("organization_id", orgId)
-        .single()
+  const { data: member, error } = await supabase
+    .from("organization_members")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("organization_id", orgId)
+    .single()
 
-    if (error || !member) {
-        throw new AuthorizationError("You are not a member of this organization")
-    }
+  if (error || !member) {
+    throw new AuthorizationError("You are not a member of this organization")
+  }
 
-    if (!allowedRoles.includes(member.role)) {
-        throw new AuthorizationError(`Access denied: Requires ${allowedRoles.join(" or ")} role`)
-    }
+  if (!allowedRoles.includes(member.role)) {
+    throw new AuthorizationError(`Access denied: Requires ${allowedRoles.join(" or ")} role`)
+  }
 
-    return true
+  return true
 }
 
 /**
@@ -92,10 +92,38 @@ export async function assertAdminRole(supabase: SupabaseClient, _userId: string)
 
   // Check custom user_metadata or app_metadata for 'admin' role
   const role = user.user_metadata?.role || user.app_metadata?.role
-  
+
   if (role !== "admin") {
     throw new AuthorizationError("Access denied: Requires admin role")
   }
 
   return true
+}
+
+/**
+ * Returns the effective permissions for a user within an organization.
+ */
+export async function getEffectivePermissions(supabase: SupabaseClient, userId: string, orgId: string) {
+  const { data: member, error } = await supabase
+    .from("organization_members")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("organization_id", orgId)
+    .single()
+
+  if (error || !member) {
+    return {
+      canEdit: false,
+      canDelete: false,
+      canViewPrivate: false,
+      role: null,
+    }
+  }
+
+  return {
+    canEdit: ["owner", "admin", "editor"].includes(member.role),
+    canDelete: ["owner", "admin"].includes(member.role),
+    canViewPrivate: ["owner", "admin", "editor", "viewer"].includes(member.role),
+    role: member.role,
+  }
 }

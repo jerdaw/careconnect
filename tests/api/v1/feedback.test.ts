@@ -1,20 +1,19 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { POST } from "@/app/api/v1/feedback/route"
 import { createClient } from "@/utils/supabase/server"
 
-// Mock Supabase
-vi.mock("@/utils/supabase/server", () => ({
-  createClient: vi.fn(),
-}))
+// No need to manually mock createClient here as next-mocks handles @supabase/ssr
+// which is what createClient uses.
 
 describe("Feedback V1 API Route", () => {
-  const mockInsert = vi.fn()
-  const mockFrom = vi.fn().mockReturnValue({ insert: mockInsert })
-  const mockSupabase = { from: mockFrom }
+  // Use the mock from next-mocks
+  const getMockSupabase = async () => {
+    return await createClient()
+  }
 
   beforeEach(() => {
     vi.clearAllMocks()
-    ;(createClient as any).mockReturnValue(mockSupabase)
   })
 
   it("returns 400 for invalid zod schema", async () => {
@@ -34,7 +33,10 @@ describe("Feedback V1 API Route", () => {
   })
 
   it("successfully inserts valid feedback", async () => {
-    mockInsert.mockResolvedValue({ error: null })
+    const supabase = await createClient()
+    const mockFrom = vi.mocked(supabase.from)
+    const mockInsert = vi.fn().mockResolvedValue({ error: null })
+    mockFrom.mockReturnValue({ insert: mockInsert } as any)
 
     const payload = {
       service_id: "123",
@@ -64,7 +66,10 @@ describe("Feedback V1 API Route", () => {
   })
 
   it("successfully inserts global not_found feedback", async () => {
-    mockInsert.mockResolvedValue({ error: null })
+    const supabase = await createClient()
+    const mockFrom = vi.mocked(supabase.from)
+    const mockInsert = vi.fn().mockResolvedValue({ error: null })
+    mockFrom.mockReturnValue({ insert: mockInsert } as any)
 
     const payload = {
       feedback_type: "not_found",
@@ -92,7 +97,10 @@ describe("Feedback V1 API Route", () => {
   })
 
   it("returns 500 on database error", async () => {
-    mockInsert.mockResolvedValue({ error: { message: "Supabase Error" } })
+    const supabase = await createClient()
+    const mockFrom = vi.mocked(supabase.from)
+    const mockInsert = vi.fn().mockResolvedValue({ error: { message: "Supabase Error" } })
+    mockFrom.mockReturnValue({ insert: mockInsert } as any)
 
     const request = new Request("http://localhost/api/v1/feedback", {
       method: "POST",

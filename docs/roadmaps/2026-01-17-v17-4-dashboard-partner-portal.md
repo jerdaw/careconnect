@@ -82,6 +82,7 @@ CREATE POLICY "Partners see their analytics"
 ```
 
 **Testing:**
+
 - [ ] Verify v17.0 RLS policies are working first
 - [ ] Test dashboard-specific policies in isolation
 - [ ] Verify data isolation between partner organizations
@@ -94,6 +95,7 @@ CREATE POLICY "Partners see their analytics"
 > **Security Architecture Decision:** This project uses Row Level Security (RLS) policies as the primary data filtering mechanism. Application-layer filters are **NOT REQUIRED** and should be avoided to prevent confusion.
 
 **Why RLS-First?**
+
 - ✅ **Single Source of Truth**: Security logic lives in one place (database)
 - ✅ **defense-in-depth**: RLS protects against bugs in application code
 - ✅ **Performance**: PostgreSQL optimizes RLS queries better than app-layer filters
@@ -107,11 +109,11 @@ CREATE POLICY "Partners see their analytics"
 // Dashboard Services - RLS automatically filters by organization
 export async function getDashboardServices() {
   const { data } = await supabase
-    .from('services')
-    .select('*')
-    .is('deleted_at', null)  // Filter soft-deleted only
-    .order('updated_at', { ascending: false })
-  
+    .from("services")
+    .select("*")
+    .is("deleted_at", null) // Filter soft-deleted only
+    .order("updated_at", { ascending: false })
+
   // RLS policy ensures user only sees their org's services
   // No explicit org_id filter needed
   return data
@@ -124,10 +126,10 @@ export async function getDashboardServices() {
 // ❌ WRONG: Redundant application-layer filter
 export async function getDashboardServices(orgId: string) {
   const { data } = await supabase
-    .from('services')
-    .select('*')
-    .eq('org_id', orgId)      // ❌ Unnecessary - RLS handles this
-    .is('deleted_at', null)
+    .from("services")
+    .select("*")
+    .eq("org_id", orgId) // ❌ Unnecessary - RLS handles this
+    .is("deleted_at", null)
   return data
 }
 ```
@@ -139,9 +141,9 @@ export async function getDashboardServices(orgId: string) {
 ```typescript
 // app/[locale]/dashboard/feedback/page.tsx
 const { data: feedback } = await supabase
-  .from('feedback')
-  .select('*, service:service_id(name, id)') 
-  .order('created_at', { ascending: false })
+  .from("feedback")
+  .select("*, service:service_id(name, id)")
+  .order("created_at", { ascending: false })
 
 // RLS policy "Partners see feedback on their services" automatically filters
 ```
@@ -163,15 +165,13 @@ SELECT * FROM feedback;
 
 ```typescript
 // app/[locale]/dashboard/analytics/page.tsx
-const { data: analytics } = await supabase
-  .from('search_analytics')
-  .select('*')
-  .gte('created_at', weekAgo)
+const { data: analytics } = await supabase.from("search_analytics").select("*").gte("created_at", weekAgo)
 
 // RLS policy "Partners see their analytics" automatically filters
 ```
 
 **Testing Strategy:**
+
 - [ ] Verify RLS policies are enabled (`SELECT tablename, rowsecurity FROM pg_tables`)
 - [ ] Test with multiple org users to ensure data isolation
 - [ ] Verify no cross-org data leakage via RLS policy tests (Phase 0 from v17.1)
@@ -243,12 +243,14 @@ export function SettingsForm() {
 ```
 
 **Features:**
+
 - [ ] Edit organization profile
 - [ ] Add/remove members (with role assignment)
 - [ ] Notification preferences
 - [ ] Delete organization (soft delete)
 
 **Database:**
+
 - [ ] Create `organization_settings` table
 - [ ] RLS: Only org members can read/write own settings
 
@@ -307,20 +309,22 @@ export function DeleteServiceButton({ serviceId }: { serviceId: string }) {
 
 ```typescript
 export async function deleteService(serviceId: string) {
-  const { data: { user } } = await getUser()
+  const {
+    data: { user },
+  } = await getUser()
 
   // Verify ownership via v17.0 auth utility
   await assertServiceOwnership(user.id, serviceId)
 
   // Soft delete
   const { error } = await supabase
-    .from('services')
+    .from("services")
     .update({
       deleted_at: new Date().toISOString(),
       deleted_by: user.id,
     })
-    .eq('id', serviceId)
-    .eq('org_id', userOrgId)  // double-check ownership
+    .eq("id", serviceId)
+    .eq("org_id", userOrgId) // double-check ownership
 
   if (error) throw error
   return { success: true }
@@ -336,7 +340,9 @@ export async function deleteService(serviceId: string) {
 ```typescript
 // POST /api/v1/services/create
 export async function POST(request: Request) {
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) return createApiError("Unauthorized", 401)
 
   const body = await request.json()
@@ -349,12 +355,12 @@ export async function POST(request: Request) {
   const orgId = await getUserOrgId(user.id)
 
   const { data, error } = await supabase
-    .from('services')
+    .from("services")
     .insert({
       ...validation.data,
       org_id: orgId,
       created_by: user.id,
-      verification_level: 'L1',  // Default: unverified
+      verification_level: "L1", // Default: unverified
     })
     .select()
     .single()
@@ -459,20 +465,17 @@ export async function getNotifications(limit = 50) {
   const orgId = await getUserOrgId()
 
   const { data } = await supabase
-    .from('notifications')
-    .select('*')
-    .eq('org_id', orgId)
-    .order('created_at', { ascending: false })
+    .from("notifications")
+    .select("*")
+    .eq("org_id", orgId)
+    .order("created_at", { ascending: false })
     .limit(limit)
 
   return data || []
 }
 
 export async function markNotificationRead(id: string) {
-  const { error } = await supabase
-    .from('notifications')
-    .update({ read: true })
-    .eq('id', id)
+  const { error } = await supabase.from("notifications").update({ read: true }).eq("id", id)
 
   if (error) throw error
 }
@@ -491,13 +494,15 @@ export async function markNotificationRead(id: string) {
 **Modify:** `app/api/admin/save/route.ts`
 
 **Current:**
+
 ```typescript
 // Writes to JSON file
-const filePath = join(process.cwd(), 'data', 'services.json')
+const filePath = join(process.cwd(), "data", "services.json")
 fs.writeFileSync(filePath, JSON.stringify(services, null, 2))
 ```
 
 **Required:**
+
 ```typescript
 export async function POST(request: Request) {
   // Verify admin
@@ -506,9 +511,7 @@ export async function POST(request: Request) {
   const { services } = await request.json()
 
   // Upsert to Supabase
-  const { error } = await supabase
-    .from('services')
-    .upsert(services, { onConflict: 'id' })
+  const { error } = await supabase.from("services").upsert(services, { onConflict: "id" })
 
   if (error) return createApiError(error.message, 500)
 
@@ -556,12 +559,10 @@ export async function POST(request: Request) {
   const progressId = crypto.randomUUID()
 
   // Create progress record
-  await supabase
-    .from('reindex_progress')
-    .insert({
-      id: progressId,
-      total_services: serviceCount,
-    })
+  await supabase.from("reindex_progress").insert({
+    id: progressId,
+    total_services: serviceCount,
+  })
 
   // Trigger generation in background
   triggerEmbeddingGenerationWithProgress(progressId)
@@ -578,13 +579,9 @@ export async function POST(request: Request) {
 // GET /api/admin/reindex/status?progressId=...
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const progressId = searchParams.get('progressId')
+  const progressId = searchParams.get("progressId")
 
-  const { data } = await supabase
-    .from('reindex_progress')
-    .select('*')
-    .eq('id', progressId)
-    .single()
+  const { data } = await supabase.from("reindex_progress").select("*").eq("id", progressId).single()
 
   return NextResponse.json(data)
 }
@@ -632,7 +629,7 @@ export function ReindexProgress({ progressId }: { progressId: string }) {
 interface PushRequest {
   title: string
   message: string
-  target: 'all' | 'offline_users' | 'high_engagement' | 'new_users'
+  target: "all" | "offline_users" | "high_engagement" | "new_users"
   filters?: {
     createdAfter?: Date
     createdBefore?: Date
@@ -666,6 +663,7 @@ export async function POST(request: Request) {
 **Modify:** `components/admin/ServiceForm.tsx`
 
 Add sections:
+
 - [ ] Hours (structured format with day/time pairs)
 - [ ] Phone number(s)
 - [ ] Email address
@@ -683,7 +681,7 @@ Add sections:
 **Modify:** `types/organization.ts`
 
 ```typescript
-export type OrganizationRole = 'owner' | 'admin' | 'editor' | 'viewer'
+export type OrganizationRole = "owner" | "admin" | "editor" | "viewer"
 
 interface OrganizationMember {
   user_id: string
@@ -705,18 +703,14 @@ interface OrganizationMember {
 **New file:** `lib/rbac.ts`
 
 ```typescript
-export async function requireRole(
-  userId: string,
-  orgId: string,
-  requiredRole: OrganizationRole
-): Promise<void> {
+export async function requireRole(userId: string, orgId: string, requiredRole: OrganizationRole): Promise<void> {
   const member = await getOrganizationMember(userId, orgId)
 
   const roleHierarchy = {
-    'owner': 4,
-    'admin': 3,
-    'editor': 2,
-    'viewer': 1,
+    owner: 4,
+    admin: 3,
+    editor: 2,
+    viewer: 1,
   }
 
   if (roleHierarchy[member.role] < roleHierarchy[requiredRole]) {
@@ -741,6 +735,7 @@ export function MemberManagement() {
 ```
 
 Features:
+
 - [ ] List organization members
 - [ ] Show member roles
 - [ ] Change member role
@@ -756,7 +751,7 @@ export async function inviteMember(email: string, role: OrganizationRole) {
 
   // Create invitation record
   const { data: invitation } = await supabase
-    .from('organization_invitations')
+    .from("organization_invitations")
     .insert({
       org_id: orgId,
       email,
@@ -803,11 +798,11 @@ describe('createService', () => {
 **New file:** `tests/lib/rbac.test.ts`
 
 ```typescript
-describe('requireRole', () => {
-  it('allows owner to do any action')
-  it('allows admin to manage services')
-  it('prevents editor from managing members')
-  it('prevents viewer from editing')
+describe("requireRole", () => {
+  it("allows owner to do any action")
+  it("allows admin to manage services")
+  it("prevents editor from managing members")
+  it("prevents viewer from editing")
 })
 ```
 
@@ -816,20 +811,20 @@ describe('requireRole', () => {
 **Modify:** `tests/integration/dashboard-workflows.test.ts`
 
 ```typescript
-describe('Partner Dashboard Workflow', () => {
-  it('partner logs in')
-  it('sees only their services')
-  it('can create new service')
-  it('can edit service')
-  it('can delete service')
-  it('can view feedback on own services')
+describe("Partner Dashboard Workflow", () => {
+  it("partner logs in")
+  it("sees only their services")
+  it("can create new service")
+  it("can edit service")
+  it("can delete service")
+  it("can view feedback on own services")
 })
 
-describe('Member Management Workflow', () => {
-  it('owner invites new member')
-  it('member accepts invitation')
-  it('member has correct permissions')
-  it('owner can change member role')
+describe("Member Management Workflow", () => {
+  it("owner invites new member")
+  it("member accepts invitation")
+  it("member has correct permissions")
+  it("owner can change member role")
 })
 ```
 
@@ -838,6 +833,7 @@ describe('Member Management Workflow', () => {
 **Modify:** `tests/e2e/dashboard.spec.ts`
 
 Add scenarios:
+
 - [ ] Partner signs up → creates service → sees in dashboard
 - [ ] Partner edits service → changes appear in search
 - [ ] Partner deletes service → hidden from search
@@ -848,17 +844,17 @@ Add scenarios:
 
 ## Database Changes Summary
 
-| Table | Action | Source | Purpose |
-|-------|--------|--------|---------|
-| services | RLS policy | v17.0 | Base authorization (SELECT/INSERT/UPDATE/DELETE) |
-| organization_members | NEW + RLS | v17.0 | Role-based membership |
-| audit_logs | NEW + RLS | v17.0 | Security audit trail |
-| feedback | RLS policy | **v17.2** | Filter by service org_id |
-| search_analytics | RLS policy | **v17.2** | Filter by service org_id |
-| organization_settings | NEW | **v17.2** | Store org preferences |
-| notifications | NEW | **v17.2** | Database notifications |
-| reindex_progress | NEW | **v17.2** | Track embedding generation |
-| organization_invitations | NEW | **v17.2** | Member invitations |
+| Table                    | Action     | Source    | Purpose                                          |
+| ------------------------ | ---------- | --------- | ------------------------------------------------ |
+| services                 | RLS policy | v17.0     | Base authorization (SELECT/INSERT/UPDATE/DELETE) |
+| organization_members     | NEW + RLS  | v17.0     | Role-based membership                            |
+| audit_logs               | NEW + RLS  | v17.0     | Security audit trail                             |
+| feedback                 | RLS policy | **v17.2** | Filter by service org_id                         |
+| search_analytics         | RLS policy | **v17.2** | Filter by service org_id                         |
+| organization_settings    | NEW        | **v17.2** | Store org preferences                            |
+| notifications            | NEW        | **v17.2** | Database notifications                           |
+| reindex_progress         | NEW        | **v17.2** | Track embedding generation                       |
+| organization_invitations | NEW        | **v17.2** | Member invitations                               |
 
 ---
 

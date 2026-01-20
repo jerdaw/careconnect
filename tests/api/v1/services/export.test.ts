@@ -37,8 +37,8 @@ describe("Export API", () => {
     const response = await GET(request)
 
     if (response.status !== 200) {
-        const json = await response.json()
-        console.error("Test failed with:", json)
+      const json = await response.json()
+      console.error("Test failed with:", json)
     }
 
     expect(response.status).toBe(200)

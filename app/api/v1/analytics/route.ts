@@ -40,25 +40,27 @@ export async function GET(request: NextRequest) {
 
     // 1. Get user's organization IDs
     const { data: userOrgs } = await supabase
-        .from("organization_members")
-        .select("organization_id")
-        .eq("user_id", user.id)
-    
-    const allowedOrgIds = (userOrgs || []).map(o => o.organization_id)
+      .from("organization_members")
+      .select("organization_id")
+      .eq("user_id", user.id)
+
+    const allowedOrgIds = (userOrgs || []).map((o) => o.organization_id)
 
     if (allowedOrgIds.length === 0) {
-        return createApiResponse({ data: [] })
+      return createApiResponse({ data: [] })
     }
 
     // 2. Fetch analytics only for services owned by these organizations
     let query = supabase
       .from("analytics_events")
-      .select(`
+      .select(
+        `
         service_id, 
         event_type, 
         created_at,
         services!inner(org_id)
-      `)
+      `
+      )
       .gte("created_at", startDate.toISOString())
       .in("services.org_id", allowedOrgIds)
 

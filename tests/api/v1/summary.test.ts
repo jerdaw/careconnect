@@ -1,24 +1,31 @@
+import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { GET } from "@/app/api/v1/services/[id]/summary/route"
 import { createClient } from "@/utils/supabase/server"
-
-// Mock Supabase
-vi.mock("@/utils/supabase/server", () => ({
-  createClient: vi.fn(),
-}))
+import { createServerClient } from "@supabase/ssr"
 
 describe("GET /api/v1/services/[id]/summary", () => {
-  let mockSupabase: any
+  const mockSingle = vi.fn()
+  const mockFrom = vi.fn(() => ({
+    select: () => ({
+      eq: () => ({
+        single: mockSingle,
+      }),
+    }),
+  }))
+
+  const mockSupabase = {
+    from: mockFrom,
+    auth: {
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+    },
+  }
+
+  // Standard SSR mocking via next-mocks
+  vi.mocked(createServerClient).mockReturnValue(mockSupabase as any)
 
   beforeEach(() => {
     vi.clearAllMocks()
-    mockSupabase = {
-      from: vi.fn().mockReturnThis(),
-      select: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      single: vi.fn(),
-    }
-    ;(createClient as any).mockResolvedValue(mockSupabase)
   })
 
   it("returns 400 if service ID is missing", async () => {
@@ -31,7 +38,7 @@ describe("GET /api/v1/services/[id]/summary", () => {
   })
 
   it("returns 404 if summary not found", async () => {
-    mockSupabase.single.mockResolvedValue({ data: null, error: { code: "PGRST116" } })
+    mockSingle.mockResolvedValue({ data: null, error: { code: "PGRST116" } })
 
     const req = new Request("http://localhost/api/v1/services/svc-123/summary")
     const res = await GET(req as any, { params: Promise.resolve({ id: "svc-123" }) })
@@ -47,7 +54,7 @@ describe("GET /api/v1/services/[id]/summary", () => {
       summary_en: "Simple summary",
       how_to_use_en: "Call us",
     }
-    mockSupabase.single.mockResolvedValue({ data: mockSummary, error: null })
+    mockSingle.mockResolvedValue({ data: mockSummary, error: null })
 
     const req = new Request("http://localhost/api/v1/services/svc-123/summary")
     const res = await GET(req as any, { params: Promise.resolve({ id: "svc-123" }) })

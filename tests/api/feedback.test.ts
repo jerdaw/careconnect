@@ -1,26 +1,33 @@
+import "../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { POST } from "@/app/api/feedback/route"
 import { createClient } from "@/utils/supabase/server"
-
-vi.mock("@/utils/supabase/server", () => ({
-  createClient: vi.fn(),
-}))
+import { createServerClient } from "@supabase/ssr"
 
 vi.mock("@/lib/logger", () => ({
   logger: {
     error: vi.fn(),
     info: vi.fn(),
+    warn: vi.fn(),
   },
 }))
 
 describe("Feedback API Route", () => {
   const mockInsert = vi.fn()
-  const mockFrom = vi.fn().mockReturnValue({ insert: mockInsert })
-  const mockSupabase = { from: mockFrom }
+  const mockFrom = vi.fn()
+  const mockSupabase = {
+    from: mockFrom,
+    auth: {
+      getUser: vi.fn().mockResolvedValue({ data: { user: { id: "user-1" } }, error: null }),
+    },
+  }
+
+  // Standard SSR mocking via next-mocks
+  vi.mocked(createServerClient).mockReturnValue(mockSupabase as any)
 
   beforeEach(() => {
     vi.clearAllMocks()
-    ;(createClient as any).mockResolvedValue(mockSupabase)
+    mockFrom.mockReturnValue({ insert: mockInsert })
   })
 
   it("returns 400 for invalid input", async () => {

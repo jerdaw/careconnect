@@ -60,5 +60,14 @@ export default defineConfig({
         },
       },
     },
+    server: {
+      deps: {
+        inline: ["next-intl", "next"],
+      },
+    },
+    alias: {
+      "next/navigation": "next/navigation.js",
+      "next/headers": "next/headers.js",
+    },
   },
 })

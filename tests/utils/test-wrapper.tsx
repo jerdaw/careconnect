@@ -12,11 +12,6 @@ const defaultMessages = {
       details: "Details",
     },
   },
-  ServiceDetail: {
-    kingston: "Kingston",
-    report: "Report",
-    details: "Details",
-  },
   Eligibility: {
     likelyQualify: "Likely Qualify",
   },
@@ -34,6 +29,23 @@ const defaultMessages = {
     messagePlaceholder: "Enter details...",
     cancel: "Cancel",
     submit: "Submit",
+  },
+  Badges: {
+    ontarioWide: "Ontario-wide",
+    canadaWide: "Canada-wide",
+  },
+  Distance: {
+    ontarioWide: "Ontario-wide",
+    canadaWide: "Canada-wide",
+  },
+  ServiceDetail: {
+    kingston: "Kingston",
+    report: "Report",
+    details: "Details",
+    free: "Free",
+    verified: "Verified",
+    merged: "Merged",
+    closed: "Closed",
   },
 }
 

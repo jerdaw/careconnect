@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     // If not provided, it might be a public submission (Phase 0 logic)
     // But for this endpoint, we assume the user is creating for an org they manage.
     if (body.org_id) {
-        await assertOrganizationMembership(supabaseAuth, user.id, body.org_id)
+      await assertOrganizationMembership(supabaseAuth, user.id, body.org_id)
     }
 
     // Add server-managed fields

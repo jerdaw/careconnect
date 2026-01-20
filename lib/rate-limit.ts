@@ -1,6 +1,6 @@
 /**
  * Dual-mode rate limiter using Upstash Redis with in-memory fallback.
- * 
+ *
  * Strategy:
  * 1. Try to initialize Upstash Redis if env vars are present.
  * 2. If Redis is available, use @upstash/ratelimit for distributed state.
@@ -23,12 +23,16 @@ class InMemoryStore {
   private lastCleanup = Date.now()
   private cleanupInterval = 60 * 1000 // 1 minute
 
-  public check(identifier: string, limit: number, windowMs: number): { success: boolean, remaining: number, reset: number } {
+  public check(
+    identifier: string,
+    limit: number,
+    windowMs: number
+  ): { success: boolean; remaining: number; reset: number } {
     const now = Date.now()
     this.cleanup(now)
 
     let entry = this.store.get(identifier)
-    
+
     // Create new window if expired or missing
     if (!entry || entry.resetAt <= now) {
       entry = { count: 0, resetAt: now + windowMs }
@@ -37,7 +41,7 @@ class InMemoryStore {
 
     const authorized = entry.count < limit
     const remaining = Math.max(0, limit - entry.count - 1)
-    
+
     if (authorized) {
       entry.count++
     }
@@ -45,22 +49,22 @@ class InMemoryStore {
     return {
       success: authorized,
       remaining,
-      reset: Math.ceil(entry.resetAt / 1000)
+      reset: Math.ceil(entry.resetAt / 1000),
     }
   }
 
   private cleanup(now: number) {
     if (now - this.lastCleanup < this.cleanupInterval) return
-    
+
     // Simple sweep
     for (const [key, val] of this.store.entries()) {
       if (val.resetAt <= now) {
         this.store.delete(key)
       }
     }
-    
+
     this.lastCleanup = now
-    
+
     // Safety cap
     if (this.store.size > 50000) {
       this.store.clear()
@@ -88,7 +92,7 @@ try {
       analytics: true,
       prefix: "kcc-ratelimit",
     })
-    
+
     // logger.info("Upstash Rate Limit initialized", { component: "rate-limit" })
   }
 } catch (err) {
@@ -103,7 +107,7 @@ export interface RateLimitResult {
 
 /**
  * Check rate limit for a given identifier.
- * 
+ *
  * @param identifier Unique key (IP or user ID)
  * @param limit Max requests
  * @param windowMs Window size in milliseconds
@@ -116,31 +120,31 @@ export async function checkRateLimit(
   // 1. Try Upstash
   if (ratelimit) {
     try {
-      // Create a temporary limiter for this specific config if needed, 
-      // but simpler to use the cache or just make a new instance is cheap? 
+      // Create a temporary limiter for this specific config if needed,
+      // but simpler to use the cache or just make a new instance is cheap?
       // Ratelimit instance is tied to logic.
       // The recommended way for varying limits is to use multiple limiters or pass config.
       // Actually @upstash/ratelimit is flexible.
-      
-      // We will create a new instance on the fly or cache them? 
-      // Creating is cheap enough for serverless? 
-      // Let's use the efficient `limit` method if we can, but checking the docs, 
+
+      // We will create a new instance on the fly or cache them?
+      // Creating is cheap enough for serverless?
+      // Let's use the efficient `limit` method if we can, but checking the docs,
       // standard usage is `const ratelimit = new Ratelimit(...)`.
       // To support variable limits/windows dynamically, we might need a Map of limiters or just create one.
       // Redis connection is shared.
-      
+
       const dynamicLimiter = new Ratelimit({
         redis: Redis.fromEnv(),
         limiter: Ratelimit.slidingWindow(limit, `${Math.ceil(windowMs / 1000)} s`),
         prefix: "kcc-ratelimit",
       })
-      
+
       const { success, remaining, reset } = await dynamicLimiter.limit(identifier)
-      
+
       return {
         success,
         remaining,
-        reset: Math.floor(reset / 1000)
+        reset: Math.floor(reset / 1000),
       }
     } catch (err) {
       logger.error("Upstash rate limit error, falling back to memory", { error: err, component: "rate-limit" })

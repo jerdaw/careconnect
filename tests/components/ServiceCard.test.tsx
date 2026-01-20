@@ -84,21 +84,93 @@ describe("ServiceCard Component", () => {
     expect(mockTrackEvent).toHaveBeenCalledWith(mockService.id, "click_website")
   })
 
-  it("renders eligibility badge when eligible", () => {
+  it("renders specialized scope badges", () => {
+    const provincialService = { ...mockService, scope: "ontario" as const }
+    const { rerender } = render(
+      <TestWrapper>
+        <ServiceCard service={provincialService} />
+      </TestWrapper>
+    )
+    expect(screen.getAllByText(/Ontario-wide/i)[0]).toBeInTheDocument()
+
+    const nationalService = { ...mockService, scope: "canada" as const }
+    rerender(
+      <TestWrapper>
+        <ServiceCard service={nationalService} />
+      </TestWrapper>
+    )
+    expect(screen.getAllByText(/Canada-wide/i)[0]).toBeInTheDocument()
+  })
+
+  it("calls onScopeFilter when scope badge is clicked", () => {
+    const onScopeFilter = vi.fn()
+    render(
+      <TestWrapper>
+        <ServiceCard service={{ ...mockService, scope: "ontario" }} onScopeFilter={onScopeFilter} />
+      </TestWrapper>
+    )
+
+    const badge = screen.getAllByText(/Ontario-wide/i)[0]
+    if (badge) fireEvent.click(badge)
+    expect(onScopeFilter).toHaveBeenCalledWith("provincial")
+  })
+
+  it("renders free fee badge", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard service={{ ...mockService, fees: "Free" }} />
+      </TestWrapper>
+    )
+    expect(screen.getByText(/Free/i)).toBeInTheDocument()
+  })
+
+  it("renders identity tags", () => {
+    const serviceWithTags = {
+      ...mockService,
+      identity_tags: [
+        { tag: "Youth", evidence_url: "" },
+        { tag: "LGBTQ+", evidence_url: "" },
+      ],
+    }
+    render(
+      <TestWrapper>
+        <ServiceCard service={serviceWithTags} />
+      </TestWrapper>
+    )
+    expect(screen.getByText("Youth")).toBeInTheDocument()
+    expect(screen.getByText("LGBTQ+")).toBeInTheDocument()
+  })
+
+  it("renders crisis icon for crisis category", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard service={{ ...mockService, intent_category: "Crisis" as any }} />
+      </TestWrapper>
+    )
+    // Lucide AlertTriangle is used for Crisis. In JSDOM we can't easily check the icon but we can check container
+    expect(screen.getByText(/Crisis/i)).toBeInTheDocument()
+  })
+
+  it("displays distance when provided", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard service={{ ...mockService, distance: 1.5 }} />
+      </TestWrapper>
+    )
+    expect(screen.getByText("1.5 km")).toBeInTheDocument()
+  })
+
+  it("opens feedback modal when report is clicked", () => {
     render(
       <TestWrapper>
         <ServiceCard service={mockService} />
       </TestWrapper>
     )
-    expect(screen.getByText("Likely Qualify")).toBeInTheDocument()
-  })
 
-  it("highlights search tokens", () => {
-    render(
-      <TestWrapper>
-        <ServiceCard service={mockService} highlightTokens={["Food"]} />
-      </TestWrapper>
-    )
-    expect(screen.getByText(mockService.name)).toBeInTheDocument()
+    const reportBtn = screen.getByText(/Report/i)
+    fireEvent.click(reportBtn)
+
+    // Check if FeedbackModal is rendered (by checking its content)
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
   })
 })

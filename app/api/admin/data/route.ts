@@ -19,7 +19,9 @@ export async function GET() {
       }
     )
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) return createApiError("Unauthorized", 401)
 
     await assertAdminRole(supabase, user.id)
