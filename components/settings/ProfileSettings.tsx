@@ -60,7 +60,7 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
               "flex items-center justify-center rounded-full transition-colors",
               size === "pill" ? "h-4 w-4" : "h-6 w-6",
               context.hasOptedIn
-                ? "bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400"
+                ? "bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
                 : "bg-neutral-100 text-neutral-500 dark:bg-neutral-800"
             )}
           >

@@ -26,6 +26,7 @@ npm run test:watch       # Vitest in watch mode
 npm run test:coverage    # Generate coverage report (thresholds: lib/search 65%, lib/ai 85%, hooks 85%)
 npm run test:e2e:local   # Playwright E2E tests (Chromium only, prefer CI)
 npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
+npm run test:a11y        # Run accessibility audit (Axe-core + Interactive)
 ```
 
 ### Data Validation & Health Checks

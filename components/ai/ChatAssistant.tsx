@@ -79,11 +79,14 @@ export default function ChatAssistant() {
     }
   }, [isOpen, resetIdleTimer])
 
-  // Focus management: Return focus to toggle button when closed
+  const prevOpenRef = useRef(false)
+
+  // Focus management: Return focus to toggle button ONLY when closing the chat
   useEffect(() => {
-    if (!isOpen && toggleButtonRef.current) {
+    if (prevOpenRef.current && !isOpen && toggleButtonRef.current) {
       toggleButtonRef.current.focus()
     }
+    prevOpenRef.current = isOpen
   }, [isOpen])
 
   const handleStop = useCallback(async () => {
@@ -408,6 +411,7 @@ export default function ChatAssistant() {
                     placeholder={
                       isOffline ? t("unavailableOffline") : isReady ? t("placeholderReady") : t("placeholderWaiting")
                     }
+                    aria-label={t("title")}
                     disabled={!isReady || isThinking || isOffline}
                     className="focus:ring-primary-500 flex-1 rounded-full border-none bg-neutral-100 px-4 py-2 text-sm outline-none focus:ring-2 disabled:opacity-50 dark:bg-neutral-800"
                   />

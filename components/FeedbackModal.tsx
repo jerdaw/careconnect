@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 interface FeedbackModalProps {
   serviceId: string
@@ -61,35 +62,38 @@ export function FeedbackModal({ serviceId, serviceName, isOpen, onClose }: Feedb
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription>{t("description", { service: serviceName })}</DialogDescription>
+          <DialogTitle>{t("reportIssueTitle")}</DialogTitle>
+          <DialogDescription>{t("reportIssueDescription", { service: serviceName })}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label>{t("issueType")}</Label>
-            <RadioGroup value={type} onValueChange={(val) => setType(val as (typeof FEEDBACK_TYPES)[number])}>
+            <Label id="feedback-type-label">{t("issueTypeLabel")}</Label>
+            <RadioGroup
+              value={type}
+              onValueChange={(val) => setType(val as (typeof FEEDBACK_TYPES)[number])}
+              aria-labelledby="feedback-type-label"
+            >
               {FEEDBACK_TYPES.map((ft) => (
                 <div key={ft} className="flex items-center space-x-2">
                   <RadioGroupItem value={ft} id={ft} />
                   <Label htmlFor={ft} className="cursor-pointer font-normal">
-                    {t(`types.${ft}`)}
+                    {t(`issueTypes.${ft}`)}
                   </Label>
                 </div>
               ))}
             </RadioGroup>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="message">{t("messageLabel")}</Label>
+          <AccessibleFormField id="message" label={t("detailsLabel")}>
             <Textarea
               id="message"
-              placeholder={t("messagePlaceholder")}
+              placeholder={t("detailsPlaceholder")}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="resize-none"
               rows={3}
             />
-          </div>
+          </AccessibleFormField>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
@@ -97,7 +101,7 @@ export function FeedbackModal({ serviceId, serviceName, isOpen, onClose }: Feedb
           </Button>
           <Button onClick={handleSubmit} disabled={isSubmitting}>
             {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {t("submit")}
+            {t("submitReport")}
           </Button>
         </DialogFooter>
       </DialogContent>

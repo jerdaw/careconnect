@@ -19,7 +19,8 @@
       "about": "Sobre",
       "privacy": "Política de Privacidade",
       "terms": "Termos de Serviço",
-      "contentPolicy": "Política de Conteúdo"
+      "contentPolicy": "Política de Conteúdo",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "Algumas traduções são assistidas por IA. Relate erros para feedback@careconnect.ca"
   },
@@ -210,7 +211,14 @@
       "eligibility": "Critérios de Elegibilidade",
       "view": "Ver",
       "lastUpdated": "Última atualização",
-      "noServices": "Nenhum serviço reivindicado"
+      "noServices": "Nenhum serviço reivindicado",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
     },
     "logout": "Sair",
     "partner": "Painel de Parceiros",
@@ -221,6 +229,27 @@
       "resolved": "Resolvido",
       "sentiment": "Sentimento Global",
       "total": "Total de Feedback"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
     }
   },
   "ServiceDetail": {

@@ -13,7 +13,7 @@ export default function AccessibilityPage() {
     <div className="flex min-h-screen flex-col bg-stone-50 font-sans dark:bg-neutral-950">
       <Header />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Section className="py-20">
           <div className="mx-auto max-w-3xl rounded-2xl bg-white p-8 shadow-sm sm:p-12 dark:bg-neutral-900">
             <div className="mb-8 flex items-center gap-4">

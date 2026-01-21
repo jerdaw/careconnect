@@ -12,7 +12,12 @@ export default function DetailsSection({ register, errors }: DetailsSectionProps
     <div className="space-y-6 rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
       <h3 className="text-lg leading-6 font-medium text-neutral-900 dark:text-white">Details</h3>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <FormField label="Hours of Operation" error={errors.hours?.message} className="sm:col-span-2">
+        <FormField
+          label="Hours of Operation"
+          id="service-hours"
+          error={errors.hours?.message}
+          className="sm:col-span-2"
+        >
           <input
             {...register("hours")}
             type="text"
@@ -21,7 +26,12 @@ export default function DetailsSection({ register, errors }: DetailsSectionProps
           />
         </FormField>
 
-        <FormField label="Eligibility" error={errors.eligibility?.message} className="sm:col-span-2">
+        <FormField
+          label="Eligibility"
+          id="service-eligibility"
+          error={errors.eligibility?.message}
+          className="sm:col-span-2"
+        >
           <textarea
             {...register("eligibility")}
             rows={2}
@@ -29,7 +39,7 @@ export default function DetailsSection({ register, errors }: DetailsSectionProps
           />
         </FormField>
 
-        <FormField label="Fees" error={errors.fees?.message} className="sm:col-span-2">
+        <FormField label="Fees" id="service-fees" error={errors.fees?.message} className="sm:col-span-2">
           <input
             {...register("fees")}
             type="text"

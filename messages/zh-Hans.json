@@ -19,7 +19,8 @@
       "about": "关于我们",
       "privacy": "隐私政策",
       "terms": "服务条款",
-      "contentPolicy": "内容政策"
+      "contentPolicy": "内容政策",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "部分翻译由 AI 辅助。错误请报告至 feedback@careconnect.ca"
   },
@@ -210,7 +211,14 @@
       "eligibility": "资格标准",
       "view": "查看",
       "lastUpdated": "最后更新",
-      "noServices": "尚未认领任何服务"
+      "noServices": "尚未认领任何服务",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
     },
     "logout": "退出登录",
     "partner": "合作伙伴仪表板",
@@ -221,6 +229,27 @@
       "resolved": "已解决",
       "sentiment": "整体情绪",
       "total": "反馈总数"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
     }
   },
   "ServiceDetail": {

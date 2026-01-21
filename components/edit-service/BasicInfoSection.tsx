@@ -13,7 +13,7 @@ export default function BasicInfoSection({ register, errors }: BasicInfoSectionP
       <h3 className="text-lg leading-6 font-medium text-neutral-900 dark:text-white">Basic Information</h3>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <FormField label="Service Name" error={errors.name?.message} className="sm:col-span-2">
+        <FormField label="Service Name" id="service-name" error={errors.name?.message} className="sm:col-span-2">
           <input
             {...register("name")}
             type="text"
@@ -21,7 +21,7 @@ export default function BasicInfoSection({ register, errors }: BasicInfoSectionP
           />
         </FormField>
 
-        <FormField label="Description" error={errors.description?.message} className="sm:col-span-2">
+        <FormField label="Description" id="service-desc" error={errors.description?.message} className="sm:col-span-2">
           <textarea
             {...register("description")}
             rows={4}
@@ -29,7 +29,7 @@ export default function BasicInfoSection({ register, errors }: BasicInfoSectionP
           />
         </FormField>
 
-        <FormField label="Category" error={errors.category?.message}>
+        <FormField label="Category" id="service-category" error={errors.category?.message}>
           <select
             {...register("category")}
             className="block w-full rounded-md border-neutral-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"

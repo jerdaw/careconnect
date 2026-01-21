@@ -39,11 +39,11 @@ describe("SubmitServiceForm", () => {
       </Wrapper>
     )
 
-    expect(screen.getByLabelText("Service Name")).toBeDefined()
-    expect(screen.getByLabelText("Description")).toBeDefined()
-    expect(screen.getByLabelText("Phone")).toBeDefined()
-    expect(screen.getByLabelText("Website")).toBeDefined()
-    expect(screen.getByLabelText("Address")).toBeDefined()
+    expect(screen.getByLabelText(/Service Name/i)).toBeDefined()
+    expect(screen.getByLabelText(/Description/i)).toBeDefined()
+    expect(screen.getByLabelText(/Phone/i)).toBeDefined()
+    expect(screen.getByLabelText(/Website/i)).toBeDefined()
+    expect(screen.getByLabelText(/Address/i)).toBeDefined()
     expect(screen.getByRole("button", { name: "Submit" })).toBeDefined()
   })
 
@@ -60,8 +60,8 @@ describe("SubmitServiceForm", () => {
     )
 
     // Fill out form
-    fireEvent.change(screen.getByLabelText("Service Name"), { target: { value: "Test Service" } })
-    fireEvent.change(screen.getByLabelText("Description"), {
+    fireEvent.change(screen.getByLabelText(/Service Name/i), { target: { value: "Test Service" } })
+    fireEvent.change(screen.getByLabelText(/Description/i), {
       target: { value: "A very good service description that is long enough." },
     })
 
@@ -88,8 +88,8 @@ describe("SubmitServiceForm", () => {
       </Wrapper>
     )
 
-    fireEvent.change(screen.getByLabelText("Service Name"), { target: { value: "Test Service" } })
-    fireEvent.change(screen.getByLabelText("Description"), { target: { value: "Description text" } })
+    fireEvent.change(screen.getByLabelText(/Service Name/i), { target: { value: "Test Service" } })
+    fireEvent.change(screen.getByLabelText(/Description/i), { target: { value: "Description text" } })
     fireEvent.click(screen.getByRole("button", { name: "Submit" }))
 
     await waitFor(() => {
@@ -98,8 +98,8 @@ describe("SubmitServiceForm", () => {
 
     fireEvent.click(screen.getByText("Submit Another"))
 
-    expect(screen.getByLabelText("Service Name")).toBeDefined()
+    expect(screen.getByLabelText(/Service Name/i)).toBeDefined()
     // Should be empty or reset state
-    expect((screen.getByLabelText("Service Name") as HTMLInputElement).value).toBe("")
+    expect((screen.getByLabelText(/Service Name/i) as HTMLInputElement).value).toBe("")
   })
 })

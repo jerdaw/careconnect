@@ -23,6 +23,12 @@ export default function DashboardSidebar() {
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 w-64 transform border-r border-neutral-200 bg-white transition-transform duration-300 ease-in-out lg:static lg:inset-auto lg:flex lg:translate-x-0 lg:flex-col dark:border-neutral-800 dark:bg-neutral-900">
+      <a
+        href="#main-content"
+        className="focus:bg-primary-600 sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       {/* Logo Area */}
       <div className="flex h-20 items-center border-b border-neutral-100 px-6 dark:border-neutral-800">
         <Link href="/" className="group flex items-center gap-2">

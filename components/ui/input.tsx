@@ -22,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             "peer shadow-inner-light w-full rounded-2xl border border-neutral-200 bg-white/50 backdrop-blur-xl",
             "px-5 py-3.5 text-neutral-900 placeholder-transparent outline-none",
             "transition-all duration-300",
-            "focus:border-primary-500 focus:ring-primary-500/20 focus:shadow-primary-500/10 focus:bg-white focus:shadow-lg focus:ring-4",
+            "focus:border-primary-500 focus:ring-primary-500/40 focus:shadow-primary-500/10 focus:bg-white focus:shadow-lg focus:ring-4",
             "hover:border-neutral-300 hover:bg-white/80",
             "dark:focus:border-primary-500 dark:focus:ring-primary-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:bg-neutral-900/80",
             "disabled:cursor-not-allowed disabled:opacity-50",

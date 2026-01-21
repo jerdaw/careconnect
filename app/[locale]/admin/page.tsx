@@ -4,6 +4,10 @@ import { useState, useEffect } from "react"
 import { Loader2, Plus, Save, RefreshCw } from "lucide-react"
 import { Service, IntentCategory, VerificationLevel } from "../../../types/service"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 export default function AdminPage() {
   const [services, setServices] = useState<Service[]>([])
@@ -65,7 +69,11 @@ export default function AdminPage() {
   if (isLoading) return <div className="p-8">Loading Admin...</div>
 
   return (
-    <main className="min-h-screen bg-neutral-100 p-8 dark:bg-neutral-900">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="min-h-screen bg-neutral-100 p-8 focus:outline-none dark:bg-neutral-900"
+    >
       <header className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Admin Dashboard 🛠️</h1>
         <div className="flex gap-4">
@@ -111,10 +119,11 @@ export default function AdminPage() {
           </div>
           <div className="h-[80vh] space-y-2 overflow-y-auto pr-2">
             {services.map((s) => (
-              <div
+              <button
                 key={s.id}
+                type="button"
                 onClick={() => setSelectedService(s)}
-                className={`cursor-pointer rounded-lg border p-3 text-sm transition-colors ${
+                className={`w-full cursor-pointer rounded-lg border p-3 text-left text-sm transition-colors ${
                   selectedService?.id === s.id
                     ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                     : "border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950"
@@ -122,7 +131,7 @@ export default function AdminPage() {
               >
                 <div className="font-medium">{s.name}</div>
                 <div className="text-neutral-400">{s.intent_category}</div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -162,76 +171,61 @@ function ServiceEditor({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
         <span className="font-mono text-xs text-neutral-400">ID: {formData.id}</span>
         <Button onClick={() => onSave(formData)} disabled={isSaving}>
-          {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+          {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
           Save Changes
         </Button>
       </div>
 
-      <div className="grid gap-4">
-        <div>
-          <label className="block text-xs font-medium text-neutral-500">Name</label>
-          <input
-            className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
-            value={formData.name}
-            onChange={(e) => handleChange("name", e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block text-xs font-medium text-neutral-500">Description</label>
-          <textarea
-            className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
+      <div className="grid gap-6">
+        <AccessibleFormField label="Service Name" id="name">
+          <Input value={formData.name} onChange={(e) => handleChange("name", e.target.value)} />
+        </AccessibleFormField>
+
+        <AccessibleFormField label="Description" id="description">
+          <Textarea
             rows={4}
             value={formData.description}
             onChange={(e) => handleChange("description", e.target.value)}
           />
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-medium text-neutral-500">Category</label>
-            <select
-              className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
-              value={formData.intent_category}
-              onChange={(e) => handleChange("intent_category", e.target.value)}
-            >
-              {Object.values(IntentCategory).map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-neutral-500">Keywords (Comma sep)</label>
-            <input
-              className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
+        </AccessibleFormField>
+
+        <div className="grid grid-cols-2 gap-6">
+          <AccessibleFormField label="Category" id="category">
+            <Select value={formData.intent_category} onValueChange={(val) => handleChange("intent_category", val)}>
+              <SelectTrigger id="category">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.values(IntentCategory).map((c) => (
+                  <SelectItem key={c} value={c}>
+                    {c}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </AccessibleFormField>
+
+          <AccessibleFormField label="Keywords (Comma separated)" id="keywords">
+            <Input
               value={formData.synthetic_queries.join(", ")}
               onChange={(e) =>
                 setFormData((p) => ({ ...p, synthetic_queries: e.target.value.split(",").map((s) => s.trim()) }))
               }
             />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-neutral-500">Website URL</label>
-            <input
-              className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
-              value={formData.url}
-              onChange={(e) => handleChange("url", e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-neutral-500">Address</label>
-            <input
-              className="mt-1 block w-full rounded border-neutral-300 dark:bg-neutral-900"
-              value={formData.address || ""}
-              onChange={(e) => handleChange("address", e.target.value)}
-            />
-          </div>
+          </AccessibleFormField>
+
+          <AccessibleFormField label="Website URL" id="url">
+            <Input type="url" value={formData.url} onChange={(e) => handleChange("url", e.target.value)} />
+          </AccessibleFormField>
+
+          <AccessibleFormField label="Address" id="address">
+            <Input value={formData.address || ""} onChange={(e) => handleChange("address", e.target.value)} />
+          </AccessibleFormField>
         </div>
-        {/* Add other fields as needed for MVP */}
       </div>
     </div>
   )

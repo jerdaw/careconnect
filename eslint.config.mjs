@@ -1,6 +1,7 @@
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 import { FlatCompat } from "@eslint/eslintrc"
+import jsxa11y from "eslint-plugin-jsx-a11y"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -11,6 +12,28 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    plugins: {
+      "jsx-a11y": jsxa11y,
+    },
+    rules: {
+      "jsx-a11y/alt-text": "error",
+      "jsx-a11y/aria-role": "error",
+      "jsx-a11y/aria-props": "error",
+      "jsx-a11y/aria-unsupported-elements": "error",
+      "jsx-a11y/heading-has-content": "error",
+      "jsx-a11y/label-has-associated-control": [
+        "error",
+        {
+          labelAttributes: ["label"],
+          controlComponents: ["Input", "Textarea", "Select"],
+          depth: 3,
+        },
+      ],
+      "jsx-a11y/click-events-have-key-events": "error",
+      "jsx-a11y/no-static-element-interactions": "error",
+    },
+  },
   {
     files: [
       "**/*.test.ts",

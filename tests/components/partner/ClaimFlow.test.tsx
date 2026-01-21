@@ -66,7 +66,7 @@ describe("ClaimFlow Component", () => {
     const emailInput = screen.getByLabelText("Work Email")
     fireEvent.change(emailInput, { target: { value: "test@org.com" } })
 
-    const submitButton = screen.getByText("Submit Claim")
+    const submitButton = screen.getByText("submit")
     fireEvent.click(submitButton)
 
     expect(submitButton).toBeDisabled()

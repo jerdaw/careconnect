@@ -30,7 +30,8 @@
       "about": "About Us",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
-      "contentPolicy": "Content Policy"
+      "contentPolicy": "Content Policy",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@careconnect.ca"
   },
@@ -142,6 +143,13 @@
       "colStatus": "Status",
       "colActions": "Actions",
       "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      },
       "saveChanges": "Save Changes",
       "statusActive": "Active",
       "englishLabel": "EN",
@@ -159,6 +167,27 @@
     },
     "logout": "Log out",
     "partner": "Partner Dashboard",
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
+    },
     "recentFeedback": "Recent Feedback",
     "viewAll": "View All",
     "stats": {

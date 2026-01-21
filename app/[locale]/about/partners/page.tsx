@@ -44,7 +44,7 @@ export default function PartnersPage() {
     <div className="flex min-h-screen flex-col bg-stone-50 font-sans dark:bg-neutral-950">
       <Header />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Hero */}
         <Section className="pt-32 pb-16 text-center">
           <div className="mb-8 inline-flex items-center justify-center rounded-2xl bg-indigo-100 p-3 dark:bg-indigo-900/30">

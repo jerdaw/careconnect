@@ -4,9 +4,20 @@ import { useEffect, useState } from "react"
 import { createClient } from "@/utils/supabase/client"
 import { Service } from "@/types/service"
 import { Button } from "@/components/ui/button"
-import { Pencil, Loader2, Plus } from "lucide-react"
+import { Pencil, Loader2, Plus, Trash2 } from "lucide-react"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
+import { useToast } from "@/components/ui/use-toast"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog"
 
 interface Props {
   partnerId: string
@@ -18,21 +29,11 @@ export function PartnerServiceList({ partnerId }: Props) {
   const supabase = createClient()
   const locale = useLocale()
   const t = useTranslations("Dashboard.services")
+  const { toast } = useToast()
+  const [deleting, setDeleting] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchServices = async () => {
-      // Find organization for this user first
-      // For now assuming 1-1 mapping or direct query.
-      // In a real multi-tenant setup, we'd query organization_members.
-      // Simplified for Pilot: Query services where service.owner_id = user.id (if column exists)
-      // OR find org link.
-
-      // Let's assume we fetch services linked to the partner's org.
-      // Since we haven't fully implemented the 'organizations' table link in services.json yet,
-      // we will simulate by fetching ALL services for now or just mock it locally if needed.
-      // BUT, wait, Phase 8 added RLS. Let's try fetching from 'services' table directly.
-      // The RLS policy should filter services owned by this user/org.
-
       const { data, error } = await supabase.from("services").select("*")
 
       if (!error && data) {
@@ -43,6 +44,26 @@ export function PartnerServiceList({ partnerId }: Props) {
 
     fetchServices()
   }, [partnerId, supabase])
+
+  const handleDelete = async (id: string) => {
+    setDeleting(id)
+    const { error } = await supabase.from("services").delete().eq("id", id)
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete service. You may not have permission.",
+        variant: "destructive",
+      })
+    } else {
+      setServices((prev) => prev.filter((s) => s.id !== id))
+      toast({
+        title: "Success",
+        description: "Service deleted successfully",
+      })
+    }
+    setDeleting(null)
+  }
 
   if (loading) {
     return (
@@ -89,12 +110,45 @@ export function PartnerServiceList({ partnerId }: Props) {
                   </span>
                 </td>
                 <td className="p-4 text-right align-middle">
-                  <Link href={`/${locale}/dashboard/services/${service.id}/edit`}>
-                    <Button variant="ghost" size="sm">
-                      <Pencil className="mr-2 h-4 w-4" />
-                      {t("edit")}
+                  <div className="flex items-center justify-end gap-2">
+                    <Button variant="ghost" size="sm" asChild>
+                      <Link href={`/${locale}/dashboard/services/${service.id}/edit`}>
+                        <Pencil className="mr-2 h-4 w-4" />
+                        {t("edit")}
+                      </Link>
                     </Button>
-                  </Link>
+
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="ghost" size="sm" className="text-red-600 hover:bg-red-50 hover:text-red-700">
+                          {deleting === service.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Trash2 className="h-4 w-4" />
+                          )}
+                          <span className="ml-2">{t("delete")}</span>
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>{t("deleteConfirm.title")}</DialogTitle>
+                          <DialogDescription>{t("deleteConfirm.description")}</DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline">{t("deleteConfirm.cancel")}</Button>
+                          </DialogClose>
+                          <Button
+                            variant="destructive"
+                            onClick={() => handleDelete(service.id)}
+                            className="bg-red-600 hover:bg-red-700"
+                          >
+                            {t("deleteConfirm.confirm")}
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                 </td>
               </tr>
             ))}

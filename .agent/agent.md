@@ -20,6 +20,7 @@ This file provides context for AI agents working on the Kingston Care Connect pr
 - `lib/search.ts`: Core hybrid search logic.
 - `docs/bilingual-dev-guide.md`: Standardization of English/French support.
 - `docs/testing-guidelines.md`: Expectations for feature coverage.
+- `docs/ACCESSIBILITY_GUIDE.md`: Accessibility standards and patterns.
 - `docs/adr/008-nextjs-testing-patterns.md`: Next.js 15 SSR testing patterns and WebLLM testing strategy.
 - `tests/setup/next-mocks.ts`: Centralized Next.js 15 mock definitions.
 - `tests/fixtures/`: Centralized test fixtures for services, feedback, and users.
