@@ -1,6 +1,6 @@
 ---
-status: planned
-last_updated: 2026-01-19
+status: completed
+last_updated: 2026-01-21
 owner: jer
 tags: [roadmap, v17.3, accessibility, wcag, aoda, compliance]
 ---
