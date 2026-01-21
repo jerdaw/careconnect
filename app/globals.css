@@ -644,7 +644,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-primary/60 outline-offset-2;
   }
   body {
     @apply bg-background text-foreground;

@@ -16,7 +16,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
-import { Loader2, ShieldCheck, Mail } from "lucide-react"
+import { Loader2, ShieldCheck } from "lucide-react"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 interface ClaimFlowProps {
   serviceId: string
@@ -98,8 +99,11 @@ export function ClaimFlow({ serviceName }: ClaimFlowProps) {
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Work Email</Label>
+              <AccessibleFormField
+                id="email"
+                label="Work Email"
+                hint="Use your official organization email for faster verification."
+              >
                 <Input
                   id="email"
                   type="email"
@@ -107,11 +111,7 @@ export function ClaimFlow({ serviceName }: ClaimFlowProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <p className="flex items-center gap-1 text-xs text-neutral-500">
-                  <Mail className="h-3 w-3" />
-                  Use your official organization email for faster verification.
-                </p>
-              </div>
+              </AccessibleFormField>
             </div>
           )}
         </div>
@@ -124,7 +124,7 @@ export function ClaimFlow({ serviceName }: ClaimFlowProps) {
           ) : (
             <Button onClick={handleSubmit} disabled={isSubmitting || !email}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Submit Claim
+              {t("submit")}
             </Button>
           )}
         </DialogFooter>

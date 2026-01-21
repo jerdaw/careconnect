@@ -105,35 +105,49 @@ See [archive/2026-01-20-v17-2-internationalization.md](archive/2026-01-20-v17-2-
 
 ## v17.3: Accessibility Compliance (WCAG 2.1 AA / AODA)
 
-**Status**: Planned
+**Status**: Completed (2026-01-20)
 **Priority**: HIGH
+
+### Summary
+
+Achieved full WCAG 2.1 Level AA compliance across core user journeys. Resolved critical gaps in form accessibility, modal focus management, and color contrast.
+
+Key achievements:
+
+- **100% Green Accessibility CI**: Integrated `@axe-core/playwright` and `eslint-plugin-jsx-a11y` into the CI pipeline (50+ passed audits).
+- **Standardized Form Accessibility**: Implemented `AccessibleFormField` with robust ARIA support (`aria-describedby`, `aria-invalid`) across all user-facing forms.
+- **Modal Logic Refactor**: Migrated `EmergencyModal` and others to Radix UI `Dialog` primitives for native focus trapping and keyboard navigation.
+- **Improved Contrast & Navigation**: Resolved 15+ WCAG 2.1 AA color contrast violations and standardized skip-links across all pages.
+- **Compliance Documentation**: Published the KCC Accessibility Statement and AODA Compliance Report.
+
+See [archive/2026-01-20-v17-3-accessibility.md](archive/2026-01-20-v17-3-accessibility.md) for implementation details.
 
 ### Scope
 
 #### Form Accessibility (CRITICAL)
 
-- [ ] **FormField Component**: Add `aria-describedby`, `aria-invalid`, `aria-required`
-- [ ] **Error Linking**: Connect error messages to inputs via `aria-describedby`
-- [ ] **Required Indicators**: Add `aria-required="true"` to required fields
-- [ ] **Fieldset/Legend**: Group related form fields properly
+- [x] **FormField Component**: Add `aria-describedby`, `aria-invalid`, `aria-required`
+- [x] **Error Linking**: Connect error messages to inputs via `aria-describedby`
+- [x] **Required Indicators**: Add `aria-required="true"` to required fields
+- [x] **Fieldset/Legend**: Group related form fields properly
 
 #### Modal/Dialog Accessibility
 
-- [ ] **EmergencyModal**: Add `role="dialog"`, `aria-modal`, `aria-labelledby`
-- [ ] **Migrate to Radix Dialog**: Replace manual focus trap with Radix primitives
-- [ ] **Escape Key Handling**: Document keyboard shortcuts
+- [x] **EmergencyModal**: Add `role="dialog"`, `aria-modal`, `aria-labelledby`
+- [x] **Migrate to Radix Dialog**: Replace manual focus trap with Radix primitives
+- [x] **Escape Key Handling**: Document keyboard shortcuts
 
 #### Image Accessibility
 
-- [ ] **Alt Text Audit**: Add meaningful alt text to 80+ images
-- [ ] **Decorative Images**: Mark decorative images with `alt=""`
+- [x] **Alt Text Audit**: Add meaningful alt text to 80+ images
+- [x] **Decorative Images**: Mark decorative images with `alt=""`
 
 #### Testing & Tooling
 
-- [ ] **JSX A11y Plugin**: Add `eslint-plugin-jsx-a11y` to catch violations
-- [ ] **Expand E2E Tests**: Add 15+ accessibility test cases
-- [ ] **Form Testing**: Test all forms with screen readers
-- [ ] **Color Contrast Tests**: Add automated contrast verification
+- [x] **JSX A11y Plugin**: Add `eslint-plugin-jsx-a11y` to catch violations
+- [x] **Expand E2E Tests**: Add 15+ accessibility test cases
+- [x] **Form Testing**: Test all forms with screen readers
+- [x] **Color Contrast Tests**: Add automated contrast verification
 
 ### Success Criteria
 
@@ -146,7 +160,7 @@ See [archive/2026-01-20-v17-2-internationalization.md](archive/2026-01-20-v17-2-
 
 ## v17.4: Dashboard & Partner Portal Completion
 
-**Status**: Planned
+**Status**: Completed (2026-01-21)
 **Priority**: HIGH
 
 ### Scope
@@ -324,6 +338,8 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
+- [v17.4: Dashboard & Partner Portal](archive/2026-01-20-v17-4-dashboard-partner-portal.md) (2026-01-21)
+- [v17.3: Accessibility Compliance](archive/2026-01-20-v17-3-accessibility.md) (2026-01-20)
 - [v17.2: Internationalization Completion](archive/2026-01-20-v17-2-internationalization.md) (2026-01-20)
 - [v17.1: Test Coverage & Quality Gates](archive/2026-01-19-v17-1-test-coverage.md) (2026-01-19)
 - [v17.0: Security & Authorization](archive/2026-01-17-v17-0-security-authorization.md) (2026-01-20)
@@ -364,16 +380,16 @@ Items removed from roadmap due to feasibility/scope concerns:
 
 Based on comprehensive audit (2026-01-20), here is the overall status:
 
-| Area                    | Status           | Blocking? | Est. Effort |
-| :---------------------- | :--------------- | :-------- | :---------- |
-| **v17.0 Security**      | ✅ Completed     | No        | 1-2 weeks   |
-| **v17.1 Test Coverage** | ✅ Completed     | No        | 2-3 weeks   |
-| **v17.2 i18n**          | ✅ Completed     | No        | 1 week      |
-| **v17.3 Accessibility** | ⚠️ ~70% complete | No        | 1-2 weeks   |
-| **v17.4 Dashboard**     | ⚠️ Incomplete    | No        | 1-2 weeks   |
-| **v17.5 Data Quality**  | ⚠️ Gaps          | No        | 3-4 weeks   |
-| **v17.6 PWA**           | ⚠️ Basic         | No        | 1 week      |
-| **Mobile App**          | ⏸️ Paused        | N/A       | 4-6 weeks   |
+| Area                    | Status       | Blocking? | Est. Effort |
+| :---------------------- | :----------- | :-------- | :---------- |
+| **v17.0 Security**      | ✅ Completed | No        | 1-2 weeks   |
+| **v17.1 Test Coverage** | ✅ Completed | No        | 2-3 weeks   |
+| **v17.2 i18n**          | ✅ Completed | No        | 1 week      |
+| **v17.3 Accessibility** | ✅ Completed | No        | 1-2 weeks   |
+| **v17.4 Dashboard**     | ✅ Completed | No        | 1-2 weeks   |
+| **v17.5 Data Quality**  | ⚠️ Gaps      | No        | 3-4 weeks   |
+| **v17.6 PWA**           | ⚠️ Basic     | No        | 1 week      |
+| **Mobile App**          | ⏸️ Paused    | N/A       | 4-6 weeks   |
 
 **Estimated Total to Production**: 6-10 weeks of focused development
 
@@ -382,4 +398,4 @@ Based on comprehensive audit (2026-01-20), here is the overall status:
 1. **v17.0** - Fix API authorization vulnerability (✅ DONE)
 2. **v17.1** - Raise test coverage to 75%+ (✅ DONE)
 3. **v17.2** - Complete i18n for all 7 locales (✅ DONE)
-4. **v17.3** - AODA/WCAG 2.1 AA compliance
+4. **v17.3** - AODA/WCAG 2.1 AA compliance (✅ DONE)

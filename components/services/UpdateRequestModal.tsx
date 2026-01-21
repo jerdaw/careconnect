@@ -10,11 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 interface UpdateRequestModalProps {
   serviceId: string
@@ -80,8 +80,7 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
           <DialogDescription>{t("requestUpdateDesc", { service: serviceName })}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="updates">{t("fieldUpdatesLabel")}</Label>
+          <AccessibleFormField id="updates" label={t("fieldUpdatesLabel")}>
             <Textarea
               id="updates"
               placeholder={t("fieldUpdatesPlaceholder")}
@@ -90,10 +89,9 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
               className="resize-none"
               rows={4}
             />
-          </div>
+          </AccessibleFormField>
 
-          <div className="grid gap-2">
-            <Label htmlFor="justification">{t("justificationLabel")}</Label>
+          <AccessibleFormField id="justification" label={t("justificationLabel")}>
             <Textarea
               id="justification"
               placeholder={t("justificationPlaceholder")}
@@ -102,7 +100,7 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
               className="resize-none"
               rows={2}
             />
-          </div>
+          </AccessibleFormField>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>

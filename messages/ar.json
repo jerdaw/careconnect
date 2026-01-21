@@ -19,7 +19,8 @@
       "about": "معلومات عنا",
       "privacy": "سياسة الخصوصية",
       "terms": "شروط الخدمة",
-      "contentPolicy": "سياسة المحتوى"
+      "contentPolicy": "سياسة المحتوى",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "بعض الترجمات مدعومة بالذكاء الاصطناعي. أبلغ عن الأخطاء إلى feedback@careconnect.ca"
   },
@@ -210,7 +211,14 @@
       "eligibility": "معايير الأهلية",
       "view": "عرض",
       "lastUpdated": "آخر تحديث",
-      "noServices": "لم يتم المطالبة بأي خدمات"
+      "noServices": "لم يتم المطالبة بأي خدمات",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
     },
     "logout": "تسجيل الخروج",
     "partner": "لوحة الشركاء",
@@ -221,6 +229,27 @@
       "resolved": "تم الحل",
       "sentiment": "مشاعر عامة",
       "total": "إجمالي التعليقات"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
     }
   },
   "ServiceDetail": {

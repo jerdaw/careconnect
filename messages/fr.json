@@ -30,7 +30,8 @@
       "about": "À propos",
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
-      "contentPolicy": "Politique de contenu"
+      "contentPolicy": "Politique de contenu",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@careconnect.ca"
   },
@@ -252,7 +253,35 @@
       "eligibility": "Critères d'admissibilité",
       "view": "Voir",
       "lastUpdated": "Dernière mise à jour",
-      "noServices": "Aucun service réclamé"
+      "noServices": "Aucun service réclamé",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
     }
   },
   "ServiceDetail": {

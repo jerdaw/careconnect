@@ -4,9 +4,9 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 import { useToast } from "@/components/ui/use-toast"
 import { BellRing, Send } from "lucide-react"
 
@@ -59,7 +59,7 @@ export default function AdminNotificationsPage() {
   }
 
   return (
-    <div className="container max-w-2xl py-10">
+    <main id="main-content" tabIndex={-1} className="container max-w-2xl py-10 focus:outline-none">
       <div className="mb-8 space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Notification Console</h1>
         <p className="text-muted-foreground">Send push notifications to all subscribed users.</p>
@@ -73,11 +73,10 @@ export default function AdminNotificationsPage() {
           </CardTitle>
           <CardDescription>This will be sent to all users who have opted in.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label>Notification Type</Label>
+        <CardContent className="space-y-6">
+          <AccessibleFormField label="Notification Type" id="notif-type">
             <Select value={type} onValueChange={setType}>
-              <SelectTrigger>
+              <SelectTrigger id="notif-type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -86,22 +85,20 @@ export default function AdminNotificationsPage() {
                 <SelectItem value="general">General Announcement</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </AccessibleFormField>
 
-          <div className="space-y-2">
-            <Label>Title</Label>
+          <AccessibleFormField label="Title" id="notif-title" required>
             <Input placeholder="e.g. Shelter Capacity Alert" value={title} onChange={(e) => setTitle(e.target.value)} />
-          </div>
+          </AccessibleFormField>
 
-          <div className="space-y-2">
-            <Label>Message Body</Label>
+          <AccessibleFormField label="Message Body" id="notif-body" required>
             <Textarea
               placeholder="Details about the update..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
             />
-          </div>
+          </AccessibleFormField>
 
           <div className="flex justify-end pt-4">
             <Button onClick={handleSend} disabled={!title || !message}>
@@ -116,6 +113,6 @@ export default function AdminNotificationsPage() {
         <strong>Note:</strong> To make this functional, you need to implement a Next.js API route (`/api/admin/push`)
         that uses the **OneSignal REST API Key** to trigger the actual send.
       </div>
-    </div>
+    </main>
   )
 }

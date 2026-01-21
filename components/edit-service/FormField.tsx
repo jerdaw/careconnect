@@ -1,16 +1,19 @@
+import { AccessibleFormField } from "../forms/AccessibleFormField"
+
 interface FormFieldProps {
   label: string
+  id: string
   error?: string
   children: React.ReactNode
   className?: string
+  hint?: string
+  required?: boolean
 }
 
-export default function FormField({ label, error, children, className = "" }: FormFieldProps) {
+export default function FormField({ label, id, error, children, className = "", hint, required }: FormFieldProps) {
   return (
-    <div className={className}>
-      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">{label}</label>
-      <div className="mt-1">{children}</div>
-      {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
-    </div>
+    <AccessibleFormField label={label} id={id} error={error} className={className} hint={hint} required={required}>
+      {children}
+    </AccessibleFormField>
   )
 }

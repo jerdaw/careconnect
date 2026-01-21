@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
+import { AccessibleFormField } from "./AccessibleFormField"
 import { useTranslations } from "next-intl"
 import { CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
@@ -65,37 +65,27 @@ export default function SubmitServiceForm() {
       </div>
 
       <div className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">{t("serviceName")}</Label>
-          <Input name="name" id="name" required placeholder="e.g. Kingston Youth Shelter" />
-        </div>
+        <AccessibleFormField label={t("serviceName")} id="name" required>
+          <Input name="name" placeholder="e.g. Kingston Youth Shelter" />
+        </AccessibleFormField>
 
-        <div className="space-y-2">
-          <Label htmlFor="description">{t("serviceDesc")}</Label>
-          <Textarea
-            name="description"
-            id="description"
-            required
-            rows={4}
-            placeholder="Briefly describe the services offered..."
-          />
-        </div>
+        <AccessibleFormField label={t("serviceDesc")} id="description" required>
+          <Textarea name="description" rows={4} placeholder="Briefly describe the services offered..." />
+        </AccessibleFormField>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="phone">{t("phone")}</Label>
-            <Input name="phone" id="phone" type="tel" placeholder="(613) ..." />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="url">{t("website")}</Label>
-            <Input name="url" id="url" type="url" placeholder="https://..." />
-          </div>
+          <AccessibleFormField label={t("phone")} id="phone">
+            <Input name="phone" type="tel" placeholder="(613) ..." />
+          </AccessibleFormField>
+
+          <AccessibleFormField label={t("website")} id="url">
+            <Input name="url" type="url" placeholder="https://..." />
+          </AccessibleFormField>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="address">{t("address")}</Label>
-          <Input name="address" id="address" placeholder="123 Example St, Kingston" />
-        </div>
+        <AccessibleFormField label={t("address")} id="address">
+          <Input name="address" placeholder="123 Example St, Kingston" />
+        </AccessibleFormField>
       </div>
 
       <Button type="submit" disabled={isSubmitting} className="w-full" size="lg">

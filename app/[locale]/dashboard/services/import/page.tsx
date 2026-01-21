@@ -154,6 +154,8 @@ export default function BulkImportPage() {
       {/* Upload Area */}
       {uploadStatus === "idle" && (
         <div
+          role="region"
+          aria-label="File upload area"
           className={`relative flex h-64 w-full flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all ${
             dragActive
               ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
@@ -193,7 +195,14 @@ export default function BulkImportPage() {
               </Button>
             </div>
           )}
-          <input ref={inputRef} type="file" accept=".csv" className="hidden" onChange={handleChange} />
+          <input
+            ref={inputRef}
+            type="file"
+            accept=".csv"
+            className="hidden"
+            onChange={handleChange}
+            aria-label="Upload CSV file"
+          />
         </div>
       )}
 

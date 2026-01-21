@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { ShieldCheck, Mail, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react"
@@ -49,7 +51,11 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col bg-stone-50 font-sans dark:bg-neutral-950">
       <Header />
 
-      <main className="relative flex flex-1 flex-col justify-center overflow-hidden py-12 sm:px-6 lg:px-8">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative flex flex-1 flex-col justify-center overflow-hidden py-12 sm:px-6 lg:px-8"
+      >
         {/* Background Decor */}
         <div className="from-primary-200/20 to-accent-200/20 dark:from-primary-900/10 dark:to-accent-900/10 absolute top-1/2 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr blur-[100px]" />
 
@@ -67,26 +73,20 @@ export default function LoginPage() {
           <div className="mt-8">
             <div className="border border-white/50 bg-white/80 px-4 py-8 shadow-xl backdrop-blur-xl sm:rounded-2xl sm:px-10 dark:border-white/5 dark:bg-neutral-900/80">
               <form className="space-y-6" onSubmit={handleLogin}>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                    {t("emailLabel")}
-                  </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <Mail className="h-5 w-5 text-neutral-400" aria-hidden="true" />
-                    </div>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-xl border-neutral-300 py-3 pl-10 sm:text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-500"
-                      placeholder={t("emailPlaceholder")}
-                    />
-                  </div>
+                <AccessibleFormField label={t("emailLabel")} id="email" required>
+                  <Input
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="h-12 pl-10"
+                    placeholder={t("emailPlaceholder")}
+                  />
+                </AccessibleFormField>
+
+                <div className="pointer-events-none relative -mt-12 flex h-12 items-center pl-3">
+                  <Mail className="h-5 w-5 text-neutral-400" aria-hidden="true" />
                 </div>
 
                 {message && (
@@ -124,7 +124,9 @@ export default function LoginPage() {
                     <div className="w-full border-t border-neutral-200 dark:border-neutral-800" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-900">{t("newToKCC")}</span>
+                    <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400">
+                      {t("newToKCC")}
+                    </span>
                   </div>
                 </div>
 

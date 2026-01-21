@@ -12,7 +12,7 @@ export default function ContactSection({ register, errors }: ContactSectionProps
     <div className="space-y-6 rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
       <h3 className="text-lg leading-6 font-medium text-neutral-900 dark:text-white">Contact & Location</h3>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <FormField label="Address" error={errors.address?.message} className="sm:col-span-2">
+        <FormField label="Address" id="service-address" error={errors.address?.message} className="sm:col-span-2">
           <input
             {...register("address")}
             type="text"
@@ -21,7 +21,7 @@ export default function ContactSection({ register, errors }: ContactSectionProps
           />
         </FormField>
 
-        <FormField label="Phone" error={errors.phone?.message}>
+        <FormField label="Phone" id="service-phone" error={errors.phone?.message}>
           <input
             {...register("phone")}
             type="tel"
@@ -29,7 +29,7 @@ export default function ContactSection({ register, errors }: ContactSectionProps
           />
         </FormField>
 
-        <FormField label="Email" error={errors.email?.message}>
+        <FormField label="Email" id="service-email" error={errors.email?.message}>
           <input
             {...register("email")}
             type="email"
@@ -37,7 +37,7 @@ export default function ContactSection({ register, errors }: ContactSectionProps
           />
         </FormField>
 
-        <FormField label="Website URL" error={errors.url?.message} className="sm:col-span-2">
+        <FormField label="Website URL" id="service-website" error={errors.url?.message} className="sm:col-span-2">
           <input
             {...register("url")}
             type="url"

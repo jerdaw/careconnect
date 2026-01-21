@@ -12,6 +12,7 @@ import { FeedbackCategoryEnum, FeedbackSubmitSchema } from "@/types/feedback"
 import { cn } from "@/lib/utils"
 import { useNetworkStatus } from "@/hooks/useNetworkStatus"
 import { queueFeedback } from "@/lib/offline/feedback"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 export function NotFoundFeedback({ className }: { className?: string }) {
   const t = useTranslations("Feedback")
@@ -116,8 +117,13 @@ export function NotFoundFeedback({ className }: { className?: string }) {
 
         <form onSubmit={handleSubmit} className="space-y-4 md:w-2/3">
           <div className="grid gap-2">
-            <Label>{t("categoryLabel")}</Label>
-            <RadioGroup value={category} onValueChange={setCategory} className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <Label id="not-found-cat-label">{t("categoryLabel")}</Label>
+            <RadioGroup
+              value={category}
+              onValueChange={setCategory}
+              className="grid grid-cols-2 gap-2 sm:grid-cols-3"
+              aria-labelledby="not-found-cat-label"
+            >
               {FeedbackCategoryEnum.options.map((cat) => (
                 <div
                   key={cat}
@@ -132,16 +138,15 @@ export function NotFoundFeedback({ className }: { className?: string }) {
             </RadioGroup>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="details">{t("detailsLabel")}</Label>
+          <AccessibleFormField id="not-found-details" label={t("detailsLabel")}>
             <Textarea
-              id="details"
+              id="not-found-details"
               value={details}
               onChange={(e) => setDetails(e.target.value)}
               placeholder={t("notFoundPlaceholder")}
               rows={3}
             />
-          </div>
+          </AccessibleFormField>
 
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting || (!category && !details)}>

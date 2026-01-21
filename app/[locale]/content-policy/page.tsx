@@ -3,6 +3,8 @@
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import PageSection from "@/components/PageSection"
+import { Header } from "@/components/layout/Header"
+import { Footer } from "@/components/layout/Footer"
 
 export default function ContentPolicyPage() {
   const t = useTranslations("ContentPolicy")
@@ -38,23 +40,31 @@ export default function ContentPolicyPage() {
   ]
 
   return (
-    <main className="container mx-auto max-w-4xl px-4 py-12">
-      <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">{t("title")}</h1>
-        <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{t("description")}</p>
-      </div>
+    <div className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
+      <Header />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="container mx-auto max-w-4xl flex-1 px-4 py-12 focus:outline-none"
+      >
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">{t("title")}</h1>
+          <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{t("description")}</p>
+        </div>
 
-      <div className="space-y-12">
-        {policySections.map((section) => (
-          <PageSection key={section.id} title={section.title} id={section.id}>
-            <div className="prose prose-neutral dark:prose-invert max-w-none">{section.content}</div>
-          </PageSection>
-        ))}
-      </div>
+        <div className="space-y-12">
+          {policySections.map((section) => (
+            <PageSection key={section.id} title={section.title} id={section.id}>
+              <div className="prose prose-neutral dark:prose-invert max-w-none">{section.content}</div>
+            </PageSection>
+          ))}
+        </div>
 
-      <div className="mt-16 rounded-2xl bg-neutral-50 p-8 text-center dark:bg-neutral-900">
-        <p className="text-sm text-neutral-500">{t("lastUpdated")}: January 2026</p>
-      </div>
-    </main>
+        <div className="mt-16 rounded-2xl bg-neutral-50 p-8 text-center dark:bg-neutral-900">
+          <p className="text-sm text-neutral-500">{t("lastUpdated")}: January 2026</p>
+        </div>
+      </main>
+      <Footer />
+    </div>
   )
 }

@@ -69,7 +69,7 @@ export default async function ImpactPage() {
     .gte("last_verified", ninetyDaysAgo.toISOString())
 
   return (
-    <main className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
+    <main id="main-content" className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
       <Header />
 
       <Section className="pt-32 pb-16">

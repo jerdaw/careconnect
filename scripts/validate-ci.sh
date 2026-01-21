@@ -32,4 +32,9 @@ npm run test:e2e
 echo "✅ E2E tests passed"
 echo ""
 
+echo "♿ Running Accessibility E2E tests..."
+npm run test:a11y
+echo "✅ Accessibility tests passed"
+echo ""
+
 echo "✨ All CI checks passed! Safe to push."

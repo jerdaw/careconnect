@@ -21,7 +21,13 @@ export function Footer() {
           <div className="space-y-6 md:col-span-2">
             <div className="flex items-center gap-3">
               <div className="relative flex h-9 items-center justify-center transition-all">
-                <Image src="/logo.png" alt="KCC Logo" width={64} height={32} className="h-7 w-auto object-contain" />
+                <Image
+                  src="/logo.png"
+                  alt="Kingston Care Connect Logo"
+                  width={64}
+                  height={32}
+                  className="h-7 w-auto object-contain"
+                />
               </div>
               <span className="heading-display text-xl font-bold tracking-tight text-white">Kingston Care Connect</span>
             </div>
@@ -100,6 +106,11 @@ export function Footer() {
               <li>
                 <Link href="/content-policy" className="hover:text-primary-400 transition-colors">
                   {t("quickLinks.contentPolicy")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/accessibility" className="hover:text-primary-400 transition-colors">
+                  {t("quickLinks.accessibility")}
                 </Link>
               </li>
             </ul>

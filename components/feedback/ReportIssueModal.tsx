@@ -19,6 +19,7 @@ import { Loader2 } from "lucide-react"
 import { FeedbackSubmitSchema, FeedbackApiResponse } from "@/types/feedback"
 import { useNetworkStatus } from "@/hooks/useNetworkStatus"
 import { queueFeedback } from "@/lib/offline/feedback"
+import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
 
 interface ReportIssueModalProps {
   serviceId: string
@@ -113,8 +114,12 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label>{t("issueTypeLabel")}</Label>
-            <RadioGroup value={issueType} onValueChange={(val) => setIssueType(val as (typeof ISSUE_TYPES)[number])}>
+            <Label id="issue-type-label">{t("issueTypeLabel")}</Label>
+            <RadioGroup
+              value={issueType}
+              onValueChange={(val) => setIssueType(val as (typeof ISSUE_TYPES)[number])}
+              aria-labelledby="issue-type-label"
+            >
               {ISSUE_TYPES.map((ft) => (
                 <div key={ft} className="flex items-center space-x-2">
                   <RadioGroupItem value={ft} id={ft} />
@@ -126,8 +131,7 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
             </RadioGroup>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="details">{t("detailsLabel")}</Label>
+          <AccessibleFormField id="details" label={t("detailsLabel")}>
             <Textarea
               id="details"
               placeholder={t("detailsPlaceholder")}
@@ -136,7 +140,7 @@ export function ReportIssueModal({ serviceId, serviceName, isOpen, onClose }: Re
               className="resize-none"
               rows={3}
             />
-          </div>
+          </AccessibleFormField>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>

@@ -71,7 +71,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
               <div className={cn("relative flex h-9 items-center justify-center rounded-xl transition-all")}>
                 <Image
                   src="/logo.png"
-                  alt="KCC Logo"
+                  alt="Kingston Care Connect Logo"
                   width={64}
                   height={32}
                   className="h-7 w-auto object-contain"
@@ -83,7 +83,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             <span
               className={cn(
                 "heading-display text-lg font-bold tracking-tight transition-all",
-                "text-neutral-900 dark:text-white",
+                "text-black dark:text-white",
                 // Mobile: only show when scrolled (hero not visible)
                 isSolid ? "block" : "hidden md:block"
               )}
@@ -97,7 +97,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             {/* Emergency - High priority, always visible */}
             <button
               onClick={() => setEmergencyModalOpen(true)}
-              className="mr-6 inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
+              className="mr-6 inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-200 dark:hover:bg-red-900/50"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -112,7 +112,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 href="/about"
                 className={cn(
                   "hover:text-primary-500 text-sm font-medium transition-colors",
-                  "text-neutral-600 dark:text-neutral-300"
+                  "text-neutral-800 dark:text-neutral-200"
                 )}
               >
                 {t("about")}
@@ -121,7 +121,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 href="/about/partners"
                 className={cn(
                   "hover:text-primary-500 text-sm font-medium transition-colors",
-                  "text-neutral-600 dark:text-neutral-300"
+                  "text-neutral-800 dark:text-neutral-200"
                 )}
               >
                 {tPartners("link")}
@@ -130,7 +130,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 href="/submit-service"
                 className={cn(
                   "hover:text-primary-500 text-sm font-medium transition-colors",
-                  "text-neutral-600 dark:text-neutral-300"
+                  "text-neutral-800 dark:text-neutral-200"
                 )}
               >
                 {t("suggest")}
@@ -139,7 +139,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                 href="/settings"
                 className={cn(
                   "hover:text-primary-500 text-sm font-medium transition-colors",
-                  "text-neutral-600 dark:text-neutral-300"
+                  "text-neutral-800 dark:text-neutral-200"
                 )}
               >
                 Settings
@@ -196,7 +196,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                     setMobileMenuOpen(false)
                     setEmergencyModalOpen(true)
                   }}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-red-100 px-4 py-3 text-sm font-bold text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-red-100 px-4 py-3 text-sm font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-200"
                 >
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>

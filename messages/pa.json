@@ -19,7 +19,8 @@
       "about": "ਬਾਰੇ",
       "privacy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
       "terms": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
-      "contentPolicy": "ਸਮੱਗਰੀ ਨੀਤੀ"
+      "contentPolicy": "ਸਮੱਗਰੀ ਨੀਤੀ",
+      "accessibility": "Accessibility"
     },
     "aiTranslationNote": "ਕੁਝ ਅਨੁਵਾਦ AI-ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਹਨ। feedback@careconnect.ca 'ਤੇ ਗਲਤੀਆਂ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
   },
@@ -210,7 +211,14 @@
       "eligibility": "ਯੋਗਤਾ ਮਾਪਦੰਡ",
       "view": "ਵੇਖੋ",
       "lastUpdated": "ਆਖਰੀ ਅੱਪਡੇਟ",
-      "noServices": "ਕੋਈ ਦਾਅਵਾ ਕੀਤੀਆਂ ਸੇਵਾਵਾਂ ਨਹੀਂ"
+      "noServices": "ਕੋਈ ਦਾਅਵਾ ਕੀਤੀਆਂ ਸੇਵਾਵਾਂ ਨਹੀਂ",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete the service listing.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
     },
     "logout": "ਲੌਗ ਆਉਟ",
     "partner": "ਪਾਰਟਨਰ ਡੈਸ਼ਬੋਰਡ",
@@ -221,6 +229,27 @@
       "resolved": "ਹੱਲ ਕੀਤਾ",
       "sentiment": "ਸਮੁੱਚੀ ਭਾਵਨਾ",
       "total": "ਕੁੱਲ ਫੀਡਬੈਕ"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your organization and account preferences.",
+      "organization": {
+        "title": "Organization Profile",
+        "description": "Information about your organization visible to others.",
+        "name": "Organization Name",
+        "domain": "Email Domain",
+        "domainHint": "Used for automatic member verification"
+      },
+      "members": {
+        "title": "Team Members",
+        "invite": "Invite Member",
+        "role": "Role"
+      },
+      "notifications": {
+        "title": "Notification Preferences",
+        "emailAlerts": "Email Alerts",
+        "pushAlerts": "Push Notifications"
+      }
     }
   },
   "ServiceDetail": {

@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server"
-import path from "path"
-import fs from "fs/promises"
+// Imports removed
 import { createApiError, handleApiError, createApiResponse, validateContentType } from "@/lib/api-utils"
 import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
@@ -29,34 +28,31 @@ export async function POST(req: NextRequest) {
     await assertAdminRole(supabase, user.id)
 
     validateContentType(req)
-    const body = (await req.json()) as { service: { id: string } }
+    const body = (await req.json()) as { service: { id: string; name: string } }
     const { service } = body
     if (!service || !service.id) {
       return createApiError("Invalid data", 400)
     }
 
-    const dataPath = path.join(process.cwd(), "data", "services.json")
-    const fileContents = await fs.readFile(dataPath, "utf8")
-    const services = JSON.parse(fileContents) as { id: string }[]
+    // 1. Fetch current data for audit log (optional but good practice)
+    const { data: oldService } = await supabase.from("services").select("*").eq("id", service.id).single()
 
-    const oldService = services.find((s: { id: string }) => s.id === service.id)
+    // 2. Transact to Supabase
+    // We use upsert to create or update
+    const { error: upsertError } = await supabase.from("services").upsert({
+      ...service,
+      last_verified: new Date().toISOString(),
+    })
 
-    // Update or Add
-    const index = services.findIndex((s: { id: string }) => s.id === service.id)
-    if (index > -1) {
-      services[index] = service
-    } else {
-      services.push(service)
+    if (upsertError) {
+      return createApiError(`Database error: ${upsertError.message}`, 500)
     }
 
-    // Write back
-    await fs.writeFile(dataPath, JSON.stringify(services, null, 2))
-
-    // Audit Log
+    // 3. Audit Log
     await supabase.from("audit_logs").insert({
-      table_name: "services_json",
+      table_name: "services",
       record_id: service.id,
-      operation: index > -1 ? "UPDATE" : "CREATE",
+      operation: oldService ? "UPDATE" : "CREATE",
       old_data: oldService,
       new_data: service,
       performed_by: user.id,

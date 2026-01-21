@@ -10,7 +10,7 @@ export default function SettingsPage() {
   const { isOnline } = useNetworkStatus()
 
   return (
-    <div className="container max-w-2xl py-10">
+    <main id="main-content" tabIndex={-1} className="container max-w-2xl py-10 focus:outline-none">
       <div className="mb-8 space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-muted-foreground">{t("description")}</p>
@@ -37,6 +37,6 @@ export default function SettingsPage() {
         {/* Localization/Personalization placeholder */}
         {/* We can move other settings here later */}
       </div>
-    </div>
+    </main>
   )
 }
