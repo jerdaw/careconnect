@@ -1,6 +1,6 @@
 ---
-status: completed
-last_updated: 2026-01-21
+status: planned
+last_updated: 2026-01-20
 owner: jer
 tags: [roadmap, v17.4, dashboard, partner-portal, feature-completion]
 ---

@@ -160,7 +160,7 @@ See [archive/2026-01-20-v17-3-accessibility.md](archive/2026-01-20-v17-3-accessi
 
 ## v17.4: Dashboard & Partner Portal Completion
 
-**Status**: Completed (2026-01-21)
+**Status**: Incomplete (In Progress)
 **Priority**: HIGH
 
 ### Scope
@@ -338,7 +338,7 @@ Items under evaluation for future roadmap inclusion:
 
 See [archive/](archive/) for implementation details:
 
-- [v17.4: Dashboard & Partner Portal](archive/2026-01-20-v17-4-dashboard-partner-portal.md) (2026-01-21)
+- [v17.4: Dashboard & Partner Portal](2026-01-17-v17-4-dashboard-partner-portal.md) (In Progress)
 - [v17.3: Accessibility Compliance](archive/2026-01-20-v17-3-accessibility.md) (2026-01-20)
 - [v17.2: Internationalization Completion](archive/2026-01-20-v17-2-internationalization.md) (2026-01-20)
 - [v17.1: Test Coverage & Quality Gates](archive/2026-01-19-v17-1-test-coverage.md) (2026-01-19)
@@ -380,16 +380,16 @@ Items removed from roadmap due to feasibility/scope concerns:
 
 Based on comprehensive audit (2026-01-20), here is the overall status:
 
-| Area                    | Status       | Blocking? | Est. Effort |
-| :---------------------- | :----------- | :-------- | :---------- |
-| **v17.0 Security**      | ✅ Completed | No        | 1-2 weeks   |
-| **v17.1 Test Coverage** | ✅ Completed | No        | 2-3 weeks   |
-| **v17.2 i18n**          | ✅ Completed | No        | 1 week      |
-| **v17.3 Accessibility** | ✅ Completed | No        | 1-2 weeks   |
-| **v17.4 Dashboard**     | ✅ Completed | No        | 1-2 weeks   |
-| **v17.5 Data Quality**  | ⚠️ Gaps      | No        | 3-4 weeks   |
-| **v17.6 PWA**           | ⚠️ Basic     | No        | 1 week      |
-| **Mobile App**          | ⏸️ Paused    | N/A       | 4-6 weeks   |
+| Area                    | Status        | Blocking? | Est. Effort |
+| :---------------------- | :------------ | :-------- | :---------- |
+| **v17.0 Security**      | ✅ Completed  | No        | 1-2 weeks   |
+| **v17.1 Test Coverage** | ✅ Completed  | No        | 2-3 weeks   |
+| **v17.2 i18n**          | ✅ Completed  | No        | 1 week      |
+| **v17.3 Accessibility** | ✅ Completed  | No        | 1-2 weeks   |
+| **v17.4 Dashboard**     | ⚠️ Incomplete | No        | 1-2 weeks   |
+| **v17.5 Data Quality**  | ⚠️ Gaps       | No        | 3-4 weeks   |
+| **v17.6 PWA**           | ⚠️ Basic      | No        | 1 week      |
+| **Mobile App**          | ⏸️ Paused     | N/A       | 4-6 weeks   |
 
 **Estimated Total to Production**: 6-10 weeks of focused development
 
