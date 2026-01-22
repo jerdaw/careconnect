@@ -1,22 +1,41 @@
 import { createClient } from "@/utils/supabase/server"
 import { AnalyticsCard } from "@/components/AnalyticsCard"
+import { getTranslations } from "next-intl/server"
+
+interface PartnerServiceAnalytics {
+  service_id: string
+  name: string
+  org_id: string
+  verification_level: string
+  helpful_yes_count: number
+  helpful_no_count: number
+  open_issues_count: number
+  last_feedback_at: string | null
+  helpfulness_percentage: number | null
+}
 
 export default async function PartnerAnalyticsPage() {
+  const t = await getTranslations("Analytics")
   const supabase = await createClient()
 
-  // Fetch Unmet Needs (Not Found)
-  const { data: unmetNeeds } = await supabase.from("unmet_needs_summary").select("*").limit(5).limit(5)
+  // ==========================================================================
+  // RLS-FIRST APPROACH: All queries automatically filtered by organization
+  // ==========================================================================
+  // The feedback and services tables have RLS policies that automatically
+  // filter results to only show data for the authenticated user's organization.
+  // No explicit org_id filters are needed in these queries.
+  // ==========================================================================
 
-  // Fetch Top Feedback - This would be per service ideally, but we'll show global for now or service specific
-  // For the partner view, we should perhaps aggregate specific to them.
-  // But let's verify if `feedback_aggregations` has permission filtering.
-  // `feedback_aggregations` is just a view, so RLS on underlying table applies?
-  // No, materialized views have their own RLS usually, or none.
-  // The migration didn't enable RLS on materialized views.
-  // So we should be careful.
-  // For now, let's just count totals for the "Total Searches" metric proxy.
+  // Fetch partner-specific service analytics using the new view
+  // This view automatically respects RLS from the services table
+  const { data: serviceAnalyticsRaw } = await supabase
+    .from("partner_service_analytics")
+    .select("*")
+    .order("last_feedback_at", { ascending: false, nullsFirst: false })
 
-  // Actually, we can just query the `feedback` table for stats since we have indexes.
+  const serviceAnalytics = (serviceAnalyticsRaw as unknown as PartnerServiceAnalytics[]) || []
+
+  // Count total feedback for this partner's services (RLS filters automatically)
   const { count: totalFeedback } = await supabase.from("feedback").select("*", { count: "exact", head: true })
 
   const { count: totalYes } = await supabase
@@ -24,93 +43,99 @@ export default async function PartnerAnalyticsPage() {
     .select("*", { count: "exact", head: true })
     .eq("feedback_type", "helpful_yes")
 
-  // Metric: % services with no feedback in 90 days
+  // Count partner's services (RLS filters automatically)
+  const { count: totalServicesCount } = await supabase.from("services").select("*", { count: "exact", head: true })
+
+  // Calculate stale services (no feedback in 90 days)
   const ninetyDaysAgo = new Date()
   ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
 
-  const { count: totalServicesCount } = await supabase.from("services").select("*", { count: "exact", head: true })
-
-  const { count: servicesWithRecentFeedback } = await supabase
-    .from("feedback_aggregations")
-    .select("*", { count: "exact", head: true })
-    .gt("last_feedback_at", ninetyDaysAgo.toISOString())
+  const servicesWithRecentFeedback = serviceAnalytics.filter(
+    (s) => s.last_feedback_at && new Date(s.last_feedback_at) > ninetyDaysAgo
+  ).length
 
   const stalePercent = totalServicesCount
-    ? Math.round(((totalServicesCount - (servicesWithRecentFeedback || 0)) / totalServicesCount) * 100) + "%"
+    ? Math.round(((totalServicesCount - servicesWithRecentFeedback) / totalServicesCount) * 100) + "%"
     : "0%"
 
-  // Fetch Services with Most Issues
-  const { data: buggyServices } = await supabase
-    .from("feedback_aggregations")
-    .select(
-      `
-      service_id,
-      open_issues_count,
-      services ( name )
-    `
-    )
-    .gt("open_issues_count", 0)
-    .order("open_issues_count", { ascending: false })
-    .limit(5)
+  // Get services with most issues (from analytics view)
+  const buggyServices = serviceAnalytics.filter((s) => s.open_issues_count > 0).slice(0, 5)
 
-  // Calculate Yes %
+  // Calculate helpfulness rate
   const totalHelpful = totalYes || 0
   const helpfulRate = totalFeedback ? Math.round((totalHelpful / totalFeedback) * 100) + "%" : "0%"
-
-  type UnmetNeed = { category_searched: string; request_count: number }
-  type BuggyService = { service_id: string; open_issues_count: number; services?: { name: string } }
-
-  const unmet = (unmetNeeds as UnmetNeed[]) || []
-  const topNeed = unmet.length > 0 ? (unmet[0]?.category_searched ?? "None") : "None"
-  // Wait, I messed up the ternary. unmet.length > 0 ? unmet[0].category_searched : "None" is enough.
 
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
-        <p className="text-muted-foreground">Insights into community needs and service gaps.</p>
+        <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("dashboard.description")}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <AnalyticsCard
-          title="Total Feedback"
+          title={t("dashboard.cards.totalFeedback.title")}
           value={totalFeedback?.toString() || "0"}
-          description="All time submissions"
+          description={t("dashboard.cards.totalFeedback.description")}
         />
-        <AnalyticsCard title="Avg Helpfulness" value={helpfulRate} description="Positive feedback rate" />
-        <AnalyticsCard title="Stale Services" value={stalePercent} description="No feedback in 90 days" />
-        <AnalyticsCard title="Top Need" value={topNeed} description="Missing category" />
+        <AnalyticsCard
+          title={t("dashboard.cards.helpfulnessRate.title")}
+          value={helpfulRate}
+          description={t("dashboard.cards.helpfulnessRate.description")}
+        />
+        <AnalyticsCard
+          title={t("dashboard.cards.staleServices.title")}
+          value={stalePercent}
+          description={t("dashboard.cards.staleServices.description")}
+        />
+        <AnalyticsCard
+          title={t("dashboard.cards.totalServices.title")}
+          value={totalServicesCount?.toString() || "0"}
+          description={t("dashboard.cards.totalServices.description")}
+        />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {/* Unmet Needs Table */}
+        {/* Service Performance Table */}
         <div className="rounded-md border bg-white p-4 dark:bg-neutral-900">
           <div className="mb-4">
-            <h3 className="font-semibold">Top Unmet Needs</h3>
-            <p className="text-sm text-neutral-500">Categories searched when no results found.</p>
+            <h3 className="font-semibold">{t("dashboard.tables.performance.title")}</h3>
+            <p className="text-sm text-neutral-500">{t("dashboard.tables.performance.description")}</p>
           </div>
           <div className="relative w-full overflow-auto">
             <table className="w-full caption-bottom text-sm">
               <thead className="[&_tr]:border-b">
                 <tr className="border-b transition-colors hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50">
-                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">Category</th>
-                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">Requests</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">
+                    {t("dashboard.tables.common.service")}
+                  </th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">
+                    {t("dashboard.tables.performance.helpfulness")}
+                  </th>
                 </tr>
               </thead>
               <tbody className="[&_tr:last-child]:border-0">
-                {unmet.map((item) => (
+                {serviceAnalytics.slice(0, 5).map((item) => (
                   <tr
-                    key={item.category_searched}
+                    key={item.service_id}
                     className="border-b transition-colors hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50"
                   >
-                    <td className="p-4 align-middle">{item.category_searched}</td>
-                    <td className="p-4 align-middle">{item.request_count}</td>
+                    <td className="p-4 align-middle">{item.name}</td>
+                    <td className="p-4 align-middle">
+                      <span
+                        className={
+                          item.helpfulness_percentage && item.helpfulness_percentage >= 70 ? "text-green-600" : ""
+                        }
+                      >
+                        {item.helpfulness_percentage ? `${item.helpfulness_percentage}%` : t("dashboard.noData")}
+                      </span>
+                    </td>
                   </tr>
                 ))}
-                {unmet.length === 0 && (
+                {serviceAnalytics.length === 0 && (
                   <tr className="border-b">
                     <td colSpan={2} className="p-4 text-center text-neutral-500">
-                      No data available
+                      {t("dashboard.tables.performance.empty")}
                     </td>
                   </tr>
                 )}
@@ -119,36 +144,40 @@ export default async function PartnerAnalyticsPage() {
           </div>
         </div>
 
-        {/* Buggy Services Table */}
+        {/* Services Needing Attention */}
         <div className="rounded-md border bg-white p-4 dark:bg-neutral-900">
           <div className="mb-4">
-            <h3 className="font-semibold">Services with Most Issues</h3>
-            <p className="text-sm text-neutral-500">Services needing data verification.</p>
+            <h3 className="font-semibold">{t("dashboard.tables.issues.title")}</h3>
+            <p className="text-sm text-neutral-500">{t("dashboard.tables.issues.description")}</p>
           </div>
           <div className="relative w-full overflow-auto">
             <table className="w-full caption-bottom text-sm">
               <thead className="[&_tr]:border-b">
                 <tr className="border-b transition-colors hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50">
-                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">Service</th>
-                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">Open Issues</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">
+                    {t("dashboard.tables.common.service")}
+                  </th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-neutral-500">
+                    {t("dashboard.tables.issues.openIssues")}
+                  </th>
                 </tr>
               </thead>
               <tbody className="[&_tr:last-child]:border-0">
-                {((buggyServices as BuggyService[]) || []).map((item) => (
+                {buggyServices.map((item) => (
                   <tr
                     key={item.service_id}
                     className="border-b transition-colors hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50"
                   >
-                    <td className="p-4 align-middle">{item.services?.name || item.service_id}</td>
+                    <td className="p-4 align-middle">{item.name}</td>
                     <td className="p-4 align-middle">
                       <span className="font-bold text-amber-600">{item.open_issues_count}</span>
                     </td>
                   </tr>
                 ))}
-                {(!buggyServices || buggyServices.length === 0) && (
+                {buggyServices.length === 0 && (
                   <tr className="border-b">
                     <td colSpan={2} className="p-4 text-center text-neutral-500">
-                      No open issues found
+                      {t("dashboard.tables.issues.empty")}
                     </td>
                   </tr>
                 )}

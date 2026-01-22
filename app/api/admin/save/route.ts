@@ -58,6 +58,17 @@ export async function POST(req: NextRequest) {
       performed_by: user.id,
     })
 
+    // 4. Admin Actions Log (Phase 3)
+    await supabase.rpc("log_admin_action", {
+      p_action: "service_edit",
+      p_performed_by: user.id,
+      p_target_service_id: service.id,
+      p_details: {
+        operation: oldService ? "update" : "create",
+        service_name: service.name,
+      },
+    })
+
     return createApiResponse({ success: true })
   } catch (err) {
     return handleApiError(err)

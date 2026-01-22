@@ -10,7 +10,8 @@ export async function generateMetadata() {
   return { title: t("services.title") }
 }
 
-export default async function PartnerServicesPage() {
+export default async function PartnerServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const t = await getTranslations("Dashboard")
   const supabase = await createClient()
 
@@ -28,7 +29,7 @@ export default async function PartnerServicesPage() {
         <h1 className="text-2xl font-bold">{t("services.title")}</h1>
       </div>
       <Suspense fallback={<Skeleton className="h-64 w-full" />}>
-        <PartnerServiceList partnerId={user.id} />
+        <PartnerServiceList partnerId={user.id} locale={locale} />
       </Suspense>
     </div>
   )

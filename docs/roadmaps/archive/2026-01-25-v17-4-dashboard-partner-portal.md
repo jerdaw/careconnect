@@ -1,8 +1,12 @@
 ---
-status: planned
-last_updated: 2026-01-20
+status: complete-pending-testing
+last_updated: 2026-01-24
 owner: jer
 tags: [roadmap, v17.4, dashboard, partner-portal, feature-completion]
+phase_1_status: complete-pending-testing
+phase_2_status: complete-pending-testing
+phase_3_status: complete-pending-testing
+phase_4_status: complete-pending-testing
 ---
 
 # v17.4: Dashboard & Partner Portal Completion
@@ -11,6 +15,10 @@ tags: [roadmap, v17.4, dashboard, partner-portal, feature-completion]
 **Estimated Effort:** 2-3 weeks (single developer)
 **Dependencies:** v17.0 (RLS policies MUST be deployed first)
 **Impact:** Enables partners to self-manage services
+**Phase 1 Status:** ✅ Complete - Ready for Testing (2026-01-22)
+**Phase 2 Status:** ✅ Complete - Ready for Testing (2026-01-23)
+**Phase 3 Status:** ✅ Complete - Ready for Testing (2026-01-24)
+**Phase 4 Status:** ✅ Complete - Ready for Testing (2026-01-24)
 
 ## Executive Summary
 
@@ -21,7 +29,20 @@ Complete the partner dashboard and admin panel to production quality. The dashbo
 
 ---
 
-## Phase 1: Extended RLS Policies for Dashboard Tables (2-3 days)
+## Phase 1: Extended RLS Policies for Dashboard Tables (2-3 days) ✅
+
+> [!SUCCESS]
+> **Status:** Complete - Ready for Testing (2026-01-22)
+>
+> **Implementation:**
+>
+> - Migration: `supabase/migrations/20260122000000_v17_4_phase1_rls_extensions.sql`
+> - Updated: Dashboard analytics, feedback pages, service list
+> - Documentation: `docs/implementation/v17-4-phase1-summary.md`
+> - Testing Guide: `docs/testing/v17-4-phase1-testing-guide.md`
+> - Test Queries: `docs/testing/v17-4-phase1-test-queries.sql`
+>
+> **Next Steps:** Follow testing guide before proceeding to Phase 2
 
 ### 1.1 Prerequisite Check
 
@@ -181,7 +202,21 @@ const { data: analytics } = await supabase.from("search_analytics").select("*").
 
 ---
 
-## Phase 2: Missing Dashboard Features (4-5 days)
+## Phase 2: Missing Dashboard Features (4-5 days) ✅
+
+> [!SUCCESS]
+> **Status:** Complete - Ready for Testing (2026-01-23)
+>
+> **Implementation:**
+>
+> - Migration: `supabase/migrations/20260123000000_v17_4_phase2_dashboard_features.sql`
+> - Settings Page: Enhanced with notification preferences and member management
+> - Service Creation: Full CRUD workflow with form and validation
+> - Member Management: Invite, manage roles, remove members
+> - Notifications: Already implemented (from previous migration)
+> - Documentation: `docs/implementation/v17-4-phase2-summary.md`
+>
+> **Next Steps:** Follow testing guide before proceeding to Phase 3
 
 ### 2.1 Settings Page
 
@@ -483,6 +518,23 @@ export async function markNotificationRead(id: string) {
 
 ---
 
+## Phase 3: Admin Panel Improvements (3-4 days) ✅
+
+> [!SUCCESS]
+> **Status:** Complete - Ready for Testing (2026-01-24)
+>
+> **Implementation:**
+>
+> - Migration: `supabase/migrations/20260124000000_v17_4_phase3_admin_improvements.sql`
+> - Enhanced: Admin service form with all missing fields
+> - Created: Reindex progress tracking system
+> - Updated: Admin save endpoint with action logging
+> - Updated: Push endpoint with segment targeting
+> - Component: ReindexProgress with live progress display
+> - Documentation: `docs/implementation/v17-4-phase3-summary.md`
+>
+> **Next Steps:** Follow testing guide before proceeding to Phase 4
+
 ## Phase 3: Admin Panel Improvements (3-4 days)
 
 ### 3.1 Admin Save to Database
@@ -674,7 +726,31 @@ Add sections:
 
 ---
 
-## Phase 4: RBAC Implementation (2-3 days)
+## Phase 4: RBAC Implementation (2-3 days) ✅
+
+> [!SUCCESS]
+> **Status:** Complete - Ready for Testing (2026-01-24)
+>
+> **Implementation:**
+>
+> - RBAC Utilities: `lib/rbac.ts` (285 lines) - Permission matrix and role hierarchy
+> - Member Actions: `lib/actions/members.ts` (271 lines) - Role management server actions
+> - React Hook: `hooks/useRBAC.ts` (79 lines) - Memoized permission checks for UI
+> - Enhanced: `components/dashboard/MemberManagement.tsx` with ownership transfer
+> - Updated: `lib/actions/services.ts` with permission enforcement
+> - Documentation: `docs/implementation/v17-4-phase4-summary.md` (comprehensive guide)
+>
+> **Key Features:**
+>
+> - 4-tier role hierarchy (owner > admin > editor > viewer)
+> - 19 granular permissions across 5 categories
+> - Defense-in-depth security (UI + Server Actions + RLS)
+> - Ownership transfer with safety checks and rollback
+> - Dynamic role assignment UI with permission-based visibility
+>
+> **No Database Migration Required** - Uses existing `organization_members` table from Phase 2
+>
+> **Next Steps:** Follow the testing guide in `docs/implementation/v17-4-phase4-summary.md`
 
 ### 4.1 Role Hierarchy
 

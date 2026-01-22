@@ -1,5 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js"
 import { AuthorizationError, NotFoundError } from "@/lib/api-utils"
+import { OrganizationRole, RolePermissions, hasPermission } from "@/lib/rbac"
 
 /**
  * Asserts that a user has permission to modify a service based on organization membership.
@@ -126,4 +127,58 @@ export async function getEffectivePermissions(supabase: SupabaseClient, userId: 
     canViewPrivate: ["owner", "admin", "editor", "viewer"].includes(member.role),
     role: member.role,
   }
+}
+
+/**
+ * Asserts that a user has a specific permission within an organization.
+ * Uses the centralized RBAC permission system.
+ * Throws AuthorizationError if access is denied.
+ */
+export async function assertPermission(
+  supabase: SupabaseClient,
+  userId: string,
+  orgId: string,
+  permission: keyof RolePermissions
+): Promise<OrganizationRole> {
+  const { data: member, error } = await supabase
+    .from("organization_members")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("organization_id", orgId)
+    .single()
+
+  if (error || !member) {
+    throw new AuthorizationError("You are not a member of this organization")
+  }
+
+  const role = member.role as OrganizationRole
+
+  if (!hasPermission(role, permission)) {
+    throw new AuthorizationError(`Access denied: Requires ${permission} permission`)
+  }
+
+  return role
+}
+
+/**
+ * Gets the user's role within an organization.
+ * Returns null if user is not a member.
+ */
+export async function getUserOrganizationRole(
+  supabase: SupabaseClient,
+  userId: string,
+  orgId: string
+): Promise<OrganizationRole | null> {
+  const { data: member, error } = await supabase
+    .from("organization_members")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("organization_id", orgId)
+    .single()
+
+  if (error || !member) {
+    return null
+  }
+
+  return member.role as OrganizationRole
 }

@@ -19,6 +19,7 @@ const mockGetUser = vi.fn().mockResolvedValue({
   error: null,
 })
 const mockSingle = vi.fn().mockResolvedValue({ data: { id: "audit123" }, error: null })
+const mockRpc = vi.fn().mockResolvedValue({ data: null, error: null })
 
 // Standard SSR mocking via next-mocks
 vi.mocked(createServerClient).mockReturnValue({
@@ -33,6 +34,7 @@ vi.mocked(createServerClient).mockReturnValue({
       then: (resolve: any) => resolve({ data: null, error: null }),
     })),
   })),
+  rpc: mockRpc,
 } as any)
 
 // Mock Fetch for OneSignal

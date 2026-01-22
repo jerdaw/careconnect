@@ -122,6 +122,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 | `npm run phone-validate`  | Validate phone numbers (Twilio)         |
 | `npm run validate-data`   | Validate data schema (Zod)              |
 | `npm run check-staleness` | Check for stale/unverified data         |
+| `npm run audit:data`      | Audit data quality gaps (enrichment)    |
 | `npm run analyze`         | Analyze production bundle size          |
 | `npm run i18n-audit`      | Audit translation key coverage          |
 | `npm run audit:qa`        | Audit data quality and integrity        |

@@ -12,12 +12,19 @@ vi.mock("next/headers", () => ({
 }))
 
 // Mock @supabase/ssr
+const mockQueryBuilder = {
+  select: vi.fn().mockReturnThis(),
+  is: vi.fn().mockResolvedValue({ count: 100, error: null }),
+  insert: vi.fn().mockReturnThis(),
+  single: vi.fn().mockResolvedValue({ data: { id: "progress-123" }, error: null }),
+}
+
 const mockSupabase = {
   auth: {
     getUser: vi.fn(),
   },
-  from: vi.fn().mockReturnThis(),
-  insert: vi.fn().mockReturnThis(),
+  from: vi.fn(() => mockQueryBuilder),
+  rpc: vi.fn().mockResolvedValue({ data: null, error: null }),
 }
 vi.mock("@supabase/ssr", () => ({
   createServerClient: vi.fn(() => mockSupabase),
@@ -42,6 +49,12 @@ describe("Admin Reindex API", () => {
     vi.clearAllMocks()
     mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: "admin-id" } }, error: null })
     vi.mocked(assertAdminRole).mockResolvedValue(undefined as any)
+
+    // Reset query builder mocks
+    mockQueryBuilder.select.mockReturnThis()
+    mockQueryBuilder.is.mockResolvedValue({ count: 100, error: null })
+    mockQueryBuilder.insert.mockReturnThis()
+    mockQueryBuilder.single.mockResolvedValue({ data: { id: "progress-123" }, error: null })
   })
 
   it("calls reindex command and returns 200", async () => {
@@ -54,12 +67,18 @@ describe("Admin Reindex API", () => {
     expect(mockSupabase.from).toHaveBeenCalledWith("audit_logs")
   })
 
-  it("handles exec failures", async () => {
+  it("starts reindex even if exec will fail (background processing)", async () => {
     mockExec.mockImplementation(((cmd: string, cb: any) => {
       cb(new Error("Failed"), null)
     }) as any)
 
+    // Reindexing happens in background, so POST still returns 200 with progress ID
     const res = await POST()
-    expect(res.status).toBe(500)
+    const { data } = await parseResponse<{ data: { success: boolean; progressId: string } }>(res)
+
+    expect(res.status).toBe(200)
+    expect(data.data.success).toBe(true)
+    expect(data.data.progressId).toBe("progress-123")
+    // The actual failure is logged to the progress record asynchronously
   })
 })

@@ -7,14 +7,27 @@ import { useAuth } from "@/components/AuthProvider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Loader2, Save, UserPlus, Shield } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
+import { Loader2, Save, Shield, Bell, Users } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
+import { MemberManagement } from "@/components/dashboard/MemberManagement"
 
 interface OrgData {
   id: string
   name: string
   domain: string | null
+}
+
+interface OrgSettings {
+  website: string | null
+  phone: string | null
+  description: string | null
+  email_on_feedback: boolean
+  email_on_service_update: boolean
+  weekly_analytics_report: boolean
 }
 
 export default function SettingsPage() {
@@ -26,9 +39,17 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [org, setOrg] = useState<OrgData | null>(null)
+  const [settings, setSettings] = useState<OrgSettings>({
+    website: null,
+    phone: null,
+    description: null,
+    email_on_feedback: true,
+    email_on_service_update: true,
+    weekly_analytics_report: false,
+  })
 
   useEffect(() => {
-    async function fetchOrg() {
+    async function fetchData() {
       if (!user) return
 
       // Fetch organization linked to user
@@ -41,11 +62,30 @@ export default function SettingsPage() {
       const orgs = (data as unknown as { organizations: OrgData }).organizations
       if (orgs) {
         setOrg(orgs)
+
+        // Fetch organization settings
+        const { data: settingsData } = await supabase
+          .from("organization_settings")
+          .select("*")
+          .eq("organization_id", orgs.id)
+          .single()
+
+        if (settingsData) {
+          const data = settingsData as unknown as OrgSettings
+          setSettings({
+            website: data.website,
+            phone: data.phone,
+            description: data.description,
+            email_on_feedback: data.email_on_feedback ?? true,
+            email_on_service_update: data.email_on_service_update ?? true,
+            weekly_analytics_report: data.weekly_analytics_report ?? false,
+          })
+        }
       }
       setLoading(false)
     }
 
-    fetchOrg()
+    fetchData()
   }, [user, supabase])
 
   const handleOrgUpdate = async (e: React.FormEvent) => {
@@ -63,14 +103,45 @@ export default function SettingsPage() {
 
     if (error) {
       toast({
-        title: "Error",
-        description: "Failed to update organization",
+        title: t("toast.errorTitle"),
+        description: t("toast.updateOrganizationFailed"),
         variant: "destructive",
       })
     } else {
       toast({
-        title: "Success",
-        description: "Organization updated successfully",
+        title: t("toast.successTitle"),
+        description: t("toast.organizationUpdated"),
+      })
+    }
+    setSaving(false)
+  }
+
+  const handleSettingsUpdate = async () => {
+    if (!org) return
+
+    setSaving(true)
+
+    // Upsert settings (insert or update)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase.from("organization_settings") as any).upsert(
+      {
+        organization_id: org.id,
+        ...settings,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "organization_id" }
+    )
+
+    if (error) {
+      toast({
+        title: t("toast.errorTitle"),
+        description: t("toast.updateSettingsFailed"),
+        variant: "destructive",
+      })
+    } else {
+      toast({
+        title: t("toast.successTitle"),
+        description: t("toast.settingsUpdated"),
       })
     }
     setSaving(false)
@@ -85,7 +156,7 @@ export default function SettingsPage() {
   }
 
   if (!org) {
-    return <div className="p-8 text-center text-neutral-500">No organization found for your account.</div>
+    return <div className="p-8 text-center text-neutral-500">{t("noOrganization")}</div>
   }
 
   return (
@@ -113,7 +184,7 @@ export default function SettingsPage() {
                   id="org-name"
                   value={org.name}
                   onChange={(e) => setOrg({ ...org, name: e.target.value })}
-                  placeholder="Organization Name"
+                  placeholder={t("organization.placeholders.name")}
                   required
                 />
               </div>
@@ -123,34 +194,113 @@ export default function SettingsPage() {
                   id="org-domain"
                   value={org.domain || ""}
                   onChange={(e) => setOrg({ ...org, domain: e.target.value })}
-                  placeholder="example.com"
+                  placeholder={t("organization.placeholders.domain")}
                 />
                 <p className="text-xs text-neutral-500">{t("organization.domainHint")}</p>
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="org-website">{t("organization.website")}</Label>
+                <Input
+                  id="org-website"
+                  type="url"
+                  value={settings.website || ""}
+                  onChange={(e) => setSettings({ ...settings, website: e.target.value })}
+                  placeholder={t("organization.placeholders.website")}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="org-phone">{t("organization.phone")}</Label>
+                <Input
+                  id="org-phone"
+                  type="tel"
+                  value={settings.phone || ""}
+                  onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
+                  placeholder={t("organization.placeholders.phone")}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="org-description">{t("organization.descriptionLabel")}</Label>
+                <Textarea
+                  id="org-description"
+                  value={settings.description || ""}
+                  onChange={(e) => setSettings({ ...settings, description: e.target.value })}
+                  placeholder={t("organization.placeholders.description")}
+                  rows={3}
+                />
+              </div>
               <Button type="submit" disabled={saving}>
                 {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-                {saving ? "Saving..." : "Save Changes"}
+                {saving ? t("actions.saving") : t("actions.saveChanges")}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        {/* Team Members Placeholder */}
+        {/* Notification Preferences */}
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <div>
-              <CardTitle>{t("members.title")}</CardTitle>
-              <CardDescription>Manage your team and their access roles.</CardDescription>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Bell className="text-primary-600 h-5 w-5" />
+              {t("notifications.title")}
+            </CardTitle>
+            <CardDescription>{t("notifications.description")}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between space-x-4">
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="email-feedback">{t("notifications.emailOnFeedback.title")}</Label>
+                <p className="text-sm text-neutral-500">{t("notifications.emailOnFeedback.description")}</p>
+              </div>
+              <Switch
+                id="email-feedback"
+                checked={settings.email_on_feedback}
+                onCheckedChange={(checked) => setSettings({ ...settings, email_on_feedback: checked })}
+              />
             </div>
-            <Button variant="outline" size="sm" disabled>
-              <UserPlus className="mr-2 h-4 w-4" />
-              {t("members.invite")}
-            </Button>
+            <Separator />
+            <div className="flex items-center justify-between space-x-4">
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="email-updates">{t("notifications.emailOnServiceUpdates.title")}</Label>
+                <p className="text-sm text-neutral-500">{t("notifications.emailOnServiceUpdates.description")}</p>
+              </div>
+              <Switch
+                id="email-updates"
+                checked={settings.email_on_service_update}
+                onCheckedChange={(checked) => setSettings({ ...settings, email_on_service_update: checked })}
+              />
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between space-x-4">
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="weekly-report">{t("notifications.weeklyAnalyticsReport.title")}</Label>
+                <p className="text-sm text-neutral-500">{t("notifications.weeklyAnalyticsReport.description")}</p>
+              </div>
+              <Switch
+                id="weekly-report"
+                checked={settings.weekly_analytics_report}
+                onCheckedChange={(checked) => setSettings({ ...settings, weekly_analytics_report: checked })}
+              />
+            </div>
+            <div className="pt-4">
+              <Button onClick={handleSettingsUpdate} disabled={saving}>
+                {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                {saving ? t("actions.saving") : t("actions.savePreferences")}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Team Members */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="text-primary-600 h-5 w-5" />
+              {t("members.title")}
+            </CardTitle>
+            <CardDescription>{t("members.description")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-md border p-4 text-center text-sm text-neutral-500">
-              Team management features coming soon.
-            </div>
+            <MemberManagement organizationId={org.id} />
           </CardContent>
         </Card>
       </div>

@@ -25,6 +25,7 @@ const mockSupabase = {
     getUser: vi.fn(),
   },
   from: vi.fn(() => mockQueryBuilder),
+  rpc: vi.fn().mockResolvedValue({ data: null, error: null }),
 }
 
 vi.mock("@supabase/ssr", () => ({

@@ -29,7 +29,16 @@ export default async function FeedbackPage() {
     redirect("/login")
   }
 
-  // Fetch feedback for services owned by this user
+  // ==========================================================================
+  // RLS-FIRST APPROACH: Feedback automatically filtered by organization
+  // ==========================================================================
+  // The "Partners can view their feedback" RLS policy on the feedback table
+  // automatically filters this query to only return feedback for services
+  // owned by the authenticated user's organization.
+  // No explicit org_id or service_id filter is needed here.
+  // ==========================================================================
+
+  // Fetch feedback for services owned by this user's organization (RLS filters automatically)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: feedback, error } = await (supabase.from("feedback" as any) as any)
     .select(
@@ -53,7 +62,7 @@ export default async function FeedbackPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="text-neutral-500">{t("description") || "View and manage issues reported by the community."}</p>
+        <p className="text-neutral-500">{t("description")}</p>
       </div>
 
       <FeedbackList feedback={typedFeedback} />

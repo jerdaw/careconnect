@@ -143,6 +143,10 @@ The platform uses **on-device AI** via WebLLM for privacy-preserving smart searc
 3. Fallback to local JSON if DB unavailable
 4. In-memory cache on server
 
+**Data Enrichment:**
+
+For filling missing fields (scope, coordinates, hours, access scripts), see `docs/governance/data-enrichment-sop.md`. Use `/data-enrichment` workflow for step-by-step process.
+
 **Key Types:**
 
 - `types/service.ts::Service` - Full internal schema (with AI metadata)
@@ -182,6 +186,68 @@ The app uses **next-intl** for i18n with 7 locales: `en, fr, zh-Hans, ar, pt, es
 - **Middleware**: `middleware.ts` refreshes session, guards `/dashboard` and `/admin` routes
 - **Protected Routes**: Redirect to `/[locale]/login?next={intended_path}` if unauthenticated
 - **Client**: `lib/supabase.ts` (universal client, session persistence browser-only)
+
+**RBAC System (v17.4):**
+
+The platform implements a comprehensive Role-Based Access Control system with 4 tiers and 19 granular permissions:
+
+**Role Hierarchy:**
+
+- **Owner**: Full control (transfer ownership, delete org, manage all services/members)
+- **Admin**: Organization management (manage services/members, no ownership powers)
+- **Editor**: Content creation (create/edit own services only)
+- **Viewer**: Read-only access (view services, analytics, feedback)
+
+**Permission Categories:**
+
+1. **Organization**: `canTransferOwnership`, `canDeleteOrganization`
+2. **Services**: `canCreateServices`, `canEditOwnServices`, `canEditAllServices`, `canDeleteServices`, `canPublishServices`
+3. **Members**: `canInviteMembers`, `canChangeRoles`, `canRemoveMembers`
+4. **Read Access**: `canViewServices`, `canViewMembers`, `canViewAnalytics`, `canViewFeedback`
+5. **Engagement**: `canRespondToFeedback`, `canSendNotifications`
+
+**Key Files:**
+
+- `lib/rbac.ts` - Core permission matrix and role utilities
+- `lib/auth/authorization.ts` - Centralized authorization helpers
+- `lib/actions/members.ts` - Member management with RBAC enforcement
+- `hooks/useRBAC.ts` - React hook for permission checks in UI
+- `components/dashboard/MemberManagement.tsx` - Member/role UI
+
+**Authorization Pattern:**
+
+All server actions use centralized authorization following ADR-007:
+
+```typescript
+import { assertPermission } from "@/lib/auth/authorization"
+
+export async function myProtectedAction() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const membership = await getUserOrganizationMembership(user.id)
+
+  // Throws AuthorizationError if permission denied
+  await assertPermission(supabase, user.id, membership.organization_id, "canEditAllServices")
+
+  // Perform authorized action...
+}
+```
+
+**Defense in Depth:**
+
+1. **UI Layer**: `useRBAC()` hook hides/disables unauthorized actions
+2. **Server Actions**: `assertPermission()` validates before mutations
+3. **Database RLS**: Row-level security enforces org_id boundaries
+
+**Special Cases:**
+
+- **Ownership Transfer**: Uses atomic Postgres function to prevent dual-owner state
+- **Edit Own Services**: Editors can only modify services they created (checked via `created_by` field)
+- **Self-Removal**: Users cannot remove themselves (use separate "Leave Organization" feature)
+
+See `docs/implementation/v17-4-phase4-audit-fixes.md` for comprehensive RBAC implementation details.
 
 ### Partner Portal (Dashboard)
 

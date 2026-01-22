@@ -249,4 +249,23 @@ export interface Service {
   distance?: number
   deleted_at?: string | null
   deleted_by?: string | null
+
+  /**
+   * Internal admin notes about service quality, verification issues, etc.
+   * Phase 3: Admin Panel Improvements (v17.4)
+   * Not visible to partners or public.
+   */
+  admin_notes?: string
+
+  /**
+   * Timestamp of last admin review/verification
+   * Phase 3: Admin Panel Improvements (v17.4)
+   */
+  last_admin_review?: string
+
+  /**
+   * Admin user who last reviewed this service
+   * Phase 3: Admin Panel Improvements (v17.4)
+   */
+  reviewed_by?: string
 }

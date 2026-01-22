@@ -96,7 +96,46 @@
     "totalServices": "إجمالي الخدمات",
     "totalViews": "إجمالي المشاهدات (30 يوم)",
     "vsPeriod": "مقابل {period}",
-    "totalAllTime": "مجموع كل الأوقات"
+    "totalAllTime": "مجموع كل الأوقات",
+    "dashboard": {
+      "description": "Performance insights for your organization's services.",
+      "noData": "No data",
+      "cards": {
+        "totalFeedback": {
+          "title": "Total Feedback",
+          "description": "All time submissions"
+        },
+        "helpfulnessRate": {
+          "title": "Helpfulness Rate",
+          "description": "Positive feedback"
+        },
+        "staleServices": {
+          "title": "Stale Services",
+          "description": "No feedback in 90 days"
+        },
+        "totalServices": {
+          "title": "Total Services",
+          "description": "Active services"
+        }
+      },
+      "tables": {
+        "common": {
+          "service": "Service"
+        },
+        "performance": {
+          "title": "Service Performance",
+          "description": "Your services with feedback activity.",
+          "helpfulness": "Helpfulness",
+          "empty": "No services with feedback yet"
+        },
+        "issues": {
+          "title": "Services with Open Issues",
+          "description": "Services needing attention.",
+          "openIssues": "Open Issues",
+          "empty": "No open issues - great job!"
+        }
+      }
+    }
   },
   "Navigation": {
     "home": "Home",
@@ -218,6 +257,113 @@
         "description": "This action cannot be undone. This will permanently delete the service listing.",
         "confirm": "Delete",
         "cancel": "Cancel"
+      },
+      "createService": "Create Service",
+      "createFirstService": "Create Your First Service",
+      "toast": {
+        "errorTitle": "Error",
+        "successTitle": "Success",
+        "deleteFailed": "Failed to delete service. You may not have permission.",
+        "deleteSuccess": "Service deleted successfully"
+      },
+      "create": {
+        "title": "Create New Service",
+        "subtitle": "Add a new service to your organization's directory",
+        "toast": {
+          "successTitle": "Success",
+          "successDescription": "Service created successfully! It will be reviewed before being published.",
+          "errorTitle": "Error",
+          "createFailed": "Failed to create service",
+          "unexpectedError": "An unexpected error occurred"
+        },
+        "sections": {
+          "basic": {
+            "title": "Basic Information",
+            "description": "Core details about the service"
+          },
+          "contact": {
+            "title": "Contact Information",
+            "description": "At least one contact method is required"
+          },
+          "additional": {
+            "title": "Additional Details",
+            "description": "Optional information to help users"
+          }
+        },
+        "fields": {
+          "name": {
+            "label": "Service Name",
+            "placeholder": "e.g., Food Bank Services"
+          },
+          "nameFr": {
+            "label": "Service Name (French)",
+            "placeholder": "e.g., Services de banque alimentaire"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Describe what this service provides...",
+            "minLengthHint": "Minimum 10 characters"
+          },
+          "descriptionFr": {
+            "label": "Description (French)",
+            "placeholder": "Décrivez ce que ce service fournit..."
+          },
+          "category": {
+            "label": "Category"
+          },
+          "phone": {
+            "label": "Phone",
+            "placeholder": "+1 (613) 555-1234",
+            "crisisRequiredHint": "Crisis services require a phone number"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "contact@example.com"
+          },
+          "website": {
+            "label": "Website",
+            "placeholder": "https://example.com"
+          },
+          "address": {
+            "label": "Physical Address",
+            "placeholder": "123 Main St, Kingston, ON K7L 1A1"
+          },
+          "hours": {
+            "label": "Hours of Operation",
+            "placeholder": "e.g., Mon-Fri 9:00 AM - 5:00 PM"
+          },
+          "fees": {
+            "label": "Fees",
+            "placeholder": "e.g., Free, Sliding scale, $50"
+          },
+          "eligibility": {
+            "label": "Eligibility Criteria",
+            "placeholder": "Who can access this service?"
+          },
+          "applicationProcess": {
+            "label": "How to Apply",
+            "placeholder": "Steps to access this service"
+          }
+        },
+        "categories": {
+          "food": "Food",
+          "crisis": "Crisis",
+          "housing": "Housing",
+          "health": "Health",
+          "legal": "Legal",
+          "financial": "Financial",
+          "employment": "Employment",
+          "education": "Education",
+          "transport": "Transport",
+          "community": "Community",
+          "indigenous": "Indigenous",
+          "wellness": "Wellness"
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "creating": "Creating...",
+          "createService": "Create Service"
+        }
       }
     },
     "logout": "تسجيل الخروج",
@@ -238,17 +384,131 @@
         "description": "Information about your organization visible to others.",
         "name": "Organization Name",
         "domain": "Email Domain",
-        "domainHint": "Used for automatic member verification"
+        "domainHint": "Used for automatic member verification",
+        "website": "Website",
+        "phone": "Phone",
+        "descriptionLabel": "Description",
+        "placeholders": {
+          "name": "Organization Name",
+          "domain": "example.com",
+          "website": "https://example.com",
+          "phone": "+1 (555) 123-4567",
+          "description": "Brief description of your organization"
+        }
       },
       "members": {
         "title": "Team Members",
         "invite": "Invite Member",
-        "role": "Role"
+        "role": "Role",
+        "description": "Manage your team and their access roles.",
+        "roles": {
+          "owner": {
+            "label": "Owner",
+            "description": "Full control of organization, services, and members. Can transfer ownership."
+          },
+          "admin": {
+            "label": "Administrator",
+            "description": "Can manage services, members, and settings. Cannot transfer ownership or delete organization."
+          },
+          "editor": {
+            "label": "Editor",
+            "description": "Can create and edit own services. Can view analytics and respond to feedback."
+          },
+          "viewer": {
+            "label": "Viewer",
+            "description": "Read-only access. Can view services, analytics, and feedback but cannot make changes."
+          }
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "sending": "Sending...",
+          "sendInvitation": "Send Invitation",
+          "remove": "Remove",
+          "transferring": "Transferring..."
+        },
+        "toast": {
+          "errorTitle": "Error",
+          "successTitle": "Success",
+          "loadMembersFailed": "Failed to load members",
+          "fillAllFields": "Please fill in all fields",
+          "alreadyInvited": "This email is already invited or is already a member",
+          "invitationSent": "Invitation sent to {email}",
+          "invitationFailed": "Failed to send invitation",
+          "cancelInvitationFailed": "Failed to cancel invitation",
+          "invitationCancelled": "Invitation cancelled",
+          "updateRoleFailed": "Failed to update role",
+          "roleUpdated": "Member role updated",
+          "removeMemberFailed": "Failed to remove member",
+          "memberRemoved": "Member removed successfully",
+          "transferOwnershipFailed": "Failed to transfer ownership",
+          "ownershipTransferred": "Ownership transferred to {email}. You are now an administrator."
+        },
+        "management": {
+          "teamMembersHeading": "Team Members ({count})",
+          "youBadge": "You",
+          "inviteDialog": {
+            "title": "Invite Team Member",
+            "description": "Send an invitation to join your organization. They'll receive an email with a link to accept.",
+            "emailLabel": "Email Address",
+            "emailPlaceholder": "colleague@example.com"
+          },
+          "table": {
+            "member": "Member",
+            "role": "Role",
+            "joined": "Joined",
+            "actions": "Actions"
+          },
+          "removeMemberDialog": {
+            "title": "Remove Member",
+            "description": "Are you sure you want to remove this member? They will lose access to the organization."
+          },
+          "transferDialog": {
+            "title": "Transfer Ownership",
+            "description": "Transfer ownership of this organization to {email}. You will become an administrator and lose owner privileges. This action cannot be undone.",
+            "warningTitle": "Warning:",
+            "warningBody": "After transferring ownership, only the new owner can transfer it back to you. Make sure you trust this person with full control of the organization.",
+            "confirm": "Transfer Ownership"
+          },
+          "pendingInvitationsHeading": "Pending Invitations ({count})",
+          "pendingTable": {
+            "email": "Email",
+            "role": "Role",
+            "expires": "Expires",
+            "actions": "Actions"
+          }
+        }
       },
       "notifications": {
         "title": "Notification Preferences",
         "emailAlerts": "Email Alerts",
-        "pushAlerts": "Push Notifications"
+        "pushAlerts": "Push Notifications",
+        "description": "Choose how and when you want to receive notifications about your services.",
+        "emailOnFeedback": {
+          "title": "Email on Feedback",
+          "description": "Receive an email when someone submits feedback on your services"
+        },
+        "emailOnServiceUpdates": {
+          "title": "Email on Service Updates",
+          "description": "Get notified when your service information is updated"
+        },
+        "weeklyAnalyticsReport": {
+          "title": "Weekly Analytics Report",
+          "description": "Receive a weekly summary of your service performance"
+        }
+      },
+      "noOrganization": "No organization found for your account.",
+      "toast": {
+        "errorTitle": "Error",
+        "successTitle": "Success",
+        "updateOrganizationFailed": "Failed to update organization",
+        "organizationUpdated": "Organization updated successfully",
+        "updateSettingsFailed": "Failed to update settings",
+        "settingsUpdated": "Settings updated successfully"
+      },
+      "actions": {
+        "saving": "Saving...",
+        "saveChanges": "Save Changes",
+        "savePreferences": "Save Preferences"
       }
     }
   },
@@ -483,7 +743,8 @@
     "requestSuccessMessage": "تم استلام طلب التحديث الخاص بك وهو قيد المراجعة.",
     "voteSuccessTitle": "شكراً لك",
     "voteSuccessMessage": "تساعد ملاحظاتك في تحسين قائمة الخدمات هذه.",
-    "alreadyVotedMessage": "شكرا لتعليقاتك!"
+    "alreadyVotedMessage": "شكرا لتعليقاتك!",
+    "description": "View and manage issues reported by the community."
   },
   "Accessibility": {
     "title": "إمكانية الوصول",
@@ -834,5 +1095,98 @@
     "emergency": "طوارئ",
     "emergencyDesc": "الشرطة / الإطفاء / الإسعاف",
     "callButton": "اتصل"
+  },
+  "Admin": {
+    "title": "Admin Dashboard",
+    "loading": "Loading Admin...",
+    "actions": {
+      "reindexAi": "Re-index AI",
+      "saveChanges": "Save Changes"
+    },
+    "status": {
+      "loadError": "Error loading data. Are you in Dev mode?",
+      "saved": "Saved successfully!",
+      "saveError": "Error saving.",
+      "reindexStarting": "Starting re-index...",
+      "reindexInProgress": "Re-indexing in progress. See progress below.",
+      "reindexFailed": "Re-indexing failed. Check console.",
+      "reindexComplete": "Re-indexing complete! Embeddings updated."
+    },
+    "servicesList": {
+      "title": "All Services ({count})",
+      "empty": "Select a service to edit"
+    },
+    "newService": {
+      "name": "New Service"
+    },
+    "editor": {
+      "labels": {
+        "id": "ID: {id}"
+      },
+      "sections": {
+        "contact": "Contact Information",
+        "details": "Service Details",
+        "search": "Search Keywords",
+        "adminNotes": "Admin Notes (Internal Only)"
+      },
+      "fields": {
+        "serviceName": "Service Name",
+        "description": "Description",
+        "category": "Category",
+        "verificationLevel": "Verification Level",
+        "phone": "Phone Number",
+        "email": "Email",
+        "website": "Website URL",
+        "address": "Address",
+        "hours": "Hours of Operation",
+        "fees": "Fees",
+        "eligibility": "Eligibility Criteria",
+        "applicationProcess": "Application Process",
+        "keywords": "Keywords (Comma separated)",
+        "internalNotes": "Internal Notes"
+      },
+      "placeholders": {
+        "hours": "e.g., Mon-Fri: 9am-5pm, Sat: 10am-2pm",
+        "fees": "e.g., Free, $20/session, Sliding scale",
+        "eligibility": "Who is eligible to use this service?",
+        "applicationProcess": "How to access or apply for this service",
+        "keywords": "e.g., food bank, emergency food, groceries",
+        "internalNotes": "Notes about verification, quality issues, follow-up needed, etc."
+      }
+    },
+    "reindex": {
+      "title": "Reindex Progress",
+      "description": "Generating embeddings for {totalServices} services",
+      "status": {
+        "running": "Running",
+        "complete": "Complete",
+        "error": "Error",
+        "cancelled": "Cancelled",
+        "unknown": "Unknown"
+      },
+      "labels": {
+        "processedServices": "{processed} / {total} services",
+        "elapsed": "Elapsed: {duration}",
+        "completedIn": "Completed in {duration}",
+        "error": "Error:",
+        "success": "Success!"
+      },
+      "duration": {
+        "minutesSeconds": "{minutes}m {seconds}s",
+        "seconds": "{seconds}s"
+      },
+      "success": {
+        "allEmbeddingsGenerated": "All embeddings have been generated successfully."
+      },
+      "errors": {
+        "fetchProgress": "Failed to fetch progress",
+        "loadProgress": "Failed to load progress: {error}",
+        "fetchHistory": "Failed to fetch history",
+        "unknown": "Unknown error"
+      },
+      "history": {
+        "empty": "No reindex operations found"
+      }
+    }
   }
 }

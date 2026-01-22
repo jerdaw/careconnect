@@ -50,6 +50,7 @@ From the repo root:
   - Staleness Audit: `npm run check-staleness`
   - URL Health Check: `npm run health-check`
   - Phone Validation: `npm run phone-validate`
+  - **Data Enrichment**: `npm run audit:data` – See `docs/governance/data-enrichment-sop.md`
 
 **Environment Variables** (see `.env.example`):
 
@@ -125,7 +126,7 @@ When you have full access (and `origin` is configured), **make regular best-prac
 ## Localization (Multi-Lingual)
 
 - **Policy**: English-First, but **design for full multi-lingual support**.
-- **Supported Locales**: `en` (English), `fr` (French), `ar` (Arabic - RTL), `zh-Hans` (Chinese), `es` (Spanish).
+- **Supported Locales**: `en` (English), `fr` (French), `zh-Hans` (Chinese), `ar` (Arabic - RTL), `pt` (Portuguese), `es` (Spanish), `pa` (Punjabi).
 - **Rules** (see `bilingual-dev-guide.md` - Multi-lingual Development Guide):
   - No hardcoded strings for user-facing text (use `next-intl`).
   - Use `LanguageSelector` component for locale switching.

@@ -5,6 +5,69 @@ import { cookies } from "next/headers"
 import { handleApiError, createApiResponse, createApiError, validateContentType } from "@/lib/api-utils"
 import { assertAdminRole } from "@/lib/auth/authorization"
 
+/**
+ * Build OneSignal targeting filters based on target type and custom filters
+ */
+function buildOneSignalFilters(
+  target: string,
+  filters?: {
+    createdAfter?: string
+    createdBefore?: string
+    minSessions?: number
+  }
+): {
+  included_segments?: string[]
+  filters?: Array<Record<string, string | number>>
+} {
+  // For simple segment-based targeting
+  switch (target) {
+    case "all":
+      return { included_segments: ["All"] }
+    case "subscribed_all":
+      return { included_segments: ["Subscribed Users"] }
+    case "active_users":
+      return { included_segments: ["Active Users"] }
+    default:
+      break
+  }
+
+  // For filter-based targeting
+  const oneSignalFilters: Array<Record<string, string | number>> = []
+
+  // Add time-based filters
+  if (filters?.createdAfter) {
+    oneSignalFilters.push({
+      field: "first_session",
+      relation: ">",
+      value: new Date(filters.createdAfter).getTime() / 1000,
+    })
+  }
+
+  if (filters?.createdBefore) {
+    oneSignalFilters.push({
+      field: "first_session",
+      relation: "<",
+      value: new Date(filters.createdBefore).getTime() / 1000,
+    })
+  }
+
+  // Add session count filter
+  if (filters?.minSessions) {
+    oneSignalFilters.push({
+      field: "session_count",
+      relation: ">",
+      value: filters.minSessions,
+    })
+  }
+
+  // If we have custom filters, use them; otherwise fall back to "All"
+  if (oneSignalFilters.length > 0) {
+    return { filters: oneSignalFilters }
+  }
+
+  return { included_segments: ["All"] }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies()
@@ -32,8 +95,19 @@ export async function POST(request: NextRequest) {
     validateContentType(request)
 
     // 2. Validate request
-    const body = (await request.json()) as { title: string; message: string; url?: string; type?: string }
-    const { title, message, url, type } = body
+    const body = (await request.json()) as {
+      title: string
+      message: string
+      url?: string
+      type?: string
+      target?: "all" | "subscribed_all" | "active_users" | "new_users"
+      filters?: {
+        createdAfter?: string
+        createdBefore?: string
+        minSessions?: number
+      }
+    }
+    const { title, message, url, type, target = "all", filters } = body
 
     if (!title || !message) {
       return createApiError("Missing title or message", 400)
@@ -42,6 +116,9 @@ export async function POST(request: NextRequest) {
     if (!env.ONESIGNAL_REST_API_KEY || !env.NEXT_PUBLIC_ONESIGNAL_APP_ID) {
       return createApiError("OneSignal not configured", 500)
     }
+
+    // 3. Build OneSignal targeting based on selected target and filters
+    const oneSignalFilters = buildOneSignalFilters(target, filters)
 
     // 3. Call OneSignal REST API
     const response = await fetch("https://onesignal.com/api/v1/notifications", {
@@ -55,7 +132,10 @@ export async function POST(request: NextRequest) {
         contents: { en: message },
         headings: { en: title },
         url: url || "https://kingstoncareconnect.org",
-        included_segments: ["All"], // Send to everyone
+        // Use segments or filters based on target
+        ...(oneSignalFilters.included_segments
+          ? { included_segments: oneSignalFilters.included_segments }
+          : { filters: oneSignalFilters.filters }),
         data: {
           type: type || "general",
           url: url || "/",
@@ -87,6 +167,19 @@ export async function POST(request: NextRequest) {
       operation: "CREATE",
       performed_by: user.id,
       metadata: { title, type },
+    })
+
+    // 6. Admin Actions Log (Phase 3)
+    await supabase.rpc("log_admin_action", {
+      p_action: "push_notification",
+      p_performed_by: user.id,
+      p_details: {
+        title,
+        message,
+        target,
+        notification_id: result.id,
+        has_filters: !!filters,
+      },
     })
 
     return createApiResponse({ success: true, notificationId: result.id })

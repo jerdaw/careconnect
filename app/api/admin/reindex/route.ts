@@ -28,21 +28,110 @@ export async function POST() {
 
     await assertAdminRole(supabase, user.id)
 
-    // Run the existing script
-    // Note: This relies on the system having the environment set up correctly
+    // Count total services to be indexed
+    const { count: totalServices } = await supabase
+      .from("services")
+      .select("*", { count: "exact", head: true })
+      .is("deleted_at", null)
+
+    // Create progress record
+    const { data: progressRecord, error: progressError } =
+      await // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (supabase.from("reindex_progress") as any)
+        .insert({
+          total_services: totalServices || 0,
+          triggered_by: user.id,
+          service_snapshot_count: totalServices || 0,
+        })
+        .select()
+        .single()
+
+    if (progressError) {
+      return createApiError(`Failed to create progress record: ${progressError.message}`, 500)
+    }
+
+    const progressId = progressRecord.id
+
+    // Start reindexing in background (don't await)
+    // This allows us to return immediately with the progress ID
+    runReindexWithProgress(supabase, progressId, user.id).catch((error) => {
+      console.error("Reindex failed:", error)
+    })
+
+    return createApiResponse({
+      success: true,
+      progressId,
+      message: "Reindexing started. Use the progress ID to track status.",
+    })
+  } catch (error) {
+    return handleApiError(error)
+  }
+}
+
+/**
+ * Runs the reindex operation and updates progress
+ * This runs in the background after the API response is sent
+ */
+async function runReindexWithProgress(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  progressId: string,
+  userId: string
+) {
+  try {
+    // Run the embedding generation script
     await execPromise("npm run generate-embeddings")
+
+    // Get the final count of services indexed
+    const { count: finalCount } = await supabase
+      .from("services")
+      .select("*", { count: "exact", head: true })
+      .is("deleted_at", null)
+
+    // Mark progress as complete
+    await supabase.rpc("update_reindex_progress", {
+      p_progress_id: progressId,
+      p_processed_count: finalCount || 0,
+      p_status: "complete",
+    })
 
     // Audit Log
     await supabase.from("audit_logs").insert({
       table_name: "embeddings",
       record_id: "global",
       operation: "UPDATE",
-      performed_by: user.id,
-      metadata: { action: "reindex" },
+      performed_by: userId,
+      metadata: { action: "reindex", progress_id: progressId },
     })
 
-    return createApiResponse({ success: true })
+    // Admin Actions Log
+    await supabase.rpc("log_admin_action", {
+      p_action: "reindex",
+      p_performed_by: userId,
+      p_target_count: finalCount || 0,
+      p_details: { progress_id: progressId, status: "complete" },
+    })
   } catch (error) {
-    return handleApiError(error)
+    console.error("Reindex error:", error)
+
+    // Mark progress as failed
+    await supabase.rpc("update_reindex_progress", {
+      p_progress_id: progressId,
+      p_processed_count: 0,
+      p_status: "error",
+      p_error_message: error instanceof Error ? error.message : "Unknown error",
+    })
+
+    // Log the failure
+    await supabase.rpc("log_admin_action", {
+      p_action: "reindex",
+      p_performed_by: userId,
+      p_target_count: 0,
+      p_details: {
+        progress_id: progressId,
+        status: "error",
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+    })
   }
 }
