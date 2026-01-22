@@ -72,12 +72,17 @@
     "address": "1200 Ave McGill College, Suite 1680, Montréal, QC H3B 4G7 (Head Office)",
     "status": "Active",
     "hours_text": "Phone: 24/7, 365 days/year. Text: 24/7. Live Chat: Daily 7:00 PM to Midnight ET.",
-    "plain_language_available": true,
+    "plain_language_available": false,
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
+    },
+    "scope": "canada",
+    "coordinates": {
+      "lat": 45.501514,
+      "lng": -73.570752
     }
   },
   {
@@ -156,13 +161,14 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "Hotline: Monday to Friday, 2:00 PM – 10:00 PM ET.",
-    "plain_language_available": true,
+    "plain_language_available": false,
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "canada"
   },
   {
     "id": "hope-for-wellness-helpline",
@@ -203,13 +209,14 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "Phone & Chat: 24 hours a day, 7 days a week.",
-    "plain_language_available": true,
+    "plain_language_available": false,
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "canada"
   },
   {
     "id": "assaulted-womens-helpline",
@@ -250,12 +257,17 @@
     "fees": "Free.",
     "documents_required": "None required.",
     "hours_text": "24 hours a day, 7 days a week.",
-    "plain_language_available": true,
+    "plain_language_available": false,
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
+    },
+    "scope": "canada",
+    "coordinates": {
+      "lat": 43.620495,
+      "lng": -79.513198
     }
   },
   {
@@ -314,7 +326,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "trellis-hiv-community-care",
@@ -376,7 +390,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "one-roof-youth-hub",
@@ -433,7 +449,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "victim-services-kingston",
@@ -474,12 +492,17 @@
     "fees": "Free.",
     "documents_required": "Police report or incident number often required for VQRP+ funding.",
     "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Crisis: 24/7 via Emergency Services referral.",
-    "plain_language_available": true,
+    "plain_language_available": false,
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.252467,
+      "lng": -76.496044
     }
   },
   {
@@ -530,7 +553,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kgh-emergency-department",
@@ -579,7 +604,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kfla-public-health-dental",
@@ -625,7 +652,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2277654,
+      "lng": -76.5252485
+    },
+    "plain_language_available": false
   },
   {
     "id": "community-legal-clinic-kingston",
@@ -670,7 +703,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2338354,
+      "lng": -76.4837103
+    },
+    "plain_language_available": false
   },
   {
     "id": "salvation-army-housing-help",
@@ -727,7 +766,9 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kchc-transgender-health-care",
@@ -773,7 +814,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2627804,
+      "lng": -76.4914855
+    },
+    "plain_language_available": false
   },
   {
     "id": "street-health-centre",
@@ -830,7 +877,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kingston-interval-house",
@@ -876,7 +925,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.322768,
+      "lng": -76.517938
+    },
+    "plain_language_available": false
   },
   {
     "id": "telephone-aid-line-kingston-talk",
@@ -922,7 +977,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "elizabeth-fry-society-kingston",
@@ -968,7 +1025,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2398429,
+      "lng": -76.4880318
+    },
+    "plain_language_available": false
   },
   {
     "id": "st-vincent-de-paul-kingston",
@@ -1014,7 +1077,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2425847,
+      "lng": -76.4910193
+    },
+    "plain_language_available": false
   },
   {
     "id": "lunch-by-george",
@@ -1060,7 +1129,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.229798,
+      "lng": -76.483025
+    },
+    "plain_language_available": false
   },
   {
     "id": "salvation-army-rideau-heights",
@@ -1106,7 +1181,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.262488,
+      "lng": -76.4882437
+    },
+    "plain_language_available": false
   },
   {
     "id": "partners-in-mission-food-bank",
@@ -1164,7 +1245,9 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "marthas-table-kingston",
@@ -1213,7 +1296,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "good-food-box-kingston",
@@ -1260,7 +1345,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.261594,
+      "lng": -76.491679
+    },
+    "plain_language_available": false
   },
   {
     "id": "amhs-kfla-crisis-line",
@@ -1313,7 +1404,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.235308,
+      "lng": -76.498156
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-detox-centre",
@@ -1359,7 +1456,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2312029,
+      "lng": -76.4883125
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-youth-shelter",
@@ -1405,7 +1508,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.24217,
+      "lng": -76.502173
+    },
+    "plain_language_available": false
   },
   {
     "id": "sack-sexual-assault-centre",
@@ -1451,7 +1560,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2562074,
+      "lng": -76.4978242
+    },
+    "plain_language_available": false
   },
   {
     "id": "maltby-centre-mental-health",
@@ -1493,7 +1608,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2579679,
+      "lng": -76.5088639
+    },
+    "plain_language_available": false
   },
   {
     "id": "resolve-counselling",
@@ -1539,7 +1660,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.23566,
+      "lng": -76.483759
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-home-base-housing",
@@ -1589,7 +1716,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2459197,
+      "lng": -76.487601
+    },
+    "plain_language_available": false
   },
   {
     "id": "ryandale-shelter",
@@ -1635,7 +1768,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2404604,
+      "lng": -76.5031927
+    },
+    "plain_language_available": false
   },
   {
     "id": "dawn-house-womens-shelter",
@@ -1676,7 +1815,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2527947,
+      "lng": -76.588951
+    },
+    "plain_language_available": false
   },
   {
     "id": "kchc-weller-clinic",
@@ -1722,7 +1867,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2627804,
+      "lng": -76.4914855
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfla-sexual-health-clinic",
@@ -1767,7 +1918,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2277654,
+      "lng": -76.5252485
+    },
+    "plain_language_available": false
   },
   {
     "id": "cdk-family-medicine-walk-in",
@@ -1813,7 +1970,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2321167,
+      "lng": -76.4848109
+    },
+    "plain_language_available": false
   },
   {
     "id": "queens-legal-aid",
@@ -1857,7 +2020,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.232276,
+      "lng": -76.4837981
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-works-kingston",
@@ -1902,7 +2071,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2412585,
+      "lng": -76.4883496
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfpl-central-branch",
@@ -1948,7 +2123,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.229714,
+      "lng": -76.484804
+    },
+    "plain_language_available": false
   },
   {
     "id": "keys-job-centre",
@@ -1993,7 +2174,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2326537,
+      "lng": -76.4873502
+    },
+    "plain_language_available": false
   },
   {
     "id": "seniors-association-kingston",
@@ -2039,7 +2226,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2249971,
+      "lng": -76.5216008
+    },
+    "plain_language_available": false
   },
   {
     "id": "community-living-kingston",
@@ -2085,7 +2278,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2392686,
+      "lng": -76.5710941
+    },
+    "plain_language_available": false
   },
   {
     "id": "restart-kingston",
@@ -2130,7 +2329,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2560774,
+      "lng": -76.4832696
+    },
+    "plain_language_available": false
   },
   {
     "id": "acfomi-kingston",
@@ -2175,7 +2380,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.252721,
+      "lng": -76.4612583
+    },
+    "plain_language_available": false
   },
   {
     "id": "ymca-eastern-ontario",
@@ -2220,7 +2431,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2394721,
+      "lng": -76.5161628
+    },
+    "plain_language_available": false
   },
   {
     "id": "bgc-south-east",
@@ -2266,7 +2483,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2392483,
+      "lng": -76.5450106
+    },
+    "plain_language_available": false
   },
   {
     "id": "hart-centre",
@@ -2312,7 +2535,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2460178,
+      "lng": -76.522633
+    },
+    "plain_language_available": false
   },
   {
     "id": "loving-spoonful",
@@ -2358,7 +2587,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.261847,
+      "lng": -76.495228
+    },
+    "plain_language_available": false
   },
   {
     "id": "ongwanada",
@@ -2404,7 +2639,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.227638,
+      "lng": -76.5238509
+    },
+    "plain_language_available": false
   },
   {
     "id": "kmfrc",
@@ -2450,7 +2691,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2373598,
+      "lng": -76.4478533
+    },
+    "plain_language_available": false
   },
   {
     "id": "earlyon-kchc",
@@ -2497,7 +2744,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2627804,
+      "lng": -76.4914855
+    },
+    "plain_language_available": false
   },
   {
     "id": "habitat-restore-kingston",
@@ -2544,7 +2797,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2424038,
+      "lng": -76.5680097
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-access-bus",
@@ -2591,7 +2850,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2703128,
+      "lng": -76.5266564
+    },
+    "plain_language_available": false
   },
   {
     "id": "integrated-care-hub",
@@ -2650,7 +2915,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "marthas-table",
@@ -2705,7 +2972,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "dawn-house-shelter",
@@ -2764,7 +3033,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kiln-language-nest",
@@ -2823,7 +3094,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kchc-iipct",
@@ -2882,7 +3155,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "metis-nation-ontario-kingston",
@@ -2941,7 +3216,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "st-marys-cathedral-drop-in",
@@ -3000,7 +3277,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "salvation-army-cfs",
@@ -3059,7 +3338,9 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "crisis-988",
@@ -3072,7 +3353,7 @@
     "intent_category": "Crisis",
     "verification_level": "L1",
     "is_provincial": true,
-    "scope": "canada",
+    "scope": "ontario",
     "provenance": {
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
       "verified_at": "2026-01-03T14:53:40.749Z",
@@ -3095,7 +3376,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "crisis-connex-ontario",
@@ -3130,7 +3412,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-talk-suicide-canada",
@@ -3165,7 +3449,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "canada",
+    "plain_language_available": false
   },
   {
     "id": "crisis-kids-help-phone",
@@ -3206,7 +3492,13 @@
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "canada",
+    "coordinates": {
+      "lat": 45.501514,
+      "lng": -73.570752
+    },
+    "plain_language_available": false
   },
   {
     "id": "crisis-good2talk",
@@ -3246,7 +3538,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-hope-for-wellness",
@@ -3287,7 +3581,9 @@
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "canada",
+    "plain_language_available": false
   },
   {
     "id": "crisis-talk4healing",
@@ -3331,7 +3627,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-trans-lifeline",
@@ -3372,7 +3670,9 @@
       "service_area_size": "national",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "canada",
+    "plain_language_available": false
   },
   {
     "id": "crisis-assaulted-womens-helpline",
@@ -3413,7 +3713,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "canada",
+    "coordinates": {
+      "lat": 43.6224472,
+      "lng": -79.4822192
+    },
+    "plain_language_available": false
   },
   {
     "id": "crisis-ontario-gambling",
@@ -3448,7 +3754,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-telehealth-ontario",
@@ -3483,7 +3791,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-poison-control",
@@ -3519,7 +3829,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-eating-disorders",
@@ -3555,7 +3867,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-pflag-canada",
@@ -3596,7 +3910,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "crisis-text-line",
@@ -3631,7 +3947,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "canada",
+    "plain_language_available": true
   },
   {
     "id": "crisis-211-ontario",
@@ -3666,7 +3984,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "ontario",
+    "plain_language_available": false
   },
   {
     "id": "four-directions-indigenous-centre",
@@ -3709,7 +4029,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.226843,
+      "lng": -76.490867
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfla-indigenous-health-team",
@@ -3748,7 +4074,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2187764,
+      "lng": -76.5709522
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-indigenous-friendship-centre",
@@ -3791,7 +4123,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2411179,
+      "lng": -76.5057236
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-literacy-skills",
@@ -3829,7 +4167,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2405976,
+      "lng": -76.5125109
+    },
+    "plain_language_available": false
   },
   {
     "id": "slc-academic-upgrading",
@@ -3867,7 +4211,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2233279,
+      "lng": -76.5279584
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfpl-learning-programs",
@@ -3905,7 +4255,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.229714,
+      "lng": -76.484804
+    },
+    "plain_language_available": true
   },
   {
     "id": "kingston-transit-mfap",
@@ -3943,7 +4299,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2301058,
+      "lng": -76.4801367
+    },
+    "plain_language_available": false
   },
   {
     "id": "von-transportation-kingston",
@@ -3984,7 +4346,13 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.246774,
+      "lng": -76.576276
+    },
+    "plain_language_available": false
   },
   {
     "id": "lionhearts-fresh-food-market",
@@ -4018,7 +4386,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "in-from-the-cold",
@@ -4052,7 +4422,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2459197,
+      "lng": -76.487601
+    },
+    "plain_language_available": false
   },
   {
     "id": "legal-aid-ontario-kingston",
@@ -4085,7 +4461,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2338354,
+      "lng": -76.4837103
+    },
+    "plain_language_available": false
   },
   {
     "id": "pro-bono-ontario",
@@ -4117,7 +4499,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "cleo-community-legal-education",
@@ -4148,7 +4532,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "arch-disability-law",
@@ -4186,7 +4572,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "justice-for-children-youth",
@@ -4219,7 +4607,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": true
   },
   {
     "id": "jobwell-kingston",
@@ -4253,7 +4643,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2455367,
+      "lng": -76.4872924
+    },
+    "plain_language_available": false
   },
   {
     "id": "rideau-heights-community-centre",
@@ -4286,7 +4682,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2652686,
+      "lng": -76.4826417
+    },
+    "plain_language_available": false
   },
   {
     "id": "artillery-park-aquatic-centre",
@@ -4319,7 +4721,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2343296,
+      "lng": -76.4846559
+    },
+    "plain_language_available": false
   },
   {
     "id": "invista-centre",
@@ -4352,7 +4760,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2753745,
+      "lng": -76.5687768
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfpl-calvin-park",
@@ -4386,7 +4800,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.238699,
+      "lng": -76.5177772
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfpl-isabel-turner",
@@ -4420,7 +4840,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.254507,
+      "lng": -76.5716808
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfpl-pittsburgh",
@@ -4454,7 +4880,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.259587,
+      "lng": -76.4612071
+    },
+    "plain_language_available": true
   },
   {
     "id": "kfpl-rideau-heights",
@@ -4479,7 +4911,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kingston-pregnancy-care",
@@ -4504,7 +4938,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "hospice-kingston",
@@ -4536,7 +4972,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.242929,
+      "lng": -76.52471
+    },
+    "plain_language_available": false
   },
   {
     "id": "alzheimer-society-kfla",
@@ -4561,7 +5003,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "stroke-network-sneo",
@@ -4593,7 +5037,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.224143,
+      "lng": -76.492802
+    },
+    "plain_language_available": false
   },
   {
     "id": "autism-ontario-east",
@@ -4618,7 +5068,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "cnib-kingston",
@@ -4648,7 +5100,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "march-of-dimes-kingston",
@@ -4685,7 +5139,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.240603,
+      "lng": -76.5115872
+    },
+    "plain_language_available": false
   },
   {
     "id": "student-food-bank-queens",
@@ -4717,7 +5177,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2284356,
+      "lng": -76.4948911
+    },
+    "plain_language_available": false
   },
   {
     "id": "st-lawrence-food-pantry",
@@ -4749,7 +5215,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2233279,
+      "lng": -76.5279584
+    },
+    "plain_language_available": false
   },
   {
     "id": "community-harvest-market",
@@ -4781,7 +5253,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2627804,
+      "lng": -76.4914855
+    },
+    "plain_language_available": false
   },
   {
     "id": "memorial-centre-market",
@@ -4813,7 +5291,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.239376,
+      "lng": -76.4998338
+    },
+    "plain_language_available": false
   },
   {
     "id": "legal-clinic-queens",
@@ -4846,7 +5330,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.232276,
+      "lng": -76.4837981
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfl-public-health-vaccine",
@@ -4879,7 +5369,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2277654,
+      "lng": -76.5252485
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfl-public-health-sexual",
@@ -4912,7 +5408,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2277654,
+      "lng": -76.5252485
+    },
+    "plain_language_available": false
   },
   {
     "id": "sexual-assault-centre-kingston",
@@ -4945,7 +5447,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2562074,
+      "lng": -76.4978242
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-general-hospital",
@@ -4978,7 +5486,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2228586,
+      "lng": -76.4926165
+    },
+    "plain_language_available": false
   },
   {
     "id": "hotel-dieu-site",
@@ -5011,7 +5525,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2307655,
+      "lng": -76.484905
+    },
+    "plain_language_available": false
   },
   {
     "id": "providence-care-hospital",
@@ -5044,7 +5564,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2171112,
+      "lng": -76.5274078
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-military-family-resource",
@@ -5076,7 +5602,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2373598,
+      "lng": -76.4478533
+    },
+    "plain_language_available": false
   },
   {
     "id": "tnet-kingston",
@@ -5109,7 +5641,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.22976,
+      "lng": -76.48098
+    },
+    "plain_language_available": false
   },
   {
     "id": "kfla-children-services",
@@ -5134,7 +5672,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "rural-frontenac-community-services",
@@ -5167,7 +5707,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.768845,
+      "lng": -76.690187
+    },
+    "plain_language_available": false
   },
   {
     "id": "south-frontenac-community-services",
@@ -5200,7 +5746,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.415274,
+      "lng": -76.576352
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-east-community-centre",
@@ -5225,7 +5777,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "earlyon-cosy",
@@ -5257,7 +5811,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2627804,
+      "lng": -76.4914855
+    },
+    "plain_language_available": false
   },
   {
     "id": "boys-girls-club-kingston",
@@ -5289,7 +5849,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2392483,
+      "lng": -76.5450106
+    },
+    "plain_language_available": false
   },
   {
     "id": "ymca-kingston",
@@ -5322,7 +5888,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2394721,
+      "lng": -76.5161628
+    },
+    "plain_language_available": false
   },
   {
     "id": "kingston-humane-society",
@@ -5347,7 +5919,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "st-john-ambulance-kingston",
@@ -5372,7 +5946,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "red-cross-kingston",
@@ -5397,7 +5973,9 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "united-way-kfla-office",
@@ -5430,7 +6008,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.23566,
+      "lng": -76.483759
+    },
+    "plain_language_available": false
   },
   {
     "id": "community-foundation-kingston",
@@ -5462,7 +6046,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2316814,
+      "lng": -76.4790659
+    },
+    "plain_language_available": false
   },
   {
     "id": "habitat-for-humanity-kingston",
@@ -5487,7 +6077,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kingston-literacy-skills-2",
@@ -5519,7 +6111,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2405976,
+      "lng": -76.5125109
+    },
+    "plain_language_available": false
   },
   {
     "id": "keys-job-centre-2",
@@ -5552,7 +6150,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2326537,
+      "lng": -76.4873502
+    },
+    "plain_language_available": false
   },
   {
     "id": "acls-kingston",
@@ -5585,7 +6189,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.252721,
+      "lng": -76.4612583
+    },
+    "plain_language_available": false
   },
   {
     "id": "re-start-employment",
@@ -5618,7 +6228,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2560774,
+      "lng": -76.4832696
+    },
+    "plain_language_available": false
   },
   {
     "id": "slc-employment-service",
@@ -5650,7 +6266,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2233279,
+      "lng": -76.5279584
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-works-kb",
@@ -5683,7 +6305,13 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2412585,
+      "lng": -76.4883496
+    },
+    "plain_language_available": false
   },
   {
     "id": "odsp-kingston",
@@ -5713,7 +6341,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "service-canada-kingston",
@@ -5738,7 +6368,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "service-ontario-kingston",
@@ -5763,7 +6395,9 @@
       "service_area_size": "provincial",
       "staff_size": "large",
       "annual_budget": "large"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "kingston-police-non-emerg",
@@ -5788,7 +6422,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "opp-frontenac",
@@ -5813,7 +6449,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "coast-mental-health",
@@ -5839,7 +6477,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "maltby-centre-autism",
@@ -5872,7 +6512,13 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "coordinates": {
+      "lat": 44.2579679,
+      "lng": -76.5088639
+    },
+    "plain_language_available": false
   },
   {
     "id": "pathways-for-children-youth",
@@ -5904,7 +6550,9 @@
       "service_area_size": "local",
       "staff_size": "medium",
       "annual_budget": "medium"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": true
   },
   {
     "id": "geneva-centre-autism",
@@ -5929,7 +6577,9 @@
       "service_area_size": "local",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "scope": "kingston",
+    "plain_language_available": false
   },
   {
     "id": "ontario-211-ontario",
@@ -5990,7 +6640,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -6051,7 +6702,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -6117,7 +6769,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-farmer-wellness",
@@ -6178,7 +6831,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-femaide",
@@ -6240,7 +6894,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -6306,7 +6961,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -6372,7 +7028,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-male-survivors",
@@ -6433,7 +7090,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -6499,7 +7157,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -6565,7 +7224,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-naseeha",
@@ -6626,7 +7286,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-nors",
@@ -6688,7 +7349,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": true
   },
   {
     "id": "ontario-ontx-distress",
@@ -6750,7 +7412,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-sadv-navigation",
@@ -6812,7 +7475,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -6878,7 +7542,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-vac-assistance",
@@ -6944,7 +7609,8 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "id": "ontario-victim-support-line",
@@ -7005,7 +7671,8 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "plain_language_available": false
   },
   {
     "name": "BounceBack Ontario",
@@ -7058,7 +7725,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Cancer Information Helpline",
@@ -7111,7 +7783,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Ontario Caregiver Helpline",
@@ -7172,7 +7849,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -7225,7 +7907,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -7286,7 +7973,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Lung Health Line",
@@ -7339,7 +8031,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
@@ -7392,7 +8089,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
@@ -7425,7 +8127,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Employment Standards Information Centre",
@@ -7478,7 +8185,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -7511,7 +8223,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
@@ -7544,7 +8261,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -7597,7 +8319,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -7630,7 +8357,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -7663,7 +8395,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Legal Aid Ontario",
@@ -7716,7 +8453,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
@@ -7769,7 +8511,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -7802,7 +8549,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
@@ -7855,7 +8607,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Steps to Justice",
@@ -7916,7 +8673,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 43.7794518,
+      "lng": -79.4898197
+    },
+    "plain_language_available": false
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -7969,7 +8731,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
@@ -8022,7 +8789,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Arthritis Society Canada",
@@ -8055,7 +8827,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Heart and Stroke Foundation",
@@ -8108,7 +8885,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
@@ -8168,7 +8950,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
@@ -8221,7 +9008,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Parkinson Canada",
@@ -8274,7 +9066,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Talk Tobacco",
@@ -8317,7 +9114,12 @@
       "service_area_size": "national",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 60.10867,
+      "lng": -113.64258
+    },
+    "plain_language_available": false
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -8350,7 +9152,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 43.70011,
+      "lng": -79.4163
+    },
+    "plain_language_available": false
   },
   {
     "name": "Consumer Protection Ontario",
@@ -8403,7 +9210,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Law Society Referral Service",
@@ -8456,7 +9268,12 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 51.1353689,
+      "lng": -113.2514301
+    },
+    "plain_language_available": false
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -8509,6 +9326,11 @@
       "service_area_size": "provincial",
       "staff_size": "small",
       "annual_budget": "small"
-    }
+    },
+    "coordinates": {
+      "lat": 48.38202,
+      "lng": -89.25018
+    },
+    "plain_language_available": false
   }
 ]
