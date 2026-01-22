@@ -5,12 +5,12 @@
         "appIDs": ["PLACEHOLDER_TEAM_ID.org.kingstoncareconnect.app"],
         "components": [
           {
-            "/": "/*/services/*",
+            "/": "/*/service/*",
             "comment": "Matches service detail pages for any locale"
           },
           {
-            "/": "/*/search",
-            "comment": "Matches search results"
+            "/": "/*/dashboard/*",
+            "comment": "Matches dashboard pages"
           },
           {
             "/": "/*/about/*",
@@ -21,12 +21,16 @@
             "comment": "Matches user settings"
           },
           {
-            "/": "/*/categories/*",
-            "comment": "Matches category lists"
+            "/": "/*/privacy",
+            "comment": "Matches privacy policy"
           },
           {
-            "/": "/",
-            "comment": "Matches home page"
+            "/": "/*/terms",
+            "comment": "Matches terms"
+          },
+          {
+            "/": "/*",
+            "comment": "Matches locale home (e.g., /en)"
           }
         ]
       }

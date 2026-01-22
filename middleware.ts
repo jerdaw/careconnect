@@ -8,6 +8,18 @@ import { env } from "@/lib/env"
 const intlMiddleware = createMiddleware(routing)
 
 export async function middleware(request: NextRequest) {
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
+  const preferredLocale =
+    cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
+
+  // Ensure Workbox navigation fallback (`/offline`) resolves to a real page.
+  // We rewrite (not redirect) so the response is cached under `/offline`.
+  if (request.nextUrl.pathname === "/offline") {
+    const url = request.nextUrl.clone()
+    url.pathname = `/${preferredLocale}/offline`
+    return NextResponse.rewrite(url)
+  }
+
   // 1. Refresh Supabase Session
   let response = NextResponse.next({
     request: {
@@ -61,11 +73,15 @@ export async function middleware(request: NextRequest) {
   const isProtectedRoute = pathname.includes("/dashboard") || pathname.includes("/admin")
 
   if (isProtectedRoute && !user) {
-    // Redirect to login, preserving the intended destination if possible
-    // Note: We need to handle localized paths (e.g. /en/dashboard)
-    const locale = pathname.split("/")[1] || "en"
+    const segments = pathname.split("/").filter(Boolean)
+    const firstSegment = segments[0]
+    const locale =
+      firstSegment && (routing.locales as readonly string[]).includes(firstSegment) ? firstSegment : preferredLocale
+
     const loginUrl = new URL(`/${locale}/login`, request.url)
-    loginUrl.searchParams.set("next", pathname)
+    const nextPath =
+      firstSegment && (routing.locales as readonly string[]).includes(firstSegment) ? pathname : `/${locale}${pathname}`
+    loginUrl.searchParams.set("next", nextPath)
     return NextResponse.redirect(loginUrl)
   }
 

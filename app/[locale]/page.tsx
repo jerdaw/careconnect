@@ -10,6 +10,8 @@ import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { useSearchParams } from "next/navigation"
+import { parsePwaLaunchParams } from "@/lib/pwa/launch-params"
 
 // Modular Components
 import ModelStatus from "../../components/home/ModelStatus"
@@ -21,6 +23,8 @@ import SafetyAlert from "../../components/home/SafetyAlert"
 
 export default function Home() {
   const t = useTranslations()
+  const searchParams = useSearchParams()
+  const lastHydratedParams = useRef<string | null>(null)
   const [isFocused, setIsFocused] = useState(false)
   const {
     query,
@@ -44,6 +48,22 @@ export default function Home() {
     handleSaveSearch,
     removeSavedSearch,
   } = useSearch()
+
+  // PWA launch hydration:
+  // - `/` shortcut URLs (e.g. `/?category=Crisis`) are locale-resolved by middleware then land here.
+  // - Share Target redirects to `/?q=...`.
+  // This only applies when the URL params change, to avoid fighting user typing.
+  useEffect(() => {
+    const currentParamsKey = searchParams.toString()
+    if (lastHydratedParams.current === currentParamsKey) return
+    lastHydratedParams.current = currentParamsKey
+
+    const { query: launchQuery, category: launchCategory, openNow: launchOpenNow } = parsePwaLaunchParams(searchParams)
+
+    if (launchQuery !== null) setQuery(launchQuery)
+    if (launchCategory !== null) setCategory(launchCategory)
+    if (launchOpenNow !== null) setOpenNow(launchOpenNow)
+  }, [searchParams, setQuery, setCategory, setOpenNow])
 
   // Progressive Search Hook
   const { isReady, progress, generateEmbedding } = useSemanticSearch()

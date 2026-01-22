@@ -1,23 +1,81 @@
 {
-  "name": "Kingston Care Connect",
+  "name": "Kingston Care Connect - Social Services Search",
   "short_name": "KCC",
-  "description": "Find community services in Kingston. Free, confidential, and instant.",
+  "description": "Find essential community services in Kingston. Free, confidential, and instant. Health, housing, crisis, financial, and more.",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
-  "orientation": "portrait",
-  "icons": [
+  "categories": ["social", "reference", "medical", "lifestyle"],
+  "screenshots": [
     {
-      "src": "/icon?w=192",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "/screenshots/mobile-search.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Search for services on mobile"
     },
     {
-      "src": "/icon?w=512",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/screenshots/mobile-detail.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "View service details"
+    },
+    {
+      "src": "/screenshots/tablet-search.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Search on tablet"
     }
   ],
-  "screenshots": []
+  "icons": [
+    { "src": "/icons/favicon-16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/icons/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "share_target": {
+    "action": "/api/v1/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "protocol_handlers": [],
+  "shortcuts": [
+    {
+      "name": "Search Services",
+      "short_name": "Search",
+      "description": "Search for community services",
+      "url": "/?q=",
+      "icons": [{ "src": "/icons/shortcut-search-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Crisis Resources",
+      "short_name": "Crisis",
+      "description": "Find crisis support immediately",
+      "url": "/?category=Crisis",
+      "icons": [{ "src": "/icons/shortcut-crisis-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "My Dashboard",
+      "short_name": "Dashboard",
+      "description": "View your saved services",
+      "url": "/dashboard",
+      "icons": [{ "src": "/icons/shortcut-dashboard-96.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ]
 }
