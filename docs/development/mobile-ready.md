@@ -9,6 +9,76 @@ tags: [development, mobile, pwa]
 
 This document outlines the mobile architecture, offline capabilities, and push notification infrastructure introduced in v15.0. It serves as the primary reference for developers working on the mobile aspect of Kingston Care Connect.
 
+## App Store Readiness (v17.6)
+
+v17.6 improves the PWA so it is “store-quality” (manifest metadata, icon set, screenshots, offline fallback). **Actual store submission** still requires native wrapper work and credentials (see below).
+
+### What v17.6 provides
+
+- Store-quality `public/manifest.json` with screenshots, maskable icons, shortcuts, and share target.
+- Offline fallback route via Workbox navigation fallback (`/offline` → locale-aware offline page).
+- Deep-link association files in `public/.well-known/` (still contain placeholders that must be replaced for real store builds).
+
+### What you still need for Play Store / App Store
+
+- **Google Play (recommended path):** package build via Trusted Web Activity (TWA) using Bubblewrap, plus a signing key.
+- **iOS App Store:** native wrapper and Apple Developer Program credentials (or accept PWA install via Safari “Add to Home Screen”).
+
+### Privacy policy + support contact (store console metadata)
+
+Use the existing policy pages when filling store console fields:
+
+- Privacy Policy: `/{locale}/privacy` (e.g. `/en/privacy`)
+- Terms: `/{locale}/terms`
+
+Store consoles also require a support email/website; this is configured in the console (not in the web manifest).
+
+## Google Play: Trusted Web Activity (Bubblewrap)
+
+> This is a release procedure; it’s intentionally not automated in CI because it depends on credentials and local Android tooling.
+
+### Prerequisites
+
+- Java (17+ recommended)
+- Android SDK + `adb`
+- Node.js
+- A production HTTPS domain for the PWA (Play requires a verifiable origin)
+
+### Generate a TWA project
+
+1. Install/init Bubblewrap:
+   - `npx @bubblewrap/cli init --manifest=https://YOUR_DOMAIN/manifest.json`
+2. When prompted:
+   - Package name: `org.kingstoncareconnect.app`
+   - App name: “Kingston Care Connect”
+3. Build a signed bundle/APK:
+   - Follow Bubblewrap prompts to create/use a keystore.
+
+### Update association files (required for verified link handling)
+
+After you have a signing key:
+
+- Update `public/.well-known/assetlinks.json`:
+  - Replace `PLACEHOLDER_SHA256_FINGERPRINT` with the signing cert SHA-256 fingerprint.
+  - You can compute it with:
+    - `keytool -list -v -keystore YOUR_KEYSTORE.jks -alias YOUR_ALIAS`
+- Update `public/.well-known/apple-app-site-association`:
+  - Replace `PLACEHOLDER_TEAM_ID` with the Apple developer Team ID (if/when an iOS native app exists).
+
+### Verify before submission
+
+- `SKIP_EMBEDDINGS=1 npm run build && npm run start`
+- `npx lighthouse http://localhost:3000/en --view`
+- Confirm `/.well-known/assetlinks.json` and `/.well-known/apple-app-site-association` are reachable on the production domain.
+
+## Monitoring PWA Health (Privacy-Preserving)
+
+We do not track installs/usage. Instead, we use release-time audits + basic operational checks:
+
+- **Release verification**: Lighthouse audit + manual offline runbook.
+- **Health endpoint**: `GET /api/health` returns `pwa.ok` plus file presence checks for the manifest, service worker scripts, icons, screenshots, and deep-link association files.
+- **QA sanity**: In browser DevTools, watch Console for service worker registration/import script errors.
+
 ## Overview
 
 v15.0 establishes the technical foundation for native mobile apps without requiring immediate native build processes (macOS/Xcode/Android Studio). This allows us to improve the PWA experience immediately while preparing for a smooth v15.1 launch.
@@ -88,12 +158,12 @@ Currently, these files contain placeholders. When the native apps are generated 
 
 The following URL patterns are configured to open in the app:
 
-- `/*/services/*` (Service information)
-- `/*/search` (Search results)
-- `/*/categories/*` (Service categories)
+- `/*/service/*` (Service detail pages)
 - `/*/about/*` (Project pages)
 - `/*/settings` (User settings)
-- `/` (Home page)
+- `/*/privacy` (Privacy policy)
+- `/*/terms` (Terms)
+- `/*` (Locale home, e.g. `/en`)
 
 ## v15.0 vs v15.1
 

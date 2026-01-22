@@ -1,11 +1,14 @@
 "use client"
 
 import { useEffect } from "react"
+import { useLocale } from "next-intl"
 import { syncOfflineData } from "@/lib/offline/sync"
 import { syncPendingFeedback } from "@/lib/offline/feedback"
 import { logger } from "@/lib/logger"
 
 export function OfflineSync() {
+  const locale = useLocale()
+
   useEffect(() => {
     // Initial sync on mount
     // We use requestIdleCallback if available to avoid blocking main thread during hydration
@@ -39,6 +42,12 @@ export function OfflineSync() {
     window.addEventListener("online", handleOnline)
     return () => window.removeEventListener("online", handleOnline)
   }, [])
+
+  // Keep the Workbox navigation fallback (`/offline`) warm for the current locale.
+  // This reduces the chance of showing a stale-language cached offline page after a locale switch.
+  useEffect(() => {
+    fetch("/offline").catch((err) => logger.warn("Offline fallback prewarm failed", { err, locale }))
+  }, [locale])
 
   return null
 }

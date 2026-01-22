@@ -13,7 +13,7 @@ tags: [architecture, overview, system-design]
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
 - **Database**: Supabase (PostgreSQL + Vector)
-- **Internationalization**: `next-intl` (Support for EN, FR, AR, ZH-Hans, ES)
+- **Internationalization**: `next-intl` (Support for EN, FR, AR, ZH-Hans, ES, PT, PA)
 - **Testing**: Playwright (E2E), Vitest (Unit)
 
 ## Directory Structure
@@ -21,7 +21,7 @@ tags: [architecture, overview, system-design]
 - `app/`: Next.js App Router pages and API routes.
   - `[locale]/`: Localized routes.
   - `api/v1/`: RESTful API endpoints. (See [OpenAPI Spec](api/openapi.yaml))
-  - `offline/`: PWA offline fallback page.
+  - `[locale]/offline/`: PWA offline page (Workbox navigation fallback targets `/offline`).
   - `worker.ts`: Semantic search Web Worker.
 - `components/`: UI components.
   - `ui/`: Standardized primitives (Button, etc.).

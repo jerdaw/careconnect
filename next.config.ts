@@ -53,6 +53,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // iOS Universal Links requires this file to be served as JSON (no extension).
+        source: "/.well-known/apple-app-site-association",
+        headers: [{ key: "Content-Type", value: "application/json" }],
+      },
+      {
         source: "/(.*)",
         headers: securityHeaders,
       },
@@ -73,19 +78,97 @@ const withPWA = withPWAInit({
     importScripts: ["/custom-sw.js"],
     runtimeCaching: [
       {
-        urlPattern: /\/api\/services/,
-        handler: "StaleWhileRevalidate",
+        // Next.js build output (hashed + immutable)
+        urlPattern: /\/_next\/static\//,
+        handler: "CacheFirst",
         options: {
-          cacheName: "services-api-cache",
-          expiration: { maxAgeSeconds: 86400 }, // 24 hours
+          cacheName: "next-static",
+          expiration: {
+            maxEntries: 200,
+            maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
         },
       },
       {
-        urlPattern: /\.json$/,
+        // Next.js image optimizer
+        urlPattern: /\/_next\/image(\?|\/)/,
+        handler: "StaleWhileRevalidate",
+        options: {
+          cacheName: "next-image",
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
+      },
+      {
+        // Ensure the Workbox navigation fallback is available offline
+        urlPattern: /\/offline(\?.*)?$/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "offline-fallback",
+          networkTimeoutSeconds: 3,
+          expiration: {
+            maxEntries: 5,
+            maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
+      },
+      {
+        // Store-quality install assets (manifest, icons, screenshots)
+        urlPattern: /\/(manifest\.json|icons\/|screenshots\/)/,
         handler: "CacheFirst",
         options: {
-          cacheName: "json-cache",
-          expiration: { maxAgeSeconds: 604800 }, // 7 days
+          cacheName: "pwa-assets",
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
+      },
+      {
+        // Offline-first bulk export (only caches successful GETs; 401/403 won't be cached)
+        urlPattern: /\/api\/v1\/services\/export(\?.*)?$/,
+        handler: "NetworkFirst",
+        method: "GET",
+        options: {
+          cacheName: "services-export",
+          networkTimeoutSeconds: 5,
+          expiration: {
+            maxEntries: 2,
+            maxAgeSeconds: 60 * 60 * 24, // 24 hours
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
+      },
+      {
+        // Services API GET responses (public data only; excludes export endpoint above)
+        urlPattern: /\/api\/v1\/services(?!\/export)(\/|$)/,
+        handler: "StaleWhileRevalidate",
+        method: "GET",
+        options: {
+          cacheName: "services-api",
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 60 * 60 * 24, // 24 hours
+          },
+          cacheableResponse: {
+            statuses: [200],
+          },
         },
       },
     ],

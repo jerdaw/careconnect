@@ -1,39 +1,45 @@
 self.addEventListener("push", function (event) {
   if (!event.data) return
 
-  const data = event.data.json()
-  const options = {
-    body: data.body,
-    icon: data.icon || "/icon-192x192.png",
-    badge: "/badge-72x72.png",
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: "2",
-      url: data.url || "/",
-    },
-    actions: [
-      { action: "explore", title: "View Details" },
-      { action: "close", title: "Close" },
-    ],
+  let data = {}
+  try {
+    data = event.data.json() || {}
+  } catch {
+    data = { body: event.data.text() }
   }
 
-  event.waitUntil(self.registration.showNotification(data.title, options))
+  const title = typeof data.title === "string" && data.title ? data.title : "Kingston Care Connect"
+  const body = typeof data.body === "string" && data.body ? data.body : ""
+  const url = typeof data.url === "string" && data.url ? data.url : "/"
+
+  const actions = Array.isArray(data.actions) && data.actions.length > 0 ? data.actions : undefined
+
+  const options = {
+    body,
+    icon: typeof data.icon === "string" && data.icon ? data.icon : "/icons/icon-192.png",
+    badge: "/icons/badge-72x72.png",
+    vibrate: [100, 50, 100],
+    data: { url },
+    ...(actions ? { actions } : {}),
+  }
+
+  event.waitUntil(self.registration.showNotification(title, options))
 })
 
 self.addEventListener("notificationclick", function (event) {
   event.notification.close()
-
   if (event.action === "close") return
 
   event.waitUntil(
     clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (clientList) {
-      // Check if there's already a window open with this URL
-      const url = event.notification.data.url
+      const url = event.notification.data && event.notification.data.url ? event.notification.data.url : "/"
+      const targetUrl = new URL(url, self.location.origin).href
+
       for (const client of clientList) {
-        if (client.url === url && "focus" in client) return client.focus()
+        if (client.url === targetUrl && "focus" in client) return client.focus()
       }
-      if (clients.openWindow) return clients.openWindow(url)
+
+      if (clients.openWindow) return clients.openWindow(targetUrl)
     })
   )
 })

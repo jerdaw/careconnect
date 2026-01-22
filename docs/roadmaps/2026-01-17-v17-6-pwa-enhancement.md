@@ -1,6 +1,6 @@
 ---
-status: planned
-last_updated: 2026-01-19
+status: in_progress
+last_updated: 2026-01-22
 owner: jer
 tags: [roadmap, v17.6, pwa, offline, mobile]
 ---
@@ -14,10 +14,41 @@ tags: [roadmap, v17.6, pwa, offline, mobile]
 
 ## Executive Summary
 
-Enhance Progressive Web App capabilities for better mobile experience and app store compatibility. Currently has basic PWA config. Improvements include manifest enhancements, service worker improvements, and offline UX polish.
+Enhance Progressive Web App capabilities for better mobile experience and app store compatibility.
+
+**Architecture reality (already implemented):**
+
+- PWA is built with `@ducanh2912/next-pwa` (see `next.config.ts`).
+- Offline fallback route exists at `app/[locale]/offline/page.tsx` and is referenced by Workbox fallback logic.
+- Offline data + feedback syncing already runs client-side via `components/offline/OfflineSync.tsx`.
+- Manual verification steps already exist in `docs/runbooks/pwa-testing.md` and `docs/development/mobile-ready.md`.
+
+**Primary gaps (to fix in this version):**
+
+- `public/manifest.json` icon URLs are not aligned with the actual icon files in `public/` (currently uses `/icon?w=...`).
+- `public/custom-sw.js` references a default icon path that is not present in `public/`.
+- Missing screenshots + complete icon set for store-quality install UX.
 
 > [!NOTE]
-> **JSON Examples**: The manifest.json examples below use comments for documentation purposes. Remove all comments before deploying as JSON does not support comments.
+> **Manifest JSON** must be valid JSON (no comments). Keep explanations in Markdown, not inline.
+
+## Implementation Status (Snapshot: 2026-01-22)
+
+Completed in code:
+
+- Manifest metadata, shortcuts, and share target (`public/manifest.json`).
+- Store icon set + screenshots exist in `public/icons/` and `public/screenshots/` (tests enforce required sizes).
+- Share target endpoint (`app/api/v1/share/route.ts`).
+- Offline navigation fallback resolves (`/offline` rewrites to `/{locale}/offline` via middleware).
+- URL → state hydration (`app/[locale]/page.tsx` reads `?q`, `?category`, `?openNow`).
+- Workbox caching rules updated in `next.config.ts` (offline fallback, static assets, export endpoint).
+- Privacy-preserving monitoring (`GET /api/health` includes PWA checks).
+
+Remaining manual verification (release checklist):
+
+- Replace placeholder screenshots with real screenshots taken from a running app (must keep exact dimensions).
+- Run Lighthouse PWA audit on a production build and confirm score targets.
+- Validate install UX on real devices (Android Chrome, iOS Safari).
 
 ---
 
@@ -33,7 +64,7 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
 {
   "name": "Kingston Care Connect",
   "short_name": "KCC",
-  "description": "Find community services in Kingston",
+  "description": "Find community services in Kingston. Free, confidential, and instant.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -43,7 +74,7 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
     { "src": "/icon?w=192", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon?w=512", "sizes": "512x512", "type": "image/png" }
   ],
-  "screenshots": [] // EMPTY
+  "screenshots": []
 }
 ```
 
@@ -56,19 +87,15 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
   "name": "Kingston Care Connect - Social Services Search",
   "short_name": "KCC",
   "description": "Find essential community services in Kingston. Free, confidential, and instant. Health, housing, crisis, financial, and more.",
-
-  "start_url": "/en", // Start in user's language preference
+  "start_url": "/",
+  "id": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
 
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
-
-  // Categories for app store discovery
-  "categories": ["productivity", "social", "reference", "lifestyle"],
-
-  // Screenshots for app store listings
+  "categories": ["social", "reference", "medical", "lifestyle"],
   "screenshots": [
     {
       "src": "/screenshots/mobile-search.png",
@@ -92,51 +119,46 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
       "label": "Search on tablet"
     }
   ],
-
-  // Multiple icon sizes for different devices
   "icons": [
     {
-      "src": "/favicon-16.png",
+      "src": "/icons/favicon-16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/favicon-32.png",
+      "src": "/icons/favicon-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icon-maskable-192.png",
+      "src": "/icons/icon-maskable-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icon-maskable-512.png",
+      "src": "/icons/icon-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-
-  // Share target (share FROM other apps into KCC)
-  // NOTE: Requires implementing /api/v1/share endpoint (see Phase 1.6)
   "share_target": {
     "action": "/api/v1/share",
     "method": "POST",
@@ -147,24 +169,18 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
       "url": "url"
     }
   },
-
-  // Preferred related applications (native apps if they exist)
   "prefer_related_applications": false,
   "related_applications": [],
-
-  // Protocol handlers (if using custom protocols)
   "protocol_handlers": [],
-
-  // Shortcuts for homescreen quick actions
   "shortcuts": [
     {
       "name": "Search Services",
       "short_name": "Search",
       "description": "Search for community services",
-      "url": "/en?q=",
+      "url": "/?q=",
       "icons": [
         {
-          "src": "/icon-search-96.png",
+          "src": "/icons/shortcut-search-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -174,10 +190,10 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
       "name": "Crisis Resources",
       "short_name": "Crisis",
       "description": "Find crisis support immediately",
-      "url": "/en?category=crisis",
+      "url": "/?category=Crisis",
       "icons": [
         {
-          "src": "/icon-crisis-96.png",
+          "src": "/icons/shortcut-crisis-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -187,10 +203,10 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
       "name": "My Dashboard",
       "short_name": "Dashboard",
       "description": "View your saved services",
-      "url": "/en/dashboard",
+      "url": "/dashboard",
       "icons": [
         {
-          "src": "/icon-dashboard-96.png",
+          "src": "/icons/shortcut-dashboard-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -200,13 +216,19 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
 }
 ```
 
+Notes:
+
+- `start_url` stays `/` so `next-intl` middleware can select the correct locale prefix based on user preference.
+- `shortcuts` and `share_target` require URL → state hydration on the home page (see Phase 3).
+  - For offline support, `/offline` is a stable navigation fallback URL; middleware rewrites it to `/{locale}/offline`.
+
 ### 1.3 Create PWA Screenshots
 
 **Required files:**
 
-- [ ] `/public/screenshots/mobile-search.png` (540x720, PNG)
-- [ ] `/public/screenshots/mobile-detail.png` (540x720, PNG)
-- [ ] `/public/screenshots/tablet-search.png` (1280x720, PNG)
+- [ ] `/public/screenshots/mobile-search.png` (540x720, PNG) — replace placeholder with real capture
+- [ ] `/public/screenshots/mobile-detail.png` (540x720, PNG) — replace placeholder with real capture
+- [ ] `/public/screenshots/tablet-search.png` (1280x720, PNG) — replace placeholder with real capture
 
 **Process:**
 
@@ -219,13 +241,17 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
 
 **Required icons:**
 
-- [ ] `favicon-16.png` (16×16)
-- [ ] `favicon-32.png` (32×32)
-- [ ] `apple-touch-icon.png` (180×180, for iOS)
-- [ ] `icon-192.png` (192×192)
-- [ ] `icon-512.png` (512×512)
-- [ ] `icon-maskable-192.png` (192×192, maskable format for dynamic colors)
-- [ ] `icon-maskable-512.png` (512×512, maskable format)
+- [x] `public/icons/favicon-16.png` (16×16)
+- [x] `public/icons/favicon-32.png` (32×32)
+- [x] `public/icons/apple-touch-icon.png` (180×180, iOS)
+- [x] `public/icons/icon-192.png` (192×192)
+- [x] `public/icons/icon-512.png` (512×512)
+- [x] `public/icons/icon-maskable-192.png` (192×192, maskable)
+- [x] `public/icons/icon-maskable-512.png` (512×512, maskable)
+- [x] `public/icons/shortcut-search-96.png` (96×96)
+- [x] `public/icons/shortcut-crisis-96.png` (96×96)
+- [x] `public/icons/shortcut-dashboard-96.png` (96×96)
+- [x] `public/icons/badge-72x72.png` (72×72, notification badge)
 
 **Design requirements:**
 
@@ -253,13 +279,14 @@ export async function POST(request: NextRequest) {
 
     // Redirect to search with shared content as query
     const searchQuery = text || title || url || ""
-    const locale = request.headers.get("accept-language")?.split(",")[0] || "en"
 
-    // Redirect to search page with the shared content
-    return NextResponse.redirect(new URL(`/${locale}?q=${encodeURIComponent(searchQuery)}`, request.url))
+    // Redirect to Home with the shared content.
+    // NOTE: Use 303 so the follow-up request is a GET.
+    // Locale selection is handled by next-intl middleware on the redirected request.
+    return NextResponse.redirect(new URL(`/?q=${encodeURIComponent(searchQuery)}`, request.url), 303)
   } catch (error) {
     // On error, redirect to home
-    return NextResponse.redirect(new URL("/en", request.url))
+    return NextResponse.redirect(new URL("/", request.url), 303)
   }
 }
 ```
@@ -277,18 +304,18 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Kingston Care Connect",
+    statusBarStyle: "default",
+    title: "KCC",
   },
   formatDetection: {
     telephone: false,
   },
   icons: {
     icon: [
-      { url: "/favicon-16.png", sizes: "16x16" },
-      { url: "/favicon-32.png", sizes: "32x32" },
+      { url: "/icons/favicon-16.png", sizes: "16x16" },
+      { url: "/icons/favicon-32.png", sizes: "32x32" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
 }
 ```
@@ -314,91 +341,49 @@ export const metadata: Metadata = {
 **Modify:** `public/custom-sw.js`
 
 ```javascript
-// Handle push notifications (existing)
-self.addEventListener("push", (event) => {
+self.addEventListener("push", function (event) {
+  if (!event.data) return
+
   const data = event.data.json()
   const options = {
-    body: data.message,
-    icon: "/icon-192.png",
-    badge: "/badge-72.png",
-    actions: data.actions || [],
+    body: data.body,
+    icon: data.icon || "/icons/icon-192.png",
+    badge: "/icons/badge-72x72.png",
+    vibrate: [100, 50, 100],
+    data: {
+      url: data.url || "/",
+    },
+    actions: data.actions || [
+      { action: "explore", title: "View Details" },
+      { action: "close", title: "Close" },
+    ],
   }
+
   event.waitUntil(self.registration.showNotification(data.title, options))
 })
 
-// NEW: Handle notification clicks
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener("notificationclick", function (event) {
   event.notification.close()
-  const url = event.notification.data?.url || "/en"
+
+  if (event.action === "close") return
+
   event.waitUntil(
-    clients.matchAll({ type: "window" }).then((clientList) => {
-      for (let client of clientList) {
-        if (client.url === url && "focus" in client) {
-          return client.focus()
-        }
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (clientList) {
+      const url = event.notification.data?.url || "/"
+      for (const client of clientList) {
+        if (client.url === url && "focus" in client) return client.focus()
       }
-      return clients.openWindow(url)
+      if (clients.openWindow) return clients.openWindow(url)
     })
   )
 })
-
-// NEW: Skip waiting (replace old service worker immediately)
-self.addEventListener("activate", (event) => {
-  event.waitUntil(clients.claim())
-})
-
-// NEW: Handle offline navigation to offline page
-self.addEventListener("fetch", (event) => {
-  const { request } = event
-  const url = new URL(request.url)
-
-  // Only intercept navigation requests
-  if (request.mode !== "navigate") {
-    return
-  }
-
-  event.respondWith(
-    fetch(request).catch(() => {
-      // If offline and not already on offline page, serve offline page
-      if (!url.pathname.endsWith("/offline")) {
-        // Detect locale from pathname or default to 'en'
-        const locale = url.pathname.split("/")[1] || "en"
-        return caches.match(`/${locale}/offline`)
-      }
-      return caches.match("/en/offline")
-    })
-  )
-})
-
-// NEW: Background sync for offline feedback
-self.addEventListener("sync", (event) => {
-  if (event.tag === "sync-feedback") {
-    event.waitUntil(syncPendingFeedback())
-  }
-})
-
-async function syncPendingFeedback() {
-  try {
-    const db = await openDatabase()
-    const feedback = await db.getAll("pending_feedback")
-
-    for (const item of feedback) {
-      const response = await fetch("/api/v1/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(item),
-      })
-
-      if (response.ok) {
-        await db.delete("pending_feedback", item.id)
-      }
-    }
-  } catch (error) {
-    console.error("Sync failed:", error)
-    throw error // Retry sync
-  }
-}
 ```
+
+Notes:
+
+- Avoid adding `fetch` handlers inside `custom-sw.js`; Workbox (via `next-pwa`) already handles offline routing via `fallbacks.document` and runtime caching in `next.config.ts`.
+- Feedback/background sync already runs at the app layer (see `components/offline/OfflineSync.tsx`). Service Worker Background Sync is optional and should only be added if we need “sync without opening the app”.
+- For multi-lingual UX, prefer sending localized `actions` from the push payload; the service worker should not hardcode UI strings per-locale.
 
 ### 2.3 Offline Page Route Handler
 
@@ -413,75 +398,28 @@ With v17.4 changes, offline page should be:
 
 ---
 
-## Phase 3: Background Sync Implementation (1-2 days)
+## Phase 3: URL Hydration (Shortcuts + Share Target) (1 day)
 
-### 3.1 Register Background Sync
+The manifest `shortcuts` and `share_target` will only be useful if the Home page can hydrate initial state from the URL.
 
-**Modify:** `lib/offline/feedback.ts`
+### 3.1 Home Page: Read URL Params → Search State
 
-```typescript
-export async function registerBackgroundSync() {
-  if ("serviceWorker" in navigator && "SyncManager" in window) {
-    try {
-      const registration = await navigator.serviceWorker.ready
-      await registration.sync.register("sync-feedback")
-      console.log("Background sync registered")
-    } catch (error) {
-      console.error("Failed to register sync:", error)
-    }
-  }
-}
-```
+**Modify:** `app/[locale]/page.tsx` (or `hooks/useSearch.ts`)
 
-### 3.2 Trigger Sync After Feedback
+- [ ] Parse `?q=` and set initial query
+- [ ] Parse `?category=` and map to a valid `IntentCategory` value (e.g. `"Crisis"`)
+- [ ] Optional: parse `?openNow=1`
+- [ ] Ensure this runs client-side and does not fight with user typing (only apply on first mount / when params change)
 
-**Modify:** `lib/actions/feedback.ts`
+### 3.2 Share Target: Redirect to URL Params
 
-```typescript
-export async function submitFeedback(feedback: Feedback) {
-  // Try to submit
-  const response = await fetch("/api/v1/feedback", {
-    method: "POST",
-    body: JSON.stringify(feedback),
-  })
+**Add:** `app/api/v1/share/route.ts`
 
-  if (response.ok) {
-    return { success: true }
-  }
+- [ ] Accept `multipart/form-data` (title/text/url)
+- [ ] Redirect (303) to `/?q=...` (middleware handles locale)
 
-  // If offline, queue and register sync
-  if (!navigator.onLine) {
-    await queueFeedback(feedback)
-    await registerBackgroundSync()
-    return { queued: true, message: "Will send when back online" }
-  }
-
-  // Network error
-  throw new Error("Failed to submit feedback")
-}
-```
-
-### 3.3 Periodic Sync (Optional, Stretch Goal)
-
-**For future enhancement:** Refresh service data periodically when online
-
-```typescript
-// In service worker
-self.addEventListener("periodicsync", (event) => {
-  if (event.tag === "refresh-services") {
-    event.waitUntil(refreshServices())
-  }
-})
-
-async function refreshServices() {
-  const response = await fetch("/api/v1/services")
-  const services = await response.json()
-
-  // Update IndexedDB
-  const db = await openDatabase()
-  await db.put("services", { id: "latest", data: services })
-}
-```
+> [!NOTE]
+> **Background Sync**: feedback + offline sync already auto-runs when the app is open and the network returns (see `components/offline/OfflineSync.tsx`). Service Worker Background Sync is a stretch goal and should only be added if we need syncing while the app is closed.
 
 ---
 
@@ -491,38 +429,23 @@ async function refreshServices() {
 
 **File:** `next.config.ts`
 
-**Current PWA config:**
+**Current architecture notes:**
 
-```typescript
-const withPWA = withPWAInit({
-  dest: "public",
-  // ... other options
-})
-```
+- `fallbacks.document` is set to `/offline` (Workbox navigation fallback).
+- `workboxOptions.importScripts` loads `public/custom-sw.js`.
+- `workboxOptions.runtimeCaching` exists, but the URL patterns should be reviewed to ensure they match the real API routes (`/api/v1/...`).
 
 ### 4.2 Verify Cache Strategies
 
 > [!NOTE]
 > **Custom cache strategies:** Modify `next.config.ts` Workbox configuration, NOT the generated service worker files.
 
-Workbox automatically configures:
-
-```typescript
-// Static assets: Cache first (1 week TTL)
-'/_next/static/**': 'CacheFirst',
-
-// API calls: Network first with cache fallback
-'/api/**': 'NetworkFirst',
-
-// Images: Stale while revalidate (24h)
-'/images/**': 'StaleWhileRevalidate',
-```
-
 **Verify:** Cache strategies optimal for:
 
-- [ ] Services data: Fresh when online, cache when offline
-- [ ] API responses: Recent data preferred, cache fallback
-- [ ] Static assets: Cached aggressively
+- [ ] Offline fallback: `/offline` is available while offline
+- [ ] Bulk export: `/api/v1/services/export` behaves NetworkFirst (fresh when online; usable offline)
+- [ ] Avoid caching auth-protected dashboard routes/responses
+- [ ] Static assets: `/_next/static/**` cached aggressively
 
 ---
 
@@ -531,11 +454,12 @@ Workbox automatically configures:
 ### 5.1 PWA Lighthouse Audit
 
 ```bash
-# Install Lighthouse CLI
-npm install -g lighthouse
+# PWA is disabled in dev mode; test in production build
+npm run build
+npm run start
 
 # Audit PWA
-lighthouse http://localhost:3000/en --view
+npx lighthouse http://localhost:3000/ --view
 
 # Run in CI
 lighthouse http://production.com/en \
@@ -584,6 +508,8 @@ lighthouse http://production.com/en \
    - [ ] Fresh data loads
    - [ ] No data loss
 
+See also: `docs/runbooks/pwa-testing.md` (authoritative manual checks).
+
 ### 5.4 Multi-Language Test (All 7 locales)
 
 For each locale:
@@ -618,7 +544,8 @@ If planning mobile app store listing:
 3. Fill metadata
 4. Submit for review
 
-**Reference:** `docs/PLAY_STORE_GUIDE.md`
+**Reference:** `docs/development/mobile-ready.md` (mobile architecture + deep linking notes).  
+Full store submission work is tracked under v15.1 (paused) in `docs/roadmaps/roadmap.md`.
 
 ### 6.2 App Store (iOS) PWA Listing
 
@@ -637,57 +564,20 @@ For iOS:
 
 ### 7.1 PWA Implementation Guide
 
-**New file:** `docs/PWA_GUIDE.md`
+Update existing docs instead of creating new:
 
-```markdown
-# PWA Implementation Guide
-
-## What is a PWA?
-
-A Progressive Web App is a web app that provides native app-like experience:
-
-- Works offline
-- Installable on home screen
-- Smooth, app-like interface
-- Fast loading
-
-## Key Features
-
-### 1. Service Worker
-
-- Caches assets for offline access
-- Handles push notifications
-- Manages background sync
-
-### 2. Web App Manifest
-
-- Defines app metadata
-- Specifies icons, screenshots
-- Controls display mode
-
-### 3. HTTPS
-
-- Required for service workers
-- Ensures security
-
-## User Journey
-
-1. User visits Kingston Care Connect
-2. Browser prompts "Install app"
-3. User installs to home screen
-4. App opens in standalone mode
-5. User works online and offline seamlessly
-```
+- [ ] Ensure `docs/development/mobile-ready.md` reflects the current PWA config (manifest, icons, offline fallback)
+- [ ] Ensure `docs/runbooks/pwa-testing.md` matches the updated manifest + icons
 
 ### 7.2 Monitoring PWA Health
 
-**Track in analytics:**
+**Monitoring constraints:** Maintain privacy-by-design (no user tracking for installs/usage).
 
-- [ ] Installation rate
-- [ ] Offline usage frequency
-- [ ] Sync success rate
-- [ ] Crash rate
-- [ ] Cache hit rate
+Practical, privacy-preserving checks:
+
+- [ ] Lighthouse checks as part of release verification
+- [ ] Manual offline/online sync verification (runbook)
+- [ ] Watch for service worker registration errors during QA (DevTools)
 
 ---
 
@@ -697,7 +587,7 @@ A Progressive Web App is a web app that provides native app-like experience:
 - [ ] Lighthouse PWA score: 90+
 - [ ] Installation works on Android/iOS
 - [ ] Offline mode works for all 7 locales
-- [ ] Background sync functional
+- [ ] Auto-sync on network restore works (app-layer sync via `components/offline/OfflineSync.tsx`)
 - [ ] Service worker: no 404 on registration
 - [ ] All icon sizes generated
 - [ ] Screenshots optimized and visible
@@ -710,11 +600,11 @@ A Progressive Web App is a web app that provides native app-like experience:
 | File                        | Change                            | Impact                  |
 | --------------------------- | --------------------------------- | ----------------------- |
 | `public/manifest.json`      | Enhanced metadata                 | App discovery           |
-| `public/custom-sw.js`       | Background sync, offline handling | UX improvement          |
+| `public/custom-sw.js`       | Notification icon + click routing | UX improvement          |
 | `app/api/v1/share/route.ts` | **NEW** - Share target handler    | Enable sharing into app |
-| `app/[locale]/layout.tsx`   | Add PWA meta tags                 | iOS support             |
+| `app/[locale]/layout.tsx`   | Add/align icon + meta tags        | iOS support             |
 | `app/[locale]/offline/*`    | Already locale-aware              | Multi-language offline  |
-| `lib/offline/feedback.ts`   | Register background sync          | Auto sync when online   |
+| `app/[locale]/page.tsx`     | URL → state hydration             | Shortcuts/share work    |
 | Icon files                  | Generate 7 sizes                  | Device compatibility    |
 | Screenshots                 | Create 3 variants                 | App store               |
 
@@ -725,17 +615,16 @@ A Progressive Web App is a web app that provides native app-like experience:
 - **Workbox** (via next-pwa): Already configured
 - **Service Worker API**: Supported in all modern browsers
 - **IndexedDB**: For offline storage (already implemented)
-- **Background Sync API**: Chrome/Edge, Firefox (partial)
+- **Background Sync API**: Optional (only needed if syncing while app is closed becomes a requirement)
 
 ---
 
 ## Post-Deployment Monitoring
 
 1. Check manifest validity weekly
-2. Monitor Lighthouse scores
-3. Track installation rates
-4. Review sync success rates
-5. Monitor offline usage patterns
+2. Monitor Lighthouse scores during release verification
+3. Review sync success via logs/runbook (no user tracking)
+4. Watch for service worker registration/import errors during QA
 
 ---
 

@@ -1,38 +1,58 @@
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
-import { createApiError } from "@/lib/api-utils"
-import { assertAdminRole } from "@/lib/auth/authorization"
+import type { Service, Provenance } from "@/types/service"
+
+type PublicExportService = Omit<
+  Service,
+  | "embedding"
+  | "distance"
+  | "org_id"
+  | "deleted_at"
+  | "deleted_by"
+  | "admin_notes"
+  | "last_admin_review"
+  | "reviewed_by"
+> & { provenance: Provenance }
+
+function sanitizeForPublicExport(service: Service): PublicExportService {
+  // Remove fields that should never be exposed publicly (admin/partner/internal).
+  // Keep the shape compatible with client/offline usage.
+  const {
+    embedding: _embedding,
+    distance: _distance,
+    org_id: _org_id,
+    deleted_at: _deleted_at,
+    deleted_by: _deleted_by,
+    admin_notes: _admin_notes,
+    last_admin_review: _last_admin_review,
+    reviewed_by: _reviewed_by,
+    ...rest
+  } = service
+
+  void [_embedding, _distance, _org_id, _deleted_at, _deleted_by, _admin_notes, _last_admin_review, _reviewed_by]
+
+  const lastVerified = rest.last_verified || rest.provenance?.verified_at || null
+  const evidenceUrl = rest.provenance?.evidence_url || ""
+  const method = rest.provenance?.method || ""
+
+  return {
+    ...rest,
+    provenance: {
+      verified_by: "Care Connect Admin",
+      verified_at: lastVerified || new Date().toISOString(),
+      evidence_url: evidenceUrl,
+      method,
+    },
+  }
+}
 
 export async function GET(request: Request) {
   try {
-    const { createServerClient } = await import("@supabase/ssr")
-    const { cookies } = await import("next/headers")
-
-    const cookieStore = await cookies()
-    const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-      {
-        cookies: {
-          getAll: () => cookieStore.getAll(),
-          setAll: () => {},
-        },
-      }
-    )
-
-    const {
-      data: { user },
-      error: authError,
-    } = await supabaseAuth.auth.getUser()
-
-    if (authError || !user) {
-      return createApiError("Unauthorized", 401)
-    }
-
-    // Verify admin role
-    await assertAdminRole(supabaseAuth, user.id)
-
     const services = await loadServices()
+    const publicServices = services
+      .filter((s) => s.published !== false && !s.deleted_at)
+      .map((s) => sanitizeForPublicExport(s))
+    const publicIds = new Set(publicServices.map((s) => s.id))
 
     // Separate embeddings to reduce redundancy if needed, but for now we keep it simple
     // Actually, separating them matches the IDB structure better and reduces JSON parsing overhead on the main service object if we want.
@@ -44,22 +64,18 @@ export async function GET(request: Request) {
     // Check If-None-Match
     const ifNoneMatch = request.headers.get("If-None-Match")
     if (ifNoneMatch === dailyTag) {
-      return new Response(null, { status: 304 })
+      return new Response(null, { status: 304, headers: { ETag: dailyTag } })
     }
 
     const exportData = {
       version: new Date().toISOString(), // In a real app, this should be the max(updated_at)
-      count: services.length,
-      services: services.map((s) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { embedding, ...rest } = s
-        return rest
-      }),
+      count: publicServices.length,
+      services: publicServices,
       embeddings: services
-        .filter((s) => s.embedding)
+        .filter((s) => s.embedding && publicIds.has(s.id))
         .map((s) => ({
           id: s.id,
-          embedding: s.embedding,
+          embedding: s.embedding!,
         })),
     }
 
