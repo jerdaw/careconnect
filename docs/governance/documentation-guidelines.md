@@ -15,6 +15,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **UI Components**: `docs/components.md`
 - **Localization**: `docs/development/bilingual-guide.md` (Multi-lingual development guide)
 - **Governance**: `docs/governance.md`
+- **Data Enrichment**: `docs/governance/data-enrichment-sop.md` (Enrichment process)
 - **Hooks & Utilities**: `docs/hooks.md`
 - **Roadmap**: `docs/roadmaps/roadmap.md` (Active Plan)
 - **Historical Records**: `docs/roadmaps/archive/` (Completed work)

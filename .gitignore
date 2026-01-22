@@ -48,6 +48,8 @@ public/fallback-*.js
 /.npm-only-allow
 # data reports
 data/*-report.json
+data/geocode-cache.json
+data/services.backup*.json
 
 # supabase local config (added by CLI init)
 supabase/.temp/
