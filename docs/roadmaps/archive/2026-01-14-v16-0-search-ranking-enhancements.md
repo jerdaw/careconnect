@@ -105,7 +105,7 @@ This roadmap:
 
 ### What We Have (Client-Side Complete)
 
-**Client-Side Scoring** ([lib/search/scoring.ts](file:///home/jer/LocalSync/kingston-care-connect/lib/search/scoring.ts)):
+**Client-Side Scoring** (`lib/search/scoring.ts`):
 
 - 11-step scoring pipeline with authority, completeness, intent targeting
 - Verification level multipliers (L3=1.2x, L2=1.1x, L1=1.0x)
@@ -113,13 +113,13 @@ This roadmap:
 - Identity personalization (up to 30% boost)
 - Resource capacity indicators
 
-**Proximity Scoring** ([lib/search/geo.ts](file:///home/jer/LocalSync/kingston-care-connect/lib/search/geo.ts)):
+**Proximity Scoring** (`lib/search/geo.ts`):
 
 - Continuous decay: `1 / (1 + k * distance)`
 - Virtual services exempt from proximity penalty
 - Provincial/national services use reduced decay (k=0.005 vs k=0.02)
 
-**Type System** ([types/service.ts](file:///home/jer/LocalSync/kingston-care-connect/types/service.ts)):
+**Type System** (`types/service.ts`):
 
 - `AuthorityTier` type defined
 - `ResourceIndicators` interface defined
@@ -133,7 +133,7 @@ This roadmap:
 
 ### What's Missing (This Roadmap Will Add)
 
-**Server-Side API** ([app/api/v1/search/services/route.ts](file:///home/jer/LocalSync/kingston-care-connect/app/api/v1/search/services/route.ts)):
+**Server-Side API** (`app/api/v1/search/services/route.ts`):
 
 - Currently uses basic ILIKE substring matching
 - Sort order: verification_status (desc) → last_verified (desc)
@@ -146,7 +146,7 @@ This roadmap:
 - Missing `resource_indicators` column
 - `services_public` view doesn't expose new fields
 
-**Service Data** ([data/services.json](file:///home/jer/LocalSync/kingston-care-connect/data/services.json)):
+**Service Data** (`data/services.json`):
 
 - ~196 services, none have `authority_tier` populated
 - No resource indicators populated
@@ -869,6 +869,6 @@ The following 4 phases should be executed sequentially:
 
 ## Appendix C: Related Documents
 
-- [v16.0 Client-Side Walkthrough](file:///home/jer/.gemini/antigravity/brain/e325d1bf-3d3f-42f9-9fa3-f1352077854b/walkthrough.md) - Completed client-side implementation summary
-- [Search Architecture ADR](file:///home/jer/LocalSync/kingston-care-connect/docs/adr/001-modular-search-architecture.md) - Modular search design decisions
-- [Librarian Model ADR](file:///home/jer/LocalSync/kingston-care-connect/docs/adr/003-librarian-model-public-search.md) - Privacy-preserving search architecture
+- v16.0 Client-Side Walkthrough (local reference removed) - Completed client-side implementation summary
+- Search Architecture ADR: `docs/adr/001-modular-search-architecture.md` - Modular search design decisions
+- Librarian Model ADR: `docs/adr/003-librarian-model-public-search.md` - Privacy-preserving search architecture

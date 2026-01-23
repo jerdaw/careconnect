@@ -27,16 +27,16 @@ Group files by component (e.g., package, feature area, dependency layer). Separa
 
 Summary of what will change in this component.
 
-#### [MODIFY] [filename.ext](file:///absolute/path/to/file)
+#### [MODIFY] `path/to/file.ext`
 
 - Change 1
 - Change 2
 
-#### [NEW] [filename.ext](file:///absolute/path/to/file)
+#### [NEW] `path/to/file.ext`
 
 - Purpose of new file
 
-#### [DELETE] [filename.ext](file:///absolute/path/to/file)
+#### [DELETE] `path/to/file.ext`
 
 - Reason for deletion
 

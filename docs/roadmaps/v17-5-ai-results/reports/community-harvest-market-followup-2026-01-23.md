@@ -5,6 +5,7 @@
 The initial evidence spot-check for v17.5 AI ingestion found that the `community-harvest-market` provenance `evidence_url` returned `404`, which is a governance risk (dead source link + potential drift in service details).
 
 Reference:
+
 - `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`
 
 ## What Changed
@@ -29,4 +30,3 @@ In `data/services.json`:
 
 - Seasonal programs need a safe representation in the schema (e.g., explicit season ranges) if we want “Open Now” to work without false positives.
 - Consider adding a lightweight “last verified” workflow for URLs that drift frequently.
-
