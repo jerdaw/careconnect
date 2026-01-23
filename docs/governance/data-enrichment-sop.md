@@ -114,9 +114,18 @@ Run `npm run audit:data` to determine which services are missing structured `hou
 
 **Process:**
 
-1. Run hours parser script
-2. Review failures (complex formats)
-3. Use ChatGPT for ambiguous cases
+1. Export the current hours gaps:
+
+   ```bash
+   npm run audit:hours
+   ```
+
+   Output: `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
+
+2. Prioritize fixes:
+   - Add `hours_text` for services missing it (human-readable display)
+   - Add structured `hours` only where the hours are unambiguous and evidence-backed (to avoid false “Open Now”)
+3. Use ChatGPT for ambiguous cases (with strict evidence requirements) only after collecting source URLs and confirming the provider’s official hours.
 
 **Prompt for AI assistance:**
 
@@ -169,7 +178,7 @@ Worked example + tooling (v17.5):
 **Script:**
 
 ```bash
-npx tsx scripts/audit-plain-language.ts
+node --import tsx scripts/audit-plain-language.ts
 ```
 
 ## 6. Quality Assurance
