@@ -9,7 +9,14 @@
  *   1. Get free API key from https://opencagedata.com/ (2,500/day free tier)
  *   2. Add OPENCAGE_API_KEY to .env.local
  *
- * Usage: npx tsx scripts/geocode-services.ts
+ * Usage:
+ *   OPENCAGE_API_KEY=xxx node --import tsx scripts/geocode-services.ts
+ *
+ * Notes:
+ *   - By default, this script only attempts to geocode **Kingston-scope** services that have a
+ *     stable, geocodable physical address. It skips virtual/phone-only services and placeholder
+ *     address notes to avoid adding misleading coordinates.
+ *   - Use `--all-scopes` to attempt geocoding across all scopes (not recommended for v17.5).
  */
 
 import fs from "fs/promises"
@@ -26,6 +33,11 @@ interface Service {
   coordinates?: { lat: number; lng: number }
   latitude?: number
   longitude?: number
+  scope?: string
+  virtual_delivery?: boolean
+  published?: boolean
+  status?: string
+  deleted_at?: string | null
 }
 
 interface GeocodeCacheEntry {
@@ -102,6 +114,29 @@ function hasCoordinates(service: Service): boolean {
   return !!(service.coordinates || (service.latitude && service.longitude))
 }
 
+function isActive(service: Service): boolean {
+  if (service.deleted_at) return false
+  if (service.published === false) return false
+  if (service.status && service.status.toLowerCase().includes("permanently closed")) return false
+  return true
+}
+
+function isGeocodableAddress(address: string): boolean {
+  const trimmed = address.trim()
+  if (trimmed.length === 0) return false
+
+  // Avoid wasting calls on known non-geocodable placeholder/location notes.
+  if (/(virtual|confidential|various|pop-?up|moved|call|phone|online|mailing|po box|p\.?o\.?\s*box)/i.test(trimmed)) {
+    return false
+  }
+
+  // Require at least one digit (street number) OR a Canadian postal code.
+  const hasDigit = /\d/.test(trimmed)
+  const hasCanadianPostalCode = /\b[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d\b/i.test(trimmed)
+
+  return hasDigit || hasCanadianPostalCode
+}
+
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
@@ -112,9 +147,11 @@ async function main() {
     console.error("❌ Error: OPENCAGE_API_KEY environment variable not set")
     console.error("")
     console.error("Get a free API key from https://opencagedata.com/")
-    console.error("Then run: OPENCAGE_API_KEY=your-key npx tsx scripts/geocode-services.ts")
+    console.error("Then run: OPENCAGE_API_KEY=your-key node --import tsx scripts/geocode-services.ts")
     process.exit(1)
   }
+
+  const allScopes = process.argv.includes("--all-scopes")
 
   console.log("🌍 Geocoding Services")
   console.log("═".repeat(60))
@@ -126,20 +163,48 @@ async function main() {
   let successCount = 0
   let failureCount = 0
   let cachedCount = 0
-  let skippedCount = 0
-  const failures: Array<{ name: string; address?: string }> = []
+  let skippedAlreadyHasCoords = 0
+  let skippedInactive = 0
+  let skippedNonKingston = 0
+  let skippedVirtual = 0
+  let skippedNoAddress = 0
+  let skippedNonGeocodableAddress = 0
+  const failures: Array<{ name: string; address?: string; reason: string }> = []
 
   for (const service of services) {
     // Skip if already has coordinates
     if (hasCoordinates(service)) {
-      skippedCount++
+      skippedAlreadyHasCoords++
+      continue
+    }
+
+    // Skip if not active
+    if (!isActive(service)) {
+      skippedInactive++
+      continue
+    }
+
+    // Default: only geocode Kingston-scope services
+    if (!allScopes && service.scope !== "kingston") {
+      skippedNonKingston++
+      continue
+    }
+
+    // Skip virtual/phone-only services
+    if (service.virtual_delivery === true) {
+      skippedVirtual++
       continue
     }
 
     // Skip if no address
     if (!service.address) {
-      console.log(`  ⏭️  ${service.name}: No address`)
-      skippedCount++
+      skippedNoAddress++
+      continue
+    }
+
+    // Skip if address is a placeholder/location note
+    if (!isGeocodableAddress(service.address)) {
+      skippedNonGeocodableAddress++
       continue
     }
 
@@ -171,7 +236,7 @@ async function main() {
       console.log(`  ✅ ${result.formatted} (confidence: ${result.confidence})`)
     } else {
       failureCount++
-      failures.push({ name: service.name, address: service.address })
+      failures.push({ name: service.name, address: service.address, reason: "geocode_failed" })
       console.log(`  ❌ Failed to geocode`)
     }
 
@@ -190,7 +255,12 @@ async function main() {
   console.log(`  New geocodes: ${successCount}`)
   console.log(`  From cache: ${cachedCount}`)
   console.log(`  Failed: ${failureCount}`)
-  console.log(`  Skipped (no address or has coords): ${skippedCount}`)
+  console.log(`  Skipped (already has coords): ${skippedAlreadyHasCoords}`)
+  console.log(`  Skipped (inactive): ${skippedInactive}`)
+  console.log(`  Skipped (non-Kingston scope): ${skippedNonKingston}`)
+  console.log(`  Skipped (virtual_delivery): ${skippedVirtual}`)
+  console.log(`  Skipped (no address): ${skippedNoAddress}`)
+  console.log(`  Skipped (non-geocodable address): ${skippedNonGeocodableAddress}`)
   console.log("")
 
   if (failures.length > 0) {
