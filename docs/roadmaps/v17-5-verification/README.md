@@ -7,7 +7,7 @@ tags: [roadmap, v17.5, data-quality, verification, l3]
 
 # v17.5 Verification (L3) Workspace
 
-This folder supports **Phase 6: Verification Level Upgrades** from `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
+This folder supports **Phase 6: Verification Level Upgrades** from `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md`.
 
 ## Goal
 

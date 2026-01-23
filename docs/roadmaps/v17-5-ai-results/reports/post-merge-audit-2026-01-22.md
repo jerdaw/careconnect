@@ -51,4 +51,4 @@ Verification level distribution:
 - Proceed to Phase 6 (Governance QA sampling) focusing on:
   - Crisis services (safety + hours accuracy)
   - Services with newly added hours/access scripts
-- Continue v17.5 work for coordinates (Phase 3 of `2026-01-17-v17-5-data-quality.md`).
+- Continue v17.5 work for coordinates (Phase 3 of `archive/2026-01-23-v17-5-data-quality.md`).

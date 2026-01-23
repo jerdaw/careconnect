@@ -7,7 +7,7 @@ tags: [roadmap, v17.5, data-quality, hours, structured-data]
 
 # v17.5 Hours & Structured Data Workspace
 
-This folder supports **Phase 5: Hours & Structured Data** from `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
+This folder supports **Phase 5: Hours & Structured Data** from `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md`.
 
 ## Policy (Governance-First)
 

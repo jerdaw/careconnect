@@ -17,9 +17,9 @@ This file provides context for AI agents working on the Kingston Care Connect pr
 ## Key Files
 
 - `docs/roadmaps/`: History of project growth.
-- `lib/search.ts`: Core hybrid search logic.
-- `docs/bilingual-dev-guide.md`: Standardization of English/French support.
-- `docs/testing-guidelines.md`: Expectations for feature coverage.
+- `lib/search/index.ts`: Core hybrid search logic.
+- `docs/development/bilingual-guide.md`: Standardization of multi-lingual support.
+- `docs/development/testing-guidelines.md`: Expectations for feature coverage.
 - `docs/ACCESSIBILITY_GUIDE.md`: Accessibility standards and patterns.
 - `docs/adr/008-nextjs-testing-patterns.md`: Next.js 15 SSR testing patterns and WebLLM testing strategy.
 - `tests/setup/next-mocks.ts`: Centralized Next.js 15 mock definitions.

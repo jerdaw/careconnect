@@ -22,7 +22,7 @@ npm run audit:l3
 
 ## Baseline (Snapshot: 2026-01-21)
 
-From `docs/roadmaps/2026-01-17-v17-5-data-quality.md` (historical baseline section):
+From `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md` (historical baseline section):
 
 - Total services: 196
 - Missing `scope`: 0
