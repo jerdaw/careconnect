@@ -561,6 +561,7 @@
     "accessProcess": "Processo de candidatura",
     "whatToSayWhenYouCall": "O que dizer quando você ligar",
     "whatToSayWhenYouCallDescription": "Use isto como ponto de partida. Você pode usar suas próprias palavras.",
+    "accessScriptEnglishFallbackNotice": "Este roteiro está disponível no momento em inglês.",
     "accessibility": "Acessibilidade",
     "getDirections": "Obter direções",
     "lastVerified": "Última verificação:",

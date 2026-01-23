@@ -1,0 +1,251 @@
+{
+  "batch": 5,
+  "total_batches": 5,
+  "items": [
+    {
+      "id": "sack-sexual-assault-centre",
+      "name": "Sexual Assault Centre Kingston (SACK)",
+      "name_fr": "Centre d'aide aux agressions sexuelles de Kingston (SACK)",
+      "scope": "kingston",
+      "access_script": "Hi, I experienced sexual assault and need to talk to someone confidentially. Can I get counselling here?"
+    },
+    {
+      "id": "sexual-assault-centre-kingston",
+      "name": "Sexual Assault Centre Kingston (SACK)",
+      "name_fr": "Centre d'aide en cas d'agression sexuelle de Kingston",
+      "scope": "kingston",
+      "access_script": "Call 613-544-6424 for assistance, or visit https://www.sackingston.com. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "ontario-sadv-navigation",
+      "name": "Sexual Assault/Domestic Violence Navigation Line",
+      "name_fr": "Sexual Assault/Domestic Violence Navigation Line",
+      "scope": "ontario",
+      "access_script": "Call 1-855-628-7238 to reach a nurse who will help connect survivors of sexual assault or domestic violence to the nearest treatment centre. This navigation line is available 24/7. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "sexual-health-infoline-ontario-shilo-",
+      "name": "Sexual Health Infoline Ontario (SHILO)",
+      "name_fr": "Ligne info-santé sexuelle de l'Ontario (LISSO)",
+      "scope": "ontario",
+      "access_script": "Call 1-800-668-2437 for anonymous and confidential information on sexual health topics (STIs, HIV/AIDS, birth control, pregnancy, etc.). This service is free for all Ontario residents."
+    },
+    {
+      "id": "st-lawrence-food-pantry",
+      "name": "SLC Food Pantry",
+      "name_fr": "Garde-manger SLC",
+      "scope": "kingston",
+      "access_script": "Visit https://www.slc.me for information."
+    },
+    {
+      "id": "south-frontenac-community-services",
+      "name": "Southern Frontenac Community Services",
+      "name_fr": "Services communautaires de Southern Frontenac",
+      "scope": "kingston",
+      "access_script": "Call 613-376-6477 for assistance, or visit https://www.sfcsc.ca."
+    },
+    {
+      "id": "st-john-ambulance-kingston",
+      "name": "St. John Ambulance",
+      "name_fr": "Ambulance Saint-Jean",
+      "scope": "kingston",
+      "access_script": "Visit https://www.sja.ca for information."
+    },
+    {
+      "id": "slc-academic-upgrading",
+      "name": "St. Lawrence College Academic Upgrading",
+      "name_fr": "Mise à niveau scolaire du Collège St-Lawrence",
+      "scope": "kingston",
+      "access_script": "Call 613-544-5400 ext. 5527 or email ask@sl.on.ca or visit https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Transcripts, ID required. Free."
+    },
+    {
+      "id": "slc-employment-service",
+      "name": "St. Lawrence College Employment Service",
+      "name_fr": "Service d'emploi du Collège St-Lawrence",
+      "scope": "kingston",
+      "access_script": "Visit https://employmentservice.sl.on.ca for information."
+    },
+    {
+      "id": "st-marys-cathedral-drop-in",
+      "name": "St. Mary's Cathedral Drop-In Centre",
+      "name_fr": "Centre de jour de la cathédrale St. Mary's",
+      "scope": "kingston",
+      "access_script": "Email ministries@stmaryscathedral.ca or visit 260 Brock St, Kingston, ON K7L 1S3. No fees."
+    },
+    {
+      "id": "st-vincent-de-paul-kingston",
+      "name": "St. Vincent de Paul Society of Kingston",
+      "name_fr": "Société de Saint-Vincent-de-Paul de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'm struggling with groceries this month. What do I need to bring to access the pantry?"
+    },
+    {
+      "id": "steps-to-justice",
+      "name": "Steps to Justice",
+      "name_fr": "Justice pas-à-pas",
+      "scope": "ontario",
+      "access_script": "Visit stepstojustice.ca to access a step-by-step guide to common legal problems in Ontario. The website is free to use and includes a live chat service where you can ask a law librarian or staff for help with finding legal information."
+    },
+    {
+      "id": "street-health-centre",
+      "name": "Street Health Centre (KCHC)",
+      "name_fr": "Centre de santé de rue (KCHC)",
+      "scope": "kingston",
+      "access_script": "Hi, I'm helping a friend who uses substances and I want to find out about your needle exchange hours."
+    },
+    {
+      "id": "stroke-network-sneo",
+      "name": "Stroke Network of Southeastern Ontario",
+      "name_fr": "Réseau régional des soins de l'AVC du Sud-Est de l'Ontario",
+      "scope": "kingston",
+      "access_script": "Call 613-549-6666 for assistance, or visit https://www.strokenetworkseo.ca."
+    },
+    {
+      "id": "ontario-male-survivors",
+      "name": "Support Services for Male Survivors of Sexual Abuse",
+      "name_fr": "Support Services for Male Survivors of Sexual Abuse",
+      "scope": "ontario",
+      "access_script": "Male survivors of sexual abuse in Ontario can call 1-866-887-0015 for free, multilingual crisis support and referrals. Help is available 24/7. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "crisis-talk-suicide-canada",
+      "name": "Talk Suicide Canada",
+      "name_fr": "Parlons suicide Canada",
+      "scope": "canada",
+      "access_script": "Call 1-833-456-4566. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "talk-tobacco",
+      "name": "Talk Tobacco",
+      "name_fr": "Parler tabac",
+      "scope": "canada",
+      "access_script": "First Nations, Inuit, and Métis individuals looking to quit smoking can call 1-833-998-8255 for free, culturally tailored support. Live chat and additional resources are also available on the Talk Tobacco website (talktobacco.ca)."
+    },
+    {
+      "id": "crisis-talk4healing",
+      "name": "Talk4Healing",
+      "name_fr": "Talk4Healing",
+      "scope": "ontario",
+      "access_script": "Call 1-855-554-4325. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "telephone-aid-line-kingston-talk",
+      "name": "Telephone Aid Line Kingston (TALK)",
+      "name_fr": "Telephone Aid Line Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'm just feeling really lonely tonight and need someone to listen."
+    },
+    {
+      "id": "good-food-box-kingston",
+      "name": "The Good Food Box Kingston",
+      "name_fr": "La Boîte de bonne nourriture Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to order a Good Food Box for this month. When is the deadline?"
+    },
+    {
+      "id": "trans-lifeline-canada",
+      "name": "Trans Lifeline",
+      "name_fr": "Ligne d'assistance Trans",
+      "scope": "canada",
+      "access_script": "Hi, I'm trans and I'm really struggling with dysphoria today. Can I talk to someone who understands?"
+    },
+    {
+      "id": "crisis-trans-lifeline",
+      "name": "Trans Lifeline",
+      "name_fr": "Trans Lifeline",
+      "scope": "canada",
+      "access_script": "Call 1-877-330-6366 (available Mon-Fri 1pm-9pm ET). No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "tnet-kingston",
+      "name": "TransFamily Kingston",
+      "name_fr": "TransFamily Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://transfamilykingston.com for information. Email transfamilykingston@gmail.com for further inquiries."
+    },
+    {
+      "id": "kchc-transgender-health-care",
+      "name": "Transgender Health Program (KCHC)",
+      "name_fr": "Programme de santé transgenre (KCHC)",
+      "scope": "kingston",
+      "access_script": "Hi, I am looking to start hormone therapy. Are you currently accepting new patients for gender-affirming care?"
+    },
+    {
+      "id": "iska-newcomer-support",
+      "name": "Trellis HIV & Community Care",
+      "name_fr": "Services aux immigrants de Kingston et de la région",
+      "scope": "kingston",
+      "access_script": "Hi, I'm new to Kingston and looking for help with settlement and housing. Do I need an appointment?"
+    },
+    {
+      "id": "trellis-hiv-community-care",
+      "name": "Trellis HIV & Community Care",
+      "name_fr": "Trellis HIV & Community Care",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to pick up some harm reduction supplies. Do I need an appointment or can I just drop in?"
+    },
+    {
+      "id": "united-way-kfla-office",
+      "name": "United Way KFL&A",
+      "name_fr": "Centraide KFL&A",
+      "scope": "kingston",
+      "access_script": "Call 613-542-2674 for assistance, or visit https://www.unitedwaykfla.ca."
+    },
+    {
+      "id": "ontario-vac-assistance",
+      "name": "VAC Assistance Service",
+      "name_fr": "Service d'assistance d'ACC",
+      "scope": "canada",
+      "access_script": "Veterans, Canadian Armed Forces members, RCMP members, and their families can call 1-800-268-7708 for free, confidential counseling. This assistance line is available 24/7. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "victim-services-kingston",
+      "name": "Victim Services of Kingston and Frontenac",
+      "name_fr": "Services aux victimes de Kingston et Frontenac",
+      "scope": "kingston",
+      "access_script": "Hi, I was recently a victim of a crime and the police mentioned I could call you for support. What kind of help do you offer?"
+    },
+    {
+      "id": "ontario-victim-support-line",
+      "name": "Victim Support Line (VSL)",
+      "name_fr": "Victim Support Line (VSL)",
+      "scope": "ontario",
+      "access_script": "Victims of crime in Ontario can call 1-888-579-2888 for information, referrals, and support. The Victim Support Line is free and operates 24/7. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "von-transportation-kingston",
+      "name": "VON Transportation Services",
+      "name_fr": "Services de transport VON",
+      "scope": "kingston",
+      "access_script": "Call 613-634-0130. Registration form required. Fees: User fees apply distance based."
+    },
+    {
+      "id": "workers-health-safety-legal-clinic",
+      "name": "Workers Health & Safety Legal Clinic",
+      "name_fr": "Clinique juridique de la santé et sécurité au travail",
+      "scope": "ontario",
+      "access_script": "Non-unionized workers in Ontario can call 1-877-832-6090 for free legal help if they have been punished or fired for raising health and safety concerns. The Workers Health & Safety Legal Clinic focuses on reprisals and unsafe work refusal cases."
+    },
+    {
+      "id": "wsib-workplace-safety-insurance-board-",
+      "name": "WSIB (Workplace Safety & Insurance Board)",
+      "name_fr": "CSPAAT (Commission de la sécurité professionnelle et de l'assurance contre les accidents du travail)",
+      "scope": "ontario",
+      "access_script": "Call 1-800-387-0750 to report a workplace injury or to get information about WSIB claims and benefits. This is the main toll-free number for Ontario’s Workplace Safety and Insurance Board, and there is no cost to call."
+    },
+    {
+      "id": "ymca-eastern-ontario",
+      "name": "YMCA of Eastern Ontario - Kingston",
+      "name_fr": "YMCA de l'Est de l'Ontario",
+      "scope": "kingston",
+      "access_script": "Hi, I'm interested in a gym membership. Do you offer financial assistance or subsidized rates?"
+    },
+    {
+      "id": "ymca-kingston",
+      "name": "YMCA of Eastern Ontario - Kingston",
+      "name_fr": "YMCA de l'Est de l'Ontario - Kingston",
+      "scope": "kingston",
+      "access_script": "Call 613-546-2647 for assistance, or visit https://eo.ymca.ca."
+    }
+  ]
+}

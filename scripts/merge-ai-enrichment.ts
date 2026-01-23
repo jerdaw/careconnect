@@ -23,6 +23,7 @@ interface AIEnrichment {
     notes?: string | null
   }
   access_script?: string | null
+  access_script_fr?: string | null
   description_validation?: {
     current_ok: boolean
     suggested_improvement?: string
@@ -150,11 +151,12 @@ async function main() {
   const rawArgs = process.argv.slice(2)
   const overwriteHours = rawArgs.includes("--overwrite-hours") || rawArgs.includes("--overwrite")
   const overwriteAccessScript = rawArgs.includes("--overwrite-access-script") || rawArgs.includes("--overwrite")
+  const overwriteAccessScriptFr = rawArgs.includes("--overwrite-access-script-fr") || rawArgs.includes("--overwrite")
   const args = rawArgs.filter((a) => !a.startsWith("--"))
 
   if (args.length === 0) {
     console.error(
-      "Usage: npx tsx scripts/merge-ai-enrichment.ts [--overwrite-hours] [--overwrite-access-script] <batch1.json> [batch2.json] ..."
+      "Usage: npx tsx scripts/merge-ai-enrichment.ts [--overwrite-hours] [--overwrite-access-script] [--overwrite-access-script-fr] <batch1.json> [batch2.json] ..."
     )
     process.exit(1)
   }
@@ -185,6 +187,9 @@ async function main() {
   let accessScriptsAdded = 0
   let accessScriptsUpdated = 0
   let accessScriptsSkippedExisting = 0
+  let accessScriptsFrAdded = 0
+  let accessScriptsFrUpdated = 0
+  let accessScriptsFrSkippedExisting = 0
   let descriptionsImproved = 0
   const notFound: string[] = []
   const validationErrors: Array<{ id: string; error: string }> = []
@@ -231,6 +236,21 @@ async function main() {
       }
     }
 
+    if (typeof enrichment.access_script_fr === "string" && enrichment.access_script_fr.trim()) {
+      const existingFr = typeof service.access_script_fr === "string" ? service.access_script_fr.trim() : ""
+      if (!overwriteAccessScriptFr && existingFr) {
+        accessScriptsFrSkippedExisting++
+      } else {
+        if (!existingFr) {
+          accessScriptsFrAdded++
+        } else {
+          accessScriptsFrUpdated++
+        }
+        service.access_script_fr = enrichment.access_script_fr.trim()
+        changed = true
+      }
+    }
+
     // Apply description improvements
     if (enrichment.description_validation) {
       if (!enrichment.description_validation.current_ok && enrichment.description_validation.suggested_improvement) {
@@ -262,6 +282,9 @@ async function main() {
   console.log(`  Access scripts added: ${accessScriptsAdded}`)
   console.log(`  Access scripts updated: ${accessScriptsUpdated}`)
   console.log(`  Access scripts skipped (existing): ${accessScriptsSkippedExisting}`)
+  console.log(`  Access scripts (FR) added: ${accessScriptsFrAdded}`)
+  console.log(`  Access scripts (FR) updated: ${accessScriptsFrUpdated}`)
+  console.log(`  Access scripts (FR) skipped (existing): ${accessScriptsFrSkippedExisting}`)
   console.log(`  Descriptions improved: ${descriptionsImproved}`)
   console.log("")
 

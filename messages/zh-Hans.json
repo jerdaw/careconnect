@@ -561,6 +561,7 @@
     "accessProcess": "申请流程",
     "whatToSayWhenYouCall": "拨打电话时可以怎么说",
     "whatToSayWhenYouCallDescription": "把这段话当作起点即可。你可以用自己的话表达。",
+    "accessScriptEnglishFallbackNotice": "此脚本目前仅提供英文版本。",
     "accessibility": "无障碍",
     "getDirections": "获取路线",
     "lastVerified": "最后验证：",

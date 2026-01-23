@@ -1,0 +1,286 @@
+{
+  "batch": 1,
+  "total_batches": 5,
+  "items": [
+    {
+      "id": "crisis-211-ontario",
+      "name": "211 Ontario",
+      "name_fr": "211 Ontario",
+      "scope": "ontario",
+      "access_script": "Call 211. No fees."
+    },
+    {
+      "id": "ontario-211-ontario",
+      "name": "211 Ontario",
+      "name_fr": "211 Ontario",
+      "scope": "ontario",
+      "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "crisis-988",
+      "name": "9-8-8 Suicide Crisis Helpline",
+      "name_fr": "9-8-8 Ligne d'aide en cas de crise de suicide",
+      "scope": "ontario",
+      "access_script": "Call or text 988. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "aboriginal-legal-services-als-",
+      "name": "Aboriginal Legal Services (ALS)",
+      "name_fr": "Aboriginal Legal Services (ALS)",
+      "scope": "ontario",
+      "access_script": "Indigenous people in Ontario can call 1-844-633-2886 to reach Aboriginal Legal Services for free legal advice and representation. No fees are charged for their assistance."
+    },
+    {
+      "id": "acls-kingston",
+      "name": "ACFOMI",
+      "name_fr": "ACFOMI",
+      "scope": "kingston",
+      "access_script": "Call 613-546-7863 for assistance, or visit https://acfomi.ca."
+    },
+    {
+      "id": "acfomi-kingston",
+      "name": "ACFOMI (Association canadienne-française de l'Ontario)",
+      "name_fr": "ACFOMI",
+      "scope": "kingston",
+      "access_script": "Hi, I am looking for help finding work in Kingston. Do you offer services in French?"
+    },
+    {
+      "id": "advocacy-centre-for-the-elderly-ace-",
+      "name": "Advocacy Centre for the Elderly (ACE)",
+      "name_fr": "Centre de défense des personnes âgées (ACE)",
+      "scope": "ontario",
+      "access_script": "Ontario seniors (age 60 and over) can call 1-855-598-2656 for free legal advice on elder law issues (e.g., long-term care, elder abuse, health care consent)."
+    },
+    {
+      "id": "alzheimer-society-kfla",
+      "name": "Alzheimer Society KFL&A",
+      "name_fr": "Société Alzheimer KFL&A",
+      "scope": "kingston",
+      "access_script": "Visit https://alzheimer.ca/kfla for information."
+    },
+    {
+      "id": "amhs-kfla-crisis-line",
+      "name": "AMHS-KFLA 24/7 Crisis Line",
+      "name_fr": "Ligne de crise AMHS-KFLA 24/7",
+      "scope": "kingston",
+      "access_script": "Hi, I'm feeling really overwhelmed and having suicidal thoughts. I need to talk to someone right away."
+    },
+    {
+      "id": "student-food-bank-queens",
+      "name": "AMS Food Bank (Queen's)",
+      "name_fr": "Banque alimentaire AMS (Queen's)",
+      "scope": "kingston",
+      "access_script": "Call 613-533-6000 for assistance, or visit https://www.amsfoodbank.ca."
+    },
+    {
+      "id": "arch-disability-law",
+      "name": "ARCH Disability Law Centre",
+      "name_fr": "ARCH Disability Law Centre",
+      "scope": "ontario",
+      "access_script": "Call 1-866-482-2724 or email archlib@lao.on.ca. No fees."
+    },
+    {
+      "id": "arthritis-society-canada",
+      "name": "Arthritis Society Canada",
+      "name_fr": "Société de l’arthrite du Canada",
+      "scope": "canada",
+      "access_script": "Call 1-800-321-1433 to speak with a trained volunteer about arthritis-related questions. This free support line is available to anyone living with arthritis or caring for someone who is."
+    },
+    {
+      "id": "artillery-park-aquatic-centre",
+      "name": "Artillery Park Aquatic Centre",
+      "name_fr": "Centre aquatique Artillery Park",
+      "scope": "kingston",
+      "access_script": "Visit 382 Bagot St, Kingston, ON K7K 3B6. Fees: Varies (drop-in or membership)."
+    },
+    {
+      "id": "assaulted-womens-helpline",
+      "name": "Assaulted Women's Helpline (AWHL)",
+      "name_fr": "Fem’aide",
+      "scope": "canada",
+      "access_script": "Hello, I am in an unsafe situation at home and I need to know my options for leaving."
+    },
+    {
+      "id": "crisis-assaulted-womens-helpline",
+      "name": "Assaulted Women's Helpline (AWHL)",
+      "name_fr": "Fem’aide",
+      "scope": "canada",
+      "access_script": "Call 1-866-863-0511. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "autism-ontario-east",
+      "name": "Autism Ontario (East Region)",
+      "name_fr": "Autisme Ontario (Région de l'Est)",
+      "scope": "kingston",
+      "access_script": "Visit https://www.autismontario.com for information."
+    },
+    {
+      "id": "bgc-south-east",
+      "name": "BGC South East",
+      "name_fr": "BGC Sud-Est",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to register my child for the after-school program. Is there space available?"
+    },
+    {
+      "id": "boys-girls-club-kingston",
+      "name": "BGC South East (Boys & Girls Club)",
+      "name_fr": "BGC Sud-Est",
+      "scope": "kingston",
+      "access_script": "Visit https://www.bgcsoutheast.ca for information."
+    },
+    {
+      "id": "ontario-black-youth-helpline",
+      "name": "Black Youth Helpline",
+      "name_fr": "Black Youth Helpline",
+      "scope": "ontario",
+      "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "ontario-boots-on-the-ground",
+      "name": "Boots on the Ground",
+      "name_fr": "Boots on the Ground",
+      "scope": "ontario",
+      "access_script": "Ontario first responders (police, fire, EMS, corrections, etc.) can call 1-833-677-2668 for anonymous peer support. This helpline is available 24/7. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "bounceback-ontario",
+      "name": "BounceBack Ontario",
+      "name_fr": "Retrouver sa santé",
+      "scope": "ontario",
+      "access_script": "Ontario residents (age 15+) with a valid OHIP card can join the free BounceBack program. Call 1-866-345-0224 or visit bouncebackontario.ca to learn how to get started (self-referral or provider referral accepted)."
+    },
+    {
+      "id": "red-cross-kingston",
+      "name": "Canadian Red Cross - Kingston",
+      "name_fr": "Croix-Rouge canadienne - Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://www.redcross.ca for information."
+    },
+    {
+      "id": "cancer-information-helpline",
+      "name": "Cancer Information Helpline",
+      "name_fr": "Cancer Information Helpline",
+      "scope": "canada",
+      "access_script": "Call 1-888-939-3333 for information on cancer types, treatments, side effects, and local support services. This free helpline is open to patients, caregivers, and anyone with cancer-related questions."
+    },
+    {
+      "id": "cdk-family-medicine-walk-in",
+      "name": "CDK Family Medicine and Walk-In Clinic",
+      "name_fr": "Clinique sans rendez-vous de médecine familiale CDK",
+      "scope": "kingston",
+      "access_script": "Hi, I have a bad cough and fever and need to see a doctor today. Are you accepting walk-ins?"
+    },
+    {
+      "id": "ontario-works-kingston",
+      "name": "City of Kingston - Housing and Social Services (Ontario Works)",
+      "name_fr": "Ontario au travail Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'm currently unemployed and have no income. How do I apply for Ontario Works?"
+    },
+    {
+      "id": "ontario-works-kb",
+      "name": "City of Kingston - Housing and Social Services (Ontario Works)",
+      "name_fr": "Ville de Kingston - Logement et services sociaux",
+      "scope": "kingston",
+      "access_script": "Call 613-546-2695 for assistance, or visit https://www.cityofkingston.ca."
+    },
+    {
+      "id": "cleo-community-legal-education",
+      "name": "CLEO (Community Legal Education Ontario)",
+      "name_fr": "CLEO",
+      "scope": "ontario",
+      "access_script": "Visit https://www.cleo.on.ca. No fees."
+    },
+    {
+      "id": "cnib-kingston",
+      "name": "CNIB Foundation Kingston",
+      "name_fr": "Fondation INCA Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://cnib.ca for information."
+    },
+    {
+      "id": "coast-mental-health",
+      "name": "COAST (Crisis Outreach)",
+      "name_fr": "COAST (Intervention de crise)",
+      "scope": "kingston",
+      "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "community-foundation-kingston",
+      "name": "Community Foundation for Kingston & Area",
+      "name_fr": "Fondation communautaire de Kingston et de la région",
+      "scope": "kingston",
+      "access_script": "Visit https://cfka.org for information."
+    },
+    {
+      "id": "community-harvest-market",
+      "name": "Community Harvest Market (Rideau Heights)",
+      "name_fr": "Marché Community Harvest (Rideau Heights)",
+      "scope": "kingston",
+      "access_script": "Visit https://www.lovingspoonful.org/programs/community-harvest-markets/ for dates and locations. For current-season confirmation, contact Kingston Community Health Centre (Rideau Heights) at 613-542-2949 or info@kchc.ca."
+    },
+    {
+      "id": "community-living-kingston",
+      "name": "Community Living Kingston and District",
+      "name_fr": "Community Living Kingston and District",
+      "scope": "kingston",
+      "access_script": "Hi, I'm looking for support services for my adult child with an intellectual disability. Who can I speak to?"
+    },
+    {
+      "id": "crisis-connex-ontario",
+      "name": "ConnexOntario",
+      "name_fr": "ConnexOntario",
+      "scope": "ontario",
+      "access_script": "Call 1-866-531-2600 or visit https://connexontario.ca. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "consumer-protection-ontario",
+      "name": "Consumer Protection Ontario",
+      "name_fr": "Protection du consommateur de l'Ontario",
+      "scope": "ontario",
+      "access_script": "Ontario consumers can call 1-800-889-9768 for free information about consumer rights or to report unfair business practices. This is the provincial Consumer Protection Ontario helpline."
+    },
+    {
+      "id": "crisis-text-line",
+      "name": "Crisis Text Line",
+      "name_fr": "Crisis Text Line",
+      "scope": "canada",
+      "access_script": "Call 686868 (SMS). No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "dawn-house-womens-shelter",
+      "name": "Dawn House",
+      "name_fr": "Dawn House",
+      "scope": "kingston",
+      "access_script": "Hi, I'm looking for long-term housing support for women. How can I get on your waitlist?"
+    },
+    {
+      "id": "dawn-house-shelter",
+      "name": "Dawn House Services and Housing for Women",
+      "name_fr": "Services et logement pour femmes Dawn House",
+      "scope": "kingston",
+      "access_script": "Call 613-545-1379 or 613-929-3440 or email info@dawnhouse.ca. Intake assessment required. Fees: Shelter is free. Housing is rent-geared-to-income. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "diabetes-canada-information-support",
+      "name": "Diabetes Canada Information & Support",
+      "name_fr": "Diabète Canada - Information et soutien",
+      "scope": "canada",
+      "access_script": "Call 1-800-226-8464 for free information and support related to diabetes management and resources. This service is available to anyone affected by diabetes."
+    },
+    {
+      "id": "earlyon-cosy",
+      "name": "EarlyON Child and Family Centre",
+      "name_fr": "Centre pour l'enfant et la famille ON y va",
+      "scope": "kingston",
+      "access_script": "Visit https://kchc.ca/weller-avenue/earlyon/ for information."
+    },
+    {
+      "id": "earlyon-kchc",
+      "name": "EarlyON Child and Family Centre (KCHC)",
+      "name_fr": "Centre pour l'enfant et la famille ON y va (KCHC)",
+      "scope": "kingston",
+      "access_script": "Hi, I have a 2-year-old and I'm looking for a playgroup. Do I need to register for the drop-in?"
+    }
+  ]
+}

@@ -679,6 +679,7 @@
     "accessProcess": "Application Process",
     "whatToSayWhenYouCall": "What to say when you call",
     "whatToSayWhenYouCallDescription": "Use this as a starting point. It's okay to use your own words.",
+    "accessScriptEnglishFallbackNotice": "This script is currently available in English.",
     "accessibility": "Accessibility",
     "getDirections": "Get Directions",
     "lastVerified": "Last Verified:",

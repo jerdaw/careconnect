@@ -158,7 +158,9 @@ Return format:
 
 1. Assign category templates to services without scripts
 2. Customize for specific services (especially L3 candidates)
-3. French translation for provincial services
+3. French translation:
+   - Prefer translation-only (no new facts) from `access_script` → `access_script_fr`
+   - v17.5 workflow: `docs/roadmaps/v17-5-ai-results/access-script-fr/README.md`
 
 ### 5.5 AI Deep Research Output Ingestion (Recommended for Large Batches)
 

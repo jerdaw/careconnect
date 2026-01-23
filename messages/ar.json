@@ -561,6 +561,7 @@
     "accessProcess": "عملية التقديم",
     "whatToSayWhenYouCall": "ماذا تقول عند الاتصال",
     "whatToSayWhenYouCallDescription": "استخدم هذا كنقطة بداية. يمكنك استخدام كلماتك الخاصة.",
+    "accessScriptEnglishFallbackNotice": "هذا النص متاح حاليًا باللغة الإنجليزية.",
     "accessibility": "إمكانية الوصول",
     "getDirections": "الحصول على الاتجاهات",
     "lastVerified": "آخر تحقق:",

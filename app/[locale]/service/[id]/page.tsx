@@ -86,6 +86,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
   )
   const address = locale === "fr" && service.address_fr ? service.address_fr : service.address
   const accessScript = locale === "fr" && service.access_script_fr ? service.access_script_fr : service.access_script
+  const accessScriptIsEnglishFallback = locale === "fr" && !!service.access_script && !service.access_script_fr
 
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
@@ -251,6 +252,11 @@ export default async function ServicePage({ params, searchParams }: Props) {
                   </h2>
                   <div className="bg-primary-50 dark:bg-primary-900/10 border-primary-100 dark:border-primary-800/50 rounded-xl border p-6">
                     <p className="text-neutral-800 dark:text-neutral-200">{t("whatToSayWhenYouCallDescription")}</p>
+                    {accessScriptIsEnglishFallback && (
+                      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                        {t("accessScriptEnglishFallbackNotice")}
+                      </p>
+                    )}
                     <p className="mt-4 whitespace-pre-line text-neutral-700 dark:text-neutral-300">{accessScript}</p>
                   </div>
                 </Card>

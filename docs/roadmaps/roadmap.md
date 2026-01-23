@@ -209,7 +209,7 @@ Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-outpu
   - 18/196 missing `coordinates` (required for Kingston physical distance search)
   - 17/196 missing physical `address` (primary blocker before geocoding can run)
   - Track + workflow: `docs/roadmaps/v17-5-coordinates/README.md` (run `npm run audit:coords`)
-- [x] **Access Scripts**: 0/196 missing `access_script` (content present; UI surface still needed)
+- [x] **Access Scripts**: 0/196 missing `access_script` (content + public UI surface implemented)
 
 #### Accessibility Data
 

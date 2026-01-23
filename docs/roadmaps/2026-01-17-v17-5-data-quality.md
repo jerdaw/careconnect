@@ -271,8 +271,12 @@ Implementation record:
 Remaining work:
 
 - [x] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
-- [ ] Governance: tighten any overly long scripts and resolve any factual issues discovered during spot-checking.
-- [ ] Bilingual: plan/implement `access_script_fr` with governance review.
+- [x] Governance: run access-script QA audit (length, missing, obvious artifacts) and resolve any issues found.
+  - Audit: `npm run audit:access-scripts` → `docs/roadmaps/v17-5-ai-results/reports/access-script-audit.json`
+- [ ] Bilingual: populate `access_script_fr` (translation-only; no new facts).
+  - Workspace: `docs/roadmaps/v17-5-ai-results/access-script-fr/README.md`
+  - Prep: `npm run export:access-script-fr`
+  - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json`
 
 ### 4.3 Plain Language Audit
 
@@ -285,7 +289,7 @@ Use the existing script:
 
 - [x] Add `plain_language_available?: boolean` to `types/service.ts`
 - [x] Add `plain_language_available` to `lib/schemas/service.ts` and `lib/schemas/service-create.ts`
-- [ ] Decide whether this is purely internal QA metadata or a user-facing badge/filter
+- [x] Decision: treat `plain_language_available` as internal QA metadata for now (no public badge/filter; “Plain Language” view already exists as a layout option).
 
 ---
 
@@ -310,8 +314,8 @@ Implementation record:
 Remaining work:
 
 - [ ] Resolve remaining missing-`hours` services via manual verification or a smaller targeted batch with strict evidence requirements.
-- [ ] Spot-check “Open Now” at different times (including overnight crisis cases).
-- [ ] Verify printable hours rendering still works (`app/api/v1/services/[id]/printable/route.ts`).
+- [x] Spot-check “Open Now” at different times (including overnight cases) via unit tests (`tests/lib/search/hours.test.ts`).
+- [x] Verify printable hours rendering via API unit test (`tests/api/v1/services-printable.test.ts`).
 
 ---
 
@@ -444,14 +448,14 @@ npm run audit:data
 - [ ] 90%+ services have `coordinates` (target: ≤ 20 missing)
 - [x] 70%+ services have structured `hours` (achieved; 184/196 present as of 2026-01-23)
 - [ ] Reduce missing structured `hours` further (target: ≤ 5 missing) without introducing false “Open Now” results
-- [ ] Data validation passes all automated checks
+- [x] Data validation passes all automated checks (`npm run validate-data`)
 
 ### Enhanced Metadata (Should Have)
 
 - [x] 100% services have `access_script` (achieved; 196/196 present as of 2026-01-23)
-- [ ] Public UI surfaces `access_script` on service detail pages (multi-lingual via `next-intl`)
+- [x] Public UI surfaces `access_script` on service detail pages (multi-lingual via `next-intl`)
 - [x] 100% services have `plain_language_available` flag present (baseline snapshot already achieved)
-- [ ] Decide if/how to expose plain-language status to users (badge/filter)
+- [x] Decision: do not expose plain-language status as a badge/filter in v17.5 (keep as internal QA metadata)
 - [ ] 10+ services at L3 verification level
 
 ### Removed from v17.5 (Ongoing Work)

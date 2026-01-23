@@ -561,6 +561,7 @@
     "accessProcess": "Proceso de solicitud",
     "whatToSayWhenYouCall": "Qué decir cuando llames",
     "whatToSayWhenYouCallDescription": "Usa esto como punto de partida. Puedes usar tus propias palabras.",
+    "accessScriptEnglishFallbackNotice": "Este guion está disponible actualmente en inglés.",
     "accessibility": "Accesibilidad",
     "getDirections": "Cómo llegar",
     "lastVerified": "Última verificación:",

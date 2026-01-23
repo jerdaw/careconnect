@@ -586,6 +586,7 @@
     "accessProcess": "Processus de demande",
     "whatToSayWhenYouCall": "Quoi dire quand vous appelez",
     "whatToSayWhenYouCallDescription": "Utilisez ceci comme point de départ. Vous pouvez utiliser vos propres mots.",
+    "accessScriptEnglishFallbackNotice": "Ce script est actuellement disponible en anglais.",
     "accessibility": "Accessibilité",
     "getDirections": "Obtenir l'itinéraire",
     "lastVerified": "Dernière vérification :",
