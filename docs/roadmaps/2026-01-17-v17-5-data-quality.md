@@ -170,7 +170,7 @@ For services that fail automated geocoding (or have no geocodable address):
 
 Implementation record:
 
-- [x] Deep Research workflow completed + merged (see `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`).
+- [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
 - [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:
@@ -204,7 +204,7 @@ Use the existing script:
 
 Implementation record:
 
-- [x] Deep Research workflow completed + merged (see `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`).
+- [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
 - [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:

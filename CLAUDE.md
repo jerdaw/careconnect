@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Kingston Care Connect is a verified, governance-first search engine for social services in Kingston, Ontario. The platform uses a **manual curation over automated extraction** approach, maintaining 169 hand-verified services with strict data quality standards.
+Kingston Care Connect is a verified, governance-first search engine for social services in Kingston, Ontario. The platform uses a **manual curation over automated extraction** approach, maintaining 196 hand-verified services with strict data quality standards.
+
+> Note: Recompute the current service count any time via `npm run audit:data`.
 
 ## Key Commands
 
@@ -50,10 +52,10 @@ npx cap sync ios         # Sync iOS (requires macOS)
 ### Utility Scripts
 
 ```bash
-npx tsx scripts/search-cli.ts        # CLI search tool for testing
-npx tsx scripts/bilingual-audit.ts   # Check bilingual content coverage
-npx tsx scripts/i18n-key-audit.ts    # Audit i18n translation keys
-npx tsx scripts/migrate-data.ts      # Migrate local JSON to Supabase
+npm run tools:search                # CLI search tool for testing
+npm run bilingual-check             # Check bilingual content coverage
+npm run i18n-audit                  # Audit i18n translation keys
+node --import tsx scripts/migrate-data.ts  # Migrate local JSON to Supabase
 ```
 
 ## Architecture

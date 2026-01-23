@@ -31,7 +31,7 @@ All issues identified in the initial audit have been addressed:
 
 ### 1. ✅ CSP and Security Headers — IMPLEMENTED
 
-**File:** [next.config.ts](file:///home/jer/LocalSync/kingston-care-connect/next.config.ts)
+**File:** `next.config.ts`
 
 Added comprehensive security headers:
 
@@ -42,13 +42,13 @@ Added comprehensive security headers:
 - X-DNS-Prefetch-Control: on
 - Permissions-Policy
 
-**ADR:** [006-security-headers.md](file:///home/jer/LocalSync/kingston-care-connect/docs/adr/006-security-headers.md)
+**ADR:** `docs/adr/006-security-headers.md`
 
 ---
 
 ### 2. ✅ XSS Fix — IMPLEMENTED
 
-**File:** [highlight.ts](file:///home/jer/LocalSync/kingston-care-connect/lib/search/highlight.ts)
+**File:** `lib/search/highlight.ts`
 
 Added `escapeHtml()` function that runs BEFORE highlighting to sanitize:
 
@@ -58,7 +58,7 @@ Added `escapeHtml()` function that runs BEFORE highlighting to sanitize:
 - `"` → `&quot;`
 - `'` → `&#039;`
 
-**Tests:** [highlight.test.ts](file:///home/jer/LocalSync/kingston-care-connect/tests/lib/highlight.test.ts) — 12 tests
+**Tests:** `tests/lib/highlight.test.ts` — 12 tests
 
 ---
 
@@ -66,18 +66,18 @@ Added `escapeHtml()` function that runs BEFORE highlighting to sanitize:
 
 **Files:**
 
-- [services/route.ts](file:///home/jer/LocalSync/kingston-care-connect/app/api/v1/services/route.ts)
-- [search/services/route.ts](file:///home/jer/LocalSync/kingston-care-connect/app/api/v1/search/services/route.ts)
+- `app/api/v1/services/route.ts`
+- `app/api/v1/search/services/route.ts`
 
 Added `escapeIlike()` function to escape `%`, `_`, and `\` characters in search queries.
 
-**Tests:** [escape-ilike.test.ts](file:///home/jer/LocalSync/kingston-care-connect/tests/lib/escape-ilike.test.ts) — 8 tests
+**Tests:** `tests/lib/escape-ilike.test.ts` — 8 tests
 
 ---
 
 ### 4. ✅ Password Policy — UPDATED
 
-**File:** [supabase/config.toml](file:///home/jer/LocalSync/kingston-care-connect/supabase/config.toml)
+**File:** `supabase/config.toml`
 
 ```toml
 minimum_password_length = 8
@@ -88,7 +88,7 @@ password_requirements = "lower_upper_letters_digits"
 
 ### 5. ✅ CI Security Audit — ADDED
 
-**File:** [.github/workflows/ci.yml](file:///home/jer/LocalSync/kingston-care-connect/.github/workflows/ci.yml)
+**File:** `.github/workflows/ci.yml`
 
 Added step:
 

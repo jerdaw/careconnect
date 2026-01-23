@@ -17,7 +17,7 @@ Accepted
 
 ## Context
 
-Kingston Care Connect maintains 196 verified services with significant data gaps:
+As of **2026-01-21**, Kingston Care Connect maintained 196 verified services with significant data gaps:
 
 - 75% missing `scope` field
 - 91% missing `coordinates`
@@ -25,6 +25,8 @@ Kingston Care Connect maintains 196 verified services with significant data gaps
 - 62% missing structured `hours`
 
 We needed a standard, cost-effective process for addressing these gaps that leverages existing paid tools (ChatGPT Plus, Google AI Pro) and free-tier APIs.
+
+> Note: These metrics change over time. Recompute current gaps with `npm run audit:data`.
 
 ## Decision
 
