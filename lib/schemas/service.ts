@@ -97,6 +97,7 @@ export const ServiceSchema = z
     accessibility: z.record(z.boolean()).optional(),
     last_verified: z.string().optional(),
     cultural_safety: z.boolean().optional(),
+    plain_language_available: z.boolean().optional(),
     // v11.0: Scope expansion fields
     scope: ScopeSchema.optional(),
     virtual_delivery: z.boolean().optional(),

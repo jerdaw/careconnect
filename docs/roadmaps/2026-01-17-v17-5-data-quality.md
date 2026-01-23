@@ -264,7 +264,7 @@ Implementation record:
 
 Remaining work:
 
-- [ ] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
+- [x] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
 - [ ] Governance: tighten any overly long scripts and resolve any factual issues discovered during spot-checking.
 - [ ] Bilingual: plan/implement `access_script_fr` with governance review.
 
@@ -277,8 +277,8 @@ Use the existing script:
 
 **Remaining work (to match the current architecture cleanly):**
 
-- [ ] Add `plain_language_available?: boolean` to `types/service.ts`
-- [ ] Add `plain_language_available` to `lib/schemas/service.ts` and `lib/schemas/service-create.ts`
+- [x] Add `plain_language_available?: boolean` to `types/service.ts`
+- [x] Add `plain_language_available` to `lib/schemas/service.ts` and `lib/schemas/service-create.ts`
 - [ ] Decide whether this is purely internal QA metadata or a user-facing badge/filter
 
 ---

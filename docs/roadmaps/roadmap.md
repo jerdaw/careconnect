@@ -219,7 +219,7 @@ Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-outpu
 
 #### Accessibility Data
 
-- [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; still needs type/schema wiring)
+- [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; type/schema wiring complete)
 - [ ] **Structured Hours**: 12/196 missing structured `hours` object
 
 #### Verification Level Upgrade

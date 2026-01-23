@@ -36,6 +36,7 @@ export const ServiceCreateSchema = z
     bus_routes: z.array(z.string()).max(10).optional(),
     hours: ServiceHoursSchema.optional(),
     hours_text: z.string().max(200).optional(),
+    plain_language_available: z.boolean().optional(),
     scope: ScopeSchema.optional(),
     virtual_delivery: z.boolean().optional(),
     cultural_safety: z.boolean().optional(),
