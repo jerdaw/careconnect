@@ -41,7 +41,9 @@ interface AuditResults {
   missingAccessScript: number
   missingPlainLanguage: number
   missingHours: number
+  missingHoursActive: number
   missingHoursText: number
+  missingHoursTextActive: number
   verificationBreakdown: Record<string, number>
   categoryBreakdown: Record<string, number>
   gapsByCategory: Record<
@@ -109,13 +111,17 @@ async function auditServices(): Promise<AuditResults> {
     missingAccessScript: 0,
     missingPlainLanguage: 0,
     missingHours: 0,
+    missingHoursActive: 0,
     missingHoursText: 0,
+    missingHoursTextActive: 0,
     verificationBreakdown: {},
     categoryBreakdown: {},
     gapsByCategory: {},
   }
 
   services.forEach((service) => {
+    const active = isActive(service)
+
     // Count missing fields
     if (!service.scope) results.missingScope++
     const hasCoords = hasCoordinates(service)
@@ -132,8 +138,14 @@ async function auditServices(): Promise<AuditResults> {
     if (service.plain_language_available === undefined || service.plain_language_available === null) {
       results.missingPlainLanguage++
     }
-    if (!service.hours) results.missingHours++
-    if (!service.hours_text) results.missingHoursText++
+    if (!service.hours) {
+      results.missingHours++
+      if (active) results.missingHoursActive++
+    }
+    if (!service.hours_text) {
+      results.missingHoursText++
+      if (active) results.missingHoursTextActive++
+    }
 
     // Verification breakdown
     const level = service.verification_level || "Unknown"
@@ -192,8 +204,10 @@ async function main() {
   )
   console.log(`  Access Script:            ${formatPercentage(results.missingAccessScript, results.totalServices)}`)
   console.log(`  Plain Language Flag:      ${formatPercentage(results.missingPlainLanguage, results.totalServices)}`)
-  console.log(`  Structured Hours:         ${formatPercentage(results.missingHours, results.totalServices)}`)
-  console.log(`  Hours Text:               ${formatPercentage(results.missingHoursText, results.totalServices)}`)
+  console.log(`  Structured Hours (any):   ${formatPercentage(results.missingHours, results.totalServices)}`)
+  console.log(`  Structured Hours (active): ${formatPercentage(results.missingHoursActive, results.totalServices)}`)
+  console.log(`  Hours Text (any):         ${formatPercentage(results.missingHoursText, results.totalServices)}`)
+  console.log(`  Hours Text (active):      ${formatPercentage(results.missingHoursTextActive, results.totalServices)}`)
   console.log("")
 
   console.log("✅ Verification Levels:")

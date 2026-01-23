@@ -49,14 +49,15 @@ Recompute any time with `npm run audit:data` (or a local Node script) before sta
 
 Recompute any time with `npm run audit:data` before starting a new batch.
 
-| Metric                           | Current | Notes                                              |
-| -------------------------------- | ------- | -------------------------------------------------- |
-| Missing `coordinates` (any)      | 58      | Includes virtual + confidential + multi-location   |
-| Missing `coordinates` (required) | 18      | Kingston physical services (distance-searchable)   |
-| Kingston missing `address`       | 17      | Primary blocker before geocoding can run           |
-| Missing `access_script`          | 0       | ✅ v17.5 AI ingestion completed                    |
-| Missing structured `hours`       | 12      | Remaining hours require targeted verification      |
-| Missing `hours_text`             | 67      | Many services still need human-readable hours text |
+| Metric                              | Current | Notes                                              |
+| ----------------------------------- | ------- | -------------------------------------------------- |
+| Missing `coordinates` (any)         | 58      | Includes virtual + confidential + multi-location   |
+| Missing `coordinates` (required)    | 18      | Kingston physical services (distance-searchable)   |
+| Kingston missing `address`          | 17      | Primary blocker before geocoding can run           |
+| Missing `access_script`             | 0       | ✅ v17.5 AI ingestion completed                    |
+| Missing structured `hours` (any)    | 11      | Remaining hours require targeted verification      |
+| Missing structured `hours` (active) | 10      | Excludes permanently closed records                |
+| Missing `hours_text`                | 67      | Many services still need human-readable hours text |
 
 Deep Research artifacts used for v17.5:
 
@@ -69,6 +70,11 @@ Coordinates/geocoding workspace (v17.5):
 
 - Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
 - Latest gap report: `docs/roadmaps/v17-5-coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
+
+Hours workspace (v17.5):
+
+- Workspace: `docs/roadmaps/v17-5-hours/README.md`
+- Gap export: `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
 
 ### Active Follow-Up Flags (Don’t Lose These)
 
@@ -289,7 +295,7 @@ Use the existing script:
 
 **Baseline (pre-2026-01-22):** 122 services missing structured `hours` (see `npm run audit:data`).
 
-**Current (post-2026-01-22):** 12 services still missing structured `hours` (184/196 present) after v17.5 AI ingestion.
+**Current (post-2026-01-22):** 11 services still missing structured `hours` (any), 10 of which are active services, after v17.5 work (see `npm run audit:data`).
 
 Implementation record:
 
@@ -298,7 +304,7 @@ Implementation record:
 
 Remaining work:
 
-- [ ] Resolve remaining 12 missing-`hours` services via manual verification or a smaller targeted batch with strict evidence requirements.
+- [ ] Resolve remaining missing-`hours` services via manual verification or a smaller targeted batch with strict evidence requirements.
 - [ ] Spot-check “Open Now” at different times (including overnight crisis cases).
 - [ ] Verify printable hours rendering still works (`app/api/v1/services/[id]/printable/route.ts`).
 

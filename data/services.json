@@ -9233,6 +9233,28 @@
       "lng": -76.5088639
     },
     "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
     "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca."
   },
   {
