@@ -7,7 +7,7 @@ Why:
 - Keeping the batch membership stable makes it easy to retry or compare runs.
 
 This script:
-- Reads the existing batch files in docs/roadmaps to preserve ID order and grouping.
+- Reads the existing batch files in docs/roadmaps/v17-5-ai-results/batches to preserve ID order and grouping.
 - Rebuilds each record from data/services.json with the fields the AI prompt expects.
 """
 
@@ -22,10 +22,10 @@ from typing import Any, Dict, List, Optional
 ROOT = Path(__file__).resolve().parents[1]
 
 BATCH_PATHS = [
-    ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch1.json",
-    ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch2.json",
-    ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch3.json",
-    ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch4.json",
+    ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch1.json",
+    ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch2.json",
+    ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch3.json",
+    ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch4.json",
 ]
 
 SERVICES_PATH = ROOT / "data" / "services.json"
@@ -101,4 +101,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

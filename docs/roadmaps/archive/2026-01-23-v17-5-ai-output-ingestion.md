@@ -35,10 +35,10 @@ This document is the **implementation plan** for safely ingesting and merging th
 
 ### Batch Inputs (Uploaded to Models)
 
-- `docs/roadmaps/2026-01-21-v17-5-batch1.json` (50 services)
-- `docs/roadmaps/2026-01-21-v17-5-batch2.json` (50 services)
-- `docs/roadmaps/2026-01-21-v17-5-batch3.json` (50 services)
-- `docs/roadmaps/2026-01-21-v17-5-batch4.json` (46 services)
+- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch1.json` (50 services)
+- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch2.json` (50 services)
+- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch3.json` (50 services)
+- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch4.json` (46 services)
 
 ### Model Outputs (Created After Deep Research)
 
@@ -60,7 +60,7 @@ This document is the **implementation plan** for safely ingesting and merging th
 - Merge script: `scripts/merge-ai-enrichment.ts`
 - Data validation: `npm run validate-data`
 - Audit tooling: `npm run audit:data`
-- Prompt reference: `docs/roadmaps/2026-01-21-v17-5-ai-prompts.md`
+- Prompt reference: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
 
 ---
 
@@ -180,7 +180,7 @@ Steps:
 - [x] Create a short note in `docs/roadmaps/v17-5-ai-results/raw/README.md` explaining:
   - When outputs were generated (2026-01-22)
   - Which batch each file corresponds to
-  - Which prompt version was used (`docs/roadmaps/2026-01-21-v17-5-ai-prompts.md`)
+  - Which prompt version was used (`docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`)
   - sha256 hashes for immutability checks
 
 Best practice:
@@ -274,10 +274,10 @@ For each `batchX_output.json`:
 
 For each batch, compare to its corresponding input batch file:
 
-- [x] Batch 1: output IDs match `docs/roadmaps/2026-01-21-v17-5-batch1.json` IDs (same set, same count, same order)
-- [x] Batch 2: output IDs match `docs/roadmaps/2026-01-21-v17-5-batch2.json` IDs (same set, same count, same order)
-- [x] Batch 3: output IDs match `docs/roadmaps/2026-01-21-v17-5-batch3.json` IDs (same set, same count, same order)
-- [x] Batch 4: output IDs match `docs/roadmaps/2026-01-21-v17-5-batch4.json` IDs (same set, same count, same order)
+- [x] Batch 1: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch1.json` IDs (same set, same count, same order)
+- [x] Batch 2: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch2.json` IDs (same set, same count, same order)
+- [x] Batch 3: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch3.json` IDs (same set, same count, same order)
+- [x] Batch 4: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch4.json` IDs (same set, same count, same order)
 
 Implementation:
 

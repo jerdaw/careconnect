@@ -270,7 +270,12 @@ def main() -> None:
     batches = [
         BatchFiles(
             batch_num=1,
-            batch_input=ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch1.json",
+            batch_input=ROOT
+            / "docs"
+            / "roadmaps"
+            / "v17-5-ai-results"
+            / "batches"
+            / "2026-01-21-v17-5-batch1.json",
             normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch1_output.json",
             research_sources_report=ROOT
             / "docs"
@@ -282,7 +287,12 @@ def main() -> None:
         ),
         BatchFiles(
             batch_num=2,
-            batch_input=ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch2.json",
+            batch_input=ROOT
+            / "docs"
+            / "roadmaps"
+            / "v17-5-ai-results"
+            / "batches"
+            / "2026-01-21-v17-5-batch2.json",
             normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch2_output.json",
             research_sources_report=ROOT
             / "docs"
@@ -294,7 +304,12 @@ def main() -> None:
         ),
         BatchFiles(
             batch_num=3,
-            batch_input=ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch3.json",
+            batch_input=ROOT
+            / "docs"
+            / "roadmaps"
+            / "v17-5-ai-results"
+            / "batches"
+            / "2026-01-21-v17-5-batch3.json",
             normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch3_output.json",
             research_sources_report=ROOT
             / "docs"
@@ -306,7 +321,12 @@ def main() -> None:
         ),
         BatchFiles(
             batch_num=4,
-            batch_input=ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch4.json",
+            batch_input=ROOT
+            / "docs"
+            / "roadmaps"
+            / "v17-5-ai-results"
+            / "batches"
+            / "2026-01-21-v17-5-batch4.json",
             normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch4_output.json",
             research_sources_report=ROOT
             / "docs"
@@ -331,4 +351,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

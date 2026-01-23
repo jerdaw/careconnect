@@ -63,7 +63,7 @@ Recompute any time with `npm run audit:data` before starting a new batch.
 
 Deep Research artifacts used for v17.5:
 
-- Prompt set: `docs/roadmaps/2026-01-21-v17-5-ai-prompts.md`
+- Prompt set: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
 - Ingestion record (archived): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 - Audit workspace: `docs/roadmaps/v17-5-ai-results/README.md`
 - ADR: `docs/adr/011-ai-deep-research-output-ingestion.md`

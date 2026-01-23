@@ -4,6 +4,7 @@ This folder is the **audit + ingestion workspace** for v17.5 “Deep Research”
 
 ## What’s Here
 
+- `batches/` — The stable batch input JSON files uploaded to Deep Research (used for ID membership/order validation).
 - `raw/` — **Immutable** copies of the original model outputs (do not edit).
 - `normalized/` — Merge-ready JSON arrays (one file per batch) produced from the raw outputs.
 - `reports/` — Validation summaries, merge logs, governance QA logs, and extracted evidence/source artifacts.

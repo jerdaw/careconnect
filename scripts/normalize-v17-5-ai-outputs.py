@@ -6,7 +6,7 @@ Inputs:
 - Raw ChatGPT outputs (Option A JSON objects):
   docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt {1..4} - Deep Research Result.txt
 - Batch input files (used to validate ID membership/order):
-  docs/roadmaps/2026-01-21-v17-5-batch{1..4}.json
+  docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch{1..4}.json
 
 Outputs:
 - Merge-ready arrays:
@@ -37,10 +37,10 @@ NORMALIZED_DIR = ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized"
 REPORTS_DIR = ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "reports"
 
 BATCH_INPUT_PATHS = {
-    1: ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch1.json",
-    2: ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch2.json",
-    3: ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch3.json",
-    4: ROOT / "docs" / "roadmaps" / "2026-01-21-v17-5-batch4.json",
+    1: ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch1.json",
+    2: ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch2.json",
+    3: ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch3.json",
+    4: ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "batches" / "2026-01-21-v17-5-batch4.json",
 }
 
 CHATGPT_RAW_PATHS = {
@@ -277,4 +277,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

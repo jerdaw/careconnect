@@ -216,7 +216,7 @@ This is translation-only work to populate `access_script_fr` from existing `acce
 - [x] Workflow + tooling scaffolded (batches + prompts + merge support)
 - [ ] Translate and merge `access_script_fr`:
   - Generate batches: `npm run export:access-script-fr`
-  - Translate using: `docs/roadmaps/2026-01-21-v17-5-ai-prompts.md` (Translation Prompt)
+  - Translate using: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md` (Translation Prompt)
   - Save outputs to: `docs/roadmaps/v17-5-ai-results/access-script-fr/output/`
   - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json`
   - Validate + audit: `npm run validate-data`, `npm run audit:access-scripts`
