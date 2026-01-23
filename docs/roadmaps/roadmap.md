@@ -193,7 +193,7 @@ See [archive/2026-01-25-v17-4-dashboard-partner-portal.md](archive/2026-01-25-v1
 
 ## v17.5: Data Quality & Enrichment
 
-**Status**: In Progress
+**Status**: Completed (2026-01-23; follow-ups queued below)
 **Priority**: HIGH
 
 See the detailed plan: `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
@@ -216,6 +216,18 @@ Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-outpu
 - [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; type/schema wiring complete)
 - [ ] **Structured Hours**: 11/196 missing structured `hours` object (10 active); track via `npm run audit:hours`
   - Track + workflow: `docs/roadmaps/v17-5-hours/README.md` (run `npm run audit:hours`)
+
+#### Bilingual Follow-Up (Access Scripts - French)
+
+This is translation-only work to populate `access_script_fr` from existing `access_script` (no web research; no new facts).
+
+- [x] Workflow + tooling scaffolded (batches + prompts + merge support)
+- [ ] Translate and merge `access_script_fr`:
+  - Generate batches: `npm run export:access-script-fr`
+  - Translate using: `docs/roadmaps/2026-01-21-v17-5-ai-prompts.md` (Translation Prompt)
+  - Save outputs to: `docs/roadmaps/v17-5-ai-results/access-script-fr/output/`
+  - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json`
+  - Validate + audit: `npm run validate-data`, `npm run audit:access-scripts`
 
 #### Non-IRL Confirmations (Web Verification)
 
