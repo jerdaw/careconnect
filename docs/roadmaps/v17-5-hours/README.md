@@ -37,6 +37,14 @@ Output:
 
 - `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
 
+## Safe automation (No new facts)
+
+If a service already has structured `hours` but is missing `hours_text`, you can backfill the human-readable text automatically:
+
+```bash
+npm run backfill:hours-text
+```
+
 ## Workflow (Recommended)
 
 1. Run `npm run audit:hours`.

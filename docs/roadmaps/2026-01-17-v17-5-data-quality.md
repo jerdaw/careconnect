@@ -49,15 +49,15 @@ Recompute any time with `npm run audit:data` (or a local Node script) before sta
 
 Recompute any time with `npm run audit:data` before starting a new batch.
 
-| Metric                              | Current | Notes                                              |
-| ----------------------------------- | ------- | -------------------------------------------------- |
-| Missing `coordinates` (any)         | 58      | Includes virtual + confidential + multi-location   |
-| Missing `coordinates` (required)    | 18      | Kingston physical services (distance-searchable)   |
-| Kingston missing `address`          | 17      | Primary blocker before geocoding can run           |
-| Missing `access_script`             | 0       | ✅ v17.5 AI ingestion completed                    |
-| Missing structured `hours` (any)    | 11      | Remaining hours require targeted verification      |
-| Missing structured `hours` (active) | 10      | Excludes permanently closed records                |
-| Missing `hours_text`                | 67      | Many services still need human-readable hours text |
+| Metric                              | Current | Notes                                            |
+| ----------------------------------- | ------- | ------------------------------------------------ |
+| Missing `coordinates` (any)         | 58      | Includes virtual + confidential + multi-location |
+| Missing `coordinates` (required)    | 18      | Kingston physical services (distance-searchable) |
+| Kingston missing `address`          | 17      | Primary blocker before geocoding can run         |
+| Missing `access_script`             | 0       | ✅ v17.5 AI ingestion completed                  |
+| Missing structured `hours` (any)    | 11      | Remaining hours require targeted verification    |
+| Missing structured `hours` (active) | 10      | Excludes permanently closed records              |
+| Missing `hours_text`                | 10      | Backfilled from structured hours where possible  |
 
 Deep Research artifacts used for v17.5:
 
@@ -296,6 +296,11 @@ Use the existing script:
 **Baseline (pre-2026-01-22):** 122 services missing structured `hours` (see `npm run audit:data`).
 
 **Current (post-2026-01-22):** 11 services still missing structured `hours` (any), 10 of which are active services, after v17.5 work (see `npm run audit:data`).
+
+Hours text progress:
+
+- `hours_text` was backfilled from existing structured `hours` for 57 services (no new facts added).
+- Remaining missing `hours_text` now aligns with missing structured `hours` (see `npm run audit:hours`).
 
 Implementation record:
 

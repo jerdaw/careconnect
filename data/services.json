@@ -2625,7 +2625,8 @@
         "open": "13:00",
         "close": "16:00"
       }
-    }
+    },
+    "hours_text": "Mon–Fri: 09:00–16:00; Sat: 13:00–16:00."
   },
   {
     "id": "kchc-weller-clinic",
@@ -6775,7 +6776,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Visit https://www.kfpl.ca."
+    "access_script": "Visit https://www.kfpl.ca.",
+    "hours_text": "Mon: 10:00–20:00; Tue: 10:00–14:00; Wed: 10:00–20:00; Thu: 10:00–14:00; Fri–Sat: 09:00–17:00."
   },
   {
     "id": "kingston-pregnancy-care",
@@ -6822,7 +6824,8 @@
       },
       "notes": "Closed Friday through Sunday."
     },
-    "access_script": "Visit https://kingstonpcc.com for information."
+    "access_script": "Visit https://kingstonpcc.com for information.",
+    "hours_text": "Mon–Thu: 10:00–16:00. Closed Friday through Sunday."
   },
   {
     "id": "hospice-kingston",
@@ -8305,7 +8308,8 @@
       },
       "notes": "Closed on Tuesdays and holidays."
     },
-    "access_script": "Visit https://kingstonhumanesociety.ca for information."
+    "access_script": "Visit https://kingstonhumanesociety.ca for information.",
+    "hours_text": "Mon–Fri: 11:00–18:00; Sat–Sun: 10:00–16:00. Closed on Tuesdays and holidays."
   },
   {
     "id": "st-john-ambulance-kingston",
@@ -8937,7 +8941,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Visit https://www.ontario.ca for information."
+    "access_script": "Visit https://www.ontario.ca for information.",
+    "hours_text": "Mon–Fri: 08:30–16:30."
   },
   {
     "id": "service-canada-kingston",
@@ -8987,7 +8992,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Visit https://www.canada.ca for information."
+    "access_script": "Visit https://www.canada.ca for information.",
+    "hours_text": "Mon–Fri: 08:30–16:00."
   },
   {
     "id": "service-ontario-kingston",
@@ -9074,7 +9080,8 @@
       },
       "notes": "Non-emergency line and station front desk available 24/7."
     },
-    "access_script": "Visit https://www.kpf.ca for information."
+    "access_script": "Visit https://www.kpf.ca for information.",
+    "hours_text": "24/7. Non-emergency line and station front desk available 24/7."
   },
   {
     "id": "opp-frontenac",
@@ -9133,7 +9140,8 @@
       },
       "notes": "Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
     },
-    "access_script": "Visit https://www.opp.ca for information."
+    "access_script": "Visit https://www.opp.ca for information.",
+    "hours_text": "24/7. Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
   },
   {
     "id": "coast-mental-health",
@@ -9193,7 +9201,8 @@
       },
       "notes": "24/7 crisis line (mobile team dispatched as needed)."
     },
-    "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911."
+    "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 crisis line (mobile team dispatched as needed)."
   },
   {
     "id": "maltby-centre-autism",
@@ -9382,7 +9391,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911."
+    "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. Phone service 24/7. Chat hours vary."
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -9445,7 +9455,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911."
+    "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911.",
+    "hours_text": "Daily: 09:00–22:00. 9am-10pm daily."
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -9513,7 +9524,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Ontario first responders (police, fire, EMS, corrections, etc.) can call 1-833-677-2668 for anonymous peer support. This helpline is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "Ontario first responders (police, fire, EMS, corrections, etc.) can call 1-833-677-2668 for anonymous peer support. This helpline is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 peer support."
   },
   {
     "id": "ontario-farmer-wellness",
@@ -9576,7 +9588,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Ontario farmers, farm families, and farm workers can call 1-866-267-6255 to access free counselling support at any time. Intake is available 24/7 and no fees or paperwork are required."
+    "access_script": "Ontario farmers, farm families, and farm workers can call 1-866-267-6255 to access free counselling support at any time. Intake is available 24/7 and no fees or paperwork are required.",
+    "hours_text": "24/7. 24/7 availability."
   },
   {
     "id": "ontario-femaide",
@@ -9640,7 +9653,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Francophone women facing violence can call or text 1-877-336-2433 for free, confidential support in French (24/7). If you are in immediate danger, call 911."
+    "access_script": "Francophone women facing violence can call or text 1-877-336-2433 for free, confidential support in French (24/7). If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 support via Phone and Text."
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -9708,7 +9722,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Former residential school students and their families can call 1-866-925-4419 for emotional crisis support at any time (24/7). If you are in immediate danger, call 911."
+    "access_script": "Former residential school students and their families can call 1-866-925-4419 for emotional crisis support at any time (24/7). If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7. Cree, Ojibway, Inuktitut available."
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -9776,7 +9791,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911."
+    "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911.",
+    "hours_text": "Mon–Sun: 16:00–21:30. Closed Saturdays. Text 647-694-4275 available."
   },
   {
     "id": "ontario-male-survivors",
@@ -9839,7 +9855,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Male survivors of sexual abuse in Ontario can call 1-866-887-0015 for free, multilingual crisis support and referrals. Help is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "Male survivors of sexual abuse in Ontario can call 1-866-887-0015 for free, multilingual crisis support and referrals. Help is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 availability."
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -9907,7 +9924,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Métis Nation of Ontario citizens can call 1-877-767-7572 for mental health and addictions support. This crisis line is free and operates 24/7. If you are in immediate danger, call 911."
+    "access_script": "Métis Nation of Ontario citizens can call 1-877-767-7572 for mental health and addictions support. This crisis line is free and operates 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 availability."
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -9975,7 +9993,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Individuals impacted by missing and murdered Indigenous women, girls, or 2SLGBTQQIA+ people can call 1-844-413-6649 for support. This national crisis line is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "Individuals impacted by missing and murdered Indigenous women, girls, or 2SLGBTQQIA+ people can call 1-844-413-6649 for support. This national crisis line is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7. Bilingual (English/French)."
   },
   {
     "id": "ontario-naseeha",
@@ -10038,7 +10057,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Muslim youth and others can call or text 1-866-627-3342 at any time for free, anonymous mental health support. If you are in immediate danger, call 911."
+    "access_script": "Muslim youth and others can call or text 1-866-627-3342 at any time for free, anonymous mental health support. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 availability."
   },
   {
     "id": "ontario-nors",
@@ -10102,7 +10122,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": true,
-    "access_script": "If you plan to use drugs alone, you can call 1-888-688-6677 so an operator stays on the line to monitor your safety and respond in case of overdose. This service is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "If you plan to use drugs alone, you can call 1-888-688-6677 so an operator stays on the line to monitor your safety and respond in case of overdose. This service is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 availability via Call or Text."
   },
   {
     "id": "ontario-ontx-distress",
@@ -10166,7 +10187,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Text the word \"SUPPORT\" to 258258 to connect with Ontario’s distress text line (available daily from 2:00 PM to 2:00 AM). If you are in immediate danger, call 911."
+    "access_script": "Text the word \"SUPPORT\" to 258258 to connect with Ontario’s distress text line (available daily from 2:00 PM to 2:00 AM). If you are in immediate danger, call 911.",
+    "hours_text": "Daily: 14:00–02:00 (overnight). Services available 2pm-2am daily."
   },
   {
     "id": "ontario-sadv-navigation",
@@ -10230,7 +10252,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Call 1-855-628-7238 to reach a nurse who will help connect survivors of sexual assault or domestic violence to the nearest treatment centre. This navigation line is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "Call 1-855-628-7238 to reach a nurse who will help connect survivors of sexual assault or domestic violence to the nearest treatment centre. This navigation line is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7. Connects to 37 specialized treatment centres."
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -10298,7 +10321,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Call 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7 availability. Operated by AWHL."
   },
   {
     "id": "ontario-vac-assistance",
@@ -10366,7 +10390,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Veterans, Canadian Armed Forces members, RCMP members, and their families can call 1-800-268-7708 for free, confidential counseling. This assistance line is available 24/7. If you are in immediate danger, call 911."
+    "access_script": "Veterans, Canadian Armed Forces members, RCMP members, and their families can call 1-800-268-7708 for free, confidential counseling. This assistance line is available 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7. Bilingual counselors available."
   },
   {
     "id": "ontario-victim-support-line",
@@ -10429,7 +10454,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Victims of crime in Ontario can call 1-888-579-2888 for information, referrals, and support. The Victim Support Line is free and operates 24/7. If you are in immediate danger, call 911."
+    "access_script": "Victims of crime in Ontario can call 1-888-579-2888 for information, referrals, and support. The Victim Support Line is free and operates 24/7. If you are in immediate danger, call 911.",
+    "hours_text": "24/7. 24/7. 200+ languages via interpreters."
   },
   {
     "name": "BounceBack Ontario",
@@ -10488,7 +10514,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario residents (age 15+) with a valid OHIP card can join the free BounceBack program. Call 1-866-345-0224 or visit bouncebackontario.ca to learn how to get started (self-referral or provider referral accepted)."
+    "access_script": "Ontario residents (age 15+) with a valid OHIP card can join the free BounceBack program. Call 1-866-345-0224 or visit bouncebackontario.ca to learn how to get started (self-referral or provider referral accepted).",
+    "hours_text": "Mon–Fri: 08:30–17:00. Registration: Mon-Fri 8:30am-5pm"
   },
   {
     "name": "Cancer Information Helpline",
@@ -10547,7 +10574,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-888-939-3333 for information on cancer types, treatments, side effects, and local support services. This free helpline is open to patients, caregivers, and anyone with cancer-related questions."
+    "access_script": "Call 1-888-939-3333 for information on cancer types, treatments, side effects, and local support services. This free helpline is open to patients, caregivers, and anyone with cancer-related questions.",
+    "hours_text": "Mon–Fri: 08:00–18:00. Mon-Fri 8am-6pm"
   },
   {
     "name": "Ontario Caregiver Helpline",
@@ -10614,7 +10642,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario caregivers can call 1-833-416-2273 at any time for information, assessment, and referrals to local support services. This helpline is free of charge."
+    "access_script": "Ontario caregivers can call 1-833-416-2273 at any time for information, assessment, and referrals to local support services. This helpline is free of charge.",
+    "hours_text": "24/7. 24/7"
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -10673,7 +10702,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-226-8464 for free information and support related to diabetes management and resources. This service is available to anyone affected by diabetes."
+    "access_script": "Call 1-800-226-8464 for free information and support related to diabetes management and resources. This service is available to anyone affected by diabetes.",
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -10740,7 +10770,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "First Nations families can call 1-855-572-4453 (Jordan’s Principle Call Centre) for help accessing health, social, or education services for their children. The call centre is open 24/7 and there are no fees."
+    "access_script": "First Nations families can call 1-855-572-4453 (Jordan’s Principle Call Centre) for help accessing health, social, or education services for their children. The call centre is open 24/7 and there are no fees.",
+    "hours_text": "24/7. 24/7"
   },
   {
     "name": "Lung Health Line",
@@ -10799,7 +10830,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions."
+    "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions.",
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
@@ -10858,7 +10890,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-668-2437 for anonymous and confidential information on sexual health topics (STIs, HIV/AIDS, birth control, pregnancy, etc.). This service is free for all Ontario residents."
+    "access_script": "Call 1-800-668-2437 for anonymous and confidential information on sexual health topics (STIs, HIV/AIDS, birth control, pregnancy, etc.). This service is free for all Ontario residents.",
+    "hours_text": "Mon–Fri: 10:00–22:30. Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm"
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
@@ -10897,7 +10930,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario seniors (age 60 and over) can call 1-855-598-2656 for free legal advice on elder law issues (e.g., long-term care, elder abuse, health care consent)."
+    "access_script": "Ontario seniors (age 60 and over) can call 1-855-598-2656 for free legal advice on elder law issues (e.g., long-term care, elder abuse, health care consent).",
+    "hours_text": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm"
   },
   {
     "name": "Employment Standards Information Centre",
@@ -10956,7 +10990,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-531-5551 for information about Ontario’s Employment Standards Act (e.g., wages, hours of work, overtime, vacation rules). This free information line is available to both workers and employers."
+    "access_script": "Call 1-800-531-5551 for information about Ontario’s Employment Standards Act (e.g., wages, hours of work, overtime, vacation rules). This free information line is available to both workers and employers.",
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -10995,7 +11030,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario residents living with HIV or AIDS can call 1-888-705-8889 for free legal advice on issues like privacy, human rights, immigration, and income support. No fees are charged for this service."
+    "access_script": "Ontario residents living with HIV or AIDS can call 1-888-705-8889 for free legal advice on issues like privacy, human rights, immigration, and income support. No fees are charged for this service.",
+    "hours_text": "Intake: Mon, Wed, Fri 9am-5pm"
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
@@ -11034,7 +11070,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "If you have experienced discrimination in Ontario, call 1-866-625-5179 for free legal advice and help filing a human rights application. The Human Rights Legal Support Centre’s services are provided at no cost."
+    "access_script": "If you have experienced discrimination in Ontario, call 1-866-625-5179 for free legal advice and help filing a human rights application. The Human Rights Legal Support Centre’s services are provided at no cost.",
+    "hours_text": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm"
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -11093,7 +11130,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Injured workers in Ontario can call 1-833-461-2411 for free legal help with workers’ compensation (WSIB) claims and appeals. The Injured Workers Community Legal Clinic provides assistance at no charge."
+    "access_script": "Injured workers in Ontario can call 1-833-461-2411 for free legal help with workers’ compensation (WSIB) claims and appeals. The Injured Workers Community Legal Clinic provides assistance at no charge.",
+    "hours_text": "Mon–Fri: 09:00–16:30. Mon-Fri 9am-4:30pm (Wed afternoon only)"
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -11132,7 +11170,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Young people in Ontario (under 18, or under 25 if homeless) can call 1-866-999-5329 for free legal advice. Justice for Children and Youth can help with issues in areas like education, family, youth criminal justice, and more."
+    "access_script": "Young people in Ontario (under 18, or under 25 if homeless) can call 1-866-999-5329 for free legal advice. Justice for Children and Youth can help with issues in areas like education, family, youth criminal justice, and more.",
+    "hours_text": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)"
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -11171,7 +11210,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)"
+    "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)",
+    "hours_text": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)"
   },
   {
     "name": "Legal Aid Ontario",
@@ -11230,7 +11270,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply)."
+    "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply).",
+    "hours_text": "Mon–Fri: 08:00–17:00. Mon-Fri 8am-5pm"
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
@@ -11289,7 +11330,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice."
+    "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice.",
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -11328,7 +11370,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-844-343-7462 to request a free 30-minute consultation with a lawyer through the Ontario Legal Information Centre. This service is available to any Ontario resident, regardless of income, and no documents are required to access it."
+    "access_script": "Call 1-844-343-7462 to request a free 30-minute consultation with a lawyer through the Ontario Legal Information Centre. This service is available to any Ontario resident, regardless of income, and no documents are required to access it.",
+    "hours_text": "Mon-Fri Business Hours (By Appointment)"
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
@@ -11387,7 +11430,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Non-unionized workers who have been injured on the job or faced reprisals can call 1-800-435-8980 for free legal advice and representation. The Office of the Worker Adviser helps with WSIB claims and occupational health and safety reprisal cases at no cost."
+    "access_script": "Non-unionized workers who have been injured on the job or faced reprisals can call 1-800-435-8980 for free legal advice and representation. The Office of the Worker Adviser helps with WSIB claims and occupational health and safety reprisal cases at no cost.",
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
   },
   {
     "name": "Steps to Justice",
@@ -11454,7 +11498,8 @@
       "lng": -79.4898197
     },
     "plain_language_available": false,
-    "access_script": "Visit stepstojustice.ca to access a step-by-step guide to common legal problems in Ontario. The website is free to use and includes a live chat service where you can ask a law librarian or staff for help with finding legal information."
+    "access_script": "Visit stepstojustice.ca to access a step-by-step guide to common legal problems in Ontario. The website is free to use and includes a live chat service where you can ask a law librarian or staff for help with finding legal information.",
+    "hours_text": "24/7. Website 24/7; Chat Mon-Fri"
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -11513,7 +11558,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Non-unionized workers in Ontario can call 1-877-832-6090 for free legal help if they have been punished or fired for raising health and safety concerns. The Workers Health & Safety Legal Clinic focuses on reprisals and unsafe work refusal cases."
+    "access_script": "Non-unionized workers in Ontario can call 1-877-832-6090 for free legal help if they have been punished or fired for raising health and safety concerns. The Workers Health & Safety Legal Clinic focuses on reprisals and unsafe work refusal cases.",
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
@@ -11572,7 +11618,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-387-0750 to report a workplace injury or to get information about WSIB claims and benefits. This is the main toll-free number for Ontario’s Workplace Safety and Insurance Board, and there is no cost to call."
+    "access_script": "Call 1-800-387-0750 to report a workplace injury or to get information about WSIB claims and benefits. This is the main toll-free number for Ontario’s Workplace Safety and Insurance Board, and there is no cost to call.",
+    "hours_text": "Mon–Fri: 07:30–18:00. Mon-Fri 7:30am-6pm"
   },
   {
     "name": "Arthritis Society Canada",
@@ -11611,7 +11658,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-321-1433 to speak with a trained volunteer about arthritis-related questions. This free support line is available to anyone living with arthritis or caring for someone who is."
+    "access_script": "Call 1-800-321-1433 to speak with a trained volunteer about arthritis-related questions. This free support line is available to anyone living with arthritis or caring for someone who is.",
+    "hours_text": "Mon-Fri (messages returned within 1 business day)"
   },
   {
     "name": "Heart and Stroke Foundation",
@@ -11670,7 +11718,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-888-473-4636 for free, evidence-based information on heart disease and stroke. The Heart and Stroke Foundation’s help line can answer questions about prevention, risk factors, treatment, and recovery resources."
+    "access_script": "Call 1-888-473-4636 for free, evidence-based information on heart disease and stroke. The Heart and Stroke Foundation’s help line can answer questions about prevention, risk factors, treatment, and recovery resources.",
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
@@ -11736,7 +11785,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-833-621-0728 for information and navigation assistance with hospice and palliative care services in Ontario. (The HPCO information line is staffed Monday to Friday, 8:30 AM to 4:30 PM.)"
+    "access_script": "Call 1-833-621-0728 for information and navigation assistance with hospice and palliative care services in Ontario. (The HPCO information line is staffed Monday to Friday, 8:30 AM to 4:30 PM.)",
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
@@ -11795,7 +11845,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-844-859-6789 (Monday–Friday, 8 AM to 8 PM Eastern) to connect with an MS Navigator for information and support related to multiple sclerosis. This service is free and available to anyone affected by MS."
+    "access_script": "Call 1-844-859-6789 (Monday–Friday, 8 AM to 8 PM Eastern) to connect with an MS Navigator for information and support related to multiple sclerosis. This service is free and available to anyone affected by MS.",
+    "hours_text": "Mon–Fri: 08:00–20:00. Mon-Fri 8am-8pm ET"
   },
   {
     "name": "Parkinson Canada",
@@ -11854,7 +11905,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "Call 1-888-664-1974 (Monday–Friday, 9 AM to 4 PM Eastern) for information and support on Parkinson’s disease. You can also email support@parkinson.ca for assistance."
+    "access_script": "Call 1-888-664-1974 (Monday–Friday, 9 AM to 4 PM Eastern) for information and support on Parkinson’s disease. You can also email support@parkinson.ca for assistance.",
+    "hours_text": "Mon–Fri: 09:00–16:00. Mon-Fri 9am-4pm ET"
   },
   {
     "name": "Talk Tobacco",
@@ -11903,7 +11955,8 @@
       "lng": -113.64258
     },
     "plain_language_available": false,
-    "access_script": "First Nations, Inuit, and Métis individuals looking to quit smoking can call 1-833-998-8255 for free, culturally tailored support. Live chat and additional resources are also available on the Talk Tobacco website (talktobacco.ca)."
+    "access_script": "First Nations, Inuit, and Métis individuals looking to quit smoking can call 1-833-998-8255 for free, culturally tailored support. Live chat and additional resources are also available on the Talk Tobacco website (talktobacco.ca).",
+    "hours_text": "7 days a week (hours vary)"
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -11942,7 +11995,8 @@
       "lng": -79.4163
     },
     "plain_language_available": false,
-    "access_script": "Indigenous people in Ontario can call 1-844-633-2886 to reach Aboriginal Legal Services for free legal advice and representation. No fees are charged for their assistance."
+    "access_script": "Indigenous people in Ontario can call 1-844-633-2886 to reach Aboriginal Legal Services for free legal advice and representation. No fees are charged for their assistance.",
+    "hours_text": "Mon, Wed, Fri 10am-3pm (intake)"
   },
   {
     "name": "Consumer Protection Ontario",
@@ -12001,7 +12055,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Ontario consumers can call 1-800-889-9768 for free information about consumer rights or to report unfair business practices. This is the provincial Consumer Protection Ontario helpline."
+    "access_script": "Ontario consumers can call 1-800-889-9768 for free information about consumer rights or to report unfair business practices. This is the provincial Consumer Protection Ontario helpline.",
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
   },
   {
     "name": "Law Society Referral Service",
@@ -12060,7 +12115,8 @@
       "lng": -113.2514301
     },
     "plain_language_available": false,
-    "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional."
+    "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional.",
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -12119,6 +12175,7 @@
       "lng": -89.25018
     },
     "plain_language_available": false,
-    "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)"
+    "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)",
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
   }
 ]

@@ -122,10 +122,16 @@ Run `npm run audit:data` to determine which services are missing structured `hou
 
    Output: `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
 
-2. Prioritize fixes:
+2. If structured `hours` already exist but `hours_text` is missing, backfill safely:
+
+   ```bash
+   npm run backfill:hours-text
+   ```
+
+3. Prioritize fixes:
    - Add `hours_text` for services missing it (human-readable display)
    - Add structured `hours` only where the hours are unambiguous and evidence-backed (to avoid false “Open Now”)
-3. Use ChatGPT for ambiguous cases (with strict evidence requirements) only after collecting source URLs and confirming the provider’s official hours.
+4. Use ChatGPT for ambiguous cases (with strict evidence requirements) only after collecting source URLs and confirming the provider’s official hours.
 
 **Prompt for AI assistance:**
 

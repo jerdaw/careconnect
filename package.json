@@ -27,6 +27,7 @@
     "audit:qa": "node --import tsx scripts/qa-audit.ts",
     "audit:coords": "node --import tsx scripts/export-coordinate-gaps.ts --out docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json",
     "audit:hours": "node --import tsx scripts/export-hours-gaps.ts --out docs/roadmaps/v17-5-hours/outputs/hours-gaps.json",
+    "backfill:hours-text": "node --import tsx scripts/backfill-hours-text.ts",
     "audit:bilingual": "node --import tsx scripts/bilingual-audit.ts",
     "i18n-audit": "node --import tsx scripts/i18n-key-audit.ts",
     "health-check": "node --import tsx scripts/health-check-urls.ts",
