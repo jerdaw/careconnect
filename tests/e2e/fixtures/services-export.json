@@ -1,0 +1,24 @@
+[
+  {
+    "id": "svc-food-bank",
+    "name": "Kingston Food Bank",
+    "description": "Providing food assistance to those in need.",
+    "url": "https://kingstoncareconnect.example.com/food-bank",
+    "intent_category": "Food",
+    "verification_level": "L2",
+    "provenance": {
+      "verified_by": "test",
+      "verified_at": "2026-01-01T00:00:00Z",
+      "evidence_url": "https://example.com",
+      "method": "test"
+    },
+    "identity_tags": [
+      {
+        "tag": "Food",
+        "evidence_url": "https://example.com"
+      }
+    ],
+    "synthetic_queries": ["food help", "hunger"],
+    "scope": "kingston"
+  }
+]
