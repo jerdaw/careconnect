@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-22
+last_updated: 2026-01-23
 owner: jer
 tags: [pwa, offline, workbox, caching, privacy]
 ---
@@ -16,6 +16,7 @@ tags: [pwa, offline, workbox, caching, privacy]
 1. **Stable navigation fallback URL**
    - Use Workbox navigation fallback `fallbacks.document = "/offline"` in `next.config.ts`.
    - Rewrite `/offline` → `/{locale}/offline` in `middleware.ts` using the user’s `NEXT_LOCALE` (or default locale).
+   - Ensure `next-intl` message loading uses the route locale (e.g. `getMessages({ locale })` in `app/[locale]/layout.tsx`) so rewritten routes render the correct language.
 
 2. **Public offline export endpoint (sanitized)**
    - Serve offline bootstrap data from `GET /api/v1/services/export`.

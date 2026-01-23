@@ -296,20 +296,17 @@ See the detailed plan: `docs/roadmaps/2026-01-17-v17-6-pwa-enhancement.md`.
 
 ### Scope
 
-#### Manifest Improvements
+Implemented in code:
+
+- Manifest metadata (categories, shortcuts, share target) + store icon set + screenshots paths
+- Service worker notification assets + Workbox runtime caching rules
+- Locale-aware `/offline` fallback + URL hydration (`?q`, `?category`, `?openNow`)
+
+Remaining (release verification):
 
 - [ ] **Screenshots**: Replace placeholder screenshots with real captures (must keep exact sizes)
-- [x] **Categories**: Add app categorization for discovery
-- [x] **Icon Set**: Add comprehensive icon sizes (16, 32, 180, 192, 512px + maskable + shortcuts + badge)
-- [x] **Icon Path Fix**: Align manifest + service worker icon paths with real files in `public/`
-- [x] **Locale-Aware Start URL**: Keep `start_url: "/"` so `next-intl` middleware can respect language preference
-
-#### Service Worker Enhancement
-
-- [x] **Notification Polish**: Ensure push notifications use valid `icon`/`badge` assets
-- [x] **Cache Strategy**: Verify Workbox runtime caching matches real API routes (`/api/v1/...`)
-- [x] **Shortcuts/Share Hydration**: Support `?q=` and `?category=` on the home page so shortcuts + share target work
 - [ ] **Lighthouse Audit**: Confirm Lighthouse PWA score targets in production build
+- [ ] **Multi-lingual Offline QA**: Verify offline mode for all 7 locales + offline→online restore behavior
 
 ### Success Criteria
 
