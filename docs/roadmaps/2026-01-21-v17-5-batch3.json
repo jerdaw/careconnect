@@ -1,0 +1,952 @@
+[
+  {
+    "id": "kingston-pregnancy-care",
+    "name": "Kingston Pregnancy Care Centre",
+    "intent_category": "Health",
+    "url": "https://kingstonpcc.com",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Support for unexpected pregnancies, including baby clothes and parenting classes.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "hospice-kingston",
+    "name": "Hospice Kingston (Providence Care)",
+    "intent_category": "Health",
+    "url": "https://providencecare.ca/hospice-kingston",
+    "phone": null,
+    "email": null,
+    "address": "152 Phillips St, Kingston, ON K7M 2Z8",
+    "hours_text": "Residence: 24/7. Community Programs: Mon-Fri 8:30 AM – 4:30 PM.",
+    "application_process": "Referral required for residence. Self-referral for some community programs.",
+    "documents_required": "Medical Referral",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides compassionate end-of-life care and bereavement support. Now integrated with Providence Care, operating the AB Smith Homestead House residence.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "alzheimer-society-kfla",
+    "name": "Alzheimer Society KFL&A",
+    "intent_category": "Health",
+    "url": "https://alzheimer.ca/kfla",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Support, education, and advocacy for people with dementia and their caregivers.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "stroke-network-sneo",
+    "name": "Stroke Network of Southeastern Ontario",
+    "intent_category": "Health",
+    "url": "https://www.strokenetworkseo.ca",
+    "phone": null,
+    "email": null,
+    "address": "76 Stuart St, Watkins 3, Rm 4-3-409-0, Kingston, ON K7L 2V7",
+    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM.",
+    "application_process": "Call or visit website.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Free resources.",
+    "description": "Administrative body facilitating best practices for stroke care, provider education, and survivor support resources. Does not provide direct emergency medical treatment.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "autism-ontario-east",
+    "name": "Autism Ontario (East Region)",
+    "intent_category": "Health",
+    "url": "https://www.autismontario.com",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Information and support for families and individuals on the autism spectrum.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "cnib-kingston",
+    "name": "CNIB Foundation Kingston",
+    "intent_category": "Health",
+    "url": "https://cnib.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Community support, rehab, and advocacy for people with sight loss.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "march-of-dimes-kingston",
+    "name": "March of Dimes Canada - Employment Services",
+    "intent_category": "Health",
+    "url": "https://www.marchofdimes.ca",
+    "phone": null,
+    "email": null,
+    "address": "920 Princess St, Suite 360, Kingston, ON K7L 1H1",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Call for intake.",
+    "documents_required": "Medical/Disability documentation",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Specializes in vocational rehabilitation and employment support for people with disabilities, offering assistive technology assessments and job coaching.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "student-food-bank-queens",
+    "name": "AMS Food Bank (Queen's)",
+    "intent_category": "Food",
+    "url": "https://www.amsfoodbank.ca",
+    "phone": null,
+    "email": null,
+    "address": "87 Union Street, Room 212, Kingston, ON K7L 2N9",
+    "hours_text": "Mon & Wed: 5:00 PM – 7:00 PM. Thu: 12:00 PM – 2:00 PM. (Fall 2025). PEACH Market: Mon/Wed/Fri 11am-2pm.",
+    "application_process": "Drop-in with student ID.",
+    "documents_required": "Valid Queen's Student Card",
+    "eligibility": null,
+    "fees": "Free (PEACH Market is Pay-What-You-Can)",
+    "description": "Confidential and non-judgmental food service tailored specifically for the Queen's University community. Provides non-perishable food, personal care items, and facilitates the Good Food Box program.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "st-lawrence-food-pantry",
+    "name": "SLC Food Pantry",
+    "intent_category": "Food",
+    "url": "https://www.slc.me",
+    "phone": null,
+    "email": null,
+    "address": "100 Portsmouth Ave, Kingston, ON K7L 5A6",
+    "hours_text": "By Appointment Only",
+    "application_process": "Online intake form to book collection time.",
+    "documents_required": "Valid Student Identification",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Emergency food pantry providing non-perishable food items and personal care products for St. Lawrence College students.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "community-harvest-market",
+    "name": "Community Harvest Kingston",
+    "intent_category": "Food",
+    "url": "https://www.kchc.ca/community-harvest",
+    "phone": null,
+    "email": null,
+    "address": "263 Weller Ave, Kingston, ON K7K 2V4",
+    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Good Food Box Pickup: 3rd Thursday of month.",
+    "application_process": "Pre-order for Good Food Box.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Good Food Box is for purchase (cost-recovery).",
+    "description": "Initiative focused on long-term food security through fresh produce distribution (Good Food Box) and community gardening support.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "memorial-centre-market",
+    "name": "Memorial Centre Farmers Market",
+    "intent_category": "Food",
+    "url": "https://www.memorialcentrefarmersmarket.ca",
+    "phone": null,
+    "email": null,
+    "address": "303 York St, Kingston, ON K7K 4M4",
+    "hours_text": "Sunday: 9:00 AM – 2:00 PM (May-Oct); 9:00 AM – 1:00 PM (Nov-Apr).",
+    "application_process": "Drop-in.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Cost of goods sold.",
+    "description": "100% producer-run market selling food and goods grown or produced within the Kingston foodshed (100km radius).",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "legal-clinic-queens",
+    "name": "Queen's Legal Aid",
+    "intent_category": "Legal",
+    "url": "https://queenslawclinics.ca/queens-legal-aid",
+    "phone": "613-533-2102",
+    "email": null,
+    "address": "303 Bagot Street, Suite 500, Kingston, ON K7K 5W7",
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 1:00 PM – 4:30 PM.",
+    "application_process": "Call for intake.",
+    "documents_required": "Proof of income/student status.",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides legal services to low-income residents and students, handling summary conviction offences, tenant disputes, and tribunal hearings.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kfl-public-health-vaccine",
+    "name": "KFL&A Public Health - Immunization",
+    "intent_category": "Health",
+    "url": "https://www.kflaph.ca",
+    "phone": "613-549-1232",
+    "email": null,
+    "address": "221 Portsmouth Ave, Kingston, ON K7M 1V5",
+    "hours_text": "Routine Clinics: Tue (All Ages), Wed (0-18). By Appointment Only. General: M-F 8:30-4:30.",
+    "application_process": "Appointment required.",
+    "documents_required": "Immunization Record/Health Card",
+    "eligibility": null,
+    "fees": "Free (Publicly funded vaccines).",
+    "description": "Provides publicly funded vaccines, including routine childhood immunizations and influenza vaccines.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kfl-public-health-sexual",
+    "name": "KFL&A Public Health: Sexual Health Clinic",
+    "intent_category": "Health",
+    "url": "https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx",
+    "phone": "613-549-1232 ext. 1275",
+    "email": null,
+    "address": "221 Portsmouth Ave, Kingston, ON K7M 1V5",
+    "hours_text": "Quick Test Clinic (Walk-in): Tue & Thu 1:00 PM – 3:30 PM. Appointments: Mon-Fri 8:30 AM – 4:30 PM.",
+    "application_process": "Walk-in for Quick Test; Call for other appointments.",
+    "documents_required": "Health card not required for Quick Test.",
+    "eligibility": null,
+    "fees": "Most services free; some contraceptives at cost.",
+    "description": "Provides confidential sexual health services including STI testing, birth control, and emergency contraception.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "sexual-assault-centre-kingston",
+    "name": "Sexual Assault Centre Kingston (SACK)",
+    "intent_category": "Crisis",
+    "url": "https://www.sackingston.com",
+    "phone": "613-544-6424",
+    "email": null,
+    "address": "400 Elliott Avenue, Unit 1, Kingston, ON K7K 6M9",
+    "hours_text": "Crisis Phone: 24/7. Chat/Text: Daily 12:00 PM – Midnight. Office: Mon-Fri 9:00 AM – 4:00 PM.",
+    "application_process": "Call crisis line or office for intake.",
+    "documents_required": "None required",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides free, confidential support for survivors of sexual violence. Services include 24/7 crisis line, counselling, and accompaniment to medical/legal appointments.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-general-hospital",
+    "name": "Kingston General Hospital (KGH) Emergency Department",
+    "intent_category": "Health",
+    "url": "https://kingstonhsc.ca/emergency-care",
+    "phone": "613-548-2333",
+    "email": null,
+    "address": "41 King Street West, Kingston, ON K7L 2V7",
+    "hours_text": "24 hours a day, 7 days a week.",
+    "application_process": "Walk-in or via Ambulance (911).",
+    "documents_required": "Health Card (OHIP).",
+    "eligibility": null,
+    "fees": "Covered by OHIP. Fees for non-residents/uninsured.",
+    "description": "A full-service Level 1 Trauma Centre providing 24/7 care for life-threatening injuries and severe illnesses.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "hotel-dieu-site",
+    "name": "Hotel Dieu Hospital Urgent Care Centre (KHSC)",
+    "intent_category": "Health",
+    "url": "https://kingstonhsc.ca/programs-and-departments/urgent-care-centre",
+    "phone": "613-546-1240",
+    "email": null,
+    "address": "144 Brock Street, Kingston, ON K7L 5G2",
+    "hours_text": "Daily: 8:00 AM – 8:00 PM (Registration may close early if capacity is reached).",
+    "application_process": "Walk-in.",
+    "documents_required": "Health Card (OHIP) and photo ID.",
+    "eligibility": null,
+    "fees": "Covered by OHIP. Fees apply for non-residents.",
+    "description": "Provides assessment and treatment for non-life-threatening injuries and illnesses (e.g., cuts, sprains, infections) that cannot wait for a family doctor.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "providence-care-hospital",
+    "name": "Providence Care Hospital",
+    "intent_category": "Health",
+    "url": "https://providencecare.ca",
+    "phone": "613-544-4900",
+    "email": null,
+    "address": "752 King St W, Kingston, ON K7L 4X3",
+    "hours_text": "Inpatient: 24/7. Outpatient clinics: Mon-Fri Business Hours.",
+    "application_process": "Physician referral.",
+    "documents_required": "Health Card",
+    "eligibility": null,
+    "fees": "Covered by OHIP.",
+    "description": "Region's leading facility for aging, mental health, and rehabilitative care. Integrates long-term mental health care, physical rehabilitation, and complex continuing care.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-military-family-resource",
+    "name": "Kingston Military Family Resource Centre (KMFRC)",
+    "intent_category": "Community",
+    "url": "https://cfmws.ca/kingston",
+    "phone": "613-541-5010 ext. 271-5195",
+    "email": null,
+    "address": "32 Lundy's Lane, Kingston, ON K7K 5G2",
+    "hours_text": "Mon-Fri: 8:00 AM – 5:00 PM.",
+    "application_process": "Walk-in or call.",
+    "documents_required": "Military ID.",
+    "eligibility": null,
+    "fees": "Free.",
+    "description": "Provides support services, childcare, and mental health resources for military families.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "tnet-kingston",
+    "name": "TransFamily Kingston",
+    "intent_category": "Community",
+    "url": "https://transfamilykingston.com",
+    "phone": null,
+    "email": "transfamilykingston@gmail.com",
+    "address": "Downtown Kingston (Contact for location)",
+    "hours_text": "Support Meetings: Saturdays (Bi-weekly) 1:00 PM – 4:00 PM.",
+    "application_process": "Email for meeting location.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Grassroots organization providing peer support, social gatherings, and advocacy for transgender and gender-diverse individuals and their families.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kfla-children-services",
+    "name": "KFL&A Children's Services",
+    "intent_category": "Community",
+    "url": "https://www.cityofkingston.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Child care subsidy and special needs resourcing.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "rural-frontenac-community-services",
+    "name": "Rural Frontenac Community Services",
+    "intent_category": "Community",
+    "url": "https://rfcs.ca",
+    "phone": "613-279-3151",
+    "email": null,
+    "address": "1109 Garrett St, Sharbot Lake, ON K0H 2P0",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:00 PM.",
+    "application_process": "Call.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Varies by program (e.g. transportation fees).",
+    "description": "Multi-service agency for rural townships. Services include transportation, youth programs, seniors' supports (Meals on Wheels), and child care.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "south-frontenac-community-services",
+    "name": "Southern Frontenac Community Services",
+    "intent_category": "Community",
+    "url": "https://www.sfcsc.ca",
+    "phone": "613-376-6477",
+    "email": null,
+    "address": "4295 Stagecoach Rd, Sydenham, ON K0H 2T0",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Call.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Varies by program.",
+    "description": "Provides senior support (Adult Day Programs, Diners Club), food security (Food Bank, Meals on Wheels), and transportation services for South Frontenac.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-east-community-centre",
+    "name": "Kingston East Community Centre",
+    "intent_category": "Wellness",
+    "url": "https://www.cityofkingston.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Modern community hub with gymnasium, fitness centre, and community kitchen.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "earlyon-cosy",
+    "name": "EarlyON Child and Family Centre",
+    "intent_category": "Community",
+    "url": "https://kchc.ca/weller-avenue/earlyon/",
+    "phone": null,
+    "email": null,
+    "address": "263 Weller Ave, Kingston, ON K7K 2V4",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Drop-in.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides free, high-quality drop-in programs for families with children aged 0-6, focusing on early learning and development.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "boys-girls-club-kingston",
+    "name": "BGC South East (Boys & Girls Club)",
+    "intent_category": "Community",
+    "url": "https://www.bgcsoutheast.ca",
+    "phone": null,
+    "email": null,
+    "address": "1300 Bath Rd, Kingston, ON K7M 4X4",
+    "hours_text": "Admin: Mon-Fri 8:30 AM – 4:30 PM. Programs: 3:00 PM – 6:00 PM.",
+    "application_process": "Register online.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Varies",
+    "description": "Offers extensive recreational, educational, and life-skills programming for children and youth, including camps and aquatic programs.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ymca-kingston",
+    "name": "YMCA of Eastern Ontario - Kingston",
+    "intent_category": "Wellness",
+    "url": "https://eo.ymca.ca",
+    "phone": "613-546-2647",
+    "email": null,
+    "address": "100 Wright Crescent, Kingston, ON K7L 4T9",
+    "hours_text": "Mon-Thu: 5:30 AM – 9:00 PM. Fri: 5:30 AM – 7:00 PM. Sat-Sun: 7:00 AM – 4:00 PM.",
+    "application_process": "Walk-in.",
+    "documents_required": "ID",
+    "eligibility": null,
+    "fees": "Membership fees (Financial assistance available).",
+    "description": "Provides fitness, recreation, and childcare services.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-humane-society",
+    "name": "Kingston Humane Society",
+    "intent_category": "Community",
+    "url": "https://kingstonhumanesociety.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Animal shelter offering pet adoption and emergency pet food assistance.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "st-john-ambulance-kingston",
+    "name": "St. John Ambulance",
+    "intent_category": "Health",
+    "url": "https://www.sja.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "First aid training and community medical service volunteers.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "red-cross-kingston",
+    "name": "Canadian Red Cross - Kingston",
+    "intent_category": "Community",
+    "url": "https://www.redcross.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Disaster relief, senior transportation, and meals on wheels.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "united-way-kfla-office",
+    "name": "United Way KFL&A",
+    "intent_category": "Community",
+    "url": "https://www.unitedwaykfla.ca",
+    "phone": "613-542-2674",
+    "email": null,
+    "address": "417 Bagot St, Kingston, ON K7K 3C1",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Contact for program info.",
+    "documents_required": "None",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Fundraising and grant-making organization coordinating regional initiatives like the Backpack Program. Primarily funds other agencies rather than direct service delivery.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "community-foundation-kingston",
+    "name": "Community Foundation for Kingston & Area",
+    "intent_category": "Community",
+    "url": "https://cfka.org",
+    "phone": null,
+    "email": null,
+    "address": "275 Ontario St, Suite 100, Kingston, ON K7K 2X5",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Grant application.",
+    "documents_required": "Charitable Status",
+    "eligibility": null,
+    "fees": "N/A",
+    "description": "Philanthropic organization focused on grant-making to registered charities. Manages funds like the Regina Rosen Food First Fund.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "habitat-for-humanity-kingston",
+    "name": "Habitat for Humanity Kingston",
+    "intent_category": "Housing",
+    "url": "https://habitatkingston.com",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Affordable homeownership program and ReStore.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-literacy-skills-2",
+    "name": "Kingston Literacy & Skills",
+    "intent_category": "Education",
+    "url": "https://www.klsread.ca",
+    "phone": null,
+    "email": null,
+    "address": "16 Bath Rd, Suite 104, Kingston, ON K7L 1C4",
+    "hours_text": "Mon-Fri: 8:30 AM – 3:00 PM.",
+    "application_process": "Call for assessment.",
+    "documents_required": "Status in Canada (for LINC).",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides adult literacy training, LBS upgrading, and LINC (Language Instruction for Newcomers to Canada) programs.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "keys-job-centre-2",
+    "name": "KEYS Job Centre",
+    "intent_category": "Employment",
+    "url": "https://keys.ca",
+    "phone": "613-546-5559",
+    "email": null,
+    "address": "182 Sydenham St, Kingston, ON K7K 3M2",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM. (Tue open to 6:00 PM).",
+    "application_process": "Walk-in or call.",
+    "documents_required": "SIN/Work permit for some programs.",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Employment and newcomer services offering job search assistance, workshops, and settlement support.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "acls-kingston",
+    "name": "ACFOMI",
+    "intent_category": "Employment",
+    "url": "https://acfomi.ca",
+    "phone": "613-546-7863",
+    "email": null,
+    "address": "760 Highway 15, Unit 11, Kingston, ON K7L 0C3",
+    "hours_text": "Mon: 8:30 AM – 6:00 PM. Tue-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 3:00 PM.",
+    "application_process": "Call or visit.",
+    "documents_required": "ID",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides employment and settlement services for French-speaking newcomers and residents.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "re-start-employment",
+    "name": "ReStart Employment Services",
+    "intent_category": "Employment",
+    "url": "https://restartnow.ca",
+    "phone": "613-542-7373",
+    "email": null,
+    "address": "900 Montreal St, Kingston, ON K7K 3J9",
+    "hours_text": "Mon-Thu: 8:30 AM – 4:30 PM. Fri: 8:30 AM – 4:00 PM.",
+    "application_process": "Walk-in or call.",
+    "documents_required": "ID, SIN.",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Offers employment services and housing support to help individuals find work and maintain housing.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "slc-employment-service",
+    "name": "St. Lawrence College Employment Service",
+    "intent_category": "Employment",
+    "url": "https://employmentservice.sl.on.ca",
+    "phone": null,
+    "email": null,
+    "address": "100 Portsmouth Ave, Kingston, ON K7L 5A6",
+    "hours_text": "Mon-Fri: 8:00 AM – 4:00 PM.",
+    "application_process": "Walk-in or call.",
+    "documents_required": "SIN/Work Status",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides comprehensive job search support for both students and the general public, leveraging the college's resources for career development.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-works-kb",
+    "name": "City of Kingston - Housing and Social Services (Ontario Works)",
+    "intent_category": "Financial",
+    "url": "https://www.cityofkingston.ca",
+    "phone": "613-546-2695",
+    "email": null,
+    "address": "362 Montreal St, Kingston, ON K7K 3H5",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Call or apply online.",
+    "documents_required": "Proof of income, assets, shelter costs, ID.",
+    "eligibility": null,
+    "fees": "Free",
+    "description": "Provides financial and employment assistance to people in financial need.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "odsp-kingston",
+    "name": "ODSP Kingston Office",
+    "intent_category": "Financial",
+    "url": "https://www.ontario.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Ontario Disability Support Program financial assistance.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "service-canada-kingston",
+    "name": "Service Canada Centre",
+    "intent_category": "Financial",
+    "url": "https://www.canada.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Federal government services including EI and CPP.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "service-ontario-kingston",
+    "name": "ServiceOntario",
+    "intent_category": "Community",
+    "url": "https://www.ontario.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Provincial government services including health cards and driving licenses.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "kingston-police-non-emerg",
+    "name": "Kingston Police (Non-Emergency)",
+    "intent_category": "Community",
+    "url": "https://www.kpf.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Police services for reporting non-emergency crimes or concerns.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "opp-frontenac",
+    "name": "OPP Frontenac Detachment",
+    "intent_category": "Community",
+    "url": "https://www.opp.ca",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Provincial police services for the surrounding county areas.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "coast-mental-health",
+    "name": "COAST (Crisis Outreach)",
+    "intent_category": "Crisis",
+    "url": "https://amhs-kfla.ca",
+    "phone": "613-544-4229",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Mobile crisis intervention team partnering mental health workers with police.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "maltby-centre-autism",
+    "name": "Maltby Centre",
+    "intent_category": "Health",
+    "url": "https://maltbycentre.ca",
+    "phone": "613-546-8535",
+    "email": null,
+    "address": "31 Hyperion Court, Suite 100, Kingston, ON K7K 7G3",
+    "hours_text": "Mon-Fri: 8:30 AM – 4:30 PM.",
+    "application_process": "Call or self-refer online.",
+    "documents_required": "Health Card",
+    "eligibility": null,
+    "fees": "Mental health is free. Some autism services fee-for-service.",
+    "description": "Provides mental health and autism services for children and youth.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "pathways-for-children-youth",
+    "name": "Pathways for Children and Youth (Merged)",
+    "intent_category": "Health",
+    "url": "https://maltbycentre.ca",
+    "phone": null,
+    "email": null,
+    "address": "Moved to Maltby Centre",
+    "hours_text": "Closed",
+    "application_process": "Contact Maltby Centre.",
+    "documents_required": "N/A",
+    "eligibility": null,
+    "fees": "N/A",
+    "description": "MERGED: Pathways for Children and Youth has formally merged with the Maltby Centre. Please refer to Maltby Centre for all child and youth mental health services.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "geneva-centre-autism",
+    "name": "Geneva Centre for Autism (Virtual)",
+    "intent_category": "Education",
+    "url": "https://www.autism.net",
+    "phone": null,
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Online resources and training for families.",
+    "existing": {
+      "has_hours": false,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-211-ontario",
+    "name": "211 Ontario",
+    "intent_category": "Crisis",
+    "url": "https://211ontario.ca",
+    "phone": "211",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A helpline and online database of Ontario's community and social services. 211 helps people find the right community and social services.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-black-youth-helpline",
+    "name": "Black Youth Helpline",
+    "intent_category": "Crisis",
+    "url": "https://blackyouth.ca",
+    "phone": "1-833-294-8650",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Serves all youth and specifically responds to the need for a Black youth specific service. Focuses on family, schools, and community.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  }
+]

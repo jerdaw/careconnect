@@ -1,6 +1,6 @@
 ---
 status: in_progress
-last_updated: 2026-01-21
+last_updated: 2026-01-23
 owner: jer
 tags: [roadmap, v17.5, data-quality, verification, enrichment]
 ---
@@ -42,6 +42,21 @@ Recompute any time with `npm run audit:data` (or a local Node script) before sta
 
 > [!NOTE]
 > **Category Expansion** (Phase 7) is moved to ongoing maintenance work rather than a fixed release milestone. Adding new services is continuous, not a one-time task.
+
+### Current Snapshot (Post v17.5 AI Ingestion: 2026-01-23)
+
+Recompute any time with `npm run audit:data` before starting a new batch.
+
+| Metric                     | Current | Notes                                              |
+| -------------------------- | ------- | -------------------------------------------------- |
+| Missing `coordinates`      | 58      | Still the primary geo gap                          |
+| Missing `access_script`    | 0       | ✅ v17.5 AI ingestion completed                    |
+| Missing structured `hours` | 12      | Remaining hours require targeted verification      |
+| Missing `hours_text`       | 67      | Many services still need human-readable hours text |
+
+### Active Follow-Up Flags (Don’t Lose These)
+
+- **`community-harvest-market` URL/evidence issue:** v17.5 evidence spot-check indicates the referenced page returns `404`. Update the service `url` to a stable official page and re-verify any hours/access claims before treating the record as verified. (See `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`.)
 
 ## User Review Required
 
@@ -149,16 +164,20 @@ For services that fail automated geocoding (or have no geocodable address):
 
 **Architecture note:** `access_script` / `access_script_fr` already exist in the schema and are editable via the Partner Portal (`components/partner/ServiceEditForm.tsx`).
 
-**Work (data + product):**
+**Baseline (pre-2026-01-22):** 143 services missing `access_script` (see `npm run audit:data`).
 
-- [ ] Use `npm run audit:data` to list services missing `access_script` (baseline snapshot: 143)
-- [ ] Prioritize **Crisis**, **Housing**, and high-traffic services first
-- [ ] Write scripts that are specific (“What to say first”), low-pressure (“You can hang up anytime”), and emergency-safe
-- [ ] Add `access_script_fr` where applicable
+**Current (post-2026-01-22):** `access_script` coverage is now 196/196 (0 missing) via the v17.5 AI ingestion workflow.
 
-**Required UI surface (so this work benefits users):**
+Implementation record:
 
-- [ ] Add a clearly labeled “Call Script” / “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys
+- [x] Deep Research workflow completed + merged (see `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`).
+- [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
+
+Remaining work:
+
+- [ ] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
+- [ ] Governance: tighten any overly long scripts and resolve any factual issues discovered during spot-checking.
+- [ ] Bilingual: plan/implement `access_script_fr` with governance review.
 
 ### 4.3 Plain Language Audit
 
@@ -179,18 +198,20 @@ Use the existing script:
 
 **Architecture note:** The “Open Now” filter already exists and uses `lib/search/hours.ts` against the structured `hours` field.
 
-**Goal:** Reduce missing structured `hours` (baseline snapshot: 122 services) by converting `hours_text` into `hours` using the existing `ServiceHours` shape in `types/service.ts` (24-hour `"HH:MM"` per day).
+**Baseline (pre-2026-01-22):** 122 services missing structured `hours` (see `npm run audit:data`).
 
-**Approach:**
+**Current (post-2026-01-22):** 12 services still missing structured `hours` (184/196 present) after v17.5 AI ingestion.
 
-- [ ] Prefer human-reviewed conversion (see `docs/governance/data-enrichment-sop.md`)
-- [ ] Use `scripts/normalize-services.ts` as a baseline for simple patterns (24/7, basic Mon–Fri), then manually/AI-assist the rest
-- [ ] For ambiguous formats, keep `hours_text` as the canonical human-readable source; omit `hours` until verified
+Implementation record:
 
-**Sanity checks:**
+- [x] Deep Research workflow completed + merged (see `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`).
+- [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
 
-- [ ] Spot-check Open Now at different times of day (including overnight cases)
-- [ ] Verify printable hours rendering still works (`app/api/v1/services/[id]/printable/route.ts`)
+Remaining work:
+
+- [ ] Resolve remaining 12 missing-`hours` services via manual verification or a smaller targeted batch with strict evidence requirements.
+- [ ] Spot-check “Open Now” at different times (including overnight crisis cases).
+- [ ] Verify printable hours rendering still works (`app/api/v1/services/[id]/printable/route.ts`).
 
 ---
 
@@ -202,7 +223,7 @@ Use the existing script:
 
 Research and identify major providers suitable for L3 status:
 
-```
+```csv
 Service,Category,Reason,Contact Status
 Kingston General Hospital,health,Major regional provider,Not yet contacted
 Addiction Services Kingston,health,Government funded,Not yet contacted
@@ -229,7 +250,7 @@ Kingston Shelter,housing,Essential community service,Not yet contacted
 
 **Template:** `data/l3-partnership-tracker.csv`
 
-```
+```csv
 Service,Contact Name,Email,Phone,Status,Verified Date,Notes
 KGH,Maria Smith,m.smith@kgh.on.ca,613-548-1232,In progress,2026-01-17,Waiting for callback
 ...
