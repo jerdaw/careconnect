@@ -251,6 +251,9 @@ These are “confirm via official web sources” tasks (no provider outreach req
   - `kingston-police-non-emerg`
   - `opp-frontenac`
   - `coast-mental-health`
+- **Then run geocoding + re-audit (Phase 3):**
+  - Geocode: `OPENCAGE_API_KEY=... npm run geocode`
+  - Validate + re-audit: `npm run validate-data`, `npm run audit:data`, `npm run audit:coords`
 - **Hours to verify (Phase 5):** run `npm run audit:hours` and resolve remaining missing structured `hours` + `hours_text` (use strict evidence; avoid seasonality-induced false “Open Now”)
   - `alzheimer-society-kfla`
   - `autism-ontario-east`
@@ -275,6 +278,7 @@ These are “confirm by contacting the org” tasks (email/phone/form), needed f
   - Tracker: `data/verification/l3-candidates.csv` (no PII / no private communications in git)
   - Workspace: `docs/roadmaps/v17-5-verification/README.md`
   - Generate suggestions: `npm run audit:l3` → `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+  - After first L3 upgrades, consider search weight review: `lib/search/scoring.ts`
 
 #### Category Expansion
 

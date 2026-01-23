@@ -120,9 +120,7 @@ Create spreadsheet with:
 
 **Categories needing expansion:**
 
-- [ ] Transport: 2 services (target: 5+)
-- [ ] Financial: 4 services (target: 8+)
-- [ ] Indigenous: 3 services (target: 8+)
+Category expansion is not part of the v17.5 close-out. Track ongoing expansion in `docs/roadmaps/roadmap.md` under the v17.5 “Category Expansion” section.
 
 ---
 
@@ -202,27 +200,14 @@ For each Kingston service in `coordinate-gaps.json` with `issues: ["missing_addr
 > [!IMPORTANT]
 > This is the concrete “what to do next” list for Phase 3.
 
-- [ ] Run `npm run audit:coords` and triage `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
-- [ ] For each item with `issues: ["missing_address"]`:
-  - [ ] Find a trusted source for the physical location (official site / municipal / government directory)
-  - [ ] Add `address` (geocodable) to `data/services.json`
-  - [ ] If the service is actually phone/online only, set `virtual_delivery: true` instead of inventing an address
-- [ ] For each item with `issues: ["non_geocodable_address"]`:
-  - [ ] Confirm we _should not_ store coordinates (confidentiality / rotating locations)
-  - [ ] Keep address as a clear human-readable note; do not force coordinates
-- [ ] Run geocoding with your key:
+This work requires web verification and (optionally) a geocoding API key, so it is tracked as a follow-up in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 
-  ```bash
-  OPENCAGE_API_KEY=xxx npm run geocode
-  ```
+When you are ready:
 
-- [ ] Validate + re-audit:
-
-  ```bash
-  npm run validate-data
-  npm run audit:data
-  npm run audit:coords
-  ```
+- Run `npm run audit:coords` and triage `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- Verify and add missing physical `address` values (do not invent; use `virtual_delivery: true` when appropriate)
+- Run geocoding: `OPENCAGE_API_KEY=... npm run geocode`
+- Validate + re-audit: `npm run validate-data`, `npm run audit:data`, `npm run audit:coords`
 
 ### 3.4 Run the Geocoding Script
 
@@ -271,10 +256,7 @@ Remaining work:
 - [x] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
 - [x] Governance: run access-script QA audit (length, missing, obvious artifacts) and resolve any issues found.
   - Audit: `npm run audit:access-scripts` → `docs/roadmaps/v17-5-ai-results/reports/access-script-audit.json`
-- [ ] Bilingual: populate `access_script_fr` (translation-only; no new facts).
-  - Workspace: `docs/roadmaps/v17-5-ai-results/access-script-fr/README.md`
-  - Prep: `npm run export:access-script-fr`
-  - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json`
+- Follow-up: populate `access_script_fr` (translation-only; no new facts) is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Bilingual Follow-Up (Access Scripts - French)”.
 
 ### 4.3 Plain Language Audit
 
@@ -311,7 +293,7 @@ Implementation record:
 
 Remaining work:
 
-- [ ] Resolve remaining missing-`hours` services via manual verification or a smaller targeted batch with strict evidence requirements.
+- Follow-up: resolve remaining missing-`hours` services via manual web verification is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 - [x] Spot-check “Open Now” at different times (including overnight cases) via unit tests (`tests/lib/search/hours.test.ts`).
 - [x] Verify printable hours rendering via API unit test (`tests/api/v1/services-printable.test.ts`).
 
@@ -336,12 +318,7 @@ npm run audit:l3
 Track outreach and confirmations in `data/verification/l3-candidates.csv` (do not commit private emails/PII).
 
 **Criteria for L3:**
-
-- [ ] Official partnership signed
-- [ ] Provider-confirmed information
-- [ ] Recent verification (within 6 months)
-- [ ] Complete service data
-- [ ] High impact services
+This work requires provider outreach and is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”.
 
 ### 6.2 L3 Partnership Process
 
@@ -422,19 +399,16 @@ npm run audit:data
 
 ### Manual Spot-Check (20% sample)
 
-- [ ] Random 40 services
-- [ ] Verify address on Google Maps
-- [ ] Verify phone number calls correct organization
-- [ ] Check hours match website
-- [ ] Confirm scope assignment makes sense
+Manual spot-checking requires web verification and is tracked as a follow-up in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 
 ### End-to-End Testing
 
-- [ ] Search works without scope filter
-- [ ] "Open Now" filter returns correct services at 9am
-- [ ] Distance calculations correct
-- [ ] Crisis services always appear first
-- [ ] Geographic scope filters work
+Automated coverage exists for core flows:
+
+- Crisis ranking/boost: `tests/lib/search/index.test.ts`
+- Distance sorting: `tests/lib/search/index.test.ts`
+- “Open Now” overnight behavior: `tests/lib/search/hours.test.ts`
+- Printable hours rendering: `tests/api/v1/services-printable.test.ts`
 
 ---
 
@@ -443,9 +417,9 @@ npm run audit:data
 ### Core Data Quality (Must Have)
 
 - [x] 100% services have `scope` field (baseline snapshot already achieved)
-- [ ] 90%+ services have `coordinates` (target: ≤ 20 missing)
+- Follow-up: 90%+ services have coordinates is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
 - [x] 70%+ services have structured `hours` (achieved; 184/196 present as of 2026-01-23)
-- [ ] Reduce missing structured `hours` further (target: ≤ 5 missing) without introducing false “Open Now” results
+- Follow-up: reduce missing structured hours further is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
 - [x] Data validation passes all automated checks (`npm run validate-data`)
 
 ### Enhanced Metadata (Should Have)
@@ -454,7 +428,7 @@ npm run audit:data
 - [x] Public UI surfaces `access_script` on service detail pages (multi-lingual via `next-intl`)
 - [x] 100% services have `plain_language_available` flag present (baseline snapshot already achieved)
 - [x] Decision: do not expose plain-language status as a badge/filter in v17.5 (keep as internal QA metadata)
-- [ ] 10+ services at L3 verification level
+- Follow-up: 10+ services at L3 is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”
 
 ### Removed from v17.5 (Ongoing Work)
 
