@@ -101,7 +101,9 @@ Use the existing audit tooling (see `docs/governance/data-enrichment-sop.md`):
 npm run audit:data
 ```
 
-**Record the baseline** in an audit note (recommended: `docs/audits/v17-5-data-quality-baseline.md`) so we can quantify improvements at the end of the release.
+**Record the baseline + close-out snapshot** in an audit note so we can quantify improvements at the end of the release:
+
+- `docs/audits/2026-01-23-v17-5-data-quality-summary.md`
 
 ### 1.2 Categorized Data Gaps
 
@@ -137,13 +139,7 @@ Use the existing script when scope rules change or new services are added:
 
 - Script: `scripts/assign-scopes.ts`
 
-**Verification:**
-
-- [ ] Run script
-- [ ] Spot-check 20 random services
-- [ ] Verify crisis/telehealth services are `"ontario"` or `"canada"` as appropriate
-- [ ] Verify Kingston-address services are `"kingston"`
-- [ ] Update any misclassifications manually
+**Status:** v17.5 achieved the desired outcome (`Missing scope: 0`), so we did not re-run scope assignment as part of close-out. Re-run the script only if scope rules change or new services are added.
 
 ---
 
@@ -472,7 +468,7 @@ npm run audit:data
 
 - Updated `data/services.json` with all new fields
 - `data/geocode-cache.json` local cache for future updates (gitignored)
-- L3 outreach tracker (recommended: `docs/governance/` or `docs/audits/`, not `data/`)
+- L3 outreach tracker: `data/verification/l3-candidates.csv` (PII-free summaries only; do not commit private communications)
 - Audit note with before/after metrics (recommended: `docs/audits/v17-5-data-quality-*.md`)
 - Updated scripts for future maintenance
 
