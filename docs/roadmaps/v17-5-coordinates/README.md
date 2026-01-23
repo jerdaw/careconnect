@@ -7,7 +7,7 @@ tags: [roadmap, v17.5, data-quality, coordinates, geocoding]
 
 # v17.5 Coordinates & Geocoding Workspace
 
-This folder supports **Phase 3: Geocoding & Coordinates** from `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
+This folder supports **Phase 3: Geocoding & Coordinates** from `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md`.
 
 ## Policy (Governance-First)
 

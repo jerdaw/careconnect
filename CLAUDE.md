@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Kingston Care Connect is a verified, governance-first search engine for social services in Kingston, Ontario. The platform uses a **manual curation over automated extraction** approach, maintaining 196 hand-verified services with strict data quality standards.
+Kingston Care Connect is a verified, governance-first search engine for social services in Kingston, Ontario. The platform uses a **manual curation over automated extraction** approach, maintaining a hand-verified service directory with strict data quality standards.
 
 > Note: Recompute the current service count any time via `npm run audit:data`.
 
@@ -135,7 +135,7 @@ The platform uses **on-device AI** via WebLLM for privacy-preserving smart searc
 
 **Source of Truth:**
 
-- Development: `data/services.json` (169 services)
+- Development: `data/services.json` (run `npm run audit:data` for current count)
 - Production: Supabase `services` table OR fallback to JSON
 
 **Data Loading Strategy** (`lib/search/data.ts::loadServices()`):
@@ -148,6 +148,11 @@ The platform uses **on-device AI** via WebLLM for privacy-preserving smart searc
 **Data Enrichment:**
 
 For filling missing fields (scope, coordinates, hours, access scripts), see `docs/governance/data-enrichment-sop.md`. Use `/data-enrichment` workflow for step-by-step process.
+
+## Secrets & Environment Files
+
+- Do not commit `.env.local` or any secrets. Use `.env.example` as the template and keep local values untracked.
+- If secrets are accidentally committed, rotate/revoke them immediately and remove them from git history.
 
 **Key Types:**
 

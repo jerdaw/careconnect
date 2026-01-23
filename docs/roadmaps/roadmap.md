@@ -196,26 +196,18 @@ See [archive/2026-01-25-v17-4-dashboard-partner-portal.md](archive/2026-01-25-v1
 **Status**: Completed (2026-01-23; follow-ups queued below)
 **Priority**: HIGH
 
-See the detailed plan: `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
+See the detailed plan (archived): `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md`.
 Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`.
 
 ### Scope
 
-#### Critical Data Gaps (Snapshot: 196 services)
+Snapshot (recompute any time with `npm run audit:data`):
 
-- [x] **Geographic Scope**: 0 missing `scope` field (done)
-- [ ] **Coordinates**:
-  - 58/196 missing `coordinates` (any reason; includes virtual/confidential/multi-location)
-  - 18/196 missing `coordinates` (required for Kingston physical distance search)
-  - 17/196 missing physical `address` (primary blocker before geocoding can run)
-  - Track + workflow: `docs/roadmaps/v17-5-coordinates/README.md` (run `npm run audit:coords`)
-- [x] **Access Scripts**: 0/196 missing `access_script` (content + public UI surface implemented)
-
-#### Accessibility Data
-
-- [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; type/schema wiring complete)
-- [ ] **Structured Hours**: 11/196 missing structured `hours` object (10 active); track via `npm run audit:hours`
-  - Track + workflow: `docs/roadmaps/v17-5-hours/README.md` (run `npm run audit:hours`)
+- 58/196 missing `coordinates` (any reason; includes virtual/confidential/multi-location)
+- 18/196 missing `coordinates` (required for Kingston physical distance search)
+- 17/196 Kingston services missing a verified physical `address`
+- 11/196 missing structured `hours` (10 active)
+- 10/196 missing `hours_text` (10 active)
 
 #### Bilingual Follow-Up (Access Scripts - French)
 

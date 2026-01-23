@@ -1,5 +1,5 @@
 ---
-status: stable
+status: archived
 last_updated: 2026-01-23
 owner: jer
 tags: [roadmap, v17.5, data-quality, verification, enrichment]
