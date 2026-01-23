@@ -14,7 +14,7 @@ This report reflects the current coordinate/address gaps **after** v17.5 AI inge
 Generated from:
 
 - `npm run audit:data`
-- `npm run audit:coords` → `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- `npm run audit:coords` → `docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json`
 
 Totals (2026-01-23):
 

@@ -54,14 +54,14 @@ From `npm run audit:data` (run on 2026-01-23):
 - AI Deep Research ingestion workflow + traceability artifacts:
   - `docs/adr/011-ai-deep-research-output-ingestion.md`
   - `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
-  - `docs/roadmaps/v17-5-ai-results/`
+  - `docs/audits/v17-5/ai-results/`
 - Public UI now surfaces `access_script` on service detail pages (multi-lingual via `next-intl`).
 - Hours tooling and safe backfill from structured `hours` → `hours_text`:
   - `npm run audit:hours`
   - `npm run backfill:hours-text`
 - Coordinate gap tooling and reports:
   - `npm run audit:coords`
-  - `docs/roadmaps/v17-5-coordinates/`
+  - `docs/audits/v17-5/coordinates/`
 - L3 candidate suggestions tooling + governance-safe tracker:
   - `npm run audit:l3`
   - `data/verification/l3-candidates.csv` (PII-free only)
@@ -74,4 +74,4 @@ These are intentionally tracked in `docs/roadmaps/roadmap.md` under v17.5:
 - Non-IRL (web verification): remaining missing Kingston addresses and missing structured hours/hours_text.
 - IRL (provider outreach): L3 verification upgrades.
 - Bilingual follow-up: populate `access_script_fr` (translation-only; no new facts) using the workflow in:
-  - `docs/roadmaps/v17-5-ai-results/access-script-fr/README.md`
+  - `docs/audits/v17-5/ai-results/access-script-fr/README.md`

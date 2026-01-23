@@ -35,23 +35,23 @@ This document is the **implementation plan** for safely ingesting and merging th
 
 ### Batch Inputs (Uploaded to Models)
 
-- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch1.json` (50 services)
-- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch2.json` (50 services)
-- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch3.json` (50 services)
-- `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch4.json` (46 services)
+- `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch1.json` (50 services)
+- `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch2.json` (50 services)
+- `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch3.json` (50 services)
+- `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch4.json` (46 services)
 
 ### Model Outputs (Created After Deep Research)
 
 **Canonical raw archive (do not edit):**
 
-- `docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 1 - Deep Research Result.txt` (Batch 1)
-- `docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 2 - Deep Research Result.txt` (Batch 2)
-- `docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 3 - Deep Research Result.txt` (Batch 3)
-- `docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 4 - Deep Research Result.txt` (Batch 4)
-- `docs/roadmaps/v17-5-ai-results/raw/Gemini - Prompt 1 - Deep Research Result.md`
-- `docs/roadmaps/v17-5-ai-results/raw/Gemini - Prompt 2 - Deep Research Result.md`
-- `docs/roadmaps/v17-5-ai-results/raw/Gemini - Prompt 3 - Deep Research Result.md`
-- `docs/roadmaps/v17-5-ai-results/raw/Gemini - Prompt 4 - Deep Research Result.md`
+- `docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 1 - Deep Research Result.txt` (Batch 1)
+- `docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 2 - Deep Research Result.txt` (Batch 2)
+- `docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 3 - Deep Research Result.txt` (Batch 3)
+- `docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 4 - Deep Research Result.txt` (Batch 4)
+- `docs/audits/v17-5/ai-results/raw/Gemini - Prompt 1 - Deep Research Result.md`
+- `docs/audits/v17-5/ai-results/raw/Gemini - Prompt 2 - Deep Research Result.md`
+- `docs/audits/v17-5/ai-results/raw/Gemini - Prompt 3 - Deep Research Result.md`
+- `docs/audits/v17-5/ai-results/raw/Gemini - Prompt 4 - Deep Research Result.md`
 
 **Important:** Gemini outputs may not be machine-ingestable as-is (often narrative, partial, or malformed JSON). This plan treats Gemini as **secondary** unless re-run or re-extracted into strict Option A output.
 
@@ -98,7 +98,7 @@ When the model provides usable sources:
 Create a stable “ingestion workspace” under `docs/roadmaps/`:
 
 ```
-docs/roadmaps/v17-5-ai-results/
+docs/audits/v17-5/ai-results/
   raw/
   normalized/
   reports/
@@ -175,9 +175,9 @@ These are factual observations from the completed outputs that shape later phase
 
 Steps:
 
-- [x] Create `docs/roadmaps/v17-5-ai-results/raw/`.
+- [x] Create `docs/audits/v17-5/ai-results/raw/`.
 - [x] Copy the 8 model output files into `raw/` (do not edit them).
-- [x] Create a short note in `docs/roadmaps/v17-5-ai-results/raw/README.md` explaining:
+- [x] Create a short note in `docs/audits/v17-5/ai-results/raw/README.md` explaining:
   - When outputs were generated (2026-01-22)
   - Which batch each file corresponds to
   - Which prompt version was used (`docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`)
@@ -200,10 +200,10 @@ For each ChatGPT output:
 - [x] Parse JSON.
 - [x] Extract `processed_batch_output` (array).
 - [x] Save as:
-  - `docs/roadmaps/v17-5-ai-results/normalized/batch1_output.json`
-  - `docs/roadmaps/v17-5-ai-results/normalized/batch2_output.json`
-  - `docs/roadmaps/v17-5-ai-results/normalized/batch3_output.json`
-  - `docs/roadmaps/v17-5-ai-results/normalized/batch4_output.json`
+  - `docs/audits/v17-5/ai-results/normalized/batch1_output.json`
+  - `docs/audits/v17-5/ai-results/normalized/batch2_output.json`
+  - `docs/audits/v17-5/ai-results/normalized/batch3_output.json`
+  - `docs/audits/v17-5/ai-results/normalized/batch4_output.json`
 
 ### 2.2 Normalize hours key casing (critical)
 
@@ -224,7 +224,7 @@ Rules:
 Implementation details:
 
 - Script: `scripts/normalize-v17-5-ai-outputs.py`
-- Source inputs: `docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt {1..4} - Deep Research Result.txt`
+- Source inputs: `docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt {1..4} - Deep Research Result.txt`
 - ID drift corrected (Batch 1 only): `telephone-aid-line-kingston` → `telephone-aid-line-kingston-talk`
 
 ### 2.3 Preserve research evidence separately
@@ -232,7 +232,7 @@ Implementation details:
 For each ChatGPT output:
 
 - [x] Extract `research_sources` and store it as an audit artifact:
-  - `docs/roadmaps/v17-5-ai-results/reports/research_sources_chatgpt_prompt1.json`
+  - `docs/audits/v17-5/ai-results/reports/research_sources_chatgpt_prompt1.json`
   - … through prompt4
 
 Reality check:
@@ -274,19 +274,19 @@ For each `batchX_output.json`:
 
 For each batch, compare to its corresponding input batch file:
 
-- [x] Batch 1: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch1.json` IDs (same set, same count, same order)
-- [x] Batch 2: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch2.json` IDs (same set, same count, same order)
-- [x] Batch 3: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch3.json` IDs (same set, same count, same order)
-- [x] Batch 4: output IDs match `docs/roadmaps/v17-5-ai-results/batches/2026-01-21-v17-5-batch4.json` IDs (same set, same count, same order)
+- [x] Batch 1: output IDs match `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch1.json` IDs (same set, same count, same order)
+- [x] Batch 2: output IDs match `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch2.json` IDs (same set, same count, same order)
+- [x] Batch 3: output IDs match `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch3.json` IDs (same set, same count, same order)
+- [x] Batch 4: output IDs match `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch4.json` IDs (same set, same count, same order)
 
 Implementation:
 
 - Validator script: `scripts/validate-v17-5-ai-normalized.py`
-- Report generated: `docs/roadmaps/v17-5-ai-results/reports/merge-readiness.md`
+- Report generated: `docs/audits/v17-5/ai-results/reports/merge-readiness.md`
 
 ### 3.3 Write a merge readiness report
 
-Create `docs/roadmaps/v17-5-ai-results/reports/merge-readiness.md` that includes:
+Create `docs/audits/v17-5/ai-results/reports/merge-readiness.md` that includes:
 
 - [x] Counts per batch:
   - total items
@@ -313,7 +313,7 @@ Steps:
 - [x] Ensure your working tree is clean enough that `git diff data/services.json` is readable.
   - Note: repository has unrelated pending changes; review can still be done via `git diff -- data/services.json`.
 - [x] Run the merge using the normalized outputs:
-  - `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/normalized/batch1_output.json docs/roadmaps/v17-5-ai-results/normalized/batch2_output.json docs/roadmaps/v17-5-ai-results/normalized/batch3_output.json docs/roadmaps/v17-5-ai-results/normalized/batch4_output.json`
+  - `npx tsx scripts/merge-ai-enrichment.ts docs/audits/v17-5/ai-results/normalized/batch1_output.json docs/audits/v17-5/ai-results/normalized/batch2_output.json docs/audits/v17-5/ai-results/normalized/batch3_output.json docs/audits/v17-5/ai-results/normalized/batch4_output.json`
 - [x] Confirm:
   - [x] A backup was produced under `data/backups/`
   - [x] The script reports reasonable “added” counts
@@ -321,7 +321,7 @@ Steps:
 
 Artifacts:
 
-- Merge run log: `docs/roadmaps/v17-5-ai-results/reports/merge-run-2026-01-22.md`
+- Merge run log: `docs/audits/v17-5/ai-results/reports/merge-run-2026-01-22.md`
 
 Stop point:
 
@@ -340,7 +340,7 @@ Run:
 
 Record results:
 
-- [x] Create `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md` capturing:
+- [x] Create `docs/audits/v17-5/ai-results/reports/post-merge-audit-2026-01-22.md` capturing:
   - before/after counts (if available)
   - which fields improved
   - any remaining large gaps
@@ -369,7 +369,7 @@ For each checked service:
 
 Artifacts:
 
-- QA log: `docs/roadmaps/v17-5-ai-results/reports/governance-qa-log-2026-01-22.md`
+- QA log: `docs/audits/v17-5/ai-results/reports/governance-qa-log-2026-01-22.md`
 - QA helper: `scripts/governance-qa-v17-5-ai-ingestion.py`
 
 ### 6.2 Evidence spot-checking
@@ -383,15 +383,15 @@ For any record with a usable `research_sources` URL:
 Notes:
 
 - Some batches have non-actionable evidence (placeholders / empty sources). Treat those as “manual verification required” for high-risk records.
-- **Manual follow-up flag (resolved 2026-01-23):** `community-harvest-market` evidence URL returned `404` in the initial spot-check; service URL + provenance were updated to a stable official page and contact info was re-verified (see `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`).
+- **Manual follow-up flag (resolved 2026-01-23):** `community-harvest-market` evidence URL returned `404` in the initial spot-check; service URL + provenance were updated to a stable official page and contact info was re-verified (see `docs/audits/v17-5/ai-results/reports/community-harvest-market-followup-2026-01-23.md`).
 
 Automated support:
 
-- Evidence availability spot-check (prompt3 subset): `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`
+- Evidence availability spot-check (prompt3 subset): `docs/audits/v17-5/ai-results/reports/evidence-spotcheck-2026-01-22.md`
 
 Documentation:
 
-- Create `docs/roadmaps/v17-5-ai-results/reports/governance-qa-log-2026-01-22.md` with:
+- Create `docs/audits/v17-5/ai-results/reports/governance-qa-log-2026-01-22.md` with:
   - checked IDs
   - pass/fail notes
   - any manual fixes applied
@@ -420,7 +420,7 @@ Next work (recommended sequencing):
 
 Manual follow-up flags to keep visible:
 
-- `community-harvest-market`: resolved 2026-01-23 (service `url` + provenance updated; `hours` kept as notes-only due to seasonality, to avoid false “Open Now” results). See `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.
+- `community-harvest-market`: resolved 2026-01-23 (service `url` + provenance updated; `hours` kept as notes-only due to seasonality, to avoid false “Open Now” results). See `docs/audits/v17-5/ai-results/reports/community-harvest-market-followup-2026-01-23.md`.
 
 ---
 
@@ -442,7 +442,7 @@ Manual follow-up flags to keep visible:
 - [x] Merge completed and `npm run validate-data` passes.
 - [x] `npm run audit:data` shows measurable improvements.
 - [x] Governance QA log completed and high-risk services sampled.
-- [x] Audit artifacts (raw outputs, normalized outputs, reports) are preserved in `docs/roadmaps/v17-5-ai-results/`.
+- [x] Audit artifacts (raw outputs, normalized outputs, reports) are preserved in `docs/audits/v17-5/ai-results/`.
 
 > [!NOTE]
 > This roadmap is marked `completed` because the ingestion workflow is implemented, merged, validated, and committed.

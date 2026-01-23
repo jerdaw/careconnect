@@ -9,8 +9,8 @@
  *
  * Usage:
  *   node --import tsx scripts/audit-access-scripts.ts
- *   node --import tsx scripts/audit-access-scripts.ts --out docs/roadmaps/v17-5-ai-results/reports/access-script-audit.json
- *   node --import tsx scripts/audit-access-scripts.ts --all --out docs/roadmaps/v17-5-ai-results/reports/access-script-audit.all.json
+ *   node --import tsx scripts/audit-access-scripts.ts --out docs/audits/v17-5/ai-results/reports/access-script-audit.json
+ *   node --import tsx scripts/audit-access-scripts.ts --all --out docs/audits/v17-5/ai-results/reports/access-script-audit.all.json
  */
 
 import fs from "fs/promises"
@@ -76,9 +76,7 @@ function parseArgs(argv: string[]): { outPath: string | null; all: boolean } {
   const outIndex = argv.indexOf("--out")
   const outPath = outIndex >= 0 ? argv[outIndex + 1] : null
   if (outIndex >= 0 && (!outPath || outPath.startsWith("--"))) {
-    throw new Error(
-      "Invalid --out value. Example: --out docs/roadmaps/v17-5-ai-results/reports/access-script-audit.json"
-    )
+    throw new Error("Invalid --out value. Example: --out docs/audits/v17-5/ai-results/reports/access-script-audit.json")
   }
   const all = argv.includes("--all")
   return { outPath, all }

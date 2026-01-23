@@ -45,7 +45,7 @@ This folder supports **Phase 3: Geocoding & Coordinates** from `docs/roadmaps/ar
 ## Workflow (Recommended)
 
 1. Run `npm run audit:coords`.
-2. Open `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json` (already filtered to items with `issues`) and triage:
+2. Open `docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json` (already filtered to items with `issues`) and triage:
    - `issues` contains `missing_address` → add a verified physical `address`
    - `issues` contains `non_geocodable_address` → replace placeholder text with a real address OR mark `virtual_delivery: true` when appropriate
    - `issues` contains `missing_coordinates` → run the geocoder and/or add coordinates manually

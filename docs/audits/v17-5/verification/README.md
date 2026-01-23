@@ -43,4 +43,4 @@ This should record outreach status and which fields were confirmed (hours, addre
 
 Outputs:
 
-- `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+- `docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json`

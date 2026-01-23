@@ -30,23 +30,23 @@ This workspace supports translating `access_script` → `access_script_fr` acros
    ```
 
    Outputs:
-   - `docs/roadmaps/v17-5-ai-results/access-script-fr/input/batch-*.input.json`
+   - `docs/audits/v17-5/ai-results/access-script-fr/input/batch-*.input.json`
 
 2. For each input batch, run the **Translation Prompt** in `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md` and save outputs as:
-   - `docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-001.output.json`
-   - `docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-002.output.json`
+   - `docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.output.json`
+   - `docs/audits/v17-5/ai-results/access-script-fr/output/batch-002.output.json`
    - ...
 
 3. Merge into `data/services.json` (safe by default: no overwrites):
 
    ```bash
-   npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json
+   npx tsx scripts/merge-ai-enrichment.ts docs/audits/v17-5/ai-results/access-script-fr/output/batch-*.output.json
    ```
 
    If you are re-running translation and explicitly want to overwrite existing French scripts:
 
    ```bash
-   npx tsx scripts/merge-ai-enrichment.ts --overwrite-access-script-fr docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json
+   npx tsx scripts/merge-ai-enrichment.ts --overwrite-access-script-fr docs/audits/v17-5/ai-results/access-script-fr/output/batch-*.output.json
    ```
 
 4. Validate and re-audit:

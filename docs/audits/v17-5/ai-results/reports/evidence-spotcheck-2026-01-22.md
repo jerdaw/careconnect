@@ -1,7 +1,7 @@
 # v17.5 AI Output Ingestion — Evidence Spot-Check (2026-01-22)
 
 - Generated: `2026-01-23T00:05:35.498274+00:00`
-- Source: `docs/roadmaps/v17-5-ai-results/reports/research_sources_chatgpt_prompt3.json` (prompt3 only; other prompts have non-uniform evidence)
+- Source: `docs/audits/v17-5/ai-results/reports/research_sources_chatgpt_prompt3.json` (prompt3 only; other prompts have non-uniform evidence)
 - Spot-check size: **15** URLs
 
 ## Results

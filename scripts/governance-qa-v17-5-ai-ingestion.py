@@ -8,7 +8,7 @@ Creates a deterministic sample of services and runs lightweight checks against:
 - crisis safety line presence
 
 Outputs a markdown log under:
-  docs/roadmaps/v17-5-ai-results/reports/governance-qa-log-2026-01-22.md
+  docs/audits/v17-5/ai-results/reports/governance-qa-log-2026-01-22.md
 
 This script is intentionally dependency-free (stdlib only).
 """
@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SERVICES_PATH = ROOT / "data" / "services.json"
 BACKUPS_GLOB = str(ROOT / "data" / "backups" / "services.*.json")
 
-REPORTS_DIR = ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "reports"
+REPORTS_DIR = ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "reports"
 REPORT_PATH = REPORTS_DIR / "governance-qa-log-2026-01-22.md"
 
 RESEARCH_SOURCES_PROMPT3 = REPORTS_DIR / "research_sources_chatgpt_prompt3.json"

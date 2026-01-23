@@ -8,8 +8,8 @@
  *
  * Usage:
  *   node --import tsx scripts/export-coordinate-gaps.ts
- *   node --import tsx scripts/export-coordinate-gaps.ts --out docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json
- *   node --import tsx scripts/export-coordinate-gaps.ts --all --out docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.all.json
+ *   node --import tsx scripts/export-coordinate-gaps.ts --out docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json
+ *   node --import tsx scripts/export-coordinate-gaps.ts --all --out docs/audits/v17-5/coordinates/outputs/coordinate-gaps.all.json
  */
 
 import fs from "fs/promises"
@@ -100,7 +100,7 @@ function parseArgs(argv: string[]): { outPath: string | null; all: boolean } {
   const outIndex = argv.indexOf("--out")
   const outPath = outIndex >= 0 ? argv[outIndex + 1] : null
   if (outIndex >= 0 && (!outPath || outPath.startsWith("--"))) {
-    throw new Error("Invalid --out value. Example: --out docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json")
+    throw new Error("Invalid --out value. Example: --out docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json")
   }
   const all = argv.includes("--all")
   return { outPath, all }

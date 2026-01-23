@@ -217,8 +217,8 @@ This is translation-only work to populate `access_script_fr` from existing `acce
 - [ ] Translate and merge `access_script_fr`:
   - Generate batches: `npm run export:access-script-fr`
   - Translate using: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md` (Translation Prompt)
-  - Save outputs to: `docs/roadmaps/v17-5-ai-results/access-script-fr/output/`
-  - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/roadmaps/v17-5-ai-results/access-script-fr/output/batch-*.output.json`
+  - Save outputs to: `docs/audits/v17-5/ai-results/access-script-fr/output/`
+  - Merge: `npx tsx scripts/merge-ai-enrichment.ts docs/audits/v17-5/ai-results/access-script-fr/output/batch-*.output.json`
   - Validate + audit: `npm run validate-data`, `npm run audit:access-scripts`
 
 #### Non-IRL Confirmations (Web Verification)
@@ -268,8 +268,8 @@ These are “confirm by contacting the org” tasks (email/phone/form), needed f
 
 - v17.5 Phase 6 tracking:
   - Tracker: `data/verification/l3-candidates.csv` (no PII / no private communications in git)
-  - Workspace: `docs/roadmaps/v17-5-verification/README.md`
-  - Generate suggestions: `npm run audit:l3` → `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+  - Workspace: `docs/audits/v17-5/verification/README.md`
+  - Generate suggestions: `npm run audit:l3` → `docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json`
   - After first L3 upgrades, consider search weight review: `lib/search/scoring.ts`
 
 #### Category Expansion

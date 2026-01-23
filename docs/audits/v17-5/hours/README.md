@@ -35,7 +35,7 @@ This folder supports **Phase 5: Hours & Structured Data** from `docs/roadmaps/ar
 
 Output:
 
-- `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
+- `docs/audits/v17-5/hours/outputs/hours-gaps.json`
 
 ## Safe automation (No new facts)
 
@@ -48,7 +48,7 @@ npm run backfill:hours-text
 ## Workflow (Recommended)
 
 1. Run `npm run audit:hours`.
-2. Triage `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`:
+2. Triage `docs/audits/v17-5/hours/outputs/hours-gaps.json`:
    - `missing_structured_hours` → add structured `hours` only with strong evidence
    - `missing_hours_text` → add a human-readable `hours_text` (can be sourced from the same evidence)
 3. Validate and re-audit:

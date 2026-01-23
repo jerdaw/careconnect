@@ -7,7 +7,7 @@ This is a lightweight availability check (not full semantic verification):
 - Records HTTP status / final URL / page title (best-effort)
 
 Writes:
-  docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md
+  docs/audits/v17-5/ai-results/reports/evidence-spotcheck-2026-01-22.md
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 
-REPORTS_DIR = ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "reports"
+REPORTS_DIR = ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "reports"
 OUT_PATH = REPORTS_DIR / "evidence-spotcheck-2026-01-22.md"
 
 PROMPT3_SOURCES = REPORTS_DIR / "research_sources_chatgpt_prompt3.json"
@@ -147,4 +147,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

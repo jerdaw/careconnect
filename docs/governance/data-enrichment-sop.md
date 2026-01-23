@@ -95,7 +95,7 @@ npx tsx scripts/assign-scopes.ts
    - `scope === "kingston"`
    - `virtual_delivery !== true`
    - `address` is a real, geocodable physical address (not “Virtual”, “Mailing Only”, “Various Locations”, etc.)
-2. Export gaps for review with `npm run audit:coords` (writes a report under `docs/roadmaps/v17-5-coordinates/outputs/`)
+2. Export gaps for review with `npm run audit:coords` (writes a report under `docs/audits/v17-5/coordinates/outputs/`)
 3. Geocode with a 1-second rate limit
 4. Cache results in `data/geocode-cache.json` (local-only; gitignored to avoid committing derived artifacts)
 5. Manual entry for edge cases (confidential addresses, pop-ups, rotating sites)
@@ -120,7 +120,7 @@ Run `npm run audit:data` to determine which services are missing structured `hou
    npm run audit:hours
    ```
 
-   Output: `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
+   Output: `docs/audits/v17-5/hours/outputs/hours-gaps.json`
 
 2. If structured `hours` already exist but `hours_text` is missing, backfill safely:
 
@@ -160,7 +160,7 @@ Return format:
 2. Customize for specific services (especially L3 candidates)
 3. French translation:
    - Prefer translation-only (no new facts) from `access_script` → `access_script_fr`
-   - v17.5 workflow: `docs/roadmaps/v17-5-ai-results/access-script-fr/README.md`
+   - v17.5 workflow: `docs/audits/v17-5/ai-results/access-script-fr/README.md`
 
 ### 5.5 AI Deep Research Output Ingestion (Recommended for Large Batches)
 
@@ -172,10 +172,11 @@ When generating `hours` and `access_script` at scale using Deep Research (ChatGP
 4. Merge into `data/services.json` using a no-overwrite-by-default merge tool
 5. Run governance QA sampling + record evidence spot-checks
 
-Worked example + tooling (v17.5):
+Canonical references:
 
-- Plan / record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
-- Workspace: `docs/roadmaps/v17-5-ai-results/README.md`
+- Architecture decision: `docs/adr/011-ai-deep-research-output-ingestion.md`
+- Example artifact set (v17.5): `docs/audits/v17-5/ai-results/README.md`
+- Historical roadmap record (safe to delete if you don't need it): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 
 ### 5.6 Plain Language Scoring
 
@@ -201,7 +202,7 @@ This project is **governance-first**: `verification_level: "L3"` must only be us
 
 v17.5 workspace (recommended starting point):
 
-- Workspace: `docs/roadmaps/v17-5-verification/README.md`
+- Workspace: `docs/audits/v17-5/verification/README.md`
 - Tracker (manual): `data/verification/l3-candidates.csv`
 
 Generate a prioritized suggestion list (no service data changes):
@@ -212,7 +213,7 @@ npm run audit:l3
 
 Output:
 
-- `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+- `docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json`
 
 When a provider confirmation is received:
 

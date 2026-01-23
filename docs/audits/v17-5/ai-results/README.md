@@ -27,10 +27,10 @@ python scripts/validate-v17-5-ai-normalized.py
 
 ```bash
 npx tsx scripts/merge-ai-enrichment.ts \
-  docs/roadmaps/v17-5-ai-results/normalized/batch1_output.json \
-  docs/roadmaps/v17-5-ai-results/normalized/batch2_output.json \
-  docs/roadmaps/v17-5-ai-results/normalized/batch3_output.json \
-  docs/roadmaps/v17-5-ai-results/normalized/batch4_output.json
+  docs/audits/v17-5/ai-results/normalized/batch1_output.json \
+  docs/audits/v17-5/ai-results/normalized/batch2_output.json \
+  docs/audits/v17-5/ai-results/normalized/batch3_output.json \
+  docs/audits/v17-5/ai-results/normalized/batch4_output.json
 ```
 
 ## Notes

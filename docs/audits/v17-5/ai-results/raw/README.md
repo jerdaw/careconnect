@@ -4,14 +4,14 @@ This folder is an **immutable archive** of the original LLM “Deep Research” 
 
 **Do not edit files in this folder.** Any cleaning, extraction, normalization, or reformatting happens later under:
 
-- `docs/roadmaps/v17-5-ai-results/normalized/` (merge-ready outputs)
-- `docs/roadmaps/v17-5-ai-results/reports/` (audit + QA reports)
+- `docs/audits/v17-5/ai-results/normalized/` (merge-ready outputs)
+- `docs/audits/v17-5/ai-results/reports/` (audit + QA reports)
 
 ## Context
 
-- **Generated:** 2026-01-22 (as provided in `docs/roadmaps/`)
+- **Generated:** 2026-01-22 (Deep Research session outputs)
 - **Prompt template:** `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
-- **Batch inputs:** `docs/roadmaps/2026-01-21-v17-5-batch{1..4}.json`
+- **Batch inputs:** `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch{1..4}.json`
 
 Notes:
 
@@ -34,5 +34,5 @@ Notes:
 To recompute hashes locally:
 
 ```bash
-sha256sum docs/roadmaps/v17-5-ai-results/raw/*
+sha256sum docs/audits/v17-5/ai-results/raw/*
 ```

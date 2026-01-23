@@ -3,13 +3,13 @@
 v17.5 roadmap helper: validate normalized AI outputs and generate a merge readiness report.
 
 Reads:
-- Normalized outputs: docs/roadmaps/v17-5-ai-results/normalized/batch{1..4}_output.json
-- Batch inputs: docs/roadmaps/2026-01-21-v17-5-batch{1..4}.json
+- Normalized outputs: docs/audits/v17-5/ai-results/normalized/batch{1..4}_output.json
+- Batch inputs: docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch{1..4}.json
 - services.json: data/services.json
-- research_sources reports: docs/roadmaps/v17-5-ai-results/reports/research_sources_chatgpt_prompt{1..4}.json
+- research_sources reports: docs/audits/v17-5/ai-results/reports/research_sources_chatgpt_prompt{1..4}.json
 
 Writes:
-- docs/roadmaps/v17-5-ai-results/reports/merge-readiness.md
+- docs/audits/v17-5/ai-results/reports/merge-readiness.md
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 
-REPORT_PATH = ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "reports" / "merge-readiness.md"
+REPORT_PATH = ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "reports" / "merge-readiness.md"
 
 SERVICES_PATH = ROOT / "data" / "services.json"
 
@@ -272,15 +272,17 @@ def main() -> None:
             batch_num=1,
             batch_input=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "batches"
             / "2026-01-21-v17-5-batch1.json",
-            normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch1_output.json",
+            normalized_output=ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "normalized" / "batch1_output.json",
             research_sources_report=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "reports"
             / "research_sources_chatgpt_prompt1.json",
             expected_count=50,
@@ -289,15 +291,17 @@ def main() -> None:
             batch_num=2,
             batch_input=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "batches"
             / "2026-01-21-v17-5-batch2.json",
-            normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch2_output.json",
+            normalized_output=ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "normalized" / "batch2_output.json",
             research_sources_report=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "reports"
             / "research_sources_chatgpt_prompt2.json",
             expected_count=50,
@@ -306,15 +310,17 @@ def main() -> None:
             batch_num=3,
             batch_input=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "batches"
             / "2026-01-21-v17-5-batch3.json",
-            normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch3_output.json",
+            normalized_output=ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "normalized" / "batch3_output.json",
             research_sources_report=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "reports"
             / "research_sources_chatgpt_prompt3.json",
             expected_count=50,
@@ -323,15 +329,17 @@ def main() -> None:
             batch_num=4,
             batch_input=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "batches"
             / "2026-01-21-v17-5-batch4.json",
-            normalized_output=ROOT / "docs" / "roadmaps" / "v17-5-ai-results" / "normalized" / "batch4_output.json",
+            normalized_output=ROOT / "docs" / "audits" / "v17-5" / "ai-results" / "normalized" / "batch4_output.json",
             research_sources_report=ROOT
             / "docs"
-            / "roadmaps"
-            / "v17-5-ai-results"
+            / "audits"
+            / "v17-5"
+            / "ai-results"
             / "reports"
             / "research_sources_chatgpt_prompt4.json",
             expected_count=46,

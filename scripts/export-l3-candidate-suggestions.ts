@@ -6,7 +6,7 @@
  *
  * Usage:
  *   node --import tsx scripts/export-l3-candidate-suggestions.ts
- *   node --import tsx scripts/export-l3-candidate-suggestions.ts --out docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json
+ *   node --import tsx scripts/export-l3-candidate-suggestions.ts --out docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json
  */
 
 import fs from "fs/promises"
@@ -113,10 +113,10 @@ function scoreService(service: Service): { score: number; reasons: string[] } {
 function parseArgs(argv: string[]): { outPath: string } {
   const outIndex = argv.indexOf("--out")
   const outPath =
-    outIndex >= 0 ? argv[outIndex + 1] : "docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json"
+    outIndex >= 0 ? argv[outIndex + 1] : "docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json"
   if (!outPath || outPath.startsWith("--")) {
     throw new Error(
-      "Invalid --out value. Example: --out docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json"
+      "Invalid --out value. Example: --out docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json"
     )
   }
   return { outPath }

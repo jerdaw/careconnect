@@ -28,7 +28,7 @@ Manual fixes applied during QA:
 
 We ran an availability spot-check for a subset of evidence URLs (prompt3 only). See:
 
-- `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`
+- `docs/audits/v17-5/ai-results/reports/evidence-spotcheck-2026-01-22.md`
 
 Notable outcomes:
 

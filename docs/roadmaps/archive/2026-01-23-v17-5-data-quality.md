@@ -65,22 +65,22 @@ Deep Research artifacts used for v17.5:
 
 - Prompt set: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
 - Ingestion record (archived): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
-- Audit workspace: `docs/roadmaps/v17-5-ai-results/README.md`
+- Audit workspace: `docs/audits/v17-5/ai-results/README.md`
 - ADR: `docs/adr/011-ai-deep-research-output-ingestion.md`
 
 Coordinates/geocoding workspace (v17.5):
 
-- Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
-- Latest gap report: `docs/roadmaps/v17-5-coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
+- Workspace: `docs/audits/v17-5/coordinates/README.md`
+- Latest gap report: `docs/audits/v17-5/coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
 
 Hours workspace (v17.5):
 
-- Workspace: `docs/roadmaps/v17-5-hours/README.md`
-- Gap export: `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
+- Workspace: `docs/audits/v17-5/hours/README.md`
+- Gap export: `docs/audits/v17-5/hours/outputs/hours-gaps.json`
 
 ### Active Follow-Up Flags (Don’t Lose These)
 
-- **`community-harvest-market` URL/evidence issue (resolved 2026-01-23):** v17.5 evidence spot-check indicated the referenced page returned `404`. The service `url` + provenance were updated to a stable official page, and contact info was re-verified. (See `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md` and `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.)
+- **`community-harvest-market` URL/evidence issue (resolved 2026-01-23):** v17.5 evidence spot-check indicated the referenced page returned `404`. The service `url` + provenance were updated to a stable official page, and contact info was re-verified. (See `docs/audits/v17-5/ai-results/reports/evidence-spotcheck-2026-01-22.md` and `docs/audits/v17-5/ai-results/reports/community-harvest-market-followup-2026-01-23.md`.)
 
 ## User Review Required
 
@@ -161,9 +161,9 @@ This roadmap treats coordinates as **required only for Kingston-scope, non-virtu
 
 Artifacts:
 
-- Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
-- Gap export: `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
-- Analysis note: `docs/roadmaps/v17-5-coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
+- Workspace: `docs/audits/v17-5/coordinates/README.md`
+- Gap export: `docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json`
+- Analysis note: `docs/audits/v17-5/coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
 
 Current blockers (from `npm run audit:coords`):
 
@@ -184,7 +184,7 @@ npm run audit:coords
 
 Output:
 
-- `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- `docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json`
 
 ### 3.3 Address Verification (Kingston Physical Services)
 
@@ -204,7 +204,7 @@ This work requires web verification and (optionally) a geocoding API key, so it 
 
 When you are ready:
 
-- Run `npm run audit:coords` and triage `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- Run `npm run audit:coords` and triage `docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json`
 - Verify and add missing physical `address` values (do not invent; use `virtual_delivery: true` when appropriate)
 - Run geocoding: `OPENCAGE_API_KEY=... npm run geocode`
 - Validate + re-audit: `npm run validate-data`, `npm run audit:data`, `npm run audit:coords`
@@ -249,13 +249,13 @@ For services that fail automated geocoding (or have no geocodable address):
 Implementation record:
 
 - [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
-- [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
+- [x] Post-merge audit captured (see `docs/audits/v17-5/ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:
 
 - [x] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
 - [x] Governance: run access-script QA audit (length, missing, obvious artifacts) and resolve any issues found.
-  - Audit: `npm run audit:access-scripts` → `docs/roadmaps/v17-5-ai-results/reports/access-script-audit.json`
+  - Audit: `npm run audit:access-scripts` → `docs/audits/v17-5/ai-results/reports/access-script-audit.json`
 - Follow-up: populate `access_script_fr` (translation-only; no new facts) is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Bilingual Follow-Up (Access Scripts - French)”.
 
 ### 4.3 Plain Language Audit
@@ -289,7 +289,7 @@ Hours text progress:
 Implementation record:
 
 - [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
-- [x] Post-merge audit captured (see `docs/roadmaps/v17-5-ai-results/reports/post-merge-audit-2026-01-22.md`).
+- [x] Post-merge audit captured (see `docs/audits/v17-5/ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:
 
@@ -305,9 +305,9 @@ Remaining work:
 
 Workspace (v17.5):
 
-- Workspace: `docs/roadmaps/v17-5-verification/README.md`
+- Workspace: `docs/audits/v17-5/verification/README.md`
 - Tracker (manual): `data/verification/l3-candidates.csv`
-- Suggestions export (generated): `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+- Suggestions export (generated): `docs/audits/v17-5/verification/outputs/l3-candidate-suggestions.json`
 
 Generate an initial prioritized list (no data changes):
 

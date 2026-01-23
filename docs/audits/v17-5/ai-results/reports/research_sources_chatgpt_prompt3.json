@@ -1,7 +1,7 @@
 {
   "batch": 3,
   "provider": "chatgpt",
-  "source_file": "docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 3 - Deep Research Result.txt",
+  "source_file": "docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 3 - Deep Research Result.txt",
   "extracted_at": "2026-01-22T23:39:52.691772+00:00",
   "applied_id_fixes": [],
   "research_sources": [

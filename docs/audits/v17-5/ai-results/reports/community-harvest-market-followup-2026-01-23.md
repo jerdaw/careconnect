@@ -6,7 +6,7 @@ The initial evidence spot-check for v17.5 AI ingestion found that the `community
 
 Reference:
 
-- `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`
+- `docs/audits/v17-5/ai-results/reports/evidence-spotcheck-2026-01-22.md`
 
 ## What Changed
 

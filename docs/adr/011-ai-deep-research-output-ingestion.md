@@ -34,11 +34,11 @@ Deep Research outputs are not authoritative by default, can be inconsistent in f
 We adopt an **audit-first ingestion workflow** for AI Deep Research outputs:
 
 1. **Immutable raw archive**
-   - Store original model outputs under `docs/roadmaps/v17-5-ai-results/raw/`.
+   - Store original model outputs under `docs/audits/v17-5/ai-results/raw/`.
 
 2. **Normalize separately**
-   - Extract and normalize model outputs into merge-ready JSON arrays under `docs/roadmaps/v17-5-ai-results/normalized/`.
-   - Store any model-provided evidence (e.g., `research_sources`) separately under `docs/roadmaps/v17-5-ai-results/reports/`.
+   - Extract and normalize model outputs into merge-ready JSON arrays under `docs/audits/v17-5/ai-results/normalized/`.
+   - Store any model-provided evidence (e.g., `research_sources`) separately under `docs/audits/v17-5/ai-results/reports/`.
 
 3. **Validate before merge**
    - Enforce batch ID alignment (no unknown IDs; correct known, validated drifts only).
@@ -73,5 +73,5 @@ We adopt an **audit-first ingestion workflow** for AI Deep Research outputs:
 
 - Data enrichment SOP: `docs/governance/data-enrichment-sop.md`
 - v17.5 worked example (archived plan): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
-- Ingestion workspace: `docs/roadmaps/v17-5-ai-results/README.md`
+- Ingestion workspace: `docs/audits/v17-5/ai-results/README.md`
 - Merge tool: `scripts/merge-ai-enrichment.ts`

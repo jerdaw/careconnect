@@ -9,7 +9,7 @@
  *
  * Usage:
  *   node --import tsx scripts/export-access-script-fr-translation-batches.ts
- *   node --import tsx scripts/export-access-script-fr-translation-batches.ts --batch-size 40 --out-dir docs/roadmaps/v17-5-ai-results/access-script-fr/input
+ *   node --import tsx scripts/export-access-script-fr-translation-batches.ts --batch-size 40 --out-dir docs/audits/v17-5/ai-results/access-script-fr/input
  *   node --import tsx scripts/export-access-script-fr-translation-batches.ts --all --batch-size 40
  */
 
@@ -49,9 +49,9 @@ function isActive(service: Service): boolean {
 
 function parseArgs(argv: string[]): { outDir: string; batchSize: number; all: boolean } {
   const outIndex = argv.indexOf("--out-dir")
-  const outDir = outIndex >= 0 ? argv[outIndex + 1] : "docs/roadmaps/v17-5-ai-results/access-script-fr/input"
+  const outDir = outIndex >= 0 ? argv[outIndex + 1] : "docs/audits/v17-5/ai-results/access-script-fr/input"
   if (!outDir || outDir.startsWith("--")) {
-    throw new Error("Invalid --out-dir value. Example: --out-dir docs/roadmaps/v17-5-ai-results/access-script-fr/input")
+    throw new Error("Invalid --out-dir value. Example: --out-dir docs/audits/v17-5/ai-results/access-script-fr/input")
   }
 
   const sizeIndex = argv.indexOf("--batch-size")
