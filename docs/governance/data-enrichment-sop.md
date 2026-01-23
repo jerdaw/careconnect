@@ -31,18 +31,18 @@ Run the audit before starting any enrichment work:
 ```bash
 npm run audit:data
 # Or directly:
-npx tsx scripts/audit-data-completeness.ts
+node --import tsx scripts/audit-data-completeness.ts
 ```
 
 ### Target Metrics
 
-| Field                      | Target Coverage | Notes                             |
-| -------------------------- | --------------- | --------------------------------- |
-| `scope`                    | 100%            | Required for geographic filtering |
-| `coordinates`              | 90%+            | Required for distance search      |
-| `hours` (structured)       | 70%+            | Enables "Open Now" filter         |
-| `access_script`            | 50%+            | Phone anxiety support             |
-| `plain_language_available` | 100%            | Automated scoring                 |
+| Field                      | Target Coverage               | Notes                                                               |
+| -------------------------- | ----------------------------- | ------------------------------------------------------------------- |
+| `scope`                    | 100%                          | Required for geographic filtering                                   |
+| `coordinates`              | 95%+ (Kingston physical only) | Required for distance search when a stable physical location exists |
+| `hours` (structured)       | 70%+                          | Enables "Open Now" filter                                           |
+| `access_script`            | 50%+                          | Phone anxiety support                                               |
+| `plain_language_available` | 100%                          | Automated scoring                                                   |
 
 ## 4. Field Priority Tiers
 
@@ -91,15 +91,21 @@ npx tsx scripts/assign-scopes.ts
 
 **Process:**
 
-1. Filter services missing coordinates
-2. Geocode with 1-second rate limit
-3. Cache results in `data/geocode-cache.json` (local-only; gitignored to avoid committing derived artifacts)
-4. Manual entry for failures (10-20 expected)
+1. Identify Kingston services that should be distance-searchable (stable physical location):
+   - `scope === "kingston"`
+   - `virtual_delivery !== true`
+   - `address` is a real, geocodable physical address (not “Virtual”, “Mailing Only”, “Various Locations”, etc.)
+2. Export gaps for review with `npm run audit:coords` (writes a report under `docs/roadmaps/v17-5-coordinates/outputs/`)
+3. Geocode with a 1-second rate limit
+4. Cache results in `data/geocode-cache.json` (local-only; gitignored to avoid committing derived artifacts)
+5. Manual entry for edge cases (confidential addresses, pop-ups, rotating sites)
 
 **Script:**
 
 ```bash
-OPENCAGE_API_KEY=xxx npx tsx scripts/geocode-services.ts
+OPENCAGE_API_KEY=xxx node --import tsx scripts/geocode-services.ts
+# Or:
+OPENCAGE_API_KEY=xxx npm run geocode
 ```
 
 ### 5.3 Hours Parsing
