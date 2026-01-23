@@ -153,6 +153,21 @@ Use the existing script when scope rules change or new services are added:
 
 **Recommendation:** OpenCage (free tier is sufficient for the remaining coordinate gaps)
 
+### 3.1.1 Current Phase 3 Status (Snapshot: 2026-01-23)
+
+This roadmap treats coordinates as **required only for Kingston-scope, non-virtual services with a stable physical location**.
+
+Artifacts:
+
+- Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
+- Gap export: `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- Analysis note: `docs/roadmaps/v17-5-coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
+
+Current blockers (from `npm run audit:coords`):
+
+- **17** Kingston services missing a verified physical `address` (primary blocker)
+- **3** Kingston services with intentional non-geocodable address notes (confidentiality / pop-up / “contact for location”)
+
 ### 3.2 Export Coordinate Gaps (Recommended)
 
 This generates a machine-readable report identifying:
@@ -177,6 +192,33 @@ For each Kingston service in `coordinate-gaps.json` with `issues: ["missing_addr
 
 1. Verify the address via a trusted source (official organization website, municipal listing, government directory).
 2. Update `data/services.json` `address` to a geocodable physical address.
+
+### 3.3.1 Phase 3 To-Do Checklist (Manual Web Verification + Geocoding Run)
+
+> [!IMPORTANT]
+> This is the concrete “what to do next” list for Phase 3.
+
+- [ ] Run `npm run audit:coords` and triage `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+- [ ] For each item with `issues: ["missing_address"]`:
+  - [ ] Find a trusted source for the physical location (official site / municipal / government directory)
+  - [ ] Add `address` (geocodable) to `data/services.json`
+  - [ ] If the service is actually phone/online only, set `virtual_delivery: true` instead of inventing an address
+- [ ] For each item with `issues: ["non_geocodable_address"]`:
+  - [ ] Confirm we _should not_ store coordinates (confidentiality / rotating locations)
+  - [ ] Keep address as a clear human-readable note; do not force coordinates
+- [ ] Run geocoding with your key:
+
+  ```bash
+  OPENCAGE_API_KEY=xxx npm run geocode
+  ```
+
+- [ ] Validate + re-audit:
+
+  ```bash
+  npm run validate-data
+  npm run audit:data
+  npm run audit:coords
+  ```
 
 ### 3.4 Run the Geocoding Script
 
