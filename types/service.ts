@@ -155,6 +155,12 @@ export interface Service {
   access_script_fr?: string
   org_id?: string
 
+  /**
+   * Internal QA flag indicating whether the service information is available in plain language.
+   * This is not necessarily user-visible.
+   */
+  plain_language_available?: boolean
+
   // --- Expanded Fields for Migration ---
   /**
    * Operational status of the service (e.g., "Active", "Permanently Closed", "Merged").
