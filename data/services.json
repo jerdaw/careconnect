@@ -1341,6 +1341,7 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
+    "virtual_delivery": true,
     "plain_language_available": false,
     "hours": {
       "monday": {
@@ -6033,7 +6034,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "scope": "kingston",
+    "scope": "ontario",
+    "virtual_delivery": true,
     "plain_language_available": false,
     "hours": {
       "monday": {
@@ -6089,7 +6091,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "scope": "kingston",
+    "scope": "ontario",
+    "virtual_delivery": true,
     "plain_language_available": false,
     "hours": {
       "monday": {
@@ -6160,7 +6163,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "scope": "kingston",
+    "scope": "ontario",
+    "virtual_delivery": true,
     "plain_language_available": false,
     "hours": {
       "monday": {
@@ -6218,7 +6222,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "scope": "kingston",
+    "scope": "ontario",
+    "virtual_delivery": true,
     "plain_language_available": true,
     "hours": {
       "monday": {
@@ -9290,6 +9295,7 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
+    "virtual_delivery": true,
     "plain_language_available": false,
     "access_script": "Visit https://www.autism.net for information."
   },
