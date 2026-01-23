@@ -197,7 +197,7 @@ See [archive/2026-01-25-v17-4-dashboard-partner-portal.md](archive/2026-01-25-v1
 **Priority**: HIGH
 
 See the detailed plan: `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
-Deep Research ingestion record: `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`.
+Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`.
 
 ### Scope
 
@@ -230,10 +230,6 @@ Deep Research ingestion record: `docs/roadmaps/2026-01-22-v17-5-ai-output-ingest
 - 70%+ services have structured hours
 - 100% services have access scripts and they are visible on service detail pages
 - At least 10 services at L3 verification
-
-### Active Follow-Up Flags (Don’t Lose These)
-
-- `community-harvest-market`: resolved 2026-01-23 (service `url` + provenance updated after initial evidence URL returned `404`; `hours` kept notes-only due to seasonality). See `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.
 
 ---
 

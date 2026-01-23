@@ -1211,10 +1211,10 @@ npm run lint             # ESLint
 
 ## Reference Documents
 
-- [Current State Audit](file:///home/jer/.gemini/antigravity/brain/6dd3ff61-0d38-45b9-a22d-2952dcd3c3bb/current_state_audit.md) - How things currently work
-- [Best Path Forward](file:///home/jer/.gemini/antigravity/brain/6dd3ff61-0d38-45b9-a22d-2952dcd3c3bb/implementation_plan.md) - Decision rationale
-- [Governance Protocol](file:///home/jer/LocalSync/kingston-care-connect/docs/governance.md) - L-Scale definitions
-- [Architecture Overview](file:///home/jer/LocalSync/kingston-care-connect/docs/architecture.md) - System design
+- Current State Audit (local reference removed) - How things currently work
+- Best Path Forward (local reference removed) - Decision rationale
+- Governance Protocol: `docs/governance.md` - L-Scale definitions
+- Architecture Overview: `docs/architecture.md` - System design
 
 ---
 

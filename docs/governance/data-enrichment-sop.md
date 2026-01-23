@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-21
+last_updated: 2026-01-23
 owner: jer
 tags: [governance, data-quality, enrichment, sop]
 ---
@@ -104,7 +104,7 @@ OPENCAGE_API_KEY=xxx npx tsx scripts/geocode-services.ts
 
 ### 5.3 Hours Parsing
 
-**Source:** 67 services have `hours_text` but no structured `hours`
+Run `npm run audit:data` to determine which services are missing structured `hours` and/or `hours_text`.
 
 **Process:**
 
@@ -139,7 +139,22 @@ Return format:
 2. Customize for specific services (especially L3 candidates)
 3. French translation for provincial services
 
-### 5.5 Plain Language Scoring
+### 5.5 AI Deep Research Output Ingestion (Recommended for Large Batches)
+
+When generating `hours` and `access_script` at scale using Deep Research (ChatGPT / Gemini), use an auditable ingestion workflow:
+
+1. Preserve raw model outputs (immutable archive)
+2. Normalize outputs into merge-ready batch JSON
+3. Validate batch alignment and schema sanity
+4. Merge into `data/services.json` using a no-overwrite-by-default merge tool
+5. Run governance QA sampling + record evidence spot-checks
+
+Worked example + tooling (v17.5):
+
+- Plan / record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+- Workspace: `docs/roadmaps/v17-5-ai-results/README.md`
+
+### 5.6 Plain Language Scoring
 
 **Automated:** Flesch Reading Ease score
 
