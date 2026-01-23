@@ -33,6 +33,7 @@ yarn-error.log*
 .env.production.local
 storybook-static/
 /test-results/
+/test-results.json
 /playwright-report/
 /playwright/.cache/
 
