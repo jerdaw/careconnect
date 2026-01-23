@@ -383,7 +383,7 @@ For any record with a usable `research_sources` URL:
 Notes:
 
 - Some batches have non-actionable evidence (placeholders / empty sources). Treat those as “manual verification required” for high-risk records.
-- **Manual follow-up flag:** `community-harvest-market` evidence URL returns `404` (see evidence spot-check report). Update the service URL to a stable official page and re-verify hours/access details before relying on it.
+- **Manual follow-up flag (resolved 2026-01-23):** `community-harvest-market` evidence URL returned `404` in the initial spot-check; service URL + provenance were updated to a stable official page and contact info was re-verified (see `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`).
 
 Automated support:
 
@@ -420,7 +420,7 @@ Next work (recommended sequencing):
 
 Manual follow-up flags to keep visible:
 
-- `community-harvest-market`: evidence URL returns `404` and likely needs a service `url` update + verification (see `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`).
+- `community-harvest-market`: resolved 2026-01-23 (service `url` + provenance updated; `hours` kept as notes-only due to seasonality, to avoid false “Open Now” results). See `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.
 
 ---
 

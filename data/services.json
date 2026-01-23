@@ -7207,29 +7207,31 @@
   },
   {
     "id": "community-harvest-market",
-    "name": "Community Harvest Kingston",
-    "name_fr": "Community Harvest Kingston",
-    "description": "Initiative focused on long-term food security through fresh produce distribution (Good Food Box) and community gardening support.",
-    "description_fr": "Initiative axée sur la sécurité alimentaire à long terme grâce à la distribution de produits frais et au soutien au jardinage communautaire.",
-    "url": "https://www.kchc.ca/community-harvest",
+    "name": "Community Harvest Market (Rideau Heights)",
+    "name_fr": "Marché Community Harvest (Rideau Heights)",
+    "description": "Seasonal low-cost produce market (Rideau Heights) run by Loving Spoonful’s Community Harvest Markets program at Kingston Community Health Centre (263 Weller Ave).",
+    "description_fr": "Marché saisonnier de produits frais à faible coût (Rideau Heights) organisé par le programme Community Harvest Markets de Loving Spoonful au Kingston Community Health Centre (263, avenue Weller).",
+    "url": "https://www.lovingspoonful.org/programs/community-harvest-markets/",
+    "phone": "613-542-2949",
+    "email": "info@kchc.ca",
     "verification_level": "L2",
     "intent_category": "Food",
     "provenance": {
       "verified_by": "Antigravity (AI Agent) - Batch 2 Deep Research",
-      "verified_at": "2026-01-03T15:07:38.324Z",
-      "method": "Direct verification",
-      "verification_notes": "Distinguished from US-based entity.",
-      "evidence_url": "https://www.kchc.ca/community-harvest"
+      "verified_at": "2026-01-23T00:00:00.000Z",
+      "method": "Live Web Verification",
+      "verification_notes": "Updated after prior KCHC /community-harvest page returned 404. Verified Rideau Heights Community Harvest Market schedule via Loving Spoonful’s Community Harvest Markets page. Note: Loving Spoonful indicates its programs transitioned to KCHC; confirm current season operations via KCHC.",
+      "evidence_url": "https://www.lovingspoonful.org/programs/community-harvest-markets/"
     },
     "identity_tags": [],
     "synthetic_queries": ["fresh vegetables", "cheap fruit"],
     "synthetic_queries_fr": ["légumes frais", "fruits pas chers"],
     "address": "263 Weller Ave, Kingston, ON K7K 2V4",
     "status": "Active",
-    "application_process": "Pre-order for Good Food Box.",
-    "fees": "Good Food Box is for purchase (cost-recovery).",
+    "application_process": "Drop in during market hours; pay what you can.",
+    "fees": "Sliding scale $0–$5 (pay what you can).",
     "documents_required": "None",
-    "hours_text": "Office: Mon-Fri 8:30 AM – 4:30 PM. Good Food Box Pickup: 3rd Thursday of month.",
+    "hours_text": "Seasonal (June–October): Tue 3:00–6:00 PM at Kingston Community Health Centre (Rideau Heights). See website for current dates and other locations.",
     "authority_tier": "established_nonprofit",
     "resource_indicators": {
       "service_area_size": "local",
@@ -7243,29 +7245,9 @@
     },
     "plain_language_available": false,
     "hours": {
-      "monday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "tuesday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "wednesday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "thursday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "friday": {
-        "open": "08:30",
-        "close": "16:30"
-      },
-      "notes": "Office hours listed; Good Food Box pick-up on the 3rd Thursday each month."
+      "notes": "Seasonal (June–October). Rideau Heights market at KCHC (263 Weller Ave). See website for current dates and other locations, and confirm current season operations via KCHC."
     },
-    "access_script": "Call 613-546-2620 for assistance, or visit https://www.kchc.ca/community-harvest."
+    "access_script": "Visit https://www.lovingspoonful.org/programs/community-harvest-markets/ for dates and locations. For current-season confirmation, contact Kingston Community Health Centre (Rideau Heights) at 613-542-2949 or info@kchc.ca."
   },
   {
     "id": "memorial-centre-market",

@@ -56,7 +56,7 @@ Recompute any time with `npm run audit:data` before starting a new batch.
 
 ### Active Follow-Up Flags (Don’t Lose These)
 
-- **`community-harvest-market` URL/evidence issue:** v17.5 evidence spot-check indicates the referenced page returns `404`. Update the service `url` to a stable official page and re-verify any hours/access claims before treating the record as verified. (See `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md`.)
+- **`community-harvest-market` URL/evidence issue (resolved 2026-01-23):** v17.5 evidence spot-check indicated the referenced page returned `404`. The service `url` + provenance were updated to a stable official page, and contact info was re-verified. (See `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md` and `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.)
 
 ## User Review Required
 
