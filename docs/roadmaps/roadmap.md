@@ -208,47 +208,61 @@ Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-outpu
   - 58/196 missing `coordinates` (any reason; includes virtual/confidential/multi-location)
   - 18/196 missing `coordinates` (required for Kingston physical distance search)
   - 17/196 missing physical `address` (primary blocker before geocoding can run)
-  - Next steps (Phase 3):
-    - Run `npm run audit:coords` and triage `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
-    - Verify and add physical `address` for all `missing_address` items (do not invent addresses; set `virtual_delivery: true` when appropriate)
-    - Keep confidentiality/pop-up services non-geocoded (`non_geocodable_address`)
-    - Run geocoding with OpenCage: `OPENCAGE_API_KEY=... npm run geocode`
-    - Validate + re-audit: `npm run validate-data`, `npm run audit:data`, `npm run audit:coords`
-  - Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
+  - Track + workflow: `docs/roadmaps/v17-5-coordinates/README.md` (run `npm run audit:coords`)
 - [x] **Access Scripts**: 0/196 missing `access_script` (content present; UI surface still needed)
 
 #### Accessibility Data
 
 - [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; type/schema wiring complete)
 - [ ] **Structured Hours**: 11/196 missing structured `hours` object (10 active); track via `npm run audit:hours`
-  - Next steps (Phase 5):
-    - Run `npm run audit:hours` and triage `docs/roadmaps/v17-5-hours/outputs/hours-gaps.json`
-    - Resolve remaining missing structured `hours` + `hours_text` for these 10 active services:
-      - `alzheimer-society-kfla`
-      - `autism-ontario-east`
-      - `cnib-kingston`
-      - `kfla-children-services`
-      - `kingston-east-community-centre`
-      - `st-john-ambulance-kingston`
-      - `red-cross-kingston`
-      - `habitat-for-humanity-kingston`
-      - `service-ontario-kingston`
-      - `geneva-centre-autism`
-    - Use strict evidence (official site / government directory) and avoid adding structured hours where seasonality would create false “Open Now” results
-    - Validate + re-audit: `npm run validate-data`, `npm run audit:data`, `npm run audit:hours`
-  - Workspace: `docs/roadmaps/v17-5-hours/README.md`
+  - Track + workflow: `docs/roadmaps/v17-5-hours/README.md` (run `npm run audit:hours`)
 
-#### Verification Level Upgrade
+#### Non-IRL Confirmations (Web Verification)
+
+These are “confirm via official web sources” tasks (no provider outreach required).
+
+- **Addresses to verify (Phase 3):** run `npm run audit:coords` and fix `missing_address` items (do not invent addresses; use `virtual_delivery: true` when appropriate)
+  - `kfpl-rideau-heights`
+  - `kingston-pregnancy-care`
+  - `alzheimer-society-kfla`
+  - `autism-ontario-east`
+  - `cnib-kingston`
+  - `kfla-children-services`
+  - `kingston-east-community-centre`
+  - `kingston-humane-society`
+  - `st-john-ambulance-kingston`
+  - `red-cross-kingston`
+  - `habitat-for-humanity-kingston`
+  - `odsp-kingston`
+  - `service-canada-kingston`
+  - `service-ontario-kingston`
+  - `kingston-police-non-emerg`
+  - `opp-frontenac`
+  - `coast-mental-health`
+- **Hours to verify (Phase 5):** run `npm run audit:hours` and resolve remaining missing structured `hours` + `hours_text` (use strict evidence; avoid seasonality-induced false “Open Now”)
+  - `alzheimer-society-kfla`
+  - `autism-ontario-east`
+  - `cnib-kingston`
+  - `kfla-children-services`
+  - `kingston-east-community-centre`
+  - `st-john-ambulance-kingston`
+  - `red-cross-kingston`
+  - `habitat-for-humanity-kingston`
+  - `service-ontario-kingston`
+  - `geneva-centre-autism`
+
+#### IRL Confirmations (Provider Outreach)
+
+These are “confirm by contacting the org” tasks (email/phone/form), needed for L3 upgrades.
 
 - [ ] **Establish L3 Services**: 0/196 at provider-confirmed level
   - Target major Crisis/Health providers for official partnership
 - [ ] **L4 Gold Standard**: Identify candidates for third-party audit (governance concept; not in code yet)
 
-**v17.5 Phase 6 tracking (don’t forget):**
-
-- Tracker: `data/verification/l3-candidates.csv`
-- Workspace: `docs/roadmaps/v17-5-verification/README.md`
-- Generate suggestions: `npm run audit:l3` → `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+- v17.5 Phase 6 tracking:
+  - Tracker: `data/verification/l3-candidates.csv` (no PII / no private communications in git)
+  - Workspace: `docs/roadmaps/v17-5-verification/README.md`
+  - Generate suggestions: `npm run audit:l3` → `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
 
 #### Category Expansion
 
