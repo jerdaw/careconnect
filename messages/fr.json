@@ -584,6 +584,8 @@
     "aboutService": "À propos de ce service",
     "documents": "Documents",
     "accessProcess": "Processus de demande",
+    "whatToSayWhenYouCall": "Quoi dire quand vous appelez",
+    "whatToSayWhenYouCallDescription": "Utilisez ceci comme point de départ. Vous pouvez utiliser vos propres mots.",
     "accessibility": "Accessibilité",
     "getDirections": "Obtenir l'itinéraire",
     "lastVerified": "Dernière vérification :",

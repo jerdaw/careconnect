@@ -15,6 +15,7 @@ import {
   Wallet,
   Mail,
   Navigation,
+  MessageSquareText,
 } from "lucide-react"
 import { SimplifiedServiceView } from "@/components/services/SimplifiedServiceView"
 import { getTranslations } from "next-intl/server"
@@ -84,6 +85,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
     "\n"
   )
   const address = locale === "fr" && service.address_fr ? service.address_fr : service.address
+  const accessScript = locale === "fr" && service.access_script_fr ? service.access_script_fr : service.access_script
 
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
@@ -237,6 +239,20 @@ export default async function ServicePage({ params, searchParams }: Props) {
                 <Card className="p-8">
                   <h2 className="mb-4 text-2xl font-bold">{t("accessProcess")}</h2>
                   <p className="text-neutral-600 dark:text-neutral-300">{service.application_process}</p>
+                </Card>
+              )}
+
+              {/* What to say when you call */}
+              {accessScript && (
+                <Card className="p-8">
+                  <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold">
+                    <MessageSquareText className="text-primary-600 h-6 w-6" />
+                    {t("whatToSayWhenYouCall")}
+                  </h2>
+                  <div className="bg-primary-50 dark:bg-primary-900/10 border-primary-100 dark:border-primary-800/50 rounded-xl border p-6">
+                    <p className="text-neutral-800 dark:text-neutral-200">{t("whatToSayWhenYouCallDescription")}</p>
+                    <p className="mt-4 whitespace-pre-line text-neutral-700 dark:text-neutral-300">{accessScript}</p>
+                  </div>
                 </Card>
               )}
 

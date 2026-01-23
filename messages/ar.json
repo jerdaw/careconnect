@@ -559,6 +559,8 @@
     "aboutService": "حول هذه الخدمة",
     "documents": "المستندات",
     "accessProcess": "عملية التقديم",
+    "whatToSayWhenYouCall": "ماذا تقول عند الاتصال",
+    "whatToSayWhenYouCallDescription": "استخدم هذا كنقطة بداية. يمكنك استخدام كلماتك الخاصة.",
     "accessibility": "إمكانية الوصول",
     "getDirections": "الحصول على الاتجاهات",
     "lastVerified": "آخر تحقق:",

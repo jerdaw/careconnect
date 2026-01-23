@@ -677,6 +677,8 @@
     "aboutService": "About this Service",
     "documents": "Documents",
     "accessProcess": "Application Process",
+    "whatToSayWhenYouCall": "What to say when you call",
+    "whatToSayWhenYouCallDescription": "Use this as a starting point. It's okay to use your own words.",
     "accessibility": "Accessibility",
     "getDirections": "Get Directions",
     "lastVerified": "Last Verified:",
