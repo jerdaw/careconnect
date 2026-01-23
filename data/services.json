@@ -216,7 +216,37 @@
       "staff_size": "large",
       "annual_budget": "large"
     },
-    "scope": "canada"
+    "scope": "canada",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    }
   },
   {
     "id": "assaulted-womens-helpline",
@@ -268,6 +298,36 @@
     "coordinates": {
       "lat": 43.620495,
       "lng": -79.513198
+    },
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
     }
   },
   {
@@ -328,7 +388,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
+    }
   },
   {
     "id": "trellis-hiv-community-care",
@@ -392,7 +475,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:45"
+      },
+      "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
+    }
   },
   {
     "id": "one-roof-youth-hub",
@@ -451,7 +557,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Some programming extends to 19:00"
+    }
   },
   {
     "id": "victim-services-kingston",
@@ -503,6 +632,29 @@
     "coordinates": {
       "lat": 44.252467,
       "lng": -76.496044
+    },
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Emergency on-call support available 24/7 via police referral"
     }
   },
   {
@@ -555,7 +707,37 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "20:00"
+      }
+    }
   },
   {
     "id": "kgh-emergency-department",
@@ -606,7 +788,37 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    }
   },
   {
     "id": "kfla-public-health-dental",
@@ -658,7 +870,30 @@
       "lat": 44.2277654,
       "lng": -76.5252485
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "By appointment only"
+    }
   },
   {
     "id": "community-legal-clinic-kingston",
@@ -709,7 +944,29 @@
       "lat": 44.2338354,
       "lng": -76.4837103
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "salvation-army-housing-help",
@@ -768,7 +1025,29 @@
       "annual_budget": "medium"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "13:00",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "kchc-transgender-health-care",
@@ -820,7 +1099,29 @@
       "lat": 44.2627804,
       "lng": -76.4914855
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "19:30"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "street-health-centre",
@@ -879,7 +1180,38 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "notes": "Closed 12:00-13:00 Mon-Fri"
+    }
   },
   {
     "id": "kingston-interval-house",
@@ -931,7 +1263,37 @@
       "lat": 44.322768,
       "lng": -76.517938
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    }
   },
   {
     "id": "telephone-aid-line-kingston-talk",
@@ -979,7 +1341,38 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "tuesday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "wednesday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "thursday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "friday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "saturday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "sunday": {
+        "open": "18:00",
+        "close": "02:00"
+      },
+      "notes": "Service runs nightly until 2:00 AM"
+    }
   },
   {
     "id": "elizabeth-fry-society-kingston",
@@ -1031,7 +1424,29 @@
       "lat": 44.2398429,
       "lng": -76.4880318
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "st-vincent-de-paul-kingston",
@@ -1083,7 +1498,30 @@
       "lat": 44.2425847,
       "lng": -76.4910193
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "13:00"
+      },
+      "notes": "Lunch served 11:30-13:00 on weekdays"
+    }
   },
   {
     "id": "lunch-by-george",
@@ -1135,7 +1573,30 @@
       "lat": 44.229798,
       "lng": -76.483025
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "12:30"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "12:30"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "12:30"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "12:30"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "12:30"
+      },
+      "notes": "Breakfast 09:00-10:30; Lunch 11:00-12:30 (weekdays)"
+    }
   },
   {
     "id": "salvation-army-rideau-heights",
@@ -1187,7 +1648,18 @@
       "lat": 44.262488,
       "lng": -76.4882437
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "tuesday": {
+        "open": "11:00",
+        "close": "12:00"
+      },
+      "thursday": {
+        "open": "11:00",
+        "close": "12:00"
+      },
+      "notes": "By appointment only"
+    }
   },
   {
     "id": "partners-in-mission-food-bank",
@@ -1247,7 +1719,30 @@
       "annual_budget": "medium"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "notes": "Closed 12:00-13:00 daily"
+    }
   },
   {
     "id": "marthas-table-kingston",
@@ -1298,7 +1793,38 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "12:00",
+        "close": "14:00"
+      },
+      "sunday": {
+        "open": "12:00",
+        "close": "14:00"
+      },
+      "notes": "Weekday meals: Breakfast 09:00-11:00, Lunch 12:00-14:00, Dinner 15:00-17:00; Weekend lunch 12:00-14:00 (takeout only)"
+    }
   },
   {
     "id": "good-food-box-kingston",
@@ -1351,7 +1877,30 @@
       "lat": 44.261594,
       "lng": -76.491679
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Monthly pick-up on 3rd Thursday"
+    }
   },
   {
     "id": "amhs-kfla-crisis-line",
@@ -1410,7 +1959,38 @@
       "lat": 44.235308,
       "lng": -76.498156
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 crisis line; walk-in crisis clinic Mon-Fri 08:30-15:30"
+    }
   },
   {
     "id": "kingston-detox-centre",
@@ -1462,7 +2042,37 @@
       "lat": 44.2312029,
       "lng": -76.4883125
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    }
   },
   {
     "id": "kingston-youth-shelter",
@@ -1514,7 +2124,37 @@
       "lat": 44.24217,
       "lng": -76.502173
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    }
   },
   {
     "id": "sack-sexual-assault-centre",
@@ -1566,7 +2206,38 @@
       "lat": 44.2562074,
       "lng": -76.4978242
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 crisis line; chat/text support daily 12:00-24:00"
+    }
   },
   {
     "id": "maltby-centre-mental-health",
@@ -1614,7 +2285,29 @@
       "lat": 44.2579679,
       "lng": -76.5088639
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "resolve-counselling",
@@ -1666,7 +2359,29 @@
       "lat": 44.23566,
       "lng": -76.483759
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "kingston-home-base-housing",
@@ -1722,7 +2437,38 @@
       "lat": 44.2459197,
       "lng": -76.487601
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Office open Mon-Fri 08:30-16:30; shelter open 24/7 (intake usually in evenings)"
+    }
   },
   {
     "id": "ryandale-shelter",
@@ -1774,7 +2520,38 @@
       "lat": 44.2404604,
       "lng": -76.5031927
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "notes": "Staffed hours"
+    }
   },
   {
     "id": "dawn-house-womens-shelter",
@@ -1821,7 +2598,33 @@
       "lat": 44.2527947,
       "lng": -76.588951
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "16:00"
+      },
+      "saturday": {
+        "open": "13:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "kchc-weller-clinic",
@@ -1873,7 +2676,29 @@
       "lat": 44.2627804,
       "lng": -76.4914855
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "19:30"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "kfla-sexual-health-clinic",
@@ -1924,7 +2749,30 @@
       "lat": 44.2277654,
       "lng": -76.5252485
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Walk-in Quick Test Tue & Thu 13:00-15:30; other times by appointment"
+    }
   },
   {
     "id": "cdk-family-medicine-walk-in",
@@ -1976,7 +2824,37 @@
       "lat": 44.2321167,
       "lng": -76.4848109
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "14:00"
+      }
+    }
   },
   {
     "id": "queens-legal-aid",
@@ -2026,7 +2904,29 @@
       "lat": 44.232276,
       "lng": -76.4837981
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "ontario-works-kingston",
@@ -2077,7 +2977,29 @@
       "lat": 44.2412585,
       "lng": -76.4883496
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "kfpl-central-branch",
@@ -2129,7 +3051,37 @@
       "lat": 44.229714,
       "lng": -76.484804
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "sunday": {
+        "open": "13:00",
+        "close": "17:00"
+      }
+    }
   },
   {
     "id": "keys-job-centre",
@@ -2180,7 +3132,29 @@
       "lat": 44.2326537,
       "lng": -76.4873502
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "seniors-association-kingston",
@@ -2232,7 +3206,29 @@
       "lat": 44.2249971,
       "lng": -76.5216008
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "community-living-kingston",
@@ -2284,7 +3280,29 @@
       "lat": 44.2392686,
       "lng": -76.5710941
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "restart-kingston",
@@ -2335,7 +3353,29 @@
       "lat": 44.2560774,
       "lng": -76.4832696
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "acfomi-kingston",
@@ -2366,7 +3406,7 @@
       "Aide à l'emploi"
     ],
     "eligibility_notes": "Inclusion: French-speaking individuals, authorized to work in Canada. Exclusion: None.",
-    "access_script": "Bonjour, je cherche de l'aide pour trouver un emploi à Kingston. Offrez-vous des services en français?",
+    "access_script": "Hi, I am looking for help finding work in Kingston. Do you offer services in French?",
     "name_fr": "ACFOMI",
     "description_fr": "Fournit des services d'emploi et d'établissement pour les nouveaux arrivants et résidents francophones.",
     "eligibility_notes_fr": "Inclusion : French-speaking individuals, authorized to work in Canada. Exclusion : Aucune.",
@@ -2386,7 +3426,29 @@
       "lat": 44.252721,
       "lng": -76.4612583
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    }
   },
   {
     "id": "ymca-eastern-ontario",
@@ -2437,7 +3499,37 @@
       "lat": 44.2394721,
       "lng": -76.5161628
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "05:30",
+        "close": "19:00"
+      },
+      "saturday": {
+        "open": "07:00",
+        "close": "16:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "bgc-south-east",
@@ -2489,7 +3581,30 @@
       "lat": 44.2392483,
       "lng": -76.5450106
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "15:00",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "15:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "15:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "15:00",
+        "close": "20:30"
+      },
+      "friday": {
+        "open": "15:00",
+        "close": "20:30"
+      },
+      "notes": "Program hours vary by day"
+    }
   },
   {
     "id": "hart-centre",
@@ -2541,7 +3656,29 @@
       "lat": 44.2460178,
       "lng": -76.522633
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:30"
+      }
+    }
   },
   {
     "id": "loving-spoonful",
@@ -2593,7 +3730,29 @@
       "lat": 44.261847,
       "lng": -76.495228
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    }
   },
   {
     "id": "ongwanada",
@@ -2645,7 +3804,29 @@
       "lat": 44.227638,
       "lng": -76.5238509
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "kmfrc",
@@ -2697,7 +3878,29 @@
       "lat": 44.2373598,
       "lng": -76.4478533
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    }
   },
   {
     "id": "earlyon-kchc",
@@ -2750,7 +3953,29 @@
       "lat": 44.2627804,
       "lng": -76.4914855
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    }
   },
   {
     "id": "habitat-restore-kingston",
@@ -2803,7 +4028,37 @@
       "lat": 44.2424038,
       "lng": -76.5680097
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "saturday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "16:00"
+      }
+    }
   },
   {
     "id": "kingston-access-bus",
@@ -2856,7 +4111,38 @@
       "lat": 44.2703128,
       "lng": -76.5266564
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "sunday": {
+        "open": "07:30",
+        "close": "14:00"
+      },
+      "notes": "Admin hours"
+    }
   },
   {
     "id": "integrated-care-hub",
@@ -2917,7 +4203,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Email hubcoordinator@kingston.net or visit 661 Montreal St, Kingston, ON K7K 3J4. No fees."
   },
   {
     "id": "marthas-table",
@@ -2974,7 +4261,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Email info@marthastable.ca or visit 629 Princess Street, Kingston, ON K7L 1E2. No fees."
   },
   {
     "id": "dawn-house-shelter",
@@ -3035,7 +4323,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 613-545-1379 or 613-929-3440 or email info@dawnhouse.ca. Intake assessment required. Fees: Shelter is free. Housing is rent-geared-to-income. If you are in immediate danger, call 911."
   },
   {
     "id": "kiln-language-nest",
@@ -3096,7 +4385,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
   },
   {
     "id": "kchc-iipct",
@@ -3157,7 +4447,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP Card required. Free."
   },
   {
     "id": "metis-nation-ontario-kingston",
@@ -3218,7 +4509,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 613-549-1674 or email contactus@metisnation.org. MNO Citizenship card (for some programs) required. No fees."
   },
   {
     "id": "st-marys-cathedral-drop-in",
@@ -3279,7 +4571,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Email ministries@stmaryscathedral.ca or visit 260 Brock St, Kingston, ON K7L 1S3. No fees."
   },
   {
     "id": "salvation-army-cfs",
@@ -3340,7 +4633,8 @@
       "annual_budget": "medium"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 613-548-4411 or email KingstonCitadel.CFS@salvationarmy.ca. ID, Proof of income/address required. No fees."
   },
   {
     "id": "crisis-988",
@@ -3377,7 +4671,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call or text 988. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-connex-ontario",
@@ -3414,7 +4709,8 @@
       "annual_budget": "large"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-866-531-2600 or visit https://connexontario.ca. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-talk-suicide-canada",
@@ -3451,7 +4747,8 @@
       "annual_budget": "small"
     },
     "scope": "canada",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-833-456-4566. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-kids-help-phone",
@@ -3498,7 +4795,8 @@
       "lat": 45.501514,
       "lng": -73.570752
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-good2talk",
@@ -3540,7 +4838,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-866-925-5454 or text GOOD2TALKON to 686868. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-hope-for-wellness",
@@ -3583,7 +4882,8 @@
       "annual_budget": "large"
     },
     "scope": "canada",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 855-242-3310. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-talk4healing",
@@ -3629,7 +4929,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-855-554-4325. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-trans-lifeline",
@@ -3672,7 +4973,8 @@
       "annual_budget": "large"
     },
     "scope": "canada",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-877-330-6366 (available Mon-Fri 1pm-9pm ET). No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-assaulted-womens-helpline",
@@ -3719,7 +5021,8 @@
       "lat": 43.6224472,
       "lng": -79.4822192
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-866-863-0511. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-ontario-gambling",
@@ -3756,7 +5059,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-888-230-3505. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-telehealth-ontario",
@@ -3793,7 +5097,8 @@
       "annual_budget": "large"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 811 or visit https://health811.ontario.ca. OHIP card is helpful but not required. No fees."
   },
   {
     "id": "crisis-poison-control",
@@ -3831,7 +5136,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-268-9017 or email poison.information@sickkids.ca. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-eating-disorders",
@@ -3869,7 +5175,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-866-633-4220 or email nedic@uhn.ca. No fees."
   },
   {
     "id": "crisis-pflag-canada",
@@ -3912,7 +5219,8 @@
       "annual_budget": "small"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-888-530-6777 or email inquiries@pflagcanada.ca. No fees."
   },
   {
     "id": "crisis-text-line",
@@ -3949,7 +5257,8 @@
       "annual_budget": "small"
     },
     "scope": "canada",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "access_script": "Call 686868 (SMS). No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-211-ontario",
@@ -3986,7 +5295,8 @@
       "annual_budget": "large"
     },
     "scope": "ontario",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 211. No fees."
   },
   {
     "id": "four-directions-indigenous-centre",
@@ -4035,7 +5345,30 @@
       "lat": 44.226843,
       "lng": -76.490867
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Email 4direct@queensu.ca or visit 144-146 Barrie St, Kingston, ON K7L 3J9. Student ID required. No fees."
   },
   {
     "id": "kfla-indigenous-health-team",
@@ -4080,7 +5413,30 @@
       "lat": 44.2187764,
       "lng": -76.5709522
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP required. No fees."
   },
   {
     "id": "kingston-indigenous-friendship-centre",
@@ -4129,7 +5485,30 @@
       "lat": 44.2411179,
       "lng": -76.5057236
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
   },
   {
     "id": "kingston-literacy-skills",
@@ -4173,7 +5552,30 @@
       "lat": 44.2405976,
       "lng": -76.5125109
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees."
   },
   {
     "id": "slc-academic-upgrading",
@@ -4217,7 +5619,30 @@
       "lat": 44.2233279,
       "lng": -76.5279584
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-544-5400 ext. 5527 or email ask@sl.on.ca or visit https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Transcripts, ID required. Free."
   },
   {
     "id": "kfpl-learning-programs",
@@ -4261,7 +5686,11 @@
       "lat": 44.229714,
       "lng": -76.484804
     },
-    "plain_language_available": true
+    "plain_language_available": true,
+    "hours": {
+      "notes": "Hours vary by branch (e.g., Central branch Mon-Thu 09:00-20:00, Fri-Sat 09:00-17:00)."
+    },
+    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://www.kfpl.ca/programs. Library Card (for registration) required. No fees."
   },
   {
     "id": "kingston-transit-mfap",
@@ -4305,7 +5734,30 @@
       "lat": 44.2301058,
       "lng": -76.4801367
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates."
   },
   {
     "id": "von-transportation-kingston",
@@ -4352,7 +5804,30 @@
       "lat": 44.246774,
       "lng": -76.576276
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-634-0130. Registration form required. Fees: User fees apply distance based."
   },
   {
     "id": "lionhearts-fresh-food-market",
@@ -4388,7 +5863,11 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "notes": "Schedule varies by location. For example, Tuesdays 10:00-13:00 at Seniors Centre. Check website for full schedule."
+    },
+    "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized."
   },
   {
     "id": "in-from-the-cold",
@@ -4428,7 +5907,38 @@
       "lat": 44.2459197,
       "lng": -76.487601
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Call 613-542-6672 or email info@kingstonhomebase.ca or visit 540 Montreal St, Kingston, ON K7K 3J2. No fees."
   },
   {
     "id": "legal-aid-ontario-kingston",
@@ -4467,7 +5977,30 @@
       "lat": 44.2338354,
       "lng": -76.4837103
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-541-0777. Proof of income required. No fees."
   },
   {
     "id": "pro-bono-ontario",
@@ -4501,7 +6034,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-855-255-7256. No fees."
   },
   {
     "id": "cleo-community-legal-education",
@@ -4534,7 +6090,38 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Visit https://www.cleo.on.ca. No fees."
   },
   {
     "id": "arch-disability-law",
@@ -4574,7 +6161,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-866-482-2724 or email archlib@lao.on.ca. No fees."
   },
   {
     "id": "justice-for-children-youth",
@@ -4609,7 +6219,30 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-866-522-2024 or email info@jfcy.org. No fees."
   },
   {
     "id": "jobwell-kingston",
@@ -4649,7 +6282,30 @@
       "lat": 44.2455367,
       "lng": -76.4872924
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-540-6165 ext. 34109 or email info@jobwell.ca. Application form required. No fees."
   },
   {
     "id": "rideau-heights-community-centre",
@@ -4688,7 +6344,38 @@
       "lat": 44.2652686,
       "lng": -76.4826417
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Visit 85 Maccauley St, Kingston, ON K7K 2V8. Fees: Varies by program."
   },
   {
     "id": "artillery-park-aquatic-centre",
@@ -4727,7 +6414,38 @@
       "lat": 44.2343296,
       "lng": -76.4846559
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "20:00"
+      }
+    },
+    "access_script": "Visit 382 Bagot St, Kingston, ON K7K 3B6. Fees: Varies (drop-in or membership)."
   },
   {
     "id": "invista-centre",
@@ -4766,7 +6484,38 @@
       "lat": 44.2753745,
       "lng": -76.5687768
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "07:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "20:00"
+      }
+    },
+    "access_script": "Visit 1350 Gardiners Rd, Kingston, ON K7P 0E5. Fees: Varies."
   },
   {
     "id": "kfpl-calvin-park",
@@ -4806,7 +6555,34 @@
       "lat": 44.238699,
       "lng": -76.5177772
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 88 Wright Crescent, Kingston, ON K7L 4T9. Library Card for loans required. No fees."
   },
   {
     "id": "kfpl-isabel-turner",
@@ -4846,7 +6622,34 @@
       "lat": 44.254507,
       "lng": -76.5716808
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 935 Gardiners Rd, Kingston, ON K7M 9A9. Library Card for loans required. No fees."
   },
   {
     "id": "kfpl-pittsburgh",
@@ -4886,7 +6689,34 @@
       "lat": 44.259587,
       "lng": -76.4612071
     },
-    "plain_language_available": true
+    "plain_language_available": true,
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees."
   },
   {
     "id": "kfpl-rideau-heights",
@@ -4913,7 +6743,34 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Visit https://www.kfpl.ca."
   },
   {
     "id": "kingston-pregnancy-care",
@@ -4940,7 +6797,27 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "notes": "Closed Friday through Sunday."
+    },
+    "access_script": "Visit https://kingstonpcc.com for information."
   },
   {
     "id": "hospice-kingston",
@@ -4978,7 +6855,39 @@
       "lat": 44.242929,
       "lng": -76.52471
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Residence open 24/7; community program offices Mon-Fri 08:30–16:30."
+    },
+    "access_script": "Visit https://providencecare.ca/hospice-kingston for information."
   },
   {
     "id": "alzheimer-society-kfla",
@@ -5005,7 +6914,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://alzheimer.ca/kfla for information."
   },
   {
     "id": "stroke-network-sneo",
@@ -5043,7 +6953,30 @@
       "lat": 44.224143,
       "lng": -76.492802
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-549-6666 for assistance, or visit https://www.strokenetworkseo.ca."
   },
   {
     "id": "autism-ontario-east",
@@ -5070,7 +7003,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.autismontario.com for information."
   },
   {
     "id": "cnib-kingston",
@@ -5102,7 +7036,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://cnib.ca for information."
   },
   {
     "id": "march-of-dimes-kingston",
@@ -5145,7 +7080,30 @@
       "lat": 44.240603,
       "lng": -76.5115872
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca."
   },
   {
     "id": "student-food-bank-queens",
@@ -5183,7 +7141,27 @@
       "lat": 44.2284356,
       "lng": -76.4948911
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "11:00",
+        "close": "19:00"
+      },
+      "wednesday": {
+        "open": "11:00",
+        "close": "19:00"
+      },
+      "thursday": {
+        "open": "12:00",
+        "close": "14:00"
+      },
+      "friday": {
+        "open": "11:00",
+        "close": "14:00"
+      },
+      "notes": "Fall 2025 term hours: Food Bank open Mon/Wed 17:00–19:00 and Thu 12:00–14:00; PEACH Market available Mon/Wed/Fri 11:00–14:00."
+    },
+    "access_script": "Call 613-533-6000 for assistance, or visit https://www.amsfoodbank.ca."
   },
   {
     "id": "st-lawrence-food-pantry",
@@ -5221,7 +7199,11 @@
       "lat": 44.2233279,
       "lng": -76.5279584
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "notes": "By appointment only"
+    },
+    "access_script": "Visit https://www.slc.me for information."
   },
   {
     "id": "community-harvest-market",
@@ -5259,7 +7241,31 @@
       "lat": 44.2627804,
       "lng": -76.4914855
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Office hours listed; Good Food Box pick-up on the 3rd Thursday each month."
+    },
+    "access_script": "Call 613-546-2620 for assistance, or visit https://www.kchc.ca/community-harvest."
   },
   {
     "id": "memorial-centre-market",
@@ -5297,7 +7303,15 @@
       "lat": 44.239376,
       "lng": -76.4998338
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "sunday": {
+        "open": "09:00",
+        "close": "14:00"
+      },
+      "notes": "Hours vary seasonally: open Sundays 9:00–14:00 (May–Oct), 9:00–13:00 (Nov–Apr)."
+    },
+    "access_script": "Visit https://www.memorialcentrefarmersmarket.ca for information."
   },
   {
     "id": "legal-clinic-queens",
@@ -5336,7 +7350,30 @@
       "lat": 44.232276,
       "lng": -76.4837981
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-533-2102 for assistance."
   },
   {
     "id": "kfl-public-health-vaccine",
@@ -5375,7 +7412,31 @@
       "lat": 44.2277654,
       "lng": -76.5252485
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "General hours; routine immunization clinics by appointment on Tue (all ages) and Wed (ages 0–18)."
+    },
+    "access_script": "Call 613-549-1232 for assistance, or visit https://www.kflaph.ca."
   },
   {
     "id": "kfl-public-health-sexual",
@@ -5414,7 +7475,31 @@
       "lat": 44.2277654,
       "lng": -76.5252485
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Appointments Mon-Fri 08:30–16:30; walk-in Quick Test available Tue & Thu 13:00–15:30."
+    },
+    "access_script": "Call 613-549-1232 ext. 1275 for assistance, or visit https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx."
   },
   {
     "id": "sexual-assault-centre-kingston",
@@ -5453,7 +7538,39 @@
       "lat": 44.2562074,
       "lng": -76.4978242
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Phone line 24/7; chat/text daily 12:00–24:00; office Mon-Fri 09:00–16:00."
+    },
+    "access_script": "Call 613-544-6424 for assistance, or visit https://www.sackingston.com. If you are in immediate danger, call 911."
   },
   {
     "id": "kingston-general-hospital",
@@ -5492,7 +7609,38 @@
       "lat": 44.2228586,
       "lng": -76.4926165
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care."
   },
   {
     "id": "hotel-dieu-site",
@@ -5531,7 +7679,39 @@
       "lat": 44.2307655,
       "lng": -76.484905
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "notes": "Registration may close early if capacity reached."
+    },
+    "access_script": "Call 613-546-1240 for assistance, or visit https://kingstonhsc.ca/programs-and-departments/urgent-care-centre."
   },
   {
     "id": "providence-care-hospital",
@@ -5570,7 +7750,39 @@
       "lat": 44.2171112,
       "lng": -76.5274078
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Inpatient 24/7; outpatient clinics weekdays (business hours)."
+    },
+    "access_script": "Call 613-544-4900 for assistance, or visit https://providencecare.ca."
   },
   {
     "id": "kingston-military-family-resource",
@@ -5608,7 +7820,30 @@
       "lat": 44.2373598,
       "lng": -76.4478533
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston."
   },
   {
     "id": "tnet-kingston",
@@ -5647,7 +7882,15 @@
       "lat": 44.22976,
       "lng": -76.48098
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "saturday": {
+        "open": "13:00",
+        "close": "16:00"
+      },
+      "notes": "Bi-weekly support meetings on Saturdays."
+    },
+    "access_script": "Visit https://transfamilykingston.com for information. Email transfamilykingston@gmail.com for further inquiries."
   },
   {
     "id": "kfla-children-services",
@@ -5674,7 +7917,8 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.cityofkingston.ca for information."
   },
   {
     "id": "rural-frontenac-community-services",
@@ -5713,7 +7957,30 @@
       "lat": 44.768845,
       "lng": -76.690187
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-279-3151 for assistance, or visit https://rfcs.ca."
   },
   {
     "id": "south-frontenac-community-services",
@@ -5752,7 +8019,30 @@
       "lat": 44.415274,
       "lng": -76.576352
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-376-6477 for assistance, or visit https://www.sfcsc.ca."
   },
   {
     "id": "kingston-east-community-centre",
@@ -5779,7 +8069,8 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.cityofkingston.ca for information."
   },
   {
     "id": "earlyon-cosy",
@@ -5817,7 +8108,30 @@
       "lat": 44.2627804,
       "lng": -76.4914855
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://kchc.ca/weller-avenue/earlyon/ for information."
   },
   {
     "id": "boys-girls-club-kingston",
@@ -5855,7 +8169,31 @@
       "lat": 44.2392483,
       "lng": -76.5450106
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Admin office Mon-Fri 08:30–16:30; programs run 15:00–18:00 on weekdays."
+    },
+    "access_script": "Visit https://www.bgcsoutheast.ca for information."
   },
   {
     "id": "ymca-kingston",
@@ -5894,7 +8232,38 @@
       "lat": 44.2394721,
       "lng": -76.5161628
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "05:30",
+        "close": "19:00"
+      },
+      "saturday": {
+        "open": "07:00",
+        "close": "16:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-546-2647 for assistance, or visit https://eo.ymca.ca."
   },
   {
     "id": "kingston-humane-society",
@@ -5921,7 +8290,35 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "saturday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "notes": "Closed on Tuesdays and holidays."
+    },
+    "access_script": "Visit https://kingstonhumanesociety.ca for information."
   },
   {
     "id": "st-john-ambulance-kingston",
@@ -5948,7 +8345,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.sja.ca for information."
   },
   {
     "id": "red-cross-kingston",
@@ -5975,7 +8373,8 @@
       "annual_budget": "medium"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.redcross.ca for information."
   },
   {
     "id": "united-way-kfla-office",
@@ -6014,7 +8413,30 @@
       "lat": 44.23566,
       "lng": -76.483759
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-542-2674 for assistance, or visit https://www.unitedwaykfla.ca."
   },
   {
     "id": "community-foundation-kingston",
@@ -6052,7 +8474,30 @@
       "lat": 44.2316814,
       "lng": -76.4790659
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://cfka.org for information."
   },
   {
     "id": "habitat-for-humanity-kingston",
@@ -6079,7 +8524,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://habitatkingston.com for information."
   },
   {
     "id": "kingston-literacy-skills-2",
@@ -6117,7 +8563,30 @@
       "lat": 44.2405976,
       "lng": -76.5125109
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Visit https://www.klsread.ca for information."
   },
   {
     "id": "keys-job-centre-2",
@@ -6156,7 +8625,30 @@
       "lat": 44.2326537,
       "lng": -76.4873502
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-5559 for assistance, or visit https://keys.ca."
   },
   {
     "id": "acls-kingston",
@@ -6195,7 +8687,30 @@
       "lat": 44.252721,
       "lng": -76.4612583
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Call 613-546-7863 for assistance, or visit https://acfomi.ca."
   },
   {
     "id": "re-start-employment",
@@ -6234,7 +8749,30 @@
       "lat": 44.2560774,
       "lng": -76.4832696
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-542-7373 for assistance, or visit https://restartnow.ca."
   },
   {
     "id": "slc-employment-service",
@@ -6272,7 +8810,30 @@
       "lat": 44.2233279,
       "lng": -76.5279584
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Visit https://employmentservice.sl.on.ca for information."
   },
   {
     "id": "ontario-works-kb",
@@ -6311,7 +8872,30 @@
       "lat": 44.2412585,
       "lng": -76.4883496
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-2695 for assistance, or visit https://www.cityofkingston.ca."
   },
   {
     "id": "odsp-kingston",
@@ -6343,7 +8927,30 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://www.ontario.ca for information."
   },
   {
     "id": "service-canada-kingston",
@@ -6370,7 +8977,30 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Visit https://www.canada.ca for information."
   },
   {
     "id": "service-ontario-kingston",
@@ -6397,7 +9027,8 @@
       "annual_budget": "large"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.ontario.ca for information."
   },
   {
     "id": "kingston-police-non-emerg",
@@ -6424,7 +9055,39 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Non-emergency line and station front desk available 24/7."
+    },
+    "access_script": "Visit https://www.kpf.ca for information."
   },
   {
     "id": "opp-frontenac",
@@ -6451,7 +9114,39 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
+    },
+    "access_script": "Visit https://www.opp.ca for information."
   },
   {
     "id": "coast-mental-health",
@@ -6479,7 +9174,39 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 crisis line (mobile team dispatched as needed)."
+    },
+    "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911."
   },
   {
     "id": "maltby-centre-autism",
@@ -6518,7 +9245,8 @@
       "lat": 44.2579679,
       "lng": -76.5088639
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca."
   },
   {
     "id": "pathways-for-children-youth",
@@ -6552,7 +9280,8 @@
       "annual_budget": "medium"
     },
     "scope": "kingston",
-    "plain_language_available": true
+    "plain_language_available": true,
+    "access_script": "Call 613-546-8535 or visit https://maltbycentre.ca for services."
   },
   {
     "id": "geneva-centre-autism",
@@ -6579,7 +9308,8 @@
       "annual_budget": "small"
     },
     "scope": "kingston",
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit https://www.autism.net for information."
   },
   {
     "id": "ontario-211-ontario",
@@ -6641,7 +9371,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -6703,7 +9434,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -6770,7 +9502,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario first responders (police, fire, EMS, corrections, etc.) can call 1-833-677-2668 for anonymous peer support. This helpline is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-farmer-wellness",
@@ -6832,7 +9565,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario farmers, farm families, and farm workers can call 1-866-267-6255 to access free counselling support at any time. Intake is available 24/7 and no fees or paperwork are required."
   },
   {
     "id": "ontario-femaide",
@@ -6895,7 +9629,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Francophone women facing violence can call or text 1-877-336-2433 for free, confidential support in French (24/7). If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -6962,7 +9697,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Former residential school students and their families can call 1-866-925-4419 for emotional crisis support at any time (24/7). If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -7029,7 +9765,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-male-survivors",
@@ -7091,7 +9828,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Male survivors of sexual abuse in Ontario can call 1-866-887-0015 for free, multilingual crisis support and referrals. Help is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -7158,7 +9896,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Métis Nation of Ontario citizens can call 1-877-767-7572 for mental health and addictions support. This crisis line is free and operates 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -7225,7 +9964,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Individuals impacted by missing and murdered Indigenous women, girls, or 2SLGBTQQIA+ people can call 1-844-413-6649 for support. This national crisis line is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-naseeha",
@@ -7287,7 +10027,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Muslim youth and others can call or text 1-866-627-3342 at any time for free, anonymous mental health support. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-nors",
@@ -7350,7 +10091,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": true
+    "plain_language_available": true,
+    "access_script": "If you plan to use drugs alone, you can call 1-888-688-6677 so an operator stays on the line to monitor your safety and respond in case of overdose. This service is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-ontx-distress",
@@ -7413,7 +10155,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Text the word \"SUPPORT\" to 258258 to connect with Ontario’s distress text line (available daily from 2:00 PM to 2:00 AM). If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-sadv-navigation",
@@ -7476,7 +10219,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-855-628-7238 to reach a nurse who will help connect survivors of sexual assault or domestic violence to the nearest treatment centre. This navigation line is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -7543,7 +10287,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-vac-assistance",
@@ -7610,7 +10355,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Veterans, Canadian Armed Forces members, RCMP members, and their families can call 1-800-268-7708 for free, confidential counseling. This assistance line is available 24/7. If you are in immediate danger, call 911."
   },
   {
     "id": "ontario-victim-support-line",
@@ -7672,7 +10418,8 @@
       "staff_size": "small",
       "annual_budget": "small"
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Victims of crime in Ontario can call 1-888-579-2888 for information, referrals, and support. The Victim Support Line is free and operates 24/7. If you are in immediate danger, call 911."
   },
   {
     "name": "BounceBack Ontario",
@@ -7730,7 +10477,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario residents (age 15+) with a valid OHIP card can join the free BounceBack program. Call 1-866-345-0224 or visit bouncebackontario.ca to learn how to get started (self-referral or provider referral accepted)."
   },
   {
     "name": "Cancer Information Helpline",
@@ -7788,7 +10536,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-888-939-3333 for information on cancer types, treatments, side effects, and local support services. This free helpline is open to patients, caregivers, and anyone with cancer-related questions."
   },
   {
     "name": "Ontario Caregiver Helpline",
@@ -7854,7 +10603,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario caregivers can call 1-833-416-2273 at any time for information, assessment, and referrals to local support services. This helpline is free of charge."
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -7912,7 +10662,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-226-8464 for free information and support related to diabetes management and resources. This service is available to anyone affected by diabetes."
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -7978,7 +10729,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "First Nations families can call 1-855-572-4453 (Jordan’s Principle Call Centre) for help accessing health, social, or education services for their children. The call centre is open 24/7 and there are no fees."
   },
   {
     "name": "Lung Health Line",
@@ -8036,7 +10788,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions."
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
@@ -8094,7 +10847,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-668-2437 for anonymous and confidential information on sexual health topics (STIs, HIV/AIDS, birth control, pregnancy, etc.). This service is free for all Ontario residents."
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
@@ -8132,7 +10886,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario seniors (age 60 and over) can call 1-855-598-2656 for free legal advice on elder law issues (e.g., long-term care, elder abuse, health care consent)."
   },
   {
     "name": "Employment Standards Information Centre",
@@ -8190,7 +10945,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-531-5551 for information about Ontario’s Employment Standards Act (e.g., wages, hours of work, overtime, vacation rules). This free information line is available to both workers and employers."
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -8228,7 +10984,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario residents living with HIV or AIDS can call 1-888-705-8889 for free legal advice on issues like privacy, human rights, immigration, and income support. No fees are charged for this service."
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
@@ -8266,7 +11023,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "If you have experienced discrimination in Ontario, call 1-866-625-5179 for free legal advice and help filing a human rights application. The Human Rights Legal Support Centre’s services are provided at no cost."
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -8324,7 +11082,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Injured workers in Ontario can call 1-833-461-2411 for free legal help with workers’ compensation (WSIB) claims and appeals. The Injured Workers Community Legal Clinic provides assistance at no charge."
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -8362,7 +11121,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Young people in Ontario (under 18, or under 25 if homeless) can call 1-866-999-5329 for free legal advice. Justice for Children and Youth can help with issues in areas like education, family, youth criminal justice, and more."
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -8400,7 +11160,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)"
   },
   {
     "name": "Legal Aid Ontario",
@@ -8458,7 +11219,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply)."
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
@@ -8516,7 +11278,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice."
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -8554,7 +11317,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-844-343-7462 to request a free 30-minute consultation with a lawyer through the Ontario Legal Information Centre. This service is available to any Ontario resident, regardless of income, and no documents are required to access it."
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
@@ -8612,7 +11376,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Non-unionized workers who have been injured on the job or faced reprisals can call 1-800-435-8980 for free legal advice and representation. The Office of the Worker Adviser helps with WSIB claims and occupational health and safety reprisal cases at no cost."
   },
   {
     "name": "Steps to Justice",
@@ -8678,7 +11443,8 @@
       "lat": 43.7794518,
       "lng": -79.4898197
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Visit stepstojustice.ca to access a step-by-step guide to common legal problems in Ontario. The website is free to use and includes a live chat service where you can ask a law librarian or staff for help with finding legal information."
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -8736,7 +11502,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Non-unionized workers in Ontario can call 1-877-832-6090 for free legal help if they have been punished or fired for raising health and safety concerns. The Workers Health & Safety Legal Clinic focuses on reprisals and unsafe work refusal cases."
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
@@ -8794,7 +11561,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-387-0750 to report a workplace injury or to get information about WSIB claims and benefits. This is the main toll-free number for Ontario’s Workplace Safety and Insurance Board, and there is no cost to call."
   },
   {
     "name": "Arthritis Society Canada",
@@ -8832,7 +11600,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-800-321-1433 to speak with a trained volunteer about arthritis-related questions. This free support line is available to anyone living with arthritis or caring for someone who is."
   },
   {
     "name": "Heart and Stroke Foundation",
@@ -8890,7 +11659,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-888-473-4636 for free, evidence-based information on heart disease and stroke. The Heart and Stroke Foundation’s help line can answer questions about prevention, risk factors, treatment, and recovery resources."
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
@@ -8955,7 +11725,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-833-621-0728 for information and navigation assistance with hospice and palliative care services in Ontario. (The HPCO information line is staffed Monday to Friday, 8:30 AM to 4:30 PM.)"
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
@@ -9013,7 +11784,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-844-859-6789 (Monday–Friday, 8 AM to 8 PM Eastern) to connect with an MS Navigator for information and support related to multiple sclerosis. This service is free and available to anyone affected by MS."
   },
   {
     "name": "Parkinson Canada",
@@ -9071,7 +11843,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-888-664-1974 (Monday–Friday, 9 AM to 4 PM Eastern) for information and support on Parkinson’s disease. You can also email support@parkinson.ca for assistance."
   },
   {
     "name": "Talk Tobacco",
@@ -9119,7 +11892,8 @@
       "lat": 60.10867,
       "lng": -113.64258
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "First Nations, Inuit, and Métis individuals looking to quit smoking can call 1-833-998-8255 for free, culturally tailored support. Live chat and additional resources are also available on the Talk Tobacco website (talktobacco.ca)."
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -9157,7 +11931,8 @@
       "lat": 43.70011,
       "lng": -79.4163
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Indigenous people in Ontario can call 1-844-633-2886 to reach Aboriginal Legal Services for free legal advice and representation. No fees are charged for their assistance."
   },
   {
     "name": "Consumer Protection Ontario",
@@ -9215,7 +11990,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Ontario consumers can call 1-800-889-9768 for free information about consumer rights or to report unfair business practices. This is the provincial Consumer Protection Ontario helpline."
   },
   {
     "name": "Law Society Referral Service",
@@ -9273,7 +12049,8 @@
       "lat": 51.1353689,
       "lng": -113.2514301
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional."
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -9331,6 +12108,7 @@
       "lat": 48.38202,
       "lng": -89.25018
     },
-    "plain_language_available": false
+    "plain_language_available": false,
+    "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)"
   }
 ]

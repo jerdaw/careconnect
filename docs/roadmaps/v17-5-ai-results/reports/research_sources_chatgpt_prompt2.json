@@ -1,0 +1,29 @@
+{
+  "batch": 2,
+  "provider": "chatgpt",
+  "source_file": "docs/roadmaps/v17-5-ai-results/raw/ChatGPT - Prompt 2 - Deep Research Result.txt",
+  "extracted_at": "2026-01-22T23:39:52.687516+00:00",
+  "applied_id_fixes": [],
+  "research_sources": [
+    {
+      "id": "kfpl-learning-programs",
+      "sources": [],
+      "notes": "Schedule depends on branch; example hours provided for Central branch."
+    },
+    {
+      "id": "lionhearts-fresh-food-market",
+      "sources": ["", ""],
+      "notes": "Weekly schedule from official Lionhearts site"
+    },
+    {
+      "id": "kfpl-rideau-heights",
+      "sources": [""],
+      "notes": "Hours from 211 Ontario listing (Rideau Heights Branch hours)"
+    },
+    {
+      "id": "crisis-trans-lifeline",
+      "sources": [""],
+      "notes": "Updated operating hours (Mon-Fri 1pm-9pm ET) as of 2024"
+    }
+  ]
+}

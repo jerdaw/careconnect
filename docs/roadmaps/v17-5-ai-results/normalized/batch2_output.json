@@ -1,0 +1,833 @@
+[
+  {
+    "id": "earlyon-kchc",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": null
+  },
+  {
+    "id": "habitat-restore-kingston",
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "saturday": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": null
+  },
+  {
+    "id": "kingston-access-bus",
+    "hours": {
+      "monday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "07:30",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "07:30",
+        "close": "18:00"
+      },
+      "sunday": {
+        "open": "07:30",
+        "close": "14:00"
+      },
+      "notes": "Admin hours"
+    },
+    "access_script": null
+  },
+  {
+    "id": "integrated-care-hub",
+    "hours": null,
+    "access_script": "Email hubcoordinator@kingston.net or visit 661 Montreal St, Kingston, ON K7K 3J4. No fees."
+  },
+  {
+    "id": "marthas-table",
+    "hours": null,
+    "access_script": "Email info@marthastable.ca or visit 629 Princess Street, Kingston, ON K7L 1E2. No fees."
+  },
+  {
+    "id": "dawn-house-shelter",
+    "hours": null,
+    "access_script": "Call 613-545-1379 or 613-929-3440 or email info@dawnhouse.ca. Intake assessment required. Fees: Shelter is free. Housing is rent-geared-to-income. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "kiln-language-nest",
+    "hours": null,
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+  },
+  {
+    "id": "kchc-iipct",
+    "hours": null,
+    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP Card required. Free."
+  },
+  {
+    "id": "metis-nation-ontario-kingston",
+    "hours": null,
+    "access_script": "Call 613-549-1674 or email contactus@metisnation.org. MNO Citizenship card (for some programs) required. No fees."
+  },
+  {
+    "id": "st-marys-cathedral-drop-in",
+    "hours": null,
+    "access_script": "Email ministries@stmaryscathedral.ca or visit 260 Brock St, Kingston, ON K7L 1S3. No fees."
+  },
+  {
+    "id": "salvation-army-cfs",
+    "hours": null,
+    "access_script": "Call 613-548-4411 or email KingstonCitadel.CFS@salvationarmy.ca. ID, Proof of income/address required. No fees."
+  },
+  {
+    "id": "crisis-988",
+    "hours": null,
+    "access_script": "Call or text 988. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-connex-ontario",
+    "hours": null,
+    "access_script": "Call 1-866-531-2600 or visit https://connexontario.ca. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-talk-suicide-canada",
+    "hours": null,
+    "access_script": "Call 1-833-456-4566. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-kids-help-phone",
+    "hours": null,
+    "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-good2talk",
+    "hours": null,
+    "access_script": "Call 1-866-925-5454 or text GOOD2TALKON to 686868. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-hope-for-wellness",
+    "hours": null,
+    "access_script": "Call 855-242-3310. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-talk4healing",
+    "hours": null,
+    "access_script": "Call 1-855-554-4325. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-trans-lifeline",
+    "hours": null,
+    "access_script": "Call 1-877-330-6366 (available Mon-Fri 1pm-9pm ET). No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-assaulted-womens-helpline",
+    "hours": null,
+    "access_script": "Call 1-866-863-0511. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-ontario-gambling",
+    "hours": null,
+    "access_script": "Call 1-888-230-3505. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-telehealth-ontario",
+    "hours": null,
+    "access_script": "Call 811 or visit https://health811.ontario.ca. OHIP card is helpful but not required. No fees."
+  },
+  {
+    "id": "crisis-poison-control",
+    "hours": null,
+    "access_script": "Call 1-800-268-9017 or email poison.information@sickkids.ca. No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-eating-disorders",
+    "hours": null,
+    "access_script": "Call 1-866-633-4220 or email nedic@uhn.ca. No fees."
+  },
+  {
+    "id": "crisis-pflag-canada",
+    "hours": null,
+    "access_script": "Call 1-888-530-6777 or email inquiries@pflagcanada.ca. No fees."
+  },
+  {
+    "id": "crisis-text-line",
+    "hours": null,
+    "access_script": "Call 686868 (SMS). No fees. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "crisis-211-ontario",
+    "hours": null,
+    "access_script": "Call 211. No fees."
+  },
+  {
+    "id": "four-directions-indigenous-centre",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Email 4direct@queensu.ca or visit 144-146 Barrie St, Kingston, ON K7L 3J9. Student ID required. No fees."
+  },
+  {
+    "id": "kfla-indigenous-health-team",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP required. No fees."
+  },
+  {
+    "id": "kingston-indigenous-friendship-centre",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+  },
+  {
+    "id": "kingston-literacy-skills",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees."
+  },
+  {
+    "id": "slc-academic-upgrading",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-544-5400 ext. 5527 or email ask@sl.on.ca or visit https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Transcripts, ID required. Free."
+  },
+  {
+    "id": "kfpl-learning-programs",
+    "hours": {
+      "notes": "Hours vary by branch (e.g., Central branch Mon-Thu 09:00-20:00, Fri-Sat 09:00-17:00)."
+    },
+    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://www.kfpl.ca/programs. Library Card (for registration) required. No fees."
+  },
+  {
+    "id": "kingston-transit-mfap",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates."
+  },
+  {
+    "id": "von-transportation-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-634-0130. Registration form required. Fees: User fees apply distance based."
+  },
+  {
+    "id": "lionhearts-fresh-food-market",
+    "hours": {
+      "notes": "Schedule varies by location. For example, Tuesdays 10:00-13:00 at Seniors Centre. Check website for full schedule."
+    },
+    "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized."
+  },
+  {
+    "id": "in-from-the-cold",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Call 613-542-6672 or email info@kingstonhomebase.ca or visit 540 Montreal St, Kingston, ON K7K 3J2. No fees."
+  },
+  {
+    "id": "legal-aid-ontario-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-541-0777. Proof of income required. No fees."
+  },
+  {
+    "id": "pro-bono-ontario",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-855-255-7256. No fees."
+  },
+  {
+    "id": "cleo-community-legal-education",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Visit https://www.cleo.on.ca. No fees."
+  },
+  {
+    "id": "arch-disability-law",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-866-482-2724 or email archlib@lao.on.ca. No fees."
+  },
+  {
+    "id": "justice-for-children-youth",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 1-866-522-2024 or email info@jfcy.org. No fees."
+  },
+  {
+    "id": "jobwell-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-540-6165 ext. 34109 or email info@jobwell.ca. Application form required. No fees."
+  },
+  {
+    "id": "rideau-heights-community-centre",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Visit 85 Maccauley St, Kingston, ON K7K 2V8. Fees: Varies by program."
+  },
+  {
+    "id": "artillery-park-aquatic-centre",
+    "hours": {
+      "monday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "20:00"
+      }
+    },
+    "access_script": "Visit 382 Bagot St, Kingston, ON K7K 3B6. Fees: Varies (drop-in or membership)."
+  },
+  {
+    "id": "invista-centre",
+    "hours": {
+      "monday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "06:00",
+        "close": "21:00"
+      },
+      "saturday": {
+        "open": "07:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "20:00"
+      }
+    },
+    "access_script": "Visit 1350 Gardiners Rd, Kingston, ON K7P 0E5. Fees: Varies."
+  },
+  {
+    "id": "kfpl-calvin-park",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 88 Wright Crescent, Kingston, ON K7L 4T9. Library Card for loans required. No fees."
+  },
+  {
+    "id": "kfpl-isabel-turner",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 935 Gardiners Rd, Kingston, ON K7M 9A9. Library Card for loans required. No fees."
+  },
+  {
+    "id": "kfpl-pittsburgh",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees."
+  },
+  {
+    "id": "kfpl-rideau-heights",
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "saturday": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Visit https://www.kfpl.ca."
+  }
+]
