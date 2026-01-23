@@ -75,8 +75,10 @@ describe("FeedbackWidget Component", () => {
       )
     })
 
-    expect(screen.getByText("Thanks for voting!")).toBeInTheDocument()
-    expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Success" }))
+    expect(await screen.findByText("Thanks for voting!")).toBeInTheDocument()
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Success" }))
+    })
   })
 
   it("handles fetch error", async () => {
