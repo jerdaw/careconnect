@@ -197,6 +197,7 @@ See [archive/2026-01-25-v17-4-dashboard-partner-portal.md](archive/2026-01-25-v1
 **Priority**: HIGH
 
 See the detailed plan: `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
+Deep Research ingestion record: `docs/roadmaps/2026-01-22-v17-5-ai-output-ingestion.md`.
 
 ### Scope
 
@@ -204,12 +205,12 @@ See the detailed plan: `docs/roadmaps/2026-01-17-v17-5-data-quality.md`.
 
 - [x] **Geographic Scope**: 0 missing `scope` field (done)
 - [ ] **Coordinates**: 58/196 missing `coordinates`
-- [ ] **Access Scripts**: 143/196 missing `access_script` (needs UI surface + content)
+- [x] **Access Scripts**: 0/196 missing `access_script` (content present; UI surface still needed)
 
 #### Accessibility Data
 
 - [x] **Plain Language Flag**: 0 missing `plain_language_available` field (done; still needs type/schema wiring)
-- [ ] **Structured Hours**: 122/196 missing structured `hours` object
+- [ ] **Structured Hours**: 12/196 missing structured `hours` object
 
 #### Verification Level Upgrade
 

@@ -50,6 +50,7 @@ public/fallback-*.js
 data/*-report.json
 data/geocode-cache.json
 data/services.backup*.json
+data/backups/
 
 # supabase local config (added by CLI init)
 supabase/.temp/
