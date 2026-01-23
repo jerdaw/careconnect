@@ -1,5 +1,5 @@
 ---
-status: in_progress
+status: stable
 last_updated: 2026-01-23
 owner: jer
 tags: [roadmap, v17.5, data-quality, verification, enrichment]
@@ -15,6 +15,8 @@ tags: [roadmap, v17.5, data-quality, verification, enrichment]
 ## Executive Summary
 
 Audit and enrich the service directory (currently 196 services) with missing data needed for **trust**, **accessibility**, and **search accuracy**.
+
+v17.5 implementation work is complete; the remaining items are confirmation/translation tasks tracked in `docs/roadmaps/roadmap.md` under v17.5 follow-ups.
 
 This roadmap is intentionally **architecture-aware**:
 
