@@ -30,15 +30,17 @@ This roadmap is intentionally **architecture-aware**:
 
 Recompute any time with `npm run audit:data` (or a local Node script) before starting a batch.
 
-| Metric                             | Current                  | Notes                                           |
-| ---------------------------------- | ------------------------ | ----------------------------------------------- |
-| Total services                     | 196                      | Dataset size changes over time                  |
-| Missing `scope`                    | 0                        | ✅ Completed (scope is present on all services) |
-| Missing `coordinates`              | 58                       | Primary remaining geo gap                       |
-| Missing `access_script`            | 143                      | Largest remaining accessibility/UX gap          |
-| Missing `plain_language_available` | 0                        | ✅ Completed (flag present across dataset)      |
-| Missing structured `hours`         | 122                      | Needed for reliable **Open Now**                |
-| Verification distribution          | L1: 121 / L2: 75 / L3: 0 | L3 requires provider confirmation               |
+| Metric                             | Current                  | Notes                                            |
+| ---------------------------------- | ------------------------ | ------------------------------------------------ |
+| Total services                     | 196                      | Dataset size changes over time                   |
+| Missing `scope`                    | 0                        | ✅ Completed (scope is present on all services)  |
+| Missing `coordinates` (any)        | 58                       | Includes virtual + confidential + multi-location |
+| Missing `coordinates` (required)   | 18                       | Kingston physical services (distance-searchable) |
+| Kingston missing `address`         | 17                       | Primary blocker before geocoding can run         |
+| Missing `access_script`            | 143                      | Largest remaining accessibility/UX gap           |
+| Missing `plain_language_available` | 0                        | ✅ Completed (flag present across dataset)       |
+| Missing structured `hours`         | 122                      | Needed for reliable **Open Now**                 |
+| Verification distribution          | L1: 121 / L2: 75 / L3: 0 | L3 requires provider confirmation                |
 
 > [!NOTE]
 > **Category Expansion** (Phase 7) is moved to ongoing maintenance work rather than a fixed release milestone. Adding new services is continuous, not a one-time task.
@@ -47,12 +49,14 @@ Recompute any time with `npm run audit:data` (or a local Node script) before sta
 
 Recompute any time with `npm run audit:data` before starting a new batch.
 
-| Metric                     | Current | Notes                                              |
-| -------------------------- | ------- | -------------------------------------------------- |
-| Missing `coordinates`      | 58      | Still the primary geo gap                          |
-| Missing `access_script`    | 0       | ✅ v17.5 AI ingestion completed                    |
-| Missing structured `hours` | 12      | Remaining hours require targeted verification      |
-| Missing `hours_text`       | 67      | Many services still need human-readable hours text |
+| Metric                           | Current | Notes                                              |
+| -------------------------------- | ------- | -------------------------------------------------- |
+| Missing `coordinates` (any)      | 58      | Includes virtual + confidential + multi-location   |
+| Missing `coordinates` (required) | 18      | Kingston physical services (distance-searchable)   |
+| Kingston missing `address`       | 17      | Primary blocker before geocoding can run           |
+| Missing `access_script`          | 0       | ✅ v17.5 AI ingestion completed                    |
+| Missing structured `hours`       | 12      | Remaining hours require targeted verification      |
+| Missing `hours_text`             | 67      | Many services still need human-readable hours text |
 
 Deep Research artifacts used for v17.5:
 
@@ -60,6 +64,11 @@ Deep Research artifacts used for v17.5:
 - Ingestion record (archived): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 - Audit workspace: `docs/roadmaps/v17-5-ai-results/README.md`
 - ADR: `docs/adr/011-ai-deep-research-output-ingestion.md`
+
+Coordinates/geocoding workspace (v17.5):
+
+- Workspace: `docs/roadmaps/v17-5-coordinates/README.md`
+- Latest gap report: `docs/roadmaps/v17-5-coordinates/reports/coordinate-gap-analysis-2026-01-23.md`
 
 ### Active Follow-Up Flags (Don’t Lose These)
 
@@ -138,13 +147,38 @@ Use the existing script when scope rules change or new services are added:
 
 | Option        | API Calls (est.) | Cost                       | Accuracy   |
 | ------------- | ---------------- | -------------------------- | ---------- |
-| Google Maps   | ≤ 58             | Low (but billed)           | ⭐⭐⭐⭐⭐ |
-| OpenCage      | ≤ 58             | Free tier (2,500/day)      | ⭐⭐⭐⭐   |
-| OSM Nominatim | ≤ 58             | Free (rate-limited/polite) | ⭐⭐⭐     |
+| Google Maps   | ≤ 25             | Low (but billed)           | ⭐⭐⭐⭐⭐ |
+| OpenCage      | ≤ 25             | Free tier (2,500/day)      | ⭐⭐⭐⭐   |
+| OSM Nominatim | ≤ 25             | Free (rate-limited/polite) | ⭐⭐⭐     |
 
 **Recommendation:** OpenCage (free tier is sufficient for the remaining coordinate gaps)
 
-### 3.2 Run the Existing Geocoding Script
+### 3.2 Export Coordinate Gaps (Recommended)
+
+This generates a machine-readable report identifying:
+
+- Kingston services missing a verified physical address
+- Kingston services with placeholder/non-geocodable address notes (confidentiality, pop-ups)
+- Kingston services with a geocodable address but missing coordinates
+
+```bash
+npm run audit:coords
+```
+
+Output:
+
+- `docs/roadmaps/v17-5-coordinates/outputs/coordinate-gaps.json`
+
+### 3.3 Address Verification (Kingston Physical Services)
+
+Geocoding is only useful once a stable physical `address` exists.
+
+For each Kingston service in `coordinate-gaps.json` with `issues: ["missing_address"]`:
+
+1. Verify the address via a trusted source (official organization website, municipal listing, government directory).
+2. Update `data/services.json` `address` to a geocodable physical address.
+
+### 3.4 Run the Geocoding Script
 
 Use the existing script, which writes coordinates to `coordinates: { lat, lng }` and caches results in `data/geocode-cache.json`:
 
@@ -152,7 +186,13 @@ Use the existing script, which writes coordinates to `coordinates: { lat, lng }`
 OPENCAGE_API_KEY=xxx node --import tsx scripts/geocode-services.ts
 ```
 
-### 3.3 Manual Geocoding
+**Note:** `scripts/geocode-services.ts` is intentionally conservative and skips:
+
+- non-Kingston scope by default (use `--all-scopes` only if needed)
+- `virtual_delivery: true` services
+- placeholder address notes (mailing-only, “Various locations”, etc.)
+
+### 3.5 Manual Geocoding
 
 For services that fail automated geocoding (or have no geocodable address):
 
