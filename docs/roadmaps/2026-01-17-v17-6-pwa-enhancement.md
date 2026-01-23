@@ -1,6 +1,6 @@
 ---
-status: in_progress
-last_updated: 2026-01-22
+status: complete-pending-testing
+last_updated: 2026-01-23
 owner: jer
 tags: [roadmap, v17.6, pwa, offline, mobile]
 ---
@@ -23,16 +23,41 @@ Enhance Progressive Web App capabilities for better mobile experience and app st
 - Offline data + feedback syncing already runs client-side via `components/offline/OfflineSync.tsx`.
 - Manual verification steps already exist in `docs/runbooks/pwa-testing.md` and `docs/development/mobile-ready.md`.
 
-**Primary gaps (to fix in this version):**
+**Code-deliverables (implemented):**
 
-- `public/manifest.json` icon URLs are not aligned with the actual icon files in `public/` (currently uses `/icon?w=...`).
-- `public/custom-sw.js` references a default icon path that is not present in `public/`.
-- Missing screenshots + complete icon set for store-quality install UX.
+- `public/manifest.json` uses store-quality icon + screenshot paths (no `/icon?w=...`).
+- `public/custom-sw.js` uses real `icon` + `badge` assets under `public/icons/`.
+- Icon set + screenshots exist under `public/icons/` and `public/screenshots/` (unit tests enforce dimensions).
+
+## Remaining Work (Manual / External)
+
+These items can’t be “implemented” purely in repo code (they require production builds, real devices, external tooling, and/or credentials). This is the wrap-up checklist for v17.6.
+
+**Release verification (required to mark v17.6 complete):**
+
+- [ ] Replace placeholder screenshots with real captures (keep exact dimensions): `public/screenshots/*`
+- [ ] Verify icons are “store-quality” (branding consistency + maskable safe area): `public/icons/*`
+- [ ] Validate the web manifest (e.g. webmanifest.app) and confirm installability
+- [ ] Run Lighthouse PWA audit on a production build and hit score targets
+- [ ] Validate install UX on real devices (Android Chrome, iOS Safari)
+- [ ] Validate offline mode for all 7 locales, including Arabic RTL
+- [ ] Validate offline → online restore behavior: data refresh + queued feedback sync
+- [ ] Confirm service worker registration + `importScripts` (no 404s) in production build
+
+**Store listing (optional / out of scope for code-only work):**
+
+- [ ] If pursuing Play Store listing: Bubblewrap/TWA build + signing + console submission (see `docs/development/mobile-ready.md`)
+- [ ] If pursuing iOS App Store: native wrapper + Apple Developer credentials (see `docs/development/mobile-ready.md`)
+
+**Ongoing monitoring (privacy-preserving):**
+
+- [ ] Follow `docs/runbooks/pwa-testing.md` on each release; watch DevTools for SW registration/import errors
+- [ ] Consider a release-time Lighthouse report artifact (no user tracking)
 
 > [!NOTE]
 > **Manifest JSON** must be valid JSON (no comments). Keep explanations in Markdown, not inline.
 
-## Implementation Status (Snapshot: 2026-01-22)
+## Implementation Status (Snapshot: 2026-01-23)
 
 Completed in code:
 
@@ -44,11 +69,16 @@ Completed in code:
 - Workbox caching rules updated in `next.config.ts` (offline fallback, static assets, export endpoint).
 - Privacy-preserving monitoring (`GET /api/health` includes PWA checks).
 
-Remaining manual verification (release checklist):
+Automated coverage (non-exhaustive):
 
-- Replace placeholder screenshots with real screenshots taken from a running app (must keep exact dimensions).
-- Run Lighthouse PWA audit on a production build and confirm score targets.
-- Validate install UX on real devices (Android Chrome, iOS Safari).
+- PWA manifest assets + SW icon paths: `tests/unit/pwa/manifest-assets.test.ts`
+- Share Target redirect behavior: `tests/api/v1/share.test.ts`
+- Health endpoint includes PWA checks: `tests/api/health.test.ts`
+- `/offline` locale resolution + RTL + basic offline search: `tests/e2e/offline.spec.ts`
+- URL hydration (`?q`, `?category`, `?openNow`): `tests/e2e/pwa-launch-hydration.spec.ts`
+- Offline feedback queue + sync logic: `tests/lib/offline/feedback.test.ts`
+
+Remaining manual verification: see **Remaining Work (Manual / External)** above.
 
 ---
 
@@ -224,41 +254,15 @@ Notes:
 
 ### 1.3 Create PWA Screenshots
 
-**Required files:**
+Existing files (dimension-validated by tests):
 
-- [ ] `/public/screenshots/mobile-search.png` (540x720, PNG) — replace placeholder with real capture
-- [ ] `/public/screenshots/mobile-detail.png` (540x720, PNG) — replace placeholder with real capture
-- [ ] `/public/screenshots/tablet-search.png` (1280x720, PNG) — replace placeholder with real capture
-
-**Process:**
-
-1. Take screenshots from running app
-2. Crop to exact sizes (use ImageMagick or similar)
-3. Optimize PNG (70% quality minimum)
-4. Store in `public/screenshots/`
+- `public/screenshots/mobile-search.png` (540×720)
+- `public/screenshots/mobile-detail.png` (540×720)
+- `public/screenshots/tablet-search.png` (1280×720)
 
 ### 1.4 Create Icon Set
 
-**Required icons:**
-
-- [x] `public/icons/favicon-16.png` (16×16)
-- [x] `public/icons/favicon-32.png` (32×32)
-- [x] `public/icons/apple-touch-icon.png` (180×180, iOS)
-- [x] `public/icons/icon-192.png` (192×192)
-- [x] `public/icons/icon-512.png` (512×512)
-- [x] `public/icons/icon-maskable-192.png` (192×192, maskable)
-- [x] `public/icons/icon-maskable-512.png` (512×512, maskable)
-- [x] `public/icons/shortcut-search-96.png` (96×96)
-- [x] `public/icons/shortcut-crisis-96.png` (96×96)
-- [x] `public/icons/shortcut-dashboard-96.png` (96×96)
-- [x] `public/icons/badge-72x72.png` (72×72, notification badge)
-
-**Design requirements:**
-
-- [ ] Logo on uniform background
-- [ ] Maskable icons: Logo should be centered with safe area
-- [ ] All formats: PNG, optimized
-- [ ] Consistent branding
+Implemented in `public/icons/` (dimension-validated by tests). Design/branding verification is tracked in **Remaining Work (Manual / External)** above.
 
 ### 1.5 Implement Share Target Handler
 
@@ -389,12 +393,7 @@ Notes:
 
 **Ensure:** `app/[locale]/offline/page.tsx` exists and renders correctly
 
-With v17.4 changes, offline page should be:
-
-- [ ] Locale-aware (correct language)
-- [ ] RTL for Arabic
-- [ ] Translatable content
-- [ ] Works without network
+Implemented and covered by automation for locale + RTL (`tests/e2e/offline.spec.ts`). Offline network behavior is verified via runbook and tracked in **Remaining Work (Manual / External)** above.
 
 ---
 
@@ -405,18 +404,12 @@ The manifest `shortcuts` and `share_target` will only be useful if the Home page
 ### 3.1 Home Page: Read URL Params → Search State
 
 **Modify:** `app/[locale]/page.tsx` (or `hooks/useSearch.ts`)
-
-- [ ] Parse `?q=` and set initial query
-- [ ] Parse `?category=` and map to a valid `IntentCategory` value (e.g. `"Crisis"`)
-- [ ] Optional: parse `?openNow=1`
-- [ ] Ensure this runs client-side and does not fight with user typing (only apply on first mount / when params change)
+Implemented (covered by `tests/e2e/pwa-launch-hydration.spec.ts`).
 
 ### 3.2 Share Target: Redirect to URL Params
 
 **Add:** `app/api/v1/share/route.ts`
-
-- [ ] Accept `multipart/form-data` (title/text/url)
-- [ ] Redirect (303) to `/?q=...` (middleware handles locale)
+Implemented (covered by `tests/api/v1/share.test.ts`).
 
 > [!NOTE]
 > **Background Sync**: feedback + offline sync already auto-runs when the app is open and the network returns (see `components/offline/OfflineSync.tsx`). Service Worker Background Sync is a stretch goal and should only be added if we need syncing while the app is closed.
@@ -440,85 +433,13 @@ The manifest `shortcuts` and `share_target` will only be useful if the Home page
 > [!NOTE]
 > **Custom cache strategies:** Modify `next.config.ts` Workbox configuration, NOT the generated service worker files.
 
-**Verify:** Cache strategies optimal for:
-
-- [ ] Offline fallback: `/offline` is available while offline
-- [ ] Bulk export: `/api/v1/services/export` behaves NetworkFirst (fresh when online; usable offline)
-- [ ] Avoid caching auth-protected dashboard routes/responses
-- [ ] Static assets: `/_next/static/**` cached aggressively
+Implemented in `next.config.ts` (manual release verification is tracked in **Remaining Work (Manual / External)** above).
 
 ---
 
 ## Phase 5: Testing & Verification (1 day)
 
-### 5.1 PWA Lighthouse Audit
-
-```bash
-# PWA is disabled in dev mode; test in production build
-npm run build
-npm run start
-
-# Audit PWA
-npx lighthouse http://localhost:3000/ --view
-
-# Run in CI
-lighthouse http://production.com/en \
-  --chrome-flags="--headless=new" \
-  --output=json \
-  > lighthouse-report.json
-```
-
-**Expected scores:**
-
-- PWA score: 90+
-- Performance: 80+
-- Accessibility: 90+
-- Best Practices: 80+
-- SEO: 90+
-
-### 5.2 Test Installation
-
-**Chrome/Android:**
-
-1. Open in Chrome
-2. Three-dot menu → "Install app"
-3. Choose to install
-4. Verify home screen icon
-5. Verify app opens in standalone mode
-
-**Safari/iOS:**
-
-1. Open in Safari
-2. Share button → "Add to Home Screen"
-3. Verify home screen icon
-4. Verify app opens in fullscreen
-5. Test offline access
-
-### 5.3 Offline Functionality Test
-
-1. **Online:** Load app, search for service
-2. **Offline:**
-   - [ ] Previously viewed services cached
-   - [ ] Search still works (cached data)
-   - [ ] Navigation doesn't crash
-   - [ ] Shows correct language
-   - [ ] Arabic displays RTL correctly
-3. **Back Online:**
-   - [ ] Queued feedback syncs
-   - [ ] Fresh data loads
-   - [ ] No data loss
-
-See also: `docs/runbooks/pwa-testing.md` (authoritative manual checks).
-
-### 5.4 Multi-Language Test (All 7 locales)
-
-For each locale:
-
-- [ ] Load `/en`, `/fr`, `/zh-Hans`, `/ar`, `/pt`, `/es`, `/pa`
-- [ ] Go offline
-- [ ] Verify offline page in correct language
-- [ ] Return online and verify sync
-- [ ] Arabic offline page shows RTL
+Manual verification lives in `docs/runbooks/pwa-testing.md` (authoritative) and is tracked in **Remaining Work (Manual / External)** above.
 
 ---
 
@@ -528,33 +449,13 @@ For each locale:
 
 If planning mobile app store listing:
 
-**Requirements:**
-
-- [ ] 512x512 icon (with safe area for masking)
-- [ ] Screenshots in required formats
-- [ ] App description (translated)
-- [ ] Privacy policy link
-- [ ] Support email
-- [ ] Manifest.json valid
-
-**Process:**
-
-1. Generate signed APK from PWA (e.g., using Bubblewrap)
-2. Upload to Google Play Console
-3. Fill metadata
-4. Submit for review
-
-**Reference:** `docs/development/mobile-ready.md` (mobile architecture + deep linking notes).  
-Full store submission work is tracked under v15.1 (paused) in `docs/roadmaps/roadmap.md`.
+This is external tooling + credentials work (see `docs/development/mobile-ready.md`). Full native store submission is tracked under v15.1 (paused) in `docs/roadmaps/roadmap.md`.
 
 ### 6.2 App Store (iOS) PWA Listing
 
 For iOS:
 
-- [ ] Meta tags for homescreen (apple-touch-icon, apple-web-app-capable)
-- [ ] Status bar color (apple-mobile-web-app-status-bar-style)
-- [ ] Standalone display support
-- [ ] Screenshots for app preview
+Store listing requires native wrapper + Apple credentials; see `docs/development/mobile-ready.md`.
 
 **Note:** iOS doesn't install PWAs to home screen automatically; users must use "Add to Home Screen" menu.
 
@@ -566,8 +467,7 @@ For iOS:
 
 Update existing docs instead of creating new:
 
-- [ ] Ensure `docs/development/mobile-ready.md` reflects the current PWA config (manifest, icons, offline fallback)
-- [ ] Ensure `docs/runbooks/pwa-testing.md` matches the updated manifest + icons
+Implemented (docs reflect current PWA config).
 
 ### 7.2 Monitoring PWA Health
 
@@ -575,23 +475,25 @@ Update existing docs instead of creating new:
 
 Practical, privacy-preserving checks:
 
-- [ ] Lighthouse checks as part of release verification
-- [ ] Manual offline/online sync verification (runbook)
-- [ ] Watch for service worker registration errors during QA (DevTools)
+Tracked in **Remaining Work (Manual / External)** above.
 
 ---
 
 ## Success Criteria
 
-- [ ] Manifest passes validation (use webmanifest.app)
-- [ ] Lighthouse PWA score: 90+
-- [ ] Installation works on Android/iOS
-- [ ] Offline mode works for all 7 locales
-- [ ] Auto-sync on network restore works (app-layer sync via `components/offline/OfflineSync.tsx`)
-- [ ] Service worker: no 404 on registration
-- [ ] All icon sizes generated
-- [ ] Screenshots optimized and visible
-- [ ] Tests verify offline functionality
+**Code (implemented):**
+
+- [x] All icon sizes generated
+- [x] Tests verify key PWA/offline behaviors (manifest assets, offline route, URL hydration, offline feedback queue)
+- [x] Basic E2E coverage for offline search after initial sync (app-layer offline, not SW)
+
+**Manual / external (release verification):**
+
+Tracked in **Remaining Work (Manual / External)** above.
+
+**Future automation (optional):**
+
+- [ ] Add release-verification E2E coverage for service worker caching + installability (requires production build + PWA enabled)
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-01-23
 owner: jer
 tags: [development, localization, i18n]
 ---
@@ -27,6 +27,7 @@ tags: [development, localization, i18n]
 
 - **Separation of Content**: Hardcoded strings in `tsx` files are prohibited.
 - **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
+- **Server message loading**: When loading dictionaries in Server Components (e.g. the root layout), pass the route locale into `next-intl` (`getMessages({ locale })`) so rewritten routes (e.g. `/offline` → `/{locale}/offline`) render the correct language.
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
   - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
