@@ -26,7 +26,7 @@ This roadmap is intentionally **architecture-aware**:
   - Coordinates: `coordinates: { lat, lng }` (avoid new `latitude`/`longitude` fields).
   - Hours: `hours` uses 24-hour `"HH:MM"` per day; **Open Now** is already implemented in `lib/search/hours.ts`.
 
-### Current Baseline (Snapshot: 2026-01-21)
+### Historical Baseline (Snapshot: 2026-01-21)
 
 Recompute any time with `npm run audit:data` (or a local Node script) before starting a batch.
 
@@ -54,6 +54,13 @@ Recompute any time with `npm run audit:data` before starting a new batch.
 | Missing structured `hours` | 12      | Remaining hours require targeted verification      |
 | Missing `hours_text`       | 67      | Many services still need human-readable hours text |
 
+Deep Research artifacts used for v17.5:
+
+- Prompt set: `docs/roadmaps/2026-01-21-v17-5-ai-prompts.md`
+- Ingestion record (archived): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+- Audit workspace: `docs/roadmaps/v17-5-ai-results/README.md`
+- ADR: `docs/adr/011-ai-deep-research-output-ingestion.md`
+
 ### Active Follow-Up Flags (Don’t Lose These)
 
 - **`community-harvest-market` URL/evidence issue (resolved 2026-01-23):** v17.5 evidence spot-check indicated the referenced page returned `404`. The service `url` + provenance were updated to a stable official page, and contact info was re-verified. (See `docs/roadmaps/v17-5-ai-results/reports/evidence-spotcheck-2026-01-22.md` and `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.)
@@ -77,7 +84,7 @@ Use the existing audit tooling (see `docs/governance/data-enrichment-sop.md`):
 npm run audit:data
 ```
 
-**Record the baseline** in an audit note (recommended: `docs/audit/v17-5-data-quality-baseline.md`) so we can quantify improvements at the end of the release.
+**Record the baseline** in an audit note (recommended: `docs/audits/v17-5-data-quality-baseline.md`) so we can quantify improvements at the end of the release.
 
 ### 1.2 Categorized Data Gaps
 
@@ -142,7 +149,7 @@ Use the existing script when scope rules change or new services are added:
 Use the existing script, which writes coordinates to `coordinates: { lat, lng }` and caches results in `data/geocode-cache.json`:
 
 ```bash
-OPENCAGE_API_KEY=xxx npx tsx scripts/geocode-services.ts
+OPENCAGE_API_KEY=xxx node --import tsx scripts/geocode-services.ts
 ```
 
 ### 3.3 Manual Geocoding
@@ -348,12 +355,14 @@ npm run audit:data
 
 - [x] 100% services have `scope` field (baseline snapshot already achieved)
 - [ ] 90%+ services have `coordinates` (target: ≤ 20 missing)
-- [ ] 70%+ services have structured `hours` (target: ≤ 59 missing)
+- [x] 70%+ services have structured `hours` (achieved; 184/196 present as of 2026-01-23)
+- [ ] Reduce missing structured `hours` further (target: ≤ 5 missing) without introducing false “Open Now” results
 - [ ] Data validation passes all automated checks
 
 ### Enhanced Metadata (Should Have)
 
-- [ ] 50%+ services have access scripts (target: 100/196)
+- [x] 100% services have `access_script` (achieved; 196/196 present as of 2026-01-23)
+- [ ] Public UI surfaces `access_script` on service detail pages (multi-lingual via `next-intl`)
 - [x] 100% services have `plain_language_available` flag present (baseline snapshot already achieved)
 - [ ] Decide if/how to expose plain-language status to users (badge/filter)
 - [ ] 10+ services at L3 verification level
@@ -370,8 +379,8 @@ npm run audit:data
 
 - Updated `data/services.json` with all new fields
 - `data/geocode-cache.json` local cache for future updates (gitignored)
-- L3 outreach tracker (recommended: `docs/governance/` or `docs/audit/`, not `data/`)
-- Audit note with before/after metrics (recommended: `docs/audit/v17-5-data-quality-*.md`)
+- L3 outreach tracker (recommended: `docs/governance/` or `docs/audits/`, not `data/`)
+- Audit note with before/after metrics (recommended: `docs/audits/v17-5-data-quality-*.md`)
 - Updated scripts for future maintenance
 
 ---
