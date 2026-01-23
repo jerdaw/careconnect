@@ -319,17 +319,19 @@ Remaining work:
 
 ### 6.1 Identify L3 Service Candidates
 
-**New file:** `data/l3-candidates.csv`
+Workspace (v17.5):
 
-Research and identify major providers suitable for L3 status:
+- Workspace: `docs/roadmaps/v17-5-verification/README.md`
+- Tracker (manual): `data/verification/l3-candidates.csv`
+- Suggestions export (generated): `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
 
-```csv
-Service,Category,Reason,Contact Status
-Kingston General Hospital,health,Major regional provider,Not yet contacted
-Addiction Services Kingston,health,Government funded,Not yet contacted
-Kingston Shelter,housing,Essential community service,Not yet contacted
-...
+Generate an initial prioritized list (no data changes):
+
+```bash
+npm run audit:l3
 ```
+
+Track outreach and confirmations in `data/verification/l3-candidates.csv` (do not commit private emails/PII).
 
 **Criteria for L3:**
 
@@ -341,20 +343,12 @@ Kingston Shelter,housing,Essential community service,Not yet contacted
 
 ### 6.2 L3 Partnership Process
 
-1. **Identify target:** Major health/housing/crisis providers
-2. **Research:** Find decision-maker contact
-3. **Outreach:** Email + phone with partnership offer
-4. **Verification call:** Confirm all details
-5. **Document:** Store verification proof
-6. **Upgrade:** Mark as L3
-
-**Template:** `data/l3-partnership-tracker.csv`
-
-```csv
-Service,Contact Name,Email,Phone,Status,Verified Date,Notes
-KGH,Maria Smith,m.smith@kgh.on.ca,613-548-1232,In progress,2026-01-17,Waiting for callback
-...
-```
+1. Identify target: major health/housing/crisis providers
+2. Research: locate official intake/communications channel (public email, public phone, official form)
+3. Outreach: request provider confirmation of specific fields (hours, address, intake process, eligibility, etc.)
+4. Confirm: summarize what was confirmed and when (avoid storing PII or message contents in git)
+5. Upgrade: update `verification_level` to `L3` only when confirmation criteria are met
+6. Record: update provenance (`verified_at`, `verified_by`, `method`) and store a public `evidence_url` when available
 
 ### 6.3 Update Verification Multipliers
 

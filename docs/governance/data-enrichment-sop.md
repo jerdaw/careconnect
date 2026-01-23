@@ -187,6 +187,37 @@ Worked example + tooling (v17.5):
 node --import tsx scripts/audit-plain-language.ts
 ```
 
+### 5.7 Verification Level Upgrades (L2 → L3)
+
+This project is **governance-first**: `verification_level: "L3"` must only be used when the provider relationship is real and documented.
+
+**Do not commit private communications to git.** Avoid storing:
+
+- email bodies / screenshots
+- staff names or direct contact details not already public
+- private portal URLs or login flows
+
+v17.5 workspace (recommended starting point):
+
+- Workspace: `docs/roadmaps/v17-5-verification/README.md`
+- Tracker (manual): `data/verification/l3-candidates.csv`
+
+Generate a prioritized suggestion list (no service data changes):
+
+```bash
+npm run audit:l3
+```
+
+Output:
+
+- `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+
+When a provider confirmation is received:
+
+1. Summarize the confirmation in `confirmation_summary_public` (no PII).
+2. Record the date in `confirmation_received_at`.
+3. Only then consider upgrading the service’s `verification_level` to `L3` (and update any relevant provenance fields).
+
 ## 6. Quality Assurance
 
 ### Pre-Enrichment Checklist

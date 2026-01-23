@@ -1,0 +1,11 @@
+service_id,service_name_snapshot,intent_category,scope,current_verification_level,target_verification_level,reason_for_l3,preferred_outreach_channel,outreach_status,outreach_owner,outreach_started_at,last_followup_at,confirmation_received_at,confirmation_summary_public,notes
+kingston-general-hospital,Kingston General Hospital (KGH) Emergency Department,Health,kingston,L2,L3,High-impact emergency department; confirm contact details + hours/triage info,phone,not_contacted,jer,,,,,
+hotel-dieu-site,Hotel Dieu Hospital Urgent Care Centre (KHSC),Health,kingston,L2,L3,High-impact urgent care; confirm hours + access instructions + address details,phone,not_contacted,jer,,,,,
+providence-care-hospital,Providence Care Hospital,Health,kingston,L2,L3,High-impact healthcare provider; confirm contact + access instructions + hours,phone,not_contacted,jer,,,,,
+kingston-detox-centre,Kingston Detoxification Centre (KHSC),Crisis,kingston,L2,L3,High-impact crisis/withdrawal support; confirm intake process + hours,phone,not_contacted,jer,,,,,
+amhs-kfla-crisis-line,AMHS-KFLA 24/7 Crisis Line,Crisis,kingston,L2,L3,Core crisis line; confirm 24/7 availability + contact details,phone,not_contacted,jer,,,,,
+in-from-the-cold,In From the Cold Emergency Shelter,Housing,kingston,L2,L3,High-impact shelter; confirm current hours + intake rules + seasonal notes,email,not_contacted,jer,,,,,
+kingston-youth-shelter,Kingston Youth Shelter,Housing,kingston,L2,L3,High-impact youth shelter; confirm hours + eligibility + referral rules,phone,not_contacted,jer,,,,,
+partners-in-mission-food-bank,Partners in Mission Food Bank,Food,kingston,L2,L3,High-impact food bank; confirm distribution schedule + address + phone,email,not_contacted,jer,,,,,
+good-food-box-kingston,The Good Food Box Kingston,Food,kingston,L2,L3,High-impact food access; confirm order windows + pickup schedule,email,not_contacted,jer,,,,,
+maltby-centre-autism,Maltby Centre,Health,kingston,L2,L3,High-impact child/youth services; confirm hours + intake method,phone,not_contacted,jer,,,,,

@@ -244,6 +244,12 @@ Deep Research ingestion record: `docs/roadmaps/archive/2026-01-23-v17-5-ai-outpu
   - Target major Crisis/Health providers for official partnership
 - [ ] **L4 Gold Standard**: Identify candidates for third-party audit (governance concept; not in code yet)
 
+**v17.5 Phase 6 tracking (don’t forget):**
+
+- Tracker: `data/verification/l3-candidates.csv`
+- Workspace: `docs/roadmaps/v17-5-verification/README.md`
+- Generate suggestions: `npm run audit:l3` → `docs/roadmaps/v17-5-verification/outputs/l3-candidate-suggestions.json`
+
 #### Category Expansion
 
 - [ ] **Transport Services**: Currently only 2 (target: 5+)

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-01-23
 owner: jer
 tags: [governance, verification, protocol]
 ---
@@ -43,12 +43,14 @@ To maintain the highest level of accuracy and safety for service listings in Kin
 - Outreach to provider via email/phone script:
   > "Hello, we are listing your service on Kingston Care Connect. Please verify your hours and eligibility..."
 - Update `last_verified` timestamp.
+- **Do not commit private communications to git** (no email bodies, screenshots, or staff names).
 
 ### Step 4: Partnership (L2 to L3)
 
 - Provider uses "Claim Listing" feature.
 - Signs Partner Terms of Service (Click-Wrap).
 - Identity verification via work email.
+- Track outreach progress in a governance-safe way (no PII) when needed, e.g. `data/verification/l3-candidates.csv`.
 
 ## 4. Maintenance Cycle
 
