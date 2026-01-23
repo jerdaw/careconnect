@@ -233,7 +233,7 @@ Deep Research ingestion record: `docs/roadmaps/2026-01-22-v17-5-ai-output-ingest
 
 ### Active Follow-Up Flags (Don’t Lose These)
 
-- `community-harvest-market`: evidence spot-check indicates the referenced page returns `404` and likely needs a service `url` update + verification. Track + resolve before treating it as verified.
+- `community-harvest-market`: resolved 2026-01-23 (service `url` + provenance updated after initial evidence URL returned `404`; `hours` kept notes-only due to seasonality). See `docs/roadmaps/v17-5-ai-results/reports/community-harvest-market-followup-2026-01-23.md`.
 
 ---
 
