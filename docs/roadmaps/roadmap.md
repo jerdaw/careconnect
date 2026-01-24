@@ -171,7 +171,7 @@ Key achievements:
 
 - **Phase 1 (RLS Extensions)**: Implemented dashboard-specific RLS policies for feedback, analytics, and notifications with partner data isolation
 - **Phase 2 (Dashboard Features)**: Created settings page, service CRUD operations, member management, and notifications database integration
-- **Phase 3 (Admin Improvements)**: Enhanced admin service form, added reindex progress tracking, push notification targeting, and action logging
+- **Phase 3 (Admin Improvements)**: Enhanced admin service form, added reindex progress tracking, push notification targeting, action logging, and **secure role management (ADR-018)**
 - **Phase 4 (RBAC)**: Implemented 4-tier role hierarchy (owner/admin/editor/viewer) with 19 granular permissions, ownership transfer, and centralized authorization following ADR-007
 
 > [!NOTE]

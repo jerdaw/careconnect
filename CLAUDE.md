@@ -51,12 +51,22 @@ npx cap sync ios         # Sync iOS (requires macOS)
 
 ### Utility Scripts
 
-```bash
+````bash
 npm run tools:search                # CLI search tool for testing
 npm run bilingual-check             # Check bilingual content coverage
 npm run i18n-audit                  # Audit i18n translation keys
 node --import tsx scripts/migrate-data.ts  # Migrate local JSON to Supabase
-```
+
+### Admin Setup
+
+To grant admin privileges locally (requires running Supabase):
+
+```sql
+-- Run in Supabase SQL Editor
+INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
+````
+
+````
 
 ## Architecture
 
@@ -93,7 +103,7 @@ lib/search/index.ts::searchServices()
 5. Vector Search if client provides embedding (lib/search/vector.ts)
 6. Crisis Detection + Boosting (lib/search/crisis.ts)
 7. Geo-Distance Sorting (lib/search/geo.ts)
-```
+````
 
 **Key Files:**
 
