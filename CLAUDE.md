@@ -159,6 +159,14 @@ The platform uses **on-device AI** via WebLLM for privacy-preserving smart searc
 
 For filling missing fields (scope, coordinates, hours, access scripts), see `docs/governance/data-enrichment-sop.md`. Use `/data-enrichment` workflow for step-by-step process.
 
+**Database Optimization:**
+
+The database schema has been optimized for performance (see `docs/adr/014-database-index-optimization.md`):
+
+- **Audit Fields**: Foreign keys like `deleted_by`, `reviewed_by`, `performed_by` are intentionally unindexed (write-only provenance tracking).
+- **Index Strategy**: 18 unused indexes removed, 1 critical index added for dashboard queries.
+- **Supabase Warnings**: Remaining INFO-level warnings for unindexed audit fields and "unused" indexes are expected and safe to ignore.
+
 ## Secrets & Environment Files
 
 - Do not commit `.env.local` or any secrets. Use `.env.example` as the template and keep local values untracked.
