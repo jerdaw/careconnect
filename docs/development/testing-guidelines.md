@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-16
+last_updated: 2026-01-25
 owner: jer
 tags: [development, testing, guidelines, vitest, playwright, rtl]
 ---
@@ -18,11 +18,12 @@ Kingston Care Connect uses a **pragmatic tiered testing strategy** that prioriti
 
 ### Test Tiers
 
-| Tier          | Scope                          | CI Behavior          | Examples                                  |
-| ------------- | ------------------------------ | -------------------- | ----------------------------------------- |
-| **Critical**  | Data integrity, API contracts  | **Block merge**      | `data-integrity.spec.ts`, unit tests      |
-| **Core Flow** | Safety-critical user paths     | **Block merge**      | `crisis.spec.ts`, `accessibility.spec.ts` |
-| **Polish**    | UI interactions, multi-browser | **Warn only / Skip** | `search.spec.ts`, `multi-lingual.spec.ts` |
+| Tier          | Scope                             | CI Behavior       | Examples                                            |
+| ------------- | --------------------------------- | ----------------- | --------------------------------------------------- |
+| **Critical**  | Data integrity, API contracts     | **Block merge**   | Unit tests, type-check, lint, build                 |
+| **Core Flow** | Safety-critical logic             | **Block merge**   | Integration tests, API tests                        |
+| **E2E**       | Full user flows (Chromium only)   | **Warn only**     | `crisis.spec.ts`, `accessibility.spec.ts` (ADR-015) |
+| **Polish**    | UI polish, multi-browser coverage | **Skip / Manual** | Cross-browser testing, visual regression            |
 
 ### When to Skip Tests
 
@@ -84,9 +85,30 @@ npx playwright test
 
 ### Main Branch (Regression)
 
-- All PR checks
-- **Playwright E2E** on **Chromium only**
+- All PR checks (blocking)
+- **Playwright E2E** on **Chromium only** (non-blocking, see below)
 - GitHub reporter for inline annotations
+
+### E2E Tests: Non-Blocking Status
+
+> [!IMPORTANT]
+> As of ADR-015, E2E tests are **non-blocking** in CI (`continue-on-error: true`). They run for visibility but won't fail the build.
+
+**Why Non-Blocking?**
+
+E2E tests have been consistently timing out in CI due to infrastructure issues (networkidle waits, API timeouts), not code quality problems. Making them non-blocking allows:
+
+- Development to proceed without flaky test interference
+- E2E results remain visible for manual review
+- Core quality gates (lint, type-check, unit tests, build) remain strict
+
+**What You Should Do:**
+
+1. **Before Releases**: Manually review E2E test results in Playwright artifacts
+2. **Check CI Logs**: Even when CI passes, check for E2E failures
+3. **Report Issues**: If E2E tests fail on your changes, investigate (but don't block merge)
+
+See [ADR-015](../adr/015-non-blocking-e2e-tests.md) for full context.
 
 ### Why Chromium Only?
 

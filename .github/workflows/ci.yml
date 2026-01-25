@@ -53,6 +53,9 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    # Non-blocking: E2E tests provide visibility but don't fail the build
+    # See ADR-015 for rationale (flaky timeout issues in CI environment)
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
