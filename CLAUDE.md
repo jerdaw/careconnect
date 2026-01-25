@@ -256,7 +256,7 @@ export async function myProtectedAction() {
 
 1. **UI Layer**: `useRBAC()` hook hides/disables unauthorized actions
 2. **Server Actions**: `assertPermission()` validates before mutations
-3. **Database RLS**: Row-level security enforces org_id boundaries
+3. **Database RLS**: Strict Row-level security enforces org_id boundaries using "Unified Policy Per Action" strategy (ADR-013) to prevent policy overlap and performance issues.
 
 **Special Cases:**
 

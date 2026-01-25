@@ -88,6 +88,9 @@ When you have full access (and `origin` is configured), **make regular best-prac
 - **Push Notifications**:
   - Web Push API integrated via `lib/notifications/push-manager.ts`.
   - Subscriptions stored in `push_subscriptions` table.
+- **Database Security**:
+  - Strict "Unified Policy Per Action" RLS strategy (ADR-013).
+  - All `SECURITY DEFINER` functions have fixed `search_path`.
 - **Partner Portal**:
   - Self-service dashboard at `/dashboard`.
   - Organization-based RBAC via `organization_members`.
