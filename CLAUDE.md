@@ -26,7 +26,7 @@ npm run lint:fix         # ESLint with auto-fix
 npm test                 # Run all Vitest unit tests
 npm run test:watch       # Vitest in watch mode
 npm run test:coverage    # Generate coverage report (thresholds: lib/search 65%, lib/ai 85%, hooks 85%)
-npm run test:e2e:local   # Playwright E2E tests (Chromium only, prefer CI)
+npm run test:e2e:local   # Playwright E2E tests (Chromium only; non-blocking in CI per ADR-015)
 npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
 npm run test:a11y        # Run accessibility audit (Axe-core + Interactive)
 ```
@@ -308,8 +308,9 @@ Located at `app/[locale]/dashboard/`:
 **E2E** (Playwright):
 
 - `tests/e2e/**/*`
-- Run: `npm run test:e2e:local` (Chromium only, prefer CI)
+- Run: `npm run test:e2e:local` (Chromium only)
 - Critical paths: Search, Partner Login, Service Editing
+- **CI Status**: Non-blocking (ADR-015) - runs for visibility but doesn't fail builds due to environmental timeout issues
 
 **Coverage Requirements:**
 
