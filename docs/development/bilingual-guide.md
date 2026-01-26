@@ -58,6 +58,20 @@ tags: [development, localization, i18n]
 | `npm run bilingual-check` | Checks EN/FR parity for service data                 | `data/services.json` |
 | `npm run validate-data`   | Validates service schema, warns if `name_fr` missing | `data/services.json` |
 
+### French Translation Workflow (Service Data)
+
+For translating service data fields (especially `access_script`, `description`, and other content-rich fields), we use a semi-automated batch translation process:
+
+**Process Overview:**
+1. Export fields needing translation: `npm run export:access-script-fr`
+2. Generate AI translation prompts: `npm run translate:prompt <batch-file>`
+3. Get translations from Claude/ChatGPT using the generated prompt
+4. Parse AI responses: `npm run translate:parse <batch-file> <response-file>`
+5. Validate output: `npm run translate:validate <output-file>`
+6. Review and commit the validated translations
+
+**Full Documentation:** See `docs/workflows/french-translation-workflow.md` for the complete step-by-step guide, including quality guidelines and validation rules.
+
 ### Audit Details
 
 The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:

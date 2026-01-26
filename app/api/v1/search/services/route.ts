@@ -6,16 +6,22 @@ import { searchRequestSchema } from "@/lib/schemas/search"
 import { detectCrisis } from "@/lib/search/crisis"
 import { scoreServicesServer } from "@/lib/search/server-scoring"
 import { ServicePublic } from "@/types/service-public"
+import { trackPerformance } from "@/lib/performance/tracker"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
 
 export async function POST(request: NextRequest) {
-  // 1. Rate limiting
-  const clientIp = getClientIp(request)
-  const rateLimit = await checkRateLimit(clientIp, 60, 60 * 1000) // 60/min for search
-  if (!rateLimit.success) {
-    return createApiError("Rate limit exceeded", 429)
-  }
+  return trackPerformance(
+    "api.search.total",
+    async () => {
+      // 1. Rate limiting
+      const clientIp = getClientIp(request)
+      const rateLimit = await checkRateLimit(clientIp, 60, 60 * 1000) // 60/min for search
+      if (!rateLimit.success) {
+        return createApiError("Rate limit exceeded", 429)
+      }
 
-  try {
+      try {
     // 2. Parse and validate body
     const body = await request.json()
     const parsed = searchRequestSchema.safeParse(body)
@@ -47,20 +53,37 @@ export async function POST(request: NextRequest) {
       dbQuery = dbQuery.eq("category", filters.category)
     }
 
-    // 6. Fetch Candidates
-    // Note: We don't perform SQL sorting or precise pagination here.
-    // We fetch enough candidates to likely contain the top results after re-scoring.
-    const CANDIDATE_LIMIT = 100
-    dbQuery = dbQuery.limit(CANDIDATE_LIMIT)
+        // 6. Fetch Candidates
+        // Note: We don't perform SQL sorting or precise pagination here.
+        // We fetch enough candidates to likely contain the top results after re-scoring.
+        const CANDIDATE_LIMIT = 100
+        dbQuery = dbQuery.limit(CANDIDATE_LIMIT)
 
-    const { data, error } = await dbQuery
+        const { data } = await trackPerformance(
+          "api.search.dbQuery",
+          async () => {
+            try {
+              return await withCircuitBreaker(async () => {
+                const result = await dbQuery
+                if (result.error) throw result.error
+                return result
+              })
+            } catch (err) {
+              if (err instanceof CircuitOpenError) {
+                // Special error for circuit breaker
+                throw err
+              }
+              throw err
+            }
+          },
+          {
+            hasQuery: !!query.trim(),
+            hasCategory: !!filters.category,
+            limit: CANDIDATE_LIMIT,
+          }
+        )
 
-    if (error) {
-      console.error("Supabase search error:", error.message)
-      return createApiError("Search failed", 500)
-    }
-
-    let services = (data as unknown as ServicePublic[]) || []
+        let services = (data as unknown as ServicePublic[]) || []
 
     // ROBUSTNESS PATCH: Ensure 988 is always Canada-wide (fixes stale DB data in dev)
     services = services.map((s) => {
@@ -70,12 +93,21 @@ export async function POST(request: NextRequest) {
       return s
     })
 
-    // 7. Server-Side Scoring (The "Hybrid" Part)
-    // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent
-    let scoredResults = scoreServicesServer(services, query, {
-      location,
-      locale,
-    })
+        // 7. Server-Side Scoring (The "Hybrid" Part)
+        // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent
+        let scoredResults = await trackPerformance(
+          "api.search.scoring",
+          async () => {
+            return scoreServicesServer(services, query, {
+              location,
+              locale,
+            })
+          },
+          {
+            servicesCount: services.length,
+            queryLength: query.length,
+          }
+        )
 
     // 8. Crisis Detection & Safety Boost (v14.0/v16.0)
     // If query indicates crisis, ensure crisis services are ALWAYS top regardless of other scores
@@ -108,8 +140,17 @@ export async function POST(request: NextRequest) {
       response.headers.set("Cache-Control", "public, s-maxage=60")
     }
 
-    return response
-  } catch (err) {
-    return handleApiError(err)
-  }
+        return response
+      } catch (err) {
+        if (err instanceof CircuitOpenError) {
+          return createApiError("Service temporarily unavailable (circuit breaker)", 503)
+        }
+        return handleApiError(err)
+      }
+    },
+    {
+      endpoint: "/api/v1/search/services",
+      method: "POST",
+    }
+  )
 }

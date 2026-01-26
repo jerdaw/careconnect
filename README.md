@@ -18,7 +18,55 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ---
 
-## Current Features (v12.0)
+## Current Version
+
+**v17.6** - Authorization Resilience & Tiered Security (2026-01-25)
+
+## Current Features
+
+### Authorization Resilience (v17.6)
+
+- **Tiered Circuit Breaker Protection**: Authorization checks wrap database calls to prevent cascading failures.
+- **Fail-Secure Mutations**: High-risk actions (edit/delete) fail closed during database outages to maintain security.
+- **Safe Read fallbacks**: Low-risk permission checks fail open with safe defaults to maintain UI stability.
+- **Resilience Audit**: Full coverage for all authorization assertions with dedicated unit test suite.
+
+### Performance & Resilience (v17.5)
+
+- **Performance Tracking**: Real-time metrics with p50/p95/p99 latency tracking
+- **Circuit Breaker Pattern**: Automatic failover when database unavailable (fast-fail in <1ms)
+- **Health Check API**: Public and authenticated endpoints for system status
+- **Load Testing**: k6 infrastructure for baseline metrics and regression detection
+- **Metrics Endpoint**: Development-only API for operational visibility
+
+### Partner Portal & Dashboard (v17.4)
+
+- **Organization Management**: Create orgs, manage members with role-based access
+- **Service CRUD**: Partners can create, edit, and publish their listings
+- **Analytics**: View search analytics and user feedback
+- **Notifications**: Partner communication center
+- **RBAC System**: 4 role tiers (Owner, Admin, Editor, Viewer) with 19 granular permissions
+
+### Accessibility & Compliance (v17.3)
+
+- **WCAG 2.1 AA Compliant**: High-contrast mode, skip-links, keyboard navigation
+- **Comprehensive Testing**: Automated accessibility audits with Axe-core
+- **Voice Input**: Natural language voice search support
+
+### Internationalization (v17.2)
+
+- **7 Languages**: English, Canadian French, Arabic, Simplified Chinese, Spanish, Punjabi, Portuguese
+- **RTL Support**: Full right-to-left layout for Arabic interface
+- **Locale-Aware Search**: Language-specific synonyms and results
+
+### Security & Authorization (v17.0)
+
+- **Row-Level Security**: Database-enforced access controls
+- **RBAC System**: Comprehensive permission matrix
+- **Session Management**: Secure authentication with Supabase
+- **Audit Trails**: Detailed logging of user actions
+
+### Core Search Features (v12.0-v16.0)
 
 ### Legal & Compliance Infrastructure
 
@@ -109,23 +157,68 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ### Scripts
 
+#### Development & Testing
+
 | Command                   | Description                             |
 | :------------------------ | :-------------------------------------- |
 | `npm run dev`             | Start development server (Turbo)        |
 | `npm run build`           | Build for production                    |
+| `npm run start`           | Start production server                 |
 | `npm test`                | Run unit and integration tests (Vitest) |
+| `npm run test:watch`      | Vitest in watch mode                    |
 | `npm run test:coverage`   | Generate coverage report                |
+| `npm run test:e2e`        | Run E2E tests (all browsers)            |
 | `npm run test:e2e:local`  | Run E2E tests (Chromium only)           |
+| `npm run test:a11y`       | Run accessibility audit (Axe-core)      |
 | `npm run type-check`      | TypeScript compiler check               |
 | `npm run lint`            | ESLint code quality check               |
-| `npm run health-check`    | Validate all service URLs               |
-| `npm run phone-validate`  | Validate phone numbers (Twilio)         |
-| `npm run validate-data`   | Validate data schema (Zod)              |
-| `npm run check-staleness` | Check for stale/unverified data         |
-| `npm run audit:data`      | Audit data quality gaps (enrichment)    |
-| `npm run analyze`         | Analyze production bundle size          |
-| `npm run i18n-audit`      | Audit translation key coverage          |
-| `npm run audit:qa`        | Audit data quality and integrity        |
+| `npm run lint:fix`        | ESLint with auto-fix                    |
+| `npm run format`          | Format code with Prettier               |
+| `npm run format:check`    | Check code formatting                   |
+| `npm run ci:check`        | Run CI validation checks                |
+| `npm run check:root`      | Check project root hygiene              |
+
+#### Load Testing (v17.5)
+
+| Command                   | Description                             |
+| :------------------------ | :-------------------------------------- |
+| `npm run test:load`       | Run search API load test (realistic)    |
+| `npm run test:load:smoke` | Run smoke test (basic connectivity)     |
+| `npm run test:load:sustained` | Run sustained load test (30min)     |
+| `npm run test:load:spike` | Run spike test (sudden traffic spike)   |
+
+#### Data Validation & Audits
+
+| Command                   | Description                                      |
+| :------------------------ | :----------------------------------------------- |
+| `npm run validate-data`   | Validate data schema (Zod)                       |
+| `npm run db:validate`     | Alias for validate-data                          |
+| `npm run db:verify`       | Verify database integrity (row count, RLS)       |
+| `npm run health-check`    | Validate all service URLs                        |
+| `npm run phone-validate`  | Validate phone numbers (Twilio)                  |
+| `npm run check-staleness` | Check for stale/unverified data                  |
+| `npm run audit:data`      | Comprehensive data completeness audit            |
+| `npm run audit:qa`        | Data quality and integrity audit                 |
+| `npm run audit:coords`    | Export services with missing coordinates         |
+| `npm run audit:hours`     | Export services with missing operating hours     |
+| `npm run audit:access-scripts` | Audit access_script quality             |
+| `npm run audit:l3`        | Export L3 verification candidates                |
+| `npm run bilingual-check` | Check bilingual content coverage                 |
+| `npm run i18n-audit`      | Audit i18n translation key coverage              |
+| `npm run analyze`         | Analyze production bundle size                   |
+
+#### Data Enrichment & Translation
+
+| Command                         | Description                                    |
+| :------------------------------ | :--------------------------------------------- |
+| `npm run export:access-script-fr` | Export access_script fields for French       |
+| `npm run translate:prompt`      | Generate AI translation prompts                |
+| `npm run translate:parse`       | Parse AI response into structured JSON         |
+| `npm run translate:validate`    | Validate translation batch                     |
+| `npm run backfill:hours-text`   | Backfill hours_text from structured hours      |
+| `npm run geocode`               | Geocode addresses (requires OPENCAGE_API_KEY)  |
+
+See [French Translation Workflow](docs/workflows/french-translation-workflow.md) for detailed translation process.
 
 ### Environment Variables
 

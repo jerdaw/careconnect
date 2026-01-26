@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to the development agent when working with code in this repository.
 
 ## Overview
 
@@ -15,9 +15,14 @@ Kingston Care Connect is a verified, governance-first search engine for social s
 ```bash
 npm run dev              # Start dev server with Turbo (port 3000)
 npm run build            # Production build (runs postbuild to generate embeddings)
+npm run start            # Start production server
 npm run type-check       # TypeScript type checking
 npm run lint             # ESLint
 npm run lint:fix         # ESLint with auto-fix
+npm run format           # Format code with Prettier
+npm run format:check     # Check code formatting without changes
+npm run ci:check         # Run CI validation checks
+npm run check:root       # Check project root for unexpected files
 ```
 
 ### Testing
@@ -26,18 +31,47 @@ npm run lint:fix         # ESLint with auto-fix
 npm test                 # Run all Vitest unit tests
 npm run test:watch       # Vitest in watch mode
 npm run test:coverage    # Generate coverage report (thresholds: lib/search 65%, lib/ai 85%, hooks 85%)
+npm run test:e2e         # Playwright E2E tests (all browsers)
 npm run test:e2e:local   # Playwright E2E tests (Chromium only; non-blocking in CI per ADR-015)
 npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
 npm run test:a11y        # Run accessibility audit (Axe-core + Interactive)
+npm run test:load        # k6 load test: search API (10-50 VUs, realistic traffic)
+npm run test:load:smoke  # k6 smoke test: basic connectivity (1 VU, 30s)
+npm run test:load:sustained # k6 sustained load: stability test (20 VUs, 30min)
+npm run test:load:spike  # k6 spike test: sudden traffic spike (0-100 VUs)
 ```
 
 ### Data Validation & Health Checks
 
 ```bash
 npm run validate-data    # Validate service schema with Zod
+npm run db:validate      # Alias for validate-data (Zod schema validation)
+npm run db:verify        # Verify database integrity (row count, embeddings, RLS)
 npm run health-check     # Validate all service URLs
 npm run phone-validate   # Validate phone numbers via Twilio
 npm run check-staleness  # Check for stale/unverified data
+npm run audit:data       # Comprehensive data completeness audit (missing fields, gaps by category)
+npm run audit:qa         # Data quality and integrity audit
+```
+
+### Data Enrichment & Translation
+
+```bash
+# Data Enrichment Audits (export gaps for AI-assisted enrichment)
+npm run audit:coords              # Export services with missing coordinates
+npm run audit:hours               # Export services with missing operating hours
+npm run audit:access-scripts      # Audit access_script quality and completeness
+npm run audit:l3                  # Export L3 verification candidate suggestions
+
+# French Translation Workflow (see docs/workflows/french-translation-workflow.md)
+npm run export:access-script-fr   # Export access_script fields for French translation
+npm run translate:prompt          # Generate AI translation prompts from batch file
+npm run translate:parse           # Parse AI response into structured JSON batch
+npm run translate:validate        # Validate translation batch structure and quality
+
+# Data Backfill & Geocoding
+npm run backfill:hours-text       # Backfill hours_text field from structured hours data
+npm run geocode                   # Geocode service addresses using OpenCage API (requires OPENCAGE_API_KEY)
 ```
 
 ### Mobile Development
@@ -51,11 +85,12 @@ npx cap sync ios         # Sync iOS (requires macOS)
 
 ### Utility Scripts
 
-````bash
+```bash
 npm run tools:search                # CLI search tool for testing
-npm run bilingual-check             # Check bilingual content coverage
+npm run bilingual-check             # Check bilingual content coverage (alias: audit:bilingual)
 npm run i18n-audit                  # Audit i18n translation keys
 node --import tsx scripts/migrate-data.ts  # Migrate local JSON to Supabase
+```
 
 ### Admin Setup
 
@@ -64,9 +99,7 @@ To grant admin privileges locally (requires running Supabase):
 ```sql
 -- Run in Supabase SQL Editor
 INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
-````
-
-````
+```
 
 ## Architecture
 
@@ -113,7 +146,40 @@ lib/search/index.ts::searchServices()
 - `lib/search/data.ts` - Data loader (Supabase fallback to JSON)
 - `lib/search/search-mode.ts` - Mode detection + server search client
 
-### Offline Infrastructure (v15.0)
+#### Authorization Resilience (v17.6+)
+
+**Overview**: Multi-layered protection for authorization checks to maintain security and stability during database outages.
+
+**Core Components**:
+- Integrated with `lib/resilience/supabase-breaker.ts` for database-aware failure handling.
+- Tiered risk levels (`high`, `medium`, `low`) for all authorization assertions.
+
+**Strategy**:
+- **High Risk**: Fails closed (secure-by-default). Mutative actions like updating or deleting services are blocked if permissions cannot be verified.
+- **Low Risk**: Fails open with safe defaults. Read-only checks like `getEffectivePermissions` return empty results rather than crashing, maintaining UI availability without leaking data.
+
+**Usage Pattern**:
+
+```typescript
+import { assertServiceOwnership } from '@/lib/auth/authorization'
+
+// Defaults to 'high' risk, fails closed if circuit is open
+await assertServiceOwnership(supabase, userId, serviceId)
+
+// Explicitly low risk, fails open with safe default
+const perms = await getEffectivePermissions(supabase, userId, orgId, 'low')
+```
+
+**Protected Functions**:
+- `assertServiceOwnership`, `assertOrganizationMembership`, `assertPermission`, `assertAdminRole`
+- `getEffectivePermissions`, `getUserOrganizationRole`
+
+**Best Practices**:
+- ✅ Use 'high' risk for any mutative server actions.
+- ✅ Use 'low' risk only for non-sensitive UI-hinting operations.
+- ✅ Always provide the necessary context (user ID, organization ID) to logging.
+
+#### Offline Infrastructure (v15.0)
 
 The platform is **Offline-Ready** via a multi-layer caching strategy:
 
@@ -121,6 +187,168 @@ The platform is **Offline-Ready** via a multi-layer caching strategy:
 2. **Synchronization** (`lib/offline/sync.ts`): Orchestrates background sync from `/api/v1/services/export`.
 3. **Hybrid Search** (`lib/search/data.ts`): Automatically falls back to IndexedDB if network fails or `isOffline` is true.
 4. **Offline Feedback**: Queueing logic ensures feedback is stored locally and synced when online.
+
+### Performance Tracking & Resilience (v17.5+)
+
+The platform includes **operational observability and resilience patterns** to monitor performance and handle database failures gracefully.
+
+#### Performance Tracking System
+
+**Overview**: Lightweight, opt-in instrumentation for tracking operation latencies.
+
+**Core Components**:
+- `lib/performance/tracker.ts` - Wrapper around logger for tracking operations
+- `lib/performance/metrics.ts` - In-memory aggregation (p50, p95, p99 percentiles)
+- Enabled via `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true` (dev/staging only)
+
+**Usage Pattern**:
+```typescript
+import { trackPerformance } from '@/lib/performance/tracker'
+
+// Async operations
+const result = await trackPerformance('operation.name', async () => {
+  return await someOperation()
+}, { metadata: 'optional' })
+
+// Manual timing
+import { createPerformanceTimer } from '@/lib/performance/tracker'
+const stopTimer = createPerformanceTimer('operation.name')
+// ... do work ...
+stopTimer()
+```
+
+**Instrumented Operations**:
+- Search: `search.total`, `search.dataLoad`, `search.keywordScoring`, `search.vectorScoring`
+- API: `api.search.total`, `api.search.dbQuery`, `api.search.scoring`
+- Data Loading: `dataLoad.indexedDB`, `dataLoad.supabase`, `dataLoad.jsonFallback`
+
+**Metrics Endpoints**:
+- `GET /api/v1/health` - Public health check with optional detailed metrics
+  - Basic status: Always public (for load balancers)
+  - Detailed metrics: Requires authentication or development mode
+  - Rate limit: 10 req/min per IP
+- `GET /api/v1/metrics` - Dedicated metrics endpoint (development/staging only)
+  - Query params: `?operation=search.total&raw=true&limit=100`
+  - Returns: Aggregated metrics (p50, p95, p99) and optional raw data points
+  - Requires: Authentication, only available in non-production
+  - Rate limit: 30 req/min per IP
+- `DELETE /api/v1/metrics` - Reset metrics (development only)
+  - Requires: Authentication
+
+**Best Practices**:
+- ✅ Enable in development and staging for visibility
+- ✅ Disable in production (uses in-memory storage, not scalable)
+- ✅ Use structured metadata for context (query length, service count, etc.)
+- ✅ Keep operation names hierarchical with dot-notation (`module.operation`)
+- ❌ Don't track trivial operations (<5ms typical duration)
+- ❌ Don't include sensitive data in metadata
+
+#### Circuit Breaker Pattern
+
+**Overview**: Resilience pattern that prevents cascading failures by fast-failing when database is unavailable.
+
+**Core Components**:
+- `lib/resilience/circuit-breaker.ts` - Generic circuit breaker implementation
+- `lib/resilience/supabase-breaker.ts` - Supabase-specific wrapper with fallback support
+- `lib/resilience/telemetry.ts` - Event logging for state transitions
+
+**States**:
+1. **CLOSED** (normal): Requests pass through to database
+2. **OPEN** (failing): Requests fast-fail (<1ms) without hitting database
+3. **HALF_OPEN** (testing): Allow limited requests to test recovery
+
+**Configuration** (environment variables):
+```bash
+CIRCUIT_BREAKER_ENABLED=true                    # Enable/disable circuit breaker
+CIRCUIT_BREAKER_FAILURE_THRESHOLD=3             # Failures before opening
+CIRCUIT_BREAKER_TIMEOUT=30000                   # ms before retry (OPEN → HALF_OPEN)
+```
+
+**Usage Pattern**:
+```typescript
+import { withCircuitBreaker } from '@/lib/resilience/supabase-breaker'
+
+// With fallback (recommended for read operations)
+const result = await withCircuitBreaker(
+  async () => await supabase.from('services').select('*'),
+  async () => loadFromJSONFallback()  // Optional fallback when circuit is open
+)
+
+// Without fallback (write operations)
+const { data, error } = await withCircuitBreaker(
+  async () => await supabase.from('services').insert(newService)
+)
+// Handle CircuitOpenError in catch block if needed
+```
+
+**Protected Operations**:
+- ✅ Search data loading (`lib/search/data.ts`)
+- ✅ Service management (`lib/services.ts`: claimService, getServiceById, updateService)
+- ✅ Analytics tracking (`lib/analytics.ts`: trackEvent, getAnalyticsForServices)
+- ✅ API routes (`app/api/v1/services/**`)
+- ✅ Offline sync (`lib/offline/sync.ts` checks circuit state)
+
+**Best Practices**:
+- ✅ Always wrap Supabase calls with `withCircuitBreaker()`
+- ✅ Provide fallback functions for read operations when possible
+- ✅ Handle `CircuitOpenError` gracefully (don't retry, it's intentional)
+- ✅ Use circuit breaker for **all** database operations, not just critical paths
+- ✅ Log circuit breaker events for operational visibility
+- ❌ Don't retry when circuit is open (defeats the purpose)
+- ❌ Don't use circuit breaker for client-side operations (browser already has timeout handling)
+- ❌ Don't share circuit breaker instances across different services/databases
+
+**Monitoring**:
+- Health check endpoint: `GET /api/v1/health` shows circuit breaker state and stats
+- Log events: Circuit state transitions are logged with structured data
+- Stats available: failure count, success count, failure rate, next attempt time
+
+**Example: Complete API Route Protection**:
+```typescript
+import { withCircuitBreaker } from '@/lib/resilience/supabase-breaker'
+import { trackPerformance } from '@/lib/performance/tracker'
+
+export async function GET(request: NextRequest) {
+  return trackPerformance('api.myEndpoint.total', async () => {
+    // ... rate limiting, auth, etc. ...
+
+    const { data, error } = await trackPerformance('api.myEndpoint.dbQuery', async () =>
+      withCircuitBreaker(async () =>
+        supabase.from('my_table').select('*')
+      )
+    )
+
+    if (error) {
+      logger.error('Database query failed', { error })
+      return createApiError('Query failed', 500)
+    }
+
+    return createApiResponse(data)
+  }, { endpoint: '/api/myEndpoint' })
+}
+```
+
+**Recovery Behavior**:
+- Circuit opens after 3 consecutive failures OR 50% error rate in 60s window
+- Circuit remains open for 30s (configurable)
+- Circuit transitions to HALF_OPEN after timeout, allows 1 test request
+- If test succeeds → Circuit closes (normal operation resumes)
+- If test fails → Circuit reopens for another 30s
+
+**Fallback Strategy** (Read Operations):
+- Search: Falls back to local JSON files (`data/services.json`)
+- IndexedDB: Client-side operations use offline cache
+- Analytics: Gracefully degrades (non-critical)
+- Write Operations: No fallback (fail-fast, user sees error)
+
+**When Circuit Opens**:
+1. User requests are fast-failed (<1ms instead of 30s timeout)
+2. Fallback data sources are used when available (JSON, IndexedDB)
+3. Circuit breaker logs OPEN state transition
+4. Health check endpoint reports `unhealthy` status
+5. After timeout, circuit tests recovery automatically
+
+**ADR Reference**: See `docs/adr/016-performance-tracking-and-circuit-breaker.md` for full architectural decisions and trade-offs.
 
 ### AI System (WebLLM)
 
@@ -157,7 +385,17 @@ The platform uses **on-device AI** via WebLLM for privacy-preserving smart searc
 
 **Data Enrichment:**
 
-For filling missing fields (scope, coordinates, hours, access scripts), see `docs/governance/data-enrichment-sop.md`. Use `/data-enrichment` workflow for step-by-step process.
+For filling missing fields (scope, coordinates, hours, access scripts):
+
+- **Comprehensive Guide**: See `docs/governance/data-enrichment-sop.md` for the full SOP
+- **Quick Audit**: Run `npm run audit:data` to identify all data gaps
+- **Export Gaps**: Use audit scripts to export specific gaps for AI-assisted enrichment:
+  - `npm run audit:coords` - Missing coordinates
+  - `npm run audit:hours` - Missing operating hours
+  - `npm run audit:access-scripts` - Access script quality
+  - `npm run audit:l3` - L3 verification candidates
+- **French Translation**: See `docs/workflows/french-translation-workflow.md` for the batch translation process using `translate:prompt`, `translate:parse`, and `translate:validate` commands
+- **Geocoding**: Use `npm run geocode` with OpenCage API to add coordinates (requires `OPENCAGE_API_KEY` in `.env.local`)
 
 **Database Optimization:**
 
@@ -199,6 +437,14 @@ The app uses **next-intl** for i18n with 7 locales: `en, fr, zh-Hans, ar, pt, es
 
 - `messages/{locale}.json` (e.g., `messages/en.json`)
 - Service data has `_fr` suffixed fields (e.g., `name_fr`, `description_fr`)
+
+**Translation Workflow:**
+
+For translating service data (especially `access_script` and other content fields):
+
+- **Process**: See `docs/workflows/french-translation-workflow.md` for the complete batch translation workflow
+- **Tools**: Use `translate:prompt`, `translate:parse`, and `translate:validate` npm scripts
+- **Quality Checks**: Run `npm run bilingual-check` to audit EN/FR coverage
 
 **Search Behavior:**
 

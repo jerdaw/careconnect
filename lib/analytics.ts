@@ -1,5 +1,7 @@
 import { supabase } from "./supabase"
 import { logger } from "./logger"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
 
 export type EventType = "view_detail" | "click_website" | "click_call"
 
@@ -9,13 +11,20 @@ export type EventType = "view_detail" | "click_website" | "click_call"
  */
 export async function trackEvent(serviceId: string, eventType: EventType) {
   try {
-    await supabase.from("analytics_events").insert({
-      service_id: serviceId,
-      event_type: eventType,
-    })
+    await withCircuitBreaker(async () =>
+      supabase.from("analytics_events").insert({
+        service_id: serviceId,
+        event_type: eventType,
+      })
+    )
   } catch (error) {
     // Analytics should fail silently to not disrupt user experience
-    logger.warn("Analytics error:", { error, serviceId, eventType, component: "analytics" })
+    // This includes circuit breaker open errors
+    if (error instanceof CircuitOpenError) {
+      logger.warn("Analytics skipped: Circuit breaker open", { serviceId, eventType, component: "analytics" })
+    } else {
+      logger.warn("Analytics error:", { error, serviceId, eventType, component: "analytics" })
+    }
   }
 }
 
@@ -40,13 +49,27 @@ export async function getAnalyticsForServices(serviceIds: string[]): Promise<Rec
   const sixtyDaysAgo = new Date()
   sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60)
 
-  const { data, error } = await supabase
-    .from("analytics_events")
-    .select("service_id, created_at")
-    .in("service_id", serviceIds)
+  let data
+  try {
+    const result = await withCircuitBreaker(async () =>
+      supabase
+        .from("analytics_events")
+        .select("service_id, created_at")
+        .in("service_id", serviceIds)
+    )
 
-  if (error || !data) {
-    logger.error("Error fetching analytics:", error, { component: "analytics", serviceIds })
+    if (result.error || !result.data) {
+      logger.error("Error fetching analytics:", result.error, { component: "analytics", serviceIds })
+      return {}
+    }
+
+    data = result.data
+  } catch (error) {
+    if (error instanceof CircuitOpenError) {
+      logger.warn("Analytics fetch skipped: Circuit breaker open", { component: "analytics", serviceIds })
+    } else {
+      logger.error("Unexpected error fetching analytics:", error, { component: "analytics", serviceIds })
+    }
     return {}
   }
 

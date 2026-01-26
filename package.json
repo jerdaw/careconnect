@@ -31,6 +31,9 @@
     "backfill:hours-text": "node --import tsx scripts/backfill-hours-text.ts",
     "audit:l3": "node --import tsx scripts/export-l3-candidate-suggestions.ts",
     "export:access-script-fr": "node --import tsx scripts/export-access-script-fr-translation-batches.ts --out-dir docs/audits/v17-5/ai-results/access-script-fr/input",
+    "translate:prompt": "node --import tsx scripts/batch-translate-helper.ts generate-prompt",
+    "translate:parse": "node --import tsx scripts/batch-translate-helper.ts parse-response",
+    "translate:validate": "node --import tsx scripts/batch-translate-helper.ts validate",
     "audit:bilingual": "node --import tsx scripts/bilingual-audit.ts",
     "i18n-audit": "node --import tsx scripts/i18n-key-audit.ts",
     "health-check": "node --import tsx scripts/health-check-urls.ts",
@@ -45,7 +48,11 @@
     "premobile:sync": "node --import tsx scripts/check-mobile-environment.ts",
     "premobile:build": "node --import tsx scripts/check-mobile-environment.ts",
     "check:root": "bash scripts/check-root-hygiene.sh",
-    "test:a11y": "npx playwright test tests/e2e/accessibility-audit.spec.ts tests/e2e/accessibility-interactive.spec.ts"
+    "test:a11y": "npx playwright test tests/e2e/accessibility-audit.spec.ts tests/e2e/accessibility-interactive.spec.ts",
+    "test:load": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/search-api.k6.js || k6 run tests/load/search-api.k6.js",
+    "test:load:smoke": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/smoke-test.k6.js || k6 run tests/load/smoke-test.k6.js",
+    "test:load:sustained": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/sustained-load.k6.js || k6 run tests/load/sustained-load.k6.js",
+    "test:load:spike": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/spike-test.k6.js || k6 run tests/load/spike-test.k6.js"
   },
   "overrides": {
     "react": "$react",

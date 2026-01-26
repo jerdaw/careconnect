@@ -6,7 +6,15 @@
       "Bash(find:*)",
       "Bash(npx tsx:*)",
       "Bash(grep:*)",
-      "Bash(npm run i18n-audit:*)"
+      "Bash(npm run i18n-audit:*)",
+      "Bash(while read hash msg)",
+      "Bash(do echo \"=== $msg ===\")",
+      "Bash(git show:*)",
+      "Bash(done)",
+      "Bash(npm test:*)",
+      "Bash(npm run export:access-script-fr:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run test:load:smoke:*)"
     ]
   }
 }

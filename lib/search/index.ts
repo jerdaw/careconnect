@@ -13,6 +13,7 @@ import { expandQuery as expandSynonyms } from "./synonyms"
 import { expandQuery as expandQueryAI } from "@/lib/ai/query-expander"
 import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
+import { trackPerformance } from "@/lib/performance/tracker"
 
 /**
  * Main Hybrid Search Function (Optimized for Cost)
@@ -22,21 +23,26 @@ import { getSearchTerms } from "./data"
  * 3. Only fetch Vector (Paid) if keywords fail to find relevant results.
  */
 export const searchServices = async (query: string, options: SearchOptions = {}): Promise<SearchResult[]> => {
-  // 0. AI Query Expansion (Optional)
-  let searchInput = query
-  if (options.useAIExpansion) {
-    const { expanded } = await expandQueryAI(query)
-    if (expanded.length > 0) {
-      // Append expanded terms to the query for tokenization
-      // We use a lower weight? content scoring treats all tokens roughly equally currently.
-      // This is a simple, effective boost.
-      searchInput += " " + expanded.join(" ")
-    }
-  }
+  return trackPerformance(
+    "search.total",
+    async () => {
+      // 0. AI Query Expansion (Optional)
+      let searchInput = query
+      if (options.useAIExpansion) {
+        await trackPerformance("search.aiExpansion", async () => {
+          const { expanded } = await expandQueryAI(query)
+          if (expanded.length > 0) {
+            // Append expanded terms to the query for tokenization
+            // We use a lower weight? content scoring treats all tokens roughly equally currently.
+            // This is a simple, effective boost.
+            searchInput += " " + expanded.join(" ")
+          }
+        })
+      }
 
-  const services = await loadServices()
-  const rawTokens = tokenize(searchInput)
-  const tokens = expandSynonyms(rawTokens)
+      const services = await trackPerformance("search.dataLoad", () => loadServices())
+      const rawTokens = tokenize(searchInput)
+      const tokens = expandSynonyms(rawTokens)
 
   // Initial Filter: Category + Open Now
   let filteredServices = services
@@ -87,22 +93,31 @@ export const searchServices = async (query: string, options: SearchOptions = {})
 
   if (tokens.length === 0) return []
 
-  // 1. First Pass: Keyword Only (Zero Cost)
-  let results: SearchResult[] = []
+      // 1. First Pass: Keyword Only (Zero Cost)
+      let results: SearchResult[] = []
 
-  for (const service of filteredServices) {
-    if (service.verification_level === VerificationLevel.L0) continue
+      await trackPerformance(
+        "search.keywordScoring",
+        async () => {
+          for (const service of filteredServices) {
+            if (service.verification_level === VerificationLevel.L0) continue
 
-    // Pass userContext to scoring
-    const keywordResult = scoreServiceKeyword(service, tokens, options.category, { userContext: options.userContext })
+            // Pass userContext to scoring
+            const keywordResult = scoreServiceKeyword(service, tokens, options.category, { userContext: options.userContext })
 
-    if (keywordResult.score > 0) {
-      results.push({ service, score: keywordResult.score, matchReasons: keywordResult.reasons })
-    }
-  }
+            if (keywordResult.score > 0) {
+              results.push({ service, score: keywordResult.score, matchReasons: keywordResult.reasons })
+            }
+          }
 
-  // Sort by Keyword Score
-  results.sort((a, b) => b.score - a.score)
+          // Sort by Keyword Score
+          results.sort((a, b) => b.score - a.score)
+        },
+        {
+          servicesCount: filteredServices.length,
+          tokensCount: tokens.length,
+        }
+      )
 
   let queryVector: number[] | null = options.vectorOverride || null
 
@@ -124,49 +139,58 @@ export const searchServices = async (query: string, options: SearchOptions = {})
     return results
   }
 
-  // 3. Vector Search (Semantic) - Only if client provided embedding
-  queryVector = options.vectorOverride
+      // 3. Vector Search (Semantic) - Only if client provided embedding
+      queryVector = options.vectorOverride
 
-  // We need to re-score or add semantic matches that weren't found by keywords
-  const resultsMap = new Map<string, SearchResult>()
-  results.forEach((r) => resultsMap.set(r.service.id, r))
+      // We need to re-score or add semantic matches that weren't found by keywords
+      const resultsMap = new Map<string, SearchResult>()
+      results.forEach((r) => resultsMap.set(r.service.id, r))
 
-  for (const service of filteredServices) {
-    if (service.verification_level === VerificationLevel.L0) continue
+      await trackPerformance(
+        "search.vectorScoring",
+        async () => {
+          for (const service of filteredServices) {
+            if (service.verification_level === VerificationLevel.L0) continue
 
-    // Use embedding from DB (on service object) OR fallback to local JSON
-    // Note: data.ts doesn't export fallbackEmbeddings yet, let's fix that or import directly
-    const serviceVector = service.embedding // data.ts already overlays these
-    if (!serviceVector) continue
+            // Use embedding from DB (on service object) OR fallback to local JSON
+            // Note: data.ts doesn't export fallbackEmbeddings yet, let's fix that or import directly
+            const serviceVector = service.embedding // data.ts already overlays these
+            if (!serviceVector) continue
 
-    const similarity = cosineSimilarity(queryVector, serviceVector)
+            const similarity = cosineSimilarity(queryVector, serviceVector)
 
-    // Semantic Threshold
-    if (similarity > 0.01) {
-      const vectorPoints = similarity * WEIGHTS.vector
+            // Semantic Threshold
+            if (similarity > 0.01) {
+              const vectorPoints = similarity * WEIGHTS.vector
 
-      if (vectorPoints > 0) {
-        const existing = resultsMap.get(service.id)
+              if (vectorPoints > 0) {
+                const existing = resultsMap.get(service.id)
 
-        if (existing) {
-          // Boost existing result
-          existing.score += vectorPoints
-          if (vectorPoints > 30) {
-            existing.matchReasons.push(`Semantic Boost (${Math.round(similarity * 100)}%)`)
+                if (existing) {
+                  // Boost existing result
+                  existing.score += vectorPoints
+                  if (vectorPoints > 30) {
+                    existing.matchReasons.push(`Semantic Boost (${Math.round(similarity * 100)}%)`)
+                  }
+                } else {
+                  // New Semantic-only result
+                  if (vectorPoints > 25) {
+                    resultsMap.set(service.id, {
+                      service,
+                      score: vectorPoints,
+                      matchReasons: [`Semantic Rescue (${Math.round(similarity * 100)}%)`],
+                    })
+                  }
+                }
+              }
+            }
           }
-        } else {
-          // New Semantic-only result
-          if (vectorPoints > 25) {
-            resultsMap.set(service.id, {
-              service,
-              score: vectorPoints,
-              matchReasons: [`Semantic Rescue (${Math.round(similarity * 100)}%)`],
-            })
-          }
+        },
+        {
+          servicesCount: filteredServices.length,
+          hasEmbedding: true,
         }
-      }
-    }
-  }
+      )
 
   // Convert back to array
   let finalResults = Array.from(resultsMap.values())
@@ -188,14 +212,23 @@ export const searchServices = async (query: string, options: SearchOptions = {})
     return finalResults.slice(0, options.limit)
   }
 
-  // Generate suggestion if no results
-  if (finalResults.length === 0 && query.trim().length > 2) {
-    const searchTerms = await getSearchTerms()
-    const suggestion = findClosestMatch(query, searchTerms)
-    if (suggestion) {
-      options.onSuggestion?.(suggestion)
-    }
-  }
+      // Generate suggestion if no results
+      if (finalResults.length === 0 && query.trim().length > 2) {
+        const searchTerms = await getSearchTerms()
+        const suggestion = findClosestMatch(query, searchTerms)
+        if (suggestion) {
+          options.onSuggestion?.(suggestion)
+        }
+      }
 
-  return finalResults
+      return finalResults
+    },
+    {
+      queryLength: query.length,
+      hasCategory: !!options.category,
+      hasLocation: !!options.location,
+      hasVectorOverride: !!options.vectorOverride,
+      useAIExpansion: !!options.useAIExpansion,
+    }
+  )
 }

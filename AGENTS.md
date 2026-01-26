@@ -51,6 +51,16 @@ From the repo root:
   - URL Health Check: `npm run health-check`
   - Phone Validation: `npm run phone-validate`
   - **Data Enrichment**: `npm run audit:data` – See `docs/governance/data-enrichment-sop.md`
+    - Export gaps for enrichment: `npm run audit:coords`, `npm run audit:hours`, `npm run audit:access-scripts`
+    - L3 verification candidates: `npm run audit:l3`
+  - **French Translation Workflow** – See `docs/workflows/french-translation-workflow.md`:
+    - Export for translation: `npm run export:access-script-fr`
+    - Generate prompts: `npm run translate:prompt`
+    - Parse AI responses: `npm run translate:parse`
+    - Validate batches: `npm run translate:validate`
+  - **Data Backfill**:
+    - Backfill hours text: `npm run backfill:hours-text`
+    - Geocode addresses: `npm run geocode` (requires `OPENCAGE_API_KEY`)
 
 **Environment Variables** (see `.env.example`):
 
@@ -130,12 +140,12 @@ When you have full access (and `origin` is configured), **make regular best-prac
 
 - **Policy**: English-First, but **design for full multi-lingual support**.
 - **Supported Locales**: `en` (English), `fr` (French), `zh-Hans` (Chinese), `ar` (Arabic - RTL), `pt` (Portuguese), `es` (Spanish), `pa` (Punjabi).
-- **Rules** (see `bilingual-dev-guide.md` - Multi-lingual Development Guide):
+- **Rules** (see `docs/development/bilingual-guide.md` - Multi-lingual Development Guide):
   - No hardcoded strings for user-facing text (use `next-intl`).
   - Use `LanguageSelector` component for locale switching.
   - Support RTL (Arabic) via `dir="rtl"` in layouts.
   - Localized fields in data: `name_fr`, `description_fr`, etc. (Provincial services only).
-  - UI labels must be present in all 5 message files.
+  - UI labels must be present in all 7 message files.
 
 ---
 

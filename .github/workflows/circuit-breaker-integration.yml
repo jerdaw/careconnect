@@ -1,0 +1,42 @@
+name: Circuit Breaker Integration Tests
+
+on:
+  pull_request:
+    paths:
+      - "lib/resilience/**"
+      - "lib/search/data.ts"
+      - "lib/services.ts"
+      - "lib/analytics.ts"
+      - "tests/integration/circuit-breaker-db.test.ts"
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: npm test -- tests/integration/circuit-breaker-db.test.ts
+        env:
+          CIRCUIT_BREAKER_ENABLED: true
+          CIRCUIT_BREAKER_FAILURE_THRESHOLD: 3
+          CIRCUIT_BREAKER_TIMEOUT: 5000 # Shorter for CI
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: test-results/

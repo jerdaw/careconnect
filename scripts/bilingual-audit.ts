@@ -10,6 +10,8 @@ interface Service {
   description_fr?: string
   eligibility_notes?: string
   eligibility_notes_fr?: string
+  access_script?: string
+  access_script_fr?: string
 }
 
 interface AuditResult {
@@ -32,6 +34,9 @@ function auditServices(): AuditResult[] {
     if (!service.description_fr?.trim()) missingFields.push("description_fr")
     if (service.eligibility_notes && !service.eligibility_notes_fr?.trim()) {
       missingFields.push("eligibility_notes_fr")
+    }
+    if (service.access_script && !service.access_script_fr?.trim()) {
+      missingFields.push("access_script_fr")
     }
 
     if (missingFields.length > 0) {

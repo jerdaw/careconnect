@@ -1,5 +1,6 @@
 import { saveAllServices, saveAllEmbeddings, getMeta, setMeta, getAllServices } from "./db"
 import { Service } from "@/types/service"
+import { isSupabaseAvailable, getSupabaseBreakerStats } from "@/lib/resilience/supabase-breaker"
 
 interface SyncResult {
   status: "synced" | "up-to-date" | "error"
@@ -16,6 +17,16 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
   if (typeof window === "undefined") return { status: "error", error: "Server-side sync not supported" }
 
   try {
+    // Check circuit breaker state before attempting sync
+    if (!isSupabaseAvailable()) {
+      const stats = getSupabaseBreakerStats()
+      console.warn("Sync skipped: Circuit breaker is open", stats)
+      return {
+        status: "error",
+        error: `Circuit breaker open. Next attempt at ${new Date(stats.nextAttemptTime || 0).toISOString()}`
+      }
+    }
+
     const lastSync = await getMeta<string>("lastSync")
     const now = Date.now()
 

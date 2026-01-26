@@ -5,6 +5,7 @@ import { createApiResponse, createApiError, handleApiError, validateContentType 
 import { assertOrganizationMembership } from "@/lib/auth/authorization"
 import { logger } from "@/lib/logger"
 import { ServiceCreateSchema } from "@/lib/schemas/service-create"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 /**
  * GET /api/v1/services
@@ -68,7 +69,7 @@ export async function GET(request: NextRequest) {
     // Pagination
     query = query.range(offset, offset + limit - 1)
 
-    const { data, count, error } = await query
+    const { data, count, error } = await withCircuitBreaker(async () => query)
 
     if (error) {
       logger.error("API /v1/services error:", error.message, {
@@ -163,8 +164,10 @@ export async function POST(request: NextRequest) {
       synthetic_queries: [],
     }
 
-    // Insert
-    const { data, error } = await supabaseAuth.from("services").insert(serviceData).select().single()
+    // Insert with circuit breaker protection
+    const { data, error } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("services").insert(serviceData).select().single()
+    )
 
     if (error) {
       logger.error("API /v1/services POST error:", error, {

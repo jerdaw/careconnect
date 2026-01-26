@@ -1,6 +1,7 @@
 import { supabase } from "./supabase"
 import { logger } from "./logger"
 import { Service } from "@/types/service"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 /**
  * Claims a service for the current authenticated user's organization.
@@ -10,15 +11,17 @@ import { Service } from "@/types/service"
  */
 export async function claimService(serviceId: string, orgId: string) {
   try {
-    const { error } = await supabase
-      .from("services")
-      .update({
-        org_id: orgId,
-        verification_status: "L1", // Elevate to L1 upon claiming
-        last_verified: new Date().toISOString(),
-      })
-      .eq("id", serviceId)
-      .is("org_id", null) // Atomic check to ensure it's not already claimed
+    const { error } = await withCircuitBreaker(async () =>
+      supabase
+        .from("services")
+        .update({
+          org_id: orgId,
+          verification_status: "L1", // Elevate to L1 upon claiming
+          last_verified: new Date().toISOString(),
+        })
+        .eq("id", serviceId)
+        .is("org_id", null) // Atomic check to ensure it's not already claimed
+    )
 
     if (error) {
       logger.error("Failed to claim service", error, { serviceId, orgId })
@@ -38,7 +41,9 @@ export async function claimService(serviceId: string, orgId: string) {
 export async function getServiceById(id: string): Promise<Service | null> {
   try {
     // Query the public view (accessible by anon users) instead of the protected services table
-    const { data, error } = await supabase.from("services_public").select("*").eq("id", id).single()
+    const { data, error } = await withCircuitBreaker(async () =>
+      supabase.from("services_public").select("*").eq("id", id).single()
+    )
 
     if (error) {
       if (error.code !== "PGRST116") {
@@ -71,24 +76,26 @@ export async function getServiceById(id: string): Promise<Service | null> {
  */
 export async function updateService(id: string, updates: Partial<Service>) {
   try {
-    const { error } = await supabase
-      .from("services")
-      .update({
-        name: updates.name,
-        description: updates.description,
-        address: updates.address,
-        phone: updates.phone,
-        url: updates.url,
-        email: updates.email,
-        hours: typeof updates.hours === "object" ? JSON.stringify(updates.hours) : updates.hours,
-        fees: updates.fees,
-        eligibility: updates.eligibility_notes, // Note: DB uses 'eligibility' for 'eligibility_notes' in JSON mappings sometimes
-        application_process: updates.application_process,
-        category: updates.intent_category,
-        tags: updates.identity_tags,
-        last_verified: new Date().toISOString(),
-      })
-      .eq("id", id)
+    const { error } = await withCircuitBreaker(async () =>
+      supabase
+        .from("services")
+        .update({
+          name: updates.name,
+          description: updates.description,
+          address: updates.address,
+          phone: updates.phone,
+          url: updates.url,
+          email: updates.email,
+          hours: typeof updates.hours === "object" ? JSON.stringify(updates.hours) : updates.hours,
+          fees: updates.fees,
+          eligibility: updates.eligibility_notes, // Note: DB uses 'eligibility' for 'eligibility_notes' in JSON mappings sometimes
+          application_process: updates.application_process,
+          category: updates.intent_category,
+          tags: updates.identity_tags,
+          last_verified: new Date().toISOString(),
+        })
+        .eq("id", id)
+    )
 
     if (error) {
       logger.error("Failed to update service", error, { id, updates })

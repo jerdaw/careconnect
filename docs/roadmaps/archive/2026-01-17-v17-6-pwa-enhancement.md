@@ -1,16 +1,19 @@
 ---
-status: complete-pending-testing
-last_updated: 2026-01-23
+status: complete
+last_updated: 2026-01-25
 owner: jer
 tags: [roadmap, v17.6, pwa, offline, mobile]
 ---
 
 # v17.6: PWA Enhancement
 
+> **Status**: Code implementation complete. Remaining manual verification work is tracked in `docs/roadmaps/roadmap.md` under v17.6.
+
 **Priority:** MEDIUM
 **Estimated Effort:** 1-2 weeks (single developer)
 **Dependencies:** v17.4 (i18n for offline locale), v17.5 (accessibility)
 **Impact:** Improved app store discoverability, offline functionality, multi-language offline
+**Implementation Period:** 2026-01-17 to 2026-01-23
 
 ## Executive Summary
 

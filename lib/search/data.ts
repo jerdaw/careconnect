@@ -1,6 +1,9 @@
 import { Service } from "@/types/service"
 import { supabase } from "@/lib/supabase"
 import { env } from "@/lib/env"
+import { trackPerformance } from "@/lib/performance/tracker"
+import { withCircuitBreaker, isSupabaseAvailable } from "@/lib/resilience/supabase-breaker"
+import { logger } from "@/lib/logger"
 
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
@@ -17,9 +20,14 @@ export const loadServices = async (): Promise<Service[]> => {
   // If we are in the browser, check IndexedDB first for the most up-to-date offline data
   if (typeof window !== "undefined") {
     try {
-      // Dynamic import to avoid server-side issues with 'idb'
-      const { getAllServices } = await import("@/lib/offline/db")
-      const offlineServices = await getAllServices()
+      const offlineServices = await trackPerformance(
+        "dataLoad.indexedDB",
+        async () => {
+          // Dynamic import to avoid server-side issues with 'idb'
+          const { getAllServices } = await import("@/lib/offline/db")
+          return await getAllServices()
+        }
+      )
 
       if (offlineServices && offlineServices.length > 0) {
         // Enriched Services are already stored in IDB with embeddings
@@ -41,10 +49,27 @@ export const loadServices = async (): Promise<Service[]> => {
     const hasCredentials = env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
     // In server mode, we prefer DB or API
-    if (hasCredentials) {
-      const { data, error } = await supabase.from("services").select("*")
+    if (hasCredentials && isSupabaseAvailable()) {
+      const result = await trackPerformance(
+        "dataLoad.supabase",
+        async () => {
+          // Wrap Supabase call with circuit breaker
+          return await withCircuitBreaker(
+            async () => {
+              const { data, error } = await supabase.from("services").select("*")
+              return { data, error }
+            },
+            // Fallback: Skip to JSON load if circuit is open
+            async () => {
+              logger.warn("Supabase circuit breaker open, skipping to JSON fallback")
+              return { data: null, error: null }
+            }
+          )
+        },
+        { hasCredentials: true, circuitBreakerAvailable: true }
+      )
 
-      if (!error && data && data.length > 0) {
+      if (!result.error && result.data && result.data.length > 0) {
         // We still need metadata from JSON if we want to overlay it (AI/Synthetic queries)
         // Dynamically load JSON for metadata overlay
         // TODO: Move this metadata to DB in future phases to remove JSON dependency entirely
@@ -54,7 +79,7 @@ export const loadServices = async (): Promise<Service[]> => {
         const fallbackServices = servicesData as unknown as Service[]
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-        const mappedData: Service[] = data
+        const mappedData: Service[] = result.data
           .map((row: any) => {
             // Find static metadata from services.json to overlay (AI metadata)
             const staticService = fallbackServices.find((s) => s.id === row.id)
@@ -85,8 +110,8 @@ export const loadServices = async (): Promise<Service[]> => {
 
         dataCache = { services: mappedData }
         return mappedData
-      } else if (error) {
-        console.warn("Supabase fetch error (falling back to JSON):", error.message)
+      } else if (result.error) {
+        console.warn("Supabase fetch error (falling back to JSON):", result.error.message)
       }
     }
   } catch (err) {
@@ -94,18 +119,23 @@ export const loadServices = async (): Promise<Service[]> => {
   }
 
   // Fallback: Dynamic Import of Local JSON
-  const { default: servicesData } = await import("@/data/services.json")
-  const { default: embeddingsData } = await import("@/data/embeddings.json")
+  return trackPerformance(
+    "dataLoad.jsonFallback",
+    async () => {
+      const { default: servicesData } = await import("@/data/services.json")
+      const { default: embeddingsData } = await import("@/data/embeddings.json")
 
-  const fallbackServices = servicesData as unknown as Service[]
-  const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
+      const fallbackServices = servicesData as unknown as Service[]
+      const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-  const enrichedFallback = fallbackServices.map((s) => ({
-    ...s,
-    embedding: fallbackEmbeddings[s.id],
-  }))
-  dataCache = { services: enrichedFallback }
-  return enrichedFallback
+      const enrichedFallback = fallbackServices.map((s) => ({
+        ...s,
+        embedding: fallbackEmbeddings[s.id],
+      }))
+      dataCache = { services: enrichedFallback }
+      return enrichedFallback
+    }
+  )
 }
 
 export async function getSearchTerms(): Promise<string[]> {

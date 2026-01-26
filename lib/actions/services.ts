@@ -33,7 +33,7 @@ export async function updateServiceAction(id: string, data: ServiceFormData, loc
   try {
     // Check permission using centralized authorization
     await assertPermission(supabase, user.id, membership.organization_id, "canEditAllServices")
-  } catch (_editAllError) {
+  } catch {
     // If user can't edit all services, check if they can edit their own
     try {
       await assertPermission(supabase, user.id, membership.organization_id, "canEditOwnServices")

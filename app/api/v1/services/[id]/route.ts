@@ -2,6 +2,7 @@ import { NextRequest } from "next/server"
 import { supabase } from "@/lib/supabase"
 import { createApiResponse, createApiError, handleApiError, validateContentType } from "@/lib/api-utils"
 import { assertServiceOwnership } from "@/lib/auth/authorization"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 /**
  * GET /api/v1/services/[id]
@@ -22,7 +23,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   try {
     // Query the public view (accessible by anon users) instead of the protected services table
-    const { data, error } = await supabase.from("services_public").select("*").eq("id", id).single()
+    const { data, error } = await withCircuitBreaker(async () =>
+      supabase.from("services_public").select("*").eq("id", id).single()
+    )
 
     if (error || !data) {
       return createApiError("Service not found", 404)
@@ -80,7 +83,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     // Prevent updating ID
     delete body.id
 
-    const { data, error } = await supabaseAuth.from("services").update(body).eq("id", id).select().single()
+    const { data, error } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("services").update(body).eq("id", id).select().single()
+    )
 
     if (error) {
       return createApiError("Failed to update service", 500, error.message)
@@ -134,7 +139,9 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     delete body.id
     delete body.org_id
 
-    const { data, error } = await supabaseAuth.from("services").update(body).eq("id", id).select().single()
+    const { data, error } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("services").update(body).eq("id", id).select().single()
+    )
 
     if (error) {
       return createApiError("Failed to patch service", 500, error.message)
@@ -181,14 +188,16 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     // Verify ownership and permissions - restricted to admin/owner
     await assertServiceOwnership(supabaseAuth, user.id, id, ["owner", "admin"])
 
-    // Soft delete
-    const { error } = await supabaseAuth
-      .from("services")
-      .update({
-        deleted_at: new Date().toISOString(),
-        deleted_by: user.id,
-      })
-      .eq("id", id)
+    // Soft delete with circuit breaker protection
+    const { error } = await withCircuitBreaker(async () =>
+      supabaseAuth
+        .from("services")
+        .update({
+          deleted_at: new Date().toISOString(),
+          deleted_by: user.id,
+        })
+        .eq("id", id)
+    )
 
     if (error) {
       return createApiError("Failed to delete service", 500, error.message)

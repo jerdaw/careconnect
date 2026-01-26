@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 // Initialize Supabase client lazily or safely
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -31,11 +32,13 @@ export async function trackSearchEvent(event: SearchEvent) {
     if (event.resultCount === 0) bucket = "0"
     else if (event.resultCount <= 5) bucket = "1-5"
 
-    const { error } = await supabase.from("search_analytics").insert({
-      category: event.category || "All",
-      result_count_bucket: bucket,
-      has_location: event.hasLocation,
-    })
+    const { error } = await withCircuitBreaker(async () =>
+      supabase!.from("search_analytics").insert({
+        category: event.category || "All",
+        result_count_bucket: bucket,
+        has_location: event.hasLocation,
+      })
+    )
 
     if (error) {
       console.warn("Failed to log search analytics:", error.message)

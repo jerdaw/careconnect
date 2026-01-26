@@ -156,11 +156,19 @@ Return format:
 
 **Process:**
 
-1. Assign category templates to services without scripts
-2. Customize for specific services (especially L3 candidates)
-3. French translation:
+1. Audit current coverage:
+   ```bash
+   npm run audit:access-scripts
+   ```
+   Output: `docs/audits/v17-5/ai-results/reports/access-script-audit.json`
+
+2. Assign category templates to services without scripts
+3. Customize for specific services (especially L3 candidates)
+4. French translation workflow:
    - Prefer translation-only (no new facts) from `access_script` → `access_script_fr`
-   - v17.5 workflow: `docs/audits/v17-5/ai-results/access-script-fr/README.md`
+   - Use the semi-automated batch translation process
+   - **Complete workflow**: See `docs/workflows/french-translation-workflow.md`
+   - **Tools**: `npm run export:access-script-fr`, `npm run translate:prompt`, `npm run translate:parse`, `npm run translate:validate`
 
 ### 5.5 AI Deep Research Output Ingestion (Recommended for Large Batches)
 
