@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 import { NotificationCategory } from "@/types/notifications"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,42 +18,44 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient()
 
     // 1. Check if subscription already exists (by endpoint)
-    const { data: existing } = await supabase
-      .from("push_subscriptions")
-      .select("id")
-      .eq("endpoint", subscription.endpoint)
-      .single()
+    const { data: existing } = await withCircuitBreaker(async () =>
+      supabase.from("push_subscriptions").select("id").eq("endpoint", subscription.endpoint).single()
+    )
 
     let error
 
     if (existing) {
       // Update existing
-      const { error: updateError } = await (
-        supabase
+      const { error: updateError } = await withCircuitBreaker(async () =>
+        (
+          supabase
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .from("push_subscriptions") as any
+        )
+          .update({
+            categories,
+            keys: subscription.keys, // Ensure keys are fresh
+            locale,
+            updated_at: new Date().toISOString(),
+          })
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .from("push_subscriptions") as any
+          .eq("id", (existing as any).id)
       )
-        .update({
-          categories,
-          keys: subscription.keys, // Ensure keys are fresh
-          locale,
-          updated_at: new Date().toISOString(),
-        })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .eq("id", (existing as any).id)
       error = updateError
     } else {
       // Insert new
-      const { error: insertError } = await (
-        supabase
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .from("push_subscriptions") as any
-      ).insert({
-        endpoint: subscription.endpoint,
-        keys: subscription.keys,
-        categories,
-        locale,
-      })
+      const { error: insertError } = await withCircuitBreaker(async () =>
+        (
+          supabase
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .from("push_subscriptions") as any
+        ).insert({
+          endpoint: subscription.endpoint,
+          keys: subscription.keys,
+          categories,
+          locale,
+        })
+      )
       error = insertError
     }
 

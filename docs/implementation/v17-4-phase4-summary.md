@@ -209,7 +209,7 @@ if (!hasPermission(membership.role, "canCreateServices")) {
 
 - `components/dashboard/MemberManagement.tsx` - Enhanced with RBAC checks and ownership transfer
 - `lib/actions/services.ts` - Added RBAC permission checks
-- `docs/roadmaps/2026-01-17-v17-4-dashboard-partner-portal.md` - Updated status
+- `docs/planning/archive/2026-01-25-v17-4-dashboard-partner-portal.md` - Updated status
 
 ---
 

@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 #### Performance Tracking System
+
 - New `lib/performance/tracker.ts` for lightweight operation timing
 - New `lib/performance/metrics.ts` with in-memory metrics aggregation
 - Support for p50, p95, p99 latency percentiles
@@ -14,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Configurable via `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING` environment variable
 
 #### Circuit Breaker Pattern
+
 - New `lib/resilience/circuit-breaker.ts` with state machine (CLOSED → OPEN → HALF_OPEN)
 - New `lib/resilience/supabase-breaker.ts` for Supabase-specific protection
 - New `lib/resilience/telemetry.ts` for state transition logging
@@ -21,17 +23,20 @@ All notable changes to this project will be documented in this file.
 - Automatic recovery after configurable timeout
 
 #### Health Check & Metrics Endpoints
+
 - `GET /api/v1/health` - Public health check with optional detailed metrics
 - `GET /api/v1/metrics` - Development-only metrics API (requires authentication)
 - `DELETE /api/v1/metrics` - Reset metrics endpoint
 - Rate limiting on health and metrics endpoints
 
 #### Load Testing Infrastructure
+
 - Four k6 load test scripts: smoke, search-api, sustained-load, spike-test
 - Load testing documentation with usage guide and threshold definitions
 - NPM scripts: `test:load`, `test:load:smoke`, `test:load:sustained`, `test:load:spike`
 
 #### Documentation
+
 - ADR-016: Performance Tracking & Circuit Breaker architectural decision record
 - v17.5 archive documentation with implementation details
 - v17.6 roadmap with follow-up work (baselines, integration tests, translation helper)

@@ -60,7 +60,7 @@ This document is the **implementation plan** for safely ingesting and merging th
 - Merge script: `scripts/merge-ai-enrichment.ts`
 - Data validation: `npm run validate-data`
 - Audit tooling: `npm run audit:data`
-- Prompt reference: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
+- Prompt reference: `docs/planning/archive/2026-01-23-v17-5-ai-prompts.md`
 
 ---
 
@@ -95,7 +95,7 @@ When the model provides usable sources:
 
 ## Proposed Artifact Structure (So We Don’t Lose Track)
 
-Create a stable “ingestion workspace” under `docs/roadmaps/`:
+Create a stable “ingestion workspace” under `docs/planning/`:
 
 ```
 docs/audits/v17-5/ai-results/
@@ -180,7 +180,7 @@ Steps:
 - [x] Create a short note in `docs/audits/v17-5/ai-results/raw/README.md` explaining:
   - When outputs were generated (2026-01-22)
   - Which batch each file corresponds to
-  - Which prompt version was used (`docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`)
+  - Which prompt version was used (`docs/planning/archive/2026-01-23-v17-5-ai-prompts.md`)
   - sha256 hashes for immutability checks
 
 Best practice:

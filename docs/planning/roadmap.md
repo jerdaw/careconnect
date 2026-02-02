@@ -1,23 +1,119 @@
 # Kingston Care Connect: Product Roadmap
 
 > **Current Version**: v17.6 (Authorization Resilience Complete)
-> **Last Updated**: 2026-01-25
-> **Platform Status**: Production-Ready with Comprehensive Resilience
+> **Next Version**: v18.0 (Production Observability) - **PLANNING**
+> **Last Updated**: 2026-01-30
+> **Platform Status**: Production-Ready, Preparing for Launch
 
 ## 📊 Current State
 
 - **Services**: ~196 curated social services (run `npm run audit:data` for exact count)
-- **Test Coverage**: 100% for resilience layer, 95%+ for eligibility, 85%+ for AI, 65%+ for search
-- **Load Testing**: Baseline metrics established, k6 infrastructure in place
-- **Resilience**: Circuit breaker protection on all database operations
+- **Test Coverage**: 537 passing tests across unit, integration, E2E, load, and accessibility
+- **Load Testing**: k6 infrastructure in place, baseline metrics pending documentation
+- **Resilience**: Circuit breaker protection on ~40% of database operations (v18.0 will complete to 100%)
 - **Security**: Multi-layered authorization with tiered fail-safe strategy
 - **Accessibility**: WCAG 2.1 AA compliant
 - **Languages**: 7 locales (EN, FR, ZH-Hans, AR, PT, ES, PA)
 - **Offline-Ready**: PWA with IndexedDB fallback and background sync
+- **Observability**: Performance tracking + circuit breaker infrastructure (monitoring pending)
 
 ---
 
 ## 🎯 Active Work
+
+### v18.0: Production Observability & Operational Excellence (IN PROGRESS)
+
+**Status**: Phase 1 COMPLETE, Phase 2 67% COMPLETE (Tasks 2.1 & 2.2 done, 2.3 & 2.4 ready)
+**Priority**: HIGH
+**Estimated Effort**: 24-32 hours total | 4-6 hours remaining
+**Target Completion**: 2026-01-31 (Phase 2), 2026-02-12 (overall)
+
+Complete the operational foundation for production launch by adding production-grade monitoring, alerting, and operational documentation.
+
+#### Goals
+
+1. ✅ **Complete Circuit Breaker Rollout**: 100% coverage on all API routes (COMPLETE)
+2. ⏸️ **Production Monitoring**: Integrate with Axiom for persistent metrics (NEXT)
+3. ⏸️ **Observability Dashboard**: Real-time system health at `/admin/observability` (NEXT)
+4. ⏸️ **Alerting System**: Automated Slack notifications for critical issues (NEXT)
+5. 📋 **SLO Framework**: Define and track 99.5% uptime, p95 <800ms latency (PLANNED)
+6. 📋 **Public Status Page**: Deploy Upptime at `status.kingstoncare.ca` (PLANNED)
+7. ⏸️ **Operational Runbooks**: Document incident response procedures (NEXT)
+
+#### Implementation Phases
+
+- **Phase 1** (8-10h): Complete Circuit Breaker Rollout ✅ **COMPLETE**
+  - [x] Protect 8 remaining API routes (5 protected, 3 already covered)
+  - [x] Fix 3 failing integration tests (540/540 passing)
+  - [x] Document performance baselines (infrastructure ready, user execution pending)
+  - [x] Secure metrics endpoint (admin-only in production)
+
+- **Phase 2** (10-12h): Production Monitoring Infrastructure 🔄 **IN PROGRESS** (67% complete)
+  - [x] Task 2.1: Integrate Axiom (free tier, 500GB/month) - 4h ✅
+  - [x] Task 2.2: Build observability dashboard - 4h ✅
+  - [ ] Task 2.3: Configure alerting (Slack) - 2h ⏸️ **NEXT**
+  - [ ] Task 2.4: Create 3 operational runbooks + index - 2h ⏸️ **NEXT**
+
+- **Phase 3** (4-6h): Service Level Objectives 📋 **PLANNED**
+  - [ ] Define SLOs (uptime, latency, error rate)
+  - [ ] Build SLO monitoring dashboard
+  - [ ] Deploy public status page (Upptime)
+
+- **Phase 4** (2-4h): Operational Documentation 📋 **PLANNED**
+  - [ ] Update CLAUDE.md with observability patterns
+  - [ ] Create production deployment checklist
+  - [ ] Document incident response plan
+
+#### Dependencies (User Action Required)
+
+**Phase 2 Prerequisites:**
+
+- ⚠️ **Axiom Account**: Sign up at axiom.co (free tier) - ~5 min
+- ⚠️ **Slack Webhook**: Create incoming webhook in workspace - ~5 min
+- ⚠️ **Cron Secret**: Generate random secret for cron authentication - ~1 min
+- ⚠️ **Environment Variables**: Add to Vercel (AXIOM_TOKEN, SLACK_WEBHOOK_URL, etc.)
+
+**Future (Phase 3):**
+
+- ⚠️ **Domain**: Configure `status.kingstoncare.ca` subdomain
+
+#### Success Criteria
+
+**Phase 1 (COMPLETE):**
+
+- ✅ 100% API route circuit breaker protection (8/8 routes)
+- ✅ All tests passing (540/540 tests, zero flakiness)
+- ✅ Metrics endpoint secured (admin-only in production)
+- ✅ Performance baseline infrastructure ready
+
+**Phase 2 (67% COMPLETE):**
+
+- ✅ Axiom integration live with <5ms overhead (Task 2.1)
+- ✅ Observability dashboard functional at `/admin/observability` (Task 2.2)
+- ⏸️ Automated Slack alerts firing correctly (Task 2.3 - NEXT)
+- ⏸️ 3 operational runbooks + index published (Task 2.4 - NEXT)
+
+**Phase 3 (PLANNED):**
+
+- ⏸️ SLO compliance >90% in first month
+- ⏸️ Public status page deployed
+
+📄 **Documentation**:
+
+- [Roadmap Overview](v18-0-production-observability.md)
+- [Phase 1 Complete](../implementation/v18-0-phase-1-COMPLETE.md) ✅
+- [Phase 2 Full Plan](../implementation/v18-0-phase-2-implementation-plan.md)
+- [Phase 2 Visual Roadmap](../planning/v18-0-phase-2-visual-roadmap.md)
+- [Task 2.1 Complete](../implementation/v18-0-task-2-1-completion-summary.md) ✅
+- [Task 2.2 Complete](../implementation/v18-0-task-2-2-completion-summary.md) ✅
+- **[Tasks 2.3 & 2.4 Plan](../implementation/v18-0-phase-2-tasks-3-4-implementation-plan.md)** ⏸️ **NEXT** (4 hours)
+- [Tasks 2.3 & 2.4 Quick Start](../planning/v18-0-phase-2-final-README.md) ⏸️ **NEXT**
+- [Tasks 2.3 & 2.4 Executive Summary](../planning/v18-0-phase-2-final-executive-summary.md)
+- [Phase 2 Executive Summary](../planning/v18-0-phase-2-executive-summary.md)
+
+---
+
+## ⏸️ Paused Work
 
 ### Data Quality & Enrichment (Manual Process)
 
@@ -39,6 +135,7 @@ Run `npm run audit:data` to refresh current counts:
 #### Available Tools
 
 **Translation Helper (v17.6)**:
+
 ```bash
 npm run translate:prompt <batch-file>   # Generate translation prompts
 npm run translate:parse <batch> <response>  # Parse AI responses
@@ -46,6 +143,7 @@ npm run translate:validate <batch>      # Validate translations
 ```
 
 **Data Auditing**:
+
 ```bash
 npm run audit:data           # Current service count and gaps
 npm run bilingual-check      # Verify French completeness
@@ -113,6 +211,7 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 ### 🏆 Key Achievements (v17 Cycle)
 
 **Production Readiness Milestones**:
+
 - ✅ **Zero-downtime resilience**: Circuit breaker prevents cascading failures during DB outages
 - ✅ **Comprehensive testing**: 150+ tests across unit, integration, E2E, load, and accessibility
 - ✅ **Security hardening**: Tiered authorization with fail-secure defaults, RLS policies, XSS prevention
@@ -124,12 +223,62 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 
 ---
 
+---
+
+### Data Quality & Enrichment (Manual Process)
+
+**Status**: Ongoing (Manual Work)
+**Priority**: LOW
+**Effort**: User-driven at own pace
+
+Follow-up on verification levels and French translation of access scripts. This is manual data curation work separate from technical feature development.
+
+#### Current Data Quality Gaps
+
+Run `npm run audit:data` to refresh current counts:
+
+- ~58/196 services missing coordinates (30%, impacts proximity search)
+- ~18/196 services critically missing coordinates (9%)
+- ~17/196 services missing verified physical address (9%)
+- ~10/196 services missing structured hours (5%)
+- 0/196 services at L3 verification (provider-confirmed partnerships)
+
+#### Available Tools
+
+**Translation Helper (v17.6)**:
+
+```bash
+npm run translate:prompt <batch-file>   # Generate translation prompts
+npm run translate:parse <batch> <response>  # Parse AI responses
+npm run translate:validate <batch>      # Validate translations
+```
+
+**Data Auditing**:
+
+```bash
+npm run audit:data           # Current service count and gaps
+npm run bilingual-check      # Verify French completeness
+npm run check-staleness      # Find services needing re-verification
+```
+
+#### Tasks (User-driven)
+
+- [ ] Translate `access_script_fr` for remaining services (batch process)
+- [ ] Web-verify 17 missing addresses (no provider contact required)
+- [ ] Web-verify 10 missing hours (no provider contact required)
+- [ ] Run geocoding for verified addresses: `OPENCAGE_API_KEY=... npm run geocode`
+- [ ] Future: Establish first 10 L3 partnerships (requires provider outreach)
+- [ ] Future: Expand underrepresented categories (Transport, Financial, Indigenous)
+
+---
+
 ## ⏸️ Paused Work
 
 ### v15.1: Mobile App Launch
 
 **Status**: Blocked - Awaiting User Decision
 **Blockers**:
+
 - Requires macOS with Xcode for iOS builds
 - Requires paid Apple Developer account ($99/year)
 - Requires Google Play Developer account ($25 one-time)
@@ -138,6 +287,7 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 **Scope**: Native iOS/Android builds, app store submissions, launch monitoring, production app deployment
 
 **Infrastructure Ready**:
+
 - ✅ Capacitor configuration complete
 - ✅ Android project configured
 - ✅ iOS project configured (needs macOS to build)
@@ -151,12 +301,14 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 ## 📋 Future Considerations
 
 ### Observability & Performance (Post-v17.6)
+
 - Real-time performance monitoring dashboard (visualize circuit breaker state, p50/p95/p99 graphs over time)
 - Automated load testing in CI (scheduled weekly k6 runs with automatic baseline comparison)
 - Performance regression alerts on pull requests (fail builds if latency degrades >20%)
 - Integration with production monitoring (Axiom, Sentry, or Datadog for live metrics)
 
 ### Advanced Resilience
+
 - Enhanced circuit breaker features:
   - Per-operation circuit breakers (separate for auth, analytics, services)
   - Dynamic threshold adjustment based on historical failure rates
@@ -165,12 +317,14 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 - Cached authorization with smart invalidation (Redis/memory cache for 5-10min TTL)
 
 ### API & Integration
+
 - GraphQL API (alongside REST for flexible querying and reduced over-fetching)
 - Webhooks (event-driven integrations for partner notifications)
 - API keys & server-to-server auth (for third-party service integrations)
 - Public API documentation (OpenAPI/Swagger spec)
 
 ### Data & Content
+
 - Automated data staleness detection (flag services >6 months without verification)
 - Community-driven service suggestions (public submission form with moderation queue)
 - Multi-language support expansion (add Korean, Ukrainian based on demographic needs)
@@ -181,18 +335,21 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 ## 📖 Using This Roadmap
 
 ### For Developers
+
 - **Current work**: Focus on "Active Work" section (currently manual data quality tasks)
 - **Technical reference**: See "Completed Work" for implementation patterns and ADR links
 - **Planning**: Review "Future Considerations" for upcoming features
 - **Testing**: Run `npm test` for unit/integration, `npm run test:e2e:local` for E2E
 
 ### For Contributors
+
 - Check `CONTRIBUTING.md` for contribution guidelines
 - Review ADRs in `docs/adr/` for architectural decisions
 - Test commands documented in `CLAUDE.md`
 - Follow conventional commits (enforced by commitlint)
 
 ### For Stakeholders
+
 - Platform is production-ready with v17.6 completion
 - Manual data quality work ongoing at user's pace
 - Future features prioritized by impact and feasibility

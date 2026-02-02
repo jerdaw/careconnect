@@ -119,11 +119,7 @@ export async function assertOrganizationMembership(
  * Asserts that a user has the 'admin' role in their metadata.
  * Uses the provided supabase client (ssr).
  */
-export async function assertAdminRole(
-  supabase: SupabaseClient,
-  _userId: string,
-  riskLevel: RiskLevel = "high"
-) {
+export async function assertAdminRole(supabase: SupabaseClient, _userId: string, riskLevel: RiskLevel = "high") {
   try {
     return await withCircuitBreaker(async () => {
       const {
@@ -150,7 +146,7 @@ export async function assertAdminRole(
         userId: _userId,
         riskLevel,
         component: "authorization",
-        action: "assertAdminRole"
+        action: "assertAdminRole",
       })
       return true
     }
@@ -198,7 +194,7 @@ export async function getEffectivePermissions(
         userId,
         orgId,
         riskLevel,
-        component: "authorization"
+        component: "authorization",
       })
       return {
         canEdit: false,
@@ -254,7 +250,7 @@ export async function assertPermission(
         component: "authorization",
       })
       // Return a safe default role for low-risk if bypassed (viewer)
-      return "viewer" as OrganizationRole 
+      return "viewer" as OrganizationRole
     }
     throw error
   }
@@ -291,10 +287,51 @@ export async function getUserOrganizationRole(
         userId,
         orgId,
         riskLevel,
-        component: "authorization"
+        component: "authorization",
       })
       return null
     }
     throw error
+  }
+}
+
+/**
+ * Checks if a user is a platform admin via the app_admins table.
+ * Returns true if user exists in app_admins, false otherwise.
+ */
+export async function isUserAdmin(
+  supabase: SupabaseClient,
+  userId: string,
+  riskLevel: RiskLevel = "high"
+): Promise<boolean> {
+  try {
+    return await withCircuitBreaker(async () => {
+      const { data, error } = await supabase.from("app_admins").select("user_id").eq("user_id", userId).single()
+
+      if (error || !data) {
+        return false
+      }
+
+      return true
+    })
+  } catch (error) {
+    if (error instanceof CircuitOpenError) {
+      logger.warn("Admin check bypassed: Circuit breaker open", {
+        userId,
+        riskLevel,
+        component: "authorization",
+        action: "isUserAdmin",
+        // Fail closed for high risk, fail open for low risk
+        result: riskLevel === "low",
+      })
+      return riskLevel === "low"
+    }
+    // On any other error, fail closed (deny admin access)
+    logger.error("Admin check failed", {
+      userId,
+      error: error instanceof Error ? error.message : String(error),
+      component: "authorization",
+    })
+    return false
   }
 }

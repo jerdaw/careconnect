@@ -50,7 +50,7 @@ tags: [pwa, offline, workbox, caching, privacy]
 
 ## Related
 
-- `docs/roadmaps/archive/2026-01-17-v17-6-pwa-enhancement.md`
+- `docs/planning/archive/2026-01-17-v17-6-pwa-enhancement.md`
 - `docs/runbooks/pwa-testing.md`
 - `next.config.ts`
 - `middleware.ts`

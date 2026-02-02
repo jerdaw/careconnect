@@ -155,10 +155,7 @@ export class CircuitBreaker {
     } catch (error) {
       const durationMs = performance.now() - startTime
 
-      this.recordFailure(
-        error instanceof Error ? error.message : String(error),
-        durationMs
-      )
+      this.recordFailure(error instanceof Error ? error.message : String(error), durationMs)
       throw error
     }
   }
@@ -263,9 +260,7 @@ export class CircuitBreaker {
    */
   private pruneOldRequests(): void {
     const cutoffTime = Date.now() - this.config.monitorWindow
-    this.requestHistory = this.requestHistory.filter(
-      (r) => r.timestamp >= cutoffTime
-    )
+    this.requestHistory = this.requestHistory.filter((r) => r.timestamp >= cutoffTime)
   }
 
   /**

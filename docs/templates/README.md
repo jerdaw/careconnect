@@ -7,7 +7,7 @@ Standard scaffolds for common document types. Copy, rename, and fill in.
 | Template                                               | Use When                          | Location            |
 | ------------------------------------------------------ | --------------------------------- | ------------------- |
 | [ADR Template](adr-template.md)                        | Recording architectural decisions | `docs/adr/`         |
-| [Implementation Plan](implementation-plan-template.md) | Planning roadmap features         | `docs/roadmaps/`    |
+| [Implementation Plan](implementation-plan-template.md) | Planning roadmap features         | `docs/planning/`    |
 | [Guide Template](guide-template.md)                    | Writing developer guides          | `docs/development/` |
 
 ## Usage

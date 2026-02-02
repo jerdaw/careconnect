@@ -25,6 +25,14 @@ export const env = createEnv({
       .default("30000")
       .transform((val) => parseInt(val, 10))
       .pipe(z.number().int().positive().max(300000)), // Max 5 minutes
+    // Axiom Observability (v18.0 Phase 2)
+    AXIOM_TOKEN: z.string().optional(),
+    AXIOM_ORG_ID: z.string().optional(),
+    AXIOM_DATASET: z.string().optional().default("kingston-care-production"),
+    // Slack Integration (v18.0 Phase 2)
+    SLACK_WEBHOOK_URL: z.string().url().optional(),
+    // Cron Job Authentication (v18.0 Phase 2)
+    CRON_SECRET: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional().or(z.literal("")),

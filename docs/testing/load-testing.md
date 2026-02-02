@@ -16,11 +16,13 @@ Load testing validates that the application performs well under expected and pea
 ### Install k6
 
 **macOS:**
+
 ```bash
 brew install k6
 ```
 
 **Linux:**
+
 ```bash
 sudo gpg -k
 sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
@@ -30,6 +32,7 @@ sudo apt-get install k6
 ```
 
 **Windows:**
+
 ```powershell
 choco install k6
 ```
@@ -49,16 +52,19 @@ npm run build && npm start
 **Purpose:** Verify basic functionality with minimal load.
 
 **Characteristics:**
+
 - 1 virtual user (VU)
 - 30 second duration
 - Tests basic connectivity
 
 **Run:**
+
 ```bash
 npm run test:load:smoke
 ```
 
 **Expected Results:**
+
 - 100% success rate
 - p95 latency < 1000ms
 - All health checks pass
@@ -70,23 +76,27 @@ npm run test:load:smoke
 **Purpose:** Realistic load testing with gradual ramp-up.
 
 **Characteristics:**
+
 - Ramps from 10 to 50 VUs over 5 minutes
 - Sustained load at 50 VUs for 3 minutes
 - Tests keyword search, filters, location-based queries
 - Validates crisis detection
 
 **Run:**
+
 ```bash
 npm run test:load
 ```
 
 **Expected Results:**
+
 - p95 latency < 800ms
 - p99 latency < 1500ms
 - Error rate < 5%
 - 95% of checks pass
 
 **Thresholds:**
+
 ```javascript
 {
   http_req_duration: ['p(95)<800', 'p(99)<1500'],
@@ -102,22 +112,26 @@ npm run test:load
 **Purpose:** Long-running test to detect memory leaks and performance degradation.
 
 **Characteristics:**
+
 - Constant 20 VUs
 - 30 minute duration (adjustable)
 - Monitors for stability issues
 
 **Run:**
+
 ```bash
 npm run test:load:sustained
 ```
 
 **Expected Results:**
+
 - Stable performance across duration
 - p95 latency < 1000ms
 - p99 latency < 2000ms
 - No performance degradation over time
 
 **Warning Signs:**
+
 - ⚠️ p99 latency increasing over time (memory leak)
 - ⚠️ Error rate increasing (resource exhaustion)
 - ⚠️ p99 > 3000ms (critical threshold)
@@ -129,16 +143,19 @@ npm run test:load:sustained
 **Purpose:** Test system resilience under sudden traffic spikes.
 
 **Characteristics:**
+
 - Spike from 0 to 100 VUs in 10 seconds
 - Hold at 100 VUs for 1 minute
 - Drop back to 0
 
 **Run:**
+
 ```bash
 npm run test:load:spike
 ```
 
 **Expected Results:**
+
 - p95 latency < 2000ms
 - p99 latency < 5000ms
 - Error rate < 15% (relaxed during spike)
@@ -146,6 +163,7 @@ npm run test:load:spike
 - Circuit breaker may activate (expected)
 
 **Success Criteria:**
+
 - System degrades gracefully (doesn't crash)
 - Rate limiting prevents cascading failures
 - System recovers after spike
@@ -158,16 +176,19 @@ npm run test:load:spike
 ### Key Metrics
 
 **Response Time Percentiles:**
+
 - **p50 (median):** 50% of requests complete faster than this
 - **p95:** 95% of requests complete faster than this (target SLA)
 - **p99:** 99% of requests complete faster than this (worst case)
 - **max:** Slowest request
 
 **Error Rates:**
+
 - **http_req_failed:** Percentage of HTTP errors (non-2xx)
 - **search_errors:** Custom metric for search-specific errors
 
 **Custom Metrics:**
+
 - **search_duration:** Average search operation time
 - **rate_limit_hits:** Number of rate limit activations
 - **circuit_breaker_activations:** Circuit breaker open events
@@ -194,18 +215,21 @@ Custom Metrics:
 ### Interpreting Results
 
 **Good Performance:**
+
 - ✅ p95 < 800ms
 - ✅ p99 < 1500ms
 - ✅ Error rate < 5%
 - ✅ Stable performance across test duration
 
 **Degraded Performance:**
+
 - ⚠️ p95 between 800-1200ms
 - ⚠️ p99 between 1500-2500ms
 - ⚠️ Error rate between 5-10%
 - Action: Investigate slow queries, optimize code
 
 **Critical Issues:**
+
 - ❌ p95 > 1200ms
 - ❌ p99 > 3000ms
 - ❌ Error rate > 10%
@@ -221,12 +245,12 @@ Established on: 2026-01-25
 
 **Environment:** Local development server (not representative of production)
 
-| Test | VUs | Duration | p50 | p95 | p99 | Error Rate |
-|------|-----|----------|-----|-----|-----|------------|
-| Smoke | 1 | 30s | TBD | TBD | TBD | TBD |
-| Search API | 10-50 | 10m | TBD | TBD | TBD | TBD |
-| Sustained | 20 | 30m | TBD | TBD | TBD | TBD |
-| Spike | 0-100 | 1m | TBD | TBD | TBD | TBD |
+| Test       | VUs   | Duration | p50 | p95 | p99 | Error Rate |
+| ---------- | ----- | -------- | --- | --- | --- | ---------- |
+| Smoke      | 1     | 30s      | TBD | TBD | TBD | TBD        |
+| Search API | 10-50 | 10m      | TBD | TBD | TBD | TBD        |
+| Sustained  | 20    | 30m      | TBD | TBD | TBD | TBD        |
+| Spike      | 0-100 | 1m       | TBD | TBD | TBD | TBD        |
 
 **Note:** Run tests and document actual baseline metrics before first production deployment.
 
@@ -268,7 +292,7 @@ name: Load Test
 on:
   workflow_dispatch: # Manual trigger only
   schedule:
-    - cron: '0 2 * * 0' # Weekly on Sunday at 2 AM
+    - cron: "0 2 * * 0" # Weekly on Sunday at 2 AM
 
 jobs:
   load-test:
@@ -279,7 +303,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install k6
         run: |
@@ -312,7 +336,7 @@ jobs:
         if: always()
         with:
           name: load-test-results
-          path: '*.json'
+          path: "*.json"
 ```
 
 **Important:** Mark as non-blocking initially. Only fail CI if performance degrades significantly.
@@ -326,12 +350,14 @@ jobs:
 **Symptoms:** p95 > 1000ms, p99 > 2000ms
 
 **Possible Causes:**
+
 - Database queries not optimized
 - Missing indexes
 - N+1 query problems
 - Network latency to Supabase
 
 **Actions:**
+
 1. Enable performance tracking: `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true`
 2. Check logs for slow operations
 3. Review database query plans
@@ -342,12 +368,14 @@ jobs:
 **Symptoms:** Error rate > 5%
 
 **Possible Causes:**
+
 - Rate limiting too strict
 - Database connection pool exhausted
 - Circuit breaker opening
 - Timeout issues
 
 **Actions:**
+
 1. Check `/api/v1/health` for circuit breaker state
 2. Review rate limit configuration
 3. Check database connection pool size
@@ -358,11 +386,13 @@ jobs:
 **Symptoms:** p99 latency increasing over time in sustained test
 
 **Possible Causes:**
+
 - In-memory cache not pruning
 - Event listeners not cleaned up
 - Database connections not released
 
 **Actions:**
+
 1. Monitor Node.js heap usage
 2. Review in-memory caching logic (`lib/performance/metrics.ts`)
 3. Check database connection cleanup
@@ -375,6 +405,7 @@ jobs:
 **Status:** This is expected behavior during spikes!
 
 **Actions:**
+
 1. Check `/api/v1/health` for current state
 2. Verify fallback to JSON working
 3. If persistent, investigate upstream Supabase issues
@@ -387,6 +418,7 @@ jobs:
 ## Best Practices
 
 ### DO:
+
 - ✅ Run smoke tests before every deployment
 - ✅ Run load tests weekly on staging
 - ✅ Document baseline metrics
@@ -395,6 +427,7 @@ jobs:
 - ✅ Monitor during tests (health endpoint, logs)
 
 ### DON'T:
+
 - ❌ Run sustained/spike tests against production
 - ❌ Run load tests during business hours (staging)
 - ❌ Ignore gradual performance degradation

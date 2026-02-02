@@ -52,10 +52,7 @@ export async function getAnalyticsForServices(serviceIds: string[]): Promise<Rec
   let data
   try {
     const result = await withCircuitBreaker(async () =>
-      supabase
-        .from("analytics_events")
-        .select("service_id, created_at")
-        .in("service_id", serviceIds)
+      supabase.from("analytics_events").select("service_id, created_at").in("service_id", serviceIds)
     )
 
     if (result.error || !result.data) {

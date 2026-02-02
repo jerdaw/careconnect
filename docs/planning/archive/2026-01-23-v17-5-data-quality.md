@@ -16,7 +16,7 @@ tags: [roadmap, v17.5, data-quality, verification, enrichment]
 
 Audit and enrich the service directory (currently 196 services) with missing data needed for **trust**, **accessibility**, and **search accuracy**.
 
-v17.5 implementation work is complete; the remaining items are confirmation/translation tasks tracked in `docs/roadmaps/roadmap.md` under v17.5 follow-ups.
+v17.5 implementation work is complete; the remaining items are confirmation/translation tasks tracked in `docs/planning/roadmap.md` under v17.5 follow-ups.
 
 This roadmap is intentionally **architecture-aware**:
 
@@ -63,8 +63,8 @@ Recompute any time with `npm run audit:data` before starting a new batch.
 
 Deep Research artifacts used for v17.5:
 
-- Prompt set: `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
-- Ingestion record (archived): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+- Prompt set: `docs/planning/archive/2026-01-23-v17-5-ai-prompts.md`
+- Ingestion record (archived): `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 - Audit workspace: `docs/audits/v17-5/ai-results/README.md`
 - ADR: `docs/adr/011-ai-deep-research-output-ingestion.md`
 
@@ -120,7 +120,7 @@ Create spreadsheet with:
 
 **Categories needing expansion:**
 
-Category expansion is not part of the v17.5 close-out. Track ongoing expansion in `docs/roadmaps/roadmap.md` under the v17.5 “Category Expansion” section.
+Category expansion is not part of the v17.5 close-out. Track ongoing expansion in `docs/planning/roadmap.md` under the v17.5 “Category Expansion” section.
 
 ---
 
@@ -200,7 +200,7 @@ For each Kingston service in `coordinate-gaps.json` with `issues: ["missing_addr
 > [!IMPORTANT]
 > This is the concrete “what to do next” list for Phase 3.
 
-This work requires web verification and (optionally) a geocoding API key, so it is tracked as a follow-up in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
+This work requires web verification and (optionally) a geocoding API key, so it is tracked as a follow-up in `docs/planning/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 
 When you are ready:
 
@@ -248,7 +248,7 @@ For services that fail automated geocoding (or have no geocodable address):
 
 Implementation record:
 
-- [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
+- [x] Deep Research workflow completed + merged (see `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
 - [x] Post-merge audit captured (see `docs/audits/v17-5/ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:
@@ -256,7 +256,7 @@ Remaining work:
 - [x] UI: Add a clearly labeled “What to say when you call” section on the public service detail page (`app/[locale]/service/[id]/page.tsx`) using `next-intl` message keys.
 - [x] Governance: run access-script QA audit (length, missing, obvious artifacts) and resolve any issues found.
   - Audit: `npm run audit:access-scripts` → `docs/audits/v17-5/ai-results/reports/access-script-audit.json`
-- Follow-up: populate `access_script_fr` (translation-only; no new facts) is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Bilingual Follow-Up (Access Scripts - French)”.
+- Follow-up: populate `access_script_fr` (translation-only; no new facts) is tracked in `docs/planning/roadmap.md` under v17.5 → “Bilingual Follow-Up (Access Scripts - French)”.
 
 ### 4.3 Plain Language Audit
 
@@ -288,12 +288,12 @@ Hours text progress:
 
 Implementation record:
 
-- [x] Deep Research workflow completed + merged (see `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
+- [x] Deep Research workflow completed + merged (see `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`).
 - [x] Post-merge audit captured (see `docs/audits/v17-5/ai-results/reports/post-merge-audit-2026-01-22.md`).
 
 Remaining work:
 
-- Follow-up: resolve remaining missing-`hours` services via manual web verification is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
+- Follow-up: resolve remaining missing-`hours` services via manual web verification is tracked in `docs/planning/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 - [x] Spot-check “Open Now” at different times (including overnight cases) via unit tests (`tests/lib/search/hours.test.ts`).
 - [x] Verify printable hours rendering via API unit test (`tests/api/v1/services-printable.test.ts`).
 
@@ -318,7 +318,7 @@ npm run audit:l3
 Track outreach and confirmations in `data/verification/l3-candidates.csv` (do not commit private emails/PII).
 
 **Criteria for L3:**
-This work requires provider outreach and is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”.
+This work requires provider outreach and is tracked in `docs/planning/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”.
 
 ### 6.2 L3 Partnership Process
 
@@ -399,7 +399,7 @@ npm run audit:data
 
 ### Manual Spot-Check (20% sample)
 
-Manual spot-checking requires web verification and is tracked as a follow-up in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
+Manual spot-checking requires web verification and is tracked as a follow-up in `docs/planning/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”.
 
 ### End-to-End Testing
 
@@ -417,9 +417,9 @@ Automated coverage exists for core flows:
 ### Core Data Quality (Must Have)
 
 - [x] 100% services have `scope` field (baseline snapshot already achieved)
-- Follow-up: 90%+ services have coordinates is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
+- Follow-up: 90%+ services have coordinates is tracked in `docs/planning/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
 - [x] 70%+ services have structured `hours` (achieved; 184/196 present as of 2026-01-23)
-- Follow-up: reduce missing structured hours further is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
+- Follow-up: reduce missing structured hours further is tracked in `docs/planning/roadmap.md` under v17.5 → “Non-IRL Confirmations (Web Verification)”
 - [x] Data validation passes all automated checks (`npm run validate-data`)
 
 ### Enhanced Metadata (Should Have)
@@ -428,7 +428,7 @@ Automated coverage exists for core flows:
 - [x] Public UI surfaces `access_script` on service detail pages (multi-lingual via `next-intl`)
 - [x] 100% services have `plain_language_available` flag present (baseline snapshot already achieved)
 - [x] Decision: do not expose plain-language status as a badge/filter in v17.5 (keep as internal QA metadata)
-- Follow-up: 10+ services at L3 is tracked in `docs/roadmaps/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”
+- Follow-up: 10+ services at L3 is tracked in `docs/planning/roadmap.md` under v17.5 → “IRL Confirmations (Provider Outreach)”
 
 ### Removed from v17.5 (Ongoing Work)
 

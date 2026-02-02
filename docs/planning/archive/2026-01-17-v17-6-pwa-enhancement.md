@@ -7,7 +7,7 @@ tags: [roadmap, v17.6, pwa, offline, mobile]
 
 # v17.6: PWA Enhancement
 
-> **Status**: Code implementation complete. Remaining manual verification work is tracked in `docs/roadmaps/roadmap.md` under v17.6.
+> **Status**: Code implementation complete. Remaining manual verification work is tracked in `docs/planning/roadmap.md` under v17.6.
 
 **Priority:** MEDIUM
 **Estimated Effort:** 1-2 weeks (single developer)
@@ -452,7 +452,7 @@ Manual verification lives in `docs/runbooks/pwa-testing.md` (authoritative) and 
 
 If planning mobile app store listing:
 
-This is external tooling + credentials work (see `docs/development/mobile-ready.md`). Full native store submission is tracked under v15.1 (paused) in `docs/roadmaps/roadmap.md`.
+This is external tooling + credentials work (see `docs/development/mobile-ready.md`). Full native store submission is tracked under v15.1 (paused) in `docs/planning/roadmap.md`.
 
 ### 6.2 App Store (iOS) PWA Listing
 

@@ -10,7 +10,7 @@ This folder is an **immutable archive** of the original LLM “Deep Research” 
 ## Context
 
 - **Generated:** 2026-01-22 (Deep Research session outputs)
-- **Prompt template:** `docs/roadmaps/archive/2026-01-23-v17-5-ai-prompts.md`
+- **Prompt template:** `docs/planning/archive/2026-01-23-v17-5-ai-prompts.md`
 - **Batch inputs:** `docs/audits/v17-5/ai-results/batches/2026-01-21-v17-5-batch{1..4}.json`
 
 Notes:

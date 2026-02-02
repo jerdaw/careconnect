@@ -110,26 +110,77 @@ export function createCircuitBreakerTelemetry(circuitName: string) {
      * Report circuit opened event
      */
     reportOpened: (failureCount: number, failureRate: number) => {
+      const timestamp = Date.now()
+
       logCircuitBreakerEvent({
         circuitName,
         event: CircuitBreakerEvent.CIRCUIT_OPENED,
-        timestamp: Date.now(),
+        timestamp,
         state: CircuitState.OPEN,
         failureCount,
         failureRate,
       })
+
+      // Send to Axiom (production only, non-blocking)
+      if (process.env.NODE_ENV === "production") {
+        void import("@/lib/observability/axiom").then(({ sendCircuitBreakerEvent }) => {
+          void sendCircuitBreakerEvent({
+            state: CircuitState.OPEN,
+            previousState: CircuitState.CLOSED,
+            failureCount,
+            successCount: 0,
+            failureRate,
+          })
+        })
+
+        // Send Slack alert (production only, non-blocking)
+        void import("@/lib/integrations/slack").then(({ sendCircuitBreakerAlert }) => {
+          void import("@/lib/observability/alert-throttle").then(({ shouldSendAlert }) => {
+            if (shouldSendAlert("circuit-open")) {
+              void sendCircuitBreakerAlert({
+                state: CircuitState.OPEN,
+                previousState: CircuitState.CLOSED,
+                failureCount,
+                successCount: 0,
+                failureRate,
+                timestamp,
+              })
+            }
+          })
+        })
+      }
     },
 
     /**
      * Report circuit closed event
      */
     reportClosed: () => {
+      const timestamp = Date.now()
+
       logCircuitBreakerEvent({
         circuitName,
         event: CircuitBreakerEvent.CIRCUIT_CLOSED,
-        timestamp: Date.now(),
+        timestamp,
         state: CircuitState.CLOSED,
       })
+
+      // Send Slack recovery alert (production only, non-blocking, optional)
+      if (process.env.NODE_ENV === "production") {
+        void import("@/lib/integrations/slack").then(({ sendCircuitBreakerAlert }) => {
+          void import("@/lib/observability/alert-throttle").then(({ shouldSendAlert }) => {
+            if (shouldSendAlert("circuit-closed")) {
+              void sendCircuitBreakerAlert({
+                state: CircuitState.CLOSED,
+                previousState: CircuitState.OPEN,
+                failureCount: 0,
+                successCount: 1,
+                failureRate: 0,
+                timestamp,
+              })
+            }
+          })
+        })
+      }
     },
 
     /**
@@ -147,7 +198,11 @@ export function createCircuitBreakerTelemetry(circuitName: string) {
     /**
      * Report state transition
      */
-    reportStateTransition: (from: CircuitState, to: CircuitState) => {
+    reportStateTransition: (
+      from: CircuitState,
+      to: CircuitState,
+      stats?: { failureCount: number; successCount: number; failureRate: number }
+    ) => {
       logCircuitBreakerEvent({
         circuitName,
         event: CircuitBreakerEvent.STATE_TRANSITION,
@@ -155,6 +210,19 @@ export function createCircuitBreakerTelemetry(circuitName: string) {
         previousState: from,
         state: to,
       })
+
+      // Send to Axiom (production only, non-blocking)
+      if (process.env.NODE_ENV === "production" && stats) {
+        void import("@/lib/observability/axiom").then(({ sendCircuitBreakerEvent }) => {
+          void sendCircuitBreakerEvent({
+            state: to,
+            previousState: from,
+            failureCount: stats.failureCount,
+            successCount: stats.successCount,
+            failureRate: stats.failureRate,
+          })
+        })
+      }
     },
 
     /**

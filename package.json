@@ -52,7 +52,8 @@
     "test:load": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/search-api.k6.js || k6 run tests/load/search-api.k6.js",
     "test:load:smoke": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/smoke-test.k6.js || k6 run tests/load/smoke-test.k6.js",
     "test:load:sustained": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/sustained-load.k6.js || k6 run tests/load/sustained-load.k6.js",
-    "test:load:spike": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/spike-test.k6.js || k6 run tests/load/spike-test.k6.js"
+    "test:load:spike": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/spike-test.k6.js || k6 run tests/load/spike-test.k6.js",
+    "analyze:load-test": "node --import tsx scripts/analyze-load-test-results.ts"
   },
   "overrides": {
     "react": "$react",
@@ -60,6 +61,7 @@
     "tar": "7.5.4"
   },
   "dependencies": {
+    "@axiomhq/js": "1.4.0",
     "@capacitor/android": "^8.0.1",
     "@capacitor/app": "^8.0.0",
     "@capacitor/cli": "^8.0.1",

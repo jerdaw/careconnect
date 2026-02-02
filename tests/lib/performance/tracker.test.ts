@@ -3,7 +3,12 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { trackPerformance, trackPerformanceSync, createPerformanceTimer, isPerformanceTrackingEnabled } from "@/lib/performance/tracker"
+import {
+  trackPerformance,
+  trackPerformanceSync,
+  createPerformanceTimer,
+  isPerformanceTrackingEnabled,
+} from "@/lib/performance/tracker"
 import { resetMetrics, getOperationMetrics } from "@/lib/performance/metrics"
 
 describe("Performance Tracker", () => {

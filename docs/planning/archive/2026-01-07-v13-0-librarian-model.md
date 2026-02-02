@@ -558,8 +558,8 @@ This phase is where we remove/avoid:
 
 **Archive plan:**
 
-- [ ] When complete, move this doc to `docs/roadmaps/archive/` as `YYYY-MM-DD-v13-0-librarian-model.md`.
-- [ ] Update `docs/roadmaps/roadmap.md` v13.0 status to “Completed”.
+- [ ] When complete, move this doc to `docs/planning/archive/` as `YYYY-MM-DD-v13-0-librarian-model.md`.
+- [ ] Update `docs/planning/roadmap.md` v13.0 status to “Completed”.
 - [ ] Update `docs/architecture.md` to reflect what actually exists (no speculative sections).
 
 ---

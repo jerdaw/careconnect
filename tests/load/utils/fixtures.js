@@ -9,60 +9,60 @@
  */
 export const sampleQueries = [
   // Common searches
-  'food bank',
-  'mental health',
-  'housing',
-  'employment',
-  'childcare',
-  'healthcare',
-  'seniors',
-  'youth programs',
-  'addiction',
-  'domestic violence',
+  "food bank",
+  "mental health",
+  "housing",
+  "employment",
+  "childcare",
+  "healthcare",
+  "seniors",
+  "youth programs",
+  "addiction",
+  "domestic violence",
 
   // Crisis queries
-  'suicide',
-  'emergency',
-  'crisis',
+  "suicide",
+  "emergency",
+  "crisis",
 
   // Specific needs
-  'diabetes support',
-  'french services',
-  'wheelchair accessible',
-  'free dental',
-  'legal aid',
-  'immigration help',
+  "diabetes support",
+  "french services",
+  "wheelchair accessible",
+  "free dental",
+  "legal aid",
+  "immigration help",
 
   // Location-based
-  'food bank kingston',
-  'mental health near me',
-  'shelter downtown',
+  "food bank kingston",
+  "mental health near me",
+  "shelter downtown",
 
   // Empty query (filter-only)
-  '',
+  "",
 ]
 
 /**
  * Sample categories
  */
 export const sampleCategories = [
-  'Food',
-  'Housing',
-  'Healthcare',
-  'Mental Health',
-  'Employment',
-  'Legal',
-  'Crisis',
-  'Youth',
-  'Seniors',
-  'Newcomers',
+  "Food",
+  "Housing",
+  "Healthcare",
+  "Mental Health",
+  "Employment",
+  "Legal",
+  "Crisis",
+  "Youth",
+  "Seniors",
+  "Newcomers",
 ]
 
 /**
  * Sample locations (Kingston area)
  */
 export const sampleLocations = [
-  { lat: 44.2312, lng: -76.4860 }, // Downtown Kingston
+  { lat: 44.2312, lng: -76.486 }, // Downtown Kingston
   { lat: 44.2639, lng: -76.5197 }, // West Kingston
   { lat: 44.2456, lng: -76.4562 }, // East Kingston
   { lat: 44.2089, lng: -76.5289 }, // South Kingston
@@ -103,7 +103,7 @@ export function randomLocation() {
  */
 export function randomLocale() {
   // 90% English, 10% French (realistic distribution)
-  return Math.random() < 0.9 ? 'en' : 'fr'
+  return Math.random() < 0.9 ? "en" : "fr"
 }
 
 /**

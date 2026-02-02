@@ -157,9 +157,11 @@ Return format:
 **Process:**
 
 1. Audit current coverage:
+
    ```bash
    npm run audit:access-scripts
    ```
+
    Output: `docs/audits/v17-5/ai-results/reports/access-script-audit.json`
 
 2. Assign category templates to services without scripts
@@ -184,7 +186,7 @@ Canonical references:
 
 - Architecture decision: `docs/adr/011-ai-deep-research-output-ingestion.md`
 - Example artifact set (v17.5): `docs/audits/v17-5/ai-results/README.md`
-- Historical roadmap record (safe to delete if you don't need it): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+- Historical roadmap record (safe to delete if you don't need it): `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 
 ### 5.6 Plain Language Scoring
 

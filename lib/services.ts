@@ -11,16 +11,17 @@ import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
  */
 export async function claimService(serviceId: string, orgId: string) {
   try {
-    const { error } = await withCircuitBreaker(async () =>
-      supabase
-        .from("services")
-        .update({
-          org_id: orgId,
-          verification_status: "L1", // Elevate to L1 upon claiming
-          last_verified: new Date().toISOString(),
-        })
-        .eq("id", serviceId)
-        .is("org_id", null) // Atomic check to ensure it's not already claimed
+    const { error } = await withCircuitBreaker(
+      async () =>
+        supabase
+          .from("services")
+          .update({
+            org_id: orgId,
+            verification_status: "L1", // Elevate to L1 upon claiming
+            last_verified: new Date().toISOString(),
+          })
+          .eq("id", serviceId)
+          .is("org_id", null) // Atomic check to ensure it's not already claimed
     )
 
     if (error) {

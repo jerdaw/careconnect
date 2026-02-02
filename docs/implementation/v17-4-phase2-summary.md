@@ -338,7 +338,7 @@ WHERE organization_id = '<YOUR_ORG_ID>';
 - `app/[locale]/dashboard/services/page.tsx` - Added locale param
 - `components/partner/PartnerServiceList.tsx` - Added create button
 - `lib/actions/services.ts` - Added create and delete actions
-- `docs/roadmaps/2026-01-17-v17-4-dashboard-partner-portal.md` - Updated status
+- `docs/planning/archive/2026-01-25-v17-4-dashboard-partner-portal.md` - Updated status
 
 ---
 

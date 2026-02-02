@@ -16,7 +16,7 @@ This file provides context for AI agents working on the Kingston Care Connect pr
 
 ## Key Files
 
-- `docs/roadmaps/`: History of project growth.
+- `docs/planning/`: Roadmap, version planning, and project history.
 - `lib/search/index.ts`: Core hybrid search logic.
 - `docs/development/bilingual-guide.md`: Standardization of multi-lingual support.
 - `docs/development/testing-guidelines.md`: Expectations for feature coverage.

@@ -4,6 +4,7 @@ import { createApiError, handleApiError, createApiResponse, validateContentType 
 import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 const UpdateStatusSchema = z.object({
   status: z.enum(["pending", "reviewed", "resolved", "dismissed"]),
@@ -44,11 +45,9 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { status } = validation.data
 
     // 1. Get feedback and verify ownership
-    const { data: feedbackData, error: feedbackError } = await supabaseAuth
-      .from("feedback")
-      .select("service_id")
-      .eq("id", feedbackId)
-      .single()
+    const { data: feedbackData, error: feedbackError } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("feedback").select("service_id").eq("id", feedbackId).single()
+    )
 
     if (feedbackError || !feedbackData) {
       return createApiError("Feedback not found", 404)
@@ -57,14 +56,16 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     await assertServiceOwnership(supabaseAuth, user.id, feedbackData.service_id)
 
     // 2. Update Status
-    const { error: updateError } = await supabaseAuth
-      .from("feedback")
-      .update({
-        status: status,
-        resolved_at: status === "resolved" ? new Date().toISOString() : null,
-        resolved_by: user.email,
-      })
-      .eq("id", feedbackId)
+    const { error: updateError } = await withCircuitBreaker(async () =>
+      supabaseAuth
+        .from("feedback")
+        .update({
+          status: status,
+          resolved_at: status === "resolved" ? new Date().toISOString() : null,
+          resolved_by: user.email,
+        })
+        .eq("id", feedbackId)
+    )
 
     if (updateError) {
       return createApiError("Failed to update feedback", 500, updateError.message)

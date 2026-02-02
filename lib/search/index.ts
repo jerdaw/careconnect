@@ -44,54 +44,54 @@ export const searchServices = async (query: string, options: SearchOptions = {})
       const rawTokens = tokenize(searchInput)
       const tokens = expandSynonyms(rawTokens)
 
-  // Initial Filter: Category + Open Now
-  let filteredServices = services
+      // Initial Filter: Category + Open Now
+      let filteredServices = services
 
-  if (options.category) {
-    filteredServices = filteredServices.filter((s) => s.intent_category === options.category)
-  }
-
-  if (options.openNow) {
-    filteredServices = filteredServices.filter((s) => isOpenNow(s.hours))
-  }
-
-  // Special Case: Empty Query but Category/Location selected
-  if (query.trim().length === 0) {
-    if (options.category || options.location) {
-      // Return everything matching filter
-      let results = filteredServices.map((service) => ({
-        service,
-        score: 1,
-        matchReasons: ["Filter Match"],
-      }))
-
-      // Sort by Distance if available
-      if (options.location) {
-        results = results
-          .map((r) => {
-            if (r.service.coordinates) {
-              const dist = calculateDistanceKm(
-                options.location!.lat,
-                options.location!.lng,
-                r.service.coordinates.lat,
-                r.service.coordinates.lng
-              )
-              return { ...r, distance: dist }
-            }
-            return { ...r, distance: Infinity }
-          })
-          .sort((a, b) => {
-            const distA = a.distance ?? Infinity
-            const distB = b.distance ?? Infinity
-            return distA - distB
-          })
+      if (options.category) {
+        filteredServices = filteredServices.filter((s) => s.intent_category === options.category)
       }
-      return results
-    }
-    return []
-  }
 
-  if (tokens.length === 0) return []
+      if (options.openNow) {
+        filteredServices = filteredServices.filter((s) => isOpenNow(s.hours))
+      }
+
+      // Special Case: Empty Query but Category/Location selected
+      if (query.trim().length === 0) {
+        if (options.category || options.location) {
+          // Return everything matching filter
+          let results = filteredServices.map((service) => ({
+            service,
+            score: 1,
+            matchReasons: ["Filter Match"],
+          }))
+
+          // Sort by Distance if available
+          if (options.location) {
+            results = results
+              .map((r) => {
+                if (r.service.coordinates) {
+                  const dist = calculateDistanceKm(
+                    options.location!.lat,
+                    options.location!.lng,
+                    r.service.coordinates.lat,
+                    r.service.coordinates.lng
+                  )
+                  return { ...r, distance: dist }
+                }
+                return { ...r, distance: Infinity }
+              })
+              .sort((a, b) => {
+                const distA = a.distance ?? Infinity
+                const distB = b.distance ?? Infinity
+                return distA - distB
+              })
+          }
+          return results
+        }
+        return []
+      }
+
+      if (tokens.length === 0) return []
 
       // 1. First Pass: Keyword Only (Zero Cost)
       let results: SearchResult[] = []
@@ -103,7 +103,9 @@ export const searchServices = async (query: string, options: SearchOptions = {})
             if (service.verification_level === VerificationLevel.L0) continue
 
             // Pass userContext to scoring
-            const keywordResult = scoreServiceKeyword(service, tokens, options.category, { userContext: options.userContext })
+            const keywordResult = scoreServiceKeyword(service, tokens, options.category, {
+              userContext: options.userContext,
+            })
 
             if (keywordResult.score > 0) {
               results.push({ service, score: keywordResult.score, matchReasons: keywordResult.reasons })
@@ -119,25 +121,25 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         }
       )
 
-  let queryVector: number[] | null = options.vectorOverride || null
+      let queryVector: number[] | null = options.vectorOverride || null
 
-  // 2. Cost Optimization & Privacy Check
-  if (!options.vectorOverride) {
-    // Privacy: We do NOT fetch embeddings from server/OpenAI.
-    // If no vector passed from client, we fall back to pure keyword search.
+      // 2. Cost Optimization & Privacy Check
+      if (!options.vectorOverride) {
+        // Privacy: We do NOT fetch embeddings from server/OpenAI.
+        // If no vector passed from client, we fall back to pure keyword search.
 
-    // Safety Override: Check for Crisis intent
-    const isCrisis = detectCrisis(query)
-    if (isCrisis) {
-      results = boostCrisisResults(results, true)
-    }
+        // Safety Override: Check for Crisis intent
+        const isCrisis = detectCrisis(query)
+        if (isCrisis) {
+          results = boostCrisisResults(results, true)
+        }
 
-    // Apply Geo Sort if needed
-    if (options.location) {
-      return resortByDistance(results, options.location)
-    }
-    return results
-  }
+        // Apply Geo Sort if needed
+        if (options.location) {
+          return resortByDistance(results, options.location)
+        }
+        return results
+      }
 
       // 3. Vector Search (Semantic) - Only if client provided embedding
       queryVector = options.vectorOverride
@@ -192,25 +194,25 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         }
       )
 
-  // Convert back to array
-  let finalResults = Array.from(resultsMap.values())
+      // Convert back to array
+      let finalResults = Array.from(resultsMap.values())
 
-  // Sort
-  if (options.location) {
-    finalResults = resortByDistance(finalResults, options.location)
-  } else {
-    finalResults.sort((a, b) => b.score - a.score)
-  }
+      // Sort
+      if (options.location) {
+        finalResults = resortByDistance(finalResults, options.location)
+      } else {
+        finalResults.sort((a, b) => b.score - a.score)
+      }
 
-  // Safety Override: Check for Crisis intent
-  const isCrisis = detectCrisis(query)
-  if (isCrisis) {
-    finalResults = boostCrisisResults(finalResults, true)
-  }
+      // Safety Override: Check for Crisis intent
+      const isCrisis = detectCrisis(query)
+      if (isCrisis) {
+        finalResults = boostCrisisResults(finalResults, true)
+      }
 
-  if (options.limit && options.limit > 0) {
-    return finalResults.slice(0, options.limit)
-  }
+      if (options.limit && options.limit > 0) {
+        return finalResults.slice(0, options.limit)
+      }
 
       // Generate suggestion if no results
       if (finalResults.length === 0 && query.trim().length > 2) {

@@ -3,7 +3,8 @@
  *
  * Returns aggregated performance metrics for monitoring and debugging.
  * Protected endpoint - requires authentication.
- * Only available in development/staging environments.
+ * In production: Admin-only access.
+ * In development/staging: Any authenticated user.
  *
  * @route GET /api/v1/metrics
  */
@@ -12,11 +13,12 @@ import { NextRequest, NextResponse } from "next/server"
 import { getMetrics, getOperationMetrics, getRawDataPoints } from "@/lib/performance/metrics"
 import { env } from "@/lib/env"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
+import { isUserAdmin } from "@/lib/auth/authorization"
 
 /**
- * Check if request is authenticated
+ * Check if request is authenticated and get user
  */
-async function isAuthenticated(): Promise<boolean> {
+async function getAuthenticatedUser(): Promise<{ authenticated: boolean; userId: string | null }> {
   try {
     const { createServerClient } = await import("@supabase/ssr")
     const { cookies } = await import("next/headers")
@@ -37,9 +39,15 @@ async function isAuthenticated(): Promise<boolean> {
       data: { user },
     } = await supabaseAuth.auth.getUser()
 
-    return !!user
+    return {
+      authenticated: !!user,
+      userId: user?.id || null,
+    }
   } catch {
-    return false
+    return {
+      authenticated: false,
+      userId: null,
+    }
   }
 }
 
@@ -54,20 +62,11 @@ async function isAuthenticated(): Promise<boolean> {
  * Response:
  *   - 200: Metrics data
  *   - 401: Unauthorized
- *   - 403: Forbidden in production
+ *   - 403: Forbidden (requires admin in production)
  *   - 404: Performance tracking disabled
  *   - 429: Rate limit exceeded
  */
 export async function GET(request: NextRequest) {
-  // Production protection: Only allow in development/staging
-  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
-  if (process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      { error: "Metrics API is not available in production" },
-      { status: 403 }
-    )
-  }
-
   // Rate limiting: 30 requests per minute per IP
   const clientIp = getClientIp(request)
   const rateLimit = await checkRateLimit(clientIp, 30, 60 * 1000)
@@ -87,9 +86,33 @@ export async function GET(request: NextRequest) {
   }
 
   // Authentication check
-  const authenticated = await isAuthenticated()
-  if (!authenticated) {
+  const { authenticated, userId } = await getAuthenticatedUser()
+  if (!authenticated || !userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
+  // Production: Require admin access
+  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
+  if (process.env.NODE_ENV === "production") {
+    const { createServerClient } = await import("@supabase/ssr")
+    const { cookies } = await import("next/headers")
+
+    const cookieStore = await cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const isAdmin = await isUserAdmin(supabase, userId)
+    if (!isAdmin) {
+      return NextResponse.json({ error: "Forbidden: Admin access required in production" }, { status: 403 })
+    }
   }
 
   // Check if performance tracking is enabled
@@ -115,10 +138,7 @@ export async function GET(request: NextRequest) {
       const operationMetrics = getOperationMetrics(operation)
 
       if (!operationMetrics) {
-        return NextResponse.json(
-          { error: `No metrics found for operation: ${operation}` },
-          { status: 404 }
-        )
+        return NextResponse.json({ error: `No metrics found for operation: ${operation}` }, { status: 404 })
       }
 
       const response: Record<string, unknown> = {
@@ -180,28 +200,44 @@ export async function GET(request: NextRequest) {
 /**
  * DELETE /api/v1/metrics
  *
- * Reset all metrics (development only).
- * Requires authentication.
+ * Reset all metrics.
+ * In production: Admin-only access.
+ * In development/staging: Any authenticated user.
  *
  * Response:
  *   - 200: Metrics reset successfully
  *   - 401: Unauthorized
- *   - 403: Forbidden in production
+ *   - 403: Forbidden (requires admin in production)
  */
 export async function DELETE() {
-  // Production protection
-  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
-  if (process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      { error: "Metrics reset is not available in production" },
-      { status: 403 }
-    )
+  // Authentication check
+  const { authenticated, userId } = await getAuthenticatedUser()
+  if (!authenticated || !userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  // Authentication check
-  const authenticated = await isAuthenticated()
-  if (!authenticated) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  // Production: Require admin access
+  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
+  if (process.env.NODE_ENV === "production") {
+    const { createServerClient } = await import("@supabase/ssr")
+    const { cookies } = await import("next/headers")
+
+    const cookieStore = await cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll: () => cookieStore.getAll(),
+          setAll: () => {},
+        },
+      }
+    )
+
+    const isAdmin = await isUserAdmin(supabase, userId)
+    if (!isAdmin) {
+      return NextResponse.json({ error: "Forbidden: Admin access required in production" }, { status: 403 })
+    }
   }
 
   try {

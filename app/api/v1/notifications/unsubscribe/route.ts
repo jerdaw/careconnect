@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +12,9 @@ export async function POST(req: NextRequest) {
 
     const supabase = await createClient()
 
-    const { error } = await supabase.from("push_subscriptions").delete().eq("endpoint", endpoint)
+    const { error } = await withCircuitBreaker(async () =>
+      supabase.from("push_subscriptions").delete().eq("endpoint", endpoint)
+    )
 
     if (error) {
       console.error("Database error:", error)

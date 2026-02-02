@@ -418,7 +418,7 @@ LIMIT 5;
 - `app/api/admin/push/route.ts` - Added segment targeting and admin logging
 - `app/[locale]/admin/page.tsx` - Enhanced service form, integrated ReindexProgress
 - `types/service.ts` - Added admin_notes, last_admin_review, reviewed_by fields
-- `docs/roadmaps/2026-01-17-v17-4-dashboard-partner-portal.md` - Updated status
+- `docs/planning/archive/2026-01-25-v17-4-dashboard-partner-portal.md` - Updated status
 
 ---
 

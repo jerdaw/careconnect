@@ -534,4 +534,4 @@ If you encounter issues not covered in this guide, check:
 
 - Supabase logs for RLS policy violations
 - Browser console for client-side errors
-- `docs/roadmaps/2026-01-17-v17-4-dashboard-partner-portal.md` for architecture decisions
+- `docs/planning/archive/2026-01-25-v17-4-dashboard-partner-portal.md` for architecture decisions

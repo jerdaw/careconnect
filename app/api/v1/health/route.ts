@@ -112,8 +112,6 @@ async function isAuthenticated(): Promise<boolean> {
   }
 }
 
-
-
 /**
  * GET /api/v1/health
  *

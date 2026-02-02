@@ -20,14 +20,11 @@ export const loadServices = async (): Promise<Service[]> => {
   // If we are in the browser, check IndexedDB first for the most up-to-date offline data
   if (typeof window !== "undefined") {
     try {
-      const offlineServices = await trackPerformance(
-        "dataLoad.indexedDB",
-        async () => {
-          // Dynamic import to avoid server-side issues with 'idb'
-          const { getAllServices } = await import("@/lib/offline/db")
-          return await getAllServices()
-        }
-      )
+      const offlineServices = await trackPerformance("dataLoad.indexedDB", async () => {
+        // Dynamic import to avoid server-side issues with 'idb'
+        const { getAllServices } = await import("@/lib/offline/db")
+        return await getAllServices()
+      })
 
       if (offlineServices && offlineServices.length > 0) {
         // Enriched Services are already stored in IDB with embeddings
@@ -119,23 +116,20 @@ export const loadServices = async (): Promise<Service[]> => {
   }
 
   // Fallback: Dynamic Import of Local JSON
-  return trackPerformance(
-    "dataLoad.jsonFallback",
-    async () => {
-      const { default: servicesData } = await import("@/data/services.json")
-      const { default: embeddingsData } = await import("@/data/embeddings.json")
+  return trackPerformance("dataLoad.jsonFallback", async () => {
+    const { default: servicesData } = await import("@/data/services.json")
+    const { default: embeddingsData } = await import("@/data/embeddings.json")
 
-      const fallbackServices = servicesData as unknown as Service[]
-      const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
+    const fallbackServices = servicesData as unknown as Service[]
+    const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
-      const enrichedFallback = fallbackServices.map((s) => ({
-        ...s,
-        embedding: fallbackEmbeddings[s.id],
-      }))
-      dataCache = { services: enrichedFallback }
-      return enrichedFallback
-    }
-  )
+    const enrichedFallback = fallbackServices.map((s) => ({
+      ...s,
+      embedding: fallbackEmbeddings[s.id],
+    }))
+    dataCache = { services: enrichedFallback }
+    return enrichedFallback
+  })
 }
 
 export async function getSearchTerms(): Promise<string[]> {

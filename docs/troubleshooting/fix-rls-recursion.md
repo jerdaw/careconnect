@@ -1,13 +1,16 @@
 # Fixing RLS Infinite Recursion
 
 ## Issue
+
 The health check and load tests are failing with `503 Service Unavailable` due to a database error:
 `infinite recursion detected in policy for relation "organization_members"`
 
 ## Cause
+
 The Row Level Security (RLS) policy on `organization_members` is querying the `organization_members` table itself to verify membership. This creates a recursive loop.
 
 **Recursive Policy:**
+
 ```sql
 CREATE POLICY "Members can view org members" ON organization_members
   FOR SELECT USING (
@@ -20,6 +23,7 @@ CREATE POLICY "Members can view org members" ON organization_members
 ```
 
 ## Fix
+
 To break the recursion, we need to extract the membership check into a `SECURITY DEFINER` function. This function bypasses RLS policies when executed, preventing the loop.
 
 ### Step 1: Create the Helper Function
@@ -51,6 +55,7 @@ $$;
 Update the inconsistent policies to use this function.
 
 **For `organization_members`:**
+
 ```sql
 DROP POLICY IF EXISTS "Members can view org members" ON organization_members;
 
@@ -61,6 +66,7 @@ CREATE POLICY "Members can view org members" ON organization_members
 ```
 
 **For `services` (Unified view policy):**
+
 ```sql
 DROP POLICY IF EXISTS "Unified view policy for services" ON services;
 
@@ -83,6 +89,7 @@ CREATE POLICY "Unified view policy for services" ON services
 ### Step 3: Verify
 
 Run the smoke test again to verify the fix:
+
 ```bash
 npm run test:load:smoke
 ```

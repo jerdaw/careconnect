@@ -63,6 +63,7 @@ tags: [development, localization, i18n]
 For translating service data fields (especially `access_script`, `description`, and other content-rich fields), we use a semi-automated batch translation process:
 
 **Process Overview:**
+
 1. Export fields needing translation: `npm run export:access-script-fr`
 2. Generate AI translation prompts: `npm run translate:prompt <batch-file>`
 3. Get translations from Claude/ChatGPT using the generated prompt

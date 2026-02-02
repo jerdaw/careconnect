@@ -20,49 +20,61 @@ Implementation of performance tracking, circuit breaker pattern, and load testin
 ### 1. Performance Tracking System
 
 **Files Created:**
+
 - `lib/performance/tracker.ts` (188 lines) - Tracking utilities
 - `lib/performance/metrics.ts` (237 lines) - Metrics aggregation
 - `tests/lib/performance/tracker.test.ts` (231 lines) - 16 comprehensive tests
 
 **Key Features:**
+
 - Lightweight wrapper around logger (<1ms overhead)
 - In-memory metrics with p50/p95/p99 aggregation
 - Automatic pruning (10min retention window, 1000 samples max)
 - Development-only by default (controlled via env var)
 
 **Instrumented Operations:**
+
 - Search: `search.total`, `search.dataLoad`, `search.keywordScoring`, `search.vectorScoring`
 - API: `api.search.total`, `api.search.dbQuery`, `api.search.scoring`
 - Data Loading: `dataLoad.indexedDB`, `dataLoad.supabase`, `dataLoad.jsonFallback`
 
 **Configuration:**
+
 ```bash
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=false  # Enable tracking in dev/staging
 ```
 
 **Usage Pattern:**
-```typescript
-import { trackPerformance } from '@/lib/performance/tracker'
 
-const result = await trackPerformance('operation.name', async () => {
-  return await someOperation()
-}, { metadata: 'optional' })
+```typescript
+import { trackPerformance } from "@/lib/performance/tracker"
+
+const result = await trackPerformance(
+  "operation.name",
+  async () => {
+    return await someOperation()
+  },
+  { metadata: "optional" }
+)
 ```
 
 ### 2. Circuit Breaker Pattern
 
 **Files Created:**
+
 - `lib/resilience/circuit-breaker.ts` (265 lines) - Core state machine
 - `lib/resilience/supabase-breaker.ts` (115 lines) - Supabase wrapper
 - `lib/resilience/telemetry.ts` (130 lines) - Event logging
 - `tests/lib/resilience/circuit-breaker.test.ts` (331 lines) - 18 comprehensive tests
 
 **State Machine:**
+
 1. **CLOSED** (normal): Requests pass through to database
 2. **OPEN** (failing): Requests fast-fail in <1ms without hitting database
 3. **HALF_OPEN** (testing): Allow limited requests to test recovery
 
 **Configuration:**
+
 ```bash
 CIRCUIT_BREAKER_ENABLED=true                    # Enable circuit breaker
 CIRCUIT_BREAKER_FAILURE_THRESHOLD=3             # Failures before opening
@@ -70,6 +82,7 @@ CIRCUIT_BREAKER_TIMEOUT=30000                   # ms before retry (OPEN → HALF
 ```
 
 **Protected Operations:**
+
 - Search data loading: `lib/search/data.ts`
 - Service management: `lib/services.ts` (3 functions)
 - Analytics: `lib/analytics.ts` (2 functions, with graceful degradation)
@@ -77,12 +90,13 @@ CIRCUIT_BREAKER_TIMEOUT=30000                   # ms before retry (OPEN → HALF
 - All API routes: `app/api/v1/services/route.ts`, `app/api/v1/services/[id]/route.ts`
 
 **Usage Pattern:**
+
 ```typescript
-import { withCircuitBreaker } from '@/lib/resilience/supabase-breaker'
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 // With fallback (recommended for read operations)
 const { data, error } = await withCircuitBreaker(
-  async () => supabase.from('services').select('*'),
+  async () => supabase.from("services").select("*"),
   async () => {
     // Fallback: return cached/JSON data
     return { data: jsonData, error: null }
@@ -90,26 +104,27 @@ const { data, error } = await withCircuitBreaker(
 )
 
 // Without fallback (fail-closed for write operations)
-const { data, error } = await withCircuitBreaker(
-  async () => supabase.from('services').insert(newService)
-)
+const { data, error } = await withCircuitBreaker(async () => supabase.from("services").insert(newService))
 ```
 
 ### 3. Health Check & Metrics Endpoints
 
 **Files Created:**
+
 - `app/api/v1/health/route.ts` (130 lines)
 - `app/api/v1/metrics/route.ts` (215 lines)
 
 **Endpoints:**
 
 **GET /api/v1/health**
+
 - Basic status: Always public (for load balancers)
 - Detailed metrics: Requires authentication or development mode
 - Rate limit: 10 req/min per IP
 - Returns: circuit breaker state, database latency, performance metrics
 
 **GET /api/v1/metrics**
+
 - Development/staging only (403 in production)
 - Requires authentication
 - Rate limit: 30 req/min per IP
@@ -117,6 +132,7 @@ const { data, error } = await withCircuitBreaker(
 - Returns: Aggregated metrics (p50, p95, p99) and optional raw data
 
 **DELETE /api/v1/metrics**
+
 - Development only (403 in production)
 - Requires authentication
 - Resets all metrics (useful for testing)
@@ -124,6 +140,7 @@ const { data, error } = await withCircuitBreaker(
 ### 4. Load Testing Infrastructure
 
 **Files Created:**
+
 - `tests/load/smoke-test.k6.js` - Basic connectivity (1 VU, 30s)
 - `tests/load/search-api.k6.js` - Realistic search load (10-50 VUs, ramp-up)
 - `tests/load/sustained-load.k6.js` - Stability test (20 VUs, 30min)
@@ -133,6 +150,7 @@ const { data, error } = await withCircuitBreaker(
 - `docs/testing/load-testing.md` - Complete guide (400+ lines)
 
 **NPM Scripts Added:**
+
 ```json
 {
   "test:load": "k6 run tests/load/search-api.k6.js",
@@ -143,12 +161,14 @@ const { data, error } = await withCircuitBreaker(
 ```
 
 **Test Scenarios:**
+
 1. **Smoke Test:** Basic connectivity verification
 2. **Search API:** Realistic load with keyword, category, geo, and crisis queries
 3. **Sustained Load:** 30-minute stability test for memory leaks
 4. **Spike Test:** Sudden traffic spike to verify resilience
 
 **Thresholds:**
+
 - p95 latency: <500ms (search API), <1000ms (smoke)
 - p99 latency: <1000ms (search API), <2000ms (smoke)
 - Error rate: <5%
@@ -157,11 +177,13 @@ const { data, error } = await withCircuitBreaker(
 ### 5. Documentation
 
 **Files Created:**
+
 - `docs/adr/016-performance-tracking-and-circuit-breaker.md` (486 lines)
 - `docs/testing/load-testing.md` (400+ lines)
 - `docs/workflows/french-translation-workflow.md` (320+ lines)
 
 **Files Updated:**
+
 - `CLAUDE.md` - Added "Performance Tracking & Resilience (v17.5+)" section
 - `.env.example` - All new environment variables documented
 - `README.md` - Updated with v17.5 features (if applicable)
@@ -169,6 +191,7 @@ const { data, error } = await withCircuitBreaker(
 ## Test Results
 
 **Unit Tests:**
+
 ```
 ✅ lib/performance/tracker.test.ts - 16 tests passed
 ✅ lib/resilience/circuit-breaker.test.ts - 18 tests passed
@@ -176,11 +199,13 @@ const { data, error } = await withCircuitBreaker(
 ```
 
 **Type Checking:**
+
 ```
 ✅ tsc --noEmit - No errors
 ```
 
 **Integration:**
+
 ```
 ✅ All existing tests still passing (497 tests total)
 ✅ No regressions introduced
@@ -189,11 +214,13 @@ const { data, error } = await withCircuitBreaker(
 ## Files Modified
 
 **New Files:** 17
-- 10 source files (lib/performance/*, lib/resilience/*, app/api/v1/health, app/api/v1/metrics)
+
+- 10 source files (lib/performance/_, lib/resilience/_, app/api/v1/health, app/api/v1/metrics)
 - 4 load test scripts
 - 3 documentation files
 
 **Modified Files:** 10
+
 - `lib/search/index.ts` - Performance tracking
 - `lib/search/data.ts` - Circuit breaker + tracking
 - `app/api/v1/search/services/route.ts` - Performance tracking
@@ -232,11 +259,13 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 ## Performance Impact
 
 **Tracking Overhead:**
+
 - Async operations: <1ms per operation
 - Sync operations: <0.1ms per operation
 - Memory: ~1KB per 1000 samples (auto-pruned)
 
 **Circuit Breaker Overhead:**
+
 - CLOSED state: <0.5ms per operation
 - OPEN state: <1ms per operation (fast-fail)
 - Memory: <1KB for state tracking
@@ -313,17 +342,20 @@ See: [2026-01-25-v17-6-post-v17-5-enhancements.md](../2026-01-25-v17-6-post-v17-
 ## Success Metrics
 
 **Immediate (v17.5):**
+
 - ✅ Circuit breaker prevents 30s timeouts (fast-fails in <1ms)
 - ✅ Performance tracking enabled with <1ms overhead
 - ✅ Health check endpoint operational
 - ✅ Load testing infrastructure ready
 
 **Short-term (v17.6):**
+
 - ⏳ Baseline performance metrics documented
 - ⏳ No performance regressions detected
 - ⏳ Integration tests validate circuit breaker behavior
 
 **Long-term (v18.0+):**
+
 - ⏳ Real-time monitoring dashboard deployed
 - ⏳ Automated regression testing in CI
 - ⏳ Circuit breaker prevents production outages (measured)

@@ -97,11 +97,7 @@ export async function trackPerformance<T>(
  * @param metadata - Optional metadata to include in logs
  * @returns The result of the operation
  */
-export function trackPerformanceSync<T>(
-  operationName: string,
-  operation: () => T,
-  metadata?: PerformanceMetadata
-): T {
+export function trackPerformanceSync<T>(operationName: string, operation: () => T, metadata?: PerformanceMetadata): T {
   if (!isPerformanceTrackingEnabled()) {
     return operation()
   }
@@ -146,10 +142,7 @@ export function trackPerformanceSync<T>(
  * @param metadata - Optional metadata to include in logs
  * @returns Stop function that completes the tracking
  */
-export function createPerformanceTimer(
-  operationName: string,
-  metadata?: PerformanceMetadata
-): () => void {
+export function createPerformanceTimer(operationName: string, metadata?: PerformanceMetadata): () => void {
   if (!isPerformanceTrackingEnabled()) {
     return () => {
       /* no-op */

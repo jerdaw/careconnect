@@ -4,6 +4,7 @@ import { createApiError, handleApiError, createApiResponse, validateContentType 
 import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 const UpdateRequestSchema = z.object({
   field_updates: z.record(z.any()),
@@ -49,13 +50,15 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
 
     const { field_updates, justification } = validation.data
 
-    const { error } = await supabaseAuth.from("service_update_requests").insert({
-      service_id: serviceId,
-      requested_by: user.email,
-      field_updates,
-      justification,
-      status: "pending",
-    })
+    const { error } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("service_update_requests").insert({
+        service_id: serviceId,
+        requested_by: user.email,
+        field_updates,
+        justification,
+        status: "pending",
+      })
+    )
 
     if (error) {
       return createApiError("Failed to submit update request", 500, error.message)

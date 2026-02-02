@@ -22,7 +22,7 @@ npm run audit:l3
 
 ## Baseline (Snapshot: 2026-01-21)
 
-From `docs/roadmaps/archive/2026-01-23-v17-5-data-quality.md` (historical baseline section):
+From `docs/planning/archive/2026-01-23-v17-5-data-quality.md` (historical baseline section):
 
 - Total services: 196
 - Missing `scope`: 0
@@ -53,7 +53,7 @@ From `npm run audit:data` (run on 2026-01-23):
 
 - AI Deep Research ingestion workflow + traceability artifacts:
   - `docs/adr/011-ai-deep-research-output-ingestion.md`
-  - `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+  - `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`
   - `docs/audits/v17-5/ai-results/`
 - Public UI now surfaces `access_script` on service detail pages (multi-lingual via `next-intl`).
 - Hours tooling and safe backfill from structured `hours` → `hours_text`:
@@ -69,7 +69,7 @@ From `npm run audit:data` (run on 2026-01-23):
 
 ## Remaining Follow-ups (Operational Confirmations)
 
-These are intentionally tracked in `docs/roadmaps/roadmap.md` under v17.5:
+These are intentionally tracked in `docs/planning/roadmap.md` under v17.5:
 
 - Non-IRL (web verification): remaining missing Kingston addresses and missing structured hours/hours_text.
 - IRL (provider outreach): L3 verification upgrades.

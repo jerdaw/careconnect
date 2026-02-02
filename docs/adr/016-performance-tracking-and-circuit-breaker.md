@@ -23,6 +23,7 @@ Kingston Care Connect relies on Supabase for critical data operations including 
 - Performance degradation goes unnoticed until users complain
 
 **Impact**:
+
 - Can't identify performance bottlenecks
 - No data to guide optimization efforts
 - Risk of slow performance degrading user experience
@@ -39,6 +40,7 @@ Kingston Care Connect relies on Supabase for critical data operations including 
 - Offline sync hammers failing endpoints
 
 **Impact**:
+
 - Poor user experience during outages (long hangs instead of fast fails)
 - Resource exhaustion from repeated failing requests
 - Potential for cascading failures across dependent systems
@@ -47,6 +49,7 @@ Kingston Care Connect relies on Supabase for critical data operations including 
 ### Prior Art
 
 **Existing Resilience Mechanisms**:
+
 - ADR-010: PWA offline fallback with IndexedDB caching (client-side only)
 - Search has JSON fallback (but no automatic triggering)
 - Rate limiting on API endpoints (protection from abuse, not internal failures)
@@ -62,16 +65,19 @@ Implement **two complementary operational improvements** for v17.5+:
 A lightweight, opt-in performance instrumentation system:
 
 **Core Components**:
+
 - `lib/performance/tracker.ts` - Wrapper around logger for tracking operations
 - `lib/performance/metrics.ts` - In-memory aggregation (p50, p95, p99)
 - Environment variable gated: `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING`
 
 **Instrumented Paths**:
+
 - Search operations (total, data load, keyword scoring, vector scoring)
 - API routes (request-to-response latency)
 - Database queries (by source: Supabase, IndexedDB, JSON fallback)
 
 **Design Principles**:
+
 - **Non-invasive**: <1ms overhead per operation
 - **Opt-in**: Disabled by default, enabled per environment
 - **Development-first**: In-memory storage only (no production overhead)
@@ -82,16 +88,19 @@ A lightweight, opt-in performance instrumentation system:
 A resilience pattern that prevents cascading failures:
 
 **Core Components**:
+
 - `lib/resilience/circuit-breaker.ts` - Generic circuit breaker implementation
 - `lib/resilience/supabase-breaker.ts` - Supabase-specific wrapper
 - `lib/resilience/telemetry.ts` - Event logging and monitoring
 
 **States**:
+
 1. **CLOSED** (normal): Requests pass through
 2. **OPEN** (failing): Requests fast-fail, preventing cascading failures
 3. **HALF_OPEN** (testing): Allow limited requests to test recovery
 
 **Configuration** (environment variables):
+
 ```bash
 CIRCUIT_BREAKER_ENABLED=true
 CIRCUIT_BREAKER_FAILURE_THRESHOLD=3        # Failures before opening
@@ -99,12 +108,14 @@ CIRCUIT_BREAKER_TIMEOUT=30000              # ms before retry (OPEN → HALF_OPEN
 ```
 
 **Protected Operations**:
+
 - Database queries (`lib/search/data.ts`, `lib/services.ts`, `lib/analytics.ts`)
 - Service management (claim, update, fetch)
 - Analytics tracking (non-critical, graceful degradation)
 - Offline sync (respects circuit state, skips when open)
 
 **Design Principles**:
+
 - **Fail-fast**: Prevent long waits during outages
 - **Automatic recovery**: Transitions to HALF_OPEN after timeout
 - **Fallback-aware**: Integrates with existing JSON fallback in search
@@ -115,23 +126,30 @@ CIRCUIT_BREAKER_TIMEOUT=30000              # ms before retry (OPEN → HALF_OPEN
 ### Phase 1: Core Infrastructure ✅
 
 **Performance Tracking**:
+
 ```typescript
 // lib/performance/tracker.ts
-await trackPerformance('search.total', async () => {
-  // Operation here
-}, { queryLength: query.length })
+await trackPerformance(
+  "search.total",
+  async () => {
+    // Operation here
+  },
+  { queryLength: query.length }
+)
 ```
 
 **Circuit Breaker**:
+
 ```typescript
 // lib/resilience/supabase-breaker.ts
 const result = await withCircuitBreaker(
-  async () => supabase.from('services').select('*'),
-  async () => loadFromJSONFallback()  // Optional fallback
+  async () => supabase.from("services").select("*"),
+  async () => loadFromJSONFallback() // Optional fallback
 )
 ```
 
 **Environment Validation** (Zod):
+
 ```typescript
 // lib/env.ts
 CIRCUIT_BREAKER_ENABLED: z.string().transform(val => val !== 'false'),
@@ -142,6 +160,7 @@ NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING: z.string().transform(val => val === 'tr
 ### Phase 2: Integration ✅
 
 **Files Modified**:
+
 - `lib/search/index.ts` - Performance tracking for search orchestration
 - `lib/search/data.ts` - Circuit breaker + performance tracking for data loading
 - `lib/services.ts` - Circuit breaker for service management (3 functions)
@@ -151,6 +170,7 @@ NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING: z.string().transform(val => val === 'tr
 - `app/api/v1/health/route.ts` - NEW: Health check endpoint
 
 **Files Created**:
+
 - `lib/performance/tracker.ts` (120 lines)
 - `lib/performance/metrics.ts` (235 lines)
 - `lib/resilience/circuit-breaker.ts` (265 lines)
@@ -159,21 +179,25 @@ NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING: z.string().transform(val => val === 'tr
 - `app/api/v1/health/route.ts` (130 lines)
 
 **Tests**:
+
 - `tests/lib/performance/tracker.test.ts` (16 tests, 100% pass)
 - `tests/lib/resilience/circuit-breaker.test.ts` (18 tests, 100% pass)
 
 ### Phase 3: Load Testing ✅
 
 **k6 Infrastructure**:
+
 - `tests/load/smoke-test.k6.js` - Basic connectivity (1 VU, 30s)
 - `tests/load/search-api.k6.js` - Realistic load (10-50 VUs, ramp-up)
 - `tests/load/sustained-load.k6.js` - Stability test (20 VUs, 30min)
 - `tests/load/spike-test.k6.js` - Spike/stress test (0-100 VUs in 10s)
 
 **Documentation**:
+
 - `docs/testing/load-testing.md` - Comprehensive guide with thresholds
 
 **npm Scripts**:
+
 ```bash
 npm run test:load          # Main search API test
 npm run test:load:smoke    # Quick connectivity check
@@ -186,6 +210,7 @@ npm run test:load:spike    # Spike/stress test
 ### Positive
 
 **Performance Tracking**:
+
 - ✅ **Visibility**: Clear metrics on operation latencies (p50, p95, p99)
 - ✅ **Regression Detection**: Can establish baseline and catch degradation
 - ✅ **Optimization Guidance**: Data-driven decisions on what to optimize
@@ -193,6 +218,7 @@ npm run test:load:spike    # Spike/stress test
 - ✅ **Development-Friendly**: Works locally without external services
 
 **Circuit Breaker**:
+
 - ✅ **Fast Failures**: Prevents 30s hangs during outages (fail in <1ms)
 - ✅ **Graceful Degradation**: Automatic fallback to JSON in search
 - ✅ **Automatic Recovery**: Self-healing via HALF_OPEN state
@@ -200,6 +226,7 @@ npm run test:load:spike    # Spike/stress test
 - ✅ **Observable**: State transitions logged for debugging
 
 **Operational**:
+
 - ✅ **Health Check**: New `/api/v1/health` endpoint for monitoring
 - ✅ **Load Testing**: k6 scripts provide baseline metrics
 - ✅ **Type Safety**: All env vars validated via Zod
@@ -207,17 +234,20 @@ npm run test:load:spike    # Spike/stress test
 ### Negative
 
 **Performance Tracking**:
+
 - ⚠️ **Memory Usage**: In-memory metrics store (mitigated: max 1000 samples/operation, 10min retention, dev-only)
 - ⚠️ **Per-Process State**: Metrics not shared across serverless instances (acceptable for dev/staging)
 - ⚠️ **Manual Analysis**: No automatic alerting (future: integrate with Axiom/Sentry)
 
 **Circuit Breaker**:
+
 - ⚠️ **False Positives**: Could open on transient errors (mitigated: 50% failure rate threshold + 3 consecutive failures)
 - ⚠️ **Per-Process State**: Each serverless instance has independent circuit state (acceptable trade-off)
 - ⚠️ **Coordination Gap**: No distributed circuit state (future: could use Redis if needed)
 - ⚠️ **Auth Implications**: Circuit breaker on auth queries could lock out users (mitigated: fail-closed security)
 
 **Operational**:
+
 - ⚠️ **Configuration Complexity**: 3 new environment variables to tune
 - ⚠️ **Incomplete Rollout**: Only ~40% of Supabase calls protected initially (API routes need coverage)
 
@@ -233,6 +263,7 @@ npm run test:load:spike    # Spike/stress test
 **Considered**: Rely on Supabase client library's retry/timeout mechanisms
 
 **Rejected Because**:
+
 - Supabase retries are for network failures, not database unavailability
 - No configurable circuit breaker in Supabase client
 - No fallback mechanism for read operations
@@ -243,6 +274,7 @@ npm run test:load:spike    # Spike/stress test
 **Considered**: Use external Application Performance Monitoring service
 
 **Rejected Because**:
+
 - Adds cost and external dependency
 - Overkill for current scale
 - Can be added later (performance tracking provides foundation)
@@ -255,6 +287,7 @@ npm run test:load:spike    # Spike/stress test
 **Considered**: Use Redis to share circuit breaker state across instances
 
 **Rejected Because**:
+
 - Adds infrastructure dependency (Redis)
 - Overkill for current scale (serverless functions are short-lived)
 - Per-instance circuit breaker is sufficient (fail-fast still works)
@@ -267,6 +300,7 @@ npm run test:load:spike    # Spike/stress test
 **Considered**: Implement circuit breaker at API gateway level using Vercel Edge Config
 
 **Rejected Because**:
+
 - Tightly couples to Vercel platform
 - Less flexible for fine-grained control
 - Harder to test locally
@@ -277,6 +311,7 @@ npm run test:load:spike    # Spike/stress test
 **Considered**: Full metrics stack with time-series database
 
 **Rejected Because**:
+
 - Significant infrastructure overhead
 - Overkill for current needs
 - Can't run locally easily
@@ -289,6 +324,7 @@ npm run test:load:spike    # Spike/stress test
 ### Environment Variables
 
 **Added to `.env.example`**:
+
 ```bash
 # Performance Tracking (v17.5+) - Development/Staging Only
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=false
@@ -302,6 +338,7 @@ CIRCUIT_BREAKER_TIMEOUT=30000           # ms before retry (30s)
 ### Recommended Settings by Environment
 
 **Development**:
+
 ```bash
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true  # Enable metrics
 CIRCUIT_BREAKER_ENABLED=true
@@ -310,6 +347,7 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 ```
 
 **Staging**:
+
 ```bash
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true  # Enable metrics
 CIRCUIT_BREAKER_ENABLED=true
@@ -318,6 +356,7 @@ CIRCUIT_BREAKER_TIMEOUT=60000                 # 1min timeout
 ```
 
 **Production**:
+
 ```bash
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=false # Disable in-memory metrics
 CIRCUIT_BREAKER_ENABLED=true
@@ -332,6 +371,7 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 **Endpoint**: `GET /api/v1/health`
 
 **Response**:
+
 ```json
 {
   "status": "healthy" | "degraded" | "unhealthy",
@@ -360,12 +400,14 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 ```
 
 **Status Codes**:
+
 - `200`: Healthy or degraded
 - `503`: Unhealthy (circuit open or database down)
 
 ### Log Events
 
 **Circuit Breaker Events**:
+
 ```
 [INFO] Circuit breaker 'supabase' state transition { from: 'CLOSED', to: 'OPEN', failureCount: 3 }
 [WARN] Circuit breaker 'supabase' HALF-OPEN { nextAttemptTime: ... }
@@ -373,6 +415,7 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 ```
 
 **Performance Events** (when tracking enabled):
+
 ```
 [INFO] Performance: search.total { operation: 'search.total', durationMs: 245.32, queryLength: 15 }
 [INFO] Performance: search.dataLoad { operation: 'search.dataLoad', durationMs: 42.18, source: 'supabase' }

@@ -72,6 +72,6 @@ We adopt an **audit-first ingestion workflow** for AI Deep Research outputs:
 ## Related
 
 - Data enrichment SOP: `docs/governance/data-enrichment-sop.md`
-- v17.5 worked example (archived plan): `docs/roadmaps/archive/2026-01-23-v17-5-ai-output-ingestion.md`
+- v17.5 worked example (archived plan): `docs/planning/archive/2026-01-23-v17-5-ai-output-ingestion.md`
 - Ingestion workspace: `docs/audits/v17-5/ai-results/README.md`
 - Merge tool: `scripts/merge-ai-enrichment.ts`

@@ -18,15 +18,15 @@
 
 ## Search API Load Test Results
 
-*Blocked by environment/RLS recursion issues found in smoke test.*
+_Blocked by environment/RLS recursion issues found in smoke test._
 
 ## Sustained Load Test Results
 
-*Blocked by environment issues.*
+_Blocked by environment issues._
 
 ## Spike Test Results
 
-*Blocked by environment issues.*
+_Blocked by environment issues._
 
 ## Thresholds for Regression Detection
 

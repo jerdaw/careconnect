@@ -17,7 +17,7 @@
 | [`development/`](development/) | Developer guides (testing, i18n, hooks, components) |
 | [`governance/`](governance/) | Standards, verification protocols, documentation guidelines |
 | [`legal/`](legal/) | AI compliance, data licenses, insurance research |
-| [`roadmaps/`](roadmaps/) | Current roadmap and archived versions |
+| [`planning/`](planning/) | Roadmap, version planning, and archived versions |
 | [`runbooks/`](runbooks/) | Operational procedures |
 | [`security/`](security/) | Database security and breach response |
 | [`templates/`](templates/) | Standard document templates (ADR, guides, plans) |
@@ -42,7 +42,7 @@
 - [EDIA Audit](audits/EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
 - [Privacy Audit](audits/privacy-technical-audit.md) - Privacy compliance
 
-## Roadmaps
+## Planning & Roadmaps
 
-- [Current Roadmap](roadmaps/roadmap.md)
-- [Archive](roadmaps/archive/)
+- [Current Roadmap](planning/roadmap.md)
+- [Archive](planning/archive/)

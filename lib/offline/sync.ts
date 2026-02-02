@@ -23,7 +23,7 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
       console.warn("Sync skipped: Circuit breaker is open", stats)
       return {
         status: "error",
-        error: `Circuit breaker open. Next attempt at ${new Date(stats.nextAttemptTime || 0).toISOString()}`
+        error: `Circuit breaker open. Next attempt at ${new Date(stats.nextAttemptTime || 0).toISOString()}`,
       }
     }
 

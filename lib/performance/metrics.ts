@@ -59,11 +59,7 @@ const RETENTION_WINDOW_MS = 10 * 60 * 1000
  * @param durationMs - Duration in milliseconds
  * @param metadata - Optional metadata
  */
-export function recordMetric(
-  operation: string,
-  durationMs: number,
-  metadata?: PerformanceMetadata
-): void {
+export function recordMetric(operation: string, durationMs: number, metadata?: PerformanceMetadata): void {
   // Don't store metrics in production unless explicitly enabled
   // Use process.env directly for better testability and to avoid server-only env variable access issues
   const isProduction = process.env.NODE_ENV === "production"
@@ -104,15 +100,10 @@ function percentile(sortedValues: number[], p: number): number {
 /**
  * Calculate aggregated metrics for an operation
  */
-function calculateOperationMetrics(
-  operation: string,
-  dataPoints: MetricDataPoint[]
-): OperationMetrics {
+function calculateOperationMetrics(operation: string, dataPoints: MetricDataPoint[]): OperationMetrics {
   // Filter to recent samples within retention window
   const now = Date.now()
-  const recentPoints = dataPoints.filter(
-    (dp) => now - dp.timestamp < RETENTION_WINDOW_MS
-  )
+  const recentPoints = dataPoints.filter((dp) => now - dp.timestamp < RETENTION_WINDOW_MS)
 
   if (recentPoints.length === 0) {
     return {
@@ -150,9 +141,7 @@ function calculateOperationMetrics(
  * @param operation - Operation name
  * @returns Aggregated metrics or null if no data
  */
-export function getOperationMetrics(
-  operation: string
-): OperationMetrics | null {
+export function getOperationMetrics(operation: string): OperationMetrics | null {
   const dataPoints = metricsStore.get(operation)
 
   if (!dataPoints || dataPoints.length === 0) {
@@ -199,10 +188,7 @@ export function resetMetrics(): void {
  * @param limit - Maximum number of recent samples to return
  * @returns Array of data points
  */
-export function getRawDataPoints(
-  operation: string,
-  limit = 100
-): MetricDataPoint[] {
+export function getRawDataPoints(operation: string, limit = 100): MetricDataPoint[] {
   const dataPoints = metricsStore.get(operation) ?? []
   return dataPoints.slice(-limit)
 }
@@ -218,9 +204,7 @@ export function pruneOldMetrics(): void {
   const now = Date.now()
 
   for (const [operation, dataPoints] of metricsStore.entries()) {
-    const recentPoints = dataPoints.filter(
-      (dp) => now - dp.timestamp < RETENTION_WINDOW_MS
-    )
+    const recentPoints = dataPoints.filter((dp) => now - dp.timestamp < RETENTION_WINDOW_MS)
 
     if (recentPoints.length === 0) {
       metricsStore.delete(operation)
@@ -232,3 +216,27 @@ export function pruneOldMetrics(): void {
 
 // Note: Auto-pruning is not needed as metrics are pruned during collection
 // via the retention window filter in calculateOperationMetrics()
+
+/**
+ * Export metrics to Axiom (production only)
+ * Called periodically via scheduled job
+ *
+ * @returns void
+ */
+export async function exportMetricsToAxiom(): Promise<void> {
+  if (process.env.NODE_ENV !== "production") return
+
+  try {
+    const { sendPerformanceMetrics } = await import("@/lib/observability/axiom")
+    const metrics = getMetrics()
+
+    await sendPerformanceMetrics({
+      totalOperations: metrics.totalOperations,
+      trackingSince: metrics.trackingSince,
+      operations: metrics.operations,
+    })
+  } catch {
+    // Don't throw - metrics export is non-critical
+    // Error will be logged by Axiom module
+  }
+}

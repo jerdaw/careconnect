@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/export-metrics",
+      "schedule": "0 * * * *"
+    }
+  ]
+}

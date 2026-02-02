@@ -17,8 +17,8 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Governance**: `docs/governance.md`
 - **Data Enrichment**: `docs/governance/data-enrichment-sop.md` (Enrichment process)
 - **Hooks & Utilities**: `docs/hooks.md`
-- **Roadmap**: `docs/roadmaps/roadmap.md` (Active Plan)
-- **Historical Records**: `docs/roadmaps/archive/` (Completed work)
+- **Roadmap**: `docs/planning/roadmap.md` (Active Plan)
+- **Historical Records**: `docs/planning/archive/` (Completed work)
 - **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
 
 ## Document Metadata (Frontmatter)
@@ -79,12 +79,12 @@ To ensure documentation is effectively used by AI agents and LLMs:
 
 This project separates **backlog** vs **implementation plans** vs **canonical docs** to reduce drift.
 
-- `docs/roadmaps/roadmap.md` is the high-level strategic plan.
+- `docs/planning/roadmap.md` is the high-level strategic plan.
 - See detailed workflow in [`docs/development/roadmap-process.md`](docs/development/roadmap-process.md).
-- When you start work, create a focused implementation plan under `docs/roadmaps/` (e.g. `v10-0-feature-x.md`).
+- When you start work, create a focused implementation plan under `docs/planning/` (e.g. `v10-0-feature-x.md`).
 - When the work is done:
   1. Update canonical docs (`docs/architecture.md`, etc.) so the result is maintainable.
-  2. Move the implementation plan into `docs/roadmaps/archive/` following the naming convention `YYYY-MM-DD-vX-Y-{description}.md`.
+  2. Move the implementation plan into `docs/planning/archive/` following the naming convention `YYYY-MM-DD-vX-Y-{description}.md`.
 
 ## File Naming Conventions
 
@@ -96,7 +96,7 @@ This project separates **backlog** vs **implementation plans** vs **canonical do
 ## Naming and organization
 
 - **Descriptive Filenames**: Use `runbook`, `checklist`, `guidelines`. Avoid vague names.
-- **Roadmaps**: Put active plans in `docs/roadmaps/`.
-- **Archive**: Put completed plans in `docs/roadmaps/archive/`.
+- **Roadmaps**: Put active plans in `docs/planning/`.
+- **Archive**: Put completed plans in `docs/planning/archive/`.
 - **Deployment**: `DEPLOY.md` (Root) or `docs/deployment/` (Future).
 - **Development**: `AGENTS.md` (Root), `docs/development/bilingual-guide.md` (Multi-lingual guide), or `docs/development/` (Future).
