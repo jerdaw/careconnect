@@ -1,4 +1,4 @@
-import { levenshteinDistance } from "./utils"
+import { levenshtein } from "./levenshtein"
 
 export const DICTIONARY = [
   // Categories
@@ -87,7 +87,7 @@ export const getSuggestion = (query: string): string | null => {
     let minDistance = 2 // Threshold for suggestion (1 char diff for small words)
 
     for (const term of DICTIONARY) {
-      const dist = levenshteinDistance(word, term)
+      const dist = levenshtein(word, term)
       if (dist < minDistance) {
         minDistance = dist
         bestMatch = term

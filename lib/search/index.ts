@@ -15,6 +15,10 @@ import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
 import { trackPerformance } from "@/lib/performance/tracker"
 
+const SEMANTIC_SIMILARITY_THRESHOLD = 0.01
+const SEMANTIC_BOOST_DISPLAY_THRESHOLD = 30
+const SEMANTIC_RESCUE_MIN_POINTS = 25
+
 /**
  * Main Hybrid Search Function (Optimized for Cost)
  * Strategy: "Lazy Semantic"
@@ -161,28 +165,23 @@ export const searchServices = async (query: string, options: SearchOptions = {})
 
             const similarity = cosineSimilarity(queryVector, serviceVector)
 
-            // Semantic Threshold
-            if (similarity > 0.01) {
+            if (similarity > SEMANTIC_SIMILARITY_THRESHOLD) {
               const vectorPoints = similarity * WEIGHTS.vector
 
               if (vectorPoints > 0) {
                 const existing = resultsMap.get(service.id)
 
                 if (existing) {
-                  // Boost existing result
                   existing.score += vectorPoints
-                  if (vectorPoints > 30) {
+                  if (vectorPoints > SEMANTIC_BOOST_DISPLAY_THRESHOLD) {
                     existing.matchReasons.push(`Semantic Boost (${Math.round(similarity * 100)}%)`)
                   }
-                } else {
-                  // New Semantic-only result
-                  if (vectorPoints > 25) {
-                    resultsMap.set(service.id, {
-                      service,
-                      score: vectorPoints,
-                      matchReasons: [`Semantic Rescue (${Math.round(similarity * 100)}%)`],
-                    })
-                  }
+                } else if (vectorPoints > SEMANTIC_RESCUE_MIN_POINTS) {
+                  resultsMap.set(service.id, {
+                    service,
+                    score: vectorPoints,
+                    matchReasons: [`Semantic Rescue (${Math.round(similarity * 100)}%)`],
+                  })
                 }
               }
             }

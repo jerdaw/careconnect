@@ -8,6 +8,26 @@ import { logger } from "@/lib/logger"
 type RiskLevel = "high" | "medium" | "low"
 
 /**
+ * Handles circuit breaker errors with risk-based fallback behavior.
+ * Low-risk operations fail open (return fallback), high-risk operations fail closed (re-throw).
+ */
+function handleCircuitBreakerFallback<T>(
+  error: unknown,
+  riskLevel: RiskLevel,
+  logContext: Record<string, unknown>,
+  fallbackValue: T
+): T {
+  if (error instanceof CircuitOpenError && riskLevel === "low") {
+    logger.warn("Authorization bypassed: Circuit breaker open", {
+      ...logContext,
+      component: "authorization",
+    })
+    return fallbackValue
+  }
+  throw error
+}
+
+/**
  * Asserts that a user has permission to modify a service based on organization membership.
  * Throws AuthorizationError if access is denied.
  */
@@ -58,17 +78,7 @@ export async function assertServiceOwnership(
       return true
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed: Circuit breaker open", {
-        userId,
-        serviceId,
-        riskLevel,
-        component: "authorization",
-      })
-      return true // Allow fail-open for low risk
-    }
-    // Re-throw AuthorizationError or CircuitOpenError
-    throw error
+    return handleCircuitBreakerFallback(error, riskLevel, { userId, serviceId }, true)
   }
 }
 
@@ -102,16 +112,7 @@ export async function assertOrganizationMembership(
       return true
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed: Circuit breaker open", {
-        userId,
-        orgId,
-        riskLevel,
-        component: "authorization",
-      })
-      return true
-    }
-    throw error
+    return handleCircuitBreakerFallback(error, riskLevel, { userId, orgId }, true)
   }
 }
 
@@ -141,16 +142,7 @@ export async function assertAdminRole(supabase: SupabaseClient, _userId: string,
       return true
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed: Circuit breaker open", {
-        userId: _userId,
-        riskLevel,
-        component: "authorization",
-        action: "assertAdminRole",
-      })
-      return true
-    }
-    throw error
+    return handleCircuitBreakerFallback(error, riskLevel, { userId: _userId, action: "assertAdminRole" }, true)
   }
 }
 
@@ -189,21 +181,8 @@ export async function getEffectivePermissions(
       }
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed (returning restricted perms): Circuit breaker open", {
-        userId,
-        orgId,
-        riskLevel,
-        component: "authorization",
-      })
-      return {
-        canEdit: false,
-        canDelete: false,
-        canViewPrivate: false,
-        role: null,
-      }
-    }
-    throw error
+    const restrictedPermissions = { canEdit: false, canDelete: false, canViewPrivate: false, role: null }
+    return handleCircuitBreakerFallback(error, riskLevel, { userId, orgId }, restrictedPermissions)
   }
 }
 
@@ -241,18 +220,7 @@ export async function assertPermission(
       return role
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed: Circuit breaker open", {
-        userId,
-        orgId,
-        permission,
-        riskLevel,
-        component: "authorization",
-      })
-      // Return a safe default role for low-risk if bypassed (viewer)
-      return "viewer" as OrganizationRole
-    }
-    throw error
+    return handleCircuitBreakerFallback(error, riskLevel, { userId, orgId, permission }, "viewer" as OrganizationRole)
   }
 }
 
@@ -282,16 +250,7 @@ export async function getUserOrganizationRole(
       return member.role as OrganizationRole
     })
   } catch (error) {
-    if (error instanceof CircuitOpenError && riskLevel === "low") {
-      logger.warn("Authorization bypassed (returning null role): Circuit breaker open", {
-        userId,
-        orgId,
-        riskLevel,
-        component: "authorization",
-      })
-      return null
-    }
-    throw error
+    return handleCircuitBreakerFallback(error, riskLevel, { userId, orgId }, null)
   }
 }
 

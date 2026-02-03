@@ -1,48 +1,65 @@
-import type { UserContext, EligibilityCriteria, EligibilityStatus } from "@/types/user-context"
+import type { UserContext, EligibilityCriteria, EligibilityStatus, IdentityTag } from "@/types/user-context"
 import type { Service } from "@/types/service"
 
-const AGE_MAP: Record<string, { min: number; max: number }> = {
+const AGE_GROUP_BOUNDARIES = {
   youth: { min: 0, max: 29 },
   adult: { min: 18, max: 64 },
   senior: { min: 55, max: 120 },
+} as const
+
+const AGE_RANGE_PATTERN = /Ages?\s*(\d+)(?:\s*[-–]\s*(\d+))?/i
+
+const IDENTITY_PATTERNS: readonly [RegExp, IdentityTag][] = [
+  [/indigenous|first nations|metis|inuit/i, "indigenous"],
+  [/newcomer|immigrant|refugee/i, "newcomer"],
+  [/2slgbtqi\+|lgbtq|trans|queer/i, "2slgbtqi+"],
+  [/veteran|military/i, "veteran"],
+  [/disability|disabled/i, "disability"],
+]
+
+function extractAgeRange(notes: string): { minAge?: number; maxAge?: number } {
+  const ageMatch = notes.match(AGE_RANGE_PATTERN)
+  if (ageMatch && ageMatch[1]) {
+    return {
+      minAge: parseInt(ageMatch[1], 10),
+      maxAge: ageMatch[2] ? parseInt(ageMatch[2], 10) : undefined,
+    }
+  }
+
+  const result: { minAge?: number; maxAge?: number } = {}
+  if (/youth|jeune/i.test(notes)) {
+    result.maxAge = 29
+  }
+  if (/senior|aîné|elder/i.test(notes)) {
+    result.minAge = 55
+  }
+  return result
+}
+
+function extractRequiredIdentities(notes: string): IdentityTag[] {
+  return IDENTITY_PATTERNS.filter(([pattern]) => pattern.test(notes)).map(([, tag]) => tag)
 }
 
 export function parseEligibility(notes: string): EligibilityCriteria {
   const criteria: EligibilityCriteria = {}
-  // Pattern: "Ages 18-29" or "Must be Indigenous"
-  const ageMatch = notes.match(/Ages?\s*(\d+)(?:\s*[-–]\s*(\d+))?/i)
-  if (ageMatch && ageMatch[1]) {
-    criteria.minAge = parseInt(ageMatch[1], 10)
-    if (ageMatch[2]) {
-      criteria.maxAge = parseInt(ageMatch[2], 10)
-    }
-  } else {
-    // Fallback: Keyword matching for common age groups
-    if (/youth|jeune/i.test(notes)) {
-      criteria.maxAge = 29
-    }
-    if (/senior|aîné|elder/i.test(notes)) {
-      criteria.minAge = 55
-    }
-  }
 
-  // Identity keywords
-  if (/indigenous|first nations|metis|inuit/i.test(notes)) criteria.requiredIdentities = ["indigenous"]
-  if (/newcomer|immigrant|refugee/i.test(notes)) criteria.requiredIdentities = ["newcomer"]
-  if (/2slgbtqi\+|lgbtq|trans|queer/i.test(notes)) criteria.requiredIdentities = ["2slgbtqi+"]
-  if (/veteran|military/i.test(notes)) criteria.requiredIdentities = ["veteran"]
-  if (/disability|disabled/i.test(notes)) criteria.requiredIdentities = ["disability"]
+  const ageRange = extractAgeRange(notes)
+  if (ageRange.minAge !== undefined) criteria.minAge = ageRange.minAge
+  if (ageRange.maxAge !== undefined) criteria.maxAge = ageRange.maxAge
+
+  const identities = extractRequiredIdentities(notes)
+  if (identities.length > 0) {
+    criteria.requiredIdentities = identities
+  }
 
   return criteria
 }
 
 export function checkEligibility(service: Service, context: UserContext): EligibilityStatus {
-  // If user hasn't opted in, or service is L1 verified but has no notes, we can't judge.
-  // HOWEVER, the goal is to show "You likely qualify".
   if (!context.hasOptedIn || !service.eligibility_notes) return "unknown"
 
   const criteria = parseEligibility(service.eligibility_notes)
-  const userAge = context.ageGroup ? AGE_MAP[context.ageGroup] : null
+  const userAge = context.ageGroup ? AGE_GROUP_BOUNDARIES[context.ageGroup] : null
 
   // Age check
   if (criteria.minAge && userAge && userAge.max < criteria.minAge) return "ineligible"

@@ -27,6 +27,18 @@ interface SimplifiedServiceViewProps {
   }
 }
 
+function resolveLocalizedField<T>(
+  locale: string,
+  frenchValue: T | undefined,
+  englishValue: T | undefined,
+  fallback: T | undefined
+): T | undefined {
+  if (locale === "fr") {
+    return frenchValue ?? englishValue ?? fallback
+  }
+  return englishValue ?? fallback
+}
+
 export function SimplifiedServiceView({ service, locale, translations }: SimplifiedServiceViewProps) {
   const [summary, setSummary] = useState<PlainLanguageSummary | null>(null)
   const [loading, setLoading] = useState(true)
@@ -58,15 +70,11 @@ export function SimplifiedServiceView({ service, locale, translations }: Simplif
     router.push(`${pathname}?${params.toString()}`)
   }
 
-  const description =
-    locale === "fr"
-      ? summary?.summary_fr || summary?.summary_en || (summary ? null : service.description)
-      : summary?.summary_en || (summary ? null : service.description)
+  const fallbackDescription = summary ? null : service.description
+  const description = resolveLocalizedField(locale, summary?.summary_fr, summary?.summary_en, fallbackDescription)
 
-  const howToUse =
-    locale === "fr"
-      ? summary?.how_to_use_fr || summary?.how_to_use_en || (summary ? null : service.application_process)
-      : summary?.how_to_use_en || (summary ? null : service.application_process)
+  const fallbackHowToUse = summary ? null : service.application_process
+  const howToUse = resolveLocalizedField(locale, summary?.how_to_use_fr, summary?.how_to_use_en, fallbackHowToUse)
 
   const isMissing = !loading && !summary
 

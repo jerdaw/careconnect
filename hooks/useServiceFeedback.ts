@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabase"
 
+const NO_ROWS_FOUND_ERROR_CODES = ["PGRST116", "406"]
+
+function calculateHelpfulPercentage(yesCount: number, noCount: number): number | null {
+  const totalVotes = yesCount + noCount
+  if (totalVotes === 0) return null
+  return Math.round((yesCount / totalVotes) * 100)
+}
+
 interface ServiceFeedbackStats {
   helpful_yes_count: number
   helpful_no_count: number
@@ -28,8 +36,7 @@ export function useServiceFeedback(serviceId: string) {
           .single()
 
         if (error) {
-          // If no aggregations yet, return zeros instead of error 406/404
-          if (error.code === "PGRST116" || error.code === "406") {
+          if (NO_ROWS_FOUND_ERROR_CODES.includes(error.code)) {
             setStats({
               helpful_yes_count: 0,
               helpful_no_count: 0,
@@ -53,11 +60,7 @@ export function useServiceFeedback(serviceId: string) {
     fetchStats()
   }, [serviceId])
 
-  const helpfulPercentage = stats
-    ? stats.helpful_yes_count + stats.helpful_no_count > 0
-      ? Math.round((stats.helpful_yes_count / (stats.helpful_yes_count + stats.helpful_no_count)) * 100)
-      : null
-    : null
+  const helpfulPercentage = stats ? calculateHelpfulPercentage(stats.helpful_yes_count, stats.helpful_no_count) : null
 
   return {
     stats,

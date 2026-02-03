@@ -1,155 +1,382 @@
-# AGENTS.md – kingston-care-connect
+# AGENTS.md – Kingston Care Connect
+
+## Agent Role
+
+You are a **governance-aware developer** working on a privacy-first social services search engine. Your priorities:
+
+1. **Data integrity over speed** – Service data is manually curated and verified. Never auto-generate or fabricate service information.
+2. **Privacy by design** – Search queries stay on-device by default. No tracking, no logging of user searches.
+3. **Accessibility first** – WCAG 2.1 AA compliance. Every feature must work with keyboard navigation and screen readers.
+4. **Verify before modifying** – Read existing code and understand patterns before making changes.
+
+---
 
 ## Project Overview
 
-- **Mission**: "The Semantic Bridge" for Kingston Social Services. A verified, governance-first search engine for food, crisis, and housing support in Kingston, ON.
-- **Key Philosophy**: Manual Curation over Automatic Extraction. Top 150 High-Impact Services. Verified, Accessible, Identity-Aware.
-- **Stack**:
-  - **Framework**: Next.js 15 (App Router)
-  - **Language**: TypeScript
-  - **Styling**: Tailwind CSS v4 + Radix UI
-    - Custom design system in `app/globals.css` (Glassmorphism, Semantic Surfaces).
-    - Reusable primitives in `components/ui/**`.
-  - **Database**: Supabase (PostgreSQL + Vector)
-  - **AI/Embeddings**: @xenova/transformers (Client-side execution)
-- **Primary Documentation**:
-  - `README.md` → High-level overview and getting started.
-  - `docs/index.md` → Documentation landing page.
-  - `docs/architecture.md` → Detailed system architecture and data flow.
-  - `docs/components.md` → Guide to reusable UI components.
-  - `docs/acknowledgments.md` → Advisory board and governance.
-  - `docs/api-reference.md` → Interactive OpenAPI documentation.
-  - **AI Context**: `docs/llms.txt` → Consolidated architecture docs for LLM/Agent consumption.
-  - **Site Generation**: We use MkDocs Material. Run `mkdocs serve` to view locally.
-  - **Roadmap Strategy**: We group roadmap archives by **Version** (e.g., "v6.1", "v7.0") rather than splitting them into small feature files. This preserves the historical context of releases.
+**Mission**: "The Semantic Bridge" for Kingston Social Services – a verified, governance-first search engine for food, crisis, and housing support in Kingston, ON.
 
-When in doubt about architecture or design decisions, **read `README.md` and `docs/**` first\*\*.
+**Philosophy**: Manual Curation over Automatic Extraction. ~150 High-Impact Services. Verified, Accessible, Identity-Aware.
 
----
+**Tech Stack**:
+| Layer | Technology | Version |
+|-------|------------|---------|
+| Framework | Next.js (App Router) | 15.x |
+| Language | TypeScript (strict mode) | 5.x |
+| Runtime | Node.js | 20+ |
+| Styling | Tailwind CSS + Radix UI | v4 |
+| Database | Supabase (PostgreSQL + pgvector) | — |
+| Embeddings | @xenova/transformers (all-MiniLM-L6-v2) | — |
+| On-device AI | WebLLM (Llama-3.2-1B) | — |
 
-## Dev Environment & Commands
+**Key Documentation**:
 
-From the repo root:
+- `README.md` → Getting started
+- `docs/architecture.md` → System design and data flow
+- `docs/llms.txt` → Consolidated context for AI agents
+- `docs/api-reference.md` → OpenAPI documentation
 
-- **Install deps**: `npm install`
-- **Run dev server**: `npm run dev` (starts with Turbo; search & core features work without API keys)
-- **Build**: `npm run build`
-- **Lint/Check**: `npm run lint` and `npm run type-check`
-- **Test**:
-  - Unit/Integration: `npm test` (Vitest)
-  - E2E: `npx playwright test`
-- **Database**:
-  - Validate verified data: `npm run validate-data` (checks `data/services.json`)
-  - Migrate local data: `npx tsx scripts/migrate-data.ts`
-  - Verify DB integrity: `npm run db:verify`
-- **Maintenance & Quality**:
-  - Code Formatting: `npx prettier --check .`
-  - Bundle Analysis: `npm run analyze`
-  - Service Data Audit (EN/FR): `npm run bilingual-check`
-  - Multi-lingual UI Audit: `npm run i18n-audit`
-  - Staleness Audit: `npm run check-staleness`
-  - URL Health Check: `npm run health-check`
-  - Phone Validation: `npm run phone-validate`
-  - **Data Enrichment**: `npm run audit:data` – See `docs/governance/data-enrichment-sop.md`
-    - Export gaps for enrichment: `npm run audit:coords`, `npm run audit:hours`, `npm run audit:access-scripts`
-    - L3 verification candidates: `npm run audit:l3`
-  - **French Translation Workflow** – See `docs/workflows/french-translation-workflow.md`:
-    - Export for translation: `npm run export:access-script-fr`
-    - Generate prompts: `npm run translate:prompt`
-    - Parse AI responses: `npm run translate:parse`
-    - Validate batches: `npm run translate:validate`
-  - **Data Backfill**:
-    - Backfill hours text: `npm run backfill:hours-text`
-    - Geocode addresses: `npm run geocode` (requires `OPENCAGE_API_KEY`)
-
-**Environment Variables** (see `.env.example`):
-
-- `NEXT_PUBLIC_SUPABASE_URL`: Supabase project URL.
-- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: Public key for client-side auth/reads.
-- `SUPABASE_SECRET_KEY`: Service role key (used **only** in migration scripts/backend tools).
-- `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN`: For phone validation scripts.
-- `NEXT_PUBLIC_VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY`: For push notifications.
-- `OPENAI_API_KEY`: Optional, for AI features if enabled.
-
-**Expectations when you change code:**
-
-- For non-trivial changes, run `npm run lint` and `npm run type-check`.
-- If you add new behavior, add/update tests (Vitest for logic/components, Playwright for critical flows).
+When in doubt, **read `README.md` and `docs/**` first\*\*.
 
 ---
 
-## Git Workflow (Commits & Pushes)
+## Key Commands
 
-When you have full access (and `origin` is configured), **make regular best-practice commits and pushes as you go**.
+### Development
 
-- **Commits**: Small, logically grouped. Use conventional commits (e.g., `fix: ...`, `feat: ...`, `docs: ...`).
-- **Safety**: Never commit secrets, `.env` files, or machine-specific artifacts.
-- **Hygiene**: Update `.gitignore` if you introduce new generated files.
+```bash
+npm run dev              # Start dev server with Turbo (port 3000)
+npm run build            # Production build (runs postbuild to generate embeddings)
+npm run start            # Start production server
+npm run type-check       # TypeScript type checking
+npm run lint             # ESLint
+npm run lint:fix         # ESLint with auto-fix
+npm run format           # Format code with Prettier
+npm run format:check     # Check code formatting without changes
+npm run ci:check         # Run CI validation checks
+npm run check:root       # Check project root for unexpected files
+npm run analyze          # Bundle analysis
+```
+
+### Testing
+
+```bash
+npm test                 # Run all Vitest unit tests
+npm run test:watch       # Vitest in watch mode
+npm run test:coverage    # Generate coverage report
+npm run test:e2e         # Playwright E2E tests (all browsers)
+npm run test:e2e:local   # Playwright E2E tests (Chromium only; non-blocking in CI per ADR-015)
+npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
+npm run test:a11y        # Run accessibility audit (Axe-core + Interactive)
+npm run test:load        # k6 load test: search API (10-50 VUs, realistic traffic)
+npm run test:load:smoke  # k6 smoke test: basic connectivity (1 VU, 30s)
+npm run test:load:sustained # k6 sustained load: stability test (20 VUs, 30min)
+npm run test:load:spike  # k6 spike test: sudden traffic spike (0-100 VUs)
+```
+
+### Data Validation & Health Checks
+
+```bash
+npm run validate-data    # Validate service schema with Zod
+npm run db:validate      # Alias for validate-data
+npm run db:verify        # Verify database integrity (row count, embeddings, RLS)
+npm run health-check     # Validate all service URLs
+npm run phone-validate   # Validate phone numbers via Twilio
+npm run check-staleness  # Check for stale/unverified data
+npm run audit:data       # Comprehensive data completeness audit
+npm run audit:qa         # Data quality and integrity audit
+```
+
+### Data Enrichment & Translation
+
+```bash
+# Data Enrichment Audits (export gaps for AI-assisted enrichment)
+npm run audit:coords              # Export services with missing coordinates
+npm run audit:hours               # Export services with missing operating hours
+npm run audit:access-scripts      # Audit access_script quality and completeness
+npm run audit:l3                  # Export L3 verification candidate suggestions
+
+# French Translation Workflow (see docs/workflows/french-translation-workflow.md)
+npm run export:access-script-fr   # Export access_script fields for French translation
+npm run translate:prompt          # Generate AI translation prompts from batch file
+npm run translate:parse           # Parse AI response into structured JSON batch
+npm run translate:validate        # Validate translation batch structure and quality
+
+# Data Backfill & Geocoding
+npm run backfill:hours-text       # Backfill hours_text field from structured hours data
+npm run geocode                   # Geocode service addresses (requires OPENCAGE_API_KEY)
+```
+
+### Mobile Development
+
+```bash
+npm run mobile:sync      # Sync Capacitor config with build
+npm run mobile:build     # Build web assets and sync to Capacitor
+npm run mobile:open:android # Open Android project in Android Studio
+npx cap sync ios         # Sync iOS (requires macOS)
+```
+
+### Utility Scripts
+
+```bash
+npm run tools:search                # CLI search tool for testing
+npm run bilingual-check             # Check bilingual content coverage
+npm run i18n-audit                  # Audit i18n translation keys
+node --import tsx scripts/migrate-data.ts  # Migrate local JSON to Supabase
+```
 
 ---
 
-## Architecture & Data Flow
+## Environment Variables
 
-- **Frontend-First Search**: Core search and filtering often happen client-side or via optimized vector search.
-- **Supabase Integration**:
-  - Used for Partner Portal, Login, Analytics, and Vector Search.
-  - Local development uses `.env.local` keys.
-  - Migration scripts (`scripts/migrate-data.ts`) handle data population.
-- **Push Notifications**:
-  - Web Push API integrated via `lib/notifications/push-manager.ts`.
-  - Subscriptions stored in `push_subscriptions` table.
-- **Database Security**:
-  - Strict "Unified Policy Per Action" RLS strategy (ADR-013).
-  - All `SECURITY DEFINER` functions have fixed `search_path`.
-- **Partner Portal**:
-  - Self-service dashboard at `/dashboard`.
-  - Organization-based RBAC via `organization_members`.
-- **Local Data**:
-  - The "Top 150" verified records are mastered in `data/services.json`.
-  - **Manual Curation** means data quality is paramount.
-- **Validation**:
-  - Use `scripts/validate-data.ts` to ensure JSON integrity.
-- **Security**:
-  - **Headers**: CSP, X-Frame-Options, and nosniff enabled in `next.config.ts`.
-  - **API**: `ILIKE` wildcards are escaped in search endpoints.
-  - **Auth**: Strong password requirements (8+ chars) in Supabase.
-  - **CI**: `npm audit` runs on every push.
+Defined in `.env.local` (copy from `.env.example`). Schema validation via `@t3-oss/env-nextjs` in `lib/env.ts`.
+
+**Core:**
+
+- `NEXT_PUBLIC_SEARCH_MODE`: `local` (default) or `server`
+- `NEXT_PUBLIC_SUPABASE_URL`: Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: Public key for client-side auth/reads
+- `SUPABASE_SECRET_KEY`: Service role key (backend tools only)
+
+**Optional:**
+
+- `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN`: Phone validation scripts
+- `NEXT_PUBLIC_VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY`: Push notifications
+- `OPENCAGE_API_KEY`: Geocoding
+- `OPENAI_API_KEY`: Optional AI features
+
+**Do not commit `.env.local` or any secrets.** If accidentally committed, rotate immediately.
+
+---
+
+## Architecture
+
+### Search Modes
+
+The platform supports two search modes controlled by `NEXT_PUBLIC_SEARCH_MODE`:
+
+**1. Local Mode** (default): Client-side hybrid search
+
+- Fast keyword search in `lib/search/index.ts`
+- Optional semantic search via WebLLM + WebGPU (browser-based)
+- Zero-knowledge architecture (queries never leave device)
+- Data loaded from `data/services.json` + `data/embeddings.json`
+
+**2. Server Mode**: Privacy-focused API search
+
+- POST endpoint at `/api/v1/search/services/route.ts`
+- Hybrid Scoring: Fetches candidates from DB, scores in-memory (Authority, Completeness, Proximity)
+- Security: Zero-logging, rate-limited (60 req/min), ILIKE escaping, CSP headers
+
+### Search Flow (Local Mode)
+
+```text
+User Query
+    ↓
+lib/search/index.ts::searchServices()
+    ↓
+1. Tokenize + Synonym Expansion (lib/search/synonyms.ts)
+2. Optional AI Expansion (lib/ai/query-expander.ts)
+3. Category/OpenNow Filters
+4. Keyword Scoring (lib/search/scoring.ts)
+5. Vector Search if client provides embedding (lib/search/vector.ts)
+6. Crisis Detection + Boosting (lib/search/crisis.ts)
+7. Geo-Distance Sorting (lib/search/geo.ts)
+```
+
+### AI System (WebLLM)
+
+On-device AI via WebLLM for privacy-preserving smart search:
+
+- **Engine**: `lib/ai/engine.ts` (singleton pattern)
+- **Model**: Llama-3.2-1B-Instruct-q4f16_1-MLC (~500MB, cached in browser)
+- **Worker**: `lib/ai/webllm.worker.ts` (Web Worker for UI responsiveness)
+- **Chat**: `components/ai/ChatAssistant.tsx` (streaming, 5min idle unload)
+- **Hook**: `hooks/useAI.ts`
+
+**Constraints:**
+
+- Requires WebGPU support (`navigator.gpu`)
+- VRAM-intensive: auto-unloads after 5min idle
+- Crisis queries bypass AI and surface emergency services directly
+
+### Data Layer
+
+**Source of Truth:**
+
+- Development: `data/services.json` (run `npm run audit:data` for current count)
+- Production: Supabase `services` table OR fallback to JSON
+
+**Data Loading Strategy** (`lib/search/data.ts::loadServices()`):
+
+1. Try Supabase if credentials present
+2. Overlay AI metadata from `services.json` (synthetic_queries)
+3. Fallback to local JSON if DB unavailable
+4. In-memory cache on server
+
+**Key Types:**
+
+- `types/service.ts::Service` – Full internal schema (with AI metadata)
+- `types/service-public.ts::ServicePublic` – Public API view
+- `lib/schemas/service.ts` – Zod validation schemas
+
+**Modifying Service Data** (requires care):
+
+```bash
+# 1. Edit data/services.json (manual curation only)
+# 2. Validate the schema
+npm run validate-data
+# 3. Rebuild to regenerate embeddings
+npm run build
+# 4. Verify search still works
+npm run tools:search "food bank"
+```
+
+**Embeddings:**
+
+- Generated via `scripts/generate-embeddings.ts` (postbuild hook)
+- 384-dimensional vectors via @xenova/transformers (all-MiniLM-L6-v2)
+- Also stored in Supabase `services.embedding` column (pgvector)
+
+### Offline Infrastructure (v15.0)
+
+The platform is **Offline-Ready** via:
+
+1. **IndexedDB** (`lib/offline/db.ts`): Full service directory and embeddings
+2. **Synchronization** (`lib/offline/sync.ts`): Background sync from `/api/v1/services/export`
+3. **Hybrid Search** (`lib/search/data.ts`): Auto-fallback to IndexedDB if offline
+4. **Offline Feedback**: Queue locally, sync when online
+
+### Resilience Patterns
+
+**Circuit Breaker** (`lib/resilience/supabase-breaker.ts`):
+
+- Prevents cascading failures by fast-failing when DB unavailable
+- States: CLOSED (normal) → OPEN (failing) → HALF_OPEN (testing)
+- Config via `CIRCUIT_BREAKER_*` env vars
+
+```typescript
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+
+// With fallback for read operations
+const services = await withCircuitBreaker(
+  async () => supabase.from("services").select("*"),
+  async () => loadFromJSON() // Fallback when circuit open
+)
+
+// Without fallback for writes (fail-fast)
+await withCircuitBreaker(async () => supabase.from("services").insert(newService))
+```
+
+**Performance Tracking** (`lib/performance/tracker.ts`):
+
+- Opt-in instrumentation for operation latencies
+- Enabled via `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true`
+
+**Authorization Resilience** (v17.6+):
+
+- Tiered risk levels (`high`, `medium`, `low`) for auth checks
+- High risk: Fails closed (secure-by-default)
+- Low risk: Fails open with safe defaults for read-only operations
+
+### Authentication & Authorization
+
+**Auth Provider**: Supabase Auth (optional, works without DB)
+
+**RBAC System (v17.4)** – 4 tiers, 19 granular permissions:
+
+- **Owner**: Full control (transfer ownership, delete org)
+- **Admin**: Organization management (manage services/members)
+- **Editor**: Content creation (create/edit own services)
+- **Viewer**: Read-only access
+
+**Key Files:**
+
+- `lib/rbac.ts` – Core permission matrix
+- `lib/auth/authorization.ts` – Centralized authorization helpers
+- `hooks/useRBAC.ts` – React hook for UI permission checks
+
+**Authorization Pattern:**
+
+```typescript
+import { assertPermission } from "@/lib/auth/authorization"
+
+export async function myProtectedAction() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const membership = await getUserOrganizationMembership(user.id)
+
+  // Throws AuthorizationError if permission denied
+  await assertPermission(supabase, user.id, membership.organization_id, "canEditAllServices")
+
+  // Perform authorized action...
+}
+```
+
+### Multi-Language Support
+
+**Framework**: next-intl with 7 locales: `en, fr, zh-Hans, ar, pt, es, pa`
+
+**Routing:**
+
+- All pages under `app/[locale]/`
+- Middleware in `middleware.ts` handles locale detection + auth
+- Routing config: `i18n/routing.ts`
+
+**Translation Files:** `messages/{locale}.json`
+
+**Rules** (see `docs/development/bilingual-guide.md`):
+
+- No hardcoded strings for user-facing text
+- Support RTL (Arabic) via `dir="rtl"` in layouts
+- Localized data fields: `name_fr`, `description_fr`, etc.
+- UI labels must be present in all 7 message files
 
 ---
 
 ## Code Style & Conventions
 
-- **Modern Web Design**:
-  - Use "Glassmorphism" utilities from `globals.css` (`.glass`, `.glass-card`, `.glass-panel`).
-  - Use semantic colors (`--color-primary-*`, `--surface-*`).
-  - Typography: `heading-display`, `heading-1`, `heading-2` (from `globals.css`).
-- **Tailwind v4**:
-  - Use the new v4 engine.
-  - Prefer standard utilities for layout (`flex`, `grid`, `gap-*`).
-- **Components**:
-  - **Layout**: Use `components/layout/Header.tsx`, `Footer.tsx` for shell consistency.
-  - **UI Primitives**: Use `components/ui/**` (e.g., `button.tsx`, `card.tsx`, `badge.tsx`) instead of raw HTML.
-  - **Complex Components**: Reference `ServiceCard.tsx` and `AnalyticsCard.tsx` as examples of data-rich components.
-- **React/Next.js**:
-  - Use Server Components by default. Add `"use client"` only when interactivity is needed.
-  - Use `lucide-react` for icons.
+### TypeScript
+
+- Strict mode enabled (`noUncheckedIndexedAccess: true`)
+- Avoid `any` – especially in tests
+- Use `@/` path alias (maps to project root)
+
+### Linting & Formatting
+
+- ESLint with Next.js + Prettier configs (zero-warning policy)
+- Prettier with Tailwind plugin
+- Run: `npm run lint` and `npm run format`
+
+### Logging
+
+- Use `lib/logger.ts` instead of `console.log`
+- Structure logs with metadata: `logger.info("Action", { context })`
+
+### React/Next.js
+
+- Use Server Components by default
+- Add `"use client"` only when interactivity is needed
+- Use `lucide-react` for icons
+- Functional components with TypeScript, hooks over classes
+
+### Design System (Tailwind v4)
+
+- **Glassmorphism**: Use utilities from `globals.css` (`.glass`, `.glass-card`, `.glass-panel`)
+- **Semantic Colors**: `--color-primary-*`, `--surface-*`
+- **Typography**: `heading-display`, `heading-1`, `heading-2`
+- **Conditional Classes**: Use `cn()` helper from `lib/utils.ts`
+
+### Components
+
+- **Layout**: Use `components/layout/Header.tsx`, `Footer.tsx` for shell consistency
+- **UI Primitives**: Use `components/ui/**` (button, card, badge) instead of raw HTML
+- **Complex Components**: Reference `ServiceCard.tsx` and `AnalyticsCard.tsx` as examples
 
 ---
 
-## Localization (Multi-Lingual)
-
-- **Policy**: English-First, but **design for full multi-lingual support**.
-- **Supported Locales**: `en` (English), `fr` (French), `zh-Hans` (Chinese), `ar` (Arabic - RTL), `pt` (Portuguese), `es` (Spanish), `pa` (Punjabi).
-- **Rules** (see `docs/development/bilingual-guide.md` - Multi-lingual Development Guide):
-  - No hardcoded strings for user-facing text (use `next-intl`).
-  - Use `LanguageSelector` component for locale switching.
-  - Support RTL (Arabic) via `dir="rtl"` in layouts.
-  - Localized fields in data: `name_fr`, `description_fr`, etc. (Provincial services only).
-  - UI labels must be present in all 7 message files.
-
----
-
-## Testing Expectations
+## Testing Strategy
 
 We use a **pragmatic tiered testing strategy** that prioritizes dev velocity:
 
@@ -159,19 +386,143 @@ We use a **pragmatic tiered testing strategy** that prioritizes dev velocity:
 | **Core Flow** | Crisis, Accessibility         | Block merge                          |
 | **Polish**    | UI interactions               | Skip (flaky tests use `test.skip()`) |
 
-- **Vitest**: Unit tests for logic, hooks, components. Run: `npm test`
-- **Playwright**: E2E on **Chromium only** in CI. Run: `npm run test:e2e:local`
-- **CI**: GitHub Actions runs all checks. E2E only on main branch pushes.
+**Coverage Requirements:**
+
+- `lib/search/**`: 65% statements/branches
+- `lib/ai/**`: 85% statements
+- `lib/eligibility/**`: 95% statements
+- `hooks/**`: 85% statements
+
+**Expectations when you change code:**
+
+- For non-trivial changes, run `npm run lint` and `npm run type-check`
+- If you add new behavior, add/update tests (Vitest for logic, Playwright for critical flows)
 
 Full details: `docs/development/testing-guidelines.md`
 
 ---
 
-## Safety Rails / Governance
+## Git Workflow
 
-- **Independence**: Do not imply official government affiliation.
-- **Privacy**: No cookies using `localStorage`, no tracking for public search.
-- **Emergency**: Explicit "Call 911" badges for crisis services.
-- **Governance**: Refer to `docs/governance.md` for decision-making protocols.
+**Commits**: Small, logically grouped. Use conventional commits (e.g., `fix:`, `feat:`, `docs:`).
+
+**Safety**:
+
+- Never commit secrets, `.env` files, or machine-specific artifacts
+- Update `.gitignore` if you introduce new generated files
+
+**Commit Message Format** (via HEREDOC):
+
+```bash
+git commit -m "feat: add new search filter"
+```
 
 ---
+
+## Data Verification Levels
+
+Services have governance tiers (see `types/service.ts::VerificationLevel`):
+
+- **L0**: Unverified (filtered out of search)
+- **L1**: Basic verification (existence confirmed)
+- **L2**: Vetted (contact made)
+- **L3**: Provider confirmed (official partnership)
+
+Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
+
+---
+
+## Boundaries
+
+### ✅ Always
+
+- Run `npm run lint` and `npm run type-check` before committing
+- Use `lib/logger.ts` instead of `console.log`
+- Wrap Supabase calls with `withCircuitBreaker()` for resilience
+- Use `assertPermission()` for protected server actions
+- Escape user input in search queries (ILIKE wildcards)
+- Validate data changes with `npm run validate-data`
+- Regenerate embeddings after modifying `data/services.json` (`npm run build`)
+
+### ⚠️ Ask First
+
+- Modifying `data/services.json` – service data is hand-curated
+- Adding new verification levels or changing scoring weights
+- Database schema changes (migrations)
+- Changes to RBAC permissions or role definitions
+- Adding new environment variables
+- Removing or skipping tests
+
+### 🚫 Never
+
+- Commit secrets, `.env` files, or API keys
+- Auto-generate fake service data or contact information
+- Imply official government affiliation in UI copy
+- Add user tracking or analytics to public search
+- Modify `node_modules/` or `vendor/` directories
+- Force push to main branch
+- Skip pre-commit hooks (`--no-verify`)
+
+---
+
+## Security & Governance
+
+- **CSP/Headers**: Configured in `next.config.ts`
+- **Auth**: Supabase with strong password policy (8+ chars)
+- **CI**: `npm audit` runs on every push
+- **Governance**: See `docs/governance.md` for decision protocols
+
+---
+
+## Critical Files to Understand
+
+1. **Search Engine**: `lib/search/index.ts`, `lib/search/scoring.ts`
+2. **AI System**: `lib/ai/engine.ts`, `components/ai/ChatAssistant.tsx`
+3. **Data Loading**: `lib/search/data.ts`
+4. **API Routes**: `app/api/v1/search/services/route.ts`
+5. **Authorization**: `lib/auth/authorization.ts`
+6. **Main Search UI**: `components/search/SearchInterface.tsx`
+7. **Service Schema**: `types/service.ts`
+8. **Middleware**: `middleware.ts`
+9. **Resilience**: `lib/resilience/supabase-breaker.ts`, `lib/performance/tracker.ts`
+
+---
+
+## Common Pitfalls
+
+| Symptom                   | Likely Cause          | Fix                                        |
+| ------------------------- | --------------------- | ------------------------------------------ |
+| WebLLM fails to load      | No WebGPU support     | Check `navigator.gpu`; fails gracefully    |
+| Search returns nothing    | L0 services filtered  | Check `verification_level` ≥ L1            |
+| Embeddings don't match    | Stale after data edit | Run `npm run build`                        |
+| Supabase connection fails | Missing credentials   | App falls back to JSON; check `.env.local` |
+| Missing translations      | New strings added     | Run `npm run i18n-audit`                   |
+| Type errors on service    | Schema mismatch       | Run `npm run validate-data`                |
+
+---
+
+## Development Notes
+
+- **Node Version**: 20+ required
+- **Turbo Mode**: Dev server uses `--turbo` flag for fast refresh
+- **Commit Hooks**: Husky runs lint + related tests on pre-commit
+- **Commit Convention**: Conventional commits enforced (see `commitlint.config.js`)
+- **XSS Prevention**: `highlightMatches` escapes HTML entities before applying `<mark>` tags
+- **Site Generation**: MkDocs Material for docs. Run `mkdocs serve` to view locally.
+
+---
+
+## Admin Setup
+
+To grant admin privileges locally (requires running Supabase):
+
+```sql
+-- Run in Supabase SQL Editor
+INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
+```
+
+---
+
+## Maintaining This File
+
+When updating AGENTS.md, reference [`docs/agents-md-guidelines.md`](docs/agents-md-guidelines.md) for best practices on structure, boundaries, and anti-patterns to avoid.
