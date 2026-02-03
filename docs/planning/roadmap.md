@@ -169,6 +169,17 @@ Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, ac
 
 ### Recent Releases
 
+- **v17.7: Search Quality Testing & Scoring Refinements** (2026-02-03)
+  - Comprehensive search quality testing framework (Golden Set + Sampling strategy)
+  - 61 deterministic regression tests for search result quality
+  - 200-query test runner with detailed analysis and reporting
+  - Systemic scoring improvements: intent targeting precision, authority boost refinement, description matching quality
+  - Enhanced crisis detection (added "suicidal", "hits me", domestic violence patterns)
+  - Synonym expansion for abbreviations (OW, ODSP) with tokenizer allowlist
+  - ADR-018: Search quality testing and scoring refinements
+  - Test infrastructure: `tests/search/golden-set.test.ts`, `scripts/search-test-runner.ts`
+  - Quality report: `tests/fixtures/search-quality-report.md`
+
 - **[v17.6: Authorization Resilience](archive/2026-01-25-v17-6-post-v17-5-enhancements.md)** (2026-01-25)
   - **4 phases complete**: Load testing baselines, circuit breaker integration tests, translation workflow, authorization protection
   - Tiered circuit breaker protection for all 6 authorization functions

@@ -41,6 +41,24 @@ npm run test:load:sustained # k6 sustained load: stability test (20 VUs, 30min)
 npm run test:load:spike  # k6 spike test: sudden traffic spike (0-100 VUs)
 ```
 
+### Search Quality Testing
+
+```bash
+npm test -- tests/search/golden-set.test.ts  # Run 61 deterministic search quality tests
+NODE_ENV=development npx tsx scripts/search-test-runner.ts  # Comprehensive 200-query analysis
+```
+
+**Search Testing Infrastructure (v17.7):**
+
+- **Golden Set**: 50 hand-curated queries with expected services in top 10 results
+- **Sampled Coverage**: 150 queries testing 95%+ result rate
+- **Crisis Detection**: 9 safety-critical patterns (suicide, abuse, violence)
+- **Test Fixtures**: `tests/fixtures/search-test-queries.json` (200 queries)
+- **Quality Report**: `tests/fixtures/search-quality-report.md` (analysis + recommendations)
+- **Pass Criteria**: At least one expected service appears in top 10 results
+
+See [ADR-018](docs/adr/018-search-quality-testing-and-scoring-refinements.md) for scoring refinements and testing strategy.
+
 ### Data Validation & Health Checks
 
 ```bash
@@ -136,7 +154,7 @@ lib/search/index.ts::searchServices()
 5. Vector Search if client provides embedding (lib/search/vector.ts)
 6. Crisis Detection + Boosting (lib/search/crisis.ts)
 7. Geo-Distance Sorting (lib/search/geo.ts)
-````
+```
 
 **Key Files:**
 
@@ -151,30 +169,34 @@ lib/search/index.ts::searchServices()
 **Overview**: Multi-layered protection for authorization checks to maintain security and stability during database outages.
 
 **Core Components**:
+
 - Integrated with `lib/resilience/supabase-breaker.ts` for database-aware failure handling.
 - Tiered risk levels (`high`, `medium`, `low`) for all authorization assertions.
 
 **Strategy**:
+
 - **High Risk**: Fails closed (secure-by-default). Mutative actions like updating or deleting services are blocked if permissions cannot be verified.
 - **Low Risk**: Fails open with safe defaults. Read-only checks like `getEffectivePermissions` return empty results rather than crashing, maintaining UI availability without leaking data.
 
 **Usage Pattern**:
 
 ```typescript
-import { assertServiceOwnership } from '@/lib/auth/authorization'
+import { assertServiceOwnership } from "@/lib/auth/authorization"
 
 // Defaults to 'high' risk, fails closed if circuit is open
 await assertServiceOwnership(supabase, userId, serviceId)
 
 // Explicitly low risk, fails open with safe default
-const perms = await getEffectivePermissions(supabase, userId, orgId, 'low')
+const perms = await getEffectivePermissions(supabase, userId, orgId, "low")
 ```
 
 **Protected Functions**:
+
 - `assertServiceOwnership`, `assertOrganizationMembership`, `assertPermission`, `assertAdminRole`
 - `getEffectivePermissions`, `getUserOrganizationRole`
 
 **Best Practices**:
+
 - ✅ Use 'high' risk for any mutative server actions.
 - ✅ Use 'low' risk only for non-sensitive UI-hinting operations.
 - ✅ Always provide the necessary context (user ID, organization ID) to logging.
@@ -197,32 +219,40 @@ The platform includes **operational observability and resilience patterns** to m
 **Overview**: Lightweight, opt-in instrumentation for tracking operation latencies.
 
 **Core Components**:
+
 - `lib/performance/tracker.ts` - Wrapper around logger for tracking operations
 - `lib/performance/metrics.ts` - In-memory aggregation (p50, p95, p99 percentiles)
 - Enabled via `NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=true` (dev/staging only)
 
 **Usage Pattern**:
+
 ```typescript
-import { trackPerformance } from '@/lib/performance/tracker'
+import { trackPerformance } from "@/lib/performance/tracker"
 
 // Async operations
-const result = await trackPerformance('operation.name', async () => {
-  return await someOperation()
-}, { metadata: 'optional' })
+const result = await trackPerformance(
+  "operation.name",
+  async () => {
+    return await someOperation()
+  },
+  { metadata: "optional" }
+)
 
 // Manual timing
-import { createPerformanceTimer } from '@/lib/performance/tracker'
-const stopTimer = createPerformanceTimer('operation.name')
+import { createPerformanceTimer } from "@/lib/performance/tracker"
+const stopTimer = createPerformanceTimer("operation.name")
 // ... do work ...
 stopTimer()
 ```
 
 **Instrumented Operations**:
+
 - Search: `search.total`, `search.dataLoad`, `search.keywordScoring`, `search.vectorScoring`
 - API: `api.search.total`, `api.search.dbQuery`, `api.search.scoring`
 - Data Loading: `dataLoad.indexedDB`, `dataLoad.supabase`, `dataLoad.jsonFallback`
 
 **Metrics Endpoints**:
+
 - `GET /api/v1/health` - Public health check with optional detailed metrics
   - Basic status: Always public (for load balancers)
   - Detailed metrics: Requires authentication or development mode
@@ -236,6 +266,7 @@ stopTimer()
   - Requires: Authentication
 
 **Best Practices**:
+
 - ✅ Enable in development and staging for visibility
 - ✅ Disable in production (uses in-memory storage, not scalable)
 - ✅ Use structured metadata for context (query length, service count, etc.)
@@ -248,16 +279,19 @@ stopTimer()
 **Overview**: Resilience pattern that prevents cascading failures by fast-failing when database is unavailable.
 
 **Core Components**:
+
 - `lib/resilience/circuit-breaker.ts` - Generic circuit breaker implementation
 - `lib/resilience/supabase-breaker.ts` - Supabase-specific wrapper with fallback support
 - `lib/resilience/telemetry.ts` - Event logging for state transitions
 
 **States**:
+
 1. **CLOSED** (normal): Requests pass through to database
 2. **OPEN** (failing): Requests fast-fail (<1ms) without hitting database
 3. **HALF_OPEN** (testing): Allow limited requests to test recovery
 
 **Configuration** (environment variables):
+
 ```bash
 CIRCUIT_BREAKER_ENABLED=true                    # Enable/disable circuit breaker
 CIRCUIT_BREAKER_FAILURE_THRESHOLD=3             # Failures before opening
@@ -265,23 +299,23 @@ CIRCUIT_BREAKER_TIMEOUT=30000                   # ms before retry (OPEN → HALF
 ```
 
 **Usage Pattern**:
+
 ```typescript
-import { withCircuitBreaker } from '@/lib/resilience/supabase-breaker'
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 // With fallback (recommended for read operations)
 const result = await withCircuitBreaker(
-  async () => await supabase.from('services').select('*'),
-  async () => loadFromJSONFallback()  // Optional fallback when circuit is open
+  async () => await supabase.from("services").select("*"),
+  async () => loadFromJSONFallback() // Optional fallback when circuit is open
 )
 
 // Without fallback (write operations)
-const { data, error } = await withCircuitBreaker(
-  async () => await supabase.from('services').insert(newService)
-)
+const { data, error } = await withCircuitBreaker(async () => await supabase.from("services").insert(newService))
 // Handle CircuitOpenError in catch block if needed
 ```
 
 **Protected Operations**:
+
 - ✅ Search data loading (`lib/search/data.ts`)
 - ✅ Service management (`lib/services.ts`: claimService, getServiceById, updateService)
 - ✅ Analytics tracking (`lib/analytics.ts`: trackEvent, getAnalyticsForServices)
@@ -289,6 +323,7 @@ const { data, error } = await withCircuitBreaker(
 - ✅ Offline sync (`lib/offline/sync.ts` checks circuit state)
 
 **Best Practices**:
+
 - ✅ Always wrap Supabase calls with `withCircuitBreaker()`
 - ✅ Provide fallback functions for read operations when possible
 - ✅ Handle `CircuitOpenError` gracefully (don't retry, it's intentional)
@@ -299,36 +334,41 @@ const { data, error } = await withCircuitBreaker(
 - ❌ Don't share circuit breaker instances across different services/databases
 
 **Monitoring**:
+
 - Health check endpoint: `GET /api/v1/health` shows circuit breaker state and stats
 - Log events: Circuit state transitions are logged with structured data
 - Stats available: failure count, success count, failure rate, next attempt time
 
 **Example: Complete API Route Protection**:
+
 ```typescript
-import { withCircuitBreaker } from '@/lib/resilience/supabase-breaker'
-import { trackPerformance } from '@/lib/performance/tracker'
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { trackPerformance } from "@/lib/performance/tracker"
 
 export async function GET(request: NextRequest) {
-  return trackPerformance('api.myEndpoint.total', async () => {
-    // ... rate limiting, auth, etc. ...
+  return trackPerformance(
+    "api.myEndpoint.total",
+    async () => {
+      // ... rate limiting, auth, etc. ...
 
-    const { data, error } = await trackPerformance('api.myEndpoint.dbQuery', async () =>
-      withCircuitBreaker(async () =>
-        supabase.from('my_table').select('*')
+      const { data, error } = await trackPerformance("api.myEndpoint.dbQuery", async () =>
+        withCircuitBreaker(async () => supabase.from("my_table").select("*"))
       )
-    )
 
-    if (error) {
-      logger.error('Database query failed', { error })
-      return createApiError('Query failed', 500)
-    }
+      if (error) {
+        logger.error("Database query failed", { error })
+        return createApiError("Query failed", 500)
+      }
 
-    return createApiResponse(data)
-  }, { endpoint: '/api/myEndpoint' })
+      return createApiResponse(data)
+    },
+    { endpoint: "/api/myEndpoint" }
+  )
 }
 ```
 
 **Recovery Behavior**:
+
 - Circuit opens after 3 consecutive failures OR 50% error rate in 60s window
 - Circuit remains open for 30s (configurable)
 - Circuit transitions to HALF_OPEN after timeout, allows 1 test request
@@ -336,12 +376,14 @@ export async function GET(request: NextRequest) {
 - If test fails → Circuit reopens for another 30s
 
 **Fallback Strategy** (Read Operations):
+
 - Search: Falls back to local JSON files (`data/services.json`)
 - IndexedDB: Client-side operations use offline cache
 - Analytics: Gracefully degrades (non-critical)
 - Write Operations: No fallback (fail-fast, user sees error)
 
 **When Circuit Opens**:
+
 1. User requests are fast-failed (<1ms instead of 30s timeout)
 2. Fallback data sources are used when available (JSON, IndexedDB)
 3. Circuit breaker logs OPEN state transition
