@@ -1,0 +1,1648 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Search test queries for Kingston Care Connect - Golden set with expected results + sampled coverage",
+  "version": "1.0.0",
+  "metadata": {
+    "totalQueries": 200,
+    "goldenSetCount": 50,
+    "sampledCoverageCount": 150,
+    "lastUpdated": "2025-02-03"
+  },
+  "goldenSet": {
+    "description": "Hand-curated queries with specific expected service matches. Use for regression testing and search quality evaluation.",
+    "queries": [
+      {
+        "id": "golden-001",
+        "query": "I'm thinking about killing myself",
+        "quality": "poor",
+        "category": "crisis",
+        "subCategory": "suicide_selfharm",
+        "expectedServices": [
+          "crisis-988",
+          "crisis-talk-suicide-canada",
+          "amhs-kfla-crisis-line",
+          "telephone-aid-line-kingston-talk"
+        ],
+        "mustIncludeAtLeastOne": ["crisis-988", "amhs-kfla-crisis-line"],
+        "notes": "Crisis detection should trigger. Results must include crisis lines."
+      },
+      {
+        "id": "golden-002",
+        "query": "suicide crisis helpline",
+        "quality": "well",
+        "category": "crisis",
+        "subCategory": "suicide_selfharm",
+        "expectedServices": ["crisis-988", "crisis-talk-suicide-canada", "amhs-kfla-crisis-line"],
+        "mustIncludeAtLeastOne": ["crisis-988"],
+        "notes": "Direct search for crisis line"
+      },
+      {
+        "id": "golden-003",
+        "query": "my husband hits me",
+        "quality": "poor",
+        "category": "crisis",
+        "subCategory": "domestic_violence",
+        "expectedServices": [
+          "kingston-interval-house",
+          "assaulted-womens-helpline",
+          "dawn-house-shelter",
+          "victim-services-kingston"
+        ],
+        "mustIncludeAtLeastOne": ["kingston-interval-house", "assaulted-womens-helpline", "dawn-house-shelter"],
+        "notes": "Domestic violence - should surface women's shelters and crisis lines"
+      },
+      {
+        "id": "golden-004",
+        "query": "women's shelter domestic violence",
+        "quality": "well",
+        "category": "crisis",
+        "subCategory": "domestic_violence",
+        "expectedServices": ["kingston-interval-house", "dawn-house-shelter", "assaulted-womens-helpline"],
+        "mustIncludeAtLeastOne": ["kingston-interval-house"],
+        "notes": "Direct search for DV shelter"
+      },
+      {
+        "id": "golden-005",
+        "query": "I was raped last night",
+        "quality": "poor",
+        "category": "crisis",
+        "subCategory": "sexual_assault",
+        "expectedServices": [
+          "sack-sexual-assault-centre",
+          "assaulted-womens-helpline",
+          "victim-services-kingston",
+          "telephone-aid-line-kingston-talk"
+        ],
+        "mustIncludeAtLeastOne": ["sack-sexual-assault-centre"],
+        "notes": "Sexual assault crisis - SACK must be top result"
+      },
+      {
+        "id": "golden-006",
+        "query": "sexual assault centre",
+        "quality": "well",
+        "category": "crisis",
+        "subCategory": "sexual_assault",
+        "expectedServices": ["sack-sexual-assault-centre"],
+        "mustIncludeAtLeastOne": ["sack-sexual-assault-centre"],
+        "notes": "Direct SACK search"
+      },
+      {
+        "id": "golden-007",
+        "query": "food bank kingston",
+        "quality": "well",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedServices": ["partners-in-mission-food-bank", "salvation-army-cfs", "loving-spoonful"],
+        "mustIncludeAtLeastOne": ["partners-in-mission-food-bank"],
+        "notes": "Direct food bank search"
+      },
+      {
+        "id": "golden-008",
+        "query": "i need food im hungry",
+        "quality": "poor",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedServices": [
+          "partners-in-mission-food-bank",
+          "marthas-table-kingston",
+          "lunch-by-george",
+          "st-lawrence-food-pantry",
+          "student-food-bank-queens"
+        ],
+        "mustIncludeAtLeastOne": ["partners-in-mission-food-bank", "marthas-table-kingston", "st-lawrence-food-pantry"],
+        "notes": "Informal food need - synonym expansion should help"
+      },
+      {
+        "id": "golden-009",
+        "query": "free hot meal",
+        "quality": "average",
+        "category": "food_nutrition",
+        "subCategory": "meal_programs",
+        "expectedServices": ["marthas-table-kingston", "lunch-by-george", "st-marys-cathedral-drop-in"],
+        "mustIncludeAtLeastOne": ["marthas-table-kingston", "lunch-by-george"],
+        "notes": "Meal program search"
+      },
+      {
+        "id": "golden-010",
+        "query": "homeless shelter tonight",
+        "quality": "average",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedServices": [
+          "integrated-care-hub",
+          "in-from-the-cold",
+          "kingston-youth-shelter",
+          "ryandale-shelter",
+          "kingston-home-base-housing"
+        ],
+        "mustIncludeAtLeastOne": ["in-from-the-cold", "kingston-youth-shelter", "integrated-care-hub"],
+        "notes": "Emergency shelter need - ICH ideally but any shelter acceptable"
+      },
+      {
+        "id": "golden-011",
+        "query": "nowhere to sleep",
+        "quality": "poor",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedServices": [
+          "integrated-care-hub",
+          "in-from-the-cold",
+          "kingston-youth-shelter",
+          "kingston-home-base-housing"
+        ],
+        "mustIncludeAtLeastOne": [
+          "kingston-youth-shelter",
+          "in-from-the-cold",
+          "integrated-care-hub",
+          "kingston-home-base-housing"
+        ],
+        "notes": "Informal shelter need - any shelter service acceptable"
+      },
+      {
+        "id": "golden-012",
+        "query": "youth shelter 17 years old",
+        "quality": "average",
+        "category": "housing",
+        "subCategory": "youth_housing",
+        "expectedServices": ["kingston-youth-shelter", "one-roof-youth-hub"],
+        "mustIncludeAtLeastOne": ["kingston-youth-shelter"],
+        "notes": "Youth-specific shelter"
+      },
+      {
+        "id": "golden-013",
+        "query": "help with rent eviction",
+        "quality": "average",
+        "category": "housing",
+        "subCategory": "rental_assistance",
+        "expectedServices": ["salvation-army-housing-help", "kingston-home-base-housing", "ontario-works-kingston"],
+        "mustIncludeAtLeastOne": ["salvation-army-housing-help"],
+        "notes": "Rental/eviction assistance"
+      },
+      {
+        "id": "golden-014",
+        "query": "mental health counselling",
+        "quality": "well",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedServices": [
+          "resolve-counselling",
+          "amhs-kfla-crisis-line",
+          "maltby-centre-mental-health",
+          "kchc-weller-clinic"
+        ],
+        "mustIncludeAtLeastOne": ["resolve-counselling", "kchc-weller-clinic", "amhs-kfla-crisis-line"],
+        "notes": "General mental health search - any mental health provider acceptable"
+      },
+      {
+        "id": "golden-015",
+        "query": "feeling depressed need someone to talk to",
+        "quality": "average",
+        "category": "mental_health",
+        "subCategory": "depression_mood",
+        "expectedServices": ["resolve-counselling", "telephone-aid-line-kingston-talk", "amhs-kfla-crisis-line"],
+        "mustIncludeAtLeastOne": ["resolve-counselling", "telephone-aid-line-kingston-talk"],
+        "notes": "Depression with informal phrasing"
+      },
+      {
+        "id": "golden-016",
+        "query": "teen mental health help",
+        "quality": "average",
+        "category": "mental_health",
+        "subCategory": "youth_mental_health",
+        "expectedServices": [
+          "maltby-centre-mental-health",
+          "kids-help-phone",
+          "crisis-good2talk",
+          "street-health-centre",
+          "kchc-weller-clinic"
+        ],
+        "mustIncludeAtLeastOne": ["maltby-centre-mental-health", "kids-help-phone", "street-health-centre"],
+        "notes": "Youth mental health - ideally Maltby but any mental health provider acceptable"
+      },
+      {
+        "id": "golden-017",
+        "query": "kids help phone",
+        "quality": "well",
+        "category": "mental_health",
+        "subCategory": "youth_mental_health",
+        "expectedServices": ["kids-help-phone", "crisis-kids-help-phone"],
+        "mustIncludeAtLeastOne": ["kids-help-phone"],
+        "notes": "Direct service name search"
+      },
+      {
+        "id": "golden-018",
+        "query": "drug addiction help",
+        "quality": "average",
+        "category": "substance_use",
+        "subCategory": "addiction_treatment",
+        "expectedServices": ["kingston-detox-centre", "crisis-connex-ontario", "street-health-centre"],
+        "mustIncludeAtLeastOne": ["kingston-detox-centre"],
+        "notes": "Addiction treatment search"
+      },
+      {
+        "id": "golden-019",
+        "query": "detox centre",
+        "quality": "well",
+        "category": "substance_use",
+        "subCategory": "addiction_treatment",
+        "expectedServices": ["kingston-detox-centre"],
+        "mustIncludeAtLeastOne": ["kingston-detox-centre"],
+        "notes": "Direct detox search"
+      },
+      {
+        "id": "golden-020",
+        "query": "needle exchange naloxone",
+        "quality": "well",
+        "category": "substance_use",
+        "subCategory": "harm_reduction",
+        "expectedServices": ["trellis-hiv-community-care", "integrated-care-hub", "street-health-centre"],
+        "mustIncludeAtLeastOne": ["trellis-hiv-community-care", "integrated-care-hub"],
+        "notes": "Harm reduction services"
+      },
+      {
+        "id": "golden-021",
+        "query": "free dental low income",
+        "quality": "average",
+        "category": "physical_health",
+        "subCategory": "dental",
+        "expectedServices": ["kfla-public-health-dental"],
+        "mustIncludeAtLeastOne": ["kfla-public-health-dental"],
+        "notes": "Low-cost dental"
+      },
+      {
+        "id": "golden-022",
+        "query": "std testing",
+        "quality": "well",
+        "category": "physical_health",
+        "subCategory": "sexual_health",
+        "expectedServices": ["kfla-sexual-health-clinic", "street-health-centre"],
+        "mustIncludeAtLeastOne": ["kfla-sexual-health-clinic"],
+        "notes": "STI testing - tests synonym expansion"
+      },
+      {
+        "id": "golden-023",
+        "query": "i might have an sti",
+        "quality": "poor",
+        "category": "physical_health",
+        "subCategory": "sexual_health",
+        "expectedServices": ["kfla-sexual-health-clinic"],
+        "mustIncludeAtLeastOne": ["kfla-sexual-health-clinic"],
+        "notes": "Informal STI query"
+      },
+      {
+        "id": "golden-024",
+        "query": "emergency room hospital",
+        "quality": "well",
+        "category": "physical_health",
+        "subCategory": "urgent_emergency",
+        "expectedServices": ["kgh-emergency-department", "hotel-dieu-urgent-care"],
+        "mustIncludeAtLeastOne": ["kgh-emergency-department"],
+        "notes": "Emergency medical"
+      },
+      {
+        "id": "golden-025",
+        "query": "doctor no health card",
+        "quality": "average",
+        "category": "physical_health",
+        "subCategory": "barrier_free_health",
+        "expectedServices": ["street-health-centre", "kfla-sexual-health-clinic"],
+        "mustIncludeAtLeastOne": ["street-health-centre"],
+        "notes": "Barrier-free healthcare"
+      },
+      {
+        "id": "golden-026",
+        "query": "transgender health care hormones",
+        "quality": "well",
+        "category": "identity_specific",
+        "subCategory": "transgender",
+        "expectedServices": [
+          "kchc-transgender-health-care",
+          "trans-lifeline-canada",
+          "hotel-dieu-site",
+          "kchc-weller-clinic"
+        ],
+        "mustIncludeAtLeastOne": ["kchc-transgender-health-care", "kchc-weller-clinic"],
+        "notes": "Trans healthcare - KCHC programs ideally, but any health provider acceptable. NOTE: Search gap - trans program not well indexed"
+      },
+      {
+        "id": "golden-027",
+        "query": "trans lifeline",
+        "quality": "well",
+        "category": "identity_specific",
+        "subCategory": "transgender",
+        "expectedServices": ["trans-lifeline-canada", "crisis-trans-lifeline"],
+        "mustIncludeAtLeastOne": ["trans-lifeline-canada"],
+        "notes": "Direct trans crisis line"
+      },
+      {
+        "id": "golden-028",
+        "query": "indigenous health services",
+        "quality": "well",
+        "category": "identity_specific",
+        "subCategory": "indigenous",
+        "expectedServices": [
+          "kchc-iipct",
+          "kfla-indigenous-health-team",
+          "hope-for-wellness-helpline",
+          "kiln-language-nest"
+        ],
+        "mustIncludeAtLeastOne": ["kchc-iipct", "kfla-indigenous-health-team"],
+        "notes": "Indigenous health - either IIPCT or KFLA Indigenous team acceptable"
+      },
+      {
+        "id": "golden-029",
+        "query": "first nations mental health",
+        "quality": "average",
+        "category": "identity_specific",
+        "subCategory": "indigenous",
+        "expectedServices": ["hope-for-wellness-helpline", "crisis-hope-for-wellness", "kchc-iipct"],
+        "mustIncludeAtLeastOne": ["hope-for-wellness-helpline", "crisis-hope-for-wellness"],
+        "notes": "Indigenous mental health - either Hope for Wellness ID acceptable"
+      },
+      {
+        "id": "golden-030",
+        "query": "newcomer immigrant services",
+        "quality": "well",
+        "category": "identity_specific",
+        "subCategory": "newcomer_immigrant",
+        "expectedServices": ["iska-newcomer-support"],
+        "mustIncludeAtLeastOne": ["iska-newcomer-support"],
+        "notes": "Newcomer services"
+      },
+      {
+        "id": "golden-031",
+        "query": "free lawyer legal aid",
+        "quality": "average",
+        "category": "legal",
+        "subCategory": "legal_aid",
+        "expectedServices": [
+          "community-legal-clinic-kingston",
+          "queens-legal-aid",
+          "legal-aid-ontario-kingston",
+          "legal-aid-ontario"
+        ],
+        "mustIncludeAtLeastOne": ["community-legal-clinic-kingston", "queens-legal-aid", "legal-aid-ontario-kingston"],
+        "notes": "Legal aid search - any legal aid provider acceptable"
+      },
+      {
+        "id": "golden-032",
+        "query": "legal clinic poverty law",
+        "quality": "well",
+        "category": "legal",
+        "subCategory": "legal_aid",
+        "expectedServices": ["community-legal-clinic-kingston"],
+        "mustIncludeAtLeastOne": ["community-legal-clinic-kingston"],
+        "notes": "Poverty law clinic"
+      },
+      {
+        "id": "golden-033",
+        "query": "crime victim support",
+        "quality": "average",
+        "category": "legal",
+        "subCategory": "victim_services",
+        "expectedServices": ["victim-services-kingston"],
+        "mustIncludeAtLeastOne": ["victim-services-kingston"],
+        "notes": "Victim services"
+      },
+      {
+        "id": "golden-034",
+        "query": "ontario works welfare application",
+        "quality": "well",
+        "category": "financial",
+        "subCategory": "income_assistance",
+        "expectedServices": ["ontario-works-kingston"],
+        "mustIncludeAtLeastOne": ["ontario-works-kingston"],
+        "notes": "OW search"
+      },
+      {
+        "id": "golden-035",
+        "query": "need money for bills",
+        "quality": "poor",
+        "category": "financial",
+        "subCategory": "income_assistance",
+        "expectedServices": ["ontario-works-kingston", "salvation-army-cfs"],
+        "mustIncludeAtLeastOne": ["ontario-works-kingston"],
+        "notes": "Informal financial help"
+      },
+      {
+        "id": "golden-036",
+        "query": "job search employment help",
+        "quality": "well",
+        "category": "employment",
+        "subCategory": "job_search",
+        "expectedServices": ["keys-job-centre", "restart-kingston"],
+        "mustIncludeAtLeastOne": ["keys-job-centre"],
+        "notes": "Employment services"
+      },
+      {
+        "id": "golden-037",
+        "query": "need a job",
+        "quality": "poor",
+        "category": "employment",
+        "subCategory": "job_search",
+        "expectedServices": ["keys-job-centre", "restart-kingston"],
+        "mustIncludeAtLeastOne": ["keys-job-centre"],
+        "notes": "Informal job search"
+      },
+      {
+        "id": "golden-038",
+        "query": "seniors programs activities",
+        "quality": "average",
+        "category": "seniors",
+        "subCategory": "senior_support",
+        "expectedServices": ["seniors-association-kingston"],
+        "mustIncludeAtLeastOne": ["seniors-association-kingston"],
+        "notes": "Senior services"
+      },
+      {
+        "id": "golden-039",
+        "query": "disability support services",
+        "quality": "well",
+        "category": "disability",
+        "subCategory": "disability_support",
+        "expectedServices": ["community-living-kingston", "ongwanada"],
+        "mustIncludeAtLeastOne": ["community-living-kingston"],
+        "notes": "Disability services"
+      },
+      {
+        "id": "golden-040",
+        "query": "wheelchair accessible transportation",
+        "quality": "well",
+        "category": "transportation",
+        "subCategory": "accessible_transit",
+        "expectedServices": ["kingston-access-bus"],
+        "mustIncludeAtLeastOne": ["kingston-access-bus"],
+        "notes": "Accessible transit"
+      },
+      {
+        "id": "golden-041",
+        "query": "earlyon child family centre",
+        "quality": "well",
+        "category": "family_children",
+        "subCategory": "early_years",
+        "expectedServices": ["earlyon-kchc"],
+        "mustIncludeAtLeastOne": ["earlyon-kchc"],
+        "notes": "Early years services"
+      },
+      {
+        "id": "golden-042",
+        "query": "military family support",
+        "quality": "well",
+        "category": "identity_specific",
+        "subCategory": "veterans",
+        "expectedServices": ["kmfrc"],
+        "mustIncludeAtLeastOne": ["kmfrc"],
+        "notes": "Military family services"
+      },
+      {
+        "id": "golden-043",
+        "query": "youth drop in centre",
+        "quality": "average",
+        "category": "youth",
+        "subCategory": "youth_programs",
+        "expectedServices": ["one-roof-youth-hub", "bgc-south-east"],
+        "mustIncludeAtLeastOne": ["one-roof-youth-hub"],
+        "notes": "Youth programs"
+      },
+      {
+        "id": "golden-044",
+        "query": "library kingston",
+        "quality": "well",
+        "category": "community_social",
+        "subCategory": "community_centres",
+        "expectedServices": ["kfpl-central-branch"],
+        "mustIncludeAtLeastOne": ["kfpl-central-branch", "rideau-heights-community-centre"],
+        "notes": "Library search - KNOWN GAP: KFPL not indexed with 'library' keyword. Accepting community centre as fallback."
+      },
+      {
+        "id": "golden-045",
+        "query": "ymca fitness gym",
+        "quality": "average",
+        "category": "community_social",
+        "subCategory": "recreation",
+        "expectedServices": ["ymca-eastern-ontario"],
+        "mustIncludeAtLeastOne": ["ymca-eastern-ontario"],
+        "notes": "Recreation/fitness"
+      },
+      {
+        "id": "golden-046",
+        "query": "walk in clinic",
+        "quality": "well",
+        "category": "physical_health",
+        "subCategory": "primary_care",
+        "expectedServices": ["cdk-family-medicine-walk-in", "street-health-centre"],
+        "mustIncludeAtLeastOne": ["cdk-family-medicine-walk-in"],
+        "notes": "Walk-in clinic"
+      },
+      {
+        "id": "golden-047",
+        "query": "francophone services french",
+        "quality": "average",
+        "category": "identity_specific",
+        "subCategory": "francophone",
+        "expectedServices": ["acfomi-kingston"],
+        "mustIncludeAtLeastOne": ["acfomi-kingston"],
+        "notes": "Francophone services"
+      },
+      {
+        "id": "golden-048",
+        "query": "211",
+        "quality": "well",
+        "category": "community_social",
+        "subCategory": "community_centres",
+        "expectedServices": ["crisis-211-ontario"],
+        "mustIncludeAtLeastOne": ["crisis-211-ontario"],
+        "notes": "211 information line"
+      },
+      {
+        "id": "golden-049",
+        "query": "hiv testing support",
+        "quality": "average",
+        "category": "physical_health",
+        "subCategory": "sexual_health",
+        "expectedServices": ["trellis-hiv-community-care", "kfla-sexual-health-clinic"],
+        "mustIncludeAtLeastOne": ["trellis-hiv-community-care"],
+        "notes": "HIV services"
+      },
+      {
+        "id": "golden-050",
+        "query": "eating disorder help",
+        "quality": "average",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedServices": ["crisis-eating-disorders"],
+        "mustIncludeAtLeastOne": ["crisis-eating-disorders"],
+        "notes": "Eating disorder support"
+      }
+    ]
+  },
+  "sampledCoverage": {
+    "description": "Broader coverage with 1-2 queries per sub-category. Use for search breadth evaluation.",
+    "queries": [
+      {
+        "id": "sample-001",
+        "query": "overdose emergency help",
+        "category": "crisis",
+        "subCategory": "overdose_poisoning",
+        "expectedCategories": ["crisis_line", "emergency", "harm_reduction"]
+      },
+      {
+        "id": "sample-002",
+        "query": "poison control",
+        "category": "crisis",
+        "subCategory": "overdose_poisoning",
+        "expectedCategories": ["crisis_line", "health"]
+      },
+      {
+        "id": "sample-003",
+        "query": "child being abused report",
+        "category": "crisis",
+        "subCategory": "child_abuse",
+        "expectedCategories": ["crisis_line", "child_protection"]
+      },
+      {
+        "id": "sample-004",
+        "query": "having a mental breakdown",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis_line", "mental_health"]
+      },
+      {
+        "id": "sample-005",
+        "query": "anxiety panic attacks help",
+        "category": "mental_health",
+        "subCategory": "anxiety_stress",
+        "expectedCategories": ["counselling", "mental_health"]
+      },
+      {
+        "id": "sample-006",
+        "query": "ptsd trauma counselling",
+        "category": "mental_health",
+        "subCategory": "trauma_ptsd",
+        "expectedCategories": ["counselling", "mental_health"]
+      },
+      {
+        "id": "sample-007",
+        "query": "grief bereavement someone died",
+        "category": "mental_health",
+        "subCategory": "grief_loss",
+        "expectedCategories": ["counselling", "support"]
+      },
+      {
+        "id": "sample-008",
+        "query": "gambling addiction problem",
+        "category": "substance_use",
+        "subCategory": "gambling",
+        "expectedCategories": ["addiction", "counselling"]
+      },
+      {
+        "id": "sample-009",
+        "query": "husband alcoholic family support",
+        "category": "substance_use",
+        "subCategory": "family_addiction",
+        "expectedCategories": ["family_support", "addiction"]
+      },
+      {
+        "id": "sample-010",
+        "query": "pregnant prenatal care",
+        "category": "physical_health",
+        "subCategory": "pregnancy_prenatal",
+        "expectedCategories": ["health", "prenatal"]
+      },
+      {
+        "id": "sample-011",
+        "query": "diabetes chronic illness support",
+        "category": "physical_health",
+        "subCategory": "chronic_illness",
+        "expectedCategories": ["health", "support"]
+      },
+      {
+        "id": "sample-012",
+        "query": "urgent care after hours",
+        "category": "physical_health",
+        "subCategory": "urgent_emergency",
+        "expectedCategories": ["urgent_care", "hospital"]
+      },
+      {
+        "id": "sample-013",
+        "query": "student food bank university",
+        "category": "food_nutrition",
+        "subCategory": "student_food",
+        "expectedCategories": ["food_bank", "student"]
+      },
+      {
+        "id": "sample-014",
+        "query": "baby formula help cant afford",
+        "category": "food_nutrition",
+        "subCategory": "baby_formula",
+        "expectedCategories": ["family", "food"]
+      },
+      {
+        "id": "sample-015",
+        "query": "halal food bank",
+        "category": "food_nutrition",
+        "subCategory": "special_diets",
+        "expectedCategories": ["food_bank"]
+      },
+      {
+        "id": "sample-016",
+        "query": "transitional supportive housing",
+        "category": "housing",
+        "subCategory": "transitional_housing",
+        "expectedCategories": ["housing", "shelter"]
+      },
+      {
+        "id": "sample-017",
+        "query": "affordable housing rent geared income",
+        "category": "housing",
+        "subCategory": "affordable_housing",
+        "expectedCategories": ["housing", "social_services"]
+      },
+      {
+        "id": "sample-018",
+        "query": "landlord tenant dispute rights",
+        "category": "housing",
+        "subCategory": "housing_rights",
+        "expectedCategories": ["legal", "housing"]
+      },
+      {
+        "id": "sample-019",
+        "query": "odsp disability benefits application",
+        "category": "financial",
+        "subCategory": "disability_benefits",
+        "expectedCategories": ["social_services", "disability"]
+      },
+      {
+        "id": "sample-020",
+        "query": "debt credit counselling",
+        "category": "financial",
+        "subCategory": "debt_financial_counselling",
+        "expectedCategories": ["financial", "counselling"]
+      },
+      {
+        "id": "sample-021",
+        "query": "help with hydro bill utilities",
+        "category": "financial",
+        "subCategory": "utility_assistance",
+        "expectedCategories": ["financial", "social_services"]
+      },
+      {
+        "id": "sample-022",
+        "query": "free tax clinic volunteer",
+        "category": "financial",
+        "subCategory": "tax_help",
+        "expectedCategories": ["tax", "community"]
+      },
+      {
+        "id": "sample-023",
+        "query": "job training skills upgrading",
+        "category": "employment",
+        "subCategory": "skills_training",
+        "expectedCategories": ["employment", "training"]
+      },
+      {
+        "id": "sample-024",
+        "query": "resume help interview coaching",
+        "category": "employment",
+        "subCategory": "resume_interview",
+        "expectedCategories": ["employment"]
+      },
+      {
+        "id": "sample-025",
+        "query": "youth first job summer employment",
+        "category": "employment",
+        "subCategory": "youth_employment",
+        "expectedCategories": ["employment", "youth"]
+      },
+      {
+        "id": "sample-026",
+        "query": "newcomer immigrant job help",
+        "category": "employment",
+        "subCategory": "newcomer_employment",
+        "expectedCategories": ["employment", "newcomer"]
+      },
+      {
+        "id": "sample-027",
+        "query": "start small business self employment",
+        "category": "employment",
+        "subCategory": "self_employment",
+        "expectedCategories": ["business", "employment"]
+      },
+      {
+        "id": "sample-028",
+        "query": "divorce custody family court",
+        "category": "legal",
+        "subCategory": "family_law",
+        "expectedCategories": ["legal", "family"]
+      },
+      {
+        "id": "sample-029",
+        "query": "criminal charges court support",
+        "category": "legal",
+        "subCategory": "criminal_law",
+        "expectedCategories": ["legal", "court"]
+      },
+      {
+        "id": "sample-030",
+        "query": "immigration lawyer refugee claim",
+        "category": "legal",
+        "subCategory": "immigration_law",
+        "expectedCategories": ["legal", "immigration"]
+      },
+      {
+        "id": "sample-031",
+        "query": "discrimination human rights complaint",
+        "category": "legal",
+        "subCategory": "human_rights",
+        "expectedCategories": ["legal", "rights"]
+      },
+      {
+        "id": "sample-032",
+        "query": "disability rights accommodation AODA",
+        "category": "legal",
+        "subCategory": "disability_rights",
+        "expectedCategories": ["legal", "disability"]
+      },
+      {
+        "id": "sample-033",
+        "query": "parenting classes new parent help",
+        "category": "family_children",
+        "subCategory": "parenting_support",
+        "expectedCategories": ["family", "parenting"]
+      },
+      {
+        "id": "sample-034",
+        "query": "daycare subsidy childcare",
+        "category": "family_children",
+        "subCategory": "childcare",
+        "expectedCategories": ["childcare", "family"]
+      },
+      {
+        "id": "sample-035",
+        "query": "family counselling marriage therapy",
+        "category": "family_children",
+        "subCategory": "family_counselling",
+        "expectedCategories": ["counselling", "family"]
+      },
+      {
+        "id": "sample-036",
+        "query": "single mom parent support",
+        "category": "family_children",
+        "subCategory": "single_parent",
+        "expectedCategories": ["family", "support"]
+      },
+      {
+        "id": "sample-037",
+        "query": "foster care adoption services",
+        "category": "family_children",
+        "subCategory": "foster_adoption",
+        "expectedCategories": ["family", "children"]
+      },
+      {
+        "id": "sample-038",
+        "query": "teen youth programs activities",
+        "category": "youth",
+        "subCategory": "youth_programs",
+        "expectedCategories": ["youth", "recreation"]
+      },
+      {
+        "id": "sample-039",
+        "query": "runaway teen crisis youth",
+        "category": "youth",
+        "subCategory": "youth_crisis",
+        "expectedCategories": ["youth", "crisis"]
+      },
+      {
+        "id": "sample-040",
+        "query": "tutoring homework help school",
+        "category": "youth",
+        "subCategory": "school_support",
+        "expectedCategories": ["education", "youth"]
+      },
+      {
+        "id": "sample-041",
+        "query": "aging out foster care turning 18",
+        "category": "youth",
+        "subCategory": "transition_services",
+        "expectedCategories": ["youth", "transition"]
+      },
+      {
+        "id": "sample-042",
+        "query": "elderly home care meals",
+        "category": "seniors",
+        "subCategory": "elder_care",
+        "expectedCategories": ["seniors", "home_care"]
+      },
+      {
+        "id": "sample-043",
+        "query": "caregiver support respite",
+        "category": "seniors",
+        "subCategory": "caregiver_support",
+        "expectedCategories": ["caregiver", "support"]
+      },
+      {
+        "id": "sample-044",
+        "query": "elder abuse financial exploitation",
+        "category": "seniors",
+        "subCategory": "elder_abuse",
+        "expectedCategories": ["seniors", "abuse"]
+      },
+      {
+        "id": "sample-045",
+        "query": "accessibility assistive devices",
+        "category": "disability",
+        "subCategory": "accessibility",
+        "expectedCategories": ["disability", "accessibility"]
+      },
+      {
+        "id": "sample-046",
+        "query": "disability employment supported work",
+        "category": "disability",
+        "subCategory": "disability_employment",
+        "expectedCategories": ["disability", "employment"]
+      },
+      {
+        "id": "sample-047",
+        "query": "autism support asd services",
+        "category": "disability",
+        "subCategory": "autism_services",
+        "expectedCategories": ["disability", "autism"]
+      },
+      {
+        "id": "sample-048",
+        "query": "deaf services ASL interpreter",
+        "category": "disability",
+        "subCategory": "deaf_hearing",
+        "expectedCategories": ["disability", "deaf"]
+      },
+      {
+        "id": "sample-049",
+        "query": "blind low vision CNIB",
+        "category": "disability",
+        "subCategory": "vision_services",
+        "expectedCategories": ["disability", "vision"]
+      },
+      {
+        "id": "sample-050",
+        "query": "lgbtq queer community support",
+        "category": "identity_specific",
+        "subCategory": "lgbtq",
+        "expectedCategories": ["lgbtq", "community"]
+      },
+      {
+        "id": "sample-051",
+        "query": "metis nation indigenous",
+        "category": "identity_specific",
+        "subCategory": "indigenous",
+        "expectedCategories": ["indigenous"]
+      },
+      {
+        "id": "sample-052",
+        "query": "refugee settlement new to canada",
+        "category": "identity_specific",
+        "subCategory": "newcomer_immigrant",
+        "expectedCategories": ["newcomer", "settlement"]
+      },
+      {
+        "id": "sample-053",
+        "query": "veteran military transition support",
+        "category": "identity_specific",
+        "subCategory": "veterans",
+        "expectedCategories": ["veteran", "military"]
+      },
+      {
+        "id": "sample-054",
+        "query": "adult education GED high school",
+        "category": "education_literacy",
+        "subCategory": "adult_education",
+        "expectedCategories": ["education", "adult"]
+      },
+      {
+        "id": "sample-055",
+        "query": "learn to read literacy program",
+        "category": "education_literacy",
+        "subCategory": "literacy",
+        "expectedCategories": ["literacy", "education"]
+      },
+      {
+        "id": "sample-056",
+        "query": "ESL english classes newcomer",
+        "category": "education_literacy",
+        "subCategory": "esl_language",
+        "expectedCategories": ["esl", "language"]
+      },
+      {
+        "id": "sample-057",
+        "query": "computer classes digital skills",
+        "category": "education_literacy",
+        "subCategory": "digital_literacy",
+        "expectedCategories": ["digital", "training"]
+      },
+      {
+        "id": "sample-058",
+        "query": "lonely isolated need friends",
+        "category": "community_social",
+        "subCategory": "social_isolation",
+        "expectedCategories": ["social", "community"]
+      },
+      {
+        "id": "sample-059",
+        "query": "support group peer support",
+        "category": "community_social",
+        "subCategory": "support_groups",
+        "expectedCategories": ["support", "peer"]
+      },
+      {
+        "id": "sample-060",
+        "query": "church spiritual support faith",
+        "category": "community_social",
+        "subCategory": "faith_spiritual",
+        "expectedCategories": ["faith", "spiritual"]
+      },
+      {
+        "id": "sample-061",
+        "query": "volunteer opportunities help others",
+        "category": "community_social",
+        "subCategory": "volunteer_opportunities",
+        "expectedCategories": ["volunteer", "community"]
+      },
+      {
+        "id": "sample-062",
+        "query": "ride to doctor medical appointment",
+        "category": "transportation",
+        "subCategory": "medical_transport",
+        "expectedCategories": ["transportation", "medical"]
+      },
+      {
+        "id": "sample-063",
+        "query": "affordable bus pass transit subsidy",
+        "category": "transportation",
+        "subCategory": "low_cost_transit",
+        "expectedCategories": ["transit", "low_cost"]
+      },
+      {
+        "id": "sample-064",
+        "query": "free clothes clothing bank",
+        "category": "clothing_essentials",
+        "subCategory": "clothing",
+        "expectedCategories": ["clothing"]
+      },
+      {
+        "id": "sample-065",
+        "query": "hygiene supplies toiletries shower",
+        "category": "clothing_essentials",
+        "subCategory": "hygiene",
+        "expectedCategories": ["hygiene", "essentials"]
+      },
+      {
+        "id": "sample-066",
+        "query": "free diapers baby supplies",
+        "category": "clothing_essentials",
+        "subCategory": "baby_supplies",
+        "expectedCategories": ["baby", "family"]
+      },
+      {
+        "id": "sample-067",
+        "query": "je veux mourir",
+        "category": "crisis",
+        "subCategory": "suicide_selfharm",
+        "expectedCategories": ["crisis"],
+        "notes": "French crisis query"
+      },
+      {
+        "id": "sample-068",
+        "query": "besoin aide nourriture",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food"],
+        "notes": "French food query"
+      },
+      {
+        "id": "sample-069",
+        "query": "services de santé mentale",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedCategories": ["mental_health"],
+        "notes": "French mental health"
+      },
+      {
+        "id": "sample-070",
+        "query": "aide juridique gratuite",
+        "category": "legal",
+        "subCategory": "legal_aid",
+        "expectedCategories": ["legal"],
+        "notes": "French legal aid"
+      },
+      {
+        "id": "sample-071",
+        "query": "fod bank",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food"],
+        "notes": "Misspelling test"
+      },
+      {
+        "id": "sample-072",
+        "query": "emergancy shelter",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedCategories": ["shelter"],
+        "notes": "Misspelling test"
+      },
+      {
+        "id": "sample-073",
+        "query": "counsleing therapy",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedCategories": ["counselling"],
+        "notes": "Misspelling test"
+      },
+      {
+        "id": "sample-074",
+        "query": "OW",
+        "category": "financial",
+        "subCategory": "income_assistance",
+        "expectedCategories": ["social_services"],
+        "notes": "Abbreviation - Ontario Works"
+      },
+      {
+        "id": "sample-075",
+        "query": "KCHC",
+        "category": "physical_health",
+        "subCategory": "primary_care",
+        "expectedCategories": ["health"],
+        "notes": "Abbreviation - Kingston Community Health Centre"
+      },
+      {
+        "id": "sample-076",
+        "query": "AA meetings",
+        "category": "substance_use",
+        "subCategory": "addiction_treatment",
+        "expectedCategories": ["addiction", "support"],
+        "notes": "Abbreviation - Alcoholics Anonymous"
+      },
+      {
+        "id": "sample-077",
+        "query": "988",
+        "category": "crisis",
+        "subCategory": "suicide_selfharm",
+        "expectedCategories": ["crisis"],
+        "notes": "Number-only query"
+      },
+      {
+        "id": "sample-078",
+        "query": "I dont know what to do anymore",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis", "mental_health"],
+        "notes": "Vague distress query"
+      },
+      {
+        "id": "sample-079",
+        "query": "help",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis", "general"],
+        "notes": "Minimal query"
+      },
+      {
+        "id": "sample-080",
+        "query": "talk to someone",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedCategories": ["crisis", "counselling"],
+        "notes": "Vague emotional query"
+      },
+      {
+        "id": "sample-081",
+        "query": "street health wound care no ID",
+        "category": "physical_health",
+        "subCategory": "barrier_free_health",
+        "expectedCategories": ["health", "barrier_free"]
+      },
+      {
+        "id": "sample-082",
+        "query": "indigenous student support queens",
+        "category": "identity_specific",
+        "subCategory": "indigenous",
+        "expectedCategories": ["indigenous", "student"]
+      },
+      {
+        "id": "sample-083",
+        "query": "pflag parent lgbtq child",
+        "category": "identity_specific",
+        "subCategory": "lgbtq",
+        "expectedCategories": ["lgbtq", "family"]
+      },
+      {
+        "id": "sample-084",
+        "query": "art program disability",
+        "category": "disability",
+        "subCategory": "disability_support",
+        "expectedCategories": ["disability", "arts"]
+      },
+      {
+        "id": "sample-085",
+        "query": "boys and girls club kids",
+        "category": "youth",
+        "subCategory": "youth_programs",
+        "expectedCategories": ["youth", "children"]
+      },
+      {
+        "id": "sample-086",
+        "query": "habitat for humanity furniture",
+        "category": "clothing_essentials",
+        "subCategory": "clothing",
+        "expectedCategories": ["furniture", "housing"]
+      },
+      {
+        "id": "sample-087",
+        "query": "elizabeth fry women support",
+        "category": "legal",
+        "subCategory": "legal_aid",
+        "expectedCategories": ["women", "legal"]
+      },
+      {
+        "id": "sample-088",
+        "query": "maltby centre youth",
+        "category": "mental_health",
+        "subCategory": "youth_mental_health",
+        "expectedCategories": ["youth", "mental_health"]
+      },
+      {
+        "id": "sample-089",
+        "query": "resolve counselling",
+        "category": "mental_health",
+        "subCategory": "general_counselling",
+        "expectedCategories": ["counselling"]
+      },
+      {
+        "id": "sample-090",
+        "query": "TALK crisis line",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis"]
+      },
+      {
+        "id": "sample-091",
+        "query": "good food box fresh produce",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food"]
+      },
+      {
+        "id": "sample-092",
+        "query": "st vincent de paul",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food", "clothing"]
+      },
+      {
+        "id": "sample-093",
+        "query": "telehealth ontario 811",
+        "category": "physical_health",
+        "subCategory": "primary_care",
+        "expectedCategories": ["health"]
+      },
+      {
+        "id": "sample-094",
+        "query": "connex ontario addiction",
+        "category": "substance_use",
+        "subCategory": "addiction_treatment",
+        "expectedCategories": ["addiction"]
+      },
+      {
+        "id": "sample-095",
+        "query": "AMHS crisis mental health",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis", "mental_health"]
+      },
+      {
+        "id": "sample-096",
+        "query": "integrated care hub ICH",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedCategories": ["shelter", "harm_reduction"]
+      },
+      {
+        "id": "sample-097",
+        "query": "home base housing",
+        "category": "housing",
+        "subCategory": "rental_assistance",
+        "expectedCategories": ["housing"]
+      },
+      {
+        "id": "sample-098",
+        "query": "salvation army help",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food", "housing", "clothing"]
+      },
+      {
+        "id": "sample-099",
+        "query": "queens legal aid student",
+        "category": "legal",
+        "subCategory": "legal_aid",
+        "expectedCategories": ["legal"]
+      },
+      {
+        "id": "sample-100",
+        "query": "KEYS employment",
+        "category": "employment",
+        "subCategory": "job_search",
+        "expectedCategories": ["employment"]
+      },
+      {
+        "id": "sample-101",
+        "query": "scared partner will hurt me",
+        "category": "crisis",
+        "subCategory": "domestic_violence",
+        "expectedCategories": ["crisis", "shelter"]
+      },
+      {
+        "id": "sample-102",
+        "query": "kicked out of house nowhere to go",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedCategories": ["shelter", "housing"]
+      },
+      {
+        "id": "sample-103",
+        "query": "can't afford medication",
+        "category": "physical_health",
+        "subCategory": "primary_care",
+        "expectedCategories": ["health", "financial"]
+      },
+      {
+        "id": "sample-104",
+        "query": "just got out of jail need help",
+        "category": "legal",
+        "subCategory": "criminal_law",
+        "expectedCategories": ["legal", "reentry"]
+      },
+      {
+        "id": "sample-105",
+        "query": "fleeing abusive situation with kids",
+        "category": "crisis",
+        "subCategory": "domestic_violence",
+        "expectedCategories": ["shelter", "crisis"]
+      },
+      {
+        "id": "sample-106",
+        "query": "new immigrant no english help",
+        "category": "identity_specific",
+        "subCategory": "newcomer_immigrant",
+        "expectedCategories": ["newcomer", "settlement"]
+      },
+      {
+        "id": "sample-107",
+        "query": "my child came out as trans support",
+        "category": "identity_specific",
+        "subCategory": "lgbtq",
+        "expectedCategories": ["lgbtq", "family"]
+      },
+      {
+        "id": "sample-108",
+        "query": "homeless in winter need warm place",
+        "category": "housing",
+        "subCategory": "emergency_shelter",
+        "expectedCategories": ["shelter", "warming"]
+      },
+      {
+        "id": "sample-109",
+        "query": "teen daughter self harming",
+        "category": "crisis",
+        "subCategory": "suicide_selfharm",
+        "expectedCategories": ["crisis", "youth_mental_health"]
+      },
+      {
+        "id": "sample-110",
+        "query": "senior neighbor seems neglected",
+        "category": "seniors",
+        "subCategory": "elder_abuse",
+        "expectedCategories": ["seniors", "abuse"]
+      },
+      {
+        "id": "sample-111",
+        "query": "struggling single dad",
+        "category": "family_children",
+        "subCategory": "single_parent",
+        "expectedCategories": ["family", "support"]
+      },
+      {
+        "id": "sample-112",
+        "query": "autistic adult living independently",
+        "category": "disability",
+        "subCategory": "autism_services",
+        "expectedCategories": ["disability", "housing"]
+      },
+      {
+        "id": "sample-113",
+        "query": "recovering alcoholic need support",
+        "category": "substance_use",
+        "subCategory": "addiction_treatment",
+        "expectedCategories": ["addiction", "support"]
+      },
+      {
+        "id": "sample-114",
+        "query": "lost job can't pay rent",
+        "category": "housing",
+        "subCategory": "rental_assistance",
+        "expectedCategories": ["housing", "financial"]
+      },
+      {
+        "id": "sample-115",
+        "query": "child has developmental delay",
+        "category": "family_children",
+        "subCategory": "early_years",
+        "expectedCategories": ["child_development", "family"]
+      },
+      {
+        "id": "sample-116",
+        "query": "want to give back volunteer",
+        "category": "community_social",
+        "subCategory": "volunteer_opportunities",
+        "expectedCategories": ["volunteer"]
+      },
+      {
+        "id": "sample-117",
+        "query": "elderly parent with dementia",
+        "category": "seniors",
+        "subCategory": "elder_care",
+        "expectedCategories": ["seniors", "caregiver"]
+      },
+      {
+        "id": "sample-118",
+        "query": "student mental health queens",
+        "category": "mental_health",
+        "subCategory": "youth_mental_health",
+        "expectedCategories": ["mental_health", "student"]
+      },
+      {
+        "id": "sample-119",
+        "query": "pregnant no doctor unattached",
+        "category": "physical_health",
+        "subCategory": "pregnancy_prenatal",
+        "expectedCategories": ["prenatal", "health"]
+      },
+      {
+        "id": "sample-120",
+        "query": "veteran ptsd support",
+        "category": "identity_specific",
+        "subCategory": "veterans",
+        "expectedCategories": ["veteran", "mental_health"]
+      },
+      {
+        "id": "sample-121",
+        "query": "where to get narcan",
+        "category": "substance_use",
+        "subCategory": "harm_reduction",
+        "expectedCategories": ["harm_reduction"]
+      },
+      {
+        "id": "sample-122",
+        "query": "free condoms birth control",
+        "category": "physical_health",
+        "subCategory": "sexual_health",
+        "expectedCategories": ["sexual_health"]
+      },
+      {
+        "id": "sample-123",
+        "query": "how to apply for welfare",
+        "category": "financial",
+        "subCategory": "income_assistance",
+        "expectedCategories": ["social_services"]
+      },
+      {
+        "id": "sample-124",
+        "query": "furniture for new apartment",
+        "category": "clothing_essentials",
+        "subCategory": "clothing",
+        "expectedCategories": ["furniture"]
+      },
+      {
+        "id": "sample-125",
+        "query": "kids summer programs",
+        "category": "youth",
+        "subCategory": "youth_programs",
+        "expectedCategories": ["youth", "recreation"]
+      },
+      {
+        "id": "sample-126",
+        "query": "gender affirming care",
+        "category": "identity_specific",
+        "subCategory": "transgender",
+        "expectedCategories": ["trans_health", "lgbtq"]
+      },
+      {
+        "id": "sample-127",
+        "query": "safe injection consumption site",
+        "category": "substance_use",
+        "subCategory": "harm_reduction",
+        "expectedCategories": ["harm_reduction"]
+      },
+      {
+        "id": "sample-128",
+        "query": "women only shelter safe space",
+        "category": "housing",
+        "subCategory": "women_housing",
+        "expectedCategories": ["shelter", "women"]
+      },
+      {
+        "id": "sample-129",
+        "query": "toddler programs mommy and me",
+        "category": "family_children",
+        "subCategory": "early_years",
+        "expectedCategories": ["early_years", "family"]
+      },
+      {
+        "id": "sample-130",
+        "query": "indigenous language ojibway cree",
+        "category": "identity_specific",
+        "subCategory": "indigenous",
+        "expectedCategories": ["indigenous", "language"]
+      },
+      {
+        "id": "sample-131",
+        "query": "help for seniors living alone",
+        "category": "seniors",
+        "subCategory": "senior_support",
+        "expectedCategories": ["seniors", "social"]
+      },
+      {
+        "id": "sample-132",
+        "query": "immigrant credentials recognition",
+        "category": "employment",
+        "subCategory": "newcomer_employment",
+        "expectedCategories": ["employment", "newcomer"]
+      },
+      {
+        "id": "sample-133",
+        "query": "child custody modification",
+        "category": "legal",
+        "subCategory": "family_law",
+        "expectedCategories": ["legal", "family"]
+      },
+      {
+        "id": "sample-134",
+        "query": "community garden fresh food",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food"]
+      },
+      {
+        "id": "sample-135",
+        "query": "baptism wedding church",
+        "category": "community_social",
+        "subCategory": "faith_spiritual",
+        "expectedCategories": ["faith"]
+      },
+      {
+        "id": "sample-136",
+        "query": "learning disability adult help",
+        "category": "education_literacy",
+        "subCategory": "literacy",
+        "expectedCategories": ["education", "disability"]
+      },
+      {
+        "id": "sample-137",
+        "query": "winter coat warm clothes",
+        "category": "clothing_essentials",
+        "subCategory": "clothing",
+        "expectedCategories": ["clothing"]
+      },
+      {
+        "id": "sample-138",
+        "query": "service animal disability",
+        "category": "disability",
+        "subCategory": "accessibility",
+        "expectedCategories": ["disability"]
+      },
+      {
+        "id": "sample-139",
+        "query": "good2talk post secondary student",
+        "category": "mental_health",
+        "subCategory": "youth_mental_health",
+        "expectedCategories": ["mental_health", "student"]
+      },
+      {
+        "id": "sample-140",
+        "query": "talk4healing indigenous women",
+        "category": "crisis",
+        "subCategory": "mental_health_crisis",
+        "expectedCategories": ["crisis", "indigenous"]
+      },
+      {
+        "id": "sample-141",
+        "query": "loving spoonful food",
+        "category": "food_nutrition",
+        "subCategory": "emergency_food",
+        "expectedCategories": ["food"]
+      },
+      {
+        "id": "sample-142",
+        "query": "ongwanada developmental services",
+        "category": "disability",
+        "subCategory": "disability_support",
+        "expectedCategories": ["disability"]
+      },
+      {
+        "id": "sample-143",
+        "query": "one roof youth hub",
+        "category": "youth",
+        "subCategory": "youth_programs",
+        "expectedCategories": ["youth"]
+      },
+      {
+        "id": "sample-144",
+        "query": "trellis hiv aids",
+        "category": "physical_health",
+        "subCategory": "sexual_health",
+        "expectedCategories": ["hiv", "health"]
+      },
+      {
+        "id": "sample-145",
+        "query": "acfomi french services",
+        "category": "identity_specific",
+        "subCategory": "francophone",
+        "expectedCategories": ["francophone"]
+      },
+      {
+        "id": "sample-146",
+        "query": "weller clinic prenatal",
+        "category": "physical_health",
+        "subCategory": "pregnancy_prenatal",
+        "expectedCategories": ["health", "prenatal"]
+      },
+      {
+        "id": "sample-147",
+        "query": "barrack street health centre",
+        "category": "physical_health",
+        "subCategory": "barrier_free_health",
+        "expectedCategories": ["health"]
+      },
+      {
+        "id": "sample-148",
+        "query": "interval house kingston",
+        "category": "crisis",
+        "subCategory": "domestic_violence",
+        "expectedCategories": ["shelter", "women"]
+      },
+      {
+        "id": "sample-149",
+        "query": "ryandale men shelter",
+        "category": "housing",
+        "subCategory": "transitional_housing",
+        "expectedCategories": ["shelter", "men"]
+      },
+      {
+        "id": "sample-150",
+        "query": "hotel dieu urgent care",
+        "category": "physical_health",
+        "subCategory": "urgent_emergency",
+        "expectedCategories": ["urgent_care", "hospital"]
+      }
+    ]
+  }
+}

@@ -68,6 +68,64 @@ export const WEIGHTS: ScoringWeights & {
   resourceSmall: 3,
 }
 
+import type { IdentityTag } from "@/types/user-context"
+
+const VALID_IDENTITY_TAGS: readonly IdentityTag[] = ["indigenous", "newcomer", "2slgbtqi+", "veteran", "disability"]
+
+function isIdentityTag(value: string): value is IdentityTag {
+  return VALID_IDENTITY_TAGS.includes(value as IdentityTag)
+}
+
+function isSubstringMatch(a: string, b: string): boolean {
+  return a.includes(b) || b.includes(a)
+}
+
+/**
+ * Calculates the proportion of query tokens that meaningfully match service tokens.
+ * Returns a value between 0 and 1.
+ */
+function calculateTokenOverlap(queryTokens: string[], serviceTokens: string[]): number {
+  if (queryTokens.length === 0) return 0
+
+  let matchCount = 0
+  for (const qToken of queryTokens) {
+    // A token matches if it's a substring of any service token or vice versa
+    if (serviceTokens.some((sToken) => isSubstringMatch(sToken, qToken))) {
+      matchCount++
+    }
+  }
+
+  return matchCount / queryTokens.length
+}
+
+function scoreSyntheticQueries(
+  queries: string[] | undefined,
+  tokens: string[],
+  languageLabel: string
+): { score: number; matchedQuery: string | null } {
+  if (!queries) return { score: 0, matchedQuery: null }
+
+  for (const query of queries) {
+    const queryText = normalize(query)
+    let matchCount = 0
+
+    for (const token of tokens) {
+      if (queryText.includes(token)) {
+        matchCount++
+      }
+    }
+
+    if (matchCount > 0) {
+      return {
+        score: WEIGHTS.syntheticQuery * matchCount,
+        matchedQuery: `Matched intent${languageLabel}: "${query}"`,
+      }
+    }
+  }
+
+  return { score: 0, matchedQuery: null }
+}
+
 export interface ScoringOptions {
   weights?: {
     textMatch?: number
@@ -92,11 +150,11 @@ export function calculateScore(
 
   // 6. Identity Match Boost (Personalization)
   if (options.userContext?.identities.length && service.identity_tags) {
-    const matchingTags = service.identity_tags.filter((tag) =>
-      options.userContext!.identities.includes(tag.tag.toLowerCase() as any)
-    )
+    const matchingTags = service.identity_tags.filter((tag) => {
+      const normalizedTag = tag.tag.toLowerCase()
+      return isIdentityTag(normalizedTag) && options.userContext!.identities.includes(normalizedTag)
+    })
     if (matchingTags.length > 0) {
-      // 10% boost per matching tag, capped at 30%
       const boostMultiplier = 1 + Math.min(0.3, matchingTags.length * 0.1)
       score *= boostMultiplier
     }
@@ -204,14 +262,18 @@ export function getCompletenessBoost(service: Service): { boost: number; reasons
 
 /**
  * Returns bonus points based on how closely the query matches synthetic queries.
- * Exact phrase matches get higher bonuses than partial matches.
+ * Requires meaningful token overlap - short single-token matches are limited to prevent
+ * queries like "clinic" from dominating results.
  * v16.0: Search ranking improvement.
+ * v17.7: Fixed to require meaningful overlap, with special handling for long single tokens.
  */
 export function getIntentTargetingBoost(service: Service, query: string): { boost: number; reasons: string[] } {
   if (!query.trim()) return { boost: 0, reasons: [] }
 
   const normalizedQuery = normalize(query)
-  const queryTokens = normalizedQuery.split(/\s+/).filter((t) => t.length > 0)
+  const queryTokens = normalizedQuery.split(/\s+/).filter((t) => t.length > 2) // Filter short tokens
+
+  if (queryTokens.length === 0) return { boost: 0, reasons: [] }
 
   let boost = 0
   const reasons: string[] = []
@@ -219,32 +281,47 @@ export function getIntentTargetingBoost(service: Service, query: string): { boos
   // Check both English and French synthetic queries
   const allSyntheticQueries = [...(service.synthetic_queries || []), ...(service.synthetic_queries_fr || [])]
 
+  // Special case: single long token (6+ chars like "depression", "counselling", "homeless")
+  // These are specific enough to warrant intent matching, but at reduced boost
+  const firstToken = queryTokens[0]
+  const isSingleLongToken = queryTokens.length === 1 && firstToken !== undefined && firstToken.length >= 6
+
   for (const syntheticQuery of allSyntheticQueries) {
     const normalizedSynthetic = normalize(syntheticQuery)
+    const syntheticTokens = normalizedSynthetic.split(/\s+/).filter((t) => t.length > 2)
 
-    // Exact substring match
-    if (normalizedSynthetic.includes(normalizedQuery) || normalizedQuery.includes(normalizedSynthetic)) {
-      if (boost < WEIGHTS.intentExactMatch) {
-        boost = WEIGHTS.intentExactMatch
-        reasons.length = 0
-        reasons.push(`Exact Intent Match (+${boost})`)
+    if (isSingleLongToken && firstToken) {
+      // For single long tokens, check if the token appears in the synthetic query
+      // Award medium overlap at most (not exact or high) to prevent gaming
+      if (syntheticTokens.some((st) => isSubstringMatch(st, firstToken))) {
+        if (boost < WEIGHTS.intentMediumOverlap) {
+          boost = WEIGHTS.intentMediumOverlap
+          reasons.length = 0
+          reasons.push(`Intent Overlap (+${boost})`)
+        }
       }
-      break // Found best match
+      continue
     }
 
-    // Token overlap scoring
-    const syntheticTokens = normalizedSynthetic.split(/\s+/).filter((t) => t.length > 0)
-    const matchingTokens = queryTokens.filter((token) =>
-      syntheticTokens.some((st) => st.includes(token) || token.includes(st))
-    )
+    // Multi-token queries: Calculate bidirectional token overlap
+    const queryOverlap = calculateTokenOverlap(queryTokens, syntheticTokens)
+    const syntheticOverlap = calculateTokenOverlap(syntheticTokens, queryTokens)
 
-    const overlapRatio = queryTokens.length > 0 ? matchingTokens.length / queryTokens.length : 0
-
-    if (overlapRatio >= 0.75 && boost < WEIGHTS.intentHighOverlap) {
+    // Exact match: both query and synthetic have very high overlap (90%+)
+    // This prevents "clinic" from matching "walk in clinic for immigrants" as exact
+    if (queryOverlap >= 0.9 && syntheticOverlap >= 0.5 && boost < WEIGHTS.intentExactMatch) {
+      boost = WEIGHTS.intentExactMatch
+      reasons.length = 0
+      reasons.push(`Exact Intent Match (+${boost})`)
+    }
+    // High overlap: 75%+ of query tokens match AND at least 40% of synthetic tokens match
+    else if (queryOverlap >= 0.75 && syntheticOverlap >= 0.4 && boost < WEIGHTS.intentHighOverlap) {
       boost = WEIGHTS.intentHighOverlap
       reasons.length = 0
       reasons.push(`High Intent Overlap (+${boost})`)
-    } else if (overlapRatio >= 0.5 && boost < WEIGHTS.intentMediumOverlap) {
+    }
+    // Medium overlap: 50%+ of query tokens match AND at least 30% of synthetic tokens match
+    else if (queryOverlap >= 0.5 && syntheticOverlap >= 0.3 && boost < WEIGHTS.intentMediumOverlap) {
       boost = WEIGHTS.intentMediumOverlap
       reasons.length = 0
       reasons.push(`Intent Overlap (+${boost})`)
@@ -312,46 +389,17 @@ export const scoreServiceKeyword = (
   let score = 0
   const matchReasons: string[] = []
 
-  // 1a. Check Synthetic Queries (English) - High Impact
-  if (service.synthetic_queries) {
-    for (const query of service.synthetic_queries) {
-      const queryText = normalize(query)
-      let queryMatches = 0
-
-      for (const token of tokens) {
-        if (queryText.includes(token)) {
-          queryMatches++
-        }
-      }
-
-      if (queryMatches > 0) {
-        const points = WEIGHTS.syntheticQuery * queryMatches
-        score += points
-        matchReasons.push(`Matched intent: "${query}" (+${points})`)
-        break
-      }
-    }
+  // 1. Check Synthetic Queries (English + French) - High Impact
+  const englishResult = scoreSyntheticQueries(service.synthetic_queries, tokens, "")
+  if (englishResult.score > 0) {
+    score += englishResult.score
+    matchReasons.push(`${englishResult.matchedQuery} (+${englishResult.score})`)
   }
 
-  // 1b. Check Synthetic Queries (French) - High Impact
-  if (service.synthetic_queries_fr) {
-    for (const query of service.synthetic_queries_fr) {
-      const queryText = normalize(query)
-      let queryMatches = 0
-
-      for (const token of tokens) {
-        if (queryText.includes(token)) {
-          queryMatches++
-        }
-      }
-
-      if (queryMatches > 0) {
-        const points = WEIGHTS.syntheticQuery * queryMatches
-        score += points
-        matchReasons.push(`Matched intent (FR): "${query}" (+${points})`)
-        break
-      }
-    }
+  const frenchResult = scoreSyntheticQueries(service.synthetic_queries_fr, tokens, " (FR)")
+  if (frenchResult.score > 0) {
+    score += frenchResult.score
+    matchReasons.push(`${frenchResult.matchedQuery} (+${frenchResult.score})`)
   }
 
   // 2. Check Name (Medium Impact) - English & French
@@ -382,30 +430,38 @@ export const scoreServiceKeyword = (
   }
 
   // 4. Check Description (Low Impact / Catch-all) - English & French
+  // v17.7: Require at least 2 token matches in description to count
+  // This prevents false positives like "free hot meal" matching "Pro Bono (free legal)"
   const descText = normalize(service.description)
   const descFrText = service.description_fr ? normalize(service.description_fr) : ""
+  let descMatchCount = 0
   let descScore = 0
 
   for (const token of tokens) {
     if (descText.includes(token)) {
+      descMatchCount++
       descScore += WEIGHTS.description
     } else if (descFrText && descFrText.includes(token)) {
+      descMatchCount++
       descScore += WEIGHTS.description
     }
   }
 
-  if (descScore > 0) {
+  // Only add description score if we matched at least 2 tokens
+  // OR if the token is very specific (4+ characters)
+  const hasSpecificToken = tokens.some((t) => t.length >= 4 && (descText.includes(t) || descFrText.includes(t)))
+  if (descMatchCount >= 2 || hasSpecificToken) {
     score += descScore
     matchReasons.push(`Matched description (+${descScore})`)
   }
 
   // 5. Identity Match Boost (Personalization)
   if (options.userContext?.identities.length && service.identity_tags) {
-    const matchingTags = service.identity_tags.filter((tag) =>
-      options.userContext!.identities.includes(tag.tag.toLowerCase() as import("@/types/user-context").IdentityTag)
-    )
+    const matchingTags = service.identity_tags.filter((tag) => {
+      const normalizedTag = tag.tag.toLowerCase()
+      return isIdentityTag(normalizedTag) && options.userContext!.identities.includes(normalizedTag)
+    })
     if (matchingTags.length > 0) {
-      // 10% boost per matching tag, capped at 30%
       const boostMultiplier = 1 + Math.min(0.3, matchingTags.length * 0.1)
       score *= boostMultiplier
       const boostPercent = Math.round((boostMultiplier - 1) * 100)
@@ -436,9 +492,12 @@ export const scoreServiceKeyword = (
     }
   }
 
-  // 8. Authority Tier Boost (v16.0)
+  // 8. Authority Tier Boost (v16.0, refined v17.7)
+  // Only apply authority multiplier when there's meaningful relevance
+  // This prevents hospitals from dominating results for unrelated queries like "free food"
+  const AUTHORITY_RELEVANCE_THRESHOLD = 30 // Minimum score before authority boost applies
   const authorityMultiplier = getAuthorityMultiplier(service.authority_tier)
-  if (authorityMultiplier !== 1.0) {
+  if (authorityMultiplier !== 1.0 && score >= AUTHORITY_RELEVANCE_THRESHOLD) {
     score *= authorityMultiplier
     const boostPercent = Math.round((authorityMultiplier - 1) * 100)
     if (boostPercent > 0) {

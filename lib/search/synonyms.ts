@@ -21,6 +21,10 @@ export const SYNONYMS: Record<string, string[]> = {
   dental: ["teeth", "tooth", "dentist", "cavity", "pain", "dentaire"],
   therapy: ["counseling", "psychologist", "psychiatrist", "mental health", "talk", "thérapie"],
 
+  // Sexual Health
+  std: ["sti", "sexual health", "sexually transmitted", "infection", "testing"],
+  sti: ["std", "sexual health", "sexually transmitted", "infection", "testing"],
+
   // Crisis
   crisis: ["emergency", "danger", "urgent", "suicide", "help", "911", "crise", "urgence"],
   suicide: ["kill", "die", "end life", "hurt", "suicidio"],
@@ -44,6 +48,8 @@ export const SYNONYMS: Record<string, string[]> = {
 
   // Financial (expanded)
   welfare: ["ow", "ontario works", "social assistance", "aide sociale"],
+  ow: ["ontario works", "welfare", "social assistance"],
+  odsp: ["ontario disability", "disability support", "disabled"],
   disability: ["odsp", "disabled", "accessibility", "handicap", "invalidité"],
   income: ["money", "cash", "financial", "low income", "revenu", "argent"],
 

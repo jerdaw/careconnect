@@ -1,0 +1,1483 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive taxonomy of care needs for testing search functionality in Kingston Care Connect",
+  "version": "1.0.0",
+  "categories": {
+    "crisis": {
+      "name": "Crisis & Emergency",
+      "description": "Immediate safety and urgent intervention needs",
+      "subCategories": {
+        "suicide_selfharm": {
+          "name": "Suicide & Self-Harm",
+          "description": "Suicidal ideation, self-injury, crisis intervention",
+          "exampleQueries": [
+            "I want to kill myself",
+            "suicidal thoughts",
+            "thinking about ending it",
+            "self harm help",
+            "cutting myself",
+            "overdose help",
+            "I don't want to live anymore",
+            "crisis line",
+            "suicide hotline",
+            "talk to someone about suicide"
+          ],
+          "expectedServiceTypes": ["crisis_line", "mental_health_crisis", "hospital_emergency"]
+        },
+        "domestic_violence": {
+          "name": "Domestic & Intimate Partner Violence",
+          "description": "Abuse in relationships, family violence, safety planning",
+          "exampleQueries": [
+            "my partner hits me",
+            "domestic abuse help",
+            "women's shelter",
+            "escaping abusive relationship",
+            "safety planning",
+            "violence at home",
+            "husband is hurting me",
+            "abusive boyfriend",
+            "family violence",
+            "scared of my spouse"
+          ],
+          "expectedServiceTypes": ["shelter", "crisis_line", "legal_aid", "counselling"]
+        },
+        "sexual_assault": {
+          "name": "Sexual Assault & Abuse",
+          "description": "Sexual violence, assault support, trauma response",
+          "exampleQueries": [
+            "I was raped",
+            "sexual assault help",
+            "someone touched me",
+            "molested as a child",
+            "sexual abuse support",
+            "assault centre",
+            "rape crisis",
+            "sexual trauma counselling"
+          ],
+          "expectedServiceTypes": ["sexual_assault_centre", "crisis_line", "hospital", "counselling"]
+        },
+        "child_abuse": {
+          "name": "Child Abuse & Neglect",
+          "description": "Child protection, abuse reporting, support for abused children",
+          "exampleQueries": [
+            "child being abused",
+            "report child abuse",
+            "kids help line",
+            "child protection",
+            "my parents hurt me",
+            "neglected child",
+            "CAS report",
+            "children's aid"
+          ],
+          "expectedServiceTypes": ["child_protection", "crisis_line", "counselling"]
+        },
+        "mental_health_crisis": {
+          "name": "Acute Mental Health Crisis",
+          "description": "Psychiatric emergencies, severe anxiety/panic, psychosis",
+          "exampleQueries": [
+            "mental health emergency",
+            "having a breakdown",
+            "can't stop panicking",
+            "psychiatric crisis",
+            "hearing voices",
+            "losing my mind",
+            "severe anxiety attack",
+            "mental health crisis team"
+          ],
+          "expectedServiceTypes": ["crisis_line", "mobile_crisis", "hospital_psychiatric", "urgent_care"]
+        },
+        "overdose_poisoning": {
+          "name": "Overdose & Poisoning",
+          "description": "Drug overdose, substance emergencies, poison control",
+          "exampleQueries": [
+            "overdose help",
+            "took too many pills",
+            "drug overdose",
+            "naloxone kit",
+            "poison control",
+            "someone is overdosing",
+            "bad trip help"
+          ],
+          "expectedServiceTypes": ["emergency", "crisis_line", "harm_reduction"]
+        },
+        "homelessness_emergency": {
+          "name": "Emergency Shelter & Homelessness",
+          "description": "Immediate need for shelter, street crisis",
+          "exampleQueries": [
+            "I'm homeless tonight",
+            "need a bed now",
+            "emergency shelter",
+            "sleeping outside",
+            "kicked out of house",
+            "nowhere to sleep",
+            "warming centre",
+            "street outreach"
+          ],
+          "expectedServiceTypes": ["emergency_shelter", "street_outreach", "warming_centre"]
+        }
+      }
+    },
+    "mental_health": {
+      "name": "Mental Health & Emotional Wellbeing",
+      "description": "Ongoing mental health support, therapy, and emotional wellness",
+      "subCategories": {
+        "depression_mood": {
+          "name": "Depression & Mood Disorders",
+          "description": "Depression, bipolar, persistent sadness",
+          "exampleQueries": [
+            "feeling depressed",
+            "can't get out of bed",
+            "everything feels hopeless",
+            "depression treatment",
+            "mood disorder help",
+            "bipolar support",
+            "feeling empty inside",
+            "lost interest in everything"
+          ],
+          "expectedServiceTypes": ["counselling", "mental_health_clinic", "peer_support"]
+        },
+        "anxiety_stress": {
+          "name": "Anxiety & Stress",
+          "description": "Anxiety disorders, chronic stress, panic",
+          "exampleQueries": [
+            "anxiety help",
+            "panic attacks",
+            "can't stop worrying",
+            "social anxiety",
+            "stress management",
+            "overwhelmed all the time",
+            "anxious constantly",
+            "fear of leaving house"
+          ],
+          "expectedServiceTypes": ["counselling", "mental_health_clinic", "peer_support"]
+        },
+        "trauma_ptsd": {
+          "name": "Trauma & PTSD",
+          "description": "Trauma processing, PTSD, adverse experiences",
+          "exampleQueries": [
+            "trauma counselling",
+            "PTSD help",
+            "can't stop flashbacks",
+            "childhood trauma",
+            "traumatic experience",
+            "nightmares from trauma",
+            "processing abuse"
+          ],
+          "expectedServiceTypes": ["trauma_counselling", "mental_health_specialist"]
+        },
+        "grief_loss": {
+          "name": "Grief & Loss",
+          "description": "Bereavement, loss support, grief counselling",
+          "exampleQueries": [
+            "someone died",
+            "grief counselling",
+            "lost a loved one",
+            "bereavement support",
+            "coping with death",
+            "my child died",
+            "mourning help",
+            "loss of parent"
+          ],
+          "expectedServiceTypes": ["grief_counselling", "peer_support", "hospice"]
+        },
+        "general_counselling": {
+          "name": "General Counselling & Therapy",
+          "description": "Talk therapy, psychotherapy, general mental health support",
+          "exampleQueries": [
+            "need to talk to someone",
+            "therapist near me",
+            "counselling services",
+            "psychologist",
+            "free therapy",
+            "mental health counsellor",
+            "someone to talk to",
+            "therapy for adults"
+          ],
+          "expectedServiceTypes": ["counselling", "mental_health_clinic", "community_health"]
+        },
+        "youth_mental_health": {
+          "name": "Youth Mental Health",
+          "description": "Mental health services for children, teens, young adults",
+          "exampleQueries": [
+            "teen depression",
+            "child psychologist",
+            "youth mental health",
+            "my kid is struggling",
+            "adolescent counselling",
+            "young adult therapy",
+            "school anxiety help",
+            "teen anger issues"
+          ],
+          "expectedServiceTypes": ["youth_mental_health", "school_support", "family_counselling"]
+        }
+      }
+    },
+    "substance_use": {
+      "name": "Substance Use & Addiction",
+      "description": "Addiction support, harm reduction, recovery services",
+      "subCategories": {
+        "addiction_treatment": {
+          "name": "Addiction Treatment & Recovery",
+          "description": "Detox, rehab, addiction counselling",
+          "exampleQueries": [
+            "drug addiction help",
+            "rehab programs",
+            "detox centre",
+            "alcohol treatment",
+            "addiction counselling",
+            "getting clean",
+            "recovery programs",
+            "AA meetings",
+            "substance abuse treatment"
+          ],
+          "expectedServiceTypes": ["addiction_treatment", "detox", "counselling", "support_group"]
+        },
+        "harm_reduction": {
+          "name": "Harm Reduction",
+          "description": "Safe use, needle exchange, naloxone, drug checking",
+          "exampleQueries": [
+            "needle exchange",
+            "safe injection site",
+            "naloxone kit",
+            "clean needles",
+            "harm reduction",
+            "drug checking",
+            "safe supply",
+            "supervised consumption"
+          ],
+          "expectedServiceTypes": ["harm_reduction", "health_clinic", "outreach"]
+        },
+        "gambling": {
+          "name": "Gambling Addiction",
+          "description": "Problem gambling support",
+          "exampleQueries": [
+            "gambling addiction",
+            "can't stop gambling",
+            "betting problem",
+            "casino addiction",
+            "gambling anonymous",
+            "problem gambling help"
+          ],
+          "expectedServiceTypes": ["addiction_counselling", "support_group"]
+        },
+        "family_addiction": {
+          "name": "Families Affected by Addiction",
+          "description": "Support for loved ones of people with addictions",
+          "exampleQueries": [
+            "my spouse is an alcoholic",
+            "child using drugs",
+            "al-anon meetings",
+            "family of addict",
+            "husband won't stop drinking",
+            "parent is addicted",
+            "nar-anon"
+          ],
+          "expectedServiceTypes": ["family_support", "support_group", "counselling"]
+        }
+      }
+    },
+    "physical_health": {
+      "name": "Physical Health & Medical Care",
+      "description": "Medical services, healthcare access, physical wellness",
+      "subCategories": {
+        "primary_care": {
+          "name": "Primary Care & Family Medicine",
+          "description": "Finding a doctor, walk-in clinics, general healthcare",
+          "exampleQueries": [
+            "need a doctor",
+            "family doctor accepting patients",
+            "walk-in clinic",
+            "no health card doctor",
+            "GP near me",
+            "primary care",
+            "nurse practitioner",
+            "medical clinic"
+          ],
+          "expectedServiceTypes": ["clinic", "community_health_centre", "walk_in"]
+        },
+        "dental": {
+          "name": "Dental Care",
+          "description": "Dentist, dental emergencies, low-cost dental",
+          "exampleQueries": [
+            "dentist for low income",
+            "tooth pain",
+            "free dental care",
+            "dental emergency",
+            "can't afford dentist",
+            "community dental",
+            "tooth extraction",
+            "dental clinic"
+          ],
+          "expectedServiceTypes": ["dental_clinic", "community_health"]
+        },
+        "sexual_health": {
+          "name": "Sexual & Reproductive Health",
+          "description": "STI testing, birth control, sexual health services",
+          "exampleQueries": [
+            "STI testing",
+            "STD clinic",
+            "birth control",
+            "pregnancy test",
+            "sexual health clinic",
+            "HIV test",
+            "contraception",
+            "condoms",
+            "abortion services",
+            "plan B"
+          ],
+          "expectedServiceTypes": ["sexual_health_clinic", "public_health", "planned_parenthood"]
+        },
+        "pregnancy_prenatal": {
+          "name": "Pregnancy & Prenatal Care",
+          "description": "Prenatal support, pregnancy resources, midwifery",
+          "exampleQueries": [
+            "I'm pregnant",
+            "prenatal care",
+            "midwife",
+            "pregnancy support",
+            "expecting a baby",
+            "prenatal classes",
+            "OB-GYN",
+            "pregnancy resources"
+          ],
+          "expectedServiceTypes": ["prenatal_clinic", "midwifery", "community_health"]
+        },
+        "chronic_illness": {
+          "name": "Chronic Illness & Disease Management",
+          "description": "Diabetes, cancer, chronic disease support",
+          "exampleQueries": [
+            "diabetes support",
+            "cancer resources",
+            "chronic pain help",
+            "living with illness",
+            "disease management",
+            "chronic condition support",
+            "heart disease help"
+          ],
+          "expectedServiceTypes": ["specialty_clinic", "support_group", "community_health"]
+        },
+        "urgent_emergency": {
+          "name": "Urgent & Emergency Medical Care",
+          "description": "Emergency room, urgent care, after-hours medical",
+          "exampleQueries": [
+            "emergency room",
+            "urgent care",
+            "hospital",
+            "broken bone",
+            "need stitches",
+            "medical emergency",
+            "after hours clinic",
+            "ER wait times"
+          ],
+          "expectedServiceTypes": ["emergency_department", "urgent_care", "hospital"]
+        },
+        "barrier_free_health": {
+          "name": "Barrier-Free Healthcare",
+          "description": "No health card, undocumented, street health",
+          "exampleQueries": [
+            "no health card",
+            "undocumented healthcare",
+            "street health",
+            "no ID medical care",
+            "healthcare for homeless",
+            "no OHIP",
+            "wound care no questions"
+          ],
+          "expectedServiceTypes": ["street_health", "community_health_centre"]
+        }
+      }
+    },
+    "food_nutrition": {
+      "name": "Food & Nutrition",
+      "description": "Food security, meal programs, nutrition support",
+      "subCategories": {
+        "emergency_food": {
+          "name": "Emergency Food & Food Banks",
+          "description": "Immediate food needs, food hampers, food banks",
+          "exampleQueries": [
+            "food bank",
+            "I'm hungry",
+            "need food now",
+            "food hamper",
+            "emergency groceries",
+            "no money for food",
+            "pantry near me",
+            "free food"
+          ],
+          "expectedServiceTypes": ["food_bank", "emergency_food"]
+        },
+        "meal_programs": {
+          "name": "Meal Programs & Community Kitchens",
+          "description": "Hot meals, soup kitchens, community dining",
+          "exampleQueries": [
+            "free meal",
+            "soup kitchen",
+            "hot lunch",
+            "community meal",
+            "dinner program",
+            "where to eat for free",
+            "breakfast program"
+          ],
+          "expectedServiceTypes": ["meal_program", "soup_kitchen", "community_kitchen"]
+        },
+        "student_food": {
+          "name": "Student Food Security",
+          "description": "Campus food banks, student nutrition",
+          "exampleQueries": [
+            "student food bank",
+            "campus food",
+            "university food help",
+            "college food bank",
+            "broke student food"
+          ],
+          "expectedServiceTypes": ["student_food_bank", "campus_services"]
+        },
+        "baby_formula": {
+          "name": "Baby Food & Formula",
+          "description": "Infant nutrition, formula assistance",
+          "exampleQueries": [
+            "baby formula help",
+            "can't afford formula",
+            "infant food",
+            "breastfeeding support",
+            "baby food assistance"
+          ],
+          "expectedServiceTypes": ["family_services", "food_bank", "public_health"]
+        },
+        "special_diets": {
+          "name": "Special Dietary Needs",
+          "description": "Allergies, religious diets, medical nutrition",
+          "exampleQueries": [
+            "halal food bank",
+            "kosher food assistance",
+            "gluten free food help",
+            "diabetic food support",
+            "vegetarian food bank"
+          ],
+          "expectedServiceTypes": ["food_bank", "community_services"]
+        }
+      }
+    },
+    "housing": {
+      "name": "Housing & Shelter",
+      "description": "Housing stability, shelter, rental assistance",
+      "subCategories": {
+        "emergency_shelter": {
+          "name": "Emergency Shelter",
+          "description": "Immediate shelter needs, overnight beds",
+          "exampleQueries": [
+            "emergency shelter",
+            "need a bed tonight",
+            "homeless shelter",
+            "warming centre",
+            "where to sleep",
+            "out of home shelter"
+          ],
+          "expectedServiceTypes": ["emergency_shelter", "warming_centre"]
+        },
+        "transitional_housing": {
+          "name": "Transitional Housing",
+          "description": "Medium-term housing, supportive housing",
+          "exampleQueries": [
+            "transitional housing",
+            "supportive housing",
+            "halfway house",
+            "temporary housing",
+            "second stage housing"
+          ],
+          "expectedServiceTypes": ["transitional_housing", "supportive_housing"]
+        },
+        "affordable_housing": {
+          "name": "Affordable Housing & Subsidized Rent",
+          "description": "Rent-geared-to-income, affordable apartments",
+          "exampleQueries": [
+            "affordable housing",
+            "rent geared to income",
+            "subsidized apartment",
+            "social housing",
+            "low rent housing",
+            "housing waitlist",
+            "RGI housing"
+          ],
+          "expectedServiceTypes": ["social_housing", "housing_registry"]
+        },
+        "rental_assistance": {
+          "name": "Rental Assistance & Eviction Prevention",
+          "description": "Rent help, eviction prevention, arrears",
+          "exampleQueries": [
+            "help with rent",
+            "facing eviction",
+            "rent arrears",
+            "can't pay rent",
+            "eviction prevention",
+            "rental assistance",
+            "behind on rent"
+          ],
+          "expectedServiceTypes": ["rental_assistance", "legal_aid", "social_services"]
+        },
+        "youth_housing": {
+          "name": "Youth Housing",
+          "description": "Housing for young people, aging out of care",
+          "exampleQueries": [
+            "youth shelter",
+            "teen housing",
+            "aging out of foster care",
+            "young adult housing",
+            "kicked out at 18",
+            "youth transitional"
+          ],
+          "expectedServiceTypes": ["youth_shelter", "youth_housing"]
+        },
+        "women_housing": {
+          "name": "Women's Housing & Shelters",
+          "description": "Women's shelters, domestic violence housing",
+          "exampleQueries": [
+            "women's shelter",
+            "shelter for women",
+            "domestic violence shelter",
+            "fleeing abuse housing",
+            "safe house for women"
+          ],
+          "expectedServiceTypes": ["womens_shelter", "dv_housing"]
+        },
+        "housing_rights": {
+          "name": "Tenant Rights & Housing Legal Issues",
+          "description": "Landlord disputes, tenant rights, housing tribunal",
+          "exampleQueries": [
+            "tenant rights",
+            "landlord problems",
+            "bad landlord help",
+            "housing tribunal",
+            "lease dispute",
+            "illegal eviction",
+            "tenant legal help"
+          ],
+          "expectedServiceTypes": ["legal_aid", "tenant_advocacy"]
+        }
+      }
+    },
+    "financial": {
+      "name": "Financial Support & Income",
+      "description": "Income assistance, benefits, financial help",
+      "subCategories": {
+        "income_assistance": {
+          "name": "Income Assistance & Welfare",
+          "description": "Ontario Works, social assistance, emergency funds",
+          "exampleQueries": [
+            "Ontario Works",
+            "welfare application",
+            "social assistance",
+            "OW office",
+            "need money help",
+            "government assistance",
+            "emergency funds"
+          ],
+          "expectedServiceTypes": ["social_services", "income_support"]
+        },
+        "disability_benefits": {
+          "name": "Disability Benefits",
+          "description": "ODSP, disability income support",
+          "exampleQueries": [
+            "ODSP application",
+            "disability benefits",
+            "can't work disabled",
+            "disability income",
+            "ODSP help",
+            "disability assistance"
+          ],
+          "expectedServiceTypes": ["social_services", "disability_advocacy"]
+        },
+        "debt_financial_counselling": {
+          "name": "Debt & Financial Counselling",
+          "description": "Budget help, debt management, financial literacy",
+          "exampleQueries": [
+            "debt help",
+            "drowning in debt",
+            "budget counselling",
+            "financial literacy",
+            "credit counselling",
+            "money management",
+            "bankruptcy help"
+          ],
+          "expectedServiceTypes": ["financial_counselling", "credit_counselling"]
+        },
+        "utility_assistance": {
+          "name": "Utility Bills & Energy Assistance",
+          "description": "Hydro bills, heating, utility arrears",
+          "exampleQueries": [
+            "help with hydro bill",
+            "can't pay utilities",
+            "heating assistance",
+            "LEAP program",
+            "electricity arrears",
+            "gas bill help"
+          ],
+          "expectedServiceTypes": ["utility_assistance", "social_services"]
+        },
+        "tax_help": {
+          "name": "Tax Assistance",
+          "description": "Free tax clinics, tax filing help",
+          "exampleQueries": [
+            "free tax clinic",
+            "help filing taxes",
+            "tax return help",
+            "volunteer tax",
+            "low income taxes",
+            "CVITP"
+          ],
+          "expectedServiceTypes": ["tax_clinic", "community_services"]
+        }
+      }
+    },
+    "employment": {
+      "name": "Employment & Career",
+      "description": "Job search, career development, employment support",
+      "subCategories": {
+        "job_search": {
+          "name": "Job Search & Placement",
+          "description": "Finding work, job boards, employment services",
+          "exampleQueries": [
+            "need a job",
+            "employment services",
+            "help finding work",
+            "job search",
+            "career centre",
+            "employment agency",
+            "job placement"
+          ],
+          "expectedServiceTypes": ["employment_services", "job_centre"]
+        },
+        "skills_training": {
+          "name": "Skills Training & Education",
+          "description": "Job training, certification, upgrading skills",
+          "exampleQueries": [
+            "job training",
+            "learn new skills",
+            "certification programs",
+            "upgrade skills",
+            "computer training",
+            "trade certification"
+          ],
+          "expectedServiceTypes": ["training_program", "adult_education"]
+        },
+        "resume_interview": {
+          "name": "Resume & Interview Help",
+          "description": "Resume writing, interview prep, job coaching",
+          "exampleQueries": [
+            "resume help",
+            "interview coaching",
+            "job application help",
+            "cover letter",
+            "interview preparation",
+            "job coaching"
+          ],
+          "expectedServiceTypes": ["employment_services", "career_counselling"]
+        },
+        "youth_employment": {
+          "name": "Youth Employment",
+          "description": "First job, youth job programs, summer jobs",
+          "exampleQueries": [
+            "first job help",
+            "youth employment",
+            "summer jobs for teens",
+            "young worker program",
+            "student employment"
+          ],
+          "expectedServiceTypes": ["youth_employment", "employment_services"]
+        },
+        "newcomer_employment": {
+          "name": "Newcomer Employment",
+          "description": "Immigrant job support, credential recognition",
+          "exampleQueries": [
+            "newcomer employment",
+            "immigrant job help",
+            "foreign credentials",
+            "Canadian work experience",
+            "refugee employment"
+          ],
+          "expectedServiceTypes": ["newcomer_services", "employment_services"]
+        },
+        "self_employment": {
+          "name": "Self-Employment & Entrepreneurship",
+          "description": "Starting a business, small business support",
+          "exampleQueries": [
+            "start a business",
+            "self employment help",
+            "small business support",
+            "entrepreneurship program",
+            "business startup"
+          ],
+          "expectedServiceTypes": ["small_business_centre", "economic_development"]
+        }
+      }
+    },
+    "legal": {
+      "name": "Legal Services & Rights",
+      "description": "Legal help, rights advocacy, justice system navigation",
+      "subCategories": {
+        "legal_aid": {
+          "name": "Legal Aid & Free Legal Services",
+          "description": "Free lawyers, legal aid certificates, pro bono",
+          "exampleQueries": [
+            "free lawyer",
+            "legal aid",
+            "can't afford lawyer",
+            "pro bono legal",
+            "legal clinic",
+            "legal help low income"
+          ],
+          "expectedServiceTypes": ["legal_aid", "legal_clinic"]
+        },
+        "family_law": {
+          "name": "Family Law",
+          "description": "Divorce, custody, child support, family court",
+          "exampleQueries": [
+            "divorce lawyer",
+            "child custody help",
+            "family court",
+            "child support",
+            "separation agreement",
+            "family law clinic"
+          ],
+          "expectedServiceTypes": ["family_law_clinic", "legal_aid"]
+        },
+        "criminal_law": {
+          "name": "Criminal Law & Justice System",
+          "description": "Criminal charges, court support, parole",
+          "exampleQueries": [
+            "criminal lawyer",
+            "charged with crime",
+            "court support",
+            "parole help",
+            "criminal record help",
+            "duty counsel"
+          ],
+          "expectedServiceTypes": ["criminal_legal_aid", "court_support"]
+        },
+        "immigration_law": {
+          "name": "Immigration & Refugee Law",
+          "description": "Immigration status, refugee claims, citizenship",
+          "exampleQueries": [
+            "immigration lawyer",
+            "refugee claim help",
+            "status in Canada",
+            "deportation help",
+            "citizenship application",
+            "immigration legal"
+          ],
+          "expectedServiceTypes": ["immigration_legal", "refugee_services"]
+        },
+        "human_rights": {
+          "name": "Human Rights & Discrimination",
+          "description": "Discrimination complaints, human rights tribunal",
+          "exampleQueries": [
+            "discrimination at work",
+            "human rights complaint",
+            "racial discrimination",
+            "disability discrimination",
+            "harassment at work",
+            "human rights tribunal"
+          ],
+          "expectedServiceTypes": ["human_rights", "legal_clinic"]
+        },
+        "disability_rights": {
+          "name": "Disability Rights & Advocacy",
+          "description": "AODA, accessibility rights, disability legal issues",
+          "exampleQueries": [
+            "disability rights",
+            "accessibility complaint",
+            "AODA violation",
+            "disability discrimination",
+            "accommodation denied"
+          ],
+          "expectedServiceTypes": ["disability_advocacy", "legal_clinic"]
+        },
+        "victim_services": {
+          "name": "Victim Services & Crime Support",
+          "description": "Crime victim support, victim compensation",
+          "exampleQueries": [
+            "crime victim help",
+            "victim services",
+            "witness support",
+            "victim compensation",
+            "crime victim counselling"
+          ],
+          "expectedServiceTypes": ["victim_services", "counselling"]
+        }
+      }
+    },
+    "family_children": {
+      "name": "Family & Children Services",
+      "description": "Parenting support, childcare, family resources",
+      "subCategories": {
+        "parenting_support": {
+          "name": "Parenting Support & Education",
+          "description": "Parenting classes, family support, parent resources",
+          "exampleQueries": [
+            "parenting help",
+            "parenting classes",
+            "new parent support",
+            "struggling as parent",
+            "family support programs",
+            "parent education"
+          ],
+          "expectedServiceTypes": ["family_services", "early_years_centre"]
+        },
+        "childcare": {
+          "name": "Childcare & Daycare",
+          "description": "Daycare, subsidized childcare, before/after school",
+          "exampleQueries": [
+            "daycare subsidy",
+            "childcare help",
+            "affordable daycare",
+            "after school care",
+            "child care centre",
+            "babysitter help"
+          ],
+          "expectedServiceTypes": ["childcare", "family_services"]
+        },
+        "early_years": {
+          "name": "Early Years & Child Development",
+          "description": "Early childhood programs, developmental support",
+          "exampleQueries": [
+            "early years centre",
+            "toddler programs",
+            "child development help",
+            "early intervention",
+            "Ontario Early Years",
+            "EarlyON"
+          ],
+          "expectedServiceTypes": ["early_years_centre", "child_development"]
+        },
+        "family_counselling": {
+          "name": "Family Counselling",
+          "description": "Family therapy, relationship counselling",
+          "exampleQueries": [
+            "family counselling",
+            "family therapy",
+            "marriage counselling",
+            "couples therapy",
+            "relationship help",
+            "family conflict"
+          ],
+          "expectedServiceTypes": ["family_counselling", "counselling"]
+        },
+        "single_parent": {
+          "name": "Single Parent Support",
+          "description": "Resources for single parents, solo parenting",
+          "exampleQueries": [
+            "single parent help",
+            "single mom resources",
+            "single dad support",
+            "solo parent",
+            "one parent family help"
+          ],
+          "expectedServiceTypes": ["family_services", "support_group"]
+        },
+        "foster_adoption": {
+          "name": "Foster Care & Adoption",
+          "description": "Foster parenting, adoption services, kinship care",
+          "exampleQueries": [
+            "foster care",
+            "become foster parent",
+            "adoption services",
+            "kinship care",
+            "children's aid adoption"
+          ],
+          "expectedServiceTypes": ["childrens_aid", "adoption_services"]
+        }
+      }
+    },
+    "youth": {
+      "name": "Youth Services",
+      "description": "Services specifically for young people",
+      "subCategories": {
+        "youth_programs": {
+          "name": "Youth Programs & Recreation",
+          "description": "Youth centres, recreational activities, teen programs",
+          "exampleQueries": [
+            "youth centre",
+            "teen programs",
+            "youth drop-in",
+            "activities for teens",
+            "boys and girls club",
+            "youth recreation"
+          ],
+          "expectedServiceTypes": ["youth_centre", "recreation"]
+        },
+        "youth_counselling": {
+          "name": "Youth Counselling & Mental Health",
+          "description": "Teen mental health, youth counselling",
+          "exampleQueries": [
+            "teen counselling",
+            "youth mental health",
+            "teen therapist",
+            "young adult counselling",
+            "adolescent support"
+          ],
+          "expectedServiceTypes": ["youth_mental_health", "counselling"]
+        },
+        "youth_crisis": {
+          "name": "Youth Crisis Services",
+          "description": "Crisis support for young people",
+          "exampleQueries": ["kids help phone", "teen crisis line", "youth crisis", "runaway youth", "homeless teen"],
+          "expectedServiceTypes": ["youth_crisis", "crisis_line"]
+        },
+        "school_support": {
+          "name": "School & Education Support",
+          "description": "Tutoring, alternative education, school struggles",
+          "exampleQueries": [
+            "tutoring help",
+            "struggling in school",
+            "alternative school",
+            "homework help",
+            "dropping out help",
+            "school problems"
+          ],
+          "expectedServiceTypes": ["education_support", "tutoring"]
+        },
+        "transition_services": {
+          "name": "Transition to Adulthood",
+          "description": "Aging out of care, youth independence",
+          "exampleQueries": [
+            "aging out of care",
+            "turning 18 help",
+            "youth independence",
+            "leaving foster care",
+            "transition to adulthood"
+          ],
+          "expectedServiceTypes": ["youth_transition", "supportive_services"]
+        }
+      }
+    },
+    "seniors": {
+      "name": "Senior Services",
+      "description": "Services for older adults and elderly",
+      "subCategories": {
+        "senior_support": {
+          "name": "Senior Support & Socialization",
+          "description": "Senior centres, social programs, isolation prevention",
+          "exampleQueries": [
+            "senior centre",
+            "programs for elderly",
+            "lonely senior",
+            "senior activities",
+            "older adult programs",
+            "50+ programs"
+          ],
+          "expectedServiceTypes": ["senior_centre", "social_programs"]
+        },
+        "elder_care": {
+          "name": "Elder Care & Home Support",
+          "description": "Home care, meal delivery, personal support",
+          "exampleQueries": [
+            "home care for elderly",
+            "meals on wheels",
+            "help for aging parent",
+            "personal support worker",
+            "senior home help"
+          ],
+          "expectedServiceTypes": ["home_care", "meal_delivery"]
+        },
+        "caregiver_support": {
+          "name": "Caregiver Support",
+          "description": "Support for those caring for elderly",
+          "exampleQueries": [
+            "caregiver support",
+            "caring for parent",
+            "caregiver burnout",
+            "respite care",
+            "caregiver resources"
+          ],
+          "expectedServiceTypes": ["caregiver_support", "respite"]
+        },
+        "elder_abuse": {
+          "name": "Elder Abuse Prevention",
+          "description": "Abuse of seniors, financial exploitation",
+          "exampleQueries": [
+            "elder abuse help",
+            "senior being abused",
+            "financial exploitation elderly",
+            "nursing home abuse",
+            "protect elderly parent"
+          ],
+          "expectedServiceTypes": ["elder_abuse", "advocacy"]
+        }
+      }
+    },
+    "disability": {
+      "name": "Disability Services",
+      "description": "Support for people with disabilities",
+      "subCategories": {
+        "disability_support": {
+          "name": "Disability Support Services",
+          "description": "Community living, developmental services",
+          "exampleQueries": [
+            "disability support",
+            "community living",
+            "developmental services",
+            "disability programs",
+            "support for disabled"
+          ],
+          "expectedServiceTypes": ["disability_services", "community_living"]
+        },
+        "accessibility": {
+          "name": "Accessibility & Accommodations",
+          "description": "Accessibility services, assistive devices",
+          "exampleQueries": [
+            "accessibility services",
+            "assistive devices",
+            "wheelchair services",
+            "accessibility help",
+            "mobility aids"
+          ],
+          "expectedServiceTypes": ["accessibility_services", "assistive_technology"]
+        },
+        "disability_employment": {
+          "name": "Disability Employment",
+          "description": "Employment for people with disabilities",
+          "exampleQueries": [
+            "jobs for disabled",
+            "disability employment",
+            "supported employment",
+            "work with disability",
+            "vocational rehab"
+          ],
+          "expectedServiceTypes": ["disability_employment", "vocational"]
+        },
+        "autism_services": {
+          "name": "Autism & Neurodivergent Services",
+          "description": "Autism support, ASD resources",
+          "exampleQueries": [
+            "autism support",
+            "ASD services",
+            "autistic adult help",
+            "autism diagnosis",
+            "neurodivergent support"
+          ],
+          "expectedServiceTypes": ["autism_services", "developmental_services"]
+        },
+        "deaf_hearing": {
+          "name": "Deaf & Hard of Hearing Services",
+          "description": "Sign language, deaf services",
+          "exampleQueries": [
+            "deaf services",
+            "ASL interpreter",
+            "hearing loss help",
+            "hard of hearing support",
+            "deaf community"
+          ],
+          "expectedServiceTypes": ["deaf_services", "accessibility"]
+        },
+        "vision_services": {
+          "name": "Vision & Blindness Services",
+          "description": "Services for blind, low vision support",
+          "exampleQueries": ["blind services", "low vision help", "CNIB", "vision loss support", "visually impaired"],
+          "expectedServiceTypes": ["vision_services", "accessibility"]
+        }
+      }
+    },
+    "identity_specific": {
+      "name": "Identity-Specific Services",
+      "description": "Services for specific communities and identities",
+      "subCategories": {
+        "lgbtq": {
+          "name": "2SLGBTQI+ Services",
+          "description": "LGBTQ+ support, queer community services",
+          "exampleQueries": [
+            "LGBTQ support",
+            "gay community centre",
+            "trans resources",
+            "queer services",
+            "pride community",
+            "2SLGBTQ help",
+            "transgender support"
+          ],
+          "expectedServiceTypes": ["lgbtq_services", "community_centre"]
+        },
+        "transgender": {
+          "name": "Transgender Services",
+          "description": "Trans-specific healthcare, transition support",
+          "exampleQueries": [
+            "trans healthcare",
+            "gender clinic",
+            "transition support",
+            "transgender health",
+            "HRT help",
+            "name change trans"
+          ],
+          "expectedServiceTypes": ["trans_health", "lgbtq_services"]
+        },
+        "indigenous": {
+          "name": "Indigenous Services",
+          "description": "First Nations, Metis, Inuit services",
+          "exampleQueries": [
+            "Indigenous services",
+            "First Nations help",
+            "Metis support",
+            "Inuit resources",
+            "Aboriginal services",
+            "Native health"
+          ],
+          "expectedServiceTypes": ["indigenous_services", "cultural_services"]
+        },
+        "newcomer_immigrant": {
+          "name": "Newcomer & Immigrant Services",
+          "description": "Settlement services, immigration support",
+          "exampleQueries": [
+            "newcomer services",
+            "immigrant support",
+            "settlement agency",
+            "new to Canada",
+            "refugee support",
+            "immigration help"
+          ],
+          "expectedServiceTypes": ["settlement_services", "newcomer_services"]
+        },
+        "francophone": {
+          "name": "Francophone Services",
+          "description": "French language services",
+          "exampleQueries": [
+            "services en français",
+            "francophone help",
+            "French services",
+            "aide en français",
+            "French speaking support"
+          ],
+          "expectedServiceTypes": ["francophone_services", "bilingual_services"]
+        },
+        "veterans": {
+          "name": "Veterans & Military Families",
+          "description": "Veteran support, military family resources",
+          "exampleQueries": [
+            "veteran services",
+            "military family help",
+            "CAF support",
+            "veteran benefits",
+            "military transition",
+            "ex-military help"
+          ],
+          "expectedServiceTypes": ["veteran_services", "military_family"]
+        },
+        "black_community": {
+          "name": "Black Community Services",
+          "description": "Services for Black community members",
+          "exampleQueries": [
+            "Black community services",
+            "African Canadian support",
+            "Black youth programs",
+            "Black mental health",
+            "anti-Black racism help"
+          ],
+          "expectedServiceTypes": ["community_services", "cultural_services"]
+        }
+      }
+    },
+    "education_literacy": {
+      "name": "Education & Literacy",
+      "description": "Adult education, literacy, learning support",
+      "subCategories": {
+        "adult_education": {
+          "name": "Adult Education & GED",
+          "description": "High school completion, adult learning",
+          "exampleQueries": [
+            "adult education",
+            "GED program",
+            "finish high school",
+            "adult learning",
+            "mature student",
+            "go back to school"
+          ],
+          "expectedServiceTypes": ["adult_education", "learning_centre"]
+        },
+        "literacy": {
+          "name": "Literacy & Basic Skills",
+          "description": "Reading, writing, numeracy for adults",
+          "exampleQueries": [
+            "learn to read",
+            "literacy program",
+            "basic skills",
+            "adult literacy",
+            "can't read well",
+            "numeracy help"
+          ],
+          "expectedServiceTypes": ["literacy_program", "adult_education"]
+        },
+        "esl_language": {
+          "name": "ESL & Language Learning",
+          "description": "English classes, language training",
+          "exampleQueries": [
+            "ESL classes",
+            "learn English",
+            "LINC program",
+            "English for newcomers",
+            "language training",
+            "English lessons"
+          ],
+          "expectedServiceTypes": ["esl_program", "language_training"]
+        },
+        "digital_literacy": {
+          "name": "Digital & Computer Literacy",
+          "description": "Computer skills, technology training",
+          "exampleQueries": [
+            "computer classes",
+            "learn technology",
+            "digital skills",
+            "basic computer",
+            "internet training",
+            "tech help seniors"
+          ],
+          "expectedServiceTypes": ["digital_literacy", "computer_training"]
+        }
+      }
+    },
+    "community_social": {
+      "name": "Community & Social Connection",
+      "description": "Social activities, community belonging, isolation prevention",
+      "subCategories": {
+        "social_isolation": {
+          "name": "Social Isolation & Loneliness",
+          "description": "Combating loneliness, social connection",
+          "exampleQueries": [
+            "lonely and isolated",
+            "no friends",
+            "need social connection",
+            "feeling isolated",
+            "how to meet people",
+            "combat loneliness"
+          ],
+          "expectedServiceTypes": ["social_programs", "community_centre"]
+        },
+        "community_centres": {
+          "name": "Community Centres & Libraries",
+          "description": "Public spaces, community resources",
+          "exampleQueries": [
+            "community centre",
+            "public library",
+            "drop-in centre",
+            "community resources",
+            "local programs"
+          ],
+          "expectedServiceTypes": ["community_centre", "library"]
+        },
+        "recreation": {
+          "name": "Recreation & Fitness",
+          "description": "Sports, fitness, recreational activities",
+          "exampleQueries": [
+            "free gym",
+            "recreation programs",
+            "swimming pool",
+            "fitness classes",
+            "sports programs",
+            "low cost recreation"
+          ],
+          "expectedServiceTypes": ["recreation_centre", "fitness"]
+        },
+        "support_groups": {
+          "name": "Support Groups & Peer Support",
+          "description": "Peer support, self-help groups",
+          "exampleQueries": [
+            "support group",
+            "peer support",
+            "self help group",
+            "people like me",
+            "share experiences",
+            "group therapy"
+          ],
+          "expectedServiceTypes": ["support_group", "peer_support"]
+        },
+        "faith_spiritual": {
+          "name": "Faith & Spiritual Services",
+          "description": "Religious services, spiritual support, chaplaincy",
+          "exampleQueries": [
+            "church help",
+            "spiritual support",
+            "faith community",
+            "religious services",
+            "chaplain",
+            "mosque services",
+            "temple support"
+          ],
+          "expectedServiceTypes": ["faith_services", "spiritual_care"]
+        },
+        "volunteer_opportunities": {
+          "name": "Volunteering",
+          "description": "Volunteer opportunities, giving back",
+          "exampleQueries": [
+            "volunteer opportunities",
+            "want to help",
+            "community volunteering",
+            "give back",
+            "volunteer near me"
+          ],
+          "expectedServiceTypes": ["volunteer_centre", "community_services"]
+        }
+      }
+    },
+    "transportation": {
+      "name": "Transportation",
+      "description": "Getting around, accessible transit, transportation assistance",
+      "subCategories": {
+        "accessible_transit": {
+          "name": "Accessible & Para Transit",
+          "description": "Wheelchair accessible, disability transit",
+          "exampleQueries": [
+            "accessible transit",
+            "para transit",
+            "wheelchair transportation",
+            "disability transport",
+            "mobility van"
+          ],
+          "expectedServiceTypes": ["accessible_transit", "para_transit"]
+        },
+        "medical_transport": {
+          "name": "Medical Transportation",
+          "description": "Rides to appointments, medical escorts",
+          "exampleQueries": [
+            "ride to hospital",
+            "medical appointment transport",
+            "need ride to doctor",
+            "medical escort",
+            "hospital transportation"
+          ],
+          "expectedServiceTypes": ["medical_transport", "volunteer_drivers"]
+        },
+        "low_cost_transit": {
+          "name": "Low-Cost Transportation",
+          "description": "Affordable transit, transit subsidies",
+          "exampleQueries": [
+            "affordable bus pass",
+            "low income transit",
+            "transit subsidy",
+            "can't afford bus",
+            "free transit"
+          ],
+          "expectedServiceTypes": ["transit_subsidy", "social_services"]
+        }
+      }
+    },
+    "clothing_essentials": {
+      "name": "Clothing & Essential Items",
+      "description": "Clothing, hygiene items, essential goods",
+      "subCategories": {
+        "clothing": {
+          "name": "Clothing & Furniture",
+          "description": "Free clothes, furniture bank, household items",
+          "exampleQueries": [
+            "free clothes",
+            "clothing bank",
+            "need winter coat",
+            "furniture help",
+            "household items",
+            "thrift store"
+          ],
+          "expectedServiceTypes": ["clothing_bank", "furniture_bank"]
+        },
+        "hygiene": {
+          "name": "Hygiene & Personal Items",
+          "description": "Toiletries, hygiene supplies, period products",
+          "exampleQueries": [
+            "hygiene supplies",
+            "free toiletries",
+            "period products",
+            "menstrual supplies",
+            "personal care items",
+            "shower access"
+          ],
+          "expectedServiceTypes": ["hygiene_supplies", "drop_in"]
+        },
+        "baby_supplies": {
+          "name": "Baby & Child Supplies",
+          "description": "Diapers, baby clothes, children's items",
+          "exampleQueries": ["free diapers", "baby supplies", "children's clothing", "car seat help", "baby items"],
+          "expectedServiceTypes": ["baby_supplies", "family_services"]
+        }
+      }
+    }
+  },
+  "crossCuttingThemes": {
+    "description": "Themes that cut across multiple categories",
+    "themes": {
+      "accessibility": {
+        "name": "Accessibility & Barrier-Free",
+        "description": "Services that are accessible without typical barriers",
+        "queryModifiers": [
+          "no health card",
+          "no ID required",
+          "walk-in",
+          "anonymous",
+          "wheelchair accessible",
+          "ASL available",
+          "multilingual"
+        ]
+      },
+      "affordability": {
+        "name": "Affordability & Free Services",
+        "description": "Cost as a barrier to access",
+        "queryModifiers": ["free", "low cost", "sliding scale", "no cost", "affordable", "subsidized", "low income"]
+      },
+      "urgency": {
+        "name": "Urgency & Timing",
+        "description": "Time-sensitive needs",
+        "queryModifiers": ["emergency", "urgent", "today", "right now", "immediately", "ASAP", "24/7", "after hours"]
+      },
+      "virtual_remote": {
+        "name": "Virtual & Remote Access",
+        "description": "Services accessible remotely",
+        "queryModifiers": ["online", "phone", "virtual", "telehealth", "text", "chat", "video call"]
+      },
+      "culturally_safe": {
+        "name": "Culturally Safe & Identity-Affirming",
+        "description": "Services that respect specific identities",
+        "queryModifiers": [
+          "culturally safe",
+          "affirming",
+          "trauma-informed",
+          "Indigenous-led",
+          "LGBTQ friendly",
+          "anti-racist"
+        ]
+      }
+    }
+  },
+  "queryPatterns": {
+    "description": "Common ways people phrase their needs",
+    "patterns": {
+      "direct_need": {
+        "description": "Direct statement of need",
+        "examples": ["I need [service]", "looking for [service]", "where can I get [service]", "help with [issue]"]
+      },
+      "emotional_state": {
+        "description": "Expressing emotional state",
+        "examples": [
+          "I'm feeling [emotion]",
+          "I'm [condition]",
+          "I can't stop [behavior]",
+          "everything feels [adjective]"
+        ]
+      },
+      "situation_description": {
+        "description": "Describing a situation",
+        "examples": ["my [person] is [situation]", "I'm about to [event]", "I just [event]", "someone is [situation]"]
+      },
+      "question_format": {
+        "description": "Questions about services",
+        "examples": [
+          "is there a [service]",
+          "does anyone help with [issue]",
+          "what services exist for [need]",
+          "who can help me with [issue]"
+        ]
+      },
+      "demographic_specific": {
+        "description": "Specifying identity/demographic",
+        "examples": [
+          "[service] for [demographic]",
+          "I'm a [identity] and need [service]",
+          "[demographic] resources",
+          "help for [identity] people"
+        ]
+      }
+    }
+  }
+}

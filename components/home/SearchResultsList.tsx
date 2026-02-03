@@ -9,6 +9,7 @@ import { SearchResult } from "@/lib/search"
 import { PrintButton } from "@/components/ui/PrintButton"
 import ScopeFilterBar, { ScopeFilter } from "./ScopeFilterBar"
 import { NotFoundFeedback } from "../feedback/NotFoundFeedback"
+import { tokenize } from "@/lib/search/utils"
 
 interface SearchResultsListProps {
   isLoading: boolean
@@ -116,7 +117,7 @@ export default function SearchResultsList({
           service={result.service}
           score={result.score}
           matchReasons={result.matchReasons}
-          highlightTokens={query ? query.toLowerCase().split(/\s+/).filter(Boolean) : []}
+          highlightTokens={query ? tokenize(query) : []}
           onScopeFilter={handleScopeFilter}
         />
       ))}

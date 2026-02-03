@@ -58,23 +58,19 @@ export const tokenize = (query: string): string[] => {
     "si",
     "ou",
   ])
+
+  // Important short abbreviations that should NOT be filtered out
+  const allowedShortTerms = new Set([
+    "ow", // Ontario Works
+    "er", // Emergency Room
+    "aa", // Alcoholics Anonymous
+    "na", // Narcotics Anonymous
+    "hiv", // Though 3 chars, included for clarity
+    "std", // Sexually Transmitted Disease
+    "sti", // Sexually Transmitted Infection
+  ])
+
   return normalize(query)
     .split(/\s+/)
-    .filter((word) => word.length > 2 && !stopWords.has(word)) // Filter short words and stop words
-}
-
-/**
- * Simple Levenshtein distance for fuzzy matching
- */
-export const levenshteinDistance = (a: string, b: string): number => {
-  const matrix = Array.from({ length: a.length + 1 }, () => Array.from({ length: b.length + 1 }, (_, i) => i))
-  for (let i = 0; i <= a.length; i++) matrix[i]![0] = i
-
-  for (let i = 1; i <= a.length; i++) {
-    for (let j = 1; j <= b.length; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1
-      matrix[i]![j] = Math.min(matrix[i - 1]![j]! + 1, matrix[i]![j - 1]! + 1, matrix[i - 1]![j - 1]! + cost)
-    }
-  }
-  return matrix[a.length]![b.length]!
+    .filter((word) => (word.length > 2 || allowedShortTerms.has(word)) && !stopWords.has(word))
 }

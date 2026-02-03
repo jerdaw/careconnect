@@ -1,26 +1,36 @@
 import { SearchResult } from "./types"
 
+const CRISIS_SAFETY_BOOST_POINTS = 1000
+
 // Keywords that indicate a potential crisis or safety risk
 export const CRISIS_KEYWORDS = [
+  // Suicide & self-harm
   "suicide",
+  "suicidal",
   "kill myself",
+  "killing myself",
   "want to die",
   "end my life",
-  "overdose",
+  "help me die",
+  "hanging myself",
+  "cutting myself",
   "hurt myself",
   "self harm",
-  "crisis",
-  "emergency",
+  "overdose",
+  // Violence & abuse
   "abuse",
   "violence",
   "assault",
   "rape",
   "domestic violence",
   "beat me",
+  "beating me",
+  "hits me",
+  "hitting me",
   "scared at home",
-  "help me die",
-  "hanging myself",
-  "cutting myself",
+  // General crisis
+  "crisis",
+  "emergency",
 ]
 
 /**
@@ -44,9 +54,8 @@ export function boostCrisisResults(results: SearchResult[], isCrisis: boolean): 
 
   // If we found crisis results, put them at the top
   if (crisisResults.length > 0) {
-    // Boost scores for visual debugging if needed
     crisisResults.forEach((r) => {
-      r.score += 1000
+      r.score += CRISIS_SAFETY_BOOST_POINTS
       r.matchReasons.push("Crisis Detected (Safety Boost)")
     })
 
