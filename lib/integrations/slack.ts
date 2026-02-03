@@ -252,6 +252,22 @@ function formatCircuitBreakerMessage(event: CircuitBreakerEvent): SlackMessage {
  * @param event - Circuit breaker event data
  */
 export async function sendCircuitBreakerAlert(event: CircuitBreakerEvent): Promise<void> {
+  // Import throttling dynamically to avoid circular dependencies
+  const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
+
+  const alertType = event.state === CircuitState.OPEN ? "circuit-open" : "circuit-closed"
+
+  // Check throttle
+  if (!shouldSendAlert(alertType)) {
+    logger.info("Circuit breaker alert throttled", {
+      component: "slack",
+      alertType,
+      state: event.state,
+    })
+    return
+  }
+
+  // Send alert
   const message = formatCircuitBreakerMessage(event)
   await sendSlackMessage(message)
 }
@@ -263,6 +279,19 @@ export async function sendCircuitBreakerAlert(event: CircuitBreakerEvent): Promi
  * @param threshold - Threshold that was exceeded
  */
 export async function sendHighErrorRateAlert(errorRate: number, threshold: number): Promise<void> {
+  // Import throttling dynamically to avoid circular dependencies
+  const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
+
+  // Check throttle
+  if (!shouldSendAlert("high-error-rate")) {
+    logger.info("High error rate alert throttled", {
+      component: "slack",
+      errorRate,
+      threshold,
+    })
+    return
+  }
+
   const baseUrl =
     process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`

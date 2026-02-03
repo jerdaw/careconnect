@@ -278,6 +278,52 @@ await withCircuitBreaker(async () => supabase.from("services").insert(newService
 - High risk: Fails closed (secure-by-default)
 - Low risk: Fails open with safe defaults for read-only operations
 
+**Production Observability & Alerting** (v18.0+):
+
+Proactive monitoring and alerting system for production incidents.
+
+**Core Components:**
+
+- `lib/integrations/slack.ts` - Slack webhook integration for alerts
+- `lib/observability/alert-throttle.ts` - Alert rate limiting (10min throttle window)
+- `lib/observability/axiom.ts` - Persistent metrics storage (Axiom integration)
+- `lib/resilience/telemetry.ts` - Circuit breaker event telemetry with Slack alerts
+
+**Alert Types:**
+
+1. **Circuit Breaker OPEN** (Critical 🚨) - Database protection activated, max 1 per 10min
+2. **Circuit Breaker CLOSED** (Info ✅) - System recovered, max 1 per hour
+3. **High Error Rate** (Warning ⚠️) - Error rate >10%, max 1 per 5min
+
+**Required Environment Variables:**
+
+```bash
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T.../B.../XXX
+AXIOM_TOKEN=xait-your-api-token
+AXIOM_ORG_ID=your-organization-id
+AXIOM_DATASET=kingston-care-production
+```
+
+**Operational Runbooks:**
+
+- `docs/runbooks/circuit-breaker-open.md` - Critical database failures
+- `docs/runbooks/high-error-rate.md` - Elevated error rates
+- `docs/runbooks/slow-queries.md` - Performance degradation
+- `docs/runbooks/README.md` - Runbook index
+
+**Observability Dashboard:**
+
+- Location: `/admin/observability` (admin-only)
+- Features: Real-time metrics, circuit breaker state, p50/p95/p99 latencies
+- Data Source: Axiom (persistent) + in-memory (dev mode)
+
+**Metrics Endpoints:**
+
+- `GET /api/v1/health` - Health check with circuit breaker status
+- `GET /api/v1/metrics` - Performance metrics (dev/staging only, requires auth)
+
+See `docs/observability/alerting-setup.md` for setup guide.
+
 ### Authentication & Authorization
 
 **Auth Provider**: Supabase Auth (optional, works without DB)

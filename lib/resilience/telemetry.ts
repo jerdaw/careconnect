@@ -135,17 +135,13 @@ export function createCircuitBreakerTelemetry(circuitName: string) {
 
         // Send Slack alert (production only, non-blocking)
         void import("@/lib/integrations/slack").then(({ sendCircuitBreakerAlert }) => {
-          void import("@/lib/observability/alert-throttle").then(({ shouldSendAlert }) => {
-            if (shouldSendAlert("circuit-open")) {
-              void sendCircuitBreakerAlert({
-                state: CircuitState.OPEN,
-                previousState: CircuitState.CLOSED,
-                failureCount,
-                successCount: 0,
-                failureRate,
-                timestamp,
-              })
-            }
+          void sendCircuitBreakerAlert({
+            state: CircuitState.OPEN,
+            previousState: CircuitState.CLOSED,
+            failureCount,
+            successCount: 0,
+            failureRate,
+            timestamp,
           })
         })
       }
@@ -167,17 +163,13 @@ export function createCircuitBreakerTelemetry(circuitName: string) {
       // Send Slack recovery alert (production only, non-blocking, optional)
       if (process.env.NODE_ENV === "production") {
         void import("@/lib/integrations/slack").then(({ sendCircuitBreakerAlert }) => {
-          void import("@/lib/observability/alert-throttle").then(({ shouldSendAlert }) => {
-            if (shouldSendAlert("circuit-closed")) {
-              void sendCircuitBreakerAlert({
-                state: CircuitState.CLOSED,
-                previousState: CircuitState.OPEN,
-                failureCount: 0,
-                successCount: 1,
-                failureRate: 0,
-                timestamp,
-              })
-            }
+          void sendCircuitBreakerAlert({
+            state: CircuitState.CLOSED,
+            previousState: CircuitState.OPEN,
+            failureCount: 0,
+            successCount: 1,
+            failureRate: 0,
+            timestamp,
           })
         })
       }

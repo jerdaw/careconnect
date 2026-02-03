@@ -1,7 +1,7 @@
 # v18.0: Executive Summary
 
 **Date:** 2026-01-30
-**Prepared By:** Claude (Development Agent)
+
 **Review Status:** PENDING USER APPROVAL
 
 ---
@@ -321,7 +321,6 @@ Before we can start Phase 2, you'll need to:
 
 ---
 
-**Prepared by:** Claude Development Agent
 **Date:** 2026-01-30
 **Status:** Awaiting User Decision
 

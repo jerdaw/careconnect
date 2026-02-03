@@ -31,18 +31,16 @@ describe("Alerting Integration", () => {
 
       // Simulate what happens when circuit opens via telemetry
       const { sendCircuitBreakerAlert } = await import("@/lib/integrations/slack")
-      const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
 
-      if (shouldSendAlert("circuit-open")) {
-        await sendCircuitBreakerAlert({
-          state: CircuitState.OPEN,
-          previousState: CircuitState.CLOSED,
-          failureCount: 3,
-          successCount: 0,
-          failureRate: 1.0,
-          timestamp: Date.now(),
-        })
-      }
+      // Send alert (throttling is handled internally)
+      await sendCircuitBreakerAlert({
+        state: CircuitState.OPEN,
+        previousState: CircuitState.CLOSED,
+        failureCount: 3,
+        successCount: 0,
+        failureRate: 1.0,
+        timestamp: Date.now(),
+      })
 
       // Wait for async Slack call to complete
       await new Promise((resolve) => setTimeout(resolve, 100))

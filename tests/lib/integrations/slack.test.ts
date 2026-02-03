@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { sendSlackMessage, sendCircuitBreakerAlert, sendHighErrorRateAlert } from "@/lib/integrations/slack"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
+import { resetAllThrottles } from "@/lib/observability/alert-throttle"
 
 // Mock fetch globally
 global.fetch = vi.fn()
@@ -8,6 +9,8 @@ global.fetch = vi.fn()
 describe("Slack Integration", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    // Reset all alert throttles between tests
+    resetAllThrottles()
     // Set production environment for tests
     vi.stubEnv("NODE_ENV", "production")
     vi.stubEnv("SLACK_WEBHOOK_URL", "https://hooks.slack.com/services/TEST/WEBHOOK/URL")
