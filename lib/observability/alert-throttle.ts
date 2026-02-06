@@ -18,7 +18,13 @@ import { logger } from "@/lib/logger"
 /**
  * Alert types that can be throttled
  */
-export type AlertType = "circuit-open" | "circuit-closed" | "high-error-rate"
+export type AlertType =
+  | "circuit-open"
+  | "circuit-closed"
+  | "high-error-rate"
+  | "slo-uptime-violation"
+  | "slo-error-budget-exhausted"
+  | "slo-latency-violation"
 
 /**
  * Throttle state for a specific alert type
@@ -40,6 +46,9 @@ const THROTTLE_WINDOWS: Record<AlertType, number> = {
   "circuit-open": 10 * 60 * 1000, // 10 minutes
   "circuit-closed": 60 * 60 * 1000, // 1 hour
   "high-error-rate": 5 * 60 * 1000, // 5 minutes
+  "slo-uptime-violation": 30 * 60 * 1000, // 30 minutes
+  "slo-error-budget-exhausted": 60 * 60 * 1000, // 1 hour
+  "slo-latency-violation": 15 * 60 * 1000, // 15 minutes
 }
 
 /**
@@ -148,6 +157,9 @@ export function getThrottleStatus(): Record<AlertType, AlertThrottle | null> {
     "circuit-open": alertThrottles.get("circuit-open") || null,
     "circuit-closed": alertThrottles.get("circuit-closed") || null,
     "high-error-rate": alertThrottles.get("high-error-rate") || null,
+    "slo-uptime-violation": alertThrottles.get("slo-uptime-violation") || null,
+    "slo-error-budget-exhausted": alertThrottles.get("slo-error-budget-exhausted") || null,
+    "slo-latency-violation": alertThrottles.get("slo-latency-violation") || null,
   }
 }
 

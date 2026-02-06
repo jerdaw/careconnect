@@ -23,6 +23,9 @@ import { PerformanceCharts } from "@/components/observability/PerformanceCharts"
 import { HealthSummary } from "@/components/observability/HealthSummary"
 import { RefreshButton } from "@/components/observability/RefreshButton"
 import { AutoRefresh } from "@/components/observability/AutoRefresh"
+import { SLOComplianceCard } from "@/components/observability/SLOComplianceCard"
+import { SLODisclaimerBanner } from "@/components/observability/SLODisclaimerBanner"
+import { getSLOComplianceSummary } from "@/lib/observability/slo-tracker"
 
 export const metadata: Metadata = {
   title: "Observability Dashboard | Admin",
@@ -52,6 +55,7 @@ export default async function ObservabilityPage() {
   // Fetch current system state
   const circuitBreakerStats = getSupabaseBreakerStats()
   const performanceMetrics = getMetrics()
+  const sloCompliance = getSLOComplianceSummary()
 
   return (
     <div className="container mx-auto space-y-6 p-6">
@@ -62,6 +66,12 @@ export default async function ObservabilityPage() {
         </div>
         <RefreshButton />
       </div>
+
+      {/* SLO Provisional Disclaimer */}
+      <SLODisclaimerBanner />
+
+      {/* SLO Compliance */}
+      <SLOComplianceCard compliance={sloCompliance} />
 
       {/* System Health Summary */}
       <HealthSummary circuitBreaker={circuitBreakerStats} metrics={performanceMetrics} />
