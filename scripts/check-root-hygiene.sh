@@ -40,7 +40,10 @@ ALLOWED_FILES=(
   "commitlint.config.js"
   "git-conventional-commits.yaml"
   "components.json"
-  
+
+  # Deployment
+  "vercel.json"
+
   # Hidden/dotfiles (listed separately)
   ".gitignore"
   ".prettierignore"
@@ -67,6 +70,7 @@ ALLOWED_DIRS=(
   "android"
   "app"
   "assets"
+  "bin"
   "components"
   "coverage"
   "data"
