@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { POST } from "@/app/api/admin/reindex/route"
-import { createMockRequest, parseResponse } from "../../utils/api-test-utils"
-import { exec } from "child_process"
+import { parseResponse } from "../../utils/api-test-utils"
 import { assertAdminRole } from "@/lib/auth/authorization"
 
 // Mock next/headers

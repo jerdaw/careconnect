@@ -35,7 +35,7 @@ describe("Circuit Breaker Integration", () => {
   beforeEach(() => {
     // Force recreation of circuit breaker with test configuration
     // We need to do this before resetSupabaseBreaker() to ensure the breaker exists
-    const breaker = getSupabaseBreakerStats() // This will create the breaker if it doesn't exist
+    getSupabaseBreakerStats() // This will create the breaker if it doesn't exist
     resetSupabaseBreaker()
     dbSimulator.restore()
     // Use fake timers with Date mocking enabled

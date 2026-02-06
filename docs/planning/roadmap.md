@@ -8,10 +8,10 @@
 ## 📊 Current State
 
 - **Services**: ~196 curated social services (run `npm run audit:data` for exact count)
-- **Test Coverage**: 643 passing tests across unit, integration, E2E, load, and accessibility
+- **Test Coverage**: 713 passing tests across unit, integration, E2E, load, and accessibility (+70 since v18.0)
 - **Load Testing**: k6 infrastructure in place, baseline metrics pending documentation
 - **Resilience**: 100% circuit breaker protection on all API routes and database operations
-- **Security**: Multi-layered authorization with tiered fail-safe strategy
+- **Security**: 0 vulnerabilities, all dependencies patched (tar 7.5.7)
 - **Accessibility**: WCAG 2.1 AA compliant
 - **Languages**: 7 locales (EN, FR, ZH-Hans, AR, PT, ES, PA)
 - **Offline-Ready**: PWA with IndexedDB fallback and background sync
@@ -188,7 +188,21 @@ npm run check-staleness      # Find services needing re-verification
 
 ## ✅ Completed Work
 
-Production-readiness complete (v17.0–v17.6). Platform is resilient, secure, accessible, and performant. See [archive/](archive/) for full implementation details.
+Production-readiness complete (v17.0–v18.0). Platform is resilient, secure, accessible, and performant. See [archive/](archive/) for full implementation details.
+
+### Recent Releases
+
+- **v18.1: Technical Maintenance & Quality Improvements** (2026-02-06)
+  - **Security**: Patched 3 high severity tar vulnerabilities (7.5.4 → 7.5.7)
+  - **Dependencies**: Updated 187 packages safely via npm update
+  - **Test Coverage**: +33 new tests (680 → 713 total, +4.9%)
+    - New: rate-limit.test.ts (11 tests, 100% coverage)
+    - New: feedback.test.ts (7 tests, 100% coverage)
+    - Enhanced: engine.test.ts (+8 tests, lib/ai 72% → 74% coverage)
+    - Enhanced: useVoiceInput.test.ts (+7 tests, 41% → 100% coverage)
+  - **Documentation**: Updated README.md and AGENTS.md with v18.0 info, fixed 12 outdated references
+  - **Code Quality**: Fixed 18 ESLint warnings, maintained 0 TypeScript errors
+  - **Impact**: Improved security posture, increased test reliability, enhanced maintainability
 
 ### Recent Releases
 

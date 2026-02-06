@@ -1,7 +1,6 @@
 import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { PATCH } from "@/app/api/v1/feedback/[id]/route"
-import { createClient } from "@/utils/supabase/server"
 import { createServerClient } from "@supabase/ssr"
 
 const mockGetUser = vi.fn()

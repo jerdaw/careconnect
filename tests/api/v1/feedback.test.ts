@@ -7,11 +7,6 @@ import { createClient } from "@/utils/supabase/server"
 // which is what createClient uses.
 
 describe("Feedback V1 API Route", () => {
-  // Use the mock from next-mocks
-  const getMockSupabase = async () => {
-    return await createClient()
-  }
-
   beforeEach(() => {
     vi.clearAllMocks()
   })

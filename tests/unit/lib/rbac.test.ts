@@ -9,7 +9,6 @@ import {
   getRoleLabelKey,
   getRoleDescriptionKey,
   isValidRole,
-  type OrganizationRole,
 } from "@/lib/rbac"
 
 describe("getRolePermissions", () => {

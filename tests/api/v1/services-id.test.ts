@@ -1,7 +1,7 @@
 import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { GET, PUT, PATCH, DELETE } from "@/app/api/v1/services/[id]/route"
-import { createMockRequest, parseResponse } from "@/tests/utils/api-test-utils"
+import { GET, PUT } from "@/app/api/v1/services/[id]/route"
+import { createMockRequest } from "@/tests/utils/api-test-utils"
 import { createServerClient } from "@supabase/ssr"
 import { supabase } from "@/lib/supabase"
 

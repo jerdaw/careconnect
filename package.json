@@ -58,7 +58,7 @@
   "overrides": {
     "react": "$react",
     "react-dom": "$react-dom",
-    "tar": "7.5.4"
+    "tar": "^7.5.7"
   },
   "dependencies": {
     "@axiomhq/js": "1.4.0",

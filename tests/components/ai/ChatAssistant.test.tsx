@@ -1,10 +1,9 @@
-import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import ChatAssistant from "@/components/ai/ChatAssistant"
 import { useAI } from "@/hooks/useAI"
 import { useNetworkStatus } from "@/hooks/useNetworkStatus"
 import { useTranslations } from "next-intl"
-import { aiEngine } from "@/lib/ai/engine"
 
 // Mock hooks
 vi.mock("@/hooks/useAI", () => ({

@@ -6,11 +6,11 @@
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
 ![Coverage](https://img.shields.io/badge/Coverage-65%25-yellow.svg)
 
-## The Kingston 150
+## Manual Curation, Not Scraping
 
 Large-scale scraping of municipal data produces noise, not value. Kingston Care Connect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **169 highest-impact services** available to Kingston residents. Every entry is:
+We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
 
 - **Verified** — No broken links or disconnected phone numbers.
 - **Accessible** — Clear eligibility requirements.
@@ -20,9 +20,18 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ## Current Version
 
-**v17.6** - Authorization Resilience & Tiered Security (2026-01-25)
+**v18.0** - Production Observability Complete (2026-02-06)
 
 ## Current Features
+
+### Production Observability (v18.0)
+
+- **Proactive Monitoring**: Axiom integration for persistent metrics storage with <5ms overhead
+- **Automated Alerting**: Slack notifications for critical incidents (circuit breaker events, high error rates, SLO violations)
+- **SLO Tracking**: Service Level Objectives with 99.5% uptime target, p95 latency <800ms (PROVISIONAL)
+- **Observability Dashboard**: Real-time system health monitoring at `/admin/observability`
+- **Operational Runbooks**: Incident response procedures for common failure scenarios (circuit breaker open, high error rates, slow queries, SLO violations)
+- **Circuit Breaker Telemetry**: 100% coverage on all API routes with automatic failover and alert integration
 
 ### Authorization Resilience (v17.6)
 
@@ -101,7 +110,7 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ### Additional Capabilities
 
-- **169 Verified Services** — Hand-curated Kingston services across 12 categories.
+- **196 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -138,7 +147,7 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 22+
 - npm 10+
 
 ### Installation
@@ -263,8 +272,8 @@ This project is community-led. Safety and accuracy take precedence over volume.
 - [Roadmap](docs/planning/roadmap.md)
 - [Documentation Guidelines](docs/documentation-guidelines.md)
 - [Testing Standards](docs/development/testing-guidelines.md)
-- [Multi-Lingual Development Guide](docs/bilingual-dev-guide.md)
-- [Acknowledgments & Governance](docs/acknowledgments.md)
+- [Multi-Lingual Development Guide](docs/development/bilingual-guide.md)
+- [Acknowledgments & Governance](docs/community/acknowledgments.md)
 
 ### Adding a Service
 

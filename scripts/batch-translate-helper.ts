@@ -129,7 +129,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true })
         fs.writeFileSync(outputPath, prompt)
         console.error(`\n✅ Prompt saved to: ${outputPath}`)
-      } catch (_e) {
+      } catch {
         console.error(`\n⚠️ Could not save to file (path might not exist), but output to stdout.`)
       }
       break
@@ -160,7 +160,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true })
         fs.writeFileSync(outputPath, JSON.stringify(outputBatch, null, 2))
         console.log(`✅ Output saved to: ${outputPath}`)
-      } catch (_e) {
+      } catch {
         console.error(`\n⚠️ Could not save to file: ${outputPath}`)
         console.log(JSON.stringify(outputBatch, null, 2))
       }

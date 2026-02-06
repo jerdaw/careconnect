@@ -87,7 +87,6 @@ describe("Alerting Integration", () => {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 100))
-      const firstCallCount = vi.mocked(fetch).mock.calls.length
 
       // Reset circuit and trigger again immediately
       breaker.reset()

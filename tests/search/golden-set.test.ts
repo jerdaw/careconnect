@@ -7,7 +7,7 @@
  * Run: npm test -- tests/search/golden-set.test.ts
  */
 
-import { describe, it, expect, beforeAll } from "vitest"
+import { describe, it, expect } from "vitest"
 import { searchServices } from "@/lib/search"
 import { detectCrisis } from "@/lib/search/crisis"
 import testQueries from "../fixtures/search-test-queries.json"

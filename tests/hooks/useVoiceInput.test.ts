@@ -68,4 +68,195 @@ describe("useVoiceInput", () => {
     // Note: useVoiceInput check for "MediaRecorder" in window
     expect(result.current.isSupported).toBe(false)
   })
+
+  it("starts listening and transitions to listening state", async () => {
+    const onResult = vi.fn()
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+
+    // Wait for async state update
+    await vi.waitFor(() => {
+      expect(result.current.state).toBe("listening")
+      expect(result.current.error).toBeNull()
+    })
+  })
+
+  it("handles microphone permission denial", async () => {
+    const onResult = vi.fn()
+
+    // Mock getUserMedia to reject
+    Object.defineProperty(global.navigator, "mediaDevices", {
+      value: {
+        getUserMedia: vi.fn().mockRejectedValue(new Error("Permission denied")),
+      },
+      writable: true,
+      configurable: true,
+    })
+
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+
+    // Wait for async state update
+    await vi.waitFor(() => {
+      expect(result.current.state).toBe("error")
+      expect(result.current.error).toBe("Microphone access denied")
+    })
+  })
+
+  it("stops listening and processes recording", async () => {
+    const onResult = vi.fn()
+    const { transcribeAudio } = await import("@/lib/ai/transcriber")
+    vi.mocked(transcribeAudio).mockResolvedValue("test transcription")
+
+    let mockMediaRecorder: any
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation((_stream) => {
+      mockMediaRecorder = {
+        start: vi.fn(),
+        stop: vi.fn(() => {
+          // Simulate ondataavailable and onstop callbacks
+          if (mockMediaRecorder.ondataavailable) {
+            mockMediaRecorder.ondataavailable({ data: new Blob(["test"], { type: "audio/webm" }) })
+          }
+          if (mockMediaRecorder.onstop) {
+            mockMediaRecorder.onstop()
+          }
+        }),
+        ondataavailable: null,
+        onstop: null,
+        state: "recording",
+      }
+      return mockMediaRecorder
+    })
+
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+    await result.current.stopListening()
+
+    // Wait for async processing
+    await vi.waitFor(() => {
+      expect(result.current.state).toBe("idle")
+    })
+
+    expect(onResult).toHaveBeenCalledWith("test transcription")
+  })
+
+  it("handles empty recording", async () => {
+    const onResult = vi.fn()
+
+    let mockMediaRecorder: any
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => {
+      mockMediaRecorder = {
+        start: vi.fn(),
+        stop: vi.fn(() => {
+          // Simulate onstop with no data
+          if (mockMediaRecorder.onstop) {
+            mockMediaRecorder.onstop()
+          }
+        }),
+        ondataavailable: null,
+        onstop: null,
+        state: "recording",
+      }
+      return mockMediaRecorder
+    })
+
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+    await result.current.stopListening()
+
+    expect(result.current.state).toBe("idle")
+    expect(onResult).not.toHaveBeenCalled()
+  })
+
+  it("handles transcription errors", async () => {
+    const onResult = vi.fn()
+    const { transcribeAudio } = await import("@/lib/ai/transcriber")
+    vi.mocked(transcribeAudio).mockRejectedValue(new Error("Transcription failed"))
+
+    let mockMediaRecorder: any
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => {
+      mockMediaRecorder = {
+        start: vi.fn(),
+        stop: vi.fn(() => {
+          if (mockMediaRecorder.ondataavailable) {
+            mockMediaRecorder.ondataavailable({ data: new Blob(["test"], { type: "audio/webm" }) })
+          }
+          if (mockMediaRecorder.onstop) {
+            mockMediaRecorder.onstop()
+          }
+        }),
+        ondataavailable: null,
+        onstop: null,
+        state: "recording",
+      }
+      return mockMediaRecorder
+    })
+
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+    await result.current.stopListening()
+
+    await vi.waitFor(() => {
+      expect(result.current.state).toBe("idle")
+      expect(result.current.error).toBe("Failed to transcribe")
+    })
+  })
+
+  it("ignores empty or whitespace-only transcriptions", async () => {
+    const onResult = vi.fn()
+    const { transcribeAudio } = await import("@/lib/ai/transcriber")
+    vi.mocked(transcribeAudio).mockResolvedValue("   ")
+
+    let mockMediaRecorder: any
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => {
+      mockMediaRecorder = {
+        start: vi.fn(),
+        stop: vi.fn(() => {
+          if (mockMediaRecorder.ondataavailable) {
+            mockMediaRecorder.ondataavailable({ data: new Blob(["test"], { type: "audio/webm" }) })
+          }
+          if (mockMediaRecorder.onstop) {
+            mockMediaRecorder.onstop()
+          }
+        }),
+        ondataavailable: null,
+        onstop: null,
+        state: "recording",
+      }
+      return mockMediaRecorder
+    })
+
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    await result.current.startListening()
+    await result.current.stopListening()
+
+    await vi.waitFor(() => {
+      expect(result.current.state).toBe("idle")
+    })
+
+    expect(onResult).not.toHaveBeenCalled()
+  })
+
+  it("handles stopListening when not recording", async () => {
+    const onResult = vi.fn()
+    const { useVoiceInput } = await import("@/hooks/useVoiceInput")
+    const { result } = renderHook(() => useVoiceInput(onResult))
+
+    // Stop without starting
+    result.current.stopListening()
+
+    expect(result.current.state).toBe("idle")
+  })
 })

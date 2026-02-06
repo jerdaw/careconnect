@@ -133,4 +133,83 @@ describe("AIEngine", () => {
       })
     )
   })
+
+  it("handles chat error gracefully", async () => {
+    if (!aiEngine.isReady) {
+      Object.defineProperty(global.navigator, "gpu", { value: {} })
+      await aiEngine.init()
+    }
+
+    mockEngineInstance.chat.completions.create.mockRejectedValue(new Error("Chat failed"))
+
+    await expect(aiEngine.chat([{ role: "user", content: "Hi" }])).rejects.toThrow("Chat failed")
+  })
+
+  it("throws error when chatting before initialization", async () => {
+    await aiEngine.unload()
+
+    await expect(aiEngine.chat([{ role: "user", content: "Hi" }])).rejects.toThrow("AI Engine not initialized")
+  })
+
+  it("resets chat successfully", async () => {
+    if (!aiEngine.isReady) {
+      Object.defineProperty(global.navigator, "gpu", { value: {} })
+      await aiEngine.init()
+    }
+
+    await aiEngine.reset()
+
+    expect(mockEngineInstance.resetChat).toHaveBeenCalled()
+  })
+
+  it("handles reset when not initialized", async () => {
+    await aiEngine.unload()
+
+    // Should not throw
+    await expect(aiEngine.reset()).resolves.not.toThrow()
+  })
+
+  it("unloads successfully", async () => {
+    if (!aiEngine.isReady) {
+      Object.defineProperty(global.navigator, "gpu", { value: {} })
+      await aiEngine.init()
+    }
+
+    await aiEngine.unload()
+
+    expect(mockEngineInstance.unload).toHaveBeenCalled()
+    expect(aiEngine.isReady).toBe(false)
+  })
+
+  it("supports subscribe/unsubscribe pattern", () => {
+    const subscriber = vi.fn()
+
+    const unsubscribe = aiEngine.subscribe(subscriber)
+
+    // Should be called immediately with current state
+    expect(subscriber).toHaveBeenCalledWith(expect.objectContaining({ isReady: expect.any(Boolean) }))
+
+    unsubscribe()
+
+    // After unsubscribe, should not be called again
+    subscriber.mockClear()
+    aiEngine.subscribe(vi.fn()) // This triggers updates to all listeners
+
+    expect(subscriber).not.toHaveBeenCalled()
+  })
+
+  it("returns null when refining query before initialization", async () => {
+    await aiEngine.unload()
+
+    const result = await aiEngine.refineSearchQuery("test query")
+
+    expect(result).toBeNull()
+  })
+
+  it("uses singleton pattern", () => {
+    const instance1 = (aiEngine as any).constructor.getInstance()
+    const instance2 = (aiEngine as any).constructor.getInstance()
+
+    expect(instance1).toBe(instance2)
+  })
 })

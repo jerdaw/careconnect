@@ -9,7 +9,7 @@ if (!url) {
   try {
     const hostname = new URL(url).hostname
     console.log("Supabase Host:", hostname)
-  } catch (e) {
+  } catch {
     console.log("Invalid URL:", url)
   }
 }

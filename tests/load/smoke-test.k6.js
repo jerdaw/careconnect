@@ -55,7 +55,7 @@ export default function smokeTest() {
       try {
         const body = JSON.parse(r.body)
         return body.status && body.checks
-      } catch (_e) {
+      } catch {
         return false
       }
     },

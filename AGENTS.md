@@ -15,14 +15,14 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 **Mission**: "The Semantic Bridge" for Kingston Social Services – a verified, governance-first search engine for food, crisis, and housing support in Kingston, ON.
 
-**Philosophy**: Manual Curation over Automatic Extraction. ~150 High-Impact Services. Verified, Accessible, Identity-Aware.
+**Philosophy**: Manual Curation over Automatic Extraction. ~196 High-Impact Services. Verified, Accessible, Identity-Aware.
 
 **Tech Stack**:
 | Layer | Technology | Version |
 |-------|------------|---------|
 | Framework | Next.js (App Router) | 15.x |
 | Language | TypeScript (strict mode) | 5.x |
-| Runtime | Node.js | 20+ |
+| Runtime | Node.js | 22+ |
 | Styling | Tailwind CSS + Radix UI | v4 |
 | Database | Supabase (PostgreSQL + pgvector) | — |
 | Embeddings | @xenova/transformers (all-MiniLM-L6-v2) | — |
@@ -33,7 +33,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 - `README.md` → Getting started
 - `docs/architecture.md` → System design and data flow
 - `docs/llms.txt` → Consolidated context for AI agents
-- `docs/api-reference.md` → OpenAPI documentation
+- `docs/api/openapi.yaml` → OpenAPI 3.0 specification
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
@@ -569,7 +569,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 - **CSP/Headers**: Configured in `next.config.ts`
 - **Auth**: Supabase with strong password policy (8+ chars)
 - **CI**: `npm audit` runs on every push
-- **Governance**: See `docs/governance.md` for decision protocols
+- **Governance**: See `docs/governance/standards.md` for decision protocols
 
 ---
 
@@ -602,7 +602,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 
 ## Development Notes
 
-- **Node Version**: 20+ required
+- **Node Version**: 22+ required
 - **Turbo Mode**: Dev server uses `--turbo` flag for fast refresh
 - **Commit Hooks**: Husky runs lint + related tests on pre-commit
 - **Commit Convention**: Conventional commits enforced (see `commitlint.config.js`)
