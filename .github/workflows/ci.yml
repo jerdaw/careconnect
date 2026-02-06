@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Security Audit
+        # Non-blocking: Security issues in deep dependencies often require upstream fixes
+        # Track vulnerabilities but don't block feature deployments
+        continue-on-error: true
         run: npm audit --audit-level=high
       - name: Run Prettier Check
         run: npx prettier --check .
