@@ -294,6 +294,57 @@ Proactive monitoring and alerting system for production incidents.
 1. **Circuit Breaker OPEN** (Critical 🚨) - Database protection activated, max 1 per 10min
 2. **Circuit Breaker CLOSED** (Info ✅) - System recovered, max 1 per hour
 3. **High Error Rate** (Warning ⚠️) - Error rate >10%, max 1 per 5min
+4. **SLO Uptime Violation** (Critical 🚨) - Uptime below 99.5% target, max 1 per 30min
+5. **SLO Error Budget Exhausted** (Critical 🚨) - Error budget consumed, max 1 per hour
+6. **SLO Latency Violation** (Critical 🚨) - p95 latency >800ms, max 1 per 15min
+
+**SLO Monitoring (v18.0 Phase 3):**
+
+Service Level Objectives (SLOs) track service reliability targets:
+
+- **Configuration:** `lib/config/slo-targets.ts` (PROVISIONAL targets)
+- **Tracker:** `lib/observability/slo-tracker.ts` (in-memory 30-day window)
+- **Dashboard:** `/admin/observability` (SLO Compliance Card)
+- **Alerts:** Integrated with Slack alerting via `lib/integrations/slack.ts`
+
+**SLO Targets (PROVISIONAL - Review Required):**
+
+```typescript
+{
+  uptime: 0.995,           // 99.5% (3h 36m downtime/month)
+  latencyP95Ms: 800,       // p95 < 800ms
+  errorBudget: 0.005,      // 0.5%
+  windowDays: 30           // 30-day rolling window
+}
+```
+
+**Key Metrics:**
+
+- **Uptime:** Percentage of successful health checks (99.5% target)
+- **Error Budget:** Remaining downtime allowance (0.5% target)
+- **Latency:** p95 response time (<800ms target)
+
+**Compliance Checks:**
+
+- Uptime tracked via `/api/v1/health` endpoint (records success/failure)
+- Error budget calculated from uptime vs. target
+- Latency measured via performance metrics
+- Violations trigger Slack alerts (throttled)
+
+**Important Notes:**
+
+- Targets are **PROVISIONAL** - adjust based on production data
+- In-memory tracking resets on server restart (rebuilds quickly)
+- 30-day sliding window (not calendar month)
+- Alert throttling prevents spam during incidents
+
+**Related Files:**
+
+- `lib/config/slo-targets.ts` - Target configuration (update to confirm)
+- `lib/observability/slo-tracker.ts` - Tracking logic
+- `components/observability/SLOComplianceCard.tsx` - Dashboard widget
+- `docs/runbooks/slo-violation.md` - Incident response procedures
+- `docs/planning/v18-0-phase-3-slo-decision-guide.md` - Decision guide
 
 **Required Environment Variables:**
 
@@ -309,13 +360,15 @@ AXIOM_DATASET=kingston-care-production
 - `docs/runbooks/circuit-breaker-open.md` - Critical database failures
 - `docs/runbooks/high-error-rate.md` - Elevated error rates
 - `docs/runbooks/slow-queries.md` - Performance degradation
+- `docs/runbooks/slo-violation.md` - SLO target violations (uptime, latency, error budget)
 - `docs/runbooks/README.md` - Runbook index
 
 **Observability Dashboard:**
 
 - Location: `/admin/observability` (admin-only)
-- Features: Real-time metrics, circuit breaker state, p50/p95/p99 latencies
+- Features: SLO compliance, real-time metrics, circuit breaker state, p50/p95/p99 latencies
 - Data Source: Axiom (persistent) + in-memory (dev mode)
+- SLO Widgets: Uptime percentage, error budget remaining, latency p95 compliance
 
 **Metrics Endpoints:**
 

@@ -16,6 +16,9 @@ import { supabase } from "@/lib/supabase"
 import { getMetrics } from "@/lib/performance/metrics"
 import { env } from "@/lib/env"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
+import { recordUptimeEvent, getSLOComplianceSummary } from "@/lib/observability/slo-tracker"
+import { sendSLOViolationAlert } from "@/lib/integrations/slack"
+import { logger } from "@/lib/logger"
 
 /**
  * Health check response structure
@@ -39,6 +42,7 @@ interface HealthCheckResponse {
       tracking: boolean
       metrics: ReturnType<typeof getMetrics>
     }
+    slo?: ReturnType<typeof getSLOComplianceSummary>
   }
 }
 
@@ -79,6 +83,67 @@ async function checkDatabase(): Promise<HealthCheckResponse["checks"]["database"
       status: "down",
       error: error instanceof Error ? error.message : String(error),
     }
+  }
+}
+
+/**
+ * Check for SLO violations and send alerts
+ */
+async function checkAndAlertSLOViolations(compliance: ReturnType<typeof getSLOComplianceSummary>): Promise<void> {
+  try {
+    const timestamp = Date.now()
+
+    // Check uptime SLO violation
+    if (!compliance.uptime.compliant) {
+      void sendSLOViolationAlert({
+        type: "uptime",
+        severity: "critical",
+        actual: compliance.uptime.actual,
+        target: compliance.uptime.target,
+        timestamp,
+        message: `Uptime ${(compliance.uptime.actual * 100).toFixed(2)}% below target ${(compliance.uptime.target * 100).toFixed(2)}%`,
+      })
+    }
+
+    // Check error budget exhaustion
+    if (compliance.errorBudget.exhausted) {
+      void sendSLOViolationAlert({
+        type: "error-budget",
+        severity: "critical",
+        actual: compliance.errorBudget.remaining,
+        target: 0,
+        timestamp,
+        message: "Error budget exhausted - reduce incident rate",
+      })
+    } else if (compliance.errorBudget.consumed >= compliance.errorBudget.warningThreshold) {
+      // Warning when 50% consumed
+      void sendSLOViolationAlert({
+        type: "error-budget",
+        severity: "warning",
+        actual: compliance.errorBudget.remaining,
+        target: compliance.errorBudget.warningThreshold,
+        timestamp,
+        message: `Error budget ${(compliance.errorBudget.consumed * 100).toFixed(1)}% consumed`,
+      })
+    }
+
+    // Check latency SLO violation
+    if (compliance.latency.hasData && !compliance.latency.compliant && compliance.latency.actualP95 !== null) {
+      void sendSLOViolationAlert({
+        type: "latency",
+        severity: "critical",
+        actual: compliance.latency.actualP95,
+        target: compliance.latency.target,
+        timestamp,
+        message: `p95 latency ${compliance.latency.actualP95}ms exceeds target ${compliance.latency.target}ms`,
+      })
+    }
+  } catch (error) {
+    // Don't throw - failed alerts shouldn't break health checks
+    logger.error("Failed to check/send SLO violation alerts", {
+      component: "health-check",
+      error: error instanceof Error ? error.message : String(error),
+    })
   }
 }
 
@@ -147,6 +212,16 @@ export async function GET(request: NextRequest) {
   // Get circuit breaker status
   const circuitBreakerStats = getSupabaseBreakerStats()
 
+  // Record uptime event for SLO tracking
+  const isHealthy = databaseCheck.status === "up" && circuitBreakerStats.state !== "OPEN"
+  recordUptimeEvent(isHealthy)
+
+  // Get SLO compliance summary
+  const sloCompliance = getSLOComplianceSummary()
+
+  // Check for SLO violations and send alerts (non-blocking)
+  void checkAndAlertSLOViolations(sloCompliance)
+
   // Determine overall health status
   let overallStatus: HealthCheckResponse["status"] = "healthy"
 
@@ -201,6 +276,7 @@ export async function GET(request: NextRequest) {
           metrics: performanceMetrics,
         },
       }),
+      slo: sloCompliance,
     },
   }
 

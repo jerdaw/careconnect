@@ -59,6 +59,18 @@ export interface CircuitBreakerEvent {
 }
 
 /**
+ * SLO violation event data for Slack alerts
+ */
+export interface SLOViolationEvent {
+  type: "uptime" | "error-budget" | "latency"
+  severity: "critical" | "warning"
+  actual: number
+  target: number
+  timestamp: number
+  message: string
+}
+
+/**
  * Get Slack webhook URL from environment
  */
 function getSlackWebhookUrl(): string | null {
@@ -344,5 +356,137 @@ export async function sendHighErrorRateAlert(errorRate: number, threshold: numbe
     ],
   }
 
+  await sendSlackMessage(message)
+}
+
+/**
+ * Format SLO violation event as Slack message
+ */
+function formatSLOViolationMessage(event: SLOViolationEvent): SlackMessage {
+  const { type, severity, actual, target, timestamp, message } = event
+
+  // Determine message color and emoji
+  const emoji = severity === "critical" ? "🚨" : "⚠️"
+  const typeLabel = {
+    uptime: "Uptime SLO",
+    "error-budget": "Error Budget",
+    latency: "Latency SLO",
+  }[type]
+
+  // Build fallback text
+  const fallbackText = `${emoji} ${typeLabel} ${severity === "critical" ? "Violation" : "Warning"} - ${message}`
+
+  // Get dashboard and runbook URLs
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"
+  const dashboardUrl = `${baseUrl}/admin/observability`
+  const runbookUrl = "https://github.com/yourusername/kingston-care-connect/blob/main/docs/runbooks/slo-violation.md"
+
+  // Build rich Slack blocks
+  const blocks: SlackBlock[] = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: `${emoji} ${typeLabel} Alert`,
+      },
+    },
+    {
+      type: "section",
+      fields: [
+        {
+          type: "mrkdwn",
+          text: `*Severity:*\n${severity.toUpperCase()}`,
+        },
+        {
+          type: "mrkdwn",
+          text: `*Type:*\n${typeLabel}`,
+        },
+        {
+          type: "mrkdwn",
+          text: `*Actual:*\n${type === "uptime" || type === "error-budget" ? `${(actual * 100).toFixed(2)}%` : `${actual}ms`}`,
+        },
+        {
+          type: "mrkdwn",
+          text: `*Target:*\n${type === "uptime" || type === "error-budget" ? `${(target * 100).toFixed(2)}%` : `< ${target}ms`}`,
+        },
+      ],
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `⚠️ *${message}*\n\nCheck the dashboard for details and follow the runbook for response procedures.`,
+      },
+    },
+    {
+      type: "section",
+      fields: [
+        {
+          type: "mrkdwn",
+          text: `*Time:*\n${new Date(timestamp).toLocaleString("en-US", { timeZone: "America/Toronto" })}`,
+        },
+      ],
+    },
+    {
+      type: "actions",
+      elements: [
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "📊 View Dashboard",
+          },
+          url: dashboardUrl,
+        },
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "📖 View Runbook",
+          },
+          url: runbookUrl,
+        },
+      ],
+    },
+  ]
+
+  return {
+    text: fallbackText,
+    blocks,
+  }
+}
+
+/**
+ * Send SLO violation alert to Slack
+ *
+ * @param event - SLO violation event data
+ */
+export async function sendSLOViolationAlert(event: SLOViolationEvent): Promise<void> {
+  // Import throttling dynamically to avoid circular dependencies
+  const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
+
+  // Determine alert type based on event
+  const alertType =
+    event.type === "uptime"
+      ? "slo-uptime-violation"
+      : event.type === "error-budget"
+        ? "slo-error-budget-exhausted"
+        : "slo-latency-violation"
+
+  // Check throttle
+  if (!shouldSendAlert(alertType)) {
+    logger.info("SLO violation alert throttled", {
+      component: "slack",
+      alertType,
+      severity: event.severity,
+    })
+    return
+  }
+
+  // Send alert
+  const message = formatSLOViolationMessage(event)
   await sendSlackMessage(message)
 }

@@ -14,9 +14,10 @@ This directory contains step-by-step troubleshooting guides (runbooks) for commo
 
 ### Critical Incidents
 
-| Runbook                                           | Severity    | MTTR     | Description                                   |
-| ------------------------------------------------- | ----------- | -------- | --------------------------------------------- |
-| [Circuit Breaker Open](./circuit-breaker-open.md) | 🔴 Critical | 5-15 min | Database operations protected due to failures |
+| Runbook                                           | Severity    | MTTR      | Description                                   |
+| ------------------------------------------------- | ----------- | --------- | --------------------------------------------- |
+| [Circuit Breaker Open](./circuit-breaker-open.md) | 🔴 Critical | 5-15 min  | Database operations protected due to failures |
+| [SLO Violation](./slo-violation.md)               | 🔴 Critical | 15-60 min | Service Level Objective targets not met       |
 
 ### Warnings & Degraded Performance
 
@@ -114,6 +115,9 @@ Links to docs, dashboards, code.
 | Circuit Breaker OPEN   | 🚨 Circuit Breaker OPEN   | [Circuit Breaker Open](./circuit-breaker-open.md) |
 | Circuit Breaker CLOSED | ✅ Circuit Breaker CLOSED | N/A (Recovery notification)                       |
 | High Error Rate        | ⚠️ High Error Rate Alert  | [High Error Rate](./high-error-rate.md)           |
+| SLO Uptime Violation   | 🚨 Uptime SLO Alert       | [SLO Violation](./slo-violation.md)               |
+| SLO Error Budget       | 🚨 Error Budget Alert     | [SLO Violation](./slo-violation.md)               |
+| SLO Latency Violation  | 🚨 Latency SLO Alert      | [SLO Violation](./slo-violation.md)               |
 
 ---
 
@@ -575,14 +579,15 @@ A: Use as guide, adapt if needed, document deviations, update runbook after.
 
 ## Changelog
 
-| Date       | Change                                      | Author      |
-| ---------- | ------------------------------------------- | ----------- |
-| 2026-01-31 | Initial runbook creation (Phase 2 Task 2.4) | Claude Code |
-| -          | -                                           | -           |
+| Date       | Change                                      | Author        |
+| ---------- | ------------------------------------------- | ------------- |
+| 2026-01-31 | Initial runbook creation (Phase 2 Task 2.4) | Platform Team |
+| 2026-02-06 | Added SLO Violation runbook (Phase 3)       | Platform Team |
+| -          | -                                           | -             |
 
 ---
 
-**Runbook Count:** 4 operational runbooks
-**Last Updated:** 2026-01-31
+**Runbook Count:** 5 operational runbooks
+**Last Updated:** 2026-02-05
 **Maintained By:** Platform Team
 **Next Audit:** 2026-04-30 (Quarterly review)
