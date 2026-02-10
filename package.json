@@ -53,7 +53,9 @@
     "test:load:smoke": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/smoke-test.k6.js || k6 run tests/load/smoke-test.k6.js",
     "test:load:sustained": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/sustained-load.k6.js || k6 run tests/load/sustained-load.k6.js",
     "test:load:spike": "[ -f ./bin/k6 ] && ./bin/k6 run tests/load/spike-test.k6.js || k6 run tests/load/spike-test.k6.js",
-    "analyze:load-test": "node --import tsx scripts/analyze-load-test-results.ts"
+    "analyze:load-test": "node --import tsx scripts/analyze-load-test-results.ts",
+    "validate:env": "node --import tsx scripts/validate-env-config.ts",
+    "qa:prelaunch": "node --import tsx scripts/run-prelaunch-qa.ts"
   },
   "overrides": {
     "react": "$react",
