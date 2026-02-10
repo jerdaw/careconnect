@@ -16,9 +16,9 @@ export function Footer() {
       <div className="from-primary-500 via-accent-500 to-primary-500 absolute top-0 right-0 left-0 h-1 bg-gradient-to-r" />
 
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & Mission */}
-          <div className="space-y-6 md:col-span-2">
+          <div className="space-y-6 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3">
               <div className="relative flex h-9 items-center justify-center transition-all">
                 <Image
@@ -57,7 +57,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Community Quick Links */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">{t("quickLinks.community")}</h3>
             <ul className="space-y-3 text-neutral-400">
@@ -79,6 +79,23 @@ export function Footer() {
               <li>
                 <Link href="/search?category=crisis" className="hover:text-primary-400 transition-colors">
                   {t("quickLinks.crisis")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white">{t("quickLinks.resources")}</h3>
+            <ul className="space-y-3 text-neutral-400">
+              <li>
+                <Link href="/user-guide" className="hover:text-primary-400 transition-colors">
+                  {t("quickLinks.userGuide")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-primary-400 transition-colors">
+                  {t("quickLinks.faq")}
                 </Link>
               </li>
             </ul>

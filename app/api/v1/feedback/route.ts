@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 import { FeedbackSubmitSchema } from "@/types/feedback"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { logger } from "@/lib/logger"
 
 // Rate limit storage
 const globalWithRateLimit = global as typeof globalThis & {
@@ -76,7 +77,10 @@ export async function POST(request: NextRequest) {
     )
 
     if (insertError) {
-      console.error("Supabase Error submitting feedback:", insertError)
+      logger.error("Supabase error submitting feedback", insertError, {
+        component: "api-feedback",
+        action: "POST",
+      })
       return NextResponse.json(
         { success: false, message: "Failed to save feedback" },
         {
@@ -100,7 +104,10 @@ export async function POST(request: NextRequest) {
       }
     )
   } catch (err) {
-    console.error("Unexpected error in feedback route:", err)
+    logger.error("Unexpected error in feedback route", err, {
+      component: "api-feedback",
+      action: "POST",
+    })
     return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 })
   }
 }

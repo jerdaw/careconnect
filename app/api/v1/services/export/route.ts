@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
 import type { Service, Provenance } from "@/types/service"
+import { logger } from "@/lib/logger"
 
 type PublicExportService = Omit<
   Service,
@@ -87,7 +88,10 @@ export async function GET(request: Request) {
       },
     })
   } catch (error) {
-    console.error("Export API Error:", error)
+    logger.error("Services export failed", error, {
+      component: "api-services-export",
+      action: "GET",
+    })
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }

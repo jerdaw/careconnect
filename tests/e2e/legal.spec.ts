@@ -34,33 +34,31 @@ test.describe("Legal Pages", () => {
     await expect(page.getByText("privacy@careconnect.ca").first()).toBeVisible()
   })
 
-  // TODO: Fix - Footer (role="contentinfo") not visible/detected reliably
-  test.skip("Legal pages are accessible from footer", async ({ page }) => {
+  test("Legal pages are accessible from footer", async ({ page }) => {
     await page.goto("/")
     await page.waitForURL(/.*\/en/)
     await page.waitForLoadState("domcontentloaded")
-    await page.waitForLoadState("networkidle")
 
-    // Ensure footer is visible and loaded
-    const footer = page.getByRole("contentinfo")
+    // Scroll to footer so links become visible
+    const footer = page.locator("footer")
+    await footer.scrollIntoViewIfNeeded()
     await expect(footer).toBeVisible()
 
     // Click Privacy
     await footer.getByRole("link", { name: "Privacy Policy" }).click()
-    await page.waitForLoadState("networkidle")
     await expect(page).toHaveURL(/.*\/privacy/)
 
     // Go back and Click Terms
     await page.goto("/")
     await page.waitForURL(/.*\/en/)
     await page.waitForLoadState("domcontentloaded")
-    await page.waitForLoadState("networkidle")
 
-    // Ensure footer is visible again
-    await expect(footer).toBeVisible()
+    // Scroll to footer again
+    const footer2 = page.locator("footer")
+    await footer2.scrollIntoViewIfNeeded()
+    await expect(footer2).toBeVisible()
 
-    await footer.getByRole("link", { name: "Terms of Service" }).click()
-    await page.waitForLoadState("networkidle")
+    await footer2.getByRole("link", { name: "Terms of Service" }).click()
     await expect(page).toHaveURL(/.*\/terms/)
   })
 

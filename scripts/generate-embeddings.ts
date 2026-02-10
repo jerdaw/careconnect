@@ -36,7 +36,7 @@ async function main() {
     process.stdout.write(".")
   }
 
-  writeFileSync(path.join(DATA_DIR, "embeddings.json"), JSON.stringify(embeddings))
+  writeFileSync(path.join(DATA_DIR, "embeddings.json"), JSON.stringify(embeddings, null, 2))
   console.log(`\n✅ Generated embeddings for ${services.length} services.`)
 }
 

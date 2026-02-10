@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 import { NotificationCategory } from "@/types/notifications"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { logger } from "@/lib/logger"
 
 export async function POST(req: NextRequest) {
   try {
@@ -60,13 +61,19 @@ export async function POST(req: NextRequest) {
     }
 
     if (error) {
-      console.error("Database error:", error)
+      logger.error("Database error during subscription", error, {
+        component: "api-notifications-subscribe",
+        action: "POST",
+      })
       return NextResponse.json({ error: "Database error" }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error("Subscribe server error:", err)
+    logger.error("Subscribe server error", err, {
+      component: "api-notifications-subscribe",
+      action: "POST",
+    })
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

@@ -4,6 +4,7 @@ import { handleApiError, createApiResponse, createApiError } from "@/lib/api-uti
 import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import { logger } from "@/lib/logger"
 
 const execPromise = util.promisify(exec)
 
@@ -55,7 +56,10 @@ export async function POST() {
     // Start reindexing in background (don't await)
     // This allows us to return immediately with the progress ID
     runReindexWithProgress(supabase, progressId, user.id).catch((error) => {
-      console.error("Reindex failed:", error)
+      logger.error("Reindex failed", error, {
+        component: "api-admin-reindex",
+        action: "POST",
+      })
     })
 
     return createApiResponse({
@@ -112,7 +116,11 @@ async function runReindexWithProgress(
       p_details: { progress_id: progressId, status: "complete" },
     })
   } catch (error) {
-    console.error("Reindex error:", error)
+    logger.error("Reindex error", error, {
+      component: "api-admin-reindex",
+      action: "POST",
+      progressId,
+    })
 
     // Mark progress as failed
     await supabase.rpc("update_reindex_progress", {

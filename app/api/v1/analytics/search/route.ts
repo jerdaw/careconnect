@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { trackSearchEvent } from "@/lib/analytics/search-analytics"
 import { z } from "zod"
+import { logger } from "@/lib/logger"
 
 // Input Validation
 const analyticsSchema = z.object({
@@ -35,7 +36,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error("Analytics API Error:", err)
+    logger.error("Analytics API error", err, {
+      component: "api-analytics-search",
+      action: "POST",
+    })
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }

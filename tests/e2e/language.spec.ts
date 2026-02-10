@@ -6,30 +6,24 @@ test.describe("Language Switching", () => {
     await mockSupabase(page)
   })
 
-  // TODO: Fix - Homepage doesn't display "Browse Services" text. Update selector.
-  test.skip("Language switching toggles translation", async ({ page }) => {
+  test("Language switching toggles translation", async ({ page }) => {
     await page.goto("/")
     await page.waitForURL(/.*\/en/)
     await page.waitForLoadState("domcontentloaded")
 
-    // Check initial English text (using actual i18n key)
-    await expect(page.getByText("Browse Services")).toBeVisible()
+    // Verify we're on the English page with the search input having English label
+    const searchInput = page.getByRole("textbox", { name: /search for services/i })
+    await expect(searchInput).toBeVisible()
 
-    // Switch to French
-    // Look for language toggle. Usually a button "FR" or similar.
-    // Based on DashboardSidebar, it might be in header.
-    // I'll assume a button with text "FR" or aria-label.
-    const frButton = page.getByRole("button", { name: "FR" })
-    // If not found, look for "Français"
+    // The language selector is a <select> element with aria-label="Select language"
+    const languageSelect = page.getByLabel("Select language")
+    await languageSelect.selectOption("fr")
 
-    if ((await frButton.count()) > 0) {
-      await frButton.click()
-    } else {
-      await page.getByText("Français").click()
-    }
-
-    // Verify URL change or text change
+    // Verify URL changes to French locale
     await expect(page).toHaveURL(/\/fr/)
-    await expect(page.getByText("Parcourir les services")).toBeVisible() // French translation
+
+    // Verify the search input now has the French label
+    const frenchSearchInput = page.getByRole("textbox", { name: /rechercher des services/i })
+    await expect(frenchSearchInput).toBeVisible()
   })
 })

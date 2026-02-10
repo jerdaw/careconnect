@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test"
 
 test.describe("Data Integrity & API Verification", () => {
+  // KNOWN LIMITATION: Requires live Supabase connection (server search mode)
+  // WORKAROUND: Run locally with NEXT_PUBLIC_SEARCH_MODE=server and valid Supabase credentials
+  // TRACKING: Phase 1.5 audit (2026-02-09)
   test("Critical services have correct scope configuration", async ({ request }) => {
-    // Skip in CI - requires live Supabase connection
     if (process.env.CI) test.skip()
 
     // 1. Search for the 988 service via API
@@ -27,8 +29,10 @@ test.describe("Data Integrity & API Verification", () => {
     expect(service988.scope).toBe("canada")
   })
 
+  // KNOWN LIMITATION: Requires live Supabase connection (server search mode)
+  // WORKAROUND: Run locally with NEXT_PUBLIC_SEARCH_MODE=server and valid Supabase credentials
+  // TRACKING: Phase 1.5 audit (2026-02-09)
   test("Search API returns valid structure for all locales", async ({ request }) => {
-    // Skip in CI - requires live Supabase connection
     if (process.env.CI) test.skip()
 
     const locales = ["en", "fr", "ar", "zh-Hans", "es", "pa", "pt"]

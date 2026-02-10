@@ -14,6 +14,14 @@
     "L2": "Verified Service",
     "L3": "Official Partner"
   },
+  "UserGuide": {
+    "title": "User Guide - Kingston Care Connect",
+    "description": "Learn how to use Kingston Care Connect to find local services and support."
+  },
+  "FAQ": {
+    "title": "FAQ - Kingston Care Connect",
+    "description": "Frequently asked questions about Kingston Care Connect, data verification, and privacy."
+  },
   "Footer": {
     "disclaimer": "Find verified local services and community resources.",
     "mission": "Connecting Kingston residents with the support services they need. Built with care for our community.",
@@ -26,6 +34,9 @@
       "housing": "Housing Support",
       "health": "Health Services",
       "crisis": "Crisis Support",
+      "resources": "Resources",
+      "userGuide": "User Guide",
+      "faq": "FAQ",
       "legal": "Legal",
       "about": "About Us",
       "privacy": "Privacy Policy",
@@ -36,8 +47,9 @@
     "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@careconnect.ca"
   },
   "Search": {
-    "placeholder": "Search for help...",
+    "placeholder": "Search for food, housing, crisis support, health services...",
     "label": "Search for services",
+    "searchHint": "Try: food bank, mental health, housing, legal aid",
     "loading": "Enhancing search capability...",
     "active": "Private Neural Search Active",
     "didYouMean": "Did you mean:",
@@ -55,9 +67,14 @@
     "filterBar": {
       "showing": "Showing"
     },
-    "noLocalResults": "No local services found for this search.",
-    "noResults": "No results found for \"{query}\".",
-    "noResultsInCategory": "No results found for \"{query}\" in {category}.",
+    "noLocalResults": "No local Kingston services match this search. Try browsing province-wide services or use different keywords.",
+    "noResults": "No services found for \"{query}\". Try using different keywords, browsing categories below, or checking your spelling.",
+    "noResultsInCategory": "No {category} services found for \"{query}\". Try different keywords or browse other categories.",
+    "noResultsHelpTitle": "Can't find what you need?",
+    "noResultsHelpBrowse": "Browse categories below",
+    "noResultsHelpDifferentWords": "Try different keywords (e.g., \"food assistance\" instead of \"groceries\")",
+    "noResultsHelpCheckSpelling": "Check your spelling",
+    "noResultsHelpBroaderSearch": "Search for a broader topic (e.g., \"health\" instead of \"diabetes clinic\")",
     "showAllResults": "Show {count} province-wide results",
     "crisis": "🗣️ Crisis",
     "food": "Food",
@@ -1191,5 +1208,19 @@
     "emergency": "Emergency",
     "emergencyDesc": "Police / Fire / Ambulance",
     "callButton": "Call"
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "searchServices": "Search Services",
+    "helpText": "Need help finding a service? Try searching from the home page."
+  },
+  "Error": {
+    "title": "Something Went Wrong",
+    "message": "We encountered an unexpected error. Please try again or return home.",
+    "errorId": "Error ID",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home"
   }
 }

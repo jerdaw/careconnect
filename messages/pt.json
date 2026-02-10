@@ -1191,5 +1191,19 @@
         "empty": "No reindex operations found"
       }
     }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "searchServices": "Search Services",
+    "helpText": "Need help finding a service? Try searching from the home page."
+  },
+  "Error": {
+    "title": "Something Went Wrong",
+    "message": "We encountered an unexpected error. Please try again or return home.",
+    "errorId": "Error ID",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home"
   }
 }

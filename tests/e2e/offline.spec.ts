@@ -113,6 +113,9 @@ test("search still works after going offline (IndexedDB cache)", async ({ page, 
   await expect(page.getByText(expectedServiceName)).toBeVisible()
 })
 
+// KNOWN LIMITATION: PWA/Service Worker is disabled in dev and CI environments
+// WORKAROUND: Verify SW registration manually using production build (npm run build && npm start)
+// TRACKING: Phase 1.5 audit (2026-02-09)
 test.skip("Service worker is registered (manual)", async () => {
-  // PWA is disabled in dev and CI in this repo; SW registration is a manual check during release verification.
+  // SW registration only occurs in production builds with HTTPS
 })

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
+import { logger } from "@/lib/logger"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id: serviceId } = await params
@@ -21,7 +22,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       // Not found codes
       return NextResponse.json({ success: false, message: "Summary not found" }, { status: 404 })
     }
-    console.error("Error fetching summary:", error)
+    logger.error("Error fetching summary", error, {
+      component: "api-service-summary",
+      action: "GET",
+      serviceId,
+    })
     return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 })
   }
 

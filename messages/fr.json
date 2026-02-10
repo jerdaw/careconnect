@@ -14,6 +14,14 @@
     "L2": "Service vérifié",
     "L3": "Partenaire officiel"
   },
+  "UserGuide": {
+    "title": "Guide d'utilisation - Kingston Care Connect",
+    "description": "Apprenez à utiliser Kingston Care Connect pour trouver des services et du soutien locaux."
+  },
+  "FAQ": {
+    "title": "FAQ - Kingston Care Connect",
+    "description": "Questions fréquemment posées sur Kingston Care Connect, la vérification des données et la confidentialité."
+  },
   "Footer": {
     "disclaimer": "Trouvez des services locaux vérifiés et des ressources communautaires.",
     "mission": "Relier les résidents de Kingston aux services de soutien dont ils ont besoin. Construit avec soin pour notre communauté.",
@@ -26,18 +34,22 @@
       "housing": "Soutien au logement",
       "health": "Services de santé",
       "crisis": "Soutien en cas de crise",
+      "resources": "Ressources",
+      "userGuide": "Guide d'utilisation",
+      "faq": "FAQ",
       "legal": "Juridique",
       "about": "À propos",
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
       "contentPolicy": "Politique de contenu",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibilité"
     },
     "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@careconnect.ca"
   },
   "Search": {
-    "placeholder": "Chercher de l'aide...",
+    "placeholder": "Chercher nourriture, logement, soutien en crise, services de santé...",
     "label": "Rechercher des services",
+    "searchHint": "Essayez: banque alimentaire, santé mentale, logement, aide juridique",
     "loading": "Amélioration de la capacité de recherche...",
     "active": "Recherche neuronale privée active",
     "didYouMean": "Vouliez-vous dire :",
@@ -55,9 +67,14 @@
     "filterBar": {
       "showing": "Affichage"
     },
-    "noLocalResults": "Aucun service local trouvé pour cette recherche.",
-    "noResults": "Aucun résultat trouvé pour \"{query}\".",
-    "noResultsInCategory": "Aucun résultat trouvé pour \"{query}\" dans {category}.",
+    "noLocalResults": "Aucun service de Kingston ne correspond à cette recherche. Essayez les services provinciaux ou utilisez des mots-clés différents.",
+    "noResults": "Aucun service trouvé pour \"{query}\". Essayez des mots-clés différents, parcourez les catégories ci-dessous ou vérifiez l'orthographe.",
+    "noResultsInCategory": "Aucun service {category} trouvé pour \"{query}\". Essayez des mots-clés différents ou parcourez d'autres catégories.",
+    "noResultsHelpTitle": "Vous ne trouvez pas ce dont vous avez besoin ?",
+    "noResultsHelpBrowse": "Parcourez les catégories ci-dessous",
+    "noResultsHelpDifferentWords": "Essayez des mots-clés différents (ex: \"aide alimentaire\" au lieu de \"épicerie\")",
+    "noResultsHelpCheckSpelling": "Vérifiez votre orthographe",
+    "noResultsHelpBroaderSearch": "Recherchez un sujet plus large (ex: \"santé\" au lieu de \"clinique du diabète\")",
     "showAllResults": "Afficher {count} résultats provinciaux",
     "crisis": "🗣️ Crise",
     "food": "Alimentation",
@@ -1191,5 +1208,19 @@
         "empty": "No reindex operations found"
       }
     }
+  },
+  "NotFound": {
+    "title": "Page introuvable",
+    "message": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "goHome": "Retour à l'accueil",
+    "searchServices": "Rechercher des services",
+    "helpText": "Besoin d'aide pour trouver un service? Essayez de rechercher depuis la page d'accueil."
+  },
+  "Error": {
+    "title": "Une erreur est survenue",
+    "message": "Nous avons rencontré une erreur inattendue. Veuillez réessayer ou retourner à l'accueil.",
+    "errorId": "Identifiant d'erreur",
+    "tryAgain": "Réessayer",
+    "goHome": "Retour à l'accueil"
   }
 }
