@@ -21,7 +21,7 @@ jobs:
         env:
           API_211_KEY: ${{ secrets.API_211_KEY }}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(data): sync 211 Ontario services"
           file_pattern: "data/services.json"
