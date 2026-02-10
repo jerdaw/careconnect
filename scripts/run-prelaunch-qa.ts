@@ -7,7 +7,7 @@
  */
 
 import { execSync } from "child_process"
-import { existsSync, readFileSync } from "fs"
+import { existsSync } from "fs"
 import path from "path"
 
 interface CheckResult {
@@ -152,7 +152,6 @@ runCheck(
 runCheck(
   "Environment Configuration",
   () => {
-    const envExamplePath = path.join(process.cwd(), ".env.example")
     const envLocalPath = path.join(process.cwd(), ".env.local")
 
     if (!existsSync(envLocalPath)) {
