@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabase"
+import { logger } from "@/lib/logger"
 
 const NO_ROWS_FOUND_ERROR_CODES = ["PGRST116", "406"]
 
@@ -44,7 +45,7 @@ export function useServiceFeedback(serviceId: string) {
               last_feedback_at: null,
             })
           } else {
-            console.error("Error fetching feedback stats:", error)
+            logger.error("Error fetching feedback stats", error)
             setError(error as unknown as Error)
           }
         } else {

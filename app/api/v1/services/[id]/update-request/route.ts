@@ -6,8 +6,31 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
+const ALLOWED_UPDATE_FIELDS = [
+  "name",
+  "name_fr",
+  "description",
+  "description_fr",
+  "phone",
+  "email",
+  "url",
+  "address",
+  "hours",
+  "hours_text",
+  "hours_text_fr",
+  "eligibility_notes",
+  "eligibility_notes_fr",
+  "access_script",
+  "access_script_fr",
+  "coordinates",
+  "status",
+] as const
+
 const UpdateRequestSchema = z.object({
-  field_updates: z.record(z.any()),
+  field_updates: z.record(
+    z.enum(ALLOWED_UPDATE_FIELDS),
+    z.union([z.string(), z.number(), z.boolean(), z.null(), z.record(z.unknown())])
+  ),
   justification: z.string().max(500).optional(),
 })
 

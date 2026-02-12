@@ -1,4 +1,5 @@
 import { Service, VerificationLevel } from "@/types/service"
+import { logger } from "@/lib/logger"
 
 const API_BASE = "https://api.211ontario.ca/v1" // Placeholder URL
 
@@ -37,7 +38,7 @@ const MOCK_DATA: Raw211Service[] = [
 export async function fetch211Services(region: string = "Kingston"): Promise<Service[]> {
   // If no API key, return mock data to prevent errors during development/testing
   if (!process.env.API_211_KEY) {
-    console.warn("⚠️ No API_211_KEY found. using mock data.")
+    logger.warn("No API_211_KEY found, using mock data")
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 500))
     return MOCK_DATA.map(mapToService)
@@ -54,7 +55,7 @@ export async function fetch211Services(region: string = "Kingston"): Promise<Ser
     const raw = (await res.json()) as Raw211Service[]
     return raw.map(mapToService)
   } catch (error) {
-    console.error("Failed to fetch from 211:", error)
+    logger.error("Failed to fetch from 211", error)
     return []
   }
 }

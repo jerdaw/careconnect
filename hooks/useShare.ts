@@ -2,6 +2,7 @@
 
 import { Share } from "@capacitor/share"
 import { Capacitor } from "@capacitor/core"
+import { logger } from "@/lib/logger"
 
 interface ShareOptions {
   title?: string
@@ -43,7 +44,7 @@ export function useShare() {
       return { type: "share", success: true }
     } catch (err) {
       // User cancelled share is often an error, but not a failure of the app
-      console.warn("[useShare] Share failed or cancelled", err)
+      logger.warn("[useShare] Share failed or cancelled", { error: err })
       return { type: "error", success: false, error: err }
     }
   }
