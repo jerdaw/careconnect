@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs"
 import path from "node:path"
+import { env } from "@/lib/env"
 
 function checkPublicFile(relativePath: string) {
   const diskPath = path.join(process.cwd(), "public", relativePath)
@@ -31,7 +32,7 @@ export async function GET() {
   const assetsOk =
     manifestOk && checks.customServiceWorker.exists && checks.iconsDir.exists && checks.screenshotsDir.exists
   const workboxOk = checks.workboxServiceWorker.exists
-  const pwaOk = assetsOk && (process.env.NODE_ENV === "production" ? workboxOk : true)
+  const pwaOk = assetsOk && (env.NODE_ENV === "production" ? workboxOk : true)
 
   return Response.json({
     status: "ok",

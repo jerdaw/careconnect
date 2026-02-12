@@ -6,6 +6,7 @@ import { assertOrganizationMembership } from "@/lib/auth/authorization"
 import { logger } from "@/lib/logger"
 import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { env } from "@/lib/env"
 
 /**
  * GET /api/v1/services
@@ -111,8 +112,8 @@ export async function POST(request: NextRequest) {
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),

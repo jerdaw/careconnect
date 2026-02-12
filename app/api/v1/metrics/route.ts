@@ -25,8 +25,8 @@ async function getAuthenticatedUser(): Promise<{ authenticated: boolean; userId:
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
@@ -92,15 +92,14 @@ export async function GET(request: NextRequest) {
   }
 
   // Production: Require admin access
-  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
-  if (process.env.NODE_ENV === "production") {
+  if (env.NODE_ENV === "production") {
     const { createServerClient } = await import("@supabase/ssr")
     const { cookies } = await import("next/headers")
 
     const cookieStore = await cookies()
     const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
@@ -217,15 +216,14 @@ export async function DELETE() {
   }
 
   // Production: Require admin access
-  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
-  if (process.env.NODE_ENV === "production") {
+  if (env.NODE_ENV === "production") {
     const { createServerClient } = await import("@supabase/ssr")
     const { cookies } = await import("next/headers")
 
     const cookieStore = await cookies()
     const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),

@@ -5,6 +5,7 @@ import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { logger } from "@/lib/logger"
+import { env } from "@/lib/env"
 
 const execPromise = util.promisify(exec)
 
@@ -12,8 +13,8 @@ export async function POST() {
   try {
     const cookieStore = await cookies()
     const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
