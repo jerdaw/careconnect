@@ -515,7 +515,7 @@ npm run check-staleness      # Find services needing re-verification
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
-**Completion**: 12/38 items done (A1, A3, A4, A6, B1, B3, C1, C3, C4, D1, E1)
+**Completion**: 13/38 items done (A1, A3, A4, A5, A6, B1, B3, C1, C3, C4, D1, E1)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -552,12 +552,15 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Commit: 3a858f0
 - Effort: 1.5h (actual)
 
-**A5. Harden CSV import field mapping** (2-3h)
+**A5. Harden CSV import field mapping** ✅ COMPLETE (2026-02-12)
 
-- File: `app/[locale]/dashboard/services/import/page.tsx:94`
-- Add strict schema validation before import
-- Impact: Prevents malformed data imports
-- Effort: S
+- Files: `lib/schemas/service-csv-import.ts` (new), `app/[locale]/dashboard/services/import/page.tsx`, `tests/lib/schemas/service-csv-import.test.ts` (new)
+- Created CSVImportRowSchema with strict field validation, header normalization (30+ variations), contact method requirements
+- Enhanced import page: validation summary, field-level errors, visual status indicators, logger integration
+- Added 32 comprehensive test cases covering validation scenarios
+- Impact: Prevents SQL injection and malformed data via validated CSV imports
+- Commit: f57aa70
+- Effort: 2.5h (actual)
 
 **A6. Remove unused code with eslint-disable** ✅ COMPLETE (2026-02-12)
 

@@ -24,6 +24,9 @@ phase_1f_tags: v10.0, v15.0, v17.0, v18.0, v19.0
 phase_1g_status: complete
 phase_1g_completed: 2026-02-12
 phase_1g_commit: 3a858f0
+phase_1h_status: complete
+phase_1h_completed: 2026-02-12
+phase_1h_commit: f57aa70
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -638,6 +641,129 @@ if (env.NODE_ENV === "production") {
 - Eliminates non-null assertions (`!` operator)
 - Better error messages when env vars are missing
 - Consistent validation across all API routes
+
+---
+
+### Phase 1H: CSV Import Validation Hardening (A5) ✅ COMPLETE (2026-02-12)
+
+**Goal**: Add strict schema validation for CSV service imports to prevent malformed data from reaching the API.
+
+**Deliverables**: Comprehensive CSV validation with detailed error reporting and security hardening.
+
+**Actual Effort**: 2.5h (within 2-3h estimate)
+**Commit**: f57aa70
+
+---
+
+#### Files Created/Modified
+
+**New: lib/schemas/service-csv-import.ts (220 lines)**
+
+- `CSVImportRowSchema` - Strict Zod schema for CSV row validation
+- `CSV_FIELD_MAPPING` - Header normalization map (30+ common variations)
+- `normalizeCSVHeaders()` - Converts varied headers to canonical names
+- `validateCSVRow()` - Single row validation with detailed errors
+- `validateCSVBatch()` - Batch validation for multiple rows
+
+**Modified: app/[locale]/dashboard/services/import/page.tsx (+168 lines)**
+
+- Replaced `console.*` with `logger.*` (3 instances)
+- Added file size validation (5MB max)
+- Header normalization using `normalizeCSVHeaders()`
+- Full batch validation before preview
+- Validation summary UI (valid/invalid counts)
+- Field-level error display (max 10 errors shown)
+- Visual status indicators per row (✓ or ✗)
+- Only import validated rows
+- Import summary with success/failure counts
+- Enhanced error states and user feedback
+
+**New: tests/lib/schemas/service-csv-import.test.ts (32 tests)**
+
+- Header normalization tests (4 tests)
+- Valid data scenarios (6 tests)
+- Invalid data rejection (10 tests)
+- Validation functions (3 tests)
+- Field mapping tests (1 test)
+- Edge cases (8 tests)
+
+#### Schema Validation Rules
+
+**Required Fields:**
+
+- `name` - 1-200 characters
+- `description` - 10-2000 characters
+- `intent_category` - Must be valid category (Food, Crisis, Housing, etc.)
+
+**Contact Method Rules:**
+
+- At least one required: `phone`, `email`, `url`, or `address`
+- Crisis services MUST have phone number
+- Email: must be valid format
+- URL: must be valid format
+- Phone: must match pattern `/^[\d\s\-\(\)\+]+$/`
+
+**Optional Fields:**
+
+- `fees` - max 500 chars
+- `eligibility` - max 1000 chars
+- `hours_text` - max 200 chars
+- All empty strings converted to `undefined`
+
+**Security Features:**
+
+- Strict mode: rejects unknown fields
+- Type validation: ensures correct data types
+- Length limits: prevents oversized inputs
+- Format validation: prevents malformed data
+- Header normalization: handles varied CSV formats
+- Trim whitespace: cleans input data
+
+#### Header Normalization Examples
+
+```typescript
+// All these variations map to canonical names:
+["Name", "name", "Service Name", "service_name"] → "name"
+["Category", "category", "Type", "Intent Category"] → "intent_category"
+["Website", "website", "URL", "url", "link"] → "url"
+["Phone", "phone", "Telephone", "telephone"] → "phone"
+```
+
+#### UI Improvements
+
+**Validation Summary Card:**
+
+- Green card: Valid row count with checkmark icon
+- Red card: Invalid row count with alert icon
+
+**Error Display:**
+
+- Shows first 10 validation errors
+- Each error displays: row number + field name + error message
+- Amber warning styling for visibility
+
+**Data Preview Table:**
+
+- Status column with visual indicators
+- Invalid rows highlighted in red
+- Empty cells shown as italic "empty"
+- Displays first 10 rows
+
+**Import Button:**
+
+- Disabled if no valid rows
+- Shows count: "Import N Services"
+- Displays "Processing..." during import
+
+#### Security Benefits
+
+1. **SQL Injection Prevention** - Validated fields prevent malicious input
+2. **Data Integrity** - Only valid data reaches the API
+3. **Format Validation** - Email, URL, phone formats enforced
+4. **Required Field Enforcement** - Missing data rejected
+5. **Category Validation** - Invalid categories blocked
+6. **Contact Method Enforcement** - At least one contact required
+7. **Crisis Service Protection** - Phone required for crisis services
 
 ---
 
