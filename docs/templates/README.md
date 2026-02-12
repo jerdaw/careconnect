@@ -4,11 +4,13 @@ Standard scaffolds for common document types. Copy, rename, and fill in.
 
 ## Available Templates
 
-| Template                                               | Use When                          | Location            |
-| ------------------------------------------------------ | --------------------------------- | ------------------- |
-| [ADR Template](adr-template.md)                        | Recording architectural decisions | `docs/adr/`         |
-| [Implementation Plan](implementation-plan-template.md) | Planning roadmap features         | `docs/planning/`    |
-| [Guide Template](guide-template.md)                    | Writing developer guides          | `docs/development/` |
+| Template                                               | Use When                          | Location             |
+| ------------------------------------------------------ | --------------------------------- | -------------------- |
+| [ADR Template](adr-template.md)                        | Recording architectural decisions | `docs/adr/`          |
+| [Implementation Plan](implementation-plan-template.md) | Planning roadmap features         | `docs/planning/`     |
+| [Guide Template](guide-template.md)                    | Writing developer guides          | `docs/development/`  |
+| [Post-Mortem Template](post-mortem.md)                 | Documenting incident reviews      | `docs/post-mortems/` |
+| [Runbook Template](runbook-template.md)                | Creating operational runbooks     | `docs/runbooks/`     |
 
 ## Usage
 
