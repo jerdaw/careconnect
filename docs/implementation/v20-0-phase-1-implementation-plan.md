@@ -21,6 +21,9 @@ phase_1e_commit: 7cae83e
 phase_1f_status: complete
 phase_1f_completed: 2026-02-12
 phase_1f_tags: v10.0, v15.0, v17.0, v18.0, v19.0
+phase_1g_status: complete
+phase_1g_completed: 2026-02-12
+phase_1g_commit: 3a858f0
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -544,6 +547,97 @@ git tag -a v19.0 9c4a834 -m "v19.0: Launch Preparation"
 ```
 
 Do NOT push tags to remote unless explicitly requested.
+
+---
+
+### Phase 1G: Environment Variable Migration (A4) ✅ COMPLETE (2026-02-12)
+
+**Goal**: Migrate all direct `process.env` access to validated `env` object from `lib/env.ts`.
+
+**Deliverables**: All API routes use type-safe environment variable access through centralized validation.
+
+**Actual Effort**: 1.5h (under 2-3h estimate)
+**Commit**: 3a858f0
+
+---
+
+#### Files to Migrate (13 API routes)
+
+**Admin Routes (4 files):**
+
+- `app/api/admin/data/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/admin/reindex/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/admin/reindex/status/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/admin/save/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+
+**Health Routes (2 files):**
+
+- `app/api/health/route.ts` - Replace `process.env.NODE_ENV`
+- `app/api/v1/health/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`, `process.env.NODE_ENV`
+
+**Service Routes (3 files):**
+
+- `app/api/v1/services/[id]/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*` (PUT, PATCH, DELETE methods)
+- `app/api/v1/services/[id]/update-request/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/v1/services/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+
+**Other Routes (4 files):**
+
+- `app/api/v1/analytics/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/v1/feedback/[id]/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`
+- `app/api/v1/metrics/route.ts` - Replace `process.env.NEXT_PUBLIC_SUPABASE_*`, `process.env.NODE_ENV` (GET and DELETE methods)
+- `app/api/cron/export-metrics/route.ts` - Replace `process.env.CRON_SECRET`, `process.env.NEXT_PUBLIC_APP_URL`
+
+#### Migration Pattern
+
+**Before:**
+
+```typescript
+import { createServerClient } from "@supabase/ssr"
+
+const supabase = createServerClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+  {
+    cookies: {
+      /* ... */
+    },
+  }
+)
+
+if (process.env.NODE_ENV === "production") {
+  // production logic
+}
+```
+
+**After:**
+
+```typescript
+import { createServerClient } from "@supabase/ssr"
+import { env } from "@/lib/env"
+
+const supabase = createServerClient(
+  env.NEXT_PUBLIC_SUPABASE_URL || "",
+  env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
+  {
+    cookies: {
+      /* ... */
+    },
+  }
+)
+
+if (env.NODE_ENV === "production") {
+  // production logic
+}
+```
+
+**Benefits:**
+
+- Type-safe environment variable access via Zod schemas
+- Centralized validation through `@t3-oss/env-nextjs`
+- Eliminates non-null assertions (`!` operator)
+- Better error messages when env vars are missing
+- Consistent validation across all API routes
 
 ---
 

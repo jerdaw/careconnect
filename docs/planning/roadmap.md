@@ -515,7 +515,7 @@ npm run check-staleness      # Find services needing re-verification
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
-**Completion**: 11/38 items done (A1, A3, A6, B1, B3, C1, C3, C4, D1, E1)
+**Completion**: 12/38 items done (A1, A3, A4, A6, B1, B3, C1, C3, C4, D1, E1)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -544,11 +544,13 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Commit: ff56b09
 - Effort: 30min (actual)
 
-**A4. Migrate direct `process.env` to `lib/env.ts`** (2-3h)
+**A4. Migrate direct `process.env` to `lib/env.ts`** ✅ COMPLETE (2026-02-12)
 
-- Files: 4 API routes currently bypass validation
-- Impact: Consistent environment variable validation
-- Effort: S
+- Files: 13 API routes migrated (admin/data, admin/reindex, admin/reindex/status, admin/save, cron/export-metrics, health, v1/analytics, v1/feedback/[id], v1/health, v1/metrics, v1/services/[id], v1/services/[id]/update-request, v1/services/route)
+- Replaced all `process.env.NEXT_PUBLIC_*`, `process.env.CRON_SECRET`, `process.env.NODE_ENV` with validated `env.*`
+- Impact: Type-safe environment validation, eliminates non-null assertions
+- Commit: 3a858f0
+- Effort: 1.5h (actual)
 
 **A5. Harden CSV import field mapping** (2-3h)
 
