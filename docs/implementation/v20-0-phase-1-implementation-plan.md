@@ -295,12 +295,12 @@ interpreter: ["translation", "language help", "interprète"],
 
 ### Phase 1D: Core Test Coverage ✅ COMPLETE (2026-02-12)
 
-**Goal**: Write unit tests for the 3 critical untested search utility modules and the `useRBAC` hook.
+**Goal**: Write unit tests for the 4 critical untested modules (search utilities, AI query-expander, and useRBAC hook).
 
-**Deliverables**: 4 new test files, 93 new test cases, coverage increase for `lib/search/**` and `hooks/**` modules.
+**Deliverables**: 5 new test files, 116 new test cases, coverage increase for `lib/search/**`, `lib/ai/**`, and `hooks/**` modules.
 
-**Actual Effort**: 2h (under estimate - tests written efficiently following existing patterns)
-**Commit**: pending
+**Actual Effort**: 2.5h (under estimate - tests written efficiently following existing patterns)
+**Commits**: c272018 (geo, fuzzy, synonyms, useRBAC), pending (query-expander)
 
 ---
 
