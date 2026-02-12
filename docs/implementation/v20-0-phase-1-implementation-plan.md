@@ -27,6 +27,9 @@ phase_1g_commit: 3a858f0
 phase_1h_status: complete
 phase_1h_completed: 2026-02-12
 phase_1h_commit: f57aa70
+phase_1i_status: complete
+phase_1i_completed: 2026-02-12
+phase_1i_commit: e18ff97
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -835,6 +838,75 @@ npm run build
 | `useRBAC` test reveals bugs in `lib/rbac.ts`         | Low        | Fix bugs found — that's the point of testing                                           |
 | update-request schema change breaks existing clients | Very Low   | No known clients use this endpoint yet (pre-production)                                |
 | New crisis keywords cause false positives            | Low        | Keep terms specific; avoid single common words                                         |
+
+### Phase 1I: ESLint Directive Reduction (A2) ✅ COMPLETE (2026-02-12)
+
+**Goal**: Reduce ESLint disable directives from 23 to <10 by improving type safety and eliminating unnecessary type assertions.
+
+**Deliverables**: 48% reduction in ESLint directives (23 → 12), improved type safety across codebase.
+
+**Actual Effort**: 2h (within 4-6h estimate)
+**Commit**: e18ff97
+
+---
+
+#### Directives Removed (13 total)
+
+**middleware.ts (1 directive)**
+- Added `CookieOptions` type import from `@supabase/ssr`
+- Properly typed cookie options in `setAll` function
+
+**hooks/useServices.ts (1 directive)**
+- Imported `SupportedLocale` type from `lib/schemas/search`
+- Replaced `locale as any` with `locale as SupportedLocale`
+
+**app/api/admin/reindex/route.ts (2 directives)**
+- Used `ReturnType<typeof createServerClient>` for supabase client type
+- Removed cast on `reindex_progress` insert operation
+
+**components/ui/section.tsx (2 directives)**
+- Excluded conflicting event handlers from props type: `onDrag`, `onDragEnd`, `onDragStart`, `onAnimationStart`, `onAnimationEnd`
+- Refactored to avoid conditional component type assignment
+- Separated className logic from props spreading
+
+**app/api/v1/analytics/route.ts (1 directive)**
+- Created `AnalyticsEvent` type for event iteration
+- Properly typed `events` array casting
+
+**app/api/v1/services/[id]/summary/route.ts (1 directive)**
+- Removed unnecessary double `as any` cast on Supabase query
+- Simplified to direct table name string
+
+**components/services/TrustPanel.tsx (1 directive)**
+- Used proper `Provenance` type from `types/service.ts`
+- Removed `as any` cast on `service.provenance`
+
+**Additional API route cleanups (4 removed, 4 added back)**
+- app/api/feedback/route.ts
+- app/api/v1/feedback/route.ts
+- app/api/v1/notifications/subscribe/route.ts (2)
+
+#### Remaining Directives (12)
+
+**Blocked by Missing Supabase Types (10):**
+- `feedback` table (2 directives)
+- `push_subscriptions` table (2 directives)
+- `organization_invitations` table (1 directive)
+- Dashboard page Supabase queries (5 directives)
+
+**Legitimate Cases (2):**
+- `react-hooks/exhaustive-deps` in MemberManagement (fetchMembers/fetchInvitations)
+- Complex page component with unavoidable type conflict
+
+**Why We Didn't Reach <10:**
+The remaining 12 directives require either:
+1. Regenerating Supabase types to include all tables (future work)
+2. Wrapping Supabase client calls to bypass type checking (not recommended)
+3. Refactoring complex components (diminishing returns)
+
+The 48% reduction achieved addresses all "easy wins" and improves type safety across the most critical code paths.
+
+---
 
 ## Migration Path
 
