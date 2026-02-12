@@ -20,7 +20,10 @@
       "privacy": "隐私政策",
       "terms": "服务条款",
       "contentPolicy": "内容政策",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "resources": "资源",
+      "userGuide": "用户指南",
+      "faq": "常见问题"
     },
     "aiTranslationNote": "部分翻译由 AI 辅助。错误请报告至 feedback@careconnect.ca"
   },
@@ -59,7 +62,13 @@
     "noLocalResults": "未找到此搜索的本地服务。",
     "noResults": "未找到“{query}”的结果。",
     "noResultsInCategory": "在 {category} 中未找到“{query}”的结果。",
-    "showAllResults": "显示 {count} 个省级结果"
+    "showAllResults": "显示 {count} 个省级结果",
+    "searchHint": "试试：食物银行、心理健康、住房、法律援助",
+    "noResultsHelpTitle": "找不到您需要的？",
+    "noResultsHelpBrowse": "浏览下面的类别",
+    "noResultsHelpDifferentWords": "尝试不同的关键词（例如：\"食品援助\"而不是\"杂货\"）",
+    "noResultsHelpCheckSpelling": "检查拼写",
+    "noResultsHelpBroaderSearch": "搜索更广泛的主题（例如：\"健康\"而不是\"糖尿病诊所\"）"
   },
   "VoiceInput": {
     "start": "开始私人语音搜索",
@@ -1205,5 +1214,13 @@
     "errorId": "Error ID",
     "tryAgain": "Try Again",
     "goHome": "Go Home"
+  },
+  "UserGuide": {
+    "title": "用户指南 - Kingston Care Connect",
+    "description": "了解如何使用 Kingston Care Connect 查找本地服务和支持。"
+  },
+  "FAQ": {
+    "title": "常见问题 - Kingston Care Connect",
+    "description": "关于 Kingston Care Connect、数据验证和隐私的常见问题。"
   }
 }

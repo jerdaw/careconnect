@@ -20,7 +20,10 @@
       "privacy": "Política de Privacidade",
       "terms": "Termos de Serviço",
       "contentPolicy": "Política de Conteúdo",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "resources": "Recursos",
+      "userGuide": "Guia do Usuário",
+      "faq": "Perguntas Frequentes"
     },
     "aiTranslationNote": "Algumas traduções são assistidas por IA. Relate erros para feedback@careconnect.ca"
   },
@@ -59,7 +62,13 @@
     "noLocalResults": "Não foram encontrados serviços locais para esta pesquisa.",
     "noResults": "Nenhum resultado encontrado para \"{query}\".",
     "noResultsInCategory": "Nenhum resultado encontrado para \"{query}\" em {category}.",
-    "showAllResults": "Mostrar {count} resultados provinciais"
+    "showAllResults": "Mostrar {count} resultados provinciais",
+    "searchHint": "Tente: banco de alimentos, saúde mental, moradia, assistência jurídica",
+    "noResultsHelpTitle": "Não encontrou o que precisa?",
+    "noResultsHelpBrowse": "Navegue pelas categorias abaixo",
+    "noResultsHelpDifferentWords": "Tente palavras diferentes (ex.: \"assistência alimentar\" em vez de \"mercearia\")",
+    "noResultsHelpCheckSpelling": "Verifique sua ortografia",
+    "noResultsHelpBroaderSearch": "Busque um tópico mais amplo (ex.: \"saúde\" em vez de \"clínica de diabetes\")"
   },
   "VoiceInput": {
     "start": "Iniciar pesquisa por voz privada",
@@ -1205,5 +1214,13 @@
     "errorId": "Error ID",
     "tryAgain": "Try Again",
     "goHome": "Go Home"
+  },
+  "UserGuide": {
+    "title": "Guia do Usuário - Kingston Care Connect",
+    "description": "Aprenda como usar o Kingston Care Connect para encontrar serviços e apoio local."
+  },
+  "FAQ": {
+    "title": "Perguntas Frequentes - Kingston Care Connect",
+    "description": "Perguntas frequentes sobre Kingston Care Connect, verificação de dados e privacidade."
   }
 }

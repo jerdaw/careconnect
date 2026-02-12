@@ -20,7 +20,10 @@
       "privacy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
       "terms": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
       "contentPolicy": "ਸਮੱਗਰੀ ਨੀਤੀ",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "resources": "ਸਰੋਤ",
+      "userGuide": "ਵਰਤੋਂਕਾਰ ਗਾਈਡ",
+      "faq": "ਆਮ ਸਵਾਲ"
     },
     "aiTranslationNote": "ਕੁਝ ਅਨੁਵਾਦ AI-ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਹਨ। feedback@careconnect.ca 'ਤੇ ਗਲਤੀਆਂ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
   },
@@ -59,7 +62,13 @@
     "noLocalResults": "ਇਸ ਖੋਜ ਲਈ ਕੋਈ ਸਥਾਨਕ ਸੇਵਾਵਾਂ ਨਹੀਂ ਮਿਲੀਆਂ।",
     "noResults": "\"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
     "noResultsInCategory": "{category} ਵਿੱਚ \"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
-    "showAllResults": "{count} ਸੂਬਾਈ ਨਤੀਜੇ ਦਿਖਾਓ"
+    "showAllResults": "{count} ਸੂਬਾਈ ਨਤੀਜੇ ਦਿਖਾਓ",
+    "searchHint": "ਕੋਸ਼ਿਸ਼ ਕਰੋ: ਫੂਡ ਬੈਂਕ, ਮਾਨਸਿਕ ਸਿਹਤ, ਰਿਹਾਇਸ਼, ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ",
+    "noResultsHelpTitle": "ਜੋ ਤੁਹਾਨੂੰ ਚਾਹੀਦਾ ਹੈ ਨਹੀਂ ਮਿਲ ਰਿਹਾ?",
+    "noResultsHelpBrowse": "ਹੇਠਾਂ ਸ਼੍ਰੇਣੀਆਂ ਦੇਖੋ",
+    "noResultsHelpDifferentWords": "ਵੱਖਰੇ ਸ਼ਬਦ ਅਜ਼ਮਾਓ (ਜਿਵੇਂ: \"ਖਾਣਾ ਸਹਾਇਤਾ\" \"ਕਿਰਾਨਾ\" ਦੀ ਬਜਾਏ)",
+    "noResultsHelpCheckSpelling": "ਆਪਣੀ ਸ਼ਬਦ-ਜੋੜ ਜਾਂਚੋ",
+    "noResultsHelpBroaderSearch": "ਵਿਸ਼ਾਲ ਵਿਸ਼ੇ ਲਈ ਖੋਜੋ (ਜਿਵੇਂ: \"ਸਿਹਤ\" \"ਡਾਇਬੀਟੀਜ਼ ਕਲੀਨਿਕ\" ਦੀ ਬਜਾਏ)"
   },
   "VoiceInput": {
     "start": "ਨਿੱਜੀ ਵੌਇਸ ਖੋਜ ਸ਼ੁਰੂ ਕਰੋ",
@@ -1205,5 +1214,13 @@
     "errorId": "Error ID",
     "tryAgain": "Try Again",
     "goHome": "Go Home"
+  },
+  "UserGuide": {
+    "title": "ਵਰਤੋਂਕਾਰ ਗਾਈਡ - Kingston Care Connect",
+    "description": "ਸਥਾਨਕ ਸੇਵਾਵਾਂ ਅਤੇ ਸਹਾਇਤਾ ਲੱਭਣ ਲਈ Kingston Care Connect ਦੀ ਵਰਤੋਂ ਕਰਨਾ ਸਿੱਖੋ।"
+  },
+  "FAQ": {
+    "title": "ਆਮ ਸਵਾਲ - Kingston Care Connect",
+    "description": "Kingston Care Connect, ਡੇਟਾ ਤਸਦੀਕ ਅਤੇ ਗੋਪਨੀਯਤਾ ਬਾਰੇ ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ।"
   }
 }

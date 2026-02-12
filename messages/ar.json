@@ -3,6 +3,14 @@
     "title": "هذا مشروع بقيادة المجتمع",
     "shareFeedback": "شارك رأيك"
   },
+  "UserGuide": {
+    "title": "دليل المستخدم - Kingston Care Connect",
+    "description": "تعلّم كيفية استخدام Kingston Care Connect للعثور على الخدمات والدعم المحلي."
+  },
+  "FAQ": {
+    "title": "الأسئلة الشائعة - Kingston Care Connect",
+    "description": "الأسئلة الشائعة حول Kingston Care Connect والتحقق من البيانات والخصوصية."
+  },
   "Footer": {
     "disclaimer": "اعثر على خدمات محلية وموارد مجتمعية موثقة.",
     "mission": "ربط سكان كينغستون بخدمات الدعم التي يحتاجونها. بنيت بعناية لمجتمعنا.",
@@ -20,7 +28,10 @@
       "privacy": "سياسة الخصوصية",
       "terms": "شروط الخدمة",
       "contentPolicy": "سياسة المحتوى",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "resources": "الموارد",
+      "userGuide": "دليل المستخدم",
+      "faq": "الأسئلة الشائعة"
     },
     "aiTranslationNote": "بعض الترجمات مدعومة بالذكاء الاصطناعي. أبلغ عن الأخطاء إلى feedback@careconnect.ca"
   },
@@ -59,7 +70,13 @@
     "noLocalResults": "لم يتم العثور على خدمات محلية لهذا البحث.",
     "noResults": "لم يتم العثور على نتائج لـ \"{query}\".",
     "noResultsInCategory": "لم يتم العثور على نتائج لـ \"{query}\" في {category}.",
-    "showAllResults": "عرض {count} نتيجة على مستوى المقاطعة"
+    "showAllResults": "عرض {count} نتيجة على مستوى المقاطعة",
+    "searchHint": "جرّب: بنك طعام، صحة نفسية، إسكان، مساعدة قانونية",
+    "noResultsHelpTitle": "لم تجد ما تحتاج؟",
+    "noResultsHelpBrowse": "تصفح الفئات أدناه",
+    "noResultsHelpDifferentWords": "جرّب كلمات مختلفة (مثلاً: \"مساعدة غذائية\" بدلاً من \"بقالة\")",
+    "noResultsHelpCheckSpelling": "تحقق من الإملاء",
+    "noResultsHelpBroaderSearch": "ابحث عن موضوع أوسع (مثلاً: \"صحة\" بدلاً من \"عيادة سكري\")"
   },
   "VoiceInput": {
     "start": "بدء البحث الصوتي الخاص",
