@@ -515,7 +515,7 @@ npm run check-staleness      # Find services needing re-verification
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
-**Completion**: 10/38 items done (A1, A3, A6, B1 partial [75%], B3, C1, C3, C4, D1, E1)
+**Completion**: 11/38 items done (A1, A3, A6, B1, B3, C1, C3, C4, D1, E1)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -566,15 +566,15 @@ Comprehensive technical improvements to reach production-quality standards: achi
 
 #### Category B: Test Coverage (~60h) — LARGEST GAP
 
-**B1. Write unit tests for untested search utilities** 🔄 75% COMPLETE (2026-02-12)
+**B1. Write unit tests for untested search utilities** ✅ COMPLETE (2026-02-12)
 
 - ✅ `lib/search/geo.ts` - Haversine distance, proximity multipliers (20 tests)
 - ✅ `lib/search/fuzzy.ts` - Levenshtein-based matching (24 tests)
 - ✅ `lib/search/synonyms.ts` - Synonym expansion, bilingual terms (24 tests)
-- ⏸️ `lib/ai/query-expander.ts` - Query reformulation (pending)
+- ✅ `lib/ai/query-expander.ts` - Query reformulation with AI engine mocking (23 tests)
 - Impact: Core search logic tested, prevents regressions
-- Commit: c272018 (geo, fuzzy, synonyms complete)
-- Effort: 2h actual (geo, fuzzy, synonyms), 1-2h remaining (query-expander)
+- Commits: c272018 (geo, fuzzy, synonyms), pending (query-expander)
+- Effort: 2.5h actual (6-8h estimated)
 
 **B2. Write tests for 4 untested API routes** (4-6h)
 
