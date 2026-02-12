@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react"
 import { transcribeAudio } from "@/lib/ai/transcriber"
+import { logger } from "@/lib/logger"
 
 type VoiceState = "idle" | "listening" | "processing" | "error"
 
@@ -61,7 +62,7 @@ export function useVoiceInput(
             onResult(text)
           }
         } catch (err) {
-          console.error("Transcription error", err)
+          logger.error("Transcription error", err)
           setError("Failed to transcribe")
         } finally {
           setState("idle")
@@ -72,7 +73,7 @@ export function useVoiceInput(
 
       mediaRecorder.start()
     } catch (err) {
-      console.error(err)
+      logger.error("Microphone access error", err)
       setError("Microphone access denied")
       setState("error")
     }

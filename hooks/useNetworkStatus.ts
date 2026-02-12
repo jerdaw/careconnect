@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Capacitor } from "@capacitor/core"
 import { Network } from "@capacitor/network"
+import { logger } from "@/lib/logger"
 
 export interface NetworkStatus {
   isOnline: boolean
@@ -37,7 +38,7 @@ export function useNetworkStatus(): NetworkStatus {
           })
         }
       } catch (e) {
-        console.warn("Failed to check network status:", e)
+        logger.warn("Failed to check network status", { error: e })
       }
     }
 

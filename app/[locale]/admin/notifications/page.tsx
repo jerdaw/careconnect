@@ -16,10 +16,7 @@ export default function AdminNotificationsPage() {
   const [title, setTitle] = useState("")
   const [message, setMessage] = useState("")
   const [type, setType] = useState("service_update")
-
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [isSubmitting, setIsSubmitting] = useState(false)
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const handleSend = async () => {
     setIsSubmitting(true)
@@ -101,7 +98,7 @@ export default function AdminNotificationsPage() {
           </AccessibleFormField>
 
           <div className="flex justify-end pt-4">
-            <Button onClick={handleSend} disabled={!title || !message}>
+            <Button onClick={handleSend} disabled={!title || !message || isSubmitting}>
               <Send className="mr-2 h-4 w-4" />
               Send Broadcast
             </Button>

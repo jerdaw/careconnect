@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { logger } from "@/lib/logger"
 
 /**
  * A hook for using localStorage with SSR safety and automatic JSON serialization.
@@ -27,7 +28,7 @@ export function useLocalStorage<T>(
         setStoredValue(JSON.parse(item) as T)
       }
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error)
+      logger.error("Error reading localStorage key", error, { key })
     }
     setIsHydrated(true)
   }, [key])
@@ -46,7 +47,7 @@ export function useLocalStorage<T>(
           window.localStorage.setItem(key, JSON.stringify(valueToStore))
         }
       } catch (error) {
-        console.error(`Error setting localStorage key "${key}":`, error)
+        logger.error("Error setting localStorage key", error, { key })
       }
     },
     [key, storedValue]
@@ -60,7 +61,7 @@ export function useLocalStorage<T>(
         window.localStorage.removeItem(key)
       }
     } catch (error) {
-      console.error(`Error removing localStorage key "${key}":`, error)
+      logger.error("Error removing localStorage key", error, { key })
     }
   }, [key, initialValue])
 

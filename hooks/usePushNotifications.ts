@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import OneSignal from "react-onesignal"
 import { env } from "@/lib/env"
+import { logger } from "@/lib/logger"
 
 export function usePushNotifications() {
   const [isSubscribed, setIsSubscribed] = useState(false)
@@ -26,7 +27,7 @@ export function usePushNotifications() {
     const initOneSignal = async () => {
       try {
         if (!env.NEXT_PUBLIC_ONESIGNAL_APP_ID) {
-          console.warn("[OneSignal] App ID not found.")
+          logger.warn("[OneSignal] App ID not found")
           return
         }
 
@@ -51,7 +52,7 @@ export function usePushNotifications() {
           setIsSubscribed(!!e.current.id)
         })
       } catch (err) {
-        console.error("[OneSignal] Init failed", err)
+        logger.error("[OneSignal] Init failed", err)
       }
     }
 
@@ -75,7 +76,7 @@ export function usePushNotifications() {
 
       setPermission(Notification.permission)
     } catch (err) {
-      console.error("[OneSignal] Subscription failed", err)
+      logger.error("[OneSignal] Subscription failed", err)
     }
   }
 
@@ -91,7 +92,7 @@ export function usePushNotifications() {
         setIsSubscribed(false)
       }
     } catch (err) {
-      console.error("[OneSignal] Unsubscribe failed", err)
+      logger.error("[OneSignal] Unsubscribe failed", err)
     }
   }
 
