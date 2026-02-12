@@ -510,11 +510,12 @@ npm run check-staleness      # Find services needing re-verification
 
 ### v20.0: Technical Excellence & Testing (HIGH PRIORITY - Before Production)
 
-**Status**: PLANNED
+**Status**: IN PROGRESS (Phase 1A Complete ✅)
 **Priority**: HIGH (Pre-Production Requirement)
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
+**Completion**: 3/38 items done (A1, A3, A6)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -522,11 +523,12 @@ Comprehensive technical improvements to reach production-quality standards: achi
 
 #### Category A: Code Quality & Type Safety (~15h)
 
-**A1. Replace remaining `console.*` calls with `logger.*`** (1-2h)
+**A1. Replace remaining `console.*` calls with `logger.*`** ✅ COMPLETE (2026-02-12)
 
-- Files: `hooks/useShare.ts`, `hooks/useServiceFeedback.ts`, `hooks/usePushNotifications.ts` (4 calls), `hooks/useLocalStorage.ts` (2 calls), `lib/external/211-client.ts`
+- Files: All 14 calls in 7 files (hooks/useShare.ts, useServiceFeedback.ts, usePushNotifications.ts, useLocalStorage.ts, useVoiceInput.ts, useNetworkStatus.ts, lib/external/211-client.ts)
 - Impact: Consistent structured logging across codebase
-- Effort: S
+- Commit: ff56b09
+- Effort: 2h (actual)
 
 **A2. Reduce ESLint disable directives from 26 to <10** (4-6h)
 
@@ -534,12 +536,13 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Impact: Improved type safety, reduced technical debt
 - Effort: M
 
-**A3. Harden update-request API validation** (1h)
+**A3. Harden update-request API validation** ✅ COMPLETE (2026-02-12)
 
 - File: `app/api/v1/services/[id]/update-request/route.ts`
-- Replace `z.record(z.any())` with explicit allowed field list
+- Replaced `z.record(z.any())` with `z.enum(ALLOWED_UPDATE_FIELDS)` (18 explicit fields)
 - Impact: Prevents injection attacks via field_updates
-- Effort: S
+- Commit: ff56b09
+- Effort: 30min (actual)
 
 **A4. Migrate direct `process.env` to `lib/env.ts`** (2-3h)
 
@@ -554,11 +557,12 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Impact: Prevents malformed data imports
 - Effort: S
 
-**A6. Remove unused code with eslint-disable** (1h)
+**A6. Remove unused code with eslint-disable** ✅ COMPLETE (2026-02-12)
 
-- Files: `components/ui/use-toast.ts`, 2 dashboard pages
+- Files: `components/ui/use-toast.ts` (use actionTypes properly), `app/[locale]/admin/notifications/page.tsx` (fix isSubmitting usage)
 - Impact: Code cleanup, maintainability
-- Effort: S
+- Commit: ff56b09
+- Effort: 30min (actual)
 
 #### Category B: Test Coverage (~60h) — LARGEST GAP
 

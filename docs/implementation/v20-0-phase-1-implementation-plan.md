@@ -1,8 +1,11 @@
 ---
-status: draft
-last_updated: 2026-02-11
+status: in-progress
+last_updated: 2026-02-12
 owner: jer
 tags: [roadmap, v20.0, code-quality, testing, i18n]
+phase_1a_status: complete
+phase_1a_completed: 2026-02-12
+phase_1a_commit: ff56b09
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -42,11 +45,14 @@ with broader crisis and synonym vocabulary.
 
 ## Phased Implementation Plan
 
-### Phase 1A: Code Quality Quick Fixes (3-4h)
+### Phase 1A: Code Quality Quick Fixes ✅ COMPLETE (2026-02-12)
 
 **Goal**: Eliminate all remaining `console.*` calls, harden input validation, remove dead code.
 
 **Deliverables**: Zero `console.*` in hooks/lib, strict field_updates validation, cleaned up eslint-disable markers.
+
+**Actual Effort**: 3h (as estimated)
+**Commit**: ff56b09
 
 ---
 
