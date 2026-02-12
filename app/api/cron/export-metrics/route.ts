@@ -10,6 +10,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { exportMetricsToAxiom } from "@/lib/performance/metrics"
 import { sendHealthCheck } from "@/lib/observability/axiom"
 import { logger } from "@/lib/logger"
+import { env } from "@/lib/env"
 
 export const runtime = "edge"
 export const dynamic = "force-dynamic"
@@ -17,13 +18,13 @@ export const dynamic = "force-dynamic"
 export async function GET(request: NextRequest) {
   // Verify cron secret (Vercel sets this header)
   const authHeader = request.headers.get("authorization")
-  const expectedAuth = `Bearer ${process.env.CRON_SECRET}`
+  const expectedAuth = `Bearer ${env.CRON_SECRET}`
 
-  if (!process.env.CRON_SECRET || authHeader !== expectedAuth) {
+  if (!env.CRON_SECRET || authHeader !== expectedAuth) {
     logger.warn("Unauthorized cron request", {
       component: "cron",
       hasAuth: !!authHeader,
-      hasSecret: !!process.env.CRON_SECRET,
+      hasSecret: !!env.CRON_SECRET,
     })
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest) {
     await exportMetricsToAxiom()
 
     // Export health check status
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    const appUrl = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
     const healthResponse = await fetch(`${appUrl}/api/v1/health`, {
       headers: {
         "User-Agent": "Vercel-Cron/1.0",

@@ -2,6 +2,7 @@ import { NextRequest } from "next/server"
 import { createApiError, handleApiError, createApiResponse } from "@/lib/api-utils"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import { env } from "@/lib/env"
 
 /**
  * GET /api/v1/analytics
@@ -12,8 +13,8 @@ export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies()
     const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
