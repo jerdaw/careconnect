@@ -11,8 +11,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   }
 
   // Fetch summary
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: summary, error } = await (supabase.from("plain_language_summaries" as any) as any)
+  const { data: summary, error } = await supabase
+    .from("plain_language_summaries")
     .select("*")
     .eq("service_id", serviceId)
     .single()

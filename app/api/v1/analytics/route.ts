@@ -77,8 +77,12 @@ export async function GET(request: NextRequest) {
 
     const aggregated: Record<string, { views: number; clicks: number }> = {}
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    for (const event of (events || []) as any[]) {
+    type AnalyticsEvent = {
+      service_id: string
+      event_type: string
+    }
+
+    for (const event of (events || []) as AnalyticsEvent[]) {
       if (!event.service_id) continue
       if (!aggregated[event.service_id]) {
         aggregated[event.service_id] = { views: 0, clicks: 0 }

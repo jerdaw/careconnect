@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
-import { NotificationCategory } from "@/types/notifications"
+import { NotificationCategory, type PushSubscription } from "@/types/notifications"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { logger } from "@/lib/logger"
 
@@ -23,34 +23,31 @@ export async function POST(req: NextRequest) {
       supabase.from("push_subscriptions").select("id").eq("endpoint", subscription.endpoint).single()
     )
 
+    type ExistingSubscription = Pick<PushSubscription, "id"> | null
+    const existingTyped = existing as ExistingSubscription
+
     let error
 
-    if (existing) {
+    if (existingTyped) {
       // Update existing
       const { error: updateError } = await withCircuitBreaker(async () =>
-        (
-          supabase
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .from("push_subscriptions") as any
-        )
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (supabase as any)
+          .from("push_subscriptions")
           .update({
             categories,
             keys: subscription.keys, // Ensure keys are fresh
             locale,
             updated_at: new Date().toISOString(),
           })
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .eq("id", (existing as any).id)
+          .eq("id", existingTyped.id)
       )
       error = updateError
     } else {
       // Insert new
       const { error: insertError } = await withCircuitBreaker(async () =>
-        (
-          supabase
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .from("push_subscriptions") as any
-        ).insert({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (supabase as any).from("push_subscriptions").insert({
           endpoint: subscription.endpoint,
           keys: subscription.keys,
           categories,

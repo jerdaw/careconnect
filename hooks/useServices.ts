@@ -5,6 +5,7 @@ import { isOffline } from "@/lib/offline/status"
 import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
 import { logger } from "@/lib/logger"
 import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
+import { type SupportedLocale } from "@/lib/schemas/search"
 
 interface UseServicesProps {
   query: string
@@ -75,8 +76,7 @@ export function useServices({
           // Server-Side Search (only if online)
           const serverServices = await serverSearch({
             query,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            locale: locale as any,
+            locale: locale as SupportedLocale,
             filters: { category },
             options: { limit: 50, offset: 0 },
           })
