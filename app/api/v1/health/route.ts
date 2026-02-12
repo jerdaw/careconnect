@@ -157,8 +157,8 @@ async function isAuthenticated(): Promise<boolean> {
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
@@ -232,8 +232,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Check if request should get detailed metrics
-  // Use process.env.NODE_ENV directly to avoid server-only env variable access issues
-  const isDevelopment = process.env.NODE_ENV === "development"
+  const isDevelopment = env.NODE_ENV === "development"
   const authenticated = await isAuthenticated()
   const showDetails = isDevelopment || authenticated
 

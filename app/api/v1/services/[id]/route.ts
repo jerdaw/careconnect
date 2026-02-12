@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase"
 import { createApiResponse, createApiError, handleApiError, validateContentType } from "@/lib/api-utils"
 import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { env } from "@/lib/env"
 
 /**
  * GET /api/v1/services/[id]
@@ -55,8 +56,8 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
@@ -110,8 +111,8 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
@@ -166,8 +167,8 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),

@@ -5,6 +5,7 @@ import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { env } from "@/lib/env"
 
 const ALLOWED_UPDATE_FIELDS = [
   "name",
@@ -39,8 +40,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const { id: serviceId } = await params
     const cookieStore = await cookies()
     const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      env.NEXT_PUBLIC_SUPABASE_URL || "",
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
         cookies: {
           getAll: () => cookieStore.getAll(),
