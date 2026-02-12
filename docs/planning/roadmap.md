@@ -510,12 +510,12 @@ npm run check-staleness      # Find services needing re-verification
 
 ### v20.0: Technical Excellence & Testing (HIGH PRIORITY - Before Production)
 
-**Status**: IN PROGRESS (Phase 1A-1B Complete ✅)
+**Status**: IN PROGRESS (Phase 1A-1C Complete ✅)
 **Priority**: HIGH (Pre-Production Requirement)
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
-**Completion**: 4/38 items done (A1, A3, A6, C1)
+**Completion**: 6/38 items done (A1, A3, A6, C1, C3, C4)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -648,17 +648,23 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Impact: French semantic search recall +40%
 - Effort: M
 
-**C3. Expand crisis keyword list** (1-2h)
+**C3. Expand crisis keyword list** ✅ COMPLETE (2026-02-12)
 
-- Add: "self-harm", "suicidal ideation", "self-injury", etc.
-- Add French variants
-- From 34 to 50+ terms
-- Impact: Crisis detection coverage
-- Effort: S
+- Expanded from 34 to 50 keywords (47% increase)
+- Added suicide/self-harm: "suicidal ideation", "suicidal thoughts", "self-injury", etc.
+- Added French crisis terms: "je veux mourir", "me tuer", "violence conjugale", etc.
+- Added violence/safety: "sexual abuse", "threatened", "stalking", "human trafficking"
+- Impact: Broader crisis detection coverage
+- Commit: 6816797
+- Effort: 1.5h (actual)
 
-**C4. Expand synonym dictionary** (2-3h)
+**C4. Expand synonym dictionary** ✅ COMPLETE (2026-02-12)
 
-- Add housing, financial aid, regional jargon terms
+- Expanded from 40 to 54 synonym groups (35% increase)
+- Added 14 new groups: housing (unhoused, eviction), financial (cerb, ei, tax), practical (id, transportation, childcare, clothing), seniors (home care, assisted living), common (free, appointment, interpreter)
+- Impact: Better recall for housing, financial, practical, seniors queries
+- Commit: 6816797
+- Effort: 1.5h (actual)
 - Impact: Search vocabulary coverage
 - Effort: S
 
