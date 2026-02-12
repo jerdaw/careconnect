@@ -510,12 +510,12 @@ npm run check-staleness      # Find services needing re-verification
 
 ### v20.0: Technical Excellence & Testing (HIGH PRIORITY - Before Production)
 
-**Status**: IN PROGRESS (Phase 1A-1G Complete ✅)
+**Status**: IN PROGRESS (Phase 1A-1J Complete ✅)
 **Priority**: HIGH (Pre-Production Requirement)
 **Total Effort**: ~100-120 hours (AI-autonomous work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
-**Completion**: 14/38 items done (A1, A2, A3, A4, A5, A6, B1, B3, C1, C3, C4, D1, E1)
+**Completion**: 15/38 items done (A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C3, C4, D1, E1)
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -584,14 +584,15 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Commits: c272018 (geo, fuzzy, synonyms), 8215ebc (query-expander)
 - Effort: 2.5h actual (6-8h estimated)
 
-**B2. Write tests for 4 untested API routes** (4-6h)
+**B2. Write tests for 4 untested API routes** ✅ COMPLETE (2026-02-12)
 
-- `/api/v1/services/[id]/printable`
-- `/api/v1/services/[id]/summary`
-- `/api/v1/services/[id]/update-request`
-- `/api/admin/reindex/status`
-- Impact: API contract coverage
-- Effort: M
+- Created tests/api/v1/services/update-request.test.ts (9 tests)
+- Created tests/api/admin/reindex-status.test.ts (9 tests)
+- Note: printable and summary routes already had tests
+- Tests cover: auth, validation, error handling, edge cases, metric calculations
+- Impact: API contract coverage, 18 new tests
+- Commit: 95f8b37
+- Effort: 2h (actual)
 
 **B3. Write unit test for `useRBAC` hook** ✅ COMPLETE (2026-02-12)
 

@@ -30,6 +30,9 @@ phase_1h_commit: f57aa70
 phase_1i_status: complete
 phase_1i_completed: 2026-02-12
 phase_1i_commit: e18ff97
+phase_1j_status: complete
+phase_1j_completed: 2026-02-12
+phase_1j_commit: 95f8b37
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -905,6 +908,91 @@ The remaining 12 directives require either:
 3. Refactoring complex components (diminishing returns)
 
 The 48% reduction achieved addresses all "easy wins" and improves type safety across the most critical code paths.
+
+---
+
+### Phase 1J: API Route Test Coverage (B2) ✅ COMPLETE (2026-02-12)
+
+**Goal**: Add comprehensive tests for previously untested API routes to improve API contract coverage.
+
+**Deliverables**: 18 new tests covering update-request and reindex-status routes.
+
+**Actual Effort**: 2h (within 4-6h estimate)
+**Commit**: 95f8b37
+
+---
+
+#### Files Created
+
+**New: tests/api/v1/services/update-request.test.ts (9 tests)**
+
+Tests for POST `/api/v1/services/[id]/update-request`:
+- Authentication validation (401 if no user)
+- Authorization validation (403 if user doesn't own service via AuthorizationError)
+- Content-type validation (415 if not application/json)
+- Field allowlist enforcement (400 if disallowed fields)
+- Required field validation (400 if field_updates missing)
+- Valid update submission (200 with all allowed fields)
+- Optional justification field handling
+- All 18 allowed fields tested (name, name_fr, description, phone, email, url, etc.)
+- Database insert failure (500 with error message)
+
+**New: tests/api/admin/reindex-status.test.ts (9 tests)**
+
+Tests for GET `/api/admin/reindex/status`:
+- Authentication validation (401 if no user)
+- Admin role validation (403 via AuthorizationError if not admin)
+- Recent history retrieval (returns last 10 operations when no progressId)
+- Specific progress details (with progressId query param)
+- 404 handling (if progressId not found)
+- Metric calculations:
+  - Progress percentage (processed_count / total_services * 100)
+  - Elapsed seconds (for in-progress: now - started_at, for complete: completed_at - started_at)
+  - Duration seconds (from progress record)
+- Error status with error message
+- Edge case: zero total services (prevents division by zero)
+- Database query failure (500 with error message)
+
+#### Testing Patterns Used
+
+**Mock Setup:**
+- Standard Supabase SSR client mocking via `@supabase/ssr`
+- Table chain mocks for query builder pattern
+- Authorization helper mocks (`assertServiceOwnership`, `assertAdminRole`)
+- Circuit breaker mock (pass-through for these tests)
+
+**Request Handling:**
+- Used `createMockRequest` helper with proper headers
+- Set `Content-Type: application/json` for all POST requests
+- Tested both with and without query parameters
+
+**Assertion Patterns:**
+- Response status codes (401, 403, 404, 415, 500, 200)
+- Error message format: `json.error.message`
+- Success response format: `json.data.*`
+- Verified mock function calls with `expect().toHaveBeenCalledWith()`
+
+#### Why Only 2 Routes?
+
+**Routes Already Tested:**
+- `/api/v1/services/[id]/printable` - tests/api/v1/services-printable.test.ts (3 tests)
+- `/api/v1/services/[id]/summary` - tests/api/v1/services/summary.test.ts (3 tests)
+
+**Routes Newly Tested:**
+- `/api/v1/services/[id]/update-request` - NEWLY ADDED (9 tests)
+- `/api/admin/reindex/status` - NEWLY ADDED (9 tests)
+
+The task description mentioned 4 routes, but 2 were already tested, so only 2 required new tests.
+
+#### Test Coverage Impact
+
+**Before Phase 1J:**
+- 877 tests passing
+
+**After Phase 1J:**
+- 895 tests passing (+18)
+- All API routes in B2 scope now have test coverage
+- API contract coverage significantly improved
 
 ---
 
