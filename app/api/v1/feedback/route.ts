@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
 
     const { error: insertError } = await withCircuitBreaker(async () =>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (supabase.from("feedback") as any).insert([
+      (supabase as any).from("feedback").insert([
         {
           service_id: service_id || null,
           feedback_type,
