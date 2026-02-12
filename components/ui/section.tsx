@@ -5,7 +5,10 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { fadeInUp } from "@/lib/motion"
 
-type SectionProps = React.HTMLAttributes<HTMLElement> & {
+type SectionProps = Omit<
+  React.HTMLAttributes<HTMLElement>,
+  "onDrag" | "onDragEnd" | "onDragStart" | "onAnimationStart" | "onAnimationEnd"
+> & {
   container?: boolean
   animate?: boolean
   variant?: "default" | "alternate"
@@ -13,34 +16,38 @@ type SectionProps = React.HTMLAttributes<HTMLElement> & {
 
 const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ className, children, container = true, animate = true, variant = "default", ...props }, ref) => {
-    // Explicitly define wrapper based on animation prop
-    const Wrapper = animate ? motion.section : "section"
+    const sectionClassName = cn(
+      "relative overflow-hidden py-2 md:py-2",
+      variant === "alternate" && "bg-neutral-50 dark:bg-neutral-900/50",
+      className
+    )
 
-    // Animation props
-    const animationProps = animate
-      ? {
-          initial: "initial",
-          whileInView: "animate",
-          viewport: { once: true, margin: "-100px" },
-          variants: fadeInUp,
-        }
-      : {}
+    const content = container ? (
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+    ) : (
+      children
+    )
+
+    if (animate) {
+      return (
+        <motion.section
+          ref={ref}
+          className={sectionClassName}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          {...props}
+        >
+          {content}
+        </motion.section>
+      )
+    }
 
     return (
-      <Wrapper
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
-        className={cn(
-          "relative overflow-hidden py-2 md:py-2",
-          variant === "alternate" && "bg-neutral-50 dark:bg-neutral-900/50",
-          className
-        )}
-        {...animationProps}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
-      >
-        {container ? <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div> : children}
-      </Wrapper>
+      <section ref={ref} className={sectionClassName} {...props}>
+        {content}
+      </section>
     )
   }
 )

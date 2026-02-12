@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
   const supabase = await createClient()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { error } = await (supabase.from("feedback") as any).insert({
+  const { error } = await (supabase as any).from("feedback").insert({
     service_id: parsed.data.serviceId,
     feedback_type: parsed.data.feedbackType,
     message: parsed.data.message,

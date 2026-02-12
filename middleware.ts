@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import createMiddleware from "next-intl/middleware"
 import { routing } from "./i18n/routing"
-import { createServerClient } from "@supabase/ssr"
+import { createServerClient, type CookieOptions } from "@supabase/ssr"
 import { env } from "@/lib/env"
 
 // Initialize Internationalization Middleware
@@ -43,8 +43,7 @@ export async function middleware(request: NextRequest) {
             headers: request.headers,
           },
         })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) =>
+        cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: CookieOptions }) =>
           response.cookies.set(name, value, options)
         )
       },

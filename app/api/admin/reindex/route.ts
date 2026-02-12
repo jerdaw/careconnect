@@ -37,16 +37,15 @@ export async function POST() {
       .is("deleted_at", null)
 
     // Create progress record
-    const { data: progressRecord, error: progressError } =
-      await // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (supabase.from("reindex_progress") as any)
-        .insert({
-          total_services: totalServices || 0,
-          triggered_by: user.id,
-          service_snapshot_count: totalServices || 0,
-        })
-        .select()
-        .single()
+    const { data: progressRecord, error: progressError } = await supabase
+      .from("reindex_progress")
+      .insert({
+        total_services: totalServices || 0,
+        triggered_by: user.id,
+        service_snapshot_count: totalServices || 0,
+      })
+      .select()
+      .single()
 
     if (progressError) {
       return createApiError(`Failed to create progress record: ${progressError.message}`, 500)
@@ -78,8 +77,7 @@ export async function POST() {
  * This runs in the background after the API response is sent
  */
 async function runReindexWithProgress(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  supabase: any,
+  supabase: ReturnType<typeof createServerClient>,
   progressId: string,
   userId: string
 ) {

@@ -19,8 +19,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
   const vt = useTranslations("VerificationLevels")
   const [isIssueModalOpen, setIsIssueModalOpen] = useState(false)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const provenance = (service.provenance as any) || {}
+  const provenance = service.provenance
 
   const getLevelVariant = (level: VerificationLevel) => {
     switch (level) {
