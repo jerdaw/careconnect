@@ -6,6 +6,9 @@ tags: [roadmap, v20.0, code-quality, testing, i18n]
 phase_1a_status: complete
 phase_1a_completed: 2026-02-12
 phase_1a_commit: ff56b09
+phase_1b_status: complete
+phase_1b_completed: 2026-02-12
+phase_1b_commit: 75285bf
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -139,11 +142,14 @@ This prevents arbitrary field injection while still allowing legitimate service 
 
 ---
 
-### Phase 1B: i18n Key Backfill (2-3h)
+### Phase 1B: i18n Key Backfill ✅ COMPLETE (2026-02-12)
 
 **Goal**: Close the 13-key gap in 5 non-EN/FR locales.
 
 **Deliverables**: All 7 locale files have identical key structure (846 keys each).
+
+**Actual Effort**: 2h (as estimated)
+**Commit**: 75285bf
 
 ---
 
