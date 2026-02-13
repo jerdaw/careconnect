@@ -231,7 +231,7 @@ describe("SearchBar", () => {
     })
 
     it("should have heart icon in save button", () => {
-      const { container } = render(
+      render(
         <SearchBar
           query="food bank"
           setQuery={mockSetQuery}
@@ -511,10 +511,11 @@ describe("SearchBar", () => {
         />
       )
 
-      const saveButton = screen.getByRole("button", { name: /save this search/i })
+      // Tab to input, then to save button
       await user.tab()
-      await user.tab() // Navigate to save button
+      await user.tab()
 
+      // Enter should trigger save
       await user.keyboard("{Enter}")
       expect(mockHandleSaveSearch).toHaveBeenCalled()
     })
