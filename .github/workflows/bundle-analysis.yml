@@ -1,17 +1,89 @@
 name: Bundle Size Check
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write # Needed for PR comments
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
-      - run: npm ci
-      - run: npx cross-env ANALYZE=true npm run build
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with bundle analyzer
+        run: npx cross-env ANALYZE=true npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'placeholder-key' }}
-      - run: node scripts/report-bundle-size.js
+
+      - name: Generate bundle size report
+        run: node scripts/report-bundle-size.js
+
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: |
+            .next/analyze/__bundle_analysis.json
+            .next/analyze/client.html
+            .next/analyze/nodejs.html
+          retention-days: 30
+
+      - name: Download baseline bundle analysis
+        uses: dawidd6/action-download-artifact@v3
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        with:
+          workflow: bundle-analysis.yml
+          branch: main
+          name: bundle-analysis
+          path: .next/analyze/baseline
+
+      - name: Compare bundle sizes
+        if: github.event_name == 'pull_request'
+        id: compare
+        run: |
+          node scripts/compare-bundle-size.js || echo "comparison_failed=true" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with bundle size diff
+        if: github.event_name == 'pull_request' && steps.compare.outputs.comparison_failed != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const diff = fs.readFileSync('.next/analyze/bundle-diff.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: diff
+            });
+
+      - name: Create job summary
+        if: always()
+        run: |
+          echo "## Bundle Size Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f .next/analyze/bundle-diff.md ]; then
+            cat .next/analyze/bundle-diff.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ Bundle analysis complete. No baseline for comparison." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "View the [bundle analyzer report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) artifacts." >> $GITHUB_STEP_SUMMARY
+          fi

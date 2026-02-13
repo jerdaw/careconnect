@@ -207,6 +207,14 @@ const withPWA = withPWAInit({
   },
 })
 
-const finalConfig = withPWA(withNextIntl(nextConfig))
+// Bundle analyzer configuration (enabled when ANALYZE=true)
+import withBundleAnalyzer from "@next/bundle-analyzer"
+
+const withAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+  openAnalyzer: false, // Don't auto-open browser in CI
+})
+
+const finalConfig = withAnalyzer(withPWA(withNextIntl(nextConfig)))
 
 export default finalConfig
