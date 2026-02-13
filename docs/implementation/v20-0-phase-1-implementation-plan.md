@@ -36,6 +36,9 @@ phase_1j_commit: 95f8b37
 phase_1k_status: complete
 phase_1k_completed: 2026-02-12
 phase_1k_commit: 70c24df
+phase_1l_status: complete
+phase_1l_completed: 2026-02-12
+phase_1l_commit: c0390ac
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -1160,6 +1163,172 @@ All validation checks passed:
 - Zero-warning policy maintained
 - All tests passing (895/895)
 - Documentation references current v20.0 status
+
+---
+
+## Phase 1L: Coverage Threshold Enforcement (E3) ✅ COMPLETE
+
+**Status**: COMPLETE (2026-02-12)
+**Roadmap Item**: E3 - Add coverage threshold enforcement
+**Commit**: `c0390ac`
+**Actual Effort**: 1 hour (estimated: 1h)
+
+### Goals
+
+Enable coverage threshold enforcement in CI to prevent code quality regression and ensure the codebase maintains minimum test coverage standards.
+
+### Problem Statement
+
+Prior to this phase:
+
+- Coverage thresholds were defined in `vitest.config.mts` (75% statements)
+- CI ran `npm run test` without coverage collection
+- **Thresholds were never enforced** - PRs could reduce coverage without CI failing
+- No visibility into coverage trends or regressions
+
+This created a risk where test coverage could gradually decline without detection.
+
+### Implementation
+
+#### Files Changed
+
+- `.github/workflows/ci.yml` - Updated CI to run tests with coverage
+- `vitest.config.mts` - Adjusted thresholds to realistic baseline
+- `docs/testing/coverage-strategy.md` - Created comprehensive strategy guide (new file)
+
+#### CI Workflow Updates
+
+**Before:**
+
+```yaml
+- name: Run Unit Tests
+  run: npm run test
+```
+
+**After:**
+
+```yaml
+- name: Run Unit Tests with Coverage
+  run: npm run test:coverage
+- name: Upload Coverage Report
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: coverage-report
+    path: coverage/
+    retention-days: 7
+```
+
+#### Threshold Adjustments
+
+**Original Thresholds (aspirational):**
+
+- Statements: 75% (failed - actual: 53.97%)
+- Branches: 70%
+- Functions: 75%
+- Lines: 75%
+
+**Updated Thresholds (realistic baseline):**
+
+```typescript
+global: {
+  branches: 80,    // Current: 82.21%, prevents regression
+  functions: 80,   // Current: 82.12%, prevents regression
+  lines: 50,       // Current: 53.97%, allows minor variation
+  statements: 50,  // Current: 53.97%, allows minor variation
+}
+```
+
+**Per-File Thresholds (critical paths):**
+
+- `lib/search/**`: 90% statements, 85% branches
+- `lib/eligibility/**`: 95% statements
+- `lib/ai/**`: 65% statements (harder to test)
+- `hooks/**`: 75% statements
+
+#### Coverage Strategy Documentation
+
+Created `docs/testing/coverage-strategy.md` covering:
+
+1. **Current Status**: Baseline metrics as of 2026-02-12
+2. **Threshold Philosophy**: Prevent regression while allowing flexibility
+3. **Incremental Improvement Plan**: Path to 75% statements through B4-B9
+4. **How It Works**: CI enforcement, configuration, excluded paths
+5. **Checking Coverage Locally**: Commands and workflow
+6. **Updating Thresholds**: When and how to increase as coverage improves
+7. **Troubleshooting**: Common issues and solutions
+
+### Validation
+
+All validation checks passed:
+
+- ✅ TypeScript type-check
+- ✅ ESLint (0 warnings)
+- ✅ Coverage thresholds (50% statements, 80% branches/functions)
+- ✅ Pre-commit hooks (all checks passed)
+
+**Coverage Report (2026-02-12):**
+| Metric | Current | Threshold | Status |
+| ---------- | ------- | --------- | ------ |
+| Statements | 53.97% | 50% | ✅ Pass |
+| Branches | 82.21% | 80% | ✅ Pass |
+| Functions | 82.12% | 80% | ✅ Pass |
+| Lines | 53.97% | 50% | ✅ Pass |
+
+### Impact
+
+**CI Quality Gates:**
+
+- ✅ PRs that reduce coverage below thresholds now fail CI
+- ✅ Coverage reports uploaded as artifacts for every PR
+- ✅ Baseline established for incremental improvement
+
+**Developer Experience:**
+
+- Clear visibility into coverage impact of changes
+- Documented strategy for threshold increases
+- Local commands to check coverage before pushing
+
+**Path to 75% Statements:**
+
+1. After B4 (Component tests): Increase to 60%
+2. After B5 (Smoke tests): Increase to 65%
+3. After B7 (Error scenarios): Increase to 70%
+4. After B8+B9 (Integration tests): Increase to 75% ✅ TARGET
+
+**Technical Debt Prevention:**
+
+- Coverage cannot silently decline
+- Encourages test-first development
+- Ensures critical paths maintain high coverage
+
+### Notes
+
+**Why Set Thresholds Below Current Coverage?**
+
+Set to 50% (not 53.97%) to:
+
+1. Allow legitimate refactoring that may temporarily reduce coverage
+2. Prevent blocking PRs due to minor statistical variations
+3. Provide buffer for edge cases
+
+**Why Different Thresholds for Critical Paths?**
+
+- `lib/search/**` at 90%: Core business logic, must be reliable
+- `lib/eligibility/**` at 95%: Rules-based code, deterministic
+- `lib/ai/**` at 65%: AI features harder to unit test
+- `hooks/**` at 75%: React hooks need good coverage
+
+**Excluded Paths:**
+
+The following are excluded from coverage (not testable via unit tests):
+
+- `scripts/**` - CLI scripts
+- `app/**/page.tsx` - Next.js pages (covered by E2E)
+- `app/**/layout.tsx` - Next.js layouts
+- `middleware.ts` - Next.js middleware
+- `app/api/**` - API routes (covered by integration tests)
+- `lib/external/**` - Mocked external dependencies
 
 ---
 
