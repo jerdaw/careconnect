@@ -1,25 +1,43 @@
 version: 2
 
+# Dependabot Configuration for Kingston Care Connect
+# Automatically updates dependencies to keep the project secure and up-to-date
+# See: docs/development/dependency-management.md for handling update PRs
+
 updates:
-  # npm dependencies
+  # npm production dependencies
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
+      time: "09:00" # Run early morning UTC
     groups:
-      patch-updates:
+      # Group patch updates together for easier review
+      production-patch:
+        dependency-type: "production"
         update-types:
           - "patch"
-      minor-updates:
+      # Group minor updates by category
+      production-minor:
+        dependency-type: "production"
         update-types:
           - "minor"
-    open-pull-requests-limit: 5
+      # Group dev dependency updates separately
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "patch"
+          - "minor"
+    open-pull-requests-limit: 10 # Increased from 5 to handle grouped updates
     commit-message:
       prefix: "chore(deps)"
+      include: "scope"
     labels:
       - "dependencies"
       - "automated"
+    reviewers:
+      - "jer" # Replace with actual GitHub username if different
     ignore:
       # Major version bumps for core framework — require manual review
       - dependency-name: "next"
@@ -28,15 +46,32 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # Skip @types updates for major framework versions (tied to framework)
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major"]
+      # Transformers.js updates carefully (breaking changes common)
+      - dependency-name: "@xenova/transformers"
+        update-types: ["version-update:semver-major"]
 
-  # GitHub Actions
+  # GitHub Actions - keep workflows up-to-date
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 3
+      day: "monday"
+    open-pull-requests-limit: 5
     commit-message:
       prefix: "ci"
     labels:
       - "dependencies"
       - "automated"
+      - "github-actions"
+    groups:
+      # Group all GitHub Actions updates together
+      github-actions:
+        patterns:
+          - "*"
