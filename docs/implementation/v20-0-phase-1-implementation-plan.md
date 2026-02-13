@@ -39,6 +39,9 @@ phase_1k_commit: 70c24df
 phase_1l_status: complete
 phase_1l_completed: 2026-02-12
 phase_1l_commit: c0390ac
+phase_1m_status: complete
+phase_1m_completed: 2026-02-12
+phase_1m_commit: adbeb64
 ---
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
@@ -1329,6 +1332,264 @@ The following are excluded from coverage (not testable via unit tests):
 - `middleware.ts` - Next.js middleware
 - `app/api/**` - API routes (covered by integration tests)
 - `lib/external/**` - Mocked external dependencies
+
+---
+
+## Phase 1M: Bundle Size Tracking (E6) ✅ COMPLETE
+
+**Status**: COMPLETE (2026-02-12)
+**Roadmap Item**: E6 - Add bundle size tracking to CI
+**Commit**: `adbeb64`
+**Actual Effort**: 1.5 hours (estimated: 1h)
+
+### Goals
+
+Enable comprehensive bundle size tracking in CI to prevent performance regressions from JavaScript bundle bloat and provide developers with immediate visibility into the size impact of their changes.
+
+### Problem Statement
+
+Prior to this phase:
+
+- Bundle analyzer workflow existed but was incomplete
+- `@next/bundle-analyzer` was installed but not configured
+- No comparison against baseline (main branch)
+- No PR comments or actionable feedback
+- Developers had no visibility into bundle size changes
+
+This created a risk where bundle sizes could grow unbounded without detection, potentially degrading application performance.
+
+### Implementation
+
+#### Files Changed
+
+- `next.config.ts` - Configured @next/bundle-analyzer
+- `.github/workflows/bundle-analysis.yml` - Enhanced workflow with comparison and PR comments
+- `scripts/compare-bundle-size.js` - New comparison script (181 lines, new file)
+- `docs/development/bundle-size-tracking.md` - Comprehensive guide (280+ lines, new file)
+
+#### Bundle Analyzer Configuration
+
+Added to `next.config.ts`:
+
+```typescript
+import withBundleAnalyzer from "@next/bundle-analyzer"
+
+const withAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+  openAnalyzer: false, // Don't auto-open browser in CI
+})
+
+const finalConfig = withAnalyzer(withPWA(withNextIntl(nextConfig)))
+```
+
+**Effect**: When `ANALYZE=true`, generates interactive HTML bundle visualizations:
+
+- `.next/analyze/client.html` - Client-side bundle breakdown
+- `.next/analyze/nodejs.html` - Server-side bundle breakdown
+
+#### Workflow Enhancements
+
+**Before:**
+
+```yaml
+- run: npm ci
+- run: npx cross-env ANALYZE=true npm run build
+- run: node scripts/report-bundle-size.js
+```
+
+**After:**
+
+```yaml
+- name: Build with bundle analyzer
+  run: npx cross-env ANALYZE=true npm run build
+
+- name: Upload bundle analysis
+  uses: actions/upload-artifact@v4
+  with:
+    name: bundle-analysis
+    retention-days: 30
+
+- name: Download baseline bundle analysis
+  if: github.event_name == 'pull_request'
+  uses: dawidd6/action-download-artifact@v3
+  with:
+    workflow: bundle-analysis.yml
+    branch: main
+    name: bundle-analysis
+    path: .next/analyze/baseline
+
+- name: Compare bundle sizes
+  if: github.event_name == 'pull_request'
+  run: node scripts/compare-bundle-size.js
+
+- name: Comment PR with bundle size diff
+  if: github.event_name == 'pull_request'
+  uses: actions/github-script@v7
+  # ... posts markdown diff as PR comment
+
+- name: Create job summary
+  # ... creates GitHub Actions job summary
+```
+
+**Key Improvements:**
+
+1. Uploads artifacts with 30-day retention
+2. Downloads baseline from main branch (for PRs)
+3. Compares current vs baseline
+4. Posts detailed PR comment with diff table
+5. Creates GitHub Actions job summary
+
+#### Comparison Script
+
+Created `scripts/compare-bundle-size.js` with features:
+
+**Comparison Logic:**
+
+- Loads current and baseline bundle analysis JSON
+- Compares global bundle sizes (raw & gzipped)
+- Compares page-level bundle sizes
+- Identifies significant changes
+
+**Warning Thresholds:**
+
+```javascript
+const WARN_INCREASE_BYTES = 10 * 1024 // 10 KB
+const WARN_INCREASE_PERCENT = 5 // 5%
+```
+
+**Output Format:**
+
+```markdown
+## 📦 Bundle Size Analysis
+
+### Global Bundle
+
+| Metric  | Current | Baseline | Diff               |
+| ------- | ------- | -------- | ------------------ |
+| Raw     | 1.2 MB  | 1.15 MB  | ⚠️ +50 KB (+4.35%) |
+| Gzipped | 350 KB  | 340 KB   | ⚠️ +10 KB (+2.94%) |
+
+### 🔍 Significant Changes
+
+| Page         | Current (gzip) | Baseline (gzip) | Diff                |
+| ------------ | -------------- | --------------- | ------------------- |
+| `/dashboard` | 45 KB          | 35 KB           | ⚠️ +10 KB (+28.57%) |
+
+### 📊 Largest Pages (Top 5)
+
+[...]
+```
+
+**Indicators:**
+
+- ⚠️ Warning: Size increased significantly
+- ✅ Improvement: Size decreased
+- 📊 Neutral: Minor or no change
+
+#### Documentation
+
+Created comprehensive `docs/development/bundle-size-tracking.md` covering:
+
+1. **Overview**: How bundle size tracking works
+2. **Workflow Steps**: Detailed CI process explanation
+3. **Report Format**: Example PR comment output
+4. **Thresholds**: Warning triggers and criteria
+5. **Running Locally**: Commands and workflow
+6. **Best Practices**: Keeping bundles small, investigating increases
+7. **Configuration**: Where settings live
+8. **Troubleshooting**: Common issues and solutions
+9. **Future Enhancements**: Potential improvements
+
+### Validation
+
+All validation checks passed:
+
+- ✅ TypeScript type-check
+- ✅ ESLint (0 warnings)
+- ✅ Prettier formatting
+- ✅ Pre-commit hooks (all checks passed)
+
+**Workflow verified** (manually):
+
+- YAML syntax valid
+- GitHub Actions used are correct versions
+- Permissions configured properly (contents: read, pull-requests: write)
+
+### Impact
+
+**CI Quality Gates:**
+
+- ✅ Bundle sizes tracked and compared automatically
+- ✅ PR comments provide immediate feedback
+- ✅ Historical tracking via 30-day artifact retention
+- ✅ Interactive HTML visualizations available as artifacts
+
+**Developer Experience:**
+
+- Clear visibility into bundle size impact of changes
+- Warnings for significant increases (>10KB or >5%)
+- Top 5 largest pages highlighted
+- Actionable recommendations in warnings
+
+**Performance Protection:**
+
+- Prevents silent bundle bloat
+- Encourages optimization awareness
+- Identifies regressions before merge
+
+**Informational Only:**
+
+- Does NOT block PRs (warnings only)
+- Allows flexibility for legitimate increases
+- Future option to add hard limits if needed
+
+### Future Enhancements
+
+Documented potential improvements:
+
+1. **Automated Bundle Budget Enforcement**
+   - Fail CI if bundle exceeds hard limit
+   - Configurable per-route budgets
+
+2. **Historical Trending**
+   - Track bundle size over time
+   - Visualize trends in dashboard
+
+3. **Dependency Impact Analysis**
+   - Show size contribution of each dependency
+   - Suggest lighter alternatives
+
+4. **Performance Budget Integration**
+   - Link bundle size to Lighthouse scores
+   - Track correlation with load time metrics
+
+### Notes
+
+**Why @next/bundle-analyzer?**
+
+- Official Next.js plugin
+- Generates webpack-bundle-analyzer HTML reports
+- Already installed (just needed configuration)
+- Zero additional dependencies
+
+**Why Not Fail PRs?**
+
+Set to informational-only (no CI failure) because:
+
+1. Legitimate features may increase bundle size
+2. Allows developer discretion
+3. Can be tightened in future if needed
+4. Warnings are sufficient for awareness
+
+**Artifact Retention (30 days):**
+
+Balances:
+
+- Historical tracking needs
+- GitHub storage limits (free tier: limited)
+- Typical PR lifecycle (usually <7 days)
+
+30 days allows monthly trend analysis while keeping storage costs low.
 
 ---
 
