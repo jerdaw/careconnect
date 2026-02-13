@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { calculateDistanceKm, getProximityMultiplier, resortByDistance, PROXIMITY_CONFIG } from "@/lib/search/geo"
+import { calculateDistanceKm, getProximityMultiplier, resortByDistance } from "@/lib/search/geo"
 import { SearchResult } from "@/lib/search/types"
 import { Service, VerificationLevel, IntentCategory, ServiceScope } from "@/types/service"
 

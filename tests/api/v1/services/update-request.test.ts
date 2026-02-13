@@ -4,7 +4,6 @@ import { POST } from "@/app/api/v1/services/[id]/update-request/route"
 import { createMockRequest } from "@/tests/utils/api-test-utils"
 import { createServerClient } from "@supabase/ssr"
 import { assertServiceOwnership } from "@/lib/auth/authorization"
-import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 // Mock authorization
 vi.mock("@/lib/auth/authorization", () => ({
