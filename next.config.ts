@@ -34,12 +34,44 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // Vercel optimization: reduce deployment size by ~40%
+  output: "standalone",
+
+  // Disable source maps in production to reduce build size
+  productionBrowserSourceMaps: false,
+
+  // Enable compression for static files
+  compress: true,
+
   // We will add image domains here later (e.g. forSupabase storage)
   images: {
     domains: [],
+    formats: ["image/avif", "image/webp"], // Modern formats for better compression
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
   transpilePackages: [],
   serverExternalPackages: ["@xenova/transformers"],
+
+  // Optimize package imports to reduce bundle size
+  experimental: {
+    optimizePackageImports: [
+      "@radix-ui/react-alert-dialog",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-checkbox",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-label",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-progress",
+      "@radix-ui/react-radio-group",
+      "@radix-ui/react-select",
+      "@radix-ui/react-separator",
+      "@radix-ui/react-switch",
+      "@radix-ui/react-toast",
+      "@radix-ui/react-tooltip",
+      "lucide-react",
+    ],
+  },
+
   webpack: (config) => {
     // See https://webpack.js.org/configuration/resolve/#resolvealias
     config.resolve.alias = {
