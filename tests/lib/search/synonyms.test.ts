@@ -268,7 +268,7 @@ describe("Synonyms - Query Expansion", () => {
     })
 
     it("should have non-empty synonym arrays", () => {
-      Object.entries(SYNONYMS).forEach(([key, synonyms]) => {
+      Object.entries(SYNONYMS).forEach(([_key, synonyms]) => {
         expect(synonyms.length).toBeGreaterThan(0)
       })
     })
