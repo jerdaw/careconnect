@@ -80,11 +80,7 @@ describe("POST /api/v1/services/[id]/update-request", () => {
     const res = await POST(req, { params: Promise.resolve({ id: "svc-123" }) })
 
     expect(res.status).toBe(403) // handleApiError returns 403 for AuthorizationError
-    expect(vi.mocked(assertServiceOwnership)).toHaveBeenCalledWith(
-      expect.anything(),
-      "user-1",
-      "svc-123"
-    )
+    expect(vi.mocked(assertServiceOwnership)).toHaveBeenCalledWith(expect.anything(), "user-1", "svc-123")
   })
 
   it("returns 415 if content-type is not application/json", async () => {
@@ -204,7 +200,7 @@ describe("POST /api/v1/services/[id]/update-request", () => {
         eligibility_notes_fr: "Nouvelle éligibilité",
         access_script: "New access",
         access_script_fr: "Nouvel accès",
-        coordinates: { lat: 44.2312, lng: -76.4860 },
+        coordinates: { lat: 44.2312, lng: -76.486 },
         status: "active",
       },
     }
@@ -241,5 +237,4 @@ describe("POST /api/v1/services/[id]/update-request", () => {
     expect(res.status).toBe(500)
     expect(json.error.message).toBe("Failed to submit update request")
   })
-
 })

@@ -856,35 +856,43 @@ npm run build
 #### Directives Removed (13 total)
 
 **middleware.ts (1 directive)**
+
 - Added `CookieOptions` type import from `@supabase/ssr`
 - Properly typed cookie options in `setAll` function
 
 **hooks/useServices.ts (1 directive)**
+
 - Imported `SupportedLocale` type from `lib/schemas/search`
 - Replaced `locale as any` with `locale as SupportedLocale`
 
 **app/api/admin/reindex/route.ts (2 directives)**
+
 - Used `ReturnType<typeof createServerClient>` for supabase client type
 - Removed cast on `reindex_progress` insert operation
 
 **components/ui/section.tsx (2 directives)**
+
 - Excluded conflicting event handlers from props type: `onDrag`, `onDragEnd`, `onDragStart`, `onAnimationStart`, `onAnimationEnd`
 - Refactored to avoid conditional component type assignment
 - Separated className logic from props spreading
 
 **app/api/v1/analytics/route.ts (1 directive)**
+
 - Created `AnalyticsEvent` type for event iteration
 - Properly typed `events` array casting
 
 **app/api/v1/services/[id]/summary/route.ts (1 directive)**
+
 - Removed unnecessary double `as any` cast on Supabase query
 - Simplified to direct table name string
 
 **components/services/TrustPanel.tsx (1 directive)**
+
 - Used proper `Provenance` type from `types/service.ts`
 - Removed `as any` cast on `service.provenance`
 
 **Additional API route cleanups (4 removed, 4 added back)**
+
 - app/api/feedback/route.ts
 - app/api/v1/feedback/route.ts
 - app/api/v1/notifications/subscribe/route.ts (2)
@@ -892,17 +900,20 @@ npm run build
 #### Remaining Directives (12)
 
 **Blocked by Missing Supabase Types (10):**
+
 - `feedback` table (2 directives)
 - `push_subscriptions` table (2 directives)
 - `organization_invitations` table (1 directive)
 - Dashboard page Supabase queries (5 directives)
 
 **Legitimate Cases (2):**
+
 - `react-hooks/exhaustive-deps` in MemberManagement (fetchMembers/fetchInvitations)
 - Complex page component with unavoidable type conflict
 
 **Why We Didn't Reach <10:**
 The remaining 12 directives require either:
+
 1. Regenerating Supabase types to include all tables (future work)
 2. Wrapping Supabase client calls to bypass type checking (not recommended)
 3. Refactoring complex components (diminishing returns)
@@ -927,6 +938,7 @@ The 48% reduction achieved addresses all "easy wins" and improves type safety ac
 **New: tests/api/v1/services/update-request.test.ts (9 tests)**
 
 Tests for POST `/api/v1/services/[id]/update-request`:
+
 - Authentication validation (401 if no user)
 - Authorization validation (403 if user doesn't own service via AuthorizationError)
 - Content-type validation (415 if not application/json)
@@ -940,13 +952,14 @@ Tests for POST `/api/v1/services/[id]/update-request`:
 **New: tests/api/admin/reindex-status.test.ts (9 tests)**
 
 Tests for GET `/api/admin/reindex/status`:
+
 - Authentication validation (401 if no user)
 - Admin role validation (403 via AuthorizationError if not admin)
 - Recent history retrieval (returns last 10 operations when no progressId)
 - Specific progress details (with progressId query param)
 - 404 handling (if progressId not found)
 - Metric calculations:
-  - Progress percentage (processed_count / total_services * 100)
+  - Progress percentage (processed_count / total_services \* 100)
   - Elapsed seconds (for in-progress: now - started_at, for complete: completed_at - started_at)
   - Duration seconds (from progress record)
 - Error status with error message
@@ -956,17 +969,20 @@ Tests for GET `/api/admin/reindex/status`:
 #### Testing Patterns Used
 
 **Mock Setup:**
+
 - Standard Supabase SSR client mocking via `@supabase/ssr`
 - Table chain mocks for query builder pattern
 - Authorization helper mocks (`assertServiceOwnership`, `assertAdminRole`)
 - Circuit breaker mock (pass-through for these tests)
 
 **Request Handling:**
+
 - Used `createMockRequest` helper with proper headers
 - Set `Content-Type: application/json` for all POST requests
 - Tested both with and without query parameters
 
 **Assertion Patterns:**
+
 - Response status codes (401, 403, 404, 415, 500, 200)
 - Error message format: `json.error.message`
 - Success response format: `json.data.*`
@@ -975,10 +991,12 @@ Tests for GET `/api/admin/reindex/status`:
 #### Why Only 2 Routes?
 
 **Routes Already Tested:**
+
 - `/api/v1/services/[id]/printable` - tests/api/v1/services-printable.test.ts (3 tests)
 - `/api/v1/services/[id]/summary` - tests/api/v1/services/summary.test.ts (3 tests)
 
 **Routes Newly Tested:**
+
 - `/api/v1/services/[id]/update-request` - NEWLY ADDED (9 tests)
 - `/api/admin/reindex/status` - NEWLY ADDED (9 tests)
 
@@ -987,9 +1005,11 @@ The task description mentioned 4 routes, but 2 were already tested, so only 2 re
 #### Test Coverage Impact
 
 **Before Phase 1J:**
+
 - 877 tests passing
 
 **After Phase 1J:**
+
 - 895 tests passing (+18)
 - All API routes in B2 scope now have test coverage
 - API contract coverage significantly improved
