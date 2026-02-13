@@ -126,8 +126,6 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 <type>(<scope>): <description>
 
 <body>
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 ```
 
 **Types**: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `perf`
