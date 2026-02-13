@@ -8,10 +8,11 @@
 ## 📊 Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Test Coverage**: 713 passing tests (53.72% statement coverage — target: 75%)
-  - Branch: 80.69% ✅ | Functions: 81.71% ✅ | Statements: 53.72% ⚠️
-  - Gaps: 61/85 components untested (28% coverage), 4 untested utility functions (geo, fuzzy, synonyms, query-expander)
+- **Test Coverage**: 974 passing tests (component coverage improving)
+  - Branch: Coverage metrics pending update | Functions: Pending | Statements: Pending
+  - Gaps: 56/85 components untested (34% coverage - up from 28%), 4 untested utility functions (geo, fuzzy, synonyms, query-expander)
   - 7 E2E tests skipped (documented as known limitations)
+  - Recent: +80 component tests (OfflineBanner, LanguageSwitcher, SearchChips, Header, Footer)
 - **Load Testing**: k6 infrastructure in place, baseline metrics pending documentation
 - **Resilience**: 100% circuit breaker protection on all API routes and database operations
 - **Security**: 0 vulnerabilities, all dependencies patched (tar 7.5.7)
@@ -602,15 +603,25 @@ Comprehensive technical improvements to reach production-quality standards: achi
 - Commit: c272018
 - Effort: 30min (actual)
 
-**B4. Write component tests for critical untested components** (8-12h)
+**B4. Write component tests for critical untested components** (8-12h) [IN PROGRESS - 5/8 complete]
 
-- `components/layout/Header.tsx`, `Footer.tsx`
-- `components/layout/LanguageSwitcher.tsx`
-- `components/search/SearchInterface.tsx`
-- `components/home/SearchControls.tsx`, `SearchChips.tsx`
-- `components/offline/OfflineBanner.tsx`, `OfflineSync.tsx`
-- Impact: Core UI interaction coverage
-- Effort: L
+Completed (80 tests):
+
+- ✅ `components/layout/Header.tsx` (18 tests) - navigation, auth states, mobile menu, skip link
+- ✅ `components/layout/Footer.tsx` (19 tests) - layout sections, links, locale handling, accessibility
+- ✅ `components/layout/LanguageSwitcher.tsx` (16 tests) - locale selection, RTL support, popover interaction
+- ✅ `components/home/SearchChips.tsx` (17 tests) - saved search display, click/remove interactions
+- ✅ `components/ui/OfflineBanner.tsx` (10 tests) - offline state, sync functionality, accessibility
+
+Remaining (3 components):
+
+- ❌ `components/search/SearchInterface.tsx` - main search UI, filters, results display
+- ❌ `components/home/SearchControls.tsx` - search controls, filter toggles
+- ❌ `components/offline/OfflineSync.tsx` - offline sync status, background sync
+
+- Impact: Core UI interaction coverage (partial - 5/8 components)
+- Commit: 1095e84
+- Effort: L (5h actual, ~3h remaining)
 
 **B5. Add smoke tests for 40+ untested components** (10-15h)
 
