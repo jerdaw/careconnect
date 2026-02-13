@@ -35,7 +35,7 @@ jobs:
         run: node scripts/report-bundle-size.js
 
       - name: Upload bundle analysis
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: bundle-analysis
           path: |
