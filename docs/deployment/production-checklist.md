@@ -1,7 +1,7 @@
 # Production Deployment Checklist
 
 **Version:** 1.0
-**Last Updated:** 2026-02-03
+**Last Updated:** 2026-02-14
 **Maintained By:** Platform Team
 
 ---
@@ -187,6 +187,19 @@ vercel env pull --environment=production .env.production
 - [ ] Health endpoint responds (`GET /api/v1/health`)
 - [ ] All services reporting healthy
 - [ ] Database connectivity confirmed
+
+**Supabase Inactivity Protection (Free Tier):**
+
+- [ ] GitHub workflow `.github/workflows/supabase-keepalive.yml` is enabled
+- [ ] GitHub Actions secrets configured:
+  - [ ] `NEXT_PUBLIC_SUPABASE_URL`
+  - [ ] `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+- [ ] Manual run succeeds (`Actions` -> `Supabase Keepalive` -> `Run workflow`)
+- [ ] Verify keepalive uses `GET /auth/v1/settings` (avoids RLS recursion paths on table queries)
+
+**If keepalive fails with `42P17` recursion errors:**
+
+- [ ] Apply the policy fix from `docs/troubleshooting/fix-rls-recursion.md`
 
 ---
 
