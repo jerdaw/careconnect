@@ -33,8 +33,11 @@ export function ReindexProgress({ progressId, onComplete }: ReindexProgressProps
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
+    const canPoll = () => document.visibilityState === "visible" && navigator.onLine
 
     const fetchProgress = async () => {
+      if (!canPoll()) return
+
       try {
         const response = await fetch(`/api/admin/reindex/status?progressId=${progressId}`)
         if (!response.ok) {
@@ -62,8 +65,16 @@ export function ReindexProgress({ progressId, onComplete }: ReindexProgressProps
     // Poll every 2 seconds if still running
     interval = setInterval(fetchProgress, 2000)
 
+    const onResume = () => {
+      fetchProgress()
+    }
+    window.addEventListener("online", onResume)
+    document.addEventListener("visibilitychange", onResume)
+
     return () => {
       if (interval) clearInterval(interval)
+      window.removeEventListener("online", onResume)
+      document.removeEventListener("visibilitychange", onResume)
     }
   }, [progressId, onComplete, t])
 
