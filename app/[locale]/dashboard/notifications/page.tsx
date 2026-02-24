@@ -101,7 +101,7 @@ export default function NotificationsPage() {
   if (loading) {
     return (
       <div className="flex justify-center p-12">
-        <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
+        <Loader2 className="text-primary-500 h-8 w-8 animate-spin" />
       </div>
     )
   }

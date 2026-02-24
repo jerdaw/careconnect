@@ -31,7 +31,9 @@ export default function OfflinePage() {
         <div className="rounded-full bg-neutral-200 p-6 dark:bg-neutral-800">
           <WifiOff className="h-12 w-12 text-neutral-500 dark:text-neutral-400" />
         </div>
-        <h1 className="heading-display mt-6 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">{t("title")}</h1>
+        <h1 className="heading-display mt-6 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+          {t("title")}
+        </h1>
         <p className="mt-2 max-w-sm text-neutral-600 dark:text-neutral-400">{t("description")}</p>
 
         {cachedServices.length > 0 && (

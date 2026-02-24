@@ -107,7 +107,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
+        <Loader2 className="text-primary-500 h-8 w-8 animate-spin" />
       </div>
     )
   }
@@ -134,7 +134,9 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
             <ArrowLeft className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
           </Link>
           <div>
-            <h1 className="heading-display text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">{t("editService")}</h1>
+            <h1 className="heading-display text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
+              {t("editService")}
+            </h1>
             <div className="mt-1 flex items-center gap-3">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">{service.name}</p>
               <FeedbackStats serviceId={id} />

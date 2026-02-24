@@ -297,9 +297,7 @@ export default function BulkImportPage() {
                 {t("servicesImported", { count: importSummary.success })}
               </p>
               {importSummary.failed > 0 && (
-                <p className="text-red-600 dark:text-red-400">
-                  {t("servicesFailed", { count: importSummary.failed })}
-                </p>
+                <p className="text-red-600 dark:text-red-400">{t("servicesFailed", { count: importSummary.failed })}</p>
               )}
             </div>
           )}

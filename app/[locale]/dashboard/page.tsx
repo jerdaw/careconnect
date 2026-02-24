@@ -60,11 +60,7 @@ export default async function DashboardPage() {
             <BarChart3 className="h-4 w-4 text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <EmptyState
-              icon={BarChart3}
-              title={t("comingSoon")}
-              description={t("analyticsComingSoonDesc")}
-            />
+            <EmptyState icon={BarChart3} title={t("comingSoon")} description={t("analyticsComingSoonDesc")} />
           </CardContent>
         </Card>
       </div>

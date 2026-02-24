@@ -48,7 +48,9 @@ export default function ContentPolicyPage() {
         className="container mx-auto max-w-4xl flex-1 px-4 py-12 focus:outline-none"
       >
         <div className="mb-12 text-center">
-          <h1 className="heading-display mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">{t("title")}</h1>
+          <h1 className="heading-display mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
+            {t("title")}
+          </h1>
           <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{t("description")}</p>
         </div>
 

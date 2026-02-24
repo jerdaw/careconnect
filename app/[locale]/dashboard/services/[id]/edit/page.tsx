@@ -35,7 +35,9 @@ export default async function EditServicePage({ params }: Props) {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <h1 className="heading-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">{t("editService")}</h1>
+        <h1 className="heading-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+          {t("editService")}
+        </h1>
         <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">{service.name}</p>
       </div>
 

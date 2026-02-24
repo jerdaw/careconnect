@@ -15,9 +15,9 @@ export default function HomeStats() {
   ]
 
   return (
-    <Section variant="alternate" className="py-10 md:py-12">
+    <Section variant="alternate" className="py-12 md:py-16">
       <motion.div
-        className="divide-x-0 grid grid-cols-3 gap-4 divide-neutral-200 md:gap-0 md:divide-x dark:divide-neutral-700"
+        className="grid grid-cols-3 gap-4 divide-x-0 divide-neutral-200 md:gap-0 md:divide-x dark:divide-neutral-700"
         variants={staggerContainer}
         initial="initial"
         whileInView="animate"
@@ -25,8 +25,10 @@ export default function HomeStats() {
       >
         {stats.map(({ value, label }) => (
           <motion.div key={label} variants={fadeInUp} className="flex flex-col items-center text-center">
-            <span className="font-display text-2xl font-bold text-neutral-900 dark:text-white md:text-3xl">{value}</span>
-            <span className="mt-1 text-xs text-neutral-500 dark:text-neutral-400 sm:text-sm">{label}</span>
+            <span className="font-display text-primary-600 dark:text-primary-400 text-2xl font-bold md:text-4xl">
+              {value}
+            </span>
+            <span className="mt-1 text-xs text-neutral-500 sm:text-sm dark:text-neutral-400">{label}</span>
           </motion.div>
         ))}
       </motion.div>

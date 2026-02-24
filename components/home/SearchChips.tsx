@@ -72,7 +72,7 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
               key={key}
               variants={fadeInUp}
               onClick={() => startSearch(t(`quickSearch.${key}`))}
-              className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+              className="hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:bg-primary-900/30 dark:hover:text-primary-300 rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-600 transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
             >
               {t(`quickSearch.${key}`)}
             </motion.button>

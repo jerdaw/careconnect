@@ -98,11 +98,7 @@ export function ClaimFlow({ serviceName }: ClaimFlowProps) {
             </div>
           ) : (
             <div className="space-y-4">
-              <AccessibleFormField
-                id="email"
-                label={t("emailLabel")}
-                hint={t("emailHint")}
-              >
+              <AccessibleFormField id="email" label={t("emailLabel")} hint={t("emailHint")}>
                 <Input
                   id="email"
                   type="email"

@@ -114,9 +114,9 @@ export default function Home() {
         <section className="relative pt-32 pb-4 transition-all duration-500 md:pt-48 md:pb-5">
           {/* Mesh Gradient Background */}
           <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-            <div className="bg-primary-400/40 animate-float dark:bg-primary-700/40 absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:mix-blend-screen" />
-            <div className="bg-accent-400/40 animate-float-delayed dark:bg-accent-700/40 absolute top-[10%] left-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:mix-blend-screen" />
-            <div className="animate-pulse-glow absolute right-[20%] bottom-[-10%] h-[60%] w-[60%] rounded-full bg-indigo-300/40 mix-blend-multiply blur-[150px] dark:bg-indigo-700/40 dark:mix-blend-screen" />
+            <div className="bg-primary-400/20 animate-float dark:bg-primary-700/25 absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[120px] dark:mix-blend-screen" />
+            <div className="bg-accent-400/20 animate-float-delayed dark:bg-accent-700/25 absolute top-[10%] left-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[120px] dark:mix-blend-screen" />
+            <div className="animate-float-delayed absolute right-[20%] bottom-[-10%] h-[60%] w-[60%] rounded-full bg-indigo-300/20 mix-blend-multiply blur-[120px] dark:bg-indigo-700/25 dark:mix-blend-screen" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
@@ -150,7 +150,7 @@ export default function Home() {
               className="mt-12 scroll-mt-24"
               ref={searchBarRef}
             >
-              <div className="shadow-primary-900/5 relative transform overflow-hidden rounded-[2rem] p-[2px] shadow-2xl transition-all duration-500 hover:scale-[1.01]">
+              <div className="shadow-primary-900/5 relative overflow-hidden rounded-[2rem] p-[2px] shadow-2xl transition-all duration-500">
                 {/* Moving Multicolor Border (Idle - spinning segment) */}
                 <div
                   className={cn(

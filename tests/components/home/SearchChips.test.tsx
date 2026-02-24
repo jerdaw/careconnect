@@ -1,7 +1,32 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { render, screen } from "@testing-library/react"
+import { screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import SearchChips from "@/components/home/SearchChips"
+import { renderWithProviders } from "@/tests/utils/test-wrapper"
+
+const messages = {
+  Home: {
+    searchChips: {
+      savedLabel: "Saved",
+      removeSavedSearch: "Remove saved search: {term}",
+      quickSearchesLabel: "Popular searches",
+      quickSearch: {
+        foodBank: "food bank",
+        housing: "housing help",
+        crisis: "crisis support",
+        mentalHealth: "mental health",
+        legalAid: "legal aid",
+      },
+    },
+  },
+}
+
+function renderChips(props: Partial<React.ComponentProps<typeof SearchChips>> = {}) {
+  return renderWithProviders(
+    <SearchChips savedSearches={[]} removeSavedSearch={vi.fn()} startSearch={vi.fn()} {...props} />,
+    { messages }
+  )
+}
 
 describe("SearchChips", () => {
   const mockRemoveSavedSearch = vi.fn()
@@ -12,25 +37,17 @@ describe("SearchChips", () => {
   })
 
   describe("Rendering", () => {
-    it("should render nothing when savedSearches is empty", () => {
-      const { container } = render(
-        <SearchChips savedSearches={[]} removeSavedSearch={mockRemoveSavedSearch} startSearch={mockStartSearch} />
-      )
+    it("should render quick searches when savedSearches is empty", () => {
+      renderChips({ removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
-      expect(container.querySelector(".flex")).toBeInTheDocument()
+      expect(screen.getByText("Popular searches")).toBeInTheDocument()
       expect(screen.queryByText("Saved")).not.toBeInTheDocument()
     })
 
     it("should render saved searches when provided", () => {
       const savedSearches = ["food bank", "mental health"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       expect(screen.getByText("Saved")).toBeInTheDocument()
       expect(screen.getByText("food bank")).toBeInTheDocument()
@@ -40,28 +57,16 @@ describe("SearchChips", () => {
     it("should render remove button for each saved search", () => {
       const savedSearches = ["food bank", "crisis support"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
-      expect(screen.getByRole("button", { name: /remove saved search food bank/i })).toBeInTheDocument()
-      expect(screen.getByRole("button", { name: /remove saved search crisis support/i })).toBeInTheDocument()
+      expect(screen.getByRole("button", { name: /remove saved search.*food bank/i })).toBeInTheDocument()
+      expect(screen.getByRole("button", { name: /remove saved search.*crisis support/i })).toBeInTheDocument()
     })
 
     it("should render multiple saved searches", () => {
       const savedSearches = ["search 1", "search 2", "search 3", "search 4"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       savedSearches.forEach((search) => {
         expect(screen.getByText(search)).toBeInTheDocument()
@@ -74,13 +79,7 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       const searchButton = screen.getByRole("button", { name: "food bank" })
       await user.click(searchButton)
@@ -93,13 +92,7 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank", "mental health"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       const foodBankButton = screen.getByRole("button", { name: "food bank" })
       await user.click(foodBankButton)
@@ -116,15 +109,9 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
-      const removeButton = screen.getByRole("button", { name: /remove saved search food bank/i })
+      const removeButton = screen.getByRole("button", { name: /remove saved search.*food bank/i })
       await user.click(removeButton)
 
       expect(mockRemoveSavedSearch).toHaveBeenCalledWith("food bank")
@@ -135,15 +122,9 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
-      const removeButton = screen.getByRole("button", { name: /remove saved search food bank/i })
+      const removeButton = screen.getByRole("button", { name: /remove saved search.*food bank/i })
       await user.click(removeButton)
 
       expect(mockRemoveSavedSearch).toHaveBeenCalledTimes(1)
@@ -154,15 +135,9 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank", "crisis support"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
-      const removeButton = screen.getByRole("button", { name: /remove saved search crisis support/i })
+      const removeButton = screen.getByRole("button", { name: /remove saved search.*crisis support/i })
       await user.click(removeButton)
 
       expect(mockRemoveSavedSearch).toHaveBeenCalledWith("crisis support")
@@ -173,13 +148,7 @@ describe("SearchChips", () => {
     it("should display 'Saved' label when searches exist", () => {
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       const savedLabel = screen.getByText("Saved")
       expect(savedLabel).toBeInTheDocument()
@@ -189,13 +158,11 @@ describe("SearchChips", () => {
     it("should render chips in a flex container", () => {
       const savedSearches = ["food bank", "mental health"]
 
-      const { container } = render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      const { container } = renderChips({
+        savedSearches,
+        removeSavedSearch: mockRemoveSavedSearch,
+        startSearch: mockStartSearch,
+      })
 
       const chipContainer = container.querySelector(".flex.flex-wrap")
       expect(chipContainer).toBeInTheDocument()
@@ -206,13 +173,7 @@ describe("SearchChips", () => {
     it("should have accessible remove buttons", () => {
       const savedSearches = ["food bank", "mental health"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       const removeButtons = screen.getAllByRole("button", { name: /remove saved search/i })
       expect(removeButtons).toHaveLength(2)
@@ -225,13 +186,7 @@ describe("SearchChips", () => {
     it("should have accessible search buttons", () => {
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       const searchButton = screen.getByRole("button", { name: "food bank" })
       expect(searchButton).toHaveAccessibleName("food bank")
@@ -241,13 +196,7 @@ describe("SearchChips", () => {
       const user = userEvent.setup()
       const savedSearches = ["food bank"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       // Tab to search button
       await user.tab()
@@ -264,13 +213,7 @@ describe("SearchChips", () => {
     it("should handle empty string in savedSearches", () => {
       const savedSearches = [""]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       expect(screen.getByText("Saved")).toBeInTheDocument()
     })
@@ -278,13 +221,7 @@ describe("SearchChips", () => {
     it("should handle very long search terms", () => {
       const savedSearches = ["This is a very long search term that might wrap or overflow"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       expect(screen.getByText("This is a very long search term that might wrap or overflow")).toBeInTheDocument()
     })
@@ -292,13 +229,7 @@ describe("SearchChips", () => {
     it("should handle special characters in search terms", () => {
       const savedSearches = ["food & shelter", "mental health (crisis)"]
 
-      render(
-        <SearchChips
-          savedSearches={savedSearches}
-          removeSavedSearch={mockRemoveSavedSearch}
-          startSearch={mockStartSearch}
-        />
-      )
+      renderChips({ savedSearches, removeSavedSearch: mockRemoveSavedSearch, startSearch: mockStartSearch })
 
       expect(screen.getByText("food & shelter")).toBeInTheDocument()
       expect(screen.getByText("mental health (crisis)")).toBeInTheDocument()

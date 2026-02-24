@@ -1332,7 +1332,15 @@
     },
     "searchChips": {
       "savedLabel": "Saved",
-      "removeSavedSearch": "Remove saved search: {term}"
+      "removeSavedSearch": "Remove saved search: {term}",
+      "quickSearchesLabel": "Popular searches",
+      "quickSearch": {
+        "foodBank": "food bank",
+        "housing": "housing help",
+        "crisis": "crisis support",
+        "mentalHealth": "mental health",
+        "legalAid": "legal aid"
+      }
     },
     "stats": {
       "services": "Verified Services",
@@ -1369,17 +1377,7 @@
       "learnMoreButton": "Learn about partnering"
     },
     "hero": {
-      "subtitle": "Your trusted guide to verified social services and community resources in Kingston, Ontario."
-    },
-    "searchChips": {
-      "quickSearchesLabel": "Popular searches",
-      "quickSearch": {
-        "foodBank": "food bank",
-        "housing": "housing help",
-        "crisis": "crisis support",
-        "mentalHealth": "mental health",
-        "legalAid": "legal aid"
-      }
+      "subtitle": "Find food, housing, crisis support, and 190+ verified services in Kingston — privately, in 7 languages."
     }
   }
 }
