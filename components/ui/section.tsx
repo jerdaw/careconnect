@@ -17,8 +17,8 @@ type SectionProps = Omit<
 const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ className, children, container = true, animate = true, variant = "default", ...props }, ref) => {
     const sectionClassName = cn(
-      "relative overflow-hidden py-16 md:py-20",
-      variant === "alternate" && "bg-neutral-50 py-12 md:py-16 dark:bg-neutral-900/50",
+      "relative overflow-hidden py-2 md:py-2",
+      variant === "alternate" && "bg-neutral-50 dark:bg-neutral-900/50",
       className
     )
 

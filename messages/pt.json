@@ -579,7 +579,8 @@
       "verifyListingsTitle": "Verify your listings",
       "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
       "startVerification": "Start Verification",
-      "manageServices": "Manage Services"
+      "manageServices": "Manage Services",
+      "fromLastMonth": "do mês passado"
     },
     "notifications": {
       "pageTitle": "Notifications",

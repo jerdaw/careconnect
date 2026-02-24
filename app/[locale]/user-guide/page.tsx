@@ -46,7 +46,7 @@ export default async function UserGuidePage({ params }: Props) {
     <div className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
       <Header />
       <main id="main-content" className="flex-1">
-        <Section className="pt-32 pb-16">
+        <Section className="py-20">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center justify-center rounded-2xl bg-blue-100 p-3 dark:bg-blue-900/30">
               <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />

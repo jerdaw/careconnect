@@ -15,7 +15,7 @@ export default function PartnerTermsPage() {
       <Header />
 
       <main id="main-content" className="flex-1">
-        <Section className="pt-32 pb-16">
+        <Section className="py-20">
           <div className="mx-auto max-w-3xl rounded-2xl bg-white p-8 shadow-sm sm:p-12 dark:bg-neutral-900">
             <h1 className="heading-display mb-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
               {t("title")}

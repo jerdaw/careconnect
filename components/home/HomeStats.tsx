@@ -15,7 +15,7 @@ export default function HomeStats() {
   ]
 
   return (
-    <Section variant="alternate" className="py-12 md:py-16">
+    <Section variant="alternate" className="py-10 md:py-12">
       <motion.div
         className="grid grid-cols-3 gap-4 divide-x-0 divide-neutral-200 md:gap-0 md:divide-x dark:divide-neutral-700"
         variants={staggerContainer}

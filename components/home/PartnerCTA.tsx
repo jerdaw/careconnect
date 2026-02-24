@@ -9,7 +9,7 @@ export default function PartnerCTA() {
   const t = useTranslations("Home.partnerCta")
 
   return (
-    <Section className="py-16 md:py-20">
+    <Section className="py-10 md:py-12">
       <div className="border-t-primary-400 dark:border-t-primary-500 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 dark:border-neutral-700 dark:bg-neutral-900/50">
         <div className="flex flex-col gap-6 md:flex-row md:items-center">
           <div className="flex-1">

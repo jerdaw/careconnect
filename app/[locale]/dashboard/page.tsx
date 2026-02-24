@@ -1,12 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ShieldCheck, FileText, BarChart3 } from "lucide-react"
+import { ShieldCheck, Eye, MousePointerClick, TrendingUp, FileText } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
-import { EmptyState } from "@/components/ui/empty-state"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -31,7 +30,35 @@ export default async function DashboardPage() {
       <DashboardPageHeader title={t("welcomeTitle")} subtitle={t("welcomeSubtitle")} />
 
       {/* Stats Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <Card variant="interactive">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neutral-500">{t("totalViews")}</CardTitle>
+            <Eye className="h-4 w-4 text-neutral-400" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">1,234</div>
+            <p className="mt-1 flex items-center gap-1 text-xs text-neutral-500">
+              <TrendingUp className="h-3 w-3 text-emerald-500" />
+              <span className="font-medium text-emerald-600">+12%</span> {t("fromLastMonth")}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card variant="interactive">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neutral-500">{t("referrals")}</CardTitle>
+            <MousePointerClick className="h-4 w-4 text-neutral-400" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">85</div>
+            <p className="mt-1 flex items-center gap-1 text-xs text-neutral-500">
+              <TrendingUp className="h-3 w-3 text-emerald-500" />
+              <span className="font-medium text-emerald-600">+5%</span> {t("fromLastMonth")}
+            </p>
+          </CardContent>
+        </Card>
+
         <Card variant="interactive">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-neutral-500">{t("verifiedServices")}</CardTitle>
@@ -51,16 +78,6 @@ export default async function DashboardPage() {
           <CardContent>
             <div className="text-2xl font-bold">{pendingUpdates || 0}</div>
             <p className="mt-1 text-xs text-neutral-500">{t("pendingReview")}</p>
-          </CardContent>
-        </Card>
-
-        <Card variant="interactive">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neutral-500">{t("totalViews")}</CardTitle>
-            <BarChart3 className="h-4 w-4 text-neutral-400" />
-          </CardHeader>
-          <CardContent>
-            <EmptyState icon={BarChart3} title={t("comingSoon")} description={t("analyticsComingSoonDesc")} />
           </CardContent>
         </Card>
       </div>
