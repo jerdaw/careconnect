@@ -650,3 +650,20 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@media (min-width: 768px) {
+  .how-it-works-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: calc(50% + 24px);
+    right: calc(-50% + 24px);
+    height: 1px;
+    background: linear-gradient(to right, var(--color-primary-200), var(--color-primary-100));
+  }
+}
+
+[dir="rtl"] .how-it-works-step:not(:last-child)::after {
+  left: calc(-50% + 24px);
+  right: calc(50% + 24px);
+}
