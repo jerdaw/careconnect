@@ -1,9 +1,9 @@
 # Kingston Care Connect: Product Roadmap
 
 > **Current Version**: v18.0 (Production Observability Complete)
-> **Next Version**: v19.0 (Launch Preparation) - All Documentation & Automation Complete ✅
-> **Last Updated**: 2026-02-10
-> **Platform Status**: Ready for Beta Launch - Phase 1 QA Execution Required
+> **Next Milestone**: v22.0 (Non-Duplicate Value Decision Plan)
+> **Last Updated**: 2026-02-27
+> **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
 
@@ -33,9 +33,46 @@
 
 ## 🎯 Active Work
 
-### v19.0: Launch Preparation ⏳ AWAITING USER EXECUTION
+### v22.0: Non-Duplicate Value Decision Plan 🔄 ACTIVE
 
-**Status**: All Documentation & Automation Complete ✅ - User Execution Required
+**Status**: DRAFT COMPLETE — User Approval Gate Pending (no implementation started)
+**Priority**: CRITICAL (Strategic Non-Duplication with 211)
+**Total Effort**: 90-day decision cycle (~13 weeks)
+**Timeline**: Phase 0 (2 weeks) + Phase 1 (8 weeks) + Phase 2 decision cycle
+**Dependencies**: v22 objective evaluation artifacts + integration feasibility decision
+**Created**: 2026-02-27
+
+Reposition KCC from potential directory duplication to measurable last-mile outcome value (connection success, reliability, referral completion), with explicit kill criteria if value is not demonstrated.
+
+**👉 Detailed Plan: [v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
+
+#### Gate-Oriented Objectives
+
+1. Prove non-duplicate value vs 211 on measurable connection outcomes.
+2. Validate privacy-safe integration feasibility with 211 data pathways.
+3. Keep strict stop conditions for initiatives that do not outperform baseline.
+
+#### Immediate Next Steps (Phase 0)
+
+1. Confirm v22 objective function and hard constraints.
+2. Lock pilot scope (default: housing intake) and pilot partners.
+3. Complete baseline instrumentation (failed contact, time-to-connection, referral completion).
+4. Record integration feasibility decision (`go`, `conditional`, `blocked`) against privacy redlines.
+5. Complete offline/local data threat model and evidence re-validation log.
+
+#### Gate 1 Thresholds (Pilot Cycle 1)
+
+- Failed contact attempts reduced by at least 30% vs baseline.
+- Time-to-successful-connection reduced by at least 25%.
+- Freshness SLA compliance at least 70%.
+- Referral outcome capture at least 50%.
+- Fatal data-decay error rate at or below 10%.
+
+---
+
+### v19.0: Launch Preparation ⏸️ ON HOLD (Pending v22 Gate 0)
+
+**Status**: All Documentation & Automation Complete ✅ - Execution Deferred Pending v22 Strategic Gate
 **Priority**: HIGH
 **Total Effort**: ~30 hours (100% complete)
 **User Execution Effort**: ~30-38 hours over 7+ weeks
@@ -287,47 +324,29 @@ Complete the operational foundation for production launch by adding production-g
 
 ### Data Quality & Enrichment (Manual Process)
 
-**Status**: Ongoing (Manual Work)
-**Priority**: LOW
-**Effort**: User-driven at own pace
+**Status**: Absorbed into v21.0 Plan
+**Priority**: Now part of v21.0 Phase 1–2
+**Reference**: [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md)
 
-Follow-up on verification levels and French translation of access scripts. This is manual data curation work separate from technical feature development.
+Data quality tasks (geocoding, French translations, L3 verification, identity tags) have been integrated into the v21.0 plan with specific sequencing, effort estimates, and success criteria. See:
 
-#### Current Data Quality Gaps
+- **Geocoding**: v21.0 Phase 1, P1-3 (target 85–90% coverage)
+- **French translations**: v21.0 Phase 2, P2-5 (with native speaker review requirement)
+- **L3 verification**: v21.0 Phase 2, P2-4 (target 5–8 confirmed L3s)
+- **Identity tags**: v21.0 Phase 3, P3-8 (evidence-based pass on top 30–40 services)
 
-Run `npm run audit:data` to refresh current counts:
-
-- ~18/196 services missing coordinates (impacts proximity search)
-- ~17/196 services missing verified physical address
-- ~10/196 services missing structured hours
-- 0/196 services at L3 verification (provider-confirmed partnerships)
-
-#### Available Tools
-
-**Translation Helper (v17.6)**:
-
-```bash
-npm run translate:prompt <batch-file>   # Generate translation prompts
-npm run translate:parse <batch> <response>  # Parse AI responses
-npm run translate:validate <batch>      # Validate translations
-```
-
-**Data Auditing**:
+#### Available Tools (unchanged)
 
 ```bash
 npm run audit:data           # Current service count and gaps
 npm run bilingual-check      # Verify French completeness
 npm run check-staleness      # Find services needing re-verification
+npm run translate:prompt     # Generate translation prompts
+npm run translate:parse      # Parse AI responses
+npm run translate:validate   # Validate translations
+npm run geocode              # Geocode addresses (requires OPENCAGE_API_KEY)
+npm run audit:l3             # Export L3 verification candidates
 ```
-
-#### Tasks (User-driven)
-
-- [ ] Translate `access_script_fr` for remaining services (batch process)
-- [ ] Web-verify 17 missing addresses (no provider contact required)
-- [ ] Web-verify 10 missing hours (no provider contact required)
-- [ ] Run geocoding for verified addresses: `OPENCAGE_API_KEY=... npm run geocode`
-- [ ] Future: Establish first 10 L3 partnerships (requires provider outreach)
-- [ ] Future: Expand underrepresented categories (Transport, Financial, Indigenous)
 
 📄 [Historical Context](archive/2026-01-23-v17-5-data-quality.md)
 
@@ -432,55 +451,6 @@ Production-readiness complete (v17.0–v18.0). Platform is resilient, secure, ac
 
 ---
 
----
-
-### Data Quality & Enrichment (Manual Process)
-
-**Status**: Ongoing (Manual Work)
-**Priority**: LOW
-**Effort**: User-driven at own pace
-
-Follow-up on verification levels and French translation of access scripts. This is manual data curation work separate from technical feature development.
-
-#### Current Data Quality Gaps
-
-Run `npm run audit:data` to refresh current counts:
-
-- ~58/196 services missing coordinates (30%, impacts proximity search)
-- ~18/196 services critically missing coordinates (9%)
-- ~17/196 services missing verified physical address (9%)
-- ~10/196 services missing structured hours (5%)
-- 0/196 services at L3 verification (provider-confirmed partnerships)
-
-#### Available Tools
-
-**Translation Helper (v17.6)**:
-
-```bash
-npm run translate:prompt <batch-file>   # Generate translation prompts
-npm run translate:parse <batch> <response>  # Parse AI responses
-npm run translate:validate <batch>      # Validate translations
-```
-
-**Data Auditing**:
-
-```bash
-npm run audit:data           # Current service count and gaps
-npm run bilingual-check      # Verify French completeness
-npm run check-staleness      # Find services needing re-verification
-```
-
-#### Tasks (User-driven)
-
-- [ ] Translate `access_script_fr` for remaining services (batch process)
-- [ ] Web-verify 17 missing addresses (no provider contact required)
-- [ ] Web-verify 10 missing hours (no provider contact required)
-- [ ] Run geocoding for verified addresses: `OPENCAGE_API_KEY=... npm run geocode`
-- [ ] Future: Establish first 10 L3 partnerships (requires provider outreach)
-- [ ] Future: Expand underrepresented categories (Transport, Financial, Indigenous)
-
----
-
 ## ⏸️ Paused Work
 
 ### v15.1: Mobile App Launch
@@ -517,6 +487,7 @@ npm run check-staleness      # Find services needing re-verification
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
 **Completion**: 21/38 items done (A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C3, C4, D1, D3, E1, E2, E3, E4, E5, E6)
+**Note**: Crisis-path component testing (B4 subset) and French translations (C5, C6) are now also sequenced in the [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md) as deployment prerequisites (Phase 1) and governance execution tasks (Phase 2). Remaining v20.0 items (B5–B9, C2, D2, D4–D6, F1–F3, G1–G3) can proceed in parallel.
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
@@ -881,426 +852,87 @@ Component coverage improved from 28% to 38% (32/85 components tested).
 
 ---
 
-### v21.0: Production Deployment & Admissions Portfolio (HIGHEST VALUE)
+### v21.0: Admissions Portfolio & Production Launch (PAUSED)
 
-**Status**: PLANNED
+**Status**: PAUSED — Revisit after v22.0 Gate 1 decision
 **Priority**: CRITICAL (Admissions Impact)
-**Total Effort**: ~40-50 hours autonomous + 20-30 hours human intervention
-**Timeline**: 12 weeks (includes partner outreach, user testing)
-**Dependencies**: v20.0 completion (test coverage, quality)
+**Total Effort**: ~85–120 hours (mix of autonomous + human-required work)
+**Timeline**: 12 weeks (4 phases)
+**Dependencies**: v19.0 documentation complete ✅
+**Created**: 2026-02-25
 
 Transform the project from "impressive prototype" to "deployed, validated, evidence-backed community tool" with real-world impact metrics and professional portfolio artifacts.
 
-**Context**: Based on OMSAS ABS + CanMEDS admissions analysis (2026-02-11), these items maximize medical school application value by demonstrating real-world impact, leadership, and professional competency.
+**Context**: Developed through a structured three-pass analysis (comprehensive scan → devil's advocate → steelman → objective synthesis) to maximize medical school application value while ensuring all recommendations are defensible and achievable.
 
-#### Phase 1: Production Deployment (Week 1) — HUMAN REQUIRED
+**👉 Detailed Plan: [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md)**
 
-**#1. Deploy to Production and Document Live URL** (2-3h + 1 day DNS)
+#### Strategic Insight
 
-- **Category**: Impact/Adoption
-- **Why (Admissions)**: Transforms "I built" into "I launched and operate"
-- **What to do**: Deploy to Vercel (free tier), configure custom domain
-- **Evidence**: Live URL, deployment date, uptime metrics
-- **Effort**: S (2-3h Vercel; domain setup 1 day DNS)
-- **Prereqs**: Domain purchase (~$15/year)
-- **CanMEDS**: Health Advocate, Leader
+The project has exceptional documentation, governance design, and technical infrastructure. The credibility gap is entirely in **execution** — no deployment, no users, no named partners, no verified services at L3. Every item prioritizes execution of existing systems over building new ones.
 
-**#29. Set Up Automated Uptime Monitoring** (1-2h)
+#### Phase Summary
 
-- **Category**: Reliability/Quality
-- **What to do**: Configure UptimeRobot/Freshping, create status page
-- **Evidence**: Public status page URL, uptime percentage badge
-- **Effort**: S
-- **Prereqs**: Production deployment (#1)
+| Phase       | When       | Effort | Theme                                                                                                                                        |
+| ----------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Phase 0** | Today      | <2h    | Immediate housekeeping (name on project, EDIA fix, git tags, ABS gap analysis)                                                               |
+| **Phase 1** | Week 1     | 15–20h | Pre-deployment critical path (crisis test protocol, crisis-path component tests, geocoding, deploy, demo video)                              |
+| **Phase 2** | Weeks 2–4  | 25–35h | Governance execution (first verification cycle, L3 outreach, French translations, impact page, project brief)                                |
+| **Phase 3** | Weeks 4–8  | 20–30h | External validation (advisory board, professional feedback sessions, community meeting, accessibility audit, published compliance summaries) |
+| **Phase 4** | Weeks 8–12 | 25–35h | Evidence portfolio (partner endorsement, service gap analysis, volunteer pilot, grant application, final ABS)                                |
 
-#### Phase 2: Usage Metrics & Evidence (Week 2) — AUTONOMOUS
+#### Key Design Decisions
 
-**#2. Collect and Document Real Usage Metrics** (4-6h)
+- **Crisis test protocol is a deployment blocker** — the most ethically significant feature must be verified before going live
+- **Impact page framed around governance metrics, not usage** — low early traffic would backfire; data quality metrics are compelling on day 1
+- **User testing reframed as professional consultations** — front-line social workers (not students), framed as consultation (not research) to avoid ethics review requirements
+- **French translations require native speaker review** — AI-translated crisis access scripts for vulnerable populations create liability without quality review
+- **Partner endorsement at Week 8+** — must deploy, achieve L3s, and build relationships first
+- **Component testing scoped to crisis path** — safety-driven engineering decision, not a coverage percentage target
 
-- **Category**: Impact/Adoption
-- **Why**: Quantified impact ("served X searches") beats portfolio projects
-- **What to do**: Privacy-preserving analytics (aggregate only), track searches/sessions/crisis activations
-- **Evidence**: Analytics dashboard screenshots, monthly reports
-- **Effort**: M (analytics API exists)
-- **Prereqs**: Production deployment (#1)
-
-**#6. Create Public-Facing Impact Page** (3-4h)
-
-- **Category**: Communication/Documentation
-- **Why**: Professional impact presentation for evaluators
-- **What to do**: Populate `/impact` page with mission, service count, accessibility compliance, privacy architecture
-- **Evidence**: Public impact page URL, screenshot
-- **Effort**: S (route exists)
-- **Prereqs**: None — AI-autonomous
-
-**#10. Add CI Badges to README** (1h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Visual quality indicators for evaluators
-- **What to do**: Add badges for CI status, coverage %, license, a11y, Node version, languages
-- **Evidence**: Professional README
-- **Effort**: S
-- **Prereqs**: CI passing
-
-**#11. Create Project Website / Documentation Portal** (2-3h)
-
-- **Category**: Communication/Documentation
-- **Why**: Public governance artifacts = auditable professionalism
-- **What to do**: Deploy mkdocs to GitHub Pages via existing workflow
-- **Evidence**: Public docs URL (e.g., docs.kingstoncare.ca)
-- **Effort**: S (workflow exists)
-- **Prereqs**: None
-
-#### Phase 3: Scholarship & Professional Artifacts (Weeks 3-4) — AUTONOMOUS
-
-**#7. Publish Privacy Architecture Whitepaper** (1-2 days)
-
-- **Category**: Scholarship/Evaluation
-- **Why**: Demonstrates scholarly output in health-adjacent privacy
-- **What to do**: Polish `docs/whitepapers/privacy_architecture.md`, publish on Medium/preprint
-- **Evidence**: Published URL, DOI/preprint link
-- **Effort**: M
-- **Prereqs**: None
-- **CanMEDS**: Scholar, Professional
-
-**#14. Document Algorithmic Impact Assessment Prominently** (1-2h)
-
-- **Category**: Privacy/Security/Ethics
-- **Why**: AIA Level 1 classification = ethical AI governance
-- **What to do**: Link from README, create `/governance` page
-- **Evidence**: Public AIA page
-- **Effort**: S
-- **Prereqs**: None
-
-**#16. Write Data Governance Policy Document** (3-4h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Consolidates L0-L3 verification into auditable policy
-- **What to do**: Merge governance/standards.md + verification protocol + staleness SOP
-- **Evidence**: Data Governance Policy PDF
-- **Effort**: S
-- **Prereqs**: None
-
-**#23. Document AI-Assisted Development Methodology** (1-2 days)
-
-- **Category**: Scholarship/Evaluation
-- **Why**: Novel AI pair programming approach = publishable contribution
-- **What to do**: 2-3 page reflection on Claude co-authorship, quality control, lessons learned
-- **Evidence**: Published blog post or whitepaper
-- **Effort**: M
-- **Prereqs**: None
-
-#### Phase 4: Quality & Compliance (Weeks 3-4) — AUTONOMOUS
-
-**#9. Achieve and Document Full WCAG 2.1 AA Compliance** (4-8h)
-
-- **Category**: Professionalism/Governance
-- **Why**: AODA legal compliance + Professional responsibility
-- **What to do**: Run `npm run test:a11y`, fix issues, formalize compliance report
-- **Evidence**: AODA compliance report, a11y test badge
-- **Effort**: M
-- **Prereqs**: None (mostly automatable)
-
-**#13. Create Formal Release Notes and Versioned Releases** (2h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Mature software lifecycle management
-- **What to do**: Tag v15-v19, create GitHub Releases with CHANGELOG excerpts
-- **Evidence**: GitHub Releases page
-- **Effort**: S
-- **Prereqs**: None
-
-**#15. Implement and Document Ethics Review Process** (3h)
-
-- **Category**: Privacy/Security/Ethics
-- **Why**: Ethical AI governance (crisis detection review)
-- **What to do**: Formalize crisis detection review, create ethics checklist
-- **Evidence**: Ethics review SOP, decision tree
-- **Effort**: S
-- **Prereqs**: None
-
-**#24. Add Comprehensive API Documentation** (2-3h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Professional API design (OpenAPI spec exists)
-- **What to do**: Deploy Swagger UI or Redoc for `docs/api/openapi.yaml`
-- **Evidence**: Interactive API docs URL
-- **Effort**: S
-- **Prereqs**: None
-
-#### Phase 5: Performance & Monitoring (Weeks 4-5) — AUTONOMOUS
-
-**#19. Add Automated Data Quality Monitoring Dashboard** (4-6h)
-
-- **Category**: Reliability/Quality
-- **Why**: Ongoing quality commitment beyond one-time build
-- **What to do**: Admin component displaying real-time completeness scores
-- **Evidence**: Admin dashboard screenshot
-- **Effort**: M
-- **Prereqs**: None
-
-**#20. Conduct and Document Load/Performance Test** (2-3h)
-
-- **Category**: Reliability/Quality
-- **Why**: Operational rigor
-- **What to do**: Run `npm run test:load`, document baselines
-- **Evidence**: Load test results report
-- **Effort**: S
-- **Prereqs**: Production deployment for realistic results
-
-**#25. Implement and Document Penetration Test Results** (4-6h)
-
-- **Category**: Privacy/Security/Ethics
-- **Why**: Security assessment demonstrates diligence
-- **What to do**: Run OWASP ZAP, document findings, remediate, re-test
-- **Evidence**: Security assessment report, before/after counts
-- **Effort**: M
-- **Prereqs**: Production deployment (#1)
-
-#### Phase 6: Communication Artifacts (Weeks 5-6) — AUTONOMOUS
-
-**#5. Write Reflective Project Summary (ABS-Format)** (2-3h)
-
-- **Category**: Communication/Documentation
-- **Why**: OMSAS ABS entries need STAR-format narratives
-- **What to do**: 150-word entry: gap, role, actions, results
-- **Evidence**: ABS-ready narrative, one-page PDF
-- **Effort**: S
-- **Prereqs**: Usage data (#2) strengthens significantly
-
-**#18. Create One-Page Project Brief** (2h)
-
-- **Category**: Communication/Documentation
-- **Why**: Shareable with admissions, partners, advisors
-- **What to do**: 1-page PDF: problem, solution, approach, impact, governance, team
-- **Evidence**: Shareable PDF
-- **Effort**: S
-- **Prereqs**: None
-
-**#21. Create Presentation / Poster** (4-6h)
-
-- **Category**: Communication/Documentation
-- **Why**: Conference-style asset for ABS supplements, interviews
-- **What to do**: 10-slide deck or A0 poster
-- **Evidence**: Slide deck PDF, poster PDF
-- **Effort**: M
-- **Prereqs**: None
-
-**#36. Create Project Logo/Brand Identity** (2h)
-
-- **Category**: Communication/Documentation
-- **Why**: Visual professionalism
-- **What to do**: Simple logo + color scheme via Canva
-- **Effort**: S
-- **Prereqs**: None
-
-**#37. Record 2-Minute Demo Video** (1-2h)
-
-- **Category**: Communication/Documentation
-- **Why**: More compelling than screenshots
-- **What to do**: Screen recording walkthrough, embed in README
-- **Effort**: S
-- **Prereqs**: Production deployment (#1)
-
-**#38. Create Contributor/Acknowledgments Page** (1-2h)
-
-- **Category**: Communication/Documentation
-- **What to do**: Populate `/about/partners` route
-- **Effort**: S
-- **Prereqs**: None
-
-#### Phase 7: Data Enrichment (Weeks 6-8) — AUTONOMOUS
-
-**#22. Complete French Translation of Advanced Fields** (6-8h)
-
-- **Category**: Impact/Adoption
-- **Why**: French Language Services Act compliance = equity
-- **What to do**: `access_script_fr`, `eligibility_notes_fr`, `hours_text_fr` (196 services)
-- **Evidence**: Bilingual audit showing 100% FR
-- **Effort**: M (6-8h total)
-- **Prereqs**: None (pipeline exists)
-
-**#26. Backfill Identity Tags for 109 Services** (4-6h)
-
-- **Category**: Impact/Adoption
-- **Why**: Enables personalization for vulnerable populations
-- **What to do**: LLM classification + human review for age, cultural, gender, disability tags
-- **Evidence**: Identity tag audit showing 90%+ coverage
-- **Effort**: M
-- **Prereqs**: **Needs human review of AI suggestions**
-
-**#27. Geocode 58 Services Missing Coordinates** (1h)
-
-- **Category**: Reliability/Quality
-- **Why**: "Near Me" geolocation for mobile users
-- **What to do**: Run `npm run geocode`
-- **Evidence**: Completeness report showing 95%+ coordinates
-- **Effort**: S (fully automated)
-- **Prereqs**: OPENCAGE_API_KEY (free tier)
-
-#### Phase 8: Governance & Operational Excellence (Weeks 7-9) — AUTONOMOUS
-
-**#17. Add Contribution Evidence (PRs, Issues, Code Review)** (1h ongoing)
-
-- **Category**: Leadership/Collaboration
-- **Why**: Visible collaboration artifacts
-- **What to do**: Switch to feature branch + PR workflow, create Issues
-- **Evidence**: PR history, issue tracker, code review comments
-- **Effort**: S (setup 1h, then ongoing)
-- **Prereqs**: None
-
-**#28. Create Incident Response Tabletop Exercise** (3h)
-
-- **Category**: Leadership/Collaboration
-- **Why**: Operational maturity, Leader competency
-- **What to do**: Design scenario (e.g., "Supabase creds compromised"), walk through 4C protocol
-- **Evidence**: Tabletop exercise document, timeline
-- **Effort**: S
-- **Prereqs**: None
-
-**#30. Add CODE_OF_CONDUCT.md** (30 min)
-
-- **Category**: Professionalism/Governance
-- **Why**: Inclusive community values
-- **What to do**: Add Contributor Covenant
-- **Evidence**: CODE_OF_CONDUCT.md in repo
-- **Effort**: S
-- **Prereqs**: None
-
-**#31. Create Stakeholder Map** (2h)
-
-- **Category**: Leadership/Collaboration
-- **Why**: Systems thinking demonstration
-- **What to do**: Diagram showing beneficiaries, influencers, communication
-- **Evidence**: Stakeholder map diagram
-- **Effort**: S
-- **Prereqs**: None
-
-**#32. Document Accessibility Testing Methodology** (2-3h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Depth beyond "we pass Axe-core"
-- **What to do**: Consolidate a11y guide + testing procedures
-- **Evidence**: Accessibility Testing Methodology document
-- **Effort**: S
-- **Prereqs**: None
-
-**#33. Create Risk Register** (2-3h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Mature project management
-- **What to do**: Risk table with likelihood, impact, mitigation, owner
-- **Evidence**: Risk register document
-- **Effort**: S
-- **Prereqs**: None
-
-**#34. Add License Compliance Checker to CI** (1-2h)
-
-- **Category**: Professionalism/Governance
-- **Why**: Automated compliance checking
-- **What to do**: Add `license-checker` to CI
-- **Evidence**: License compliance CI check
-- **Effort**: S
-- **Prereqs**: None
-
-**#35. Document Lessons Learned / Post-Mortem** (3h)
-
-- **Category**: Scholarship/Evaluation
-- **Why**: Reflective practice (CanMEDS Scholar)
-- **What to do**: 1-2 page retrospective on 44-day sprint
-- **Evidence**: Published retrospective
-- **Effort**: S
-- **Prereqs**: None
-
-#### Phase 9: Human-Dependent High-Value Items (Weeks 3-12) — REQUIRES HUMAN
-
-**#3. Secure One Formal Community Partner** (2-4 weeks outreach)
-
-- **Category**: Leadership/Collaboration
-- **Why**: HIGHEST VALUE — Partner letter validates real-world relevance
-- **What to do**: Contact Kingston CHC, 211 Ontario, United Way. Propose pilot. Get MOU.
-- **Evidence**: Partner endorsement letter, MOU, logo
-- **Effort**: L (requires significant human intervention)
-- **Prereqs**: Production deployment (#1)
-- **CanMEDS**: Collaborator (CORE ROLE)
-
-**#4. Conduct Supervised User Testing Session** (1-2 weeks)
-
-- **Category**: Scholarship/Evaluation
-- **Why**: Evaluation methodology = Scholar role
-- **What to do**: Recruit 5 participants, 30-min sessions, SUS scores, implement findings
-- **Evidence**: Usability study report, consent forms, before/after screenshots
-- **Effort**: L (requires human intervention)
-- **Prereqs**: Production deployment (#1)
-- **CanMEDS**: Scholar
-
-**#8. Formalize Advisory Board** (2-4 weeks)
-
-- **Category**: Leadership/Collaboration
-- **Why**: Governance maturity, stakeholder engagement
-- **What to do**: Recruit 2-3 advisors (clinician, social worker, community member), hold inaugural meeting
-- **Evidence**: Advisor names/titles, meeting minutes
-- **Effort**: L (requires human intervention)
-- **Prereqs**: None
-- **CanMEDS**: Leader, Collaborator
-
-#### Success Criteria (v21.0)
+#### Success Criteria
 
 **Production Evidence:**
 
-- ✅ Live production URL with custom domain
-- ✅ 30 days of usage metrics (searches, sessions, crisis activations)
-- ✅ Uptime >99% over first month
-- ✅ Public status page operational
+- [ ] Live production URL with custom domain
+- [ ] Crisis detection formally tested (20 scenarios documented)
+- [ ] ≥85% geocoding coverage (up from 70%)
+- [ ] Public status page operational
 
-**Admissions Portfolio:**
+**Governance Evidence:**
 
-- ✅ ABS-ready STAR narrative (150 words)
-- ✅ One-page project brief PDF
-- ✅ 10-slide presentation deck
-- ✅ 2-minute demo video
-- ✅ Published privacy whitepaper (Medium/preprint)
-- ✅ Public docs site (governance, ADRs, compliance)
-- ✅ Professional README with badges
+- [ ] First verification cycle completed and documented
+- [ ] ≥5 services at L3 verification (up from 0)
+- [ ] French advanced fields completed with native speaker review
+- [ ] Identity tag pass documented (with negative findings where applicable)
 
-**Collaboration Evidence:**
+**External Validation:**
 
-- ✅ One formal partner endorsement letter
-- ✅ Usability study report (n=5)
-- ✅ Advisory board inaugural meeting minutes
-- ✅ PR-based workflow with visible collaboration
+- [ ] ≥1 named advisory board member with relevant credentials
+- [ ] Professional feedback sessions documented (n≥3)
+- [ ] ≥1 community engagement meeting documented
+- [ ] ≥1 partner endorsement letter on file
 
-**Compliance & Governance:**
+**Portfolio Artifacts:**
 
-- ✅ WCAG 2.1 AA compliance formalized
-- ✅ Data Governance Policy PDF
-- ✅ AIA publicly documented
-- ✅ Ethics review SOP
-- ✅ Risk register
-- ✅ Stakeholder map
-
-**Quality Evidence:**
-
-- ✅ Penetration test report
-- ✅ Load test baseline documentation
-- ✅ Data quality dashboard
-- ✅ API documentation (Swagger)
-
-**French/Equity:**
-
-- ✅ 100% French core fields, 90%+ advanced fields
-- ✅ 90%+ identity tag coverage
-- ✅ 95%+ geocoding coverage
+- [ ] ABS-ready STAR narrative (150 words), fully substantiable
+- [ ] 1-page project brief for professional referrers
+- [ ] 2-minute demo video
+- [ ] Impact page live (governance/data-quality framed)
+- [ ] PIA and AI compliance summaries published
+- [ ] Structural service gap analysis written and shared
 
 ---
 
-### v22.0: Post-Launch Search Quality & UX Improvements (Planned)
+### v22.1: Post-Launch Search Quality & UX Improvements (Deferred Candidate)
 
 **Priority**: HIGH (After Beta Launch)
 **Effort**: ~15-20 hours
 **Timeline**: 2-4 weeks post-launch
 
 Improve search quality and user experience based on real-world usage patterns from beta testing.
+
+**Note**: Deferred until v22.0 stage gates pass and launch path is re-confirmed.
 
 #### Goals
 
@@ -1348,7 +980,7 @@ Improve search quality and user experience based on real-world usage patterns fr
 
 ---
 
-### v21.0: Community Engagement & Content Expansion (Planned)
+### v23.0: Community Engagement & Content Expansion (Planned)
 
 **Priority**: MEDIUM (Post-Launch, User-Driven)
 **Effort**: ~8-10 hours initial setup, ongoing moderation
@@ -1392,7 +1024,7 @@ The following items should only be pursued if partners express specific needs:
 ### Data & Content
 
 - ✅ **Automated data staleness detection** - ALREADY IMPLEMENTED (monthly GitHub Action workflow)
-- **Community-driven service suggestions** - See v21.0 planned work above
+- **Community-driven service suggestions** - See v23.0 planned work above
 - **Multi-language support expansion** - Add Korean, Ukrainian based on demographic needs (data-driven decision)
 - ~~Enhanced search: Fuzzy matching, typo tolerance~~ - ALREADY IMPLEMENTED (Levenshtein distance, max 2 edits)
 - **Voice search improvements** - Consider if user feedback indicates demand
@@ -1403,7 +1035,7 @@ The following items should only be pursued if partners express specific needs:
 
 ### For Developers
 
-- **Current work**: Focus on "Active Work" section (currently manual data quality tasks)
+- **Current work**: Focus on "Active Work" section (currently v22.0 strategic decision gates)
 - **Technical reference**: See "Completed Work" for implementation patterns and ADR links
 - **Planning**: Review "Future Considerations" for upcoming features
 - **Testing**: Run `npm test` for unit/integration, `npm run test:e2e:local` for E2E
@@ -1476,5 +1108,5 @@ Based on comprehensive codebase audit (2026-02-09):
 - **Update frequency**: After each version release
 - **Archive policy**: Completed roadmaps moved to `archive/` directory
 - **Metrics refresh**: Run `npm run audit:data` before updating Current State
-- **Last reviewed**: 2026-02-09
-- **Last audit**: 2026-02-09 (comprehensive codebase audit completed)
+- **Last reviewed**: 2026-02-25
+- **Last audit**: 2026-02-25 (three-pass admissions portfolio analysis)
