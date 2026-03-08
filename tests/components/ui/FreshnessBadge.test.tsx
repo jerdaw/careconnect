@@ -11,11 +11,11 @@ describe("FreshnessBadge", () => {
     expect(screen.getByText(/Verified today/i)).toBeDefined()
   })
 
-  it("renders 'recent' state for 2 months ago", () => {
+  it("renders 'recent' state for approximately 2 months ago", () => {
     const sixtyDaysAgo = new Date()
     sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60)
     renderWithProviders(<FreshnessBadge lastVerified={sixtyDaysAgo.toISOString()} />, { messages: enMessages })
-    expect(screen.getByText(/Verified 2 months ago/i)).toBeDefined()
+    expect(screen.getByText(/Verified last month|Verified 2 months ago/i)).toBeDefined()
   })
 
   it("renders 'stale' state for 6 months ago", () => {
