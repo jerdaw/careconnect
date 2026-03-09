@@ -63,6 +63,13 @@ Reposition KCC from potential directory duplication to measurable last-mile outc
 4. Record integration feasibility decision (`go`, `conditional`, `blocked`) against privacy redlines.
 5. Complete offline/local data threat model and external-claim re-validation log with owners and dates.
 
+#### Operational Follow-Up (One-Time)
+
+1. On next login to desktop WSL clone, resync to rewritten `main` history:
+   - `git fetch origin`
+   - `git checkout main`
+   - `git reset --hard origin/main`
+
 #### Completed in This Cycle
 
 1. Pilot tables created with full CRUD RLS policies (`pilot_contact_attempt_events`, `pilot_referral_events`, `pilot_metric_snapshots`, `pilot_integration_feasibility_decisions`).
