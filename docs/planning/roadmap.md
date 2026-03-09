@@ -2,7 +2,7 @@
 
 > **Current Version**: v18.0 (Production Observability Complete)
 > **Next Milestone**: v22.0 (Non-Duplicate Value Decision Plan)
-> **Last Updated**: 2026-03-08
+> **Last Updated**: 2026-03-09
 > **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
@@ -35,13 +35,13 @@
 
 ### v22.0: Non-Duplicate Value Decision Plan 🔄 ACTIVE
 
-**Status**: PHASE 0 IN PROGRESS — instrumentation + migration complete; governance sign-off still required
+**Status**: PHASE 0 IN PROGRESS — Step 1 sign-off locked; baseline execution + conditional integration controls pending
 **Priority**: CRITICAL (Strategic Non-Duplication with 211)
 **Total Effort**: 90-day decision cycle (~13 weeks)
 **Timeline**: Phase 0 (2 weeks) + Phase 1 (8 weeks) + Phase 2 decision cycle
 **Dependencies**: v22 objective evaluation artifacts + integration feasibility decision
 **Created**: 2026-02-27
-**Current State**: Pilot DB schema, RLS policies, hardened admin function, internal pilot APIs, and pilot test suite are implemented and validated; Gate 0 governance artifacts and decision locks are still pending
+**Current State**: Pilot DB schema, RLS policies, hardened admin function, internal pilot APIs, and pilot test suite are implemented and validated. Step 1 decision locks are complete; baseline execution remains blocked in this workspace without Supabase credentials, and conditional integration controls are open.
 
 Reposition KCC from potential directory duplication to measurable last-mile outcome value (connection success, reliability, referral completion), with explicit kill criteria if value is not demonstrated.
 
@@ -57,11 +57,10 @@ Reposition KCC from potential directory duplication to measurable last-mile outc
 
 #### Immediate Next Steps (Phase 0)
 
-1. Complete Step 1 sign-off in `v22-0-approval-checklist.md` (all 7 decisions locked).
-2. Lock pilot scope (default: housing intake) and named pilot partners.
-3. Execute baseline data capture cycle and publish first scorecard snapshot set (M1-M4 minimum).
-4. Record integration feasibility decision (`go`, `conditional`, `blocked`) against privacy redlines.
-5. Complete offline/local data threat model and external-claim re-validation log with owners and dates.
+1. Execute baseline M1/M3 queries in Supabase environment and write values into `v22-0-phase-0-baseline-report-2026-03-09.md`.
+2. Complete integration conditional controls C1/C2 (`2026-03-21` target) before any external integration activation.
+3. Close remaining external-claim re-validation entries with primary-source citations.
+4. Confirm named pilot partner list and outreach owner assignment for D4 execution.
 
 #### Operational Follow-Up (One-Time)
 
@@ -135,11 +134,11 @@ Finalize all pre-launch preparations to safely transition from development to pr
   - [ ] Critical user journey testing (6 scenarios, user execution required)
   - [ ] Data quality final review (top 20 services, user execution required)
 
-- **Phase 1.5** (6h): Pre-Launch Technical Hygiene ✅ **COMPLETE**
-  - [x] Add SEO basics (robots.txt, sitemap.ts, not-found.tsx, error.tsx, global-error.tsx)
+- **Phase 1.5** (6h): Pre-Launch Technical Hygiene ⚠️ **NEAR COMPLETE**
+  - [x] Add SEO basics (`app/robots.ts` -> `/robots.txt`, `sitemap.ts`, `not-found.tsx`, `error.tsx`, `global-error.tsx`)
   - [x] Add security.txt for responsible disclosure
   - [x] Replace console._ with logger._ in 8 files (7 API routes + FAQ page)
-  - [x] Fix 4 E2E tests, document 6 as known limitations (skip count reduced from 10 to 6)
+  - [ ] Fix or document remaining E2E test skips (current: 7 skipped tests)
   - [x] Enable Dependabot for automated dependency updates
   - [x] Bonus: Fix embeddings generation script to output formatted JSON
 
@@ -173,10 +172,10 @@ Finalize all pre-launch preparations to safely transition from development to pr
 
 **Phase 1.5:**
 
-- robots.txt, sitemap.ts, and not-found.tsx implemented
-- security.txt added with contact info
-- Zero console._ calls in API routes (all use logger._)
-- E2E tests fixed or documented as known limitations
+- `robots.txt` implemented alongside `sitemap.ts` and `not-found.tsx`
+- `security.txt` added with contact info
+- Zero console._ calls in target API routes (all use logger._)
+- E2E test skips fixed or explicitly documented as known limitations
 - Dependabot enabled and configured
 
 **Phase 2:**
@@ -217,6 +216,7 @@ Finalize all pre-launch preparations to safely transition from development to pr
 📄 **Documentation**:
 
 - [v19.0 Launch Preparation Plan](v19-0-launch-preparation.md)
+- [v19.0 Phase 1 Execution Handoff (2026-03-09)](../implementation/v19-phase-1-execution-handoff-2026-03-09.md)
 
 ---
 
@@ -1082,16 +1082,16 @@ Based on comprehensive codebase audit (2026-02-09):
 ### Critical Items (Block Launch)
 
 1. **SEO & Discoverability** (~3-4h)
-   - Add `/public/robots.txt` with crawl directives
-   - Add `/app/sitemap.ts` route handler
-   - Add `/app/[locale]/not-found.tsx` branded 404 page
-   - Add route-level `/app/[locale]/error.tsx` error boundaries
+   - [x] Add `/robots.txt` crawl directives (implemented via `/app/robots.ts`)
+   - [x] Add `/app/sitemap.ts` route handler
+   - [x] Add `/app/[locale]/not-found.tsx` branded 404 page
+   - [x] Add route-level `/app/[locale]/error.tsx` error boundaries
 
 2. **Security Contact** (~15min)
-   - Add `/public/.well-known/security.txt` per RFC 9116
+   - [x] Add `/public/.well-known/security.txt` per RFC 9116
 
 3. **Code Quality** (~1h)
-   - Replace `console.*` with `logger.*` in 7 API routes:
+   - [x] Replace `console.*` with `logger.*` in 7 API routes:
      - `/app/api/v1/feedback/route.ts`
      - `/app/api/v1/notifications/subscribe/route.ts`
      - `/app/api/v1/notifications/unsubscribe/route.ts`
@@ -1101,12 +1101,11 @@ Based on comprehensive codebase audit (2026-02-09):
      - `/app/api/v1/analytics/search/route.ts`
 
 4. **Test Reliability** (~4-6h or document)
-   - Fix or explicitly document 11 skipped E2E tests across 8 files
-   - Tests skip due to mock data navigation issues
-   - Either repair or add to known limitations
+   - [ ] Resolve or document 7 skipped E2E tests (current repo state)
+   - [x] Known limitations are documented for current skip set
 
 5. **Dependency Management** (~30min)
-   - Add `.github/dependabot.yml` for automated security updates
+   - [x] Add `.github/dependabot.yml` for automated security updates
 
 ### Recommended (High Priority, Not Blocking)
 
@@ -1125,5 +1124,5 @@ Based on comprehensive codebase audit (2026-02-09):
 - **Update frequency**: After each version release
 - **Archive policy**: Completed roadmaps moved to `archive/` directory
 - **Metrics refresh**: Run `npm run audit:data` before updating Current State
-- **Last reviewed**: 2026-02-25
-- **Last audit**: 2026-02-25 (three-pass admissions portfolio analysis)
+- **Last reviewed**: 2026-03-09
+- **Last audit**: 2026-03-09 (v22 Gate 0 + roadmap hygiene pass)

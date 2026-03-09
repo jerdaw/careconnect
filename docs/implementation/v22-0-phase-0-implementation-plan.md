@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [implementation, v22.0, phase-0, instrumentation, governance]
 ---
@@ -20,7 +20,7 @@ Primary outcomes:
 
 This plan is execution-ready and decision-complete for implementation.
 
-## Implementation Progress (2026-03-08)
+## Implementation Progress (2026-03-09)
 
 Completed:
 
@@ -28,13 +28,16 @@ Completed:
 2. Pilot DB schema and RLS migrations are applied and verified in Supabase.
 3. Missing-table safety behavior is preserved with explicit `501` responses.
 4. Pilot API/schema/metrics automated tests are implemented and passing.
+5. D1-D7 approval lock completed (`v22-0-approval-checklist.md`).
+6. Integration feasibility decision captured in conditional mode with controls C1-C3.
+7. Threat-model owner/due-date mitigation matrix completed with no unresolved critical findings.
+8. Baseline report artifact created in Gate 0 minimum mode.
 
 Remaining:
 
-1. Workstream A baseline query execution and first baseline report publication.
-2. Workstream C integration feasibility decision record completion.
-3. Workstream D threat-model mitigation ownership and claim re-validation closure.
-4. Approval checklist D1-D7 lock completion for Gate 0 sign-off.
+1. Execute baseline M1/M3 queries in a Supabase-capable environment and populate numeric values in baseline report.
+2. Complete conditional integration controls C1-C3 before external activation.
+3. Complete external-claim re-validation closure.
 
 ## Scope
 

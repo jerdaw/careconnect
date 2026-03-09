@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [implementation, v22.0, phase-0, metrics, baseline]
 ---
@@ -26,6 +26,20 @@ All baseline calculations must:
 1. use the same window for all primary metrics,
 2. be reproducible from saved query specs,
 3. log query version and execution date.
+
+## Phase 0 Computability Status (2026-03-09)
+
+Gate 0 minimum mode is active for this cycle.
+
+| Metric | Computability Now        | Notes                                                                                        |
+| ------ | ------------------------ | -------------------------------------------------------------------------------------------- |
+| M1     | Computable               | Uses `pilot_contact_attempt_events` directly.                                                |
+| M2     | Not currently computable | Requires `pilot_connection_events` or equivalent anchor/success table not yet instrumented.  |
+| M3     | Computable               | Uses `pilot_referral_events` directly.                                                       |
+| M4     | Not currently computable | Requires `pilot_service_scope` + `service_operational_status_events` tables not yet present. |
+| M5     | Not currently computable | Query spec currently references `referral_entity_id`, which is not in current pilot schema.  |
+| M6     | Not currently computable | Requires `pilot_data_decay_audits`, not yet instrumented.                                    |
+| M7     | Not currently computable | Requires `pilot_preference_fit_events`, not yet instrumented.                                |
 
 ## Metric Dictionary
 
@@ -65,24 +79,25 @@ All baseline calculations must:
 
 ## Data Source Mapping (Planned Tables/Views)
 
-| Metric | Primary Source                                          | Secondary Source         |
-| ------ | ------------------------------------------------------- | ------------------------ |
-| M1     | `pilot_contact_attempt_events`                          | `pilot_metric_snapshots` |
-| M2     | `pilot_contact_attempt_events`, `pilot_referral_events` | `pilot_metric_snapshots` |
-| M3     | `pilot_referral_events`                                 | `pilot_metric_snapshots` |
-| M4     | `service_operational_status_events`                     | `services`               |
-| M5     | `pilot_contact_attempt_events`, `pilot_referral_events` | `pilot_metric_snapshots` |
-| M6     | `pilot_data_decay_audits`                               | Manual verification logs |
-| M7     | `pilot_preference_fit_events`                           | Pilot scorecard notes    |
+| Metric | Primary Source                                                        | Secondary Source         |
+| ------ | --------------------------------------------------------------------- | ------------------------ |
+| M1     | `pilot_contact_attempt_events`                                        | `pilot_metric_snapshots` |
+| M2     | `pilot_connection_events` (planned)                                   | `pilot_metric_snapshots` |
+| M3     | `pilot_referral_events`                                               | `pilot_metric_snapshots` |
+| M4     | `pilot_service_scope` + `service_operational_status_events` (planned) | `services`               |
+| M5     | `pilot_contact_attempt_events` + stable entity key (planned)          | `pilot_metric_snapshots` |
+| M6     | `pilot_data_decay_audits` (planned)                                   | Manual verification logs |
+| M7     | `pilot_preference_fit_events` (planned)                               | Pilot scorecard notes    |
 
-## Quality Gates For Baseline Acceptance
+## Quality Gates For Baseline Acceptance (Gate 0 Minimum Mode)
 
 All must pass before Gate 0:
 
-1. Query reproducibility confirmed (same inputs -> same outputs).
-2. Each primary metric (M1-M4) has a non-null baseline value.
-3. Missingness and exclusion rates are documented per metric.
-4. Any known bias/confounders are listed in notes.
+1. Query reproducibility confirmed for executable metrics.
+2. M1 and M3 baseline values are reported (or explicitly null when no pilot events exist).
+3. M2/M4/M5/M6/M7 are marked `N/A` with explicit schema/instrumentation dependency notes.
+4. Missingness and exclusion rates are documented per metric.
+5. Any known bias/confounders are listed in notes.
 
 ## Required Output Artifact
 
@@ -92,3 +107,7 @@ Generate one baseline report with:
 2. confidence caveats and known limitations,
 3. query version references,
 4. sign-off section for product + governance owners.
+
+Current artifact:
+
+1. [v22.0 Phase 0 Baseline Report (2026-03-09)](v22-0-phase-0-baseline-report-2026-03-09.md)

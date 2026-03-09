@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [implementation, v22.0, phase-0, sql, metrics]
 ---
@@ -14,9 +14,15 @@ Companion documents:
 1. [v22.0 Phase 0 Baseline Metric Definitions](v22-0-phase-0-baseline-metric-definitions.md)
 2. [v22.0 Phase 0 Implementation Plan](v22-0-phase-0-implementation-plan.md)
 
+## Gate 0 Minimum Mode
+
+As of 2026-03-09, only M1 and M3 are executable against current pilot schema.
+
+M2, M4, M5, M6, and M7 remain `N/A` until their required tables/fields are instrumented.
+
 ## Parameters
 
-All queries must parameterize:
+All executable queries must parameterize:
 
 1. `:baseline_start` (date/timestamp)
 2. `:baseline_end` (date/timestamp)
@@ -28,14 +34,43 @@ Use this metadata header in every saved query:
 
 ```sql
 -- query_id: v22_phase0_m1_failed_contact_rate
--- query_version: 1
+-- query_version: 2
 -- owner: jer
--- last_updated: 2026-03-08
+-- last_updated: 2026-03-09
 ```
 
-## M1 Failed Contact Rate
+## Preflight: Schema Dependency Check
+
+Run this before metric execution to verify available dependencies:
 
 ```sql
+-- query_id: v22_phase0_preflight_schema_dependencies
+-- query_version: 1
+-- owner: jer
+-- last_updated: 2026-03-09
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
+  AND table_name IN (
+    'pilot_contact_attempt_events',
+    'pilot_referral_events',
+    'pilot_metric_snapshots',
+    'pilot_connection_events',
+    'pilot_service_scope',
+    'service_operational_status_events',
+    'pilot_data_decay_audits',
+    'pilot_preference_fit_events'
+  )
+ORDER BY table_name;
+```
+
+## M1 Failed Contact Rate (Executable)
+
+```sql
+-- query_id: v22_phase0_m1_failed_contact_rate
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 WITH attempts AS (
   SELECT attempt_outcome
   FROM pilot_contact_attempt_events
@@ -66,29 +101,29 @@ SELECT
 FROM counts;
 ```
 
-## M2 Time to Successful Connection (median/p75/p90)
+## M2 Time to Successful Connection (Not Yet Instrumented)
+
+Dependency gap:
+
+1. Requires `pilot_connection_events` (or equivalent anchor/success event table).
 
 ```sql
-WITH successful_connections AS (
-  SELECT
-    initial_event_at,
-    successful_connection_at,
-    EXTRACT(EPOCH FROM (successful_connection_at - initial_event_at)) AS seconds_to_connection
-  FROM pilot_connection_events
-  WHERE successful_connection_at >= :baseline_start
-    AND successful_connection_at < :baseline_end
-    AND initial_event_at IS NOT NULL
-)
+-- query_id: v22_phase0_m2_time_to_connection
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 SELECT
-  percentile_cont(0.50) WITHIN GROUP (ORDER BY seconds_to_connection) AS p50_seconds,
-  percentile_cont(0.75) WITHIN GROUP (ORDER BY seconds_to_connection) AS p75_seconds,
-  percentile_cont(0.90) WITHIN GROUP (ORDER BY seconds_to_connection) AS p90_seconds
-FROM successful_connections;
+  'N/A'::text AS metric_status,
+  'Missing table: pilot_connection_events'::text AS reason;
 ```
 
-## M3 Referral Completion Capture Rate
+## M3 Referral Completion Capture Rate (Executable)
 
 ```sql
+-- query_id: v22_phase0_m3_referral_completion_capture_rate
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 WITH referrals AS (
   SELECT referral_state
   FROM pilot_referral_events
@@ -113,129 +148,85 @@ SELECT
 FROM counts;
 ```
 
-## M4 Freshness SLA Compliance
+## M4 Freshness SLA Compliance (Not Yet Instrumented)
+
+Dependency gap:
+
+1. Requires `pilot_service_scope`.
+2. Requires `service_operational_status_events`.
 
 ```sql
-WITH pilot_services AS (
-  SELECT service_id, sla_tier
-  FROM pilot_service_scope
-),
-latest_status AS (
-  SELECT
-    e.service_id,
-    MAX(e.status_updated_at) AS last_status_updated_at
-  FROM service_operational_status_events e
-  GROUP BY e.service_id
-),
-compliance AS (
-  SELECT
-    s.service_id,
-    s.sla_tier,
-    l.last_status_updated_at,
-    CASE
-      WHEN s.sla_tier = 'crisis' AND l.last_status_updated_at >= (NOW() - INTERVAL '24 hours') THEN TRUE
-      WHEN s.sla_tier = 'high_demand_non_crisis' AND l.last_status_updated_at >= (NOW() - INTERVAL '48 hours') THEN TRUE
-      WHEN s.sla_tier = 'standard' AND l.last_status_updated_at >= (NOW() - INTERVAL '7 days') THEN TRUE
-      ELSE FALSE
-    END AS meets_sla
-  FROM pilot_services s
-  LEFT JOIN latest_status l ON l.service_id = s.service_id
-)
+-- query_id: v22_phase0_m4_freshness_sla_compliance
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 SELECT
-  COUNT(*) FILTER (WHERE meets_sla) AS services_meeting_status_sla,
-  COUNT(*) AS pilot_services_total,
-  CASE
-    WHEN COUNT(*) = 0 THEN NULL
-    ELSE COUNT(*) FILTER (WHERE meets_sla)::numeric / COUNT(*)
-  END AS freshness_compliance
-FROM compliance;
+  'N/A'::text AS metric_status,
+  'Missing dependencies: pilot_service_scope, service_operational_status_events'::text AS reason;
 ```
 
-## M5 Repeat Failure Rate
+## M5 Repeat Failure Rate (Not Yet Instrumented)
+
+Dependency gap:
+
+1. Requires stable entity key for repeated-failure attribution (for example `referral_entity_id`), which is not in current pilot schema.
 
 ```sql
-WITH failure_events AS (
-  SELECT referral_entity_id
-  FROM pilot_contact_attempt_events
-  WHERE attempted_at >= :baseline_start
-    AND attempted_at < :baseline_end
-    AND attempt_outcome IN (
-      'disconnected_number',
-      'no_response',
-      'intake_unavailable',
-      'invalid_routing',
-      'other_failure'
-    )
-),
-entity_failures AS (
-  SELECT referral_entity_id, COUNT(*) AS failure_count
-  FROM failure_events
-  GROUP BY referral_entity_id
-)
+-- query_id: v22_phase0_m5_repeat_failure_rate
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 SELECT
-  COUNT(*) FILTER (WHERE failure_count >= 2) AS entities_with_2plus_failures,
-  COUNT(*) AS total_entities,
-  CASE
-    WHEN COUNT(*) = 0 THEN NULL
-    ELSE COUNT(*) FILTER (WHERE failure_count >= 2)::numeric / COUNT(*)
-  END AS repeat_failure_rate
-FROM entity_failures;
+  'N/A'::text AS metric_status,
+  'Missing stable entity key for repeat-failure attribution'::text AS reason;
 ```
 
-## M6 Data-Decay Fatal Error Rate
+## M6 Data-Decay Fatal Error Rate (Not Yet Instrumented)
+
+Dependency gap:
+
+1. Requires `pilot_data_decay_audits`.
 
 ```sql
-WITH sampled AS (
-  SELECT severity
-  FROM pilot_data_decay_audits
-  WHERE audited_at >= :baseline_start
-    AND audited_at < :baseline_end
-),
-counts AS (
-  SELECT
-    COUNT(*) AS records_sampled,
-    COUNT(*) FILTER (WHERE severity = 'fatal') AS records_with_access_blocking_errors
-  FROM sampled
-)
+-- query_id: v22_phase0_m6_data_decay_fatal_error_rate
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 SELECT
-  records_with_access_blocking_errors,
-  records_sampled,
-  CASE
-    WHEN records_sampled = 0 THEN NULL
-    ELSE records_with_access_blocking_errors::numeric / records_sampled
-  END AS fatal_error_rate
-FROM counts;
+  'N/A'::text AS metric_status,
+  'Missing table: pilot_data_decay_audits'::text AS reason;
 ```
 
-## M7 Preference-Fit Indicator
+## M7 Preference-Fit Indicator (Not Yet Instrumented)
+
+Dependency gap:
+
+1. Requires `pilot_preference_fit_events`.
 
 ```sql
-WITH cohort_tasks AS (
-  SELECT completion_channel
-  FROM pilot_preference_fit_events
-  WHERE completed_at >= :baseline_start
-    AND completed_at < :baseline_end
-),
-counts AS (
-  SELECT
-    COUNT(*) AS cohort_total_tasks,
-    COUNT(*) FILTER (WHERE completion_channel = 'kcc') AS cohort_tasks_preferably_completed_via_kcc
-  FROM cohort_tasks
-)
+-- query_id: v22_phase0_m7_preference_fit_indicator
+-- query_version: 2
+-- owner: jer
+-- last_updated: 2026-03-09
 SELECT
-  cohort_tasks_preferably_completed_via_kcc,
-  cohort_total_tasks,
-  CASE
-    WHEN cohort_total_tasks = 0 THEN NULL
-    ELSE cohort_tasks_preferably_completed_via_kcc::numeric / cohort_total_tasks
-  END AS preference_fit
-FROM counts;
+  'N/A'::text AS metric_status,
+  'Missing table: pilot_preference_fit_events'::text AS reason;
 ```
+
+## Gate 0 Minimum Execution Set
+
+Run in order:
+
+1. Preflight schema dependency check.
+2. M1 failed contact rate query.
+3. M3 referral completion capture rate query.
+4. Record M2/M4/M5/M6/M7 as `N/A` with dependency reasons from this document.
 
 ## Baseline Query QA Checklist
 
-- [ ] All seven query headers include `query_id` and `query_version`
-- [ ] All queries execute with parameterized date inputs
-- [ ] Null/zero denominator behavior is explicitly handled
+- [x] Query headers include `query_id` and `query_version`
+- [x] Executable queries (M1, M3) use parameterized date inputs
+- [x] Null/zero denominator behavior is explicitly handled for executable metrics
+- [x] Dependency gaps for non-executable metrics are explicitly documented
 - [ ] Baseline outputs saved with execution timestamp and owner
 - [ ] Metric outputs copied into baseline report artifact

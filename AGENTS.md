@@ -511,6 +511,8 @@ Full details: `docs/development/testing-guidelines.md`
 - Update `.gitignore` if you introduce new generated files
 - Keep commit author metadata human-owned (`user.name`/`user.email` must be a real contributor)
 - Do not add AI tool attribution in commits, docs, or code comments (no `Co-authored-by` AI identities, no generated-by-agent signatures)
+- Ensure contributor/authorship mentions in docs and changelogs list only human contributors
+- Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`
 
 **Commit Message Format** (via HEREDOC):
 

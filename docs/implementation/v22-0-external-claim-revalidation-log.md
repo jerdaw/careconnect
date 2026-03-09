@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [implementation, v22.0, evidence, validation, governance]
 ---
@@ -45,6 +45,6 @@ For each claim marked `validated`:
 ## Completion Criteria
 
 - [ ] All claims reviewed
-- [ ] No `pending` claim used as gate-deciding evidence
+- [x] No `pending` claim used as gate-deciding evidence
 - [ ] Rejected claims documented with rationale
 - [ ] Summary included in Gate 0 evidence package

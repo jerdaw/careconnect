@@ -1,11 +1,11 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [roadmap, v22.0, strategy, decision-framework, pilot]
 phase_0_status: in_progress
 gate_0_status: evidence_collection_in_progress
-approval_checklist_status: pending_locks
+approval_checklist_status: locked
 ---
 
 # v22.0: Non-Duplicate Value Decision Plan (KCC + 211 Complement Strategy)
@@ -54,7 +54,7 @@ Required approvals:
 
 If any item changes, update this document before Gate 0 sign-off.
 
-## Phase 0 Progress Snapshot (2026-03-08)
+## Phase 0 Progress Snapshot (2026-03-09)
 
 Completed technical foundation:
 
@@ -63,13 +63,16 @@ Completed technical foundation:
 3. Pilot storage verification scripts added (preflight + post-migration + rollback helper).
 4. Internal pilot APIs implemented and documented (`/pilot/events/*`, `/pilot/metrics/scorecard`, `/pilot/integration-feasibility`).
 5. Pilot API/schema/metrics tests implemented and passing.
+6. Step 1 approvals D1-D7 locked in approval checklist.
+7. Integration feasibility decision recorded as `conditional` with controls C1-C3.
+8. Offline/local threat model updated with mitigation owners/dates and no unresolved critical findings.
+9. Gate 0 minimum-mode baseline report artifact created.
 
 Still required before Gate 0 exit:
 
-1. Lock D1-D7 in the approval checklist.
-2. Record integration feasibility decision with evidence links.
-3. Complete threat model mitigation ownership and verification.
-4. Publish baseline metric outputs for first approved baseline window.
+1. Execute M1/M3 baseline queries in Supabase-capable environment and fill numeric values in baseline report.
+2. Complete conditional integration controls C1/C2/C3 before any external integration activation.
+3. Complete external-claim re-validation entries with primary-source citations.
 
 ## Decision Log Authority
 

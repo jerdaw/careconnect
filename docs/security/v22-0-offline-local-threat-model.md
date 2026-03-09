@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-08
+last_updated: 2026-03-09
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -39,13 +39,13 @@ Out of scope:
 
 ## Threat Scenarios
 
-| Threat ID | Scenario                                                      | Impact                      | Likelihood | Severity (`critical` \| `high` \| `medium` \| `low`) | Mitigation                                                  | Owner                 | Status  |
-| --------- | ------------------------------------------------------------- | --------------------------- | ---------- | ---------------------------------------------------- | ----------------------------------------------------------- | --------------------- | ------- |
-| T1        | Lost or stolen device exposes locally cached pilot event data | Confidentiality breach      | Medium     | high                                                 | Minimize local payload, avoid PII fields, aggressive expiry | Engineering           | pending |
-| T2        | Malicious script attempts local data exfiltration             | Confidentiality breach      | Low/Medium | high                                                 | CSP hardening, input sanitization, no raw query persistence | Engineering           | pending |
-| T3        | Offline queue replay duplicates/poisons metrics events        | Integrity loss              | Medium     | medium                                               | Idempotency keys and duplicate guards                       | Engineering           | pending |
-| T4        | Stale offline data appears current to pilot users             | Integrity loss              | Medium     | medium                                               | Freshness timestamps and stale-state UI flags               | Product + Engineering | pending |
-| T5        | Local corruption drops queued referral outcomes               | Availability/integrity loss | Low/Medium | medium                                               | Retry + health checks + sync diagnostics                    | Engineering           | pending |
+| Threat ID | Scenario                                                      | Impact                      | Likelihood | Severity (`critical` \| `high` \| `medium` \| `low`) | Mitigation                                                                                    | Owner                 | Status                             |
+| --------- | ------------------------------------------------------------- | --------------------------- | ---------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------- | ---------------------------------- |
+| T1        | Lost or stolen device exposes locally cached pilot event data | Confidentiality breach      | Medium     | high                                                 | Minimize payload fields, keep identifiers non-personal, add queue expiry and local clear UX   | Engineering           | mitigations_defined_owner_assigned |
+| T2        | Malicious script attempts local data exfiltration             | Confidentiality breach      | Low/Medium | high                                                 | Maintain strict CSP/XSS controls, reject raw query persistence, preserve allowlist validation | Engineering           | mitigations_defined_owner_assigned |
+| T3        | Offline queue replay duplicates/poisons metrics events        | Integrity loss              | Medium     | medium                                               | Idempotency key policy + duplicate write guard                                                | Engineering           | mitigations_defined                |
+| T4        | Stale offline data appears current to pilot users             | Integrity loss              | Medium     | medium                                               | Freshness timestamps + stale-state UI messaging                                               | Product + Engineering | mitigations_defined                |
+| T5        | Local corruption drops queued referral outcomes               | Availability/integrity loss | Low/Medium | medium                                               | Retry workflow + sync diagnostics + recovery guidance                                         | Engineering           | mitigations_defined                |
 
 ## Risk Acceptance Rule
 
@@ -54,22 +54,31 @@ Out of scope:
 
 ## Mitigation Tracking
 
-| Finding ID | Severity | Mitigation Plan | Owner | Due Date | Verification Method | Verified |
-| ---------- | -------- | --------------- | ----- | -------- | ------------------- | -------- |
-| F1         | Pending  | Pending         | TBD   | TBD      | TBD                 | no       |
+| Finding ID | Severity | Mitigation Plan                                                                                | Owner                 | Due Date   | Verification Method                                       | Verified |
+| ---------- | -------- | ---------------------------------------------------------------------------------------------- | --------------------- | ---------- | --------------------------------------------------------- | -------- |
+| F1         | high     | Enforce local queue payload minimization (no personal contact fields, no free-text notes)      | Engineering           | 2026-03-21 | Schema + payload inspection against pilot event contracts | no       |
+| F2         | high     | Confirm expiry and clear-on-sign-out behavior for pilot drafts in local storage                | Engineering           | 2026-03-21 | Manual QA scenario + unit tests around storage cleanup    | no       |
+| F3         | medium   | Add replay detection criteria (idempotency key + duplicate event suppression) to pilot runbook | Engineering           | 2026-03-21 | Integration test using repeated submission payload        | no       |
+| F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | UI walkthrough + screenshot evidence in pilot checklist   | no       |
+| F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | no       |
 
 ## Validation Checklist
 
-- [ ] Device-loss scenario assessed for all local data classes
-- [ ] Local payload minimization reviewed against privacy redlines
-- [ ] Sync queue integrity controls documented
-- [ ] Stale-data handling and UX fallback reviewed
-- [ ] No unresolved `critical` findings
+- [x] Device-loss scenario assessed for all local data classes
+- [x] Local payload minimization reviewed against privacy redlines
+- [x] Sync queue integrity controls documented
+- [x] Stale-data handling and UX fallback reviewed
+- [x] No unresolved `critical` findings
+
+## Sign-Off
+
+- Security/governance owner review: `jer` (2026-03-09)
+- Notes: high-severity items have explicit owners and due dates; no unresolved critical findings.
 
 ## Gate 0 Security Outcome
 
 | Criterion                                        | Status |
 | ------------------------------------------------ | ------ |
-| Critical findings resolved                       | NO-GO  |
-| High findings have owners and mitigation plans   | NO-GO  |
-| Threat model signed by security/governance owner | NO-GO  |
+| Critical findings resolved                       | GO     |
+| High findings have owners and mitigation plans   | GO     |
+| Threat model signed by security/governance owner | GO     |
