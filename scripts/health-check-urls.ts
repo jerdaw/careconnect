@@ -19,6 +19,7 @@ interface HealthCheckResult {
 
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
 const REPORT_PATH = path.join(process.cwd(), "data/url-health-report.json")
+const USER_AGENT = "Mozilla/5.0 (compatible; HelpBridge-URLHealthCheck/1.0; +https://helpbridge.ca)"
 
 // Colors for console output
 const RED = "\x1b[31m"
@@ -39,8 +40,7 @@ async function checkUrl(
       method: "HEAD",
       signal: controller.signal,
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (compatible; KingstonCareConnect-HealthCheck/1.0; +https://github.com/jerdaw/kingston-care-connect)",
+        "User-Agent": USER_AGENT,
       },
     })
 
@@ -52,8 +52,7 @@ async function checkUrl(
         method: "GET",
         signal: controllerGet.signal,
         headers: {
-          "User-Agent":
-            "Mozilla/5.0 (compatible; KingstonCareConnect-HealthCheck/1.0; +https://github.com/jerdaw/kingston-care-connect)",
+          "User-Agent": USER_AGENT,
         },
       })
       clearTimeout(timeoutGet)

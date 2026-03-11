@@ -6,11 +6,14 @@
 > only if you intentionally need the old Vercel deployment path. Do not treat
 > it as the long-term production baseline.
 
-Current migration work should use the draft direct-VPS private proof in
-[`docs/deployment/direct-vps-proof.md`](docs/deployment/direct-vps-proof.md).
+Current production work should use the active direct-VPS path documented in:
 
-The private VPS proof was completed successfully on 2026-03-11 and remains the
-current migration baseline for this repo.
+1. [`docs/deployment/direct-vps-proof.md`](docs/deployment/direct-vps-proof.md)
+2. [`docs/deployment/production-checklist.md`](docs/deployment/production-checklist.md)
+
+The direct-VPS public cutover completed successfully on 2026-03-11. The app is
+now live at `https://helpbridge.ca`, with `www.helpbridge.ca` redirecting to
+the apex and the container bound privately at `127.0.0.1:3300`.
 
 This document describes the older **Vercel** deployment path.
 

@@ -25,7 +25,7 @@ This is the active production path. The root [DEPLOY.md](../../DEPLOY.md) file r
 The deployment uses:
 
 1. Docker on the host VPS,
-2. host-managed Caddy for eventual ingress,
+2. host-managed Caddy for public ingress,
 3. loopback-only bind on the host (`127.0.0.1:3300 -> container:3000`),
 4. the Next.js standalone production output from `npm run build`.
 
@@ -127,6 +127,9 @@ This document records the active deployment baseline.
 
 Follow-up documentation still needed:
 
-1. a dedicated public cutover / rollback runbook,
-2. broader repo-domain canonicalization for historical docs that still reference `kingstoncare.ca`,
-3. any future status-page or subdomain policy.
+1. broader repo-domain canonicalization for historical docs that still reference `kingstoncare.ca`,
+2. any future status-page or subdomain policy.
+
+For the current deploy/verify/rollback checklist, use:
+
+1. [`docs/deployment/production-checklist.md`](production-checklist.md)
