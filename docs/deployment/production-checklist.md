@@ -17,6 +17,12 @@ This is the active production checklist for HelpBridge on the direct-VPS path.
 - **Private bind:** `127.0.0.1:3300`
 - **Env file:** `/etc/projects-merge/env/kingston-care-connect-web.env`
 
+GitHub Actions posture:
+
+- CI runs automatically on push/PR.
+- The `Production Smoke` workflow is the manual GitHub-side public verification step.
+- Production deploys remain manual on the VPS using `scripts/deploy-vps-proof.sh`.
+
 If you intentionally need the historical Vercel path, see the root
 [`DEPLOY.md`](../../DEPLOY.md). Do not treat that file as the production
 baseline.

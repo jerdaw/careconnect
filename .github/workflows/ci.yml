@@ -7,6 +7,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+concurrency:
+  group: kcc-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
@@ -112,3 +116,16 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'placeholder-key' }}
+
+  docker-build-smoke:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production image
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_APP_URL=https://helpbridge.ca \
+            --build-arg NEXT_PUBLIC_BASE_URL=https://helpbridge.ca \
+            -t kingston-care-connect-web:ci \
+            .

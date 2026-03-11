@@ -117,11 +117,20 @@ To conserve CI minutes while on GitHub free tier:
 1. `test-e2e` runs on `workflow_dispatch` by default.
 2. To run E2E on a `main` push, include `[run-e2e]` in the commit message.
 3. Use manual dispatch for intentional E2E validation windows.
+4. Use the separate manual `Production Smoke` workflow for public-host checks
+   (`helpbridge.ca`) instead of trying to turn deploys into an automatic CI step.
 
 Local helper behavior:
 
 1. `npm run ci:check` skips Playwright tests by default.
 2. Set `RUN_PLAYWRIGHT_LOCAL=true` to include local Playwright execution when needed.
+
+### Deploy posture
+
+- CI is automatic on push/PR.
+- Production deploys remain manual and script-driven on the VPS.
+- GitHub Actions is used for validation and public smoke verification, not for
+  automatic production deploys.
 
 ### Why Chromium Only?
 
