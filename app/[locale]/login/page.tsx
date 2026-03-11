@@ -125,7 +125,7 @@ export default function LoginPage() {
                   </div>
                   <div className="relative flex justify-center text-sm">
                     <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400">
-                      {t("newToKCC")}
+                      {t("newToHelpBridge")}
                     </span>
                   </div>
                 </div>

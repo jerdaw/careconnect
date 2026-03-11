@@ -10,7 +10,9 @@ const DEFAULT_CONTEXT: UserContext = {
 }
 
 export function useUserContext() {
-  const [context, setContext, clearContext] = useLocalStorage<UserContext>("kcc_user_context", DEFAULT_CONTEXT)
+  const [context, setContext, clearContext] = useLocalStorage<UserContext>("helpbridge_user_context", DEFAULT_CONTEXT, {
+    legacyKeys: ["kcc_user_context"],
+  })
 
   const updateAgeGroup = (ageGroup: AgeGroup | null) => {
     setContext((prev) => ({ ...prev, ageGroup }))

@@ -29,7 +29,7 @@ This runbook provides a step-by-step guide for manually verifying the Progressiv
 5. Open DevTools > Application > Cache Storage.
 6. **Verify**: `services-export` cache exists (NetworkFirst; used for offline-friendly re-sync).
 7. Open DevTools > Application > IndexedDB.
-8. **Verify**: `kcc-offline-v1` database exists and the `services` store contains ~196 items.
+8. **Verify**: `helpbridge-offline-v1` database exists and the `services` store contains ~196 items.
 
 ---
 
@@ -135,7 +135,7 @@ For each locale: `/en`, `/fr`, `/zh-Hans`, `/ar`, `/pt`, `/es`, `/pa`
 3. Navigate to `http://localhost:3000/offline`.
 4. **Verify**: Correct language renders; Arabic uses RTL (`<html dir="rtl">`).
 5. Switch back **Online**.
-6. **Verify**: Offline sync runs (watch Console logs and the `kcc-offline-v1` IndexedDB metadata).
+6. **Verify**: Offline sync runs (watch Console logs and the `helpbridge-offline-v1` IndexedDB metadata).
 
 ---
 

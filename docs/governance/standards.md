@@ -9,7 +9,7 @@ tags: [governance, standards, verification]
 
 **Document Version:** 1.0
 **Effective Date:** Dec 29, 2025
-**Scope:** All services listed in the Kingston Care Connect database.
+**Scope:** All services listed in the HelpBridge database.
 
 ---
 
@@ -66,4 +66,4 @@ To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must in
 ---
 
 **Approved By:**
-Kingston Care Connect Steering Committee
+HelpBridge Steering Committee

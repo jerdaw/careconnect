@@ -33,10 +33,10 @@ export default function DashboardSidebar() {
       <div className="flex h-20 items-center border-b border-neutral-100 px-6 dark:border-neutral-800">
         <Link href="/" className="group flex items-center gap-2">
           <div className="from-primary-500 to-primary-600 group-hover:shadow-primary-500/30 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-lg font-bold text-white shadow-md transition-shadow">
-            K
+            H
           </div>
           <span className="heading-display text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
-            Care Connect
+            HelpBridge
           </span>
         </Link>
       </div>

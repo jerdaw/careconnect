@@ -1,4 +1,4 @@
-# AGENTS.md – Kingston Care Connect
+# AGENTS.md – HelpBridge
 
 ## Agent Role
 
@@ -38,7 +38,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
-**Cross-project ops note:** Kingston Care Connect/HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
+**Cross-project ops note:** HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
 
 ---
 

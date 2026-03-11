@@ -106,7 +106,7 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 ### Transparency Disclosures
 
-Kingston Care Connect uses AI-assisted translations for some content. To ensure users are informed:
+HelpBridge uses AI-assisted translations for some content. To ensure users are informed:
 
 1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
    - A dismissible floating pill appears at the bottom-right of every page
@@ -116,7 +116,7 @@ Kingston Care Connect uses AI-assisted translations for some content. To ensure 
 
 2. **Footer Disclaimer** (all non-English locales)
    - A subtle note appears in the footer for fr/ar/zh-Hans/es
-   - Text: "Some translations are AI-assisted. Report errors to feedback@careconnect.ca"
+   - Text: "Some translations are AI-assisted. Report errors to feedback@helpbridge.ca"
 
 ### Translation Quality Tiers
 
@@ -128,7 +128,7 @@ Kingston Care Connect uses AI-assisted translations for some content. To ensure 
 
 ### Reporting Translation Errors
 
-Users can report translation errors to `feedback@careconnect.ca`. Corrections should be prioritized based on:
+Users can report translation errors to `feedback@helpbridge.ca`. Corrections should be prioritized based on:
 
 1. Health/safety information (highest priority)
 2. Legal/financial content

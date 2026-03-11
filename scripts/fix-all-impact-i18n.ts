@@ -4,7 +4,7 @@ import * as path from "path"
 const impactTranslations = {
   en: {
     title: "Community Impact",
-    subtitle: "See how Kingston Care Connect is helping our community—without tracking anyone.",
+    subtitle: "See how HelpBridge is helping our community—without tracking anyone.",
     metricsTitle: "Last 90 Days",
     satisfactionTitle: "User Satisfaction",
     satisfactionDesc: "Based on {count} responses",
@@ -26,7 +26,7 @@ const impactTranslations = {
   },
   fr: {
     title: "Impact communautaire",
-    subtitle: "Découvrez comment Kingston Care Connect aide notre communauté — sans suivre personne.",
+    subtitle: "Découvrez comment HelpBridge aide notre communauté — sans suivre personne.",
     metricsTitle: "Les 90 derniers jours",
     satisfactionTitle: "Satisfaction des utilisateurs",
     satisfactionDesc: "Basé sur {count} réponses",
@@ -48,7 +48,7 @@ const impactTranslations = {
   },
   ar: {
     title: "تأثير المجتمع",
-    subtitle: "تعرف على كيفية مساعدة Kingston Care Connect لمجتمعنا - دون تتبع أي شخص.",
+    subtitle: "تعرف على كيفية مساعدة HelpBridge لمجتمعنا - دون تتبع أي شخص.",
     metricsTitle: "آخر 90 يومًا",
     satisfactionTitle: "رضا المستخدم",
     satisfactionDesc: "بناءً على {count} من الردود",
@@ -69,7 +69,7 @@ const impactTranslations = {
   },
   "zh-Hans": {
     title: "社区影响",
-    subtitle: "了解 Kingston Care Connect 如何在不跟踪任何人的情况下帮助我们的社区。",
+    subtitle: "了解 HelpBridge 如何在不跟踪任何人的情况下帮助我们的社区。",
     metricsTitle: "过去 90 天",
     satisfactionTitle: "用户满意度",
     satisfactionDesc: "基于 {count} 条反馈",
@@ -89,7 +89,7 @@ const impactTranslations = {
   },
   es: {
     title: "Impacto Comunitario",
-    subtitle: "Vea cómo Kingston Care Connect está ayudando a nuestra comunidad, sin rastrear a nadie.",
+    subtitle: "Vea cómo HelpBridge está ayudando a nuestra comunidad, sin rastrear a nadie.",
     metricsTitle: "Últimos 90 días",
     satisfactionTitle: "Satisfacción del Usuario",
     satisfactionDesc: "Basado en {count} respuestas",
@@ -111,7 +111,7 @@ const impactTranslations = {
   },
   pt: {
     title: "Impacto Comunitário",
-    subtitle: "Veja como a Kingston Care Connect está ajudando nossa comunidade - sem rastrear ninguém.",
+    subtitle: "Veja como a HelpBridge está ajudando nossa comunidade - sem rastrear ninguém.",
     metricsTitle: "Últimos 90 dias",
     satisfactionTitle: "Satisfação do Usuário",
     satisfactionDesc: "Baseado em {count} respostas",
@@ -133,7 +133,7 @@ const impactTranslations = {
   },
   pa: {
     title: "ਕਮਿਊਨਿਟੀ ਪ੍ਰਭਾਵ",
-    subtitle: "ਦੇਖੋ ਕਿ ਕਿਵੇਂ Kingston Care Connect ਕਿਸੇ ਨੂੰ ਵੀ ਟਰੈਕ ਕੀਤੇ ਬਿਨਾਂ ਸਾਡੇ ਭਾਈਚਾਰੇ ਦੀ ਮਦਦ ਕਰ ਰਿਹਾ ਹੈ।",
+    subtitle: "ਦੇਖੋ ਕਿ ਕਿਵੇਂ HelpBridge ਕਿਸੇ ਨੂੰ ਵੀ ਟਰੈਕ ਕੀਤੇ ਬਿਨਾਂ ਸਾਡੇ ਭਾਈਚਾਰੇ ਦੀ ਮਦਦ ਕਰ ਰਿਹਾ ਹੈ।",
     metricsTitle: "ਪਿਛਲੇ 90 ਦਿਨ",
     satisfactionTitle: "ਉਪਭੋਗਤਾ ਸੰਤੁਸ਼ਟੀ",
     satisfactionDesc: "{count} ਜਵਾਬਾਂ ਦੇ ਅਧਾਰ ਤੇ",

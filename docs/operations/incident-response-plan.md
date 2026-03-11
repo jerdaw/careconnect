@@ -25,7 +25,7 @@
 
 ### Purpose
 
-This plan defines Kingston Care Connect's approach to detecting, responding to, and resolving production incidents. The goal is to minimize user impact and restore normal service as quickly as possible.
+This plan defines HelpBridge's approach to detecting, responding to, and resolving production incidents. The goal is to minimize user impact and restore normal service as quickly as possible.
 
 ### Scope
 
@@ -205,7 +205,7 @@ This plan covers all production incidents affecting:
 **Alert Channels:**
 
 - **Slack:** `#kingston-alerts` (automated + manual)
-- **Email:** alerts@kingstoncare.ca (backup)
+- **Email:** alerts@helpbridge.ca (backup)
 - **Phone:** (Future: PagerDuty integration)
 
 ---
@@ -250,7 +250,7 @@ Start Time: 2026-02-03 14:23 UTC
 Incident Commander: @engineer
 Status: Investigating
 
-Dashboard: https://kingstoncare.ca/admin/observability
+Dashboard: https://helpbridge.ca/admin/observability
 Runbook: https://github.com/.../docs/runbooks/high-error-rate.md
 
 Updates will be posted every 30 minutes.
@@ -308,7 +308,7 @@ Use when:
 vercel rollback <LAST_KNOWN_GOOD_URL>
 
 # Verify service restored
-curl https://kingstoncare.ca/api/v1/health
+curl https://helpbridge.ca/api/v1/health
 ```
 
 **Option B: Hotfix Deployment (15-30 minutes)**
@@ -365,13 +365,13 @@ Examples:
 
 ```bash
 # Test critical paths
-curl https://kingstoncare.ca/api/v1/health
+curl https://helpbridge.ca/api/v1/health
 # Expected: {"status":"healthy"}
 
-curl https://kingstoncare.ca/api/v1/services
+curl https://helpbridge.ca/api/v1/services
 # Expected: 196+ services
 
-curl -X POST https://kingstoncare.ca/api/v1/search/services \
+curl -X POST https://helpbridge.ca/api/v1/search/services \
   -H "Content-Type: application/json" \
   -d '{"query":"food bank"}'
 # Expected: 10+ results
@@ -781,8 +781,8 @@ Alert Received
 ### Communication
 
 - **Slack:** `#kingston-alerts`, `#kingston-ops`
-- **Status Page:** (Future: status.kingstoncare.ca)
-- **Email:** alerts@kingstoncare.ca
+- **Status Page:** (Future: status.helpbridge.ca)
+- **Email:** alerts@helpbridge.ca
 
 ### Documentation
 
@@ -844,7 +844,7 @@ Is the entire service down?
 
 - Incident Commander: @ic-rotation
 - CTO: @cto (SEV-1 only)
-- Support: support@kingstoncare.ca
+- Support: support@helpbridge.ca
 
 **External:**
 

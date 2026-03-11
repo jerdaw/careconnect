@@ -1,4 +1,4 @@
-# Kingston Care Connect: Product Roadmap
+# HelpBridge: Product Roadmap
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
@@ -44,7 +44,7 @@
 **Created**: 2026-02-27
 **Current State**: Pilot DB schema, RLS policies, hardened admin function, internal pilot APIs, and pilot test suite are implemented and validated. Step 1 decision locks are complete; baseline M1/M3 execution is recorded (both `NULL` due to zero baseline-window events), but Gate 0 remains NO-GO until legal/privacy and partner-operation blockers are closed.
 
-Reposition KCC from potential directory duplication to measurable last-mile outcome value (connection success, reliability, referral completion), with explicit kill criteria if value is not demonstrated.
+Reposition HelpBridge from potential directory duplication to measurable last-mile outcome value (connection success, reliability, referral completion), with explicit kill criteria if value is not demonstrated.
 
 **👉 Detailed Plan: [v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
 **👉 Approval Checklist: [v22.0 Step 1 Approval Checklist](v22-0-approval-checklist.md)**
@@ -248,7 +248,7 @@ Complete the operational foundation for production launch by adding production-g
 3. ✅ **Observability Dashboard**: Real-time system health at `/admin/observability` (COMPLETE)
 4. ✅ **Alerting System**: Automated Slack notifications for critical issues (COMPLETE)
 5. 🔄 **SLO Framework**: Define and track 99.5% uptime, p95 <800ms latency (IN PROGRESS - decision guide created, awaiting user choices)
-6. 📋 **Public Status Page**: Deploy Upptime at `status.kingstoncare.ca` (PLANNED)
+6. 📋 **Public Status Page**: Deploy Upptime at `status.helpbridge.ca` (PLANNED)
 7. ✅ **Operational Runbooks**: Document incident response procedures (COMPLETE)
 
 #### Implementation Phases
@@ -291,7 +291,7 @@ Complete the operational foundation for production launch by adding production-g
   - Current: 99.5% uptime, p95 <800ms, 0.5% error budget
   - Update `lib/config/slo-targets.ts` and set `SLO_STATUS = "CONFIRMED"`
 - ⏸️ **Deploy Upptime Status Page**: Public status monitoring (requires domain configuration)
-  - Domain: Configure `status.kingstoncare.ca` subdomain - ~10 min
+  - Domain: Configure `status.helpbridge.ca` subdomain - ~10 min
   - GitHub Fork: Fork upptime/upptime repository - ~5 min
 
 #### Success Criteria

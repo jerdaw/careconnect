@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.3
 info:
-  title: Kingston Care Connect API
+  title: HelpBridge API
   description: |
     Public API for accessing community services in Kingston, Ontario.
 
@@ -13,7 +13,7 @@ info:
     - Internal pilot endpoints require authentication and organization/admin authorization.
   version: 1.0.0
   contact:
-    email: support@careconnect.ca
+    email: support@helpbridge.ca
 
 servers:
   - url: https://helpbridge.ca/api/v1

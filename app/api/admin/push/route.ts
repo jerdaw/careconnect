@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
         app_id: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
         contents: { en: message },
         headings: { en: title },
-        url: url || "https://kingstoncareconnect.org",
+        url: url || "https://helpbridge.ca",
         // Use segments or filters based on target
         ...(oneSignalFilters.included_segments
           ? { included_segments: oneSignalFilters.included_segments }

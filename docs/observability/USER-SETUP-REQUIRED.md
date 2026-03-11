@@ -79,7 +79,7 @@
 5. **Copy the Webhook URL** (starts with `https://hooks.slack.com/services/`)
    - Example: `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXX`
 6. (Optional) Customize the webhook:
-   - Name: `Kingston Care Connect`
+   - Name: `HelpBridge`
    - Icon: Choose an icon or emoji
    - Click "Save Settings"
 
@@ -88,7 +88,7 @@
 ```bash
 curl -X POST "YOUR_WEBHOOK_URL_HERE" \
   -H "Content-Type: application/json" \
-  -d '{"text":"Test alert from Kingston Care Connect setup"}'
+  -d '{"text":"Test alert from HelpBridge setup"}'
 ```
 
 You should see a message appear in your Slack channel immediately.
@@ -171,7 +171,7 @@ npm run dev
 ```bash
 curl -X POST "$SLACK_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
-  -d '{"text":"🧪 Test from Kingston Care Connect local dev"}'
+  -d '{"text":"🧪 Test from HelpBridge local dev"}'
 ```
 
 Expected: Message appears in Slack channel

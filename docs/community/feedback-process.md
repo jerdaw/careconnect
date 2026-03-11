@@ -17,14 +17,14 @@
 _For reporting errors in phone numbers, addresses, hours, etc._
 
 - **Method**: "Report Issue" button on every service page.
-- **Routing**: Sent to KCC Verification Team + Verified Partner (if claimed).
+- **Routing**: Sent to HelpBridge Verification Team + Verified Partner (if claimed).
 - **SLA**: Reviewed within 5 business days.
 
 ### B. Privacy & Security Concerns
 
 _For reporting data breaches, unauthorized information, or safety content._
 
-- **Method**: Email to `privacy@careconnect.ca`.
+- **Method**: Email to `privacy@helpbridge.ca`.
 - **Routing**: Immediate escalation to Privacy Officer.
 - **SLA**: Acknowledged within 24 hours; Investigation aimed for 72 hours.
 
@@ -32,7 +32,7 @@ _For reporting data breaches, unauthorized information, or safety content._
 
 _For reporting issues accessing the site or content._
 
-- **Method**: Email to `accessibility@careconnect.ca` or Feedback Form.
+- **Method**: Email to `accessibility@helpbridge.ca` or Feedback Form.
 - **Routing**: Accessibility Lead.
 - **SLA**: 5 business days.
 
@@ -40,9 +40,9 @@ _For reporting issues accessing the site or content._
 
 If a service provider disagrees with a moderation decision (e.g., listing removal, edits):
 
-1.  **Initial Appeal**: Contact `moderation@careconnect.ca` with evidence.
+1.  **Initial Appeal**: Contact `moderation@helpbridge.ca` with evidence.
 2.  **Review**: A different moderator than the original decision-maker reviews the case.
-3.  **Final Decision**: If unresolved, the issue goes to the KCC Governance Committee for a final binding decision.
+3.  **Final Decision**: If unresolved, the issue goes to the HelpBridge Governance Committee for a final binding decision.
 
 ## 4. Reporting & Metrics
 

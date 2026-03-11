@@ -39,7 +39,7 @@ function sanitizeForPublicExport(service: Service): PublicExportService {
   return {
     ...rest,
     provenance: {
-      verified_by: "Care Connect Admin",
+      verified_by: "HelpBridge Admin",
       verified_at: lastVerified || new Date().toISOString(),
       evidence_url: evidenceUrl,
       method,

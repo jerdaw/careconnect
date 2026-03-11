@@ -40,7 +40,7 @@
 
 ### Current State Summary
 
-Kingston Care Connect has completed Phase 1 of production observability. The platform now has comprehensive resilience (circuit breaker pattern, fail-safe authorization, performance tracking), but lacks **production-grade monitoring and alerting**.
+HelpBridge has completed Phase 1 of production observability. The platform now has comprehensive resilience (circuit breaker pattern, fail-safe authorization, performance tracking), but lacks **production-grade monitoring and alerting**.
 
 **Production Readiness Assessment:**
 
@@ -1318,7 +1318,7 @@ if (toState === "OPEN" && shouldSendAlert("circuit-breaker-open", 600000)) {
    ```bash
    curl -X POST $SLACK_WEBHOOK_URL \
      -H 'Content-Type: application/json' \
-     -d '{"text":"Test from Kingston Care Connect"}'
+     -d '{"text":"Test from HelpBridge"}'
    ```
 
 2. **Circuit Breaker Alert:**

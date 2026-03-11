@@ -26,7 +26,7 @@
 
 | Key                                 | Purpose                                                                 | Status                   |
 | ----------------------------------- | ----------------------------------------------------------------------- | ------------------------ |
-| `kcc_user_context`                  | Stores user personalization (Age, Identities) for client-side boosting. | **Verified (Essential)** |
+| `helpbridge_user_context`           | Stores user personalization (Age, Identities) for client-side boosting. | **Verified (Essential)** |
 | `preferred_notification_categories` | Stores opt-in choices for push notifications.                           | **Verified**             |
 | `theme`                             | Stores light/dark mode preference.                                      | **Verified**             |
 

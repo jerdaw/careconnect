@@ -26,7 +26,9 @@ export function useSearch(initialQuery = "") {
   const [suggestion, setSuggestion] = useState<string | null>(null)
 
   // Use the new utility hooks
-  const [savedSearches, setSavedSearches] = useLocalStorage<string[]>("kcc_saved_searches", [])
+  const [savedSearches, setSavedSearches] = useLocalStorage<string[]>("helpbridge_saved_searches", [], {
+    legacyKeys: ["kcc_saved_searches"],
+  })
   const { coordinates: userLocation, isLocating, error: geoError, requestLocation, clearLocation } = useGeolocation()
 
   // Import User Context for personalization

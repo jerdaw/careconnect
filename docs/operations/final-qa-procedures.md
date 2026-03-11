@@ -116,7 +116,7 @@ curl -X POST 'https://[your-project].supabase.co/rest/v1/services' \
 
 ### 1.3: Authentication Flow Testing (30 minutes)
 
-**Test in production environment (e.g., https://kingstoncare.ca):**
+**Test in production environment (e.g., https://helpbridge.ca):**
 
 **Signup Flow:**
 
@@ -162,7 +162,7 @@ curl -X POST 'https://[your-project].supabase.co/rest/v1/services' \
 
 ```bash
 # Test production URL security headers
-curl -I https://kingstoncare.ca | grep -i "content-security-policy\|x-frame-options\|x-content-type-options"
+curl -I https://helpbridge.ca | grep -i "content-security-policy\|x-frame-options\|x-content-type-options"
 ```
 
 **Expected Headers:**
@@ -194,12 +194,12 @@ curl -I https://kingstoncare.ca | grep -i "content-security-policy\|x-frame-opti
 
 ```bash
 # Test search API endpoint
-curl -X POST https://kingstoncare.ca/api/v1/search/services \
+curl -X POST https://helpbridge.ca/api/v1/search/services \
   -H "Content-Type: application/json" \
   -d '{"query": "food bank", "limit": 5}'
 
 # Test health check endpoint
-curl https://kingstoncare.ca/api/v1/health
+curl https://helpbridge.ca/api/v1/health
 ```
 
 **Expected Results:**
@@ -240,7 +240,7 @@ curl https://kingstoncare.ca/api/v1/health
 ```bash
 # Test rate limiting (60 req/min limit)
 for i in {1..65}; do
-  curl -X POST https://kingstoncare.ca/api/v1/search/services \
+  curl -X POST https://helpbridge.ca/api/v1/search/services \
     -H "Content-Type: application/json" \
     -d '{"query": "test"}' \
     -w "%{http_code}\n" \
@@ -265,7 +265,7 @@ done
 
 **Test 1: 404 Page**
 
-- [ ] Navigate to `https://kingstoncare.ca/nonexistent-page`
+- [ ] Navigate to `https://helpbridge.ca/nonexistent-page`
 - [ ] Verify custom 404 page displays (not default Next.js 404)
 - [ ] Verify "Return Home" link works
 
@@ -328,7 +328,7 @@ done
 **Steps:**
 
 1. **Navigate to production site**
-   - [ ] Open `https://kingstoncare.ca` in browser
+   - [ ] Open `https://helpbridge.ca` in browser
    - [ ] Page loads in <3 seconds
 
 2. **Perform crisis search**
@@ -521,7 +521,7 @@ done
 **Steps:**
 
 1. **Mobile page load**
-   - [ ] Navigate to `https://kingstoncare.ca` on mobile
+   - [ ] Navigate to `https://helpbridge.ca` on mobile
    - [ ] **Timer:** Page loads in <5 seconds on 4G ⏱️
    - [ ] Verify responsive layout (no horizontal scrolling)
    - [ ] Verify text readable without zooming
@@ -671,7 +671,7 @@ done
 **Run automated audit:**
 
 ```bash
-cd /path/to/kingston-care-connect
+cd /path/to/helpbridge-ca
 npm run audit:data
 ```
 

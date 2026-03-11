@@ -1,4 +1,4 @@
-# Deployment Guide: Kingston Care Connect (Legacy Vercel Path)
+# Deployment Guide: HelpBridge (Legacy Vercel Path)
 
 > Status: Legacy deployment guide.
 >
@@ -28,7 +28,7 @@ This document describes the older **Vercel** deployment path.
 1. **Push Code:** Ensure your latest changes are pushed to GitHub `main` branch.
 2. **Login to Vercel:** Go to [vercel.com](https://vercel.com) and log in.
 3. **Add New Project:** Click **"Add New..."** -> **"Project"**.
-4. **Import Git Repository:** Select `kingston-care-connect`.
+4. **Import Git Repository:** Select `helpbridge-ca`.
 5. **Configure Project:**
 
 - **Framework Preset:** Next.js (Should auto-detect).
@@ -67,7 +67,7 @@ To ensure zero-downtime when creating indexes on large tables, use the provided 
 
 ## 4. Post-Deployment Verification
 
-- Visit the URL provided by the legacy Vercel deployment (for example, `kingston-care-connect.vercel.app`).
+- Visit the URL provided by the legacy Vercel deployment (for example, `helpbridge-ca.vercel.app`).
 - **Test Search:** Type "Food".
 - _Success:_ Results appear instantly.
 - **Test Semantic Search:** Type "I feel empty".

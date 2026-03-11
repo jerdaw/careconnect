@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: kcc-production-smoke
+  group: helpbridge-production-smoke
   cancel-in-progress: false
 
 jobs:

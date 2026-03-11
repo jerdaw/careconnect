@@ -9,6 +9,7 @@ describe("useHighContrast", () => {
     vi.stubGlobal("localStorage", {
       getItem: (key: string) => store[key] || null,
       setItem: (key: string, value: string) => (store[key] = value),
+      removeItem: (key: string) => delete store[key],
       clear: () => {
         for (const key in store) delete store[key]
       },
@@ -26,7 +27,7 @@ describe("useHighContrast", () => {
   })
 
   it("should initialize with true if localStorage has true", () => {
-    localStorage.setItem("kcc-high-contrast", "true")
+    localStorage.setItem("helpbridge-high-contrast", "true")
     const { result } = renderHook(() => useHighContrast())
     expect(result.current.isHighContrast).toBe(true)
     expect(document.documentElement.classList.contains("high-contrast")).toBe(true)
@@ -40,7 +41,7 @@ describe("useHighContrast", () => {
     })
 
     expect(result.current.isHighContrast).toBe(true)
-    expect(localStorage.getItem("kcc-high-contrast")).toBe("true")
+    expect(localStorage.getItem("helpbridge-high-contrast")).toBe("true")
     expect(document.documentElement.classList.contains("high-contrast")).toBe(true)
 
     act(() => {
@@ -48,7 +49,7 @@ describe("useHighContrast", () => {
     })
 
     expect(result.current.isHighContrast).toBe(false)
-    expect(localStorage.getItem("kcc-high-contrast")).toBe("false")
+    expect(localStorage.getItem("helpbridge-high-contrast")).toBe("false")
     expect(document.documentElement.classList.contains("high-contrast")).toBe(false)
   })
 })

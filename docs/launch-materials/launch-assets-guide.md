@@ -1,4 +1,4 @@
-# Launch Assets Guide - Kingston Care Connect
+# Launch Assets Guide - HelpBridge
 
 **Purpose**: Specifications for visual assets needed for launch
 **Audience**: Designers, partners creating promotional materials
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This guide specifies the visual assets needed for Kingston Care Connect's launch. All assets should prioritize **accessibility**, **clarity**, and **community-centered design**.
+This guide specifies the visual assets needed for HelpBridge's launch. All assets should prioritize **accessibility**, **clarity**, and **community-centered design**.
 
 **Design Philosophy**:
 
@@ -25,7 +25,7 @@ This guide specifies the visual assets needed for Kingston Care Connect's launch
 
 #### Primary Logo (Full)
 
-- **Components**: Icon + "Kingston Care Connect" wordmark
+- **Components**: Icon + "HelpBridge" wordmark
 - **Formats**: SVG (vector), PNG @1x, @2x, @3x
 - **Variants Needed**:
   - Full color on white background
@@ -179,7 +179,7 @@ If custom fonts are needed for print materials:
 - Content: Logo + "Find social services in Kingston, ON"
 - Background: Gradient (teal to white) or solid teal
 - Text: White, large, bold
-- URL: "kingstoncare.ca" in bottom-right corner
+- URL: "helpbridge.ca" in bottom-right corner
 
 **Service Page**
 
@@ -292,7 +292,7 @@ If custom fonts are needed for print materials:
 **Carousel Topics**:
 
 1. **How It Works** (5 slides)
-   - Slide 1: Title "How Kingston Care Connect Works"
+   - Slide 1: Title "How HelpBridge Works"
    - Slide 2: "1. Search"
    - Slide 3: "2. Browse Results"
    - Slide 4: "3. View Details"
@@ -447,13 +447,13 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 **Front**:
 
 - Logo
-- "kingstoncare.ca"
+- "helpbridge.ca"
 - Tagline: "Find social services in Kingston, ON"
 
 **Back**:
 
-- Contact email: feedback@careconnect.ca
-- QR code linking to kingstoncare.ca (optional)
+- Contact email: feedback@helpbridge.ca
+- QR code linking to helpbridge.ca (optional)
 - 7-language support icons or flags
 
 **Print Specs**:
@@ -476,7 +476,7 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 - Large QR code (easy to scan from distance)
 - "Find social services in Kingston"
 - Key features (icons + text)
-- URL: kingstoncare.ca
+- URL: helpbridge.ca
 - Available in 7 languages
 
 **Accessibility Requirements**:
@@ -548,7 +548,7 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 
 ### 2. Demo Video (Optional)
 
-**Purpose**: Show how to use Kingston Care Connect in 60-90 seconds
+**Purpose**: Show how to use HelpBridge in 60-90 seconds
 
 **Specifications**:
 
@@ -560,11 +560,11 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 **Script Outline**:
 
 1. (0-10s) Show problem: "Need help finding a food bank?"
-2. (10-20s) Show homepage: "Kingston Care Connect is here to help."
+2. (10-20s) Show homepage: "HelpBridge is here to help."
 3. (20-40s) Demo search: Type "food bank" → results appear
 4. (40-60s) Demo service detail: Click result → see full info
 5. (60-75s) Highlight features: Works offline, 7 languages, privacy-first
-6. (75-90s) Call to action: "Visit kingstoncare.ca"
+6. (75-90s) Call to action: "Visit helpbridge.ca"
 
 **Production Notes**:
 
@@ -586,16 +586,16 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 
 ## File Naming Conventions
 
-**Format**: `kcc-[type]-[variant]-[size].[ext]`
+**Format**: `helpbridge-[type]-[variant]-[size].[ext]`
 
 **Examples**:
 
-- `kcc-logo-full-color-400px.png`
-- `kcc-logo-icon-white-512px.svg`
-- `kcc-og-image-homepage-1200x630.png`
-- `kcc-social-twitter-header-1500x500.jpg`
-- `kcc-icon-search-64px.svg`
-- `kcc-screenshot-mobile-iphone-2x.png`
+- `helpbridge-logo-full-color-400px.png`
+- `helpbridge-logo-icon-white-512px.svg`
+- `helpbridge-og-image-homepage-1200x630.png`
+- `helpbridge-social-twitter-header-1500x500.jpg`
+- `helpbridge-icon-search-64px.svg`
+- `helpbridge-screenshot-mobile-iphone-2x.png`
 
 **Benefits**:
 
@@ -655,41 +655,41 @@ Before finalizing any graphic asset:
 When assets are created, deliver in this structure:
 
 ```
-kingston-care-connect-assets/
+helpbridge-ca-assets/
 ├── logos/
 │   ├── svg/
-│   │   ├── kcc-logo-full-color.svg
-│   │   ├── kcc-logo-white.svg
-│   │   └── kcc-icon-only.svg
+│   │   ├── helpbridge-logo-full-color.svg
+│   │   ├── helpbridge-logo-white.svg
+│   │   └── helpbridge-icon-only.svg
 │   └── png/
-│       ├── kcc-logo-full-color-400px.png
-│       ├── kcc-logo-full-color-800px.png
-│       └── kcc-icon-512px.png
+│       ├── helpbridge-logo-full-color-400px.png
+│       ├── helpbridge-logo-full-color-800px.png
+│       └── helpbridge-icon-512px.png
 ├── social/
 │   ├── og-images/
-│   │   ├── kcc-og-homepage.png
-│   │   └── kcc-og-generic.png
+│   │   ├── helpbridge-og-homepage.png
+│   │   └── helpbridge-og-generic.png
 │   ├── profile/
-│   │   ├── kcc-profile-twitter-400x400.png
-│   │   └── kcc-profile-linkedin-400x400.png
+│   │   ├── helpbridge-profile-twitter-400x400.png
+│   │   └── helpbridge-profile-linkedin-400x400.png
 │   └── covers/
-│       ├── kcc-twitter-header-1500x500.jpg
-│       └── kcc-facebook-cover-820x312.jpg
+│       ├── helpbridge-twitter-header-1500x500.jpg
+│       └── helpbridge-facebook-cover-820x312.jpg
 ├── icons/
 │   ├── features/
-│   │   ├── kcc-icon-search.svg
-│   │   ├── kcc-icon-offline.svg
+│   │   ├── helpbridge-icon-search.svg
+│   │   ├── helpbridge-icon-offline.svg
 │   │   └── ...
 │   └── categories/
-│       ├── kcc-icon-food.svg
-│       ├── kcc-icon-crisis.svg
+│       ├── helpbridge-icon-food.svg
+│       ├── helpbridge-icon-crisis.svg
 │       └── ...
 ├── print/
-│   ├── kcc-poster-letter.pdf
-│   ├── kcc-poster-tabloid.pdf
-│   └── kcc-rack-card.pdf
+│   ├── helpbridge-poster-letter.pdf
+│   ├── helpbridge-poster-tabloid.pdf
+│   └── helpbridge-rack-card.pdf
 └── video/
-    └── kcc-demo-60s.mp4
+    └── helpbridge-demo-60s.mp4
 ```
 
 **Delivery Format**: ZIP file or shared Google Drive/Dropbox folder
@@ -754,10 +754,10 @@ kingston-care-connect-assets/
 ## Contact & Questions
 
 For questions about asset specifications:
-**Email**: feedback@careconnect.ca
+**Email**: feedback@helpbridge.ca
 
 For design collaboration or asset delivery:
-**Email**: feedback@careconnect.ca
+**Email**: feedback@helpbridge.ca
 
 ---
 

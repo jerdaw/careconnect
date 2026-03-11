@@ -14,7 +14,7 @@ Accepted
 
 ## Context
 
-Kingston Care Connect's server-side search (Librarian API) initially used basic database filters and simple ordering by verification status and freshness. As our data grew and our ranking requirements became more complex (including authority tiers, completeness boosts, and proximity decay), we needed a way to apply these factors consistently on the server.
+HelpBridge's server-side search (Librarian API) initially used basic database filters and simple ordering by verification status and freshness. As our data grew and our ranking requirements became more complex (including authority tiers, completeness boosts, and proximity decay), we needed a way to apply these factors consistently on the server.
 
 The core challenge was that Supabase's PostgREST (via `supabase-js`) does not support complex scoring expressions or deep in-query mathematical boosts easily. Pure SQL implementations would be fragile, hard to maintain, and duplicate the TypeScript scoring logic already developed for client-side search.
 

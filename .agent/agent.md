@@ -1,6 +1,6 @@
-# Kingston Care Connect - AI Context
+# HelpBridge - AI Context
 
-This file provides context for AI agents working on the Kingston Care Connect project.
+This file provides context for AI agents working on the HelpBridge project.
 
 ## Development Principles
 

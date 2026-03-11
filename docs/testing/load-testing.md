@@ -1,6 +1,6 @@
 # Load Testing Guide
 
-This guide covers load testing for Kingston Care Connect using k6.
+This guide covers load testing for HelpBridge using k6.
 
 ## Overview
 
@@ -267,7 +267,7 @@ npm run test:load:smoke
 ### Staging/Preview
 
 ```bash
-BASE_URL=https://preview.kingstoncare.ca npm run test:load:smoke
+BASE_URL=https://preview.helpbridge.ca npm run test:load:smoke
 ```
 
 ### Production (Caution!)
@@ -275,7 +275,7 @@ BASE_URL=https://preview.kingstoncare.ca npm run test:load:smoke
 ```bash
 # Only run smoke tests against production
 # NEVER run sustained or spike tests against production
-BASE_URL=https://kingstoncare.ca npm run test:load:smoke
+BASE_URL=https://helpbridge.ca npm run test:load:smoke
 ```
 
 ---
@@ -441,8 +441,8 @@ jobs:
 - [k6 Documentation](https://k6.io/docs/)
 - [k6 Test Types](https://k6.io/docs/test-types/introduction/)
 - [Performance Testing Best Practices](https://k6.io/docs/testing-guides/automated-performance-testing/)
-- Kingston Care Connect: `docs/adr/014-database-index-optimization.md`
-- Kingston Care Connect: `docs/adr/013-unified-rls-policy.md`
+- HelpBridge: `docs/adr/014-database-index-optimization.md`
+- HelpBridge: `docs/adr/013-unified-rls-policy.md`
 
 ---
 

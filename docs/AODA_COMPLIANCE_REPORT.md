@@ -2,11 +2,11 @@
 
 ## Accessibility for Ontarians with Disabilities Act (2005)
 
-Kingston Care Connect is committed to providing a barrier-free service to people with disabilities. We strive to ensure our platform is accessible to all users, regardless of ability or technology.
+HelpBridge is committed to providing a barrier-free service to people with disabilities. We strive to ensure our platform is accessible to all users, regardless of ability or technology.
 
 ### WCAG 2.1 Level AA Compliance
 
-As of January 20, 2026, Kingston Care Connect aims to meet WCAG 2.1 Level AA standards.
+As of January 20, 2026, HelpBridge aims to meet WCAG 2.1 Level AA standards.
 
 #### Perceivable
 
@@ -49,6 +49,6 @@ We utilized the following methods to ensure compliance:
 
 ### Support
 
-If you encounter any accessibility barriers on Kingston Care Connect, please contact our support team. We are committed to resolving issues promptly.
+If you encounter any accessibility barriers on HelpBridge, please contact our support team. We are committed to resolving issues promptly.
 
-**Email:** accessibility@kingstoncareconnect.ca
+**Email:** accessibility@kingstonhelpbridge.ca

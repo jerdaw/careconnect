@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["PLACEHOLDER_TEAM_ID.org.kingstoncareconnect.app"],
+        "appIDs": ["PLACEHOLDER_TEAM_ID.ca.helpbridge.app"],
         "components": [
           {
             "/": "/*/service/*",

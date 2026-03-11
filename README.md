@@ -8,7 +8,7 @@
 
 ## Manual Curation, Not Scraping
 
-Large-scale scraping of municipal data produces noise, not value. Kingston Care Connect takes a different path: **manual curation over automated extraction**.
+Large-scale scraping of municipal data produces noise, not value. HelpBridge takes a different path: **manual curation over automated extraction**.
 
 We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
 

@@ -23,7 +23,7 @@ This plan was developed through a structured three-pass analysis:
 
 ## Current State Summary
 
-**Purpose**: Kingston Care Connect is a privacy-first, manually-curated social services search engine for Kingston, ON — covering food, housing, crisis, and health services for vulnerable residents.
+**Purpose**: HelpBridge is a privacy-first, manually-curated social services search engine for Kingston, ON — covering food, housing, crisis, and health services for vulnerable residents.
 **Target users**: Kingston residents in acute need, social workers, community organizations, and vetted service partners.
 **Maturity**: Technically sophisticated (v18.0) — 974 passing tests, WCAG 2.1 AA, 7 languages, production observability, circuit breaker patterns, privacy-by-design — but pre-production and undeployed. No live URL, no real users, no usage metrics.
 **Evidence of use**: None verifiable. 196 hand-curated services, 0 at L3 (provider-confirmed), advisory board charter written but 0 members recruited, all partner/user-testing work is pending execution.
@@ -105,7 +105,7 @@ The project has exceptional documentation, governance design, and technical infr
 
 ### P1-4. Deploy to production
 
-- **What**: Deploy to Vercel (free tier, project is already Vercel-configured). Configure custom domain (`kingstoncare.ca`). Set environment variables in Vercel dashboard. Verify all 7 locales.
+- **What**: Deploy to Vercel (free tier, project is already Vercel-configured). Configure custom domain (`helpbridge.ca`). Set environment variables in Vercel dashboard. Verify all 7 locales.
 - **Why**: Every other item on this plan is blocked or diminished without a live URL. Deployment is not primarily about traffic — it's about the irreversible act of making yourself publicly accountable.
 - **Critical addition**: Prepare a distribution list of 5–10 people (social workers, community contacts, friends in relevant fields) to share the URL with on launch day. Deploy without concurrent distribution = a repo at a URL, not a launched tool.
 - **Effort**: 2–4h + 1 day DNS propagation
@@ -177,7 +177,7 @@ The project has exceptional documentation, governance design, and technical infr
 
 ### P2-8. Set up public status page
 
-- **What**: Upptime (free GitHub Action-based monitoring) or Better Uptime free tier. Monitor: homepage, `/api/v1/health`, search API. Publish at `status.kingstoncare.ca` or similar.
+- **What**: Upptime (free GitHub Action-based monitoring) or Better Uptime free tier. Monitor: homepage, `/api/v1/health`, search API. Publish at `status.helpbridge.ca` or similar.
 - **Why**: A public status page signals that you accept accountability for service reliability. The signal of professional operation matters more than the specific uptime percentage at this stage.
 - **Effort**: 2h
 

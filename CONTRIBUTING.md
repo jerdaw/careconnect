@@ -1,11 +1,11 @@
-# Contributing to Kingston Care Connect
+# Contributing to HelpBridge
 
-Welcome! This guide will help you get up and running with the Kingston Care Connect codebase.
+Welcome! This guide will help you get up and running with the HelpBridge codebase.
 
 ## Quick Start Checklist
 
 - [ ] **Prerequisites**: Node.js 22+, npm 10+
-- [ ] **Clone & Install**: `git clone` → `cd kingston-care-connect` → `npm install`
+- [ ] **Clone & Install**: `git clone` → `cd helpbridge-ca` → `npm install`
 - [ ] **Environment Setup**: Copy `.env.example` to `.env.local` (core features work without Supabase)
 - [ ] **Start Dev Server**: `npm run dev` → Open [http://localhost:3000](http://localhost:3000)
 - [ ] **Run Tests**: `npm test` (should see 895+ passing tests)
@@ -14,7 +14,7 @@ Welcome! This guide will help you get up and running with the Kingston Care Conn
 
 ## Project Philosophy
 
-Kingston Care Connect is a **governance-first, manually curated** social services search engine. Key principles:
+HelpBridge is a **governance-first, manually curated** social services search engine. Key principles:
 
 1. **Data Integrity Over Speed** – No auto-scraping. Every service is manually verified.
 2. **Privacy by Design** – Search queries stay on-device by default. Zero tracking.
@@ -41,7 +41,7 @@ See [CLAUDE.md](CLAUDE.md) for complete development guidelines.
 ### Key Directories
 
 ```
-kingston-care-connect/
+helpbridge-ca/
 ├── app/                    # Next.js 15 App Router
 │   ├── [locale]/          # Multi-language routes (7 locales)
 │   ├── api/               # API routes (search, feedback, admin)

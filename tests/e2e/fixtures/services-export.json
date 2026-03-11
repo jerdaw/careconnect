@@ -3,7 +3,7 @@
     "id": "svc-food-bank",
     "name": "Kingston Food Bank",
     "description": "Providing food assistance to those in need.",
-    "url": "https://kingstoncareconnect.example.com/food-bank",
+    "url": "https://helpbridge.example.com/food-bank",
     "intent_category": "Food",
     "verification_level": "L2",
     "provenance": {

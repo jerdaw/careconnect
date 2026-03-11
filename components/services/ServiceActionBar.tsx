@@ -27,7 +27,7 @@ export function ServiceActionBar({
   const handleShare = async () => {
     const result = await share({
       title: serviceName,
-      text: `Check out ${serviceName} on Kingston Care Connect`,
+      text: `Check out ${serviceName} on HelpBridge`,
       url: window.location.href,
     })
 

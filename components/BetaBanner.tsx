@@ -16,7 +16,7 @@ export default function BetaBanner() {
         </div>
         <div className="hidden sm:block">
           <a
-            href="mailto:feedback@careconnect.ca?subject=Kingston%20Care%20Connect%20Pilot%20Feedback"
+            href="mailto:feedback@helpbridge.ca?subject=Kingston%20Care%20Connect%20Pilot%20Feedback"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline hover:text-blue-100"

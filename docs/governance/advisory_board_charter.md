@@ -5,11 +5,11 @@ owner: jer
 tags: [governance, charter, advisory-board]
 ---
 
-# Advisory Board Charter: Kingston Care Connect
+# Advisory Board Charter: HelpBridge
 
 ## 1. Purpose
 
-The AI Advisory Board (the "Board") is a volunteer body established to provide expert oversight and ethical guidance for the Kingston Care Connect AI Assistant. Its primary goal is to mitigate risks associated with "duty of care," algorithmic bias, and clinical safety within a non-profit, community-focused context.
+The AI Advisory Board (the "Board") is a volunteer body established to provide expert oversight and ethical guidance for the HelpBridge AI Assistant. Its primary goal is to mitigate risks associated with "duty of care," algorithmic bias, and clinical safety within a non-profit, community-focused context.
 
 ## 2. Membership & Roles
 

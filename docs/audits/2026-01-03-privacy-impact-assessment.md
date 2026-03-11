@@ -1,12 +1,12 @@
 # Privacy Impact Assessment (PIA)
 
 **Date**: January 3, 2026
-**Project**: Kingston Care Connect (v12.0)
+**Project**: HelpBridge (v12.0)
 **Status**: Initial Assessment
 
 ## 1. Project Overview
 
-Kingston Care Connect (KCC) is a community-led social services directory. It provides public access to information about food, housing, crisis, and health services.
+HelpBridge (HelpBridge) is a community-led social services directory. It provides public access to information about food, housing, crisis, and health services.
 
 ## 2. Data Inventory & Data Flow
 
@@ -66,8 +66,8 @@ Kingston Care Connect (KCC) is a community-led social services directory. It pro
 
 ### PHIPA (Health Information)
 
-- KCC is **not** a Health Information Custodian (HIC).
-- KCC does not purposefully collect PHI.
+- HelpBridge is **not** a Health Information Custodian (HIC).
+- HelpBridge does not purposefully collect PHI.
 - "Zero-Log" policy for search queries prevents incidental collection of sensitive health interests.
 
 ## 5. Recommendations
@@ -76,4 +76,4 @@ Kingston Care Connect (KCC) is a community-led social services directory. It pro
 2. Conduct annual access review for partner accounts.
 3. Formalize data sharing agreement with 211 Ontario if data synchronization is implemented.
 
-**Approved By**: KCC Governance Committee
+**Approved By**: HelpBridge Governance Committee

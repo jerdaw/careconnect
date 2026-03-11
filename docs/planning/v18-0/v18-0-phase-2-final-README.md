@@ -203,7 +203,7 @@ npm run build
 # Manual Slack test (after webhook setup)
 curl -X POST "$SLACK_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
-  -d '{"text": "🧪 Test alert from Kingston Care Connect"}'
+  -d '{"text": "🧪 Test alert from HelpBridge"}'
 ```
 
 ---

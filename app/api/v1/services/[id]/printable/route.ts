@@ -154,7 +154,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   
   <div class="footer">
     <div class="source">
-      Source: Kingston Care Connect<br>
+      Source: HelpBridge<br>
       ${PUBLIC_BASE_URL.replace(/^https?:\/\//, "")}
     </div>
     <div class="qr-container">

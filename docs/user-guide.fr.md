@@ -1,4 +1,4 @@
-# Kingston Care Connect : Guide de l'utilisateur
+# HelpBridge : Guide de l'utilisateur
 
 **Dernière mise à jour :** Février 2026
 **Version :** 1.0
@@ -7,7 +7,7 @@
 
 ## Bienvenue
 
-Kingston Care Connect vous aide à trouver des services sociaux à Kingston, Ontario. Ce guide vous montrera comment utiliser la plateforme.
+HelpBridge vous aide à trouver des services sociaux à Kingston, Ontario. Ce guide vous montrera comment utiliser la plateforme.
 
 **Démarrage rapide :**
 
@@ -35,9 +35,9 @@ Kingston Care Connect vous aide à trouver des services sociaux à Kingston, Ont
 
 ## Pour commencer
 
-### Qu'est-ce que Kingston Care Connect ?
+### Qu'est-ce que HelpBridge ?
 
-Kingston Care Connect est un moteur de recherche pour les services sociaux. Il vous aide à trouver :
+HelpBridge est un moteur de recherche pour les services sociaux. Il vous aide à trouver :
 
 - **Banques alimentaires** et programmes de repas
 - **Soutien en cas de crise** (santé mentale, prévention du suicide, violence domestique)
@@ -367,7 +367,7 @@ Cette plateforme est **open source**. Cela signifie :
 - Tout le monde peut voir le code
 - Les experts peuvent vérifier que nous disons la vérité
 - Vous pouvez vérifier que nous ne vous suivons pas
-- Le code est à : github.com/jerdog/kingston-care-connect
+- Le code est à : github.com/jerdog/helpbridge-ca
 
 ### Témoins (Cookies)
 
@@ -411,7 +411,7 @@ Nous sommes un projet communautaire. Les informations sur les services sont :
 
 Si vous trouvez des informations incorrectes :
 
-1. **Envoyez-nous un courriel :** feedback@kingstoncare.ca
+1. **Envoyez-nous un courriel :** feedback@helpbridge.ca
 2. **Dites-nous :**
    - Quel service a des informations incorrectes
    - Ce qui est incorrect
@@ -423,7 +423,7 @@ Nous le corrigerons rapidement.
 
 Nous nous concentrons sur les services sociaux à fort impact à Kingston. Si un service est manquant :
 
-1. **Envoyez-nous un courriel :** feedback@kingstoncare.ca
+1. **Envoyez-nous un courriel :** feedback@helpbridge.ca
 2. **Incluez :**
    - Nom du service
    - Ce qu'ils font
@@ -479,8 +479,8 @@ Si le site ne fonctionne pas :
 
 **Pour des questions ou des commentaires :**
 
-- **Courriel :** feedback@kingstoncare.ca
-- **Problèmes GitHub :** github.com/jerdog/kingston-care-connect/issues
+- **Courriel :** feedback@helpbridge.ca
+- **Problèmes GitHub :** github.com/jerdog/helpbridge-ca/issues
 
 Nous répondons généralement dans les 2-3 jours ouvrables.
 
@@ -517,12 +517,12 @@ Nous nous engageons à rendre cette plateforme accessible à tous, y compris les
 
 **Si vous trouvez un problème d'accessibilité :**
 
-- Courriel : feedback@kingstoncare.ca
+- Courriel : feedback@helpbridge.ca
 - Nous le corrigerons aussi rapidement que possible
 
 ---
 
-**Merci d'utiliser Kingston Care Connect !**
+**Merci d'utiliser HelpBridge !**
 
 Nous espérons que cet outil vous aide à trouver le soutien dont vous avez besoin.
 

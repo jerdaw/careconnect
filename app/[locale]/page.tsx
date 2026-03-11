@@ -131,7 +131,7 @@ export default function Home() {
                 <span className="relative z-10">Kingston</span>
                 <span className="from-primary-600 via-primary-500 to-accent-500 relative z-10 bg-gradient-to-r bg-clip-text text-transparent">
                   {" "}
-                  Care Connect
+                  HelpBridge
                 </span>
                 <div className="absolute -inset-x-8 -inset-y-4 -z-10 rounded-[50%] bg-white/30 blur-3xl dark:bg-white/5" />
               </h1>

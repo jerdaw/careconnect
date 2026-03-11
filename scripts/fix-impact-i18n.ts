@@ -6,7 +6,7 @@ const files = [
     path: "messages/en.json",
     impact: {
       title: "Community Impact",
-      subtitle: "See how Kingston Care Connect is helping our community—without tracking anyone.",
+      subtitle: "See how HelpBridge is helping our community—without tracking anyone.",
       metricsTitle: "Last 90 Days",
       satisfactionTitle: "User Satisfaction",
       satisfactionDesc: "Based on {count} responses",
@@ -31,7 +31,7 @@ const files = [
     path: "messages/fr.json",
     impact: {
       title: "Impact communautaire",
-      subtitle: "Découvrez comment Kingston Care Connect aide notre communauté — sans suivre personne.",
+      subtitle: "Découvrez comment HelpBridge aide notre communauté — sans suivre personne.",
       metricsTitle: "Les 90 derniers jours",
       satisfactionTitle: "Satisfaction des utilisateurs",
       satisfactionDesc: "Basé sur {count} réponses",

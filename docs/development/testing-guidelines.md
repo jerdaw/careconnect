@@ -9,7 +9,7 @@ tags: [development, testing, guidelines, vitest, playwright, rtl]
 
 ## Overview
 
-Kingston Care Connect uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
+HelpBridge uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
 
 ## Pragmatic Testing Philosophy
 

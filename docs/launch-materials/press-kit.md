@@ -1,8 +1,8 @@
-# Kingston Care Connect - Press Kit
+# HelpBridge - Press Kit
 
 **Last Updated**: February 2026
 **Version**: 1.0 - Beta Launch
-**Contact**: feedback@careconnect.ca
+**Contact**: feedback@helpbridge.ca
 
 ---
 
@@ -10,12 +10,12 @@
 
 | Detail              | Information                                                        |
 | ------------------- | ------------------------------------------------------------------ |
-| **Name**            | Kingston Care Connect                                              |
+| **Name**            | HelpBridge                                                         |
 | **Tagline**         | Find social services in Kingston, Ontario                          |
 | **Mission**         | Bridge the gap between people in need and verified social services |
 | **Launch Date**     | February 2026 (Beta), March 2026 (Public)                          |
 | **Platform**        | Web application (Progressive Web App)                              |
-| **URL**             | https://kingstoncare.ca                                            |
+| **URL**             | https://helpbridge.ca                                              |
 | **Service Area**    | Kingston, Ontario, Canada                                          |
 | **Languages**       | English, French, plus 5 additional community languages             |
 | **Services Listed** | ~196 verified social services                                      |
@@ -24,9 +24,9 @@
 
 ## Executive Summary
 
-Kingston Care Connect is a privacy-first social services directory that helps Kingston residents find food banks, crisis support, housing assistance, mental health services, and other community resources.
+HelpBridge is a privacy-first social services directory that helps Kingston residents find food banks, crisis support, housing assistance, mental health services, and other community resources.
 
-Unlike traditional directories, Kingston Care Connect:
+Unlike traditional directories, HelpBridge:
 
 - **Prioritizes Privacy**: Search queries stay on-device by default—no tracking or logging
 - **Focuses on Quality**: ~196 hand-curated services, each verified for accuracy
@@ -58,7 +58,7 @@ When someone searches "I need food today", they shouldn't have to:
 - Call 5 disconnected phone numbers
 - Give up and go hungry
 
-**Kingston Care Connect solves this.**
+**HelpBridge solves this.**
 
 ---
 
@@ -243,7 +243,7 @@ We'll measure success by:
 
 ## Verification & Governance
 
-Services in Kingston Care Connect are verified at four levels:
+Services in HelpBridge are verified at four levels:
 
 | Level  | Description        | Verification Method                    |
 | ------ | ------------------ | -------------------------------------- |
@@ -357,7 +357,7 @@ We avoided:
 
 ## Quotes for Media Use
 
-> "When someone is searching 'I need food today,' they're often in crisis. Every extra click, every outdated phone number, every confusing form is a barrier to getting help. Kingston Care Connect removes those barriers."
+> "When someone is searching 'I need food today,' they're often in crisis. Every extra click, every outdated phone number, every confusing form is a barrier to getting help. HelpBridge removes those barriers."
 > — Development Team
 
 > "Privacy isn't a luxury feature. For someone fleeing domestic violence or dealing with addiction, anonymous access to resources can be life-saving. That's why we built search to work entirely on-device—your queries never leave your phone."
@@ -372,7 +372,7 @@ We avoided:
 
 ### Is this a government project?
 
-No, Kingston Care Connect is an independent community resource. While we reference government services (like Ontario Works), we are not affiliated with any government agency.
+No, HelpBridge is an independent community resource. While we reference government services (like Ontario Works), we are not affiliated with any government agency.
 
 ### How do you make money?
 
@@ -384,7 +384,7 @@ Our curation team verifies services through public records, direct contact, and 
 
 ### Can service providers add themselves?
 
-Currently, submissions are reviewed and added manually to maintain quality. Providers can submit corrections or new services via our feedback form at feedback@careconnect.ca.
+Currently, submissions are reviewed and added manually to maintain quality. Providers can submit corrections or new services via our feedback form at feedback@helpbridge.ca.
 
 ### Why only Kingston?
 
@@ -396,7 +396,7 @@ By default, search queries stay on your device (local search mode). Even in serv
 
 ### How is this different from 211?
 
-211 Ontario is comprehensive provincial coverage. Kingston Care Connect focuses exclusively on Kingston with:
+211 Ontario is comprehensive provincial coverage. HelpBridge focuses exclusively on Kingston with:
 
 - Faster search (optimized for local results)
 - More languages (7 vs. 2)
@@ -416,22 +416,22 @@ The platform is built on open-source technologies. Code availability details are
 
 ### General Inquiries
 
-**Email**: feedback@careconnect.ca
-**Website**: https://kingstoncare.ca
+**Email**: feedback@helpbridge.ca
+**Website**: https://helpbridge.ca
 
 ### Media Inquiries
 
-**Email**: feedback@careconnect.ca
+**Email**: feedback@helpbridge.ca
 **Response Time**: Within 48 hours
 
 ### Technical Information
 
-**Email**: feedback@careconnect.ca
+**Email**: feedback@helpbridge.ca
 **Documentation**: Available on request
 
 ### Community Partnerships
 
-**Email**: feedback@careconnect.ca
+**Email**: feedback@helpbridge.ca
 **Note**: We're open to partnerships with social service agencies, community organizations, and accessibility advocates.
 
 ---
@@ -440,19 +440,19 @@ The platform is built on open-source technologies. Code availability details are
 
 ### Short (50 words)
 
-Kingston Care Connect is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 hand-verified services.
+HelpBridge is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 hand-verified services.
 
 ### Medium (100 words)
 
-Kingston Care Connect is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 hand-verified services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform ensures people searching for immediate help connect to emergency resources within seconds—no tracking, no user accounts, no barriers. Launching in beta February 2026, with full public launch in April 2026.
+HelpBridge is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 hand-verified services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform ensures people searching for immediate help connect to emergency resources within seconds—no tracking, no user accounts, no barriers. Launching in beta February 2026, with full public launch in April 2026.
 
 ### Long (200 words)
 
-Kingston Care Connect is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 hand-verified social services—each curated and verified rather than scraped from websites or AI-generated.
+HelpBridge is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 hand-verified social services—each curated and verified rather than scraped from websites or AI-generated.
 
 Key features include: seven-language support (English, French, Simplified Chinese, Arabic, Portuguese, Spanish, Punjabi), full offline functionality via Progressive Web App technology, WCAG 2.1 AA accessibility compliance, and privacy-by-design architecture where search queries stay on-device by default. Special crisis detection ensures people searching for immediate help connect to emergency resources like the 988 Suicide Crisis Helpline within seconds.
 
-Unlike ad-supported directories or government portals, Kingston Care Connect has no tracking, requires no user accounts, and contains no paywalls. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
+Unlike ad-supported directories or government portals, HelpBridge has no tracking, requires no user accounts, and contains no paywalls. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
 
 Beta testing begins February 2026, with full public launch planned for April 2026.
 

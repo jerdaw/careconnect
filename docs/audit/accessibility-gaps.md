@@ -56,6 +56,6 @@ The following tools ensure continued compliance:
 
 ## Conclusion
 
-The Kingston Care Connect platform has achieved **full WCAG 2.1 Level AA compliance** with comprehensive automated and manual testing. All identified gaps have been addressed, and ongoing enforcement mechanisms are in place.
+The HelpBridge platform has achieved **full WCAG 2.1 Level AA compliance** with comprehensive automated and manual testing. All identified gaps have been addressed, and ongoing enforcement mechanisms are in place.
 
 **Status:** ✅ **PRODUCTION READY**

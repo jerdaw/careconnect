@@ -10,7 +10,7 @@ Accepted
 
 ## Context
 
-Kingston Care Connect relies on Supabase for critical data operations including search, service management, analytics, and authorization. As the platform scales, two key operational concerns have emerged:
+HelpBridge relies on Supabase for critical data operations including search, service management, analytics, and authorization. As the platform scales, two key operational concerns have emerged:
 
 ### 1. Performance Visibility Gap
 

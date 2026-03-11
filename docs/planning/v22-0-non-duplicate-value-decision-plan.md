@@ -8,7 +8,7 @@ gate_0_status: evidence_collection_in_progress
 approval_checklist_status: locked
 ---
 
-# v22.0: Non-Duplicate Value Decision Plan (KCC + 211 Complement Strategy)
+# v22.0: Non-Duplicate Value Decision Plan (HelpBridge + 211 Complement Strategy)
 
 ## Summary
 
@@ -26,7 +26,7 @@ The output is a **decision system**, not a belief system:
 4. Execute in stage gates.
 5. Keep only initiatives that hit outcome thresholds.
 
-This is designed to prevent KCC from becoming:
+This is designed to prevent HelpBridge from becoming:
 
 1. a subset of 211,
 2. a duplicate of 211,
@@ -100,7 +100,7 @@ This plan now incorporates prior internal research and two external AI-agent res
 
 Rules for using those memos:
 
-1. External-agent outputs are **hypothesis inputs**, not facts, because those agents did not inspect the KCC codebase.
+1. External-agent outputs are **hypothesis inputs**, not facts, because those agents did not inspect the HelpBridge codebase.
 2. Any externally sourced claim affecting architecture, governance, or go/no-go decisions must be re-validated using:
    - primary source citation, and
    - local repo evidence where relevant.
@@ -111,15 +111,15 @@ Rules for using those memos:
 
 Current strategic risk:
 
-1. KCC can drift into "directory competition" with 211, where 211 has structural breadth and channel advantages.
-2. KCC can make claims that are stronger than current evidence (verification freshness, accessibility absolutes, comparative language coverage framing).
-3. KCC can spend engineering effort on features that improve UI but do not improve real-world service connection outcomes.
+1. HelpBridge can drift into "directory competition" with 211, where 211 has structural breadth and channel advantages.
+2. HelpBridge can make claims that are stronger than current evidence (verification freshness, accessibility absolutes, comparative language coverage framing).
+3. HelpBridge can spend engineering effort on features that improve UI but do not improve real-world service connection outcomes.
 
 Desired strategic position:
 
-1. KCC complements 211.
-2. KCC owns local "last-mile access performance" in Kingston.
-3. KCC proves value with measurable outcome improvements.
+1. HelpBridge complements 211.
+2. HelpBridge owns local "last-mile access performance" in Kingston.
+3. HelpBridge proves value with measurable outcome improvements.
 
 ## Inputs (Source Synthesis)
 
@@ -147,7 +147,7 @@ Primary risks:
 Primary upside:
 
 1. Differentiation via connection success (not listing count).
-2. Durable value if KCC becomes frontline workflow infrastructure.
+2. Durable value if HelpBridge becomes frontline workflow infrastructure.
 3. High leverage if failed-contact and time-to-connection metrics improve materially.
 
 ## Objective Function and Constraints
@@ -198,7 +198,7 @@ No initiative proceeds to scale without passing all five fields.
 | H3  | Access Navigation Layer     | Barrier-aware scripts reduce abandonment.                                           | Scripts become stale/unused and create maintenance burden.             | Search-to-contact conversion and repeat-failure rate             | No statistically meaningful conversion lift and no repeat-failure reduction | 10 weeks         |
 | H4  | Scope Discipline            | Narrowing scope to last-mile outcomes increases strategic fit.                      | Product becomes too thin and loses user utility.                       | Monthly active frontline sessions + connection outcomes          | Active usage declines >20% with no outcome gains                            | 12 weeks         |
 | H5  | Privacy Positioning         | Precise privacy claims strengthen trust without harming analytics utility.          | Copy changes reduce stakeholder confidence or insight quality.         | Trust survey + ability to monitor outcomes without query logging | Trust does not improve and governance team cannot monitor outcomes          | 6 weeks          |
-| H6  | 211 Integration Feasibility | KCC can consume 211 baseline data while preserving privacy redlines.                | Integration requires prohibited telemetry or is operationally blocked. | Signed technical/legal feasibility decision                      | No viable telemetry-safe path by end of Phase 0                             | 2 weeks          |
+| H6  | 211 Integration Feasibility | HelpBridge can consume 211 baseline data while preserving privacy redlines.         | Integration requires prohibited telemetry or is operationally blocked. | Signed technical/legal feasibility decision                      | No viable telemetry-safe path by end of Phase 0                             | 2 weeks          |
 | H7  | Local Data Security         | Offline/local storage can remain privacy-protective under device-loss threat model. | Local storage design introduces material confidentiality risk.         | Security review findings (critical/high)                         | Any unresolved critical finding at pilot launch                             | 4 weeks          |
 | H8  | User Preference Fit         | Target cohorts value private/offline self-serve for selected use cases.             | High-need users overwhelmingly require human-assisted channel first.   | Frontline-assisted preference and outcome study                  | No demonstrated fit for priority cohorts in pilot domain                    | 8 weeks          |
 
@@ -420,12 +420,12 @@ Sampling protocol:
 
 Definition:
 
-`preference_fit = cohort_tasks_preferably_completed_via_kcc / cohort_total_tasks`
+`preference_fit = cohort_tasks_preferably_completed_via_helpbridge / cohort_total_tasks`
 
 Purpose:
 
 1. tests where privacy/offline self-serve is materially preferred,
-2. prevents over-applying KCC in scenarios needing immediate human navigation.
+2. prevents over-applying HelpBridge in scenarios needing immediate human navigation.
 
 ## Proposed Repo-Level Implementation Map
 
@@ -435,7 +435,7 @@ This section maps plan execution to likely code locations.
 
 Potential changes:
 
-1. Extend [`types/service.ts`](/home/jer/localsync/kingston-care-connect/types/service.ts) with operational-status metadata.
+1. Extend [`types/service.ts`](/home/jer/localsync/helpbridge-ca/types/service.ts) with operational-status metadata.
 2. Add referral and barrier event types in `types/` (new files):
    - `types/referral.ts`
    - `types/service-operational-status.ts`
@@ -445,7 +445,7 @@ Potential changes:
 
 ## B) API Routes
 
-Add scoped endpoints under [`app/api/v1`](/home/jer/localsync/kingston-care-connect/app/api/v1):
+Add scoped endpoints under [`app/api/v1`](/home/jer/localsync/helpbridge-ca/app/api/v1):
 
 1. `app/api/v1/referrals/route.ts` (create/list referral events)
 2. `app/api/v1/referrals/[id]/route.ts` (update terminal states)
@@ -465,9 +465,9 @@ Requirements:
 
 Potential integration points:
 
-1. [`lib/search/index.ts`](/home/jer/localsync/kingston-care-connect/lib/search/index.ts)
-2. [`lib/search/scoring.ts`](/home/jer/localsync/kingston-care-connect/lib/search/scoring.ts)
-3. [`lib/search/server-scoring.ts`](/home/jer/localsync/kingston-care-connect/lib/search/server-scoring.ts)
+1. [`lib/search/index.ts`](/home/jer/localsync/helpbridge-ca/lib/search/index.ts)
+2. [`lib/search/scoring.ts`](/home/jer/localsync/helpbridge-ca/lib/search/scoring.ts)
+3. [`lib/search/server-scoring.ts`](/home/jer/localsync/helpbridge-ca/lib/search/server-scoring.ts)
 
 Planned behavior:
 
@@ -487,9 +487,9 @@ Candidate locations:
 
 Candidate locations:
 
-1. [`lib/analytics.ts`](/home/jer/localsync/kingston-care-connect/lib/analytics.ts)
-2. [`lib/analytics/search-analytics.ts`](/home/jer/localsync/kingston-care-connect/lib/analytics/search-analytics.ts)
-3. [`app/api/v1/metrics/route.ts`](/home/jer/localsync/kingston-care-connect/app/api/v1/metrics/route.ts)
+1. [`lib/analytics.ts`](/home/jer/localsync/helpbridge-ca/lib/analytics.ts)
+2. [`lib/analytics/search-analytics.ts`](/home/jer/localsync/helpbridge-ca/lib/analytics/search-analytics.ts)
+3. [`app/api/v1/metrics/route.ts`](/home/jer/localsync/helpbridge-ca/app/api/v1/metrics/route.ts)
 
 Actions:
 
@@ -564,7 +564,7 @@ If integration is `conditional`:
 If integration is `blocked`:
 
 1. choose one of:
-   - narrow KCC to tightly bounded, high-confidence local workflows, or
+   - narrow HelpBridge to tightly bounded, high-confidence local workflows, or
    - execute responsible deprecation plan.
 2. deprecation trigger defaults:
    - repeated failure of primary outcome thresholds across two cycles, and
@@ -636,9 +636,9 @@ Canonical Step 1 sign-offs remain in [v22.0 Approval Checklist](v22-0-approval-c
 
 Strategic context and evidence base:
 
-1. [KCC vs 211 Objective Evaluation (2026-02-27)](/home/jer/localsync/kingston-care-connect/docs/evaluation/KCC_vs_211_Objective_Evaluation_2026-02-27.md)
-2. [KCC vs 211 Evidence Matrix (2026-02-27)](/home/jer/localsync/kingston-care-connect/docs/evaluation/KCC_vs_211_Evidence_Matrix_2026-02-27.csv)
-3. [KCC vs 211 Positioning Playbook (2026-02-27)](/home/jer/localsync/kingston-care-connect/docs/evaluation/KCC_vs_211_Positioning_Playbook_2026-02-27.md)
+1. [HelpBridge vs 211 Objective Evaluation (2026-02-27)](/home/jer/localsync/helpbridge-ca/docs/evaluation/HelpBridge_vs_211_Objective_Evaluation_2026-02-27.md)
+2. [HelpBridge vs 211 Evidence Matrix (2026-02-27)](/home/jer/localsync/helpbridge-ca/docs/evaluation/HelpBridge_vs_211_Evidence_Matrix_2026-02-27.csv)
+3. [HelpBridge vs 211 Positioning Playbook (2026-02-27)](/home/jer/localsync/helpbridge-ca/docs/evaluation/HelpBridge_vs_211_Positioning_Playbook_2026-02-27.md)
 
 ## Final Recommendation
 

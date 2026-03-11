@@ -45,7 +45,7 @@ Current review mode (2026-03-09):
    - [ADR-020: v22 Phase 0 Pilot Instrumentation and Privacy Guardrails](../adr/020-v22-pilot-phase0-instrumentation-and-privacy-guardrails.md)
    - [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
 3. Comparative/legal-risk context package:
-   - [KCC vs 211 Objective Evaluation (2026-02-27)](../evaluation/KCC_vs_211_Objective_Evaluation_2026-02-27.md)
+   - [HelpBridge vs 211 Objective Evaluation (2026-02-27)](../evaluation/HelpBridge_vs_211_Objective_Evaluation_2026-02-27.md)
 
 ## Evidence Intake Checklist (For Closure)
 

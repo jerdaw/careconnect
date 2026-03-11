@@ -12,7 +12,7 @@ tags: [governance, verification, protocol]
 
 ## 1. Objective
 
-To maintain the highest level of accuracy and safety for service listings in Kingston Care Connect (KCC), ensuring users can trust the information provided.
+To maintain the highest level of accuracy and safety for service listings in HelpBridge (HelpBridge), ensuring users can trust the information provided.
 
 ## 2. Verification Levels (L-Scale)
 
@@ -20,7 +20,7 @@ To maintain the highest level of accuracy and safety for service listings in Kin
 | :----- | :---------- | :------------------------------------- | :----------------------------------------------------------------------- |
 | **L0** | Unverified  | Initial import or community suggestion | Valid name & category. Warning displayed.                                |
 | **L1** | Basic Check | Automated/Light check                  | valid phone/website, no user reports of inaccuracy.                      |
-| **L2** | Verified    | Confirmed by KCC Team                  | Direct contact with provider (email/phone) within last 6 months.         |
+| **L2** | Verified    | Confirmed by HelpBridge Team           | Direct contact with provider (email/phone) within last 6 months.         |
 | **L3** | Partner     | Managed by Provider                    | Provider has claimed listing, accepted Terms, and updates data directly. |
 | **L4** | Accredited  | Official Government Source             | Data sync via API from municipal/provincial databases.                   |
 
@@ -41,7 +41,7 @@ To maintain the highest level of accuracy and safety for service listings in Kin
 ### Step 3: Confirmation (L1 to L2)
 
 - Outreach to provider via email/phone script:
-  > "Hello, we are listing your service on Kingston Care Connect. Please verify your hours and eligibility..."
+  > "Hello, we are listing your service on HelpBridge. Please verify your hours and eligibility..."
 - Update `last_verified` timestamp.
 - **Do not commit private communications to git** (no email bodies, screenshots, or staff names).
 
@@ -55,7 +55,7 @@ To maintain the highest level of accuracy and safety for service listings in Kin
 ## 4. Maintenance Cycle
 
 - **L3 Listings**: Must renew verification every 6 months. Automatic reminders sent at 5 months.
-- **L0-L2 Listings**: KCC volunteers audit 10% of listings monthly.
+- **L0-L2 Listings**: HelpBridge volunteers audit 10% of listings monthly.
 - **Stale Data**: Listings not verified for >12 months are downgraded to L0 and flagged "Potentially Outdated".
 
 ## 5. Dispute Resolution

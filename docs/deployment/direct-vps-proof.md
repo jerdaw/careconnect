@@ -7,7 +7,7 @@ tags: [deployment, vps, docker, caddy, production, supabase, rls]
 
 # Direct VPS Deployment
 
-This document describes the **current active direct-VPS deployment path** for Kingston Care Connect.
+This document describes the **current active direct-VPS deployment path** for HelpBridge.
 
 Current state:
 
@@ -17,6 +17,12 @@ Current state:
 4. `www.helpbridge.ca` redirects to the apex,
 5. the container binds privately at `127.0.0.1:3300`,
 6. `GET /api/v1/health` returns healthy on the VPS and publicly.
+
+Important naming note:
+
+1. the public product/domain identity is `HelpBridge` / `helpbridge.ca`,
+2. the live VPS runtime identifiers remain `kingston-care-connect-web` for stability,
+3. no parallel `helpbridge-web` runtime currently exists on the VPS.
 
 This is the active production path. The root [DEPLOY.md](../../DEPLOY.md) file remains a **legacy Vercel guide** only.
 
@@ -127,8 +133,9 @@ This document records the active deployment baseline.
 
 Follow-up documentation still needed:
 
-1. broader repo-domain canonicalization for historical docs that still reference `kingstoncare.ca`,
-2. any future status-page or subdomain policy.
+1. broader historical cleanup for legacy references that do not affect the live runtime,
+2. any future status-page or subdomain policy,
+3. a separate planned VPS runtime rename if you later want `kingston-care-connect-web` renamed to `helpbridge-web`.
 
 For the current deploy/verify/rollback checklist, use:
 

@@ -81,7 +81,7 @@ Successfully completed Phase 2 of v19.0 Launch Preparation, delivering comprehen
 - **22 questions total** (exceeds 12 minimum requirement)
 - **4 categories:**
   1. **General Questions** (6 questions)
-     - What is Kingston Care Connect?
+     - What is HelpBridge?
      - Is this an official government service?
      - How much does it cost?
      - Do I need to create an account?
@@ -366,7 +366,7 @@ Help & Support:
   <ul>
     <li><Link href="/user-guide">User Guide</Link></li>
     <li><Link href="/faq">FAQ</Link></li>
-    <li><Link href="mailto:feedback@kingstoncare.ca">Contact Us</Link></li>
+    <li><Link href="mailto:feedback@helpbridge.ca">Contact Us</Link></li>
     <li><Link href="/user-guide#accessibility-features">Accessibility</Link></li>
   </ul>
 </div>
@@ -516,7 +516,7 @@ Help & Support:
 
 ## Conclusion
 
-Phase 2 of v19.0 Launch Preparation is complete. The platform now has comprehensive, bilingual user-facing documentation that will help users understand and effectively use Kingston Care Connect.
+Phase 2 of v19.0 Launch Preparation is complete. The platform now has comprehensive, bilingual user-facing documentation that will help users understand and effectively use HelpBridge.
 
 **Key Achievements:**
 

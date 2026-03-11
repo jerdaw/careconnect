@@ -31,7 +31,7 @@ body:
     attributes:
       label: Check before submitting
       options:
-        - label: I am using the latest version of Kingston Care Connect
+        - label: I am using the latest version of HelpBridge
           required: true
         - label: I have checked existing issues for duplicates
           required: true

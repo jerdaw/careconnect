@@ -8,7 +8,7 @@ self.addEventListener("push", function (event) {
     data = { body: event.data.text() }
   }
 
-  const title = typeof data.title === "string" && data.title ? data.title : "Kingston Care Connect"
+  const title = typeof data.title === "string" && data.title ? data.title : "HelpBridge"
   const body = typeof data.body === "string" && data.body ? data.body : ""
   const url = typeof data.url === "string" && data.url ? data.url : "/"
 

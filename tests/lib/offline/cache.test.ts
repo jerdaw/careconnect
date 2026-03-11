@@ -26,7 +26,7 @@ describe("Offline Cache", () => {
     vi.advanceTimersByTime(25 * 60 * 60 * 1000)
 
     expect(getCachedServices()).toBeNull()
-    expect(localStorage.getItem("kcc-services-cache")).toBeNull()
+    expect(localStorage.getItem("helpbridge-services-cache")).toBeNull()
   })
 
   it("should return data if within TTL", () => {

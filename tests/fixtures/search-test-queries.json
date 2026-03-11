@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Search test queries for Kingston Care Connect - Golden set with expected results + sampled coverage",
+  "description": "Search test queries for HelpBridge - Golden set with expected results + sampled coverage",
   "version": "1.0.0",
   "metadata": {
     "totalQueries": 200,

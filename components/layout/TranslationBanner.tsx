@@ -5,7 +5,8 @@ import { useState, useEffect } from "react"
 import { Sparkles } from "lucide-react"
 
 const EDIA_LOCALES = ["ar", "zh-Hans", "es", "pa", "pt"]
-const STORAGE_KEY = "kcc-translation-banner-dismissed"
+const STORAGE_KEY = "helpbridge-translation-banner-dismissed"
+const LEGACY_STORAGE_KEY = "kcc-translation-banner-dismissed"
 
 export function TranslationBanner() {
   const locale = useLocale()
@@ -14,8 +15,12 @@ export function TranslationBanner() {
 
   useEffect(() => {
     if (typeof window === "undefined") return
-    const dismissed = localStorage.getItem(STORAGE_KEY)
+    const dismissed = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY)
     setIsDismissed(dismissed === "true")
+    if (!localStorage.getItem(STORAGE_KEY) && localStorage.getItem(LEGACY_STORAGE_KEY)) {
+      localStorage.setItem(STORAGE_KEY, dismissed ?? "false")
+      localStorage.removeItem(LEGACY_STORAGE_KEY)
+    }
   }, [])
 
   if (!EDIA_LOCALES.includes(locale) || isDismissed) {
@@ -25,6 +30,7 @@ export function TranslationBanner() {
   const handleDismiss = () => {
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, "true")
+      localStorage.removeItem(LEGACY_STORAGE_KEY)
     }
     setIsDismissed(true)
   }

@@ -14,13 +14,13 @@ import { OfflineSync } from "@/components/offline/OfflineSync"
 import { OfflineBanner } from "@/components/ui/OfflineBanner"
 
 export const metadata: Metadata = {
-  title: "Kingston Care Connect",
+  title: "HelpBridge",
   description: "Find local support services for food, housing, crisis, and health in Kingston, Ontario.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "KCC",
+    title: "HelpBridge",
   },
   formatDetection: {
     telephone: false,

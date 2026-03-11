@@ -18,9 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "FAQ" })
 
   return {
-    title: t("title") || "FAQ - Kingston Care Connect",
-    description:
-      t("description") || "Frequently asked questions about Kingston Care Connect, data verification, and privacy.",
+    title: t("title") || "FAQ - HelpBridge",
+    description: t("description") || "Frequently asked questions about HelpBridge, data verification, and privacy.",
   }
 }
 

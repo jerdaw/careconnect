@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains step-by-step troubleshooting guides (runbooks) for common production incidents in Kingston Care Connect.
+This directory contains step-by-step troubleshooting guides (runbooks) for common production incidents in HelpBridge.
 
 **Purpose:** Enable rapid incident response by providing clear, actionable steps for diagnosing and resolving issues.
 
@@ -136,7 +136,7 @@ Links to docs, dashboards, code.
 
 ### Access Requirements
 
-- Admin role in Kingston Care Connect
+- Admin role in HelpBridge
 - Axiom account access (datasets: `kingston-care-production`)
 - Supabase project collaborator
 - Vercel team member
@@ -432,7 +432,7 @@ All runbooks must meet these standards:
 When onboarding new on-call engineer:
 
 - [ ] **Grant access:**
-  - Admin role in Kingston Care Connect
+  - Admin role in HelpBridge
   - Axiom account (datasets: `kingston-care-production`)
   - Supabase project collaborator
   - Vercel team member

@@ -154,7 +154,7 @@ This document provides step-by-step rollback procedures for different failure sc
 
 **2. Access Vercel Dashboard (1 minute)**
 
-- [ ] Navigate to https://vercel.com/[your-org]/kingston-care-connect
+- [ ] Navigate to https://vercel.com/[your-org]/helpbridge-ca
 - [ ] Click on "Deployments" tab
 - [ ] Identify current (failing) deployment
 - [ ] Identify previous (working) deployment
@@ -179,7 +179,7 @@ vercel rollback [deployment-url]
 
 - [ ] Visit production URL in incognito window
 - [ ] Test critical user journey (search for "food bank")
-- [ ] Check health endpoint: `curl https://kingstoncare.ca/api/v1/health`
+- [ ] Check health endpoint: `curl https://helpbridge.ca/api/v1/health`
 - [ ] Confirm 200 OK status
 
 **5. Monitor for Stability (1 minute)**
@@ -470,7 +470,7 @@ vercel ls
 vercel rollback
 
 # Or specify a deployment
-vercel rollback https://kingston-care-connect-abc123.vercel.app
+vercel rollback https://helpbridge-ca-abc123.vercel.app
 ```
 
 ### Verify Rollback
@@ -480,7 +480,7 @@ vercel rollback https://kingston-care-connect-abc123.vercel.app
 vercel ls --prod
 
 # Test health endpoint
-curl https://kingstoncare.ca/api/v1/health
+curl https://helpbridge.ca/api/v1/health
 ```
 
 ---

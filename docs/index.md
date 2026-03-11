@@ -1,4 +1,4 @@
-# Kingston Care Connect
+# HelpBridge
 
 > A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
 
@@ -8,7 +8,7 @@
 
 ## The Kingston 150
 
-Large-scale scraping of municipal data produces noise, not value. Kingston Care Connect takes a different path: **manual curation over automated extraction**.
+Large-scale scraping of municipal data produces noise, not value. HelpBridge takes a different path: **manual curation over automated extraction**.
 
 We maintain a hand-verified dataset of the **169 highest-impact services** available to Kingston residents. Every entry is:
 
@@ -245,6 +245,7 @@ This project is community-led. Safety and accuracy take precedence over volume.
 ### Documentation
 
 - [Roadmap](planning/roadmap.md)
+- [Historical Planning Archive](planning/archive/)
 - [Documentation Guidelines](governance/documentation-guidelines.md)
 - [Testing Standards](development/testing.md)
 - [Multi-Lingual Development Guide](development/bilingual-guide.md)

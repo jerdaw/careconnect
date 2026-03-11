@@ -23,7 +23,7 @@ export function SLODisclaimerBanner() {
       <AlertDescription className="text-blue-800 dark:text-blue-200">
         Current targets use recommended defaults from the{" "}
         <a
-          href="https://github.com/yourusername/kingston-care-connect/blob/main/docs/planning/v18-0-phase-3-slo-decision-guide.md"
+          href="https://github.com/yourusername/helpbridge-ca/blob/main/docs/planning/v18-0-phase-3-slo-decision-guide.md"
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium underline hover:text-blue-600 dark:hover:text-blue-300"

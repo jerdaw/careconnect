@@ -1,6 +1,11 @@
 # Planning Documents
 
-This directory contains planning and strategy documents for Kingston Care Connect.
+This directory contains planning and strategy documents for HelpBridge.
+
+> Historical note: files under `docs/planning/archive/` preserve earlier phases
+> of the project and may still use the legacy Kingston Care Connect branding.
+> Treat those references as historical only; current operational guidance uses
+> the HelpBridge name and `helpbridge.ca`.
 
 ## Active Planning: v18.0
 

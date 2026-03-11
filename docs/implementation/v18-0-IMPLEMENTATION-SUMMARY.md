@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-v18.0 establishes production-grade observability and operational excellence for Kingston Care Connect. The platform now has comprehensive monitoring, automated alerting, circuit breaker protection across all API routes, and complete operational documentation for safe deployments and effective incident response.
+v18.0 establishes production-grade observability and operational excellence for HelpBridge. The platform now has comprehensive monitoring, automated alerting, circuit breaker protection across all API routes, and complete operational documentation for safe deployments and effective incident response.
 
 **Key Achievement:** Transformed the platform from basic resilience infrastructure to a fully observable, production-ready system with automated monitoring, alerting, and operational procedures.
 
@@ -503,13 +503,13 @@ Created 4 operational runbooks with step-by-step procedures:
 
 **Status:** DEFERRED (blocked on domain configuration)
 
-**Blocker:** Requires DNS configuration for `status.kingstoncare.ca` subdomain
+**Blocker:** Requires DNS configuration for `status.helpbridge.ca` subdomain
 
 **Estimated Effort:** 15-30 minutes (user action)
 
 **Steps to Deploy:**
 
-1. Configure DNS CNAME: `status.kingstoncare.ca` → GitHub Pages
+1. Configure DNS CNAME: `status.helpbridge.ca` → GitHub Pages
 2. Fork [upptime/upptime](https://github.com/upptime/upptime) repository
 3. Update `.upptime/config.yml` with endpoints:
    - `/api/v1/health`
@@ -777,7 +777,7 @@ Created 4 operational runbooks with step-by-step procedures:
 
 ## Conclusion
 
-v18.0 represents a significant milestone in Kingston Care Connect's journey to production readiness. With **100% of planned work complete** (all 4 phases), the platform now has:
+v18.0 represents a significant milestone in HelpBridge's journey to production readiness. With **100% of planned work complete** (all 4 phases), the platform now has:
 
 - **Complete Circuit Breaker Protection:** 100% coverage across all API routes
 - **Production Monitoring:** Axiom integration with <5ms overhead

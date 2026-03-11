@@ -64,7 +64,8 @@ describe("Offline DB", () => {
   describe("saveAllServices", () => {
     it("should call put for each service", async () => {
       await saveAllServices(mockServices as any)
-      expect(mocks.put).toHaveBeenCalledTimes(mockServices.length)
+      const serviceWrites = mocks.put.mock.calls.filter(([arg]) => mockServices.some((service) => service === arg))
+      expect(serviceWrites).toHaveLength(mockServices.length)
       expect(mocks.put).toHaveBeenCalledWith(mockServices[0])
       expect(mocks.put).toHaveBeenCalledWith(mockServices[1])
     })

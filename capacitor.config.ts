@@ -1,8 +1,8 @@
 import { CapacitorConfig } from "@capacitor/cli"
 
 const config: CapacitorConfig = {
-  appId: "org.kingstoncareconnect.app",
-  appName: "Kingston Care Connect",
+  appId: "ca.helpbridge.app",
+  appName: "HelpBridge",
   webDir: "out", // Next.js static export
   server: {
     // For development, point to local Next.js server
@@ -12,7 +12,7 @@ const config: CapacitorConfig = {
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
-      backgroundColor: "#1e3a5f", // KCC brand color
+      backgroundColor: "#1e3a5f", // HelpBridge brand color
       androidScaleType: "CENTER_CROP",
       showSpinner: false,
     },

@@ -9,7 +9,7 @@
 
 ## Overview
 
-This runbook provides response procedures for Service Level Objective (SLO) violations in Kingston Care Connect.
+This runbook provides response procedures for Service Level Objective (SLO) violations in HelpBridge.
 
 **SLO Targets (PROVISIONAL):**
 

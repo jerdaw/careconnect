@@ -24,7 +24,7 @@ describe("VectorCache", () => {
     new VectorCache()
     // Wait for potential promise handling if exposed, but constructor is synchronous init of promise
     // We can check if openDB was called
-    expect(openDB).toHaveBeenCalledWith("kcc-vector-store", 1, expect.any(Object))
+    expect(openDB).toHaveBeenCalledWith("helpbridge-vector-store", 1, expect.any(Object))
   })
 
   it("sets value in cache", async () => {

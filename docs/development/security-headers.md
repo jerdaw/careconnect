@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kingston Care Connect implements comprehensive security headers to protect against common web vulnerabilities. The security headers are automatically validated in CI to prevent misconfigurations.
+HelpBridge implements comprehensive security headers to protect against common web vulnerabilities. The security headers are automatically validated in CI to prevent misconfigurations.
 
 ## Configured Security Headers
 

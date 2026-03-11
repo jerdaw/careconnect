@@ -1,4 +1,4 @@
-# Kingston Care Connect vs 211 Canada/211 Ontario
+# HelpBridge vs 211 Canada/211 Ontario
 
 **Date:** February 27, 2026  
 **Audience:** Internal leadership  
@@ -6,14 +6,14 @@
 
 ## Executive verdict
 
-KCC has a **real but conditional** purpose alongside 211:
+HelpBridge has a **real but conditional** purpose alongside 211:
 
 1. It is most defensible as a **local, privacy-first, offline-capable access layer** for Kingston.
 2. It is weakly defensible as a standalone replacement for 211’s broader service model.
 3. Its strongest differentiators are privacy posture and offline/local UX, not breadth or live navigation support.
 
-If KCC positions itself as "better 211," the evidence is weak.  
-If KCC positions itself as "Kingston-first front door that complements 211," the evidence is strong.
+If HelpBridge positions itself as "better 211," the evidence is weak.  
+If HelpBridge positions itself as "Kingston-first front door that complements 211," the evidence is strong.
 
 ## Method
 
@@ -21,50 +21,50 @@ This evaluation used:
 
 1. External public sources from 211 Canada and 211 Ontario (official pages and discoverable snippets), validated on February 27, 2026.
 2. Internal repo evidence from code, data, and docs.
-3. A red-team pass on current KCC comparison claims.
+3. A red-team pass on current HelpBridge comparison claims.
 4. A weighted scorecard with confidence grading.
 
 ## Scorecard (1-5, higher = stronger for that dimension)
 
-| Dimension                                | KCC | 211 | Confidence | Decision implication                                                   |
-| ---------------------------------------- | --: | --: | ---------- | ---------------------------------------------------------------------- |
-| Coverage breadth                         | 1.5 | 5.0 | High       | 211 remains primary breadth layer.                                     |
-| Local focus relevance                    | 4.0 | 3.0 | Medium     | KCC can reduce local search friction.                                  |
-| Data governance rigor (current state)    | 2.5 | 4.0 | Medium     | KCC differentiation claim currently overstates certainty.              |
-| Privacy by default for search use        | 4.5 | 2.5 | Medium     | Strong KCC advantage if precisely stated.                              |
-| Human-assisted navigation/crisis routing | 2.0 | 5.0 | High       | KCC should not frame itself as a substitute for live 211 support.      |
-| Multilingual practical reach             | 3.5 | 5.0 | Medium     | KCC UI language lead; 211 channel language lead.                       |
-| Offline resilience                       | 4.5 | 2.0 | Medium     | KCC has clear edge for low-connectivity scenarios.                     |
-| Accessibility maturity evidence          | 3.0 | 2.5 | Low-Med    | KCC intent is strong; execution proof is mixed in current local run.   |
-| Integration readiness with 211           | 2.0 | 4.0 | High       | KCC should prioritize formal integration over parallel curation drift. |
+| Dimension                                | HelpBridge | 211 | Confidence | Decision implication                                                          |
+| ---------------------------------------- | ---------: | --: | ---------- | ----------------------------------------------------------------------------- |
+| Coverage breadth                         |        1.5 | 5.0 | High       | 211 remains primary breadth layer.                                            |
+| Local focus relevance                    |        4.0 | 3.0 | Medium     | HelpBridge can reduce local search friction.                                  |
+| Data governance rigor (current state)    |        2.5 | 4.0 | Medium     | HelpBridge differentiation claim currently overstates certainty.              |
+| Privacy by default for search use        |        4.5 | 2.5 | Medium     | Strong HelpBridge advantage if precisely stated.                              |
+| Human-assisted navigation/crisis routing |        2.0 | 5.0 | High       | HelpBridge should not frame itself as a substitute for live 211 support.      |
+| Multilingual practical reach             |        3.5 | 5.0 | Medium     | HelpBridge UI language lead; 211 channel language lead.                       |
+| Offline resilience                       |        4.5 | 2.0 | Medium     | HelpBridge has clear edge for low-connectivity scenarios.                     |
+| Accessibility maturity evidence          |        3.0 | 2.5 | Low-Med    | HelpBridge intent is strong; execution proof is mixed in current local run.   |
+| Integration readiness with 211           |        2.0 | 4.0 | High       | HelpBridge should prioritize formal integration over parallel curation drift. |
 
 ## Key findings
 
-### 1) KCC’s strategic value is "depth + privacy + offline," not "coverage + live support"
+### 1) HelpBridge’s strategic value is "depth + privacy + offline," not "coverage + live support"
 
 Evidence:
 
-1. KCC service corpus is 196 records (`data/services.json`) while 211 reports broad national scale ([S2], [R1]).
-2. 211 advertises multi-channel access and specialist assistance; KCC is a digital search product without equivalent live navigation ([S1], [S5], [R2]).
+1. HelpBridge service corpus is 196 records (`data/services.json`) while 211 reports broad national scale ([S2], [R1]).
+2. 211 advertises multi-channel access and specialist assistance; HelpBridge is a digital search product without equivalent live navigation ([S1], [S5], [R2]).
 
 Implication:
 
-1. KCC should explicitly frame itself as a **front-end complement** to 211, especially for users who prefer private/self-serve search.
+1. HelpBridge should explicitly frame itself as a **front-end complement** to 211, especially for users who prefer private/self-serve search.
 
-### 2) KCC privacy differentiation is real, but wording must be tightened
+### 2) HelpBridge privacy differentiation is real, but wording must be tightened
 
 Evidence:
 
-1. KCC avoids logging search query text in its search analytics path ([R3], [R4]).
+1. HelpBridge avoids logging search query text in its search analytics path ([R3], [R4]).
 2. Server-side search sets `Cache-Control: no-store` when a query is present ([R5]).
-3. KCC still records privacy-preserving analytics events (`service_id`, `event_type`; result buckets/category metadata), so "no analytics" is too broad ([R6], [R3]).
+3. HelpBridge still records privacy-preserving analytics events (`service_id`, `event_type`; result buckets/category metadata), so "no analytics" is too broad ([R6], [R3]).
 4. 211 Canada/211 Ontario pages include tracking and cookie consent artifacts (GTM/gtag and cookie banner text) ([S1], [S8], [S9], [R7], [R8]).
 
 Implication:
 
 1. Replace "no analytics" language with "no third-party tracking and no query-text logging."
 
-### 3) KCC’s current "manual verification" narrative is weaker than stated
+### 3) HelpBridge’s current "manual verification" narrative is weaker than stated
 
 Evidence from `data/services.json`:
 
@@ -75,9 +75,9 @@ Evidence from `data/services.json`:
 Implication:
 
 1. Current messaging ("every listing hand-verified") overstates present evidence.
-2. KCC should publish verification freshness and reviewer provenance transparently.
+2. HelpBridge should publish verification freshness and reviewer provenance transparently.
 
-### 4) KCC has a substantial offline/local UX advantage
+### 4) HelpBridge has a substantial offline/local UX advantage
 
 Evidence:
 
@@ -87,13 +87,13 @@ Evidence:
 
 Implication:
 
-1. Offline/low-bandwidth should be a lead value proposition for KCC.
+1. Offline/low-bandwidth should be a lead value proposition for HelpBridge.
 
 ### 5) Accessibility posture: high intent, mixed current proof
 
 Evidence:
 
-1. KCC has dedicated accessibility audits/tests and claims WCAG processes in docs/test suites ([R16], [R17]).
+1. HelpBridge has dedicated accessibility audits/tests and claims WCAG processes in docs/test suites ([R16], [R17]).
 2. Local run of `npm run test:a11y` in this environment: 13 passed, 37 failed (many due missing Firefox/WebKit binaries and several Chromium/Mobile Chrome timeouts; one reported serious `aria-hidden-focus` issue) ([R18]).
 
 Implication:
@@ -104,21 +104,21 @@ Implication:
 
 Evidence:
 
-1. KCC UI locale config includes 7 locales ([R19]).
+1. HelpBridge UI locale config includes 7 locales ([R19]).
 2. 211 Canada web UI is EN/FR while 211 channel access claims 150+ languages ([S1], [S5], [R7]).
 
 Implication:
 
-1. Use channel-specific wording: "KCC UI supports 7 locales; 211 offers broader language support via live channels."
+1. Use channel-specific wording: "HelpBridge UI supports 7 locales; 211 offers broader language support via live channels."
 
-## Red-team audit of current KCC-vs-211 claims
+## Red-team audit of current HelpBridge-vs-211 claims
 
 | Claim currently used                        | Assessment                         | Why                                                                                                            |
 | ------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | "More languages (7 vs 2)"                   | **Partially supported**            | Accurate for web UI, not for overall service-channel language access (211 advertises 150+).                    |
 | "Faster search optimized for local results" | **Partially supported**            | Plausible from local-only dataset and architecture; no published head-to-head benchmark in reviewed artifacts. |
-| "Offline functionality"                     | **Supported and differentiating**  | Strong implementation evidence in KCC architecture.                                                            |
-| "Crisis-optimized UX"                       | **Supported but non-substitutive** | KCC crisis boosting exists, but no equivalent live specialist triage.                                          |
+| "Offline functionality"                     | **Supported and differentiating**  | Strong implementation evidence in HelpBridge architecture.                                                     |
+| "Crisis-optimized UX"                       | **Supported but non-substitutive** | HelpBridge crisis boosting exists, but no equivalent live specialist triage.                                   |
 | "Every listing manually verified"           | **Not currently supported**        | Provenance/verification metadata contradicts strict manual-only framing.                                       |
 | "We complement 211, not replace it"         | **Strongly supported**             | Best fit with objective capability comparison.                                                                 |
 
@@ -126,9 +126,9 @@ Implication:
 
 Use this purpose statement:
 
-1. KCC is a **Kingston-first digital access layer** that complements 211 by improving local relevance, privacy, and offline access.
+1. HelpBridge is a **Kingston-first digital access layer** that complements 211 by improving local relevance, privacy, and offline access.
 2. 211 remains the **primary breadth and live navigation infrastructure**.
-3. KCC should optimize first-mile discovery and handoff, not duplicate province/national directory operations.
+3. HelpBridge should optimize first-mile discovery and handoff, not duplicate province/national directory operations.
 
 ## Priority actions
 
@@ -148,7 +148,7 @@ Use this purpose statement:
 
 1. Formalize 211 complement strategy:
    - define explicit referral/handoff UX to call/text/chat 211.
-   - document when KCC defers to 211.
+   - document when HelpBridge defers to 211.
 2. Replace placeholder 211 API integration assumptions with verified integration path or remove claim.
 3. Add benchmark evidence:
    - time-to-relevant-result,
@@ -161,11 +161,11 @@ Use this purpose statement:
    - clear human review workflow,
    - recency SLAs,
    - published QA audits.
-2. Evaluate federated model where KCC overlays local curation on authoritative upstream records.
+2. Evaluate federated model where HelpBridge overlays local curation on authoritative upstream records.
 
 ## Decision summary
 
-KCC should continue if it commits to this boundary:
+HelpBridge should continue if it commits to this boundary:
 
 1. **Complement 211; do not compete on breadth.**
 2. **Lead with privacy/offline/local relevance.**
@@ -189,22 +189,22 @@ Without those adjustments, strategic risk is high (credibility and redundancy).
 
 ### Internal (repo evidence)
 
-- [R1] `/home/jer/localsync/kingston-care-connect/data/services.json`
-- [R2] `/home/jer/localsync/kingston-care-connect/components/home/SearchBar.tsx` (product form factor context)
-- [R3] `/home/jer/localsync/kingston-care-connect/lib/analytics/search-analytics.ts`
-- [R4] `/home/jer/localsync/kingston-care-connect/app/api/v1/analytics/search/route.ts`
-- [R5] `/home/jer/localsync/kingston-care-connect/app/api/v1/search/services/route.ts`
-- [R6] `/home/jer/localsync/kingston-care-connect/lib/analytics.ts`
-- [R7] `/tmp/kcc_eval/211ca-home.html` (captured from https://211.ca/)
-- [R8] `/tmp/kcc_eval/211ontario-home.html` (captured from https://211ontario.ca/)
+- [R1] `/home/jer/localsync/helpbridge-ca/data/services.json`
+- [R2] `/home/jer/localsync/helpbridge-ca/components/home/SearchBar.tsx` (product form factor context)
+- [R3] `/home/jer/localsync/helpbridge-ca/lib/analytics/search-analytics.ts`
+- [R4] `/home/jer/localsync/helpbridge-ca/app/api/v1/analytics/search/route.ts`
+- [R5] `/home/jer/localsync/helpbridge-ca/app/api/v1/search/services/route.ts`
+- [R6] `/home/jer/localsync/helpbridge-ca/lib/analytics.ts`
+- [R7] `/tmp/helpbridge_eval/211ca-home.html` (captured from https://211.ca/)
+- [R8] `/tmp/helpbridge_eval/211ontario-home.html` (captured from https://211ontario.ca/)
 - [R9] verification-level counts from `jq` on `data/services.json` (L1=121, L2=75)
 - [R10] `last_verified` null count from `jq` on `data/services.json` (196)
 - [R11] provenance counts from `jq` on `data/services.json` (`Antigravity...`=130, `Pending manual verification`=48, `Kingston 150`=18)
-- [R12] `/home/jer/localsync/kingston-care-connect/lib/offline/db.ts`
-- [R13] `/home/jer/localsync/kingston-care-connect/lib/offline/sync.ts`
-- [R14] `/home/jer/localsync/kingston-care-connect/app/api/v1/services/export/route.ts`
-- [R15] `/home/jer/localsync/kingston-care-connect/next.config.ts`
-- [R16] `/home/jer/localsync/kingston-care-connect/tests/e2e/accessibility-audit.spec.ts`
-- [R17] `/home/jer/localsync/kingston-care-connect/tests/e2e/accessibility-interactive.spec.ts`
+- [R12] `/home/jer/localsync/helpbridge-ca/lib/offline/db.ts`
+- [R13] `/home/jer/localsync/helpbridge-ca/lib/offline/sync.ts`
+- [R14] `/home/jer/localsync/helpbridge-ca/app/api/v1/services/export/route.ts`
+- [R15] `/home/jer/localsync/helpbridge-ca/next.config.ts`
+- [R16] `/home/jer/localsync/helpbridge-ca/tests/e2e/accessibility-audit.spec.ts`
+- [R17] `/home/jer/localsync/helpbridge-ca/tests/e2e/accessibility-interactive.spec.ts`
 - [R18] local command result: `npm run test:a11y` on February 27, 2026 (13 passed, 37 failed)
-- [R19] `/home/jer/localsync/kingston-care-connect/i18n/routing.ts`
+- [R19] `/home/jer/localsync/helpbridge-ca/i18n/routing.ts`

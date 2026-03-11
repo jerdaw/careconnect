@@ -63,7 +63,7 @@ describe("TranslationBanner", () => {
     fireEvent.click(dismissButton)
 
     // Check localStorage was set
-    expect(localStorage.getItem("kcc-translation-banner-dismissed")).toBe("true")
+    expect(localStorage.getItem("helpbridge-translation-banner-dismissed")).toBe("true")
 
     // Re-render and check it doesn't show
     rerender(<TranslationBanner />)

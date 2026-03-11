@@ -79,7 +79,7 @@ Complete guide covering:
 
 ## Next Steps
 
-### For This Repo (kingston-care-connect)
+### For This Repo (helpbridge-ca)
 
 1. **Rebuild to apply optimizations:**
 
@@ -118,7 +118,7 @@ Complete guide covering:
 #### Quick Copy Method
 
 ```bash
-# From kingston-care-connect directory
+# From helpbridge-ca directory
 ./scripts/copy-vercel-config.sh ../visitbrief
 ./scripts/copy-vercel-config.sh ../healtharchive
 ```
@@ -285,4 +285,4 @@ For issues or questions:
 
 **Status:** ✅ Ready to deploy
 **Date:** 2026-02-12
-**Repos:** kingston-care-connect (complete), visitbrief (pending), healtharchive (pending)
+**Repos:** helpbridge-ca (complete), visitbrief (pending), healtharchive (pending)

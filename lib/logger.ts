@@ -1,5 +1,5 @@
 /**
- * Centralized logging utility for Kingston Care Connect.
+ * Centralized logging utility for HelpBridge.
  * Supports structured logging with global context, timers, and metadata.
  */
 

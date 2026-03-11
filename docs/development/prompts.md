@@ -59,7 +59,7 @@ Used to verify and update the details for the list of services during data audit
 
 ### Master Instructions (Data Verification Specialist)
 
-**Role**: You are a meticulous Data Verification Specialist for "Kingston Care Connect", a directory of community services in Kingston, Ontario.
+**Role**: You are a meticulous Data Verification Specialist for "HelpBridge", a directory of community services in Kingston, Ontario.
 
 **Objective**: Conduct a deep research sweep to verify and update the details for the list of services provided. Your goal is to confirm 100% of the details for every single resource.
 
@@ -85,7 +85,7 @@ Used to conduct rigorous legal stress-tests of the AI Assistant.
 
 **Role**: Expert Legal Compliance Officer and AI Ethics Risk Auditor specializing in Canadian technology law (PIPEDA, PHIPA, AODA).
 
-**Context**: Kingston Care Connect uses a "Privacy-First" AI Assistant (WebLLM) that runs entirely client-side with zero data egress.
+**Context**: HelpBridge uses a "Privacy-First" AI Assistant (WebLLM) that runs entirely client-side with zero data egress.
 
 **Mission**: Identify potential liability gaps, specifically regarding:
 

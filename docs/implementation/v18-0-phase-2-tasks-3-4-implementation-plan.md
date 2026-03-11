@@ -769,7 +769,7 @@ npm test -- alert-throttle.test.ts
 
 ## Overview
 
-Kingston Care Connect sends Slack alerts for critical events:
+HelpBridge sends Slack alerts for critical events:
 
 - Circuit breaker opens (database protection activated)
 - Circuit breaker closes (recovery confirmed)
@@ -830,7 +830,7 @@ Use the admin dashboard to force a circuit breaker open:
 curl -X POST "$SLACK_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
   -d '{
-    "text": "🧪 Test alert from Kingston Care Connect",
+    "text": "🧪 Test alert from HelpBridge",
     "blocks": [{
       "type": "section",
       "text": {
@@ -1604,7 +1604,7 @@ const getServices = unstable_cache(
 
 ## Overview
 
-This directory contains step-by-step troubleshooting guides (runbooks) for common production incidents in Kingston Care Connect.
+This directory contains step-by-step troubleshooting guides (runbooks) for common production incidents in HelpBridge.
 
 **Purpose:** Enable rapid incident response by providing clear, actionable steps for diagnosing and resolving issues.
 
@@ -1721,7 +1721,7 @@ Links to docs, dashboards, code.
 
 ### Access Requirements
 
-- Admin role in Kingston Care Connect
+- Admin role in HelpBridge
 - Axiom account access
 - Supabase project collaborator
 - Vercel team member

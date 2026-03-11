@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kingston Care Connect uses **Dependabot** for automated dependency updates. Dependencies are updated weekly (npm) and monthly (GitHub Actions) to maintain security and leverage new features while minimizing disruption.
+HelpBridge uses **Dependabot** for automated dependency updates. Dependencies are updated weekly (npm) and monthly (GitHub Actions) to maintain security and leverage new features while minimizing disruption.
 
 ## Dependabot Configuration
 

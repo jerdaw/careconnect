@@ -1,6 +1,6 @@
 # Keyboard Navigation Guide
 
-Kingston Care Connect is designed to be fully navigable via keyboard, adhering to WCAG 2.1 Level AA standards.
+HelpBridge is designed to be fully navigable via keyboard, adhering to WCAG 2.1 Level AA standards.
 
 ## Basic Navigation
 

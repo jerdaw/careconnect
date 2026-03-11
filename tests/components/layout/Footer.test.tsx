@@ -37,7 +37,7 @@ describe("Footer", () => {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       accessibility: "Accessibility",
-      copyright: "© 2026 Kingston Care Connect. All rights reserved.",
+      copyright: "© 2026 HelpBridge. All rights reserved.",
     }
     return translations[key] || key
   })
@@ -59,7 +59,7 @@ describe("Footer", () => {
     it("should render site name", () => {
       render(<Footer />)
 
-      expect(screen.getByText("Kingston Care Connect")).toBeInTheDocument()
+      expect(screen.getByText("HelpBridge")).toBeInTheDocument()
     })
 
     it("should render mission statement", () => {
@@ -112,14 +112,14 @@ describe("Footer", () => {
       mockUseLocale.mockReturnValue("en")
       render(<Footer />)
 
-      expect(screen.getByText("Kingston Care Connect")).toBeInTheDocument()
+      expect(screen.getByText("HelpBridge")).toBeInTheDocument()
     })
 
     it("should render correctly for French locale", () => {
       mockUseLocale.mockReturnValue("fr")
       render(<Footer />)
 
-      expect(screen.getByText("Kingston Care Connect")).toBeInTheDocument()
+      expect(screen.getByText("HelpBridge")).toBeInTheDocument()
     })
 
     it("should render correctly for non-English locales", () => {

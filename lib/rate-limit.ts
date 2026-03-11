@@ -90,7 +90,7 @@ try {
       redis,
       limiter: Ratelimit.slidingWindow(10, "10 s"), // Default, overridden per call
       analytics: true,
-      prefix: "kcc-ratelimit",
+      prefix: "helpbridge-ratelimit",
     })
 
     // logger.info("Upstash Rate Limit initialized", { component: "rate-limit" })
@@ -136,7 +136,7 @@ export async function checkRateLimit(
       const dynamicLimiter = new Ratelimit({
         redis: Redis.fromEnv(),
         limiter: Ratelimit.slidingWindow(limit, `${Math.ceil(windowMs / 1000)} s`),
-        prefix: "kcc-ratelimit",
+        prefix: "helpbridge-ratelimit",
       })
 
       const { success, remaining, reset } = await dynamicLimiter.limit(identifier)

@@ -68,7 +68,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
               </span>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                <span className="font-medium">{provenance.verified_by || "Care Connect Admin"}</span>
+                <span className="font-medium">{provenance.verified_by || "HelpBridge Admin"}</span>
               </div>
             </div>
           </div>

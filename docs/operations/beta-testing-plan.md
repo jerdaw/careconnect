@@ -9,7 +9,7 @@
 
 ## Overview
 
-This plan outlines a **3-phase beta testing approach** to validate Kingston Care Connect with real users before full public launch. Each phase increases user count and collects feedback to ensure the platform meets user needs.
+This plan outlines a **3-phase beta testing approach** to validate HelpBridge with real users before full public launch. Each phase increases user count and collects feedback to ensure the platform meets user needs.
 
 **Core Philosophy:** Launch small, learn fast, iterate before going big.
 
@@ -94,11 +94,11 @@ This plan outlines a **3-phase beta testing approach** to validate Kingston Care
 ### Invitation Template
 
 ```
-Subject: Exclusive Early Access: Kingston Care Connect Beta
+Subject: Exclusive Early Access: HelpBridge Beta
 
 Hi [Name],
 
-We're launching Kingston Care Connect, a new search engine for social services in Kingston, and we'd love your help testing it before the public launch.
+We're launching HelpBridge, a new search engine for social services in Kingston, and we'd love your help testing it before the public launch.
 
 What is it?
 A fast, accessible search tool to help Kingston residents find food banks, crisis support, housing help, and 200+ other social services.
@@ -115,7 +115,7 @@ Timeline:
 Testing runs Feb 12-19 (1 week)
 
 Access:
-Beta URL: https://beta.kingstoncare.ca
+Beta URL: https://beta.helpbridge.ca
 Password: [temporary-password]
 
 Questions?
@@ -132,9 +132,9 @@ Thanks,
 **Send to beta users:**
 
 ```
-Kingston Care Connect - Beta Testing Guide
+HelpBridge - Beta Testing Guide
 
-Thank you for helping us test Kingston Care Connect!
+Thank you for helping us test HelpBridge!
 
 WHAT TO TEST:
 
@@ -162,7 +162,7 @@ WHAT TO TEST:
 
 5. Give feedback (5 min)
    - Complete the feedback form (link below)
-   - Or email directly: beta-feedback@kingstoncare.ca
+   - Or email directly: beta-feedback@helpbridge.ca
 
 FEEDBACK FORM: [Google Form / Typeform link]
 
@@ -367,7 +367,7 @@ THANK YOU! Your feedback makes this better for everyone.
 ### Recruitment Flyer (Community Centers)
 
 ```
-🔍 HELP TEST KINGSTON CARE CONNECT 🔍
+🔍 HELP TEST HELPBRIDGE 🔍
 
 Looking for food banks? Crisis support? Housing help?
 
@@ -382,11 +382,11 @@ and need YOUR help!
 
 TIME: 20-30 minutes
 WHEN: Feb 19-26
-HOW: Scan QR code or visit: beta.kingstoncare.ca
+HOW: Scan QR code or visit: beta.helpbridge.ca
 
 Your feedback makes this better for everyone!
 
-Questions? Email: beta@kingstoncare.ca
+Questions? Email: beta@helpbridge.ca
 
 [QR CODE]
 ```
@@ -623,12 +623,12 @@ Questions? Email: beta@kingstoncare.ca
 1. **Partner Newsletters** (Week 3)
 
    ```
-   New Tool: Kingston Care Connect is now available!
+   New Tool: HelpBridge is now available!
 
    A new search tool for finding social services in Kingston just launched.
    Search 200+ services including food banks, crisis support, housing help, and more.
 
-   Check it out: https://kingstoncare.ca
+   Check it out: https://helpbridge.ca
 
    It's free, accessible, and works offline.
    ```
@@ -838,7 +838,7 @@ Questions? Email: beta@kingstoncare.ca
    - Already implemented
    - Monitors: Checked daily
 
-2. **Email** (beta-feedback@kingstoncare.ca)
+2. **Email** (beta-feedback@helpbridge.ca)
    - Direct feedback from users
    - Bug reports
    - Monitors: Checked twice daily
@@ -1047,7 +1047,7 @@ See [Beta Feedback Analysis Framework](beta-feedback-analysis.md) for detailed p
 ### Feedback Tools
 
 - **Typeform/Google Forms:** Surveys
-- **Email:** beta-feedback@kingstoncare.ca (set up forwarding)
+- **Email:** beta-feedback@helpbridge.ca (set up forwarding)
 - **Feedback Widget:** Already in platform
 - **GitHub Issues:** Bug tracking
 

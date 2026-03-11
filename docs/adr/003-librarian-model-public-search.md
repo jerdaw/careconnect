@@ -17,7 +17,7 @@ Accepted (Implemented in v13.0)
 
 ## Context
 
-Kingston Care Connect currently supports client-side search using a bundled JSON dataset and/or broad Supabase reads.
+HelpBridge currently supports client-side search using a bundled JSON dataset and/or broad Supabase reads.
 This architecture makes it difficult to:
 
 - prevent accidental leakage of future internal-only fields (draft services, reviewer notes, partner-only metadata),

@@ -13,7 +13,7 @@ interface VectorDB extends DBSchema {
   }
 }
 
-const DB_NAME = "kcc-vector-store"
+const DB_NAME = "helpbridge-vector-store"
 const DB_VERSION = 1
 
 export class VectorCache {

@@ -1,6 +1,6 @@
 # Accessibility Guide
 
-This guide provides best practices for maintaining WCAG 2.1 Level AA accessibility compliance in the Kingston Care Connect platform.
+This guide provides best practices for maintaining WCAG 2.1 Level AA accessibility compliance in the HelpBridge platform.
 
 ## Table of Contents
 
@@ -120,7 +120,7 @@ Logos should use the organization name:
 
 ```tsx
 // Good
-<img src="/logo.svg" alt="Kingston Care Connect Logo" />
+<img src="/logo.svg" alt="HelpBridge Logo" />
 <img src="/partner-logo.svg" alt={`${partner.name} Logo`} />
 
 // Bad

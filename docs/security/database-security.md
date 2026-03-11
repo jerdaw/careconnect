@@ -9,7 +9,7 @@ tags: [security, database, rls]
 
 ## Overview
 
-Kingston Care Connect uses Supabase PostgreSQL with Row Level Security (RLS) to ensure data security and privacy. This document outlines our security model, RLS policies, and best practices.
+HelpBridge uses Supabase PostgreSQL with Row Level Security (RLS) to ensure data security and privacy. This document outlines our security model, RLS policies, and best practices.
 
 ## Security Model
 

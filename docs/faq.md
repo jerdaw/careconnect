@@ -6,9 +6,9 @@
 
 ## General Questions
 
-### What is Kingston Care Connect?
+### What is HelpBridge?
 
-Kingston Care Connect is a free search engine that helps you find social services in Kingston, Ontario. We have information on about 200 services including food banks, crisis support, housing help, health services, and more.
+HelpBridge is a free search engine that helps you find social services in Kingston, Ontario. We have information on about 200 services including food banks, crisis support, housing help, health services, and more.
 
 **It's like Google, but only for social services in Kingston.**
 
@@ -16,7 +16,7 @@ Kingston Care Connect is a free search engine that helps you find social service
 
 ### Is this an official government service?
 
-**No.** Kingston Care Connect is a community project created by volunteers. We are **not** affiliated with:
+**No.** HelpBridge is a community project created by volunteers. We are **not** affiliated with:
 
 - City of Kingston
 - Province of Ontario
@@ -57,7 +57,7 @@ The platform is completely anonymous.
 
 If you find wrong or outdated information:
 
-**Email us:** feedback@kingstoncare.ca
+**Email us:** feedback@helpbridge.ca
 
 **Please include:**
 
@@ -79,7 +79,7 @@ We might not have listed a service for several reasons:
 4. **It closed or merged** - We're updating our records
 
 **To suggest a service:**
-Email feedback@kingstoncare.ca with the service name, what they do, and contact information.
+Email feedback@helpbridge.ca with the service name, what they do, and contact information.
 
 ---
 
@@ -136,7 +136,7 @@ All search activity is completely private.
 
 **Good question!** Here's how to check:
 
-1. **Open source code:** Our code is public at github.com/jerdog/kingston-care-connect
+1. **Open source code:** Our code is public at github.com/jerdog/helpbridge-ca
    - Anyone can review it
    - Security experts have verified our privacy claims
 
@@ -222,7 +222,7 @@ We use a **3-level verification system**:
 
 **To suggest a service:**
 
-1. Email feedback@kingstoncare.ca
+1. Email feedback@helpbridge.ca
 2. Include:
    - Service name
    - What they do
@@ -343,7 +343,7 @@ We use a **3-level verification system**:
 - ✅ All information is text-based
 
 **If you find an accessibility issue:**
-Email feedback@kingstoncare.ca and we'll fix it quickly.
+Email feedback@helpbridge.ca and we'll fix it quickly.
 
 ---
 
@@ -438,11 +438,11 @@ Email feedback@kingstoncare.ca and we'll fix it quickly.
 
 **Contact us:**
 
-- **Email:** feedback@kingstoncare.ca
-- **GitHub:** github.com/jerdog/kingston-care-connect/issues
+- **Email:** feedback@helpbridge.ca
+- **GitHub:** github.com/jerdog/helpbridge-ca/issues
 
 **Response time:** Usually 2-3 business days
 
 ---
 
-**Thank you for using Kingston Care Connect!**
+**Thank you for using HelpBridge!**

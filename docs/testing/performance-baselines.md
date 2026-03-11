@@ -9,7 +9,7 @@
 
 ## Overview
 
-This document establishes performance baselines for Kingston Care Connect to enable:
+This document establishes performance baselines for HelpBridge to enable:
 
 - **Regression Detection:** Identify performance degradations in future releases
 - **Capacity Planning:** Understand system limits and scaling needs

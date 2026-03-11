@@ -73,7 +73,7 @@ def _fetch(url: str, timeout_s: int = 20) -> Dict[str, Any]:
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "kingston-care-connect/1.0 (v17.5 evidence spotcheck)",
+            "User-Agent": "helpbridge-ca/1.0 (v17.5 evidence spotcheck)",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         },
         method="GET",

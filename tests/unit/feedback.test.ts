@@ -12,7 +12,7 @@ describe("generateFeedbackLink", () => {
     const link = generateFeedbackLink(mockService)
 
     expect(link).toMatch(/^mailto:/)
-    expect(link).toContain("feedback@careconnect.ca")
+    expect(link).toContain("feedback@helpbridge.ca")
   })
 
   it("includes service name and ID in subject", () => {
@@ -44,7 +44,7 @@ describe("generateFeedbackLink", () => {
     const link = generateFeedbackLink(mockService)
     const body = decodeURIComponent(link.split("body=")[1] || "")
 
-    expect(body).toContain("Kingston Care Connect")
+    expect(body).toContain("HelpBridge")
   })
 
   it("properly URL encodes special characters in service name", () => {

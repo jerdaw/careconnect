@@ -49,7 +49,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 - [ ] **Test health check endpoint**
 
   ```bash
-  curl https://kingstoncare.ca/api/v1/health
+  curl https://helpbridge.ca/api/v1/health
   ```
 
   - Expected: 200 OK status
@@ -216,7 +216,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 
 - [ ] **Check feedback channels**
   - Review feedback widget submissions
-  - Check email (feedback@kingstoncare.ca)
+  - Check email (feedback@helpbridge.ca)
   - Monitor social media (if applicable)
 
 - [ ] **Common issues?**
@@ -650,7 +650,7 @@ Overall Assessment:
 - **Observability Dashboard:** `/admin/observability`
 - **Health Check:** `/api/v1/health`
 - **Metrics:** `/api/v1/metrics` (dev/staging only)
-- **Status Page:** `status.kingstoncare.ca` (when configured)
+- **Status Page:** `status.helpbridge.ca` (when configured)
 
 ### Key Contacts
 

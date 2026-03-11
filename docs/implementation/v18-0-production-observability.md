@@ -12,7 +12,7 @@
 
 ### Current State (v17.6)
 
-Kingston Care Connect is production-ready with comprehensive resilience, security, and testing infrastructure:
+HelpBridge is production-ready with comprehensive resilience, security, and testing infrastructure:
 
 ✅ **Core Platform**:
 
@@ -794,28 +794,28 @@ Use **Statuspage.io** (free tier) or self-hosted **Upptime** (GitHub Actions).
 ```yaml
 # .upptimerc.yml
 
-owner: kingston-care-connect
+owner: helpbridge-ca
 repo: upptime
 sites:
-  - name: Kingston Care Connect
-    url: https://kingstoncare.ca
+  - name: HelpBridge
+    url: https://helpbridge.ca
   - name: Search API
-    url: https://kingstoncare.ca/api/v1/health
+    url: https://helpbridge.ca/api/v1/health
     expectedStatusCodes:
       - 200
   - name: Partner Dashboard
-    url: https://kingstoncare.ca/dashboard
+    url: https://helpbridge.ca/dashboard
 
 status-website:
-  cname: status.kingstoncare.ca
-  name: Kingston Care Connect Status
+  cname: status.helpbridge.ca
+  name: HelpBridge Status
   theme: night
 ```
 
 **Deliverable:**
 
 - [ ] Upptime configured in separate GitHub repo
-- [ ] Status page deployed at `status.kingstoncare.ca` (or subdomain)
+- [ ] Status page deployed at `status.helpbridge.ca` (or subdomain)
 - [ ] Automated incident detection via health check
 - [ ] Status badge added to main README.md
 
@@ -872,7 +872,7 @@ status-website:
 - [ ] Slack webhook configured for alerts
 - [ ] Admin email set for critical alerts
 - [ ] Status page deployed and linked
-- [ ] DNS configured (status.kingstoncare.ca)
+- [ ] DNS configured (status.helpbridge.ca)
 - [ ] SSL certificates valid
 - [ ] Database backups enabled (Supabase automatic)
 - [ ] Rate limiting tested in production
@@ -1029,7 +1029,7 @@ status-website:
 - ✅ Vercel account with production deployment
 - ⚠️ Axiom account (free tier) - **User action required**
 - ⚠️ Slack workspace with webhook - **User action required**
-- ⚠️ Domain for status page (status.kingstoncare.ca) - **User action required**
+- ⚠️ Domain for status page (status.helpbridge.ca) - **User action required**
 
 ### Optional (Nice to Have)
 
@@ -1167,7 +1167,7 @@ status-website:
 
 **1. Staging Environment Validation:**
 
-- [ ] Deploy v18.0 to staging (`staging.kingstoncare.ca`)
+- [ ] Deploy v18.0 to staging (`staging.helpbridge.ca`)
 - [ ] Run full test suite: `npm test && npm run test:e2e && npm run test:a11y`
 - [ ] Execute load tests: `npm run test:load:sustained` (30min)
 - [ ] Verify circuit breaker triggers correctly (simulate DB failure)
@@ -1300,12 +1300,12 @@ On Track for Launch: [Yes/No/At Risk]
 ```bash
 # Axiom Integration (Production Monitoring)
 AXIOM_TOKEN=xaat-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-AXIOM_ORG_ID=kingston-care-connect-xxxxx
+AXIOM_ORG_ID=helpbridge-ca-xxxxx
 AXIOM_DATASET=performance
 
 # Alerting
 SLACK_WEBHOOK_URL=<your-slack-webhook-url>
-ADMIN_EMAIL=admin@kingstoncare.ca
+ADMIN_EMAIL=admin@helpbridge.ca
 
 # Circuit Breaker (Production Tuning)
 CIRCUIT_BREAKER_ENABLED=true
@@ -1316,7 +1316,7 @@ CIRCUIT_BREAKER_TIMEOUT=60000        # 1min timeout (vs 30s in dev)
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=false  # Disabled (use Axiom instead)
 
 # Status Page
-NEXT_PUBLIC_STATUS_PAGE_URL=https://status.kingstoncare.ca
+NEXT_PUBLIC_STATUS_PAGE_URL=https://status.helpbridge.ca
 ```
 
 **Updated `.env.example`:**

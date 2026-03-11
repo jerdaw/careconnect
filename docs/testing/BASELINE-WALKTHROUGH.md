@@ -8,7 +8,7 @@
 
 ## Overview
 
-This walkthrough guides you through establishing performance baselines for Kingston Care Connect. You'll run 4 load tests and document the results.
+This walkthrough guides you through establishing performance baselines for HelpBridge. You'll run 4 load tests and document the results.
 
 ### What You'll Do
 

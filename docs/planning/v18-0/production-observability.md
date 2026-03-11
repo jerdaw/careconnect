@@ -83,7 +83,7 @@ Without completing this work, production deployment risks:
 
 - Measurable reliability targets
 - SLO compliance dashboard
-- Public status page at `status.kingstoncare.ca`
+- Public status page at `status.helpbridge.ca`
 - Transparent uptime reporting
 
 ---
@@ -145,7 +145,7 @@ Without completing this work, production deployment risks:
 
 - ⚠️ **Axiom Account:** Sign up at axiom.co (free tier)
 - ⚠️ **Slack Webhook:** Create incoming webhook in workspace
-- ⚠️ **Domain:** Configure `status.kingstoncare.ca` subdomain
+- ⚠️ **Domain:** Configure `status.helpbridge.ca` subdomain
 
 ### Optional
 

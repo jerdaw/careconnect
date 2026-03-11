@@ -7,7 +7,7 @@ tags: [legal, ai, assessment]
 
 # Algorithmic Impact Assessment (AIA) - Self-Assessment
 
-**Project**: Kingston Care Connect AI Assistant (v13.1)
+**Project**: HelpBridge AI Assistant (v13.1)
 
 ## 1. Description of Automated Decision System
 

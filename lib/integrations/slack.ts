@@ -172,8 +172,7 @@ function formatCircuitBreakerMessage(event: CircuitBreakerEvent): SlackMessage {
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"
   const dashboardUrl = `${baseUrl}/admin/observability`
-  const runbookUrl =
-    "https://github.com/yourusername/kingston-care-connect/blob/main/docs/runbooks/circuit-breaker-open.md"
+  const runbookUrl = "https://github.com/yourusername/helpbridge-ca/blob/main/docs/runbooks/circuit-breaker-open.md"
 
   // Build rich Slack blocks
   const blocks: SlackBlock[] = [
@@ -382,7 +381,7 @@ function formatSLOViolationMessage(event: SLOViolationEvent): SlackMessage {
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"
   const dashboardUrl = `${baseUrl}/admin/observability`
-  const runbookUrl = "https://github.com/yourusername/kingston-care-connect/blob/main/docs/runbooks/slo-violation.md"
+  const runbookUrl = "https://github.com/yourusername/helpbridge-ca/blob/main/docs/runbooks/slo-violation.md"
 
   // Build rich Slack blocks
   const blocks: SlackBlock[] = [

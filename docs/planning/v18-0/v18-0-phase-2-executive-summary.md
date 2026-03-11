@@ -177,7 +177,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ Kingston Care Connect (Next.js App)                     │
+│ HelpBridge (Next.js App)                     │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐ │
@@ -574,7 +574,7 @@ CRON_SECRET=your-random-secret
 
 ## Conclusion
 
-**Phase 2 transforms Kingston Care Connect from resilient but blind to resilient and observable.**
+**Phase 2 transforms HelpBridge from resilient but blind to resilient and observable.**
 
 **Before Phase 2:**
 

@@ -1,6 +1,6 @@
 # Acknowledgments and Governance
 
-Kingston Care Connect is a community-led initiative driven by the collaboration of local organizations, developers, and advisors. We gratefully acknowledge the following contributors.
+HelpBridge is a community-led initiative driven by the collaboration of local organizations, developers, and advisors. We gratefully acknowledge the following contributors.
 
 ## Advisory Board (Interim)
 
@@ -30,4 +30,4 @@ Our "Kingston 150" dataset is hand-verified, but built upon the foundation of pu
 
 ---
 
-> To propose an addition to this list or join our advisory board, please contact [partners@careconnect.ca](mailto:partners@careconnect.ca).
+> To propose an addition to this list or join our advisory board, please contact [partners@helpbridge.ca](mailto:partners@helpbridge.ca).

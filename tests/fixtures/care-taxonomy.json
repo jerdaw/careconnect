@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Comprehensive taxonomy of care needs for testing search functionality in Kingston Care Connect",
+  "description": "Comprehensive taxonomy of care needs for testing search functionality in HelpBridge",
   "version": "1.0.0",
   "categories": {
     "crisis": {
