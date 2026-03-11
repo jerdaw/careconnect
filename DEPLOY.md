@@ -9,6 +9,9 @@
 Current migration work should use the draft direct-VPS private proof in
 [`docs/deployment/direct-vps-proof.md`](docs/deployment/direct-vps-proof.md).
 
+The private VPS proof was completed successfully on 2026-03-11 and remains the
+current migration baseline for this repo.
+
 This document describes the older **Vercel** deployment path.
 
 ## 1. Prerequisites
