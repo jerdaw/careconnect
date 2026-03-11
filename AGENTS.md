@@ -34,8 +34,11 @@ You are a **governance-aware developer** working on a privacy-first social servi
 - `docs/architecture.md` → System design and data flow
 - `docs/llms.txt` → Consolidated context for AI agents
 - `docs/api/openapi.yaml` → OpenAPI 3.0 specification
+- `/home/jer/repos/platform-ops` → Shared VPS inventory, roadmap, handoff, and cross-project runbooks
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
+
+**Cross-project ops note:** Kingston Care Connect/HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
 
 ---
 
