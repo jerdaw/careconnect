@@ -133,8 +133,8 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 ### Installation
 
 ```bash
-git clone https://github.com/jerdaw/kingston-care-connect.git # (1)
-cd kingston-care-connect
+git clone https://github.com/jerdaw/helpbridge.git # (1)
+cd helpbridge
 npm install
 npm run dev
 ```

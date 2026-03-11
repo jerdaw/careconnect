@@ -1,9 +1,9 @@
 ---
-site_name: Kingston Care Connect
-site_url: https://github.com/jerdaw/kingston-care-connect
-site_description: Documentation for Kingston Care Connect project.
-repo_name: jerdaw/kingston-care-connect
-repo_url: https://github.com/jerdaw/kingston-care-connect
+site_name: HelpBridge
+site_url: https://github.com/jerdaw/helpbridge
+site_description: Documentation for the HelpBridge project.
+repo_name: jerdaw/helpbridge
+repo_url: https://github.com/jerdaw/helpbridge
 strict: true
 
 theme:

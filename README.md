@@ -1,4 +1,4 @@
-# Kingston Care Connect
+# HelpBridge
 
 > A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
 
@@ -161,8 +161,8 @@ We maintain a hand-verified dataset of the **196 highest-impact services** avail
 ### Installation
 
 ```bash
-git clone https://github.com/jerdaw/kingston-care-connect.git
-cd kingston-care-connect
+git clone https://github.com/jerdaw/helpbridge.git
+cd helpbridge
 npm install  # Installs dependencies and automatically sets up Git hooks
 npm run dev
 ```
