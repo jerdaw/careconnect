@@ -2,25 +2,25 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-11
+> **Last Updated**: 2026-03-12
 > **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
 - **Tests**: 1080 passing, 24 skipped (latest full local run)
-  - Branch: Coverage metrics pending update | Functions: Pending | Statements: Pending
-  - Gaps: 56/85 components untested (34% coverage - up from 28%), 4 untested utility functions (geo, fuzzy, synonyms, query-expander)
+  - Coverage metrics need a fresh `npm run test:coverage` snapshot before publishing new percentages
+  - Remaining testing backlog centers on component smoke coverage, unhappy-path coverage, feedback/update integrations, and E2E stabilization
   - 7 E2E tests skipped in `tests/e2e/**` (documented baseline: [E2E Skip Baseline (2026-03-09)](../testing/e2e-skip-baseline-2026-03-09.md))
   - CI budget mode: Playwright runs on `workflow_dispatch` or `main` commits containing `[run-e2e]`
-  - Recent: +80 component tests (OfflineBanner, LanguageSwitcher, SearchChips, Header, Footer)
-- **Load Testing**: k6 infrastructure in place, baseline metrics pending documentation
+  - Recent: full local suite green at 1080/1104 tests
+- **Load Testing**: k6 infrastructure and baseline documentation are in place; follow-up work is comparative analysis and ongoing refresh
 - **Resilience**: 100% circuit breaker protection on all API routes and database operations
-- **Security**: 0 vulnerabilities, all dependencies patched (tar 7.5.7)
+- **Security**: Dependency hygiene automation is in place (Dependabot, CI validation, header checks); deeper scanning remains on the backlog
 - **Accessibility**: WCAG 2.1 AA compliant (automated testing via Axe-core)
 - **Languages**: 7 locales (EN, FR, ZH-Hans, AR, PT, ES, PA)
-  - French Coverage: 100% core (name_fr, description_fr), 0% advanced (access_script_fr, hours_text_fr, eligibility_notes_fr)
-  - 5 non-EN/FR locales missing ~2 i18n keys each
+  - All 7 locale files are at key parity (964/964 keys each)
+  - Advanced French service-data fields remain incomplete (`access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, `synthetic_queries_fr`)
 - **Offline-Ready**: PWA with IndexedDB fallback and background sync
 - **Push Notifications**: Optional only; UI and SDK remain disabled unless OneSignal is explicitly configured
 - **Observability**: Production monitoring (Axiom), automated alerting (Slack, 6 alert types), SLO monitoring (PROVISIONAL targets), 5 operational runbooks, deployment procedures, incident response plan
@@ -99,9 +99,9 @@ Reposition HelpBridge from potential directory duplication to measurable last-mi
 
 ### v19.0: Launch Preparation ⏸️ ON HOLD (Pending v22 Gate 0)
 
-**Status**: Baseline deployment complete; remaining launch-prep execution deferred pending v22 Strategic Gate
+**Status**: Deployment baseline and automation are complete; remaining manual QA, beta, and launch operations are deferred pending v22 Strategic Gate
 **Priority**: HIGH
-**Total Effort**: ~30 hours (100% complete)
+**Total Effort**: ~30 hours of launch-prep automation/documentation plus user-run execution
 **User Execution Effort**: ~30-38 hours over 7+ weeks
 **Timeline**: 7-8 weeks (Phase 1 QA → beta testing → launch)
 **Completed**: 2026-02-10 (automation & documentation)
@@ -370,7 +370,7 @@ npm run audit:data           # Current service count and gaps
 npm run bilingual-check      # Verify French completeness
 npm run check-staleness      # Find services needing re-verification
 npm run translate:prompt     # Generate translation prompts
-npm run translate:parse      # Parse AI responses
+npm run translate:parse      # Parse translation output
 npm run translate:validate   # Validate translations
 npm run geocode              # Geocode addresses (requires OPENCAGE_API_KEY)
 npm run audit:l3             # Export L3 verification candidates
@@ -507,376 +507,57 @@ Production-readiness complete (v17.0–v18.0). Platform is resilient, secure, ac
 
 ### v20.0: Technical Excellence & Testing (HIGH PRIORITY - Before Production)
 
-**Status**: IN PROGRESS (Phase 1A-1J Complete ✅)
-**Priority**: HIGH (Pre-Production Requirement)
-**Total Effort**: ~100-120 hours (parallel engineering work)
-**Timeline**: 2-4 weeks
-**Dependencies**: None (can start immediately)
-**Completion**: 21/38 items done (A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C3, C4, D1, D3, E1, E2, E3, E4, E5, E6)
-**Note**: Crisis-path component testing (B4 subset) and French translations (C5, C6) are now also sequenced in the [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md) as deployment prerequisites (Phase 1) and governance execution tasks (Phase 2). Remaining v20.0 items (B5–B9, C2, D2, D4–D6, F1–F3, G1–G3) can proceed in parallel.
+**Status**: IN PROGRESS — 21/38 items complete; completed Phase 1 work is archived and the remaining backlog is deferred behind v22/v21 priorities
+**Priority**: HIGH (technical debt reduction and deeper test coverage)
+**Remaining Effort**: ~35-45 hours
+**Dependencies**: None, but execution should not displace v22 gate work
+**Completion**: 21/38 items done
+**Archive**: Completed v20.0 Phase 1 execution details live in [2026-02-12-v20-0-phase-1-implementation-plan.md](archive/2026-02-12-v20-0-phase-1-implementation-plan.md)
 
-Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
+This roadmap section now tracks only the unfinished v20 backlog. Completed code quality, CI, and Phase 1 testing work has been removed from the active roadmap and preserved in the archive above.
 
-**Context**: Based on the comprehensive codebase audit (2026-02-11), these items represent foundational engineering work that can progress in parallel without blocking the active v22 decision path.
+#### Remaining Backlog
 
-**Archive**: Completed v20.0 Phase 1 execution details now live in [2026-02-12-v20-0-phase-1-implementation-plan.md](archive/2026-02-12-v20-0-phase-1-implementation-plan.md).
+**Testing depth**
 
-#### Category A: Code Quality & Type Safety (~15h)
+- `B5`: Add smoke tests for 40+ untested components
+- `B6`: Stabilize the 7 skipped E2E tests without breaking the free-tier CI budget posture
+- `B7`: Add unhappy-path and resilience scenario tests
+- `B8`: Add end-to-end feedback workflow integration coverage
+- `B9`: Add end-to-end service update request integration coverage
 
-**A1. Replace remaining `console.*` calls with `logger.*`** ✅ COMPLETE (2026-02-12)
+**French and search enrichment**
 
-- Files: All 14 calls in 7 files (hooks/useShare.ts, useServiceFeedback.ts, usePushNotifications.ts, useLocalStorage.ts, useVoiceInput.ts, useNetworkStatus.ts, lib/external/211-client.ts)
-- Impact: Consistent structured logging across codebase
-- Commit: ff56b09
-- Effort: 2h (actual)
+- `C2`: Generate `synthetic_queries_fr` for the remaining services
+- `C5`: Populate `access_script_fr` with reviewed translations
+- `C6`: Generate and validate `hours_text_fr`
 
-**A2. Reduce ESLint disable directives from 26 to <10** ✅ COMPLETE (2026-02-12)
+**Documentation and ops**
 
-- Reduced from 23 to 12 directives (48% reduction, excluding tests/worker.ts)
-- Files: middleware.ts (CookieOptions), hooks/useServices.ts (SupportedLocale), app/api/admin/reindex/route.ts (ReturnType), components/ui/section.tsx (refactored types), app/api/v1/analytics/route.ts (AnalyticsEvent), components/services/TrustPanel.tsx (Provenance)
-- Remaining 12 blocked by missing Supabase type definitions
-- Impact: Improved type safety, reduced technical debt
-- Commit: e18ff97
-- Effort: 2h (actual)
+- `D2`: Create an admin operations guide
+- `D4`: Add GDPR/international compliance documentation
+- `D5`: Document database migration and rollback procedures
+- `D6`: Refresh `docs/testing/performance-baselines.md` with current numbers
 
-**A3. Harden update-request API validation** ✅ COMPLETE (2026-02-12)
+**Security and privacy**
 
-- File: `app/api/v1/services/[id]/update-request/route.ts`
-- Replaced `z.record(z.any())` with `z.enum(ALLOWED_UPDATE_FIELDS)` (18 explicit fields)
-- Impact: Prevents injection attacks via field_updates
-- Commit: ff56b09
-- Effort: 30min (actual)
+- `F1`: Add deeper dependency scanning in CI
+- `F2`: Add automated CSP/security-header verification at runtime
+- `F3`: Expand rate-limit coverage across non-search API routes
 
-**A4. Migrate direct `process.env` to `lib/env.ts`** ✅ COMPLETE (2026-02-12)
+**Architecture**
 
-- Files: 13 API routes migrated (admin/data, admin/reindex, admin/reindex/status, admin/save, cron/export-metrics, health, v1/analytics, v1/feedback/[id], v1/health, v1/metrics, v1/services/[id], v1/services/[id]/update-request, v1/services/route)
-- Replaced all `process.env.NEXT_PUBLIC_*`, `process.env.CRON_SECRET`, `process.env.NODE_ENV` with validated `env.*`
-- Impact: Type-safe environment validation, eliminates non-null assertions
-- Commit: 3a858f0
-- Effort: 1.5h (actual)
+- `G1`: Move search AI metadata out of JSON and into Supabase-backed storage
+- `G2`: Extract the shared enhancer path in `hooks/useServices.ts`
+- `G3`: Build an admin-facing data quality dashboard
 
-**A5. Harden CSV import field mapping** ✅ COMPLETE (2026-02-12)
+#### Remaining Success Criteria
 
-- Files: `lib/schemas/service-csv-import.ts` (new), `app/[locale]/dashboard/services/import/page.tsx`, `tests/lib/schemas/service-csv-import.test.ts` (new)
-- Created CSVImportRowSchema with strict field validation, header normalization (30+ variations), contact method requirements
-- Enhanced import page: validation summary, field-level errors, visual status indicators, logger integration
-- Added 32 comprehensive test cases covering validation scenarios
-- Impact: Prevents SQL injection and malformed data via validated CSV imports
-- Commit: f57aa70
-- Effort: 2.5h (actual)
-
-**A6. Remove unused code with eslint-disable** ✅ COMPLETE (2026-02-12)
-
-- Files: `components/ui/use-toast.ts` (use actionTypes properly), `app/[locale]/admin/notifications/page.tsx` (fix isSubmitting usage)
-- Impact: Code cleanup, maintainability
-- Commit: ff56b09
-- Effort: 30min (actual)
-
-#### Category B: Test Coverage (~60h) — LARGEST GAP
-
-**B1. Write unit tests for untested search utilities** ✅ COMPLETE (2026-02-12)
-
-- ✅ `lib/search/geo.ts` - Haversine distance, proximity multipliers (20 tests)
-- ✅ `lib/search/fuzzy.ts` - Levenshtein-based matching (24 tests)
-- ✅ `lib/search/synonyms.ts` - Synonym expansion, bilingual terms (24 tests)
-- ✅ `lib/ai/query-expander.ts` - Query reformulation with AI engine mocking (23 tests)
-- Impact: Core search logic tested, prevents regressions
-- Commits: c272018 (geo, fuzzy, synonyms), 8215ebc (query-expander)
-- Effort: 2.5h actual (6-8h estimated)
-
-**B2. Write tests for 4 untested API routes** ✅ COMPLETE (2026-02-12)
-
-- Created tests/api/v1/services/update-request.test.ts (9 tests)
-- Created tests/api/admin/reindex-status.test.ts (9 tests)
-- Note: printable and summary routes already had tests
-- Tests cover: auth, validation, error handling, edge cases, metric calculations
-- Impact: API contract coverage, 18 new tests
-- Commit: 95f8b37
-- Effort: 2h (actual)
-
-**B3. Write unit test for `useRBAC` hook** ✅ COMPLETE (2026-02-12)
-
-- All untested hook now tested (14/14 hooks tested)
-- 20 comprehensive tests covering all 4 roles, permissions, hierarchy, self-modification restrictions, memoization
-- Impact: Permission logic coverage complete
-- Commit: c272018
-- Effort: 30min (actual)
-
-**B4. Write component tests for critical untested components** (8-12h) [✅ COMPLETE]
-
-Completed (145 tests across 8 components):
-
-- ✅ `components/layout/Header.tsx` (18 tests) - navigation, auth states, mobile menu, skip link
-- ✅ `components/layout/Footer.tsx` (19 tests) - layout sections, links, locale handling, accessibility
-- ✅ `components/layout/LanguageSwitcher.tsx` (16 tests) - locale selection, RTL support, popover interaction
-- ✅ `components/home/SearchChips.tsx` (17 tests) - saved search display, click/remove interactions
-- ✅ `components/ui/OfflineBanner.tsx` (10 tests) - offline state, sync functionality, accessibility
-- ✅ `components/home/SearchControls.tsx` (22 tests) - category selection, location toggle, open now, accessibility
-- ✅ `components/offline/OfflineSync.tsx` (15 tests) - initial sync, requestIdleCallback, online events, offline prewarm
-- ✅ `components/home/SearchBar.tsx` (28 tests) - input interaction, save button, voice search, accessibility
-
-Component coverage improved from 28% to 38% (32/85 components tested).
-
-- Impact: Core UI interaction coverage complete
-- Commits: 1095e84 (first 5 components), 68fc85f (final 3 components)
-- Effort: L (8h actual)
-
-**B5. Add smoke tests for 40+ untested components** (10-15h)
-
-- Render + basic interaction + a11y assertions via `getByRole()`
-- Impact: Component coverage from 28% to ~60%
-- Effort: L
-
-**B6. Fix/stabilize 7 skipped E2E tests** (6-8h)
-
-- Update selectors in multi-lingual, offline, dashboard, about tests
-- Add Supabase mock for data-integrity tests in CI
-- Impact: E2E reliability
-- Effort: M
-
-**B7. Add error scenario / unhappy path tests** (6-8h)
-
-- Timeout, network failure, partial failure, malformed input tests
-- Impact: Resilience testing
-- Effort: M
-
-**B8. Integration test for feedback workflow** (3h)
-
-- End-to-end: submit → triage → resolve
-- Effort: S
-
-**B9. Integration test for service update request** (3h)
-
-- Partner submits → admin reviews → applies changes
-- Effort: S
-
-**Coverage Goal**: Achieve 75% statement coverage (current: 53.72%)
-
-#### Category C: i18n & Data Enrichment (~20h)
-
-**C1. Backfill missing i18n keys in 5 locales** ✅ COMPLETE (2026-02-12)
-
-- Added 13 keys per locale (not 2 as initially estimated): UserGuide (title, description), FAQ (title, description), Footer.quickLinks (resources, userGuide, faq), Search (searchHint + 5 help items)
-- All 7 locales now at 846/846 keys (100% parity)
-- Translations: Arabic (RTL), Simplified Chinese, Spanish, Portuguese, Punjabi (Gurmukhi)
-- Commit: 75285bf
-- Effort: 2h (actual)
-
-**C2. Generate French synthetic queries for 125 services** (3-4h)
-
-- 71/196 services have `synthetic_queries_fr`; 125 need them
-- Use `npm run translate:prompt` + LLM batch pipeline
-- Impact: French semantic search recall +40%
-- Effort: M
-
-**C3. Expand crisis keyword list** ✅ COMPLETE (2026-02-12)
-
-- Expanded from 34 to 50 keywords (47% increase)
-- Added suicide/self-harm: "suicidal ideation", "suicidal thoughts", "self-injury", etc.
-- Added French crisis terms: "je veux mourir", "me tuer", "violence conjugale", etc.
-- Added violence/safety: "sexual abuse", "threatened", "stalking", "human trafficking"
-- Impact: Broader crisis detection coverage
-- Commit: 6816797
-- Effort: 1.5h (actual)
-
-**C4. Expand synonym dictionary** ✅ COMPLETE (2026-02-12)
-
-- Expanded from 40 to 54 synonym groups (35% increase)
-- Added 14 new groups: housing (unhoused, eviction), financial (cerb, ei, tax), practical (id, transportation, childcare, clothing), seniors (home care, assisted living), common (free, appointment, interpreter)
-- Impact: Better recall for housing, financial, practical, seniors queries
-- Commit: 6816797
-- Effort: 1.5h (actual)
-- Impact: Search vocabulary coverage
-- Effort: S
-
-**C5. Populate `access_script_fr` for 196 services** (4-6h)
-
-- Use translation pipeline: export → LLM translate → parse → validate
-- Impact: French users get self-advocacy scripts
-- Effort: M
-
-**C6. Auto-generate `hours_text_fr` from structured hours** (2-3h)
-
-- Translate day names, format patterns
-- Impact: French hours descriptions
-- Effort: S
-
-#### Category D: Documentation Gaps (~15h)
-
-**D1. Create missing template files** ✅ COMPLETE (2026-02-12)
-
-- Created `docs/templates/post-mortem.md` with comprehensive incident review structure
-- Created `docs/templates/runbook-template.md` with operational runbook format
-- Both templates follow existing docs/templates/ patterns with YAML frontmatter
-- Impact: Consistent documentation for incidents and operational procedures
-- Commit: 7cae83e
-- Effort: 30min (actual)
-
-**D2. Create admin operations guide** (3-4h)
-
-- Observability dashboard usage, admin role setup
-- Effort: S
-
-**D3. Create developer onboarding guide** ✅ COMPLETE (2026-02-12)
-
-- Expanded CONTRIBUTING.md from 67 to 470+ lines
-- Added sections: quick start, philosophy, architecture, tech stack, directories, critical files, workflow, testing expectations, data management, code style, common pitfalls, boundaries
-- Impact: Comprehensive developer resource, reduces onboarding friction
-- Commit: 70c24df
-- Effort: 2h (actual)
-
-**D4. Add GDPR compliance documentation** (2-3h)
-
-- International user consideration alongside PIPEDA
-- Effort: S
-
-**D5. Create database migration procedures** (2-3h)
-
-- Schema change workflow, rollback procedures
-- Effort: S
-
-**D6. Document performance baselines** (2-3h)
-
-- Fill in 4 PENDING entries in `docs/testing/performance-baselines.md`
-- Effort: S
-
-#### Category E: CI/CD & DevOps (~10h)
-
-**E1. Add git tags for version milestones** ✅ COMPLETE (2026-02-12)
-
-- Created annotated tags for v10.0, v15.0, v17.0, v18.0, v19.0
-- Tags include detailed descriptions of each version's features
-- Tags NOT pushed to remote (local only for now)
-- Impact: Better version navigation and release tracking
-- Effort: 15min (actual)
-
-**E2. Add security header validation to CI** ✅ COMPLETE (2026-02-12)
-
-- Created custom validation script (scripts/validate-security-headers.ts)
-  - Validates all 7 security headers: CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, HSTS, Permissions-Policy, X-DNS-Prefetch-Control
-  - Checks CSP directives completeness (9 required directives)
-  - Validates HSTS max-age minimum threshold (1 year)
-  - Warns about known issues (unsafe-inline, unsafe-eval for WebLLM)
-  - Parses next.config.ts dynamically, no external dependencies
-- Added npm script: validate:security-headers
-- Integrated into CI workflow (static-analysis job)
-- Comprehensive documentation (docs/development/security-headers.md)
-  - Header explanations and rationale
-  - Modification procedures with examples
-  - Browser testing guide
-  - Troubleshooting section
-- Impact: Prevents security header misconfiguration, blocks deployments with weak headers
-- Commit: 90d436f
-- Effort: 2.5h (actual)
-
-**E3. Add coverage threshold enforcement** ✅ COMPLETE (2026-02-12)
-
-- CI now runs tests with coverage (npm run test:coverage)
-- Coverage reports uploaded as artifacts
-- Realistic thresholds set: 50% statements/lines, 80% branches/functions
-- Per-file thresholds for critical paths (search 90%, eligibility 95%)
-- Created comprehensive coverage strategy guide (docs/testing/coverage-strategy.md)
-- Impact: PRs that reduce coverage below thresholds now fail CI
-- Commit: c0390ac
-- Effort: 1h (actual)
-
-**E4. Create GitHub release notes** ✅ COMPLETE (2026-02-12)
-
-- Created generate-release-notes.js script for parsing CHANGELOG.md
-  - Extracts release notes for specific version
-  - Formats for GitHub with footer and links
-  - Supports JSON output and file export
-  - CLI with help, version, and options
-- Created release.yml workflow for automated releases
-  - Triggers on version tags (v*.*.\*)
-  - Generates notes from CHANGELOG.md automatically
-  - Creates GitHub release without manual intervention
-  - Uploads release notes as artifact (90 days retention)
-- Comprehensive release process guide (docs/development/release-process.md)
-  - Standard workflow, semantic versioning, changelog best practices
-  - Manual and automated release procedures
-  - Pre-release support (beta, alpha, RC)
-  - Release checklist and troubleshooting
-- Added npm script: release:notes for local generation
-- Impact: Automated release process, consistent release notes, reduced overhead
-- Commit: bedd64c
-- Effort: 2h (actual)
-
-**E5. Set up Dependabot/Renovate** ✅ COMPLETE (2026-02-12)
-
-- Enhanced .github/dependabot.yml with better grouping (production-patch, production-minor, dev-dependencies)
-- Increased PR limit from 5 to 10, added scheduled time (09:00 UTC Monday)
-- Created dependabot-auto-merge.yml workflow for safe auto-merge
-  - Auto-approves patch updates and dev minor updates
-  - Auto-merges patch updates after CI passes
-  - Comments on PRs requiring manual review
-- Comprehensive dependency management guide (docs/development/dependency-management.md)
-  - Review checklists, common scenarios, security update handling
-  - Troubleshooting, best practices, metrics
-- Impact: Reduces maintenance burden, estimated 2-3 hours/month saved
-- Commit: 8a46ef9
-- Effort: 1.5h (actual)
-
-**E6. Add bundle size tracking to CI** ✅ COMPLETE (2026-02-12)
-
-- Enhanced bundle-analysis.yml workflow with comparison and PR comments
-- Configured @next/bundle-analyzer in next.config.ts
-- Created compare-bundle-size.js script for baseline comparison
-- Automatic PR comments with detailed size diffs
-- 30-day artifact retention for historical tracking
-- Warning thresholds: +10KB or +5% increase
-- Created comprehensive bundle size tracking guide (docs/development/bundle-size-tracking.md)
-- Impact: Developers get immediate visibility into bundle size impact, preventing performance regressions
-- Commit: adbeb64
-- Effort: 1.5h (actual)
-
-#### Category F: Security & Privacy (~6h)
-
-**F1. Add OWASP dependency-check to CI** (2h)
-
-- Deeper scanning than `npm audit`
-- Effort: S
-
-**F2. Add automated CSP header validation** (2h)
-
-- E2E test for security headers
-- Effort: S
-
-**F3. Add rate limiting tests for all API endpoints** (2-3h)
-
-- Extend from search to feedback, analytics, admin routes
-- Effort: S
-
-#### Category G: Code Architecture (~10h)
-
-**G1. Move AI metadata from JSON to Supabase** (4-6h)
-
-- TODO at `lib/search/data.ts:72`
-- synthetic_queries → database
-- Effort: M
-
-**G2. Extract shared enhancer function** (2h)
-
-- TODO at `hooks/useServices.ts:115`
-- Effort: S
-
-**G3. Create data quality dashboard component** (4-6h)
-
-- Automated field completeness scores
-- Display in admin panel
-- Effort: M
-
-#### Success Criteria
-
-- ✅ Test coverage ≥75% statements (current: 53.72%)
-- ✅ Zero `console.*` calls in production code
-- ✅ All 7 E2E tests passing or documented as known limitations
-- ✅ French coverage: 100% core fields, 90%+ advanced fields
-- ✅ All ESLint disable directives justified or removed
-- ✅ Git tags for all major versions
-- ✅ Coverage enforcement in CI
-- ✅ Security scanning in CI
-- ✅ Documentation gaps closed (templates, guides, procedures)
+- Publish a fresh coverage snapshot and continue moving statement coverage toward 75%
+- Reduce skipped E2E tests or keep every remaining skip explicitly documented
+- Complete advanced French service-data coverage for the highest-value fields
+- Close the remaining documentation and operational procedure gaps
+- Tighten security and architecture follow-through without creating roadmap drift
 
 ---
 
@@ -884,7 +565,7 @@ Component coverage improved from 28% to 38% (32/85 components tested).
 
 **Status**: PAUSED — Revisit after v22.0 Gate 1 decision
 **Priority**: CRITICAL (Admissions Impact)
-**Total Effort**: ~85–120 hours (mix of autonomous + human-required work)
+**Total Effort**: ~85–120 hours (mixed implementation + human-required work)
 **Timeline**: 12 weeks (4 phases)
 **Dependencies**: v19.0 documentation complete ✅
 **Created**: 2026-02-25
@@ -897,14 +578,14 @@ Transform the project from "impressive prototype" to "deployed, validated, evide
 
 #### Strategic Insight
 
-The project has exceptional documentation, governance design, and technical infrastructure. The credibility gap is entirely in **execution** — no deployment, no users, no named partners, no verified services at L3. Every item prioritizes execution of existing systems over building new ones.
+The project now has a live deployment and strong documentation/governance infrastructure. The credibility gap is in **execution and external validation** — named partners, verified L3 services, outcome evidence, and documented professional adoption. Every item prioritizes execution of existing systems over building new ones.
 
 #### Phase Summary
 
 | Phase       | When       | Effort | Theme                                                                                                                                        |
 | ----------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Phase 0** | Today      | <2h    | Immediate housekeeping (name on project, EDIA fix, git tags, ABS gap analysis)                                                               |
-| **Phase 1** | Week 1     | 15–20h | Pre-deployment critical path (crisis test protocol, crisis-path component tests, geocoding, deploy, demo video)                              |
+| **Phase 1** | Week 1     | 15–20h | Early production hardening (crisis test protocol, crisis-path component tests, geocoding, demo video)                                        |
 | **Phase 2** | Weeks 2–4  | 25–35h | Governance execution (first verification cycle, L3 outreach, French translations, impact page, project brief)                                |
 | **Phase 3** | Weeks 4–8  | 20–30h | External validation (advisory board, professional feedback sessions, community meeting, accessibility audit, published compliance summaries) |
 | **Phase 4** | Weeks 8–12 | 25–35h | Evidence portfolio (partner endorsement, service gap analysis, volunteer pilot, grant application, final ABS)                                |
@@ -914,7 +595,7 @@ The project has exceptional documentation, governance design, and technical infr
 - **Crisis test protocol is a deployment blocker** — the most ethically significant feature must be verified before going live
 - **Impact page framed around governance metrics, not usage** — low early traffic would backfire; data quality metrics are compelling on day 1
 - **User testing reframed as professional consultations** — front-line social workers (not students), framed as consultation (not research) to avoid ethics review requirements
-- **French translations require native speaker review** — AI-translated crisis access scripts for vulnerable populations create liability without quality review
+- **French translations require native speaker review** — unreviewed translated crisis access scripts for vulnerable populations create liability
 - **Partner endorsement at Week 8+** — must deploy, achieve L3s, and build relationships first
 - **Component testing scoped to crisis path** — safety-driven engineering decision, not a coverage percentage target
 
@@ -922,7 +603,7 @@ The project has exceptional documentation, governance design, and technical infr
 
 **Production Evidence:**
 
-- [ ] Live production URL with custom domain
+- [x] Live production URL with custom domain
 - [ ] Crisis detection formally tested (20 scenarios documented)
 - [ ] ≥85% geocoding coverage (up from 70%)
 - [ ] Public status page operational
