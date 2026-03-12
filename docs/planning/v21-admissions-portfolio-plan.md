@@ -1,12 +1,12 @@
 # v21.0: Admissions Portfolio & Production Launch Plan
 
-**Status**: PLANNED — Ready to Begin
+**Status**: PARTIALLY IMPLEMENTED — retained as admissions backlog; active execution is superseded by v22.0
 **Priority**: CRITICAL
 **Total Effort**: ~85–120 hours (mix of autonomous + human-required work)
 **Timeline**: 12 weeks (4 phases)
 **Dependencies**: v19.0 launch preparation documentation (complete ✅)
 **Created**: 2026-02-25
-**Last Updated**: 2026-02-25
+**Last Updated**: 2026-03-11
 
 ---
 
@@ -25,13 +25,13 @@ This plan was developed through a structured three-pass analysis:
 
 **Purpose**: HelpBridge is a privacy-first, manually-curated social services search engine for Kingston, ON — covering food, housing, crisis, and health services for vulnerable residents.
 **Target users**: Kingston residents in acute need, social workers, community organizations, and vetted service partners.
-**Maturity**: Technically sophisticated (v18.0) — 974 passing tests, WCAG 2.1 AA, 7 languages, production observability, circuit breaker patterns, privacy-by-design — but pre-production and undeployed. No live URL, no real users, no usage metrics.
-**Evidence of use**: None verifiable. 196 hand-curated services, 0 at L3 (provider-confirmed), advisory board charter written but 0 members recruited, all partner/user-testing work is pending execution.
-**Biggest gaps**: (1) No deployment/adoption, (2) zero real-world partnerships or endorsements, (3) advisory board exists only on paper, (4) no executed user research, (5) significant data quality holes (70% geocoded, 18% email coverage, 0% L3), (6) no external validation or community recognition.
+**Maturity**: Technically sophisticated and now publicly deployed at `https://helpbridge.ca` on the direct-VPS path, with production observability, circuit breaker patterns, privacy-by-design, and 7 locales. Real-world adoption evidence is still limited.
+**Evidence of use**: Public live URL plus manual operations and smoke verification are now in place. 196 hand-curated services, 0 at L3 (provider-confirmed), advisory board charter written but 0 members recruited, and partner/user-testing work remains largely pending execution.
+**Biggest gaps**: (1) limited adoption evidence, (2) zero real-world partnerships or endorsements, (3) advisory board exists only on paper, (4) no executed user research, (5) significant data quality holes (70% geocoded, 18% email coverage, 0% L3), (6) no external validation or community recognition.
 
 ### Strategic Insight
 
-The project has exceptional documentation, governance design, and technical infrastructure. The credibility gap is entirely in **execution** — no deployment, no users, no named partners, no verified services at L3. Every item in this plan prioritizes execution of existing systems over building new ones. The next action should be deploy, then partner outreach, then user research — in that order.
+The project has exceptional documentation, governance design, and technical infrastructure. The credibility gap is now concentrated in **execution after launch** — limited usage evidence, no named partners, and no verified services at L3. The next action should be partner outreach, verification cycles, and user research, with v22.0 deciding how aggressively that work should proceed.
 
 ---
 
@@ -103,13 +103,12 @@ The project has exceptional documentation, governance design, and technical infr
 - **Why**: 58/196 services are invisible in geographic "near me" results. This is a direct equity gap for people without transportation. Target: 85–90% coverage (not 95% — some absences are intentional).
 - **Effort**: 2–4h
 
-### P1-4. Deploy to production
+### P1-4. Public deployment baseline (completed 2026-03-11)
 
-- **What**: Deploy to Vercel (free tier, project is already Vercel-configured). Configure custom domain (`helpbridge.ca`). Set environment variables in Vercel dashboard. Verify all 7 locales.
-- **Why**: Every other item on this plan is blocked or diminished without a live URL. Deployment is not primarily about traffic — it's about the irreversible act of making yourself publicly accountable.
-- **Critical addition**: Prepare a distribution list of 5–10 people (social workers, community contacts, friends in relevant fields) to share the URL with on launch day. Deploy without concurrent distribution = a repo at a URL, not a launched tool.
-- **Effort**: 2–4h + 1 day DNS propagation
-- **Prereqs**: Domain purchase (~$15/yr)
+- **What happened**: The production baseline is now live at `https://helpbridge.ca` on the direct-VPS path documented in `docs/deployment/direct-vps-proof.md`.
+- **Why it mattered**: The project now has a real public accountability surface and an operational release path from committed source, removing the largest "undeployed project" credibility gap.
+- **Remaining follow-through**: Prepare a deliberate distribution list and outreach plan before treating the deployment as a broader launch event.
+- **Evidence**: Public URL, VPS release helper, production checklist, and public health verification.
 - **CanMEDS**: Health Advocate, Leader
 
 ### P1-5. Record demo video

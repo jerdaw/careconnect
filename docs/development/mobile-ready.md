@@ -86,7 +86,7 @@ v15.0 establishes the technical foundation for native mobile apps without requir
 ### Key Features
 
 - **Offline-First**: IndexedDB caching of all services and embeddings.
-- **Push Notifications**: Web push support via OneSignal (native-ready).
+- **Push Notifications**: Optional web push via OneSignal when configured; disabled by default otherwise.
 - **Mobile-Optimized API**: Bulk export endpoints and deep linking configuration.
 
 ## Testing Offline Features
@@ -107,22 +107,24 @@ Since v15.0 does not include native app builds, testing is primarily done via th
 
 ## Push Notifications Setup
 
-We use OneSignal for push notifications.
+Push notifications are optional. If OneSignal is not configured, the settings UI
+stays hidden and the client does not initialize the SDK.
 
 ### Prerequisites
 
-- **OneSignal Account**: You need access to the HelpBridge OneSignal dashboard.
+- **OneSignal Account**: Only needed if you actually want web push notifications.
 - **Environment Variables**:
-  - `ONESIGNAL_APP_ID`: The App ID from OneSignal project settings.
+  - `NEXT_PUBLIC_ONESIGNAL_APP_ID`: The public App ID from OneSignal project settings.
   - `ONESIGNAL_REST_API_KEY`: (Server-side only) For sending notifications.
 
 ### Web Push Testing
 
-1. Ensure you are `localhost` or an HTTPS domain.
-2. Wait for the "Get Service Updates?" prompt (or trigger it in Settings).
-3. Allow notifications.
-4. From the OneSignal dashboard (or HelpBridge Admin), send a test message.
-5. Verify the notification appears on your device/desktop.
+1. Set `NEXT_PUBLIC_ONESIGNAL_APP_ID` and the required server-side notification keys.
+2. Ensure you are `localhost` or an HTTPS domain.
+3. Wait for the "Get Service Updates?" prompt (or trigger it in Settings).
+4. Allow notifications.
+5. From the OneSignal dashboard (or HelpBridge Admin), send a test message.
+6. Verify the notification appears on your device/desktop.
 
 ## Capacitor Configuration
 

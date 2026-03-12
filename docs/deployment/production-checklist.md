@@ -22,6 +22,7 @@ GitHub Actions posture:
 - CI runs automatically on push/PR.
 - The `Production Smoke` workflow is the manual GitHub-side public verification step.
 - Production deploys remain manual on the VPS using `scripts/deploy-vps-proof.sh`.
+- `scripts/release-vps-proof.sh` is the recommended local helper for staging a committed release onto the VPS before deployment.
 
 If you intentionally need the historical Vercel path, see the root
 [`DEPLOY.md`](../../DEPLOY.md). Do not treat that file as the production
@@ -59,7 +60,7 @@ preserve the helper-function-based recursion repair captured in:
 Verify the VPS env file contains the required runtime values:
 
 ```bash
-sudo grep -E '^(NEXT_PUBLIC_SUPABASE_URL|NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY|NEXT_PUBLIC_APP_URL|NEXT_PUBLIC_BASE_URL|NEXT_PUBLIC_SEARCH_MODE|NEXT_PUBLIC_ONESIGNAL_APP_ID|NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING)=' \
+sudo grep -E '^(NEXT_PUBLIC_SUPABASE_URL|NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY|NEXT_PUBLIC_APP_URL|NEXT_PUBLIC_BASE_URL|NEXT_PUBLIC_SEARCH_MODE|NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING)=' \
   /etc/projects-merge/env/kingston-care-connect-web.env
 ```
 
@@ -72,9 +73,10 @@ Important:
 
 - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` must be available at both image build time and container runtime.
 - `scripts/deploy-vps-proof.sh` is the supported path because it passes the required public values into the Docker build before the container starts.
+- `scripts/deploy-vps-proof.sh` also sets `APP_VERSION` so `/api/v1/health` can report the staged release revision even when `.git/` is not present on the VPS.
 
-Optional integrations such as `SLACK_WEBHOOK_URL`, `AXIOM_*`, and `OPENAI_API_KEY`
-may be unset if they are not in active use.
+Optional integrations such as `SLACK_WEBHOOK_URL`, `AXIOM_*`, `OPENAI_API_KEY`,
+and `NEXT_PUBLIC_ONESIGNAL_APP_ID` may be unset if they are not in active use.
 
 ## 4. Release Staging
 
@@ -87,6 +89,13 @@ Example:
 ```bash
 readlink -f /srv/apps/kingston-care-connect-web/current
 ls /srv/apps/kingston-care-connect-web/current/scripts/deploy-vps-proof.sh
+```
+
+From a local workstation you can stage and deploy the current committed tree in
+one step:
+
+```bash
+./scripts/release-vps-proof.sh haadmin@your-vps --deploy
 ```
 
 ## 5. Deploy

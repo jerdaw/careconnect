@@ -2,7 +2,7 @@
 
 **Version:** 1.0
 **Date Created:** 2026-02-09
-**Last Updated:** 2026-02-09
+**Last Updated:** 2026-03-11
 **Purpose:** Clear procedures for reverting problematic deployments
 
 ---
@@ -152,27 +152,24 @@ This document provides step-by-step rollback procedures for different failure sc
 - [ ] Post in Slack: "🚨 SEV-1: Rolling back deployment - [brief description]"
 - [ ] Start timer for accountability
 
-**2. Access Vercel Dashboard (1 minute)**
+**2. Identify the last known good VPS release (1 minute)**
 
-- [ ] Navigate to https://vercel.com/[your-org]/helpbridge-ca
-- [ ] Click on "Deployments" tab
-- [ ] Identify current (failing) deployment
-- [ ] Identify previous (working) deployment
+- [ ] SSH to the VPS
+- [ ] List `/srv/apps/kingston-care-connect-web/releases/`
+- [ ] Identify the previous known-good release directory
+- [ ] Confirm the current symlink target before changing it
 
 **3. Initiate Rollback (2 minutes)**
 
-- [ ] Click on previous working deployment
-- [ ] Click "Promote to Production" or "Redeploy"
-- [ ] Confirm the action
-- [ ] Wait for deployment to complete (usually <2 min)
-
-**Alternative: Via Vercel CLI**
+- [ ] Repoint `current` to the previous release
+- [ ] Re-run the VPS deploy script with the production env file
+- [ ] Wait for the container replacement to complete
 
 ```bash
-# If dashboard is slow
-vercel rollback
-# Or specify deployment
-vercel rollback [deployment-url]
+ln -sfn /srv/apps/kingston-care-connect-web/releases/<previous-release> \
+  /srv/apps/kingston-care-connect-web/current
+cd /srv/apps/kingston-care-connect-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
 ```
 
 **4. Verify Rollback Success (1 minute)**
@@ -285,8 +282,9 @@ vercel rollback [deployment-url]
 **3. Initiate Rollback (3 minutes)**
 
 - [ ] Post in Slack: "⚠️ SEV-2: Rolling back - high error rate"
-- [ ] Access Vercel dashboard
-- [ ] Promote previous working deployment
+- [ ] SSH to the VPS
+- [ ] Repoint `current` to the previous working release
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env`
 - [ ] Wait for completion
 
 **4. Verify Rollback (3 minutes)**
@@ -407,8 +405,9 @@ vercel rollback [deployment-url]
 **4. If Rolling Back: Execute Rollback (5 minutes)**
 
 - [ ] Post in Slack: "⚠️ SEV-3: Rolling back - performance degradation"
-- [ ] Access Vercel dashboard
-- [ ] Promote previous deployment
+- [ ] SSH to the VPS
+- [ ] Repoint `current` to the previous release
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env`
 - [ ] Monitor latency recovery
 
 **5. Verify Performance Restored (5 minutes)**
@@ -448,36 +447,33 @@ vercel rollback [deployment-url]
 
 ## Emergency Rollback via CLI
 
-**If Vercel dashboard is unavailable:**
+**If you do not have your usual shell session open on the VPS:**
 
 ### Prerequisites
 
 ```bash
-# Install Vercel CLI if not already installed
-npm install -g vercel
-
-# Login
-vercel login
+ssh haadmin@your-vps
 ```
 
 ### Rollback Command
 
 ```bash
-# List recent deployments
-vercel ls
+# List recent releases
+ls -1 /srv/apps/kingston-care-connect-web/releases
 
-# Rollback to previous deployment
-vercel rollback
-
-# Or specify a deployment
-vercel rollback https://helpbridge-ca-abc123.vercel.app
+# Repoint current to the previous release and redeploy
+ln -sfn /srv/apps/kingston-care-connect-web/releases/<previous-release> \
+  /srv/apps/kingston-care-connect-web/current
+cd /srv/apps/kingston-care-connect-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
 ```
 
 ### Verify Rollback
 
 ```bash
-# Check current production deployment
-vercel ls --prod
+# Check running container and health
+docker ps --filter name=kingston-care-connect-web
+curl http://127.0.0.1:3300/api/v1/health
 
 # Test health endpoint
 curl https://helpbridge.ca/api/v1/health
@@ -752,7 +748,7 @@ Track these for continuous improvement:
 
 **External:**
 
-- Vercel Support: support@vercel.com
+- Hetzner console/support (host access issues only)
 - Supabase Support: support@supabase.io
 
 ---
@@ -773,6 +769,6 @@ When in doubt, roll back.
 
 ---
 
-**Last Updated:** 2026-02-09
+**Last Updated:** 2026-03-11
 **Version:** 1.0
 **Next Review:** After first rollback or 2026-03-09

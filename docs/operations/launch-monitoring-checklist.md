@@ -2,7 +2,7 @@
 
 **Version:** 1.0
 **Date Created:** 2026-02-09
-**Last Updated:** 2026-02-09
+**Last Updated:** 2026-03-11
 **Purpose:** Systematic monitoring procedures for safe production launch
 
 ---
@@ -35,9 +35,9 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 ### 1. Deployment Verification
 
 - [ ] **Confirm deployment successful**
-  - Check Vercel deployment status: ✅ "Ready"
-  - Verify build completed without errors
-  - Check deployment logs for warnings
+  - Confirm `/srv/apps/kingston-care-connect-web/current` points at the intended release
+  - Verify `docker ps` shows `kingston-care-connect-web` up on `127.0.0.1:3300`
+  - Check container logs for warnings or crash loops
 
 - [ ] **Verify production URL accessible**
   - Visit production URL in browser

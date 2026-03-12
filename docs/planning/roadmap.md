@@ -2,13 +2,13 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-09
+> **Last Updated**: 2026-03-11
 > **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: 1065 passing, 24 skipped (latest local run)
+- **Tests**: 1074 passing, 24 skipped (latest full local run)
   - Branch: Coverage metrics pending update | Functions: Pending | Statements: Pending
   - Gaps: 56/85 components untested (34% coverage - up from 28%), 4 untested utility functions (geo, fuzzy, synonyms, query-expander)
   - 7 E2E tests skipped in `tests/e2e/**` (documented baseline: [E2E Skip Baseline (2026-03-09)](../testing/e2e-skip-baseline-2026-03-09.md))
@@ -22,13 +22,14 @@
   - French Coverage: 100% core (name_fr, description_fr), 0% advanced (access_script_fr, hours_text_fr, eligibility_notes_fr)
   - 5 non-EN/FR locales missing ~2 i18n keys each
 - **Offline-Ready**: PWA with IndexedDB fallback and background sync
+- **Push Notifications**: Optional only; UI and SDK remain disabled unless OneSignal is explicitly configured
 - **Observability**: Production monitoring (Axiom), automated alerting (Slack, 6 alert types), SLO monitoring (PROVISIONAL targets), 5 operational runbooks, deployment procedures, incident response plan
 - **Data Quality**:
   - Coordinates: 70.4% (58/196 missing — impacts geolocation)
   - Email: 17.9% (161/196 missing — contact channel gap)
   - Identity Tags: 44.4% (109/196 missing — personalization limited)
   - French Synthetic Queries: 36.2% (125/196 missing — semantic search gap)
-- **Deployment Status**: Pre-production (not deployed, no real-world usage metrics)
+- **Deployment Status**: Live on the direct-VPS path at `https://helpbridge.ca`; real-world usage metrics remain early and partner validation is still pending
 
 ---
 
@@ -98,20 +99,20 @@ Reposition HelpBridge from potential directory duplication to measurable last-mi
 
 ### v19.0: Launch Preparation ⏸️ ON HOLD (Pending v22 Gate 0)
 
-**Status**: All Documentation & Automation Complete ✅ - Execution Deferred Pending v22 Strategic Gate
+**Status**: Baseline deployment complete; remaining launch-prep execution deferred pending v22 Strategic Gate
 **Priority**: HIGH
 **Total Effort**: ~30 hours (100% complete)
 **User Execution Effort**: ~30-38 hours over 7+ weeks
 **Timeline**: 7-8 weeks (Phase 1 QA → beta testing → launch)
 **Completed**: 2026-02-10 (automation & documentation)
 
-Finalize all pre-launch preparations to safely transition from development to production with real users.
+Keep launch-prep procedures ready while the live VPS deployment remains stable and v22 determines whether broader launch execution should proceed.
 
 ---
 
 **📋 USER ACTION REQUIRED:**
 
-**All documentation is complete. You now need to execute the procedures.**
+**The public deployment baseline is live. The remaining v19 work is manual QA, beta execution, and launch operations when v22 permits.**
 
 **👉 Start here: [v19.0 User Execution Guide](v19-0-user-execution-guide.md)**
 
@@ -119,7 +120,7 @@ Finalize all pre-launch preparations to safely transition from development to pr
 
 1. **Phase 1 QA** (4-6 hours) → Follow `docs/operations/final-qa-procedures.md`
 2. **Beta Testing** (4 weeks, 15-20 min/day) → Follow `docs/operations/beta-testing-plan.md`
-3. **Full Launch** (After scorecard >4.0) → Follow `docs/operations/launch-monitoring-checklist.md`
+3. **Launch operations** (when resumed) → Follow `docs/operations/launch-monitoring-checklist.md`
 
 **Detailed step-by-step walkthrough:** [v19.0 User Execution Guide](v19-0-user-execution-guide.md)
 

@@ -37,8 +37,9 @@ This document provides detailed procedures for final quality assurance before la
 **Checklist:**
 
 - [ ] **Access production environment**
-  - Log into Vercel dashboard
-  - Navigate to project → Settings → Environment Variables
+  - SSH to the VPS
+  - Review `/etc/projects-merge/env/kingston-care-connect-web.env`
+  - Confirm the staged release under `/srv/apps/kingston-care-connect-web/current`
 
 - [ ] **Verify core variables present:**
   - [ ] `NEXT_PUBLIC_SUPABASE_URL` (public Supabase URL)
@@ -55,8 +56,9 @@ This document provides detailed procedures for final quality assurance before la
 - [ ] **Verify optional variables (if used):**
   - [ ] `TWILIO_ACCOUNT_SID` (phone validation)
   - [ ] `TWILIO_AUTH_TOKEN` (phone validation)
-  - [ ] `NEXT_PUBLIC_VAPID_PUBLIC_KEY` (push notifications)
-  - [ ] `VAPID_PRIVATE_KEY` (push notifications)
+  - [ ] `NEXT_PUBLIC_ONESIGNAL_APP_ID` (only if push notifications are enabled)
+  - [ ] `NEXT_PUBLIC_VAPID_PUBLIC_KEY` (only if push notifications are enabled)
+  - [ ] `VAPID_PRIVATE_KEY` (only if push notifications are enabled)
 
 - [ ] **Cross-reference with `.env.example`**
   - Open `.env.example` in codebase

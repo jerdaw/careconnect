@@ -31,6 +31,7 @@ ALLOWED_FILES=(
   "tsconfig.json"
   "next.config.ts"
   "middleware.ts"
+  "Dockerfile"
   "eslint.config.mjs"
   "prettier.config.js"
   "postcss.config.js"

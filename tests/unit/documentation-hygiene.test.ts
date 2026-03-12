@@ -1,0 +1,51 @@
+/** @vitest-environment node */
+import { describe, expect, it } from "vitest"
+import { lstatSync, readFileSync, readlinkSync } from "node:fs"
+import path from "node:path"
+
+function repoRoot() {
+  return process.cwd()
+}
+
+function readDoc(relPath: string) {
+  return readFileSync(path.join(repoRoot(), relPath), "utf8")
+}
+
+describe("documentation hygiene", () => {
+  it("keeps agent compatibility files as relative symlinks", () => {
+    for (const relPath of ["CLAUDE.md", "GEMINI.md"]) {
+      const absPath = path.join(repoRoot(), relPath)
+      expect(lstatSync(absPath).isSymbolicLink()).toBe(true)
+      expect(readlinkSync(absPath)).toBe("AGENTS.md")
+    }
+  })
+
+  it("tracks the live VPS deployment in the roadmap", () => {
+    const roadmap = readDoc("docs/planning/roadmap.md")
+
+    expect(roadmap).toContain("https://helpbridge.ca")
+    expect(roadmap).toContain("Live on the direct-VPS path")
+    expect(roadmap).not.toContain("Pre-production (not deployed")
+  })
+
+  it("treats push notifications as optional in active operational docs", () => {
+    const productionChecklist = readDoc("docs/deployment/production-checklist.md")
+    const mobileReady = readDoc("docs/development/mobile-ready.md")
+
+    expect(productionChecklist).toContain("NEXT_PUBLIC_ONESIGNAL_APP_ID` may be unset")
+    expect(productionChecklist).not.toContain(
+      "NEXT_PUBLIC_SEARCH_MODE|NEXT_PUBLIC_ONESIGNAL_APP_ID|NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING"
+    )
+    expect(mobileReady).toContain("disabled by default")
+  })
+
+  it("removes Vercel rollback instructions from active launch runbooks", () => {
+    const monitoring = readDoc("docs/operations/launch-monitoring-checklist.md")
+    const rollback = readDoc("docs/operations/launch-rollback-procedures.md")
+
+    expect(monitoring).not.toContain("Vercel deployment status")
+    expect(rollback).not.toContain("vercel rollback")
+    expect(rollback).toContain("/srv/apps/kingston-care-connect-web/releases")
+    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env")
+  })
+})
