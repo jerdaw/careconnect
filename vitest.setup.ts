@@ -1,14 +1,31 @@
 import "@testing-library/jest-dom"
 import { cleanup } from "@testing-library/react"
-import { afterEach, vi } from "vitest"
+import { afterEach, beforeEach, vi } from "vitest"
+import type { MockInstance } from "vitest"
+
+const silentConsoleMethods = ["log", "info", "warn", "error", "debug"] as const
+const shouldSilenceTestConsole = process.env.VITEST_VERBOSE_LOGS !== "1"
+const consoleSilencers: Partial<Record<(typeof silentConsoleMethods)[number], MockInstance>> = {}
 
 // Mock Supabase Env Vars for Testing
 process.env.NEXT_PUBLIC_SUPABASE_URL = "https://mock.supabase.co"
 process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "mock-key"
 
+beforeEach(() => {
+  if (!shouldSilenceTestConsole) return
+
+  for (const method of silentConsoleMethods) {
+    consoleSilencers[method] = vi.spyOn(console, method).mockImplementation(() => {})
+  }
+})
+
 // Cleanup after each test
 afterEach(() => {
   cleanup()
+  for (const method of silentConsoleMethods) {
+    consoleSilencers[method]?.mockRestore()
+    delete consoleSilencers[method]
+  }
   vi.clearAllMocks()
 })
 
