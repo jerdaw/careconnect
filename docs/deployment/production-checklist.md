@@ -17,6 +17,12 @@ This is the active production checklist for HelpBridge on the direct-VPS path.
 - **Private bind:** `127.0.0.1:3300`
 - **Env file:** `/etc/projects-merge/env/kingston-care-connect-web.env`
 
+Shared-VPS ownership note:
+
+- This checklist is canonical for HelpBridge production deploy, verify, and rollback steps.
+- Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
+- Boundary reference: `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+
 GitHub Actions posture:
 
 - CI runs automatically on push/PR.

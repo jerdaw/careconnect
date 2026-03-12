@@ -9,6 +9,12 @@ tags: [deployment, vps, docker, caddy, production, supabase, rls]
 
 This document describes the **current active direct-VPS deployment path** for HelpBridge.
 
+Shared-VPS ownership note:
+
+1. This document is canonical for the HelpBridge direct-VPS runtime shape.
+2. Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
+3. Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default boundary reference.
+
 Current state:
 
 1. the app is packaged as a Docker container,

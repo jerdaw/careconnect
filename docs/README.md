@@ -1,5 +1,10 @@
 # Documentation Index
 
+Shared VPS facts that are not specific to HelpBridge alone are canonical in:
+
+- `/home/jer/repos/platform-ops`
+- `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+
 ## Quick Links
 
 - [Architecture](architecture.md) - System design, data flow, and core concepts

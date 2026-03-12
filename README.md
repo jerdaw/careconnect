@@ -31,6 +31,21 @@ We maintain a hand-verified dataset of the **196 highest-impact services** avail
 5. Shared VPS inventory, roadmap, and cross-project runbooks now live in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`).
 6. Push notifications are optional and stay disabled unless OneSignal is explicitly configured.
 
+## Shared documentation boundary
+
+1. `platform-ops/` is the default home for shared VPS facts that are not specific to HelpBridge alone:
+   - shared host access posture
+   - shared ingress ownership
+   - cross-project service inventory
+   - shared host path conventions
+   - host-wide hardening and maintenance state
+2. `helpbridge/` owns the HelpBridge-specific subset:
+   - application behavior and user-facing governance
+   - HelpBridge runtime and environment contract
+   - HelpBridge deploy, verification, and rollback steps
+3. Boundary reference:
+   - `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+
 ## Current Features
 
 ### Production Observability (v18.0)

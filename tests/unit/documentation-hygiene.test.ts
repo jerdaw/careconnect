@@ -48,4 +48,23 @@ describe("documentation hygiene", () => {
     expect(rollback).toContain("/srv/apps/kingston-care-connect-web/releases")
     expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env")
   })
+
+  it("points shared VPS facts to platform-ops in active entry points", () => {
+    const readme = readDoc("README.md")
+    const agents = readDoc("AGENTS.md")
+    const docsIndex = readDoc("docs/README.md")
+    const productionChecklist = readDoc("docs/deployment/production-checklist.md")
+    const directVpsProof = readDoc("docs/deployment/direct-vps-proof.md")
+
+    for (const content of [readme, agents, docsIndex, productionChecklist, directVpsProof]) {
+      expect(content).toContain("/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md")
+    }
+
+    expect(productionChecklist).toContain(
+      "Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`."
+    )
+    expect(directVpsProof).toContain(
+      "Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`."
+    )
+  })
 })

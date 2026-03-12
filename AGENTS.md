@@ -35,10 +35,11 @@ You are a **governance-aware developer** working on a privacy-first social servi
 - `docs/llms.txt` → Consolidated context for AI agents
 - `docs/api/openapi.yaml` → OpenAPI 3.0 specification
 - `/home/jer/repos/platform-ops` → Shared VPS inventory, roadmap, handoff, and cross-project runbooks
+- `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` → Canonical shared-VPS documentation boundary
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
-**Cross-project ops note:** HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
+**Cross-project ops note:** HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
 
 ---
 
