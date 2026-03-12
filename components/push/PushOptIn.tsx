@@ -8,9 +8,15 @@ import { Bell, BellOff, Loader2, AlertCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 export function PushOptIn() {
-  const { isSupported, isSubscribed, permission, subscribe, unsubscribe } = usePushNotifications({ enabled: true })
+  const { isConfigured, isSupported, isSubscribed, permission, subscribe, unsubscribe } = usePushNotifications({
+    enabled: true,
+  })
   const [isLoading, setIsLoading] = useState(false)
   const t = useTranslations("Settings.Notifications")
+
+  if (!isConfigured) {
+    return null
+  }
 
   const handleToggle = async () => {
     setIsLoading(true)

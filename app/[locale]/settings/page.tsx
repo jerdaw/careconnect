@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { PushOptIn } from "@/components/push/PushOptIn"
+import { isPushNotificationsConfigured } from "@/hooks/usePushNotifications"
 import { useNetworkStatus } from "@/hooks/useNetworkStatus"
 import { Wifi, WifiOff } from "lucide-react"
 import { Card } from "@/components/ui/card"
@@ -10,6 +11,7 @@ import { PageHeader } from "@/components/ui/page-header"
 export default function SettingsPage() {
   const t = useTranslations("Settings")
   const { isOnline } = useNetworkStatus()
+  const pushNotificationsConfigured = isPushNotificationsConfigured()
 
   return (
     <main id="main-content" tabIndex={-1} className="container max-w-2xl py-10 focus:outline-none">
@@ -28,10 +30,12 @@ export default function SettingsPage() {
         </section>
 
         {/* Notifications Section */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold">{t("Notifications.title")}</h2>
-          <PushOptIn />
-        </section>
+        {pushNotificationsConfigured && (
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">{t("Notifications.title")}</h2>
+            <PushOptIn />
+          </section>
+        )}
       </div>
     </main>
   )

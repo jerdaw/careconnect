@@ -26,7 +26,7 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
   const tAccess = useTranslations("Accessibility")
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { isSupported, isSubscribed, subscribe, unsubscribe } = usePushNotifications({ enabled: open })
+  const { isConfigured, isSupported, isSubscribed, subscribe, unsubscribe } = usePushNotifications({ enabled: open })
 
   const toggleSubscription = async () => {
     setLoading(true)
@@ -151,36 +151,37 @@ export function ProfileSettings({ variant = "ghost", size = "sm", showText = tru
               </div>
             </section>
 
-            <section>
-              <h4 className="mb-3 text-xs font-semibold tracking-wider text-neutral-500 uppercase">
-                {t("Notifications.title")}
-              </h4>
+            {isConfigured && (
+              <section>
+                <h4 className="mb-3 text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                  {t("Notifications.title")}
+                </h4>
 
-              {/* Master Toggle */}
-              <div className="mb-3 flex items-center justify-between rounded-lg bg-neutral-50 p-2 dark:bg-neutral-800">
-                <div className="flex items-center gap-2">
-                  {isSubscribed ? (
-                    <Bell className="text-primary-600 h-4 w-4" />
-                  ) : (
-                    <BellOff className="h-4 w-4 text-neutral-500" />
-                  )}
-                  <span className="text-sm font-medium">{t("Notifications.enable")}</span>
+                <div className="mb-3 flex items-center justify-between rounded-lg bg-neutral-50 p-2 dark:bg-neutral-800">
+                  <div className="flex items-center gap-2">
+                    {isSubscribed ? (
+                      <Bell className="text-primary-600 h-4 w-4" />
+                    ) : (
+                      <BellOff className="h-4 w-4 text-neutral-500" />
+                    )}
+                    <span className="text-sm font-medium">{t("Notifications.enable")}</span>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant={isSubscribed ? "default" : "secondary"}
+                    className="h-7 text-xs"
+                    onClick={toggleSubscription}
+                    disabled={!isSupported || loading}
+                  >
+                    {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : isSubscribed ? "On" : "Off"}
+                  </Button>
                 </div>
-                <Button
-                  size="sm"
-                  variant={isSubscribed ? "default" : "secondary"}
-                  className="h-7 text-xs"
-                  onClick={toggleSubscription}
-                  disabled={!isSupported || loading}
-                >
-                  {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : isSubscribed ? "On" : "Off"}
-                </Button>
-              </div>
 
-              {!isSupported && (
-                <p className="mb-2 text-xs text-amber-600">Push notifications not supported on this browser.</p>
-              )}
-            </section>
+                {!isSupported && (
+                  <p className="mb-2 text-xs text-amber-600">Push notifications not supported on this browser.</p>
+                )}
+              </section>
+            )}
 
             <section>
               <h4 className="mb-3 text-xs font-semibold tracking-wider text-neutral-500 uppercase">

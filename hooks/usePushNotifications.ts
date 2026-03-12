@@ -10,6 +10,10 @@ interface UsePushNotificationsOptions {
   enabled?: boolean
 }
 
+export function isPushNotificationsConfigured() {
+  return Boolean(env.NEXT_PUBLIC_ONESIGNAL_APP_ID)
+}
+
 export function usePushNotifications({ enabled = true }: UsePushNotificationsOptions = {}) {
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [isSupported, setIsSupported] = useState(false)
@@ -17,6 +21,7 @@ export function usePushNotifications({ enabled = true }: UsePushNotificationsOpt
   const initRef = useRef(false)
   const initPromiseRef = useRef<Promise<void> | null>(null)
   const oneSignalRef = useRef<OneSignalClient | null>(null)
+  const isConfigured = isPushNotificationsConfigured()
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -24,11 +29,10 @@ export function usePushNotifications({ enabled = true }: UsePushNotificationsOpt
     }
 
     const hasBrowserSupport = "serviceWorker" in navigator && "PushManager" in window
-    const hasAppId = Boolean(env.NEXT_PUBLIC_ONESIGNAL_APP_ID)
 
-    setIsSupported(hasBrowserSupport && hasAppId)
+    setIsSupported(hasBrowserSupport && isConfigured)
     setPermission(Notification.permission)
-  }, [])
+  }, [isConfigured])
 
   const initializeOneSignal = async () => {
     if (typeof window === "undefined" || initRef.current) {
@@ -47,15 +51,16 @@ export function usePushNotifications({ enabled = true }: UsePushNotificationsOpt
           return
         }
 
-        if (!env.NEXT_PUBLIC_ONESIGNAL_APP_ID) {
+        const appId = env.NEXT_PUBLIC_ONESIGNAL_APP_ID
+
+        if (!appId) {
           setIsSupported(false)
-          logger.warn("[OneSignal] App ID not found")
           return
         }
 
         const { default: OneSignal } = await import("react-onesignal")
         await OneSignal.init({
-          appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
+          appId,
           allowLocalhostAsSecureOrigin: true, // For dev
         })
 
@@ -91,7 +96,7 @@ export function usePushNotifications({ enabled = true }: UsePushNotificationsOpt
     if (!enabled || !isSupported || initRef.current) return
 
     void initializeOneSignal()
-  }, [enabled, isSupported])
+  }, [enabled, isConfigured, isSupported])
 
   /**
    * Request permission and subscribe
@@ -139,6 +144,7 @@ export function usePushNotifications({ enabled = true }: UsePushNotificationsOpt
   }
 
   return {
+    isConfigured,
     isSupported,
     isSubscribed,
     permission,

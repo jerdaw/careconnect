@@ -3,6 +3,10 @@ import { usePushNotifications } from "@/hooks/usePushNotifications"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import OneSignal from "react-onesignal"
 
+const mockEnv = vi.hoisted(() => ({
+  NEXT_PUBLIC_ONESIGNAL_APP_ID: "test-app-id",
+}))
+
 // Mock react-onesignal
 vi.mock("react-onesignal", () => {
   const mockOneSignal = {
@@ -28,14 +32,13 @@ vi.mock("react-onesignal", () => {
 
 // Mock env
 vi.mock("@/lib/env", () => ({
-  env: {
-    NEXT_PUBLIC_ONESIGNAL_APP_ID: "test-app-id",
-  },
+  env: mockEnv,
 }))
 
 describe("usePushNotifications Hook", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockEnv.NEXT_PUBLIC_ONESIGNAL_APP_ID = "test-app-id"
 
     // Mock window/navigator globals
     Object.defineProperty(global, "Notification", {
@@ -90,6 +93,19 @@ describe("usePushNotifications Hook", () => {
     await waitFor(() => {
       expect(result.current.isSupported).toBe(false)
     })
+  })
+
+  it("treats push notifications as disabled when app ID is missing", async () => {
+    mockEnv.NEXT_PUBLIC_ONESIGNAL_APP_ID = ""
+
+    const { result } = renderHook(() => usePushNotifications())
+
+    await waitFor(() => {
+      expect(result.current.isConfigured).toBe(false)
+      expect(result.current.isSupported).toBe(false)
+    })
+
+    expect(OneSignal.init).not.toHaveBeenCalled()
   })
 
   it("defers OneSignal init until explicitly enabled", async () => {

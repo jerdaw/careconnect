@@ -52,6 +52,7 @@ The direct VPS proof uses:
 
 1. [`Dockerfile`](../../Dockerfile)
 2. [`scripts/deploy-vps-proof.sh`](../../scripts/deploy-vps-proof.sh)
+3. [`scripts/release-vps-proof.sh`](../../scripts/release-vps-proof.sh)
 
 The deploy script expects exactly one argument:
 
@@ -67,6 +68,13 @@ It will:
 4. publish `127.0.0.1:3300:3000`,
 5. pass required `NEXT_PUBLIC_*` values into both the image build and container runtime,
 6. print the expected health URL.
+
+From a local workstation, you can also stage and optionally deploy a committed
+release in one step:
+
+```bash
+./scripts/release-vps-proof.sh haadmin@your-vps --deploy
+```
 
 ## Verified Production State
 
