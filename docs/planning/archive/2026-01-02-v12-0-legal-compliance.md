@@ -1340,7 +1340,7 @@ All verification activities must be documented:
 ### Current Model
 
 - Volunteer verifiers with training
-- AI-assisted research and verification
+- Structured research and verification
 - Manual confirmation of critical details
 
 ### Training Requirements

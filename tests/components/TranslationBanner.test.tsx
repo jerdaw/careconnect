@@ -8,7 +8,7 @@ vi.mock("next-intl", () => ({
   useTranslations: vi.fn(() => (key: string) => {
     const translations: Record<string, string> = {
       title: "Translation Notice",
-      message: "This page uses AI-assisted translations.",
+      message: "This page includes translated content under review.",
       dismiss: "Got it",
     }
     return translations[key] || key

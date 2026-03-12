@@ -16,7 +16,9 @@ Current state:
 3. the public host is `https://helpbridge.ca`,
 4. `www.helpbridge.ca` redirects to the apex,
 5. the container binds privately at `127.0.0.1:3300`,
-6. `GET /api/v1/health` returns healthy on the VPS and publicly.
+6. `GET /api/v1/health` returns healthy on the VPS and publicly,
+7. the deployed health payload reports the staged release revision,
+8. public boot degrades safely when optional Supabase or OneSignal browser config is absent.
 
 Important naming note:
 
@@ -63,11 +65,13 @@ The deploy script expects exactly one argument:
 It will:
 
 1. build a tagged image,
-2. replace the existing `kingston-care-connect-web` container if present,
-3. run it with `--restart unless-stopped`,
-4. publish `127.0.0.1:3300:3000`,
-5. pass required `NEXT_PUBLIC_*` values into both the image build and container runtime,
-6. print the expected health URL.
+2. prefer `docker buildx build` when available and fall back to legacy `docker build` only if `buildx` is missing,
+3. replace the existing `kingston-care-connect-web` container if present,
+4. run it with `--restart unless-stopped`,
+5. publish `127.0.0.1:3300:3000`,
+6. pass required `NEXT_PUBLIC_*` values into both the image build and container runtime,
+7. set `APP_VERSION` so `/api/v1/health` reports the deployed revision,
+8. print the expected health URL.
 
 From a local workstation, you can also stage and optionally deploy a committed
 release in one step:
@@ -86,6 +90,13 @@ As of 2026-03-11, the deployment has been verified with:
 4. `curl -fsS https://helpbridge.ca/api/v1/health`,
 5. `curl -fsS https://helpbridge.ca/robots.txt`,
 6. `curl -fsS https://helpbridge.ca/sitemap.xml`.
+
+Operational notes from the March 11, 2026 VPS stabilization work:
+
+1. `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` must be present at image build time, not just container runtime.
+2. The homepage should stay up even if those public Supabase values are absent from the browser bundle.
+3. OneSignal must remain disabled unless `NEXT_PUBLIC_ONESIGNAL_APP_ID` is explicitly set.
+4. A brief `degraded` or connection-reset health response can occur during container replacement; repeat health checks until they stabilize.
 
 Public ingress now runs through host Caddy:
 
@@ -112,7 +123,8 @@ Expected outcome:
 
 1. HTTP success,
 2. JSON response,
-3. no container crash loop.
+3. `version` matches the deployed git SHA or release revision,
+4. no container crash loop.
 
 ## Supabase RLS Repair Note
 

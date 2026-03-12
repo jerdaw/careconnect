@@ -8,7 +8,7 @@
 ## 📊 Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: 1074 passing, 24 skipped (latest full local run)
+- **Tests**: 1080 passing, 24 skipped (latest full local run)
   - Branch: Coverage metrics pending update | Functions: Pending | Statements: Pending
   - Gaps: 56/85 components untested (34% coverage - up from 28%), 4 untested utility functions (geo, fuzzy, synonyms, query-expander)
   - 7 E2E tests skipped in `tests/e2e/**` (documented baseline: [E2E Skip Baseline (2026-03-09)](../testing/e2e-skip-baseline-2026-03-09.md))
@@ -29,7 +29,7 @@
   - Email: 17.9% (161/196 missing — contact channel gap)
   - Identity Tags: 44.4% (109/196 missing — personalization limited)
   - French Synthetic Queries: 36.2% (125/196 missing — semantic search gap)
-- **Deployment Status**: Live on the direct-VPS path at `https://helpbridge.ca`; real-world usage metrics remain early and partner validation is still pending
+- **Deployment Status**: Live on the direct-VPS path at `https://helpbridge.ca`; Docker deploys now prefer `buildx`, `/api/v1/health` reports the deployed revision, and public boot degrades safely when optional browser integrations are unset
 
 ---
 
@@ -509,7 +509,7 @@ Production-readiness complete (v17.0–v18.0). Platform is resilient, secure, ac
 
 **Status**: IN PROGRESS (Phase 1A-1J Complete ✅)
 **Priority**: HIGH (Pre-Production Requirement)
-**Total Effort**: ~100-120 hours (AI-autonomous work)
+**Total Effort**: ~100-120 hours (parallel engineering work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None (can start immediately)
 **Completion**: 21/38 items done (A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C3, C4, D1, D3, E1, E2, E3, E4, E5, E6)
@@ -517,7 +517,9 @@ Production-readiness complete (v17.0–v18.0). Platform is resilient, secure, ac
 
 Comprehensive technical improvements to reach production-quality standards: achieve 75% test coverage, eliminate code quality gaps, complete i18n translations, and improve documentation completeness.
 
-**Context**: Based on comprehensive codebase audit (2026-02-11), these items represent foundational work that can be completed autonomously by AI coding agents with minimal human oversight.
+**Context**: Based on the comprehensive codebase audit (2026-02-11), these items represent foundational engineering work that can progress in parallel without blocking the active v22 decision path.
+
+**Archive**: Completed v20.0 Phase 1 execution details now live in [2026-02-12-v20-0-phase-1-implementation-plan.md](archive/2026-02-12-v20-0-phase-1-implementation-plan.md).
 
 #### Category A: Code Quality & Type Safety (~15h)
 

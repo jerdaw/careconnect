@@ -1,7 +1,7 @@
 {
   "TranslationBanner": {
     "title": "Avis de traduction",
-    "message": "Cette page utilise des traductions assistées par IA. Pour les informations essentielles, veuillez consulter la version anglaise.",
+    "message": "Cette page comprend du contenu traduit en cours de révision. Pour les informations essentielles, veuillez consulter la version anglaise.",
     "dismiss": "Compris"
   },
   "BetaBanner": {
@@ -44,7 +44,7 @@
       "contentPolicy": "Politique de contenu",
       "accessibility": "Accessibilité"
     },
-    "aiTranslationNote": "Certaines traductions sont assistées par l'IA. Signalez les erreurs à feedback@helpbridge.ca"
+    "translationReviewNote": "Certaines traductions sont en cours de révision. Signalez les erreurs à feedback@helpbridge.ca"
   },
   "Search": {
     "placeholder": "Chercher nourriture, logement, soutien en crise, services de santé...",

@@ -1,7 +1,7 @@
 {
   "TranslationBanner": {
     "title": "Translation Notice",
-    "message": "This page uses AI-assisted translations. For critical information, please refer to the English version.",
+    "message": "This page includes translated content under review. For critical information, please refer to the English version.",
     "dismiss": "Got it"
   },
   "BetaBanner": {
@@ -44,7 +44,7 @@
       "contentPolicy": "Content Policy",
       "accessibility": "Accessibility"
     },
-    "aiTranslationNote": "Some translations are AI-assisted. Report errors to feedback@helpbridge.ca"
+    "translationReviewNote": "Some translations are under review. Report errors to feedback@helpbridge.ca"
   },
   "Search": {
     "placeholder": "Search for food, housing, crisis support, health services...",

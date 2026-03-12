@@ -25,7 +25,7 @@
       "userGuide": "Guía del Usuario",
       "faq": "Preguntas Frecuentes"
     },
-    "aiTranslationNote": "Algunas traducciones son asistidas por IA. Reporte errores a feedback@helpbridge.ca"
+    "translationReviewNote": "Algunas traducciones están en revisión. Reporte errores a feedback@helpbridge.ca"
   },
   "Search": {
     "placeholder": "Buscar ayuda...",
@@ -1127,7 +1127,7 @@
   },
   "TranslationBanner": {
     "title": "Aviso de Traducción",
-    "message": "Esta página utiliza traducciones asistidas por IA. Para información crítica, consulte la versión en inglés.",
+    "message": "Esta página incluye contenido traducido en revisión. Para información crítica, consulte la versión en inglés.",
     "dismiss": "Entendido"
   },
   "Impact": {

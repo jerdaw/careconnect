@@ -61,7 +61,7 @@ Verify the VPS env file contains the required runtime values:
 
 ```bash
 sudo grep -E '^(NEXT_PUBLIC_SUPABASE_URL|NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY|NEXT_PUBLIC_APP_URL|NEXT_PUBLIC_BASE_URL|NEXT_PUBLIC_SEARCH_MODE|NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING)=' \
-  /etc/projects-merge/env/kingston-care-connect-web.env
+  /etc/projects-merge/env/kingston-care-connect-web.env | sed 's/=.*$/=<redacted>/'
 ```
 
 Expected production host values:
@@ -74,6 +74,7 @@ Important:
 - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` must be available at both image build time and container runtime.
 - `scripts/deploy-vps-proof.sh` is the supported path because it passes the required public values into the Docker build before the container starts.
 - `scripts/deploy-vps-proof.sh` also sets `APP_VERSION` so `/api/v1/health` can report the staged release revision even when `.git/` is not present on the VPS.
+- `NEXT_PUBLIC_ONESIGNAL_APP_ID` should remain unset unless push notifications are intentionally enabled in production.
 
 Optional integrations such as `SLACK_WEBHOOK_URL`, `AXIOM_*`, `OPENAI_API_KEY`,
 and `NEXT_PUBLIC_ONESIGNAL_APP_ID` may be unset if they are not in active use.
@@ -104,9 +105,11 @@ From the staged release on the VPS:
 
 ```bash
 cd /srv/apps/kingston-care-connect-web/current
+docker buildx version
 ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
 ```
 
+- [ ] `docker buildx version` succeeds or the fallback warning is understood
 - [ ] a new image tag is produced
 - [ ] the `kingston-care-connect-web` container is replaced cleanly
 - [ ] the bind remains `127.0.0.1:3300->3000`
@@ -123,6 +126,7 @@ docker logs --tail 50 kingston-care-connect-web
 ```
 
 - [ ] health returns JSON
+- [ ] health `version` matches the intended release revision
 - [ ] services endpoint returns `200`
 - [ ] logs do not show a crash loop
 
@@ -143,6 +147,7 @@ curl -fsS https://helpbridge.ca/sitemap.xml | sed -n '1,12p'
 - [ ] public health returns healthy JSON
 - [ ] `robots.txt` points at `https://helpbridge.ca/sitemap.xml`
 - [ ] sitemap URLs use `https://helpbridge.ca/...`
+- [ ] a hard refresh of `https://helpbridge.ca` does not trip the global error boundary
 
 ## 8. Caddy Verification
 

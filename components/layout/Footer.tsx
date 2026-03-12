@@ -137,7 +137,7 @@ export function Footer() {
         <div className="mt-16 flex flex-col gap-4 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
           <p className="text-center text-neutral-400">{t("emergencyDisclaimer")}</p>
 
-          {isNonEnglish && <p className="text-center text-xs text-neutral-500 italic">{t("aiTranslationNote")}</p>}
+          {isNonEnglish && <p className="text-center text-xs text-neutral-500 italic">{t("translationReviewNote")}</p>}
 
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p>{t("copyright")}</p>

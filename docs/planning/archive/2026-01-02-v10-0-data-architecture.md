@@ -48,11 +48,11 @@ Improve data quality and search relevance by:
 
 ### Acquisition Architecture: Keep Manual Curation
 
-| Decision                | Rationale                                  |
-| :---------------------- | :----------------------------------------- |
-| Manual JSON curation    | Embodies "accuracy > coverage" mandate     |
-| AI-assisted research    | Antigravity verification method is working |
-| 211 sync as placeholder | Activate when partnership materializes     |
+| Decision                         | Rationale                                  |
+| :------------------------------- | :----------------------------------------- |
+| Manual JSON curation             | Embodies "accuracy > coverage" mandate     |
+| Structured verification research | Antigravity verification method is working |
+| 211 sync as placeholder          | Activate when partnership materializes     |
 
 **Why not automated scraping?** "Large-scale scraping produces noise, not value." (README)
 

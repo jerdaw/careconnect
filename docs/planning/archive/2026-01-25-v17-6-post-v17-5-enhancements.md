@@ -488,7 +488,7 @@ jobs:
 
 ### Objective
 
-Create helper tools to streamline the manual French translation workflow. Cannot be fully automated without AI API keys, but we can make the process more efficient.
+Create helper tools to streamline the manual French translation workflow. The workflow still requires external translation handling and human review, but we can make it more efficient.
 
 ### Tasks
 

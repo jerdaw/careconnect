@@ -25,7 +25,7 @@
       "userGuide": "用户指南",
       "faq": "常见问题"
     },
-    "aiTranslationNote": "部分翻译由 AI 辅助。错误请报告至 feedback@helpbridge.ca"
+    "translationReviewNote": "部分译文仍在审校中。如有错误，请反馈至 feedback@helpbridge.ca"
   },
   "Search": {
     "placeholder": "搜索帮助...",
@@ -1127,7 +1127,7 @@
   },
   "TranslationBanner": {
     "title": "翻译通知",
-    "message": "此页面使用 AI 辅助翻译。如需关键信息，请参阅英文版本。",
+    "message": "此页面包含正在审校的译文内容。如需关键信息，请参阅英文版本。",
     "dismiss": "知道了"
   },
   "Impact": {

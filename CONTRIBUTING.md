@@ -70,24 +70,24 @@ helpbridge-ca/
 
 ### Critical Files to Understand
 
-| File                                              | Purpose                                      |
-| ------------------------------------------------- | -------------------------------------------- |
-| **CLAUDE.md**                                     | AI agent instructions (read first!)          |
-| **lib/search/index.ts**                           | Main search engine entry point               |
-| **lib/search/scoring.ts**                         | Search result ranking algorithm              |
-| **app/api/v1/search/services/route.ts**           | Server-side search API                       |
-| **components/search/SearchInterface.tsx**         | Primary search UI                            |
-| **lib/auth/authorization.ts**                     | Centralized authorization helpers            |
-| **lib/rbac.ts**                                   | Role-based access control matrix             |
-| **types/service.ts**                              | Service data schema                          |
-| **middleware.ts**                                 | Next.js middleware (auth, locale, CSP)       |
-| **lib/resilience/supabase-breaker.ts**            | Circuit breaker for database failures        |
-| **vitest.config.mts**                             | Test configuration + coverage thresholds     |
-| **docs/architecture.md**                          | System architecture deep-dive                |
-| **docs/implementation/v20-0-\*.md**               | Current implementation plan                  |
-| **docs/planning/roadmap.md**                      | Product roadmap (15/38 v20.0 items complete) |
-| **docs/development/testing-guidelines.md**        | Testing strategy and expectations            |
-| **docs/workflows/french-translation-workflow.md** | i18n translation process                     |
+| File                                                                      | Purpose                                      |
+| ------------------------------------------------------------------------- | -------------------------------------------- |
+| **CLAUDE.md**                                                             | Contributor instructions (read first!)       |
+| **lib/search/index.ts**                                                   | Main search engine entry point               |
+| **lib/search/scoring.ts**                                                 | Search result ranking algorithm              |
+| **app/api/v1/search/services/route.ts**                                   | Server-side search API                       |
+| **components/search/SearchInterface.tsx**                                 | Primary search UI                            |
+| **lib/auth/authorization.ts**                                             | Centralized authorization helpers            |
+| **lib/rbac.ts**                                                           | Role-based access control matrix             |
+| **types/service.ts**                                                      | Service data schema                          |
+| **middleware.ts**                                                         | Next.js middleware (auth, locale, CSP)       |
+| **lib/resilience/supabase-breaker.ts**                                    | Circuit breaker for database failures        |
+| **vitest.config.mts**                                                     | Test configuration + coverage thresholds     |
+| **docs/architecture.md**                                                  | System architecture deep-dive                |
+| **docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md** | Archived v20.0 Phase 1 execution plan        |
+| **docs/planning/roadmap.md**                                              | Product roadmap (21/38 v20.0 items complete) |
+| **docs/development/testing-guidelines.md**                                | Testing strategy and expectations            |
+| **docs/workflows/french-translation-workflow.md**                         | i18n translation process                     |
 
 ## Development Workflow
 
@@ -429,9 +429,9 @@ export const SYNONYMS: Record<string, string[]> = {
 
 **v20.0: Technical Excellence & Testing** (IN PROGRESS)
 
-- **Completion**: 15/38 items done
+- **Completion**: 21/38 items done
 - **Focus**: Achieving 75% test coverage, reducing technical debt, improving documentation
-- **See**: [docs/planning/roadmap.md](docs/planning/roadmap.md) and [docs/implementation/v20-0-phase-1-implementation-plan.md](docs/implementation/v20-0-phase-1-implementation-plan.md)
+- **See**: [docs/planning/roadmap.md](docs/planning/roadmap.md) and [docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md](docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md)
 
 Recent completions:
 

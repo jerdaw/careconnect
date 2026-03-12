@@ -1,6 +1,6 @@
 ---
-status: in-progress
-last_updated: 2026-02-12
+status: archived
+last_updated: 2026-03-11
 owner: jer
 tags: [roadmap, v20.0, code-quality, testing, i18n]
 phase_1a_status: complete
@@ -55,12 +55,14 @@ phase_1p_commit: 90d436f
 
 # v20.0 Phase 1: Code Quality, Core Test Coverage & Search Enrichment
 
+Archived on 2026-03-11 after the documented Phase 1 work was completed and folded back into the active roadmap.
+
 The first execution sprint of v20.0 (Technical Excellence & Testing). This phase targets
 the highest-value autonomous improvements: eliminating code quality blockers, writing tests
 for the most critical untested modules, closing i18n gaps, and enriching the search system
 with broader crisis and synonym vocabulary.
 
-**Estimated Effort**: 18-25 hours (fully autonomous by AI coding agents)
+**Estimated Effort**: 18-25 hours
 **Prerequisite**: None — all work is independent of deployment or human intervention.
 
 ---

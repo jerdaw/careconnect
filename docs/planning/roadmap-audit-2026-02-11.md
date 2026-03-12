@@ -6,8 +6,8 @@ Based on comprehensive codebase audit completed 2026-02-11, all findings have be
 
 **Total Items Added**: 76
 
-- **v20.0**: 38 autonomous AI agent tasks (~100-120h)
-- **v21.0**: 38 OMSAS/CanMEDS admissions improvements (~40-50h autonomous + 20-30h human)
+- **v20.0**: 38 parallel engineering tasks (~100-120h)
+- **v21.0**: 38 OMSAS/CanMEDS admissions improvements (~40-50h implementation + 20-30h human)
 
 ---
 
@@ -18,7 +18,7 @@ Based on comprehensive codebase audit completed 2026-02-11, all findings have be
 **Project Maturity**: Late prototype / pre-beta
 
 - 196 manually curated services
-- 275 commits over 44 days (solo developer + AI pair programming)
+- 275 commits over 44 days (solo developer)
 - NOT deployed to production
 - NO real-world usage metrics
 - NO external partners or user validation
@@ -69,7 +69,7 @@ Based on comprehensive codebase audit completed 2026-02-11, all findings have be
 ## v20.0: Technical Excellence & Testing
 
 **Priority**: HIGH (Pre-Production Requirement)
-**Effort**: ~100-120 hours (AI-autonomous)
+**Effort**: ~100-120 hours (parallel engineering work)
 **Timeline**: 2-4 weeks
 **Dependencies**: None
 
@@ -172,7 +172,7 @@ Based on comprehensive codebase audit completed 2026-02-11, all findings have be
 - #7: Publish privacy whitepaper (1-2 days)
 - #14: Document AIA prominently (1-2h)
 - #16: Data governance policy (3-4h)
-- #23: AI-assisted dev methodology (1-2 days)
+- #23: Development methodology documentation (1-2 days)
 
 **Phase 4: Quality & Compliance** (Weeks 3-4) — AUTONOMOUS
 

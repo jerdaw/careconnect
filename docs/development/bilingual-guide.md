@@ -36,7 +36,7 @@ tags: [development, localization, i18n]
 
 ## 3. Implementation Rules
 
-1. **Labels**: UI labels must be present in **all 7** message files. This includes labels for legal policies, AI disclaimers, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
+1. **Labels**: UI labels must be present in **all 7** message files. This includes labels for legal policies, translation notices, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
 2. **Text Expansion**: Layouts must accommodate French and Spanish (often 20-30% longer than English) and Chinese (shorter but taller).
 3. **Legal/Policy Pages**: While content may lead in English/French, the structural keys and headers for all policy pages (Privacy, Terms, Accessibility) MUST exist in all 7 languages to prevent UI crashes.
 4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
@@ -60,14 +60,14 @@ tags: [development, localization, i18n]
 
 ### French Translation Workflow (Service Data)
 
-For translating service data fields (especially `access_script`, `description`, and other content-rich fields), we use a semi-automated batch translation process:
+For translating service data fields (especially `access_script`, `description`, and other content-rich fields), we use a semi-automated batch translation process with human review:
 
 **Process Overview:**
 
 1. Export fields needing translation: `npm run export:access-script-fr`
-2. Generate AI translation prompts: `npm run translate:prompt <batch-file>`
-3. Get translations from Claude/ChatGPT using the generated prompt
-4. Parse AI responses: `npm run translate:parse <batch-file> <response-file>`
+2. Generate translation prompts: `npm run translate:prompt <batch-file>`
+3. Obtain translated output using the approved translation workflow
+4. Parse the returned translations: `npm run translate:parse <batch-file> <response-file>`
 5. Validate output: `npm run translate:validate <output-file>`
 6. Review and commit the validated translations
 
@@ -102,29 +102,29 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 ---
 
-## AI Translation Policy
+## Translation Review Policy
 
 ### Transparency Disclosures
 
-HelpBridge uses AI-assisted translations for some content. To ensure users are informed:
+HelpBridge flags translated content that is still under review so users can make safer decisions:
 
 1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
    - A dismissible floating pill appears at the bottom-right of every page
-   - Informs users that the page uses AI-assisted translations
+   - Informs users that the page includes translated content under review
    - Contains a "Got it" button for acknowledgment
    - Stored in localStorage to remember dismissal
 
 2. **Footer Disclaimer** (all non-English locales)
    - A subtle note appears in the footer for fr/ar/zh-Hans/es
-   - Text: "Some translations are AI-assisted. Report errors to feedback@helpbridge.ca"
+   - Text: "Some translations are under review. Report errors to feedback@helpbridge.ca"
 
 ### Translation Quality Tiers
 
-| Tier     | Locales               | Quality Level              | Review Status |
-| :------- | :-------------------- | :------------------------- | :------------ |
-| Primary  | `en`                  | Source of truth            | N/A           |
-| Official | `fr`                  | AI-assisted + human review | Reviewed      |
-| Preview  | `ar`, `zh-Hans`, `es` | AI-assisted, best effort   | Needs review  |
+| Tier     | Locales               | Quality Level                  | Review Status |
+| :------- | :-------------------- | :----------------------------- | :------------ |
+| Primary  | `en`                  | Source of truth                | N/A           |
+| Official | `fr`                  | Reviewed translated content    | Reviewed      |
+| Preview  | `ar`, `zh-Hans`, `es` | Best-effort translated content | Needs review  |
 
 ### Reporting Translation Errors
 

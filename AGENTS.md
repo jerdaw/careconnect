@@ -92,7 +92,7 @@ npm run audit:qa         # Data quality and integrity audit
 ### Data Enrichment & Translation
 
 ```bash
-# Data Enrichment Audits (export gaps for AI-assisted enrichment)
+# Data Enrichment Audits (export gaps for structured enrichment)
 npm run audit:coords              # Export services with missing coordinates
 npm run audit:hours               # Export services with missing operating hours
 npm run audit:access-scripts      # Audit access_script quality and completeness
