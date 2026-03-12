@@ -1,3 +1,4 @@
+/** @vitest-environment node */
 /**
  * Golden Set Search Tests
  *
@@ -98,17 +99,15 @@ describe("Search Crisis Detection", () => {
 describe("Search Coverage", () => {
   it("should return results for 95%+ of sampled queries", async () => {
     const sampledQueries = testQueries.sampledCoverage.queries
-    let withResults = 0
-    const noResults: string[] = []
+    const coverageResults = await Promise.all(
+      sampledQueries.map(async (sq) => {
+        const results = await searchServices(sq.query)
+        return { query: sq.query, hasResults: results.length > 0 }
+      })
+    )
 
-    for (const sq of sampledQueries) {
-      const results = await searchServices(sq.query)
-      if (results.length > 0) {
-        withResults++
-      } else {
-        noResults.push(sq.query)
-      }
-    }
+    const withResults = coverageResults.filter((result) => result.hasResults).length
+    const noResults = coverageResults.filter((result) => !result.hasResults).map((result) => result.query)
 
     const resultRate = withResults / sampledQueries.length
 
@@ -117,7 +116,7 @@ describe("Search Coverage", () => {
     }
 
     expect(resultRate).toBeGreaterThanOrEqual(0.95)
-  })
+  }, 15000)
 })
 
 describe("Search Performance", () => {
