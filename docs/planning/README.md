@@ -7,35 +7,34 @@ This directory contains planning and strategy documents for HelpBridge.
 > Treat those references as historical only; current operational guidance uses
 > the HelpBridge name and `helpbridge.ca`.
 
-## Active Planning: v18.0
+## Active Planning: v22.0
 
-**Status:** AWAITING USER APPROVAL
-**Created:** 2026-01-30
+**Status:** GATE 0 DECISION WORK IN PROGRESS
+**Created:** 2026-02-27
 
 ### Quick Start (Read These First)
 
-1. **[Executive Summary](v18-0/v18-0-executive-summary.md)** ⭐ START HERE
-   - High-level overview (what, why, how much)
-   - Decision points and next steps
+1. **[Roadmap](roadmap.md)** ⭐ START HERE
+   - Current product state, active work, completed work, and follow-ups
    - **Reading time:** 10 minutes
 
-2. **[Visual Roadmap](v18-0/v18-0-visual-roadmap.md)**
-   - Diagrams and progress trackers
-   - Before/after comparison
-   - **Reading time:** 5 minutes
+2. **[v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
+   - Strategic objective, hypotheses, kill rules, and stage gates
+   - **Reading time:** 15 minutes
 
 ### Detailed Documentation (Optional)
 
-3. **[Roadmap Overview](v18-0/production-observability.md)**
-   - Goals, phases, success criteria
-   - Timeline and dependencies
-   - **Reading time:** 15 minutes
+3. **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
+   - Canonical sign-off record for Gate 0 decisions
+   - **Reading time:** 10 minutes
 
-4. **[Full Implementation Plan](../implementation/v18-0-production-observability.md)**
-   - Complete technical specifications (44 pages)
-   - Code examples and testing strategies
-   - Rollout procedures and risk assessment
-   - **Reading time:** 1-2 hours
+4. **[v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)**
+   - Technical execution spec for pilot instrumentation and governance evidence
+   - **Reading time:** 20-30 minutes
+
+5. **[HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)**
+   - Historical record of the completed repository-side rename
+   - **Reading time:** 5 minutes
 
 ---
 
@@ -44,60 +43,51 @@ This directory contains planning and strategy documents for HelpBridge.
 ```
 docs/planning/
 ├── README.md ← You are here
-├── roadmap.md (main roadmap, updated with v18.0)
+├── roadmap.md (main roadmap, updated for v22.0 + HelpBridge rename)
 ├── archive/ (completed version plans)
-└── v18-0/
-    ├── v18-0-executive-summary.md ⭐ START HERE (10min read)
-    ├── v18-0-visual-roadmap.md (5min read)
-    └── production-observability.md (15min read)
-
-docs/implementation/
-└── v18-0-production-observability.md (full plan, 1-2hr read)
+├── v22-0-non-duplicate-value-decision-plan.md
+├── v22-0-approval-checklist.md
+└── archive/2026-03-18-helpbridge-rebrand.md
 ```
 
 ---
 
 ## Quick Reference
 
-### What is v18.0?
+### What is v22.0?
 
-**v18.0: Production Observability & Operational Excellence**
+**v22.0: Non-Duplicate Value Decision Plan**
 
-The final infrastructure layer before production launch. Completes circuit breaker rollout, adds production monitoring, alerting, SLO tracking, and operational documentation.
+The current strategic planning track for proving non-duplicate value relative to 211 through measured connection outcomes, strict privacy constraints, and explicit kill criteria.
 
 ### Why Now?
 
-Platform is technically ready but lacks:
+The platform is technically mature, but the next decision is strategic rather than purely technical:
 
-- Complete circuit breaker coverage (40% → 100%)
-- Production monitoring (metrics disappear on restart)
-- Automated alerting (can't detect incidents)
-- Public status page (no transparency)
-- Operational runbooks (ad-hoc troubleshooting)
+- Avoid direct breadth competition with 211
+- Validate measurable last-mile outcome value
+- Keep governance and privacy redlines explicit before expanding pilot work
 
 ### Timeline
 
-**4 weeks, 24-32 hours of work**
+**~90-day decision cycle**
 
-- Week 1: Circuit breaker rollout
-- Week 2: Monitoring infrastructure
-- Week 3: SLOs + documentation
-- Week 4: Validation + launch approval
+- Phase 0: baseline + governance locks
+- Phase 1: pilot execution
+- Phase 2: objective go / conditional / stop decision
 
 ### Cost
 
-**$20/month** (unchanged from current)
-All monitoring tools use free tiers.
+Pilot cost remains bounded by existing infrastructure and partner participation assumptions documented in the v22 plan.
 
 ### Dependencies
 
-User needs to sign up for:
+Current dependencies:
 
-- Axiom (metrics) - FREE
-- Slack webhook (alerts) - FREE
-- Upptime (status page) - FREE
-
-**Total setup time:** ~20 minutes
+- Gate 0 approval locks
+- Baseline evidence publication
+- Integration feasibility decision
+- Offline/local threat-model completion
 
 ---
 
@@ -105,7 +95,7 @@ User needs to sign up for:
 
 ### Option 1: Approve and Start
 
-Read the [Executive Summary](v18-0/v18-0-executive-summary.md), approve, and we'll begin Phase 1.
+Review the [v22.0 plan](v22-0-non-duplicate-value-decision-plan.md) and [approval checklist](v22-0-approval-checklist.md), then lock Step 1 decisions.
 
 ### Option 2: Ask Questions
 
@@ -119,6 +109,6 @@ Propose modifications to scope, timeline, or implementation strategy.
 
 ## Document Updates
 
-- **2026-01-30:** v18.0 planning documents created
-- Main roadmap updated: `docs/planning/roadmap.md`
-- Next review: After user decision
+- **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
+- **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`
+- Next review: After Gate 0 sign-off or operational rename follow-up completion

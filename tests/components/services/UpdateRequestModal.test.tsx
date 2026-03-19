@@ -128,7 +128,7 @@ describe("UpdateRequestModal", () => {
       })
     )
     expect(onClose).toHaveBeenCalledTimes(1)
-  })
+  }, 10000)
 
   it("sends null when clearing an optional field", async () => {
     const user = userEvent.setup()

@@ -517,6 +517,7 @@ Full details: `docs/development/testing-guidelines.md`
 - Never commit secrets, `.env` files, or machine-specific artifacts
 - Update `.gitignore` if you introduce new generated files
 - Keep commit author metadata human-owned (`user.name`/`user.email` must be a real contributor)
+- Only humans may be listed as authors or contributors in commits, release notes, acknowledgments, changelogs, or other repo documentation
 - Do not add AI tool attribution in commits, docs, or code comments (no `Co-authored-by` AI identities, no generated-by-agent signatures)
 - Ensure contributor/authorship mentions in docs and changelogs list only human contributors
 - Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`

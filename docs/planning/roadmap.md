@@ -2,7 +2,7 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-12
+> **Last Updated**: 2026-03-18
 > **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
@@ -28,6 +28,7 @@
   - Identity Tags: 44.4% (109/196 missing — personalization limited)
   - French Synthetic Queries: 36.2% (125/196 missing — semantic search gap)
 - **Deployment Status**: Live on the direct-VPS path at `https://helpbridge.ca`; Docker deploys now prefer `buildx`, `/api/v1/health` reports the deployed revision, and public boot degrades safely when optional browser integrations are unset
+- **Branding**: HelpBridge rename is complete in this repository and GitHub remote; remaining runtime/VPS cutover work lives outside this repo and is tracked below
 
 ---
 
@@ -101,6 +102,25 @@ These tasks are repo-local and automatable, but they start only after the corres
 - Freshness SLA compliance at least 70%.
 - Referral outcome capture at least 50%.
 - Fatal data-decay error rate at or below 10%.
+
+---
+
+### Operational Follow-Ups: HelpBridge Rename Cutover 🔄 ACTIVE
+
+**Status**: Repository and GitHub rename complete; external infra cutover still pending
+**Priority**: MEDIUM
+**Completed**: 2026-03-18 (repo-side rename)
+**Remaining Work**: Ops-machine and deployment follow-through
+
+Remaining operational tasks outside this repo:
+
+1. Update `platform-ops` and VPS-serving configuration on the ops machine so production hosting references `helpbridge`.
+2. Confirm deployment/domain cutover details in the external hosting environment.
+3. Decide whether the legacy brand string embedded in curated service data should be revised under manual-curation rules.
+
+📄 **Archive**:
+
+- [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
 
 ---
 

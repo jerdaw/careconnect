@@ -7,11 +7,48 @@ const silentConsoleMethods = ["log", "info", "warn", "error", "debug"] as const
 const shouldSilenceTestConsole = process.env.VITEST_VERBOSE_LOGS !== "1"
 const consoleSilencers: Partial<Record<(typeof silentConsoleMethods)[number], MockInstance>> = {}
 
+function createStorageMock() {
+  const store = new Map<string, string>()
+
+  return {
+    getItem: (key: string) => store.get(key) ?? null,
+    setItem: (key: string, value: string) => {
+      store.set(key, value)
+    },
+    removeItem: (key: string) => {
+      store.delete(key)
+    },
+    clear: () => {
+      store.clear()
+    },
+    key: (index: number) => Array.from(store.keys())[index] ?? null,
+    get length() {
+      return store.size
+    },
+  }
+}
+
+function ensureLocalStorage() {
+  if (typeof window === "undefined") return
+  if (typeof window.localStorage?.clear === "function") return
+
+  const storage = createStorageMock()
+  Object.defineProperty(window, "localStorage", {
+    configurable: true,
+    value: storage,
+  })
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: storage,
+  })
+}
+
 // Mock Supabase Env Vars for Testing
 process.env.NEXT_PUBLIC_SUPABASE_URL = "https://mock.supabase.co"
 process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "mock-key"
 
 beforeEach(() => {
+  ensureLocalStorage()
   if (!shouldSilenceTestConsole) return
 
   for (const method of silentConsoleMethods) {
@@ -27,6 +64,8 @@ afterEach(() => {
     delete consoleSilencers[method]
   }
   vi.clearAllMocks()
+  vi.unstubAllGlobals()
+  ensureLocalStorage()
 })
 
 // Mock global.fetch by default to avoid accidental network calls
@@ -41,6 +80,8 @@ global.fetch = vi.fn(() =>
 
 // Mock matchMedia
 if (typeof window !== "undefined") {
+  ensureLocalStorage()
+
   Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: vi.fn().mockImplementation((query) => ({
