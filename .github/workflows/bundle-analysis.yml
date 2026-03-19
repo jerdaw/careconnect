@@ -58,7 +58,7 @@ jobs:
         if: github.event_name == 'pull_request'
         id: compare
         run: |
-          node scripts/compare-bundle-size.js || echo "comparison_failed=true" >> $GITHUB_OUTPUT
+          node scripts/compare-bundle-size.js || echo "comparison_failed=true" >> "$GITHUB_OUTPUT"
 
       - name: Comment PR with bundle size diff
         if: github.event_name == 'pull_request' && steps.compare.outputs.comparison_failed != 'true'
@@ -78,12 +78,14 @@ jobs:
       - name: Create job summary
         if: always()
         run: |
-          echo "## Bundle Size Analysis" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f .next/analyze/bundle-diff.md ]; then
-            cat .next/analyze/bundle-diff.md >> $GITHUB_STEP_SUMMARY
-          else
-            echo "✅ Bundle analysis complete. No baseline for comparison." >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "View the [bundle analyzer report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) artifacts." >> $GITHUB_STEP_SUMMARY
-          fi
+          {
+            echo "## Bundle Size Analysis"
+            echo ""
+            if [ -f .next/analyze/bundle-diff.md ]; then
+              cat .next/analyze/bundle-diff.md
+            else
+              echo "✅ Bundle analysis complete. No baseline for comparison."
+              echo ""
+              echo "View the [bundle analyzer report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) artifacts."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
