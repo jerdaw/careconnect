@@ -5,11 +5,11 @@ owner: jer
 tags: [planning, archive, rebrand, helpbridge]
 ---
 
-# HelpBridge Rebrand Archive
+# HelpBridge Rebrand And Runtime Rename Archive
 
 ## Summary
 
-This archive records the completed repository-side rebrand from `kingston-care-connect` to `HelpBridge`.
+This archive records the completed rename from `kingston-care-connect` to `HelpBridge` across the repository, GitHub remote, shared ops inventory, and live VPS runtime.
 
 Canonical branding decisions:
 
@@ -19,29 +19,25 @@ Canonical branding decisions:
 
 ## Scope Completed
 
-The repository implementation completed the following work:
+The completed work included:
 
 1. Renamed package, metadata, manifest, and Capacitor identifiers to `helpbridge` / `HelpBridge`.
 2. Updated user-facing branding in the app shell, translations, documentation, tests, and API docs.
 3. Renamed GitHub repository references and local repository path conventions to `helpbridge`.
-4. Verified that tracked repo files no longer contain legacy project identifiers, except for one intentionally untouched curated-data record in `data/services.json`.
+4. Standardized the live VPS runtime name to `helpbridge-web` and aligned active deploy/release docs with that runtime.
+5. Aligned shared `platform-ops` inventory and active operator-facing docs to the new runtime identity.
+6. Removed the temporary rollback assets for the pre-rename VPS runtime after the live cutover stabilized.
 
 ## Verification
 
-Repository-side verification included:
+Verification included:
 
 1. Repo-wide search for legacy identifiers in tracked files and filenames.
 2. JSON validation on edited assets.
 3. `git diff --check` for whitespace/conflict hygiene.
-
-## Follow-Up Work Moved Back to the Roadmap
-
-The following items remain outside this repository-side rename and stay as operational follow-ups:
-
-1. Update `platform-ops` and VPS-serving configuration on the ops machine.
-2. Confirm external deployment/domain cutover details where applicable.
-3. Decide whether to manually revise the one legacy brand string embedded in curated service data (`data/services.json`) under the project's manual-curation rules.
+4. Live VPS verification of private/public health on `helpbridge-web`.
+5. Shared inventory/doc validation in `/home/jer/repos/platform-ops`.
 
 ## Outcome
 
-The HelpBridge rebrand is complete for this repository and its GitHub remote. Remaining work is operational rather than application-code rename work.
+The HelpBridge rename is complete for the repo, remote, shared ops workspace, and live VPS runtime. Remaining legacy-name references in this repository are historical archive content only.

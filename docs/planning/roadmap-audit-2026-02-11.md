@@ -332,7 +332,7 @@ All 76 items have been added to `docs/planning/roadmap.md`:
 
 ## Autonomous vs. Human Requirements
 
-### Fully Autonomous (AI Agents)
+### Automation-Friendly Work
 
 **From v20.0**: All 38 items (100%)
 **From v21.0**: 35/38 items (92%)

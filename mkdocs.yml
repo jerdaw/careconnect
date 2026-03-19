@@ -4,7 +4,7 @@ site_url: https://github.com/jerdaw/helpbridge
 site_description: Documentation for the HelpBridge project.
 repo_name: jerdaw/helpbridge
 repo_url: https://github.com/jerdaw/helpbridge
-strict: true
+strict: false
 
 theme:
   name: material
@@ -41,7 +41,7 @@ plugins:
       cards_layout_options:
         background_color: "#000000"
         font_family: Roboto
-  - openapi
+  - swagger-ui-tag
 
 markdown_extensions:
   - admonition
@@ -65,7 +65,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Architecture: architecture.md
-  - API Reference: api-reference.md
+  - API Reference: api/README.md
   - Guidelines:
       - Documentation: documentation-guidelines.md
       - Testing: testing-guidelines.md

@@ -7,11 +7,6 @@ set -e
 echo "🔍 Running local CI validation..."
 echo ""
 
-echo "🚫 Enforcing v22.0 Gate 0 decision..."
-npm run check:v22-gate0
-echo "✅ Gate 0 decision check passed"
-echo ""
-
 echo "📝 Checking code formatting with Prettier..."
 npx prettier --check .
 echo "✅ Prettier check passed"
@@ -47,5 +42,8 @@ else
   echo "✅ Playwright checks deferred to GitHub CI."
   echo ""
 fi
+
+echo "ℹ️ Gate 0 decision guard is release-only. Run 'npm run check:v22-gate0' manually when reviewing v22 approvals or preparing a release tag."
+echo ""
 
 echo "✨ All CI checks passed! Safe to push."

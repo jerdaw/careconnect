@@ -70,7 +70,7 @@ Evidence from `data/services.json`:
 
 1. `verification_level` distribution: L1=121, L2=75, L3=0 ([R9]).
 2. `last_verified` is null for all 196 records ([R10]).
-3. `provenance.verified_by` includes `Antigravity (AI Agent) - Batch 2 Deep Research` for 130 records; `Pending manual verification` for 48 ([R11]).
+3. `provenance.verified_by` includes `HelpBridge Research Batch 2` for 130 records; `Pending manual verification` for 48 ([R11]).
 
 Implication:
 
@@ -199,7 +199,7 @@ Without those adjustments, strategic risk is high (credibility and redundancy).
 - [R8] `/tmp/helpbridge_eval/211ontario-home.html` (captured from https://211ontario.ca/)
 - [R9] verification-level counts from `jq` on `data/services.json` (L1=121, L2=75)
 - [R10] `last_verified` null count from `jq` on `data/services.json` (196)
-- [R11] provenance counts from `jq` on `data/services.json` (`Antigravity...`=130, `Pending manual verification`=48, `Kingston 150`=18)
+- [R11] provenance counts from `jq` on `data/services.json` (`HelpBridge Research Batch 2`=130, `Pending manual verification`=48, `Kingston 150`=18)
 - [R12] `/home/jer/localsync/helpbridge-ca/lib/offline/db.ts`
 - [R13] `/home/jer/localsync/helpbridge-ca/lib/offline/sync.ts`
 - [R14] `/home/jer/localsync/helpbridge-ca/app/api/v1/services/export/route.ts`

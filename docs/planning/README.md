@@ -33,7 +33,7 @@ This directory contains planning and strategy documents for HelpBridge.
    - **Reading time:** 20-30 minutes
 
 5. **[HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)**
-   - Historical record of the completed repository-side rename
+   - Historical record of the completed repo + runtime rename
    - **Reading time:** 5 minutes
 
 ---
@@ -43,7 +43,7 @@ This directory contains planning and strategy documents for HelpBridge.
 ```
 docs/planning/
 ├── README.md ← You are here
-├── roadmap.md (main roadmap, updated for v22.0 + HelpBridge rename)
+├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
@@ -111,4 +111,4 @@ Propose modifications to scope, timeline, or implementation strategy.
 
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
 - **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`
-- Next review: After Gate 0 sign-off or operational rename follow-up completion
+- Next review: After Gate 0 sign-off or the next material v22 roadmap change

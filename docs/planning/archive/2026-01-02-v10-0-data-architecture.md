@@ -2,7 +2,7 @@
 
 > **Status**: Implemented
 > **Focus**: Strengthen data quality, enforce governance protocol, improve search ranking
-> **Constraints**: Completely free, solo dev + AI assistance
+> **Constraints**: Completely free, solo dev + zero-cost tooling
 > **Methodology**: Implemented based on comprehensive audit comparing ideal vs. current implementation
 
 ---
@@ -48,11 +48,11 @@ Improve data quality and search relevance by:
 
 ### Acquisition Architecture: Keep Manual Curation
 
-| Decision                         | Rationale                                  |
-| :------------------------------- | :----------------------------------------- |
-| Manual JSON curation             | Embodies "accuracy > coverage" mandate     |
-| Structured verification research | Antigravity verification method is working |
-| 211 sync as placeholder          | Activate when partnership materializes     |
+| Decision                         | Rationale                               |
+| :------------------------------- | :-------------------------------------- |
+| Manual JSON curation             | Embodies "accuracy > coverage" mandate  |
+| Structured verification research | Structured research workflow is working |
+| 211 sync as placeholder          | Activate when partnership materializes  |
 
 **Why not automated scraping?** "Large-scale scraping produces noise, not value." (README)
 
@@ -1219,5 +1219,5 @@ npm run lint             # ESLint
 ---
 
 > **Created**: 2026-01-02
-> **Author**: Antigravity + Jeremy
+> **Author**: Jeremy Dawson
 > **Version**: 1.0 (Full Implementation Details)

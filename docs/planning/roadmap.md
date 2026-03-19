@@ -8,7 +8,7 @@
 ## 📊 Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: targeted autonomous backlog suites green as of 2026-03-12; full aggregate counts need a fresh `npm run test:coverage` snapshot
+- **Tests**: full default Vitest suite green as of 2026-03-18 (`149` files; `1142` passed; `24` skipped); coverage snapshot still needs a fresh `npm run test:coverage` run
   - High-value component smoke coverage, unhappy-path coverage, and live feedback/update integration coverage all advanced in the latest autonomous pass
   - Default `tests/e2e/**` Chromium suite now carries 0 inline skips; production-only and server-mode checks moved to dedicated commands in [E2E Automation Baseline (2026-03-12)](../testing/e2e-skip-baseline-2026-03-09.md)
   - CI budget mode: Playwright runs on `workflow_dispatch` or `main` commits containing `[run-e2e]`
@@ -28,7 +28,7 @@
   - Identity Tags: 44.4% (109/196 missing — personalization limited)
   - French Synthetic Queries: 36.2% (125/196 missing — semantic search gap)
 - **Deployment Status**: Live on the direct-VPS path at `https://helpbridge.ca`; Docker deploys now prefer `buildx`, `/api/v1/health` reports the deployed revision, and public boot degrades safely when optional browser integrations are unset
-- **Branding**: HelpBridge rename is complete in this repository and GitHub remote; remaining runtime/VPS cutover work lives outside this repo and is tracked below
+- **Branding**: HelpBridge rename is complete end-to-end across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime (`helpbridge-web`)
 
 ---
 
@@ -91,7 +91,7 @@ These tasks are repo-local and automatable, but they start only after the corres
 5. Gate 0 decision control document added and linked across v22 artifacts.
 6. Gate 0 user action tracker added and linked from roadmap.
 7. Gate 0 evidence intake pack added for C1/C2/D4 submission standardization.
-8. CI/release guard added (`npm run check:v22-gate0`) to block build/release paths while Gate 0 is `NO-GO`.
+8. Release guard added (`npm run check:v22-gate0`) to block release-tag creation while Gate 0 is `NO-GO` without forcing routine CI red.
 9. E2E automation baseline documented and linked in roadmap + v19 execution handoff.
 10. Temporary free-tier CI budget mode enabled for Playwright E2E (manual dispatch or `[run-e2e]` on `main`).
 
@@ -102,25 +102,6 @@ These tasks are repo-local and automatable, but they start only after the corres
 - Freshness SLA compliance at least 70%.
 - Referral outcome capture at least 50%.
 - Fatal data-decay error rate at or below 10%.
-
----
-
-### Operational Follow-Ups: HelpBridge Rename Cutover 🔄 ACTIVE
-
-**Status**: Repository and GitHub rename complete; external infra cutover still pending
-**Priority**: MEDIUM
-**Completed**: 2026-03-18 (repo-side rename)
-**Remaining Work**: Ops-machine and deployment follow-through
-
-Remaining operational tasks outside this repo:
-
-1. Update `platform-ops` and VPS-serving configuration on the ops machine so production hosting references `helpbridge`.
-2. Confirm deployment/domain cutover details in the external hosting environment.
-3. Decide whether the legacy brand string embedded in curated service data should be revised under manual-curation rules.
-
-📄 **Archive**:
-
-- [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
 
 ---
 

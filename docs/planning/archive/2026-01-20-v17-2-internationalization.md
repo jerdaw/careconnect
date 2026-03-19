@@ -13,7 +13,7 @@ tags: [roadmap, v17.2, i18n, translations, edia-locales]
 **Impact:** Multi-language support for 5 EDIA locales
 
 > [!NOTE]
-> **AI-Powered Translation**: All UI translations are performed by the AI coding assistant (Antigravity/Claude) rather than external translation APIs. This approach avoids API costs and provides contextually-aware translations. The infrastructure for external API translation (DeepL, Google Translate) has been documented but is not currently in use.
+> **Current Translation Approach**: UI translations are maintained in-repo with contextual review rather than external translation APIs. This approach avoids API costs and keeps terminology aligned with the product. The infrastructure for external API translation (DeepL, Google Translate) has been documented but is not currently in use.
 
 > [!IMPORTANT]
 > **External Translation APIs (Future)**: The infrastructure to use DeepL or Google Translate APIs is documented in Phase 2.2 below. **Do not pursue external translation services or incur costs without explicit user request.**
@@ -28,7 +28,7 @@ tags: [roadmap, v17.2, i18n, translations, edia-locales]
 All phases have been completed:
 
 - **Phase 1**: Gap analysis complete - identified and addressed 126 missing keys
-- **Phase 2**: AI-translated all EDIA locales (zh-Hans, ar, pt, es, pa)
+- **Phase 2**: Completed all EDIA locale translations (zh-Hans, ar, pt, es, pa)
 - **Phase 3**: Offline page moved to `app/[locale]/offline/` and localized
 - **Phase 4**: Extra keys cleanup pending (5 harmless extra keys remain in EDIA locales)
 - **Phase 5**: i18n audit passes (`npm run i18n-audit` shows 0 missing keys)
@@ -85,9 +85,9 @@ The following key categories were identified and translated:
 
 ## Phase 2: Translation Execution ✅
 
-### 2.1 AI-Powered Translation Workflow (Current Approach)
+### 2.1 Translation Workflow (Current Approach)
 
-Translations are performed by the AI coding assistant using contextual understanding of:
+Translations are maintained in-repo using contextual review of:
 
 - The application's purpose (social services directory)
 - Existing translation patterns in the codebase
@@ -102,8 +102,8 @@ Translations are performed by the AI coding assistant using contextual understan
 
 **Process:**
 
-1. AI identifies missing keys from `npm run i18n-audit`
-2. AI translates using English source as reference
+1. Missing keys are identified from `npm run i18n-audit`
+2. Translations are drafted from the English source with codebase context
 3. Translations are added directly to locale files
 4. JSON validity is verified with `jq`
 

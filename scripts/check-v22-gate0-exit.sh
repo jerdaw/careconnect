@@ -12,7 +12,7 @@ if [[ ! -f "$CHECKLIST_PATH" ]]; then
   exit 1
 fi
 
-decision_line="$(grep -E '^\| Gate 0 Exit Decision \|' "$CHECKLIST_PATH" | head -n 1 || true)"
+decision_line="$(grep -E '^\|[[:space:]]*Gate 0 Exit Decision[[:space:]]*\|' "$CHECKLIST_PATH" | head -n 1 || true)"
 
 if [[ -z "$decision_line" ]]; then
   echo "ERROR: Could not find 'Gate 0 Exit Decision' row in: $CHECKLIST_PATH"
@@ -31,10 +31,10 @@ while IFS= read -r line; do
   if [[ "$status" != "PASS" ]]; then
     non_pass_checks+=("${check_id}:${status}")
   fi
-done < <(grep -E '^\| G0-[0-9]+ ' "$CHECKLIST_PATH" || true)
+done < <(grep -E '^\|[[:space:]]*G0-[0-9]+[[:space:]]*\|' "$CHECKLIST_PATH" || true)
 
 if [[ "$decision" != "GO" ]]; then
-  blocking_line="$(grep -E '^\| Blocking Checks \|' "$CHECKLIST_PATH" | head -n 1 || true)"
+  blocking_line="$(grep -E '^\|[[:space:]]*Blocking Checks[[:space:]]*\|' "$CHECKLIST_PATH" | head -n 1 || true)"
   blocking_checks="see checklist"
 
   if [[ -n "$blocking_line" ]]; then

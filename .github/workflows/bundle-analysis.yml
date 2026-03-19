@@ -24,8 +24,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-      - name: Enforce v22.0 Gate 0 Exit Decision
-        run: npm run check:v22-gate0
 
       - name: Build with bundle analyzer
         run: npx cross-env ANALYZE=true npm run build

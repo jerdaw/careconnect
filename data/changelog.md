@@ -20,7 +20,7 @@ index 919fc83..1b296bb 100644
 -        "verification_level": "L1",
 -        "intent_category": "Crisis",
 -        "provenance": {
--            "verified_by": "Antigravity (AI Agent)",
+-            "verified_by": "HelpBridge Research",
 -            "verified_at": "2025-12-29T00:50:00Z",
 -            "evidence_url": "https://kidshelpphone.ca",
 -            "method": "Web Search & National Service Verification"

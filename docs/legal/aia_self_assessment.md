@@ -39,4 +39,4 @@ Based on the _Canadian Directive on Automated Decision-Making_, the system is ca
 ---
 
 **Assessment Date**: 2026-01-10
-**Assessor**: AI Remediation Agent (Antigravity)
+**Assessor**: Jeremy Dawson

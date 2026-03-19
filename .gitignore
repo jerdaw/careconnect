@@ -67,6 +67,7 @@ supabase/.branches/
 
 # mkdocs
 site/
+.cache/
 docs/llms.txt
 venv/
 .venv/

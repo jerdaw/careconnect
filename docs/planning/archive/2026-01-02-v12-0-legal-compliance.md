@@ -2,7 +2,7 @@
 
 > **Status**: In Planning
 > **Focus**: Establish fundamental legal protections, regulatory compliance, and liability mitigation
-> **Constraints**: Completely free, solo dev + AI assistance, pro bono legal support where possible
+> **Constraints**: Completely free, solo dev + zero-cost tooling, pro bono legal support where possible
 > **Methodology**: Based on comprehensive legal/liability evaluation identifying 12 risk areas
 
 ---
