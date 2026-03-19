@@ -20,6 +20,7 @@ coverage/**
 .github/**
 .husky/**
 scripts/**
+!scripts/vercel-ignore-build.sh
 *.log
 
 # Build artifacts
