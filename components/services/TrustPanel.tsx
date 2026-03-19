@@ -20,6 +20,9 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
   const [isIssueModalOpen, setIsIssueModalOpen] = useState(false)
 
   const provenance = service.provenance
+  const verifiedBy = provenance?.verified_by || "HelpBridge Admin"
+  const verificationMethod = provenance?.method || ""
+  const evidenceUrl = provenance?.evidence_url || ""
 
   const getLevelVariant = (level: VerificationLevel) => {
     switch (level) {
@@ -68,32 +71,32 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
               </span>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                <span className="font-medium">{provenance.verified_by || "HelpBridge Admin"}</span>
+                <span className="font-medium">{verifiedBy}</span>
               </div>
             </div>
           </div>
 
-          {provenance.method && (
+          {verificationMethod && (
             <div className="space-y-1 border-t border-neutral-100 pt-3 dark:border-neutral-800">
               <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
                 {t("method")}
               </span>
               <div className="flex items-center gap-2">
-                {provenance.method === "phone" && <Phone className="h-3.5 w-3.5 text-neutral-400" />}
-                {provenance.method === "email" && <Mail className="h-3.5 w-3.5 text-neutral-400" />}
-                {provenance.method === "site" && <Globe className="h-3.5 w-3.5 text-neutral-400" />}
-                <span className="font-medium">{t(`methods.${provenance.method}`)}</span>
+                {verificationMethod === "phone" && <Phone className="h-3.5 w-3.5 text-neutral-400" />}
+                {verificationMethod === "email" && <Mail className="h-3.5 w-3.5 text-neutral-400" />}
+                {verificationMethod === "site" && <Globe className="h-3.5 w-3.5 text-neutral-400" />}
+                <span className="font-medium">{t(`methods.${verificationMethod}`)}</span>
               </div>
             </div>
           )}
 
-          {provenance.evidence_url && (
+          {evidenceUrl && (
             <div className="space-y-1 border-t border-neutral-100 pt-3 dark:border-neutral-800">
               <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
                 {t("evidence")}
               </span>
               <a
-                href={provenance.evidence_url}
+                href={evidenceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary-600 hover:text-primary-700 decoration-primary-200 flex items-center gap-2 font-medium transition-colors"

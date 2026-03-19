@@ -1,7 +1,61 @@
 import { supabase, unsafeFrom } from "./supabase"
 import { logger } from "./logger"
-import { Service } from "@/types/service"
+import { Provenance, Service, VerificationLevel } from "@/types/service"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+
+let staticServicesPromise: Promise<Service[]> | null = null
+
+type ServiceRow = Record<string, unknown> & {
+  embedding?: string | number[] | null
+  tags?: string | Service["identity_tags"] | null
+  category?: Service["intent_category"]
+  verification_status?: Service["verification_level"]
+  provenance?: string | Partial<Provenance> | null
+  synthetic_queries?: string | string[] | null
+  synthetic_queries_fr?: string | string[] | null
+  hours?: string | Service["hours"] | null
+  accessibility?: string | Service["accessibility"] | null
+  languages?: string | string[] | null
+  bus_routes?: string | string[] | null
+  coordinates?: string | Service["coordinates"] | null
+}
+
+async function loadStaticServices(): Promise<Service[]> {
+  if (!staticServicesPromise) {
+    staticServicesPromise = import("@/data/services.json").then(
+      ({ default: servicesData }) => servicesData as Service[]
+    )
+  }
+
+  return staticServicesPromise
+}
+
+function parseJsonField<T>(value: unknown): T | undefined {
+  if (value == null) return undefined
+
+  if (typeof value === "string") {
+    try {
+      return JSON.parse(value) as T
+    } catch {
+      return undefined
+    }
+  }
+
+  return value as T
+}
+
+function normalizeProvenance(raw: unknown, staticService: Service | undefined, lastVerified: unknown): Provenance {
+  const parsed = parseJsonField<Partial<Provenance>>(raw) ?? {}
+  const fallback = staticService?.provenance
+
+  return {
+    verified_by: parsed.verified_by || fallback?.verified_by || "HelpBridge Admin",
+    verified_at:
+      parsed.verified_at || (typeof lastVerified === "string" ? lastVerified : "") || fallback?.verified_at || "",
+    evidence_url: parsed.evidence_url || fallback?.evidence_url || "",
+    method: parsed.method || fallback?.method || "",
+  }
+}
 
 /**
  * Claims a service for the current authenticated user's organization.
@@ -55,21 +109,30 @@ export async function getServiceById(id: string): Promise<Service | null> {
 
     if (!data) return null
 
-    const serviceRow = data as Record<string, unknown> & {
-      embedding?: string | number[] | null
-      tags?: string | Service["identity_tags"] | null
-      category?: Service["intent_category"]
-      verification_status?: Service["verification_level"]
-    }
+    const serviceRow = data as ServiceRow
+    const staticService = (await loadStaticServices()).find((service) => service.id === id)
 
     // Map database fields to Service type
     const service: Service = {
+      ...staticService,
       ...serviceRow,
-      embedding: typeof serviceRow.embedding === "string" ? JSON.parse(serviceRow.embedding) : serviceRow.embedding,
-      identity_tags: typeof serviceRow.tags === "string" ? JSON.parse(serviceRow.tags) : serviceRow.tags,
-      intent_category: serviceRow.category,
-      verification_level: serviceRow.verification_status,
-      // Ensure optional fields are handled if missing in DB but required in type (adjust as needed)
+      embedding: parseJsonField<Service["embedding"]>(serviceRow.embedding) ?? staticService?.embedding,
+      hours: parseJsonField<Service["hours"]>(serviceRow.hours) ?? staticService?.hours,
+      accessibility: parseJsonField<Service["accessibility"]>(serviceRow.accessibility) ?? staticService?.accessibility,
+      languages: parseJsonField<Service["languages"]>(serviceRow.languages) ?? staticService?.languages,
+      bus_routes: parseJsonField<Service["bus_routes"]>(serviceRow.bus_routes) ?? staticService?.bus_routes,
+      coordinates: parseJsonField<Service["coordinates"]>(serviceRow.coordinates) ?? staticService?.coordinates,
+      identity_tags: parseJsonField<Service["identity_tags"]>(serviceRow.tags) ?? staticService?.identity_tags ?? [],
+      intent_category: serviceRow.category ?? staticService?.intent_category,
+      verification_level: serviceRow.verification_status ?? staticService?.verification_level ?? VerificationLevel.L0,
+      provenance: normalizeProvenance(serviceRow.provenance, staticService, serviceRow.last_verified),
+      synthetic_queries:
+        parseJsonField<Service["synthetic_queries"]>(serviceRow.synthetic_queries) ??
+        staticService?.synthetic_queries ??
+        [],
+      synthetic_queries_fr:
+        parseJsonField<Service["synthetic_queries_fr"]>(serviceRow.synthetic_queries_fr) ??
+        staticService?.synthetic_queries_fr,
     } as unknown as Service
 
     return service

@@ -136,4 +136,29 @@ describe("TrustPanel Component", () => {
     const link = screen.getByRole("link", { name: /View Evidence/i })
     expect(link).toHaveAttribute("href", "https://example.com")
   })
+
+  it("falls back safely when provenance is missing", () => {
+    const service = {
+      ...mockService,
+      last_verified: "2026-01-01T00:00:00Z",
+      provenance: undefined,
+    }
+
+    render(
+      <TestWrapper
+        messages={
+          {
+            Trust: mockTrustMessages,
+            VerificationLevels: mockVerificationMessages,
+            Feedback: mockFeedbackMessages,
+          } as any
+        }
+      >
+        <TrustPanel service={service as any} locale="en" />
+      </TestWrapper>
+    )
+
+    expect(screen.getByText("HelpBridge Admin")).toBeInTheDocument()
+    expect(screen.queryByText("Manual")).not.toBeInTheDocument()
+  })
 })
