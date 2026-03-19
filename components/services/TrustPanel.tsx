@@ -37,6 +37,18 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
     }
   }
 
+  const methodLabels = {
+    phone: t("methods.phone"),
+    email: t("methods.email"),
+    site: t("methods.site"),
+    manual: t("methods.manual"),
+  } as const
+
+  const methodLabel =
+    verificationMethod in methodLabels
+      ? methodLabels[verificationMethod as keyof typeof methodLabels]
+      : verificationMethod
+
   return (
     <>
       <Card
@@ -85,7 +97,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
                 {verificationMethod === "phone" && <Phone className="h-3.5 w-3.5 text-neutral-400" />}
                 {verificationMethod === "email" && <Mail className="h-3.5 w-3.5 text-neutral-400" />}
                 {verificationMethod === "site" && <Globe className="h-3.5 w-3.5 text-neutral-400" />}
-                <span className="font-medium">{t(`methods.${verificationMethod}`)}</span>
+                <span className="font-medium">{methodLabel}</span>
               </div>
             </div>
           )}

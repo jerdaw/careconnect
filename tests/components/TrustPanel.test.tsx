@@ -161,4 +161,32 @@ describe("TrustPanel Component", () => {
     expect(screen.getByText("HelpBridge Admin")).toBeInTheDocument()
     expect(screen.queryByText("Manual")).not.toBeInTheDocument()
   })
+
+  it("renders free-form verification methods without i18n lookup", () => {
+    const service = {
+      ...mockService,
+      provenance: {
+        verified_by: "Tester",
+        verified_at: "2026-01-01T00:00:00Z",
+        method: "Direct verification",
+        evidence_url: "",
+      },
+    }
+
+    render(
+      <TestWrapper
+        messages={
+          {
+            Trust: mockTrustMessages,
+            VerificationLevels: mockVerificationMessages,
+            Feedback: mockFeedbackMessages,
+          } as any
+        }
+      >
+        <TrustPanel service={service} locale="en" />
+      </TestWrapper>
+    )
+
+    expect(screen.getByText("Direct verification")).toBeInTheDocument()
+  })
 })
