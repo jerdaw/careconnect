@@ -29,8 +29,7 @@ Current state:
 Important naming note:
 
 1. the public product/domain identity is `HelpBridge` / `helpbridge.ca`,
-2. the live VPS runtime identifiers are `helpbridge-web`,
-3. the historical `kingston-care-connect-web` name should be treated as pre-rename rollback context only.
+2. the live VPS runtime identifiers are `helpbridge-web`.
 
 This is the active production path. The root [DEPLOY.md](../../DEPLOY.md) file remains a **legacy Vercel guide** only.
 
@@ -161,8 +160,7 @@ This document records the active deployment baseline.
 Follow-up documentation still needed:
 
 1. broader historical cleanup for legacy references that do not affect the live runtime,
-2. any future status-page or subdomain policy,
-3. any later cleanup of temporary rollback references that still mention `kingston-care-connect-web`.
+2. any future status-page or subdomain policy.
 
 For the current deploy/verify/rollback checklist, use:
 
