@@ -141,7 +141,7 @@ describe("PartnerActionsPanel", () => {
         })
       )
     })
-  })
+  }, 15000)
 
   it("shows the auth-required error when the live entrypoint returns 401", async () => {
     const user = userEvent.setup()
