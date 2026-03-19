@@ -38,8 +38,8 @@ This document provides detailed procedures for final quality assurance before la
 
 - [ ] **Access production environment**
   - SSH to the VPS
-  - Review `/etc/projects-merge/env/kingston-care-connect-web.env`
-  - Confirm the staged release under `/srv/apps/kingston-care-connect-web/current`
+  - Review `/etc/projects-merge/env/helpbridge-web.env`
+  - Confirm the staged release under `/srv/apps/helpbridge-web/current`
 
 - [ ] **Verify core variables present:**
   - [ ] `NEXT_PUBLIC_SUPABASE_URL` (public Supabase URL)

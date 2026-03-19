@@ -155,7 +155,7 @@ This document provides step-by-step rollback procedures for different failure sc
 **2. Identify the last known good VPS release (1 minute)**
 
 - [ ] SSH to the VPS
-- [ ] List `/srv/apps/kingston-care-connect-web/releases/`
+- [ ] List `/srv/apps/helpbridge-web/releases/`
 - [ ] Identify the previous known-good release directory
 - [ ] Confirm the current symlink target before changing it
 
@@ -166,10 +166,10 @@ This document provides step-by-step rollback procedures for different failure sc
 - [ ] Wait for the container replacement to complete
 
 ```bash
-ln -sfn /srv/apps/kingston-care-connect-web/releases/<previous-release> \
-  /srv/apps/kingston-care-connect-web/current
-cd /srv/apps/kingston-care-connect-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
+ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
+  /srv/apps/helpbridge-web/current
+cd /srv/apps/helpbridge-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 **4. Verify Rollback Success (1 minute)**
@@ -284,7 +284,7 @@ cd /srv/apps/kingston-care-connect-web/current
 - [ ] Post in Slack: "⚠️ SEV-2: Rolling back - high error rate"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous working release
-- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env`
 - [ ] Wait for completion
 
 **4. Verify Rollback (3 minutes)**
@@ -407,7 +407,7 @@ cd /srv/apps/kingston-care-connect-web/current
 - [ ] Post in Slack: "⚠️ SEV-3: Rolling back - performance degradation"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous release
-- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env`
 - [ ] Monitor latency recovery
 
 **5. Verify Performance Restored (5 minutes)**
@@ -459,20 +459,20 @@ ssh haadmin@your-vps
 
 ```bash
 # List recent releases
-ls -1 /srv/apps/kingston-care-connect-web/releases
+ls -1 /srv/apps/helpbridge-web/releases
 
 # Repoint current to the previous release and redeploy
-ln -sfn /srv/apps/kingston-care-connect-web/releases/<previous-release> \
-  /srv/apps/kingston-care-connect-web/current
-cd /srv/apps/kingston-care-connect-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
+ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
+  /srv/apps/helpbridge-web/current
+cd /srv/apps/helpbridge-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 ### Verify Rollback
 
 ```bash
 # Check running container and health
-docker ps --filter name=kingston-care-connect-web
+docker ps --filter name=helpbridge-web
 curl http://127.0.0.1:3300/api/v1/health
 
 # Test health endpoint

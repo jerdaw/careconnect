@@ -35,8 +35,8 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 ### 1. Deployment Verification
 
 - [ ] **Confirm deployment successful**
-  - Confirm `/srv/apps/kingston-care-connect-web/current` points at the intended release
-  - Verify `docker ps` shows `kingston-care-connect-web` up on `127.0.0.1:3300`
+  - Confirm `/srv/apps/helpbridge-web/current` points at the intended release
+  - Verify `docker ps` shows `helpbridge-web` up on `127.0.0.1:3300`
   - Check container logs for warnings or crash loops
 
 - [ ] **Verify production URL accessible**

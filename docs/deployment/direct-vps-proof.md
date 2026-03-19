@@ -29,8 +29,8 @@ Current state:
 Important naming note:
 
 1. the public product/domain identity is `HelpBridge` / `helpbridge.ca`,
-2. the live VPS runtime identifiers remain `kingston-care-connect-web` for stability,
-3. no parallel `helpbridge-web` runtime currently exists on the VPS.
+2. the live VPS runtime identifiers are `helpbridge-web`,
+3. the historical `kingston-care-connect-web` name should be treated as pre-rename rollback context only.
 
 This is the active production path. The root [DEPLOY.md](../../DEPLOY.md) file remains a **legacy Vercel guide** only.
 
@@ -72,7 +72,7 @@ It will:
 
 1. build a tagged image,
 2. prefer `docker buildx build` when available and fall back to legacy `docker build` only if `buildx` is missing,
-3. replace the existing `kingston-care-connect-web` container if present,
+3. replace the existing `helpbridge-web` container if present,
 4. run it with `--restart unless-stopped`,
 5. publish `127.0.0.1:3300:3000`,
 6. pass required `NEXT_PUBLIC_*` values into both the image build and container runtime,
@@ -90,7 +90,7 @@ release in one step:
 
 As of 2026-03-11, the deployment has been verified with:
 
-1. `docker ps` showing `kingston-care-connect-web` healthy on the VPS,
+1. `docker ps` showing `helpbridge-web` healthy on the VPS,
 2. `curl -fsS http://127.0.0.1:3300/api/v1/health`,
 3. `curl -sS -D - "http://127.0.0.1:3300/api/v1/services?limit=1"`.
 4. `curl -fsS https://helpbridge.ca/api/v1/health`,
@@ -162,7 +162,7 @@ Follow-up documentation still needed:
 
 1. broader historical cleanup for legacy references that do not affect the live runtime,
 2. any future status-page or subdomain policy,
-3. a separate planned VPS runtime rename if you later want `kingston-care-connect-web` renamed to `helpbridge-web`.
+3. any later cleanup of temporary rollback references that still mention `kingston-care-connect-web`.
 
 For the current deploy/verify/rollback checklist, use:
 

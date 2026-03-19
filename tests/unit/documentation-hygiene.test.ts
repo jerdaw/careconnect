@@ -45,8 +45,8 @@ describe("documentation hygiene", () => {
 
     expect(monitoring).not.toContain("Vercel deployment status")
     expect(rollback).not.toContain("vercel rollback")
-    expect(rollback).toContain("/srv/apps/kingston-care-connect-web/releases")
-    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env")
+    expect(rollback).toContain("/srv/apps/helpbridge-web/releases")
+    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env")
   })
 
   it("points shared VPS facts to platform-ops in active entry points", () => {

@@ -15,7 +15,7 @@ This is the active production checklist for HelpBridge on the direct-VPS path.
 - **Runtime:** Docker on the Hetzner VPS
 - **Ingress:** host Caddy
 - **Private bind:** `127.0.0.1:3300`
-- **Env file:** `/etc/projects-merge/env/kingston-care-connect-web.env`
+- **Env file:** `/etc/projects-merge/env/helpbridge-web.env`
 
 Shared-VPS ownership note:
 
@@ -67,7 +67,7 @@ Verify the VPS env file contains the required runtime values:
 
 ```bash
 sudo grep -E '^(NEXT_PUBLIC_SUPABASE_URL|NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY|NEXT_PUBLIC_APP_URL|NEXT_PUBLIC_BASE_URL|NEXT_PUBLIC_SEARCH_MODE|NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING)=' \
-  /etc/projects-merge/env/kingston-care-connect-web.env | sed 's/=.*$/=<redacted>/'
+  /etc/projects-merge/env/helpbridge-web.env | sed 's/=.*$/=<redacted>/'
 ```
 
 Expected production host values:
@@ -87,15 +87,15 @@ and `NEXT_PUBLIC_ONESIGNAL_APP_ID` may be unset if they are not in active use.
 
 ## 4. Release Staging
 
-- [ ] create or update a release directory under `/srv/apps/kingston-care-connect-web/releases/`
-- [ ] point `/srv/apps/kingston-care-connect-web/current` at the intended release
+- [ ] create or update a release directory under `/srv/apps/helpbridge-web/releases/`
+- [ ] point `/srv/apps/helpbridge-web/current` at the intended release
 - [ ] confirm `scripts/deploy-vps-proof.sh` exists in the staged release
 
 Example:
 
 ```bash
-readlink -f /srv/apps/kingston-care-connect-web/current
-ls /srv/apps/kingston-care-connect-web/current/scripts/deploy-vps-proof.sh
+readlink -f /srv/apps/helpbridge-web/current
+ls /srv/apps/helpbridge-web/current/scripts/deploy-vps-proof.sh
 ```
 
 From a local workstation you can stage and deploy the current committed tree in
@@ -110,14 +110,14 @@ one step:
 From the staged release on the VPS:
 
 ```bash
-cd /srv/apps/kingston-care-connect-web/current
+cd /srv/apps/helpbridge-web/current
 docker buildx version
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 - [ ] `docker buildx version` succeeds or the fallback warning is understood
 - [ ] a new image tag is produced
-- [ ] the `kingston-care-connect-web` container is replaced cleanly
+- [ ] the `helpbridge-web` container is replaced cleanly
 - [ ] the bind remains `127.0.0.1:3300->3000`
 
 ## 6. Private Verification
@@ -125,10 +125,10 @@ docker buildx version
 Run on the VPS:
 
 ```bash
-docker ps --filter name=kingston-care-connect-web
+docker ps --filter name=helpbridge-web
 curl -fsS http://127.0.0.1:3300/api/v1/health
 curl -sS -D - "http://127.0.0.1:3300/api/v1/services?limit=1"
-docker logs --tail 50 kingston-care-connect-web
+docker logs --tail 50 helpbridge-web
 ```
 
 - [ ] health returns JSON
@@ -172,7 +172,7 @@ sudo journalctl -u caddy --since "10 minutes ago" --no-pager
 After cutover, keep the service under short observation:
 
 ```bash
-docker ps --filter name=kingston-care-connect-web
+docker ps --filter name=helpbridge-web
 curl -fsS http://127.0.0.1:3300/api/v1/health
 curl -fsS https://helpbridge.ca/api/v1/health
 free -h
@@ -186,17 +186,17 @@ free -h
 
 If the new release is bad:
 
-1. repoint `/srv/apps/kingston-care-connect-web/current` to the last known good release
+1. repoint `/srv/apps/helpbridge-web/current` to the last known good release
 2. redeploy using the same env file
 3. re-run the private and public verification steps
 
 Example:
 
 ```bash
-ln -sfn /srv/apps/kingston-care-connect-web/releases/<previous-release> \
-  /srv/apps/kingston-care-connect-web/current
-cd /srv/apps/kingston-care-connect-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/kingston-care-connect-web.env
+ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
+  /srv/apps/helpbridge-web/current
+cd /srv/apps/helpbridge-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 ## References
