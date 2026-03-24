@@ -9,7 +9,7 @@ This directory contains planning and strategy documents for HelpBridge.
 
 ## Active Planning: v22.0
 
-**Status:** GATE 0 DECISION WORK IN PROGRESS
+**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/C2/D4 closure)
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
@@ -34,6 +34,10 @@ This directory contains planning and strategy documents for HelpBridge.
 
 5. **[HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)**
    - Historical record of the completed repo + runtime rename
+   - **Reading time:** 5 minutes
+
+6. **[v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)**
+   - Historical record of the completed real DB integration test lane and the remaining migration-history follow-up
    - **Reading time:** 5 minutes
 
 ---
@@ -84,18 +88,22 @@ Pilot cost remains bounded by existing infrastructure and partner participation 
 
 Current dependencies:
 
-- Gate 0 approval locks
-- Baseline evidence publication
-- Integration feasibility decision
-- Offline/local threat-model completion
+- Gate 0 blocker closure (`C1`, `C2`, `D4`)
+- Baseline evidence already published
+- Integration feasibility decision already recorded in conditional mode
+- Offline/local threat-model completion already recorded
 
 ---
 
 ## How to Proceed
 
-### Option 1: Approve and Start
+### Option 1: Close Gate 0
 
-Review the [v22.0 plan](v22-0-non-duplicate-value-decision-plan.md) and [approval checklist](v22-0-approval-checklist.md), then lock Step 1 decisions.
+Use the active roadmap and Gate 0 tracker to close the three blocking items:
+
+1. Attach candidate partner legal/API terms for C1 review
+2. Approve retention/deletion policy and attach privacy sign-off for C2
+3. Attach named pilot partner and outreach execution evidence for D4
 
 ### Option 2: Ask Questions
 
@@ -109,6 +117,8 @@ Propose modifications to scope, timeline, or implementation strategy.
 
 ## Document Updates
 
+- **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
+- **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
 - **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`
-- Next review: After Gate 0 sign-off or the next material v22 roadmap change
+- Next review: After any `UA-1` / `UA-2` / `UA-3` evidence update or the next material roadmap change

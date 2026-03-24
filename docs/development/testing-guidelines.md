@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-25
+last_updated: 2026-03-24
 owner: jer
 tags: [development, testing, guidelines, vitest, playwright, rtl]
 ---
@@ -58,6 +58,9 @@ The default `tests/e2e/**` Chromium suite should stay **skip-free**.
 ```bash
 # Unit and integration tests (fast, reliable)
 npm test
+
+# Real DB integration tests against local Supabase
+npm run test:db
 
 # Tests with coverage
 npm run test:coverage
@@ -151,6 +154,20 @@ Local helper behavior:
 
 - Place in `tests/api/v1/`
 - Mock Supabase client to avoid network calls
+
+### DB Integration Tests
+
+- Place real Supabase-backed retrieval and policy tests in `tests/db/`
+- Run them via `npm run test:db` only; the default Vitest suite excludes `tests/db/**`
+- Use the local Supabase runner to boot a disposable minimal Supabase stack and apply the deterministic test bootstrap + synthetic seed
+- Cover public retrieval boundaries first: `services`, `services_public`, search, export, and service detail
+- Treat the DB lane as the source of truth for runtime retrieval contracts, not as proof that the historical migration chain can rebuild the full app schema from scratch
+
+### Free-Tier CI Discipline
+
+- Keep the DB test lane on the minimal local Supabase profile only (`db`, `auth`, `api`, `gateway`)
+- Do not add Studio, Storage, Realtime, or other nonessential containers unless the tests actually require them
+- Prefer deterministic SQL bootstrap + synthetic fixtures over pulling in production-like operational dependencies
 
 ### E2E Tests
 

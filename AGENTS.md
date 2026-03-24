@@ -67,6 +67,8 @@ npm run analyze          # Bundle analysis
 npm test                 # Run all Vitest unit tests
 npm run test:watch       # Vitest in watch mode
 npm run test:coverage    # Generate coverage report
+npm run test:db          # Run real DB integration tests against local Supabase
+npm run test:db:smoke    # Run DB smoke/bootstrap validation only
 npm run test:e2e         # Playwright E2E tests (all browsers)
 npm run test:e2e:local   # Playwright E2E tests (Chromium only; non-blocking in CI per ADR-015)
 npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
@@ -505,6 +507,8 @@ We use a **pragmatic tiered testing strategy** that prioritizes dev velocity:
 - Default local verification should stay on lint, type-check, build, and targeted Vitest while GitHub Actions is on free-tier budget mode; leave Playwright to CI/manual dispatch unless the user explicitly asks for a local browser repro
 
 Full details: `docs/development/testing-guidelines.md`
+
+The DB lane intentionally uses a disposable local Supabase test stack plus deterministic SQL bootstrap. Do not treat `npm run test:db` as proof that the historical migration chain is fully rebuildable; track migration-history cleanup separately.
 
 ---
 

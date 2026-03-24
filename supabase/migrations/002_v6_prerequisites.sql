@@ -4,6 +4,7 @@
 
 -- 1. Security & Best Practices: Move extensions to dedicated schema
 CREATE SCHEMA IF NOT EXISTS extensions;
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA extensions;
 ALTER EXTENSION vector SET SCHEMA extensions;
 
 -- Ensure search path includes extensions

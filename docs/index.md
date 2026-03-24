@@ -6,11 +6,11 @@
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
 ![Coverage](https://img.shields.io/badge/Coverage-65%25-yellow.svg)
 
-## The Kingston 150
+## Manual Curation, Not Scraping
 
 Large-scale scraping of municipal data produces noise, not value. HelpBridge takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **169 highest-impact services** available to Kingston residents. Every entry is:
+We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
 
 - **Verified** — No broken links or disconnected phone numbers.
 - **Accessible** — Clear eligibility requirements.
@@ -20,7 +20,9 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ## Current Version
 
-**v17.5** - Performance Tracking & Circuit Breaker (2026-01-25)
+**v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-03-24)
+
+Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`), retention/privacy sign-off (`C2`), and partner-ops execution evidence (`D4`) are closed. See [docs/planning/roadmap.md](planning/roadmap.md) for the canonical project state.
 
 ## Current Features
 
@@ -93,7 +95,7 @@ We maintain a hand-verified dataset of the **169 highest-impact services** avail
 
 ### Additional Capabilities
 
-- **169 Verified Services** — Hand-curated Kingston services across 12 categories.
+- **196 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -151,7 +153,8 @@ Open `http://localhost:3000` to view the application.
 | `npm run dev` | Start development server (Turbo) |
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
-| `npm test` | Run unit and integration tests (Vitest) |
+| `npm test` | Run the default Vitest suite |
+| `npm run test:db` | Run real DB integration tests locally |
 | `npm run test:watch` | Vitest in watch mode |
 | `npm run test:coverage` | Generate coverage report |
 | `npm run test:e2e` | Run E2E tests (all browsers) |

@@ -18,6 +18,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
+    "test:db": "bash scripts/run-db-tests.sh",
+    "test:db:smoke": "bash scripts/run-db-tests.sh tests/db/smoke.test.ts",
     "test:e2e": "playwright test",
     "test:e2e:local": "playwright test --project=chromium",
     "test:e2e:prod-local": "npm run build && node --import tsx scripts/run-playwright-with-server.ts tests/e2e/prod",

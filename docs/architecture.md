@@ -228,6 +228,8 @@ We use a modular hook system to separate concerns:
 ## Development
 
 - `npm run dev`: Start local server.
-- `npm run test`: Run integration tests.
+- `npm run test`: Run the default Vitest suite.
+- `npm run test:db`: Run real DB-backed retrieval and policy tests.
 - `npm run test:e2e:local`: Run partial E2E tests (CI handles full suite).
-- `docs/CONTRIBUTING.md`: Detailed development guidelines.
+- `AGENTS.md`: Contributor and local workflow guidance.
+- `docs/development/testing-guidelines.md`: Detailed testing guidance.

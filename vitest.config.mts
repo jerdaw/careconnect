@@ -9,7 +9,7 @@ export default defineConfig({
     setupFiles: "./vitest.setup.ts",
     globals: true,
     include: ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
-    exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**", ".next/**"],
+    exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**", "tests/db/**", ".next/**"],
     coverage: {
       reporter: ["text", "json", "html"],
       // IMPORTANT: These thresholds are ENFORCED in CI (see .github/workflows/ci.yml)
