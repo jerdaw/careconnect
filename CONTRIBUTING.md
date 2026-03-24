@@ -7,7 +7,7 @@ Welcome! This guide will help you get up and running with the HelpBridge codebas
 - [ ] **Prerequisites**: Node.js 22+, npm 10+
 - [ ] **Clone & Install**: `git clone` → `cd helpbridge` → `npm install`
 - [ ] **Environment Setup**: Copy `.env.example` to `.env.local` (core features work without Supabase)
-- [ ] **Start Dev Server**: `npm run dev` → Open [http://localhost:3000](http://localhost:3000)
+- [ ] **Start Dev Server**: `npm run dev` → Open `http://localhost:3000`
 - [ ] **Run Tests**: `npm test`
 - [ ] **Type Check**: `npm run type-check` (should pass with zero errors)
 - [ ] **Read AGENTS.md**: Understand project goals, architecture, and boundaries
