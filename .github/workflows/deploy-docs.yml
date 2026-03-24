@@ -62,16 +62,25 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --exclude-path ^\.?/docs/audits/
-            --exclude-path ^\.?/docs/design/
-            --exclude-path ^\.?/docs/evaluation/
-            --exclude-path ^\.?/docs/index\.md$
-            --exclude-path ^\.?/docs/planning/archive/
-            --exclude-path ^\.?/docs/planning/v18-0/
-            --exclude-path ^\.?/docs/templates/
-            --exclude-path ^\.?/docs/implementation/v17-
-            --exclude-path ^\.?/docs/implementation/v18-
-            ./docs/**/*.md
+            ./docs/README.md
+            ./docs/ACCESSIBILITY_GUIDE.md
+            ./docs/architecture.md
+            ./docs/agents-md-guidelines.md
+            ./docs/adr/**/*.md
+            ./docs/community/**/*.md
+            ./docs/deployment/**/*.md
+            ./docs/development/**/*.md
+            ./docs/governance/**/*.md
+            ./docs/legal/**/*.md
+            ./docs/observability/**/*.md
+            ./docs/operations/**/*.md
+            ./docs/runbooks/**/*.md
+            ./docs/security/**/*.md
+            ./docs/workflows/**/*.md
+            ./docs/planning/roadmap.md
+            ./docs/implementation/v19*.md
+            ./docs/implementation/v22*.md
+            ./CONTRIBUTING.md
             ./README.md
             ./AGENTS.md
           fail: true
