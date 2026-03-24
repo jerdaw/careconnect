@@ -36,6 +36,7 @@ ALLOWED_FILES=(
   "prettier.config.js"
   "postcss.config.js"
   "vitest.config.mts"
+  "vitest.db.config.mts"
   "vitest.setup.ts"
   "playwright.config.ts"
   "capacitor.config.ts"
