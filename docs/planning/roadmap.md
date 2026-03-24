@@ -351,18 +351,18 @@ Complete the operational foundation for production launch by adding production-g
 📄 **Documentation**:
 
 - **[v18.0 Complete Implementation Summary](../implementation/v18-0-IMPLEMENTATION-SUMMARY.md)** 📊
-- [Roadmap Overview](v18-0-production-observability.md)
+- [Roadmap Overview](v18-0/production-observability.md)
 - [Phase 1 Complete](../implementation/v18-0-phase-1-COMPLETE.md) ✅
 - [Phase 2 Full Plan](../implementation/v18-0-phase-2-implementation-plan.md)
 - **[Phase 3 SLO Decision Guide](v18-0-phase-3-slo-decision-guide.md)** 📋
 - **[Phase 3 Implementation Summary](../implementation/v18-0-phase-3-implementation-summary.md)** ✅
-- [Phase 2 Visual Roadmap](../planning/v18-0-phase-2-visual-roadmap.md)
+- [Phase 2 Visual Roadmap](v18-0/v18-0-phase-2-visual-roadmap.md)
 - [Task 2.1 Complete](../implementation/v18-0-task-2-1-completion-summary.md) ✅
 - [Task 2.2 Complete](../implementation/v18-0-task-2-2-completion-summary.md) ✅
 - [Tasks 2.3 & 2.4 Plan](../implementation/v18-0-phase-2-tasks-3-4-implementation-plan.md) ✅
-- [Tasks 2.3 & 2.4 Quick Start](../planning/v18-0-phase-2-final-README.md) ✅
-- [Tasks 2.3 & 2.4 Executive Summary](../planning/v18-0-phase-2-final-executive-summary.md)
-- [Phase 2 Executive Summary](../planning/v18-0-phase-2-executive-summary.md)
+- [Tasks 2.3 & 2.4 Quick Start](v18-0/v18-0-phase-2-final-README.md) ✅
+- [Tasks 2.3 & 2.4 Executive Summary](v18-0/v18-0-phase-2-final-executive-summary.md)
+- [Phase 2 Executive Summary](v18-0/v18-0-phase-2-executive-summary.md)
 - [Phase 4 Complete](../implementation/v18-0-phase-4-COMPLETE.md) ✅
 
 ---

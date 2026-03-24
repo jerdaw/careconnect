@@ -442,7 +442,7 @@ To add PagerDuty or email escalation:
 
 ## Related Documentation
 
-- **Observability Dashboard:** [Dashboard Usage Guide](./dashboard-usage.md)
+- **Observability Access & Setup:** [User Setup Required](./USER-SETUP-REQUIRED.md)
 - **Circuit Breaker Runbook:** [Circuit Breaker Open](../runbooks/circuit-breaker-open.md)
 - **Axiom Setup:** [User Setup Required](./USER-SETUP-REQUIRED.md)
 - **Architecture:** [ADR-016 Performance Tracking](../adr/016-performance-tracking-and-circuit-breaker.md)

@@ -80,7 +80,7 @@ To ensure documentation is effectively used by AI agents and LLMs:
 This project separates **backlog** vs **implementation plans** vs **canonical docs** to reduce drift.
 
 - `docs/planning/roadmap.md` is the high-level strategic plan.
-- See detailed workflow in [`docs/development/roadmap-process.md`](docs/development/roadmap-process.md).
+- See detailed workflow in [`docs/development/roadmap-process.md`](../development/roadmap-process.md).
 - When you start work, create a focused implementation plan under `docs/planning/` (e.g. `v10-0-feature-x.md`).
 - When the work is done:
   1. Update canonical docs (`docs/architecture.md`, etc.) so the result is maintainable.

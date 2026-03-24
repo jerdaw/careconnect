@@ -448,7 +448,7 @@ jobs:
 ## Further Reading
 
 - [k6 Documentation](https://k6.io/docs/)
-- [k6 Test Types](https://k6.io/docs/test-types/introduction/)
+- [k6 Documentation](https://grafana.com/docs/k6/latest/)
 - [Performance Testing Best Practices](https://k6.io/docs/testing-guides/automated-performance-testing/)
 - HelpBridge: `docs/adr/014-database-index-optimization.md`
 - HelpBridge: `docs/adr/013-unified-rls-policy.md`

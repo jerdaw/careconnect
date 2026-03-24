@@ -542,7 +542,7 @@ LIMIT 10;
 
 - **External Resources:**
   - [PostgreSQL EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html)
-  - [Supabase Performance Guide](https://supabase.com/docs/guides/database/performance)
+  - [Supabase Database Docs](https://supabase.com/docs/guides/database)
   - [Use The Index, Luke](https://use-the-index-luke.com/) (SQL indexing guide)
 
 - **Tools:**

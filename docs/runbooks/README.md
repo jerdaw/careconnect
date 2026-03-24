@@ -485,7 +485,7 @@ When onboarding new on-call engineer:
 
 ### Observability & Monitoring
 
-- **Guide:** [Observability Dashboard Usage](../observability/dashboard-usage.md)
+- **Guide:** [Alerting Setup](../observability/alerting-setup.md)
 - **Guide:** [Alerting Setup](../observability/alerting-setup.md)
 - **Guide:** [Axiom Setup](../observability/USER-SETUP-REQUIRED.md)
 

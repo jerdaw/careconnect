@@ -42,5 +42,5 @@ Implement comprehensive security headers in `next.config.ts`:
 
 ## Related
 
-- [SECURITY_AUDIT.md](../audits/SECURITY_AUDIT.md)
+- [2025 Security Audit Report](../audits/2025-01-16-security-audit-report.md)
 - [next.config.ts](/next.config.ts)

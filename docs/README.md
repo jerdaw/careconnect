@@ -49,8 +49,8 @@ Shared VPS facts that are not specific to HelpBridge alone are canonical in:
 
 ## Audits
 
-- [EDIA Audit](audits/EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
-- [Privacy Audit](audits/privacy-technical-audit.md) - Privacy compliance
+- [EDIA Audit](audits/2025-12-29-EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
+- [Privacy Audit](audits/2025-12-29-privacy-technical-audit.md) - Privacy compliance
 
 ## Planning & Roadmaps
 

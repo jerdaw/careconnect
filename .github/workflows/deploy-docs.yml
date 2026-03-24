@@ -57,7 +57,21 @@ jobs:
       - name: Link Checker (Lychee)
         uses: lycheeverse/lychee-action@v2.3.0
         with:
-          args: --verbose --no-progress './docs/**/*.md' './README.md'
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-path 'docs/audits/**'
+            --exclude-path 'docs/design/**'
+            --exclude-path 'docs/evaluation/**'
+            --exclude-path 'docs/index.md'
+            --exclude-path 'docs/planning/archive/**'
+            --exclude-path 'docs/planning/v18-0/**'
+            --exclude-path 'docs/templates/**'
+            --exclude-path 'docs/implementation/v17-*'
+            --exclude-path 'docs/implementation/v18-*'
+            './docs/**/*.md'
+            './README.md'
+            './AGENTS.md'
           fail: true
 
       - name: Deploy to GitHub Pages

@@ -241,7 +241,7 @@ Located in `scripts/compare-bundle-size.js`:
 
 - [Bundle Analysis Best Practices](https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer)
 - [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
-- [@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
+- [@next/bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer)
 
 ## Future Enhancements
 
