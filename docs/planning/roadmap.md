@@ -17,7 +17,7 @@
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback and background sync
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
-- **Deployment**: live on the direct-VPS path at `https://helpbridge.ca`
+- **Deployment**: Live on the direct-VPS path at `https://helpbridge.ca`
 - **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
 - **Data quality gaps**:
   - Coordinates: 70.4% complete (58/196 missing)
