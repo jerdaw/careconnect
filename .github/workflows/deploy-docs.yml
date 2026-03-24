@@ -8,6 +8,7 @@ on:
       - "docs/**"
       - "mkdocs.yml"
       - "README.md"
+      - "CONTRIBUTING.md"
       - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
