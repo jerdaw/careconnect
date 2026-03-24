@@ -31,24 +31,26 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-          TAG=${GITHUB_REF#refs/tags/}
-          VERSION=${TAG#v}
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
+          printf 'tag=%s\n' "$TAG" >> "$GITHUB_OUTPUT"
+          printf 'version=%s\n' "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Generate release notes
         id: notes
         run: |
           # Generate release notes from CHANGELOG.md
-          node scripts/generate-release-notes.js ${{ steps.version.outputs.version }} --output release-notes.md
+          node scripts/generate-release-notes.js "${{ steps.version.outputs.version }}" --output release-notes.md
 
           # Read generated notes
-          NOTES=$(cat release-notes.md)
+          NOTES="$(< release-notes.md)"
 
           # Set output (escape for GitHub Actions)
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$NOTES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          {
+            echo "body<<EOF"
+            printf '%s\n' "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
