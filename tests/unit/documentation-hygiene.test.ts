@@ -20,6 +20,17 @@ describe("documentation hygiene", () => {
     }
   })
 
+  it("uses AGENTS.md as the canonical contributor guide in active entry points", () => {
+    const contributing = readDoc("CONTRIBUTING.md")
+    const agents = readDoc("AGENTS.md")
+
+    expect(contributing).toContain("Read AGENTS.md")
+    expect(contributing).toContain("See [AGENTS.md](AGENTS.md)")
+    expect(contributing).toContain("`CLAUDE.md` and `GEMINI.md` are compatibility symlinks to `AGENTS.md`")
+    expect(agents).toContain("Do not add AI tool attribution")
+    expect(agents).toContain("Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`")
+  })
+
   it("tracks the live VPS deployment in the roadmap", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
 
@@ -66,5 +77,12 @@ describe("documentation hygiene", () => {
     expect(directVpsProof).toContain(
       "Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`."
     )
+  })
+
+  it("surfaces implementation docs in the docs index", () => {
+    const docsIndex = readDoc("docs/README.md")
+
+    expect(docsIndex).toContain("[`implementation/`](implementation/)")
+    expect(docsIndex).toContain("[v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)")
   })
 })

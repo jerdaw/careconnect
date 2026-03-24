@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-24
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, intake]
 ---
@@ -21,6 +21,7 @@ Rules:
 1. Do not mark any blocker `complete` unless all minimum evidence checks pass.
 2. Evidence must be dated and attributable (owner/reviewer).
 3. No fabricated evidence or inferred closure is allowed.
+4. Canonical drop locations for new submissions live under [v22.0 Gate 0 Evidence Workspace](v22-0-evidence/README.md).
 
 ## Intake Template: UA-1 / G0-3 (C1 Legal)
 
@@ -45,6 +46,10 @@ Clause review outcomes:
 Final legal recommendation: acceptable | acceptable_with_conditions | not_acceptable
 Reviewer:
 ```
+
+Suggested drop location:
+
+1. [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)
 
 Minimum evidence checks:
 
@@ -81,6 +86,10 @@ Privacy sign-off:
 - Decision: approved | approved_with_conditions | rejected
 ```
 
+Suggested drop location:
+
+1. [v22.0 Evidence Workspace / C2](v22-0-evidence/c2-retention/README.md)
+
 Minimum evidence checks:
 
 - [ ] Retention window defined for every allowed integration field.
@@ -113,6 +122,10 @@ Coverage note:
 - Number of organizations targeted:
 - Gaps remaining:
 ```
+
+Suggested drop location:
+
+1. [v22.0 Evidence Workspace / D4](v22-0-evidence/d4-partner-ops/README.md)
 
 Minimum evidence checks:
 

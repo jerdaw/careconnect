@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-24
 owner: jer
 tags: [implementation, v22.0, gate-0, actions, governance]
 ---
@@ -24,11 +24,11 @@ Related:
 
 ## User-Owned Blockers
 
-| Action ID | Gate Check                               | Owner | Required Evidence                                                                                                   | Current Status (`pending` \| `in_progress` \| `complete`) | Due Date   | Last Update | Blocking If Missing (`yes` \| `no`) | Notes                                                                  |
-| --------- | ---------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------- | ----------- | ----------------------------------- | ---------------------------------------------------------------------- |
-| UA-1      | G0-3 (C1 legal clause review)            | jer   | Candidate partner legal/API terms attached + clause-level redline notes for C1-1..C1-4 + final legal recommendation | pending                                                   | 2026-03-21 | 2026-03-09  | yes                                 | C1-3 remains unresolved until partner terms are attached and reviewed  |
-| UA-2      | G0-4 (C2 retention mapping approval)     | jer   | Field-level retention windows, deletion procedure (trigger + executor), and privacy sign-off memo                   | pending                                                   | 2026-03-21 | 2026-03-09  | yes                                 | C2-2, C2-3, C2-5 remain unresolved until policy lock and sign-off      |
-| UA-3      | G0-8 (D4 partner ops execution evidence) | jer   | Named pilot partner list, outreach owner assignment, and dated outreach execution evidence bundle                   | pending                                                   | 2026-03-21 | 2026-03-09  | yes                                 | D4 is locked at planning level but execution evidence is still missing |
+| Action ID | Gate Check                               | Owner | Required Evidence                                                                                                   | Current Status (`pending` \| `in_progress` \| `complete`) | Due Date   | Last Update | Blocking If Missing (`yes` \| `no`) | Notes                                                                                                                                                      |
+| --------- | ---------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------- | ----------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UA-1      | G0-3 (C1 legal clause review)            | jer   | Candidate partner legal/API terms attached + clause-level redline notes for C1-1..C1-4 + final legal recommendation | pending                                                   | 2026-03-21 | 2026-03-24  | yes                                 | Evidence workspace prepared at `docs/implementation/v22-0-evidence/c1-partner-terms/`; C1-3 still unresolved until partner terms are attached and reviewed |
+| UA-2      | G0-4 (C2 retention mapping approval)     | jer   | Field-level retention windows, deletion procedure (trigger + executor), and privacy sign-off memo                   | pending                                                   | 2026-03-21 | 2026-03-24  | yes                                 | Draft policy + runbook now exist in-repo; privacy sign-off and dated verification evidence are still required                                              |
+| UA-3      | G0-8 (D4 partner ops execution evidence) | jer   | Named pilot partner list, outreach owner assignment, and dated outreach execution evidence bundle                   | pending                                                   | 2026-03-21 | 2026-03-24  | yes                                 | Evidence workspace prepared at `docs/implementation/v22-0-evidence/d4-partner-ops/`; execution evidence is still missing                                   |
 
 ## Ready For Agent Once Evidence Is Provided
 
@@ -56,3 +56,4 @@ Related:
 | Date       | Event               | Update                                                                                   |
 | ---------- | ------------------- | ---------------------------------------------------------------------------------------- |
 | 2026-03-09 | Tracker initialized | Added UA-1, UA-2, UA-3 with gate-event update protocol and required evidence definitions |
+| 2026-03-24 | Autonomous prep     | Added evidence workspace scaffolding and a draft C2 retention/deletion policy artifact   |

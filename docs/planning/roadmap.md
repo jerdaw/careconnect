@@ -2,7 +2,7 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-18
+> **Last Updated**: 2026-03-24
 > **Platform Status**: Strategic Repositioning — v22.0 Decision-Gated Planning
 
 ## 📊 Current State
@@ -42,7 +42,7 @@
 **Timeline**: Phase 0 (2 weeks) + Phase 1 (8 weeks) + Phase 2 decision cycle
 **Dependencies**: v22 objective evaluation artifacts + integration feasibility decision
 **Created**: 2026-02-27
-**Current State**: Pilot DB schema, RLS policies, hardened admin function, internal pilot APIs, and pilot test suite are implemented and validated. Step 1 decision locks are complete; baseline M1/M3 execution is recorded (both `NULL` due to zero baseline-window events), but Gate 0 remains NO-GO until legal/privacy and partner-operation blockers are closed.
+**Current State**: Pilot DB schema, RLS policies, hardened admin function, internal pilot APIs, and pilot test suite are implemented and validated. Step 1 decision locks are complete; baseline M1/M3 execution is recorded (both `NULL` due to zero baseline-window events); Gate 0 evidence workspace scaffolding is in place; and a draft C2 retention/deletion policy now exists in repo. Gate 0 still remains NO-GO until legal/privacy and partner-operation blockers are closed.
 
 Reposition HelpBridge from potential directory duplication to measurable last-mile outcome value (connection success, reliability, referral completion), with explicit kill criteria if value is not demonstrated.
 
@@ -51,6 +51,7 @@ Reposition HelpBridge from potential directory duplication to measurable last-mi
 **👉 Phase 0 Execution Spec: [v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)**
 **👉 User-Owned Gate 0 Actions: [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)**
 **👉 Evidence Intake Pack: [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md)**
+**👉 Evidence Workspace: [v22.0 Gate 0 Evidence Workspace](../implementation/v22-0-evidence/README.md)**
 
 #### Gate-Oriented Objectives
 
@@ -61,7 +62,7 @@ Reposition HelpBridge from potential directory duplication to measurable last-mi
 #### Remaining Required Actions (Gate 0)
 
 1. `UA-1 / G0-3`: Attach candidate partner legal/API terms and complete clause-level C1 review (`2026-03-21` target).
-2. `UA-2 / G0-4`: Lock field-level retention windows + deletion procedure and attach privacy sign-off (`2026-03-21` target).
+2. `UA-2 / G0-4`: Approve the draft field-level retention windows + deletion procedure, attach privacy sign-off, and add dated verification evidence (`2026-03-21` target).
 3. `UA-3 / G0-8`: Attach named pilot partner list + outreach owner + execution evidence (`2026-03-21` target).
 4. Keep sync discipline using [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md) and [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md).
 5. Re-evaluate Gate 0 using [v22.0 Gate 0 Exit Checklist (Decision Control)](../implementation/v22-0-gate-0-exit-checklist.md) after every accepted evidence update.
@@ -78,7 +79,7 @@ These tasks are repo-local and automatable, but they start only after the corres
 #### Gate 0 Exit Blockers (NO-GO)
 
 1. Candidate partner legal/API terms are not yet attached for C1 clause-level review.
-2. Retention windows and deletion procedure for C2 are not yet policy-locked.
+2. Draft retention windows and deletion procedure for C2 now exist in repo, but they are not yet approved or backed by dated verification evidence.
 3. D4 partner outreach execution evidence is not yet complete.
 4. Baseline metrics are recorded but currently `NULL` for M1/M3 due to zero events in baseline window.
 
@@ -94,6 +95,9 @@ These tasks are repo-local and automatable, but they start only after the corres
 8. Release guard added (`npm run check:v22-gate0`) to block release-tag creation while Gate 0 is `NO-GO` without forcing routine CI red.
 9. E2E automation baseline documented and linked in roadmap + v19 execution handoff.
 10. Temporary free-tier CI budget mode enabled for Playwright E2E (manual dispatch or `[run-e2e]` on `main`).
+11. Gate 0 evidence workspace added for C1/C2/D4 submission handling.
+12. Draft C2 retention policy proposal and deletion verification runbook added.
+13. Typed retention-policy config and tests added to keep the C2 draft internally consistent.
 
 #### Gate 1 Thresholds (Pilot Cycle 1)
 
@@ -295,7 +299,7 @@ Complete the operational foundation for production launch by adding production-g
   - [ ] User confirmation of SLO targets - **PENDING** (awaiting production data review)
 
 - **Phase 4** (2-4h): Operational Documentation ✅ **COMPLETE**
-  - [x] Update CLAUDE.md with observability patterns
+  - [x] Update AGENTS.md with observability patterns
   - [x] Create production deployment checklist
   - [x] Document incident response plan
 
@@ -340,7 +344,7 @@ Complete the operational foundation for production launch by adding production-g
 
 **Phase 4 (100% COMPLETE):**
 
-- ✅ CLAUDE.md updated with observability patterns
+- ✅ AGENTS.md updated with observability patterns
 - ✅ Production deployment checklist created
 - ✅ Incident response plan documented
 
@@ -757,13 +761,13 @@ The following items should only be pursued if partners express specific needs:
 - **Current work**: Focus on "Active Work" section (currently v22.0 strategic decision gates)
 - **Technical reference**: See "Completed Work" for implementation patterns and ADR links
 - **Planning**: Review "Future Considerations" for upcoming features
-- **Testing**: Run `npm test` for unit/integration, `npm run test:e2e:local` for E2E
+- **Testing**: Run `npm test` for unit/integration; keep Playwright on CI/manual dispatch by default while free-tier budget mode is active
 
 ### For Contributors
 
 - Check `CONTRIBUTING.md` for contribution guidelines
 - Review ADRs in `docs/adr/` for architectural decisions
-- Test commands documented in `CLAUDE.md`
+- Test commands documented in `AGENTS.md`
 - Follow conventional commits (enforced by commitlint)
 
 ### For Stakeholders

@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-24
 owner: jer
 tags: [implementation, v22.0, integration, redlines, gate-0]
 ---
@@ -57,7 +57,7 @@ All must be marked `pass` for outcome `go`.
 | Control ID | Status (`pending` \| `complete`) | Evidence Link                                                                                     | Last Reviewed |
 | ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------- | ------------- |
 | C1         | pending                          | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                 | 2026-03-09    |
-| C2         | pending                          | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | 2026-03-09    |
+| C2         | pending                          | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | 2026-03-24    |
 | C3         | complete                         | [v22.0 Control C3 Integration Activation Guard](v22-0-control-c3-integration-activation-guard.md) | 2026-03-09    |
 
 ## Blocked-Path Contingency (Required if Blocked)
@@ -82,6 +82,8 @@ Record selected contingency:
 | --------------------------------- | ------------------------------------------------------------------------------------------------- |
 | Legal review notes                | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                 |
 | Privacy review notes              | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               |
+| Retention policy proposal         | [v22.0 C2 Retention Policy Proposal](v22-0-c2-retention-policy-proposal.md)                       |
+| Deletion verification runbook     | [v22.0 C2 Deletion Verification Runbook](v22-0-c2-deletion-verification-runbook.md)               |
 | Technical architecture assessment | [v22.0 Phase 0 Implementation Plan](v22-0-phase-0-implementation-plan.md)                         |
 | Approval checklist update         | [v22.0 Approval Checklist](../planning/v22-0-approval-checklist.md)                               |
 | User-owned blocker execution      | [v22.0 Gate 0 User Action Tracker](v22-0-gate-0-user-action-tracker.md)                           |

@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-24
 owner: jer
 tags: [implementation, v22.0, controls, legal, integration]
 ---
@@ -29,6 +29,7 @@ Current review mode (2026-03-09):
 1. Repo-evidence legal readiness review is complete.
 2. Candidate external partner contract artifacts are not yet attached in-repo.
 3. C1 cannot be fully closed until candidate terms are reviewed clause-by-clause.
+4. A canonical drop location now exists for future evidence submissions in [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md).
 
 ## Required Clause Checks
 
@@ -46,6 +47,8 @@ Current review mode (2026-03-09):
    - [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
 3. Comparative/legal-risk context package:
    - [HelpBridge vs 211 Objective Evaluation (2026-02-27)](../evaluation/HelpBridge_vs_211_Objective_Evaluation_2026-02-27.md)
+4. Submission workspace:
+   - [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)
 
 ## Evidence Intake Checklist (For Closure)
 
@@ -65,11 +68,12 @@ Acceptance criteria:
 
 ## Evidence Table
 
-| Artifact                    | Location                                   | Reviewer | Date       | Status                   |
-| --------------------------- | ------------------------------------------ | -------- | ---------- | ------------------------ |
-| Legal readiness memo        | this document                              | jer      | 2026-03-09 | complete (repo evidence) |
-| Clause diff / redline notes | candidate partner terms (not yet attached) | jer      | pending    | pending                  |
-| Final legal recommendation  | pending legal review package               | jer      | pending    | pending                  |
+| Artifact                    | Location                                                                   | Reviewer | Date       | Status                   |
+| --------------------------- | -------------------------------------------------------------------------- | -------- | ---------- | ------------------------ |
+| Legal readiness memo        | this document                                                              | jer      | 2026-03-09 | complete (repo evidence) |
+| Submission workspace        | [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md) | jer      | 2026-03-24 | complete (prep only)     |
+| Clause diff / redline notes | candidate partner terms (not yet attached)                                 | jer      | pending    | pending                  |
+| Final legal recommendation  | pending legal review package                                               | jer      | pending    | pending                  |
 
 ## Decision
 

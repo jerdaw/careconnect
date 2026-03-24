@@ -5,12 +5,12 @@ Welcome! This guide will help you get up and running with the HelpBridge codebas
 ## Quick Start Checklist
 
 - [ ] **Prerequisites**: Node.js 22+, npm 10+
-- [ ] **Clone & Install**: `git clone` → `cd helpbridge-ca` → `npm install`
+- [ ] **Clone & Install**: `git clone` → `cd helpbridge` → `npm install`
 - [ ] **Environment Setup**: Copy `.env.example` to `.env.local` (core features work without Supabase)
 - [ ] **Start Dev Server**: `npm run dev` → Open [http://localhost:3000](http://localhost:3000)
-- [ ] **Run Tests**: `npm test` (should see 895+ passing tests)
+- [ ] **Run Tests**: `npm test`
 - [ ] **Type Check**: `npm run type-check` (should pass with zero errors)
-- [ ] **Read CLAUDE.md**: Understand project goals, architecture, and boundaries
+- [ ] **Read AGENTS.md**: Understand project goals, architecture, and boundaries
 
 ## Project Philosophy
 
@@ -21,7 +21,7 @@ HelpBridge is a **governance-first, manually curated** social services search en
 3. **Accessibility First** – WCAG 2.1 AA compliance. Keyboard nav + screen reader support.
 4. **Verify Before Modifying** – Read existing code patterns before making changes.
 
-See [CLAUDE.md](CLAUDE.md) for complete development guidelines.
+See [AGENTS.md](AGENTS.md) for complete development guidelines. `CLAUDE.md` and `GEMINI.md` are compatibility symlinks to `AGENTS.md`.
 
 ## Architecture Overview
 
@@ -41,7 +41,7 @@ See [CLAUDE.md](CLAUDE.md) for complete development guidelines.
 ### Key Directories
 
 ```
-helpbridge-ca/
+helpbridge/
 ├── app/                    # Next.js 15 App Router
 │   ├── [locale]/          # Multi-language routes (7 locales)
 │   ├── api/               # API routes (search, feedback, admin)
@@ -72,7 +72,7 @@ helpbridge-ca/
 
 | File                                                                      | Purpose                                      |
 | ------------------------------------------------------------------------- | -------------------------------------------- |
-| **CLAUDE.md**                                                             | Contributor instructions (read first!)       |
+| **AGENTS.md**                                                             | Canonical contributor instructions           |
 | **lib/search/index.ts**                                                   | Main search engine entry point               |
 | **lib/search/scoring.ts**                                                 | Search result ranking algorithm              |
 | **app/api/v1/search/services/route.ts**                                   | Server-side search API                       |
@@ -104,7 +104,7 @@ git checkout -b feature/your-feature-name
 npm run type-check      # TypeScript validation
 npm run lint            # ESLint
 npm test                # Unit tests
-npm run test:e2e:local  # E2E tests (Chromium only)
+npm run build           # Production build validation
 ```
 
 ### 2. Pre-Commit Hooks
@@ -159,7 +159,7 @@ docs: update roadmap and plan for B2 completion
 | **hooks/\*\***           | 75%       | ~85%    |
 | **Global**               | 75%       | ~53%    |
 
-**Note**: Global coverage will reach 75% after v20.0 Phase 2 (component tests) is complete.
+**Note**: Prefer targeted coverage improvements over chasing a stale global percentage in docs. Use `npm run test:coverage` when you need a fresh snapshot.
 
 ### Testing Strategy
 
@@ -181,17 +181,17 @@ npm test                    # All tests
 npm run test:watch          # Watch mode
 npm run test:coverage       # With coverage report
 
-# E2E tests
-npm run test:e2e:local      # Chromium only (fast)
-npm run test:e2e            # All browsers
+# Default local verification
+npm run lint
+npm run type-check
+npm run build
 
-# Accessibility
-npm run test:a11y           # Axe-core audit
-
-# Load testing
-npm run test:load           # k6 load test (realistic traffic)
-npm run test:load:smoke     # Basic connectivity
+# Optional local browser checks
+npm run test:e2e:prod-local
+npm run test:e2e:server-local
 ```
+
+While GitHub Actions remains on free-tier budget mode, leave Playwright to CI or manual dispatch unless you are debugging a browser-only regression.
 
 ### Writing Tests
 
@@ -402,7 +402,7 @@ export const SYNONYMS: Record<string, string[]> = {
 ### Contributing to Documentation
 
 - **Documentation lives in `docs/`**: Use Markdown format
-- **Keep CLAUDE.md updated**: When adding new patterns or boundaries
+- **Keep AGENTS.md updated**: When adding new patterns or boundaries
 - **Update roadmap.md**: When completing tasks
 - **Add ADRs**: For significant architectural decisions
 - **Write runbooks**: For operational procedures
@@ -416,7 +416,7 @@ export const SYNONYMS: Record<string, string[]> = {
 
 ## Additional Resources
 
-- **[CLAUDE.md](CLAUDE.md)**: Complete AI agent development guidelines
+- **[AGENTS.md](AGENTS.md)**: Complete contributor and agent development guidelines
 - **[README.md](README.md)**: Project overview and features
 - **[docs/llms.txt](docs/llms.txt)**: Consolidated context for AI agents
 - **[docs/development/testing-guidelines.md](docs/development/testing-guidelines.md)**: Testing strategy deep-dive

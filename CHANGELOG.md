@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Gate 0 evidence workspace scaffolding for C1 legal review, C2 retention sign-off, and D4 partner-ops execution bundles
+- Draft C2 retention policy proposal, deletion verification runbook, and typed retention-policy config with tests
+
+### Changed
+
+- Updated active contributor docs to treat `AGENTS.md` as canonical with `CLAUDE.md` and `GEMINI.md` as compatibility symlinks
+- Refreshed roadmap language to reflect completed autonomous Gate 0 prep work and current CI free-tier testing posture
+
 ## [0.17.5] - 2026-01-25
 
 ### Added
@@ -46,7 +58,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Protected all critical Supabase operations with circuit breaker
-- Updated `CLAUDE.md` with v17.5 performance tracking and resilience patterns
+- Updated the contributor guide (`AGENTS.md` via compatibility symlink) with v17.5 performance tracking and resilience patterns
 - Updated `lib/search/data.ts` to use circuit breaker for database fallback
 - Enhanced `lib/offline/sync.ts` to respect circuit breaker state
 - Updated `lib/env.ts` with Zod validation for circuit breaker configuration
