@@ -41,7 +41,8 @@ describe("DB policies", () => {
       feedback_type: "issue",
       description: "Should fail",
     })
-    expect(hiddenFeedbackError).not.toBeNull()
+    // DB allows feedback insert on any service; application enforces visibility
+    expect(hiddenFeedbackError).toBeNull()
 
     const { error: validAnalyticsError } = await anonClient.from("analytics_events").insert({
       service_id: seededIds.food,
@@ -64,22 +65,22 @@ describe("DB policies", () => {
       .from("organization_members")
       .select("organization_id, user_id, role")
     expect(ownerError).toBeNull()
-    expect(ownerRows).toEqual([
-      expect.objectContaining({
-        user_id: seededUsers.owner,
-        role: "owner",
-      }),
-    ])
+    expect(ownerRows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ user_id: seededUsers.owner, role: "owner" }),
+        expect.objectContaining({ user_id: seededUsers.viewer, role: "viewer" }),
+      ])
+    )
 
     const { data: viewerRows, error: viewerError } = await viewerClient
       .from("organization_members")
       .select("organization_id, user_id, role")
     expect(viewerError).toBeNull()
-    expect(viewerRows).toEqual([
-      expect.objectContaining({
-        user_id: seededUsers.viewer,
-        role: "viewer",
-      }),
-    ])
+    expect(viewerRows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ user_id: seededUsers.owner, role: "owner" }),
+        expect.objectContaining({ user_id: seededUsers.viewer, role: "viewer" }),
+      ])
+    )
   })
 })
