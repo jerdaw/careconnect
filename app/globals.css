@@ -250,48 +250,70 @@ button:focus-visible,
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  /* Slate 950 */
-  --foreground: oklch(0.985 0 0);
+  /* ═══════════════════════════════════════════════════════
+   * PREMIUM DARK THEME
+   * Slate-950 near-black base, pure Slate-50 white text, 
+   * vibrant brand accents (indigo/cyan) on interactive items
+   * ═══════════════════════════════════════════════════════ */
 
-  --surface-glass: rgba(15, 23, 42, 0.6);
-  --surface-glass-strong: rgba(15, 23, 42, 0.8);
-  --surface-elevated: #1e293b;
+  /* Layer 0 — Page background: True Slate-950 */
+  --background: #020617;
+  --foreground: #f8fafc;
 
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --border-glass-inner: rgba(255, 255, 255, 0.05);
+  /* Glass surfaces - Slate-900 based */
+  --surface-glass: rgba(15, 23, 42, 0.75);
+  --surface-glass-strong: rgba(15, 23, 42, 0.95);
+  --surface-elevated: #0f172a;
 
-  --shadow-glow: 0 0 50px rgba(99, 102, 241, 0.15);
-  --shadow-inner-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Borders: visible but neutral */
+  --border-glass: rgba(248, 250, 252, 0.1);
+  --border-glass-inner: rgba(248, 250, 252, 0.05);
+
+  /* Glow: uses brand cyan for warmth/accent */
+  --shadow-glow: 0 0 40px rgba(6, 182, 212, 0.15);
+  --shadow-inner-light: inset 0 1px 0 0 rgba(248, 250, 252, 0.05);
+
+  /* Layer 1 — Cards: Slate-900 */
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+
+  /* Primary: bright indigo */
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b; /* Slate-800 */
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8; /* Slate-400 */
+
+  /* Accent: Cyan */
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+
+  /* Borders: Slate-800 */
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #6366f1;
+  --chart-1: oklch(0.7 0.18 265);
+  --chart-2: oklch(0.72 0.14 195);
+  --chart-3: oklch(0.78 0.15 85);
+  --chart-4: oklch(0.68 0.2 310);
+  --chart-5: oklch(0.72 0.2 28);
+  --sidebar: #020617;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #6366f1;
+
+  /* Gradients — uses slate for base, brand cyan/indigo for accents */
+  --gradient-hero: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+  --gradient-card: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+  --gradient-cta: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
 }
 
 body {
@@ -315,7 +337,7 @@ body {
 }
 
 .dark .bg-noise {
-  opacity: 0;
+  opacity: 0.015;
 }
 
 /* Typography Utilities */
@@ -380,8 +402,11 @@ body {
 }
 
 .dark .glass-card {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(248, 250, 252, 0.08);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(248, 250, 252, 0.05);
 }
 
 .glass-panel {
@@ -391,8 +416,8 @@ body {
 }
 
 .dark .glass-panel {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(248, 250, 252, 0.08);
 }
 
 /* Premium Elevation Utilities */
@@ -432,11 +457,11 @@ body {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background-color: rgba(71, 85, 105, 0.4);
+  background-color: rgba(148, 163, 184, 0.3);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(71, 85, 105, 0.6);
+  background-color: rgba(148, 163, 184, 0.5);
 }
 
 /* High Contrast Mode for Accessibility */
