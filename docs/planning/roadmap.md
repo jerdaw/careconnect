@@ -177,6 +177,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Premium Dark Mode**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
 - **v20.0 migration recovery**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
 - **v20.0 maintenance**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
 - **v18.0**: Production observability, Slack alerting, SLO tracking, observability dashboard, and runbooks
