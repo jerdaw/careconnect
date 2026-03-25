@@ -112,7 +112,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 
 1. Refresh the coverage baseline with `npm run test:coverage`.
 2. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
-3. Repair the historical Supabase migration chain so a fresh migration-only bootstrap works outside the dedicated DB test harness.
+3. (Completed) Repaired the historical Supabase migration chain.
 4. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 5. Keep top-level documentation aligned with the active roadmap state.
 
@@ -161,21 +161,22 @@ Useful maintenance items:
 
 Deferred items:
 
-1. Historical Supabase migration-chain repair so fresh local resets can rebuild without the dedicated DB test bootstrap
-2. Advanced French service-data enrichment
-3. Search AI metadata migration out of JSON
-4. Admin-facing data quality dashboard
+1. Advanced French service-data enrichment
+2. Search AI metadata migration out of JSON
+3. Admin-facing data quality dashboard
 
 References:
 
 - [2026-02-12 v20.0 Phase 1 Implementation Plan](archive/2026-02-12-v20-0-phase-1-implementation-plan.md)
 - [2026-03-12 v20.0 Autonomous Backlog Closeout](archive/2026-03-12-v20-0-autonomous-backlog-closeout.md)
 - [2026-03-24 v20.0 DB Integration Test Lane](archive/2026-03-24-v20-0-db-integration-test-lane.md)
+- [2026-03-24 v20.0 Supabase Migration Recovery](archive/2026-03-24-v20-0-supabase-migration-recovery-plan.md)
 
 ## Completed Work
 
 ### Recent Completed Milestones
 
+- **v20.0 migration recovery**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
 - **v20.0 maintenance**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
 - **v18.0**: Production observability, Slack alerting, SLO tracking, observability dashboard, and runbooks
 - **v17.7**: Search quality testing framework and scoring refinements

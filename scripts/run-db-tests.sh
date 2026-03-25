@@ -85,8 +85,16 @@ cleanup() {
 trap cleanup EXIT
 
 SUPABASE_WORKDIR="$(mktemp -d)"
-mkdir -p "$SUPABASE_WORKDIR/supabase"
-cp "$ROOT_DIR/supabase/test-support/config.toml" "$SUPABASE_WORKDIR/supabase/config.toml"
+mkdir -p "$SUPABASE_WORKDIR/supabase/migrations"
+cp "$ROOT_DIR/supabase/config.toml" "$SUPABASE_WORKDIR/supabase/config.toml"
+
+# Copy only active migration files (exclude _archive directory)
+for f in "$ROOT_DIR"/supabase/migrations/*.sql; do
+  [ -f "$f" ] && cp "$f" "$SUPABASE_WORKDIR/supabase/migrations/"
+done
+
+# Create minimal seed that applies integration fixtures
+cp "$ROOT_DIR/supabase/test-support/integration-seed.sql" "$SUPABASE_WORKDIR/supabase/seed.sql"
 
 npx supabase start \
   --workdir "$SUPABASE_WORKDIR" \
@@ -98,8 +106,8 @@ if [[ -z "${API_URL:-}" || -z "${DB_URL:-}" || -z "${ANON_KEY:-}" || -z "${SERVI
   exit 1
 fi
 
-psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$ROOT_DIR/supabase/test-support/bootstrap.sql"
-psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$ROOT_DIR/supabase/test-support/integration-seed.sql"
+# Apply migrations and seed via supabase db reset (proves migration chain works)
+npx supabase db reset --workdir "$SUPABASE_WORKDIR"
 
 export SUPABASE_URL="$API_URL"
 export SUPABASE_ANON_KEY="$ANON_KEY"

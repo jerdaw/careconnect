@@ -232,7 +232,13 @@ To enable the Partner Portal, authentication, and analytics:
    SUPABASE_SECRET_KEY=your-secret-key
    ```
 
-3. Run `supabase/schema.sql` in the Supabase SQL Editor.
+3. Apply the schema via Supabase CLI migrations:
+
+   ```bash
+   npx supabase link --project-ref your-project-ref
+   npx supabase db push
+   ```
+
 4. Migrate local data:
 
    ```bash

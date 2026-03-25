@@ -55,18 +55,18 @@ This lane is authoritative for runtime DB retrieval behavior. It is not a substi
 
 ### Negative / Tradeoffs
 
-- The DB lane currently validates runtime contracts, not full migration-history rebuildability.
 - Bootstrap SQL must stay aligned with the public retrieval boundary as schema expectations evolve.
-- Migration-history cleanup remains an active roadmap item.
+- ~~The DB lane currently validates runtime contracts, not full migration-history rebuildability.~~ (Resolved: v20.0 migration recovery restored a clean, reproducible migration chain.)
+- ~~Migration-history cleanup remains an active roadmap item.~~ (Resolved: v20.0 collapsed 38 migrations into a single baseline + 3 forward migrations.)
 
 ## Implementation Notes
 
 - Runner: `scripts/run-db-tests.sh`
 - DB Vitest config: `vitest.db.config.mts`
-- Test bootstrap: `supabase/test-support/bootstrap.sql`
-- Test config: `supabase/test-support/config.toml`
+- Schema baseline: `supabase/migrations/20260101000000_baseline.sql`
 - Synthetic fixtures: `supabase/test-support/integration-seed.sql`
 - Tests: `tests/db/`
+- Test bootstrap now uses `supabase db reset` (migration-driven), replacing the previous manual `bootstrap.sql` approach.
 
 ## Related Decisions
 
