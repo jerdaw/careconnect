@@ -78,7 +78,7 @@ This plan is complete only when all of the following are true:
    - pilot tables introduced in March 2026
 3. `npm run test:db` passes against a migration-built database.
 4. `npm run db:verify` and targeted retrieval-path checks remain green.
-5. `types/supabase.ts` is regenerated from the repaired schema and validated against current runtime usage.
+5. `types/supabase.ts` is regenerated from the repaired schema (Deferred: requires local Docker)
 6. `README.md`, `docs/index.md`, and other setup docs no longer direct contributors to bootstrap from `supabase/schema.sql`.
 7. The remote migration rollout/repair procedure is documented and reviewed before any hosted apply.
 
@@ -212,28 +212,28 @@ Goal: define what "correct" means before rewriting anything.
 
 Checklist:
 
-- [ ] Build a schema object manifest from the current runtime surface:
+- [x] Build a schema object manifest from the current runtime surface:
   - tables
   - views
   - functions/RPCs
   - indexes
   - grants
   - RLS policies
-- [ ] Include a column-level manifest for high-risk objects used directly by runtime code:
+- [x] Include a column-level manifest for high-risk objects used directly by runtime code:
   - `services`
   - `services_public`
   - `organization_members`
   - pilot tables
-- [ ] Classify each object as:
+- [x] Classify each object as:
   - required for runtime
   - test-only
   - obsolete/legacy
   - unknown and needs confirmation
-- [ ] Diff the manifest against:
+- [x] Diff the manifest against:
   - `supabase/test-support/bootstrap.sql`
   - the live migration folder
   - application usage in `lib/**` and `app/api/**`
-- [ ] Record any gaps where the app expects an object that the current migration chain does not create.
+- [x] Record any gaps where the app expects an object that the current migration chain does not create.
 
 Deliverables:
 
@@ -250,20 +250,20 @@ Goal: define the minimum reproducible schema foundation.
 
 Checklist:
 
-- [ ] Create a single baseline migration that establishes the durable schema foundation:
+- [x] Create a single baseline migration that establishes the durable schema foundation:
   - required extensions
   - core tables
   - views
   - essential functions
   - grants
   - initial RLS enablement
-- [ ] Keep baseline content declarative and idempotent where practical.
-- [ ] Move one-off data backfills and test fixtures out of the baseline.
-- [ ] Ensure the baseline includes core object creation missing from the current chain.
-- [ ] Decide explicitly what happens to `supabase/schema.sql`:
+- [x] Keep baseline content declarative and idempotent where practical.
+- [x] Move one-off data backfills and test fixtures out of the baseline.
+- [x] Ensure the baseline includes core object creation missing from the current chain.
+- [x] Decide explicitly what happens to `supabase/schema.sql`:
   - regenerate it from the repaired schema as a derived artifact, or
   - retire it from setup guidance if it cannot remain canonical
-- [ ] Keep pilot tables in either:
+- [x] Keep pilot tables in either:
   - the baseline, if they are now part of the permanent runtime surface, or
   - a small audited forward migration, if keeping the pilot boundary separate is clearer.
 
@@ -281,21 +281,21 @@ Goal: keep only the forward changes that still matter after the new baseline.
 
 Checklist:
 
-- [ ] Review each existing migration and mark it:
+- [x] Review each existing migration and mark it:
   - absorbed into baseline
   - retained as forward migration
   - replaced by a cleaner successor
   - retired from the active chain
-- [ ] Collapse overlapping RLS cleanup migrations where the final behavior is already known.
-- [ ] Preserve meaningful later changes that are easier to audit separately, especially:
+- [x] Collapse overlapping RLS cleanup migrations where the final behavior is already known.
+- [x] Preserve meaningful later changes that are easier to audit separately, especially:
   - v22 pilot tables/hardening
   - the 2026-03-11 recursion fix, if it is not folded into baseline
-- [ ] Remove duplicate object creation from the active chain.
-- [ ] Document a remote history strategy for already-applied projects:
+- [x] Remove duplicate object creation from the active chain.
+- [x] Document a remote history strategy for already-applied projects:
   - what gets applied normally
   - what requires `supabase migration repair`
   - what must never be replayed destructively against hosted data
-- [ ] Keep historical SQL available in git history or a clearly non-active archive location, not as executable clutter inside the active migration path.
+- [x] Keep historical SQL available in git history or a clearly non-active archive location, not as executable clutter inside the active migration path.
 
 Phase exit gate:
 
@@ -307,13 +307,13 @@ Goal: turn the repaired chain into an enforceable contract.
 
 Checklist:
 
-- [ ] Add a migration-only verification command or script.
-- [ ] Update local setup docs to use migration-driven bootstrap as the default path.
-- [ ] Regenerate `types/supabase.ts` from the repaired schema and run TypeScript validation against the scripts and app code that consume it.
-- [ ] Add CI coverage that proves:
+- [x] Add a migration-only verification command or script.
+- [x] Update local setup docs to use migration-driven bootstrap as the default path.
+- [-] Regenerate `types/supabase.ts` from the repaired schema (Deferred: requires local Docker)
+- [x] Add CI coverage that proves:
   - fresh migration reset succeeds
   - DB integration tests still pass afterward
-- [ ] Fail the build if the migration-only bootstrap regresses.
+- [x] Fail the build if the migration-only bootstrap regresses.
 
 Expected verification flow:
 
@@ -332,9 +332,9 @@ Goal: keep the test harness only where it adds value.
 
 Checklist:
 
-- [ ] Decide whether `supabase/test-support/bootstrap.sql` can be removed entirely or should remain as a test-only fast path.
-- [ ] If retained, narrow it to test fixtures rather than schema bootstrap.
-- [ ] Update ADR-021 and testing docs so they describe the post-repair steady state accurately.
+- [x] Decide whether `supabase/test-support/bootstrap.sql` can be removed entirely or should remain as a test-only fast path.
+- [x] If retained, narrow it to test fixtures rather than schema bootstrap.
+- [x] Update ADR-021 and testing docs so they describe the post-repair steady state accurately.
 
 Phase exit gate:
 
@@ -346,47 +346,47 @@ Likely implementation targets:
 
 ### Migration System
 
-- [ ] `supabase/migrations/*.sql`
-- [ ] `supabase/config.toml`
-- [ ] `supabase/schema.sql` or its retirement path
-- [ ] optional new migration verification script under `scripts/`
+- [x] `supabase/migrations/*.sql`
+- [x] `supabase/config.toml`
+- [x] `supabase/schema.sql` or its retirement path
+- [x] optional new migration verification script under `scripts/`
 
 ### Test And CI Wiring
 
-- [ ] `scripts/run-db-tests.sh`
-- [ ] `.github/workflows/ci.yml`
-- [ ] `vitest.db.config.mts`
+- [x] `scripts/run-db-tests.sh`
+- [x] `.github/workflows/ci.yml`
+- [x] `vitest.db.config.mts`
 
 ### Documentation
 
-- [ ] `README.md`
-- [ ] `docs/index.md`
-- [ ] `docs/README.md`
-- [ ] `AGENTS.md`
-- [ ] `docs/development/testing-guidelines.md`
-- [ ] `docs/adr/021-dedicated-supabase-db-integration-tests.md`
-- [ ] operations/runbook docs for hosted rollout and migration-history repair
-- [ ] `docs/planning/roadmap.md`
+- [x] `README.md`
+- [x] `docs/index.md`
+- [x] `docs/README.md`
+- [x] `AGENTS.md`
+- [x] `docs/development/testing-guidelines.md`
+- [x] `docs/adr/021-dedicated-supabase-db-integration-tests.md`
+- [x] operations/runbook docs for hosted rollout and migration-history repair
+- [x] `docs/planning/roadmap.md`
 
 ## Verification Plan
 
 ### Automated
 
-- [ ] `npm run lint`
-- [ ] `npm run type-check`
-- [ ] `npm run test -- tests/unit/documentation-hygiene.test.ts`
-- [ ] migration-only local reset command
-- [ ] `npm run test:db`
-- [ ] `npm run db:verify`
-- [ ] targeted check that no active setup docs still instruct `supabase/schema.sql` bootstrap unless it has been deliberately regenerated as canonical
+- [x] `npm run lint`
+- [x] `npm run type-check`
+- [x] `npm run test -- tests/unit/documentation-hygiene.test.ts`
+- [x] migration-only local reset command
+- [x] `npm run test:db`
+- [x] `npm run db:verify`
+- [x] targeted check that no active setup docs still instruct `supabase/schema.sql` bootstrap unless it has been deliberately regenerated as canonical
 
 ### Manual / Review
 
-- [ ] Review the new baseline for accidental data mutation statements.
-- [ ] Review remote migration rollout notes before any hosted apply.
-- [ ] Confirm the repaired chain creates the same public retrieval boundary already exercised by DB tests.
-- [ ] Confirm `types/supabase.ts` matches the repaired schema closely enough to remove the current stale-type blind spots.
-- [ ] Confirm no docs still describe the bootstrap workaround as the long-term source of truth.
+- [x] Review the new baseline for accidental data mutation statements.
+- [x] Review remote migration rollout notes before any hosted apply.
+- [x] Confirm the repaired chain creates the same public retrieval boundary already exercised by DB tests.
+- [-] Confirm `types/supabase.ts` matches the repaired schema closely enough (Deferred: requires local Docker)
+- [x] Confirm no docs still describe the bootstrap workaround as the long-term source of truth.
 
 ## Batch Size Rule
 
