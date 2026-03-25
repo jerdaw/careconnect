@@ -164,6 +164,7 @@ Deferred items:
 1. Advanced French service-data enrichment
 2. Search AI metadata migration out of JSON
 3. Admin-facing data quality dashboard
+4. Regenerate `types/supabase.ts` using local Docker when available
 
 References:
 
