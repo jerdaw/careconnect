@@ -17,6 +17,7 @@ const eslintConfig = [
       "jsx-a11y": jsxa11y,
     },
     rules: {
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "jsx-a11y/alt-text": "error",
       "jsx-a11y/aria-role": "error",
       "jsx-a11y/aria-props": "error",
@@ -35,16 +36,15 @@ const eslintConfig = [
     },
   },
   {
-    files: [
-      "**/*.test.ts",
-      "**/*.test.tsx",
-      "**/*.spec.ts",
-      "**/*.spec.tsx",
-      "tests/**",
-      "scripts/**",
-      "types/**",
-      "lib/**",
-    ],
+    // Enforce logger usage over console in production code
+    files: ["app/**/*.ts", "app/**/*.tsx", "components/**/*.ts", "components/**/*.tsx", "hooks/**/*.ts", "lib/**/*.ts"],
+    ignores: ["app/worker.ts", "app/global-error.tsx", "lib/logger.ts"],
+    rules: {
+      "no-console": "warn",
+    },
+  },
+  {
+    files: ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx", "tests/**", "scripts/**", "types/**"],
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
