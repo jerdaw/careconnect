@@ -31,14 +31,14 @@ describe("DB policies", () => {
 
     const { error: validFeedbackError } = await anonClient.from("feedback").insert({
       service_id: seededIds.food,
-      feedback_type: "outdated_info",
+      feedback_type: "issue",
       description: "Seeded feedback",
     })
     expect(validFeedbackError).toBeNull()
 
     const { error: hiddenFeedbackError } = await anonClient.from("feedback").insert({
       service_id: seededIds.hiddenDraft,
-      feedback_type: "outdated_info",
+      feedback_type: "issue",
       description: "Should fail",
     })
     expect(hiddenFeedbackError).not.toBeNull()

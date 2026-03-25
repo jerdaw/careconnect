@@ -226,7 +226,7 @@ VALUES
     '{"lat":44.2300,"lng":-76.4900}'::jsonb,
     '[1.3,1.4,1.5]'::jsonb,
     NULL,
-    TRUE,
+    FALSE,
     '{"verified_by":"Hidden","verified_at":"2026-03-03T12:00:00Z","evidence_url":"","method":"test"}'::jsonb
   ),
   (
@@ -262,12 +262,12 @@ VALUES
     '{"lat":44.2300,"lng":-76.4900}'::jsonb,
     '[1.6,1.7,1.8]'::jsonb,
     NULL,
-    TRUE,
+    FALSE,
     '{"verified_by":"Hidden","verified_at":"2026-03-04T12:00:00Z","evidence_url":"","method":"test"}'::jsonb
   );
 
 UPDATE services
-SET deleted_at = '2026-03-15T12:00:00Z'
+SET deleted_at = '2026-03-15T12:00:00Z', published = FALSE
 WHERE id = 'db-hidden-deleted';
 
 COMMIT;
