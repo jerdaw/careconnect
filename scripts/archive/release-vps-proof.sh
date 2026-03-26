@@ -58,6 +58,6 @@ ssh "$ssh_target" "
 if [[ "$deploy_after_release" == "true" ]]; then
   ssh "$ssh_target" "
     cd '$app_root/current' &&
-    ./scripts/deploy-vps-proof.sh '$env_file'
+    ./scripts/archive/deploy-vps-proof.sh '$env_file'
   "
 fi
