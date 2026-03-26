@@ -7,7 +7,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 env_file="$1"
-app_dir="$(cd "$(dirname "$0")/.." && pwd)"
+app_dir="$(cd "$(dirname "$0")/../.." && pwd)"
 image_name="helpbridge-web"
 
 if git_revision="$(git -C "$app_dir" rev-parse --short HEAD 2>/dev/null)"; then

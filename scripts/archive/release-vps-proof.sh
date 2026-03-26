@@ -30,7 +30,7 @@ if [[ $# -eq 2 ]]; then
   deploy_after_release="true"
 fi
 
-repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
 app_root="${HELPBRIDGE_VPS_APP_ROOT:-/srv/apps/helpbridge-web}"
 env_file="${HELPBRIDGE_VPS_ENV_FILE:-/etc/projects-merge/env/helpbridge-web.env}"
 
