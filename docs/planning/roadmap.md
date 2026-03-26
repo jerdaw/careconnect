@@ -8,7 +8,7 @@
 ## Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: default Vitest suite green as of 2026-03-18 (`149` files; `1142` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-03-26 (`149` files; `1144` passed; `24` skipped)
 - **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
 - **Coverage**: fresh `npm run test:coverage` snapshot still needed
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
@@ -112,9 +112,8 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 
 1. Refresh the coverage baseline with `npm run test:coverage`.
 2. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
-3. (Completed) Repaired the historical Supabase migration chain.
-4. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-5. Keep top-level documentation aligned with the active roadmap state.
+3. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
+4. Keep top-level documentation aligned with the active roadmap state.
 
 ## On Hold
 
@@ -178,9 +177,9 @@ References:
 ### Recent Completed Milestones
 
 - **Code quality remediation (2026-03-26)**: 0 npm audit vulnerabilities, console→logger migration, component reorganization, schemas rename, ESLint strictness for lib/, file cleanup.
-- **Premium Dark Mode**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
-- **v20.0 migration recovery**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
-- **v20.0 maintenance**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
+- **Premium Dark Mode (2026-03-25)**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
+- **v20.0 migration recovery (2026-03-18)**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
+- **v20.0 maintenance (2026-03-18)**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
 - **v18.0**: Production observability, Slack alerting, SLO tracking, observability dashboard, and runbooks
 - **v17.7**: Search quality testing framework and scoring refinements
 - **v17.6**: Authorization resilience, translation workflow automation, and load-testing baseline
