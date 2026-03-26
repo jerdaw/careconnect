@@ -61,7 +61,7 @@ import { Button } from '@/components/ui/button';
 Displays a service with score, match reasons, and trust signals.
 
 ```tsx
-import ServiceCard from "@/components/ServiceCard"
+import ServiceCard from "@/components/services/ServiceCard"
 ;<ServiceCard service={service} score={result.score} matchReasons={result.matchReasons} />
 ```
 
@@ -127,7 +127,7 @@ import ChatAssistant from "@/components/ai/ChatAssistant"
 Loading placeholder for ServiceCard.
 
 ```tsx
-import ServiceCardSkeleton from "@/components/ServiceCardSkeleton"
+import ServiceCardSkeleton from "@/components/services/ServiceCardSkeleton"
 ;<ServiceCardSkeleton />
 ```
 
@@ -136,7 +136,7 @@ import ServiceCardSkeleton from "@/components/ServiceCardSkeleton"
 Catches React errors and displays a fallback UI with error ID for support.
 
 ```tsx
-import { ErrorBoundary } from "@/components/ErrorBoundary"
+import { ErrorBoundary } from "@/components/error/ErrorBoundary"
 ;<ErrorBoundary
   fallback={<CustomErrorUI />}
   onError={(error, errorInfo, errorId) => {
@@ -145,19 +145,6 @@ import { ErrorBoundary } from "@/components/ErrorBoundary"
 >
   <App />
 </ErrorBoundary>
-```
-
-### AsyncErrorBoundary
-
-Specialized error boundary for async components and Suspense. Includes a built-in retry mechanism and error ID copy function.
-
-```tsx
-import { AsyncErrorBoundary } from "@/components/AsyncErrorBoundary"
-;<AsyncErrorBoundary componentName="ServiceList">
-  <Suspense fallback={<Loading />}>
-    <ServiceList />
-  </Suspense>
-</AsyncErrorBoundary>
 ```
 
 ### ServiceEditForm (Partner-Focused)
@@ -197,7 +184,7 @@ import { PartnerServiceList } from "@/components/partner/PartnerServiceList"
 Visualizes a single metric with trend indicator. Supports glassmorphism styling.
 
 ```tsx
-import { AnalyticsCard } from "@/components/AnalyticsCard"
+import { AnalyticsCard } from "@/components/dashboard/AnalyticsCard"
 ;<AnalyticsCard title="Total Views" value={1200} change={5.2} loading={false} />
 ```
 
@@ -214,7 +201,7 @@ See `SearchBar` section.
 Provides authentication context throughout the app.
 
 ```tsx
-import { AuthProvider, useAuth } from "@/components/AuthProvider"
+import { AuthProvider, useAuth } from "@/components/layout/AuthProvider"
 
 // Wrap app
 ;<AuthProvider>
@@ -230,7 +217,7 @@ const { user, signOut } = useAuth()
 Displays a beta warning banner at the top of the app.
 
 ```tsx
-import BetaBanner from "@/components/BetaBanner"
+import BetaBanner from "@/components/layout/BetaBanner"
 ;<BetaBanner />
 ```
 
@@ -239,7 +226,7 @@ import BetaBanner from "@/components/BetaBanner"
 Manages light/dark mode state using `next-themes`.
 
 ```tsx
-import { ThemeProvider } from "@/components/ThemeProvider"
+import { ThemeProvider } from "@/components/layout/ThemeProvider"
 ;<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
   <App />
 </ThemeProvider>
@@ -252,7 +239,7 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 Navigation sidebar for partner dashboard.
 
 ```tsx
-import DashboardSidebar from "@/components/DashboardSidebar"
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar"
 ;<DashboardSidebar />
 ```
 

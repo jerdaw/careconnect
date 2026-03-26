@@ -495,7 +495,7 @@ When onboarding new on-call engineer:
 
 ### Implementation
 
-- **Plan:** [v18.0 Production Observability](../implementation/v18-0-production-observability.md)
+- **Plan:** [v18.0 Production Observability](../implementation/archive/v18-0-production-observability.md)
 
 ---
 

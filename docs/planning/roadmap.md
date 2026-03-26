@@ -2,7 +2,7 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-24
+> **Last Updated**: 2026-03-26
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -136,7 +136,7 @@ The launch-prep stream is intentionally paused. The repo-local automation is alr
 
 - [v19.0 Launch Preparation Plan](v19-0-launch-preparation.md)
 - [v19.0 User Execution Guide](v19-0-user-execution-guide.md)
-- [v19.0 Phase 1 Execution Handoff (2026-03-09)](../implementation/v19-phase-1-execution-handoff-2026-03-09.md)
+- [v19.0 Phase 1 Execution Handoff (2026-03-09)](../implementation/archive/v19-phase-1-execution-handoff-2026-03-09.md)
 
 ### v21.0: Admissions Portfolio & Launch Narrative ⏸️ PARKED
 
@@ -177,6 +177,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Code quality remediation (2026-03-26)**: 0 npm audit vulnerabilities, console→logger migration, component reorganization, schemas rename, ESLint strictness for lib/, file cleanup.
 - **Premium Dark Mode**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
 - **v20.0 migration recovery**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
 - **v20.0 maintenance**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
@@ -193,6 +194,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
 - [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
 - [v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)
 - [v17.6 Archive](archive/2026-01-25-v17-6-post-v17-5-enhancements.md)

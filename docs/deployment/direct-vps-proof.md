@@ -58,13 +58,13 @@ Do not use Playwright locally for this proof step.
 The direct VPS proof uses:
 
 1. [`Dockerfile`](../../Dockerfile)
-2. [`scripts/deploy-vps-proof.sh`](../../scripts/deploy-vps-proof.sh)
-3. [`scripts/release-vps-proof.sh`](../../scripts/release-vps-proof.sh)
+2. [`scripts/archive/deploy-vps-proof.sh`](../../scripts/archive/deploy-vps-proof.sh)
+3. [`scripts/archive/release-vps-proof.sh`](../../scripts/archive/release-vps-proof.sh)
 
 The deploy script expects exactly one argument:
 
 ```bash
-./scripts/deploy-vps-proof.sh /path/to/env-file
+./scripts/archive/deploy-vps-proof.sh /path/to/env-file
 ```
 
 It will:
@@ -82,7 +82,7 @@ From a local workstation, you can also stage and optionally deploy a committed
 release in one step:
 
 ```bash
-./scripts/release-vps-proof.sh haadmin@your-vps --deploy
+./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy
 ```
 
 ## Verified Production State
