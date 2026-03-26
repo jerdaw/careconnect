@@ -18,7 +18,7 @@ export class PushNotificationManager {
       this.registration = await navigator.serviceWorker.ready
       return true
     } catch (error) {
-      console.error("[Push] ServiceWorker registration failed:", error)
+      logger.error("[Push] ServiceWorker registration failed", { error })
       return false
     }
   }
@@ -36,7 +36,7 @@ export class PushNotificationManager {
 
   async subscribe(categories: NotificationCategory[]): Promise<PushSubscription | null> {
     if (!VAPID_PUBLIC_KEY) {
-      console.error("Missing NEXT_PUBLIC_VAPID_PUBLIC_KEY")
+      logger.error("Missing NEXT_PUBLIC_VAPID_PUBLIC_KEY")
       return null
     }
 
@@ -45,7 +45,7 @@ export class PushNotificationManager {
     }
 
     if (!this.registration) {
-      console.error("Service Worker not ready")
+      logger.error("Service Worker not ready")
       return null
     }
 
@@ -58,6 +58,7 @@ export class PushNotificationManager {
         subscription = await this.registration.pushManager.subscribe({
           userVisibleOnly: true,
 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- applicationServerKey type accepts Uint8Array but TS definitions differ
           applicationServerKey: this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as any,
         })
       }
@@ -77,7 +78,7 @@ export class PushNotificationManager {
 
       return (await response.json()) as PushSubscription
     } catch (error) {
-      console.error("[Push] Subscription failed:", error)
+      logger.error("[Push] Subscription failed", { error })
       return null
     }
   }
@@ -101,7 +102,7 @@ export class PushNotificationManager {
       }
       return true
     } catch (error) {
-      console.error("[Push] Unsubscribe failed:", error)
+      logger.error("[Push] Unsubscribe failed", { error })
       return false
     }
   }

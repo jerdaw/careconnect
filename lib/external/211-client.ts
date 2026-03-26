@@ -70,6 +70,7 @@ function mapToService(raw: Raw211Service): Service {
     address: `${raw.address.street}, ${raw.address.city} ${raw.address.postal}`,
     verification_level: VerificationLevel.L2,
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- enum mapping from 211 taxonomy to app IntentCategory
     intent_category: mapTaxonomyToCategory(raw.taxonomy) as any,
     provenance: {
       verified_by: "211 Ontario API",

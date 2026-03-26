@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     })
 
     if (healthResponse.ok) {
-      const healthData = await healthResponse.json()
+      const healthData = (await healthResponse.json()) as Record<string, unknown>
       await sendHealthCheck(healthData)
     } else {
       logger.error("Health check failed", {

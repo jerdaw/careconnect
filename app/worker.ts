@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any -- Web Worker: no access to typed module graph; transformers.js types not exported */
 
 let pipeline: any = null
 let env: any = null

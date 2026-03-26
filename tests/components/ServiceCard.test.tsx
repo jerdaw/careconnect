@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import ServiceCard from "@/components/ServiceCard"
+import ServiceCard from "@/components/services/ServiceCard"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { TestWrapper } from "@/tests/utils/test-wrapper"
 import { mockService } from "@/tests/utils/mocks"

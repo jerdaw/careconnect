@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/utils/supabase/client"
-import { useAuth } from "@/components/AuthProvider"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -96,7 +96,7 @@ export default function SettingsPage() {
     setSaving(true)
     const { error } = await (
       supabase
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- organizations table not in generated Supabase types
         .from("organizations") as any
     )
       .update({ name: org.name, domain: org.domain })
@@ -123,7 +123,7 @@ export default function SettingsPage() {
     setSaving(true)
 
     // Upsert settings (insert or update)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- organization_settings table not in generated Supabase types
     const { error } = await (supabase.from("organization_settings") as any).upsert(
       {
         organization_id: org.id,

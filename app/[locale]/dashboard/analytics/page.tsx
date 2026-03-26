@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server"
-import { AnalyticsCard } from "@/components/AnalyticsCard"
+import { AnalyticsCard } from "@/components/dashboard/AnalyticsCard"
 import { getTranslations } from "next-intl/server"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
 import { Card } from "@/components/ui/card"

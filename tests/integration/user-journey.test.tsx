@@ -19,10 +19,10 @@ vi.mock("next/navigation", () => ({
 }))
 
 // Mock Components
-vi.mock("@/components/ServiceCard", () => ({
+vi.mock("@/components/services/ServiceCard", () => ({
   default: ({ service }: any) => <div data-testid="service-card">{service.name}</div>,
 }))
-vi.mock("@/components/ServiceCardSkeleton", () => ({
+vi.mock("@/components/services/ServiceCardSkeleton", () => ({
   default: () => <div data-testid="skeleton" />,
 }))
 

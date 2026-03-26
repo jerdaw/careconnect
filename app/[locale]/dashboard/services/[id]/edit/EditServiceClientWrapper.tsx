@@ -1,9 +1,9 @@
 "use client"
 
 import { Service } from "@/types/service"
-import EditServiceForm from "@/components/EditServiceForm"
+import EditServiceForm from "@/components/edit-service/EditServiceForm"
 import { updateServiceAction } from "@/lib/actions/services"
-import { ServiceFormData } from "@/lib/schemas"
+import { ServiceFormData } from "@/lib/schemas/form"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
 

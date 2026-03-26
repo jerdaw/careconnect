@@ -159,7 +159,7 @@ export default function ChatAssistant() {
             if (combined) searchQuery = combined
           }
         } catch (err) {
-          console.warn("[ChatAssistant] Query refinement failed; falling back to raw query:", err)
+          logger.warn("[ChatAssistant] Query refinement failed; falling back to raw query", { err })
         }
       }
 

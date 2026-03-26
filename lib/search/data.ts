@@ -33,7 +33,7 @@ export const loadServices = async (): Promise<Service[]> => {
         return offlineServices
       }
     } catch (err) {
-      console.warn("Offline data load failed, falling back to network/static:", err)
+      logger.warn("Offline data load failed, falling back to network/static", { err })
     }
   }
 
@@ -77,6 +77,7 @@ export const loadServices = async (): Promise<Service[]> => {
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
         const mappedData: Service[] = result.data
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase row inference limitation
           .map((row: any) => {
             // Find static metadata from services.json to overlay (AI metadata)
             const staticService = fallbackServices.find((s) => s.id === row.id)
@@ -108,11 +109,11 @@ export const loadServices = async (): Promise<Service[]> => {
         dataCache = { services: mappedData }
         return mappedData
       } else if (result.error) {
-        console.warn("Supabase fetch error (falling back to JSON):", result.error.message)
+        logger.warn("Supabase fetch error (falling back to JSON)", { reason: result.error.message })
       }
     }
   } catch (err) {
-    console.warn("Data load failed (falling back to JSON):", err)
+    logger.warn("Data load failed (falling back to JSON)", { err })
   }
 
   // Fallback: Dynamic Import of Local JSON

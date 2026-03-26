@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import DashboardSidebar from "@/components/DashboardSidebar"
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 
 // Mock next/navigation
@@ -12,7 +12,7 @@ vi.mock("next/navigation", () => ({
 
 // Mock useAuth
 const mockSignOut = vi.fn()
-vi.mock("@/components/AuthProvider", () => ({
+vi.mock("@/components/layout/AuthProvider", () => ({
   useAuth: () => ({
     user: { email: "test@example.com" },
     signOut: mockSignOut,

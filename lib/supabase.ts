@@ -53,5 +53,6 @@ export const supabase = new Proxy({} as SupabaseClient<Database>, {
  * from the live schema.
  */
 export function unsafeFrom(client: unknown, table: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- intentional escape hatch; see function JSDoc
   return (client as any).from(table)
 }

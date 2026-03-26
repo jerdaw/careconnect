@@ -382,7 +382,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                           {service.hours &&
                             ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map(
                               (day) => {
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any -- hours is a Record<string, DayHours> but typed as object
                                 const dayHours = (service.hours as any)[day]
                                 if (!dayHours) return null
                                 return (

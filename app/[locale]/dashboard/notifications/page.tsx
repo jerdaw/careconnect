@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Check, Info, AlertTriangle, CheckCircle, Loader2, BellOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/utils/supabase/client"
-import { useAuth } from "@/components/AuthProvider"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { useToast } from "@/components/ui/use-toast"
 import { useTranslations } from "next-intl"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
@@ -47,7 +47,7 @@ export default function NotificationsPage() {
   }, [user, supabase])
 
   const markAsRead = async (id: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- notifications table not in generated Supabase types
     const { error } = await (supabase.from("notifications") as any).update({ read: true }).eq("id", id)
 
     if (!error) {
@@ -64,7 +64,7 @@ export default function NotificationsPage() {
   const markAllAsRead = async () => {
     if (!user) return
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- notifications table not in generated Supabase types
     const { error } = await (supabase.from("notifications") as any)
       .update({ read: true })
       .eq("user_id", user.id)

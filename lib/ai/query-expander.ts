@@ -1,4 +1,5 @@
 import { aiEngine } from "./engine"
+import { logger } from "@/lib/logger"
 
 const EXPANSION_PROMPT = `You are a social services search assistant for Kingston, Ontario. Given a user query, generate 3-5 semantically related search terms that would help find relevant community services.
 
@@ -59,7 +60,7 @@ export async function expandQuery(query: string): Promise<QueryExpansionResult> 
 
     return { original: query, expanded: sanitized, fromCache: false }
   } catch (error) {
-    console.warn("[QueryExpander] Failed to expand query:", error)
+    logger.warn("[QueryExpander] Failed to expand query", { error })
     return { original: query, expanded: [], fromCache: false }
   }
 }

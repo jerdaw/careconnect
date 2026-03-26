@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     if (existingTyped) {
       // Update existing
       const { error: updateError } = await withCircuitBreaker(async () =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- push_subscriptions table not in generated Supabase types
         (supabase as any)
           .from("push_subscriptions")
           .update({
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     } else {
       // Insert new
       const { error: insertError } = await withCircuitBreaker(async () =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- push_subscriptions table not in generated Supabase types
         (supabase as any).from("push_subscriptions").insert({
           endpoint: subscription.endpoint,
           keys: subscription.keys,

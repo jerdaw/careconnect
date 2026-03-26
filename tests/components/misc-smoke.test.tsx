@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
 import { TestWrapper } from "@/tests/utils/test-wrapper"
-import BetaBanner from "@/components/BetaBanner"
-import { ClientOnly } from "@/components/ClientOnly"
+import BetaBanner from "@/components/layout/BetaBanner"
+import { ClientOnly } from "@/components/ui/ClientOnly"
 
 const messages = {
   BetaBanner: {

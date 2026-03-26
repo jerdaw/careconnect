@@ -51,7 +51,7 @@ function getAxiomClient(): Axiom | null {
 /**
  * Send events to Axiom dataset
  */
-export async function ingestEvents(dataset: string, events: any[]): Promise<void> {
+export async function ingestEvents(dataset: string, events: Record<string, unknown>[]): Promise<void> {
   const client = getAxiomClient()
   if (!client) return // No-op if not configured
 
@@ -75,7 +75,7 @@ export async function ingestEvents(dataset: string, events: any[]): Promise<void
 /**
  * Send performance metrics to Axiom
  */
-export async function sendPerformanceMetrics(metrics: any): Promise<void> {
+export async function sendPerformanceMetrics(metrics: Record<string, unknown>): Promise<void> {
   await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
     {
       _time: new Date().toISOString(),
@@ -108,7 +108,7 @@ export async function sendCircuitBreakerEvent(event: {
 /**
  * Send health check result to Axiom
  */
-export async function sendHealthCheck(healthData: any): Promise<void> {
+export async function sendHealthCheck(healthData: Record<string, unknown>): Promise<void> {
   await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
     {
       _time: new Date().toISOString(),

@@ -2,15 +2,15 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { serviceSchema, ServiceFormData } from "@/lib/schemas"
+import { serviceSchema, ServiceFormData } from "@/lib/schemas/form"
 import { Service } from "@/types/service"
 import { useState } from "react"
 import { Save } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-import BasicInfoSection from "./edit-service/BasicInfoSection"
-import ContactSection from "./edit-service/ContactSection"
-import DetailsSection from "./edit-service/DetailsSection"
+import BasicInfoSection from "./BasicInfoSection"
+import ContactSection from "./ContactSection"
+import DetailsSection from "./DetailsSection"
 
 interface EditServiceFormProps {
   service?: Service // Optional for creation mode

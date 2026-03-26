@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 import { updateService } from "@/lib/services"
-import { ServiceFormData } from "@/lib/schemas"
+import { ServiceFormData } from "@/lib/schemas/form"
 import { Service, IntentCategory, ServiceHours } from "@/types/service"
 import { ServiceCreateSchema, type ServiceCreateInput } from "@/lib/schemas/service-create"
 import { createClient } from "@/utils/supabase/server"
@@ -184,6 +184,7 @@ export async function createServiceAction(data: ServiceCreateInput, locale: stri
   const { coordinates: _coordinates, ...finalServiceData } = serviceData
 
   // Insert service
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for insert
   const { data: newService, error: insertError } = await (supabase.from("services") as any)
     .insert([finalServiceData])
     .select()
@@ -249,6 +250,7 @@ export async function deleteServiceAction(serviceId: string, locale: string) {
 
   // Use the soft_delete_service function from the database
   // This function also checks ownership at the database level
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for RPC
   const { data, error } = await (supabase.rpc as any)("soft_delete_service", {
     service_uuid: serviceId,
   })

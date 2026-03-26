@@ -1,4 +1,5 @@
 import { loadServices } from "./data"
+import { logger } from "@/lib/logger"
 import { vectorCache } from "@/lib/ai/vector-cache"
 
 /**
@@ -24,9 +25,7 @@ export async function initializeVectorStore() {
   }
 
   if (count > 0) {
-    if (process.env.NODE_ENV === "development") {
-      console.log(`[VectorStore] Hydrated ${count} new vectors into IndexedDB.`)
-    }
+    logger.info("[VectorStore] Hydrated new vectors into IndexedDB", { count })
   }
   // Removed: "Warm" info log to reduce console noise
 }

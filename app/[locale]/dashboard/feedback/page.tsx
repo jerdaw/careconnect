@@ -40,7 +40,7 @@ export default async function FeedbackPage() {
   // ==========================================================================
 
   // Fetch feedback for services owned by this user's organization (RLS filters automatically)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
   const { data: feedback, error } = await (supabase.from("feedback" as any) as any)
     .select(
       `

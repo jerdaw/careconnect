@@ -1,5 +1,5 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form"
-import { ServiceFormData } from "@/lib/schemas"
+import { ServiceFormData } from "@/lib/schemas/form"
 import FormField from "./FormField"
 
 interface BasicInfoSectionProps {

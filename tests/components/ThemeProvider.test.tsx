@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { ThemeProvider } from "@/components/ThemeProvider"
+import { ThemeProvider } from "@/components/layout/ThemeProvider"
 import { describe, it, expect } from "vitest"
 
 describe("ThemeProvider Component", () => {

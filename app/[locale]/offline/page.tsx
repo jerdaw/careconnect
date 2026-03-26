@@ -8,7 +8,7 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { useEffect, useState } from "react"
 import { getCachedServices } from "@/lib/offline/cache"
-import ServiceCard from "@/components/ServiceCard"
+import ServiceCard from "@/components/services/ServiceCard"
 import { SearchResult } from "@/lib/search/types"
 
 export default function OfflinePage() {

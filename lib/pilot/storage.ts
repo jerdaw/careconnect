@@ -27,6 +27,7 @@ export async function insertContactAttempt(
   payload: Omit<PilotContactAttemptEvent, "id">
 ): Promise<PilotStorageResult<unknown>> {
   const { data, error } = await withCircuitBreaker(async () =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
     (supabase as any).from("pilot_contact_attempt_events").insert(payload).select().single()
   )
   return { data, error, missingTable: isMissingTableError(error) }
@@ -37,6 +38,7 @@ export async function insertReferralEvent(
   payload: Omit<PilotReferralEvent, "id">
 ): Promise<PilotStorageResult<unknown>> {
   const { data, error } = await withCircuitBreaker(async () =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
     (supabase as any).from("pilot_referral_events").insert(payload).select().single()
   )
   return { data, error, missingTable: isMissingTableError(error) }
@@ -48,6 +50,7 @@ export async function updateReferralEvent(
   payload: Partial<PilotReferralEvent>
 ): Promise<PilotStorageResult<unknown>> {
   const { data, error } = await withCircuitBreaker(async () =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
     (supabase as any).from("pilot_referral_events").update(payload).eq("id", id).select().single()
   )
   return { data, error, missingTable: isMissingTableError(error) }
@@ -58,6 +61,7 @@ export async function insertIntegrationDecision(
   payload: IntegrationFeasibilityDecision
 ): Promise<PilotStorageResult<unknown>> {
   const { data, error } = await withCircuitBreaker(async () =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
     (supabase as any).from("pilot_integration_feasibility_decisions").insert(payload).select().single()
   )
   return { data, error, missingTable: isMissingTableError(error) }
@@ -74,6 +78,7 @@ export async function getScorecardByCycle(
   orgId: string
 ): Promise<PilotStorageResult<PilotScorecard>> {
   const { data, error } = await withCircuitBreaker(async () =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
     (supabase as any)
       .from("pilot_metric_snapshots")
       .select("metric_id, metric_value")

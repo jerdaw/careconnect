@@ -1,4 +1,5 @@
 import { CreateMLCEngine, CreateWebWorkerMLCEngine, InitProgressCallback, MLCEngineInterface } from "@mlc-ai/web-llm"
+import { logger } from "@/lib/logger"
 
 // Default to a smaller, faster model for broader device support.
 // Note: Model artifacts are downloaded and cached by the browser on first use.
@@ -80,7 +81,7 @@ class AIEngine {
     this.updateState({ isLoading: true, error: null })
 
     const initProgressCallback: InitProgressCallback = (report) => {
-      console.log("AI Init:", report.text)
+      logger.info("AI Init:", { text: report.text })
       this.updateState({
         progress: report.progress,
         text: report.text,
@@ -102,7 +103,7 @@ class AIEngine {
           this.worker = new Worker(new URL("./webllm.worker.ts", import.meta.url), { type: "module" })
           this.engine = await CreateWebWorkerMLCEngine(this.worker, SELECTED_MODEL, { initProgressCallback })
         } catch (err) {
-          console.warn("[AI Engine] Worker init failed; falling back to main thread:", err)
+          logger.warn("[AI Engine] Worker init failed; falling back to main thread", { err })
           if (this.worker) {
             this.worker.terminate()
             this.worker = null
@@ -119,7 +120,7 @@ class AIEngine {
         text: "Ready",
       })
     } catch (err) {
-      console.error("Failed to initialize AI:", err)
+      logger.error("Failed to initialize AI", { err })
       this.updateState({
         isLoading: false,
         isReady: false,
@@ -140,7 +141,7 @@ class AIEngine {
     try {
       // Diagnostic Logging
       const estimatedToks = messages.reduce((acc, m) => acc + m.content.length / 4, 0)
-      console.log(`[AI Engine] Request: ${messages.length} msgs, ~${Math.round(estimatedToks)} tokens`)
+      logger.info("[AI Engine] Request", { messageCount: messages.length, estimatedTokens: Math.round(estimatedToks) })
 
       const reply = await this.engine.chat.completions.create({
         messages,
@@ -156,7 +157,7 @@ class AIEngine {
 
       return sanitizeModelOutput(reply.choices[0]?.message?.content || "")
     } catch (err) {
-      console.error("Chat error:", err)
+      logger.error("Chat error", { err })
       throw err
     }
   }
@@ -196,6 +197,7 @@ Rules:
       repetition_penalty: 1,
       max_tokens: 160,
       // Best-effort JSON mode (WebLLM supports OpenAI-compatible response_format).
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- WebLLM response_format lacks exported types
       response_format: { type: "json_object" } as any,
     })
 
@@ -239,7 +241,7 @@ Rules:
     } catch (err) {
       // If generation is interrupted, prefer returning whatever we have instead of hard-failing the UI.
       if (full.trim().length > 0) {
-        console.warn("[AI Engine] Stream aborted; returning partial output.")
+        logger.warn("[AI Engine] Stream aborted; returning partial output")
         return { content: sanitizeModelOutput(full) }
       }
       throw err
@@ -282,7 +284,7 @@ Rules:
       // If generation is interrupted, prefer returning whatever the engine has so far.
       const partial = await this.engine.getMessage()
       if (partial.trim().length > 0) {
-        console.warn("[AI Engine] Stream aborted; returning partial output.")
+        logger.warn("[AI Engine] Stream aborted; returning partial output")
         return { content: partial }
       }
       throw err

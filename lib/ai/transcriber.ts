@@ -1,8 +1,10 @@
 // Configure Transformers.js to use local models or CDN
 // We use dynamic imports to avoid loading the library on initial page load (and prevent test crashes)
+import { logger } from "@/lib/logger"
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Whisper model instance type not exported by @xenova/transformers
   private static instance: any = null
   private static isLoading = false
 
@@ -32,9 +34,9 @@ class WhisperTranscriber {
       this.instance = await pipeline("automatic-speech-recognition", "Xenova/whisper-tiny.en", {
         quantized: true,
       })
-      console.log("✅ [Transcriber] Whisper model loaded successfully")
+      logger.info("✅ [Transcriber] Whisper model loaded successfully")
     } catch (error) {
-      console.error("❌ [Transcriber] Failed to load model", error)
+      logger.error("❌ [Transcriber] Failed to load model", { error })
       throw error
     } finally {
       this.isLoading = false
@@ -71,7 +73,7 @@ export async function transcribeAudio(audioBlob: Blob): Promise<string> {
     const text = Array.isArray(result) ? (result[0]?.text ?? "") : result.text
     return text.trim()
   } catch (error) {
-    console.error("Transcription failed:", error)
+    logger.error("Transcription failed", { error })
     throw new Error("Failed to transcribe audio")
   }
 }

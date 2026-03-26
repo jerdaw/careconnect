@@ -36,7 +36,7 @@ interface CircuitBreakerEventData {
   failureRate?: number
   error?: string
   durationMs?: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 /**

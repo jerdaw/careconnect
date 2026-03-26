@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     // If it's provided, assurance it exists is handled by Foreign Key in DB (will throw if invalid).
 
     const { error: insertError } = await withCircuitBreaker(async () =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
       (supabase as any).from("feedback").insert([
         {
           service_id: service_id || null,

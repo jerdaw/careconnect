@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import { AuthProvider } from "@/components/AuthProvider"
+import { AuthProvider } from "@/components/layout/AuthProvider"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 // Hoist mocks to avoid reference error

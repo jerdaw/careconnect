@@ -86,3 +86,20 @@ docker run -d \
 echo "container=${container_name}"
 echo "image=${image_name}:${tag}"
 echo "health_url=http://127.0.0.1:3300/api/v1/health"
+
+echo "Waiting for container to become healthy..."
+health_ok=false
+for i in 1 2 3 4 5; do
+  if curl -fsS http://127.0.0.1:3300/api/v1/health >/dev/null 2>&1; then
+    health_ok=true
+    break
+  fi
+  sleep 3
+done
+
+if [[ "$health_ok" == "true" ]]; then
+  echo "health_check=ok"
+else
+  echo "health_check=failed — container did not respond after 15s" >&2
+  exit 1
+fi

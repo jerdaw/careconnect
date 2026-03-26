@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   }
 
   const supabase = await createClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
   const { error } = await (supabase as any).from("feedback").insert({
     service_id: parsed.data.serviceId,
     feedback_type: parsed.data.feedbackType,

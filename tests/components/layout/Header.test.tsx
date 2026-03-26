@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react"
 import { Header } from "@/components/layout/Header"
 
 // Mock dependencies
-vi.mock("@/components/AuthProvider", () => ({
+vi.mock("@/components/layout/AuthProvider", () => ({
   useAuth: vi.fn(),
 }))
 
@@ -24,7 +24,7 @@ vi.mock("@/components/layout/ThemeToggle", () => ({
   ThemeToggle: () => <button data-testid="theme-toggle">Theme Toggle</button>,
 }))
 
-vi.mock("@/components/BetaBanner", () => ({
+vi.mock("@/components/layout/BetaBanner", () => ({
   default: () => <div data-testid="beta-banner">Beta Banner</div>,
 }))
 
@@ -45,7 +45,7 @@ vi.mock("framer-motion", () => ({
   AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
 }))
 
-import { useAuth } from "@/components/AuthProvider"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { useTranslations } from "next-intl"
 
 describe("Header", () => {

@@ -1,4 +1,5 @@
 import { unsafeFrom } from "@/lib/supabase"
+import { logger } from "@/lib/logger"
 import { createClient, SupabaseClient } from "@supabase/supabase-js"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
@@ -24,7 +25,7 @@ export interface SearchEvent {
  */
 export async function trackSearchEvent(event: SearchEvent) {
   if (!supabase) {
-    console.warn("Supabase not configured, skipping analytics")
+    logger.warn("Supabase not configured, skipping analytics")
     return
   }
 
@@ -42,10 +43,10 @@ export async function trackSearchEvent(event: SearchEvent) {
     )
 
     if (error) {
-      console.warn("Failed to log search analytics:", error.message)
+      logger.warn("Failed to log search analytics", { reason: error.message })
     }
   } catch (err) {
     // Silently fail to avoid disrupting user experience
-    console.warn("Analytics error:", err)
+    logger.warn("Analytics error", { err })
   }
 }

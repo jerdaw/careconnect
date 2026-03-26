@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
-import PageSection from "@/components/PageSection"
+import PageSection from "@/components/ui/PageSection"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 

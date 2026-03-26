@@ -2,7 +2,7 @@ name: Supabase Keepalive
 
 on:
   schedule:
-    - cron: "17 */12 * * *" # Every 12 hours
+    - cron: "17 8 * * *" # Once daily at 8:17 UTC (Supabase pauses after 7 days; daily ping is sufficient)
   workflow_dispatch:
 
 jobs:

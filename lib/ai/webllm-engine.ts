@@ -1,4 +1,5 @@
 import { MLCEngineInterface, CreateWebWorkerMLCEngine, CreateMLCEngine, InitProgressCallback } from "@mlc-ai/web-llm"
+import { logger } from "@/lib/logger"
 
 /**
  * Wrapper for WebLLM engine to allow easier testing and mocking.
@@ -24,7 +25,7 @@ export class WebLLMEngine {
           this.engine = await CreateWebWorkerMLCEngine(this.worker, modelId, { initProgressCallback })
           return this.engine
         } catch (err) {
-          console.warn("[WebLLMEngine] Worker init failed; falling back to main thread:", err)
+          logger.warn("[WebLLMEngine] Worker init failed; falling back to main thread", { err })
           if (this.worker) {
             this.worker.terminate()
             this.worker = null
@@ -35,7 +36,7 @@ export class WebLLMEngine {
       this.engine = await CreateMLCEngine(modelId, { initProgressCallback })
       return this.engine
     } catch (err) {
-      console.error("[WebLLMEngine] Initialization failed:", err)
+      logger.error("[WebLLMEngine] Initialization failed", { err })
       throw err
     }
   }

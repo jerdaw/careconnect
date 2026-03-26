@@ -1,4 +1,5 @@
 import { getOfflineDB, PendingFeedback } from "./db"
+import { logger } from "@/lib/logger"
 
 /**
  * Queue a feedback submission to IndexedDB
@@ -10,7 +11,7 @@ export async function queueFeedback(feedback: Omit<PendingFeedback, "createdAt" 
     createdAt: new Date().toISOString(),
     syncAttempts: 0,
   })
-  console.log("[Offline] Feedback queued for sync")
+  logger.info("[Offline] Feedback queued for sync")
 }
 
 /**
@@ -28,7 +29,7 @@ export async function syncPendingFeedback() {
 
     if (pending.length === 0) return
 
-    console.log(`[Sync] Found ${pending.length} pending feedback items.`)
+    logger.info("[Sync] Found pending feedback items", { count: pending.length })
 
     for (const item of pending) {
       try {
@@ -59,10 +60,10 @@ export async function syncPendingFeedback() {
           }
         }
       } catch (err) {
-        console.error("[Sync] Failed to sync feedback item", err)
+        logger.error("[Sync] Failed to sync feedback item", { err })
       }
     }
   } catch (error) {
-    console.error("[Sync] Error accessing offline DB for feedback", error)
+    logger.error("[Sync] Error accessing offline DB for feedback", { error })
   }
 }

@@ -6,6 +6,7 @@
  */
 
 import { SLO_TARGETS } from "@/lib/config/slo-targets"
+import { logger } from "@/lib/logger"
 import { getMetrics } from "@/lib/performance/metrics"
 
 export interface UptimeDataPoint {
@@ -63,7 +64,7 @@ function pruneOldData(): void {
   }
 
   if (startLength > uptimeHistory.length) {
-    console.log(`[SLO Tracker] Pruned ${startLength - uptimeHistory.length} old data points`)
+    logger.info("[SLO Tracker] Pruned old data points", { count: startLength - uptimeHistory.length })
   }
 }
 

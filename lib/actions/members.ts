@@ -60,6 +60,7 @@ export async function getOrganizationMembersWithEmails(
 
   // If profiles table doesn't exist or doesn't have emails, try auth.users
   // This requires service role key, so it will fail in client-side contexts
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase join response typing
   const enrichedMembers = members.map((member: any) => ({
     id: member.id,
     user_id: member.user_id,
@@ -156,6 +157,7 @@ export async function changeMemberRole(
   }
 
   // Update the role
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
   const { error: updateError } = await (supabase.from("organization_members") as any)
     .update({ role: newRole })
     .eq("id", memberId)
@@ -347,6 +349,7 @@ export async function transferOwnership(
   }
 
   // Use atomic database function for transfer
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for RPC
   const { data, error } = await (supabase.rpc as any)("transfer_ownership", {
     p_org_id: userMembership.organization_id,
     p_current_owner_id: user.id,

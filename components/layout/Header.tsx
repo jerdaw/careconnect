@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 // import { Link as I18nLink } from '@/i18n/routing';
-import { useAuth } from "@/components/AuthProvider"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -13,7 +13,7 @@ import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
 // import { LanguageSelector } from "./LanguageSelector"
-import BetaBanner from "@/components/BetaBanner"
+import BetaBanner from "@/components/layout/BetaBanner"
 import { EmergencyModal } from "@/components/ui/EmergencyModal"
 
 export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {

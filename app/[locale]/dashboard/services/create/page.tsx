@@ -13,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Loader2, ArrowLeft } from "lucide-react"
 import { createServiceAction } from "@/lib/actions/services"
 import type { ServiceCreateInput } from "@/lib/schemas/service-create"
+import { logger } from "@/lib/logger"
 import Link from "next/link"
 
 const INTENT_CATEGORIES = [
@@ -63,7 +64,7 @@ export default function CreateServicePage() {
         })
       }
     } catch (error) {
-      console.error("Service creation error:", error)
+      logger.error("Service creation error", { error })
       toast({
         title: t("toast.errorTitle"),
         description: t("toast.unexpectedError"),

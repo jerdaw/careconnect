@@ -4,15 +4,16 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation" // Changed from 'next/router'
 import { Service } from "@/types/service"
 import { Database } from "@/types/supabase"
-import EditServiceForm from "@/components/EditServiceForm"
-import { ServiceFormData } from "@/lib/schemas"
-import { useAuth } from "@/components/AuthProvider"
+import EditServiceForm from "@/components/edit-service/EditServiceForm"
+import { ServiceFormData } from "@/lib/schemas/form"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { ArrowLeft, Eye, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useServiceFeedback } from "@/hooks/useServiceFeedback"
 import { ThumbsUp, AlertTriangle } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/utils/supabase/client"
+import { logger } from "@/lib/logger"
 import { unsafeFrom } from "@/lib/supabase"
 
 type ServiceRow = Database["public"]["Tables"]["services"]["Row"]
@@ -71,7 +72,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
         } as unknown as Service
         setService(mappedData)
       } else if (error) {
-        console.error("Error fetching service", error)
+        logger.error("Error fetching service", { error })
         // Handle 404 or permission error
       }
       setLoading(false)

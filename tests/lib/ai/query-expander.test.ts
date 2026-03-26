@@ -147,7 +147,10 @@ describe("Query Expander", () => {
       expect(result.original).toBe("query")
       expect(result.expanded).toEqual([])
       expect(result.fromCache).toBe(false)
-      expect(consoleWarnSpy).toHaveBeenCalledWith("[QueryExpander] Failed to expand query:", expect.any(Error))
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        expect.stringContaining("[QueryExpander] Failed to expand query"),
+        expect.any(Object)
+      )
 
       consoleWarnSpy.mockRestore()
     })

@@ -1,9 +1,9 @@
 "use client"
 
-import { useAuth } from "@/components/AuthProvider"
+import { useAuth } from "@/components/layout/AuthProvider"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-import DashboardSidebar from "@/components/DashboardSidebar"
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
