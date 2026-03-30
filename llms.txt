@@ -1,0 +1,1533 @@
+# HelpBridge - AI Context
+
+This file contains the core architecture and development guidelines for HelpBridge.
+
+
+
+--- FILE: architecture.md ---
+
+---
+status: stable
+last_updated: 2026-03-30
+owner: jer
+tags: [architecture, overview, system-design]
+---
+
+# HelpBridge - Architecture Overview
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 + Radix UI
+- **Database**: Supabase (PostgreSQL + Vector)
+- **Internationalization**: `next-intl` (Support for EN, FR, AR, ZH-Hans, ES, PT, PA)
+- **Testing**: Playwright (E2E), Vitest (Unit)
+
+## Directory Structure
+
+- `app/`: Next.js App Router pages and API routes.
+  - `[locale]/`: Localized routes.
+  - `api/v1/`: RESTful API endpoints. (See [OpenAPI Spec](api/openapi.yaml))
+  - `[locale]/offline/`: PWA offline page (Workbox navigation fallback targets `/offline`).
+  - `worker.ts`: Semantic search Web Worker.
+- `components/`: UI components.
+  - `ui/`: Standardized primitives (Button, etc.).
+- `hooks/`: Custom React hooks (`useSearch`, `useServices`).
+- `lib/`: Utility functions (API helpers, search logic).
+- `types/`: TypeScript definitions.
+- `messages/`: Localization dictionaries (EN, FR, AR, ZH-Hans, ES, PT, PA).
+- `docs/`: Project documentation.
+
+## Core Concepts
+
+### Search Architecture
+
+The search system uses a hybrid approach:
+
+```mermaid
+graph TD
+    A[User Query] --> B{Keyword Search}
+    B -- Results Found --> C[Re-rank based on Relevance]
+    B -- Low/No Results --> D[Fuzzy Search Suggestion]
+    C --> E[Lazy Semantic Search Worker]
+    E --> F[Neural Re-ranking]
+    F --> G[Final Results Display]
+    A --> H[Search API POST - v16.0 Hybrid]
+    H --> I[Server-side Hybrid Scoring]
+    I --> G
+```
+
+1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
+2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
+3. **Lazy Semantic Search**: Loads the optional WebLLM/WebGPU semantic stack in the background when the device supports it. Once ready, it re-ranks results based on vector similarity and on-device inference.
+4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
+
+### Search Modes
+
+The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MODE`:
+
+1. **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
+2. **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
+
+### AI Assistant Architecture
+
+- **Engine**: `@mlc-ai/web-llm` (WebGPU) running in a Web Worker for UI responsiveness.
+- **Strategy**: "LLM-as-Search" (query rewrite/expansion) + deterministic rendering of search results.
+- **Privacy**:
+  - **Local-Only**: Inference runs entirely in the user's browser.
+  - **No Data Egress**: Queries never leave the device.
+  - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
+  - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs) with `Cache-Control: no-store`. The database `services_public` view enforces a strict data boundary.
+- **Lifecycle**:
+  - **Opt-In**: Model download only triggered by explicit user action.
+  - **Idle Cleanup**: VRAM released after 5 minutes of inactivity.
+
+### Privacy-Preserving Personalization
+
+- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`helpbridge_user_context`).
+- **Zero PII**: No user accounts, login, or cookies required for basic personalization.
+- **Local Eligibility**: "Likely Qualify" checks run locally by parsing cached service data against the local profile.
+- **Identity Boosting**: Search ranking adjustments happen on the client-side `WebWorker`.
+
+### Data Pipelines
+
+- **Source of Truth**: Manually curated service records remain authoritative. In development they live in `data/services.json`; in production the app reads from Supabase when configured, with local JSON fallback when the database is unavailable.
+
+```mermaid
+sequenceDiagram
+    participant Curators as Curators + Research Inputs
+    participant Import as Validation + Import Scripts
+    participant DB as Verified Database
+    participant Embed as Embedding Generator
+
+    Curators->>Import: Verified JSON / CSV / seed files
+    Import->>Import: Normalize & validate schema
+    Import->>DB: Upsert curated records
+    DB->>Embed: Pull Verified Listings
+    Embed->>DB: Store Vector Embeddings
+    DB->>Client: JSON/API Delivery
+```
+
+- **Ingestion**:
+  - Human-reviewed JSON, CSV, and municipal/provider seed files are validated before import.
+  - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.
+  - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
+- **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
+
+### User Feedback & Impact Loop (v14.0)
+
+- **Architecture**: Privacy-preserving feedback system.
+- **Pipeline**: Client (`FeedbackWidget`) -> API (`/api/v1/feedback`) -> Supabase (`feedback` table).
+- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the [Impact Page](/impact) and Partner Dashboard.
+- **Privacy**: No PII, cookies, or persistent IDs are stored. Rate limiting is handled in-memory.
+
+### Equity-First Access (v14.0)
+
+- **Localization Parity**: Full UI translation coverage for all 7 supported locales. Mandatory EN/FR parity for all service data.
+- **Simplified Views**: Optional plain-language summaries (Grade 6-8 reading level) for high-impact services, stored in `plain_language_summaries`.
+- **Low-Bandwidth Outputs**: Printable "Resource Cards" optimized for physical distribution and accessibility.
+
+### Visible Verification & Trust Signals (v14.0)
+
+- **Provenance**: `TrustPanel` displays `last_verified` dates, verification methods, and source provenance to build user confidence.
+- **Verification Levels**:
+  - `L1`: Basic verification.
+  - `L2`: Manual verification by HelpBridge team.
+  - `L3`: Partner-claimed and verified.
+  - `L4`: Governance-level policy concept for future partner/audit workflows; not currently represented in runtime types or search scoring.
+- **Partner Update Workflow**: Structured request-approval loop via `service_update_requests` ensures data integrity while engaging service providers.
+
+### Push Notifications
+
+- **Technology**: Web Push API + Service Worker (`app/worker.ts`).
+- **Flow**: User Opt-In -> Service Worker Subscribes -> Endpoint stored in `push_subscriptions` -> Server-side trigger via VAPID keys.
+- **Privacy**: No PII linked to subscriptions. User can revoked at any time via browser settings.
+
+### Automated Maintenance Bots
+
+- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`).
+- **Phone Validator**: Connectivity checks using Twilio Lookup API (`scripts/validate-phones.ts`).
+- **Automation**: GitHub Actions (`.github/workflows/health-check.yml`) create issues for human review upon detection of failures.
+
+### Database Security & Row Level Security (RLS)
+
+- **Security Model**: Supabase PostgreSQL with Row Level Security ensures data isolation and privacy.
+- **Public Views**: `services_public` view created with `security_invoker = true` to use invoker's permissions (not definer's).
+- **Hardened Policies**: All INSERT policies validate foreign keys (e.g., `service_id IN (SELECT id FROM services_public)`) to prevent spam and invalid data.
+- **Performance Optimizations**: Auth function calls wrapped in scalar subqueries `(SELECT auth.uid())` to avoid per-row re-evaluation.
+- **Policy Consolidation**: Separate policies for SELECT/INSERT/UPDATE/DELETE to avoid "Multiple Permissive Policies" performance warnings.
+- **Public Transparency**: Aggregated metrics are exposed via **Standard Views** (`feedback_aggregations`, `unmet_needs_summary`) that wrap underlying Materialized Views (`mat_*`). These wrappers enforce `security_invoker = true` to ensure the query runs with the user's permissions, satisfying security audits while maintaining API compatibility.
+- **Documentation**: See [Database Security Guide](security/database-security.md) for complete RLS policy documentation.
+- **Testing**: RLS policies verified via `tests/integration/rls-policies.test.ts`.
+
+### Partner Dashboard & RBAC
+
+- **Access Control**: Role-Based Access Control (RBAC) implemented via `organization_members` table.
+- **Roles**: `owner`, `admin`, `editor`, `viewer`.
+- **Functions**: CRUD operations for listings, member invites (invite/accept flow), and analytics viewing.
+- **Multi-Lingual Content**: Self-service editing for English and French fields (local services are EN/FR only).
+
+### Data Flow
+
+- **Services**: Fetched via `/api/v1/services`. Cached using SWR-like strategies in hooks.
+- **Analytics**: Search events are logged to `/api/v1/analytics/search` asynchronously.
+
+### v22 Phase 0 Pilot Instrumentation (Internal)
+
+- **Purpose**: Capture pilot-only connection outcome signals before Phase 1 feature rollout.
+- **Internal Endpoints**:
+  - `POST /api/v1/pilot/events/contact-attempt`
+  - `POST /api/v1/pilot/events/referral`
+  - `PATCH /api/v1/pilot/events/referral/{id}`
+  - `POST /api/v1/pilot/integration-feasibility`
+  - `GET /api/v1/pilot/metrics/scorecard`
+- **Security Model**:
+  - Authenticated session required for all pilot endpoints.
+  - Organization-scoped authorization enforced for event writes and scorecard reads.
+  - Admin authorization required for integration feasibility decision writes.
+- **Privacy Constraints**:
+  - Request payload validation rejects disallowed keys (`query`, `query_text`, `message`, `user_text`, `notes`).
+  - Raw query text is never accepted into pilot event contracts.
+- **Resilience**:
+  - Pilot DB operations use circuit-breaker-wrapped storage access.
+  - If pilot tables are not present, endpoints fail with explicit `501` responses to prevent silent data loss.
+
+### Routing & Discovery
+
+- **Public Routes**:
+  - `/service/[id]`: Rich detail page.
+  - `/submit-service`: Public crowdsourcing form.
+  - `/dashboard`: Partner portal.
+  - `/about`: Project mission and impact metrics. Includes **Katarokwi Land Acknowledgment**.
+  - `/about/partners`: Data source transparency and verification process.
+- **Provincial Services Discovery**:
+  - `is_provincial` flag allows services to be promoted in search results globally.
+  - Provincial services display a "Province-Wide" badge for clarity.
+- **Language Selection**:
+  - `LanguageSelector` component in `Header` provides 7-locale switching.
+  - Arabic triggers RTL (Right-to-Left) direction in root layout.
+- **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
+
+### Partner Claim Workflow
+
+- **Claim Logic**: Unclaimed services can be claimed by authenticated organizations.
+- **Verification**: Claiming a service automatically elevates its status to `L1`.
+- **Atomic Operations**: `lib/services.ts` handles the claim logic with database consistency checks.
+
+### Hooks Architecture
+
+We use a modular hook system to separate concerns:
+
+- **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
+- **Utility Hooks**: Generic hooks for `localStorage` and `Geolocation` ensure SSR safety and consistency.
+
+### Logging & Monitoring
+
+- **Logger Utility**: Located in `lib/logger.ts`. Use instead of `console.log`.
+- **Error IDs**: The Error Boundary generates unique IDs (e.g., `ERR-K9X2J1`) for cross-referencing logs with user reports.
+
+### User Interface & Accessibility
+
+- **High Contrast Mode**: Global state managed via `useHighContrast` hook, applying `.high-contrast` class and CSS variable overrides.
+- **Print Optimization**: Specific `@media print` styles in `globals.css` and `PrintButton` component for physical delivery of information.
+- **Data Freshness**: `FreshnessBadge` provides visual cues on the reliability of data based on `last_verified` timestamps.
+
+## Development
+
+- `npm run dev`: Start local server.
+- `npm run test`: Run the default Vitest suite.
+- `npm run test:db`: Run real DB-backed retrieval and policy tests.
+- `npm run test:e2e:local`: Run partial E2E tests (CI handles full suite).
+- `AGENTS.md`: Contributor and local workflow guidance.
+- `docs/development/testing-guidelines.md`: Detailed testing guidance.
+
+
+--- FILE: development/components.md ---
+
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, components, ui]
+---
+
+# Component Usage Guide
+
+## UI Primitives (`components/ui`)
+
+### Button
+
+Standardized button component supporting variants and sizes.
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+// Primary
+<Button>Click Me</Button>
+
+// Secondary
+<Button variant="secondary">Cancel</Button>
+
+// Ghost (for icons)
+<Button variant="ghost" size="icon">
+  <Icon />
+</Button>
+
+// Pill (for chips)
+<Button variant="pill">Category</Button>
+
+// Full width
+<Button className="w-full">Submit</Button>
+```
+
+**Variants:**
+
+- `default`: Primary blue action.
+- `destructive`: Red/Warning action.
+- `outline`: Bordered, transparent background.
+- `secondary`: Light gray background.
+- `ghost`: Transparent, hover effect only.
+- `link`: Underlined text.
+- `pill`: Rounded chip style (white with shadow).
+
+**Sizes:**
+
+- `default`: Standard padding.
+- `sm`: Smaller padding.
+- `lg`: Larger padding.
+- `icon`: Square, for icon-only buttons.
+- `pill`: Optimized for chip usage.
+
+---
+
+## Feature Components
+
+### ServiceCard
+
+Displays a service with score, match reasons, and trust signals.
+
+```tsx
+import ServiceCard from "@/components/services/ServiceCard"
+;<ServiceCard service={service} score={result.score} matchReasons={result.matchReasons} />
+```
+
+### TrustPanel (v14.0)
+
+Displays data provenance, verification status, and last verified dates.
+
+```tsx
+import { TrustPanel } from "@/components/services/TrustPanel"
+;<TrustPanel service={service} />
+```
+
+### SimplifiedServiceView (v14.0)
+
+Renders plain-language summaries and "How-to-use" step-by-step guides for higher literacy accessibility.
+
+```tsx
+import { SimplifiedServiceView } from "@/components/services/SimplifiedServiceView"
+;<SimplifiedServiceView serviceId={service.id} />
+```
+
+### FeedbackWidget (v14.0)
+
+Privacy-preserving feedback collection tool at the bottom of detail pages.
+
+```tsx
+import { FeedbackWidget } from "@/components/feedback/FeedbackWidget"
+;<FeedbackWidget serviceId={service.id} />
+```
+
+### SearchBar
+
+Includes integrated voice search capability.
+
+```tsx
+import SearchBar from "@/components/home/SearchBar"
+;<SearchBar query={query} setQuery={setQuery} placeholder="Search..." />
+```
+
+**Sub-components:**
+
+- `VoiceSearchButton`: Manages microphone state and local Whisper transcription.
+
+### ChatAssistant
+
+On-device “smart search” assistant.
+
+- Uses a local LLM to rewrite/expand the user’s query (not shown to the user).
+- Runs the normal local search pipeline and renders deterministic service links (no free-form AI answers).
+- Enforces a client-side crisis circuit breaker that blocks the LLM and shows the emergency modal.
+
+```tsx
+import ChatAssistant from "@/components/ai/ChatAssistant"
+
+// Must be wrapped in ClientOnly due to WebGPU/WASM
+;<ClientOnly>
+  <ChatAssistant />
+</ClientOnly>
+```
+
+### ServiceCardSkeleton
+
+Loading placeholder for ServiceCard.
+
+```tsx
+import ServiceCardSkeleton from "@/components/services/ServiceCardSkeleton"
+;<ServiceCardSkeleton />
+```
+
+### ErrorBoundary
+
+Catches React errors and displays a fallback UI with error ID for support.
+
+```tsx
+import { ErrorBoundary } from "@/components/error/ErrorBoundary"
+;<ErrorBoundary
+  fallback={<CustomErrorUI />}
+  onError={(error, errorInfo, errorId) => {
+    // Optional error reporting
+  }}
+>
+  <App />
+</ErrorBoundary>
+```
+
+### ServiceEditForm (Partner-Focused)
+
+New multi-lingual-aware form for service editing (EN/FR fields). Located in `components/partner/ServiceEditForm.tsx`.
+
+```tsx
+import { ServiceEditForm } from "@/components/partner/ServiceEditForm"
+;<ServiceEditForm
+  service={serviceData}
+  onSave={async (data) => {
+    // Save logic
+  }}
+/>
+```
+
+### UpdateRequestModal (Partner-Focused, v14.0)
+
+Structured workflow for partners to request listing updates with justifications.
+
+```tsx
+import { UpdateRequestModal } from "@/components/services/UpdateRequestModal"
+;<UpdateRequestModal service={service} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+```
+
+### PartnerServiceList
+
+Data table for displaying an organization's services on the dashboard.
+
+```tsx
+import { PartnerServiceList } from "@/components/partner/PartnerServiceList"
+;<PartnerServiceList partnerId={user.id} />
+```
+
+### AnalyticsCard (Advanced)
+
+Visualizes a single metric with trend indicator. Supports glassmorphism styling.
+
+```tsx
+import { AnalyticsCard } from "@/components/dashboard/AnalyticsCard"
+;<AnalyticsCard title="Total Views" value={1200} change={5.2} loading={false} />
+```
+
+### VoiceSearchButton
+
+See `SearchBar` section.
+
+---
+
+## Provider Components
+
+### AuthProvider
+
+Provides authentication context throughout the app.
+
+```tsx
+import { AuthProvider, useAuth } from "@/components/layout/AuthProvider"
+
+// Wrap app
+;<AuthProvider>
+  <App />
+</AuthProvider>
+
+// Use in components
+const { user, signOut } = useAuth()
+```
+
+### BetaBanner
+
+Displays a beta warning banner at the top of the app.
+
+```tsx
+import BetaBanner from "@/components/layout/BetaBanner"
+;<BetaBanner />
+```
+
+### ThemeProvider
+
+Manages light/dark mode state using `next-themes`.
+
+```tsx
+import { ThemeProvider } from "@/components/layout/ThemeProvider"
+;<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <App />
+</ThemeProvider>
+```
+
+---
+
+### DashboardSidebar
+
+Navigation sidebar for partner dashboard.
+
+```tsx
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar"
+;<DashboardSidebar />
+```
+
+### ServiceDetailPage
+
+Dedicated public route for service information.
+
+```tsx
+// Route: /service/[id]
+import ServiceDetailPage from "@/app/[locale]/service/[id]/page.tsx"
+```
+
+---
+
+## Layout Components
+
+### Header & Footer
+
+Global shell components.
+
+```tsx
+import { Header } from "@/components/layout/Header"
+import { Footer } from "@/components/layout/Footer"
+import { ThemeToggle } from "@/components/layout/ThemeToggle"
+```
+
+### Tooltip
+
+Accessible tooltip component.
+
+````tsx
+import { Tooltip } from "@/components/Tooltip"
+;<Tooltip content="Helpful info">
+  <button>Hover me</button>
+</Tooltip>
+
+### FreshnessBadge
+
+Visual indicator of when service data was last verified.
+
+```tsx
+import { FreshnessBadge } from "@/components/ui/FreshnessBadge"
+
+;<FreshnessBadge lastVerified="2024-01-01T00:00:00Z" />
+````
+
+### PrintButton
+
+Optimized button for printing search results. Automatically hidden during print.
+
+```tsx
+import { PrintButton } from "@/components/ui/PrintButton"
+;<PrintButton />
+```
+
+
+--- FILE: governance/documentation-guidelines.md ---
+
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, documentation, guidelines]
+---
+
+# Documentation Guidelines (Internal)
+
+Keep documentation accurate, minimal, and easy to maintain.
+
+## Canonical sources
+
+- **Architecture & Logic**: `docs/architecture.md`
+- **UI Components**: `docs/development/components.md`
+- **Localization**: `docs/development/bilingual-guide.md` (Multi-lingual development guide)
+- **Governance**: `docs/governance/standards.md`
+- **Data Enrichment**: `docs/governance/data-enrichment-sop.md` (Enrichment process)
+- **Hooks & Utilities**: `docs/development/hooks.md`
+- **Roadmap**: `docs/planning/roadmap.md` (Active Plan)
+- **Historical Records**: `docs/planning/archive/` (Completed work)
+- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
+
+## Document Metadata (Frontmatter)
+
+Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to improve discoverability and status tracking.
+
+- **Standard Fields**:
+  - `status`: `draft` | `stable` | `deprecated` | `archived`
+  - `last_updated`: `YYYY-MM-DD` (ISO 8601)
+  - `owner`: Primary maintainer (GitHub username or team)
+  - `tags`: Array of searchable keywords
+- **Example**:
+
+  ```yaml
+  ---
+  status: stable
+  last_updated: 2026-01-15
+  owner: jer
+  tags: [search, backend, api]
+  ---
+  ```
+
+## Advanced Features
+
+- **Code Annotations**: Use `(1)` in code blocks and a numbered list below to create floating explanations.
+- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
+- **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
+- **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
+- **AI Readiness**: The `llms.txt` file is auto-generated in CI to provide a "single source of truth" for agents.
+
+> [!IMPORTANT]
+> [Highlight breaking changes, deployment requirements, or decisions needing approval]
+>
+> [!WARNING]
+> [Call out compatibility issues or migration complexity]
+
+## Writing for AI Consumption
+
+To ensure documentation is effectively used by AI agents and LLMs:
+
+- **Context-Rich Headings**: Use specific, descriptive titles (e.g., `## Supabase RLS Configuration` instead of `## Security`).
+- **Explicit Cross-Links**: Use descriptive text for links and relative paths (e.g., `See [Bilingual Guide](../development/bilingual-guide.md)`).
+- **Structured Code Blocks**: Always specify the language for syntax highlighting.
+- **Decision Context**: Document the "why" behind technical choices, especially in ADRs.
+- **Avoid Ambiguity**: Use explicit nouns instead of pronouns (this/it/that) when describing architecture or logic.
+
+## When adding or changing docs
+
+- **Prefer one canonical source**. Use pointers elsewhere instead of copying text.
+- **Keep docs close to the code** they describe.
+- **Update the index**: Update `mkdocs.yml` nav if you add new pages. `README.md` and `AGENTS.md` should point to the MkDocs site URL where appropriate.
+- **English-Only**: Internal documentation should be English-only.
+- **No Phase Labels**: Avoid "phase" labels in permanent docs. Documentation should describe **what exists and how to use it**, not the order it was implemented.
+- **Public-Safe**: No secrets, private emails, or internal IPs in public repos.
+- **Professional Emojis Only**: Use only professional symbols (e.g., ✅, ❌, ⚠️, ➡️, ⭐) for status and alerts. Avoid playful or conversational emojis.
+
+## Roadmap workflow
+
+This project separates **backlog** vs **implementation plans** vs **canonical docs** to reduce drift.
+
+- `docs/planning/roadmap.md` is the high-level strategic plan.
+- See detailed workflow in [`docs/development/roadmap-process.md`](../development/roadmap-process.md).
+- When you start work, create a focused implementation plan under `docs/planning/` (e.g. `v10-0-feature-x.md`).
+- When the work is done:
+  1. Update canonical docs (`docs/architecture.md`, etc.) so the result is maintainable.
+  2. Move the implementation plan into `docs/planning/archive/` following the naming convention `YYYY-MM-DD-vX-Y-{description}.md`.
+
+## File Naming Conventions
+
+- **Dates**: Always use ISO 8601 format (`YYYY-MM-DD`) for files containing dates (e.g., `2026-01-15-meeting-notes.md`).
+- **Separators**: Use hyphens (`-`) rather than underscores or spaces.
+- **Case**: Use lowercase for general documentation.
+- **Templates**: Suffix template files with `-template.md` (e.g., `adr-template.md`).
+
+## Naming and organization
+
+- **Descriptive Filenames**: Use `runbook`, `checklist`, `guidelines`. Avoid vague names.
+- **Roadmaps**: Put active plans in `docs/planning/`.
+- **Archive**: Put completed plans in `docs/planning/archive/`.
+- **Deployment**: `DEPLOY.md` (Root) or `docs/deployment/` (Future).
+- **Development**: `AGENTS.md` (Root), `docs/development/bilingual-guide.md` (Multi-lingual guide), or `docs/development/` (Future).
+
+
+--- FILE: development/testing-guidelines.md ---
+
+---
+status: stable
+last_updated: 2026-03-24
+owner: jer
+tags: [development, testing, guidelines, vitest, playwright, rtl]
+---
+
+# Testing Guidelines
+
+## Overview
+
+HelpBridge uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
+
+## Pragmatic Testing Philosophy
+
+> [!TIP]
+> **Core Principle**: Tests should accelerate development, not slow it down. Flaky or slow tests are worse than no tests because they erode trust.
+
+### Test Tiers
+
+| Tier          | Scope                             | CI Behavior       | Examples                                            |
+| ------------- | --------------------------------- | ----------------- | --------------------------------------------------- |
+| **Critical**  | Data integrity, API contracts     | **Block merge**   | Unit tests, type-check, lint, build                 |
+| **Core Flow** | Safety-critical logic             | **Block merge**   | Integration tests, API tests                        |
+| **E2E**       | Full user flows (Chromium only)   | **Warn only**     | `crisis.spec.ts`, `accessibility.spec.ts` (ADR-015) |
+| **Polish**    | UI polish, multi-browser coverage | **Skip / Manual** | Cross-browser testing, visual regression            |
+
+### Default-Suite Discipline
+
+The default `tests/e2e/**` Chromium suite should stay **skip-free**.
+
+- Do not leave permanent inline `test.skip()` cases in the default suite.
+- If a browser test is environment-dependent, move it into an explicit opt-in suite such as `tests/e2e/prod/` or `tests/e2e/server/`.
+- If a flow is better covered below the browser layer, replace the skipped case with deterministic API/component/hook coverage instead of carrying drift forward.
+- If you must land a temporary gap, document it in the roadmap/baseline docs and remove it quickly.
+
+## Tech Stack
+
+- **Unit & Integration**: [Vitest](https://vitest.dev/)
+- **Component Testing**: [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- **E2E Testing**: [Playwright](https://playwright.dev/) (Chromium-only in CI)
+- **Coverage**: v8
+
+## Directory Structure
+
+- `tests/unit/`: Pure logic unit tests
+- `tests/components/`: Component tests (React)
+- `tests/hooks/`: Custom hook tests
+- `tests/integration/`: Integration tests
+- `tests/api/`: API route tests
+- `tests/e2e/`: Playwright E2E scenarios
+- `tests/e2e/pages/`: Page Object Models
+- `tests/e2e/fixtures/`: Mock data for E2E tests
+- `tests/utils/`: Shared test utilities and mocks
+
+## Running Tests
+
+```bash
+# Unit and integration tests (fast, reliable)
+npm test
+
+# Real DB integration tests against local Supabase
+npm run test:db
+
+# Tests with coverage
+npm run test:coverage
+
+# Default local verification
+npm run lint
+npm run type-check
+npm run build
+```
+
+> [!TIP]
+> While GitHub Actions is running in free-tier budget mode, leave Playwright execution to CI/manual dispatch by default. Run local Playwright only when a user explicitly requests it or when debugging a browser-only regression that cannot be reproduced another way.
+
+## CI/CD Strategy
+
+### Pull Requests (Fast Feedback)
+
+- **Linting**, **Type Checking**, **Unit/Integration Tests**
+- E2E tests **skipped** for rapid iteration
+
+### Main Branch (Regression)
+
+- All PR checks (blocking)
+- **Playwright E2E** on **Chromium only** (non-blocking, see below)
+- GitHub reporter for inline annotations
+
+### E2E Tests: Non-Blocking Status
+
+> [!IMPORTANT]
+> As of ADR-015, E2E tests are **non-blocking** in CI (`continue-on-error: true`). They run for visibility but won't fail the build.
+
+**Why Non-Blocking?**
+
+E2E tests have been consistently timing out in CI due to infrastructure issues (networkidle waits, API timeouts), not code quality problems. Making them non-blocking allows:
+
+- Development to proceed without flaky test interference
+- E2E results remain visible for manual review
+- Core quality gates (lint, type-check, unit tests, build) remain strict
+
+**What You Should Do:**
+
+1. **Before Releases**: Manually review E2E test results in Playwright artifacts
+2. **Check CI Logs**: Even when CI passes, check for E2E failures
+3. **Report Issues**: If E2E tests fail on your changes, investigate (but don't block merge)
+
+See [ADR-015](../adr/015-non-blocking-e2e-tests.md) for full context.
+
+### Temporary CI Budget Mode (GitHub Free Tier)
+
+To conserve CI minutes while on GitHub free tier:
+
+1. `test-e2e` runs on `workflow_dispatch` by default.
+2. To run E2E on a `main` push, include `[run-e2e]` in the commit message.
+3. Use manual dispatch for intentional E2E validation windows.
+4. Use the separate manual `Production Smoke` workflow for public-host checks
+   (`helpbridge.ca`) instead of trying to turn deploys into an automatic CI step.
+
+Local helper behavior:
+
+1. `npm run ci:check` skips Playwright tests by default.
+2. Set `RUN_PLAYWRIGHT_LOCAL=true` only for intentional local browser-debug windows.
+
+### Deploy posture
+
+- CI is automatic on push/PR.
+- Production deploys remain manual and script-driven on the VPS.
+- GitHub Actions is used for validation and public smoke verification, not for
+  automatic production deploys.
+
+### Why Chromium Only?
+
+1. **Speed**: 5x faster than running all browsers
+2. **Reliability**: Fewer timeout failures in constrained CI environments
+3. **Coverage**: 95%+ of bugs caught by one modern browser
+4. **Cost**: Reduced compute minutes
+
+## Writing Tests
+
+### Unit Tests
+
+- Co-locate with logic or place in `tests/unit`
+- Mock external dependencies with `vi.mock`
+- Use `tests/utils/mocks.ts` for shared mock data
+
+### Component Tests
+
+- Use `TestWrapper` for components needing `next-intl` or Context
+- Test for accessibility via `getByRole`, `getByLabelText`
+
+### API Tests
+
+- Place in `tests/api/v1/`
+- Mock Supabase client to avoid network calls
+
+### DB Integration Tests
+
+- Place real Supabase-backed retrieval and policy tests in `tests/db/`
+- Run them via `npm run test:db` only; the default Vitest suite excludes `tests/db/**`
+- Use the local Supabase runner to boot a disposable minimal Supabase stack and apply the deterministic test bootstrap + synthetic seed
+- Cover public retrieval boundaries first: `services`, `services_public`, search, export, and service detail
+- Treat the DB lane as the source of truth for runtime retrieval contracts, not as proof that the historical migration chain can rebuild the full app schema from scratch
+
+### Free-Tier CI Discipline
+
+- Keep the DB test lane on the minimal local Supabase profile only (`db`, `auth`, `api`, `gateway`)
+- Do not add Studio, Storage, Realtime, or other nonessential containers unless the tests actually require them
+- Prefer deterministic SQL bootstrap + synthetic fixtures over pulling in production-like operational dependencies
+
+### E2E Tests
+
+- Focus on **critical user flows**: crisis, offline readiness, production/browser-only regressions
+- Use Page Object Model for reusable selectors
+- Prefer `getByRole`, `getByText` over `data-testid`
+- Keep the default suite skip-free; move environment-dependent cases into explicit opt-in suites
+
+## Mocks & Best Practices
+
+### Next.js 15 SSR Mocks (CRITICAL)
+
+Next.js 15 `cookies()` and `headers()` are async. Use the standardized mock setup:
+
+- Import `tests/setup/next-mocks.ts` mocking logic (or copy the pattern)
+- Mock `@supabase/ssr` using the Builder Pattern to support method chaining (`.from().select().eq()`)
+
+### Web Workers
+
+- **Do not test `*.worker.ts` files directly.**
+- Extract logic into a class (e.g., `webllm-engine.ts`) and unit test that class.
+- The worker file should only handle message passing.
+
+### Test Data
+
+- **Do not define ad-hoc mock data.**
+- Use centralized fixtures from `tests/fixtures/`
+- Use factory functions (e.g., `createMockService()`) to override specific fields.
+
+- **Supabase**: Always mock `createClient`
+- **AI Engine**: Mock `lib/ai/engine.ts`
+- **Globals**: `vitest.setup.ts` provides global mocks
+
+## Coverage Goals
+
+- **80%** coverage on branches/functions for core logic
+- UI components should cover interactive states
+- Don't chase 100% - focus on critical paths
+
+
+--- FILE: development/bilingual-guide.md ---
+
+---
+status: stable
+last_updated: 2026-01-23
+owner: jer
+tags: [development, localization, i18n]
+---
+
+# Multi-lingual Development Guide
+
+**Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 7 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
+
+## 1. Supported Languages
+
+| Locale    | Language               | Direction | Purpose                      |
+| :-------- | :--------------------- | :-------- | :--------------------------- |
+| `en`      | English                | LTR       | Official / Primary           |
+| `fr`      | Français canadien (CA) | LTR       | Official / Secondary         |
+| `ar`      | العربية                | RTL       | EDIA / SWANA Community       |
+| `zh-Hans` | 中文                   | LTR       | EDIA / East Asian Community  |
+| `es`      | Español                | LTR       | EDIA / Latinx Community      |
+| `pa`      | ਪੰਜਾਬੀ                 | LTR       | EDIA / South Asian Community |
+| `pt`      | Português              | LTR       | EDIA / Lusophone Community   |
+
+> **Note:** The `fr` locale uses Canadian French (fr-CA), not France French. This is a Kingston, Ontario project and follows Canadian French spelling, vocabulary, and conventions.
+
+## 2. Architecture
+
+- **Separation of Content**: Hardcoded strings in `tsx` files are prohibited.
+- **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
+- **Server message loading**: When loading dictionaries in Server Components (e.g. the root layout), pass the route locale into `next-intl` (`getMessages({ locale })`) so rewritten routes (e.g. `/offline` → `/{locale}/offline`) render the correct language.
+- **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
+- **Data Layer**:
+  - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
+  - **Provincial Services (scope: 'ontario' or 'canada')**: All 7 languages for name/description/eligibility fields.
+  - **Schema**: The `scope` field (enum: `'kingston'`, `'ontario'`, `'canada'`) indicates geographic availability. The legacy `is_provincial` field is deprecated.
+
+## 3. Implementation Rules
+
+1. **Labels**: UI labels must be present in **all 7** message files. This includes labels for legal policies, translation notices, and partner interfaces. Use `npm run i18n-audit` to check for missing keys.
+2. **Text Expansion**: Layouts must accommodate French and Spanish (often 20-30% longer than English) and Chinese (shorter but taller).
+3. **Legal/Policy Pages**: While content may lead in English/French, the structural keys and headers for all policy pages (Privacy, Terms, Accessibility) MUST exist in all 7 languages to prevent UI crashes.
+4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
+5. **Content Fallbacks**:
+
+- For local services, the UI defaults to `name` if `name_fr` is missing.
+- For provincial services, specific localization logic exists to handle expanded content.
+
+6. **Language Switching**: Use the `LanguageSelector` component in the `Header`. Do not use manual links.
+7. **Date/Time**: Use `Intl.DateTimeFormat` or `next-intl` formatting utilities to ensure cultural correctness.
+
+## 4. Maintenance
+
+### Audit Scripts
+
+| Script                    | Purpose                                              | Scope                |
+| ------------------------- | ---------------------------------------------------- | -------------------- |
+| `npm run i18n-audit`      | Checks all 7 message files for missing keys          | UI translations      |
+| `npm run bilingual-check` | Checks EN/FR parity for service data                 | `data/services.json` |
+| `npm run validate-data`   | Validates service schema, warns if `name_fr` missing | `data/services.json` |
+
+### French Translation Workflow (Service Data)
+
+For translating service data fields (especially `access_script`, `description`, and other content-rich fields), we use a semi-automated batch translation process with human review:
+
+**Process Overview:**
+
+1. Export fields needing translation: `npm run export:access-script-fr`
+2. Generate translation prompts: `npm run translate:prompt <batch-file>`
+3. Obtain translated output using the approved translation workflow
+4. Parse the returned translations: `npm run translate:parse <batch-file> <response-file>`
+5. Validate output: `npm run translate:validate <output-file>`
+6. Review and commit the validated translations
+
+**Full Documentation:** See `docs/workflows/french-translation-workflow.md` for the complete step-by-step guide, including quality guidelines and validation rules.
+
+### Audit Details
+
+The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
+
+1. **Key Parity**: Compares all locales against English (source of truth)
+2. **Missing Keys**: Reports keys that exist in EN but not in other locales
+3. **Extra Keys**: Warns about keys in locales that don't exist in EN
+4. **Usage Check**: Scans code for `t()` calls to find potentially unused keys
+
+**Sample Output:**
+
+```text
+📊 AUDIT RESULTS
+═══════════════════════════════════════════════════════════════
+✅ EN - 377 keys
+✅ FR - 377 keys
+✅ AR - 383 keys
+✅ ZH-HANS - 383 keys
+✅ ES - 383 keys
+```
+
+### Ongoing Work
+
+- **Accessibility**: ARIA labels must be descriptive in all languages.
+- **Human Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
+- **Maintenance**: Ensure any new keys added to `en.json` are immediately propagated to all other 6 languages.
+
+---
+
+## Translation Review Policy
+
+### Transparency Disclosures
+
+HelpBridge flags translated content that is still under review so users can make safer decisions:
+
+1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
+   - A dismissible floating pill appears at the bottom-right of every page
+   - Informs users that the page includes translated content under review
+   - Contains a "Got it" button for acknowledgment
+   - Stored in localStorage to remember dismissal
+
+2. **Footer Disclaimer** (all non-English locales)
+   - A subtle note appears in the footer for fr/ar/zh-Hans/es
+   - Text: "Some translations are under review. Report errors to feedback@helpbridge.ca"
+
+### Translation Quality Tiers
+
+| Tier     | Locales               | Quality Level                  | Review Status |
+| :------- | :-------------------- | :----------------------------- | :------------ |
+| Primary  | `en`                  | Source of truth                | N/A           |
+| Official | `fr`                  | Reviewed translated content    | Reviewed      |
+| Preview  | `ar`, `zh-Hans`, `es` | Best-effort translated content | Needs review  |
+
+### Reporting Translation Errors
+
+Users can report translation errors to `feedback@helpbridge.ca`. Corrections should be prioritized based on:
+
+1. Health/safety information (highest priority)
+2. Legal/financial content
+3. General UI strings (lowest priority)
+
+## 6. Security Considerations
+
+Localized content in the database (e.g., `name_fr`, `description_fr`) is often rendered using `dangerouslySetInnerHTML` for term highlighting.
+
+1. **XSS Protection**: Always use `highlightMatches()` from `lib/search/highlight.ts` which escapes HTML entities before applying `<mark>` tags.
+2. **Injection**: Ensure localized search fields are included in ILIKE escaping logic in API routes.
+3. **Validation**: Zod schemas must validate that localized strings do not contain malicious script tags if they are to be rendered as HTML.
+
+
+--- FILE: governance/standards.md ---
+
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [governance, standards, verification]
+---
+
+# Governance Protocol: The Kingston 150 Standard 🛡️
+
+**Document Version:** 1.0
+**Effective Date:** Dec 29, 2025
+**Scope:** All services listed in the HelpBridge database.
+
+---
+
+## 1. The "Do No Harm" Mandate
+
+We prioritize **accuracy over coverage**. It is better to return _no result_ than to send a vulnerable user to a closed door, a disconnected phone line, or an unsafe environment.
+
+### 1.1 The "Do-Not-Log" List
+
+To protect user privacy, the following intent categories triggers a **Zero-Log Policy**. No query text, IP address, or metadata is recorded for these searches:
+
+- Suicide / Self-Harm
+- Sexual Violence / Assault
+- Domestic Violence
+- Substance Use / Overdose
+
+---
+
+## Data Standards & Verification Levels (L-Scale)
+
+Every service in the database must be assigned a verification level.
+
+| Level  | Definition                                                                                                        | Display Policy             |
+| :----- | :---------------------------------------------------------------------------------------------------------------- | :------------------------- |
+| **L0** | **Unverified.** Raw data scraped from web or submitted by public.                                                 | **HIDDEN**                 |
+| **L1** | **Existence Verified.** Phone number calls through, Website loads. Confirmed active within 90 days.               | ✅ **VISIBLE**             |
+| **L2** | **Eligibility Verified.** Inclusion/Exclusion criteria verified against official documentation (PDF, About Page). | ✅ **VISIBLE**             |
+| **L3** | **Provider Confirmed.** Direct contact (email/phone) with service provider confirming details.                    | ✅ **VISIBLE** (Preferred) |
+| **L4** | **Official Partner.** Signed MOU or Data Sharing Agreement.                                                       | 🌟 **FEATURED**            |
+
+> **Current Pilot Standard:** All visible services must be **L1 or higher**.
+
+---
+
+## 3. Identity & Equity Attributes
+
+We do not apply "vibes-based" tagging. All identity tags must be **Evidence-Based**.
+
+### 3.1 Affirming Care Standards
+
+To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must include an `evidence_url` pointing to a public statement by the organization.
+
+- **Acceptable Evidence:** "About Us" page stating mandate, Board of Directors list, official mandate.
+- **Unacceptable Evidence:** Third-party directories, assumptions based on name/logo.
+
+---
+
+## 4. Maintenance Cycle
+
+- **Crisis Services:** Verified Monthly.
+- **General Services:** Verified Quarterly.
+- **Stale Data:** Any record not verified in > 6 months is auto-downgraded to **L0** (Hidden).
+
+---
+
+**Approved By:**
+HelpBridge Steering Committee
+
+
+--- FILE: development/hooks.md ---
+
+---
+status: stable
+last_updated: 2026-01-15
+owner: jer
+tags: [development, hooks, react]
+---
+
+# Custom Hooks
+
+## Search Hooks
+
+### useSearch
+
+Manages search state including query, filters, saved searches, and geolocation.
+
+```tsx
+import { useSearch } from "@/hooks/useSearch"
+
+const {
+  query,
+  setQuery,
+  category,
+  setCategory,
+  userLocation,
+  toggleLocation,
+  isLocating,
+  results,
+  setResults,
+  hasSearched,
+  setHasSearched,
+  isLoading,
+  setIsLoading,
+  suggestion,
+  setSuggestion,
+  savedSearches,
+  handleSaveSearch,
+  removeSavedSearch,
+} = useSearch()
+```
+
+**State Details:**
+
+- `suggestion`: `string | null` - A fuzzy-matched query suggestion.
+- `setSuggestion`: `(suggestion: string | null) => void` - Updates the suggestion state.
+
+### useServices
+
+Performs search with progressive enhancement (keyword → semantic).
+
+```tsx
+import { useServices } from "@/hooks/useServices"
+
+useServices({
+  query,
+  category,
+  userLocation,
+  isReady,
+  generateEmbedding,
+  setResults,
+  setIsLoading,
+  setHasSearched,
+  setSuggestion,
+})
+```
+
+### useSemanticSearch
+
+Web Worker-based semantic search with embedding model.
+
+```tsx
+import { useSemanticSearch } from "@/hooks/useSemanticSearch"
+
+const { isReady, progress, generateEmbedding } = useSemanticSearch()
+```
+
+### useAI
+
+Manages the local WebLLM engine state (loading, local inference, error handling).
+
+Primary use: on-device AI utilities (e.g. query rewrite/expansion for “smart search”).
+
+```tsx
+import { useAI } from "@/hooks/useAI"
+
+const {
+  isReady, // boolean: is model loaded?
+  isLoading, // boolean: is downloading?
+  progress, // number: 0-1 download progress
+  initAI, // () => void: trigger download
+  stop, // () => Promise<void>: interrupt generation
+} = useAI()
+```
+
+### useVoiceInput
+
+Manages local audio recording and transcription using in-browser Whisper model.
+
+```tsx
+import { useVoiceInput } from "@/hooks/useVoiceInput"
+
+const {
+  state, // "idle" | "listening" | "processing" | "error"
+  startListening,
+  stopListening,
+  error,
+} = useVoiceInput((text) => setQuery(text))
+```
+
+### useServiceFeedback (v14.0)
+
+Fetches aggregated feedback statistics (helpful counts, open issues) from Supabase materialized views.
+
+```tsx
+import { useServiceFeedback } from "@/hooks/useServiceFeedback"
+
+const {
+  stats, // { helpful_yes_count, helpful_no_count, open_issues_count, last_feedback_at }
+  loading,
+  error,
+  helpfulPercentage,
+  totalVotes,
+} = useServiceFeedback(serviceId)
+```
+
+---
+
+## Utility Hooks
+
+### usePushNotifications
+
+Manages Web Push API subscription state and permissions.
+
+```tsx
+import { usePushNotifications } from "@/hooks/usePushNotifications"
+
+const {
+  isSupported, // boolean: is Push API available?
+  permission, // "default" | "granted" | "denied"
+  isSubscribed, // boolean: is current user subscribed?
+  isLoading, // boolean
+  subscribe, // (categories: string[]) => Promise<boolean>
+  unsubscribe, // () => Promise<boolean>
+} = usePushNotifications()
+```
+
+### useUserContext
+
+Manages the client-side user profile for privacy-preserving personalization.
+
+```tsx
+import { useUserContext } from "@/hooks/useUserContext"
+
+const {
+  context, // { ageGroup, identities, hasOptedIn }
+  updateAgeGroup, // (age: AgeGroup) => void
+  toggleIdentity, // (tag: IdentityTag) => void
+  optIn, // () => void
+  optOut, // () => void
+} = useUserContext()
+```
+
+### useLocalStorage
+
+SSR-safe localStorage hook with JSON serialization.
+
+```tsx
+import { useLocalStorage } from "@/hooks/useLocalStorage"
+
+const [value, setValue, removeValue] = useLocalStorage("key", initialValue)
+
+// Update value
+setValue("new value")
+
+// Update with callback
+setValue((prev) => [...prev, "item"])
+
+// Remove from storage
+removeValue()
+```
+
+**Features:**
+
+- SSR-safe (no hydration mismatch)
+- Automatic JSON serialization
+- Functional updates supported
+- TypeScript generics
+
+### useGeolocation
+
+Browser Geolocation API hook with loading and error states.
+
+```tsx
+import { useGeolocation } from "@/hooks/useGeolocation"
+
+const {
+  coordinates, // { lat, lng } | null
+  isLocating, // boolean
+  error, // string | null
+  requestLocation,
+  clearLocation,
+} = useGeolocation()
+
+// Request user's location
+requestLocation()
+
+// Clear stored location
+clearLocation()
+```
+
+**Features:**
+
+- SSR-safe
+- Detailed error messages
+- Support for PositionOptions
+- Loading state
+
+
+--- FILE: planning/roadmap.md ---
+
+# HelpBridge: Product Roadmap
+
+> **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
+> **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
+> **Last Updated**: 2026-03-30
+> **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
+
+## Current State
+
+- **Services**: 196 manually curated social services (verified 2026-02-11)
+- **Tests**: default Vitest suite green as of 2026-03-29 (`152` files; `1152` passed; `24` skipped)
+- **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
+- **Coverage**: fresh `npm run test:coverage` snapshot still needed
+- **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
+- **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
+- **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
+- **Accessibility**: WCAG 2.1 AA automation remains in place
+- **Languages**: 7 locales at translation-key parity
+- **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
+- **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
+- **Offline**: PWA with IndexedDB fallback and background sync
+- **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
+- **Deployment**: Live on the direct-VPS path at `https://helpbridge.ca`
+- **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
+- **Data quality gaps**:
+  - Coordinates: 70.4% complete (58/196 missing)
+  - Email: 17.9% complete (161/196 missing)
+  - Identity tags: 44.4% complete (109/196 missing)
+  - French synthetic queries: 36.2% complete (125/196 missing)
+
+## Decision Summary
+
+HelpBridge is not currently in a breadth-expansion phase.
+
+The active question is whether the project can prove non-duplicate value relative to 211 through measurable last-mile outcomes such as connection success, reliability, and referral completion. Until that is demonstrated, roadmap priority stays on governance closure, pilot readiness, and evidence discipline rather than new feature expansion.
+
+## What To Do Now
+
+1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
+2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
+3. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+
+## What Not To Do Now
+
+1. Do not expand directory breadth to compete with 211.
+2. Do not start new pilot-facing features before Gate 0 evidence is accepted.
+3. Do not restart v19 launch execution while v22 remains `NO-GO`.
+4. Do not pull forward parked enrichment or portfolio work unless it directly supports the active gate.
+
+## Active Work
+
+### v22.0: Non-Duplicate Value Decision Plan 🔄 ACTIVE
+
+**Status**: Phase 0 in progress - **Gate 0 Exit NO-GO**
+**Priority**: Critical
+**Timeline**: 90-day decision cycle (~13 weeks)
+**Created**: 2026-02-27
+
+HelpBridge is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
+
+**Core objective**
+
+1. Prove non-duplicate value vs 211 on measurable connection outcomes.
+2. Validate privacy-safe integration feasibility with 211 pathways.
+3. Keep explicit stop conditions if outcome value is not demonstrated.
+
+**Current technical position**
+
+1. Pilot DB schema, RLS policies, internal pilot APIs, and pilot tests are implemented.
+2. Step 1 approval locks are complete.
+3. Gate 0 evidence scaffolding is in repo.
+4. C2 retention policy approval, privacy sign-off, and dated verification evidence are complete.
+5. Gate 0 remains `NO-GO` because C1 legal evidence and D4 partner-ops evidence are still incomplete.
+
+**Immediate blockers**
+
+1. `G0-3 / C1`: candidate partner legal/API terms are not yet attached for clause-level review.
+2. `G0-8 / D4`: named pilot partner list, outreach ownership, and dated execution evidence are missing.
+3. Baseline execution is recorded, but current M1/M3 values are `NULL` because the baseline window had zero events.
+
+**Required user-owned actions**
+
+1. `UA-1`: attach candidate partner legal/API terms and complete clause-level C1 review.
+2. `UA-3`: attach named pilot partner list, outreach owner assignment, and dated outreach execution evidence.
+
+**Agent follow-through once evidence exists**
+
+1. Update the Gate 0 trackers and source control docs.
+2. Sync the integration decision record, approval checklist references, and evidence matrix.
+3. Re-evaluate Gate 0 and re-run `npm run check:v22-gate0`.
+4. Keep pilot APIs, schemas, tests, and docs aligned with any approved control changes.
+
+**Gate 1 success thresholds**
+
+- Failed contact attempts reduced by at least 30% vs baseline
+- Time-to-successful-connection reduced by at least 25%
+- Freshness SLA compliance at least 70%
+- Referral outcome capture at least 50%
+- Fatal data-decay error rate at or below 10%
+
+**Canonical references**
+
+- [v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)
+- [v22.0 Approval Checklist](v22-0-approval-checklist.md)
+- [v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)
+- [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)
+- [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md)
+- [v22.0 Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)
+
+## Parallel Maintenance While Gate 0 Waits
+
+These items are worth doing only if they do not distract from Gate 0 closure:
+
+1. Refresh the coverage baseline with `npm run test:coverage`.
+2. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
+3. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
+4. Keep top-level documentation aligned with the active roadmap state.
+5. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
+6. Update or replace GitHub Actions that still emit Node.js 20 runtime deprecation warnings before the 2026 runner cutoff.
+7. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
+8. Repair, retire, or explicitly downgrade failing scheduled GitHub Actions workflows so CI signal stays trustworthy on the free tier, especially `Production Smoke` and `Sync 211 Ontario Data`.
+
+## On Hold
+
+### v19.0: Launch Preparation ⏸️ ON HOLD
+
+**Status**: Automation and documentation complete; human execution deferred pending v22 Gate 0
+**Priority**: High, but subordinate to v22
+
+The launch-prep stream is intentionally paused. The repo-local automation is already built, but the remaining work is manual QA, beta execution, and launch operations. Resume only after v22 permits it.
+
+**When resumed**
+
+1. Run the production environment audit.
+2. Execute critical user-journey testing.
+3. Complete the top-20 service review.
+4. Resume beta operations and launch monitoring.
+
+**References**
+
+- [v19.0 Launch Preparation Plan](v19-0-launch-preparation.md)
+- [v19.0 User Execution Guide](v19-0-user-execution-guide.md)
+- [v19.0 Phase 1 Execution Handoff (2026-03-09)](../implementation/archive/v19-phase-1-execution-handoff-2026-03-09.md)
+
+### v21.0: Admissions Portfolio & Launch Narrative ⏸️ PARKED
+
+**Status**: Parked until after v22 Gate 1
+
+This work remains strategically useful, but it depends on real operational evidence. Keep it parked until the v22 pilot produces something defensible to package.
+
+Reference:
+
+- [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md)
+
+### v20.0: Testing and Technical Excellence ⏸️ MAINTENANCE MODE
+
+**Status**: Most autonomous backlog work is complete; only bounded maintenance remains active
+
+Useful maintenance items:
+
+1. Keep the default E2E suite healthy.
+2. Keep the dedicated DB integration lane healthy and deterministic.
+3. Publish a fresh coverage snapshot.
+4. Fix repo-local regressions surfaced by routine validation.
+
+Deferred items:
+
+1. Advanced French service-data enrichment
+2. Search AI metadata migration out of JSON
+3. Admin-facing data quality dashboard
+4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
+5. Clear remaining GitHub Actions Node.js 20 runtime deprecation warnings from third-party actions used in CI/docs workflows
+
+References:
+
+- [2026-02-12 v20.0 Phase 1 Implementation Plan](archive/2026-02-12-v20-0-phase-1-implementation-plan.md)
+- [2026-03-12 v20.0 Autonomous Backlog Closeout](archive/2026-03-12-v20-0-autonomous-backlog-closeout.md)
+- [2026-03-24 v20.0 DB Integration Test Lane](archive/2026-03-24-v20-0-db-integration-test-lane.md)
+- [2026-03-24 v20.0 Supabase Migration Recovery](archive/2026-03-24-v20-0-supabase-migration-recovery-plan.md)
+
+## Completed Work
+
+### Recent Completed Milestones
+
+- **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
+- **Repo audit remediation (2026-03-29)**: completed the typed service-write cleanup, feedback/dashboard action consolidation, member-management split, privacy-safe analytics hardening, reference validation, and dependency/script hygiene follow-through.
+- **Dashboard trust, resilience, and locale hardening (2026-03-30)**: replaced placeholder partner metrics with live 30-day summaries, added deterministic degraded states for impact/analytics/feedback pages, localized observability/admin surfaces, and tightened focused i18n duplicate-English enforcement.
+- **Code quality remediation (2026-03-26)**: 0 npm audit vulnerabilities, console→logger migration, component reorganization, schemas rename, ESLint strictness for lib/, file cleanup.
+- **Premium Dark Mode (2026-03-25)**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
+- **v20.0 migration recovery (2026-03-18)**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.
+- **v20.0 maintenance (2026-03-18)**: real DB-backed Supabase retrieval/policy test lane added with blocking CI coverage
+- **v18.0**: Production observability, Slack alerting, SLO tracking, observability dashboard, and runbooks
+- **v17.7**: Search quality testing framework and scoring refinements
+- **v17.6**: Authorization resilience, translation workflow automation, and load-testing baseline
+- **v17.5**: Circuit breaker rollout, performance tracking, health/metrics endpoints, and k6 infrastructure
+- **v17.0-v17.4**: Security, test coverage, internationalization, accessibility, and partner portal foundations
+
+### Why This Matters
+
+The project already has the technical base for a live, privacy-first, resilient service directory. The open question is no longer whether the app can ship technically. The open question is whether it creates enough non-duplicate operational value to justify continued expansion.
+
+### Archive and Historical Plans
+
+- [Planning Archive](archive/)
+- [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
+- [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
+- [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
+- [v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)
+- [v17.6 Archive](archive/2026-01-25-v17-6-post-v17-5-enhancements.md)
+- [v17.5 Archive](archive/2026-01-25-v17-5-performance-and-resilience.md)
+- [v17.4 Archive](archive/2026-01-25-v17-4-dashboard-partner-portal.md)
+- [v17.3 Archive](archive/2026-01-20-v17-3-accessibility.md)
+- [v17.2 Archive](archive/2026-01-20-v17-2-internationalization.md)
+- [v17.1 Archive](archive/2026-01-19-v17-1-test-coverage.md)
+- [v17.0 Archive](archive/2026-01-17-v17-0-security-authorization.md)
+
+## Review Triggers
+
+Update this roadmap when any of the following happen:
+
+1. `UA-1`, `UA-2`, or `UA-3` changes status.
+2. Gate 0 moves from `NO-GO` to `GO`, or is re-affirmed as `NO-GO`.
+3. v19 resumes or is explicitly deferred further.
+4. A major data-quality, testing, or deployment baseline changes.
+5. A new strategic version becomes active.
+
+## Operating Rule
+
+If there is tension between adding more capability and closing the current decision gate, close the decision gate first.

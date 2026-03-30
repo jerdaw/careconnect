@@ -1,0 +1,11 @@
+Service ID,Service Name,Category,Priority,Status,Assigned To
+svc-kids-help-phone,Kids Help Phone,Crisis,High,Pending,
+svc-trans-lifeline,Trans Lifeline,Crisis,High,Pending,
+svc-hope-wellness,Hope for Wellness Helpline,Crisis,High,Pending,
+svc-assaulted-women,Assaulted Women's Helpline,Crisis,High,Pending,
+svc-victim-services,Victim Services of Kingston,Crisis,High,Pending,
+svc-food-bank-kingston,Partners in Mission Food Bank,Food,Medium,Pending,
+svc-addiction-mental-health,Addiction & Mental Health Services,Health,Medium,Pending,
+svc-legal-aid,Legal Aid Ontario,Legal,Medium,Pending,
+svc-ontario-works,Ontario Works,Financial,Medium,Pending,
+svc-housing-help,Housing Help Centre,Housing,Medium,Pending,

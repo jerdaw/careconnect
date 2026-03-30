@@ -1,0 +1,286 @@
+{
+  "batch": 3,
+  "total_batches": 5,
+  "items": [
+    {
+      "id": "kfpl-pittsburgh",
+      "name": "KFPL - Pittsburgh Branch",
+      "name_fr": "KFPL - Succursale Pittsburgh",
+      "scope": "kingston",
+      "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees."
+    },
+    {
+      "id": "kfpl-rideau-heights",
+      "name": "KFPL - Rideau Heights Branch",
+      "name_fr": "KFPL - Succursale Rideau Heights",
+      "scope": "kingston",
+      "access_script": "Visit https://www.kfpl.ca."
+    },
+    {
+      "id": "kfpl-learning-programs",
+      "name": "KFPL Learning Programs",
+      "name_fr": "Programmes d'apprentissage KFPL",
+      "scope": "kingston",
+      "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://www.kfpl.ca/programs. Library Card (for registration) required. No fees."
+    },
+    {
+      "id": "kids-help-phone",
+      "name": "Kids Help Phone",
+      "name_fr": "Jeunesse, J'écoute",
+      "scope": "canada",
+      "access_script": "Hi, I'm feeling really overwhelmed right now and just need someone to talk to. Is this a safe place to share?"
+    },
+    {
+      "id": "crisis-kids-help-phone",
+      "name": "Kids Help Phone",
+      "name_fr": "Jeunesse, J'écoute",
+      "scope": "canada",
+      "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911."
+    },
+    {
+      "id": "kingston-access-bus",
+      "name": "Kingston Access Services (Access Bus)",
+      "name_fr": "Services d'accès de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to apply for the Access Bus service. How do I start the registration process?"
+    },
+    {
+      "id": "kchc-weller-clinic",
+      "name": "Kingston Community Health Centres (KCHC) - Weller Clinic",
+      "name_fr": "Centre de santé communautaire de Kingston (KCHC) - Clinique Weller",
+      "scope": "kingston",
+      "access_script": "Hi, I'm pregnant and don't have a family doctor. Are you accepting new patients for prenatal care?"
+    },
+    {
+      "id": "community-legal-clinic-kingston",
+      "name": "Kingston Community Legal Clinic",
+      "name_fr": "Clinique juridique communautaire de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, my landlord is threatening to evict me and I'd like to speak to a lawyer about my rights."
+    },
+    {
+      "id": "legal-aid-ontario-kingston",
+      "name": "Kingston Community Legal Clinic",
+      "name_fr": "Clinique juridique communautaire de Kingston",
+      "scope": "kingston",
+      "access_script": "Call 613-541-0777. Proof of income required. No fees."
+    },
+    {
+      "id": "kingston-detox-centre",
+      "name": "Kingston Detoxification Centre (KHSC)",
+      "name_fr": "Centre de désintoxication de Kingston (KHSC)",
+      "scope": "kingston",
+      "access_script": "Hi, I'm looking to get sober and need a safe place to detox. Do you have any beds available?"
+    },
+    {
+      "id": "kingston-east-community-centre",
+      "name": "Kingston East Community Centre",
+      "name_fr": "Centre communautaire Kingston Est",
+      "scope": "kingston",
+      "access_script": "Visit https://www.cityofkingston.ca for information."
+    },
+    {
+      "id": "kfpl-central-branch",
+      "name": "Kingston Frontenac Public Library - Central Branch",
+      "name_fr": "Bibliothèque publique Kingston Frontenac - Succursale centrale",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to sign up for a library card. What ID do I need to bring?"
+    },
+    {
+      "id": "kgh-emergency-department",
+      "name": "Kingston General Hospital (KGH) Emergency Department",
+      "name_fr": "Urgences de l'Hôpital général de Kingston (KGH)",
+      "scope": "kingston",
+      "access_script": "Hi, I'm bringing in a friend who is having severe chest pain. Where is the best place to drop them off?"
+    },
+    {
+      "id": "kingston-general-hospital",
+      "name": "Kingston General Hospital (KGH) Emergency Department",
+      "name_fr": "Service des urgences de l'Hôpital général de Kingston",
+      "scope": "kingston",
+      "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care."
+    },
+    {
+      "id": "kingston-home-base-housing",
+      "name": "Kingston Home Base Non-Profit Housing",
+      "name_fr": "Kingston Home Base Housing",
+      "scope": "kingston",
+      "access_script": "Hi, I have nowhere to sleep tonight. Do you have any beds available?"
+    },
+    {
+      "id": "kingston-humane-society",
+      "name": "Kingston Humane Society",
+      "name_fr": "Société protectrice des animaux de Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://kingstonhumanesociety.ca for information."
+    },
+    {
+      "id": "kingston-interval-house",
+      "name": "Kingston Interval House",
+      "name_fr": "Maison Interval de Kingston",
+      "scope": "kingston",
+      "access_script": "I need a safe place to stay tonight away from my partner. Do you have any beds available?"
+    },
+    {
+      "id": "kingston-literacy-skills",
+      "name": "Kingston Literacy & Skills",
+      "name_fr": "Kingston Literacy & Skills",
+      "scope": "kingston",
+      "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees."
+    },
+    {
+      "id": "kingston-literacy-skills-2",
+      "name": "Kingston Literacy & Skills",
+      "name_fr": "Kingston Literacy & Skills",
+      "scope": "kingston",
+      "access_script": "Visit https://www.klsread.ca for information."
+    },
+    {
+      "id": "kmfrc",
+      "name": "Kingston Military Family Resource Centre (KMFRC)",
+      "name_fr": "Centre de ressources pour les familles des militaires de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, my partner is being deployed and I'm looking for support resources for our family."
+    },
+    {
+      "id": "kingston-military-family-resource",
+      "name": "Kingston Military Family Resource Centre (KMFRC)",
+      "name_fr": "Centre de ressources pour les familles des militaires de Kingston",
+      "scope": "kingston",
+      "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston."
+    },
+    {
+      "id": "kiln-language-nest",
+      "name": "Kingston Native Centre and Language Nest (KNCLN)",
+      "name_fr": "Kingston Native Centre and Language Nest",
+      "scope": "kingston",
+      "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+    },
+    {
+      "id": "kingston-indigenous-friendship-centre",
+      "name": "Kingston Native Centre and Language Nest (KNCLN)",
+      "name_fr": "Kingston Native Centre and Language Nest",
+      "scope": "kingston",
+      "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+    },
+    {
+      "id": "kingston-police-non-emerg",
+      "name": "Kingston Police (Non-Emergency)",
+      "name_fr": "Police de Kingston (Non-urgent)",
+      "scope": "kingston",
+      "access_script": "Visit https://www.kpf.ca for information."
+    },
+    {
+      "id": "kingston-pregnancy-care",
+      "name": "Kingston Pregnancy Care Centre",
+      "name_fr": "Centre de soins de grossesse de Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://kingstonpcc.com for information."
+    },
+    {
+      "id": "kingston-transit-mfap",
+      "name": "Kingston Transit Affordable Pass (MFAP)",
+      "name_fr": "Passe de transport abordable (MFAP)",
+      "scope": "kingston",
+      "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates."
+    },
+    {
+      "id": "kingston-youth-shelter",
+      "name": "Kingston Youth Shelter",
+      "name_fr": "Refuge pour les jeunes de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'm 19 and I got kicked out of my house. Can I stay at the shelter tonight?"
+    },
+    {
+      "id": "landlord-and-tenant-board-contact-centre",
+      "name": "Landlord and Tenant Board Contact Centre",
+      "name_fr": "Centre de contact de la Commission de la location immobilière",
+      "scope": "ontario",
+      "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice."
+    },
+    {
+      "id": "landlord-s-self-help-centre",
+      "name": "Landlord's Self-Help Centre",
+      "name_fr": "Landlord's Self-Help Centre",
+      "scope": "ontario",
+      "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)"
+    },
+    {
+      "id": "law-society-referral-service",
+      "name": "Law Society Referral Service",
+      "name_fr": "Service de référence du Barreau",
+      "scope": "ontario",
+      "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional."
+    },
+    {
+      "id": "legal-aid-ontario",
+      "name": "Legal Aid Ontario",
+      "name_fr": "Aide juridique Ontario",
+      "scope": "ontario",
+      "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply)."
+    },
+    {
+      "id": "ontario-lgbt-youthline",
+      "name": "LGBT YouthLine",
+      "name_fr": "LGBT YouthLine",
+      "scope": "ontario",
+      "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911."
+    },
+    {
+      "id": "lionhearts-fresh-food-market",
+      "name": "Lionhearts Fresh Food Market",
+      "name_fr": "Marché d'aliments frais Lionhearts",
+      "scope": "kingston",
+      "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized."
+    },
+    {
+      "id": "loving-spoonful",
+      "name": "Loving Spoonful",
+      "name_fr": "Loving Spoonful",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to learn more about joining a community garden or cooking workshop."
+    },
+    {
+      "id": "lunch-by-george",
+      "name": "Lunch by George (Outreach St. George's Kingston)",
+      "name_fr": "Lunch by George",
+      "scope": "kingston",
+      "access_script": "Hi, I heard you offer a hot lunch. What time do you start serving?"
+    },
+    {
+      "id": "lung-health-line",
+      "name": "Lung Health Line",
+      "name_fr": "Ligne de santé pulmonaire",
+      "scope": "ontario",
+      "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions."
+    },
+    {
+      "id": "maltby-centre-mental-health",
+      "name": "Maltby Centre",
+      "name_fr": "Centre Maltby",
+      "scope": "kingston",
+      "access_script": "Hi, I'm 17 and struggling with anxiety. Can I set up an appointment to talk to a counsellor?"
+    },
+    {
+      "id": "maltby-centre-autism",
+      "name": "Maltby Centre",
+      "name_fr": "Centre Maltby",
+      "scope": "kingston",
+      "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca."
+    },
+    {
+      "id": "march-of-dimes-kingston",
+      "name": "March of Dimes Canada - Employment Services",
+      "name_fr": "La Marche des dix sous du Canada",
+      "scope": "kingston",
+      "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca."
+    },
+    {
+      "id": "marthas-table-kingston",
+      "name": "Martha's Table",
+      "name_fr": "Martha's Table",
+      "scope": "kingston",
+      "access_script": "Hi, I don't have any money for lunch today. Do you accept meal tickets?"
+    }
+  ]
+}

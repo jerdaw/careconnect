@@ -1,0 +1,601 @@
+{
+  "processed_batch_output": [
+    {
+      "id": "kids-help-phone",
+      "hours": null,
+      "access_script": null
+    },
+    {
+      "id": "trans-lifeline-canada",
+      "hours": null,
+      "access_script": null
+    },
+    {
+      "id": "hope-for-wellness-helpline",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "assaulted-womens-helpline",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "iska-newcomer-support",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "16:45" },
+        "Tuesday": { "open": "09:00", "close": "16:45" },
+        "Wednesday": { "open": "09:00", "close": "16:45" },
+        "Thursday": { "open": "09:00", "close": "16:45" },
+        "Friday": { "open": "09:00", "close": "16:45" },
+        "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
+      },
+      "access_script": null
+    },
+    {
+      "id": "trellis-hiv-community-care",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "16:45" },
+        "Tuesday": { "open": "09:00", "close": "16:45" },
+        "Wednesday": { "open": "09:00", "close": "16:45" },
+        "Thursday": { "open": "09:00", "close": "16:45" },
+        "Friday": { "open": "09:00", "close": "16:45" },
+        "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
+      },
+      "access_script": null
+    },
+    {
+      "id": "one-roof-youth-hub",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" },
+        "notes": "Some programming extends to 19:00"
+      },
+      "access_script": null
+    },
+    {
+      "id": "victim-services-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" },
+        "notes": "Emergency on-call support available 24/7 via police referral"
+      },
+      "access_script": null
+    },
+    {
+      "id": "hotel-dieu-urgent-care",
+      "hours": {
+        "Monday": { "open": "08:00", "close": "20:00" },
+        "Tuesday": { "open": "08:00", "close": "20:00" },
+        "Wednesday": { "open": "08:00", "close": "20:00" },
+        "Thursday": { "open": "08:00", "close": "20:00" },
+        "Friday": { "open": "08:00", "close": "20:00" },
+        "Saturday": { "open": "08:00", "close": "20:00" },
+        "Sunday": { "open": "08:00", "close": "20:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kgh-emergency-department",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kfla-public-health-dental",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" },
+        "notes": "By appointment only"
+      },
+      "access_script": null
+    },
+    {
+      "id": "community-legal-clinic-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "13:00", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "salvation-army-housing-help",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "13:00", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kchc-transgender-health-care",
+      "hours": {
+        "Monday": { "open": "08:00", "close": "16:00" },
+        "Tuesday": { "open": "08:00", "close": "16:00" },
+        "Wednesday": { "open": "08:00", "close": "19:30" },
+        "Thursday": { "open": "08:00", "close": "16:00" },
+        "Friday": { "open": "08:00", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "street-health-centre",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "16:00" },
+        "Tuesday": { "open": "09:00", "close": "16:00" },
+        "Wednesday": { "open": "09:00", "close": "16:00" },
+        "Thursday": { "open": "09:00", "close": "16:00" },
+        "Friday": { "open": "09:00", "close": "16:00" },
+        "Saturday": { "open": "09:00", "close": "13:00" },
+        "Sunday": { "open": "09:00", "close": "13:00" },
+        "notes": "Closed 12:00-13:00 Mon-Fri"
+      },
+      "access_script": null
+    },
+    {
+      "id": "kingston-interval-house",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "telephone-aid-line-kingston",
+      "hours": {
+        "Monday": { "open": "18:00", "close": "02:00" },
+        "Tuesday": { "open": "18:00", "close": "02:00" },
+        "Wednesday": { "open": "18:00", "close": "02:00" },
+        "Thursday": { "open": "18:00", "close": "02:00" },
+        "Friday": { "open": "18:00", "close": "02:00" },
+        "Saturday": { "open": "18:00", "close": "02:00" },
+        "Sunday": { "open": "18:00", "close": "02:00" },
+        "notes": "Service runs nightly until 2:00 AM"
+      },
+      "access_script": null
+    },
+    {
+      "id": "elizabeth-fry-society-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "st-vincent-de-paul-kingston",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "13:00" },
+        "Tuesday": { "open": "09:00", "close": "13:00" },
+        "Wednesday": { "open": "09:00", "close": "13:00" },
+        "Thursday": { "open": "09:00", "close": "13:00" },
+        "Friday": { "open": "09:00", "close": "13:00" },
+        "notes": "Lunch served 11:30-13:00 on weekdays"
+      },
+      "access_script": null
+    },
+    {
+      "id": "lunch-by-george",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "12:30" },
+        "Tuesday": { "open": "09:00", "close": "12:30" },
+        "Wednesday": { "open": "09:00", "close": "12:30" },
+        "Thursday": { "open": "09:00", "close": "12:30" },
+        "Friday": { "open": "09:00", "close": "12:30" },
+        "notes": "Breakfast 09:00-10:30; Lunch 11:00-12:30 (weekdays)"
+      },
+      "access_script": null
+    },
+    {
+      "id": "salvation-army-rideau-heights",
+      "hours": {
+        "Tuesday": { "open": "11:00", "close": "12:00" },
+        "Thursday": { "open": "11:00", "close": "12:00" },
+        "notes": "By appointment only"
+      },
+      "access_script": null
+    },
+    {
+      "id": "partners-in-mission-food-bank",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:00" },
+        "notes": "Closed 12:00-13:00 daily"
+      },
+      "access_script": null
+    },
+    {
+      "id": "marthas-table-kingston",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "17:00" },
+        "Tuesday": { "open": "09:00", "close": "17:00" },
+        "Wednesday": { "open": "09:00", "close": "17:00" },
+        "Thursday": { "open": "09:00", "close": "17:00" },
+        "Friday": { "open": "09:00", "close": "17:00" },
+        "Saturday": { "open": "12:00", "close": "14:00" },
+        "Sunday": { "open": "12:00", "close": "14:00" },
+        "notes": "Weekday meals: Breakfast 09:00-11:00, Lunch 12:00-14:00, Dinner 15:00-17:00; Weekend lunch 12:00-14:00 (takeout only)"
+      },
+      "access_script": null
+    },
+    {
+      "id": "good-food-box-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" },
+        "notes": "Monthly pick-up on 3rd Thursday"
+      },
+      "access_script": null
+    },
+    {
+      "id": "amhs-kfla-crisis-line",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" },
+        "notes": "24/7 crisis line; walk-in crisis clinic Mon-Fri 08:30-15:30"
+      },
+      "access_script": null
+    },
+    {
+      "id": "kingston-detox-centre",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kingston-youth-shelter",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "sack-sexual-assault-centre",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" },
+        "notes": "24/7 crisis line; chat/text support daily 12:00-24:00"
+      },
+      "access_script": null
+    },
+    {
+      "id": "maltby-centre-mental-health",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "resolve-counselling",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "17:00" },
+        "Tuesday": { "open": "08:30", "close": "20:00" },
+        "Wednesday": { "open": "08:30", "close": "17:00" },
+        "Thursday": { "open": "08:30", "close": "20:00" },
+        "Friday": { "open": "08:30", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kingston-home-base-housing",
+      "hours": {
+        "Monday": { "open": "00:00", "close": "23:59" },
+        "Tuesday": { "open": "00:00", "close": "23:59" },
+        "Wednesday": { "open": "00:00", "close": "23:59" },
+        "Thursday": { "open": "00:00", "close": "23:59" },
+        "Friday": { "open": "00:00", "close": "23:59" },
+        "Saturday": { "open": "00:00", "close": "23:59" },
+        "Sunday": { "open": "00:00", "close": "23:59" },
+        "notes": "Office open Mon-Fri 08:30-16:30; shelter open 24/7 (intake usually in evenings)"
+      },
+      "access_script": null
+    },
+    {
+      "id": "ryandale-shelter",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "20:00" },
+        "Tuesday": { "open": "09:00", "close": "20:00" },
+        "Wednesday": { "open": "09:00", "close": "20:00" },
+        "Thursday": { "open": "09:00", "close": "20:00" },
+        "Friday": { "open": "09:00", "close": "20:00" },
+        "Saturday": { "open": "09:00", "close": "20:00" },
+        "Sunday": { "open": "09:00", "close": "20:00" },
+        "notes": "Staffed hours"
+      },
+      "access_script": null
+    },
+    {
+      "id": "dawn-house-womens-shelter",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "16:00" },
+        "Tuesday": { "open": "09:00", "close": "16:00" },
+        "Wednesday": { "open": "09:00", "close": "16:00" },
+        "Thursday": { "open": "09:00", "close": "16:00" },
+        "Friday": { "open": "09:00", "close": "16:00" },
+        "Saturday": { "open": "13:00", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kchc-weller-clinic",
+      "hours": {
+        "Monday": { "open": "08:00", "close": "16:00" },
+        "Tuesday": { "open": "08:00", "close": "16:00" },
+        "Wednesday": { "open": "08:00", "close": "19:30" },
+        "Thursday": { "open": "08:00", "close": "16:00" },
+        "Friday": { "open": "08:00", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kfla-sexual-health-clinic",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" },
+        "notes": "Walk-in Quick Test Tue & Thu 13:00-15:30; other times by appointment"
+      },
+      "access_script": null
+    },
+    {
+      "id": "cdk-family-medicine-walk-in",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "17:00" },
+        "Tuesday": { "open": "09:00", "close": "17:00" },
+        "Wednesday": { "open": "09:00", "close": "17:00" },
+        "Thursday": { "open": "09:00", "close": "17:00" },
+        "Friday": { "open": "09:00", "close": "17:00" },
+        "Saturday": { "open": "10:00", "close": "14:00" },
+        "Sunday": { "open": "10:00", "close": "14:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "queens-legal-aid",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "13:00", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "ontario-works-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kfpl-central-branch",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "20:00" },
+        "Tuesday": { "open": "09:00", "close": "20:00" },
+        "Wednesday": { "open": "09:00", "close": "20:00" },
+        "Thursday": { "open": "09:00", "close": "20:00" },
+        "Friday": { "open": "09:00", "close": "17:00" },
+        "Saturday": { "open": "09:00", "close": "17:00" },
+        "Sunday": { "open": "13:00", "close": "17:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "keys-job-centre",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "18:00" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "seniors-association-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "community-living-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "restart-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "16:30" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "acfomi-kingston",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "18:00" },
+        "Tuesday": { "open": "08:30", "close": "16:30" },
+        "Wednesday": { "open": "08:30", "close": "16:30" },
+        "Thursday": { "open": "08:30", "close": "16:30" },
+        "Friday": { "open": "08:30", "close": "15:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "ymca-eastern-ontario",
+      "hours": {
+        "Monday": { "open": "05:30", "close": "21:00" },
+        "Tuesday": { "open": "05:30", "close": "21:00" },
+        "Wednesday": { "open": "05:30", "close": "21:00" },
+        "Thursday": { "open": "05:30", "close": "21:00" },
+        "Friday": { "open": "05:30", "close": "19:00" },
+        "Saturday": { "open": "07:00", "close": "16:00" },
+        "Sunday": { "open": "07:00", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "bgc-south-east",
+      "hours": {
+        "Monday": { "open": "15:00", "close": "18:00" },
+        "Tuesday": { "open": "15:00", "close": "18:00" },
+        "Wednesday": { "open": "15:00", "close": "20:00" },
+        "Thursday": { "open": "15:00", "close": "20:30" },
+        "Friday": { "open": "15:00", "close": "20:30" },
+        "notes": "Program hours vary by day"
+      },
+      "access_script": null
+    },
+    {
+      "id": "hart-centre",
+      "hours": {
+        "Monday": { "open": "08:30", "close": "15:30" },
+        "Tuesday": { "open": "08:30", "close": "15:30" },
+        "Wednesday": { "open": "08:30", "close": "15:30" },
+        "Thursday": { "open": "08:30", "close": "15:30" },
+        "Friday": { "open": "08:30", "close": "15:30" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "loving-spoonful",
+      "hours": {
+        "Monday": { "open": "09:00", "close": "17:00" },
+        "Tuesday": { "open": "09:00", "close": "17:00" },
+        "Wednesday": { "open": "09:00", "close": "17:00" },
+        "Thursday": { "open": "09:00", "close": "17:00" },
+        "Friday": { "open": "09:00", "close": "17:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "ongwanada",
+      "hours": {
+        "Monday": { "open": "08:00", "close": "16:00" },
+        "Tuesday": { "open": "08:00", "close": "16:00" },
+        "Wednesday": { "open": "08:00", "close": "16:00" },
+        "Thursday": { "open": "08:00", "close": "16:00" },
+        "Friday": { "open": "08:00", "close": "16:00" }
+      },
+      "access_script": null
+    },
+    {
+      "id": "kmfrc",
+      "hours": {
+        "Monday": { "open": "08:00", "close": "17:00" },
+        "Tuesday": { "open": "08:00", "close": "17:00" },
+        "Wednesday": { "open": "08:00", "close": "17:00" },
+        "Thursday": { "open": "08:00", "close": "17:00" },
+        "Friday": { "open": "08:00", "close": "17:00" }
+      },
+      "access_script": null
+    }
+  ],
+  "research_sources": [
+    ":contentReference[oaicite:0]{index=0}",
+    ":contentReference[oaicite:1]{index=1}",
+    ":contentReference[oaicite:2]{index=2}",
+    ":contentReference[oaicite:3]{index=3}",
+    ":contentReference[oaicite:4]{index=4}",
+    ":contentReference[oaicite:5]{index=5}"
+  ]
+}

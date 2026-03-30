@@ -1,0 +1,1041 @@
+[
+  {
+    "id": "kingston-pregnancy-care",
+    "hours": {
+      "monday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "notes": "Closed Friday through Sunday."
+    },
+    "access_script": "Visit https://kingstonpcc.com for information."
+  },
+  {
+    "id": "hospice-kingston",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Residence open 24/7; community program offices Mon-Fri 08:30–16:30."
+    },
+    "access_script": "Visit https://providencecare.ca/hospice-kingston for information."
+  },
+  {
+    "id": "alzheimer-society-kfla",
+    "hours": null,
+    "access_script": "Visit https://alzheimer.ca/kfla for information."
+  },
+  {
+    "id": "stroke-network-sneo",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-549-6666 for assistance, or visit https://www.strokenetworkseo.ca."
+  },
+  {
+    "id": "autism-ontario-east",
+    "hours": null,
+    "access_script": "Visit https://www.autismontario.com for information."
+  },
+  {
+    "id": "cnib-kingston",
+    "hours": null,
+    "access_script": "Visit https://cnib.ca for information."
+  },
+  {
+    "id": "march-of-dimes-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca."
+  },
+  {
+    "id": "student-food-bank-queens",
+    "hours": {
+      "monday": {
+        "open": "11:00",
+        "close": "19:00"
+      },
+      "wednesday": {
+        "open": "11:00",
+        "close": "19:00"
+      },
+      "thursday": {
+        "open": "12:00",
+        "close": "14:00"
+      },
+      "friday": {
+        "open": "11:00",
+        "close": "14:00"
+      },
+      "notes": "Fall 2025 term hours: Food Bank open Mon/Wed 17:00–19:00 and Thu 12:00–14:00; PEACH Market available Mon/Wed/Fri 11:00–14:00."
+    },
+    "access_script": "Call 613-533-6000 for assistance, or visit https://www.amsfoodbank.ca."
+  },
+  {
+    "id": "st-lawrence-food-pantry",
+    "hours": {
+      "notes": "By appointment only"
+    },
+    "access_script": "Visit https://www.slc.me for information."
+  },
+  {
+    "id": "community-harvest-market",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Office hours listed; Good Food Box pick-up on the 3rd Thursday each month."
+    },
+    "access_script": "Call 613-546-2620 for assistance, or visit https://www.kchc.ca/community-harvest."
+  },
+  {
+    "id": "memorial-centre-market",
+    "hours": {
+      "sunday": {
+        "open": "09:00",
+        "close": "14:00"
+      },
+      "notes": "Hours vary seasonally: open Sundays 9:00–14:00 (May–Oct), 9:00–13:00 (Nov–Apr)."
+    },
+    "access_script": "Visit https://www.memorialcentrefarmersmarket.ca for information."
+  },
+  {
+    "id": "legal-clinic-queens",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "13:00",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-533-2102 for assistance."
+  },
+  {
+    "id": "kfl-public-health-vaccine",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "General hours; routine immunization clinics by appointment on Tue (all ages) and Wed (ages 0–18)."
+    },
+    "access_script": "Call 613-549-1232 for assistance, or visit https://www.kflaph.ca."
+  },
+  {
+    "id": "kfl-public-health-sexual",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Appointments Mon-Fri 08:30–16:30; walk-in Quick Test available Tue & Thu 13:00–15:30."
+    },
+    "access_script": "Call 613-549-1232 ext. 1275 for assistance, or visit https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx."
+  },
+  {
+    "id": "sexual-assault-centre-kingston",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Phone line 24/7; chat/text daily 12:00–24:00; office Mon-Fri 09:00–16:00."
+    },
+    "access_script": "Call 613-544-6424 for assistance, or visit https://www.sackingston.com. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "kingston-general-hospital",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      }
+    },
+    "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care."
+  },
+  {
+    "id": "hotel-dieu-site",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "saturday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "20:00"
+      },
+      "notes": "Registration may close early if capacity reached."
+    },
+    "access_script": "Call 613-546-1240 for assistance, or visit https://kingstonhsc.ca/programs-and-departments/urgent-care-centre."
+  },
+  {
+    "id": "providence-care-hospital",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Inpatient 24/7; outpatient clinics weekdays (business hours)."
+    },
+    "access_script": "Call 613-544-4900 for assistance, or visit https://providencecare.ca."
+  },
+  {
+    "id": "kingston-military-family-resource",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston."
+  },
+  {
+    "id": "tnet-kingston",
+    "hours": {
+      "saturday": {
+        "open": "13:00",
+        "close": "16:00"
+      },
+      "notes": "Bi-weekly support meetings on Saturdays."
+    },
+    "access_script": "Visit https://transfamilykingston.com for information. Email transfamilykingston@gmail.com for further inquiries."
+  },
+  {
+    "id": "kfla-children-services",
+    "hours": null,
+    "access_script": "Visit https://www.cityofkingston.ca for information."
+  },
+  {
+    "id": "rural-frontenac-community-services",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-279-3151 for assistance, or visit https://rfcs.ca."
+  },
+  {
+    "id": "south-frontenac-community-services",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-376-6477 for assistance, or visit https://www.sfcsc.ca."
+  },
+  {
+    "id": "kingston-east-community-centre",
+    "hours": null,
+    "access_script": "Visit https://www.cityofkingston.ca for information."
+  },
+  {
+    "id": "earlyon-cosy",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://kchc.ca/weller-avenue/earlyon/ for information."
+  },
+  {
+    "id": "boys-girls-club-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "notes": "Admin office Mon-Fri 08:30–16:30; programs run 15:00–18:00 on weekdays."
+    },
+    "access_script": "Visit https://www.bgcsoutheast.ca for information."
+  },
+  {
+    "id": "ymca-kingston",
+    "hours": {
+      "monday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "tuesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "wednesday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "thursday": {
+        "open": "05:30",
+        "close": "21:00"
+      },
+      "friday": {
+        "open": "05:30",
+        "close": "19:00"
+      },
+      "saturday": {
+        "open": "07:00",
+        "close": "16:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-546-2647 for assistance, or visit https://eo.ymca.ca."
+  },
+  {
+    "id": "kingston-humane-society",
+    "hours": {
+      "monday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "thursday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "friday": {
+        "open": "11:00",
+        "close": "18:00"
+      },
+      "saturday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "16:00"
+      },
+      "notes": "Closed on Tuesdays and holidays."
+    },
+    "access_script": "Visit https://kingstonhumanesociety.ca for information."
+  },
+  {
+    "id": "st-john-ambulance-kingston",
+    "hours": null,
+    "access_script": "Visit https://www.sja.ca for information."
+  },
+  {
+    "id": "red-cross-kingston",
+    "hours": null,
+    "access_script": "Visit https://www.redcross.ca for information."
+  },
+  {
+    "id": "united-way-kfla-office",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-542-2674 for assistance, or visit https://www.unitedwaykfla.ca."
+  },
+  {
+    "id": "community-foundation-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://cfka.org for information."
+  },
+  {
+    "id": "habitat-for-humanity-kingston",
+    "hours": null,
+    "access_script": "Visit https://habitatkingston.com for information."
+  },
+  {
+    "id": "kingston-literacy-skills-2",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "15:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Visit https://www.klsread.ca for information."
+  },
+  {
+    "id": "keys-job-centre-2",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-5559 for assistance, or visit https://keys.ca."
+  },
+  {
+    "id": "acls-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "18:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "15:00"
+      }
+    },
+    "access_script": "Call 613-546-7863 for assistance, or visit https://acfomi.ca."
+  },
+  {
+    "id": "re-start-employment",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Call 613-542-7373 for assistance, or visit https://restartnow.ca."
+  },
+  {
+    "id": "slc-employment-service",
+    "hours": {
+      "monday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Visit https://employmentservice.sl.on.ca for information."
+  },
+  {
+    "id": "ontario-works-kb",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Call 613-546-2695 for assistance, or visit https://www.cityofkingston.ca."
+  },
+  {
+    "id": "odsp-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:30"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:30"
+      }
+    },
+    "access_script": "Visit https://www.ontario.ca for information."
+  },
+  {
+    "id": "service-canada-kingston",
+    "hours": {
+      "monday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "tuesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "wednesday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "thursday": {
+        "open": "08:30",
+        "close": "16:00"
+      },
+      "friday": {
+        "open": "08:30",
+        "close": "16:00"
+      }
+    },
+    "access_script": "Visit https://www.canada.ca for information."
+  },
+  {
+    "id": "service-ontario-kingston",
+    "hours": null,
+    "access_script": "Visit https://www.ontario.ca for information."
+  },
+  {
+    "id": "kingston-police-non-emerg",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Non-emergency line and station front desk available 24/7."
+    },
+    "access_script": "Visit https://www.kpf.ca for information."
+  },
+  {
+    "id": "opp-frontenac",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
+    },
+    "access_script": "Visit https://www.opp.ca for information."
+  },
+  {
+    "id": "coast-mental-health",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "24/7 crisis line (mobile team dispatched as needed)."
+    },
+    "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "maltby-centre-autism",
+    "hours": null,
+    "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca."
+  },
+  {
+    "id": "pathways-for-children-youth",
+    "hours": null,
+    "access_script": "Call 613-546-8535 or visit https://maltbycentre.ca for services."
+  },
+  {
+    "id": "geneva-centre-autism",
+    "hours": null,
+    "access_script": "Visit https://www.autism.net for information."
+  },
+  {
+    "id": "ontario-211-ontario",
+    "hours": null,
+    "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911."
+  },
+  {
+    "id": "ontario-black-youth-helpline",
+    "hours": null,
+    "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911."
+  }
+]

@@ -1,0 +1,876 @@
+[
+  {
+    "id": "ontario-boots-on-the-ground",
+    "name": "Boots on the Ground",
+    "intent_category": "Crisis",
+    "url": "https://bootsontheground.ca",
+    "phone": "1-833-677-2668",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Anonymous peer support for First Responders, by First Responders. Serving police, fire, EMS, and corrections personnel.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-farmer-wellness",
+    "name": "Farmer Wellness Initiative",
+    "intent_category": "Crisis",
+    "url": "https://farmerwellnessinitiative.ca",
+    "phone": "1-866-267-6255",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "24/7 confidential mental health support for Ontario farmers, farm families, and employees.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-femaide",
+    "name": "Fem'aide",
+    "intent_category": "Crisis",
+    "url": "https://femaide.ca",
+    "phone": "1-877-336-2433",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "The provincial helpline for Francophone women dealing with violence. Offers support, referrals and information 24/7.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-irs-crisis-line",
+    "name": "Indian Residential Schools Crisis Line",
+    "intent_category": "Crisis",
+    "url": "https://www.sac-isc.gc.ca",
+    "phone": "1-866-925-4419",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A 24/7 crisis line for former residential school students and their families. Provides emotional support related to residential school trauma.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-lgbt-youthline",
+    "name": "LGBT YouthLine",
+    "intent_category": "Crisis",
+    "url": "https://youthline.ca",
+    "phone": "1-800-268-9688",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A Queer, Trans, Two-Spirit* youth-led organization that affirms and supports the experiences of youth (29 and under) across Ontario.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-male-survivors",
+    "name": "Support Services for Male Survivors of Sexual Abuse",
+    "intent_category": "Crisis",
+    "url": "https://cleoconnect.ca",
+    "phone": "1-866-887-0015",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A 24/7 multilingual crisis and referral line for male survivors of sexual abuse or assault in Ontario.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-metis-crisis-line",
+    "name": "Métis Nation of Ontario Crisis Line",
+    "intent_category": "Crisis",
+    "url": "https://www.metisnation.org",
+    "phone": "1-877-767-7572",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Mental health and addictions support for Métis citizens in Ontario. Entry point to MNO healing and wellness programs.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-mmiwg-crisis-line",
+    "name": "MMIWG Crisis Line",
+    "intent_category": "Crisis",
+    "url": "https://www.canada.ca",
+    "phone": "1-844-413-6649",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A national 24/7 support line for those impacted by missing and murdered Indigenous women, girls, and 2SLGBTQQIA+ people.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-naseeha",
+    "name": "Naseeha Mental Health",
+    "intent_category": "Crisis",
+    "url": "https://naseeha.org",
+    "phone": "1-866-627-3342",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Provides a confidential helpline for young Muslims to receive immediate, anonymous, and confidential support.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-nors",
+    "name": "National Overdose Response Service (NORS)",
+    "intent_category": "Crisis",
+    "url": "https://nors.ca",
+    "phone": "1-888-688-6677",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A 24/7 virtual safe consumption hotline. An operator stays on the line while you use drugs to prevent fatal overdoses.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-ontx-distress",
+    "name": "ONTX - Ontario Online & Text Crisis Services",
+    "intent_category": "Crisis",
+    "url": "https://dcontario.org",
+    "phone": "258258",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A provincial text and chat service for individuals experiencing distress, providing confidential support from trained responders.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-sadv-navigation",
+    "name": "Sexual Assault/Domestic Violence Navigation Line",
+    "intent_category": "Crisis",
+    "url": "https://www.sadvtreatmentcentres.ca",
+    "phone": "1-855-628-7238",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "Helps victims navigate the healthcare system after an assault. Staffed by nurses who connect survivors to SA/DV Treatment Centres for forensic evidence collection and medical care.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-seniors-safety-line",
+    "name": "Seniors Safety Line",
+    "intent_category": "Crisis",
+    "url": "https://eapon.ca",
+    "phone": "1-866-299-1011",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A 24/7 confidential line for seniors suffering from abuse (physical, mental, sexual, neglect, or financial).",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-vac-assistance",
+    "name": "VAC Assistance Service",
+    "intent_category": "Crisis",
+    "url": "https://www.veterans.gc.ca",
+    "phone": "1-800-268-7708",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A 24/7 confidential counseling line for Veterans, Canadian Armed Forces members, RCMP members, and their families.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-victim-support-line",
+    "name": "Victim Support Line (VSL)",
+    "intent_category": "Crisis",
+    "url": "https://victimsupportdirectory.ca",
+    "phone": "1-888-579-2888",
+    "email": null,
+    "address": null,
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": null,
+    "fees": null,
+    "description": "A provincial 24/7 information and support line for victims of crime, including survivors of sexual assault and domestic violence.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "bounceback-ontario",
+    "name": "BounceBack Ontario",
+    "intent_category": "Health",
+    "url": "https://bouncebackontario.ca",
+    "phone": "1-866-345-0224",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Ontario residents 15+ with OHIP",
+    "fees": "Free",
+    "description": "A guided self-help program for adults and youth (15+) with mild-to-moderate depression and anxiety. Includes telephone coaching and online workbooks.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "cancer-information-helpline",
+    "name": "Cancer Information Helpline",
+    "intent_category": "Health",
+    "url": "https://cancer.ca",
+    "phone": "1-888-939-3333",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Cancer patients, families, and public",
+    "fees": "Free",
+    "description": "A national toll-free service answering questions about cancer types, treatments, side effects, and prevention. Connects patients to local support services.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-caregiver-helpline",
+    "name": "Ontario Caregiver Helpline",
+    "intent_category": "Health",
+    "url": "https://ontariocaregiver.ca",
+    "phone": "1-833-416-2273",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Caregivers in Ontario",
+    "fees": "Free",
+    "description": "A 24/7 dedicated helpline for caregivers in Ontario, offering information, assessment, and referral to local services and support groups.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "diabetes-canada-information-support",
+    "name": "Diabetes Canada Information & Support",
+    "intent_category": "Health",
+    "url": "https://www.diabetes.ca",
+    "phone": "1-800-226-8464",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone affected by diabetes",
+    "fees": "Free",
+    "description": "Information and support for people living with diabetes, including access to the Ontario Monitoring for Health Program for financial assistance with supplies.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "jordan-s-principle-call-centre",
+    "name": "Jordan's Principle Call Centre",
+    "intent_category": "Health",
+    "url": "https://fncaringsociety.com/jordans-principle",
+    "phone": "1-855-572-4453",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "First Nations children",
+    "fees": "Free",
+    "description": "A 24/7 federal helpline ensuring First Nations children get the health, social, and educational services they need without delays.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "lung-health-line",
+    "name": "Lung Health Line",
+    "intent_category": "Health",
+    "url": "https://lunghealth.ca",
+    "phone": "1-888-344-5864",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Residents with lung health concerns",
+    "fees": "Free",
+    "description": "Connects callers directly with Certified Respiratory Educators for guidance on asthma, COPD, and other lung conditions.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "sexual-health-infoline-ontario-shilo-",
+    "name": "Sexual Health Infoline Ontario (SHILO)",
+    "intent_category": "Health",
+    "url": "https://sexualhealthontario.ca",
+    "phone": "1-800-668-2437",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "All Ontario residents",
+    "fees": "Free",
+    "description": "Anonymous and confidential counselling and information on sexual health, including STIs, HIV/AIDS, birth control, pregnancy, and sexual orientation.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "advocacy-centre-for-the-elderly-ace-",
+    "name": "Advocacy Centre for the Elderly (ACE)",
+    "intent_category": "Legal",
+    "url": "https://www.acelaw.ca",
+    "phone": "1-855-598-2656",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Ontario residents aged 60+",
+    "fees": "Free",
+    "description": "A specialty legal clinic providing legal services to seniors (60+) in Ontario. Focuses on elder law issues like long-term care, elder abuse, and health care consent.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "employment-standards-information-centre",
+    "name": "Employment Standards Information Centre",
+    "intent_category": "Legal",
+    "url": "https://www.ontario.ca/document/your-guide-employment-standards-act-0",
+    "phone": "1-800-531-5551",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Workers and employers in Ontario",
+    "fees": "Free",
+    "description": "Provides general information about Ontario's Employment Standards Act (ESA), covering minimum wage, hours of work, overtime, vacation, and termination pay.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "hiv-aids-legal-clinic-ontario-halco-",
+    "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
+    "intent_category": "Legal",
+    "url": "https://www.halco.org",
+    "phone": "1-888-705-8889",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "People living with HIV/AIDS in Ontario",
+    "fees": "Free",
+    "description": "Provides free legal services for people living with HIV/AIDS in Ontario. Covers privacy, human rights, immigration, and social assistance.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "human-rights-legal-support-centre-hrlsc-",
+    "name": "Human Rights Legal Support Centre (HRLSC)",
+    "intent_category": "Legal",
+    "url": "https://hrlsc.on.ca",
+    "phone": "1-866-625-5179",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone in Ontario facing discrimination",
+    "fees": "Free",
+    "description": "Provides free legal advice and assistance to individuals who have experienced discrimination under the Ontario Human Rights Code.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "injured-workers-community-legal-clinic-iwc-",
+    "name": "Injured Workers Community Legal Clinic (IWC)",
+    "intent_category": "Legal",
+    "url": "https://iwclc.org",
+    "phone": "1-833-461-2411",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Injured workers in Ontario",
+    "fees": "Free",
+    "description": "Specializes in representing injured workers in WSIB disputes. Handles denied claims and benefit issues.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "justice-for-children-and-youth-jfcy-",
+    "name": "Justice for Children and Youth (JFCY)",
+    "intent_category": "Legal",
+    "url": "https://jfcy.org",
+    "phone": "1-866-999-5329",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Youth under 18 (or under 25 if homeless)",
+    "fees": "Free",
+    "description": "Protects the legal rights of minors (under 18) and homeless youth (under 25) in Ontario. Covers education, family, criminal, and social welfare law.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "landlord-s-self-help-centre",
+    "name": "Landlord's Self-Help Centre",
+    "intent_category": "Legal",
+    "url": "https://landlordselfhelp.com",
+    "phone": "1-800-730-3218",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Small-scale landlords in Ontario",
+    "fees": "Free",
+    "description": "A specialty legal clinic providing information, summary advice, and referrals to small-scale landlords in Ontario.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "legal-aid-ontario",
+    "name": "Legal Aid Ontario",
+    "intent_category": "Legal",
+    "url": "https://legalaid.on.ca",
+    "phone": "1-800-668-8258",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Low-income Ontarians (financial testing applies)",
+    "fees": "Free (if eligible)",
+    "description": "Ontario’s primary public legal assistance provider. Offers certificates for full representation, duty counsel in courts, and summary legal advice by phone for criminal, family, and immigration law.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "landlord-and-tenant-board-contact-centre",
+    "name": "Landlord and Tenant Board Contact Centre",
+    "intent_category": "Legal",
+    "url": "https://tribunalsontario.ca/ltb",
+    "phone": "1-888-332-3234",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Landlords and tenants in Ontario",
+    "fees": "Free information",
+    "description": "Provides information about the Residential Tenancies Act and LTB procedures. Staff can explain forms and the eviction process but cannot provide legal advice.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ontario-legal-information-centre",
+    "name": "Ontario Legal Information Centre",
+    "intent_category": "Legal",
+    "url": "https://centreinfojuridique.ca",
+    "phone": "1-844-343-7462",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone in Ontario",
+    "fees": "Free",
+    "description": "Offers a free 30-minute meeting with a lawyer to anyone in Ontario, regardless of income. Provides general legal information and referrals for any area of law.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "office-of-the-worker-adviser-owa-",
+    "name": "Office of the Worker Adviser (OWA)",
+    "intent_category": "Legal",
+    "url": "https://www.owa.gov.on.ca",
+    "phone": "1-800-435-8980",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Non-unionized injured workers",
+    "fees": "Free",
+    "description": "Provides free legal advice and representation to non-unionized injured workers in WSIB cases and workers facing health and safety reprisals.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "steps-to-justice",
+    "name": "Steps to Justice",
+    "intent_category": "Legal",
+    "url": "https://stepstojustice.ca",
+    "phone": null,
+    "email": null,
+    "address": "Online",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone",
+    "fees": "Free",
+    "description": "A comprehensive online guide to law in Ontario. Features step-by-step information and a Live Chat service to help users find legal answers.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "workers-health-safety-legal-clinic",
+    "name": "Workers Health & Safety Legal Clinic",
+    "intent_category": "Legal",
+    "url": "https://workers-safety.ca",
+    "phone": "1-877-832-6090",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Non-unionized workers in Ontario",
+    "fees": "Free",
+    "description": "Assists non-unionized workers who face punishment or firing for raising health and safety concerns. Focuses on reprisals and unsafe work refusals.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "wsib-workplace-safety-insurance-board-",
+    "name": "WSIB (Workplace Safety & Insurance Board)",
+    "intent_category": "Legal",
+    "url": "https://www.wsib.ca",
+    "phone": "1-800-387-0750",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Ontario workers and employers",
+    "fees": "Free for workers (employer funded)",
+    "description": "Administers Ontario's no-fault workers' compensation system. Handles claims for workplace injuries and illnesses.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "arthritis-society-canada",
+    "name": "Arthritis Society Canada",
+    "intent_category": "Health",
+    "url": "https://arthritis.ca",
+    "phone": "1-800-321-1433",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone affected by arthritis",
+    "fees": "Free",
+    "description": "Telephone and email support for people affected by arthritis. Trained volunteers provide information on arthritis types, treatment, pain management, and local resources.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "heart-and-stroke-foundation",
+    "name": "Heart and Stroke Foundation",
+    "intent_category": "Health",
+    "url": "https://www.heartandstroke.ca",
+    "phone": "1-888-473-4636",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone seeking heart or stroke information",
+    "fees": "Free",
+    "description": "Provides evidence-based information on heart disease and stroke, including prevention, risk factors, recovery, and healthy living resources.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "hospice-palliative-care-ontario-hpco-",
+    "name": "Hospice Palliative Care Ontario (HPCO)",
+    "intent_category": "Health",
+    "url": "https://www.hpco.ca",
+    "phone": "1-833-621-0728",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Patients, families, and caregivers seeking palliative care",
+    "fees": "Free",
+    "description": "Provincial helpline for palliative care information and navigation. Helps individuals, families, and caregivers find hospice programs, palliative care units, pain management services, and bereavement support.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "ms-knowledge-network-ms-canada-",
+    "name": "MS Knowledge Network (MS Canada)",
+    "intent_category": "Health",
+    "url": "https://mscanada.ca",
+    "phone": "1-844-859-6789",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone affected by multiple sclerosis",
+    "fees": "Free",
+    "description": "National MS information and navigation service. Connects callers with MS Navigators who provide evidence-based information on multiple sclerosis, disease management, treatment, and local services.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "parkinson-canada",
+    "name": "Parkinson Canada",
+    "intent_category": "Health",
+    "url": "https://www.parkinson.ca",
+    "phone": "1-888-664-1974",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone affected by Parkinson's disease",
+    "fees": "Free",
+    "description": "Helpline for people living with Parkinson's disease, caregivers, and healthcare providers. Offers information about symptoms, treatment options, community resources, and support programs.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "talk-tobacco",
+    "name": "Talk Tobacco",
+    "intent_category": "Health",
+    "url": "https://talktobacco.ca",
+    "phone": "1-833-998-8255",
+    "email": null,
+    "address": "Available across Canada",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Indigenous peoples seeking tobacco cessation support",
+    "fees": "Free",
+    "description": "Culturally appropriate quit-smoking and vaping support for Indigenous peoples (First Nations, Inuit, Métis). Offers free, confidential counselling with respect for traditional tobacco use.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "aboriginal-legal-services-als-",
+    "name": "Aboriginal Legal Services (ALS)",
+    "intent_category": "Legal",
+    "url": "https://aboriginallegal.ca",
+    "phone": "1-844-633-2886",
+    "email": null,
+    "address": "Toronto (serving province-wide)",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Indigenous peoples in Ontario",
+    "fees": "Free",
+    "description": "Provincial legal clinic serving Indigenous peoples across Ontario. Provides legal advice, representation, police complaints assistance, child welfare support (Giiwedin Anang Council), and Gladue report writing.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "consumer-protection-ontario",
+    "name": "Consumer Protection Ontario",
+    "intent_category": "Legal",
+    "url": "https://ontario.ca/page/consumer-protection-ontario",
+    "phone": "1-800-889-9768",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Any consumer in Ontario",
+    "fees": "Free",
+    "description": "Provincial helpline providing free information on consumer rights and unfair business practices. Assists with door-to-door sales, car repairs, home renovations, collection agencies, contracts, and consumer complaints.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "law-society-referral-service",
+    "name": "Law Society Referral Service",
+    "intent_category": "Legal",
+    "url": "https://findlegalhelp.ca",
+    "phone": "1-855-947-5255",
+    "email": null,
+    "address": "Province-wide",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Anyone seeking legal help",
+    "fees": "Free referral; 30-minute consultation is free",
+    "description": "Free referral to a lawyer or licensed paralegal who will provide a free 30-minute consultation. Operated by the Law Society of Ontario to connect people with legal professionals.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  },
+  {
+    "id": "nishnawbe-aski-legal-services-nalsc-",
+    "name": "Nishnawbe-Aski Legal Services (NALSC)",
+    "intent_category": "Legal",
+    "url": "https://nanlegal.on.ca",
+    "phone": "1-800-465-5581",
+    "email": null,
+    "address": "Thunder Bay, ON (serving Northern Ontario)",
+    "hours_text": null,
+    "application_process": null,
+    "documents_required": null,
+    "eligibility": "Indigenous peoples in NAN territory (financial testing applies)",
+    "fees": "Free (if eligible)",
+    "description": "Legal aid clinic serving Nishnawbe Aski Nation (NAN) communities in Northern Ontario. Provides legal advice, certificates, and restorative justice programs including Talking Together.",
+    "existing": {
+      "has_hours": true,
+      "has_access_script": false
+    }
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "batch": 4,
+  "provider": "chatgpt",
+  "source_file": "docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 4 - Deep Research Result.txt",
+  "extracted_at": "2026-01-22T23:39:52.694185+00:00",
+  "applied_id_fixes": [],
+  "research_sources": [
+    {
+      "source_url": "https://www.bootsontheground.ca",
+      "verification_notes": "Confirmed Boots on the Ground's 24/7 peer support helpline number (1-833-677-2668) on the official website.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://farmerwellnessinitiative.ca",
+      "verification_notes": "Verified the Farmer Wellness Initiative’s toll-free number (1-866-267-6255) and 24/7 availability for Ontario farmers on the official site.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://femaide.ca",
+      "verification_notes": "Confirmed Fem’aide’s phone/SMS contact (1-877-336-2433) and 24/7 French-language support for women experiencing violence, via the official Fem’aide website.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://211ontario.ca/service/80267561/lgbt-youthline-youthline-peer-support/",
+      "verification_notes": "Found that LGBT YouthLine offers support through text (647-694-4275), email, and online chat for youth 16-29, and confirmed service hours (Sun–Fri 4:00pm–9:30pm) via a 211 Ontario listing.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://www.dcontario.org",
+      "verification_notes": "Verified that ONTX (Ontario Online & Text Crisis) is accessed by texting “SUPPORT” to 258258 and is available daily from 2pm to 2am, according to Distress and Crisis Ontario.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://www.sac-isc.gc.ca/eng/1568396042341/1568396159824",
+      "verification_notes": "Confirmed the Jordan’s Principle Call Centre number (1-855-572-4453) and its 24/7 availability on the Indigenous Services Canada official page.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://naseeha.org/helpline-textline",
+      "verification_notes": "Verified Naseeha Mental Health’s 24/7 toll-free helpline (1-866-627-3342) for call or text support, via official information (world’s first 24/7 Muslim peer support helpline).",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://bouncebackontario.ca",
+      "verification_notes": "Confirmed BounceBack Ontario’s contact number (1-866-345-0224) and eligibility (Ontario residents 15+ with OHIP; free program) through official program documentation.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://www.parkinson.ca/about-us/contact-us/",
+      "verification_notes": "Verified Parkinson Canada’s helpline number (1-888-664-1974), support email, and hours of operation (Mon–Fri 9am–4pm ET) on the official contact page.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://ontariohealth.ca/content/dam/ontariohealth/documents/tobaccowise-brochure-first-nation.pdf",
+      "verification_notes": "Checked Ontario Health’s resource confirming the Talk Tobacco quit line (1-833-998-8255) for First Nations, Inuit, and Métis clients, and noted it is free and available in multiple languages.",
+      "confidence": "High"
+    },
+    {
+      "source_url": "https://cleoconnect.ca/organization/ottawa-legal-information-centre-toll-free-call-line-available-to-all-in-ontario/",
+      "verification_notes": "Confirmed the Ontario Legal Information Centre’s toll-free line (1-844-343-7462) offers a free 30-minute lawyer consultation to all Ontario residents, from CLEO’s official information.",
+      "confidence": "High"
+    }
+  ]
+}

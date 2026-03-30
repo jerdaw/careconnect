@@ -1,0 +1,309 @@
+{
+  "batch": 3,
+  "provider": "chatgpt",
+  "source_file": "docs/audits/v17-5/ai-results/raw/ChatGPT - Prompt 3 - Deep Research Result.txt",
+  "extracted_at": "2026-01-22T23:39:52.691772+00:00",
+  "applied_id_fixes": [],
+  "research_sources": [
+    {
+      "id": "kingston-pregnancy-care",
+      "sources": ["https://meacentre.ca"],
+      "verified": "Office hours Mon-Thu 10:00–16:00 confirmed (former Kingston PCC).",
+      "confidence": "High"
+    },
+    {
+      "id": "hospice-kingston",
+      "sources": ["https://providencecare.ca"],
+      "verified": "Residence open 24/7; office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "alzheimer-society-kfla",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "stroke-network-sneo",
+      "sources": [],
+      "verified": "Office hours Mon-Fri 8:00–16:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "autism-ontario-east",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "cnib-kingston",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "march-of-dimes-kingston",
+      "sources": [],
+      "verified": "Office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "student-food-bank-queens",
+      "sources": ["https://amsfoodbank.ca"],
+      "verified": "Hours based on Fall 2025 schedule (subject to change by term).",
+      "confidence": "Medium"
+    },
+    {
+      "id": "st-lawrence-food-pantry",
+      "sources": ["https://slc.me"],
+      "verified": "Service by appointment only.",
+      "confidence": "Medium"
+    },
+    {
+      "id": "community-harvest-market",
+      "sources": ["https://kchc.ca/community-harvest"],
+      "verified": "Mon-Fri 8:30–16:30 confirmed; monthly pick-up noted.",
+      "confidence": "High"
+    },
+    {
+      "id": "memorial-centre-market",
+      "sources": ["https://www.cityofkingston.ca"],
+      "verified": "Seasonal Sunday hours confirmed.",
+      "confidence": "High"
+    },
+    {
+      "id": "legal-clinic-queens",
+      "sources": [],
+      "verified": "Mon-Thu 8:30–16:30; Fri 13:00–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "kfl-public-health-vaccine",
+      "sources": ["https://kflaph.ca"],
+      "verified": "Weekday 8:30–16:30 hours; clinic days noted.",
+      "confidence": "High"
+    },
+    {
+      "id": "kfl-public-health-sexual",
+      "sources": ["https://kflaph.news.esolg.ca"],
+      "verified": "General hours noted; Quick Test clinic times confirmed.",
+      "confidence": "High"
+    },
+    {
+      "id": "sexual-assault-centre-kingston",
+      "sources": ["https://resourceconnect.com"],
+      "verified": "24/7 crisis line; chat and office hours confirmed.",
+      "confidence": "High"
+    },
+    {
+      "id": "kingston-general-hospital",
+      "sources": ["https://kingstonhsc.ca"],
+      "verified": "Emergency Dept open 24/7.",
+      "confidence": "High"
+    },
+    {
+      "id": "hotel-dieu-site",
+      "sources": ["https://kingstonhsc.ca"],
+      "verified": "Urgent Care Centre hours daily 08:00–20:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "providence-care-hospital",
+      "sources": ["https://providencecare.ca"],
+      "verified": "Continuous inpatient care; weekday clinic hours.",
+      "confidence": "High"
+    },
+    {
+      "id": "kingston-military-family-resource",
+      "sources": ["https://cfmws.ca"],
+      "verified": "Office hours Mon-Fri 8:00–17:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "tnet-kingston",
+      "sources": ["https://transfamilykingston.com"],
+      "verified": "Meeting times noted (bi-weekly Sat 1–4pm).",
+      "confidence": "Medium"
+    },
+    {
+      "id": "kfla-children-services",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "rural-frontenac-community-services",
+      "sources": ["https://victimsupportdirectory.ca"],
+      "verified": "Office hours Mon-Fri 8:30–16:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "south-frontenac-community-services",
+      "sources": ["https://sfcsc.ca"],
+      "verified": "Office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "kingston-east-community-centre",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "earlyon-cosy",
+      "sources": ["https://southeasthealthline.ca"],
+      "verified": "Centre open Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "boys-girls-club-kingston",
+      "sources": ["https://bgcsoutheast.ca"],
+      "verified": "Admin hours Mon-Fri confirmed; program times noted.",
+      "confidence": "High"
+    },
+    {
+      "id": "ymca-kingston",
+      "sources": ["https://211ontario.ca"],
+      "verified": "Hours verified for Mon-Thu, Fri, Sat-Sun.",
+      "confidence": "High"
+    },
+    {
+      "id": "kingston-humane-society",
+      "sources": ["https://kingstonhumanesociety.ca"],
+      "verified": "Adoption office hours confirmed (closed Tue).",
+      "confidence": "High"
+    },
+    {
+      "id": "st-john-ambulance-kingston",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "red-cross-kingston",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "united-way-kfla-office",
+      "sources": ["https://unitedwaykfla.ca"],
+      "verified": "Office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "community-foundation-kingston",
+      "sources": ["https://kfacc.org"],
+      "verified": "Office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "habitat-for-humanity-kingston",
+      "sources": [],
+      "verified": "No hours information found.",
+      "confidence": "Low"
+    },
+    {
+      "id": "kingston-literacy-skills-2",
+      "sources": ["https://klsread.ca"],
+      "verified": "Office hours Mon-Fri 8:30–15:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "keys-job-centre-2",
+      "sources": ["https://ontario.ca"],
+      "verified": "Extended Tue hours to 18:00 confirmed.",
+      "confidence": "High"
+    },
+    {
+      "id": "acls-kingston",
+      "sources": ["https://acfomi.ca"],
+      "verified": "Hours confirmed: Mon until 18:00; Fri until 15:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "re-start-employment",
+      "sources": ["https://211ontario.ca"],
+      "verified": "Hours Mon-Thu 8:30–16:30; Fri until 16:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "slc-employment-service",
+      "sources": [],
+      "verified": "Office hours Mon-Fri 8:00–16:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "ontario-works-kb",
+      "sources": [],
+      "verified": "Office hours Mon-Fri 8:30–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "odsp-kingston",
+      "sources": ["https://kingstonneighbours.replit.app"],
+      "verified": "Hours assumed Mon-Fri 8:30–16:30 as per local info.",
+      "confidence": "Medium"
+    },
+    {
+      "id": "service-canada-kingston",
+      "sources": ["https://crnckingston.ca"],
+      "verified": "Service Canada Centre open Mon-Fri 8:30–16:00.",
+      "confidence": "High"
+    },
+    {
+      "id": "service-ontario-kingston",
+      "sources": [],
+      "verified": "Multiple ServiceOntario locations; specific hours not determined.",
+      "confidence": "Low"
+    },
+    {
+      "id": "kingston-police-non-emerg",
+      "sources": ["https://kingstonpolice.ca"],
+      "verified": "Assumed continuous availability for police non-emergency services.",
+      "confidence": "Medium"
+    },
+    {
+      "id": "opp-frontenac",
+      "sources": ["https://lignesantesud-est.ca"],
+      "verified": "Verified 24/7 phone availability; admin hours Mon-Fri 8:00–16:30.",
+      "confidence": "High"
+    },
+    {
+      "id": "coast-mental-health",
+      "sources": ["https://amhs-kfla.ca"],
+      "verified": "Crisis line operates 24/7 for COAST access.",
+      "confidence": "High"
+    },
+    {
+      "id": "maltby-centre-autism",
+      "sources": [],
+      "verified": "Could not confidently parse hours_text.",
+      "confidence": "Low"
+    },
+    {
+      "id": "pathways-for-children-youth",
+      "sources": [],
+      "verified": "Service merged with Maltby Centre; directed users to Maltby.",
+      "confidence": "High"
+    },
+    {
+      "id": "geneva-centre-autism",
+      "sources": [],
+      "verified": "No set hours (online services available any time).",
+      "confidence": "Medium"
+    },
+    {
+      "id": "ontario-211-ontario",
+      "sources": [],
+      "verified": "Existing hours retained.",
+      "confidence": "N/A"
+    },
+    {
+      "id": "ontario-black-youth-helpline",
+      "sources": [],
+      "verified": "Existing hours retained.",
+      "confidence": "N/A"
+    }
+  ]
+}
