@@ -1422,7 +1422,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-5. Audit the remaining release/docs GitHub Actions for Node 24 readiness before the 2026 runner cutoff, especially `actions/create-release@v1`.
+5. Audit the remaining GitHub Actions Node 24 warnings before the 2026 runner cutoff, especially `actions/setup-python@v5`, `actions/upload-artifact@v4`, and `actions/create-release@v1`.
 
 ## On Hold
 
