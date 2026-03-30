@@ -115,6 +115,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 3. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 4. Keep top-level documentation aligned with the active roadmap state.
 5. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
+6. Update or replace GitHub Actions that still emit Node.js 20 runtime deprecation warnings before the 2026 runner cutoff.
 
 ## On Hold
 
@@ -165,6 +166,7 @@ Deferred items:
 2. Search AI metadata migration out of JSON
 3. Admin-facing data quality dashboard
 4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
+5. Clear remaining GitHub Actions Node.js 20 runtime deprecation warnings from third-party actions used in CI/docs workflows
 
 References:
 
