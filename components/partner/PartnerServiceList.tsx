@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/client"
 import { Service } from "@/types/service"
 import { Button } from "@/components/ui/button"
 import { Pencil, Loader2, Plus, Trash2 } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { useLocale, useTranslations } from "next-intl"
 import { useToast } from "@/components/ui/use-toast"
 import {
@@ -88,7 +88,7 @@ export function PartnerServiceList({ partnerId, locale: localeProp }: Props) {
         <h3 className="text-lg font-semibold">{t("emptyState.title")}</h3>
         <p className="mt-2 text-neutral-500">{t("emptyState.description")}</p>
         <Button className="mt-4" asChild>
-          <Link href={`/${locale}/dashboard/services/create`}>
+          <Link href="/dashboard/services/create" locale={locale}>
             <Plus className="mr-2 h-4 w-4" />
             {t("createFirstService")}
           </Link>
@@ -101,7 +101,7 @@ export function PartnerServiceList({ partnerId, locale: localeProp }: Props) {
     <div className="space-y-4">
       <div className="flex justify-end">
         <Button asChild>
-          <Link href={`/${locale}/dashboard/services/create`}>
+          <Link href="/dashboard/services/create" locale={locale}>
             <Plus className="mr-2 h-4 w-4" />
             {t("createService")}
           </Link>
@@ -134,7 +134,7 @@ export function PartnerServiceList({ partnerId, locale: localeProp }: Props) {
                   <td className="p-4 text-right align-middle">
                     <div className="flex items-center justify-end gap-2">
                       <Button variant="ghost" size="sm" asChild>
-                        <Link href={`/${locale}/dashboard/services/${service.id}/edit`}>
+                        <Link href={`/dashboard/services/${service.id}/edit`} locale={locale}>
                           <Pencil className="mr-2 h-4 w-4" />
                           {t("edit")}
                         </Link>

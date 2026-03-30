@@ -13,7 +13,6 @@
  */
 
 import { Metadata } from "next"
-import { redirect } from "next/navigation"
 import { getSupabaseBreakerStats } from "@/lib/resilience/supabase-breaker"
 import { getMetrics } from "@/lib/performance/metrics"
 import { createClient } from "@/utils/supabase/server"
@@ -26,30 +25,48 @@ import { AutoRefresh } from "@/components/observability/AutoRefresh"
 import { SLOComplianceCard } from "@/components/observability/SLOComplianceCard"
 import { SLODisclaimerBanner } from "@/components/observability/SLODisclaimerBanner"
 import { getSLOComplianceSummary } from "@/lib/observability/slo-tracker"
+import { getTranslations } from "next-intl/server"
+import { redirect } from "@/i18n/routing"
 
-export const metadata: Metadata = {
-  title: "Observability Dashboard | Admin",
-  description: "Real-time system health monitoring",
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Admin.observability.meta" })
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0
 
-export default async function ObservabilityPage() {
+export default async function ObservabilityPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations("Admin.observability")
   // Admin-only access
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  const currentUser = user
 
-  if (!user) {
-    redirect("/login?next=/admin/observability")
+  if (!currentUser) {
+    return redirect({
+      href: {
+        pathname: "/login",
+        query: {
+          next: "/admin/observability",
+        },
+      },
+      locale,
+    })
   }
 
   // Check admin status
-  const isAdmin = await isUserAdmin(supabase, user.id)
+  const isAdmin = await isUserAdmin(supabase, currentUser.id)
   if (!isAdmin) {
-    redirect("/dashboard")
+    return redirect({ href: "/dashboard", locale })
   }
 
   // Fetch current system state
@@ -61,8 +78,8 @@ export default async function ObservabilityPage() {
     <div className="container mx-auto space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Observability Dashboard</h1>
-          <p className="text-muted-foreground">Real-time system health and performance monitoring</p>
+          <h1 className="text-3xl font-bold">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("description")}</p>
         </div>
         <RefreshButton />
       </div>

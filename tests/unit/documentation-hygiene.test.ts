@@ -85,4 +85,25 @@ describe("documentation hygiene", () => {
     expect(docsIndex).toContain("[`implementation/`](implementation/)")
     expect(docsIndex).toContain("[v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)")
   })
+
+  it("keeps runtime architecture facts aligned with the codebase", () => {
+    const architecture = readDoc("docs/architecture.md")
+    const routing = readDoc("i18n/routing.ts")
+    const serviceTypes = readDoc("types/service.ts")
+    const serviceSchema = readDoc("lib/schemas/service.ts")
+
+    expect(architecture).toContain("WebLLM/WebGPU semantic stack")
+    expect(architecture).not.toContain("TensorFlow.js")
+    expect(architecture).toContain("Manually curated service records remain authoritative")
+    expect(architecture).not.toContain("211 Ontario API (Raw Data) + Manual Verification (Golden Dataset)")
+    expect(architecture).toContain("not currently represented in runtime types or search scoring")
+    expect(architecture).toContain("7-locale switching")
+
+    expect(routing).toContain("7 locales")
+    expect(routing).not.toContain("5 languages")
+
+    expect(serviceTypes).toContain('L3 = "L3"')
+    expect(serviceTypes).not.toContain('L4 = "L4"')
+    expect(serviceSchema).toContain('z.enum(["L0", "L1", "L2", "L3"])')
+  })
 })

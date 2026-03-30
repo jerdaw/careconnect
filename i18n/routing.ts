@@ -3,16 +3,18 @@ import { createNavigation } from "next-intl/navigation"
 
 export const routing = defineRouting({
   /**
-   * Multi-lingual support: 5 languages for EDIA (Equity, Diversity, Inclusion, Accessibility) goals
+   * Multi-lingual support: 7 locales for EDIA (Equity, Diversity, Inclusion, Accessibility) goals
    *
    * - en: English (Canadian context)
    * - fr: Français canadien / Canadian French (fr-CA dialect, NOT France French)
    * - ar: Arabic (RTL support enabled)
    * - zh-Hans: Simplified Chinese
+   * - pt: Portuguese
    * - es: Spanish
+   * - pa: Punjabi
    *
    * Note: Local Kingston services have EN/FR translations only.
-   * Provincial services have all 5 languages for name/description/eligibility.
+   * UI copy is available in all 7 locales.
    */
   locales: ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"],
 

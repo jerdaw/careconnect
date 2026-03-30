@@ -44,7 +44,7 @@ export default function AdminNotificationsPage() {
         setMessage("")
       } else {
         const errorData = (await response.json()) as { error?: string }
-        throw new Error(errorData.error || "Failed to send")
+        throw new Error(errorData.error || t("toast.sendFailed"))
       }
     } catch (err) {
       toast({
@@ -109,7 +109,7 @@ export default function AdminNotificationsPage() {
       </Card>
 
       <div className="mt-8 rounded bg-amber-50 p-4 text-sm text-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
-        <strong>Note:</strong> {t("implementationNote")}
+        <strong>{t("noteLabel")}</strong> {t("implementationNote")}
       </div>
     </main>
   )

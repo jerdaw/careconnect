@@ -3,6 +3,9 @@ import { AnalyticsCard } from "@/components/dashboard/AnalyticsCard"
 import { getTranslations } from "next-intl/server"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
 import { Card } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { logger } from "@/lib/logger"
 
 interface PartnerServiceAnalytics {
   service_id: string
@@ -16,9 +19,62 @@ interface PartnerServiceAnalytics {
   helpfulness_percentage: number | null
 }
 
+interface PartnerAnalyticsLoadResult {
+  degraded: boolean
+  serviceAnalytics: PartnerServiceAnalytics[]
+  totalFeedback: number
+  totalServicesCount: number
+  totalYes: number
+}
+
+async function loadPartnerAnalyticsData(): Promise<PartnerAnalyticsLoadResult> {
+  const supabase = await createClient()
+
+  try {
+    const [serviceAnalyticsResult, totalFeedbackResult, totalYesResult, totalServicesResult] = await withCircuitBreaker(
+      async () =>
+        Promise.all([
+          supabase
+            .from("partner_service_analytics")
+            .select("*")
+            .order("last_feedback_at", { ascending: false, nullsFirst: false }),
+          supabase.from("feedback").select("*", { count: "exact", head: true }),
+          supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "helpful_yes"),
+          supabase.from("services").select("*", { count: "exact", head: true }),
+        ])
+    )
+
+    if (serviceAnalyticsResult.error) throw serviceAnalyticsResult.error
+    if (totalFeedbackResult.error) throw totalFeedbackResult.error
+    if (totalYesResult.error) throw totalYesResult.error
+    if (totalServicesResult.error) throw totalServicesResult.error
+
+    return {
+      degraded: false,
+      serviceAnalytics: (serviceAnalyticsResult.data as unknown as PartnerServiceAnalytics[]) || [],
+      totalFeedback: totalFeedbackResult.count || 0,
+      totalServicesCount: totalServicesResult.count || 0,
+      totalYes: totalYesResult.count || 0,
+    }
+  } catch (error) {
+    logger.warn("Failed to load partner analytics page", {
+      component: "PartnerAnalyticsPage",
+      error: error instanceof Error ? error.message : String(error),
+    })
+
+    return {
+      degraded: true,
+      serviceAnalytics: [],
+      totalFeedback: 0,
+      totalServicesCount: 0,
+      totalYes: 0,
+    }
+  }
+}
+
 export default async function PartnerAnalyticsPage() {
   const t = await getTranslations("Analytics")
-  const supabase = await createClient()
+  const { degraded, serviceAnalytics, totalFeedback, totalServicesCount, totalYes } = await loadPartnerAnalyticsData()
 
   // ==========================================================================
   // RLS-FIRST APPROACH: All queries automatically filtered by organization
@@ -27,26 +83,6 @@ export default async function PartnerAnalyticsPage() {
   // filter results to only show data for the authenticated user's organization.
   // No explicit org_id filters are needed in these queries.
   // ==========================================================================
-
-  // Fetch partner-specific service analytics using the new view
-  // This view automatically respects RLS from the services table
-  const { data: serviceAnalyticsRaw } = await supabase
-    .from("partner_service_analytics")
-    .select("*")
-    .order("last_feedback_at", { ascending: false, nullsFirst: false })
-
-  const serviceAnalytics = (serviceAnalyticsRaw as unknown as PartnerServiceAnalytics[]) || []
-
-  // Count total feedback for this partner's services (RLS filters automatically)
-  const { count: totalFeedback } = await supabase.from("feedback").select("*", { count: "exact", head: true })
-
-  const { count: totalYes } = await supabase
-    .from("feedback")
-    .select("*", { count: "exact", head: true })
-    .eq("feedback_type", "helpful_yes")
-
-  // Count partner's services (RLS filters automatically)
-  const { count: totalServicesCount } = await supabase.from("services").select("*", { count: "exact", head: true })
 
   // Calculate stale services (no feedback in 90 days)
   const ninetyDaysAgo = new Date()
@@ -70,6 +106,12 @@ export default async function PartnerAnalyticsPage() {
   return (
     <div className="space-y-6 p-6">
       <DashboardPageHeader title={t("title")} subtitle={t("dashboard.description")} />
+
+      {degraded && (
+        <Alert>
+          <AlertDescription>{t("dashboard.temporarilyUnavailable")}</AlertDescription>
+        </Alert>
+      )}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <AnalyticsCard

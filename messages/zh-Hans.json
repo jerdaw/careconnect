@@ -108,43 +108,44 @@
     "vsPeriod": "对比 {period}",
     "totalAllTime": "历史总计",
     "dashboard": {
-      "description": "Performance insights for your organization's services.",
-      "noData": "No data",
+      "description": "查看贵机构服务的绩效洞察。",
+      "noData": "暂无数据",
       "cards": {
         "totalFeedback": {
-          "title": "Total Feedback",
-          "description": "All time submissions"
+          "title": "反馈总数",
+          "description": "累计提交"
         },
         "helpfulnessRate": {
-          "title": "Helpfulness Rate",
-          "description": "Positive feedback"
+          "title": "有帮助率",
+          "description": "正面反馈"
         },
         "staleServices": {
-          "title": "Stale Services",
-          "description": "No feedback in 90 days"
+          "title": "长期无反馈服务",
+          "description": "90 天内无反馈"
         },
         "totalServices": {
-          "title": "Total Services",
-          "description": "Active services"
+          "title": "服务总数",
+          "description": "活跃服务"
         }
       },
       "tables": {
         "common": {
-          "service": "Service"
+          "service": "服务项目"
         },
         "performance": {
-          "title": "Service Performance",
-          "description": "Your services with feedback activity.",
-          "helpfulness": "Helpfulness",
-          "empty": "No services with feedback yet"
+          "title": "服务表现",
+          "description": "收到反馈活动的服务。",
+          "helpfulness": "有帮助度",
+          "empty": "尚无收到反馈的服务"
         },
         "issues": {
-          "title": "Services with Open Issues",
-          "description": "Services needing attention.",
-          "openIssues": "Open Issues",
-          "empty": "No open issues - great job!"
+          "title": "有未解决问题的服务",
+          "description": "需要关注的服务。",
+          "openIssues": "未解决问题",
+          "empty": "没有未解决问题，做得很好！"
         }
-      }
+      },
+      "temporarilyUnavailable": "部分实时伙伴分析暂时不可用。当前显示空的回退状态。"
     }
   },
   "Navigation": {
@@ -413,7 +414,12 @@
         "backToServices": "Back to Services",
         "serviceNotFound": "Service not found",
         "votes": "votes",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "toast": {
+          "successTitle": "成功",
+          "updateSuccess": "服务更新成功。",
+          "updateFailed": "服务更新失败。"
+        }
       }
     },
     "logout": "退出登录",
@@ -562,39 +568,40 @@
       }
     },
     "overview": {
-      "welcomeTitle": "Welcome back, Partner",
-      "welcomeSubtitle": "Here's an overview of your organization's performance on HelpBridge.",
-      "totalViews": "Total Views",
-      "referrals": "Referrals",
-      "verifiedServices": "Verified Services",
-      "allServicesUpToDate": "All services up to date",
-      "updateRequests": "Update Requests",
-      "pendingReview": "Pending review by admin",
-      "comingSoon": "Coming Soon",
-      "analyticsComingSoonDesc": "Detailed analytics will be available once we have enough data.",
-      "dataQualityScore": "Data Quality Score",
-      "dataQualityDesc": "Your organization's data completeness rating.",
-      "excellent": "Excellent!",
-      "dataQualityText": "Your services have complete descriptions, hours, and contact info.",
-      "verifyListingsTitle": "Verify your listings",
-      "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
-      "startVerification": "Start Verification",
-      "manageServices": "Manage Services",
-      "fromLastMonth": "较上月"
+      "welcomeTitle": "欢迎回来，合作伙伴",
+      "welcomeSubtitle": "以下是您在 HelpBridge 上的组织表现概览。",
+      "totalViews": "总浏览量",
+      "referrals": "转介次数",
+      "verifiedServices": "已更新服务",
+      "updateRequests": "更新请求",
+      "pendingReview": "等待管理员审核",
+      "dataQualityScore": "数据质量评分",
+      "dataQualityDesc": "基于治理标准的数据完整度评分。",
+      "verifyListingsTitle": "核实您的列表",
+      "startVerification": "开始核实",
+      "manageServices": "管理服务",
+      "definitionPendingTitle": "定义待定",
+      "definitionPendingDescription": "待评分模型与治理阈值确定后，此评分才会显示。",
+      "verifyListingsNeedsAttention": "有 {count} 项服务需要核实。",
+      "verifyListingsAllCaughtUp": "您的所有服务目前都已更新。",
+      "vsPrevious30Days": "较前 30 天",
+      "upToDateCount": "{current} / {total} 项已更新",
+      "temporarilyUnavailable": "实时概览指标暂时不可用。当前显示安全回退状态。"
     },
     "notifications": {
-      "pageTitle": "Notifications",
-      "pageSubtitle": "Stay updated on your services and account status.",
-      "markAllAsRead": "Mark all as read",
-      "noNotifications": "No notifications yet.",
-      "markAsRead": "Mark as read",
+      "pageTitle": "通知",
+      "pageSubtitle": "及时了解您的服务和账户状态。",
+      "markAllAsRead": "全部标为已读",
+      "noNotifications": "暂无通知。",
+      "markAsRead": "标为已读",
       "toast": {
-        "success": "Success",
-        "allMarkedAsRead": "All notifications marked as read",
-        "error": "Error",
-        "updateFailed": "Failed to update notification",
-        "updateAllFailed": "Failed to update notifications"
-      }
+        "success": "成功",
+        "allMarkedAsRead": "所有通知已标为已读",
+        "error": "错误",
+        "updateFailed": "更新通知失败",
+        "updateAllFailed": "更新通知失败"
+      },
+      "temporarilyUnavailable": "通知暂时不可用，请稍后再试。"
     }
   },
   "ServiceDetail": {
@@ -859,7 +866,8 @@
     "voteSuccessTitle": "谢谢",
     "voteSuccessMessage": "您的反馈有助于改进此服务列表。",
     "alreadyVotedMessage": "感谢您的反馈！",
-    "description": "View and manage issues reported by the community."
+    "description": "查看并管理社区报告的问题。",
+    "temporarilyUnavailable": "反馈数据暂时不可用。当前显示空的回退状态。"
   },
   "Accessibility": {
     "title": "无障碍",
@@ -1175,7 +1183,8 @@
     "noCookies": "无分析 cookie",
     "voluntaryFeedback": "所有反馈均为自愿",
     "commitmentTitle": "我们的承诺",
-    "commitmentText": "我们每季度发布这些报告，以对我们服务的社区负责。您的隐私是不容谈判的。"
+    "commitmentText": "我们每季度发布这些报告，以对我们服务的社区负责。您的隐私是不容谈判的。",
+    "metricsTemporarilyUnavailable": "部分实时影响指标暂时不可用。当前显示安全回退状态。"
   },
   "Trust": {
     "title": "数据治理与信任",
@@ -1307,28 +1316,141 @@
       }
     },
     "notifications": {
-      "pageTitle": "Notification Console",
-      "pageSubtitle": "Send push notifications to all subscribed users.",
-      "composeTitle": "Compose Message",
-      "composeDesc": "This will be sent to all users who have opted in.",
-      "notificationType": "Notification Type",
+      "pageTitle": "通知控制台",
+      "pageSubtitle": "向所有已订阅的用户发送推送通知。",
+      "composeTitle": "撰写消息",
+      "composeDesc": "该消息将发送给所有已选择接收的用户。",
+      "notificationType": "通知类型",
       "types": {
-        "serviceUpdate": "Service Update",
-        "emergency": "Critical Alert",
-        "general": "General Announcement"
+        "serviceUpdate": "服务更新",
+        "emergency": "紧急警报",
+        "general": "一般公告"
       },
-      "titleLabel": "Title",
-      "titlePlaceholder": "e.g. Shelter Capacity Alert",
-      "messageLabel": "Message Body",
-      "messagePlaceholder": "Details about the update...",
-      "sendBroadcast": "Send Broadcast",
+      "titleLabel": "标题",
+      "titlePlaceholder": "例如：收容所容量提醒",
+      "messageLabel": "消息内容",
+      "messagePlaceholder": "更新详情……",
+      "sendBroadcast": "发送广播",
       "toast": {
-        "success": "Success",
-        "sent": "Notification broadcast sent successfully.",
-        "error": "Error",
-        "sendFailed": "Failed to send notification."
+        "success": "成功",
+        "sent": "通知已成功发送。",
+        "error": "错误",
+        "sendFailed": "发送通知失败。"
       },
-      "implementationNote": "Note: To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+      "implementationNote": "要使此功能生效，需要实现一个 Next.js API 路由（/api/admin/push），并使用 OneSignal REST API Key 触发实际发送。",
+      "noteLabel": "注意："
+    },
+    "observability": {
+      "meta": {
+        "title": "可观测性仪表板 | 管理员",
+        "description": "实时系统状态监控"
+      },
+      "title": "可观测性仪表板",
+      "description": "实时监控系统健康状况与性能",
+      "circuitBreaker": {
+        "title": "熔断器状态",
+        "description": "数据库弹性保护",
+        "stateLabels": {
+          "closed": "✅ 健康",
+          "open": "🚨 熔断器已打开",
+          "halfOpen": "⚠️ 正在测试恢复"
+        },
+        "fields": {
+          "state": "状态",
+          "failureRate": "失败率",
+          "failures": "失败次数",
+          "successes": "成功次数"
+        },
+        "warning": "⚠️ 熔断器当前为 {state}。数据库操作正受到保护。",
+        "nextAttempt": "下一次恢复尝试：{datetime}"
+      },
+      "healthSummary": {
+        "title": "系统健康",
+        "description": "平台总体状态",
+        "status": {
+          "operational": "✅ 运行正常",
+          "degraded": "⚠️ 性能下降"
+        },
+        "fields": {
+          "circuitBreaker": "熔断器",
+          "failureRate": "失败率",
+          "operationsTracked": "已跟踪操作",
+          "uptime": "运行时长"
+        }
+      },
+      "performance": {
+        "title": "性能指标",
+        "trackingSince": "跟踪开始时间：{datetime}",
+        "fields": {
+          "totalOperations": "总操作数",
+          "trackedOperations": "已跟踪操作",
+          "uptime": "运行时长"
+        },
+        "topOperations": "热门操作",
+        "calls": "{count} 次调用",
+        "metrics": {
+          "p50": "p50：",
+          "p95": "p95：",
+          "p99": "p99：",
+          "avg": "平均："
+        },
+        "empty": {
+          "title": "暂无性能数据。",
+          "description": "可通过以下方式启用性能跟踪："
+        }
+      },
+      "slo": {
+        "title": "SLO 合规性",
+        "status": {
+          "allMet": "所有 SLO 均已满足",
+          "violation": "SLO 违规"
+        },
+        "activeViolationsLabel": "当前 SLO 违规：",
+        "seeRunbook": "查看运行手册",
+        "warningLabel": "警告：",
+        "warningDescription": "错误预算已消耗 {consumed}%。请降低事故频率以避免耗尽。",
+        "common": {
+          "met": "达标",
+          "violation": "违规",
+          "noData": "无数据"
+        },
+        "uptime": {
+          "title": "可用性",
+          "target": "目标：{target}%",
+          "checksPassed": "{successful} / {total} 次检查通过",
+          "budget": "预算：每月可停机 {budget}"
+        },
+        "errorBudget": {
+          "title": "错误预算",
+          "badges": {
+            "exhausted": "已耗尽",
+            "warning": "警告",
+            "healthy": "健康"
+          },
+          "consumed": "已消耗：{consumed}%",
+          "resetWindow": "预算按 30 天窗口重置"
+        },
+        "latency": {
+          "title": "延迟（p95）",
+          "target": "目标：< {target}ms",
+          "percentileDescription": "第 95 百分位响应时间",
+          "headroom": "余量 {value}ms",
+          "overTarget": "超出目标 {value}ms",
+          "noDataSymbol": "—"
+        },
+        "helpText": {
+          "term": "SLO（服务级目标）",
+          "description": "定义了服务的目标可靠性。违规会触发告警，并可能需要事故响应。请参阅",
+          "runbook": "SLO 违规运行手册",
+          "trailing": "了解响应流程。"
+        }
+      },
+      "sloDisclaimer": {
+        "title": "SLO 目标为暂定值",
+        "descriptionPrefix": "当前目标采用以下文档中的建议默认值：",
+        "guideLabel": "SLO 决策指南",
+        "descriptionSuffix": "请结合生产数据和业务需求进行复核与调整。更新"
+      }
     }
   },
   "NotFound": {

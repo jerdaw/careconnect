@@ -108,43 +108,44 @@
     "vsPeriod": "vs {period}",
     "totalAllTime": "Total de sempre",
     "dashboard": {
-      "description": "Performance insights for your organization's services.",
-      "noData": "No data",
+      "description": "Informações de desempenho dos serviços da sua organização.",
+      "noData": "Sem dados",
       "cards": {
         "totalFeedback": {
-          "title": "Total Feedback",
-          "description": "All time submissions"
+          "title": "Feedback total",
+          "description": "Submissões acumuladas"
         },
         "helpfulnessRate": {
-          "title": "Helpfulness Rate",
-          "description": "Positive feedback"
+          "title": "Taxa de utilidade",
+          "description": "Feedback positivo"
         },
         "staleServices": {
-          "title": "Stale Services",
-          "description": "No feedback in 90 days"
+          "title": "Serviços desatualizados",
+          "description": "Sem feedback há 90 dias"
         },
         "totalServices": {
-          "title": "Total Services",
-          "description": "Active services"
+          "title": "Total de serviços",
+          "description": "Serviços ativos"
         }
       },
       "tables": {
         "common": {
-          "service": "Service"
+          "service": "Serviço"
         },
         "performance": {
-          "title": "Service Performance",
-          "description": "Your services with feedback activity.",
-          "helpfulness": "Helpfulness",
-          "empty": "No services with feedback yet"
+          "title": "Desempenho dos serviços",
+          "description": "Os seus serviços com atividade de feedback.",
+          "helpfulness": "Utilidade",
+          "empty": "Ainda não há serviços com feedback"
         },
         "issues": {
-          "title": "Services with Open Issues",
-          "description": "Services needing attention.",
-          "openIssues": "Open Issues",
-          "empty": "No open issues - great job!"
+          "title": "Serviços com problemas abertos",
+          "description": "Serviços que precisam de atenção.",
+          "openIssues": "Problemas abertos",
+          "empty": "Sem problemas abertos, ótimo trabalho!"
         }
-      }
+      },
+      "temporarilyUnavailable": "Algumas análises de parceiros em tempo real estão temporariamente indisponíveis. A mostrar um estado vazio de fallback."
     }
   },
   "Navigation": {
@@ -413,7 +414,12 @@
         "backToServices": "Back to Services",
         "serviceNotFound": "Service not found",
         "votes": "votes",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "toast": {
+          "successTitle": "Sucesso",
+          "updateSuccess": "Serviço atualizado com sucesso.",
+          "updateFailed": "Falha ao atualizar o serviço."
+        }
       }
     },
     "logout": "Sair",
@@ -562,39 +568,40 @@
       }
     },
     "overview": {
-      "welcomeTitle": "Welcome back, Partner",
-      "welcomeSubtitle": "Here's an overview of your organization's performance on HelpBridge.",
-      "totalViews": "Total Views",
-      "referrals": "Referrals",
-      "verifiedServices": "Verified Services",
-      "allServicesUpToDate": "All services up to date",
-      "updateRequests": "Update Requests",
-      "pendingReview": "Pending review by admin",
-      "comingSoon": "Coming Soon",
-      "analyticsComingSoonDesc": "Detailed analytics will be available once we have enough data.",
-      "dataQualityScore": "Data Quality Score",
-      "dataQualityDesc": "Your organization's data completeness rating.",
-      "excellent": "Excellent!",
-      "dataQualityText": "Your services have complete descriptions, hours, and contact info.",
-      "verifyListingsTitle": "Verify your listings",
-      "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
-      "startVerification": "Start Verification",
-      "manageServices": "Manage Services",
-      "fromLastMonth": "do mês passado"
+      "welcomeTitle": "Bem-vindo de volta, parceiro",
+      "welcomeSubtitle": "Aqui está uma visão geral do desempenho da sua organização no HelpBridge.",
+      "totalViews": "Visualizações totais",
+      "referrals": "Encaminhamentos",
+      "verifiedServices": "Serviços atualizados",
+      "updateRequests": "Pedidos de atualização",
+      "pendingReview": "Aguardando revisão do administrador",
+      "dataQualityScore": "Pontuação da qualidade dos dados",
+      "dataQualityDesc": "Uma pontuação de completude de dados apoiada pela governação.",
+      "verifyListingsTitle": "Verifique as suas listagens",
+      "startVerification": "Iniciar verificação",
+      "manageServices": "Gerir serviços",
+      "definitionPendingTitle": "Definição pendente",
+      "definitionPendingDescription": "Esta pontuação aparecerá quando o modelo e os limites de governação forem finalizados.",
+      "verifyListingsNeedsAttention": "{count} serviço(s) precisam de verificação.",
+      "verifyListingsAllCaughtUp": "Todos os seus serviços estão atualizados neste momento.",
+      "vsPrevious30Days": "vs 30 dias anteriores",
+      "upToDateCount": "{current} de {total} atualizados",
+      "temporarilyUnavailable": "As métricas gerais em tempo real estão temporariamente indisponíveis. A mostrar um estado seguro de fallback."
     },
     "notifications": {
-      "pageTitle": "Notifications",
-      "pageSubtitle": "Stay updated on your services and account status.",
-      "markAllAsRead": "Mark all as read",
-      "noNotifications": "No notifications yet.",
-      "markAsRead": "Mark as read",
+      "pageTitle": "Notificações",
+      "pageSubtitle": "Mantenha-se atualizado sobre os seus serviços e o estado da sua conta.",
+      "markAllAsRead": "Marcar tudo como lido",
+      "noNotifications": "Ainda não há notificações.",
+      "markAsRead": "Marcar como lido",
       "toast": {
-        "success": "Success",
-        "allMarkedAsRead": "All notifications marked as read",
-        "error": "Error",
-        "updateFailed": "Failed to update notification",
-        "updateAllFailed": "Failed to update notifications"
-      }
+        "success": "Sucesso",
+        "allMarkedAsRead": "Todas as notificações foram marcadas como lidas",
+        "error": "Erro",
+        "updateFailed": "Falha ao atualizar a notificação",
+        "updateAllFailed": "Falha ao atualizar as notificações"
+      },
+      "temporarilyUnavailable": "As notificações estão temporariamente indisponíveis. Tente novamente mais tarde."
     }
   },
   "ServiceDetail": {
@@ -859,7 +866,8 @@
     "voteSuccessTitle": "Obrigado",
     "voteSuccessMessage": "Seu feedback ajuda a melhorar esta listagem de serviços.",
     "alreadyVotedMessage": "Obrigado pelo seu feedback!",
-    "description": "View and manage issues reported by the community."
+    "description": "Veja e faça a gestão dos problemas comunicados pela comunidade.",
+    "temporarilyUnavailable": "Os dados de feedback estão temporariamente indisponíveis. A mostrar um estado vazio de fallback."
   },
   "Accessibility": {
     "title": "Acessibilidade",
@@ -1175,7 +1183,8 @@
     "noCookies": "Sem cookies de análise",
     "voluntaryFeedback": "Todo feedback é opcional",
     "commitmentTitle": "Nosso Compromisso",
-    "commitmentText": "Publicamos esses relatórios trimestralmente para sermos responsáveis perante a comunidade que servimos. Sua privacidade não é negociável."
+    "commitmentText": "Publicamos esses relatórios trimestralmente para sermos responsáveis perante a comunidade que servimos. Sua privacidade não é negociável.",
+    "metricsTemporarilyUnavailable": "Algumas métricas de impacto em tempo real estão temporariamente indisponíveis. A mostrar um estado seguro de fallback."
   },
   "Trust": {
     "title": "Governança de Dados e Confiança",
@@ -1307,28 +1316,141 @@
       }
     },
     "notifications": {
-      "pageTitle": "Notification Console",
-      "pageSubtitle": "Send push notifications to all subscribed users.",
-      "composeTitle": "Compose Message",
-      "composeDesc": "This will be sent to all users who have opted in.",
-      "notificationType": "Notification Type",
+      "pageTitle": "Console de notificações",
+      "pageSubtitle": "Envie notificações push para todos os utilizadores subscritos.",
+      "composeTitle": "Compor mensagem",
+      "composeDesc": "Isto será enviado para todos os utilizadores que aderiram.",
+      "notificationType": "Tipo de notificação",
       "types": {
-        "serviceUpdate": "Service Update",
-        "emergency": "Critical Alert",
-        "general": "General Announcement"
+        "serviceUpdate": "Atualização de serviço",
+        "emergency": "Alerta crítico",
+        "general": "Anúncio geral"
       },
-      "titleLabel": "Title",
-      "titlePlaceholder": "e.g. Shelter Capacity Alert",
-      "messageLabel": "Message Body",
-      "messagePlaceholder": "Details about the update...",
-      "sendBroadcast": "Send Broadcast",
+      "titleLabel": "Título",
+      "titlePlaceholder": "ex.: Alerta de capacidade do abrigo",
+      "messageLabel": "Corpo da mensagem",
+      "messagePlaceholder": "Detalhes da atualização...",
+      "sendBroadcast": "Enviar difusão",
       "toast": {
-        "success": "Success",
-        "sent": "Notification broadcast sent successfully.",
-        "error": "Error",
-        "sendFailed": "Failed to send notification."
+        "success": "Sucesso",
+        "sent": "A notificação foi enviada com sucesso.",
+        "error": "Erro",
+        "sendFailed": "Falha ao enviar a notificação."
       },
-      "implementationNote": "Note: To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+      "implementationNote": "Para tornar isto funcional, é necessário implementar uma rota da API do Next.js (/api/admin/push) que utilize a chave REST API do OneSignal para acionar o envio real.",
+      "noteLabel": "Nota:"
+    },
+    "observability": {
+      "meta": {
+        "title": "Painel de observabilidade | Admin",
+        "description": "Monitorização em tempo real do estado do sistema"
+      },
+      "title": "Painel de observabilidade",
+      "description": "Monitorização em tempo real da saúde e do desempenho do sistema",
+      "circuitBreaker": {
+        "title": "Estado do circuit breaker",
+        "description": "Proteção de resiliência da base de dados",
+        "stateLabels": {
+          "closed": "✅ Saudável",
+          "open": "🚨 Circuito aberto",
+          "halfOpen": "⚠️ A testar recuperação"
+        },
+        "fields": {
+          "state": "Estado",
+          "failureRate": "Taxa de falha",
+          "failures": "Falhas",
+          "successes": "Sucessos"
+        },
+        "warning": "⚠️ O circuito está em {state}. As operações da base de dados estão protegidas.",
+        "nextAttempt": "Próxima tentativa de recuperação: {datetime}"
+      },
+      "healthSummary": {
+        "title": "Saúde do sistema",
+        "description": "Estado geral da plataforma",
+        "status": {
+          "operational": "✅ Operacional",
+          "degraded": "⚠️ Degradado"
+        },
+        "fields": {
+          "circuitBreaker": "Circuit breaker",
+          "failureRate": "Taxa de falha",
+          "operationsTracked": "Operações monitorizadas",
+          "uptime": "Disponibilidade"
+        }
+      },
+      "performance": {
+        "title": "Métricas de desempenho",
+        "trackingSince": "A monitorizar desde {datetime}",
+        "fields": {
+          "totalOperations": "Total de operações",
+          "trackedOperations": "Operações monitorizadas",
+          "uptime": "Disponibilidade"
+        },
+        "topOperations": "Principais operações",
+        "calls": "{count} chamadas",
+        "metrics": {
+          "p50": "p50:",
+          "p95": "p95:",
+          "p99": "p99:",
+          "avg": "méd.:"
+        },
+        "empty": {
+          "title": "Ainda não há dados de desempenho disponíveis.",
+          "description": "Ative a monitorização de desempenho com"
+        }
+      },
+      "slo": {
+        "title": "Conformidade SLO",
+        "status": {
+          "allMet": "Todos os SLO cumpridos",
+          "violation": "Violação de SLO"
+        },
+        "activeViolationsLabel": "Violações ativas de SLO:",
+        "seeRunbook": "Ver runbook",
+        "warningLabel": "Aviso:",
+        "warningDescription": "O orçamento de erro foi consumido em {consumed}%. Reduza o ritmo dos incidentes para evitar o esgotamento.",
+        "common": {
+          "met": "Cumprido",
+          "violation": "Violação",
+          "noData": "Sem dados"
+        },
+        "uptime": {
+          "title": "Disponibilidade",
+          "target": "Meta: {target}%",
+          "checksPassed": "{successful} / {total} verificações aprovadas",
+          "budget": "Orçamento: {budget} de indisponibilidade/mês"
+        },
+        "errorBudget": {
+          "title": "Orçamento de erro",
+          "badges": {
+            "exhausted": "Esgotado",
+            "warning": "Aviso",
+            "healthy": "Saudável"
+          },
+          "consumed": "Consumido: {consumed}%",
+          "resetWindow": "O orçamento reinicia numa janela de 30 dias"
+        },
+        "latency": {
+          "title": "Latência (p95)",
+          "target": "Meta: < {target}ms",
+          "percentileDescription": "Tempo de resposta no percentil 95",
+          "headroom": "{value}ms de margem",
+          "overTarget": "{value}ms acima da meta",
+          "noDataSymbol": "—"
+        },
+        "helpText": {
+          "term": "SLO (Objetivo de Nível de Serviço)",
+          "description": "define a fiabilidade alvo do serviço. Violações acionam alertas e podem exigir resposta a incidentes. Consulte o",
+          "runbook": "Runbook de violação de SLO",
+          "trailing": "para os procedimentos de resposta."
+        }
+      },
+      "sloDisclaimer": {
+        "title": "As metas de SLO são provisórias",
+        "descriptionPrefix": "As metas atuais usam os valores recomendados no",
+        "guideLabel": "Guia de decisão SLO",
+        "descriptionSuffix": "Reveja e ajuste com base nos dados de produção e nos requisitos do negócio. Atualize"
+      }
     }
   },
   "NotFound": {

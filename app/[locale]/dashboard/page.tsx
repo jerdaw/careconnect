@@ -3,31 +3,63 @@ import { Button } from "@/components/ui/button"
 import { ShieldCheck, Eye, MousePointerClick, TrendingUp, FileText } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { createClient } from "@/utils/supabase/server"
-import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
+import { redirect } from "@/i18n/routing"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { loadDashboardOverviewMetrics } from "@/lib/dashboard/overview-metrics"
 
-export default async function DashboardPage() {
+type TranslationFn = Awaited<ReturnType<typeof getTranslations>>
+
+function formatChange(change: number, t: TranslationFn) {
+  if (change === 0) {
+    return {
+      className: "text-neutral-500",
+      label: `0% ${t("vsPrevious30Days")}`,
+    }
+  }
+
+  const sign = change > 0 ? "+" : "-"
+  return {
+    className: change > 0 ? "text-emerald-600" : "text-red-600",
+    label: `${sign}${Math.abs(change)}% ${t("vsPrevious30Days")}`,
+  }
+}
+
+export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const supabase = await createClient()
   const t = await getTranslations("Dashboard.overview")
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  const currentUser = user
 
-  if (!user) {
-    redirect("/login")
+  if (!currentUser) {
+    return redirect({
+      href: "/login",
+      locale,
+    })
   }
 
-  // Fetch pending update requests for this user
-  const { count: pendingUpdates } = await supabase
-    .from("service_update_requests")
-    .select("*", { count: "exact", head: true })
-    .eq("requested_by", user.email || "")
-    .eq("status", "pending")
+  const { metrics, degraded } = await loadDashboardOverviewMetrics(supabase, {
+    id: currentUser.id,
+    email: currentUser.email,
+  })
+
+  const viewsChange = formatChange(metrics.totalViews.change, t)
+  const referralsChange = formatChange(metrics.referrals.change, t)
+  const hasVerificationWork = metrics.servicesNeedingVerification > 0
 
   return (
     <div className="mx-auto max-w-6xl space-y-8">
       <DashboardPageHeader title={t("welcomeTitle")} subtitle={t("welcomeSubtitle")} />
+
+      {degraded && (
+        <Alert>
+          <AlertDescription>{t("temporarilyUnavailable")}</AlertDescription>
+        </Alert>
+      )}
 
       {/* Stats Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -37,10 +69,10 @@ export default async function DashboardPage() {
             <Eye className="h-4 w-4 text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,234</div>
+            <div className="text-2xl font-bold">{metrics.totalViews.current}</div>
             <p className="mt-1 flex items-center gap-1 text-xs text-neutral-500">
               <TrendingUp className="h-3 w-3 text-emerald-500" />
-              <span className="font-medium text-emerald-600">+12%</span> {t("fromLastMonth")}
+              <span className={`font-medium ${viewsChange.className}`}>{viewsChange.label}</span>
             </p>
           </CardContent>
         </Card>
@@ -51,10 +83,10 @@ export default async function DashboardPage() {
             <MousePointerClick className="h-4 w-4 text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">85</div>
+            <div className="text-2xl font-bold">{metrics.referrals.current}</div>
             <p className="mt-1 flex items-center gap-1 text-xs text-neutral-500">
               <TrendingUp className="h-3 w-3 text-emerald-500" />
-              <span className="font-medium text-emerald-600">+5%</span> {t("fromLastMonth")}
+              <span className={`font-medium ${referralsChange.className}`}>{referralsChange.label}</span>
             </p>
           </CardContent>
         </Card>
@@ -65,8 +97,10 @@ export default async function DashboardPage() {
             <ShieldCheck className="h-4 w-4 text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3</div>
-            <p className="mt-1 text-xs text-neutral-500">{t("allServicesUpToDate")}</p>
+            <div className="text-2xl font-bold">{metrics.servicesUpToDate.current}</div>
+            <p className="mt-1 text-xs text-neutral-500">
+              {t("upToDateCount", { current: metrics.servicesUpToDate.current, total: metrics.servicesUpToDate.total })}
+            </p>
           </CardContent>
         </Card>
 
@@ -76,7 +110,7 @@ export default async function DashboardPage() {
             <FileText className="h-4 w-4 text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{pendingUpdates || 0}</div>
+            <div className="text-2xl font-bold">{metrics.pendingUpdates}</div>
             <p className="mt-1 text-xs text-neutral-500">{t("pendingReview")}</p>
           </CardContent>
         </Card>
@@ -91,12 +125,12 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-8 border-emerald-100">
-                <span className="text-3xl font-bold text-emerald-600">A</span>
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-8 border-neutral-200">
+                <span className="text-3xl font-bold text-neutral-500">--</span>
               </div>
               <div className="space-y-1">
-                <p className="font-medium">{t("excellent")}</p>
-                <p className="text-sm text-neutral-500">{t("dataQualityText")}</p>
+                <p className="font-medium">{t("definitionPendingTitle")}</p>
+                <p className="text-sm text-neutral-500">{t("definitionPendingDescription")}</p>
               </div>
             </div>
           </CardContent>
@@ -105,11 +139,17 @@ export default async function DashboardPage() {
         <Card className="from-primary-900 to-primary-800 col-span-1 border-none bg-gradient-to-br text-white">
           <CardHeader>
             <CardTitle className="text-white">{t("verifyListingsTitle")}</CardTitle>
-            <CardDescription className="text-primary-100">{t("verifyListingsDesc")}</CardDescription>
+            <CardDescription className="text-primary-100">
+              {hasVerificationWork
+                ? t("verifyListingsNeedsAttention", { count: metrics.servicesNeedingVerification })
+                : t("verifyListingsAllCaughtUp")}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button variant="secondary" className="w-full sm:w-auto">
-              {t("startVerification")}
+            <Button variant="secondary" className="w-full sm:w-auto" asChild>
+              <Link href="/dashboard/services">
+                {hasVerificationWork ? t("startVerification") : t("manageServices")}
+              </Link>
             </Button>
           </CardContent>
         </Card>

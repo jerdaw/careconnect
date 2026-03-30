@@ -1,7 +1,8 @@
-import { notFound, redirect } from "next/navigation"
+import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { createClient } from "@/utils/supabase/server"
 import { getServiceById } from "@/lib/services"
+import { redirect } from "@/i18n/routing"
 
 interface Props {
   params: Promise<{ id: string; locale: string }>
@@ -23,7 +24,7 @@ export default async function EditServicePage({ params }: Props) {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect(`/${locale}/login`)
+    redirect({ href: "/login", locale })
   }
 
   const service = await getServiceById(id)

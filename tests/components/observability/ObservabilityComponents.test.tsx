@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { render, screen } from "@testing-library/react"
+import enMessages from "@/messages/en.json"
 import { CircuitBreakerCard } from "@/components/observability/CircuitBreakerCard"
 import { HealthSummary } from "@/components/observability/HealthSummary"
 import { PerformanceCharts } from "@/components/observability/PerformanceCharts"
@@ -8,6 +8,7 @@ import { SLODisclaimerBanner } from "@/components/observability/SLODisclaimerBan
 import { AutoRefresh } from "@/components/observability/AutoRefresh"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
 import { act } from "react-dom/test-utils"
+import { renderWithProviders, screen } from "@/tests/utils/test-wrapper"
 
 const refreshMock = vi.fn()
 
@@ -54,7 +55,7 @@ describe("Observability component smoke coverage", () => {
   })
 
   it("renders circuit breaker and health summary states", () => {
-    render(
+    renderWithProviders(
       <div>
         <CircuitBreakerCard
           stats={{
@@ -83,7 +84,8 @@ describe("Observability component smoke coverage", () => {
           }}
           metrics={metrics}
         />
-      </div>
+      </div>,
+      { messages: enMessages }
     )
 
     expect(screen.getByText("Circuit Breaker Status")).toBeInTheDocument()
@@ -93,7 +95,7 @@ describe("Observability component smoke coverage", () => {
   })
 
   it("renders performance and SLO cards in both empty and violation states", () => {
-    const { rerender } = render(
+    const { rerender } = renderWithProviders(
       <div>
         <PerformanceCharts metrics={{ ...metrics, operations: {}, totalOperations: 0 }} />
         <SLOComplianceCard
@@ -105,7 +107,8 @@ describe("Observability component smoke coverage", () => {
           }}
         />
         <SLODisclaimerBanner />
-      </div>
+      </div>,
+      { messages: enMessages }
     )
 
     expect(screen.getByText("No performance data available yet.")).toBeInTheDocument()
@@ -114,12 +117,16 @@ describe("Observability component smoke coverage", () => {
     expect(screen.getByText(/Active SLO Violations:/)).toBeInTheDocument()
     expect(screen.getByText("SLO Targets are Provisional")).toBeInTheDocument()
 
-    rerender(<PerformanceCharts metrics={metrics} />)
+    rerender(
+      <div>
+        <PerformanceCharts metrics={metrics} />
+      </div>
+    )
     expect(screen.getByText("search.total")).toBeInTheDocument()
   })
 
   it("refreshes only when the page is visible and online", () => {
-    render(<AutoRefresh intervalMs={1000} />)
+    renderWithProviders(<AutoRefresh intervalMs={1000} />, { messages: enMessages })
 
     act(() => {
       vi.advanceTimersByTime(1000)

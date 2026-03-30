@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-03-08
+last_updated: 2026-03-30
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -28,7 +28,7 @@ tags: [architecture, overview, system-design]
 - `hooks/`: Custom React hooks (`useSearch`, `useServices`).
 - `lib/`: Utility functions (API helpers, search logic).
 - `types/`: TypeScript definitions.
-- `messages/`: Localization dictionaries (EN, FR, AR, ZH-Hans, ES).
+- `messages/`: Localization dictionaries (EN, FR, AR, ZH-Hans, ES, PT, PA).
 - `docs/`: Project documentation.
 
 ## Core Concepts
@@ -52,7 +52,7 @@ graph TD
 
 1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
-3. **Lazy Semantic Search**: Loads a lightweight embedding model (TensorFlow.js) in the background. Once ready, it re-ranks results based on vector similarity.
+3. **Lazy Semantic Search**: Loads the optional WebLLM/WebGPU semantic stack in the background when the device supports it. Once ready, it re-ranks results based on vector similarity and on-device inference.
 4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
 
 ### Search Modes
@@ -84,25 +84,25 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 
 ### Data Pipelines
 
-- **Source of Truth**: 211 Ontario API (Raw Data) + Manual Verification (Golden Dataset).
+- **Source of Truth**: Manually curated service records remain authoritative. In development they live in `data/services.json`; in production the app reads from Supabase when configured, with local JSON fallback when the database is unavailable.
 
 ```mermaid
 sequenceDiagram
-    participant API as 211 Ontario API
-    participant Sync as sync-211 script
+    participant Curators as Curators + Research Inputs
+    participant Import as Validation + Import Scripts
     participant DB as Verified Database
     participant Embed as Embedding Generator
 
-    API->>Sync: Raw JSON Data
-    Sync->>Sync: Clean & Map to Schema
-    Sync->>DB: Upsert Gold Records
+    Curators->>Import: Verified JSON / CSV / seed files
+    Import->>Import: Normalize & validate schema
+    Import->>DB: Upsert curated records
     DB->>Embed: Pull Verified Listings
     Embed->>DB: Store Vector Embeddings
     DB->>Client: JSON/API Delivery
 ```
 
 - **Ingestion**:
-  - `scripts/sync-211.ts`: Fetches, cleans, and maps external data to the `Service` schema.
+  - Human-reviewed JSON, CSV, and municipal/provider seed files are validated before import.
   - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
@@ -124,10 +124,10 @@ sequenceDiagram
 
 - **Provenance**: `TrustPanel` displays `last_verified` dates, verification methods, and source provenance to build user confidence.
 - **Verification Levels**:
-  - `L1`: Basic sync (211).
+  - `L1`: Basic verification.
   - `L2`: Manual verification by HelpBridge team.
   - `L3`: Partner-claimed and verified.
-  - `L4`: Gold-standard third-party audit.
+  - `L4`: Governance-level policy concept for future partner/audit workflows; not currently represented in runtime types or search scoring.
 - **Partner Update Workflow**: Structured request-approval loop via `service_update_requests` ensures data integrity while engaging service providers.
 
 ### Push Notifications
@@ -197,7 +197,7 @@ sequenceDiagram
   - `is_provincial` flag allows services to be promoted in search results globally.
   - Provincial services display a "Province-Wide" badge for clarity.
 - **Language Selection**:
-  - `LanguageSelector` component in `Header` provides 5-language switching.
+  - `LanguageSelector` component in `Header` provides 7-locale switching.
   - Arabic triggers RTL (Right-to-Left) direction in root layout.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 

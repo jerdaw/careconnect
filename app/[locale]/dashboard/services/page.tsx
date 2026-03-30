@@ -3,10 +3,9 @@ import { getTranslations } from "next-intl/server"
 import { createClient } from "@/utils/supabase/server"
 import { PartnerServiceList } from "@/components/partner/PartnerServiceList"
 import { Skeleton } from "@/components/ui/skeleton"
-import { redirect } from "next/navigation"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
 import { Button } from "@/components/ui/button"
-import { Link } from "@/i18n/routing"
+import { Link, redirect } from "@/i18n/routing"
 import { Plus } from "lucide-react"
 
 export async function generateMetadata() {
@@ -22,9 +21,10 @@ export default async function PartnerServicesPage({ params }: { params: Promise<
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  const currentUser = user
 
-  if (!user) {
-    redirect("/login")
+  if (!currentUser) {
+    return redirect({ href: "/login", locale })
   }
 
   return (
@@ -41,7 +41,7 @@ export default async function PartnerServicesPage({ params }: { params: Promise<
         }
       />
       <Suspense fallback={<Skeleton className="h-64 w-full" />}>
-        <PartnerServiceList partnerId={user.id} locale={locale} />
+        <PartnerServiceList partnerId={currentUser.id} locale={locale} />
       </Suspense>
     </div>
   )

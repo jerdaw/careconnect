@@ -129,6 +129,7 @@
     "dashboard": {
       "description": "Performance insights for your organization's services.",
       "noData": "No data",
+      "temporarilyUnavailable": "Some live partner analytics are temporarily unavailable. Showing an empty fallback state.",
       "cards": {
         "totalFeedback": {
           "title": "Total Feedback",
@@ -280,7 +281,120 @@
         "error": "Error",
         "sendFailed": "Failed to send notification."
       },
-      "implementationNote": "Note: To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+      "noteLabel": "Note:",
+      "implementationNote": "To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+    },
+    "observability": {
+      "meta": {
+        "title": "Observability Dashboard | Admin",
+        "description": "Real-time system health monitoring"
+      },
+      "title": "Observability Dashboard",
+      "description": "Real-time system health and performance monitoring",
+      "circuitBreaker": {
+        "title": "Circuit Breaker Status",
+        "description": "Database resilience protection",
+        "stateLabels": {
+          "closed": "✅ Healthy",
+          "open": "🚨 Circuit Open",
+          "halfOpen": "⚠️ Testing Recovery"
+        },
+        "fields": {
+          "state": "State",
+          "failureRate": "Failure Rate",
+          "failures": "Failures",
+          "successes": "Successes"
+        },
+        "warning": "⚠️ Circuit is {state}. Database operations are being protected.",
+        "nextAttempt": "Next recovery attempt: {datetime}"
+      },
+      "healthSummary": {
+        "title": "System Health",
+        "description": "Overall platform status",
+        "status": {
+          "operational": "✅ Operational",
+          "degraded": "⚠️ Degraded"
+        },
+        "fields": {
+          "circuitBreaker": "Circuit Breaker",
+          "failureRate": "Failure Rate",
+          "operationsTracked": "Operations Tracked",
+          "uptime": "Uptime"
+        }
+      },
+      "performance": {
+        "title": "Performance Metrics",
+        "trackingSince": "Tracking since {datetime}",
+        "fields": {
+          "totalOperations": "Total Operations",
+          "trackedOperations": "Tracked Operations",
+          "uptime": "Uptime"
+        },
+        "topOperations": "Top Operations",
+        "calls": "{count} calls",
+        "metrics": {
+          "p50": "p50:",
+          "p95": "p95:",
+          "p99": "p99:",
+          "avg": "avg:"
+        },
+        "empty": {
+          "title": "No performance data available yet.",
+          "description": "Enable performance tracking with"
+        }
+      },
+      "slo": {
+        "title": "SLO Compliance",
+        "status": {
+          "allMet": "All SLOs Met",
+          "violation": "SLO Violation"
+        },
+        "activeViolationsLabel": "Active SLO Violations:",
+        "seeRunbook": "See runbook",
+        "warningLabel": "Warning:",
+        "warningDescription": "Error budget {consumed}% consumed. Reduce incident rate to avoid exhaustion.",
+        "common": {
+          "met": "Met",
+          "violation": "Violation",
+          "noData": "No Data"
+        },
+        "uptime": {
+          "title": "Uptime",
+          "target": "Target: {target}%",
+          "checksPassed": "{successful} / {total} checks passed",
+          "budget": "Budget: {budget} downtime/month"
+        },
+        "errorBudget": {
+          "title": "Error Budget",
+          "badges": {
+            "exhausted": "Exhausted",
+            "warning": "Warning",
+            "healthy": "Healthy"
+          },
+          "consumed": "Consumed: {consumed}%",
+          "resetWindow": "Budget resets over 30-day window"
+        },
+        "latency": {
+          "title": "Latency (p95)",
+          "target": "Target: < {target}ms",
+          "percentileDescription": "95th percentile response time",
+          "headroom": "{value}ms headroom",
+          "overTarget": "{value}ms over target",
+          "noDataSymbol": "—"
+        },
+        "helpText": {
+          "term": "SLO (Service Level Objective)",
+          "description": "defines the target reliability for the service. Violations trigger alerts and may require incident response. See",
+          "runbook": "SLO Violation Runbook",
+          "trailing": "for response procedures."
+        }
+      },
+      "sloDisclaimer": {
+        "title": "SLO Targets are Provisional",
+        "descriptionPrefix": "Current targets use recommended defaults from the",
+        "guideLabel": "SLO Decision Guide",
+        "descriptionSuffix": "Review and adjust based on production data and business requirements. Update"
+      }
     }
   },
   "Navigation": {
@@ -483,7 +597,12 @@
         "backToServices": "Back to Services",
         "serviceNotFound": "Service not found",
         "votes": "votes",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "toast": {
+          "successTitle": "Success",
+          "updateSuccess": "Service updated successfully.",
+          "updateFailed": "Failed to update service."
+        }
       }
     },
     "logout": "Log out",
@@ -636,21 +755,21 @@
       "welcomeSubtitle": "Here's an overview of your organization's performance on HelpBridge.",
       "totalViews": "Total Views",
       "referrals": "Referrals",
-      "verifiedServices": "Verified Services",
-      "allServicesUpToDate": "All services up to date",
+      "verifiedServices": "Services Up to Date",
       "updateRequests": "Update Requests",
       "pendingReview": "Pending review by admin",
-      "comingSoon": "Coming Soon",
-      "analyticsComingSoonDesc": "Detailed analytics will be available once we have enough data.",
       "dataQualityScore": "Data Quality Score",
-      "dataQualityDesc": "Your organization's data completeness rating.",
-      "excellent": "Excellent!",
-      "dataQualityText": "Your services have complete descriptions, hours, and contact info.",
+      "dataQualityDesc": "A governance-backed completeness score for partner data quality.",
+      "definitionPendingTitle": "Definition pending",
+      "definitionPendingDescription": "This score will appear once the scoring model and governance thresholds are finalized.",
       "verifyListingsTitle": "Verify your listings",
-      "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
+      "verifyListingsNeedsAttention": "{count} service(s) need verification attention.",
+      "verifyListingsAllCaughtUp": "All of your services are currently up to date.",
       "startVerification": "Start Verification",
       "manageServices": "Manage Services",
-      "fromLastMonth": "from last month"
+      "vsPrevious30Days": "vs previous 30 days",
+      "upToDateCount": "{current} of {total} up to date",
+      "temporarilyUnavailable": "Live overview metrics are temporarily unavailable. Showing a safe fallback state."
     },
     "notifications": {
       "pageTitle": "Notifications",
@@ -658,6 +777,7 @@
       "markAllAsRead": "Mark all as read",
       "noNotifications": "No notifications yet.",
       "markAsRead": "Mark as read",
+      "temporarilyUnavailable": "Notifications are temporarily unavailable. Please try again later.",
       "toast": {
         "success": "Success",
         "allMarkedAsRead": "All notifications marked as read",
@@ -933,6 +1053,7 @@
     "general": "General",
     "unknown": "Unknown",
     "noFeedback": "No feedback received yet.",
+    "temporarilyUnavailable": "Feedback data is temporarily unavailable. Showing an empty fallback state.",
     "feedbackDetail": "Feedback Details",
     "receivedOn": "Received on {date}",
     "message": "Message",
@@ -1288,6 +1409,7 @@
     "metricsTitle": "Last 90 Days",
     "satisfactionTitle": "User Satisfaction",
     "satisfactionDesc": "Based on {count} responses",
+    "metricsTemporarilyUnavailable": "Some live impact metrics are temporarily unavailable. Showing a safe fallback state.",
     "issuesResolvedTitle": "Issues Resolved",
     "issuesResolvedDesc": "Out of {total} reported",
     "servicesVerifiedTitle": "Services Verified",

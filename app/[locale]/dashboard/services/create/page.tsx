@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { useLocale, useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +13,7 @@ import { Loader2, ArrowLeft } from "lucide-react"
 import { createServiceAction } from "@/lib/actions/services"
 import type { ServiceCreateInput } from "@/lib/schemas/service-create"
 import { logger } from "@/lib/logger"
-import Link from "next/link"
+import { Link, useRouter } from "@/i18n/routing"
 
 const INTENT_CATEGORIES = [
   { value: "Food", key: "food" },
@@ -55,7 +54,7 @@ export default function CreateServicePage() {
           title: t("toast.successTitle"),
           description: t("toast.successDescription"),
         })
-        router.push(`/${locale}/dashboard/services`)
+        router.push("/dashboard/services", { locale })
       } else {
         toast({
           title: t("toast.errorTitle"),
@@ -79,7 +78,7 @@ export default function CreateServicePage() {
     <div className="mx-auto max-w-4xl space-y-8">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
-          <Link href={`/${locale}/dashboard/services`}>
+          <Link href="/dashboard/services" locale={locale}>
             <ArrowLeft className="h-4 w-4" />
           </Link>
         </Button>

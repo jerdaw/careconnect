@@ -4,12 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { CircuitBreakerStats } from "@/lib/resilience/supabase-breaker"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
+import { useTranslations } from "next-intl"
 
 interface CircuitBreakerCardProps {
   stats: CircuitBreakerStats
 }
 
 export function CircuitBreakerCard({ stats }: CircuitBreakerCardProps) {
+  const t = useTranslations("Admin.observability.circuitBreaker")
   const stateColor: Record<CircuitState, string> = {
     [CircuitState.CLOSED]: "bg-green-500",
     [CircuitState.OPEN]: "bg-red-500",
@@ -17,9 +19,9 @@ export function CircuitBreakerCard({ stats }: CircuitBreakerCardProps) {
   }
 
   const stateLabel: Record<CircuitState, string> = {
-    [CircuitState.CLOSED]: "✅ Healthy",
-    [CircuitState.OPEN]: "🚨 Circuit Open",
-    [CircuitState.HALF_OPEN]: "⚠️ Testing Recovery",
+    [CircuitState.CLOSED]: t("stateLabels.closed"),
+    [CircuitState.OPEN]: t("stateLabels.open"),
+    [CircuitState.HALF_OPEN]: t("stateLabels.halfOpen"),
   }
 
   return (
@@ -27,8 +29,8 @@ export function CircuitBreakerCard({ stats }: CircuitBreakerCardProps) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle>Circuit Breaker Status</CardTitle>
-            <CardDescription>Database resilience protection</CardDescription>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("description")}</CardDescription>
           </div>
           <Badge className={stateColor[stats.state]}>{stateLabel[stats.state]}</Badge>
         </div>
@@ -36,19 +38,19 @@ export function CircuitBreakerCard({ stats }: CircuitBreakerCardProps) {
       <CardContent>
         <dl className="grid grid-cols-2 gap-4">
           <div>
-            <dt className="text-muted-foreground text-sm font-medium">State</dt>
+            <dt className="text-muted-foreground text-sm font-medium">{t("fields.state")}</dt>
             <dd className="text-2xl font-bold">{stats.state}</dd>
           </div>
           <div>
-            <dt className="text-muted-foreground text-sm font-medium">Failure Rate</dt>
+            <dt className="text-muted-foreground text-sm font-medium">{t("fields.failureRate")}</dt>
             <dd className="text-2xl font-bold">{(stats.failureRate * 100).toFixed(1)}%</dd>
           </div>
           <div>
-            <dt className="text-muted-foreground text-sm font-medium">Failures</dt>
+            <dt className="text-muted-foreground text-sm font-medium">{t("fields.failures")}</dt>
             <dd className="text-2xl font-bold">{stats.failureCount}</dd>
           </div>
           <div>
-            <dt className="text-muted-foreground text-sm font-medium">Successes</dt>
+            <dt className="text-muted-foreground text-sm font-medium">{t("fields.successes")}</dt>
             <dd className="text-2xl font-bold">{stats.successCount}</dd>
           </div>
         </dl>
@@ -56,11 +58,11 @@ export function CircuitBreakerCard({ stats }: CircuitBreakerCardProps) {
         {stats.state !== CircuitState.CLOSED && (
           <div className="mt-4 rounded-md bg-yellow-50 p-3 dark:bg-yellow-900/20">
             <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-              ⚠️ Circuit is {stats.state}. Database operations are being protected.
+              {t("warning", { state: stats.state })}
             </p>
             {stats.nextAttemptTime && (
               <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
-                Next recovery attempt: {new Date(stats.nextAttemptTime).toLocaleString()}
+                {t("nextAttempt", { datetime: new Date(stats.nextAttemptTime).toLocaleString() })}
               </p>
             )}
           </div>

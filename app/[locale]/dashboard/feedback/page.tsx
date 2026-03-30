@@ -1,9 +1,11 @@
 import { createClient } from "@/utils/supabase/server"
 import { getTranslations } from "next-intl/server"
-import { redirect } from "next/navigation"
 import { logger } from "@/lib/logger"
 import { FeedbackList } from "@/components/dashboard/FeedbackList"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
+import { redirect } from "@/i18n/routing"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 interface FeedbackItem {
   id: string
@@ -18,16 +20,32 @@ interface FeedbackItem {
   } | null
 }
 
-export default async function FeedbackPage() {
-  const t = await getTranslations("Feedback")
+interface FeedbackPageLoadResult {
+  degraded: boolean
+  feedback: FeedbackItem[]
+}
+
+async function loadFeedbackPageData() {
   const supabase = await createClient()
 
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect("/login")
+  return {
+    supabase,
+    user,
+  }
+}
+
+export default async function FeedbackPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations("Feedback")
+  const { supabase, user } = await loadFeedbackPageData()
+  const currentUser = user
+
+  if (!currentUser) {
+    return redirect({ href: "/login", locale })
   }
 
   // ==========================================================================
@@ -39,30 +57,57 @@ export default async function FeedbackPage() {
   // No explicit org_id or service_id filter is needed here.
   // ==========================================================================
 
-  // Fetch feedback for services owned by this user's organization (RLS filters automatically)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
-  const { data: feedback, error } = await (supabase.from("feedback" as any) as any)
-    .select(
-      `
-      *,
-      services (
-        name,
-        verification_level
-      )
-    `
-    )
-    .order("created_at", { ascending: false })
-
-  if (error) {
-    logger.error("Error fetching feedback", error, { component: "FeedbackDashboard" })
+  let result: FeedbackPageLoadResult = {
+    degraded: false,
+    feedback: [],
   }
 
-  const typedFeedback = (feedback as unknown as FeedbackItem[]) || []
+  try {
+    const feedbackResult = await withCircuitBreaker(async () =>
+      supabase
+        .from("feedback")
+        .select(
+          `
+          *,
+          services (
+            name,
+            verification_level
+          )
+        `
+        )
+        .order("created_at", { ascending: false })
+    )
+
+    if (feedbackResult.error) {
+      throw feedbackResult.error
+    }
+
+    result = {
+      degraded: false,
+      feedback: (feedbackResult.data as unknown as FeedbackItem[]) || [],
+    }
+  } catch (error) {
+    logger.warn("Error fetching feedback dashboard page", {
+      component: "FeedbackDashboard",
+      userId: currentUser.id,
+      error: error instanceof Error ? error.message : String(error),
+    })
+
+    result = {
+      degraded: true,
+      feedback: [],
+    }
+  }
 
   return (
     <div className="space-y-6">
       <DashboardPageHeader title={t("title")} subtitle={t("description")} />
-      <FeedbackList feedback={typedFeedback} />
+      {result.degraded && (
+        <Alert>
+          <AlertDescription>{t("temporarilyUnavailable")}</AlertDescription>
+        </Alert>
+      )}
+      <FeedbackList feedback={result.feedback} />
     </div>
   )
 }

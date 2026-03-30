@@ -116,43 +116,44 @@
     "vsPeriod": "مقابل {period}",
     "totalAllTime": "مجموع كل الأوقات",
     "dashboard": {
-      "description": "Performance insights for your organization's services.",
-      "noData": "No data",
+      "description": "اطّلع على مؤشرات أداء خدمات مؤسستك.",
+      "noData": "لا توجد بيانات",
       "cards": {
         "totalFeedback": {
-          "title": "Total Feedback",
-          "description": "All time submissions"
+          "title": "إجمالي الملاحظات",
+          "description": "إجمالي الإرسالات"
         },
         "helpfulnessRate": {
-          "title": "Helpfulness Rate",
-          "description": "Positive feedback"
+          "title": "معدل الفائدة",
+          "description": "الملاحظات الإيجابية"
         },
         "staleServices": {
-          "title": "Stale Services",
-          "description": "No feedback in 90 days"
+          "title": "خدمات قديمة",
+          "description": "لا توجد ملاحظات خلال 90 يومًا"
         },
         "totalServices": {
-          "title": "Total Services",
-          "description": "Active services"
+          "title": "إجمالي الخدمات",
+          "description": "الخدمات النشطة"
         }
       },
       "tables": {
         "common": {
-          "service": "Service"
+          "service": "الخدمة"
         },
         "performance": {
-          "title": "Service Performance",
-          "description": "Your services with feedback activity.",
-          "helpfulness": "Helpfulness",
-          "empty": "No services with feedback yet"
+          "title": "أداء الخدمات",
+          "description": "خدماتك التي لديها نشاط ملاحظات.",
+          "helpfulness": "مدى الفائدة",
+          "empty": "لا توجد خدمات لديها ملاحظات بعد"
         },
         "issues": {
-          "title": "Services with Open Issues",
-          "description": "Services needing attention.",
-          "openIssues": "Open Issues",
-          "empty": "No open issues - great job!"
+          "title": "خدمات بها مشكلات مفتوحة",
+          "description": "خدمات تحتاج إلى اهتمام.",
+          "openIssues": "المشكلات المفتوحة",
+          "empty": "لا توجد مشكلات مفتوحة، عمل رائع!"
         }
-      }
+      },
+      "temporarilyUnavailable": "بعض تحليلات الشركاء المباشرة غير متاحة مؤقتًا. يتم عرض حالة احتياطية فارغة."
     }
   },
   "Navigation": {
@@ -421,7 +422,12 @@
         "backToServices": "Back to Services",
         "serviceNotFound": "Service not found",
         "votes": "votes",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "toast": {
+          "successTitle": "نجاح",
+          "updateSuccess": "تم تحديث الخدمة بنجاح.",
+          "updateFailed": "فشل تحديث الخدمة."
+        }
       }
     },
     "logout": "تسجيل الخروج",
@@ -570,39 +576,40 @@
       }
     },
     "overview": {
-      "welcomeTitle": "Welcome back, Partner",
-      "welcomeSubtitle": "Here's an overview of your organization's performance on HelpBridge.",
-      "totalViews": "Total Views",
-      "referrals": "Referrals",
-      "verifiedServices": "Verified Services",
-      "allServicesUpToDate": "All services up to date",
-      "updateRequests": "Update Requests",
-      "pendingReview": "Pending review by admin",
-      "comingSoon": "Coming Soon",
-      "analyticsComingSoonDesc": "Detailed analytics will be available once we have enough data.",
-      "dataQualityScore": "Data Quality Score",
-      "dataQualityDesc": "Your organization's data completeness rating.",
-      "excellent": "Excellent!",
-      "dataQualityText": "Your services have complete descriptions, hours, and contact info.",
-      "verifyListingsTitle": "Verify your listings",
-      "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
-      "startVerification": "Start Verification",
-      "manageServices": "Manage Services",
-      "fromLastMonth": "من الشهر الماضي"
+      "welcomeTitle": "مرحبًا بعودتك، أيها الشريك",
+      "welcomeSubtitle": "إليك نظرة عامة على أداء مؤسستك على HelpBridge.",
+      "totalViews": "إجمالي المشاهدات",
+      "referrals": "الإحالات",
+      "verifiedServices": "الخدمات المحدَّثة",
+      "updateRequests": "طلبات التحديث",
+      "pendingReview": "بانتظار مراجعة المشرف",
+      "dataQualityScore": "درجة جودة البيانات",
+      "dataQualityDesc": "درجة اكتمال بيانات تستند إلى الحوكمة.",
+      "verifyListingsTitle": "تحقق من قوائمك",
+      "startVerification": "ابدأ التحقق",
+      "manageServices": "إدارة الخدمات",
+      "definitionPendingTitle": "التعريف قيد الإعداد",
+      "definitionPendingDescription": "ستظهر هذه الدرجة بعد اعتماد نموذج القياس وحدود الحوكمة.",
+      "verifyListingsNeedsAttention": "{count} خدمة تحتاج إلى متابعة التحقق.",
+      "verifyListingsAllCaughtUp": "جميع خدماتك محدثة حاليًا.",
+      "vsPrevious30Days": "مقارنة بالـ 30 يومًا السابقة",
+      "upToDateCount": "{current} من {total} محدثة",
+      "temporarilyUnavailable": "مقاييس النظرة العامة المباشرة غير متاحة مؤقتًا. يتم عرض حالة احتياطية آمنة."
     },
     "notifications": {
-      "pageTitle": "Notifications",
-      "pageSubtitle": "Stay updated on your services and account status.",
-      "markAllAsRead": "Mark all as read",
-      "noNotifications": "No notifications yet.",
-      "markAsRead": "Mark as read",
+      "pageTitle": "الإشعارات",
+      "pageSubtitle": "ابقَ على اطلاع بخدماتك وحالة حسابك.",
+      "markAllAsRead": "وضع علامة مقروء على الكل",
+      "noNotifications": "لا توجد إشعارات بعد.",
+      "markAsRead": "وضع علامة مقروء",
       "toast": {
-        "success": "Success",
-        "allMarkedAsRead": "All notifications marked as read",
-        "error": "Error",
-        "updateFailed": "Failed to update notification",
-        "updateAllFailed": "Failed to update notifications"
-      }
+        "success": "نجاح",
+        "allMarkedAsRead": "تم تعليم جميع الإشعارات كمقروءة",
+        "error": "خطأ",
+        "updateFailed": "فشل تحديث الإشعار",
+        "updateAllFailed": "فشل تحديث الإشعارات"
+      },
+      "temporarilyUnavailable": "الإشعارات غير متاحة مؤقتًا. يرجى المحاولة لاحقًا."
     }
   },
   "ServiceDetail": {
@@ -867,7 +874,8 @@
     "voteSuccessTitle": "شكراً لك",
     "voteSuccessMessage": "تساعد ملاحظاتك في تحسين قائمة الخدمات هذه.",
     "alreadyVotedMessage": "شكرا لتعليقاتك!",
-    "description": "View and manage issues reported by the community."
+    "description": "اعرض المشكلات التي أبلغ عنها المجتمع وأدرها.",
+    "temporarilyUnavailable": "بيانات الملاحظات غير متاحة مؤقتًا. يتم عرض حالة احتياطية فارغة."
   },
   "Accessibility": {
     "title": "إمكانية الوصول",
@@ -1183,7 +1191,8 @@
     "noCookies": "لا ملفات تعريف ارتباط تحليلية",
     "voluntaryFeedback": "جميع التعليقات اختيارية",
     "commitmentTitle": "التزامنا",
-    "commitmentText": "ننشر هذه التقارير بشكل ربع سنوي لنظل مسؤولين أمام المجتمع الذي نخدمه. خصوصيتك غير قابلة للتفاوض."
+    "commitmentText": "ننشر هذه التقارير بشكل ربع سنوي لنظل مسؤولين أمام المجتمع الذي نخدمه. خصوصيتك غير قابلة للتفاوض.",
+    "metricsTemporarilyUnavailable": "بعض مقاييس الأثر المباشرة غير متاحة مؤقتًا. يتم عرض حالة احتياطية آمنة."
   },
   "Trust": {
     "title": "حكم البيانات والثقة",
@@ -1315,28 +1324,141 @@
       }
     },
     "notifications": {
-      "pageTitle": "Notification Console",
-      "pageSubtitle": "Send push notifications to all subscribed users.",
-      "composeTitle": "Compose Message",
-      "composeDesc": "This will be sent to all users who have opted in.",
-      "notificationType": "Notification Type",
+      "pageTitle": "لوحة الإشعارات",
+      "pageSubtitle": "أرسل إشعارات دفع إلى جميع المستخدمين المشتركين.",
+      "composeTitle": "إنشاء رسالة",
+      "composeDesc": "سيتم إرسال هذا إلى جميع المستخدمين الذين اشتركوا.",
+      "notificationType": "نوع الإشعار",
       "types": {
-        "serviceUpdate": "Service Update",
-        "emergency": "Critical Alert",
-        "general": "General Announcement"
+        "serviceUpdate": "تحديث خدمة",
+        "emergency": "تنبيه حرج",
+        "general": "إعلان عام"
       },
-      "titleLabel": "Title",
-      "titlePlaceholder": "e.g. Shelter Capacity Alert",
-      "messageLabel": "Message Body",
-      "messagePlaceholder": "Details about the update...",
-      "sendBroadcast": "Send Broadcast",
+      "titleLabel": "العنوان",
+      "titlePlaceholder": "مثال: تنبيه سعة المأوى",
+      "messageLabel": "نص الرسالة",
+      "messagePlaceholder": "تفاصيل التحديث...",
+      "sendBroadcast": "إرسال البث",
       "toast": {
-        "success": "Success",
-        "sent": "Notification broadcast sent successfully.",
-        "error": "Error",
-        "sendFailed": "Failed to send notification."
+        "success": "نجاح",
+        "sent": "تم إرسال الإشعار بنجاح.",
+        "error": "خطأ",
+        "sendFailed": "فشل إرسال الإشعار."
       },
-      "implementationNote": "Note: To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+      "implementationNote": "لتفعيل هذه الميزة، تحتاج إلى تنفيذ مسار API في Next.js (/api/admin/push) يستخدم مفتاح OneSignal REST API لتشغيل الإرسال الفعلي.",
+      "noteLabel": "ملاحظة:"
+    },
+    "observability": {
+      "meta": {
+        "title": "لوحة المراقبة | المشرف",
+        "description": "مراقبة حالة النظام في الوقت الفعلي"
+      },
+      "title": "لوحة المراقبة",
+      "description": "مراقبة حالة النظام والأداء في الوقت الفعلي",
+      "circuitBreaker": {
+        "title": "حالة قاطع الدائرة",
+        "description": "حماية مرونة قاعدة البيانات",
+        "stateLabels": {
+          "closed": "✅ سليم",
+          "open": "🚨 الدائرة مفتوحة",
+          "halfOpen": "⚠️ اختبار الاسترداد"
+        },
+        "fields": {
+          "state": "الحالة",
+          "failureRate": "معدل الفشل",
+          "failures": "الإخفاقات",
+          "successes": "النجاحات"
+        },
+        "warning": "⚠️ الدائرة في حالة {state}. تتم حماية عمليات قاعدة البيانات.",
+        "nextAttempt": "محاولة الاسترداد التالية: {datetime}"
+      },
+      "healthSummary": {
+        "title": "صحة النظام",
+        "description": "الحالة العامة للمنصة",
+        "status": {
+          "operational": "✅ يعمل",
+          "degraded": "⚠️ متدهور"
+        },
+        "fields": {
+          "circuitBreaker": "قاطع الدائرة",
+          "failureRate": "معدل الفشل",
+          "operationsTracked": "العمليات المتتبعة",
+          "uptime": "التوافر"
+        }
+      },
+      "performance": {
+        "title": "مقاييس الأداء",
+        "trackingSince": "يتم التتبع منذ {datetime}",
+        "fields": {
+          "totalOperations": "إجمالي العمليات",
+          "trackedOperations": "العمليات المتتبعة",
+          "uptime": "التوافر"
+        },
+        "topOperations": "أهم العمليات",
+        "calls": "{count} استدعاء",
+        "metrics": {
+          "p50": "p50:",
+          "p95": "p95:",
+          "p99": "p99:",
+          "avg": "المتوسط:"
+        },
+        "empty": {
+          "title": "لا توجد بيانات أداء متاحة بعد.",
+          "description": "فعّل تتبع الأداء عبر"
+        }
+      },
+      "slo": {
+        "title": "امتثال SLO",
+        "status": {
+          "allMet": "تم تحقيق جميع SLO",
+          "violation": "مخالفة SLO"
+        },
+        "activeViolationsLabel": "مخالفات SLO النشطة:",
+        "seeRunbook": "عرض الدليل",
+        "warningLabel": "تحذير:",
+        "warningDescription": "تم استهلاك ميزانية الأخطاء بنسبة {consumed}%. قلّل معدل الحوادث لتجنّب النفاد.",
+        "common": {
+          "met": "متحقق",
+          "violation": "مخالفة",
+          "noData": "لا توجد بيانات"
+        },
+        "uptime": {
+          "title": "التوافر",
+          "target": "الهدف: {target}%",
+          "checksPassed": "{successful} / {total} فحوصات ناجحة",
+          "budget": "الميزانية: {budget} توقف/شهر"
+        },
+        "errorBudget": {
+          "title": "ميزانية الأخطاء",
+          "badges": {
+            "exhausted": "مستنفدة",
+            "warning": "تحذير",
+            "healthy": "سليمة"
+          },
+          "consumed": "المستهلك: {consumed}%",
+          "resetWindow": "تُعاد الميزانية خلال نافذة 30 يومًا"
+        },
+        "latency": {
+          "title": "الزمن المستغرق (p95)",
+          "target": "الهدف: أقل من {target}ms",
+          "percentileDescription": "زمن الاستجابة عند النسبة المئوية 95",
+          "headroom": "هامش {value}ms",
+          "overTarget": "أعلى من الهدف بمقدار {value}ms",
+          "noDataSymbol": "—"
+        },
+        "helpText": {
+          "term": "SLO (هدف مستوى الخدمة)",
+          "description": "يحدد موثوقية الخدمة المستهدفة. تؤدي المخالفات إلى تنبيهات وقد تتطلب استجابة للحوادث. راجع",
+          "runbook": "دليل مخالفة SLO",
+          "trailing": "لإجراءات الاستجابة."
+        }
+      },
+      "sloDisclaimer": {
+        "title": "أهداف SLO مؤقتة",
+        "descriptionPrefix": "تستخدم الأهداف الحالية القيم الافتراضية الموصى بها من",
+        "guideLabel": "دليل قرارات SLO",
+        "descriptionSuffix": "راجعها واضبطها وفقًا لبيانات الإنتاج واحتياجات العمل. حدّث"
+      }
     }
   },
   "NotFound": {

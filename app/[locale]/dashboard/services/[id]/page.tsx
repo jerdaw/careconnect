@@ -1,14 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation" // Changed from 'next/router'
+import { useRouter, Link } from "@/i18n/routing"
 import { Service } from "@/types/service"
 import { Database } from "@/types/supabase"
 import EditServiceForm from "@/components/edit-service/EditServiceForm"
 import { ServiceFormData } from "@/lib/schemas/form"
 import { useAuth } from "@/components/layout/AuthProvider"
 import { ArrowLeft, Eye, Loader2 } from "lucide-react"
-import Link from "next/link"
 import { useServiceFeedback } from "@/hooks/useServiceFeedback"
 import { ThumbsUp, AlertTriangle } from "lucide-react"
 import { useTranslations } from "next-intl"
@@ -140,15 +139,15 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
             </div>
           </div>
         </div>
-        <a
-          href={`/services/${id}`}
+        <Link
+          href={`/service/${id}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
         >
           <Eye className="h-4 w-4" />
           {t("preview")}
-        </a>
+        </Link>
       </div>
 
       <EditServiceForm service={service} onSubmit={handleUpdate} />

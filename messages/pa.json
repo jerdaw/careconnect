@@ -108,43 +108,44 @@
     "vsPeriod": "ਬਨਾਮ {period}",
     "totalAllTime": "ਸਭ ਸਮੇਂ ਦਾ ਕੁੱਲ",
     "dashboard": {
-      "description": "Performance insights for your organization's services.",
-      "noData": "No data",
+      "description": "ਤੁਹਾਡੀ ਸੰਸਥਾ ਦੀਆਂ ਸੇਵਾਵਾਂ ਲਈ ਕਾਰਗੁਜ਼ਾਰੀ ਝਲਕਾਂ।",
+      "noData": "ਕੋਈ ਡਾਟਾ ਨਹੀਂ",
       "cards": {
         "totalFeedback": {
-          "title": "Total Feedback",
-          "description": "All time submissions"
+          "title": "ਕੁੱਲ ਫੀਡਬੈਕ",
+          "description": "ਸਾਰੇ ਸਮੇਂ ਦੀਆਂ ਭੇਜਾਵਾਂ"
         },
         "helpfulnessRate": {
-          "title": "Helpfulness Rate",
-          "description": "Positive feedback"
+          "title": "ਲਾਭਕਾਰੀ ਦਰ",
+          "description": "ਸਕਾਰਾਤਮਕ ਫੀਡਬੈਕ"
         },
         "staleServices": {
-          "title": "Stale Services",
-          "description": "No feedback in 90 days"
+          "title": "ਪੁਰਾਣੀਆਂ ਸੇਵਾਵਾਂ",
+          "description": "90 ਦਿਨਾਂ ਵਿੱਚ ਕੋਈ ਫੀਡਬੈਕ ਨਹੀਂ"
         },
         "totalServices": {
-          "title": "Total Services",
-          "description": "Active services"
+          "title": "ਕੁੱਲ ਸੇਵਾਵਾਂ",
+          "description": "ਸਕ੍ਰਿਆ ਸੇਵਾਵਾਂ"
         }
       },
       "tables": {
         "common": {
-          "service": "Service"
+          "service": "ਸੇਵਾ"
         },
         "performance": {
-          "title": "Service Performance",
-          "description": "Your services with feedback activity.",
-          "helpfulness": "Helpfulness",
-          "empty": "No services with feedback yet"
+          "title": "ਸੇਵਾ ਕਾਰਗੁਜ਼ਾਰੀ",
+          "description": "ਤੁਹਾਡੀਆਂ ਸੇਵਾਵਾਂ ਜਿਨ੍ਹਾਂ ਉੱਤੇ ਫੀਡਬੈਕ ਸਰਗਰਮੀ ਹੈ।",
+          "helpfulness": "ਲਾਭਕਾਰੀਤਾ",
+          "empty": "ਹਾਲੇ ਕਿਸੇ ਸੇਵਾ ਉੱਤੇ ਫੀਡਬੈਕ ਨਹੀਂ"
         },
         "issues": {
-          "title": "Services with Open Issues",
-          "description": "Services needing attention.",
-          "openIssues": "Open Issues",
-          "empty": "No open issues - great job!"
+          "title": "ਖੁੱਲ੍ਹੇ ਮਸਲੇ ਵਾਲੀਆਂ ਸੇਵਾਵਾਂ",
+          "description": "ਧਿਆਨ ਦੀ ਲੋੜ ਵਾਲੀਆਂ ਸੇਵਾਵਾਂ।",
+          "openIssues": "ਖੁੱਲ੍ਹੇ ਮਸਲੇ",
+          "empty": "ਕੋਈ ਖੁੱਲ੍ਹਾ ਮਸਲਾ ਨਹੀਂ, ਸ਼ਾਨਦਾਰ ਕੰਮ!"
         }
-      }
+      },
+      "temporarilyUnavailable": "ਕੁਝ live partner analytics ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਖਾਲੀ fallback ਸਥਿਤੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ।"
     }
   },
   "Navigation": {
@@ -413,7 +414,12 @@
         "backToServices": "Back to Services",
         "serviceNotFound": "Service not found",
         "votes": "votes",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "toast": {
+          "successTitle": "ਸਫਲਤਾ",
+          "updateSuccess": "ਸੇਵਾ ਸਫਲਤਾਪੂਰਵਕ ਅਪਡੇਟ ਹੋ ਗਈ ਹੈ।",
+          "updateFailed": "ਸੇਵਾ ਅਪਡੇਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ।"
+        }
       }
     },
     "logout": "ਲੌਗ ਆਉਟ",
@@ -562,39 +568,40 @@
       }
     },
     "overview": {
-      "welcomeTitle": "Welcome back, Partner",
-      "welcomeSubtitle": "Here's an overview of your organization's performance on HelpBridge.",
-      "totalViews": "Total Views",
-      "referrals": "Referrals",
-      "verifiedServices": "Verified Services",
-      "allServicesUpToDate": "All services up to date",
-      "updateRequests": "Update Requests",
-      "pendingReview": "Pending review by admin",
-      "comingSoon": "Coming Soon",
-      "analyticsComingSoonDesc": "Detailed analytics will be available once we have enough data.",
-      "dataQualityScore": "Data Quality Score",
-      "dataQualityDesc": "Your organization's data completeness rating.",
-      "excellent": "Excellent!",
-      "dataQualityText": "Your services have complete descriptions, hours, and contact info.",
-      "verifyListingsTitle": "Verify your listings",
-      "verifyListingsDesc": "It's been 30 days since your last verification. Confirm your service details are still accurate.",
-      "startVerification": "Start Verification",
-      "manageServices": "Manage Services",
-      "fromLastMonth": "ਪਿਛਲੇ ਮਹੀਨੇ ਤੋਂ"
+      "welcomeTitle": "ਮੁੜ ਸੁਆਗਤ ਹੈ, ਭਾਗੀਦਾਰ",
+      "welcomeSubtitle": "HelpBridge ਉੱਤੇ ਤੁਹਾਡੀ ਸੰਸਥਾ ਦੇ ਪ੍ਰਦਰਸ਼ਨ ਦੀ ਇੱਕ ਝਲਕ ਇੱਥੇ ਹੈ।",
+      "totalViews": "ਕੁੱਲ ਵੇਖਣੀਆਂ",
+      "referrals": "ਰੈਫ਼ਰਲ",
+      "verifiedServices": "ਅਪਡੇਟ ਕੀਤੀਆਂ ਸੇਵਾਵਾਂ",
+      "updateRequests": "ਅਪਡੇਟ ਬੇਨਤੀਆਂ",
+      "pendingReview": "ਐਡਮਿਨ ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ ਵਿੱਚ",
+      "dataQualityScore": "ਡਾਟਾ ਗੁਣਵੱਤਾ ਸਕੋਰ",
+      "dataQualityDesc": "ਗਵਰਨੈਂਸ-ਅਧਾਰਿਤ ਡਾਟਾ ਪੂਰਨਤਾ ਸਕੋਰ।",
+      "verifyListingsTitle": "ਆਪਣੀਆਂ ਲਿਸਟਿੰਗਾਂ ਜਾਂਚੋ",
+      "startVerification": "ਜਾਂਚ ਸ਼ੁਰੂ ਕਰੋ",
+      "manageServices": "ਸੇਵਾਵਾਂ ਸੰਭਾਲੋ",
+      "definitionPendingTitle": "ਪਰਿਭਾਸ਼ਾ ਬਾਕੀ ਹੈ",
+      "definitionPendingDescription": "ਇਹ ਸਕੋਰ ਮਾਡਲ ਅਤੇ ਗਵਰਨੈਂਸ ਸੀਮਾਵਾਂ ਤੈਅ ਹੋਣ ਤੋਂ ਬਾਅਦ ਦਿਖੇਗਾ।",
+      "verifyListingsNeedsAttention": "{count} ਸੇਵਾ(ਆਂ) ਨੂੰ ਜਾਂਚ ਦੀ ਲੋੜ ਹੈ।",
+      "verifyListingsAllCaughtUp": "ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਸੇਵਾਵਾਂ ਇਸ ਵੇਲੇ ਅਪਡੇਟ ਹਨ।",
+      "vsPrevious30Days": "ਪਿਛਲੇ 30 ਦਿਨਾਂ ਨਾਲ ਤੁਲਨਾ",
+      "upToDateCount": "{current} ਵਿੱਚੋਂ {total} ਅਪਡੇਟ",
+      "temporarilyUnavailable": "Live overview metrics ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਸੁਰੱਖਿਅਤ fallback ਸਥਿਤੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ।"
     },
     "notifications": {
-      "pageTitle": "Notifications",
-      "pageSubtitle": "Stay updated on your services and account status.",
-      "markAllAsRead": "Mark all as read",
-      "noNotifications": "No notifications yet.",
-      "markAsRead": "Mark as read",
+      "pageTitle": "ਨੋਟੀਫਿਕੇਸ਼ਨ",
+      "pageSubtitle": "ਆਪਣੀਆਂ ਸੇਵਾਵਾਂ ਅਤੇ ਖਾਤੇ ਦੀ ਸਥਿਤੀ ਨਾਲ ਅਪਡੇਟ ਰਹੋ।",
+      "markAllAsRead": "ਸਭ ਨੂੰ ਪੜ੍ਹਿਆ ਚਿੰਨ੍ਹਿਤ ਕਰੋ",
+      "noNotifications": "ਹਾਲੇ ਕੋਈ ਨੋਟੀਫਿਕੇਸ਼ਨ ਨਹੀਂ।",
+      "markAsRead": "ਪੜ੍ਹਿਆ ਚਿੰਨ੍ਹਿਤ ਕਰੋ",
       "toast": {
-        "success": "Success",
-        "allMarkedAsRead": "All notifications marked as read",
-        "error": "Error",
-        "updateFailed": "Failed to update notification",
-        "updateAllFailed": "Failed to update notifications"
-      }
+        "success": "ਸਫਲਤਾ",
+        "allMarkedAsRead": "ਸਭ ਨੋਟੀਫਿਕੇਸ਼ਨ ਪੜ੍ਹੇ ਹੋਏ ਚਿੰਨ੍ਹਿਤ ਹੋ ਗਏ ਹਨ",
+        "error": "ਗਲਤੀ",
+        "updateFailed": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਅਪਡੇਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
+        "updateAllFailed": "ਨੋਟੀਫਿਕੇਸ਼ਨਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
+      },
+      "temporarilyUnavailable": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਬਾਅਦ ਵਿੱਚ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
     }
   },
   "ServiceDetail": {
@@ -859,7 +866,8 @@
     "voteSuccessTitle": "ਧੰਨਵਾਦ",
     "voteSuccessMessage": "ਤੁਹਾਡੀ ਫੀਡਬੈਕ ਇਸ ਸੇਵਾ ਸੂਚੀ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।",
     "alreadyVotedMessage": "ਤੁਹਾਡੀ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!",
-    "description": "View and manage issues reported by the community."
+    "description": "ਸਮੁਦਾਇ ਦੁਆਰਾ ਰਿਪੋਰਟ ਕੀਤੇ ਮਸਲੇ ਵੇਖੋ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।",
+    "temporarilyUnavailable": "ਫੀਡਬੈਕ ਡਾਟਾ ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਖਾਲੀ fallback ਸਥਿਤੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ।"
   },
   "Accessibility": {
     "title": "ਪਹੁੰਚਯੋਗਤਾ",
@@ -1175,7 +1183,8 @@
     "noCookies": "ਕੋਈ ਵਿਸ਼ਲੇਸ਼ਣ ਕੂਕੀਜ਼ ਨਹੀਂ",
     "voluntaryFeedback": "ਸਾਰੀ ਫੀਡਬੈਕ ਵਿਕਲਪਿਕ ਹੈ",
     "commitmentTitle": "ਸਾਡੀ ਵਚਨਬੱਧਤਾ",
-    "commitmentText": "ਅਸੀਂ ਜਿਸ ਭਾਈਚਾਰੇ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਾਂ ਉਸ ਪ੍ਰਤੀ ਜਵਾਬਦੇਹ ਰਹਿਣ ਲਈ ਅਸੀਂ ਇਹ ਰਿਪੋਰਟਾਂ ਤਿਮਾਹੀ ਪ੍ਰਕਾਸ਼ਤ ਕਰਦੇ ਹਾਂ। ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਗੱਲਬਾਤ ਦੇ ਯੋਗ ਨਹੀਂ ਹੈ।"
+    "commitmentText": "ਅਸੀਂ ਜਿਸ ਭਾਈਚਾਰੇ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਾਂ ਉਸ ਪ੍ਰਤੀ ਜਵਾਬਦੇਹ ਰਹਿਣ ਲਈ ਅਸੀਂ ਇਹ ਰਿਪੋਰਟਾਂ ਤਿਮਾਹੀ ਪ੍ਰਕਾਸ਼ਤ ਕਰਦੇ ਹਾਂ। ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਗੱਲਬਾਤ ਦੇ ਯੋਗ ਨਹੀਂ ਹੈ।",
+    "metricsTemporarilyUnavailable": "ਕੁਝ live impact metrics ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਸੁਰੱਖਿਅਤ fallback ਸਥਿਤੀ ਦਿਖਾਈ ਜਾ ਰਹੀ ਹੈ।"
   },
   "Trust": {
     "title": "ਡੇਟਾ ਗਵਰਨੈਂਸ ਅਤੇ ਭਰੋਸਾ",
@@ -1307,28 +1316,141 @@
       }
     },
     "notifications": {
-      "pageTitle": "Notification Console",
-      "pageSubtitle": "Send push notifications to all subscribed users.",
-      "composeTitle": "Compose Message",
-      "composeDesc": "This will be sent to all users who have opted in.",
-      "notificationType": "Notification Type",
+      "pageTitle": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਕੰਸੋਲ",
+      "pageSubtitle": "ਸਭ ਸਬਸਕ੍ਰਾਈਬ ਕੀਤੇ ਯੂਜ਼ਰਾਂ ਨੂੰ ਪੁਸ਼ ਨੋਟੀਫਿਕੇਸ਼ਨ ਭੇਜੋ।",
+      "composeTitle": "ਸੁਨੇਹਾ ਲਿਖੋ",
+      "composeDesc": "ਇਹ ਸਭ opt-in ਯੂਜ਼ਰਾਂ ਨੂੰ ਭੇਜਿਆ ਜਾਵੇਗਾ।",
+      "notificationType": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਿਸਮ",
       "types": {
-        "serviceUpdate": "Service Update",
-        "emergency": "Critical Alert",
-        "general": "General Announcement"
+        "serviceUpdate": "ਸੇਵਾ ਅਪਡੇਟ",
+        "emergency": "ਗੰਭੀਰ ਚੇਤਾਵਨੀ",
+        "general": "ਸਧਾਰਣ ਘੋਸ਼ਣਾ"
       },
-      "titleLabel": "Title",
-      "titlePlaceholder": "e.g. Shelter Capacity Alert",
-      "messageLabel": "Message Body",
-      "messagePlaceholder": "Details about the update...",
-      "sendBroadcast": "Send Broadcast",
+      "titleLabel": "ਸਿਰਲੇਖ",
+      "titlePlaceholder": "ਉਦਾਹਰਨ: ਸ਼ੈਲਟਰ ਸਮਰੱਥਾ ਚੇਤਾਵਨੀ",
+      "messageLabel": "ਸੁਨੇਹੇ ਦਾ ਭਾਗ",
+      "messagePlaceholder": "ਅਪਡੇਟ ਦੇ ਵੇਰਵੇ...",
+      "sendBroadcast": "ਪ੍ਰਸਾਰਣ ਭੇਜੋ",
       "toast": {
-        "success": "Success",
-        "sent": "Notification broadcast sent successfully.",
-        "error": "Error",
-        "sendFailed": "Failed to send notification."
+        "success": "ਸਫਲਤਾ",
+        "sent": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ।",
+        "error": "ਗਲਤੀ",
+        "sendFailed": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ।"
       },
-      "implementationNote": "Note: To make this functional, you need to implement a Next.js API route (/api/admin/push) that uses the OneSignal REST API Key to trigger the actual send."
+      "implementationNote": "ਇਸਨੂੰ ਕਾਰਗਰ ਬਣਾਉਣ ਲਈ ਤੁਹਾਨੂੰ ਇੱਕ Next.js API ਰੂਟ (/api/admin/push) ਲਾਗੂ ਕਰਨੀ ਹੋਵੇਗੀ ਜੋ ਅਸਲ ਭੇਜਣ ਲਈ OneSignal REST API Key ਦੀ ਵਰਤੋਂ ਕਰੇ।",
+      "noteLabel": "ਨੋਟ:"
+    },
+    "observability": {
+      "meta": {
+        "title": "ਓਬਜ਼ਰਵੇਬਿਲਿਟੀ ਡੈਸ਼ਬੋਰਡ | ਐਡਮਿਨ",
+        "description": "ਸਿਸਟਮ ਦੀ ਹਾਲਤ ਦੀ ਰੀਅਲ-ਟਾਈਮ ਨਿਗਰਾਨੀ"
+      },
+      "title": "ਓਬਜ਼ਰਵੇਬਿਲਿਟੀ ਡੈਸ਼ਬੋਰਡ",
+      "description": "ਸਿਸਟਮ ਦੀ ਸਿਹਤ ਅਤੇ ਪ੍ਰਦਰਸ਼ਨ ਦੀ ਰੀਅਲ-ਟਾਈਮ ਨਿਗਰਾਨੀ",
+      "circuitBreaker": {
+        "title": "ਸਰਕਿਟ ਬ੍ਰੇਕਰ ਦੀ ਸਥਿਤੀ",
+        "description": "ਡਾਟਾਬੇਸ ਰੇਜ਼ਿਲੀਅਂਸ ਸੁਰੱਖਿਆ",
+        "stateLabels": {
+          "closed": "✅ ਸਿਹਤਮੰਦ",
+          "open": "🚨 ਸਰਕਿਟ ਖੁੱਲ੍ਹਾ",
+          "halfOpen": "⚠️ ਰਿਕਵਰੀ ਦੀ ਜਾਂਚ"
+        },
+        "fields": {
+          "state": "ਸਥਿਤੀ",
+          "failureRate": "ਅਸਫਲਤਾ ਦਰ",
+          "failures": "ਅਸਫਲਤਾਵਾਂ",
+          "successes": "ਸਫਲਤਾਵਾਂ"
+        },
+        "warning": "⚠️ ਸਰਕਿਟ {state} ਵਿੱਚ ਹੈ। ਡਾਟਾਬੇਸ ਕਾਰਵਾਈਆਂ ਦੀ ਸੁਰੱਖਿਆ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ।",
+        "nextAttempt": "ਅਗਲਾ ਰਿਕਵਰੀ ਯਤਨ: {datetime}"
+      },
+      "healthSummary": {
+        "title": "ਸਿਸਟਮ ਸਿਹਤ",
+        "description": "ਪਲੇਟਫਾਰਮ ਦੀ ਕੁੱਲ ਸਥਿਤੀ",
+        "status": {
+          "operational": "✅ ਚੱਲ ਰਿਹਾ ਹੈ",
+          "degraded": "⚠️ ਘਟਿਆ ਹੋਇਆ"
+        },
+        "fields": {
+          "circuitBreaker": "ਸਰਕਿਟ ਬ੍ਰੇਕਰ",
+          "failureRate": "ਅਸਫਲਤਾ ਦਰ",
+          "operationsTracked": "ਟਰੈਕ ਕੀਤੀਆਂ ਕਾਰਵਾਈਆਂ",
+          "uptime": "ਉਪਟਾਈਮ"
+        }
+      },
+      "performance": {
+        "title": "ਪ੍ਰਦਰਸ਼ਨ ਮੈਟਰਿਕਸ",
+        "trackingSince": "{datetime} ਤੋਂ ਟਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ",
+        "fields": {
+          "totalOperations": "ਕੁੱਲ ਕਾਰਵਾਈਆਂ",
+          "trackedOperations": "ਟਰੈਕ ਕੀਤੀਆਂ ਕਾਰਵਾਈਆਂ",
+          "uptime": "ਉਪਟਾਈਮ"
+        },
+        "topOperations": "ਉੱਪਰਲੀ ਕਾਰਵਾਈਆਂ",
+        "calls": "{count} ਕਾਲਾਂ",
+        "metrics": {
+          "p50": "p50:",
+          "p95": "p95:",
+          "p99": "p99:",
+          "avg": "ਔਸਤ:"
+        },
+        "empty": {
+          "title": "ਅਜੇ ਕੋਈ ਪ੍ਰਦਰਸ਼ਨ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+          "description": "ਪ੍ਰਦਰਸ਼ਨ ਟਰੈਕਿੰਗ ਚਾਲੂ ਕਰੋ"
+        }
+      },
+      "slo": {
+        "title": "SLO ਅਨੁਕੂਲਤਾ",
+        "status": {
+          "allMet": "ਸਾਰੇ SLO ਪੂਰੇ ਹੋਏ",
+          "violation": "SLO ਉਲੰਘਣਾ"
+        },
+        "activeViolationsLabel": "ਸਰਗਰਮ SLO ਉਲੰਘਣਾਵਾਂ:",
+        "seeRunbook": "ਰਨਬੁੱਕ ਵੇਖੋ",
+        "warningLabel": "ਚੇਤਾਵਨੀ:",
+        "warningDescription": "ਗਲਤੀ ਬਜਟ ਦਾ {consumed}% ਖਰਚ ਹੋ ਚੁੱਕਾ ਹੈ। ਖਤਮ ਹੋਣ ਤੋਂ ਬਚਣ ਲਈ incidents ਘਟਾਓ।",
+        "common": {
+          "met": "ਪੂਰਾ",
+          "violation": "ਉਲੰਘਣਾ",
+          "noData": "ਕੋਈ ਡਾਟਾ ਨਹੀਂ"
+        },
+        "uptime": {
+          "title": "ਉਪਲਬਧਤਾ",
+          "target": "ਟਾਰਗੇਟ: {target}%",
+          "checksPassed": "{successful} / {total} ਜਾਂਚਾਂ ਪਾਸ",
+          "budget": "ਬਜਟ: ਪ੍ਰਤੀ ਮਹੀਨਾ {budget} ਡਾਊਨਟਾਈਮ"
+        },
+        "errorBudget": {
+          "title": "ਗਲਤੀ ਬਜਟ",
+          "badges": {
+            "exhausted": "ਖਤਮ",
+            "warning": "ਚੇਤਾਵਨੀ",
+            "healthy": "ਸਿਹਤਮੰਦ"
+          },
+          "consumed": "ਖਰਚਿਆ: {consumed}%",
+          "resetWindow": "ਬਜਟ 30 ਦਿਨਾਂ ਦੀ ਖਿੜਕੀ ਵਿੱਚ ਰੀਸੈਟ ਹੁੰਦਾ ਹੈ"
+        },
+        "latency": {
+          "title": "ਲੇਟੈਂਸੀ (p95)",
+          "target": "ਟਾਰਗੇਟ: < {target}ms",
+          "percentileDescription": "95ਵੇਂ ਪ੍ਰਤੀਸ਼ਤਕ ਜਵਾਬ ਸਮਾਂ",
+          "headroom": "{value}ms ਬਚਤ",
+          "overTarget": "ਟਾਰਗੇਟ ਤੋਂ {value}ms ਵੱਧ",
+          "noDataSymbol": "—"
+        },
+        "helpText": {
+          "term": "SLO (ਸੇਵਾ ਪੱਧਰ ਉਦੇਸ਼)",
+          "description": "ਸੇਵਾ ਦੀ ਟਾਰਗੇਟ ਭਰੋਸੇਯੋਗਤਾ ਨੂੰ ਪਰਿਭਾਸ਼ਿਤ ਕਰਦਾ ਹੈ। ਉਲੰਘਣਾਵਾਂ alerts ਚਾਲੂ ਕਰਦੀਆਂ ਹਨ ਅਤੇ incident response ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ। ਵੇਖੋ",
+          "runbook": "SLO ਉਲੰਘਣਾ ਰਨਬੁੱਕ",
+          "trailing": "ਜਵਾਬੀ ਪ੍ਰਕਿਰਿਆ ਲਈ।"
+        }
+      },
+      "sloDisclaimer": {
+        "title": "SLO ਟਾਰਗੇਟ ਅਸਥਾਈ ਹਨ",
+        "descriptionPrefix": "ਮੌਜੂਦਾ ਟਾਰਗੇਟ ਸੁਝਾਏ ਗਏ defaults ਵਰਤਦੇ ਹਨ",
+        "guideLabel": "SLO ਫੈਸਲਾ ਗਾਈਡ",
+        "descriptionSuffix": "ਇਨ੍ਹਾਂ ਨੂੰ production ਡਾਟਾ ਅਤੇ ਕਾਰੋਬਾਰੀ ਲੋੜਾਂ ਦੇ ਅਨੁਸਾਰ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਠੀਕ ਕਰੋ। ਅਪਡੇਟ ਕਰੋ"
+      }
     }
   },
   "NotFound": {
