@@ -36,11 +36,11 @@ interface Message {
 
 const IDLE_TIMEOUT_MS = 5 * 60 * 1000 // 5 Minutes
 
-export default function ChatAssistant() {
+export default function ChatAssistant({ initialOpen = false }: { initialOpen?: boolean }) {
   const t = useTranslations("AI")
   const { isReady, isLoading, progress, text, error, initAI, stop } = useAI()
   const { isOffline } = useNetworkStatus()
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(initialOpen)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isThinking, setIsThinking] = useState(false)

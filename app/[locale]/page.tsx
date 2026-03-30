@@ -71,7 +71,15 @@ export default function Home() {
   }, [searchParams, setQuery, setCategory, setOpenNow])
 
   // Progressive Search Hook
-  const { isReady, generateEmbedding } = useSemanticSearch()
+  const { isReady, initSemanticSearch, generateEmbedding } = useSemanticSearch()
+
+  useEffect(() => {
+    if (query.trim().length === 0) {
+      return
+    }
+
+    void initSemanticSearch()
+  }, [initSemanticSearch, query])
 
   // Perform Search Logic
   useServices({

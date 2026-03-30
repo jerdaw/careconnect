@@ -1,10 +1,10 @@
 import type { ServiceCreateInput } from "@/lib/schemas/service-create"
+import { normalizeProvenance } from "@/lib/provenance"
 import {
   IntentCategory,
   VerificationLevel,
   type AuthorityTier,
   type IdentityTag,
-  type Provenance,
   type ResourceIndicators,
   type Service,
   type ServiceHours,
@@ -102,35 +102,6 @@ function normalizeIdentityTags(value: unknown): IdentityTag[] {
   })
 }
 
-function isProvenance(value: unknown): value is Provenance {
-  if (typeof value !== "object" || value === null) {
-    return false
-  }
-
-  const candidate = value as Partial<Provenance>
-  return (
-    typeof candidate.verified_by === "string" &&
-    typeof candidate.verified_at === "string" &&
-    typeof candidate.evidence_url === "string" &&
-    typeof candidate.method === "string"
-  )
-}
-
-function normalizeProvenance(value: unknown, lastVerified: string | null, fallback?: Provenance): Provenance {
-  const parsed = typeof value === "string" ? parseJsonField<unknown>(value) : value
-
-  if (isProvenance(parsed)) {
-    return parsed
-  }
-
-  return {
-    verified_by: fallback?.verified_by ?? "system",
-    verified_at: fallback?.verified_at ?? lastVerified ?? new Date().toISOString(),
-    evidence_url: fallback?.evidence_url ?? "",
-    method: fallback?.method ?? "db_table",
-  }
-}
-
 function normalizeVerificationLevel(value: unknown, fallback?: Service["verification_level"]): VerificationLevel {
   if (typeof value === "string" && VERIFICATION_LEVELS.has(value)) {
     return value as VerificationLevel
@@ -195,7 +166,9 @@ export function mapServiceRowToService(
     email: row.email ?? staticService?.email ?? undefined,
     verification_level: normalizeVerificationLevel(row.verification_status, staticService?.verification_level),
     intent_category: normalizeCategory(row.category, staticService?.intent_category),
-    provenance: normalizeProvenance(row.provenance, row.last_verified, staticService?.provenance),
+    provenance: normalizeProvenance(row.provenance, {
+      fallback: staticService?.provenance,
+    }),
     identity_tags: normalizeIdentityTags(row.tags ?? staticService?.identity_tags),
     synthetic_queries: row.synthetic_queries ?? staticService?.synthetic_queries ?? [],
     synthetic_queries_fr: row.synthetic_queries_fr ?? staticService?.synthetic_queries_fr ?? undefined,

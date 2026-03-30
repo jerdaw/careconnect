@@ -74,7 +74,11 @@ describe("mapServicePublicToService", () => {
     expect(mapped.intent_category).toBe(IntentCategory.Community)
     expect(mapped.verification_level).toBe(VerificationLevel.L1)
     expect(mapped.identity_tags).toEqual([])
-    expect(mapped.provenance.verified_by).toBe("system")
-    expect(mapped.provenance.method).toBe("db_view")
+    expect(mapped.provenance).toEqual({
+      verified_by: "",
+      verified_at: "",
+      evidence_url: "",
+      method: "",
+    })
   })
 })

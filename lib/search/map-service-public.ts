@@ -3,10 +3,10 @@ import {
   VerificationLevel,
   type AuthorityTier,
   type IdentityTag,
-  type Provenance,
   type Service,
   type ServiceScope,
 } from "@/types/service"
+import { normalizeProvenance } from "@/lib/provenance"
 import {
   SERVICE_PUBLIC_CATEGORIES,
   SERVICE_PUBLIC_VERIFICATION_LEVELS,
@@ -86,34 +86,6 @@ function normalizeIdentityTags(tags: ServicePublicTags): IdentityTag[] {
   })
 }
 
-function isProvenance(value: unknown): value is Provenance {
-  if (typeof value !== "object" || value === null) {
-    return false
-  }
-
-  const candidate = value as Partial<Provenance>
-
-  return (
-    typeof candidate.verified_by === "string" &&
-    typeof candidate.verified_at === "string" &&
-    typeof candidate.evidence_url === "string" &&
-    typeof candidate.method === "string"
-  )
-}
-
-function normalizeProvenance(service: ServicePublic): Provenance {
-  if (isProvenance(service.provenance)) {
-    return service.provenance
-  }
-
-  return {
-    verified_by: "system",
-    verified_at: service.last_verified || service.created_at || new Date().toISOString(),
-    evidence_url: "",
-    method: "db_view",
-  }
-}
-
 export function mapServicePublicToService(service: ServicePublic): Service {
   return {
     id: service.id,
@@ -141,7 +113,7 @@ export function mapServicePublicToService(service: ServicePublic): Service {
     identity_tags: normalizeIdentityTags(service.tags),
     synthetic_queries: service.synthetic_queries ?? [],
     synthetic_queries_fr: service.synthetic_queries_fr ?? undefined,
-    provenance: normalizeProvenance(service),
+    provenance: normalizeProvenance(service.provenance),
     scope: normalizeScope(service.scope),
     virtual_delivery: service.virtual_delivery ?? undefined,
     primary_phone_label: service.primary_phone_label ?? undefined,

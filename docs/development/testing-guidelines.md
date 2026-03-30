@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-03-24
+last_updated: 2026-03-30
 owner: jer
 tags: [development, testing, guidelines, vitest, playwright, rtl]
 ---
@@ -121,7 +121,9 @@ To conserve CI minutes while on GitHub free tier:
 Local helper behavior:
 
 1. `npm run ci:check` skips Playwright tests by default.
-2. Set `RUN_PLAYWRIGHT_LOCAL=true` only for intentional local browser-debug windows.
+2. `npm run ci:check` runs the DB lane when Docker and `psql` are available locally; otherwise it prints a warning and skips that lane so the helper remains usable on non-DB machines.
+3. Set `RUN_DB_LOCAL=true` to require the local DB lane, or `RUN_DB_LOCAL=false` to skip it intentionally.
+4. Set `RUN_PLAYWRIGHT_LOCAL=true` only for intentional local browser-debug windows.
 
 ### Deploy posture
 

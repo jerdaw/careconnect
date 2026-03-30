@@ -42,12 +42,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Transact to Supabase
     // We use upsert to create or update
-    const { error: upsertError } = await supabase.from("services").upsert(
-      mapServiceToDatabaseUpsert({
-        ...service,
-        last_verified: new Date().toISOString(),
-      })
-    )
+    const { error: upsertError } = await supabase.from("services").upsert(mapServiceToDatabaseUpsert(service))
 
     if (upsertError) {
       return createApiError(`Database error: ${upsertError.message}`, 500)

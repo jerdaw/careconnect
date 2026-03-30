@@ -149,7 +149,7 @@ docs: update roadmap and plan for B2 completion
 
 ### 4. Pull Requests
 
-1. Ensure all tests pass: `npm run ci:check`
+1. Run `npm run ci:check`; if local DB prerequisites are unavailable, run `npm run test:db` on a Docker + `psql` machine or confirm the hosted DB lane before merge
 2. Update documentation if needed
 3. Create PR with clear description
 4. Link related issues/tasks

@@ -182,6 +182,8 @@ describe("Slack Integration", () => {
         status: 200,
       } as Response)
 
+      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://helpbridge.ca")
+
       await sendCircuitBreakerAlert({
         state: CircuitState.OPEN,
         previousState: CircuitState.CLOSED,
@@ -207,6 +209,10 @@ describe("Slack Integration", () => {
       expect(actionsBlock.elements).toHaveLength(2)
       expect(actionsBlock.elements[0].text.text).toContain("Dashboard")
       expect(actionsBlock.elements[1].text.text).toContain("Runbook")
+      expect(actionsBlock.elements[0].url).toBe("https://helpbridge.ca/admin/observability")
+      expect(actionsBlock.elements[1].url).toBe(
+        "https://github.com/jerdaw/helpbridge/blob/main/docs/runbooks/circuit-breaker-open.md"
+      )
     })
 
     it("includes failure metrics in message", async () => {
@@ -265,6 +271,39 @@ describe("Slack Integration", () => {
       expect(body.text).toContain("High Error Rate Alert")
       expect(body.text).toContain("15.5%")
       expect(body.blocks).toBeDefined()
+    })
+
+    it("prefers NEXT_PUBLIC_APP_URL over VERCEL_URL for dashboard links", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+      } as Response)
+      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://helpbridge.ca")
+      vi.stubEnv("VERCEL_URL", "preview.helpbridge.app")
+
+      await sendHighErrorRateAlert(12, 10)
+
+      const [, requestInit] = vi.mocked(fetch).mock.calls[0] ?? []
+      const body = JSON.parse((requestInit?.body as string | undefined) ?? "{}") as Record<string, any>
+      const actionsBlock = body.blocks.find((block: any) => block.type === "actions")
+
+      expect(actionsBlock.elements[0].url).toBe("https://helpbridge.ca/admin/observability")
+    })
+
+    it("falls back to VERCEL_URL when NEXT_PUBLIC_APP_URL is unset", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+      } as Response)
+      vi.stubEnv("VERCEL_URL", "preview.helpbridge.app")
+
+      await sendHighErrorRateAlert(12, 10)
+
+      const [, requestInit] = vi.mocked(fetch).mock.calls[0] ?? []
+      const body = JSON.parse((requestInit?.body as string | undefined) ?? "{}") as Record<string, any>
+      const actionsBlock = body.blocks.find((block: any) => block.type === "actions")
+
+      expect(actionsBlock.elements[0].url).toBe("https://preview.helpbridge.app/admin/observability")
     })
 
     it("includes error rate and threshold", async () => {

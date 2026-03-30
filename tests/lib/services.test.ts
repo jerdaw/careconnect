@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import { getServiceById } from "@/lib/services"
+import { getServiceById, updateService } from "@/lib/services"
 import { supabase } from "@/lib/supabase"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { IntentCategory, VerificationLevel } from "@/types/service"
@@ -74,7 +74,7 @@ describe("getServiceById", () => {
     expect(service?.name).toBe("Database Service")
     expect(service?.provenance).toEqual({
       verified_by: "Static Verifier",
-      verified_at: "2026-03-19T02:03:19.976Z",
+      verified_at: "2026-01-01T00:00:00Z",
       evidence_url: "https://helpbridge.ca/evidence/service-1",
       method: "phone",
     })
@@ -119,5 +119,25 @@ describe("getServiceById", () => {
     expect(service?.hours).toEqual({
       monday: { open: "09:00", close: "17:00" },
     })
+  })
+
+  it("does not refresh last_verified during generic service updates", async () => {
+    const eq = vi.fn().mockResolvedValue({ error: null })
+    const update = vi.fn().mockReturnValue({ eq })
+    vi.mocked(supabase.from).mockReturnValue({ update } as any)
+
+    const result = await updateService("service-1", {
+      name: "Updated Service",
+      description: "Updated description",
+    })
+
+    expect(result).toEqual({ success: true })
+    expect(update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Updated Service",
+        description: "Updated description",
+      })
+    )
+    expect(update).not.toHaveBeenCalledWith(expect.objectContaining({ last_verified: expect.any(String) }))
   })
 })

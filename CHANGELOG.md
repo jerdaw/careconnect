@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
 - Updated active contributor docs to treat `AGENTS.md` as canonical with `CLAUDE.md` and `GEMINI.md` as compatibility symlinks
 - Refreshed roadmap language to reflect completed autonomous Gate 0 prep work and current CI free-tier testing posture
 - Approved the C2 retention policy, updated the code-backed retention status to `APPROVED`, and synced Gate 0 trackers so only C1 and D4 remain blocking
+- Hardened service creation, provenance handling, Slack links, CSV import parsing, and trust rendering based on the March audit findings
+- Deferred global AI and semantic search startup until user intent, cutting the localized home-route first-load bundle down to roughly 315 kB
+- Repaired the noisy scheduled workflow drift in `Sync 211 Ontario Data` and `Production Smoke`, and made local `ci:check` degrade gracefully when DB prerequisites are unavailable
 
 ## [0.17.5] - 2026-01-25
 

@@ -15,6 +15,8 @@
 import { logger } from "@/lib/logger"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
 
+const REPOSITORY_URL = "https://github.com/jerdaw/helpbridge"
+
 /**
  * Slack message block types
  */
@@ -92,6 +94,27 @@ function getSlackWebhookUrl(): string | null {
   return webhookUrl
 }
 
+function normalizeBaseUrl(value: string): string {
+  const trimmed = value.trim().replace(/\/+$/, "")
+  return /^https?:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`
+}
+
+function getAppBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return normalizeBaseUrl(process.env.NEXT_PUBLIC_APP_URL)
+  }
+
+  if (process.env.VERCEL_URL) {
+    return normalizeBaseUrl(process.env.VERCEL_URL)
+  }
+
+  return "http://localhost:3000"
+}
+
+function getRepoDocUrl(path: string): string {
+  return `${REPOSITORY_URL}/blob/main/${path}`
+}
+
 /**
  * Send a message to Slack webhook
  *
@@ -167,12 +190,9 @@ function formatCircuitBreakerMessage(event: CircuitBreakerEvent): SlackMessage {
       : `${emoji} Circuit Breaker ${stateLabel}`
 
   // Get dashboard and runbook URLs
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+  const baseUrl = getAppBaseUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
-  const runbookUrl = "https://github.com/yourusername/helpbridge-ca/blob/main/docs/runbooks/circuit-breaker-open.md"
+  const runbookUrl = getRepoDocUrl("docs/runbooks/circuit-breaker-open.md")
 
   // Build rich Slack blocks
   const blocks: SlackBlock[] = [
@@ -303,10 +323,7 @@ export async function sendHighErrorRateAlert(errorRate: number, threshold: numbe
     return
   }
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+  const baseUrl = getAppBaseUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
 
   const message: SlackMessage = {
@@ -376,12 +393,9 @@ function formatSLOViolationMessage(event: SLOViolationEvent): SlackMessage {
   const fallbackText = `${emoji} ${typeLabel} ${severity === "critical" ? "Violation" : "Warning"} - ${message}`
 
   // Get dashboard and runbook URLs
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+  const baseUrl = getAppBaseUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
-  const runbookUrl = "https://github.com/yourusername/helpbridge-ca/blob/main/docs/runbooks/slo-violation.md"
+  const runbookUrl = getRepoDocUrl("docs/runbooks/slo-violation.md")
 
   // Build rich Slack blocks
   const blocks: SlackBlock[] = [

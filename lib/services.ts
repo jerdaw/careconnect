@@ -1,5 +1,6 @@
 import { supabase } from "./supabase"
 import { logger } from "./logger"
+import { normalizeProvenance } from "@/lib/provenance"
 import { Provenance, Service, VerificationLevel } from "@/types/service"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { mapServiceToDatabaseUpdate } from "@/lib/service-db"
@@ -43,19 +44,6 @@ function parseJsonField<T>(value: unknown): T | undefined {
   }
 
   return value as T
-}
-
-function normalizeProvenance(raw: unknown, staticService: Service | undefined, lastVerified: unknown): Provenance {
-  const parsed = parseJsonField<Partial<Provenance>>(raw) ?? {}
-  const fallback = staticService?.provenance
-
-  return {
-    verified_by: parsed.verified_by || fallback?.verified_by || "HelpBridge Admin",
-    verified_at:
-      parsed.verified_at || (typeof lastVerified === "string" ? lastVerified : "") || fallback?.verified_at || "",
-    evidence_url: parsed.evidence_url || fallback?.evidence_url || "",
-    method: parsed.method || fallback?.method || "",
-  }
 }
 
 /**
@@ -127,7 +115,9 @@ export async function getServiceById(id: string): Promise<Service | null> {
       identity_tags: parseJsonField<Service["identity_tags"]>(serviceRow.tags) ?? staticService?.identity_tags ?? [],
       intent_category: serviceRow.category ?? staticService?.intent_category,
       verification_level: serviceRow.verification_status ?? staticService?.verification_level ?? VerificationLevel.L0,
-      provenance: normalizeProvenance(serviceRow.provenance, staticService, serviceRow.last_verified),
+      provenance: normalizeProvenance(serviceRow.provenance, {
+        fallback: staticService?.provenance,
+      }),
       synthetic_queries:
         parseJsonField<Service["synthetic_queries"]>(serviceRow.synthetic_queries) ??
         staticService?.synthetic_queries ??
@@ -148,10 +138,7 @@ export async function getServiceById(id: string): Promise<Service | null> {
  */
 export async function updateService(id: string, updates: Partial<Service>) {
   try {
-    const databaseUpdates = mapServiceToDatabaseUpdate({
-      ...updates,
-      last_verified: new Date().toISOString(),
-    })
+    const databaseUpdates = mapServiceToDatabaseUpdate(updates)
 
     const { error } = await withCircuitBreaker(async () =>
       supabase.from("services").update(databaseUpdates).eq("id", id)

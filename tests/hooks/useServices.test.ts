@@ -14,6 +14,10 @@ vi.mock("@/lib/search/search-mode", () => ({
   serverSearch: vi.fn(),
 }))
 
+vi.mock("@/lib/offline/status", () => ({
+  isOffline: vi.fn(() => false),
+}))
+
 vi.mock("next-intl", () => ({
   useLocale: () => "en",
   useTranslations: () => (key: string) => key,
@@ -22,6 +26,28 @@ vi.mock("next-intl", () => ({
 vi.mock("@/lib/offline/cache", () => ({
   getCachedServices: vi.fn(),
   setCachedServices: vi.fn(),
+}))
+
+vi.mock("@/lib/search/client-enhancer", () => ({
+  enhanceSearchResults: vi.fn(async ({ isReady, query, generateEmbedding, search }) => {
+    if (!isReady) {
+      return null
+    }
+
+    const embedding = await generateEmbedding(query)
+    if (!embedding) {
+      return null
+    }
+
+    return search(query, { vectorOverride: embedding })
+  }),
+  filterSearchResultsByScope: vi.fn((results: SearchResult[], scope: string) => {
+    if (scope !== "provincial") {
+      return results
+    }
+
+    return results.filter((result) => result.service.scope === "canada" || result.service.scope === "ontario")
+  }),
 }))
 
 import { searchServices } from "@/lib/search"
@@ -43,11 +69,21 @@ const defaultProps = {
   setSuggestion: mockSetSuggestion,
 }
 
+const flushSearchEffect = async () => {
+  await vi.advanceTimersByTimeAsync(200)
+  await Promise.resolve()
+  await Promise.resolve()
+}
+
 describe("useServices Hook", () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.useFakeTimers()
-    ;(global.fetch as any).mockClear()
+    ;(global.fetch as any).mockReset()
+    ;(global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: vi.fn().mockResolvedValue({}),
+    })
     // Default mock for searchServices
     ;(searchServices as any).mockResolvedValue([])
     vi.mocked(getCachedServices).mockReturnValue(null)
@@ -63,8 +99,7 @@ describe("useServices Hook", () => {
 
   it("does nothing with empty query", async () => {
     renderHook(() => useServices({ ...defaultProps, query: "" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetResults).toHaveBeenCalledWith([])
     expect(mockSetHasSearched).toHaveBeenCalledWith(false)
@@ -77,11 +112,10 @@ describe("useServices Hook", () => {
     ;(searchServices as any).mockResolvedValue(mockResults)
 
     renderHook(() => useServices({ ...defaultProps, query: "food" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetIsLoading).toHaveBeenCalledWith(true)
-    expect(mockSetHasSearched).toHaveBeenCalledWith(true)
+    expect(mockSetHasSearched).toHaveBeenLastCalledWith(true)
     expect(searchServices).toHaveBeenCalledWith("food", expect.objectContaining({ openNow: undefined }))
     expect(mockSetResults).toHaveBeenCalledWith(mockResults)
     expect(mockSetIsLoading).toHaveBeenCalledWith(false)
@@ -90,8 +124,7 @@ describe("useServices Hook", () => {
 
   it("calls analytics endpoint", async () => {
     renderHook(() => useServices({ ...defaultProps, query: "food" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(global.fetch).toHaveBeenCalledWith("/api/v1/analytics/search", expect.any(Object))
 
@@ -116,8 +149,7 @@ describe("useServices Hook", () => {
     })
 
     renderHook(() => useServices({ ...defaultProps, query: "fod" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetSuggestion).toHaveBeenCalledWith("Food Bank")
   })
@@ -136,8 +168,7 @@ describe("useServices Hook", () => {
         isReady: true,
       })
     )
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     // First call is keyword only
     // Second call should have vector override
@@ -173,8 +204,7 @@ describe("useServices Hook", () => {
         isReady: true,
       })
     )
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetResults).toHaveBeenNthCalledWith(1, [
       { service: { id: "canada", scope: "canada" } as any, score: 9, matchReasons: [] },
@@ -191,8 +221,7 @@ describe("useServices Hook", () => {
     vi.mocked(getCachedServices).mockReturnValue(cachedResults)
 
     renderHook(() => useServices({ ...defaultProps, query: "food" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetResults).toHaveBeenCalledWith(cachedResults)
     expect(mockSetHasSearched).toHaveBeenCalledWith(true)
@@ -205,10 +234,9 @@ describe("useServices Hook", () => {
     ;(global.fetch as any).mockRejectedValueOnce(new Error("analytics failed"))
 
     renderHook(() => useServices({ ...defaultProps, query: "food" }))
-    vi.advanceTimersByTime(200)
-    await vi.runAllTimersAsync()
+    await flushSearchEffect()
 
     expect(mockSetResults).toHaveBeenCalledWith(mockResults)
-    expect(mockSetHasSearched).toHaveBeenCalledWith(true)
+    expect(mockSetHasSearched).toHaveBeenLastCalledWith(true)
   })
 })

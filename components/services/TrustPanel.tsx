@@ -20,7 +20,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
   const [isIssueModalOpen, setIsIssueModalOpen] = useState(false)
 
   const provenance = service.provenance
-  const verifiedBy = provenance?.verified_by || "HelpBridge Admin"
+  const verifiedBy = provenance?.verified_by || t("unknown")
   const verificationMethod = provenance?.method || ""
   const evidenceUrl = provenance?.evidence_url || ""
 

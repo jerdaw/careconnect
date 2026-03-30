@@ -154,7 +154,7 @@ Open `http://localhost:3000` to view the application.
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
 | `npm test` | Run the default Vitest suite |
-| `npm run test:db` | Run real DB integration tests locally |
+| `npm run test:db` | Run real DB integration tests locally (Docker + `psql`) |
 | `npm run test:watch` | Vitest in watch mode |
 | `npm run test:coverage` | Generate coverage report |
 | `npm run test:e2e` | Run E2E tests (all browsers) |
@@ -165,7 +165,7 @@ Open `http://localhost:3000` to view the application.
 | `npm run lint:fix` | ESLint with auto-fix |
 | `npm run format` | Format code with Prettier |
 | `npm run format:check` | Check code formatting |
-| `npm run ci:check` | Run CI validation checks |
+| `npm run ci:check` | Run CI validation checks (DB lane auto-skips locally if prerequisites are missing) |
 | `npm run check:root` | Check project root hygiene |
 
 **Load Testing (v17.5):**

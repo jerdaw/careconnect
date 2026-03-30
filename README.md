@@ -194,28 +194,28 @@ Open `http://localhost:3000` to view the application.
 
 #### Development & Testing
 
-| Command                       | Description                                             |
-| :---------------------------- | :------------------------------------------------------ |
-| `npm run dev`                 | Start development server (Turbo)                        |
-| `npm run build`               | Build for production                                    |
-| `npm run generate-embeddings` | Regenerate local embeddings without a full build        |
-| `npm run start`               | Start production server                                 |
-| `npm test`                    | Run the default Vitest suite                            |
-| `npm run test:db`             | Run real DB integration tests locally                   |
-| `npm run db:types`            | Generate Supabase TS types from a local ephemeral stack |
-| `npm run test:watch`          | Vitest in watch mode                                    |
-| `npm run test:coverage`       | Generate coverage report                                |
-| `npm run test:e2e`            | Run E2E tests (all browsers)                            |
-| `npm run test:e2e:local`      | Run E2E tests (Chromium only)                           |
-| `npm run test:a11y`           | Run accessibility audit (Axe-core)                      |
-| `npm run type-check`          | TypeScript compiler check                               |
-| `npm run lint`                | ESLint code quality check                               |
-| `npm run lint:fix`            | ESLint with auto-fix                                    |
-| `npm run format`              | Format code with Prettier                               |
-| `npm run format:check`        | Check code formatting                                   |
-| `npm run ci:check`            | Run CI validation checks                                |
-| `npm run check:refs`          | Validate repo-local docs/script/path references         |
-| `npm run check:root`          | Check project root hygiene                              |
+| Command                       | Description                                                                        |
+| :---------------------------- | :--------------------------------------------------------------------------------- |
+| `npm run dev`                 | Start development server (Turbo)                                                   |
+| `npm run build`               | Build for production                                                               |
+| `npm run generate-embeddings` | Regenerate local embeddings without a full build                                   |
+| `npm run start`               | Start production server                                                            |
+| `npm test`                    | Run the default Vitest suite                                                       |
+| `npm run test:db`             | Run real DB integration tests locally (Docker + `psql`)                            |
+| `npm run db:types`            | Generate Supabase TS types from a local ephemeral stack                            |
+| `npm run test:watch`          | Vitest in watch mode                                                               |
+| `npm run test:coverage`       | Generate coverage report                                                           |
+| `npm run test:e2e`            | Run E2E tests (all browsers)                                                       |
+| `npm run test:e2e:local`      | Run E2E tests (Chromium only)                                                      |
+| `npm run test:a11y`           | Run accessibility audit (Axe-core)                                                 |
+| `npm run type-check`          | TypeScript compiler check                                                          |
+| `npm run lint`                | ESLint code quality check                                                          |
+| `npm run lint:fix`            | ESLint with auto-fix                                                               |
+| `npm run format`              | Format code with Prettier                                                          |
+| `npm run format:check`        | Check code formatting                                                              |
+| `npm run ci:check`            | Run CI validation checks (DB lane auto-skips locally if prerequisites are missing) |
+| `npm run check:refs`          | Validate repo-local docs/script/path references                                    |
+| `npm run check:root`          | Check project root hygiene                                                         |
 
 #### Release Helpers
 

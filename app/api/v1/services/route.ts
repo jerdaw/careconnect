@@ -1,8 +1,14 @@
 import { NextRequest } from "next/server"
 import { supabase } from "@/lib/supabase"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
-import { createApiResponse, createApiError, handleApiError, validateContentType } from "@/lib/api-utils"
-import { assertOrganizationMembership } from "@/lib/auth/authorization"
+import {
+  AuthorizationError,
+  createApiResponse,
+  createApiError,
+  handleApiError,
+  validateContentType,
+} from "@/lib/api-utils"
+import { assertPermission } from "@/lib/auth/authorization"
 import { logger } from "@/lib/logger"
 import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
@@ -77,7 +83,6 @@ export async function GET(request: NextRequest) {
       logger.error("API /v1/services error:", error.message, {
         component: "api-v1-services",
         action: "GET",
-        query: q,
         category,
       })
       return createApiError("Database query failed", 500)
@@ -103,8 +108,8 @@ export async function GET(request: NextRequest) {
 /**
  * POST /api/v1/services
  *
- * Protected endpoint to create a new service.
- * Requires: Valid session cookie
+ * Protected endpoint to create a new service within the authenticated user's organization.
+ * Requires: Valid session cookie, organization membership, and canCreateServices permission.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -144,19 +149,29 @@ export async function POST(request: NextRequest) {
 
     const body = validation.data
 
-    // 1. Verify organization membership if an org_id is provided
-    // If not provided, it might be a public submission (Phase 0 logic)
-    // But for this endpoint, we assume the user is creating for an org they manage.
-    if (body.org_id) {
-      await assertOrganizationMembership(supabaseAuth, user.id, body.org_id)
+    const { data: membership, error: membershipError } = await withCircuitBreaker(async () =>
+      supabaseAuth.from("organization_members").select("organization_id").eq("user_id", user.id).single()
+    )
+
+    const organizationId = membership?.organization_id
+
+    if (membershipError || !organizationId) {
+      throw new AuthorizationError("You are not a member of an organization")
     }
+
+    if (body.org_id && body.org_id !== organizationId) {
+      throw new AuthorizationError("Cannot create services for another organization")
+    }
+
+    await assertPermission(supabaseAuth, user.id, organizationId, "canCreateServices")
 
     // Add server-managed fields
     const serviceData = mapCreateInputToServiceInsert(body, {
       id: crypto.randomUUID(),
-      orgId: body.org_id,
+      orgId: organizationId,
       verifiedBy: user.id,
-      verificationStatus: "L0",
+      verificationStatus: "L1",
+      published: false,
     })
 
     // Insert with circuit breaker protection

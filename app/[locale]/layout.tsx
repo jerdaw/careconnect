@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider"
 import { Outfit, Inter } from "next/font/google"
 import { ClientOnly } from "@/components/ui/ClientOnly"
 import { Toaster } from "@/components/ui/toaster"
-import ChatAssistant from "@/components/ai/ChatAssistant"
+import { ChatAssistantShell } from "@/components/ai/ChatAssistantShell"
 import { TranslationBanner } from "@/components/layout/TranslationBanner"
 import { OfflineSync } from "@/components/offline/OfflineSync"
 import { OfflineBanner } from "@/components/ui/OfflineBanner"
@@ -75,7 +75,7 @@ export default async function RootLayout({
                 {children}
                 <ClientOnly>
                   <OfflineSync />
-                  <ChatAssistant />
+                  <ChatAssistantShell />
                 </ClientOnly>
                 <Toaster />
               </ErrorBoundary>

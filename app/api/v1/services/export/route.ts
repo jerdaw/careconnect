@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
+import { normalizeProvenance } from "@/lib/provenance"
 import type { Service, Provenance } from "@/types/service"
 import { logger } from "@/lib/logger"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
@@ -33,18 +34,9 @@ function sanitizeForPublicExport(service: Service): PublicExportService {
 
   void [_embedding, _distance, _org_id, _deleted_at, _deleted_by, _admin_notes, _last_admin_review, _reviewed_by]
 
-  const lastVerified = rest.last_verified || rest.provenance?.verified_at || null
-  const evidenceUrl = rest.provenance?.evidence_url || ""
-  const method = rest.provenance?.method || ""
-
   return {
     ...rest,
-    provenance: {
-      verified_by: "HelpBridge Admin",
-      verified_at: lastVerified || new Date().toISOString(),
-      evidence_url: evidenceUrl,
-      method,
-    },
+    provenance: normalizeProvenance(rest.provenance),
   }
 }
 

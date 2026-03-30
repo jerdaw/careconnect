@@ -1,12 +1,8 @@
 import { useEffect } from "react"
 import { useLocale } from "next-intl"
-import { searchServices, SearchResult } from "@/lib/search"
-import { isOffline } from "@/lib/offline/status"
-import { getCachedServices, setCachedServices } from "@/lib/offline/cache"
+import type { SearchResult } from "@/lib/search"
 import { logger } from "@/lib/logger"
-import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
 import { type SupportedLocale } from "@/lib/schemas/search"
-import { enhanceSearchResults, filterSearchResultsByScope } from "@/lib/search/client-enhancer"
 
 interface UseServicesProps {
   query: string
@@ -53,6 +49,20 @@ export function useServices({
       setHasSearched(false)
 
       try {
+        const [
+          { searchServices },
+          { isOffline },
+          { setCachedServices },
+          { getSearchMode, serverSearch },
+          { enhanceSearchResults, filterSearchResultsByScope },
+        ] = await Promise.all([
+          import("@/lib/search"),
+          import("@/lib/offline/status"),
+          import("@/lib/offline/cache"),
+          import("@/lib/search/search-mode"),
+          import("@/lib/search/client-enhancer"),
+        ])
+
         const mode = getSearchMode()
         const currentlyOffline = isOffline()
 
@@ -129,6 +139,7 @@ export function useServices({
         setHasSearched(true)
 
         // Offline fallback
+        const { getCachedServices } = await import("@/lib/offline/cache")
         const cached = getCachedServices<SearchResult[]>()
         if (cached) {
           setResults(cached)

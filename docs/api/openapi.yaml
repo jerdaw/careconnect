@@ -8,7 +8,8 @@ info:
     **Base URL:** `https://helpbridge.ca/api/v1`
 
     ## Authentication
-    - Public endpoints (services) require no authentication.
+    - Public service listing and read endpoints require no authentication.
+    - Service creation and update endpoints require a valid session cookie plus organization authorization.
     - Analytics endpoints require a valid session cookie (Magic Link login).
     - Internal pilot endpoints require authentication and organization/admin authorization.
   version: 1.0.0
@@ -90,7 +91,10 @@ paths:
 
     post:
       summary: Create Service (Authenticated)
-      description: Create a new service. Requires authentication.
+      description: |
+        Create a new service within the authenticated user's organization.
+        Requires authentication, organization membership, and `canCreateServices` permission.
+        If `org_id` is supplied in the payload it must match the caller's organization.
       operationId: createService
       tags:
         - Services
@@ -120,6 +124,8 @@ paths:
                 $ref: "#/components/schemas/Error"
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           $ref: "#/components/responses/InternalError"
 

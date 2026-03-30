@@ -158,7 +158,7 @@ describe("TrustPanel Component", () => {
       </TestWrapper>
     )
 
-    expect(screen.getByText("HelpBridge Admin")).toBeInTheDocument()
+    expect(screen.getByText("Unknown")).toBeInTheDocument()
     expect(screen.queryByText("Manual")).not.toBeInTheDocument()
   })
 

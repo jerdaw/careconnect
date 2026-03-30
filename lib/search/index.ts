@@ -10,7 +10,6 @@ import { detectCrisis, boostCrisisResults } from "./crisis"
 
 import { isOpenNow } from "./hours"
 import { expandQuery as expandSynonyms } from "./synonyms"
-import { expandQuery as expandQueryAI } from "@/lib/ai/query-expander"
 import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
 import { trackPerformance } from "@/lib/performance/tracker"
@@ -34,6 +33,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
       let searchInput = query
       if (options.useAIExpansion) {
         await trackPerformance("search.aiExpansion", async () => {
+          const { expandQuery: expandQueryAI } = await import("@/lib/ai/query-expander")
           const { expanded } = await expandQueryAI(query)
           if (expanded.length > 0) {
             // Append expanded terms to the query for tokenization

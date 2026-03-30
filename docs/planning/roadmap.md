@@ -8,11 +8,12 @@
 ## Current State
 
 - **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: default Vitest suite green as of 2026-03-29 (`152` files; `1152` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-03-30 (`159` files; `1178` passed; `24` skipped)
 - **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
-- **Coverage**: fresh `npm run test:coverage` snapshot still needed
+- **Coverage**: `72.37%` statements / `79.31%` branches / `83.04%` functions / `72.37%` lines from `npm run test:coverage` on 2026-03-30
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
+- **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
 - **Accessibility**: WCAG 2.1 AA automation remains in place
 - **Languages**: 7 locales at translation-key parity
@@ -111,14 +112,11 @@ HelpBridge is being repositioned from possible directory duplication toward meas
 
 These items are worth doing only if they do not distract from Gate 0 closure:
 
-1. Refresh the coverage baseline with `npm run test:coverage`.
-2. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
-3. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-4. Keep top-level documentation aligned with the active roadmap state.
-5. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
-6. Update or replace GitHub Actions that still emit Node.js 20 runtime deprecation warnings before the 2026 runner cutoff.
-7. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-8. Repair, retire, or explicitly downgrade failing scheduled GitHub Actions workflows so CI signal stays trustworthy on the free tier, especially `Production Smoke` and `Sync 211 Ontario Data`.
+1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
+2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
+3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
+4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
+5. Audit the remaining release/docs GitHub Actions for Node 24 readiness before the 2026 runner cutoff, especially `actions/create-release@v1`.
 
 ## On Hold
 
@@ -183,6 +181,7 @@ References:
 ### Recent Completed Milestones
 
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
+- **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.
 - **Repo audit remediation (2026-03-29)**: completed the typed service-write cleanup, feedback/dashboard action consolidation, member-management split, privacy-safe analytics hardening, reference validation, and dependency/script hygiene follow-through.
 - **Dashboard trust, resilience, and locale hardening (2026-03-30)**: replaced placeholder partner metrics with live 30-day summaries, added deterministic degraded states for impact/analytics/feedback pages, localized observability/admin surfaces, and tightened focused i18n duplicate-English enforcement.
 - **Code quality remediation (2026-03-26)**: 0 npm audit vulnerabilities, console→logger migration, component reorganization, schemas rename, ESLint strictness for lib/, file cleanup.
@@ -202,6 +201,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)
 - [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
 - [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
 - [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)

@@ -4,7 +4,19 @@ import { GET } from "@/app/api/v1/services/export/route"
 import { checkRateLimit } from "@/lib/rate-limit"
 
 vi.mock("@/lib/search/data", () => ({
-  loadServices: vi.fn().mockResolvedValue([{ id: "s1", name: "Service 1", embedding: [0.1] }]),
+  loadServices: vi.fn().mockResolvedValue([
+    {
+      id: "s1",
+      name: "Service 1",
+      description: "Description",
+      embedding: [0.1],
+      published: true,
+      verification_level: "L2",
+      intent_category: "Food",
+      last_verified: "2026-03-01T00:00:00.000Z",
+      provenance: null,
+    },
+  ]),
 }))
 
 vi.mock("@/lib/rate-limit", () => ({
@@ -47,6 +59,12 @@ describe("Export API", () => {
     const data = (await response.json()) as { count: number; services: any[] }
     expect(data.count).toBe(1)
     expect(data.services[0].id).toBe("s1")
+    expect(data.services[0].provenance).toEqual({
+      verified_by: "",
+      verified_at: "",
+      evidence_url: "",
+      method: "",
+    })
     expect(response.headers.get("Cache-Control")).toContain("public")
     expect(response.headers.get("ETag")).toBeDefined()
   })

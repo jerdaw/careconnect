@@ -44,7 +44,7 @@ jobs:
 
       - name: Verify www redirect
         run: |
-          curl -sSI https://www.helpbridge.ca > www.headers
+          curl -sSI https://www.helpbridge.ca | tr -d '\r' > www.headers
           grep -Eq '^HTTP/.* 308' www.headers
           grep -Eqi '^location: https://helpbridge\.ca/?$' www.headers
 

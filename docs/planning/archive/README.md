@@ -15,4 +15,5 @@ For current naming and operational guidance:
 
 Recent maintenance archives:
 
+- `2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md` — privacy, authorization, performance, coverage, and workflow follow-through from the March audit
 - `2026-03-29-v20-0-repo-audit-remediation.md` — repo hygiene, typing, privacy, and dependency cleanup follow-through

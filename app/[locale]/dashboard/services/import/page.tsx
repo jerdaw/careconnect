@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { useTranslations } from "next-intl"
 import { logger } from "@/lib/logger"
 import { validateCSVBatch, normalizeCSVHeaders, type CSVRowValidationResult } from "@/lib/schemas/service-csv-import"
+import { parseServiceImportCSV } from "@/lib/import/service-csv"
 import { cn } from "@/lib/utils"
 
 export default function BulkImportPage() {
@@ -76,8 +77,8 @@ export default function BulkImportPage() {
       }
 
       try {
-        const lines = text.split("\n")
-        const rawHeaders = lines[0]?.split(",") || []
+        const [firstLine = ""] = text.split(/\r?\n/, 1)
+        const rawHeaders = firstLine.split(",")
         const headers = normalizeCSVHeaders(rawHeaders)
 
         const hasName = headers.includes("name")
@@ -90,24 +91,7 @@ export default function BulkImportPage() {
           return
         }
 
-        const data: Record<string, string>[] = []
-        for (let i = 1; i < Math.min(lines.length, 101); i++) {
-          const line = lines[i]
-          if (!line || !line.trim()) continue
-
-          const row = line.split(",")
-          if (row.length === headers.length) {
-            const obj: Record<string, string> = {}
-            headers.forEach((h, index) => {
-              const key = h?.trim()
-              if (key) {
-                obj[key] = row[index]?.trim() || ""
-              }
-            })
-            data.push(obj)
-          }
-        }
-
+        const data = parseServiceImportCSV(text)
         setParsedData(data)
         const results = validateCSVBatch(data)
         setValidationResults(results)
