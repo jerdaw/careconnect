@@ -40,6 +40,8 @@ jobs:
         run: npm run i18n-audit
       - name: Check Root Directory Hygiene
         run: npm run check:root
+      - name: Check Repo References
+        run: npm run check:refs
       - name: Validate Security Headers
         run: npm run validate:security-headers
 

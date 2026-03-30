@@ -77,26 +77,40 @@ const memoryStore = new InMemoryStore()
 
 // --- Upstash Implementation ---
 
-let ratelimit: Ratelimit | null = null
+let upstashRedis: Redis | null = null
+const ratelimitCache = new Map<string, Ratelimit>()
 
 try {
   if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-    const redis = new Redis({
+    upstashRedis = new Redis({
       url: process.env.UPSTASH_REDIS_REST_URL,
       token: process.env.UPSTASH_REDIS_REST_TOKEN,
     })
-
-    ratelimit = new Ratelimit({
-      redis,
-      limiter: Ratelimit.slidingWindow(10, "10 s"), // Default, overridden per call
-      analytics: true,
-      prefix: "helpbridge-ratelimit",
-    })
-
-    // logger.info("Upstash Rate Limit initialized", { component: "rate-limit" })
   }
 } catch (err) {
   logger.warn("Failed to initialize Upstash", { error: err, component: "rate-limit" })
+}
+
+function getUpstashRateLimit(limit: number, windowMs: number): Ratelimit | null {
+  if (!upstashRedis) {
+    return null
+  }
+
+  const cacheKey = `${limit}:${windowMs}`
+  const cached = ratelimitCache.get(cacheKey)
+  if (cached) {
+    return cached
+  }
+
+  const limiter = new Ratelimit({
+    redis: upstashRedis,
+    limiter: Ratelimit.slidingWindow(limit, `${Math.ceil(windowMs / 1000)} s`),
+    analytics: true,
+    prefix: "helpbridge-ratelimit",
+  })
+
+  ratelimitCache.set(cacheKey, limiter)
+  return limiter
 }
 
 export interface RateLimitResult {
@@ -132,28 +146,10 @@ export async function checkRateLimit(
   const scopedIdentifier = `${bucket}:${identifier}`
 
   // 1. Try Upstash
+  const ratelimit = getUpstashRateLimit(limit, windowMs)
   if (ratelimit) {
     try {
-      // Create a temporary limiter for this specific config if needed,
-      // but simpler to use the cache or just make a new instance is cheap?
-      // Ratelimit instance is tied to logic.
-      // The recommended way for varying limits is to use multiple limiters or pass config.
-      // Actually @upstash/ratelimit is flexible.
-
-      // We will create a new instance on the fly or cache them?
-      // Creating is cheap enough for serverless?
-      // Let's use the efficient `limit` method if we can, but checking the docs,
-      // standard usage is `const ratelimit = new Ratelimit(...)`.
-      // To support variable limits/windows dynamically, we might need a Map of limiters or just create one.
-      // Redis connection is shared.
-
-      const dynamicLimiter = new Ratelimit({
-        redis: Redis.fromEnv(),
-        limiter: Ratelimit.slidingWindow(limit, `${Math.ceil(windowMs / 1000)} s`),
-        prefix: "helpbridge-ratelimit",
-      })
-
-      const { success, remaining, reset } = await dynamicLimiter.limit(scopedIdentifier)
+      const { success, remaining, reset } = await ratelimit.limit(scopedIdentifier)
 
       return {
         success,

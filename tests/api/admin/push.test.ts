@@ -4,6 +4,10 @@ import { POST } from "@/app/api/admin/push/route"
 import { NextRequest } from "next/server"
 import { createServerClient } from "@supabase/ssr"
 
+vi.mock("@/lib/auth/authorization", () => ({
+  assertAdminRole: vi.fn().mockResolvedValue(true),
+}))
+
 // Mock env
 vi.mock("@/lib/env", () => ({
   env: {

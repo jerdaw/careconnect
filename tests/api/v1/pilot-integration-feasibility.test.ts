@@ -33,7 +33,17 @@ describe("POST /api/v1/pilot/integration-feasibility", () => {
     })
     vi.mocked(isUserAdmin).mockResolvedValue(true)
     vi.mocked(insertIntegrationDecision).mockResolvedValue({
-      data: { id: "decision-1" },
+      data: {
+        id: "decision-1",
+        decision: "conditional",
+        decision_date: "2026-03-08",
+        redline_checklist_version: "v1",
+        violations: ["retention_policy_conflict"],
+        compensating_controls: ["limit retention to aggregate-only snapshots"],
+        owners: ["jer"],
+        created_at: "2026-03-08T15:00:00.000Z",
+        created_by: "user-1",
+      },
       error: null,
       missingTable: false,
     })

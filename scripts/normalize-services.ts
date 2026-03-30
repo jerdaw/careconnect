@@ -14,6 +14,17 @@
 import { readFileSync, writeFileSync } from "fs"
 import path from "path"
 
+const shouldShowHelp = process.argv.includes("--help")
+const isDryRun = process.argv.includes("--dry-run")
+
+if (shouldShowHelp) {
+  console.log("Usage: npm run normalize:services -- [--dry-run]")
+  console.log("")
+  console.log("Normalizes legacy fields inside data/services.json.")
+  console.log("Use --dry-run to preview changes without writing the file.")
+  process.exit(0)
+}
+
 const DATA_PATH = path.join(process.cwd(), "data/services.json")
 
 // Valid intent categories from the schema
@@ -190,7 +201,7 @@ function normalizeService(service: LegacyService): LegacyService {
 }
 
 function main() {
-  console.log("🔧 Normalizing services.json...\n")
+  console.log(`🔧 ${isDryRun ? "Dry-running" : "Normalizing"} services.json...\n`)
 
   const rawData = readFileSync(DATA_PATH, "utf-8")
   const services = JSON.parse(rawData) as LegacyService[]
@@ -206,12 +217,16 @@ function main() {
     return normalized
   })
 
-  // Write back
-  writeFileSync(DATA_PATH, JSON.stringify(normalizedServices, null, 2) + "\n")
+  if (!isDryRun) {
+    writeFileSync(DATA_PATH, JSON.stringify(normalizedServices, null, 2) + "\n")
+  }
 
   console.log(`\n🎉 Normalization complete!`)
   console.log(`   Modified: ${modifiedCount} services`)
   console.log(`   Total: ${services.length} services`)
+  if (isDryRun) {
+    console.log("   Dry run only: no files were written.")
+  }
 }
 
 main()

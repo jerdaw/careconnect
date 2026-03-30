@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 import { FeedbackSubmitSchema } from "@/types/feedback"
-import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { logger } from "@/lib/logger"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
+import { submitFeedback } from "@/lib/feedback/server"
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,18 +43,13 @@ export async function POST(request: NextRequest) {
     // Note: 'service_id' is optional (e.g. for global 'not_found' feedback).
     // If it's provided, assurance it exists is handled by Foreign Key in DB (will throw if invalid).
 
-    const { error: insertError } = await withCircuitBreaker(async () =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
-      (supabase as any).from("feedback").insert([
-        {
-          service_id: service_id || null,
-          feedback_type,
-          message: message || null,
-          category_searched: category_searched || null,
-          status: "pending",
-        },
-      ])
-    )
+    const { error: insertError } = await submitFeedback(supabase, {
+      service_id: service_id || null,
+      feedback_type,
+      message: message || null,
+      category_searched: category_searched || null,
+      status: "pending",
+    })
 
     if (insertError) {
       logger.error("Supabase error submitting feedback", insertError, {

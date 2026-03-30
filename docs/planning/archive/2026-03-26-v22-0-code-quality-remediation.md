@@ -6,6 +6,9 @@
 **Dependencies:** None — all items are independent and can be done in any order
 **Created:** 2026-03-25
 
+Residual follow-through from this archive was completed in
+[`2026-03-29-v20-0-repo-audit-remediation.md`](2026-03-29-v20-0-repo-audit-remediation.md).
+
 ---
 
 ## Executive Summary

@@ -22,6 +22,11 @@ npm run type-check
 echo "✅ Type check passed"
 echo ""
 
+echo "🔗 Checking repo references..."
+npm run check:refs
+echo "✅ Reference check passed"
+echo ""
+
 echo "🧪 Running unit tests..."
 npm run test -- --run
 echo "✅ Unit tests passed"

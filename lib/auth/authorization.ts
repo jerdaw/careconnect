@@ -122,25 +122,21 @@ export async function assertOrganizationMembership(
  */
 export async function assertAdminRole(supabase: SupabaseClient, _userId: string, riskLevel: RiskLevel = "high") {
   try {
-    return await withCircuitBreaker(async () => {
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser()
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser()
 
-      if (error || !user) {
-        throw new AuthorizationError("User profile not found")
-      }
+    if (error || !user) {
+      throw new AuthorizationError("User profile not found")
+    }
 
-      // Check custom user_metadata or app_metadata for 'admin' role
-      const role = user.user_metadata?.role || user.app_metadata?.role
+    const isAdmin = await isUserAdmin(supabase, user.id, riskLevel)
+    if (!isAdmin) {
+      throw new AuthorizationError("Access denied: Requires admin role")
+    }
 
-      if (role !== "admin") {
-        throw new AuthorizationError("Access denied: Requires admin role")
-      }
-
-      return true
-    })
+    return true
   } catch (error) {
     return handleCircuitBreakerFallback(error, riskLevel, { userId: _userId, action: "assertAdminRole" }, true)
   }

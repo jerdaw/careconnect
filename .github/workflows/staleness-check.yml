@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -42,7 +42,7 @@ jobs:
 
             **${staleCount} service(s)** have not been verified in over 6 months.
 
-            Per the [Governance Protocol](docs/governance.md), services not verified in >6 months should be downgraded to L0 (hidden).
+            Per the [Governance Protocol](docs/governance/standards.md), services not verified in >6 months should be downgraded to L0 (hidden).
 
             ### Services Requiring Attention
 

@@ -161,7 +161,11 @@ describe("Authorization Utilities", () => {
   describe("assertAdminRole", () => {
     it("passes for admin user", async () => {
       mockSupabase.auth.getUser.mockResolvedValueOnce({
-        data: { user: { user_metadata: { role: "admin" } } },
+        data: { user: { id: "user-1" } },
+        error: null,
+      })
+      mockSupabase.single.mockResolvedValueOnce({
+        data: { user_id: "user-1" },
         error: null,
       })
 
@@ -170,17 +174,25 @@ describe("Authorization Utilities", () => {
 
     it("throws for non-admin user", async () => {
       mockSupabase.auth.getUser.mockResolvedValueOnce({
-        data: { user: { user_metadata: { role: "user" } } },
+        data: { user: { id: "user-1" } },
         error: null,
+      })
+      mockSupabase.single.mockResolvedValueOnce({
+        data: null,
+        error: { code: "PGRST116" },
       })
 
       await expect(assertAdminRole(mockSupabase as any, "user-1")).rejects.toThrow(AuthorizationError)
     })
 
     it("fails closed on circuit open", async () => {
+      mockSupabase.auth.getUser.mockResolvedValueOnce({
+        data: { user: { id: "user-1" } },
+        error: null,
+      })
       vi.mocked(withCircuitBreaker).mockRejectedValueOnce(new CircuitOpenError("supabase"))
 
-      await expect(assertAdminRole(mockSupabase as any, "user-1")).rejects.toThrow(CircuitOpenError)
+      await expect(assertAdminRole(mockSupabase as any, "user-1")).rejects.toThrow(AuthorizationError)
     })
   })
 })

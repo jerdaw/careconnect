@@ -1,6 +1,13 @@
 import { createClient } from "@supabase/supabase-js"
 import dotenv from "dotenv"
 
+if (process.argv.includes("--help")) {
+  console.log("Usage: npm run verify:rls")
+  console.log("")
+  console.log("Requires NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local.")
+  process.exit(0)
+}
+
 // Load env vars
 dotenv.config({ path: ".env.local" })
 

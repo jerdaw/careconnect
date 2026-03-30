@@ -63,7 +63,12 @@ describe("useServiceFeedback", () => {
 
     await waitFor(() => expect(result.current.loading).toBe(false))
 
-    expect(result.current.stats).toEqual(mockData)
+    expect(result.current.stats).toEqual({
+      helpful_yes_count: 10,
+      helpful_no_count: 2,
+      open_issues_count: 1,
+      last_feedback_at: "2026-01-01T00:00:00Z",
+    })
     expect(result.current.helpfulPercentage).toBe(83)
     expect(result.current.totalVotes).toBe(12)
   })

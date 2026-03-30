@@ -31,7 +31,18 @@ describe("POST /api/v1/pilot/events/contact-attempt", () => {
       user: { id: "user-1" } as any,
     })
     vi.mocked(insertContactAttempt).mockResolvedValue({
-      data: { id: "evt-1" },
+      data: {
+        id: "evt-1",
+        pilot_cycle_id: "v22-cycle-1",
+        service_id: "svc-1",
+        recorded_by_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+        attempt_channel: "phone",
+        attempt_outcome: "connected",
+        attempted_at: "2026-03-08T15:00:00.000Z",
+        resolved_at: null,
+        outcome_notes_code: null,
+        created_at: "2026-03-08T15:00:00.000Z",
+      },
       error: null,
       missingTable: false,
     })

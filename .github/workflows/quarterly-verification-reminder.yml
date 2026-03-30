@@ -27,7 +27,7 @@ jobs:
               title: `📋 Q${quarter} ${year} General Service Verification`,
               body: `## Quarterly Service Verification
 
-            Per the [Governance Protocol](docs/governance.md), general services must be verified **quarterly**.
+            Per the [Governance Protocol](docs/governance/standards.md), general services must be verified **quarterly**.
 
             ### Categories to Review
 

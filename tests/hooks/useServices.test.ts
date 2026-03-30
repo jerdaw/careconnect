@@ -94,6 +94,18 @@ describe("useServices Hook", () => {
     await vi.runAllTimersAsync()
 
     expect(global.fetch).toHaveBeenCalledWith("/api/v1/analytics/search", expect.any(Object))
+
+    const analyticsCall = vi.mocked(global.fetch).mock.calls.find(([url]) => url === "/api/v1/analytics/search")
+    const requestInit = analyticsCall?.[1] as RequestInit | undefined
+    const body = requestInit?.body ? JSON.parse(String(requestInit.body)) : null
+
+    expect(body).toEqual({
+      category: undefined,
+      hasLocation: false,
+      resultCount: 0,
+    })
+    expect(body).not.toHaveProperty("query")
+    expect(body).not.toHaveProperty("mode")
   })
 
   it("checks for suggestions", async () => {

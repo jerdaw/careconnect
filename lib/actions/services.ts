@@ -9,6 +9,7 @@ import { createClient } from "@/utils/supabase/server"
 import { assertPermission } from "@/lib/auth/authorization"
 import { getUserOrganizationMembership } from "@/lib/actions/members"
 import { logger } from "@/lib/logger"
+import { mapCreateInputToServiceInsert } from "@/lib/service-db"
 
 export async function updateServiceAction(id: string, data: ServiceFormData, locale: string) {
   const supabase = await createClient()
@@ -39,11 +40,7 @@ export async function updateServiceAction(id: string, data: ServiceFormData, loc
       await assertPermission(supabase, user.id, membership.organization_id, "canEditOwnServices")
 
       // Verify this is their own service
-      const { data: service, error: serviceError } = await supabase
-        .from("services")
-        .select("created_by, org_id")
-        .eq("id", id)
-        .single()
+      const { data: service, error: serviceError } = await supabase.from("services").select("*").eq("id", id).single()
 
       if (serviceError || !service) {
         logger.error("Service not found for update", serviceError, {
@@ -55,7 +52,7 @@ export async function updateServiceAction(id: string, data: ServiceFormData, loc
         return { success: false, error: "Service not found" }
       }
 
-      const serviceData = service as { created_by: string; org_id: string }
+      const serviceData = service as unknown as { created_by: string; org_id: string }
 
       // Verify org ownership
       if (serviceData.org_id !== membership.organization_id) {
@@ -169,26 +166,16 @@ export async function createServiceAction(data: ServiceCreateInput, locale: stri
   }
 
   // Prepare service data
-  const serviceData = {
-    ...validation.data,
-    org_id: membership.organization_id,
-    created_by: user.id,
-    verification_level: "L1" as const,
-    published: false, // Services start unpublished for review
-    // Convert coordinates if provided
-    latitude: validation.data.coordinates?.lat,
-    longitude: validation.data.coordinates?.lng,
-  }
-
-  // Remove coordinates object (we've split it into lat/lng)
-  const { coordinates: _coordinates, ...finalServiceData } = serviceData
+  const serviceData = mapCreateInputToServiceInsert(validation.data, {
+    id: crypto.randomUUID(),
+    orgId: membership.organization_id,
+    verifiedBy: user.id,
+    verificationStatus: "L1",
+    published: false,
+  })
 
   // Insert service
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for insert
-  const { data: newService, error: insertError } = await (supabase.from("services") as any)
-    .insert([finalServiceData])
-    .select()
-    .single()
+  const { data: newService, error: insertError } = await supabase.from("services").insert(serviceData).select().single()
 
   if (insertError) {
     logger.error("Service creation failed", insertError, {
@@ -248,10 +235,9 @@ export async function deleteServiceAction(serviceId: string, locale: string) {
     return { success: false, error: "Insufficient permissions to delete services" }
   }
 
-  // Use the soft_delete_service function from the database
-  // This function also checks ownership at the database level
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for RPC
-  const { data, error } = await (supabase.rpc as any)("soft_delete_service", {
+  // Use the soft_delete_service function from the database.
+  // This function also checks ownership at the database level.
+  const { data, error } = await supabase.rpc("soft_delete_service", {
     service_uuid: serviceId,
   })
 

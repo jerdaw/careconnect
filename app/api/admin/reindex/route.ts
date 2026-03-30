@@ -6,14 +6,14 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { logger } from "@/lib/logger"
 import { env } from "@/lib/env"
-import { unsafeFrom } from "@/lib/supabase"
+import type { Database } from "@/types/supabase"
 
 const execPromise = util.promisify(exec)
 
 export async function POST() {
   try {
     const cookieStore = await cookies()
-    const supabase = createServerClient(
+    const supabase = createServerClient<Database>(
       env.NEXT_PUBLIC_SUPABASE_URL || "",
       env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
@@ -38,7 +38,8 @@ export async function POST() {
       .is("deleted_at", null)
 
     // Create progress record
-    const { data: progressRecord, error: progressError } = await unsafeFrom(supabase, "reindex_progress")
+    const { data: progressRecord, error: progressError } = await supabase
+      .from("reindex_progress")
       .insert({
         total_services: totalServices || 0,
         triggered_by: user.id,
@@ -99,7 +100,7 @@ async function runReindexWithProgress(
     })
 
     // Audit Log
-    await unsafeFrom(supabase, "audit_logs").insert({
+    await supabase.from("audit_logs").insert({
       table_name: "embeddings",
       record_id: "global",
       operation: "UPDATE",

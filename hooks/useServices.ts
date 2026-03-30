@@ -116,11 +116,9 @@ export function useServices({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            query,
             category,
             hasLocation: !!userLocation,
-            resultCount: initialResults.length,
-            mode,
+            resultCount: scopedResults.length,
           }),
         }).catch((err) =>
           logger.error("Analytics tracking failed", err, { component: "useServices", action: "analytics" })

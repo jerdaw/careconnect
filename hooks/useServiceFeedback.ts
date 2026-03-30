@@ -61,7 +61,12 @@ export function useServiceFeedback(serviceId: string) {
             setError(error as unknown as Error)
           }
         } else {
-          setStats(data)
+          setStats({
+            helpful_yes_count: data.helpful_yes_count ?? 0,
+            helpful_no_count: data.helpful_no_count ?? 0,
+            open_issues_count: data.open_issues_count ?? 0,
+            last_feedback_at: data.last_feedback_at,
+          })
         }
       } catch (err) {
         setError(err instanceof Error ? err : new Error("Unknown error"))

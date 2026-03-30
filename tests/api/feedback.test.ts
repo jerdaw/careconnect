@@ -61,11 +61,15 @@ describe("Feedback API Route", () => {
     expect(json.success).toBe(true)
 
     expect(mockFrom).toHaveBeenCalledWith("feedback")
-    expect(mockInsert).toHaveBeenCalledWith({
-      service_id: "123",
-      feedback_type: "wrong_phone",
-      message: "New number is 555-0199",
-    })
+    expect(mockInsert).toHaveBeenCalledWith([
+      {
+        service_id: "123",
+        feedback_type: "issue",
+        description: "wrong_phone",
+        message: "New number is 555-0199",
+        status: "pending",
+      },
+    ])
   })
 
   it("returns 500 on database error", async () => {

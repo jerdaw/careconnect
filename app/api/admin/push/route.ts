@@ -5,6 +5,7 @@ import { cookies } from "next/headers"
 import { handleApiError, createApiResponse, createApiError, validateContentType } from "@/lib/api-utils"
 import { assertAdminRole } from "@/lib/auth/authorization"
 import { unsafeFrom } from "@/lib/supabase"
+import type { Database } from "@/types/supabase"
 
 /**
  * Build OneSignal targeting filters based on target type and custom filters
@@ -72,16 +73,20 @@ function buildOneSignalFilters(
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies()
-    const supabase = createServerClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!, {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll()
+    const supabase = createServerClient<Database>(
+      env.NEXT_PUBLIC_SUPABASE_URL!,
+      env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return cookieStore.getAll()
+          },
+          setAll() {
+            // Readonly in API route
+          },
         },
-        setAll() {
-          // Readonly in API route
-        },
-      },
-    })
+      }
+    )
 
     const {
       data: { user },
@@ -162,7 +167,7 @@ export async function POST(request: NextRequest) {
     })
 
     // 5. Log to Unified Audit Table (Phase 1.3)
-    await unsafeFrom(supabase, "audit_logs").insert({
+    await supabase.from("audit_logs").insert({
       table_name: "notifications",
       record_id: result.id,
       operation: "CREATE",

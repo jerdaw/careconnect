@@ -27,8 +27,8 @@ GitHub Actions posture:
 
 - CI runs automatically on push/PR.
 - The `Production Smoke` workflow is the manual GitHub-side public verification step.
-- Production deploys remain manual on the VPS using `scripts/deploy-vps-proof.sh`.
-- `scripts/release-vps-proof.sh` is the recommended local helper for staging a committed release onto the VPS before deployment.
+- Production deploys remain manual on the VPS using `scripts/archive/deploy-vps-proof.sh`.
+- `scripts/archive/release-vps-proof.sh` is the recommended local helper for staging a committed release onto the VPS before deployment.
 
 If you intentionally need the historical Vercel path, see the root
 [`DEPLOY.md`](../../DEPLOY.md). Do not treat that file as the production
@@ -78,8 +78,8 @@ Expected production host values:
 Important:
 
 - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` must be available at both image build time and container runtime.
-- `scripts/deploy-vps-proof.sh` is the supported path because it passes the required public values into the Docker build before the container starts.
-- `scripts/deploy-vps-proof.sh` also sets `APP_VERSION` so `/api/v1/health` can report the staged release revision even when `.git/` is not present on the VPS.
+- `scripts/archive/deploy-vps-proof.sh` is the supported path because it passes the required public values into the Docker build before the container starts.
+- `scripts/archive/deploy-vps-proof.sh` also sets `APP_VERSION` so `/api/v1/health` can report the staged release revision even when `.git/` is not present on the VPS.
 - `NEXT_PUBLIC_ONESIGNAL_APP_ID` should remain unset unless push notifications are intentionally enabled in production.
 
 Optional integrations such as `SLACK_WEBHOOK_URL`, `AXIOM_*`, `OPENAI_API_KEY`,
@@ -89,20 +89,20 @@ and `NEXT_PUBLIC_ONESIGNAL_APP_ID` may be unset if they are not in active use.
 
 - [ ] create or update a release directory under `/srv/apps/helpbridge-web/releases/`
 - [ ] point `/srv/apps/helpbridge-web/current` at the intended release
-- [ ] confirm `scripts/deploy-vps-proof.sh` exists in the staged release
+- [ ] confirm `scripts/archive/deploy-vps-proof.sh` exists in the staged release
 
 Example:
 
 ```bash
 readlink -f /srv/apps/helpbridge-web/current
-ls /srv/apps/helpbridge-web/current/scripts/deploy-vps-proof.sh
+ls /srv/apps/helpbridge-web/current/scripts/archive/deploy-vps-proof.sh
 ```
 
 From a local workstation you can stage and deploy the current committed tree in
 one step:
 
 ```bash
-./scripts/release-vps-proof.sh haadmin@your-vps --deploy
+./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy
 ```
 
 ## 5. Deploy
@@ -112,7 +112,7 @@ From the staged release on the VPS:
 ```bash
 cd /srv/apps/helpbridge-web/current
 docker buildx version
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
+./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 - [ ] `docker buildx version` succeeds or the fallback warning is understood
@@ -196,7 +196,7 @@ Example:
 ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
   /srv/apps/helpbridge-web/current
 cd /srv/apps/helpbridge-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
+./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
 ```
 
 ## References

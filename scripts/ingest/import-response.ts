@@ -19,12 +19,22 @@ const DRAFT_BASE_PATH = path.join(process.cwd(), "data/drafts/ontario")
 const { values } = parseArgs({
   args: process.argv.slice(2),
   options: {
+    help: { type: "boolean", short: "h" },
     vertical: { type: "string" },
     file: { type: "string" }, // Optional: read from file instead of stdin
   },
 })
 
 async function main() {
+  if (values.help) {
+    console.log("Usage: npm run ingest:import-response -- --vertical=<vertical> [--file=<path>]")
+    console.log("")
+    console.log(
+      "Reads AI-generated JSON from stdin or --file and saves draft service files under data/drafts/ontario/<vertical>/"
+    )
+    process.exit(0)
+  }
+
   const vertical = values.vertical
 
   if (!vertical) {

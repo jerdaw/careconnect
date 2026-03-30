@@ -10,6 +10,7 @@ Welcome! This guide will help you get up and running with the HelpBridge codebas
 - [ ] **Start Dev Server**: `npm run dev` → Open `http://localhost:3000`
 - [ ] **Run Tests**: `npm test`
 - [ ] **Type Check**: `npm run type-check` (should pass with zero errors)
+- [ ] **Reference Check**: `npm run check:refs`
 - [ ] **Read AGENTS.md**: Understand project goals, architecture, and boundaries
 
 ## Project Philosophy
@@ -70,24 +71,24 @@ helpbridge/
 
 ### Critical Files to Understand
 
-| File                                                                      | Purpose                                      |
-| ------------------------------------------------------------------------- | -------------------------------------------- |
-| **AGENTS.md**                                                             | Canonical contributor instructions           |
-| **lib/search/index.ts**                                                   | Main search engine entry point               |
-| **lib/search/scoring.ts**                                                 | Search result ranking algorithm              |
-| **app/api/v1/search/services/route.ts**                                   | Server-side search API                       |
-| **components/search/SearchInterface.tsx**                                 | Primary search UI                            |
-| **lib/auth/authorization.ts**                                             | Centralized authorization helpers            |
-| **lib/rbac.ts**                                                           | Role-based access control matrix             |
-| **types/service.ts**                                                      | Service data schema                          |
-| **middleware.ts**                                                         | Next.js middleware (auth, locale, CSP)       |
-| **lib/resilience/supabase-breaker.ts**                                    | Circuit breaker for database failures        |
-| **vitest.config.mts**                                                     | Test configuration + coverage thresholds     |
-| **docs/architecture.md**                                                  | System architecture deep-dive                |
-| **docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md** | Archived v20.0 Phase 1 execution plan        |
-| **docs/planning/roadmap.md**                                              | Product roadmap (21/38 v20.0 items complete) |
-| **docs/development/testing-guidelines.md**                                | Testing strategy and expectations            |
-| **docs/workflows/french-translation-workflow.md**                         | i18n translation process                     |
+| File                                                                      | Purpose                                   |
+| ------------------------------------------------------------------------- | ----------------------------------------- |
+| **AGENTS.md**                                                             | Canonical contributor instructions        |
+| **lib/search/index.ts**                                                   | Main search engine entry point            |
+| **lib/search/scoring.ts**                                                 | Search result ranking algorithm           |
+| **app/api/v1/search/services/route.ts**                                   | Server-side search API                    |
+| **components/search/SearchInterface.tsx**                                 | Primary search UI                         |
+| **lib/auth/authorization.ts**                                             | Centralized authorization helpers         |
+| **lib/rbac.ts**                                                           | Role-based access control matrix          |
+| **types/service.ts**                                                      | Service data schema                       |
+| **middleware.ts**                                                         | Next.js middleware (auth, locale, CSP)    |
+| **lib/resilience/supabase-breaker.ts**                                    | Circuit breaker for database failures     |
+| **vitest.config.mts**                                                     | Test configuration + coverage thresholds  |
+| **docs/architecture.md**                                                  | System architecture deep-dive             |
+| **docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md** | Archived v20.0 Phase 1 execution plan     |
+| **docs/planning/roadmap.md**                                              | Product roadmap (canonical current state) |
+| **docs/development/testing-guidelines.md**                                | Testing strategy and expectations         |
+| **docs/workflows/french-translation-workflow.md**                         | i18n translation process                  |
 
 ## Development Workflow
 
@@ -103,6 +104,7 @@ git checkout -b feature/your-feature-name
 # Run quality checks locally
 npm run type-check      # TypeScript validation
 npm run lint            # ESLint
+npm run check:refs      # Repo-local docs/script/path validation
 npm test                # Unit tests
 npm run build           # Production build validation
 ```
@@ -129,6 +131,11 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types**: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `perf`
+
+Human authorship rule:
+
+- Commits, release notes, acknowledgments, and contributor docs may list only real human contributors.
+- Do not add AI tool attribution such as `Co-authored-by` lines for Claude, Codex, Gemini, Copilot, or similar tools.
 
 **Examples**:
 

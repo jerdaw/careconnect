@@ -12,7 +12,7 @@ const CORE_FILES = [
   "development/bilingual-guide.md",
   "governance/standards.md",
   "development/hooks.md",
-  "roadmaps/roadmap.md",
+  "planning/roadmap.md",
 ]
 
 function generateLLMsTxt() {

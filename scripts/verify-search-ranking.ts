@@ -14,6 +14,13 @@
 import { fetch } from "undici"
 import { ServicePublic } from "../types/service-public"
 
+if (process.argv.includes("--help")) {
+  console.log("Usage: npm run verify:search-ranking")
+  console.log("")
+  console.log("Requires a running local app at http://localhost:3000 and validates API ranking expectations.")
+  process.exit(0)
+}
+
 interface ScoredServicePublic extends ServicePublic {
   distance?: number
 }

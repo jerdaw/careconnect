@@ -40,9 +40,9 @@ This directory contains planning and strategy documents for HelpBridge.
    - Historical record of the completed real DB integration test lane and the remaining migration-history follow-up
    - **Reading time:** 5 minutes
 
-7. **[v20.0 Supabase Migration Recovery Plan](v20-0-supabase-migration-recovery-plan.md)**
-   - Active maintenance plan for replacing the broken migration chain with a reproducible baseline and migration-only reset path
-   - **Reading time:** 10-15 minutes
+7. **[v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)**
+   - Historical record of the completed repo-maintenance batch: typed service writes, dashboard action extraction, search typing cleanup, script/reference hygiene, and dependency cleanup
+   - **Reading time:** 5-10 minutes
 
 ---
 
@@ -53,10 +53,10 @@ docs/planning/
 ├── README.md ← You are here
 ├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
-├── v20-0-supabase-migration-recovery-plan.md
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
-└── archive/2026-03-18-helpbridge-rebrand.md
+├── archive/2026-03-18-helpbridge-rebrand.md
+└── archive/2026-03-29-v20-0-repo-audit-remediation.md
 ```
 
 ---
@@ -123,7 +123,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 
 - **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
 - **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers
-- **2026-03-24:** Added active v20.0 Supabase migration recovery plan for the remaining migration-history maintenance item
+- **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
 - **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`

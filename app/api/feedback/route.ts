@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { logger } from "@/lib/logger"
+import { mapLegacyFeedbackPayload, submitFeedback } from "@/lib/feedback/server"
 
 const FeedbackSchema = z.object({
   serviceId: z.string().min(1),
@@ -20,12 +21,7 @@ export async function POST(request: Request) {
   }
 
   const supabase = await createClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- feedback table not in generated Supabase types
-  const { error } = await (supabase as any).from("feedback").insert({
-    service_id: parsed.data.serviceId,
-    feedback_type: parsed.data.feedbackType,
-    message: parsed.data.message,
-  })
+  const { error } = await submitFeedback(supabase, mapLegacyFeedbackPayload(parsed.data))
 
   if (error) {
     logger.error("Feedback submission failed", error, { component: "FeedbackAPI" })

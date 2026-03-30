@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 import { createClient } from "@/utils/supabase/client"
 import { useAuth } from "@/components/layout/AuthProvider"
 import { useToast } from "@/components/ui/use-toast"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
 import { EmptyState } from "@/components/ui/empty-state"
+import { markNotificationReadAction, markAllNotificationsReadAction } from "@/lib/actions/dashboard-notifications"
 
 interface Notification {
   id: string
@@ -21,6 +22,7 @@ interface Notification {
 
 export default function NotificationsPage() {
   const t = useTranslations("Dashboard.notifications")
+  const locale = useLocale()
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
   const { user } = useAuth()
@@ -47,15 +49,14 @@ export default function NotificationsPage() {
   }, [user, supabase])
 
   const markAsRead = async (id: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- notifications table not in generated Supabase types
-    const { error } = await (supabase.from("notifications") as any).update({ read: true }).eq("id", id)
+    const result = await markNotificationReadAction({ notificationId: id, locale })
 
-    if (!error) {
+    if (result.success) {
       setNotifications((prev: Notification[]) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)))
     } else {
       toast({
         title: t("toast.error"),
-        description: t("toast.updateFailed"),
+        description: result.error || t("toast.updateFailed"),
         variant: "destructive",
       })
     }
@@ -64,13 +65,9 @@ export default function NotificationsPage() {
   const markAllAsRead = async () => {
     if (!user) return
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- notifications table not in generated Supabase types
-    const { error } = await (supabase.from("notifications") as any)
-      .update({ read: true })
-      .eq("user_id", user.id)
-      .eq("read", false)
+    const result = await markAllNotificationsReadAction({ locale })
 
-    if (!error) {
+    if (result.success) {
       setNotifications((prev: Notification[]) => prev.map((n) => ({ ...n, read: true })))
       toast({
         title: t("toast.success"),
@@ -79,7 +76,7 @@ export default function NotificationsPage() {
     } else {
       toast({
         title: t("toast.error"),
-        description: t("toast.updateAllFailed"),
+        description: result.error || t("toast.updateAllFailed"),
         variant: "destructive",
       })
     }

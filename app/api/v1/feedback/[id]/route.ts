@@ -6,8 +6,8 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
-import { unsafeFrom } from "@/lib/supabase"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
+import type { Database } from "@/types/supabase"
 
 const UpdateStatusSchema = z.object({
   status: z.enum(["pending", "reviewed", "resolved", "dismissed"]),
@@ -27,7 +27,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     }
 
     const cookieStore = await cookies()
-    const supabaseAuth = createServerClient(
+    const supabaseAuth = createServerClient<Database>(
       env.NEXT_PUBLIC_SUPABASE_URL || "",
       env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
       {
@@ -66,11 +66,16 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
       return createApiError("Feedback not found", 404)
     }
 
+    if (!feedbackData.service_id) {
+      return createApiError("Feedback is not linked to a service", 400)
+    }
+
     await assertServiceOwnership(supabaseAuth, user.id, feedbackData.service_id)
 
     // 2. Update Status
     const { error: updateError } = await withCircuitBreaker(async () =>
-      unsafeFrom(supabaseAuth, "feedback")
+      supabaseAuth
+        .from("feedback")
         .update({
           status: status,
           resolved_at: status === "resolved" ? new Date().toISOString() : null,

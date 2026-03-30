@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { scoreServicesServer } from "@/lib/search/server-scoring"
 import { ServicePublic } from "@/types/service-public"
+import { VerificationLevel } from "@/types/service"
 
 describe("Server-Side Scoring", () => {
   // Mock basic service
@@ -9,7 +10,7 @@ describe("Server-Side Scoring", () => {
     name: "Test Service",
     description: "Test description",
     url: "https://test.com",
-    verification_status: "L1", // basic
+    verification_status: VerificationLevel.L1, // basic
     last_verified: new Date().toISOString(), // fresh
     authority_tier: "community",
     resource_indicators: {},
@@ -39,13 +40,13 @@ describe("Server-Side Scoring", () => {
   }
 
   it("should rank higher authority tiers above lower ones", () => {
-    const govService = {
+    const govService: ServicePublic = {
       ...baseService,
       id: "gov",
       authority_tier: "government",
       name: "Gov Service",
     }
-    const commService = {
+    const commService: ServicePublic = {
       ...baseService,
       id: "comm",
       authority_tier: "community",
@@ -65,7 +66,7 @@ describe("Server-Side Scoring", () => {
       id: "complete",
       phone: "555-1234",
       address: "123 Main St",
-      hours: { open: "9am" }, // just needs to be present
+      hours: { notes: "Mon-Fri 9am-5pm" }, // just needs to be present
       eligibility: "Everyone",
       application_process: "Call",
       accessibility: { wheelchair: true },

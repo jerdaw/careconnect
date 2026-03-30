@@ -7,7 +7,7 @@ import { logger } from "@/lib/logger"
 import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
-import { unsafeFrom } from "@/lib/supabase"
+import { mapCreateInputToServiceInsert } from "@/lib/service-db"
 
 /**
  * GET /api/v1/services
@@ -152,23 +152,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Add server-managed fields
-    const serviceData = {
-      ...body,
+    const serviceData = mapCreateInputToServiceInsert(body, {
       id: crypto.randomUUID(),
-      verification_level: "L0", // New services start unverified
-      provenance: {
-        verified_by: user.id,
-        verified_at: new Date().toISOString(),
-        evidence_url: body.url || "",
-        method: "partner_submission",
-      },
-      identity_tags: body.identity_tags || [],
-      synthetic_queries: [],
-    }
+      orgId: body.org_id,
+      verifiedBy: user.id,
+      verificationStatus: "L0",
+    })
 
     // Insert with circuit breaker protection
     const { data, error } = await withCircuitBreaker(async () =>
-      unsafeFrom(supabaseAuth, "services").insert(serviceData).select().single()
+      supabaseAuth.from("services").insert(serviceData).select().single()
     )
 
     if (error) {

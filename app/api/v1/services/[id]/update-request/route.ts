@@ -5,7 +5,6 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
-import { unsafeFrom } from "@/lib/supabase"
 import { ServiceUpdateSubmitSchema } from "@/types/feedback"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
 
@@ -59,9 +58,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const { field_updates, justification } = validation.data
 
     const { error } = await withCircuitBreaker(async () =>
-      unsafeFrom(supabaseAuth, "service_update_requests").insert({
+      supabaseAuth.from("service_update_requests").insert({
         service_id: serviceId,
-        requested_by: user.email,
+        requested_by: user.email ?? user.id,
         field_updates,
         justification,
         status: "pending",

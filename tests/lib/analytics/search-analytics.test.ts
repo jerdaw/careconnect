@@ -1,78 +1,65 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 
-// Hoist env vars so they are available when the module is imported
-vi.hoisted(() => {
-  process.env.NEXT_PUBLIC_SUPABASE_URL = "https://test.supabase.co"
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "test-key"
+const { mockInsert, mockFrom, mockWarn, mockGetSupabaseClient } = vi.hoisted(() => ({
+  mockInsert: vi.fn().mockResolvedValue({ error: null }),
+  mockFrom: vi.fn(),
+  mockWarn: vi.fn(),
+  mockGetSupabaseClient: vi.fn(),
+}))
+
+mockFrom.mockReturnValue({ insert: mockInsert })
+mockGetSupabaseClient.mockReturnValue({ from: mockFrom })
+
+vi.mock("@/lib/supabase", () => {
+  class MockSupabaseNotConfiguredError extends Error {
+    constructor() {
+      super("Supabase credentials not configured")
+      this.name = "SupabaseNotConfiguredError"
+    }
+  }
+
+  return {
+    getSupabaseClient: mockGetSupabaseClient,
+    SupabaseNotConfiguredError: MockSupabaseNotConfiguredError,
+  }
 })
 
-// import { createClient } from "@supabase/supabase-js"
-
-// Mock Supabase
-const { mockSupabaseInstance } = vi.hoisted(() => ({
-  mockSupabaseInstance: {
-    from: vi.fn().mockReturnThis(),
-    insert: vi.fn().mockResolvedValue({ error: null }),
+vi.mock("@/lib/logger", () => ({
+  logger: {
+    warn: mockWarn,
   },
 }))
 
-vi.mock("@supabase/supabase-js", () => ({
-  createClient: vi.fn(() => mockSupabaseInstance),
+vi.mock("@/lib/resilience/supabase-breaker", () => ({
+  withCircuitBreaker: async <T>(operation: () => Promise<T>) => operation(),
 }))
 
 import { trackSearchEvent } from "@/lib/analytics/search-analytics"
 
 describe("Search Analytics", () => {
-  let mockSupabase: any
-
   beforeEach(() => {
     vi.clearAllMocks()
-    mockSupabase = mockSupabaseInstance
-    mockSupabase.insert.mockResolvedValue({ error: null })
+    mockInsert.mockResolvedValue({ error: null })
+    mockFrom.mockReturnValue({ insert: mockInsert })
+    mockGetSupabaseClient.mockReturnValue({ from: mockFrom })
   })
 
-  it("buckets result counts correctly", async () => {
-    // 0 results
-    await trackSearchEvent({ category: "Food", resultCount: 0, hasLocation: true })
-    expect(mockSupabase.insert).toHaveBeenCalledWith(
-      expect.objectContaining({
-        result_count_bucket: "0",
-      })
-    )
-
-    // 1-5 results
-    await trackSearchEvent({ category: "Food", resultCount: 3, hasLocation: true })
-    expect(mockSupabase.insert).toHaveBeenCalledWith(
-      expect.objectContaining({
-        result_count_bucket: "1-5",
-      })
-    )
-
-    // 5+ results
+  it("stores only aggregate counts and never raw query text", async () => {
     await trackSearchEvent({ category: "Food", resultCount: 10, hasLocation: true })
-    expect(mockSupabase.insert).toHaveBeenCalledWith(
+    expect(mockFrom).toHaveBeenCalledWith("search_analytics")
+    expect(mockInsert).toHaveBeenCalledWith(
       expect.objectContaining({
-        result_count_bucket: "5+",
-      })
-    )
-  })
-
-  it("handles missing category with default", async () => {
-    await trackSearchEvent({ category: null, resultCount: 5, hasLocation: false })
-    expect(mockSupabase.insert).toHaveBeenCalledWith(
-      expect.objectContaining({
-        category: "All",
+        query: null,
+        results_count: 10,
       })
     )
   })
 
   it("handles supabase errors silently", async () => {
-    mockSupabase.insert.mockResolvedValue({ error: { message: "DB Error" } })
-    const spy = vi.spyOn(console, "warn").mockImplementation(() => {})
+    mockInsert.mockResolvedValue({ error: { message: "DB Error" } })
 
     await trackSearchEvent({ category: "Food", resultCount: 5, hasLocation: true })
 
-    expect(spy).toHaveBeenCalled()
-    spy.mockRestore()
+    expect(mockWarn).toHaveBeenCalled()
   })
 })

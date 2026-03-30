@@ -5,7 +5,8 @@ import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { env } from "@/lib/env"
-import { unsafeFrom } from "@/lib/supabase"
+import { mapServiceToDatabaseUpsert } from "@/lib/service-db"
+import type { Service } from "@/types/service"
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
     await assertAdminRole(supabase, user.id)
 
     validateContentType(req)
-    const body = (await req.json()) as { service: { id: string; name: string } }
+    const body = (await req.json()) as { service: Service }
     const { service } = body
     if (!service || !service.id) {
       return createApiError("Invalid data", 400)
@@ -41,17 +42,19 @@ export async function POST(req: NextRequest) {
 
     // 2. Transact to Supabase
     // We use upsert to create or update
-    const { error: upsertError } = await unsafeFrom(supabase, "services").upsert({
-      ...service,
-      last_verified: new Date().toISOString(),
-    })
+    const { error: upsertError } = await supabase.from("services").upsert(
+      mapServiceToDatabaseUpsert({
+        ...service,
+        last_verified: new Date().toISOString(),
+      })
+    )
 
     if (upsertError) {
       return createApiError(`Database error: ${upsertError.message}`, 500)
     }
 
     // 3. Audit Log
-    await unsafeFrom(supabase, "audit_logs").insert({
+    await supabase.from("audit_logs").insert({
       table_name: "services",
       record_id: service.id,
       operation: oldService ? "UPDATE" : "CREATE",

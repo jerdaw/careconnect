@@ -1,4 +1,26 @@
-import { ResourceIndicators } from "./service"
+import type {
+  AuthorityTier,
+  IdentityTag,
+  Provenance,
+  ResourceIndicators,
+  Service,
+  ServiceHours,
+  ServiceScope,
+} from "./service"
+import { IntentCategory, VerificationLevel } from "./service"
+
+export type ServicePublicCategory = IntentCategory | null
+export type ServicePublicVerificationStatus = VerificationLevel | null
+export type ServicePublicTags = Array<IdentityTag | string> | null
+export type ServicePublicHours = ServiceHours | null
+export type ServicePublicAccessibility = Service["accessibility"] | null
+export type ServicePublicScope = ServiceScope | null
+export type ServicePublicCoordinates = Service["coordinates"] | null
+export type ServicePublicAuthorityTier = AuthorityTier | null
+export type ServicePublicProvenance = Provenance | null
+
+export const SERVICE_PUBLIC_CATEGORIES = new Set<string>(Object.values(IntentCategory))
+export const SERVICE_PUBLIC_VERIFICATION_LEVELS = new Set<string>(Object.values(VerificationLevel))
 
 export interface ServicePublic {
   id: string
@@ -11,8 +33,7 @@ export interface ServicePublic {
   phone: string | null
   url: string | null
   email: string | null
-
-  hours: any // JSON object from DB
+  hours: ServicePublicHours
   fees: string | null
   eligibility: string | null
   eligibility_notes: string | null
@@ -20,22 +41,19 @@ export interface ServicePublic {
   application_process: string | null
   languages: string[] | null
   bus_routes: string[] | null
-
-  accessibility: Record<string, boolean> | any | null
+  accessibility: ServicePublicAccessibility
   last_verified: string | null
-  verification_status: string | null
-  category: string | null
-
-  tags: any // JSON array
-  // v11.0: Scope expansion fields
-  scope: string | null
+  verification_status: ServicePublicVerificationStatus
+  category: ServicePublicCategory
+  tags: ServicePublicTags
+  scope: ServicePublicScope
   virtual_delivery: boolean | null
   primary_phone_label: string | null
   created_at: string
-  // v16.0: Search ranking fields
   synthetic_queries?: string[] | null
   synthetic_queries_fr?: string[] | null
-  authority_tier?: string | null
-  resource_indicators?: ResourceIndicators | null // JSON object
-  coordinates?: { lat: number; lng: number } | null
+  authority_tier?: ServicePublicAuthorityTier
+  resource_indicators?: ResourceIndicators | null
+  coordinates?: ServicePublicCoordinates
+  provenance?: ServicePublicProvenance
 }

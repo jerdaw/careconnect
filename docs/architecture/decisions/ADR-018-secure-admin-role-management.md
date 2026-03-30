@@ -39,5 +39,5 @@ We have decided to move admin authorization to a dedicated, secure relational ta
 
 ## Implementation References
 
-- Migration: `supabase/migrations/20260124010000_security_fixes.sql`
-- Security cleanup task: `docs/planning/task.md` (Security Verification)
+- Migration: `supabase/migrations/20260101000000_baseline.sql`
+- Security verification reference: `docs/security/2026-01-20-v17-0-safety-audit.md`

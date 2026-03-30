@@ -79,8 +79,9 @@ jobs:
             ./docs/security/**/*.md
             ./docs/workflows/**/*.md
             ./docs/planning/roadmap.md
-            ./docs/implementation/v19*.md
+            ./docs/implementation/v20*.md
             ./docs/implementation/v22*.md
+            ./docs/implementation/v22-0-evidence/**/*.md
             ./CONTRIBUTING.md
             ./README.md
             ./AGENTS.md

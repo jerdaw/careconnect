@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
+import { IntentCategory } from "@/types/service"
 
 describe("Search Mode Utilities", () => {
   const originalEnv = process.env
@@ -23,7 +24,7 @@ describe("Search Mode Utilities", () => {
 
   describe("serverSearch", () => {
     it("fetches results from API", async () => {
-      const mockServices = [{ id: "1", name: "Service 1", category: "food" }]
+      const mockServices = [{ id: "1", name: "Service 1", category: "Food" }]
       global.fetch = vi.fn().mockResolvedValue({
         ok: true,
         json: async () => ({ data: mockServices }),
@@ -37,7 +38,7 @@ describe("Search Mode Utilities", () => {
       })
       expect(results).toHaveLength(1)
       expect(results[0]!.id).toBe("1")
-      expect(results[0]!.intent_category).toBe("food") // Mapped from 'category'
+      expect(results[0]!.intent_category).toBe(IntentCategory.Food)
     })
 
     it("throws error on fetch failure", async () => {

@@ -13,7 +13,7 @@ import {
   getResourceBoost,
 } from "./scoring"
 import { getProximityMultiplier, calculateDistanceKm } from "./geo"
-import { Service, AuthorityTier, VerificationLevel } from "@/types/service"
+import { mapServicePublicToService } from "./map-service-public"
 
 export interface ServerScoredResult {
   service: ServicePublic
@@ -39,11 +39,12 @@ export function scoreServicesServer(
   const results: ServerScoredResult[] = []
 
   for (const service of services) {
+    const mappedService = mapServicePublicToService(service)
     let score = 100 // Base score for keyword match (already filtered by DB)
     const matchReasons: string[] = ["Keyword Match"]
 
     // 1. Verification Level Multiplier
-    const verificationMultiplier = getVerificationMultiplier(service.verification_status as VerificationLevel)
+    const verificationMultiplier = getVerificationMultiplier(mappedService.verification_level)
     if (verificationMultiplier !== 1.0) {
       score *= verificationMultiplier
       const boostPercent = Math.round((verificationMultiplier - 1) * 100)
@@ -65,7 +66,7 @@ export function scoreServicesServer(
     }
 
     // 3. Authority Tier Multiplier
-    const authorityMultiplier = getAuthorityMultiplier(service.authority_tier as AuthorityTier)
+    const authorityMultiplier = getAuthorityMultiplier(mappedService.authority_tier)
     if (authorityMultiplier !== 1.0) {
       score *= authorityMultiplier
       const boostPercent = Math.round((authorityMultiplier - 1) * 100)
@@ -77,7 +78,7 @@ export function scoreServicesServer(
     }
 
     // 4. Completeness Boost (only if base match exists)
-    const completenessResult = getCompletenessBoost(service as unknown as Service)
+    const completenessResult = getCompletenessBoost(mappedService)
     if (completenessResult.boost > 0) {
       score += completenessResult.boost
       matchReasons.push(...completenessResult.reasons)
@@ -85,8 +86,8 @@ export function scoreServicesServer(
 
     // 5. Intent Targeting Boost (v16.0)
     // Uses synthetic queries from DB view
-    if (service.synthetic_queries && service.synthetic_queries.length > 0) {
-      const intentResult = getIntentTargetingBoost(service as unknown as Service, query)
+    if (mappedService.synthetic_queries.length > 0) {
+      const intentResult = getIntentTargetingBoost(mappedService, query)
       if (intentResult.boost > 0) {
         score += intentResult.boost
         matchReasons.push(...intentResult.reasons)
@@ -94,7 +95,7 @@ export function scoreServicesServer(
     }
 
     // 6. Resource Capacity Boost (v16.0)
-    const resourceResult = getResourceBoost(service as unknown as Service)
+    const resourceResult = getResourceBoost(mappedService)
     if (resourceResult.boost > 0) {
       score += resourceResult.boost
       matchReasons.push(...resourceResult.reasons)

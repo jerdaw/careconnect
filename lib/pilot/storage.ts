@@ -5,6 +5,7 @@ import { PilotReferralEvent } from "@/types/pilot-referral"
 import { IntegrationFeasibilityDecision } from "@/types/integration-feasibility"
 import { PilotScorecard } from "@/types/pilot-metrics"
 import { buildPilotScorecard } from "@/lib/observability/pilot-metrics"
+import type { Database } from "@/types/supabase"
 
 type DatabaseError = {
   code?: string
@@ -17,69 +18,65 @@ export type PilotStorageResult<T> = {
   missingTable: boolean
 }
 
+type PilotSupabaseClient = SupabaseClient<Database>
+type ContactAttemptRow = Database["public"]["Tables"]["pilot_contact_attempt_events"]["Row"]
+type ReferralRow = Database["public"]["Tables"]["pilot_referral_events"]["Row"]
+type IntegrationDecisionRow = Database["public"]["Tables"]["pilot_integration_feasibility_decisions"]["Row"]
+type SnapshotRow = Pick<Database["public"]["Tables"]["pilot_metric_snapshots"]["Row"], "metric_id" | "metric_value">
+
 function isMissingTableError(error: DatabaseError | null): boolean {
   if (!error) return false
   return error.code === "42P01" || /does not exist|relation/i.test(error.message || "")
 }
 
 export async function insertContactAttempt(
-  supabase: SupabaseClient,
+  supabase: PilotSupabaseClient,
   payload: Omit<PilotContactAttemptEvent, "id">
-): Promise<PilotStorageResult<unknown>> {
+): Promise<PilotStorageResult<ContactAttemptRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-    (supabase as any).from("pilot_contact_attempt_events").insert(payload).select().single()
+    supabase.from("pilot_contact_attempt_events").insert(payload).select().single()
   )
-  return { data, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 
 export async function insertReferralEvent(
-  supabase: SupabaseClient,
+  supabase: PilotSupabaseClient,
   payload: Omit<PilotReferralEvent, "id">
-): Promise<PilotStorageResult<unknown>> {
+): Promise<PilotStorageResult<ReferralRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-    (supabase as any).from("pilot_referral_events").insert(payload).select().single()
+    supabase.from("pilot_referral_events").insert(payload).select().single()
   )
-  return { data, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 
 export async function updateReferralEvent(
-  supabase: SupabaseClient,
+  supabase: PilotSupabaseClient,
   id: string,
   payload: Partial<PilotReferralEvent>
-): Promise<PilotStorageResult<unknown>> {
+): Promise<PilotStorageResult<ReferralRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-    (supabase as any).from("pilot_referral_events").update(payload).eq("id", id).select().single()
+    supabase.from("pilot_referral_events").update(payload).eq("id", id).select().single()
   )
-  return { data, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 
 export async function insertIntegrationDecision(
-  supabase: SupabaseClient,
+  supabase: PilotSupabaseClient,
   payload: IntegrationFeasibilityDecision
-): Promise<PilotStorageResult<unknown>> {
+): Promise<PilotStorageResult<IntegrationDecisionRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-    (supabase as any).from("pilot_integration_feasibility_decisions").insert(payload).select().single()
+    supabase.from("pilot_integration_feasibility_decisions").insert(payload).select().single()
   )
-  return { data, error, missingTable: isMissingTableError(error) }
-}
-
-type SnapshotRow = {
-  metric_id: "M1" | "M2_P50" | "M2_P75" | "M2_P90" | "M3" | "M4" | "M5" | "M6" | "M7"
-  metric_value: number | null
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 
 export async function getScorecardByCycle(
-  supabase: SupabaseClient,
+  supabase: PilotSupabaseClient,
   pilotCycleId: string,
   orgId: string
 ): Promise<PilotStorageResult<PilotScorecard>> {
   const { data, error } = await withCircuitBreaker(async () =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-    (supabase as any)
+    supabase
       .from("pilot_metric_snapshots")
       .select("metric_id, metric_value")
       .eq("pilot_cycle_id", pilotCycleId)
@@ -95,11 +92,10 @@ export async function getScorecardByCycle(
     return { data: null, error, missingTable: false }
   }
 
-  const rows = data as SnapshotRow[]
   const byMetric = new Map<SnapshotRow["metric_id"], number | null>()
 
   // Query is ordered by calculated_at DESC; keep first value per metric as latest.
-  for (const row of rows) {
+  for (const row of data) {
     if (!byMetric.has(row.metric_id)) {
       byMetric.set(row.metric_id, row.metric_value)
     }

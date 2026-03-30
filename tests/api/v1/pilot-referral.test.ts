@@ -33,12 +33,32 @@ describe("pilot referral routes", () => {
       user: { id: "user-1" } as any,
     })
     vi.mocked(insertReferralEvent).mockResolvedValue({
-      data: { id: "ref-1" },
+      data: {
+        id: "ref-1",
+        pilot_cycle_id: "v22-cycle-1",
+        source_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+        target_service_id: "svc-2",
+        referral_state: "initiated",
+        created_at: "2026-03-08T15:00:00.000Z",
+        updated_at: "2026-03-08T15:00:00.000Z",
+        terminal_at: null,
+        failure_reason_code: null,
+      },
       error: null,
       missingTable: false,
     })
     vi.mocked(updateReferralEvent).mockResolvedValue({
-      data: { id: "ref-1" },
+      data: {
+        id: "ref-1",
+        pilot_cycle_id: "v22-cycle-1",
+        source_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+        target_service_id: "svc-2",
+        referral_state: "failed",
+        created_at: "2026-03-08T15:00:00.000Z",
+        updated_at: "2026-03-08T15:10:00.000Z",
+        terminal_at: "2026-03-08T15:20:00.000Z",
+        failure_reason_code: "unknown_failure",
+      },
       error: null,
       missingTable: false,
     })

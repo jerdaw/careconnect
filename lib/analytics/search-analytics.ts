@@ -1,17 +1,6 @@
-import { unsafeFrom } from "@/lib/supabase"
+import { getSupabaseClient, SupabaseNotConfiguredError } from "@/lib/supabase"
 import { logger } from "@/lib/logger"
-import { createClient, SupabaseClient } from "@supabase/supabase-js"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
-
-// Initialize Supabase client lazily or safely
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-let supabase: SupabaseClient | null = null
-
-if (supabaseUrl && supabaseKey) {
-  supabase = createClient(supabaseUrl, supabaseKey)
-}
 
 export interface SearchEvent {
   category: string | null
@@ -24,21 +13,22 @@ export interface SearchEvent {
  * Strictly avoids logging the actual query text to protect user privacy.
  */
 export async function trackSearchEvent(event: SearchEvent) {
-  if (!supabase) {
-    logger.warn("Supabase not configured, skipping analytics")
-    return
+  let supabase
+  try {
+    supabase = getSupabaseClient()
+  } catch (error) {
+    if (error instanceof SupabaseNotConfiguredError) {
+      logger.warn("Supabase not configured, skipping analytics")
+      return
+    }
+    throw error
   }
 
   try {
-    let bucket = "5+"
-    if (event.resultCount === 0) bucket = "0"
-    else if (event.resultCount <= 5) bucket = "1-5"
-
     const { error } = await withCircuitBreaker(async () =>
-      unsafeFrom(supabase, "search_analytics").insert({
-        category: event.category || "All",
-        result_count_bucket: bucket,
-        has_location: event.hasLocation,
+      supabase.from("search_analytics").insert({
+        query: null,
+        results_count: event.resultCount,
       })
     )
 

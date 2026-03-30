@@ -194,31 +194,34 @@ Open `http://localhost:3000` to view the application.
 
 #### Development & Testing
 
-| Command                  | Description                           |
-| :----------------------- | :------------------------------------ |
-| `npm run dev`            | Start development server (Turbo)      |
-| `npm run build`          | Build for production                  |
-| `npm run start`          | Start production server               |
-| `npm test`               | Run the default Vitest suite          |
-| `npm run test:db`        | Run real DB integration tests locally |
-| `npm run test:watch`     | Vitest in watch mode                  |
-| `npm run test:coverage`  | Generate coverage report              |
-| `npm run test:e2e`       | Run E2E tests (all browsers)          |
-| `npm run test:e2e:local` | Run E2E tests (Chromium only)         |
-| `npm run test:a11y`      | Run accessibility audit (Axe-core)    |
-| `npm run type-check`     | TypeScript compiler check             |
-| `npm run lint`           | ESLint code quality check             |
-| `npm run lint:fix`       | ESLint with auto-fix                  |
-| `npm run format`         | Format code with Prettier             |
-| `npm run format:check`   | Check code formatting                 |
-| `npm run ci:check`       | Run CI validation checks              |
-| `npm run check:root`     | Check project root hygiene            |
+| Command                       | Description                                             |
+| :---------------------------- | :------------------------------------------------------ |
+| `npm run dev`                 | Start development server (Turbo)                        |
+| `npm run build`               | Build for production                                    |
+| `npm run generate-embeddings` | Regenerate local embeddings without a full build        |
+| `npm run start`               | Start production server                                 |
+| `npm test`                    | Run the default Vitest suite                            |
+| `npm run test:db`             | Run real DB integration tests locally                   |
+| `npm run db:types`            | Generate Supabase TS types from a local ephemeral stack |
+| `npm run test:watch`          | Vitest in watch mode                                    |
+| `npm run test:coverage`       | Generate coverage report                                |
+| `npm run test:e2e`            | Run E2E tests (all browsers)                            |
+| `npm run test:e2e:local`      | Run E2E tests (Chromium only)                           |
+| `npm run test:a11y`           | Run accessibility audit (Axe-core)                      |
+| `npm run type-check`          | TypeScript compiler check                               |
+| `npm run lint`                | ESLint code quality check                               |
+| `npm run lint:fix`            | ESLint with auto-fix                                    |
+| `npm run format`              | Format code with Prettier                               |
+| `npm run format:check`        | Check code formatting                                   |
+| `npm run ci:check`            | Run CI validation checks                                |
+| `npm run check:refs`          | Validate repo-local docs/script/path references         |
+| `npm run check:root`          | Check project root hygiene                              |
 
 #### Release Helpers
 
-| Command                                                    | Description                                               |
-| :--------------------------------------------------------- | :-------------------------------------------------------- |
-| `./scripts/release-vps-proof.sh haadmin@your-vps --deploy` | Stage the current committed tree on the VPS and deploy it |
+| Command                                                            | Description                                               |
+| :----------------------------------------------------------------- | :-------------------------------------------------------- |
+| `./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy` | Stage the current committed tree on the VPS and deploy it |
 
 #### Load Testing (v17.5)
 
@@ -250,6 +253,19 @@ These commands require `k6` to be installed locally and available on your `PATH`
 | `npm run bilingual-check`      | Check bilingual content coverage             |
 | `npm run i18n-audit`           | Audit i18n translation key coverage          |
 | `npm run analyze`              | Analyze production bundle size               |
+
+#### Utility Scripts
+
+| Command                                    | Description                                              |
+| :----------------------------------------- | :------------------------------------------------------- |
+| `npm run tools:search "food bank"`         | Run the local CLI search tool                            |
+| `npm run search:qa`                        | Run curated local search QA scenarios                    |
+| `npm run verify:search-ranking`            | Verify API ranking against a running local app           |
+| `npm run verify:rls`                       | Check public/private Supabase access boundaries          |
+| `npm run normalize:services -- --dry-run`  | Preview legacy schema normalization without writing data |
+| `npm run ingest:import-response -- --help` | Show draft-import CLI usage                              |
+
+`npm run db:types` requires a Docker-capable local environment because it boots the minimal local Supabase profile before generating `types/supabase.ts`.
 
 #### Data Enrichment & Translation
 

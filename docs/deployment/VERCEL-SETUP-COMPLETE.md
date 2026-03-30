@@ -119,8 +119,8 @@ Complete guide covering:
 
 ```bash
 # From helpbridge-ca directory
-./scripts/copy-vercel-config.sh ../visitbrief
-./scripts/copy-vercel-config.sh ../healtharchive
+./scripts/archive/copy-vercel-config.sh ../visitbrief
+./scripts/archive/copy-vercel-config.sh ../healtharchive
 ```
 
 Then in each repo:

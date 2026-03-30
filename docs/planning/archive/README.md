@@ -12,3 +12,7 @@ For current naming and operational guidance:
 - Use `HelpBridge` as the product name.
 - Use `https://helpbridge.ca` as the canonical public domain.
 - Prefer the active documentation outside this archive.
+
+Recent maintenance archives:
+
+- `2026-03-29-v20-0-repo-audit-remediation.md` — repo hygiene, typing, privacy, and dependency cleanup follow-through

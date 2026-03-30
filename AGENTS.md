@@ -50,6 +50,7 @@ When in doubt, **read `README.md` and `docs/**` first\*\*.
 ```bash
 npm run dev              # Start dev server with Turbo (port 3000)
 npm run build            # Production build (runs postbuild to generate embeddings)
+npm run generate-embeddings # Regenerate local embeddings without a full build
 npm run start            # Start production server
 npm run type-check       # TypeScript type checking
 npm run lint             # ESLint
@@ -57,6 +58,7 @@ npm run lint:fix         # ESLint with auto-fix
 npm run format           # Format code with Prettier
 npm run format:check     # Check code formatting without changes
 npm run ci:check         # Run CI validation checks
+npm run check:refs       # Validate repo-local docs/script/path references
 npm run check:root       # Check project root for unexpected files
 npm run analyze          # Bundle analysis
 ```
@@ -69,6 +71,7 @@ npm run test:watch       # Vitest in watch mode
 npm run test:coverage    # Generate coverage report
 npm run test:db          # Run real DB integration tests against local Supabase
 npm run test:db:smoke    # Run DB smoke/bootstrap validation only
+npm run db:types         # Generate Supabase TS types from the local ephemeral stack (Docker required)
 npm run test:e2e         # Playwright E2E tests (all browsers)
 npm run test:e2e:local   # Playwright E2E tests (Chromium only; non-blocking in CI per ADR-015)
 npx playwright test tests/e2e/search.spec.ts  # Run specific E2E test
@@ -127,6 +130,11 @@ npx cap sync ios         # Sync iOS (requires macOS)
 
 ```bash
 npm run tools:search                # CLI search tool for testing
+npm run search:qa                   # Run curated local search QA scenarios
+npm run verify:search-ranking       # Verify API ranking against a running local app
+npm run verify:rls                  # Check public/private Supabase access boundaries
+npm run normalize:services -- --dry-run  # Preview legacy service-schema normalization
+npm run ingest:import-response -- --help # Parse AI import output into draft files
 npm run bilingual-check             # Check bilingual content coverage
 npm run i18n-audit                  # Audit i18n translation keys
 node --import tsx scripts/migrate-data.ts  # Migrate local JSON to Supabase
@@ -495,10 +503,10 @@ We use a **pragmatic tiered testing strategy** that prioritizes dev velocity:
 
 **Coverage Requirements:**
 
-- `lib/search/**`: 65% statements/branches
-- `lib/ai/**`: 85% statements
+- `lib/search/**`: 90% statements, 85% branches
+- `lib/ai/**`: 65% statements
 - `lib/eligibility/**`: 95% statements
-- `hooks/**`: 85% statements
+- `hooks/**`: 75% statements
 
 **Expectations when you change code:**
 
@@ -523,6 +531,7 @@ The DB lane intentionally uses a disposable local Supabase test stack plus deter
 - Keep commit author metadata human-owned (`user.name`/`user.email` must be a real contributor)
 - Only humans may be listed as authors or contributors in commits, release notes, acknowledgments, changelogs, or other repo documentation
 - Do not add AI tool attribution in commits, docs, or code comments (no `Co-authored-by` AI identities, no generated-by-agent signatures)
+- Only real human contributors may appear as authors, co-authors, acknowledgments, release-note contributors, or document owners
 - Ensure contributor/authorship mentions in docs and changelogs list only human contributors
 - Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`
 

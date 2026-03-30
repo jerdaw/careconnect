@@ -7,7 +7,12 @@
  * user scenarios to ensure the tuning is correct.
  */
 
-import { searchServices } from "../lib/search"
+if (process.argv.includes("--help")) {
+  console.log("Usage: npm run search:qa")
+  console.log("")
+  console.log("Runs curated natural-language search scenarios against the local search engine.")
+  process.exit(0)
+}
 
 interface TestScenario {
   query: string
@@ -146,6 +151,9 @@ const SCENARIOS: TestScenario[] = [
 ]
 
 async function runTests() {
+  process.env.NODE_ENV ||= "development"
+  const { searchServices } = await import("../lib/search")
+
   console.log("🧪 Search Quality Assurance Test Suite\n")
   console.log("=".repeat(60))
 

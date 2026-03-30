@@ -27,7 +27,7 @@ function checkMobileEnvironment() {
   console.log("\n--- NOTE ---")
   console.log("Mobile App development (v15.1) is currently PAUSED pending user approval.")
   console.log("Building for mobile requires macOS (for iOS) or Android Studio (for Android).")
-  console.log("See docs/roadmaps/roadmap.md for details.")
+  console.log("See docs/planning/roadmap.md for details.")
   console.log("------------\n")
 
   // Check for Android/iOS folders

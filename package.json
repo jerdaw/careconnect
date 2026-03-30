@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cross-env FORCE_COLOR=1 next dev --turbo",
     "build": "next build",
+    "generate-embeddings": "node --import tsx scripts/generate-embeddings.ts",
     "postbuild": "node --import tsx scripts/generate-embeddings.ts",
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build",
@@ -15,11 +16,13 @@
     "format:check": "prettier --check .",
     "ci:check": "bash scripts/validate-ci.sh",
     "check:v22-gate0": "bash scripts/check-v22-gate0-exit.sh",
+    "check:refs": "node --import tsx scripts/check-references.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "test:db": "bash scripts/run-db-tests.sh",
     "test:db:smoke": "bash scripts/run-db-tests.sh tests/db/smoke.test.ts",
+    "db:types": "bash scripts/run-db-types.sh",
     "test:e2e": "playwright test",
     "test:e2e:local": "playwright test --project=chromium",
     "test:e2e:prod-local": "npm run build && node --import tsx scripts/run-playwright-with-server.ts tests/e2e/prod",
@@ -27,6 +30,11 @@
     "db:validate": "node --import tsx scripts/validate-data.ts",
     "db:verify": "node --import tsx scripts/verify-db-integrity.ts",
     "tools:search": "node --import tsx scripts/search-cli.ts",
+    "search:qa": "node --import tsx scripts/search-qa.ts",
+    "verify:search-ranking": "node --import tsx scripts/verify-search-ranking.ts",
+    "verify:rls": "node --import tsx scripts/verify-rls.ts",
+    "normalize:services": "node --import tsx scripts/normalize-services.ts",
+    "ingest:import-response": "node --import tsx scripts/ingest/import-response.ts",
     "prepare": "husky",
     "bilingual-check": "node --import tsx scripts/bilingual-audit.ts",
     "audit:qa": "node --import tsx scripts/qa-audit.ts",
@@ -73,7 +81,22 @@
     "react": "$react",
     "react-dom": "$react-dom",
     "tar": "^7.5.7",
-    "serialize-javascript": ">=7.0.3"
+    "serialize-javascript": ">=7.0.3",
+    "@parcel/watcher": {
+      "picomatch": "4.0.4"
+    },
+    "@rollup/pluginutils@3.1.0": {
+      "picomatch": "2.3.2"
+    },
+    "micromatch": {
+      "picomatch": "2.3.2"
+    },
+    "minimatch@3.1.5": {
+      "brace-expansion": "1.1.13"
+    },
+    "minimatch@5.1.9": {
+      "brace-expansion": "2.0.3"
+    }
   },
   "dependencies": {
     "@axiomhq/js": "1.4.0",
@@ -140,7 +163,7 @@
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
     "@google/generative-ai": "^0.24.1",
-    "@next/eslint-plugin-next": "15.1.6",
+    "@next/eslint-plugin-next": "15.5.14",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.5",
     "@testing-library/jest-dom": "^6.1.4",
@@ -157,15 +180,15 @@
     "@vitest/ui": "^3.2.4",
     "cross-env": "^7.0.3",
     "dotenv": "^17.2.3",
-    "eslint": "^9.26.0",
-    "eslint-config-next": "15.1.6",
+    "eslint": "9.39.4",
+    "eslint-config-next": "15.5.14",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "husky": "^9.1.7",
     "inquirer": "^13.1.0",
     "jsdom": "^26.1.0",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "16.4.0",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.1",
     "prettier": "3.8.0",
@@ -185,7 +208,7 @@
   "packageManager": "npm@10.0.0",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "next lint --fix --file",
+      "eslint --fix",
       "vitest related --run"
     ],
     "*.{json,md,css}": [

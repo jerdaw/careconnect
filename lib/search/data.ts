@@ -4,6 +4,7 @@ import { env } from "@/lib/env"
 import { trackPerformance } from "@/lib/performance/tracker"
 import { withCircuitBreaker, isSupabaseAvailable } from "@/lib/resilience/supabase-breaker"
 import { logger } from "@/lib/logger"
+import { mapServiceRowToService } from "@/lib/service-db"
 
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
@@ -77,32 +78,13 @@ export const loadServices = async (): Promise<Service[]> => {
         const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
 
         const mappedData: Service[] = result.data
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase row inference limitation
-          .map((row: any) => {
-            // Find static metadata from services.json to overlay (AI metadata)
-            const staticService = fallbackServices.find((s) => s.id === row.id)
+          .map((row) => {
+            const staticService = fallbackServices.find((service) => service.id === row.id)
 
-            return {
-              ...row,
-              // Parse embedding if it's a string, or keep if array, or use fallback
-              embedding:
-                (typeof row.embedding === "string" ? JSON.parse(row.embedding) : row.embedding) ||
-                fallbackEmbeddings[row.id],
-              // Cast jsonb fields
-              identity_tags: typeof row.tags === "string" ? JSON.parse(row.tags) : row.tags,
-              intent_category: row.category, // Map DB column back to TS property
-              verification_level: row.verification_status,
-              // Overlay rich metadata if missing in DB
-              synthetic_queries: staticService?.synthetic_queries || [],
-              // If tags are missing in DB, use static
-              ...(!row.tags && staticService?.identity_tags ? { identity_tags: staticService.identity_tags } : {}),
-
-              // Ensure boolean flags are present
-              // Ensure boolean flags are present
-              is_provincial: row.is_provincial || false,
-              published: row.published !== false,
-              deleted_at: row.deleted_at,
-            }
+            return mapServiceRowToService(row, {
+              staticService,
+              fallbackEmbedding: fallbackEmbeddings[row.id],
+            })
           })
           .filter((s) => !s.deleted_at) // Filter soft deletes
 

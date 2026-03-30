@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { createClient } from "@/utils/supabase/client"
 import { useAuth } from "@/components/layout/AuthProvider"
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,8 @@ import { Loader2, Save, Shield, Bell, Users } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { MemberManagement } from "@/components/dashboard/MemberManagement"
 import { DashboardPageHeader } from "@/components/dashboard/DashboardPageHeader"
+import type { Database } from "@/types/supabase"
+import { updateOrganizationAction, upsertOrganizationSettingsAction } from "@/lib/actions/dashboard-settings"
 
 interface OrgData {
   id: string
@@ -33,6 +35,7 @@ interface OrgSettings {
 
 export default function SettingsPage() {
   const t = useTranslations("Dashboard.settings")
+  const locale = useLocale()
   const { user } = useAuth()
   const supabase = createClient()
   const { toast } = useToast()
@@ -72,14 +75,13 @@ export default function SettingsPage() {
           .single()
 
         if (settingsData) {
-          const data = settingsData as unknown as OrgSettings
           setSettings({
-            website: data.website,
-            phone: data.phone,
-            description: data.description,
-            email_on_feedback: data.email_on_feedback ?? true,
-            email_on_service_update: data.email_on_service_update ?? true,
-            weekly_analytics_report: data.weekly_analytics_report ?? false,
+            website: settingsData.website,
+            phone: settingsData.phone,
+            description: settingsData.description,
+            email_on_feedback: settingsData.email_on_feedback ?? true,
+            email_on_service_update: settingsData.email_on_service_update ?? true,
+            weekly_analytics_report: settingsData.weekly_analytics_report ?? false,
           })
         }
       }
@@ -94,18 +96,17 @@ export default function SettingsPage() {
     if (!org) return
 
     setSaving(true)
-    const { error } = await (
-      supabase
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- organizations table not in generated Supabase types
-        .from("organizations") as any
-    )
-      .update({ name: org.name, domain: org.domain })
-      .eq("id", org.id)
+    const result = await updateOrganizationAction({
+      organizationId: org.id,
+      locale,
+      name: org.name,
+      domain: org.domain,
+    })
 
-    if (error) {
+    if (!result.success) {
       toast({
         title: t("toast.errorTitle"),
-        description: t("toast.updateOrganizationFailed"),
+        description: result.error || t("toast.updateOrganizationFailed"),
         variant: "destructive",
       })
     } else {
@@ -122,21 +123,27 @@ export default function SettingsPage() {
 
     setSaving(true)
 
-    // Upsert settings (insert or update)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- organization_settings table not in generated Supabase types
-    const { error } = await (supabase.from("organization_settings") as any).upsert(
-      {
-        organization_id: org.id,
-        ...settings,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "organization_id" }
-    )
+    const payload: Database["public"]["Tables"]["organization_settings"]["Insert"] = {
+      organization_id: org.id,
+      ...settings,
+      updated_at: new Date().toISOString(),
+    }
 
-    if (error) {
+    const result = await upsertOrganizationSettingsAction({
+      organizationId: payload.organization_id,
+      locale,
+      website: payload.website,
+      phone: payload.phone,
+      description: payload.description,
+      email_on_feedback: payload.email_on_feedback ?? true,
+      email_on_service_update: payload.email_on_service_update ?? true,
+      weekly_analytics_report: payload.weekly_analytics_report ?? false,
+    })
+
+    if (!result.success) {
       toast({
         title: t("toast.errorTitle"),
-        description: t("toast.updateSettingsFailed"),
+        description: result.error || t("toast.updateSettingsFailed"),
         variant: "destructive",
       })
     } else {

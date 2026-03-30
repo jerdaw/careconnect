@@ -184,7 +184,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       if (validation.valid) {
         console.log("✅ Validation passed")
         console.log("\n📌 NEXT STEP: Merge this batch into the main database:")
-        console.log(`   npm run merge-ai-enrichment -- ${batchPath}`)
+        console.log(`   npx tsx scripts/merge-ai-enrichment.ts ${batchPath}`)
       } else {
         console.error("❌ Validation errors:")
         validation.errors.forEach((err) => console.error(`  - ${err}`))

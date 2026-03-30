@@ -14,9 +14,7 @@ import { ThumbsUp, AlertTriangle } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/utils/supabase/client"
 import { logger } from "@/lib/logger"
-import { unsafeFrom } from "@/lib/supabase"
-
-type ServiceRow = Database["public"]["Tables"]["services"]["Row"]
+import { mapServiceRowToService } from "@/lib/service-db"
 
 function FeedbackStats({ serviceId }: { serviceId: string }) {
   const { stats, helpfulPercentage, totalVotes, loading } = useServiceFeedback(serviceId)
@@ -60,17 +58,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
       const { data, error } = await supabase.from("services").select("*").eq("id", pageId).single()
 
       if (data) {
-        const serviceRow = data as ServiceRow
-
-        // Map to Service type (similar to search.ts logic)
-        const mappedData = {
-          ...serviceRow,
-          embedding: typeof serviceRow.embedding === "string" ? JSON.parse(serviceRow.embedding) : serviceRow.embedding,
-          identity_tags: typeof serviceRow.tags === "string" ? JSON.parse(serviceRow.tags) : serviceRow.tags,
-          intent_category: serviceRow.category,
-          verification_level: serviceRow.verification_status,
-        } as unknown as Service
-        setService(mappedData)
+        setService(mapServiceRowToService(data))
       } else if (error) {
         logger.error("Error fetching service", { error })
         // Handle 404 or permission error
@@ -102,9 +90,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
       bus_routes: formData.bus_routes ? formData.bus_routes.split(",").map((s) => s.trim()) : [],
     }
 
-    // Generated browser client types currently resolve this update payload to `never`.
-    // Keep the payload strongly typed above and narrow only at the call site.
-    const { error } = await unsafeFrom(supabase, "services").update(updates).eq("id", id)
+    const { error } = await supabase.from("services").update(updates).eq("id", id)
 
     if (error) {
       throw new Error(error.message)

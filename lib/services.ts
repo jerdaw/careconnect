@@ -1,7 +1,8 @@
-import { supabase, unsafeFrom } from "./supabase"
+import { supabase } from "./supabase"
 import { logger } from "./logger"
 import { Provenance, Service, VerificationLevel } from "@/types/service"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { mapServiceToDatabaseUpdate } from "@/lib/service-db"
 
 let staticServicesPromise: Promise<Service[]> | null = null
 
@@ -67,7 +68,8 @@ export async function claimService(serviceId: string, orgId: string) {
   try {
     const { error } = await withCircuitBreaker(
       async () =>
-        unsafeFrom(supabase, "services")
+        supabase
+          .from("services")
           .update({
             org_id: orgId,
             verification_status: "L1", // Elevate to L1 upon claiming
@@ -146,24 +148,13 @@ export async function getServiceById(id: string): Promise<Service | null> {
  */
 export async function updateService(id: string, updates: Partial<Service>) {
   try {
+    const databaseUpdates = mapServiceToDatabaseUpdate({
+      ...updates,
+      last_verified: new Date().toISOString(),
+    })
+
     const { error } = await withCircuitBreaker(async () =>
-      unsafeFrom(supabase, "services")
-        .update({
-          name: updates.name,
-          description: updates.description,
-          address: updates.address,
-          phone: updates.phone,
-          url: updates.url,
-          email: updates.email,
-          hours: typeof updates.hours === "object" ? JSON.stringify(updates.hours) : updates.hours,
-          fees: updates.fees,
-          eligibility: updates.eligibility_notes, // Note: DB uses 'eligibility' for 'eligibility_notes' in JSON mappings sometimes
-          application_process: updates.application_process,
-          category: updates.intent_category,
-          tags: updates.identity_tags,
-          last_verified: new Date().toISOString(),
-        })
-        .eq("id", id)
+      supabase.from("services").update(databaseUpdates).eq("id", id)
     )
 
     if (error) {

@@ -26,7 +26,7 @@ jobs:
               title: `📞 Monthly Crisis Service Verification - ${month}`,
               body: `## Crisis Service Verification Checklist
 
-            Per the [Governance Protocol](docs/governance.md), crisis services must be verified **monthly**.
+            Per the [Governance Protocol](docs/governance/standards.md), crisis services must be verified **monthly**.
 
             ### Services to Verify
 

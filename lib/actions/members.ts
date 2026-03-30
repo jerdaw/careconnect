@@ -157,9 +157,9 @@ export async function changeMemberRole(
   }
 
   // Update the role
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation
-  const { error: updateError } = await (supabase.from("organization_members") as any)
-    .update({ role: newRole })
+  const { error: updateError } = await supabase
+    .from("organization_members")
+    .update({ role: newRole as OrganizationRole })
     .eq("id", memberId)
 
   if (updateError) {
@@ -349,8 +349,7 @@ export async function transferOwnership(
   }
 
   // Use atomic database function for transfer
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase type inference limitation for RPC
-  const { data, error } = await (supabase.rpc as any)("transfer_ownership", {
+  const { data, error } = await supabase.rpc("transfer_ownership", {
     p_org_id: userMembership.organization_id,
     p_current_owner_id: user.id,
     p_new_owner_id: newOwnerId,
