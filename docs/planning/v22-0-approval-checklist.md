@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-03-09
+last_updated: 2026-03-29
 owner: jer
 tags: [roadmap, v22.0, approvals, gate-0, governance]
 ---
@@ -77,7 +77,7 @@ Current outcome: **GO (Step 1 sign-off complete; conditional integration control
 
 > [!WARNING]
 > **Step 1 `GO` is not Gate 0 exit approval.**
-> Gate 0 exit status is currently **NO-GO** until C1/C2 control closure and remaining operational readiness blockers are resolved in the Gate 0 evidence tracker.
+> Gate 0 exit status is currently **NO-GO** until C1 control closure and the remaining operational readiness blockers are resolved in the Gate 0 evidence tracker.
 
 ## Technical Prerequisites Completed (2026-03-09)
 

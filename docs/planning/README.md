@@ -9,7 +9,7 @@ This directory contains planning and strategy documents for HelpBridge.
 
 ## Active Planning: v22.0
 
-**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/C2/D4 closure)
+**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete)
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
@@ -93,7 +93,7 @@ Pilot cost remains bounded by existing infrastructure and partner participation 
 
 Current dependencies:
 
-- Gate 0 blocker closure (`C1`, `C2`, `D4`)
+- Gate 0 blocker closure (`C1`, `D4`)
 - Baseline evidence already published
 - Integration feasibility decision already recorded in conditional mode
 - Offline/local threat-model completion already recorded
@@ -104,11 +104,10 @@ Current dependencies:
 
 ### Option 1: Close Gate 0
 
-Use the active roadmap and Gate 0 tracker to close the three blocking items:
+Use the active roadmap and Gate 0 tracker to close the remaining blocking items:
 
 1. Attach candidate partner legal/API terms for C1 review
-2. Approve retention/deletion policy and attach privacy sign-off for C2
-3. Attach named pilot partner and outreach execution evidence for D4
+2. Attach named pilot partner and outreach execution evidence for D4
 
 ### Option 2: Ask Questions
 
@@ -123,6 +122,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 ## Document Updates
 
 - **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
+- **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers
 - **2026-03-24:** Added active v20.0 Supabase migration recovery plan for the remaining migration-history maintenance item
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive

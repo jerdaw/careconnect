@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-29
 owner: jer
 tags: [implementation, v22.0, gate-0, checklist, governance]
 ---
@@ -31,7 +31,7 @@ Related:
 | G0-1     | Step 1 approvals D1-D7 locked                      | pass                                           | [v22.0 Approval Checklist](../planning/v22-0-approval-checklist.md)                               | Locked on 2026-03-09                                              |
 | G0-2     | Baseline M1/M3 execution completed and recorded    | pass                                           | [v22.0 Phase 0 Baseline Report (2026-03-09)](v22-0-phase-0-baseline-report-2026-03-09.md)         | Values are `NULL` due zero denominator in baseline window         |
 | G0-3     | C1 legal clause review complete                    | pending                                        | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                 | Candidate partner terms not yet attached for clause-level closure |
-| G0-4     | C2 retention mapping approved (windows + deletion) | pending                                        | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | Policy lock and sign-off pending                                  |
+| G0-4     | C2 retention mapping approved (windows + deletion) | pass                                           | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | Policy approved and dated verification evidence attached          |
 | G0-5     | C3 activation guard in force                       | pass                                           | [v22.0 Control C3 Integration Activation Guard](v22-0-control-c3-integration-activation-guard.md) | External integration remains blocked                              |
 | G0-6     | External claim revalidation closed                 | pass                                           | [v22.0 External-Claim Re-Validation Log](v22-0-external-claim-revalidation-log.md)                | All claims resolved (validated/rejected)                          |
 | G0-7     | Threat model has zero unresolved critical findings | pass                                           | [v22.0 Offline/Local Data Threat Model](../security/v22-0-offline-local-threat-model.md)          | Critical findings resolved                                        |
@@ -39,12 +39,12 @@ Related:
 
 ## Decision
 
-| Field                   | Value            |
-| ----------------------- | ---------------- |
-| Gate 0 Exit Decision    | **NO-GO**        |
-| Decision Date           | 2026-03-09       |
-| Blocking Checks         | G0-3, G0-4, G0-8 |
-| Earliest Re-Review Date | 2026-03-21       |
+| Field                   | Value      |
+| ----------------------- | ---------- |
+| Gate 0 Exit Decision    | **NO-GO**  |
+| Decision Date           | 2026-03-09 |
+| Blocking Checks         | G0-3, G0-8 |
+| Earliest Re-Review Date | 2026-03-21 |
 
 ## Required Sign-Off
 

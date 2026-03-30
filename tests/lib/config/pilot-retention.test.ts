@@ -14,9 +14,9 @@ describe("pilot retention policy", () => {
     expect(fields.sort()).toEqual([...PILOT_INTEGRATION_RETENTION_FIELDS].sort())
   })
 
-  it("keeps the proposed policy in draft mode until human sign-off", () => {
-    expect(PILOT_INTEGRATION_RETENTION_POLICY.status).toBe("PROPOSED")
-    expect(PILOT_INTEGRATION_RETENTION_POLICY.version).toBe("2026-03-24-draft-1")
+  it("records the approved policy version after human sign-off", () => {
+    expect(PILOT_INTEGRATION_RETENTION_POLICY.status).toBe("APPROVED")
+    expect(PILOT_INTEGRATION_RETENTION_POLICY.version).toBe("2026-03-29-approved-1")
   })
 
   it("assigns bounded retention windows and deletion triggers to every field", () => {
@@ -32,8 +32,8 @@ describe("pilot retention policy", () => {
 
   it("reports full policy coverage with no missing fields", () => {
     expect(getPilotIntegrationRetentionCoverageSummary()).toEqual({
-      status: "PROPOSED",
-      version: "2026-03-24-draft-1",
+      status: "APPROVED",
+      version: "2026-03-29-approved-1",
       coveredFieldCount: 6,
       totalFieldCount: 6,
       missingFields: [],

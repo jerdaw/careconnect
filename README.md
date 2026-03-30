@@ -20,9 +20,9 @@ We maintain a hand-verified dataset of the **196 highest-impact services** avail
 
 ## Current Version
 
-**v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-03-24)
+**v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-03-29)
 
-Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`), retention/privacy sign-off (`C2`), and partner-ops execution evidence (`D4`) are closed. See [docs/planning/roadmap.md](docs/planning/roadmap.md) for the canonical project state.
+Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) and partner-ops execution evidence (`D4`) are closed. The retention/privacy control (`C2`) is complete. See [docs/planning/roadmap.md](docs/planning/roadmap.md) for the canonical project state.
 
 ## Deployment Status
 

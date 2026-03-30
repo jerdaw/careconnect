@@ -1,19 +1,19 @@
 ---
-status: draft
-last_updated: 2026-03-24
+status: stable
+last_updated: 2026-03-29
 owner: jer
 tags: [implementation, v22.0, privacy, retention, proposal]
 ---
 
 # v22.0 C2 Retention Policy Proposal
 
-This document converts the previously pending C2 retention table into a concrete draft policy artifact.
+This document records the approved C2 retention policy artifact for the integration-feasibility payload.
 
 Status:
 
-1. Policy draft is prepared in-repo.
-2. Privacy sign-off is still required before C2 can be marked `complete`.
-3. Gate 0 remains `NO-GO` until sign-off and verification evidence are attached.
+1. Policy is approved as written on 2026-03-29.
+2. Privacy sign-off is captured in the dated C2 submission bundle.
+3. Gate 0 remains `NO-GO` until dated verification evidence is attached and the remaining non-C2 blockers are closed.
 
 Code-backed source of truth:
 
@@ -21,7 +21,7 @@ Code-backed source of truth:
 2. `types/pilot-retention.ts`
 3. `tests/lib/config/pilot-retention.test.ts`
 
-## Proposed Policy
+## Approved Policy
 
 Recommended default for all allowed fields in `pilot_integration_feasibility_decisions`:
 
@@ -38,7 +38,7 @@ Rationale:
 
 ## Field Coverage
 
-| Field                       | Proposed Retention Window | Deletion Trigger(s)             | Executor                  | Notes                                                            |
+| Field                       | Approved Retention Window | Deletion Trigger(s)             | Executor                  | Notes                                                            |
 | --------------------------- | ------------------------- | ------------------------------- | ------------------------- | ---------------------------------------------------------------- |
 | `decision`                  | 365 days                  | time-based; decision-superseded | manual governance runbook | Keep long enough to support pilot and post-pilot audit review    |
 | `decision_date`             | 365 days                  | time-based; decision-superseded | manual governance runbook | Required for dated audit traceability                            |
@@ -47,20 +47,17 @@ Rationale:
 | `compensating_controls[]`   | 365 days                  | time-based; decision-superseded | manual governance runbook | Applies only to conditional decisions                            |
 | `owners[]`                  | 365 days                  | time-based; decision-superseded | manual governance runbook | Internal owner labels should expire with the underlying decision |
 
-## Remaining Human Inputs
+## Remaining Execution Input
 
-The following still require human review or execution:
+The following still requires execution:
 
-1. Confirm that `365 days` is the approved retention window.
-2. Confirm that manual deletion via documented runbook is acceptable until automation is explicitly approved.
-3. Attach privacy sign-off memo with reviewer, date, and decision.
-4. Attach actual verification evidence produced from the deletion runbook.
+1. Attach actual read-only verification evidence produced from the deletion runbook.
 
 ## Sign-Off Block
 
 Privacy reviewer:
 
-- Name:
-- Date:
-- Decision: approved | approved_with_conditions | rejected
-- Notes:
+- Name: jer
+- Date: 2026-03-29
+- Decision: approved
+- Notes: Approved as written with no policy changes; use the existing manual governance runbook until a later automation decision is explicitly documented.

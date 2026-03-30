@@ -8,11 +8,13 @@ All notable changes to this project will be documented in this file.
 
 - Gate 0 evidence workspace scaffolding for C1 legal review, C2 retention sign-off, and D4 partner-ops execution bundles
 - Draft C2 retention policy proposal, deletion verification runbook, and typed retention-policy config with tests
+- Dated C2 evidence submission capturing approval, privacy sign-off, and read-only verification output
 
 ### Changed
 
 - Updated active contributor docs to treat `AGENTS.md` as canonical with `CLAUDE.md` and `GEMINI.md` as compatibility symlinks
 - Refreshed roadmap language to reflect completed autonomous Gate 0 prep work and current CI free-tier testing posture
+- Approved the C2 retention policy, updated the code-backed retention status to `APPROVED`, and synced Gate 0 trackers so only C1 and D4 remain blocking
 
 ## [0.17.5] - 2026-01-25
 

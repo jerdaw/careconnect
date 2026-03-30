@@ -6,9 +6,9 @@ import {
 } from "@/types/pilot-retention"
 
 export const PILOT_INTEGRATION_RETENTION_POLICY: PilotIntegrationRetentionPolicy = {
-  status: "PROPOSED",
-  version: "2026-03-24-draft-1",
-  lastReviewed: "2026-03-24",
+  status: "APPROVED",
+  version: "2026-03-29-approved-1",
+  lastReviewed: "2026-03-29",
   rules: [
     {
       field: "decision",

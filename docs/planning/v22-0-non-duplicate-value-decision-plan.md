@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-29
 owner: jer
 tags: [roadmap, v22.0, strategy, decision-framework, pilot]
 phase_0_status: in_progress
@@ -71,18 +71,17 @@ Completed technical foundation:
 
 Still required before Gate 0 exit:
 
-1. Complete conditional integration controls C1/C2/C3 before any external integration activation.
+1. Complete the remaining conditional integration control C1 before any external integration activation.
 
 ## Gate 0 Exit Readiness (Current)
 
-- Current readiness: **NO-GO** (as of 2026-03-09)
+- Current readiness: **NO-GO** (as of 2026-03-29)
 
 Blocking items:
 
 1. C1 legal closure is pending candidate partner terms for clause-level review.
-2. C2 privacy retention closure is pending approved retention windows and deletion procedure.
-3. Partner-operation evidence for D4 (named partner list + outreach owner execution) is pending.
-4. Baseline report is complete, but M1/M3 are `NULL` in the current window due to zero observed events.
+2. Partner-operation evidence for D4 (named partner list + outreach owner execution) is pending.
+3. Baseline report is complete, but M1/M3 are `NULL` in the current window due to zero observed events.
 
 Canonical gate decision control:
 

@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-09
+last_updated: 2026-03-29
 owner: jer
 tags: [implementation, v22.0, phase-0, instrumentation, governance]
 ---
@@ -38,7 +38,7 @@ Completed:
 
 Remaining:
 
-1. Complete conditional integration controls C1-C3 before external activation.
+1. Complete the remaining conditional integration control C1 before external activation.
 
 Gate decision control:
 

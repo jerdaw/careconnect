@@ -1,8 +1,8 @@
 # HelpBridge: Product Roadmap
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
-> **Next Milestone**: v22.0 Gate 0 Exit (C1/C2/D4 blocker closure)
-> **Last Updated**: 2026-03-26
+> **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
+> **Last Updated**: 2026-03-29
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -33,7 +33,7 @@ The active question is whether the project can prove non-duplicate value relativ
 
 ## What To Do Now
 
-1. Close v22.0 Gate 0 blockers in strict order: C1 legal review, C2 privacy retention approval, D4 partner operations evidence.
+1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
 2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
 3. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
@@ -66,21 +66,19 @@ HelpBridge is being repositioned from possible directory duplication toward meas
 1. Pilot DB schema, RLS policies, internal pilot APIs, and pilot tests are implemented.
 2. Step 1 approval locks are complete.
 3. Gate 0 evidence scaffolding is in repo.
-4. Draft C2 retention and deletion policy artifacts now exist in repo.
-5. Gate 0 remains `NO-GO` because external evidence and sign-off are incomplete.
+4. C2 retention policy approval, privacy sign-off, and dated verification evidence are complete.
+5. Gate 0 remains `NO-GO` because C1 legal evidence and D4 partner-ops evidence are still incomplete.
 
 **Immediate blockers**
 
 1. `G0-3 / C1`: candidate partner legal/API terms are not yet attached for clause-level review.
-2. `G0-4 / C2`: retention windows and deletion procedure exist in draft form, but approval, privacy sign-off, and dated verification evidence are missing.
-3. `G0-8 / D4`: named pilot partner list, outreach ownership, and dated execution evidence are missing.
-4. Baseline execution is recorded, but current M1/M3 values are `NULL` because the baseline window had zero events.
+2. `G0-8 / D4`: named pilot partner list, outreach ownership, and dated execution evidence are missing.
+3. Baseline execution is recorded, but current M1/M3 values are `NULL` because the baseline window had zero events.
 
 **Required user-owned actions**
 
 1. `UA-1`: attach candidate partner legal/API terms and complete clause-level C1 review.
-2. `UA-2`: approve field-level retention windows, attach privacy sign-off, and execute deletion verification evidence.
-3. `UA-3`: attach named pilot partner list, outreach owner assignment, and dated outreach execution evidence.
+2. `UA-3`: attach named pilot partner list, outreach owner assignment, and dated outreach execution evidence.
 
 **Agent follow-through once evidence exists**
 
@@ -176,6 +174,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
 - **Code quality remediation (2026-03-26)**: 0 npm audit vulnerabilities, console→logger migration, component reorganization, schemas rename, ESLint strictness for lib/, file cleanup.
 - **Premium Dark Mode (2026-03-25)**: Redesigned dark theme with high-contrast Slate-950 base, pure white text, and structured elevation.
 - **v20.0 migration recovery (2026-03-18)**: 41-file migration chain collapsed into a single reproducible baseline + 3 forward migrations, test infrastructure unified on migration-linked bootstrap.

@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-24
+last_updated: 2026-03-29
 owner: jer
 tags: [implementation, v22.0, integration, redlines, gate-0]
 ---
@@ -57,7 +57,7 @@ All must be marked `pass` for outcome `go`.
 | Control ID | Status (`pending` \| `complete`) | Evidence Link                                                                                     | Last Reviewed |
 | ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------- | ------------- |
 | C1         | pending                          | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                 | 2026-03-09    |
-| C2         | pending                          | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | 2026-03-24    |
+| C2         | complete                         | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | 2026-03-29    |
 | C3         | complete                         | [v22.0 Control C3 Integration Activation Guard](v22-0-control-c3-integration-activation-guard.md) | 2026-03-09    |
 
 ## Blocked-Path Contingency (Required if Blocked)
