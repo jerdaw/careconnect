@@ -12177,5 +12177,43 @@
     "plain_language_available": false,
     "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)",
     "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
+  },
+  {
+    "id": "211-mock-1",
+    "name": "Kingston Youth Shelter (Mock)",
+    "description": "Emergency shelter for youth ages 16-24.",
+    "phone": "613-555-0199",
+    "url": "https://youthshelter.mock",
+    "address": "234 Brock St, Kingston K7K 1A1",
+    "verification_level": "L2",
+    "intent_category": "Housing",
+    "provenance": {
+      "verified_by": "211 Ontario API",
+      "verified_at": "2026-03-31T04:47:24.047Z",
+      "evidence_url": "https://211ontario.ca",
+      "method": "Automated Sync"
+    },
+    "synthetic_queries": [],
+    "identity_tags": [],
+    "last_verified": "2026-03-31T04:47:24.047Z"
+  },
+  {
+    "id": "211-mock-2",
+    "name": "Senior Food Delivery (Mock)",
+    "description": "Meals on wheels for seniors 65+.",
+    "phone": "613-555-0200",
+    "url": "https://seniormeals.mock",
+    "address": "100 Princess St, Kingston K7L 1A1",
+    "verification_level": "L2",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "211 Ontario API",
+      "verified_at": "2026-03-31T04:47:24.047Z",
+      "evidence_url": "https://211ontario.ca",
+      "method": "Automated Sync"
+    },
+    "synthetic_queries": [],
+    "identity_tags": [],
+    "last_verified": "2026-03-31T04:47:24.047Z"
   }
 ]
