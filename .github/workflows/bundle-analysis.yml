@@ -35,7 +35,7 @@ jobs:
         run: node scripts/report-bundle-size.js
 
       - name: Upload bundle analysis
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: bundle-analysis
           path: |
@@ -45,7 +45,7 @@ jobs:
           retention-days: 30
 
       - name: Download baseline bundle analysis
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v11
         if: github.event_name == 'pull_request'
         continue-on-error: true
         with:

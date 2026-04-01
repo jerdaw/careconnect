@@ -2,7 +2,7 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-03-30
+> **Last Updated**: 2026-04-01
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -23,6 +23,7 @@
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
 - **Deployment**: Live on the direct-VPS path at `https://helpbridge.ca`
 - **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
+- **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
   - Coordinates: 70.4% complete (58/196 missing)
   - Email: 17.9% complete (161/196 missing)
@@ -116,7 +117,6 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-5. Audit the remaining GitHub Actions Node 24 warnings before the 2026 runner cutoff, especially `actions/setup-python@v5`, `actions/upload-artifact@v4`, and `actions/create-release@v1`.
 
 ## On Hold
 
@@ -167,7 +167,6 @@ Deferred items:
 2. Search AI metadata migration out of JSON
 3. Admin-facing data quality dashboard
 4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
-5. Clear remaining GitHub Actions Node.js 20 runtime deprecation warnings from third-party actions used in CI/docs workflows
 
 References:
 
@@ -181,6 +180,7 @@ References:
 ### Recent Completed Milestones
 
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
+- **Workflow/runtime cleanup and 211 sync quarantine (2026-04-01)**: upgraded the remaining Node-runtime-sensitive GitHub Actions, replaced archived release creation with `gh`, removed placeholder 211 sync records, and restricted the 211 sync path to explicit manual execution only.
 - **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.
 - **Repo audit remediation (2026-03-29)**: completed the typed service-write cleanup, feedback/dashboard action consolidation, member-management split, privacy-safe analytics hardening, reference validation, and dependency/script hygiene follow-through.
 - **Dashboard trust, resilience, and locale hardening (2026-03-30)**: replaced placeholder partner metrics with live 30-day summaries, added deterministic degraded states for impact/analytics/feedback pages, localized observability/admin surfaces, and tightened focused i18n duplicate-English enforcement.
@@ -202,6 +202,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 
 - [Planning Archive](archive/)
 - [v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)
+- [v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)
 - [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
 - [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
 - [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)

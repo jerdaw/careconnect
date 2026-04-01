@@ -48,6 +48,10 @@ This directory contains planning and strategy documents for HelpBridge.
    - Historical record of the completed audit-driven hardening wave: privacy/governance fixes, org-scoped service creation, CSV import repair, lazy AI/search loading, and workflow cleanup
    - **Reading time:** 5-10 minutes
 
+9. **[v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)**
+   - Historical record of the completed maintenance wave that quarantined the experimental 211 sync path and closed the remaining GitHub Actions runtime follow-up
+   - **Reading time:** 5 minutes
+
 ---
 
 ## Document Navigation
@@ -59,6 +63,7 @@ docs/planning/
 ├── archive/ (completed version plans)
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
+├── archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md
 ├── archive/2026-03-18-helpbridge-rebrand.md
 ├── archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md
 └── archive/2026-03-29-v20-0-repo-audit-remediation.md
@@ -130,6 +135,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers
 - **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
 - **2026-03-30:** Added the v20.0 runtime hardening and performance remediation archive and refreshed roadmap baseline metrics after the audit-driven maintenance wave
+- **2026-04-01:** Added the v20.0 workflow runtime cleanup and 211 sync quarantine archive after closing the remaining Node-runtime workflow follow-up
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
 - **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`

@@ -2,16 +2,34 @@
 import { fetch211Services } from "../lib/external/211-client"
 import { readFileSync, writeFileSync, existsSync } from "fs"
 import path from "path"
+import { pathToFileURL } from "node:url"
 import type { Service } from "../types/service"
+import { logger } from "../lib/logger"
 
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
 
-async function main() {
-  console.log("🔄 Fetching services from 211 Ontario...")
+type Sync211Env = Partial<Pick<NodeJS.ProcessEnv, "ALLOW_211_SYNC" | "API_211_KEY">>
+
+export function assert211SyncEnabled(env?: Sync211Env): void {
+  const runtimeEnv = env ?? process.env
+
+  if (runtimeEnv.ALLOW_211_SYNC !== "1") {
+    throw new Error("211 sync is quarantined. Set ALLOW_211_SYNC=1 for an explicit manual run.")
+  }
+
+  if (!runtimeEnv.API_211_KEY) {
+    throw new Error("Missing API_211_KEY for manual 211 sync.")
+  }
+}
+
+export async function main(env?: Sync211Env) {
+  assert211SyncEnabled(env)
+
+  logger.info("Fetching services from 211 Ontario", { component: "scripts/sync-211" })
   const newServices = await fetch211Services()
 
   if (newServices.length === 0) {
-    console.log("⚠️ No services fetched (or error occurred).")
+    logger.warn("No services fetched from 211 Ontario", { component: "scripts/sync-211" })
     return
   }
 
@@ -22,18 +40,22 @@ async function main() {
 
   const existingIds = new Set(existing.map((s: Service) => s.id))
 
-  // Only add new services, don't overwrite existing ones to preserve manual edits/tags
-  // In a real system, we might want a merge strategy (e.g., update phone numbers but keep tags)
+  // Preserve manual edits and tags by appending only previously unseen records.
   const toAdd = newServices.filter((s) => !existingIds.has(s.id))
 
   if (toAdd.length === 0) {
-    console.log("✅ No new services to add.")
+    logger.info("No new 211 services to add", { component: "scripts/sync-211" })
     return
   }
 
   const merged = [...existing, ...toAdd]
   writeFileSync(SERVICES_PATH, JSON.stringify(merged, null, 2))
-  console.log(`✅ Added ${toAdd.length} new services.`)
+  logger.info("Added new 211 services", { component: "scripts/sync-211", addedCount: toAdd.length })
 }
 
-main().catch(console.error)
+if (process.argv[1] !== undefined && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) {
+  main().catch((error) => {
+    logger.error("211 sync failed", error, { component: "scripts/sync-211" })
+    process.exitCode = 1
+  })
+}

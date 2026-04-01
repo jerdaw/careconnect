@@ -46,6 +46,11 @@ EOF
   export PATH="$HB_DOCKER_SHIM_DIR:$PATH"
 }
 
+hb_can_use_docker() {
+  hb_ensure_docker_command >/dev/null 2>&1 || return 1
+  docker info >/dev/null 2>&1
+}
+
 hb_require_commands() {
   local cmd
   for cmd in "$@"; do

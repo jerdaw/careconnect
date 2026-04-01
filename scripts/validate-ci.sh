@@ -73,13 +73,13 @@ elif [[ "${RUN_DB_LOCAL:-auto}" == "false" ]]; then
   echo "⏭️ Skipping DB integration tests locally (RUN_DB_LOCAL=false)."
   echo "ℹ️ Run 'npm run test:db' on a Docker + psql machine when changing DB/auth lanes."
   echo ""
-elif hb_ensure_docker_command >/dev/null 2>&1 && command -v psql >/dev/null 2>&1; then
+elif hb_can_use_docker >/dev/null 2>&1 && command -v psql >/dev/null 2>&1; then
   echo "🗄️ Running DB integration tests..."
   npm run test:db
   echo "✅ DB integration tests passed"
   echo ""
 else
-  echo "⏭️ Skipping DB integration tests locally (Docker and/or psql unavailable)."
+  echo "⏭️ Skipping DB integration tests locally (Docker daemon and/or psql unavailable)."
   echo "ℹ️ Run 'npm run test:db' on a Docker + psql machine, or rely on GitHub CI for this lane."
   echo ""
 fi

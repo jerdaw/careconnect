@@ -53,18 +53,16 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.version.outputs.tag }}
-          release_name: Release ${{ steps.version.outputs.tag }}
-          body: ${{ steps.notes.outputs.body }}
-          draft: false
-          prerelease: false
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --verify-tag \
+            --title "Release ${{ steps.version.outputs.tag }}" \
+            --notes-file release-notes.md
 
       - name: Upload release notes artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release-notes-${{ steps.version.outputs.version }}
           path: release-notes.md

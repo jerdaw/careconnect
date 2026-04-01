@@ -18,6 +18,10 @@ All notable changes to this project will be documented in this file.
 - Hardened service creation, provenance handling, Slack links, CSV import parsing, and trust rendering based on the March audit findings
 - Deferred global AI and semantic search startup until user intent, cutting the localized home-route first-load bundle down to roughly 315 kB
 - Repaired the noisy scheduled workflow drift in `Sync 211 Ontario Data` and `Production Smoke`, and made local `ci:check` degrade gracefully when DB prerequisites are unavailable
+- Quarantined the 211 sync path to explicit manual runs, removed mock fallback ingestion, and removed placeholder synced records from `data/services.json`
+- Updated the remaining docs/release workflow actions for Node 24 readiness and replaced the archived release action with `gh release create`
+- Fixed local `ci:check` so the DB lane now skips cleanly when Docker exists but the daemon is unreachable
+- Pinned `@xmldom/xmldom` to a safe transitive version to clear the Capacitor CLI audit advisory
 
 ## [0.17.5] - 2026-01-25
 

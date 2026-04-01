@@ -13,35 +13,9 @@ interface Raw211Service {
   taxonomy: { code: string; name: string }[]
 }
 
-// Mock data for when API key is missing
-const MOCK_DATA: Raw211Service[] = [
-  {
-    id: "mock-1",
-    name: "Kingston Youth Shelter (Mock)",
-    description: "Emergency shelter for youth ages 16-24.",
-    address: { street: "234 Brock St", city: "Kingston", postal: "K7K 1A1" },
-    phone: "613-555-0199",
-    url: "https://youthshelter.mock",
-    taxonomy: [{ code: "BH-1800", name: "Homeless Shelter" }],
-  },
-  {
-    id: "mock-2",
-    name: "Senior Food Delivery (Mock)",
-    description: "Meals on wheels for seniors 65+.",
-    address: { street: "100 Princess St", city: "Kingston", postal: "K7L 1A1" },
-    phone: "613-555-0200",
-    url: "https://seniormeals.mock",
-    taxonomy: [{ code: "BD-1800", name: "Food Delivery" }],
-  },
-]
-
 export async function fetch211Services(region: string = "Kingston"): Promise<Service[]> {
-  // If no API key, return mock data to prevent errors during development/testing
   if (!process.env.API_211_KEY) {
-    logger.warn("No API_211_KEY found, using mock data")
-    // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    return MOCK_DATA.map(mapToService)
+    throw new Error("Missing API_211_KEY for manual 211 sync")
   }
 
   try {
@@ -56,7 +30,7 @@ export async function fetch211Services(region: string = "Kingston"): Promise<Ser
     return raw.map(mapToService)
   } catch (error) {
     logger.error("Failed to fetch from 211", error)
-    return []
+    throw error
   }
 }
 

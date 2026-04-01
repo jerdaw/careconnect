@@ -1,9 +1,12 @@
 name: Sync 211 Ontario Data
 
 on:
-  schedule:
-    - cron: "0 4 * * *" # 4 AM UTC daily
   workflow_dispatch:
+    inputs:
+      confirm_live_sync:
+        description: "Confirm this manual run is allowed to modify data/services.json using real 211 data."
+        required: true
+        type: boolean
 
 permissions:
   contents: write
@@ -20,8 +23,16 @@ jobs:
 
       - run: npm ci
 
+      - name: Confirm manual sync approval
+        run: |
+          if [ "${{ github.event.inputs.confirm_live_sync }}" != "true" ]; then
+            echo "::error::Manual confirmation is required to run the 211 sync."
+            exit 1
+          fi
+
       - run: npx tsx scripts/sync-211.ts
         env:
+          ALLOW_211_SYNC: "1"
           API_211_KEY: ${{ secrets.API_211_KEY }}
 
       - uses: stefanzweifel/git-auto-commit-action@v7
