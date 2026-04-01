@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-24
+last_updated: 2026-04-01
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, intake]
 ---
@@ -22,6 +22,7 @@ Rules:
 2. Evidence must be dated and attributable (owner/reviewer).
 3. No fabricated evidence or inferred closure is allowed.
 4. Canonical drop locations for new submissions live under [v22.0 Gate 0 Evidence Workspace](v22-0-evidence/README.md).
+5. Prefer dated filenames so later gate reviews can trace the exact evidence bundle used.
 
 ## Intake Template: UA-1 / G0-3 (C1 Legal)
 
@@ -50,6 +51,18 @@ Reviewer:
 Suggested drop location:
 
 1. [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)
+
+Suggested dated artifacts:
+
+1. `C1-YYYYMMDD-submission.md`
+2. `C1-YYYYMMDD-clause-matrix.md`
+3. `C1-YYYYMMDD-artifact-inventory.md`
+4. Raw source artifacts (PDF, HTML export, or markdown notes) used for the review
+
+Supporting templates:
+
+1. [C1 Submission Template](v22-0-evidence/c1-partner-terms/SUBMISSION_TEMPLATE.md)
+2. [C1 Clause Matrix Template](v22-0-evidence/c1-partner-terms/CLAUSE_MATRIX_TEMPLATE.md)
 
 Minimum evidence checks:
 
@@ -126,6 +139,20 @@ Coverage note:
 Suggested drop location:
 
 1. [v22.0 Evidence Workspace / D4](v22-0-evidence/d4-partner-ops/README.md)
+
+Suggested dated artifacts:
+
+1. `D4-YYYYMMDD-submission.md`
+2. `D4-YYYYMMDD-partner-list.md`
+3. `D4-YYYYMMDD-outreach-log.csv`
+4. `D4-YYYYMMDD-coverage-note.md`
+5. Any dated screenshots, email exports, or CRM notes used as supporting evidence
+
+Supporting templates:
+
+1. [D4 Submission Template](v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md)
+2. [D4 Partner List Template](v22-0-evidence/d4-partner-ops/PARTNER_LIST_TEMPLATE.md)
+3. [D4 Outreach Log Template](v22-0-evidence/d4-partner-ops/OUTREACH_LOG_TEMPLATE.csv)
 
 Minimum evidence checks:
 
