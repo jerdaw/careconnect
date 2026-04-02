@@ -53,14 +53,17 @@ This directory contains planning and strategy documents for HelpBridge.
    - **Reading time:** 5 minutes
 
 10. **[v21.0 Admissions Portfolio & External Validation Plan](v21-admissions-portfolio-plan.md)**
-   - Fully triaged admissions / external-validation backlog, ordered by current strategic value
-   - Read this only after the main roadmap so the v22 gate-first constraints stay clear
-   - **Reading time:** 10-15 minutes
+
+- Fully triaged admissions / external-validation backlog, ordered by current strategic value
+- Read this only after the main roadmap so the v22 gate-first constraints stay clear
+- **Reading time:** 10-15 minutes
 
 11. **[v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)**
-   - Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
-   - Use this when you need a concise historical record of what landed on 2026-04-01
-   - **Reading time:** 5-10 minutes
+
+- Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
+- Use this when you need a concise historical record of what landed on 2026-04-01
+- **Reading time:** 5-10 minutes
+
 ---
 
 ## Document Navigation

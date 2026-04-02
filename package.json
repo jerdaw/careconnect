@@ -146,7 +146,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
     "idb": "^8.0.3",
-    "lodash": "^4.17.21",
+    "lodash": "4.18.1",
     "lucide-react": "0.562.0",
     "next": "^15.5.9",
     "next-intl": "4.7.0",
