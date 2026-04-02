@@ -1,7 +1,7 @@
 # Production Deployment Checklist
 
 **Version:** 2.0
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-04-01
 **Maintained By:** Jeremy Dawson
 
 ---
@@ -30,8 +30,8 @@ GitHub Actions posture:
 - Production deploys remain manual on the VPS using `scripts/archive/deploy-vps-proof.sh`.
 - `scripts/archive/release-vps-proof.sh` is the recommended local helper for staging a committed release onto the VPS before deployment.
 
-If you intentionally need the historical Vercel path, see the root
-[`DEPLOY.md`](../../DEPLOY.md). Do not treat that file as the production
+If you intentionally need the historical Vercel path, see
+[`legacy-vercel.md`](legacy-vercel.md). Do not treat that file as the production
 baseline.
 
 ## 1. Local Verification
@@ -202,5 +202,5 @@ cd /srv/apps/helpbridge-web/current
 ## References
 
 - [`docs/deployment/direct-vps-proof.md`](direct-vps-proof.md)
-- [`DEPLOY.md`](../../DEPLOY.md)
+- [`legacy-vercel.md`](legacy-vercel.md)
 - [`docs/api/openapi.yaml`](../api/openapi.yaml)

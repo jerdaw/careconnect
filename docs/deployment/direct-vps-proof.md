@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-03-11
+last_updated: 2026-04-01
 owner: jer
 tags: [deployment, vps, docker, caddy, production, supabase, rls]
 ---
@@ -31,7 +31,7 @@ Important naming note:
 1. the public product/domain identity is `HelpBridge` / `helpbridge.ca`,
 2. the live VPS runtime identifiers are `helpbridge-web`.
 
-This is the active production path. The root [DEPLOY.md](../../DEPLOY.md) file remains a **legacy Vercel guide** only.
+This is the active production path. The historical Vercel path remains documented in [legacy-vercel.md](legacy-vercel.md) only.
 
 ## Runtime Shape
 

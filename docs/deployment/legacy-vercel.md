@@ -1,4 +1,4 @@
-# Deployment Guide: HelpBridge (Legacy Vercel Path)
+# Legacy Vercel Deployment Guide
 
 > Status: Legacy deployment guide.
 >
@@ -8,14 +8,14 @@
 
 Current production work should use the active direct-VPS path documented in:
 
-1. [`docs/deployment/direct-vps-proof.md`](docs/deployment/direct-vps-proof.md)
-2. [`docs/deployment/production-checklist.md`](docs/deployment/production-checklist.md)
+1. [`direct-vps-proof.md`](direct-vps-proof.md)
+2. [`production-checklist.md`](production-checklist.md)
 
 The direct-VPS public cutover completed successfully on 2026-03-11. The app is
 now live at `https://helpbridge.ca`, with `www.helpbridge.ca` redirecting to
 the apex and the container bound privately at `127.0.0.1:3300`.
 
-This document describes the older **Vercel** deployment path.
+This document records the older **Vercel** deployment path.
 
 ## 1. Prerequisites
 

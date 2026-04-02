@@ -39,7 +39,6 @@ const REPO_ROOT_FILES = [
   "CHANGELOG.md",
   "CLAUDE.md",
   "CONTRIBUTING.md",
-  "DEPLOY.md",
   "Dockerfile",
   "GEMINI.md",
   "LICENSE",

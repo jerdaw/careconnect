@@ -16,8 +16,6 @@ ALLOWED_FILES=(
   "CONTRIBUTING.md"
   "SECURITY.md"
   "LICENSE"
-  "DEPLOY.md"
-
   "CLAUDE.md"
   "GEMINI.md"
   "AGENTS.md"

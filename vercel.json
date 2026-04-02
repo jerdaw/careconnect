@@ -30,5 +30,5 @@
     "silent": true,
     "autoJobCancelation": true
   },
-  "ignoreCommand": "bash scripts/vercel-ignore-build.sh"
+  "ignoreCommand": "bash scripts/archive/vercel-ignore-build.sh"
 }

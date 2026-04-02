@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-04-01
 owner: jer
 tags: [governance, documentation, guidelines]
 ---
@@ -98,5 +98,5 @@ This project separates **backlog** vs **implementation plans** vs **canonical do
 - **Descriptive Filenames**: Use `runbook`, `checklist`, `guidelines`. Avoid vague names.
 - **Roadmaps**: Put active plans in `docs/planning/`.
 - **Archive**: Put completed plans in `docs/planning/archive/`.
-- **Deployment**: `DEPLOY.md` (Root) or `docs/deployment/` (Future).
+- **Deployment**: `docs/deployment/` for deployment-specific guides and checklists.
 - **Development**: `AGENTS.md` (Root), `docs/development/bilingual-guide.md` (Multi-lingual guide), or `docs/development/` (Future).
