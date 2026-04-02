@@ -7,10 +7,10 @@
 
 ## Current State
 
-- **Services**: 196 manually curated social services (verified 2026-02-11)
-- **Tests**: default Vitest suite green as of 2026-03-30 (`159` files; `1178` passed; `24` skipped)
+- **Services**: 198 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-01)
+- **Tests**: default Vitest suite green as of 2026-04-01 (`164` files; `1244` passed; `24` skipped)
 - **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
-- **Coverage**: `72.37%` statements / `79.31%` branches / `83.04%` functions / `72.37%` lines from `npm run test:coverage` on 2026-03-30
+- **Coverage**: `72.07%` statements / `78.73%` branches / `83.28%` functions / `72.07%` lines from `npm run test:coverage` on 2026-04-01
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -18,6 +18,8 @@
 - **Accessibility**: WCAG 2.1 AA automation remains in place
 - **Languages**: 7 locales at translation-key parity
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
+- **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
+- **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback and background sync
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
@@ -25,10 +27,13 @@
 - **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
-  - Coordinates: 70.4% complete (58/196 missing)
-  - Email: 17.9% complete (161/196 missing)
-  - Identity tags: 44.4% complete (109/196 missing)
-  - French synthetic queries: 36.2% complete (125/196 missing)
+  - Scope: 2 missing
+  - Coordinates (any): 60 missing
+  - Coordinates (required): 18 missing
+  - Kingston missing address: 17
+  - Access scripts: 2 missing
+  - Structured hours (active services): 12 missing
+  - Hours text (active services): 12 missing
 
 ## Decision Summary
 
@@ -40,14 +45,16 @@ The active question is whether the project can prove non-duplicate value relativ
 
 1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
 2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
-3. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+3. If pulling forward any admissions backlog work, treat `A3`, `A11`, and `A22` as complete; only `A1` and bounded `A6` / `A16` remain valid near-term Tier 0 execution.
+4. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## What Not To Do Now
 
 1. Do not expand directory breadth to compete with 211.
 2. Do not start new pilot-facing features before Gate 0 evidence is accepted.
 3. Do not restart v19 launch execution while v22 remains `NO-GO`.
-4. Do not pull forward parked enrichment or portfolio work unless it directly supports the active gate.
+4. Do not pull forward Tier 1-4 admissions packaging work before real pilot evidence exists.
+5. Do not pull forward parked enrichment or portfolio work unless it directly supports the active gate.
 
 ## Active Work
 
@@ -117,6 +124,8 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
+5. Audit the remaining GitHub Actions Node 24 warnings before the 2026 runner cutoff, especially `actions/setup-python@v5`, `actions/upload-artifact@v4`, and `actions/create-release@v1`.
+6. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
 
 ## On Hold
 
@@ -142,7 +151,37 @@ The launch-prep stream is intentionally paused. The repo-local automation is alr
 
 ### v21.0: Admissions Portfolio & Launch Narrative ⏸️ PARKED
 
-**Status**: Parked until after v22 Gate 1
+**Status**: Parked until after v22 Gate 0 / Gate 1 evidence, but fully re-triaged on 2026-04-01
+
+This backlog is now explicitly sorted by admissions value under the current v22 constraints. The sequencing rule is:
+
+1. Close v22 blockers first.
+2. Then create real pilot evidence.
+3. Then package that evidence for admissions and external audiences.
+
+**Allowed now only if they directly support v22**
+
+1. Close Gate 0 partner/legal evidence (`UA-1`, `UA-3`).
+2. Run bounded verification and pilot-scope data-quality work when it improves pilot readiness.
+3. Preserve the completed Tier 0 hardening bundle as baseline capability, not as a reason to pull forward packaging work.
+
+**First work after Gate 0 exit**
+
+1. Run a small real-world pilot in one actual referral workflow.
+2. Formalize the 211 boundary/handoff, run crisis-safety validation, and conduct professional usability sessions.
+3. Build partner/referrer collateral, begin L3 outreach, and recruit the first advisory reviewers.
+
+**First proof artifacts after live pilot activity starts**
+
+1. Publish a baseline-to-pilot scorecard and decision memo.
+2. Secure factual support letters and first L3 confirmations.
+3. Publish transparency and status surfaces, plus drill/accessibility/equity evidence.
+
+**Later packaging work**
+
+1. External privacy/AI review.
+2. Leadership/collaboration visibility updates.
+3. Presentations, poster/case-study, and other dissemination artifacts.
 
 This work remains strategically useful, but it depends on real operational evidence. Keep it parked until the v22 pilot produces something defensible to package.
 
@@ -179,6 +218,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Tier 0 admissions-support hardening (2026-04-01)**: completed A3 pilot metric instrumentation, A11 public-claim hardening, A22 focused pilot/privacy test coverage, and bounded A6/A16 readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
 - **Workflow/runtime cleanup and 211 sync quarantine (2026-04-01)**: upgraded the remaining Node-runtime-sensitive GitHub Actions, replaced archived release creation with `gh`, removed placeholder 211 sync records, and restricted the 211 sync path to explicit manual execution only.
 - **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.
@@ -201,6 +241,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)
 - [v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)
 - [v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)
 - [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
@@ -223,7 +264,8 @@ Update this roadmap when any of the following happen:
 2. Gate 0 moves from `NO-GO` to `GO`, or is re-affirmed as `NO-GO`.
 3. v19 resumes or is explicitly deferred further.
 4. A major data-quality, testing, or deployment baseline changes.
-5. A new strategic version becomes active.
+5. v21 tier sequencing changes or a new admissions evidence artifact materially changes what is worth prioritizing.
+6. A new strategic version becomes active.
 
 ## Operating Rule
 

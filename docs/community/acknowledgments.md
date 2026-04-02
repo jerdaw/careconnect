@@ -1,23 +1,19 @@
 # Acknowledgments and Governance
 
-HelpBridge is a community-led initiative driven by the collaboration of local organizations, developers, and advisors. We gratefully acknowledge the following contributors.
+HelpBridge is an independent, community-oriented project shaped by manual curation, public reference sources, and ongoing feedback. This page lists stewardship details and source acknowledgments that can currently be confirmed publicly.
 
-## Advisory Board (Interim)
+## Advisory Board Status
 
-We are currently forming a permanent advisory board. Current strategic guidance is provided by representatives from:
+HelpBridge has an advisory board charter, but the board is still being formed. Until members are confirmed and consent to be named publicly, this page does not list individual advisors or imply formal representation.
 
-- **211 Ontario**: Data standards and verification protocols.
-- **Kingston Community Health Centres**: Accessibility and health equity (consultation).
-- **City of Kingston**: Municipal open data initiatives.
+## Project Stewardship
 
-## Development Team
-
-- **Lead Engineer**: [Your Name/GitHub]
-- **Community Maintainers**: [List Maintainers]
+- **Project Lead**: HelpBridge project lead
+- **Maintainer Information**: Published here once confirmed for public listing
 
 ## Data Sources
 
-Our "Kingston 150" dataset is hand-verified, but built upon the foundation of public data provided by:
+Our "Kingston 150" dataset is manually curated and verification-led, but built upon the foundation of public data provided by:
 
 - **211 Ontario / Findhelp Information Services**: For maintaining the provincial standard of social service formatting.
 - **OpenStreetMap**: For geocoding and mapping support.
@@ -25,9 +21,8 @@ Our "Kingston 150" dataset is hand-verified, but built upon the foundation of pu
 ## Special Thanks
 
 - **Next.js Community**: For the robust framework that powers this application.
-- **Vercel**: For infrastructure support.
 - **Supabase**: For database hosting and security features.
 
 ---
 
-> To propose an addition to this list or join our advisory board, please contact [partners@helpbridge.ca](mailto:partners@helpbridge.ca).
+> To propose an addition to this list or express interest in future advisory participation, please contact [partners@helpbridge.ca](mailto:partners@helpbridge.ca).

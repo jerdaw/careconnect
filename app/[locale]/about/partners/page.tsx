@@ -12,30 +12,29 @@ import { ShieldCheck, CheckCircle, ExternalLink } from "lucide-react"
 export default function PartnersPage() {
   const t = useTranslations("PartnersPage")
 
-  // Placeholder data for partners - in a real app these would be logos
-  const partners = [
+  const referenceOrganizations = [
     {
       name: "211 Ontario",
       url: "https://211ontario.ca",
-      description: "Primary data source for provincial social services.",
+      description: "Provincial social service directory and referral system.",
       logo: "/partners/211-ontario.svg",
     },
     {
       name: "City of Kingston",
       url: "https://www.cityofkingston.ca",
-      description: "Municipal housing and social support programs.",
+      description: "Municipal service and program reference.",
       logo: "/partners/city-of-kingston.svg",
     },
     {
       name: "United Way KFL&A",
       url: "https://www.unitedwaykfla.ca",
-      description: "Community funding and verified impact data.",
+      description: "Local community organization and funding ecosystem reference.",
       logo: "/partners/united-way-kfla.svg",
     },
     {
       name: "Kingston Community Health Centres",
       url: "https://kchc.ca",
-      description: "Health and wellness resource verification.",
+      description: "Local health and community services reference.",
       logo: "/partners/kchc.svg",
     },
   ]
@@ -61,7 +60,7 @@ export default function PartnersPage() {
         {/* Partners Grid */}
         <Section className="py-12">
           <div className="grid gap-6 md:grid-cols-2">
-            {partners.map((partner, idx) => (
+            {referenceOrganizations.map((partner, idx) => (
               <a
                 key={idx}
                 href={partner.url}
@@ -73,18 +72,18 @@ export default function PartnersPage() {
                   <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-white p-1 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700">
                       <Image
-                        src={partner.logo} // Using dynamic partner.logo
-                        alt={t("logoAlt", { name: partner.name })} // Using dynamic partner.name
-                        width={48} // Adjusted to fit h-12 w-12 parent (12 * 4 = 48px)
-                        height={48} // Adjusted to fit h-12 w-12 parent
-                        className="h-full w-full object-contain" // Kept original styling for fitting
+                        src={partner.logo}
+                        alt={t("logoAlt", { name: partner.name })}
+                        width={48}
+                        height={48}
+                        className="h-full w-full object-contain"
                       />
                     </div>
                     <div>
                       <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-lg font-bold text-neutral-900 dark:text-white">
                         {partner.name}
                       </h3>
-                      <p className="text-sm text-neutral-500 dark:text-neutral-400">Verified Source</p>
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400">{t("referenceLabel")}</p>
                     </div>
                   </div>
                   <ExternalLink className="h-5 w-5 text-neutral-400 transition-colors group-hover:text-neutral-600 dark:text-neutral-500 dark:group-hover:text-neutral-300" />

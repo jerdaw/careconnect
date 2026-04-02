@@ -982,27 +982,28 @@
     "cta": {
       "title": "Prêt à trouver de l'aide ?",
       "search": "Explorer les services",
-      "partners": "Nos partenaires"
+      "partners": "Voir les sources de référence"
     }
   },
   "PartnersPage": {
     "hero": {
       "title": "Construit sur des sources fiables",
-      "subtitle": "HelpBridge s'appuie sur des données vérifiées provenant de partenaires communautaires établis. Nous ne grattons pas le web; nous collaborons."
+      "subtitle": "HelpBridge utilise des sources de référence publiques et communautaires pour soutenir la curation et la vérification manuelles. Les partenariats formels sont indiqués séparément lorsqu'ils sont confirmés."
     },
     "verification": {
-      "title": "Notre processus de vérification",
-      "step1": "Vérification de la source",
-      "step2": "Revue manuelle",
+      "title": "Comment la revue des sources fonctionne",
+      "step1": "Revue des sources",
+      "step2": "Vérification manuelle",
       "step3": "Audits mensuels",
-      "description": "Chaque fiche de service subit un processus de vérification rigoureux en 3 étapes pour garantir l'exactitude et la sécurité."
+      "description": "HelpBridge examine les sources de référence publiques, applique une vérification manuelle et poursuit des audits périodiques pour les fiches actives."
     },
     "cta": {
-      "title": "Devenir partenaire",
-      "subtitle": "Êtes-vous un fournisseur de services ? Rejoignez notre réseau pour atteindre plus de personnes.",
+      "title": "Suggérer un service ou une source",
+      "subtitle": "Êtes-vous un fournisseur de services ou un organisme communautaire ? Envoyez-nous une correction, une source ou une suggestion de service à examiner.",
       "button": "Suggérer un service"
     },
-    "logoAlt": "Logo de {name}"
+    "logoAlt": "Logo de {name}",
+    "referenceLabel": "Organisation de référence"
   },
   "Partners": {
     "link": "Pour les partenaires"
@@ -1522,9 +1523,9 @@
     },
     "partnerCta": {
       "title": "Votre organisation est-elle répertoriée ?",
-      "description": "Si vous fournissez des services sociaux à Kingston et souhaitez vous assurer que vos informations sont exactes, vous pouvez suggérer une mise à jour ou en savoir plus sur le partenariat.",
+      "description": "Si vous fournissez des services sociaux à Kingston et souhaitez vous assurer que vos informations sont exactes, vous pouvez suggérer une mise à jour ou consulter la manière dont HelpBridge traite la revue des sources et des fiches.",
       "suggestButton": "Suggérer un service",
-      "learnMoreButton": "En savoir plus sur le partenariat"
+      "learnMoreButton": "Comment les fiches sont revues"
     },
     "hero": {
       "subtitle": "Trouvez nourriture, logement, soutien en cas de crise et plus de 190 services vérifiés à Kingston — en toute confidentialité, en 7 langues."

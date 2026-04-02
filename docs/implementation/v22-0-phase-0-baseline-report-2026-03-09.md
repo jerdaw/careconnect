@@ -7,6 +7,12 @@ tags: [implementation, v22.0, phase-0, metrics, baseline-report]
 
 # v22.0 Phase 0 Baseline Report (2026-03-09)
 
+Historical note:
+
+1. This report captures the 2026-03-09 pre-instrumentation baseline run.
+2. M2/M4/M5/M6/M7 were `N/A` at that time because the extended metric-source schema had not yet been added.
+3. Current metric computability is documented in the newer baseline definitions and query-spec documents.
+
 This report is the first Gate 0 baseline artifact using minimum-mode metric coverage.
 
 Related:

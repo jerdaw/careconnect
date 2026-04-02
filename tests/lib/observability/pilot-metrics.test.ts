@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import {
+  computePilotMetricSnapshots,
   computeFailedContactRate,
   computeReferralCompletionCaptureRate,
   buildPilotScorecard,
@@ -112,5 +113,108 @@ describe("pilot-metrics", () => {
     const zeroBaselineGate = evaluateGate1Thresholds(scorecard, 0, 0)
     expect(zeroBaselineGate.failedContactRateReductionPass).toBe(false)
     expect(zeroBaselineGate.timeToConnectionReductionPass).toBe(false)
+  })
+
+  it("computes pilot metric snapshots for M2/M4/M5/M6/M7 from source records", () => {
+    const computed = computePilotMetricSnapshots(
+      "v22-cycle-1",
+      {
+        contactAttempts: [
+          {
+            id: "attempt-1",
+            attempted_at: "2026-03-08T10:00:00.000Z",
+            attempt_outcome: "no_response",
+            entity_key_hash: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          },
+          {
+            id: "attempt-2",
+            attempted_at: "2026-03-08T10:05:00.000Z",
+            attempt_outcome: "connected",
+            entity_key_hash: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          },
+          {
+            id: "attempt-3",
+            attempted_at: "2026-03-08T10:10:00.000Z",
+            attempt_outcome: "invalid_routing",
+            entity_key_hash: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          },
+        ],
+        referrals: [
+          {
+            id: "ref-1",
+            created_at: "2026-03-08T11:00:00.000Z",
+            referral_state: "connected",
+          },
+        ],
+        connections: [
+          {
+            connected_at: "2026-03-08T10:20:00.000Z",
+            contact_attempt_event_id: "attempt-1",
+            referral_event_id: null,
+          },
+          {
+            connected_at: "2026-03-08T11:30:00.000Z",
+            contact_attempt_event_id: null,
+            referral_event_id: "ref-1",
+          },
+        ],
+        scopeServices: [
+          { service_id: "svc-1", sla_tier: "crisis" },
+          { service_id: "svc-2", sla_tier: "standard" },
+        ],
+        serviceStatusEvents: [
+          {
+            service_id: "svc-1",
+            checked_at: "2026-03-09T11:00:00.000Z",
+            status_code: "available",
+          },
+          {
+            service_id: "svc-2",
+            checked_at: "2026-03-01T11:00:00.000Z",
+            status_code: "unknown",
+          },
+        ],
+        dataDecayAudits: [
+          {
+            audited_at: "2026-03-08T12:00:00.000Z",
+            is_fatal: true,
+            fatal_error_category: "wrong_or_disconnected_phone",
+          },
+          {
+            audited_at: "2026-03-08T12:05:00.000Z",
+            is_fatal: false,
+            fatal_error_category: null,
+          },
+        ],
+        preferenceFitEvents: [
+          {
+            recorded_at: "2026-03-08T13:00:00.000Z",
+            preferred_via_helpbridge: true,
+          },
+          {
+            recorded_at: "2026-03-08T13:05:00.000Z",
+            preferred_via_helpbridge: false,
+          },
+        ],
+      },
+      "2026-03-09T12:00:00.000Z"
+    )
+
+    expect(computed.scorecard.m2_p50_seconds_to_connection).toBe(1500)
+    expect(computed.scorecard.m4_freshness_sla_compliance).toBe(0.5)
+    expect(computed.scorecard.m5_repeat_failure_rate).toBe(0.5)
+    expect(computed.scorecard.m6_data_decay_fatal_error_rate).toBe(0.5)
+    expect(computed.scorecard.m7_preference_fit_indicator).toBe(0.5)
+    expect(computed.snapshots.map((snapshot) => snapshot.metric_id)).toEqual([
+      "M1",
+      "M2_P50",
+      "M2_P75",
+      "M2_P90",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+    ])
   })
 })

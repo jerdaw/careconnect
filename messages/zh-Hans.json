@@ -924,30 +924,31 @@
     "cta": {
       "title": "准备好寻找帮助了吗？",
       "search": "浏览服务",
-      "partners": "查看合作伙伴"
+      "partners": "查看参考来源"
     }
   },
   "Partners": {
-    "link": "合作伙伴"
+    "link": "参考来源"
   },
   "PartnersPage": {
     "hero": {
       "title": "建立在可信来源上",
-      "subtitle": "金斯顿关怀连接依赖于来自既定社区合作伙伴的验证数据。我们不爬取；我们合作。"
+      "subtitle": "HelpBridge 使用公共和社区参考来源来支持人工整理与核实。正式合作关系会在确认后单独说明。"
     },
     "verification": {
-      "title": "我们的验证流程",
-      "step1": "来源验证",
-      "step2": "人工审核",
+      "title": "来源审查如何进行",
+      "step1": "来源审查",
+      "step2": "人工核实",
       "step3": "月度审计",
-      "description": "每个服务列表都经过严格的3步验证过程，以确保准确性和安全性。"
+      "description": "HelpBridge 会审查公开参考资料，进行人工核实，并持续对现有条目开展定期审计。"
     },
     "cta": {
-      "title": "成为合作伙伴",
-      "subtitle": "您是服务提供者吗？加入我们的网络以接触更多人。",
+      "title": "推荐服务或来源",
+      "subtitle": "您是服务提供者或社区机构吗？欢迎提交更正、参考来源或服务建议以供审核。",
       "button": "建议服务"
     },
-    "logoAlt": "{name} 徽标"
+    "logoAlt": "{name} 徽标",
+    "referenceLabel": "参考机构"
   },
   "Terms": {
     "title": "服务条款",
@@ -1522,9 +1523,9 @@
     },
     "partnerCta": {
       "title": "您的组织是否已列入？",
-      "description": "如果您在金斯顿提供社会服务并希望确保信息准确，您可以建议更新或了解合作方式。",
+      "description": "如果您在金斯顿提供社会服务并希望确保信息准确，您可以建议更新，或查看 HelpBridge 如何进行来源审查和条目审核。",
       "suggestButton": "建议添加服务",
-      "learnMoreButton": "了解合作事宜"
+      "learnMoreButton": "了解条目如何审核"
     },
     "hero": {
       "subtitle": "查找食物、住房、危机支援及190多项金斯顿已验证服务——私密搜索，支持7种语言。"

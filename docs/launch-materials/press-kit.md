@@ -1,24 +1,24 @@
 # HelpBridge - Press Kit
 
-**Last Updated**: February 2026
-**Version**: 1.0 - Beta Launch
+**Last Updated**: April 2026
+**Version**: 1.1 - Live Pilot
 **Contact**: feedback@helpbridge.ca
 
 ---
 
 ## Quick Facts
 
-| Detail              | Information                                                        |
-| ------------------- | ------------------------------------------------------------------ |
-| **Name**            | HelpBridge                                                         |
-| **Tagline**         | Find social services in Kingston, Ontario                          |
-| **Mission**         | Bridge the gap between people in need and verified social services |
-| **Launch Date**     | February 2026 (Beta), March 2026 (Public)                          |
-| **Platform**        | Web application (Progressive Web App)                              |
-| **URL**             | https://helpbridge.ca                                              |
-| **Service Area**    | Kingston, Ontario, Canada                                          |
-| **Languages**       | English, French, plus 5 additional community languages             |
-| **Services Listed** | ~196 verified social services                                      |
+| Detail              | Information                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| **Name**            | HelpBridge                                                                             |
+| **Tagline**         | Find social services in Kingston, Ontario                                              |
+| **Mission**         | Bridge the gap between people in need and a manually curated social-services directory |
+| **Current Status**  | Live public pilot                                                                      |
+| **Platform**        | Web application (Progressive Web App)                                                  |
+| **URL**             | https://helpbridge.ca                                                                  |
+| **Service Area**    | Kingston, Ontario, Canada                                                              |
+| **Languages**       | English, French, plus 5 additional community languages                                 |
+| **Services Listed** | ~196 manually curated social services                                                  |
 
 ---
 
@@ -28,13 +28,13 @@ HelpBridge is a privacy-first social services directory that helps Kingston resi
 
 Unlike traditional directories, HelpBridge:
 
-- **Prioritizes Privacy**: Search queries stay on-device by default—no tracking or logging
-- **Focuses on Quality**: ~196 hand-curated services, each verified for accuracy
+- **Prioritizes Privacy**: Local search keeps queries on-device by default, with no third-party tracking and no query-text logging
+- **Focuses on Quality**: ~196 hand-curated services with visible listings held at L1+ verification
 - **Serves Everyone**: Available in 7 languages including English, French, Simplified Chinese, Arabic, Portuguese, Spanish, and Punjabi
 - **Works Offline**: Progressive Web App technology ensures access even without internet
-- **Ranks by Authority**: Services are scored based on governance, verification level, and community impact
+- **Ranks by Authority**: Services are scored using governance and verification signals alongside search relevance
 
-**Built for crisis moments**: Special crisis detection ensures people searching for immediate help (food, shelter, suicide prevention) get connected to emergency resources within seconds.
+**Built for crisis moments**: Special crisis detection helps surface emergency resources quickly for searches related to food, shelter, and suicide prevention.
 
 ---
 
@@ -66,25 +66,25 @@ When someone searches "I need food today", they shouldn't have to:
 
 ### 1. Manual Curation Over Automation
 
-We don't scrape websites or use AI to generate service information. Every service in our directory is:
+We don't scrape websites or use AI to generate service information. The directory is:
 
-- Manually researched and verified
-- Categorized by trained curators
-- Updated through community feedback
-- Verified at one of four governance levels (L0-L3)
+- Manually curated and reviewed
+- Categorized using a governance-first workflow
+- Updated through correction and verification processes
+- Published using tiered verification rules
 
 **Quality over quantity**: We'd rather have 200 accurate services than 2,000 questionable ones.
 
 ### 2. Privacy by Design
 
-- **Zero-Knowledge Search**: By default, searches happen entirely on your device
+- **Local-First Search**: By default, searches happen entirely on your device
 - **No User Accounts Required**: Access all services without signing up
-- **No Tracking**: We don't log search queries or build user profiles
-- **Open Source**: All code is publicly auditable
+- **No Third-Party Tracking**: We don't use advertising or analytics trackers
+- **No Query-Text Logging**: Search terms are not logged to the server
 
 ### 3. Accessibility First
 
-- **WCAG 2.1 AA Compliant**: Meets international accessibility standards
+- **Accessibility Work Is Ongoing**: Automated WCAG 2.1 AA checks and manual accessibility testing are part of the development process
 - **Keyboard Navigation**: Full functionality without a mouse
 - **Screen Reader Optimized**: Works with assistive technology
 - **Mobile-First Design**: Optimized for phones (where most searches happen)
@@ -160,23 +160,17 @@ Special handling for crisis queries:
 
 ### Performance
 
-- **Fast**: Search results in <1 second
-- **Light**: Total download <5MB for full offline functionality
-- **Efficient**: Runs smoothly on budget Android phones from 2018
+- **Fast**: Search is optimized for rapid results on common paths
+- **Light**: The web app is designed for mobile use and offline access
+- **Efficient**: The interface is built to remain usable on modest mobile hardware
 
 ### Built With
 
 - **Framework**: Next.js 15 (React)
 - **Database**: Supabase (PostgreSQL + pgvector)
 - **Search**: Hybrid keyword + semantic vector search
-- **Hosting**: Vercel (Edge Network)
+- **Hosting**: Direct VPS deployment using Docker and Caddy
 - **Monitoring**: Axiom (observability), Slack (alerts)
-
-### Open Source
-
-- **License**: MIT (Free to use, modify, and distribute)
-- **Repository**: Available on request
-- **Contributions**: Community contributions welcome
 
 ---
 
@@ -207,31 +201,31 @@ Special handling for crisis queries:
 ### Secondary Users
 
 - **Service Providers**: Verify their listings are accurate
-- **Researchers**: Study service access patterns (aggregated, anonymized data)
-- **Policy Makers**: Understand service gaps in Kingston
+- **Researchers and Evaluators**: Review aggregate, privacy-preserving operational evidence where available
+- **Policy Makers**: Review documented local service coverage and identified gaps as evidence matures
 
 ---
 
 ## Impact & Metrics
 
-### Current Status (Beta Launch)
+### Current Status
 
-- **Services**: ~196 verified social services
+- **Services**: ~196 manually curated social services
 - **Categories**: 15+ service categories
 - **Languages**: 7 languages supported
-- **Accessibility**: WCAG 2.1 AA compliant
-- **Uptime Target**: 99.5% (monitored 24/7)
-- **Response Time**: <1 second for search results
+- **Accessibility**: Automated accessibility checks are in place; manual verification remains ongoing
+- **Uptime Target**: 99.5% (with automated monitoring configured)
+- **Response Goal**: fast search results on common paths
 
-### Success Metrics (30 Days Post-Launch)
+### Current Evaluation Priorities
 
-We'll measure success by:
+Current evaluation priorities focus on:
 
-- **Accuracy**: <5% of services report incorrect contact info
-- **Usability**: >80% of beta testers rate experience 4/5 or higher
-- **Performance**: 95% of searches return results in <1 second
-- **Accessibility**: Zero critical accessibility violations
-- **Adoption**: 100+ unique visitors in first month (beta)
+- **Accuracy**: correction and verification throughput
+- **Privacy**: preserving no query-text logging and no third-party tracking
+- **Reliability**: uptime, latency, and safe degraded behavior
+- **Pilot Evidence**: measurable connection, referral, and freshness outcomes
+- **Accessibility**: ongoing automated and manual testing
 
 **What we DON'T measure**:
 
@@ -250,13 +244,12 @@ Services in HelpBridge are verified at four levels:
 | **L0** | Unverified         | Filtered out of search results         |
 | **L1** | Basic Verification | Existence confirmed via public records |
 | **L2** | Vetted             | Contact made with organization         |
-| **L3** | Provider Confirmed | Official partnership established       |
+| **L3** | Provider Confirmed | Direct provider confirmation           |
 
 **Current Distribution**:
 
-- L3: 0% (target: 10% by end of 2026)
-- L2: ~5%
-- L1: ~95%
+- L3: 0 currently documented
+- L2 and L1: weighted toward L1/L2, with the exact mix published separately in governance tracking
 - L0: 0% (filtered from search)
 
 **Verification Sources**:
@@ -268,32 +261,11 @@ Services in HelpBridge are verified at four levels:
 
 ---
 
-## Launch Timeline
+## Current Rollout Status
 
-### Phase 1: Beta Testing (February 2026)
-
-**Week 1-2**: Invite-only beta
-
-- 10-15 trusted testers (social workers, community partners)
-- Focus on critical bugs and usability issues
-
-**Week 3-4**: Expanded beta
-
-- 50-100 testers (broader community)
-- Focus on diverse user groups and accessibility
-
-### Phase 2: Soft Public Launch (March 2026)
-
-- Limited promotion (organic word-of-mouth)
-- Monitor for issues with real traffic
-- Gradual scaling based on stability
-
-### Phase 3: Full Public Launch (April 2026)
-
-- Official launch announcement
-- Media outreach
-- Community partnerships
-- Social media promotion
+- HelpBridge is currently operating as a live public pilot.
+- Deployment, monitoring, and rollback procedures are documented.
+- Broader launch and partnership activity remain gated by pilot evidence and governance review.
 
 ---
 
@@ -307,7 +279,7 @@ Services in HelpBridge are verified at four levels:
 
 **Accessibility Always**: Keyboard navigation and screen reader support aren't afterthoughts—they're requirements.
 
-**Manual Curation**: AI-generated content is never used for service information. Every service is verified by humans.
+**Manual Curation**: AI-generated content is never used for service information. Service publication depends on manual curation and verification workflows.
 
 ### Technology Choices
 
@@ -315,7 +287,7 @@ We chose:
 
 - **Next.js**: For best-in-class performance and SEO
 - **Supabase**: For open-source database with built-in security
-- **Vercel**: For global CDN and zero-config deployment
+- **Direct VPS deployment**: For current runtime control and deployment verification
 - **Progressive Web App**: For offline functionality without app store gatekeepers
 
 We avoided:
@@ -355,19 +327,6 @@ We avoided:
 
 ---
 
-## Quotes for Media Use
-
-> "When someone is searching 'I need food today,' they're often in crisis. Every extra click, every outdated phone number, every confusing form is a barrier to getting help. HelpBridge removes those barriers."
-> — Development Team
-
-> "Privacy isn't a luxury feature. For someone fleeing domestic violence or dealing with addiction, anonymous access to resources can be life-saving. That's why we built search to work entirely on-device—your queries never leave your phone."
-> — Technical Lead
-
-> "We have 196 services in our directory. That's not because we're lazy—it's because every single one has been manually verified. Quality over quantity. Always."
-> — Data Curation Lead
-
----
-
 ## FAQs
 
 ### Is this a government project?
@@ -388,23 +347,15 @@ Currently, submissions are reviewed and added manually to maintain quality. Prov
 
 ### Why only Kingston?
 
-Starting local allows us to ensure quality and build deep partnerships. If the model succeeds, it could expand to other communities—but only with proper local curation.
+Starting local allows HelpBridge to focus on local relevance, governance, and quality. Any broader expansion would require the same level of local curation and evidence discipline.
 
 ### What about user privacy?
 
-By default, search queries stay on your device (local search mode). Even in server mode, we don't log queries or track users. See our Privacy Policy for details.
+By default, search queries stay on your device (local search mode). Even in server mode, HelpBridge is designed to avoid query-text logging and third-party tracking. See our Privacy Policy for details.
 
 ### How is this different from 211?
 
-211 Ontario is comprehensive provincial coverage. HelpBridge focuses exclusively on Kingston with:
-
-- Faster search (optimized for local results)
-- More languages (7 vs. 2)
-- Offline functionality
-- Mobile-first design
-- Crisis-optimized UX
-
-We complement 211—we don't replace it.
+211 Ontario provides broader provincial coverage and live navigation channels. HelpBridge focuses on Kingston-first digital access with local relevance, privacy-first search defaults, offline support, and a community-specific interface. It is intended to complement 211, not replace it.
 
 ### Is the code open source?
 
@@ -440,21 +391,21 @@ The platform is built on open-source technologies. Code availability details are
 
 ### Short (50 words)
 
-HelpBridge is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 hand-verified services.
+HelpBridge is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 manually curated services.
 
 ### Medium (100 words)
 
-HelpBridge is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 hand-verified services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform ensures people searching for immediate help connect to emergency resources within seconds—no tracking, no user accounts, no barriers. Launching in beta February 2026, with full public launch in April 2026.
+HelpBridge is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 manually curated services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform helps people searching for immediate support connect to emergency resources quickly, without requiring user accounts or third-party tracking.
 
 ### Long (200 words)
 
-HelpBridge is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 hand-verified social services—each curated and verified rather than scraped from websites or AI-generated.
+HelpBridge is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 manually curated social services rather than a broad scraped directory.
 
-Key features include: seven-language support (English, French, Simplified Chinese, Arabic, Portuguese, Spanish, Punjabi), full offline functionality via Progressive Web App technology, WCAG 2.1 AA accessibility compliance, and privacy-by-design architecture where search queries stay on-device by default. Special crisis detection ensures people searching for immediate help connect to emergency resources like the 988 Suicide Crisis Helpline within seconds.
+Key features include seven-language support, full offline functionality via Progressive Web App technology, accessibility-focused development, and privacy-by-design architecture where local search keeps queries on-device by default. Special crisis detection helps route people searching for immediate help toward emergency resources like the 988 Suicide Crisis Helpline.
 
-Unlike ad-supported directories or government portals, HelpBridge has no tracking, requires no user accounts, and contains no paywalls. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
+Unlike ad-supported directories or engagement-driven products, HelpBridge does not require user accounts, does not use third-party trackers, and does not log search query text. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
 
-Beta testing begins February 2026, with full public launch planned for April 2026.
+HelpBridge is currently operating as a live public pilot.
 
 ---
 
@@ -478,6 +429,6 @@ Beta testing begins February 2026, with full public launch planned for April 202
 
 ---
 
-**Document Version**: 1.0
-**Last Updated**: February 10, 2026
-**Next Review**: April 2026 (post-public launch)
+**Document Version**: 1.1
+**Last Updated**: April 1, 2026
+**Next Review**: After the next pilot evidence and governance review cycle

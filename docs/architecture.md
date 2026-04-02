@@ -170,8 +170,14 @@ sequenceDiagram
 - **Purpose**: Capture pilot-only connection outcome signals before Phase 1 feature rollout.
 - **Internal Endpoints**:
   - `POST /api/v1/pilot/events/contact-attempt`
+  - `POST /api/v1/pilot/events/connection`
   - `POST /api/v1/pilot/events/referral`
+  - `POST /api/v1/pilot/events/service-status`
+  - `POST /api/v1/pilot/events/data-decay-audit`
+  - `POST /api/v1/pilot/events/preference-fit`
   - `PATCH /api/v1/pilot/events/referral/{id}`
+  - `POST /api/v1/pilot/scope/services`
+  - `POST /api/v1/pilot/metrics/recompute`
   - `POST /api/v1/pilot/integration-feasibility`
   - `GET /api/v1/pilot/metrics/scorecard`
 - **Security Model**:
@@ -181,9 +187,14 @@ sequenceDiagram
 - **Privacy Constraints**:
   - Request payload validation rejects disallowed keys (`query`, `query_text`, `message`, `user_text`, `notes`).
   - Raw query text is never accepted into pilot event contracts.
+  - Repeat-failure attribution uses opaque `entity_key_hash` values rather than raw identifiers.
 - **Resilience**:
   - Pilot DB operations use circuit-breaker-wrapped storage access.
   - If pilot tables are not present, endpoints fail with explicit `501` responses to prevent silent data loss.
+  - Metric recompute writes canonical snapshots to `pilot_metric_snapshots`; scorecard reads stay snapshot-based.
+- **Readiness Reporting**:
+  - `pilot_service_scope` is the canonical scoped-service source for bounded pilot readiness audits.
+  - `npm run audit:pilot-readiness -- --pilot-cycle-id <id> [--org-id <uuid>]` exports scoped JSON, Markdown, and CSV artifacts without mutating curated service data.
 
 ### Routing & Discovery
 

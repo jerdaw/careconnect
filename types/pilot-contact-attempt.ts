@@ -26,6 +26,7 @@ export interface PilotContactAttemptEvent {
   pilot_cycle_id: string
   service_id: string
   recorded_by_org_id: string
+  entity_key_hash: string
   attempt_channel: AttemptChannel
   attempt_outcome: AttemptOutcome
   attempted_at: string

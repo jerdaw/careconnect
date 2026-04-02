@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-29
+last_updated: 2026-04-01
 owner: jer
 tags: [implementation, v22.0, phase-0, instrumentation, governance]
 ---
@@ -17,10 +17,11 @@ Primary outcomes:
 2. Privacy-safe instrumentation implemented without query-text logging.
 3. 211 integration feasibility decision recorded (`go`, `conditional`, `blocked`).
 4. Offline/local storage threat model completed with no unresolved critical findings.
+5. Pilot-scope readiness reporting available without mutating curated service data.
 
 This plan is execution-ready and decision-complete for implementation.
 
-## Implementation Progress (2026-03-09)
+## Implementation Progress (2026-04-01)
 
 Completed:
 
@@ -35,10 +36,15 @@ Completed:
 9. SQL Editor execution runbook and query helper script added for baseline M1/M3 execution.
 10. Gate 0 evidence status tracker added for centralized closure tracking.
 11. Baseline M1/M3 execution completed (window: 2026-02-10 to 2026-03-09) and recorded in baseline report.
+12. Extended metric sources for M2/M4/M5/M6/M7 are implemented via additive schema, internal APIs, and recompute-to-snapshot flow.
+13. Pilot-scope readiness audit/export tooling is implemented for JSON, Markdown, and CSV outputs without changing `data/services.json`.
+14. Public claim hardening and focused pilot/privacy route coverage are complete for the Tier 0 admissions-support bundle.
 
 Remaining:
 
 1. Complete the remaining conditional integration control C1 before external activation.
+2. Populate the new metric source tables with real pilot-window events and run a fresh non-historical baseline/scorecard.
+3. Execute the bounded verification and pilot-scope data-quality follow-through that the new readiness tooling now exposes.
 
 Gate decision control:
 
@@ -75,10 +81,16 @@ No new public, unauthenticated API endpoints are introduced in Phase 0.
 Phase 0 introduces internal authenticated pilot endpoints only:
 
 1. `POST /api/v1/pilot/events/contact-attempt`
-2. `POST /api/v1/pilot/events/referral`
-3. `PATCH /api/v1/pilot/events/referral/{id}`
-4. `GET /api/v1/pilot/metrics/scorecard`
-5. `POST /api/v1/pilot/integration-feasibility`
+2. `POST /api/v1/pilot/events/connection`
+3. `POST /api/v1/pilot/events/referral`
+4. `POST /api/v1/pilot/events/service-status`
+5. `POST /api/v1/pilot/events/data-decay-audit`
+6. `POST /api/v1/pilot/events/preference-fit`
+7. `PATCH /api/v1/pilot/events/referral/{id}`
+8. `POST /api/v1/pilot/scope/services`
+9. `POST /api/v1/pilot/metrics/recompute`
+10. `GET /api/v1/pilot/metrics/scorecard`
+11. `POST /api/v1/pilot/integration-feasibility`
 
 These endpoints are internal to pilot operations and governance workflows.
 
@@ -104,6 +116,7 @@ Required fields:
 5. `attempt_outcome` (`connected` | `disconnected_number` | `no_response` | `intake_unavailable` | `invalid_routing` | `other_failure`)
 6. `attempted_at` (ISO timestamp)
 7. `recorded_by_org_id` (string)
+8. `entity_key_hash` (SHA-256 hex digest; opaque repeat-failure attribution key)
 
 Optional fields:
 
@@ -115,6 +128,7 @@ Disallowed fields:
 1. Raw search query text
 2. User message text
 3. Direct personal identifiers
+4. Raw identifiers used to derive `entity_key_hash`
 
 ### `PilotReferralEvent`
 
@@ -206,13 +220,15 @@ Deliverables:
 
 1. Add pilot types and Zod schemas.
 2. Add internal pilot endpoints with auth, RBAC, and circuit breaker.
-3. Add aggregate scorecard calculation path.
-4. Ensure telemetry/logging paths never store raw query text.
+3. Add recompute-to-snapshot scorecard calculation path for M1-M7.
+4. Add pilot-scope readiness reporting/export tooling.
+5. Ensure telemetry/logging paths never store raw query text.
 
 Deliverables:
 
 1. Internal endpoint implementations.
 2. Unit/integration test coverage for route validation and privacy rejects.
+3. Readiness audit command and export artifacts.
 
 ## Week 2 (Days 6-10)
 
@@ -253,8 +269,8 @@ Assemble:
 
 All criteria must pass:
 
-1. Baseline values exist for primary metrics (M1-M4 minimum).
-2. Measurement queries validated end-to-end against stored events.
+1. Baseline values exist for instrumented metrics when qualifying source events exist, or are recorded as `NULL`/`N/A` with correct empty-window notes.
+2. Measurement queries validated end-to-end against stored events and snapshot recompute.
 3. Integration feasibility decision recorded with rationale.
 4. Threat model has zero unresolved `critical` findings.
 5. Approval checklist shows 7/7 decisions locked.

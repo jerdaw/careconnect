@@ -38,6 +38,7 @@
     "prepare": "husky",
     "bilingual-check": "node --import tsx scripts/bilingual-audit.ts",
     "audit:qa": "node --import tsx scripts/qa-audit.ts",
+    "audit:pilot-readiness": "node --import tsx scripts/audit-pilot-readiness.ts",
     "audit:coords": "node --import tsx scripts/export-coordinate-gaps.ts --out docs/audits/v17-5/coordinates/outputs/coordinate-gaps.json",
     "audit:hours": "node --import tsx scripts/export-hours-gaps.ts --out docs/audits/v17-5/hours/outputs/hours-gaps.json",
     "audit:access-scripts": "node --import tsx scripts/audit-access-scripts.ts --out docs/audits/v17-5/ai-results/reports/access-script-audit.json",

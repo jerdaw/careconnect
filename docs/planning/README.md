@@ -52,6 +52,15 @@ This directory contains planning and strategy documents for HelpBridge.
    - Historical record of the completed maintenance wave that quarantined the experimental 211 sync path and closed the remaining GitHub Actions runtime follow-up
    - **Reading time:** 5 minutes
 
+10. **[v21.0 Admissions Portfolio & External Validation Plan](v21-admissions-portfolio-plan.md)**
+   - Fully triaged admissions / external-validation backlog, ordered by current strategic value
+   - Read this only after the main roadmap so the v22 gate-first constraints stay clear
+   - **Reading time:** 10-15 minutes
+
+11. **[v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)**
+   - Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
+   - Use this when you need a concise historical record of what landed on 2026-04-01
+   - **Reading time:** 5-10 minutes
 ---
 
 ## Document Navigation
@@ -61,6 +70,8 @@ docs/planning/
 ├── README.md ← You are here
 ├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
+├── v21-admissions-portfolio-plan.md
+├── archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
 ├── archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md
@@ -136,6 +147,8 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
 - **2026-03-30:** Added the v20.0 runtime hardening and performance remediation archive and refreshed roadmap baseline metrics after the audit-driven maintenance wave
 - **2026-04-01:** Added the v20.0 workflow runtime cleanup and 211 sync quarantine archive after closing the remaining Node-runtime workflow follow-up
+- **2026-04-01:** Added the v22.0 Tier 0 admissions-support hardening archive and updated the roadmap to treat A3/A11/A22 as complete baseline capability
+- **2026-04-01:** Added the re-triaged v21 admissions / external-validation plan to the planning index and aligned the main roadmap with the new tiered sequencing
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
 - **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`

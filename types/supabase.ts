@@ -49,6 +49,14 @@ type PilotReferralFailureReason =
   | "ineligible"
   | "capacity_full"
   | "unknown_failure"
+type PilotScopeSlaTier = "crisis" | "high_demand" | "standard"
+type PilotServiceStatusCode = "available" | "temporarily_unavailable" | "closed" | "unknown"
+type PilotDataDecayFatalErrorCategory =
+  | "wrong_or_disconnected_phone"
+  | "invalid_or_defunct_intake_path"
+  | "materially_incorrect_eligibility"
+  | "service_closed_or_unavailable_but_listed_available"
+type PilotDataDecayVerificationMode = "web_only" | "web_plus_call" | "provider_confirmation"
 type PilotMetricId = "M1" | "M2_P50" | "M2_P75" | "M2_P90" | "M3" | "M4" | "M5" | "M6" | "M7"
 type PilotIntegrationDecision = "go" | "conditional" | "blocked"
 
@@ -755,6 +763,7 @@ type PublicSchema = SchemaWithRelationships<{
         pilot_cycle_id: string
         service_id: string
         recorded_by_org_id: string
+        entity_key_hash: string | null
         attempt_channel: PilotContactChannel
         attempt_outcome: PilotContactOutcome
         attempted_at: string
@@ -767,6 +776,7 @@ type PublicSchema = SchemaWithRelationships<{
         pilot_cycle_id: string
         service_id: string
         recorded_by_org_id: string
+        entity_key_hash?: string | null
         attempt_channel: PilotContactChannel
         attempt_outcome: PilotContactOutcome
         attempted_at: string
@@ -779,6 +789,7 @@ type PublicSchema = SchemaWithRelationships<{
         pilot_cycle_id?: string
         service_id?: string
         recorded_by_org_id?: string
+        entity_key_hash?: string | null
         attempt_channel?: PilotContactChannel
         attempt_outcome?: PilotContactOutcome
         attempted_at?: string
@@ -820,6 +831,157 @@ type PublicSchema = SchemaWithRelationships<{
         updated_at?: string
         terminal_at?: string | null
         failure_reason_code?: PilotReferralFailureReason | null
+      }
+    }
+    pilot_connection_events: {
+      Row: {
+        id: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        connected_at: string
+        contact_attempt_event_id: string | null
+        referral_event_id: string | null
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        connected_at: string
+        contact_attempt_event_id?: string | null
+        referral_event_id?: string | null
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        pilot_cycle_id?: string
+        org_id?: string
+        service_id?: string
+        connected_at?: string
+        contact_attempt_event_id?: string | null
+        referral_event_id?: string | null
+        created_at?: string
+      }
+    }
+    pilot_service_scope: {
+      Row: {
+        id: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        sla_tier: PilotScopeSlaTier
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        sla_tier: PilotScopeSlaTier
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        pilot_cycle_id?: string
+        org_id?: string
+        service_id?: string
+        sla_tier?: PilotScopeSlaTier
+        created_at?: string
+      }
+    }
+    service_operational_status_events: {
+      Row: {
+        id: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        checked_at: string
+        status_code: PilotServiceStatusCode
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        checked_at: string
+        status_code: PilotServiceStatusCode
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        pilot_cycle_id?: string
+        org_id?: string
+        service_id?: string
+        checked_at?: string
+        status_code?: PilotServiceStatusCode
+        created_at?: string
+      }
+    }
+    pilot_data_decay_audits: {
+      Row: {
+        id: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        audited_at: string
+        is_fatal: boolean
+        fatal_error_category: PilotDataDecayFatalErrorCategory | null
+        verification_mode: PilotDataDecayVerificationMode
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        pilot_cycle_id: string
+        org_id: string
+        service_id: string
+        audited_at: string
+        is_fatal: boolean
+        fatal_error_category?: PilotDataDecayFatalErrorCategory | null
+        verification_mode: PilotDataDecayVerificationMode
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        pilot_cycle_id?: string
+        org_id?: string
+        service_id?: string
+        audited_at?: string
+        is_fatal?: boolean
+        fatal_error_category?: PilotDataDecayFatalErrorCategory | null
+        verification_mode?: PilotDataDecayVerificationMode
+        created_at?: string
+      }
+    }
+    pilot_preference_fit_events: {
+      Row: {
+        id: string
+        pilot_cycle_id: string
+        org_id: string
+        cohort_label: string
+        recorded_at: string
+        preferred_via_helpbridge: boolean
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        pilot_cycle_id: string
+        org_id: string
+        cohort_label: string
+        recorded_at: string
+        preferred_via_helpbridge: boolean
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        pilot_cycle_id?: string
+        org_id?: string
+        cohort_label?: string
+        recorded_at?: string
+        preferred_via_helpbridge?: boolean
+        created_at?: string
       }
     }
     pilot_metric_snapshots: {

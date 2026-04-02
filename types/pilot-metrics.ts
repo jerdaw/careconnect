@@ -1,6 +1,9 @@
+export const PILOT_METRIC_IDS = ["M1", "M2_P50", "M2_P75", "M2_P90", "M3", "M4", "M5", "M6", "M7"] as const
+export type PilotMetricId = (typeof PILOT_METRIC_IDS)[number]
+
 export interface PilotMetricSnapshot {
   pilot_cycle_id: string
-  metric_id: "M1" | "M2_P50" | "M2_P75" | "M2_P90" | "M3" | "M4" | "M5" | "M6" | "M7"
+  metric_id: PilotMetricId
   metric_value: number | null
   numerator: number | null
   denominator: number | null

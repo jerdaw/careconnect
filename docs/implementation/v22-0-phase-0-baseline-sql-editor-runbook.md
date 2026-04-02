@@ -1,13 +1,13 @@
 ---
 status: stable
-last_updated: 2026-03-09
+last_updated: 2026-04-01
 owner: jer
 tags: [implementation, v22.0, phase-0, baseline, sql, runbook]
 ---
 
 # v22.0 Phase 0 Baseline SQL Editor Runbook
 
-This runbook executes the Gate 0 minimum baseline metrics (M1 + M3) in Supabase SQL Editor without local credentials.
+This runbook executes the Phase 0 baseline metrics in Supabase SQL Editor without local credentials.
 
 Related:
 
@@ -19,7 +19,8 @@ Related:
 
 1. Supabase project access with SQL Editor permissions.
 2. v22 pilot migrations already applied.
-3. Baseline window locked to:
+3. `org_id` for the pilot organization is known if org-scoped metrics will be run.
+4. Baseline window locked to:
    - `baseline_start = 2026-02-10T00:00:00Z`
    - `baseline_end = 2026-03-09T00:00:00Z`
 
@@ -48,10 +49,15 @@ WHERE table_schema = 'public'
 ORDER BY table_name;
 ```
 
-Expected minimum for Gate 0 minimum mode:
+Expected minimum for the fully instrumented Phase 0 schema:
 
 1. `pilot_contact_attempt_events` exists.
 2. `pilot_referral_events` exists.
+3. `pilot_connection_events` exists.
+4. `pilot_service_scope` exists.
+5. `service_operational_status_events` exists.
+6. `pilot_data_decay_audits` exists.
+7. `pilot_preference_fit_events` exists.
 
 ## Step 2: Execute M1
 
@@ -149,19 +155,37 @@ Capture output values:
 2. `total_referrals`
 3. `completion_capture_rate`
 
-## Step 4: Update Baseline Report
+## Step 4: Execute M2-M7 When Source Tables Contain Data
 
-Update [v22-0-phase-0-baseline-report-2026-03-09.md](v22-0-phase-0-baseline-report-2026-03-09.md):
+Use the executable SQL in [v22.0 Phase 0 Baseline Query Spec](v22-0-phase-0-baseline-query-spec.md) for:
 
-1. Set M1/M3 status from `Pending execution` to `Completed`.
-2. Copy numeric outputs (or `NULL` when denominator is zero).
-3. Keep M2/M4/M5/M6/M7 as `N/A` with dependency notes.
+1. `M2` Time to Successful Connection
+2. `M4` Freshness SLA Compliance
+3. `M5` Repeat Failure Rate
+4. `M6` Data-Decay Fatal Error Rate
+5. `M7` Preference-Fit Indicator
+
+If a source table is present but the baseline window contains no qualifying events, record the metric as `NULL`
+or `N/A` with an empty-data note rather than a schema-dependency note.
+
+## Step 5: Update Baseline Report
+
+Update the active baseline report artifact for the run you executed:
+
+1. Set each metric status to `Completed`, `NULL`, or `N/A` with the correct reason.
+2. Copy numeric outputs when the denominator is non-zero.
+3. Use empty-window notes for missing activity and dependency notes only for missing schema.
 4. Add execution metadata:
    - execution timestamp (UTC)
    - operator
    - run context (`Supabase SQL Editor`)
 
-## Step 5: Quality Checks
+Historical note:
+
+1. [v22-0-phase-0-baseline-report-2026-03-09.md](v22-0-phase-0-baseline-report-2026-03-09.md) is a historical
+   pre-instrumentation baseline artifact and should remain unchanged except for clearly marked historical notes.
+
+## Step 6: Quality Checks
 
 1. No fabricated values.
 2. Query IDs and versions preserved.

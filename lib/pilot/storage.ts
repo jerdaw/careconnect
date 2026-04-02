@@ -4,7 +4,14 @@ import { PilotContactAttemptEvent } from "@/types/pilot-contact-attempt"
 import { PilotReferralEvent } from "@/types/pilot-referral"
 import { IntegrationFeasibilityDecision } from "@/types/integration-feasibility"
 import { PilotScorecard } from "@/types/pilot-metrics"
-import { buildPilotScorecard } from "@/lib/observability/pilot-metrics"
+import {
+  PilotConnectionEvent,
+  PilotDataDecayAudit,
+  PilotPreferenceFitEvent,
+  PilotServiceScopeRecord,
+  ServiceOperationalStatusEvent,
+} from "@/types/pilot-instrumentation"
+import { PilotMetricSnapshotWrite, buildPilotScorecard } from "@/lib/observability/pilot-metrics"
 import type { Database } from "@/types/supabase"
 
 type DatabaseError = {
@@ -21,8 +28,16 @@ export type PilotStorageResult<T> = {
 type PilotSupabaseClient = SupabaseClient<Database>
 type ContactAttemptRow = Database["public"]["Tables"]["pilot_contact_attempt_events"]["Row"]
 type ReferralRow = Database["public"]["Tables"]["pilot_referral_events"]["Row"]
+type ConnectionRow = Database["public"]["Tables"]["pilot_connection_events"]["Row"]
+type ScopeRow = Database["public"]["Tables"]["pilot_service_scope"]["Row"]
+type ServiceStatusRow = Database["public"]["Tables"]["service_operational_status_events"]["Row"]
+type DataDecayAuditRow = Database["public"]["Tables"]["pilot_data_decay_audits"]["Row"]
+type PreferenceFitRow = Database["public"]["Tables"]["pilot_preference_fit_events"]["Row"]
 type IntegrationDecisionRow = Database["public"]["Tables"]["pilot_integration_feasibility_decisions"]["Row"]
-type SnapshotRow = Pick<Database["public"]["Tables"]["pilot_metric_snapshots"]["Row"], "metric_id" | "metric_value">
+type SnapshotRow = Pick<
+  Database["public"]["Tables"]["pilot_metric_snapshots"]["Row"],
+  "metric_id" | "metric_value" | "numerator" | "denominator" | "calculated_at"
+>
 
 function isMissingTableError(error: DatabaseError | null): boolean {
   if (!error) return false
@@ -49,6 +64,60 @@ export async function insertReferralEvent(
   return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 
+export async function insertConnectionEvent(
+  supabase: PilotSupabaseClient,
+  payload: Omit<PilotConnectionEvent, "id">
+): Promise<PilotStorageResult<ConnectionRow>> {
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase.from("pilot_connection_events").insert(payload).select().single()
+  )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
+export async function upsertPilotScopeService(
+  supabase: PilotSupabaseClient,
+  payload: Omit<PilotServiceScopeRecord, "id">
+): Promise<PilotStorageResult<ScopeRow>> {
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase
+      .from("pilot_service_scope")
+      .upsert(payload, { onConflict: "pilot_cycle_id,org_id,service_id" })
+      .select()
+      .single()
+  )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
+export async function insertServiceOperationalStatusEvent(
+  supabase: PilotSupabaseClient,
+  payload: Omit<ServiceOperationalStatusEvent, "id">
+): Promise<PilotStorageResult<ServiceStatusRow>> {
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase.from("service_operational_status_events").insert(payload).select().single()
+  )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
+export async function insertPilotDataDecayAudit(
+  supabase: PilotSupabaseClient,
+  payload: Omit<PilotDataDecayAudit, "id">
+): Promise<PilotStorageResult<DataDecayAuditRow>> {
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase.from("pilot_data_decay_audits").insert(payload).select().single()
+  )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
+export async function insertPilotPreferenceFitEvent(
+  supabase: PilotSupabaseClient,
+  payload: Omit<PilotPreferenceFitEvent, "id">
+): Promise<PilotStorageResult<PreferenceFitRow>> {
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase.from("pilot_preference_fit_events").insert(payload).select().single()
+  )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
 export async function updateReferralEvent(
   supabase: PilotSupabaseClient,
   id: string,
@@ -67,6 +136,33 @@ export async function insertIntegrationDecision(
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_integration_feasibility_decisions").insert(payload).select().single()
   )
+  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+}
+
+export async function insertPilotMetricSnapshots(
+  supabase: PilotSupabaseClient,
+  pilotCycleId: string,
+  orgId: string,
+  snapshots: PilotMetricSnapshotWrite[],
+  calculatedAt: string
+): Promise<PilotStorageResult<SnapshotRow[]>> {
+  const rows = snapshots.map((snapshot) => ({
+    pilot_cycle_id: pilotCycleId,
+    org_id: orgId,
+    metric_id: snapshot.metric_id,
+    metric_value: snapshot.metric_value,
+    numerator: snapshot.numerator,
+    denominator: snapshot.denominator,
+    calculated_at: calculatedAt,
+  }))
+
+  const { data, error } = await withCircuitBreaker(async () =>
+    supabase
+      .from("pilot_metric_snapshots")
+      .insert(rows)
+      .select("metric_id, metric_value, numerator, denominator, calculated_at")
+  )
+
   return { data: data ?? null, error, missingTable: isMissingTableError(error) }
 }
 

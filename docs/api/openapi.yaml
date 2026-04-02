@@ -787,6 +787,7 @@ components:
         - pilot_cycle_id
         - service_id
         - recorded_by_org_id
+        - entity_key_hash
         - attempt_channel
         - attempt_outcome
         - attempted_at
@@ -798,6 +799,10 @@ components:
         recorded_by_org_id:
           type: string
           format: uuid
+        entity_key_hash:
+          type: string
+          pattern: "^[0-9a-fA-F]{64}$"
+          description: Opaque SHA-256 hex digest used for repeat-failure attribution. Raw identifiers are not accepted.
         attempt_channel:
           type: string
           enum: [phone, website, email, in_person, referral]

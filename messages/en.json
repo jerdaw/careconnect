@@ -1212,30 +1212,31 @@
     "cta": {
       "title": "Ready to find help?",
       "search": "Browse Services",
-      "partners": "View Partners"
+      "partners": "View Reference Sources"
     }
   },
   "Partners": {
-    "link": "For Partners"
+    "link": "Reference Sources"
   },
   "PartnersPage": {
     "hero": {
       "title": "Built on Trusted Sources",
-      "subtitle": "HelpBridge relies on verified data from established community partners. We don't scrape; we collaborate."
+      "subtitle": "HelpBridge uses public and community reference sources to support manual curation and verification. Formal partnerships are identified separately when confirmed."
     },
     "verification": {
-      "title": "Our Verification Process",
-      "step1": "Source Verification",
-      "step2": "Manual Review",
+      "title": "How Source Review Works",
+      "step1": "Source Review",
+      "step2": "Manual Verification",
       "step3": "Monthly Audits",
-      "description": "Every service listing undergoes a rigorous 3-step verification process to ensure accuracy and safety."
+      "description": "HelpBridge reviews public reference material, applies manual verification, and continues periodic audits for active listings."
     },
     "cta": {
-      "title": "Become a Partner",
-      "subtitle": "Are you a service provider? Join our network to reach more people.",
+      "title": "Suggest a Service or Source",
+      "subtitle": "Are you a service provider or community organization? Send us a correction, source, or service suggestion for review.",
       "button": "Suggest a Service"
     },
-    "logoAlt": "{name} logo"
+    "logoAlt": "{name} logo",
+    "referenceLabel": "Reference organization"
   },
   "Terms": {
     "title": "Terms of Service",
@@ -1522,9 +1523,9 @@
     },
     "partnerCta": {
       "title": "Is your organization listed?",
-      "description": "If you provide social services in Kingston and want to ensure your information is accurate, you can suggest an update or learn about partnering.",
+      "description": "If you provide social services in Kingston and want to ensure your information is accurate, you can suggest an update or review how HelpBridge handles source review and listings.",
       "suggestButton": "Suggest a Service",
-      "learnMoreButton": "Learn about partnering"
+      "learnMoreButton": "How listings are reviewed"
     },
     "hero": {
       "subtitle": "Find food, housing, crisis support, and 190+ verified services in Kingston — privately, in 7 languages."
