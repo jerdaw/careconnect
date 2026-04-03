@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "npm"
@@ -35,7 +35,7 @@ jobs:
         run: node scripts/report-bundle-size.js
 
       - name: Upload bundle analysis
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bundle-analysis
           path: |
@@ -45,7 +45,7 @@ jobs:
           retention-days: 30
 
       - name: Download baseline bundle analysis
-        uses: dawidd6/action-download-artifact@v11
+        uses: dawidd6/action-download-artifact@v20
         if: github.event_name == 'pull_request'
         continue-on-error: true
         with:
@@ -62,7 +62,7 @@ jobs:
 
       - name: Comment PR with bundle size diff
         if: github.event_name == 'pull_request' && steps.compare.outputs.comparison_failed != 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
