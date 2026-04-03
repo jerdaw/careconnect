@@ -1,6 +1,6 @@
-# HelpBridge - AI Context
+# CareConnect - AI Context
 
-This file contains the core architecture and development guidelines for HelpBridge.
+This file contains the core architecture and development guidelines for CareConnect.
 
 
 
@@ -13,7 +13,7 @@ owner: jer
 tags: [architecture, overview, system-design]
 ---
 
-# HelpBridge - Architecture Overview
+# CareConnect - Architecture Overview
 
 ## Tech Stack
 
@@ -85,7 +85,7 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 
 ### Privacy-Preserving Personalization
 
-- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`helpbridge_user_context`).
+- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`careconnect_user_context`).
 - **Zero PII**: No user accounts, login, or cookies required for basic personalization.
 - **Local Eligibility**: "Likely Qualify" checks run locally by parsing cached service data against the local profile.
 - **Identity Boosting**: Search ranking adjustments happen on the client-side `WebWorker`.
@@ -119,7 +119,7 @@ sequenceDiagram
 
 - **Architecture**: Privacy-preserving feedback system.
 - **Pipeline**: Client (`FeedbackWidget`) -> API (`/api/v1/feedback`) -> Supabase (`feedback` table).
-- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the [Impact Page](/impact) and Partner Dashboard.
+- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the `/impact` page and Partner Dashboard.
 - **Privacy**: No PII, cookies, or persistent IDs are stored. Rate limiting is handled in-memory.
 
 ### Equity-First Access (v14.0)
@@ -133,7 +133,7 @@ sequenceDiagram
 - **Provenance**: `TrustPanel` displays `last_verified` dates, verification methods, and source provenance to build user confidence.
 - **Verification Levels**:
   - `L1`: Basic verification.
-  - `L2`: Manual verification by HelpBridge team.
+  - `L2`: Manual verification by CareConnect team.
   - `L3`: Partner-claimed and verified.
   - `L4`: Governance-level policy concept for future partner/audit workflows; not currently represented in runtime types or search scoring.
 - **Partner Update Workflow**: Structured request-approval loop via `service_update_requests` ensures data integrity while engaging service providers.
@@ -577,7 +577,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Hooks & Utilities**: `docs/development/hooks.md`
 - **Roadmap**: `docs/planning/roadmap.md` (Active Plan)
 - **Historical Records**: `docs/planning/archive/` (Completed work)
-- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
+- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`; gitignored and may be absent locally until generated)
 
 ## Document Metadata (Frontmatter)
 
@@ -605,7 +605,7 @@ Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to
 - **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
-- **AI Readiness**: The `llms.txt` file is auto-generated in CI to provide a "single source of truth" for agents.
+- **AI Readiness**: The `llms.txt` file is auto-generated in CI/docs builds to provide a "single source of truth" for agents.
 
 > [!IMPORTANT]
 > [Highlight breaking changes, deployment requirements, or decisions needing approval]
@@ -673,7 +673,7 @@ tags: [development, testing, guidelines, vitest, playwright, rtl]
 
 ## Overview
 
-HelpBridge uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
+CareConnect uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
 
 ## Pragmatic Testing Philosophy
 
@@ -780,7 +780,7 @@ To conserve CI minutes while on GitHub free tier:
 2. To run E2E on a `main` push, include `[run-e2e]` in the commit message.
 3. Use manual dispatch for intentional E2E validation windows.
 4. Use the separate manual `Production Smoke` workflow for public-host checks
-   (`helpbridge.ca`) instead of trying to turn deploys into an automatic CI step.
+   (`careconnect.ing`) instead of trying to turn deploys into an automatic CI step.
 
 Local helper behavior:
 
@@ -984,7 +984,7 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 ### Transparency Disclosures
 
-HelpBridge flags translated content that is still under review so users can make safer decisions:
+CareConnect flags translated content that is still under review so users can make safer decisions:
 
 1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
    - A dismissible floating pill appears at the bottom-right of every page
@@ -994,7 +994,7 @@ HelpBridge flags translated content that is still under review so users can make
 
 2. **Footer Disclaimer** (all non-English locales)
    - A subtle note appears in the footer for fr/ar/zh-Hans/es
-   - Text: "Some translations are under review. Report errors to feedback@helpbridge.ca"
+   - Text: "Some translations are under review. Report errors to feedback@careconnect.ing"
 
 ### Translation Quality Tiers
 
@@ -1006,7 +1006,7 @@ HelpBridge flags translated content that is still under review so users can make
 
 ### Reporting Translation Errors
 
-Users can report translation errors to `feedback@helpbridge.ca`. Corrections should be prioritized based on:
+Users can report translation errors to `feedback@careconnect.ing`. Corrections should be prioritized based on:
 
 1. Health/safety information (highest priority)
 2. Legal/financial content
@@ -1034,7 +1034,7 @@ tags: [governance, standards, verification]
 
 **Document Version:** 1.0
 **Effective Date:** Dec 29, 2025
-**Scope:** All services listed in the HelpBridge database.
+**Scope:** All services listed in the CareConnect database.
 
 ---
 
@@ -1091,7 +1091,7 @@ To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must in
 ---
 
 **Approved By:**
-HelpBridge Steering Committee
+CareConnect Steering Committee
 
 
 --- FILE: development/hooks.md ---
@@ -1315,19 +1315,19 @@ clearLocation()
 
 --- FILE: planning/roadmap.md ---
 
-# HelpBridge: Product Roadmap
+# CareConnect: Product Roadmap
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-01
+> **Last Updated**: 2026-04-03
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
-- **Services**: 198 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-01)
-- **Tests**: default Vitest suite green as of 2026-04-01 (`164` files; `1244` passed; `24` skipped)
+- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-03)
+- **Tests**: default Vitest suite green as of 2026-04-03 (`165` files; `1251` passed; `24` skipped)
 - **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
-- **Coverage**: `72.07%` statements / `78.73%` branches / `83.28%` functions / `72.07%` lines from `npm run test:coverage` on 2026-04-01
+- **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -1340,21 +1340,21 @@ clearLocation()
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback and background sync
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
-- **Deployment**: Live on the direct-VPS path at `https://helpbridge.ca`
-- **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
+- **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
+- **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
-  - Scope: 2 missing
-  - Coordinates (any): 60 missing
+  - Scope: 0 missing
+  - Coordinates (any): 58 missing
   - Coordinates (required): 18 missing
   - Kingston missing address: 17
-  - Access scripts: 2 missing
-  - Structured hours (active services): 12 missing
-  - Hours text (active services): 12 missing
+  - Access scripts: 0 missing
+  - Structured hours (active services): 10 missing
+  - Hours text (active services): 10 missing
 
 ## Decision Summary
 
-HelpBridge is not currently in a breadth-expansion phase.
+CareConnect is not currently in a breadth-expansion phase.
 
 The active question is whether the project can prove non-duplicate value relative to 211 through measurable last-mile outcomes such as connection success, reliability, and referral completion. Until that is demonstrated, roadmap priority stays on governance closure, pilot readiness, and evidence discipline rather than new feature expansion.
 
@@ -1382,7 +1382,7 @@ The active question is whether the project can prove non-duplicate value relativ
 **Timeline**: 90-day decision cycle (~13 weeks)
 **Created**: 2026-02-27
 
-HelpBridge is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
+CareConnect is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
 
 **Core objective**
 
@@ -1536,6 +1536,7 @@ References:
 ### Recent Completed Milestones
 
 - **Tier 0 admissions-support hardening (2026-04-01)**: completed A3 pilot metric instrumentation, A11 public-claim hardening, A22 focused pilot/privacy test coverage, and bounded A6/A16 readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
+- **CareConnect production cutover and repo finalization (2026-04-03)**: completed the live `careconnect.ing` VPS cutover, legacy HelpBridge-domain redirects, GitHub repo rename to `jerdaw/careconnect`, and post-cutover observability-noise cleanup; archived in [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md).
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
 - **Workflow/runtime cleanup and 211 sync quarantine (2026-04-01)**: upgraded the remaining Node-runtime-sensitive GitHub Actions, replaced archived release creation with `gh`, removed placeholder 211 sync records, and restricted the 211 sync path to explicit manual execution only.
 - **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.
@@ -1563,7 +1564,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 - [v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)
 - [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
 - [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
-- [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
+- [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)
 - [v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)
 - [v17.6 Archive](archive/2026-01-25-v17-6-post-v17-5-enhancements.md)
 - [v17.5 Archive](archive/2026-01-25-v17-5-performance-and-resilience.md)
