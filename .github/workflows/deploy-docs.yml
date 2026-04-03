@@ -63,6 +63,7 @@ jobs:
           args: >-
             --verbose
             --no-progress
+            --root-dir .
             ./docs/README.md
             ./docs/ACCESSIBILITY_GUIDE.md
             ./docs/architecture.md
