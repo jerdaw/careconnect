@@ -317,7 +317,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 #### 3.1 Axiom Dashboard Check
 
-Navigate to: https://app.axiom.co/[your-org]/datasets/kingston-care-production
+Navigate to the Axiom web app and open the `kingston-care-production` dataset for your organization. Do not commit tenant-specific dashboard URLs.
 
 **Checklist**:
 

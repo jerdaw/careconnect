@@ -404,7 +404,7 @@ Before deploying security header changes:
 
 ### Standards & Specifications
 
-- [Content Security Policy Level 3](https://w3c.github.io/webappsec-csp/)
+- [MDN Web Docs: Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 - [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
 - [MDN Web Docs: HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 
