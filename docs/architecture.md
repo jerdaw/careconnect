@@ -111,7 +111,7 @@ sequenceDiagram
 
 - **Architecture**: Privacy-preserving feedback system.
 - **Pipeline**: Client (`FeedbackWidget`) -> API (`/api/v1/feedback`) -> Supabase (`feedback` table).
-- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the [Impact Page](/impact) and Partner Dashboard.
+- **Aggregations**: Database materialized views (`feedback_aggregations`, `unmet_needs_summary`) provide performant metrics for the `/impact` page and Partner Dashboard.
 - **Privacy**: No PII, cookies, or persistent IDs are stored. Rate limiting is handled in-memory.
 
 ### Equity-First Access (v14.0)

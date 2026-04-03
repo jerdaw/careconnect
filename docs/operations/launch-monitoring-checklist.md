@@ -22,7 +22,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 
 - [Rollback Procedures](launch-rollback-procedures.md)
 - [Incident Response Plan](incident-response-plan.md)
-- [Observability Dashboard](/admin/observability)
+- Observability Dashboard: `/admin/observability`
 
 ---
 

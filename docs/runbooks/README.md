@@ -40,7 +40,7 @@ This directory contains step-by-step troubleshooting guides (runbooks) for commo
 
 1. **Check Alerts:**
    - Slack: `#kingston-alerts` channel
-   - Dashboard: [/admin/observability](/admin/observability)
+   - Dashboard: `/admin/observability`
 
 2. **Identify Incident Type:**
    - Circuit breaker open → [Circuit Breaker Runbook](./circuit-breaker-open.md)
@@ -125,7 +125,7 @@ Links to docs, dashboards, code.
 
 ### Dashboards
 
-- **Observability:** [/admin/observability](/admin/observability)
+- **Observability:** `/admin/observability`
   - Real-time metrics, circuit breaker state, top operations
 - **Axiom Logs:** [https://app.axiom.co](https://app.axiom.co)
   - Structured logs, performance events, circuit breaker events

@@ -186,7 +186,7 @@ The following Supabase linter warnings are **expected and intentional**:
 ### Materialized Views in API
 
 - **Tables**: `feedback_aggregations`, `unmet_needs_summary`
-- **Reason**: Intentionally exposed for public transparency on the [Impact Page](/impact)
+- **Reason**: Intentionally exposed for public transparency on the `/impact` page
 - **Mitigation**: Views contain only aggregated, anonymized data (no PII)
 
 ### Unused Indexes

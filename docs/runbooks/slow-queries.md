@@ -546,7 +546,7 @@ LIMIT 10;
   - [Use The Index, Luke](https://use-the-index-luke.com/) (SQL indexing guide)
 
 - **Tools:**
-  - [Observability Dashboard](/admin/observability)
+  - Observability Dashboard: `/admin/observability`
   - [Supabase Query Performance](https://app.supabase.com)
   - [Axiom Performance Metrics](https://app.axiom.co)
 

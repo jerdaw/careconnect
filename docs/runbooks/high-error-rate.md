@@ -358,7 +358,7 @@ Escalate to **CRITICAL** severity if:
   - [Slow Queries](./slow-queries.md)
 
 - **Dashboards:**
-  - [Observability Dashboard](/admin/observability)
+  - Observability Dashboard: `/admin/observability`
   - [Axiom Logs](https://app.axiom.co)
   - [Vercel Dashboard](https://vercel.com/dashboard)
   - [Supabase Dashboard](https://app.supabase.com)

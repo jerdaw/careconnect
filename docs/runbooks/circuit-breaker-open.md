@@ -303,7 +303,7 @@ curl https://yourdomain.com/api/v1/health
 
 ## Related Resources
 
-- **Dashboard:** [/admin/observability](/admin/observability)
+- **Dashboard:** `/admin/observability`
 - **Axiom Logs:** [https://app.axiom.co](https://app.axiom.co)
 - **Supabase Dashboard:** [https://app.supabase.com](https://app.supabase.com)
 - **Circuit Breaker Code:** `lib/resilience/circuit-breaker.ts`
