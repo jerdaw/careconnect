@@ -8,7 +8,7 @@ fi
 
 env_file="$1"
 app_dir="$(cd "$(dirname "$0")/../.." && pwd)"
-image_name="helpbridge-web"
+image_name="careconnect-web"
 
 if git_revision="$(git -C "$app_dir" rev-parse --short HEAD 2>/dev/null)"; then
   tag="$git_revision"
@@ -18,7 +18,7 @@ else
   tag="$(date -u +%Y%m%d%H%M%S)"
 fi
 
-container_name="helpbridge-web"
+container_name="careconnect-web"
 host_bind="127.0.0.1:3300:3000"
 
 read_env_value() {

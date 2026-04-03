@@ -1,6 +1,6 @@
 # Search Engine Architecture
 
-This directory contains the core search logic for HelpBridge. It supports both client-side (local) and server-side (hybrid) search modes.
+This directory contains the core search logic for CareConnect. It supports both client-side (local) and server-side (hybrid) search modes.
 
 ## Scoring Engine (`scoring.ts`)
 

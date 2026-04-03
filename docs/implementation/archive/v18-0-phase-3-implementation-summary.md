@@ -8,7 +8,7 @@
 
 ## Overview
 
-Successfully implemented SLO (Service Level Objective) monitoring dashboard for HelpBridge, completing Phase 3 of the v18.0 Production Observability initiative.
+Successfully implemented SLO (Service Level Objective) monitoring dashboard for CareConnect, completing Phase 3 of the v18.0 Production Observability initiative.
 
 **SLO Targets (PROVISIONAL):**
 

@@ -7,7 +7,7 @@ tags: [roadmap, v20.0, supabase, database, migrations, maintenance]
 
 # v20.0: Supabase Migration Recovery Plan
 
-Restore a reliable migration-only bootstrap for HelpBridge without risking curated service data, privacy guarantees, or DB-backed retrieval behavior.
+Restore a reliable migration-only bootstrap for CareConnect without risking curated service data, privacy guarantees, or DB-backed retrieval behavior.
 
 ## Summary
 
@@ -54,7 +54,7 @@ Make `supabase db reset` and equivalent fresh local bootstrap flows succeed from
 
 Use a **new clean baseline migration** plus a small set of audited forward migrations.
 
-Why this is the right default for HelpBridge:
+Why this is the right default for CareConnect:
 
 1. The project is governance-sensitive; reliable rebuildability matters more than preserving a messy historical chain.
 2. The current chain shows baseline drift and duplicated/overlapping policy work.

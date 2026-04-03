@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document guides you through defining Service Level Objectives (SLOs) for HelpBridge. **SLOs are measurable targets that define what "good" looks like for your service.** You need to make strategic decisions about:
+This document guides you through defining Service Level Objectives (SLOs) for CareConnect. **SLOs are measurable targets that define what "good" looks like for your service.** You need to make strategic decisions about:
 
 1. **Uptime Target** - What percentage of time should the service be available?
 2. **Latency Target** - How fast should search results return?
@@ -38,7 +38,7 @@ This document guides you through defining Service Level Objectives (SLOs) for He
 
 ### Your Context
 
-HelpBridge is a **civic search engine** for social services:
+CareConnect is a **civic search engine** for social services:
 
 - **Traffic Pattern:** Bursty (crisis searches, after-hours spikes)
 - **User Expectation:** Fast results (people in crisis can't wait)
@@ -289,7 +289,7 @@ If you choose **99.9% uptime**, your error budget is:
 3. Generates static site hosted on GitHub Pages
 4. Costs: $0 (runs on free GitHub Actions quota)
 
-**Example:** `https://status.helpbridge.ca`
+**Example:** `https://status.careconnect.ing`
 
 #### Configuration Decisions
 
@@ -342,7 +342,7 @@ If you choose **99.9% uptime**, your error budget is:
 Fill this out to finalize your SLOs:
 
 ```yaml
-# HelpBridge SLO Configuration
+# CareConnect SLO Configuration
 version: "1.0"
 effective_date: "2026-02-12" # Replace with your launch date
 review_date: "2026-05-12" # Review after 3 months
@@ -365,7 +365,7 @@ error_rate_target:
 
 status_page:
   enabled: true
-  url: "https://status.helpbridge.ca"
+  url: "https://status.careconnect.ing"
   check_interval: 5m
   endpoints:
     - "/api/v1/health"
@@ -390,7 +390,7 @@ Once you've made your decisions, follow these steps:
 
 - [ ] Fork [upptime/upptime](https://github.com/upptime/upptime) on GitHub
 - [ ] Update `.upptime/config.yml` with your endpoints
-- [ ] Configure custom domain `status.helpbridge.ca` (requires DNS CNAME)
+- [ ] Configure custom domain `status.careconnect.ing` (requires DNS CNAME)
 - [ ] Enable GitHub Pages on `gh-pages` branch
 - [ ] Wait 5 minutes for first check to run
 
@@ -493,7 +493,7 @@ status_page:
 Before implementing Phase 3, you need:
 
 1. ✅ **SLO Decisions** - Fill out the decision template above (30-45 min)
-2. ⚠️ **Domain Configuration** - Set up `status.helpbridge.ca` CNAME to GitHub Pages (~10 min)
+2. ⚠️ **Domain Configuration** - Set up `status.careconnect.ing` CNAME to GitHub Pages (~10 min)
 3. ⚠️ **GitHub Repository** - Fork upptime/upptime and configure endpoints (~20 min)
 4. ⏸️ **Production Baseline Data** (Optional but Recommended) - Run 1 week of production traffic to validate targets
 
@@ -517,7 +517,7 @@ Before implementing Phase 3, you need:
 1. **Review this document** (30-45 min) - Understand the tradeoffs
 2. **Make decisions** - Fill out the decision template
 3. **Reply with your choices** - I'll implement the SLO monitoring dashboard and Upptime configuration
-4. **Set up DNS** - Configure `status.helpbridge.ca` CNAME (you must do this)
+4. **Set up DNS** - Configure `status.careconnect.ing` CNAME (you must do this)
 5. **Deploy** - I'll guide you through Upptime deployment
 
 ---

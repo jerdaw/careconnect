@@ -6,7 +6,7 @@
 
 ## 1. Overview
 
-The Partner Portal is a dedicated interface for community organizations ("Partners") to manage their own service listings on HelpBridge. This shifts the maintenance burden from a central administrator to the distributed network of service providers, ensuring data freshness and accuracy.
+The Partner Portal is a dedicated interface for community organizations ("Partners") to manage their own service listings on CareConnect. This shifts the maintenance burden from a central administrator to the distributed network of service providers, ensuring data freshness and accuracy.
 
 ## 2. Architecture
 

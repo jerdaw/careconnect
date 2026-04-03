@@ -1,4 +1,4 @@
-project_id = "helpbridge-dbtest"
+project_id = "careconnect-dbtest"
 
 [api]
 enabled = true

@@ -122,7 +122,7 @@ To apply these optimizations to `visitbrief` and `healtharchive`:
 ### Step 1: Copy Configuration Files
 
 ```bash
-# From helpbridge-ca directory
+# From careconnect directory
 cp .vercelignore ../visitbrief/
 cp .vercelignore ../healtharchive/
 ```
@@ -199,7 +199,7 @@ Visit: https://vercel.com/dashboard/usage
 Or via CLI:
 
 ```bash
-vercel logs --project=helpbridge-ca
+vercel logs --project=careconnect
 vercel logs --project=visitbrief
 vercel logs --project=healtharchive
 ```
@@ -342,5 +342,5 @@ After applying all optimizations:
 ---
 
 **Last Updated:** 2026-02-12
-**Applied To:** helpbridge-ca
+**Applied To:** careconnect
 **Next:** visitbrief, healtharchive

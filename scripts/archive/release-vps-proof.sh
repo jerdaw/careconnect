@@ -6,12 +6,12 @@ usage() {
 usage: scripts/release-vps-proof.sh <ssh-target> [--deploy]
 
 Creates a release from the current committed tree, uploads it to the VPS,
-repoints /srv/apps/helpbridge-web/current, and optionally runs the
+repoints /srv/apps/careconnect-web/current, and optionally runs the
 VPS deploy script.
 
 Environment overrides:
-  HELPBRIDGE_VPS_APP_ROOT   default: /srv/apps/helpbridge-web
-  HELPBRIDGE_VPS_ENV_FILE   default: /etc/projects-merge/env/helpbridge-web.env
+  CARECONNECT_VPS_APP_ROOT   default: /srv/apps/careconnect-web
+  CARECONNECT_VPS_ENV_FILE   default: /etc/projects-merge/env/careconnect-web.env
 EOF
   exit 1
 }
@@ -31,8 +31,8 @@ if [[ $# -eq 2 ]]; then
 fi
 
 repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
-app_root="${HELPBRIDGE_VPS_APP_ROOT:-/srv/apps/helpbridge-web}"
-env_file="${HELPBRIDGE_VPS_ENV_FILE:-/etc/projects-merge/env/helpbridge-web.env}"
+app_root="${CARECONNECT_VPS_APP_ROOT:-/srv/apps/careconnect-web}"
+env_file="${CARECONNECT_VPS_ENV_FILE:-/etc/projects-merge/env/careconnect-web.env}"
 
 if ! git -C "$repo_root" diff --quiet || ! git -C "$repo_root" diff --cached --quiet; then
   echo "working tree must be clean before creating a release" >&2

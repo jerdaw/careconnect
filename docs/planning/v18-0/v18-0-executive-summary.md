@@ -90,7 +90,7 @@ This version completes partially-finished work from v17.5/v17.6 and adds product
   - Error rate <5% (less than 1 in 20 requests fails)
 - Build **SLO monitoring dashboard** with error budget tracking
 - Deploy **public status page** using Upptime (free, GitHub-hosted)
-  - Live at `status.helpbridge.ca`
+  - Live at `status.careconnect.ing`
   - Shows current system status (operational/degraded/down)
   - Historical uptime percentage
   - Recent incidents with timestamps
@@ -169,8 +169,8 @@ Before we can start Phase 2, you'll need to:
    - Copy webhook URL for environment variables
 
 3. **Configure status page domain** (10 minutes)
-   - Add DNS record for `status.helpbridge.ca` → GitHub Pages
-   - Or use `status.github.io/helpbridge-ca` (no custom domain needed)
+   - Add DNS record for `status.careconnect.ing` → GitHub Pages
+   - Or use `status.github.io/careconnect` (no custom domain needed)
 
 **Total setup time:** ~20 minutes
 
@@ -326,4 +326,4 @@ Before we can start Phase 2, you'll need to:
 
 ---
 
-_This plan represents the next logical step in the HelpBridge roadmap, completing the operational foundation needed for confident production deployment._
+_This plan represents the next logical step in the CareConnect roadmap, completing the operational foundation needed for confident production deployment._

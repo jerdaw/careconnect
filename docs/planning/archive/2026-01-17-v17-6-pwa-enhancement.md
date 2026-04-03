@@ -95,8 +95,8 @@ Remaining manual verification: see **Remaining Work (Manual / External)** above.
 
 ```json
 {
-  "name": "Kingston Care Connect",
-  "short_name": "KCC",
+  "name": "CareConnect",
+  "short_name": "CareConnect",
   "description": "Find community services in Kingston. Free, confidential, and instant.",
   "start_url": "/",
   "display": "standalone",
@@ -117,8 +117,8 @@ Remaining manual verification: see **Remaining Work (Manual / External)** above.
 
 ```json
 {
-  "name": "Kingston Care Connect - Social Services Search",
-  "short_name": "KCC",
+  "name": "CareConnect - Social Services Search",
+  "short_name": "CareConnect",
   "description": "Find essential community services in Kingston. Free, confidential, and instant. Health, housing, crisis, financial, and more.",
   "start_url": "/",
   "id": "/",
@@ -298,7 +298,7 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-**Use case:** User shares text from another app → KCC opens with that text as search query.
+**Use case:** User shares text from another app → CareConnect opens with that text as search query.
 
 ### 1.6 Update HTML Meta Tags
 
@@ -312,7 +312,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "KCC",
+    title: "CareConnect",
   },
   formatDetection: {
     telephone: false,

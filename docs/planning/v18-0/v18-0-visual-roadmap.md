@@ -8,7 +8,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    HELPBRIDGE                    │
+│                    CARECONNECT                    │
 │                   Current State: v17.6                      │
 └─────────────────────────────────────────────────────────────┘
 
@@ -94,7 +94,7 @@ PHASE 3: Service Level Objectives (4-6 hours)
 │  ├─ SLO Monitoring Dashboard                              │
 │  │  ├─ Error budget tracking                              │
 │  │  └─ Compliance trends                                  │
-│  └─ Public Status Page (status.helpbridge.ca)           │
+│  └─ Public Status Page (status.careconnect.ing)           │
 │     ├─ Live system status                                 │
 │     ├─ Uptime percentage                                  │
 │     └─ Incident history                                   │

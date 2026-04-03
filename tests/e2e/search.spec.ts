@@ -16,7 +16,7 @@ test.describe("Search Flow", () => {
   })
 
   test("should allow user to search for services", async ({ page }) => {
-    await expect(page).toHaveTitle(/HelpBridge/)
+    await expect(page).toHaveTitle(/CareConnect/)
 
     // Use the actual aria-label from SearchBar component ("Search for services")
     const searchInput = page.getByRole("textbox", { name: /search for services/i })

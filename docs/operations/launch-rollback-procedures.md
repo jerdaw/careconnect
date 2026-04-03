@@ -155,7 +155,7 @@ This document provides step-by-step rollback procedures for different failure sc
 **2. Identify the last known good VPS release (1 minute)**
 
 - [ ] SSH to the VPS
-- [ ] List `/srv/apps/helpbridge-web/releases/`
+- [ ] List `/srv/apps/careconnect-web/releases/`
 - [ ] Identify the previous known-good release directory
 - [ ] Confirm the current symlink target before changing it
 
@@ -166,17 +166,17 @@ This document provides step-by-step rollback procedures for different failure sc
 - [ ] Wait for the container replacement to complete
 
 ```bash
-ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
-  /srv/apps/helpbridge-web/current
-cd /srv/apps/helpbridge-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
+ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
+  /srv/apps/careconnect-web/current
+cd /srv/apps/careconnect-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 **4. Verify Rollback Success (1 minute)**
 
 - [ ] Visit production URL in incognito window
 - [ ] Test critical user journey (search for "food bank")
-- [ ] Check health endpoint: `curl https://helpbridge.ca/api/v1/health`
+- [ ] Check health endpoint: `curl https://careconnect.ing/api/v1/health`
 - [ ] Confirm 200 OK status
 
 **5. Monitor for Stability (1 minute)**
@@ -284,7 +284,7 @@ cd /srv/apps/helpbridge-web/current
 - [ ] Post in Slack: "⚠️ SEV-2: Rolling back - high error rate"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous working release
-- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
 - [ ] Wait for completion
 
 **4. Verify Rollback (3 minutes)**
@@ -407,7 +407,7 @@ cd /srv/apps/helpbridge-web/current
 - [ ] Post in Slack: "⚠️ SEV-3: Rolling back - performance degradation"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous release
-- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
 - [ ] Monitor latency recovery
 
 **5. Verify Performance Restored (5 minutes)**
@@ -459,24 +459,24 @@ ssh haadmin@your-vps
 
 ```bash
 # List recent releases
-ls -1 /srv/apps/helpbridge-web/releases
+ls -1 /srv/apps/careconnect-web/releases
 
 # Repoint current to the previous release and redeploy
-ln -sfn /srv/apps/helpbridge-web/releases/<previous-release> \
-  /srv/apps/helpbridge-web/current
-cd /srv/apps/helpbridge-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env
+ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
+  /srv/apps/careconnect-web/current
+cd /srv/apps/careconnect-web/current
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ### Verify Rollback
 
 ```bash
 # Check running container and health
-docker ps --filter name=helpbridge-web
+docker ps --filter name=careconnect-web
 curl http://127.0.0.1:3300/api/v1/health
 
 # Test health endpoint
-curl https://helpbridge.ca/api/v1/health
+curl https://careconnect.ing/api/v1/health
 ```
 
 ---

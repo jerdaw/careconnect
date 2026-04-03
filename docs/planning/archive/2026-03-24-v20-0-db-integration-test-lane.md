@@ -9,7 +9,7 @@ tags: [planning, archive, v20.0, testing, supabase, ci]
 
 ## Summary
 
-The v20 maintenance goal of adding a real DB-backed integration lane is complete. HelpBridge now has deterministic local Supabase coverage for the public retrieval boundary and RLS-sensitive policy behavior.
+The v20 maintenance goal of adding a real DB-backed integration lane is complete. CareConnect now has deterministic local Supabase coverage for the public retrieval boundary and RLS-sensitive policy behavior.
 
 ## Completed Scope
 

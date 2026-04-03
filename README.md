@@ -1,4 +1,4 @@
-# HelpBridge
+# CareConnect
 
 > A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
 
@@ -8,7 +8,7 @@
 
 ## Manual Curation, Not Scraping
 
-Large-scale scraping of municipal data produces noise, not value. HelpBridge takes a different path: **manual curation over automated extraction**.
+Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
 We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
 
@@ -28,23 +28,23 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 1. Legacy production guidance in this repo still references Vercel where explicitly marked historical.
 2. The active production path is now the direct-VPS deployment documented in [docs/deployment/direct-vps-proof.md](docs/deployment/direct-vps-proof.md).
-3. The app is live on the Hetzner VPS at [https://helpbridge.ca](https://helpbridge.ca).
-4. `www.helpbridge.ca` redirects to the apex and the app container remains bound privately at `127.0.0.1:3300`.
+3. The app is live on the Hetzner VPS at [https://careconnect.ing](https://careconnect.ing).
+4. `www.careconnect.ing` redirects to the apex and the app container remains bound privately at `127.0.0.1:3300`.
 5. Shared VPS inventory, roadmap, and cross-project runbooks now live in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`).
 6. Push notifications are optional and stay disabled unless OneSignal is explicitly configured.
 
 ## Shared documentation boundary
 
-1. `platform-ops/` is the default home for shared VPS facts that are not specific to HelpBridge alone:
+1. `platform-ops/` is the default home for shared VPS facts that are not specific to CareConnect alone:
    - shared host access posture
    - shared ingress ownership
    - cross-project service inventory
    - shared host path conventions
    - host-wide hardening and maintenance state
-2. `helpbridge/` owns the HelpBridge-specific subset:
+2. `careconnect/` owns the CareConnect-specific subset:
    - application behavior and user-facing governance
-   - HelpBridge runtime and environment contract
-   - HelpBridge deploy, verification, and rollback steps
+   - CareConnect runtime and environment contract
+   - CareConnect deploy, verification, and rollback steps
 3. Boundary reference:
    - `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
 
@@ -179,8 +179,8 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 ### Installation
 
 ```bash
-git clone https://github.com/jerdaw/helpbridge.git
-cd helpbridge
+git clone https://github.com/jerdaw/careconnect.git
+cd careconnect
 npm install  # Installs dependencies and automatically sets up Git hooks
 npm run dev
 ```

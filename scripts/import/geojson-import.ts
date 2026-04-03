@@ -72,7 +72,7 @@ async function importData() {
         verification_level: VerificationLevel.L1,
         intent_category: props.category as IntentCategory,
         provenance: {
-          verified_by: "HelpBridge Manual GeoJSON Import",
+          verified_by: "CareConnect Manual GeoJSON Import",
           verified_at: new Date().toISOString(),
           evidence_url: props.website || "https://211ontario.ca",
           method: "Manual Curation & Import",

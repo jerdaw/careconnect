@@ -13,7 +13,7 @@ Residual follow-through from this archive was completed in
 
 ## Executive Summary
 
-A systematic audit of the HelpBridge codebase identified 30+ findings across 12 areas. This document provides concrete, step-by-step remediation for each finding, grouped into 6 phases by priority and dependency order.
+A systematic audit of the CareConnect codebase identified 30+ findings across 12 areas. This document provides concrete, step-by-step remediation for each finding, grouped into 6 phases by priority and dependency order.
 
 **Baselines (2026-03-25):**
 

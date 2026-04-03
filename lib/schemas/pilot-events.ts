@@ -140,7 +140,7 @@ export const PilotPreferenceFitEventCreateSchema = z
     org_id: z.string().uuid(),
     cohort_label: z.string().min(1).max(100),
     recorded_at: z.string().datetime(),
-    preferred_via_helpbridge: z.boolean(),
+    preferred_via_careconnect: z.boolean(),
   })
   .strict()
   .superRefine(addPrivacyFieldIssues)

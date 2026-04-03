@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next"
 import { promises as fs } from "fs"
 import path from "path"
+import { getPublicBaseUrl } from "@/lib/brand"
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://helpbridge.ca"
+const BASE_URL = getPublicBaseUrl()
 
 const locales = ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"] as const
 

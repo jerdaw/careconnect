@@ -23,13 +23,13 @@ export function Footer() {
               <div className="relative flex h-9 items-center justify-center transition-all">
                 <Image
                   src="/logo.png"
-                  alt="HelpBridge Logo"
+                  alt="CareConnect Logo"
                   width={64}
                   height={32}
                   className="h-7 w-auto object-contain"
                 />
               </div>
-              <span className="heading-display text-xl font-bold tracking-tight text-white">HelpBridge</span>
+              <span className="heading-display text-xl font-bold tracking-tight text-white">CareConnect</span>
             </div>
             <p className="max-w-md leading-relaxed text-neutral-400">{t("mission")}</p>
             <div className="flex gap-4">
@@ -48,7 +48,7 @@ export function Footer() {
                 <Twitter className="h-5 w-5 text-neutral-400" />
               </a>
               <a
-                href="mailto:feedback@helpbridge.ca"
+                href="mailto:feedback@careconnect.ing"
                 aria-label="Contact by Email"
                 className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
               >

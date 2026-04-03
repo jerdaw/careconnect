@@ -1,4 +1,4 @@
-# AGENTS.md – HelpBridge
+# AGENTS.md – CareConnect
 
 ## Agent Role
 
@@ -39,7 +39,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
-**Cross-project ops note:** HelpBridge app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
+**Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
 
 ---
 

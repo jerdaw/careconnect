@@ -22,7 +22,7 @@ describe("Misc smoke coverage", () => {
     expect(screen.getByText("Pilot release")).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "Share feedback" })).toHaveAttribute(
       "href",
-      "mailto:feedback@helpbridge.ca?subject=Kingston%20Care%20Connect%20Pilot%20Feedback"
+      "mailto:feedback@careconnect.ing?subject=Kingston%20Care%20Connect%20Pilot%20Feedback"
     )
   })
 

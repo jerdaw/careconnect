@@ -17,7 +17,7 @@ Accepted
 
 ## Context
 
-As of **2026-01-21**, HelpBridge maintained 196 verified services with significant data gaps:
+As of **2026-01-21**, CareConnect maintained 196 verified services with significant data gaps:
 
 - 75% missing `scope` field
 - 91% missing `coordinates`

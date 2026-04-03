@@ -1,4 +1,4 @@
-# Launch Assets Guide - HelpBridge
+# Launch Assets Guide - CareConnect
 
 **Purpose**: Specifications for visual assets needed for launch
 **Audience**: Designers, partners creating promotional materials
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This guide specifies the visual assets needed for HelpBridge's launch. All assets should prioritize **accessibility**, **clarity**, and **community-centered design**.
+This guide specifies the visual assets needed for CareConnect's launch. All assets should prioritize **accessibility**, **clarity**, and **community-centered design**.
 
 **Design Philosophy**:
 
@@ -25,7 +25,7 @@ This guide specifies the visual assets needed for HelpBridge's launch. All asset
 
 #### Primary Logo (Full)
 
-- **Components**: Icon + "HelpBridge" wordmark
+- **Components**: Icon + "CareConnect" wordmark
 - **Formats**: SVG (vector), PNG @1x, @2x, @3x
 - **Variants Needed**:
   - Full color on white background
@@ -179,7 +179,7 @@ If custom fonts are needed for print materials:
 - Content: Logo + "Find social services in Kingston, ON"
 - Background: Gradient (teal to white) or solid teal
 - Text: White, large, bold
-- URL: "helpbridge.ca" in bottom-right corner
+- URL: "careconnect.ing" in bottom-right corner
 
 **Service Page**
 
@@ -292,7 +292,7 @@ If custom fonts are needed for print materials:
 **Carousel Topics**:
 
 1. **How It Works** (5 slides)
-   - Slide 1: Title "How HelpBridge Works"
+   - Slide 1: Title "How CareConnect Works"
    - Slide 2: "1. Search"
    - Slide 3: "2. Browse Results"
    - Slide 4: "3. View Details"
@@ -447,13 +447,13 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 **Front**:
 
 - Logo
-- "helpbridge.ca"
+- "careconnect.ing"
 - Tagline: "Find social services in Kingston, ON"
 
 **Back**:
 
-- Contact email: feedback@helpbridge.ca
-- QR code linking to helpbridge.ca (optional)
+- Contact email: feedback@careconnect.ing
+- QR code linking to careconnect.ing (optional)
 - 7-language support icons or flags
 
 **Print Specs**:
@@ -476,7 +476,7 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 - Large QR code (easy to scan from distance)
 - "Find social services in Kingston"
 - Key features (icons + text)
-- URL: helpbridge.ca
+- URL: careconnect.ing
 - Available in 7 languages
 
 **Accessibility Requirements**:
@@ -548,7 +548,7 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 
 ### 2. Demo Video (Optional)
 
-**Purpose**: Show how to use HelpBridge in 60-90 seconds
+**Purpose**: Show how to use CareConnect in 60-90 seconds
 
 **Specifications**:
 
@@ -560,11 +560,11 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 **Script Outline**:
 
 1. (0-10s) Show problem: "Need help finding a food bank?"
-2. (10-20s) Show homepage: "HelpBridge is here to help."
+2. (10-20s) Show homepage: "CareConnect is here to help."
 3. (20-40s) Demo search: Type "food bank" → results appear
 4. (40-60s) Demo service detail: Click result → see full info
 5. (60-75s) Highlight features: Works offline, 7 languages, privacy-first
-6. (75-90s) Call to action: "Visit helpbridge.ca"
+6. (75-90s) Call to action: "Visit careconnect.ing"
 
 **Production Notes**:
 
@@ -586,16 +586,16 @@ Indigenous icon must be designed in consultation with Indigenous community membe
 
 ## File Naming Conventions
 
-**Format**: `helpbridge-[type]-[variant]-[size].[ext]`
+**Format**: `careconnect-[type]-[variant]-[size].[ext]`
 
 **Examples**:
 
-- `helpbridge-logo-full-color-400px.png`
-- `helpbridge-logo-icon-white-512px.svg`
-- `helpbridge-og-image-homepage-1200x630.png`
-- `helpbridge-social-twitter-header-1500x500.jpg`
-- `helpbridge-icon-search-64px.svg`
-- `helpbridge-screenshot-mobile-iphone-2x.png`
+- `careconnect-logo-full-color-400px.png`
+- `careconnect-logo-icon-white-512px.svg`
+- `careconnect-og-image-homepage-1200x630.png`
+- `careconnect-social-twitter-header-1500x500.jpg`
+- `careconnect-icon-search-64px.svg`
+- `careconnect-screenshot-mobile-iphone-2x.png`
 
 **Benefits**:
 
@@ -655,41 +655,41 @@ Before finalizing any graphic asset:
 When assets are created, deliver in this structure:
 
 ```
-helpbridge-ca-assets/
+careconnect-assets/
 ├── logos/
 │   ├── svg/
-│   │   ├── helpbridge-logo-full-color.svg
-│   │   ├── helpbridge-logo-white.svg
-│   │   └── helpbridge-icon-only.svg
+│   │   ├── careconnect-logo-full-color.svg
+│   │   ├── careconnect-logo-white.svg
+│   │   └── careconnect-icon-only.svg
 │   └── png/
-│       ├── helpbridge-logo-full-color-400px.png
-│       ├── helpbridge-logo-full-color-800px.png
-│       └── helpbridge-icon-512px.png
+│       ├── careconnect-logo-full-color-400px.png
+│       ├── careconnect-logo-full-color-800px.png
+│       └── careconnect-icon-512px.png
 ├── social/
 │   ├── og-images/
-│   │   ├── helpbridge-og-homepage.png
-│   │   └── helpbridge-og-generic.png
+│   │   ├── careconnect-og-homepage.png
+│   │   └── careconnect-og-generic.png
 │   ├── profile/
-│   │   ├── helpbridge-profile-twitter-400x400.png
-│   │   └── helpbridge-profile-linkedin-400x400.png
+│   │   ├── careconnect-profile-twitter-400x400.png
+│   │   └── careconnect-profile-linkedin-400x400.png
 │   └── covers/
-│       ├── helpbridge-twitter-header-1500x500.jpg
-│       └── helpbridge-facebook-cover-820x312.jpg
+│       ├── careconnect-twitter-header-1500x500.jpg
+│       └── careconnect-facebook-cover-820x312.jpg
 ├── icons/
 │   ├── features/
-│   │   ├── helpbridge-icon-search.svg
-│   │   ├── helpbridge-icon-offline.svg
+│   │   ├── careconnect-icon-search.svg
+│   │   ├── careconnect-icon-offline.svg
 │   │   └── ...
 │   └── categories/
-│       ├── helpbridge-icon-food.svg
-│       ├── helpbridge-icon-crisis.svg
+│       ├── careconnect-icon-food.svg
+│       ├── careconnect-icon-crisis.svg
 │       └── ...
 ├── print/
-│   ├── helpbridge-poster-letter.pdf
-│   ├── helpbridge-poster-tabloid.pdf
-│   └── helpbridge-rack-card.pdf
+│   ├── careconnect-poster-letter.pdf
+│   ├── careconnect-poster-tabloid.pdf
+│   └── careconnect-rack-card.pdf
 └── video/
-    └── helpbridge-demo-60s.mp4
+    └── careconnect-demo-60s.mp4
 ```
 
 **Delivery Format**: ZIP file or shared Google Drive/Dropbox folder
@@ -754,10 +754,10 @@ helpbridge-ca-assets/
 ## Contact & Questions
 
 For questions about asset specifications:
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 
 For design collaboration or asset delivery:
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 
 ---
 

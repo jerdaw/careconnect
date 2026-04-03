@@ -2,6 +2,7 @@
 
 import { useLocalStorage } from "./useLocalStorage"
 import type { UserContext, AgeGroup, IdentityTag } from "@/types/user-context"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
 const DEFAULT_CONTEXT: UserContext = {
   ageGroup: null,
@@ -10,9 +11,13 @@ const DEFAULT_CONTEXT: UserContext = {
 }
 
 export function useUserContext() {
-  const [context, setContext, clearContext] = useLocalStorage<UserContext>("helpbridge_user_context", DEFAULT_CONTEXT, {
-    legacyKeys: ["kcc_user_context"],
-  })
+  const [context, setContext, clearContext] = useLocalStorage<UserContext>(
+    "careconnect_user_context",
+    DEFAULT_CONTEXT,
+    {
+      legacyKeys: [...LEGACY_BRAND_KEYS.userContext],
+    }
+  )
 
   const updateAgeGroup = (ageGroup: AgeGroup | null) => {
     setContext((prev) => ({ ...prev, ageGroup }))

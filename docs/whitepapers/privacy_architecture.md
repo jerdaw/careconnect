@@ -7,11 +7,11 @@ tags: [whitepaper, privacy, architecture]
 
 # Technical Whitepaper: Zero-Egress Privacy Architecture
 
-**Privacy by Design for HelpBridge**
+**Privacy by Design for CareConnect**
 
 ## 1. Executive Summary
 
-HelpBridge employs a "Zero-Egress" architecture for its AI Assistant. Unlike traditional LLM implementations that transmit user data to third-party clouds (e.g., OpenAI, Anthropic), our system processes all data **exclusively on the user's device** or within a **sovereign localized environment**.
+CareConnect employs a "Zero-Egress" architecture for its AI Assistant. Unlike traditional LLM implementations that transmit user data to third-party clouds (e.g., OpenAI, Anthropic), our system processes all data **exclusively on the user's device** or within a **sovereign localized environment**.
 
 ## 2. Data Flow Architecture
 
@@ -38,7 +38,7 @@ To protect against XSS and injection attacks:
 
 ## 4. Conclusion
 
-By eliminating the "Third-Party Data Egress" vector, HelpBridge provides a safer clinical environment than standard "GPT-wrappers," meeting the highest bars for digital sovereignty in social work.
+By eliminating the "Third-Party Data Egress" vector, CareConnect provides a safer clinical environment than standard "GPT-wrappers," meeting the highest bars for digital sovereignty in social work.
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * Centralized logging utility for HelpBridge.
+ * Centralized logging utility for CareConnect.
  * Supports structured logging with global context, timers, and metadata.
  */
 

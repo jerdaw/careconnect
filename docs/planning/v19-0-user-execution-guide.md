@@ -8,7 +8,7 @@
 
 ## Overview
 
-This guide walks you through **exactly what you need to do** to take HelpBridge from current state to full public launch.
+This guide walks you through **exactly what you need to do** to take CareConnect from current state to full public launch.
 
 **Your tasks are split into two phases:**
 
@@ -110,7 +110,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 
 **How:**
 
-1. Go to production site (e.g., `https://helpbridge.ca`)
+1. Go to production site (e.g., `https://careconnect.ing`)
 2. **Test Signup:**
    - Navigate to signup page
    - Create account: `qa-test-[timestamp]@example.com`
@@ -141,7 +141,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 
 1. Run in terminal:
    ```bash
-   SECURITY_HEADERS_BASE_URL=https://helpbridge.ca npm run validate:security-headers:runtime
+   SECURITY_HEADERS_BASE_URL=https://careconnect.ing npm run validate:security-headers:runtime
    ```
 2. Confirm headers present:
    - `Content-Security-Policy`
@@ -181,7 +181,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 **How:**
 
 1. **Test 404:**
-   - Visit: `https://helpbridge.ca/nonexistent-page`
+   - Visit: `https://careconnect.ing/nonexistent-page`
    - Check: Custom 404 page displays?
    - Check: "Return Home" link works?
 2. **Test Offline:**
@@ -378,7 +378,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 1. Open terminal
 2. Run data audit:
    ```bash
-   cd /path/to/helpbridge-ca
+   cd /path/to/careconnect
    npm run audit:data
    ```
 3. Review output:
@@ -553,7 +553,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 1. Open: `docs/operations/beta-testing-plan.md` Section: "Phase 1 Recruitment"
 2. Find email invitation template
 3. Customize with your information:
-   - Replace `[Platform Name]` → HelpBridge
+   - Replace `[Platform Name]` → CareConnect
    - Replace `[Your Name]` → Your name
    - Replace `[Link]` → Production URL
 4. Send to each person individually (personalize!)
@@ -574,7 +574,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
 
 1. **Check Feedback Channels (5 min):**
    - [ ] In-app feedback widget: Any new submissions?
-   - [ ] Email (feedback@helpbridge.ca): Any messages?
+   - [ ] Email (feedback@careconnect.ing): Any messages?
    - [ ] Note feedback in tracking spreadsheet
 
 2. **Check Observability Dashboard (5 min):**
@@ -718,7 +718,7 @@ This guide walks you through **exactly what you need to do** to take HelpBridge 
    - Update status to "Available"
 
 2. **Announce (low-key):**
-   - Social media post (organic, not paid): "HelpBridge is now available to help you find local services..."
+   - Social media post (organic, not paid): "CareConnect is now available to help you find local services..."
    - Email to community partners
    - Word-of-mouth through beta users
    - Community partner newsletters

@@ -199,21 +199,21 @@ This prevents arbitrary field injection while still allowing legitimate service 
 
 #### Missing Keys (identical set in ar, zh-Hans, es, pa, pt)
 
-| Key                                  | English Value                                                                  |
-| ------------------------------------ | ------------------------------------------------------------------------------ |
-| `UserGuide.title`                    | "User Guide - HelpBridge"                                                      |
-| `UserGuide.description`              | "Learn how to use HelpBridge to find local services and support."              |
-| `FAQ.title`                          | "FAQ - HelpBridge"                                                             |
-| `FAQ.description`                    | "Frequently asked questions about HelpBridge, data verification, and privacy." |
-| `Footer.quickLinks.resources`        | "Resources"                                                                    |
-| `Footer.quickLinks.userGuide`        | "User Guide"                                                                   |
-| `Footer.quickLinks.faq`              | "FAQ"                                                                          |
-| `Search.searchHint`                  | "Try: food bank, mental health, housing, legal aid"                            |
-| `Search.noResultsHelpTitle`          | "Can't find what you need?"                                                    |
-| `Search.noResultsHelpBrowse`         | "Browse categories below"                                                      |
-| `Search.noResultsHelpDifferentWords` | "Try different keywords..."                                                    |
-| `Search.noResultsHelpCheckSpelling`  | "Check your spelling"                                                          |
-| `Search.noResultsHelpBroaderSearch`  | "Search for a broader topic..."                                                |
+| Key                                  | English Value                                                                   |
+| ------------------------------------ | ------------------------------------------------------------------------------- |
+| `UserGuide.title`                    | "User Guide - CareConnect"                                                      |
+| `UserGuide.description`              | "Learn how to use CareConnect to find local services and support."              |
+| `FAQ.title`                          | "FAQ - CareConnect"                                                             |
+| `FAQ.description`                    | "Frequently asked questions about CareConnect, data verification, and privacy." |
+| `Footer.quickLinks.resources`        | "Resources"                                                                     |
+| `Footer.quickLinks.userGuide`        | "User Guide"                                                                    |
+| `Footer.quickLinks.faq`              | "FAQ"                                                                           |
+| `Search.searchHint`                  | "Try: food bank, mental health, housing, legal aid"                             |
+| `Search.noResultsHelpTitle`          | "Can't find what you need?"                                                     |
+| `Search.noResultsHelpBrowse`         | "Browse categories below"                                                       |
+| `Search.noResultsHelpDifferentWords` | "Try different keywords..."                                                     |
+| `Search.noResultsHelpCheckSpelling`  | "Check your spelling"                                                           |
+| `Search.noResultsHelpBroaderSearch`  | "Search for a broader topic..."                                                 |
 
 #### [MODIFY] `messages/ar.json`, `messages/zh-Hans.json`, `messages/es.json`, `messages/pa.json`, `messages/pt.json`
 

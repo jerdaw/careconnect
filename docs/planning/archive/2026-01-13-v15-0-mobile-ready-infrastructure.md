@@ -16,7 +16,7 @@ This document is the **version definition and implementation plan** for v15.0, w
 
 ### The Vision
 
-Kingston Care Connect has achieved production-ready status (v14.x) with privacy-preserving feedback, equity-first access, and visible verification. However, significant access barriers remain:
+CareConnect has achieved production-ready status (v14.x) with privacy-preserving feedback, equity-first access, and visible verification. However, significant access barriers remain:
 
 1. **Offline Access**: Front-line workers in shelters/drop-in centres with poor connectivity cannot reliably access the directory
 2. **Engagement**: No way to proactively notify users of critical service updates (shelter capacity, emergency closures)
@@ -36,7 +36,7 @@ v15.0 addresses these gaps by **building mobile-ready infrastructure** that:
 
 ### Strategic Alignment
 
-This roadmap positions KCC for:
+This roadmap positions CareConnect for:
 
 - **Immediate PWA Improvement**: Better offline experience benefits users today
 - **Technical Readiness**: When funding/resources allow, native app launch is straightforward
@@ -160,7 +160,7 @@ This roadmap positions KCC for:
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│                    Kingston Care Connect                       │
+│                    CareConnect                       │
 ├───────────────────────────────────────────────────────────────┤
 │                                                                │
 │  ┌─────────────┐                          ┌─────────────┐     │
@@ -287,8 +287,8 @@ Service Update Published → Push Sent → Device Receives → User Taps → Dee
 import { CapacitorConfig } from "@capacitor/cli"
 
 const config: CapacitorConfig = {
-  appId: "org.kingstoncareconnect.app",
-  appName: "Kingston Care Connect",
+  appId: "ca.careconnect.app",
+  appName: "CareConnect",
   webDir: "out", // Next.js static export
   server: {
     // For development, point to local Next.js server
@@ -298,7 +298,7 @@ const config: CapacitorConfig = {
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
-      backgroundColor: "#1e3a5f", // KCC brand color
+      backgroundColor: "#1e3a5f", // CareConnect brand color
       androidScaleType: "CENTER_CROP",
       showSpinner: false,
     },
@@ -315,7 +315,7 @@ export default config
 
 ### 5.2 Offline Data Schema (IndexedDB)
 
-**Database**: `kcc-offline-v1`
+**Database**: `careconnect-offline-v1`
 
 ```typescript
 interface OfflineDB {
@@ -434,7 +434,7 @@ interface OfflineDB {
     "apps": [],
     "details": [
       {
-        "appID": "TEAMID.org.kingstoncareconnect.app",
+        "appID": "TEAMID.ca.careconnect.app",
         "paths": ["/*/services/*", "/*/search", "/*/categories/*"]
       }
     ]
@@ -450,7 +450,7 @@ interface OfflineDB {
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "org.kingstoncareconnect.app",
+      "package_name": "ca.careconnect.app",
       "sha256_cert_fingerprints": ["SHA256_FINGERPRINT_HERE"]
     }
   }
@@ -598,7 +598,7 @@ npm install @capacitor/core @capacitor/cli
 npm install @capacitor/splash-screen @capacitor/push-notifications
 npm install @capacitor/app @capacitor/share @capacitor/status-bar
 npm install @capacitor/network
-npx cap init "Kingston Care Connect" org.kingstoncareconnect.app --web-dir=out
+npx cap init "CareConnect" ca.careconnect.app --web-dir=out
 # DO NOT run: npx cap add ios (requires macOS)
 # OPTIONAL: npx cap add android (if testing desired)
 ```
@@ -855,10 +855,10 @@ export async function syncOfflineData(): Promise<SyncResult> {
 **URL Patterns**:
 
 ```
-https://kingstoncareconnect.org/en/services/kingston-food-bank
+https://careconnect.ing/en/services/kingston-food-bank
 → Opens ServiceDetail(id: "kingston-food-bank", locale: "en")
 
-https://kingstoncareconnect.org/fr/search?q=nourriture
+https://careconnect.ing/fr/search?q=nourriture
 → Opens Search(query: "nourriture", locale: "fr")
 ```
 
@@ -1106,7 +1106,7 @@ When v15.0 is complete, the following should be ready for v15.1:
 ### Appendix B: File Structure Changes
 
 ```
-kingston-care-connect/
+careconnect/
 ├── capacitor.config.ts          # NEW: Capacitor configuration (structure only)
 ├── lib/
 │   ├── offline/                 # NEW: Offline infrastructure

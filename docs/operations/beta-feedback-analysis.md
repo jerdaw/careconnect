@@ -38,7 +38,7 @@ This framework ensures all beta feedback is captured, categorized, prioritized, 
 - Storage: Supabase database
 - Monitoring: Check `/admin/dashboard` daily
 
-**2. Email (beta-feedback@helpbridge.ca)**
+**2. Email (beta-feedback@careconnect.ing)**
 
 - Direct email from users
 - More detailed feedback expected
@@ -252,7 +252,7 @@ This framework ensures all beta feedback is captured, categorized, prioritized, 
   - Export new entries
   - Add to tracking spreadsheet
 
-- [ ] Check email (beta-feedback@helpbridge.ca)
+- [ ] Check email (beta-feedback@careconnect.ing)
   - Read all new emails
   - Add to tracking spreadsheet
 
@@ -276,7 +276,7 @@ For each new feedback item:
   ```
   Hi [Name],
 
-  Thank you for testing HelpBridge and for your feedback!
+  Thank you for testing CareConnect and for your feedback!
 
   I've logged: [Brief summary of their feedback]
   Priority: [P0/P1/P2/P3]
@@ -338,7 +338,7 @@ For each new feedback item:
 
   Great news! The [issue you reported] has been fixed and deployed.
 
-  You can test it now at beta.helpbridge.ca
+  You can test it now at beta.careconnect.ing
 
   Thanks for helping us improve!
 
@@ -546,7 +546,7 @@ Subject: Thank you for your feedback!
 
 Hi [Name],
 
-Thank you for testing HelpBridge and taking the time to share your thoughts!
+Thank you for testing CareConnect and taking the time to share your thoughts!
 
 Your feedback: [Brief summary]
 What we'll do: [Next steps]
@@ -557,7 +557,7 @@ Thanks for helping make this better for everyone!
 
 Best,
 [Your name]
-HelpBridge Team
+CareConnect Team
 ```
 
 ### Bug Report Acknowledgment
@@ -592,7 +592,7 @@ Good news! The issue you reported has been fixed:
 
 Bug: [Description]
 Fix: [What we did]
-Live now: You can test it at beta.helpbridge.ca
+Live now: You can test it at beta.careconnect.ing
 
 Thanks for reporting this - you helped make it better for everyone!
 
@@ -805,7 +805,7 @@ Comprehensive review:
 ### Feedback Management
 
 - **Spreadsheet:** Google Sheets or Airtable (template above)
-- **Email:** beta-feedback@helpbridge.ca (set up Gmail forwarding)
+- **Email:** beta-feedback@careconnect.ing (set up Gmail forwarding)
 - **Surveys:** Google Forms (free) or Typeform (paid, better UX)
 
 ### Analysis Tools

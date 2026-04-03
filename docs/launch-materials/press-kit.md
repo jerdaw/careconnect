@@ -1,8 +1,8 @@
-# HelpBridge - Press Kit
+# CareConnect - Press Kit
 
 **Last Updated**: April 2026
 **Version**: 1.1 - Live Pilot
-**Contact**: feedback@helpbridge.ca
+**Contact**: feedback@careconnect.ing
 
 ---
 
@@ -10,12 +10,12 @@
 
 | Detail              | Information                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------- |
-| **Name**            | HelpBridge                                                                             |
+| **Name**            | CareConnect                                                                            |
 | **Tagline**         | Find social services in Kingston, Ontario                                              |
 | **Mission**         | Bridge the gap between people in need and a manually curated social-services directory |
 | **Current Status**  | Live public pilot                                                                      |
 | **Platform**        | Web application (Progressive Web App)                                                  |
-| **URL**             | https://helpbridge.ca                                                                  |
+| **URL**             | https://careconnect.ing                                                                |
 | **Service Area**    | Kingston, Ontario, Canada                                                              |
 | **Languages**       | English, French, plus 5 additional community languages                                 |
 | **Services Listed** | ~196 manually curated social services                                                  |
@@ -24,9 +24,9 @@
 
 ## Executive Summary
 
-HelpBridge is a privacy-first social services directory that helps Kingston residents find food banks, crisis support, housing assistance, mental health services, and other community resources.
+CareConnect is a privacy-first social services directory that helps Kingston residents find food banks, crisis support, housing assistance, mental health services, and other community resources.
 
-Unlike traditional directories, HelpBridge:
+Unlike traditional directories, CareConnect:
 
 - **Prioritizes Privacy**: Local search keeps queries on-device by default, with no third-party tracking and no query-text logging
 - **Focuses on Quality**: ~196 hand-curated services with visible listings held at L1+ verification
@@ -58,7 +58,7 @@ When someone searches "I need food today", they shouldn't have to:
 - Call 5 disconnected phone numbers
 - Give up and go hungry
 
-**HelpBridge solves this.**
+**CareConnect solves this.**
 
 ---
 
@@ -237,7 +237,7 @@ Current evaluation priorities focus on:
 
 ## Verification & Governance
 
-Services in HelpBridge are verified at four levels:
+Services in CareConnect are verified at four levels:
 
 | Level  | Description        | Verification Method                    |
 | ------ | ------------------ | -------------------------------------- |
@@ -263,7 +263,7 @@ Services in HelpBridge are verified at four levels:
 
 ## Current Rollout Status
 
-- HelpBridge is currently operating as a live public pilot.
+- CareConnect is currently operating as a live public pilot.
 - Deployment, monitoring, and rollback procedures are documented.
 - Broader launch and partnership activity remain gated by pilot evidence and governance review.
 
@@ -331,7 +331,7 @@ We avoided:
 
 ### Is this a government project?
 
-No, HelpBridge is an independent community resource. While we reference government services (like Ontario Works), we are not affiliated with any government agency.
+No, CareConnect is an independent community resource. While we reference government services (like Ontario Works), we are not affiliated with any government agency.
 
 ### How do you make money?
 
@@ -343,19 +343,19 @@ Our curation team verifies services through public records, direct contact, and 
 
 ### Can service providers add themselves?
 
-Currently, submissions are reviewed and added manually to maintain quality. Providers can submit corrections or new services via our feedback form at feedback@helpbridge.ca.
+Currently, submissions are reviewed and added manually to maintain quality. Providers can submit corrections or new services via our feedback form at feedback@careconnect.ing.
 
 ### Why only Kingston?
 
-Starting local allows HelpBridge to focus on local relevance, governance, and quality. Any broader expansion would require the same level of local curation and evidence discipline.
+Starting local allows CareConnect to focus on local relevance, governance, and quality. Any broader expansion would require the same level of local curation and evidence discipline.
 
 ### What about user privacy?
 
-By default, search queries stay on your device (local search mode). Even in server mode, HelpBridge is designed to avoid query-text logging and third-party tracking. See our Privacy Policy for details.
+By default, search queries stay on your device (local search mode). Even in server mode, CareConnect is designed to avoid query-text logging and third-party tracking. See our Privacy Policy for details.
 
 ### How is this different from 211?
 
-211 Ontario provides broader provincial coverage and live navigation channels. HelpBridge focuses on Kingston-first digital access with local relevance, privacy-first search defaults, offline support, and a community-specific interface. It is intended to complement 211, not replace it.
+211 Ontario provides broader provincial coverage and live navigation channels. CareConnect focuses on Kingston-first digital access with local relevance, privacy-first search defaults, offline support, and a community-specific interface. It is intended to complement 211, not replace it.
 
 ### Is the code open source?
 
@@ -367,22 +367,22 @@ The platform is built on open-source technologies. Code availability details are
 
 ### General Inquiries
 
-**Email**: feedback@helpbridge.ca
-**Website**: https://helpbridge.ca
+**Email**: feedback@careconnect.ing
+**Website**: https://careconnect.ing
 
 ### Media Inquiries
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 **Response Time**: Within 48 hours
 
 ### Technical Information
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 **Documentation**: Available on request
 
 ### Community Partnerships
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 **Note**: We're open to partnerships with social service agencies, community organizations, and accessibility advocates.
 
 ---
@@ -391,21 +391,21 @@ The platform is built on open-source technologies. Code availability details are
 
 ### Short (50 words)
 
-HelpBridge is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 manually curated services.
+CareConnect is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 manually curated services.
 
 ### Medium (100 words)
 
-HelpBridge is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 manually curated services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform helps people searching for immediate support connect to emergency resources quickly, without requiring user accounts or third-party tracking.
+CareConnect is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 manually curated services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform helps people searching for immediate support connect to emergency resources quickly, without requiring user accounts or third-party tracking.
 
 ### Long (200 words)
 
-HelpBridge is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 manually curated social services rather than a broad scraped directory.
+CareConnect is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 manually curated social services rather than a broad scraped directory.
 
 Key features include seven-language support, full offline functionality via Progressive Web App technology, accessibility-focused development, and privacy-by-design architecture where local search keeps queries on-device by default. Special crisis detection helps route people searching for immediate help toward emergency resources like the 988 Suicide Crisis Helpline.
 
-Unlike ad-supported directories or engagement-driven products, HelpBridge does not require user accounts, does not use third-party trackers, and does not log search query text. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
+Unlike ad-supported directories or engagement-driven products, CareConnect does not require user accounts, does not use third-party trackers, and does not log search query text. The platform is community-centered, manually curated, and built for the people who need it most: those experiencing food insecurity, homelessness, mental health crises, or other urgent needs.
 
-HelpBridge is currently operating as a live public pilot.
+CareConnect is currently operating as a live public pilot.
 
 ---
 

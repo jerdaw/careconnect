@@ -15,7 +15,7 @@ This document is the **version definition and implementation plan** for v16.0, w
 
 ### The Vision
 
-Kingston Care Connect's search currently uses basic keyword matching with verification level and freshness multipliers. While functional, it doesn't adequately prioritize:
+CareConnect's search currently uses basic keyword matching with verification level and freshness multipliers. While functional, it doesn't adequately prioritize:
 
 1. **Official Sources**: Government and healthcare services should rank higher than unverified community posts
 2. **Complete Information**: Services with full contact details and hours should surface above sparse listings

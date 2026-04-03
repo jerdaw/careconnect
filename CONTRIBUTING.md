@@ -1,11 +1,11 @@
-# Contributing to HelpBridge
+# Contributing to CareConnect
 
-Welcome! This guide will help you get up and running with the HelpBridge codebase.
+Welcome! This guide will help you get up and running with the CareConnect codebase.
 
 ## Quick Start Checklist
 
 - [ ] **Prerequisites**: Node.js 22+, npm 10+
-- [ ] **Clone & Install**: `git clone` → `cd helpbridge` → `npm install`
+- [ ] **Clone & Install**: `git clone` → `cd careconnect` → `npm install`
 - [ ] **Environment Setup**: Copy `.env.example` to `.env.local` (core features work without Supabase)
 - [ ] **Start Dev Server**: `npm run dev` → Open `http://localhost:3000`
 - [ ] **Run Tests**: `npm test`
@@ -15,7 +15,7 @@ Welcome! This guide will help you get up and running with the HelpBridge codebas
 
 ## Project Philosophy
 
-HelpBridge is a **governance-first, manually curated** social services search engine. Key principles:
+CareConnect is a **governance-first, manually curated** social services search engine. Key principles:
 
 1. **Data Integrity Over Speed** – No auto-scraping. Every service is manually verified.
 2. **Privacy by Design** – Search queries stay on-device by default. Zero tracking.
@@ -42,7 +42,7 @@ See [AGENTS.md](AGENTS.md) for complete development guidelines. `CLAUDE.md` and 
 ### Key Directories
 
 ```
-helpbridge/
+careconnect/
 ├── app/                    # Next.js 15 App Router
 │   ├── [locale]/          # Multi-language routes (7 locales)
 │   ├── api/               # API routes (search, feedback, admin)

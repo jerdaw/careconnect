@@ -27,16 +27,16 @@ vi.mock("@/data/services.json", () => ({
       id: "service-1",
       name: "Static Service",
       description: "Static description",
-      url: "https://helpbridge.ca/service-1",
+      url: "https://careconnect.ing/service-1",
       verification_level: VerificationLevel.L2,
       intent_category: IntentCategory.Food,
       provenance: {
         verified_by: "Static Verifier",
         verified_at: "2026-01-01T00:00:00Z",
-        evidence_url: "https://helpbridge.ca/evidence/service-1",
+        evidence_url: "https://careconnect.ing/evidence/service-1",
         method: "phone",
       },
-      identity_tags: [{ tag: "youth", evidence_url: "https://helpbridge.ca/evidence/tag" }],
+      identity_tags: [{ tag: "youth", evidence_url: "https://careconnect.ing/evidence/tag" }],
       synthetic_queries: ["food help"],
     },
   ],
@@ -53,7 +53,7 @@ describe("getServiceById", () => {
         id: "service-1",
         name: "Database Service",
         description: "Database description",
-        url: "https://helpbridge.ca/database-service",
+        url: "https://careconnect.ing/database-service",
         category: IntentCategory.Food,
         verification_status: VerificationLevel.L2,
         last_verified: "2026-03-19T02:03:19.976Z",
@@ -75,10 +75,10 @@ describe("getServiceById", () => {
     expect(service?.provenance).toEqual({
       verified_by: "Static Verifier",
       verified_at: "2026-01-01T00:00:00Z",
-      evidence_url: "https://helpbridge.ca/evidence/service-1",
+      evidence_url: "https://careconnect.ing/evidence/service-1",
       method: "phone",
     })
-    expect(service?.identity_tags).toEqual([{ tag: "youth", evidence_url: "https://helpbridge.ca/evidence/tag" }])
+    expect(service?.identity_tags).toEqual([{ tag: "youth", evidence_url: "https://careconnect.ing/evidence/tag" }])
     expect(service?.synthetic_queries).toEqual(["food help"])
   })
 
@@ -88,11 +88,11 @@ describe("getServiceById", () => {
         id: "service-1",
         name: "Database Service",
         description: "Database description",
-        url: "https://helpbridge.ca/database-service",
+        url: "https://careconnect.ing/database-service",
         category: IntentCategory.Food,
         verification_status: VerificationLevel.L2,
         last_verified: "2026-03-19T02:03:19.976Z",
-        tags: JSON.stringify([{ tag: "families", evidence_url: "https://helpbridge.ca/evidence/families" }]),
+        tags: JSON.stringify([{ tag: "families", evidence_url: "https://careconnect.ing/evidence/families" }]),
         provenance: JSON.stringify({
           verified_by: "Runtime Verifier",
           verified_at: "2026-03-18T00:00:00Z",
@@ -113,7 +113,7 @@ describe("getServiceById", () => {
     const service = await getServiceById("service-1")
 
     expect(service?.identity_tags).toEqual([
-      { tag: "families", evidence_url: "https://helpbridge.ca/evidence/families" },
+      { tag: "families", evidence_url: "https://careconnect.ing/evidence/families" },
     ])
     expect(service?.provenance?.verified_by).toBe("Runtime Verifier")
     expect(service?.hours).toEqual({

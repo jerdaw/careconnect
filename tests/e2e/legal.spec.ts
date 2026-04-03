@@ -31,7 +31,7 @@ test.describe("Legal Pages", () => {
     await expect(page.getByText("AI Assistant Privacy")).toBeVisible()
 
     // Check Contact Info (use .first() since this text appears multiple times)
-    await expect(page.getByText("privacy@helpbridge.ca").first()).toBeVisible()
+    await expect(page.getByText("privacy@careconnect.ing").first()).toBeVisible()
   })
 
   test("Legal pages are accessible from footer", async ({ page }) => {
@@ -75,6 +75,6 @@ test.describe("Legal Pages", () => {
 
     // Check Reporting
     await expect(page.getByText("Reporting Process")).toBeVisible()
-    await expect(page.getByText("privacy@helpbridge.ca").first()).toBeVisible()
+    await expect(page.getByText("privacy@careconnect.ing").first()).toBeVisible()
   })
 })

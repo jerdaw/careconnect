@@ -56,17 +56,17 @@ Interpretation matters:
 
 Latest machine-readable summaries:
 
-- [smoke-test-latest.json](/home/jer/repos/helpbridge/tests/load/results/smoke-test-latest.json)
-- [search-api-latest.json](/home/jer/repos/helpbridge/tests/load/results/search-api-latest.json)
-- [sustained-load-latest.json](/home/jer/repos/helpbridge/tests/load/results/sustained-load-latest.json)
-- [spike-test-latest.json](/home/jer/repos/helpbridge/tests/load/results/spike-test-latest.json)
+- [smoke-test-latest.json](../../tests/load/results/smoke-test-latest.json)
+- [search-api-latest.json](../../tests/load/results/search-api-latest.json)
+- [sustained-load-latest.json](../../tests/load/results/sustained-load-latest.json)
+- [spike-test-latest.json](../../tests/load/results/spike-test-latest.json)
 
 Raw k6 outputs:
 
-- [smoke-test-raw.json](/home/jer/repos/helpbridge/tests/load/results/smoke-test-raw.json)
-- [search-api-raw.json](/home/jer/repos/helpbridge/tests/load/results/search-api-raw.json)
-- [sustained-load-raw.json](/home/jer/repos/helpbridge/tests/load/results/sustained-load-raw.json)
-- [spike-test-raw.json](/home/jer/repos/helpbridge/tests/load/results/spike-test-raw.json)
+- [smoke-test-raw.json](../../tests/load/results/smoke-test-raw.json)
+- [search-api-raw.json](../../tests/load/results/search-api-raw.json)
+- [sustained-load-raw.json](../../tests/load/results/sustained-load-raw.json)
+- [spike-test-raw.json](../../tests/load/results/spike-test-raw.json)
 
 ## Follow-Up
 

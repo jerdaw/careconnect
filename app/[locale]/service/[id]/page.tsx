@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = locale === "fr" && service.description_fr ? service.description_fr : service.description
 
   return {
-    title: `${name} | HelpBridge`,
+    title: `${name} | CareConnect`,
     description: description,
   }
 }

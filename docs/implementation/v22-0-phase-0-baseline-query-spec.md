@@ -291,7 +291,7 @@ FROM audits;
 -- owner: jer
 -- last_updated: 2026-04-01
 WITH preference_events AS (
-  SELECT preferred_via_helpbridge
+  SELECT preferred_via_careconnect
   FROM pilot_preference_fit_events
   WHERE pilot_cycle_id = :pilot_cycle_id
     AND org_id = :org_id
@@ -299,11 +299,11 @@ WITH preference_events AS (
     AND recorded_at < :baseline_end
 )
 SELECT
-  COUNT(*) FILTER (WHERE preferred_via_helpbridge) AS preferred_via_helpbridge_count,
+  COUNT(*) FILTER (WHERE preferred_via_careconnect) AS preferred_via_careconnect_count,
   COUNT(*) AS cohort_total_tasks,
   CASE
     WHEN COUNT(*) = 0 THEN NULL
-    ELSE COUNT(*) FILTER (WHERE preferred_via_helpbridge)::numeric / COUNT(*)
+    ELSE COUNT(*) FILTER (WHERE preferred_via_careconnect)::numeric / COUNT(*)
   END AS preference_fit_indicator
 FROM preference_events;
 ```

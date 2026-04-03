@@ -1,9 +1,9 @@
 ---
-site_name: HelpBridge
-site_url: https://github.com/jerdaw/helpbridge
-site_description: Documentation for the HelpBridge project.
-repo_name: jerdaw/helpbridge
-repo_url: https://github.com/jerdaw/helpbridge
+site_name: CareConnect
+site_url: https://github.com/jerdaw/careconnect
+site_description: Documentation for the CareConnect project.
+repo_name: jerdaw/careconnect
+repo_url: https://github.com/jerdaw/careconnect
 strict: false
 
 theme:

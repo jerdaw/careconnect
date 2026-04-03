@@ -7,7 +7,7 @@ tags: [development, mobile, pwa]
 
 # Mobile-Ready Infrastructure (v15.0)
 
-This document outlines the mobile architecture, offline capabilities, and push notification infrastructure introduced in v15.0. It serves as the primary reference for developers working on the mobile aspect of HelpBridge.
+This document outlines the mobile architecture, offline capabilities, and push notification infrastructure introduced in v15.0. It serves as the primary reference for developers working on the mobile aspect of CareConnect.
 
 ## App Store Readiness (v17.6)
 
@@ -49,8 +49,8 @@ Store consoles also require a support email/website; this is configured in the c
 1. Install/init Bubblewrap:
    - `npx @bubblewrap/cli init --manifest=https://YOUR_DOMAIN/manifest.json`
 2. When prompted:
-   - Package name: `ca.helpbridge.app`
-   - App name: “HelpBridge”
+   - Package name: `ca.careconnect.app`
+   - App name: “CareConnect”
 3. Build a signed bundle/APK:
    - Follow Bubblewrap prompts to create/use a keystore.
 
@@ -123,7 +123,7 @@ stays hidden and the client does not initialize the SDK.
 2. Ensure you are `localhost` or an HTTPS domain.
 3. Wait for the "Get Service Updates?" prompt (or trigger it in Settings).
 4. Allow notifications.
-5. From the OneSignal dashboard (or HelpBridge Admin), send a test message.
+5. From the OneSignal dashboard (or CareConnect Admin), send a test message.
 6. Verify the notification appears on your device/desktop.
 
 ## Capacitor Configuration
@@ -140,7 +140,7 @@ The project is configured with Capacitor 6.x.
 
 ## Deep Linking (v15.0 Preparation)
 
-We have prepared the infrastructure for **Universal Links** (iOS) and **App Links** (Android). This allows the native app to open directly when a user clicks a `helpbridge.ca` link.
+We have prepared the infrastructure for **Universal Links** (iOS) and **App Links** (Android). This allows the native app to open directly when a user clicks a `careconnect.ing` link.
 
 ### Association Files
 

@@ -1,4 +1,4 @@
-# Launch Materials - HelpBridge
+# Launch Materials - CareConnect
 
 **Purpose**: Ready-to-use templates and guides for beta and public launch
 **Created**: February 2026 (v19.0 Phase 5)
@@ -132,7 +132,7 @@ For major announcements (beta launch, public launch):
 
 1. Review templates and customize
 2. Share draft with stakeholders (if applicable)
-3. Verify all links work (helpbridge.ca)
+3. Verify all links work (careconnect.ing)
 4. Test social media previews
 5. Schedule or post
 
@@ -167,7 +167,7 @@ Track these metrics post-launch:
 ### Social Media (Week 1)
 
 - Engagement rate: >5% (likes, shares, comments / impressions)
-- Click-through rate: >2% (clicks to helpbridge.ca / impressions)
+- Click-through rate: >2% (clicks to careconnect.ing / impressions)
 - Follower growth: 50-100 new followers
 
 ### Website Traffic (Week 1)
@@ -232,7 +232,7 @@ Quality > quantity. Better to post 2 great posts than 7 mediocre ones.
 - Media contacts
 - Community partners
 - Funders/sponsors
-- Anyone asking "What is HelpBridge?"
+- Anyone asking "What is CareConnect?"
 
 ---
 
@@ -240,16 +240,16 @@ Quality > quantity. Better to post 2 great posts than 7 mediocre ones.
 
 ### Questions About Launch Materials
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 
 ### Media Inquiries
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 **Response Time**: Within 48 hours
 
 ### Design/Asset Questions
 
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 
 ---
 
@@ -271,4 +271,4 @@ Quality > quantity. Better to post 2 great posts than 7 mediocre ones.
 
 ---
 
-**Ready to launch?** Start with the press kit and social media templates, create your critical assets, and share HelpBridge with your community. 🚀
+**Ready to launch?** Start with the press kit and social media templates, create your critical assets, and share CareConnect with your community. 🚀

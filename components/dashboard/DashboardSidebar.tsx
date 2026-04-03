@@ -36,7 +36,7 @@ export default function DashboardSidebar() {
             H
           </div>
           <span className="heading-display text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
-            HelpBridge
+            CareConnect
           </span>
         </Link>
       </div>

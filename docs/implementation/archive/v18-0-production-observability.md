@@ -12,7 +12,7 @@
 
 ### Current State (v17.6)
 
-HelpBridge is production-ready with comprehensive resilience, security, and testing infrastructure:
+CareConnect is production-ready with comprehensive resilience, security, and testing infrastructure:
 
 ✅ **Core Platform**:
 
@@ -794,28 +794,28 @@ Use **Statuspage.io** (free tier) or self-hosted **Upptime** (GitHub Actions).
 ```yaml
 # .upptimerc.yml
 
-owner: helpbridge-ca
+owner: careconnect
 repo: upptime
 sites:
-  - name: HelpBridge
-    url: https://helpbridge.ca
+  - name: CareConnect
+    url: https://careconnect.ing
   - name: Search API
-    url: https://helpbridge.ca/api/v1/health
+    url: https://careconnect.ing/api/v1/health
     expectedStatusCodes:
       - 200
   - name: Partner Dashboard
-    url: https://helpbridge.ca/dashboard
+    url: https://careconnect.ing/dashboard
 
 status-website:
-  cname: status.helpbridge.ca
-  name: HelpBridge Status
+  cname: status.careconnect.ing
+  name: CareConnect Status
   theme: night
 ```
 
 **Deliverable:**
 
 - [ ] Upptime configured in separate GitHub repo
-- [ ] Status page deployed at `status.helpbridge.ca` (or subdomain)
+- [ ] Status page deployed at `status.careconnect.ing` (or subdomain)
 - [ ] Automated incident detection via health check
 - [ ] Status badge added to main README.md
 
@@ -872,7 +872,7 @@ status-website:
 - [ ] Slack webhook configured for alerts
 - [ ] Admin email set for critical alerts
 - [ ] Status page deployed and linked
-- [ ] DNS configured (status.helpbridge.ca)
+- [ ] DNS configured (status.careconnect.ing)
 - [ ] SSL certificates valid
 - [ ] Database backups enabled (Supabase automatic)
 - [ ] Rate limiting tested in production
@@ -1029,7 +1029,7 @@ status-website:
 - ✅ Vercel account with production deployment
 - ⚠️ Axiom account (free tier) - **User action required**
 - ⚠️ Slack workspace with webhook - **User action required**
-- ⚠️ Domain for status page (status.helpbridge.ca) - **User action required**
+- ⚠️ Domain for status page (status.careconnect.ing) - **User action required**
 
 ### Optional (Nice to Have)
 
@@ -1167,7 +1167,7 @@ status-website:
 
 **1. Staging Environment Validation:**
 
-- [ ] Deploy v18.0 to staging (`staging.helpbridge.ca`)
+- [ ] Deploy v18.0 to staging (`staging.careconnect.ing`)
 - [ ] Run full test suite: `npm test && npm run test:e2e && npm run test:a11y`
 - [ ] Execute load tests: `npm run test:load:sustained` (30min)
 - [ ] Verify circuit breaker triggers correctly (simulate DB failure)
@@ -1300,12 +1300,12 @@ On Track for Launch: [Yes/No/At Risk]
 ```bash
 # Axiom Integration (Production Monitoring)
 AXIOM_TOKEN=xaat-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-AXIOM_ORG_ID=helpbridge-ca-xxxxx
+AXIOM_ORG_ID=careconnect-xxxxx
 AXIOM_DATASET=performance
 
 # Alerting
 SLACK_WEBHOOK_URL=<your-slack-webhook-url>
-ADMIN_EMAIL=admin@helpbridge.ca
+ADMIN_EMAIL=admin@careconnect.ing
 
 # Circuit Breaker (Production Tuning)
 CIRCUIT_BREAKER_ENABLED=true
@@ -1316,7 +1316,7 @@ CIRCUIT_BREAKER_TIMEOUT=60000        # 1min timeout (vs 30s in dev)
 NEXT_PUBLIC_ENABLE_SEARCH_PERF_TRACKING=false  # Disabled (use Axiom instead)
 
 # Status Page
-NEXT_PUBLIC_STATUS_PAGE_URL=https://status.helpbridge.ca
+NEXT_PUBLIC_STATUS_PAGE_URL=https://status.careconnect.ing
 ```
 
 **Updated `.env.example`:**

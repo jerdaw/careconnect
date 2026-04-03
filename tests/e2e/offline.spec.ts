@@ -79,7 +79,7 @@ test("search still works after going offline (IndexedDB cache)", async ({ page, 
     async (minCount) => {
       const openDb = () =>
         new Promise<IDBDatabase>((resolve, reject) => {
-          const req = indexedDB.open("helpbridge-offline-v1")
+          const req = indexedDB.open("careconnect-offline-v1")
           req.onerror = () => reject(req.error)
           req.onsuccess = () => resolve(req.result)
         })

@@ -1,4 +1,4 @@
-# HelpBridge
+# CareConnect
 
 > A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
 
@@ -8,7 +8,7 @@
 
 ## Manual Curation, Not Scraping
 
-Large-scale scraping of municipal data produces noise, not value. HelpBridge takes a different path: **manual curation over automated extraction**.
+Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
 We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
 
@@ -135,8 +135,8 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 ### Installation
 
 ```bash
-git clone https://github.com/jerdaw/helpbridge.git # (1)
-cd helpbridge
+git clone https://github.com/jerdaw/careconnect.git # (1)
+cd careconnect
 npm install
 npm run dev
 ```

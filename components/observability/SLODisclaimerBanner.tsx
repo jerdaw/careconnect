@@ -25,7 +25,7 @@ export function SLODisclaimerBanner() {
       <AlertDescription className="text-blue-800 dark:text-blue-200">
         {t("descriptionPrefix")}{" "}
         <a
-          href="https://github.com/jerdaw/helpbridge/blob/main/docs/planning/v18-0-phase-3-slo-decision-guide.md"
+          href="https://github.com/jerdaw/careconnect/blob/main/docs/planning/v18-0-phase-3-slo-decision-guide.md"
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium underline hover:text-blue-600 dark:hover:text-blue-300"

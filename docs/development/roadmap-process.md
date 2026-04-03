@@ -7,7 +7,7 @@ tags: [development, roadmap, process]
 
 # Roadmap Process
 
-This document outlines the workflow for managing the HelpBridge roadmap, ensuring we maintain a high-level strategic view while tracking detailed implementation steps.
+This document outlines the workflow for managing the CareConnect roadmap, ensuring we maintain a high-level strategic view while tracking detailed implementation steps.
 
 ## Workflow Overview
 

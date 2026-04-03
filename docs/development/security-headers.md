@@ -2,7 +2,7 @@
 
 ## Overview
 
-HelpBridge implements comprehensive security headers to protect against common web vulnerabilities. The security headers are automatically validated in CI to prevent misconfigurations.
+CareConnect implements comprehensive security headers to protect against common web vulnerabilities. The security headers are automatically validated in CI to prevent misconfigurations.
 
 ## Configured Security Headers
 
@@ -140,7 +140,7 @@ SECURITY_HEADERS_BASE_URL=http://127.0.0.1:3000 npm run validate:security-header
 
 The validation runs as part of the `static-analysis` job in `.github/workflows/ci.yml`. If validation fails, the CI build is blocked.
 
-Runtime validation also runs in `.github/workflows/production-smoke.yml` against the deployed `https://helpbridge.ca` responses.
+Runtime validation also runs in `.github/workflows/production-smoke.yml` against the deployed `https://careconnect.ing` responses.
 
 ### Manual Validation
 

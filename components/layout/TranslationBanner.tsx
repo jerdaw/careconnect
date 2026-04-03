@@ -3,10 +3,11 @@
 import { useLocale, useTranslations } from "next-intl"
 import { useState, useEffect } from "react"
 import { Sparkles } from "lucide-react"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
 const EDIA_LOCALES = ["ar", "zh-Hans", "es", "pa", "pt"]
-const STORAGE_KEY = "helpbridge-translation-banner-dismissed"
-const LEGACY_STORAGE_KEY = "kcc-translation-banner-dismissed"
+const STORAGE_KEY = "careconnect-translation-banner-dismissed"
+const LEGACY_STORAGE_KEYS = LEGACY_BRAND_KEYS.translationBannerDismissed
 
 export function TranslationBanner() {
   const locale = useLocale()
@@ -15,11 +16,12 @@ export function TranslationBanner() {
 
   useEffect(() => {
     if (typeof window === "undefined") return
-    const dismissed = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY)
+    const legacyKey = LEGACY_STORAGE_KEYS.find((key) => localStorage.getItem(key))
+    const dismissed = localStorage.getItem(STORAGE_KEY) ?? (legacyKey ? localStorage.getItem(legacyKey) : null)
     setIsDismissed(dismissed === "true")
-    if (!localStorage.getItem(STORAGE_KEY) && localStorage.getItem(LEGACY_STORAGE_KEY)) {
+    if (!localStorage.getItem(STORAGE_KEY) && legacyKey) {
       localStorage.setItem(STORAGE_KEY, dismissed ?? "false")
-      localStorage.removeItem(LEGACY_STORAGE_KEY)
+      LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key))
     }
   }, [])
 
@@ -30,7 +32,7 @@ export function TranslationBanner() {
   const handleDismiss = () => {
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, "true")
-      localStorage.removeItem(LEGACY_STORAGE_KEY)
+      LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key))
     }
     setIsDismissed(true)
   }

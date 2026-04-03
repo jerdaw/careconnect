@@ -5,7 +5,7 @@ owner: jer
 tags: [architecture, overview, system-design]
 ---
 
-# HelpBridge - Architecture Overview
+# CareConnect - Architecture Overview
 
 ## Tech Stack
 
@@ -77,7 +77,7 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 
 ### Privacy-Preserving Personalization
 
-- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`helpbridge_user_context`).
+- **Client-Side Profile**: User demographics (Age, Identities) stored in `localStorage` (`careconnect_user_context`).
 - **Zero PII**: No user accounts, login, or cookies required for basic personalization.
 - **Local Eligibility**: "Likely Qualify" checks run locally by parsing cached service data against the local profile.
 - **Identity Boosting**: Search ranking adjustments happen on the client-side `WebWorker`.
@@ -125,7 +125,7 @@ sequenceDiagram
 - **Provenance**: `TrustPanel` displays `last_verified` dates, verification methods, and source provenance to build user confidence.
 - **Verification Levels**:
   - `L1`: Basic verification.
-  - `L2`: Manual verification by HelpBridge team.
+  - `L2`: Manual verification by CareConnect team.
   - `L3`: Partner-claimed and verified.
   - `L4`: Governance-level policy concept for future partner/audit workflows; not currently represented in runtime types or search scoring.
 - **Partner Update Workflow**: Structured request-approval loop via `service_update_requests` ensures data integrity while engaging service providers.

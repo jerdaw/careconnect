@@ -1,4 +1,4 @@
--- HelpBridge: Concurrent Index Creation Script
+-- CareConnect: Concurrent Index Creation Script
 -- This script should be run outside of a transaction block.
 -- Purpose: Create indexes without locking tables to ensure zero-downtime.
 

@@ -153,7 +153,7 @@ npm run lint     # ✅ Zero ESLint errors
    - Confirm or adjust PROVISIONAL targets in `lib/config/slo-targets.ts`
 
 2. **Upptime Status Page**
-   - Configure `status.helpbridge.ca` DNS
+   - Configure `status.careconnect.ing` DNS
    - Fork upptime/upptime repository
    - Follow setup guide
 

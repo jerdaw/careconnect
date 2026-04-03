@@ -184,7 +184,7 @@ Successfully completed Phase 4 of v19.0 Launch Preparation, delivering comprehen
 
 **2. Email Feedback**
 
-- Address: feedback@helpbridge.ca
+- Address: feedback@careconnect.ing
 - Template auto-responses by category
 - Triage: <2 hours for P0, <24 hours for others
 
@@ -342,7 +342,7 @@ Thank you for reporting this critical issue. We've confirmed the problem and are
 
 We'll notify you as soon as it's resolved.
 
-- HelpBridge Team
+- CareConnect Team
 ```
 
 **Template 2: P1/P2 Acknowledgment**
@@ -360,7 +360,7 @@ Thanks for your feedback! We've added this to our tracking system.
 
 We'll keep you updated on progress.
 
-- HelpBridge Team
+- CareConnect Team
 ```
 
 **Template 3: Weekly Beta Summary**
@@ -393,7 +393,7 @@ Thanks for another great week of feedback! Here's what we learned and fixed:
 
 Keep the feedback coming - you're making this platform better every day!
 
-- HelpBridge Team
+- CareConnect Team
 ```
 
 ---
@@ -585,7 +585,7 @@ User must execute the 3-phase beta testing plan documented in `docs/operations/b
 **Multi-Channel Collection:**
 
 - ✅ In-app feedback widget
-- ✅ Email feedback (feedback@helpbridge.ca)
+- ✅ Email feedback (feedback@careconnect.ing)
 - ✅ Structured surveys (end of each phase)
 - ✅ Optional user interviews (deep insights)
 

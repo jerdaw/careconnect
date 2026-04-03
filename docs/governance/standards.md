@@ -9,7 +9,7 @@ tags: [governance, standards, verification]
 
 **Document Version:** 1.0
 **Effective Date:** Dec 29, 2025
-**Scope:** All services listed in the HelpBridge database.
+**Scope:** All services listed in the CareConnect database.
 
 ---
 
@@ -66,4 +66,4 @@ To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must in
 ---
 
 **Approved By:**
-HelpBridge Steering Committee
+CareConnect Steering Committee

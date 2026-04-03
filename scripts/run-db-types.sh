@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 source "$ROOT_DIR/scripts/lib/local-supabase.sh"
 
-if ! hb_ensure_docker_command; then
+if ! ensure_docker_command; then
   cat >&2 <<'EOF'
 Missing required command: docker
 
@@ -21,10 +21,10 @@ EOF
   exit 1
 fi
 
-hb_require_commands npx
-trap hb_cleanup_local_supabase EXIT
+require_commands npx
+trap cleanup_local_supabase EXIT
 
-hb_prepare_local_supabase "$ROOT_DIR/supabase/test-support/integration-seed.sql"
+prepare_local_supabase "$ROOT_DIR/supabase/test-support/integration-seed.sql"
 
-npx supabase gen types typescript --local --workdir "$HB_SUPABASE_WORKDIR" --schema public >"$ROOT_DIR/types/supabase.ts"
+npx supabase gen types typescript --local --workdir "$LOCAL_SUPABASE_WORKDIR" --schema public >"$ROOT_DIR/types/supabase.ts"
 npx prettier --write "$ROOT_DIR/types/supabase.ts"

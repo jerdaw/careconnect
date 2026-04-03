@@ -59,7 +59,7 @@ describe("TrustPanel Component", () => {
       verification_level: VerificationLevel.L2,
       last_verified: "2026-01-01T00:00:00Z",
       provenance: {
-        verified_by: "HelpBridge Admin",
+        verified_by: "CareConnect Admin",
         method: "phone",
         verified_at: "2026-01-01T00:00:00Z",
         evidence_url: "",
@@ -82,7 +82,7 @@ describe("TrustPanel Component", () => {
 
     expect(screen.getByText("Verification Information")).toBeInTheDocument()
     expect(screen.getByText("Verified")).toBeInTheDocument()
-    expect(screen.getByText("HelpBridge Admin")).toBeInTheDocument()
+    expect(screen.getByText("CareConnect Admin")).toBeInTheDocument()
     expect(screen.getByText("Phone")).toBeInTheDocument()
   })
 

@@ -1,4 +1,4 @@
-Contact: mailto:feedback@helpbridge.ca
+Contact: mailto:feedback@careconnect.ing
 Expires: 2027-02-09T00:00:00.000Z
 Preferred-Languages: en, fr
-Canonical: https://helpbridge.ca/.well-known/security.txt
+Canonical: https://careconnect.ing/.well-known/security.txt

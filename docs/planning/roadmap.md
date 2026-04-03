@@ -1,4 +1,4 @@
-# HelpBridge: Product Roadmap
+# CareConnect: Product Roadmap
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
@@ -23,8 +23,8 @@
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback and background sync
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
-- **Deployment**: Live on the direct-VPS path at `https://helpbridge.ca`
-- **Branding**: HelpBridge rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
+- **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`
+- **Branding**: CareConnect rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
   - Scope: 2 missing
@@ -37,7 +37,7 @@
 
 ## Decision Summary
 
-HelpBridge is not currently in a breadth-expansion phase.
+CareConnect is not currently in a breadth-expansion phase.
 
 The active question is whether the project can prove non-duplicate value relative to 211 through measurable last-mile outcomes such as connection success, reliability, and referral completion. Until that is demonstrated, roadmap priority stays on governance closure, pilot readiness, and evidence discipline rather than new feature expansion.
 
@@ -65,7 +65,7 @@ The active question is whether the project can prove non-duplicate value relativ
 **Timeline**: 90-day decision cycle (~13 weeks)
 **Created**: 2026-02-27
 
-HelpBridge is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
+CareConnect is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
 
 **Core objective**
 
@@ -246,7 +246,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 - [v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)
 - [v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)
 - [Code Quality Remediation Archive](archive/2026-03-26-v22-0-code-quality-remediation.md)
-- [HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)
+- [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)
 - [v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)
 - [v17.6 Archive](archive/2026-01-25-v17-6-post-v17-5-enhancements.md)
 - [v17.5 Archive](archive/2026-01-25-v17-5-performance-and-resilience.md)

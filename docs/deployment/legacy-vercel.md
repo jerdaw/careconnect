@@ -12,7 +12,7 @@ Current production work should use the active direct-VPS path documented in:
 2. [`production-checklist.md`](production-checklist.md)
 
 The direct-VPS public cutover completed successfully on 2026-03-11. The app is
-now live at `https://helpbridge.ca`, with `www.helpbridge.ca` redirecting to
+now live at `https://careconnect.ing`, with `www.careconnect.ing` redirecting to
 the apex and the container bound privately at `127.0.0.1:3300`.
 
 This document records the older **Vercel** deployment path.
@@ -28,7 +28,7 @@ This document records the older **Vercel** deployment path.
 1. **Push Code:** Ensure your latest changes are pushed to GitHub `main` branch.
 2. **Login to Vercel:** Go to [vercel.com](https://vercel.com) and log in.
 3. **Add New Project:** Click **"Add New..."** -> **"Project"**.
-4. **Import Git Repository:** Select `helpbridge-ca`.
+4. **Import Git Repository:** Select `careconnect`.
 5. **Configure Project:**
 
 - **Framework Preset:** Next.js (Should auto-detect).
@@ -67,7 +67,7 @@ To ensure zero-downtime when creating indexes on large tables, use the provided 
 
 ## 4. Post-Deployment Verification
 
-- Visit the URL provided by the legacy Vercel deployment (for example, `helpbridge-ca.vercel.app`).
+- Visit the URL provided by the legacy Vercel deployment (for example, `careconnect.vercel.app`).
 - **Test Search:** Type "Food".
 - _Success:_ Results appear instantly.
 - **Test Semantic Search:** Type "I feel empty".

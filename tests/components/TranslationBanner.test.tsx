@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { TranslationBanner } from "@/components/layout/TranslationBanner"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
 // Mock next-intl
 vi.mock("next-intl", () => ({
@@ -63,10 +64,22 @@ describe("TranslationBanner", () => {
     fireEvent.click(dismissButton)
 
     // Check localStorage was set
-    expect(localStorage.getItem("helpbridge-translation-banner-dismissed")).toBe("true")
+    expect(localStorage.getItem("careconnect-translation-banner-dismissed")).toBe("true")
 
     // Re-render and check it doesn't show
     rerender(<TranslationBanner />)
     expect(screen.queryByText("Translation Notice")).not.toBeInTheDocument()
+  })
+
+  it("migrates the legacy dismissal key", () => {
+    vi.mocked(useLocale).mockReturnValue("ar")
+    const legacyKey = LEGACY_BRAND_KEYS.translationBannerDismissed[0]
+    localStorage.setItem(legacyKey, "true")
+
+    const { container } = render(<TranslationBanner />)
+
+    expect(container.firstChild).toBeNull()
+    expect(localStorage.getItem("careconnect-translation-banner-dismissed")).toBe("true")
+    expect(localStorage.getItem(legacyKey)).toBeNull()
   })
 })

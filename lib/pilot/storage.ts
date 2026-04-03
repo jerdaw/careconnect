@@ -214,7 +214,7 @@ export async function getScorecardByCycle(
       dataDecaySampleSize: 1,
       dataDecayFatalCount: byMetric.get("M6") ?? 0,
       preferenceFitTaskCount: 1,
-      preferenceFitKccTaskCount: byMetric.get("M7") ?? 0,
+      preferenceFitCareConnectTaskCount: byMetric.get("M7") ?? 0,
     },
     new Date().toISOString()
   )

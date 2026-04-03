@@ -167,7 +167,7 @@ describe("pilot-events schema", () => {
       org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
       cohort_label: "self_serve_mobile",
       recorded_at: "2026-03-08T15:30:00.000Z",
-      preferred_via_helpbridge: true,
+      preferred_via_careconnect: true,
     })
     const recompute = PilotMetricsRecomputeSchema.safeParse({
       pilot_cycle_id: "v22-cycle-1",

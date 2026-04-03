@@ -4,6 +4,7 @@ import { useLocalStorage } from "./useLocalStorage"
 import { useGeolocation } from "./useGeolocation"
 import { logger } from "@/lib/logger"
 import { useUserContext } from "./useUserContext"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
 /**
  * Primary search state management hook.
@@ -26,8 +27,8 @@ export function useSearch(initialQuery = "") {
   const [suggestion, setSuggestion] = useState<string | null>(null)
 
   // Use the new utility hooks
-  const [savedSearches, setSavedSearches] = useLocalStorage<string[]>("helpbridge_saved_searches", [], {
-    legacyKeys: ["kcc_saved_searches"],
+  const [savedSearches, setSavedSearches] = useLocalStorage<string[]>("careconnect_saved_searches", [], {
+    legacyKeys: [...LEGACY_BRAND_KEYS.savedSearches],
   })
   const { coordinates: userLocation, isLocating, error: geoError, requestLocation, clearLocation } = useGeolocation()
 

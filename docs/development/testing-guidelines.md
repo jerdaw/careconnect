@@ -9,7 +9,7 @@ tags: [development, testing, guidelines, vitest, playwright, rtl]
 
 ## Overview
 
-HelpBridge uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
+CareConnect uses a **pragmatic tiered testing strategy** that prioritizes developer velocity while maintaining confidence in critical features. We focus on fast, reliable feedback loops rather than exhaustive browser coverage.
 
 ## Pragmatic Testing Philosophy
 
@@ -116,7 +116,7 @@ To conserve CI minutes while on GitHub free tier:
 2. To run E2E on a `main` push, include `[run-e2e]` in the commit message.
 3. Use manual dispatch for intentional E2E validation windows.
 4. Use the separate manual `Production Smoke` workflow for public-host checks
-   (`helpbridge.ca`) instead of trying to turn deploys into an automatic CI step.
+   (`careconnect.ing`) instead of trying to turn deploys into an automatic CI step.
 
 Local helper behavior:
 

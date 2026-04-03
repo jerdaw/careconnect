@@ -24,7 +24,7 @@ describe("ServiceActionBar", () => {
     shareMock.mockResolvedValue({ type: "copy", success: true })
     Object.defineProperty(window, "location", {
       configurable: true,
-      value: { href: "https://helpbridge.ca/en/service/test-service-id" },
+      value: { href: "https://careconnect.ing/en/service/test-service-id" },
     })
   })
 
@@ -52,7 +52,7 @@ describe("ServiceActionBar", () => {
     expect(shareMock).toHaveBeenCalledWith(
       expect.objectContaining({
         title: "Test Service",
-        url: "https://helpbridge.ca/en/service/test-service-id",
+        url: "https://careconnect.ing/en/service/test-service-id",
       })
     )
     expect(toastMock).toHaveBeenCalledWith(

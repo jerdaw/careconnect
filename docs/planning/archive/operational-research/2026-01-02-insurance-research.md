@@ -51,7 +51,7 @@ Subject: Insurance Quote Request - Non-Profit Information Service
 
 Dear [Provider],
 
-We are seeking insurance quotes for Kingston Care Connect, a community-led
+We are seeking insurance quotes for CareConnect, a community-led
 non-profit (incorporation pending) operating a social services directory
 in Kingston, Ontario.
 

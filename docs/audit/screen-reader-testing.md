@@ -52,7 +52,7 @@ This document provides a comprehensive checklist for manual screen reader testin
 ### General Navigation
 
 - [ ] **Page Title**: Screen reader announces page title on load
-  - Expected: "HelpBridge - [Page Name]"
+  - Expected: "CareConnect - [Page Name]"
   - Test: Listen immediately after page load
 
 - [ ] **Language**: Page language is announced correctly

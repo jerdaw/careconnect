@@ -182,7 +182,7 @@ describe("Slack Integration", () => {
         status: 200,
       } as Response)
 
-      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://helpbridge.ca")
+      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://careconnect.ing")
 
       await sendCircuitBreakerAlert({
         state: CircuitState.OPEN,
@@ -209,9 +209,9 @@ describe("Slack Integration", () => {
       expect(actionsBlock.elements).toHaveLength(2)
       expect(actionsBlock.elements[0].text.text).toContain("Dashboard")
       expect(actionsBlock.elements[1].text.text).toContain("Runbook")
-      expect(actionsBlock.elements[0].url).toBe("https://helpbridge.ca/admin/observability")
+      expect(actionsBlock.elements[0].url).toBe("https://careconnect.ing/admin/observability")
       expect(actionsBlock.elements[1].url).toBe(
-        "https://github.com/jerdaw/helpbridge/blob/main/docs/runbooks/circuit-breaker-open.md"
+        "https://github.com/jerdaw/careconnect/blob/main/docs/runbooks/circuit-breaker-open.md"
       )
     })
 
@@ -278,8 +278,8 @@ describe("Slack Integration", () => {
         ok: true,
         status: 200,
       } as Response)
-      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://helpbridge.ca")
-      vi.stubEnv("VERCEL_URL", "preview.helpbridge.app")
+      vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://careconnect.ing")
+      vi.stubEnv("VERCEL_URL", "preview.careconnect.ing")
 
       await sendHighErrorRateAlert(12, 10)
 
@@ -287,7 +287,7 @@ describe("Slack Integration", () => {
       const body = JSON.parse((requestInit?.body as string | undefined) ?? "{}") as Record<string, any>
       const actionsBlock = body.blocks.find((block: any) => block.type === "actions")
 
-      expect(actionsBlock.elements[0].url).toBe("https://helpbridge.ca/admin/observability")
+      expect(actionsBlock.elements[0].url).toBe("https://careconnect.ing/admin/observability")
     })
 
     it("falls back to VERCEL_URL when NEXT_PUBLIC_APP_URL is unset", async () => {
@@ -295,7 +295,7 @@ describe("Slack Integration", () => {
         ok: true,
         status: 200,
       } as Response)
-      vi.stubEnv("VERCEL_URL", "preview.helpbridge.app")
+      vi.stubEnv("VERCEL_URL", "preview.careconnect.ing")
 
       await sendHighErrorRateAlert(12, 10)
 
@@ -303,7 +303,7 @@ describe("Slack Integration", () => {
       const body = JSON.parse((requestInit?.body as string | undefined) ?? "{}") as Record<string, any>
       const actionsBlock = body.blocks.find((block: any) => block.type === "actions")
 
-      expect(actionsBlock.elements[0].url).toBe("https://preview.helpbridge.app/admin/observability")
+      expect(actionsBlock.elements[0].url).toBe("https://preview.careconnect.ing/admin/observability")
     })
 
     it("includes error rate and threshold", async () => {

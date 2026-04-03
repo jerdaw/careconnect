@@ -26,7 +26,7 @@ This execution guide provides a clear, step-by-step walkthrough of exactly what 
 
 ## Executive Summary
 
-v19.0 focuses on final preparations for public launch of HelpBridge. All technical infrastructure is complete (v18.0); this phase ensures the platform is ready for real users through final quality checks, user-facing documentation, launch monitoring, and soft-launch procedures.
+v19.0 focuses on final preparations for public launch of CareConnect. All technical infrastructure is complete (v18.0); this phase ensures the platform is ready for real users through final quality checks, user-facing documentation, launch monitoring, and soft-launch procedures.
 
 **Goal:** Safely transition from development to production with minimal risk and maximum user readiness.
 
@@ -184,7 +184,7 @@ npm run verify:production
 **Sections:**
 
 1. **Getting Started**
-   - What is HelpBridge?
+   - What is CareConnect?
    - Who is this for?
    - How to search effectively
 
@@ -230,7 +230,7 @@ npm run verify:production
 
 **General:**
 
-- What is HelpBridge?
+- What is CareConnect?
 - Is this an official government service?
 - How do I report incorrect information?
 - How often is data updated?
@@ -436,9 +436,9 @@ Try:
 **Example: Launch Announcement (Internal)**
 
 ```
-🚀 HelpBridge: LIVE
+🚀 CareConnect: LIVE
 
-The platform is now publicly accessible at https://helpbridge.ca
+The platform is now publicly accessible at https://careconnect.ing
 
 Current Status:
 ✅ All systems operational
@@ -499,7 +499,7 @@ Next Update: In 2 hours
 **Feedback Collection:**
 
 - Simple feedback form on site
-- Email: feedback@helpbridge.ca
+- Email: feedback@careconnect.ing
 - GitHub issues (for tech-savvy users)
 - Informal conversations with beta users
 

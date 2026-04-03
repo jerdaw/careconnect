@@ -2,7 +2,7 @@
 
 ## Overview
 
-HelpBridge uses **Dependabot** for automated dependency updates. Dependencies are updated weekly (npm) and monthly (GitHub Actions) to maintain security and leverage new features while minimizing disruption.
+CareConnect uses **Dependabot** for automated dependency updates. Dependencies are updated weekly (npm) and monthly (GitHub Actions) to maintain security and leverage new features while minimizing disruption.
 
 ## Dependabot Configuration
 
@@ -174,7 +174,7 @@ Dependabot also creates **security updates** when vulnerabilities are detected.
 
 ## Pull Request Dependency Review
 
-HelpBridge now also runs GitHub's dependency review action on pull requests via `.github/workflows/dependency-review.yml`.
+CareConnect now also runs GitHub's dependency review action on pull requests via `.github/workflows/dependency-review.yml`.
 
 What it does:
 

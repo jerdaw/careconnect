@@ -1,6 +1,6 @@
-# HelpBridge - AI Context
+# CareConnect - AI Context
 
-This file provides context for AI agents working on the HelpBridge project.
+This file provides context for AI agents working on the CareConnect project.
 
 ## Development Principles
 

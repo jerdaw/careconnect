@@ -106,7 +106,7 @@ function getUpstashRateLimit(limit: number, windowMs: number): Ratelimit | null 
     redis: upstashRedis,
     limiter: Ratelimit.slidingWindow(limit, `${Math.ceil(windowMs / 1000)} s`),
     analytics: true,
-    prefix: "helpbridge-ratelimit",
+    prefix: "careconnect-ratelimit",
   })
 
   ratelimitCache.set(cacheKey, limiter)

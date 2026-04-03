@@ -5,11 +5,11 @@ owner: jer
 tags: [governance, charter, advisory-board]
 ---
 
-# Advisory Board Charter: HelpBridge
+# Advisory Board Charter: CareConnect
 
 ## 1. Purpose
 
-The AI Advisory Board (the "Board") is a volunteer body established to provide expert oversight and ethical guidance for the HelpBridge AI Assistant. Its primary goal is to mitigate risks associated with "duty of care," algorithmic bias, and clinical safety within a non-profit, community-focused context.
+The AI Advisory Board (the "Board") is a volunteer body established to provide expert oversight and ethical guidance for the CareConnect AI Assistant. Its primary goal is to mitigate risks associated with "duty of care," algorithmic bias, and clinical safety within a non-profit, community-focused context.
 
 ## 2. Membership & Roles
 

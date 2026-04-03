@@ -16,7 +16,7 @@ To mitigate the impact of any security incident involving personal data (Partner
 
 ## 2. Breach Definition
 
-Any unauthorized access, loss, or disclosure of personal information held by HelpBridge.
+Any unauthorized access, loss, or disclosure of personal information held by CareConnect.
 _Examples: SQL injection accessing partner emails, accidentally publishing the user feedback database._
 
 ## 3. Response Team

@@ -1,11 +1,12 @@
 # Planning Documents
 
-This directory contains planning and strategy documents for HelpBridge.
+This directory contains planning and strategy documents for CareConnect.
 
 > Historical note: files under `docs/planning/archive/` preserve earlier phases
-> of the project and may still use the legacy Kingston Care Connect branding.
+> of the project and may still use pre-CareConnect naming or transitional
+> branding.
 > Treat those references as historical only; current operational guidance uses
-> the HelpBridge name and `helpbridge.ca`.
+> the CareConnect name and `careconnect.ing`.
 
 ## Active Planning: v22.0
 
@@ -32,7 +33,7 @@ This directory contains planning and strategy documents for HelpBridge.
    - Technical execution spec for pilot instrumentation and governance evidence
    - **Reading time:** 20-30 minutes
 
-5. **[HelpBridge Rebrand Archive](archive/2026-03-18-helpbridge-rebrand.md)**
+5. **[CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)**
    - Historical record of the completed repo + runtime rename
    - **Reading time:** 5 minutes
 
@@ -78,7 +79,7 @@ docs/planning/
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
 ├── archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md
-├── archive/2026-03-18-helpbridge-rebrand.md
+├── archive/2026-03-18-careconnect-rebrand.md
 ├── archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md
 └── archive/2026-03-29-v20-0-repo-audit-remediation.md
 ```
@@ -153,6 +154,6 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-01:** Added the v22.0 Tier 0 admissions-support hardening archive and updated the roadmap to treat A3/A11/A22 as complete baseline capability
 - **2026-04-01:** Added the re-triaged v21 admissions / external-validation plan to the planning index and aligned the main roadmap with the new tiered sequencing
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
-- **2026-03-18:** Planning index updated for v22.0 and HelpBridge rebrand archive
-- **2026-03-18:** HelpBridge rebrand archived in `docs/planning/archive/2026-03-18-helpbridge-rebrand.md`
+- **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
+- **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`
 - Next review: After any `UA-1` / `UA-2` / `UA-3` evidence update or the next material roadmap change

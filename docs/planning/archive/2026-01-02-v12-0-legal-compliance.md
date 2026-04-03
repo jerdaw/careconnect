@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This roadmap addresses **critical legal infrastructure gaps** that currently expose Kingston Care Connect (KCC) and its organizers to significant liability. The platform serves vulnerable populations with crisis services, creating a heightened duty of care that requires robust legal protections.
+This roadmap addresses **critical legal infrastructure gaps** that currently expose CareConnect (CareConnect) and its organizers to significant liability. The platform serves vulnerable populations with crisis services, creating a heightened duty of care that requires robust legal protections.
 
 > [!WARNING] > **Critical Finding**: The platform currently operates without Terms of Service, comprehensive Privacy Policy, formal legal entity structure, or liability insurance. These gaps create significant personal liability exposure for organizers.
 
@@ -97,35 +97,35 @@ const termsSections = [
   {
     id: "acceptance",
     title: "Acceptance of Terms",
-    content: `By accessing or using Kingston Care Connect ("KCC", "the Service"), 
-    you agree to be bound by these Terms of Service. If you do not agree to 
+    content: `By accessing or using CareConnect ("CareConnect", "the Service"),
+    you agree to be bound by these Terms of Service. If you do not agree to
     these terms, do not use the Service.`,
   },
   {
     id: "service-description",
     title: "Description of Service",
-    content: `KCC is an information directory that provides contact information 
-    for social services in Kingston, Ontario. KCC does NOT provide:
+    content: `CareConnect is an information directory that provides contact information
+    for social services in Kingston, Ontario. CareConnect does NOT provide:
     - Emergency services (for emergencies, call 911)
     - Medical advice or healthcare services
     - Legal advice or representation
     - Financial advice or services
     - Counseling or mental health treatment
-    
-    KCC is a directory only. We do not operate, control, or endorse any 
+
+    CareConnect is a directory only. We do not operate, control, or endorse any
     services listed on this platform.`,
   },
   {
     id: "disclaimer-warranties",
     title: "Disclaimer of Warranties",
-    content: `THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT 
-    WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT 
+    content: `THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT
+    WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT
     LIMITED TO:
     - Warranties of merchantability
     - Fitness for a particular purpose
     - Non-infringement
     - Accuracy, completeness, or timeliness of information
-    
+
     WE DO NOT WARRANT THAT:
     - Service information is accurate, current, or complete
     - Services listed are available, safe, or appropriate for your needs
@@ -135,15 +135,15 @@ const termsSections = [
   {
     id: "limitation-liability",
     title: "Limitation of Liability",
-    content: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, KINGSTON CARE CONNECT, 
+    content: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, CARECONNECT,
     ITS ORGANIZERS, CONTRIBUTORS, AND AFFILIATES SHALL NOT BE LIABLE FOR:
     - Any indirect, incidental, special, consequential, or punitive damages
     - Damages for loss of profits, goodwill, use, data, or other intangibles
     - Any damages arising from your use of or inability to use the Service
     - Any damages arising from actions or omissions of listed services
     - Any damages exceeding $100 CAD in the aggregate
-    
-    YOU USE THIS SERVICE AT YOUR OWN RISK. You are solely responsible for 
+
+    YOU USE THIS SERVICE AT YOUR OWN RISK. You are solely responsible for
     verifying information with service providers before relying on it.`,
   },
   {
@@ -153,24 +153,24 @@ const termsSections = [
     - A life-threatening emergency: CALL 911 IMMEDIATELY
     - A mental health crisis: CALL 988 (Suicide Crisis Helpline)
     - A domestic violence emergency: CALL 911 or your local shelter hotline
-    
-    Do not rely on this directory for emergencies. Information may be 
+
+    Do not rely on this directory for emergencies. Information may be
     outdated, incorrect, or unavailable.`,
   },
   {
     id: "no-professional-advice",
     title: "No Professional Advice",
-    content: `Nothing on this platform constitutes professional advice of any 
-    kind, including but not limited to medical, legal, financial, or 
-    psychological advice. Always consult qualified professionals for 
+    content: `Nothing on this platform constitutes professional advice of any
+    kind, including but not limited to medical, legal, financial, or
+    psychological advice. Always consult qualified professionals for
     specific concerns.`,
   },
   {
     id: "user-responsibilities",
     title: "User Responsibilities",
-    content: `By using KCC, you agree to:
+    content: `By using CareConnect, you agree to:
     - Verify all information directly with service providers
-    - Not rely solely on KCC information for critical decisions
+    - Not rely solely on CareConnect information for critical decisions
     - Report inaccurate information through our feedback system
     - Use the Service only for lawful purposes
     - Not attempt to circumvent security measures`,
@@ -178,8 +178,8 @@ const termsSections = [
   {
     id: "indemnification",
     title: "Indemnification",
-    content: `You agree to indemnify and hold harmless Kingston Care Connect, 
-    its organizers, contributors, and affiliates from any claims, damages, 
+    content: `You agree to indemnify and hold harmless CareConnect,
+    its organizers, contributors, and affiliates from any claims, damages,
     losses, or expenses (including reasonable legal fees) arising from:
     - Your use of the Service
     - Your reliance on information from the Service
@@ -189,13 +189,13 @@ const termsSections = [
   {
     id: "third-party-services",
     title: "Third-Party Services",
-    content: `KCC lists third-party services over which we have no control. 
+    content: `CareConnect lists third-party services over which we have no control.
     We are not responsible for:
     - The availability, quality, or safety of listed services
     - Actions or omissions of listed service providers
-    - Content on external websites linked from KCC
+    - Content on external websites linked from CareConnect
     - Experiences you have with listed services
-    
+
     Inclusion in this directory does not constitute endorsement.`,
   },
   {
@@ -206,43 +206,43 @@ const termsSections = [
     - Misunderstand your questions
     - Give outdated information
     - Fail unexpectedly
-    
-    The AI assistant is for informational purposes only. Always verify 
-    critical information with service providers. For emergencies, call 
-    911 immediately - the AI assistant cannot provide emergency assistance 
+
+    The AI assistant is for informational purposes only. Always verify
+    critical information with service providers. For emergencies, call
+    911 immediately - the AI assistant cannot provide emergency assistance
     and is not monitored in real-time.`,
   },
   {
     id: "modifications",
     title: "Modifications to Terms",
-    content: `We reserve the right to modify these Terms at any time. Changes 
-    will be effective immediately upon posting. Your continued use of the 
+    content: `We reserve the right to modify these Terms at any time. Changes
+    will be effective immediately upon posting. Your continued use of the
     Service after changes constitutes acceptance of the modified Terms.
-    
+
     Last Updated: [DATE]`,
   },
   {
     id: "governing-law",
     title: "Governing Law and Jurisdiction",
-    content: `These Terms shall be governed by and construed in accordance 
-    with the laws of the Province of Ontario and the federal laws of Canada 
-    applicable therein. Any disputes shall be resolved in the courts of 
+    content: `These Terms shall be governed by and construed in accordance
+    with the laws of the Province of Ontario and the federal laws of Canada
+    applicable therein. Any disputes shall be resolved in the courts of
     Ontario, and you consent to the exclusive jurisdiction of such courts.`,
   },
   {
     id: "severability",
     title: "Severability",
-    content: `If any provision of these Terms is found to be unenforceable, 
+    content: `If any provision of these Terms is found to be unenforceable,
     the remaining provisions shall continue in full force and effect.`,
   },
   {
     id: "contact",
     title: "Contact Information",
     content: `For questions about these Terms:
-    Email: legal@careconnect.ca
-    
-    For privacy concerns: privacy@careconnect.ca
-    For accessibility concerns: accessibility@careconnect.ca`,
+    Email: legal@careconnect.ing
+
+    For privacy concerns: privacy@careconnect.ing
+    For accessibility concerns: accessibility@careconnect.ing`,
   },
 ]
 ```
@@ -281,10 +281,10 @@ const privacySections = [
   {
     id: "overview",
     title: "Privacy Policy Overview",
-    content: `Kingston Care Connect ("KCC", "we", "us") is committed to 
-    protecting your privacy. This policy explains how we collect, use, 
+    content: `CareConnect ("CareConnect", "we", "us") is committed to
+    protecting your privacy. This policy explains how we collect, use,
     and protect information when you use our service.
-    
+
     Effective Date: [DATE]
     Last Updated: [DATE]`,
   },
@@ -295,23 +295,23 @@ const privacySections = [
       {
         title: "Information You Provide",
         content: `
-        - **Feedback Forms**: When you report issues with service listings, 
-          we collect the information you provide (e.g., description of issue, 
+        - **Feedback Forms**: When you report issues with service listings,
+          we collect the information you provide (e.g., description of issue,
           contact information if voluntarily provided).
-        - **Partner Portal**: Partners who claim listings provide organization 
+        - **Partner Portal**: Partners who claim listings provide organization
           name, contact information, and authentication credentials.
-        - **Service Submissions**: Public submissions include service details 
+        - **Service Submissions**: Public submissions include service details
           you provide.`,
       },
       {
         title: "Information Collected Automatically",
         content: `
-        - **Local Storage**: We store preferences (language, theme, 
-          personalization settings) in your browser's localStorage. This 
+        - **Local Storage**: We store preferences (language, theme,
+          personalization settings) in your browser's localStorage. This
           data never leaves your device.
-        - **Technical Data**: Our hosting provider (Vercel) may collect 
-          standard server logs (IP addresses, browser type, timestamps) 
-          for security and performance purposes. We do not access or 
+        - **Technical Data**: Our hosting provider (Vercel) may collect
+          standard server logs (IP addresses, browser type, timestamps)
+          for security and performance purposes. We do not access or
           analyze these logs for user tracking.`,
       },
       {
@@ -323,8 +323,8 @@ const privacySections = [
         - We do NOT track your browsing behavior
         - We do NOT sell or share your data with advertisers
         - We do NOT collect sensitive health information
-        
-        For sensitive searches (crisis-related queries), we implement a 
+
+        For sensitive searches (crisis-related queries), we implement a
         Zero-Log Policy - no query text, metadata, or identifiers are recorded.`,
       },
     ],
@@ -332,32 +332,32 @@ const privacySections = [
   {
     id: "ai-privacy",
     title: "AI Assistant Privacy",
-    content: `Our AI assistant runs entirely in your browser using 
+    content: `Our AI assistant runs entirely in your browser using
     client-side processing. This means:
-    
-    - **Zero Data Egress**: Your conversations and queries never leave 
+
+    - **Zero Data Egress**: Your conversations and queries never leave
       your device.
-    - **No Server Processing**: The AI model downloads to your browser 
+    - **No Server Processing**: The AI model downloads to your browser
       and runs locally.
-    - **Zero-Knowledge Architecture**: We know that you used the AI 
+    - **Zero-Knowledge Architecture**: We know that you used the AI
       assistant, but not what you discussed.
-    - **Opt-In Only**: The AI model only downloads when you explicitly 
+    - **Opt-In Only**: The AI model only downloads when you explicitly
       choose to use the assistant.
-    - **No Storage**: Conversations are not stored after you close the 
+    - **No Storage**: Conversations are not stored after you close the
       browser.`,
   },
   {
     id: "use-of-information",
     title: "How We Use Information",
     content: `We use collected information for:
-    
-    - **Service Improvement**: Feedback helps us correct inaccurate 
+
+    - **Service Improvement**: Feedback helps us correct inaccurate
       listings and improve data quality.
-    - **Partner Management**: Partner information enables the Partner 
+    - **Partner Management**: Partner information enables the Partner
       Portal functionality.
     - **Communication**: We may contact partners regarding their listings.
     - **Security**: Technical data helps protect against abuse.
-    
+
     We do NOT use your information for:
     - Advertising or marketing
     - Profiling or behavioral tracking
@@ -367,84 +367,84 @@ const privacySections = [
     id: "data-sharing",
     title: "Information Sharing",
     content: `We share information only:
-    
-    - **With Partners**: User feedback about a service is shared with 
+
+    - **With Partners**: User feedback about a service is shared with
       the verified partner who manages that listing.
     - **With Service Providers**: We use:
       - Supabase (database hosting) - for partner portal data
       - Vercel (website hosting) - for website delivery
-      - Twilio (phone validation) - for service verification (your data 
+      - Twilio (phone validation) - for service verification (your data
         is not shared)
-    - **Legal Requirements**: We may disclose information if required by 
+    - **Legal Requirements**: We may disclose information if required by
       law, court order, or government request.
-    
-    We do NOT sell your information. We do NOT share information with 
+
+    We do NOT sell your information. We do NOT share information with
     advertisers.`,
   },
   {
     id: "data-retention",
     title: "Data Retention",
     content: `
-    - **Feedback**: Retained until the issue is resolved, then deleted 
+    - **Feedback**: Retained until the issue is resolved, then deleted
       within 90 days.
-    - **Partner Data**: Retained while the partnership is active; deleted 
+    - **Partner Data**: Retained while the partnership is active; deleted
       upon request or account closure.
-    - **Local Storage**: Controlled by you; clear your browser data to 
+    - **Local Storage**: Controlled by you; clear your browser data to
       remove.
-    - **Server Logs**: Managed by Vercel per their retention policy 
+    - **Server Logs**: Managed by Vercel per their retention policy
       (typically 30 days).`,
   },
   {
     id: "your-rights",
     title: "Your Privacy Rights",
     content: `Under Canadian privacy law (PIPEDA), you have the right to:
-    
+
     - **Access**: Request a copy of information we hold about you.
     - **Correction**: Request correction of inaccurate information.
     - **Deletion**: Request deletion of your information.
     - **Withdraw Consent**: Withdraw consent for data processing.
-    - **Complaint**: File a complaint with the Privacy Commissioner of 
+    - **Complaint**: File a complaint with the Privacy Commissioner of
       Canada or the Information and Privacy Commissioner of Ontario.
-    
-    To exercise these rights, contact: privacy@careconnect.ca
-    
+
+    To exercise these rights, contact: privacy@careconnect.ing
+
     We will respond within 30 days.`,
   },
   {
     id: "data-security",
     title: "Data Security",
     content: `We implement appropriate security measures:
-    
+
     - **Encryption**: All data is encrypted in transit (HTTPS/TLS).
     - **Access Control**: Partner data is protected by Row-Level Security.
     - **Minimal Collection**: We collect only what is necessary.
     - **Privacy by Design**: Our architecture prioritizes privacy.
-    
+
     No system is perfectly secure. We cannot guarantee absolute security.`,
   },
   {
     id: "childrens-privacy",
     title: "Children's Privacy",
-    content: `KCC is not directed at children under 13. We do not knowingly 
-    collect information from children. If you believe we have collected 
+    content: `CareConnect is not directed at children under 13. We do not knowingly
+    collect information from children. If you believe we have collected
     information from a child, please contact us immediately.`,
   },
   {
     id: "cross-border",
     title: "Cross-Border Data Transfers",
-    content: `Our service providers (Supabase, Vercel) may process data in 
-    the United States. By using KCC, you consent to this transfer. These 
-    providers are subject to their own privacy policies and applicable 
+    content: `Our service providers (Supabase, Vercel) may process data in
+    the United States. By using CareConnect, you consent to this transfer. These
+    providers are subject to their own privacy policies and applicable
     laws.`,
   },
   {
     id: "cookies",
     title: "Cookie Policy",
     content: `We use minimal cookies:
-    
-    - **NEXT_LOCALE**: Stores your language preference (English/French). 
+
+    - **NEXT_LOCALE**: Stores your language preference (English/French).
       This is an essential cookie required for bilingual functionality.
-    
+
     We do NOT use:
     - Tracking cookies
     - Advertising cookies
@@ -454,17 +454,17 @@ const privacySections = [
   {
     id: "changes",
     title: "Changes to This Policy",
-    content: `We may update this policy periodically. Changes will be posted 
-    on this page with an updated "Last Updated" date. Significant changes 
+    content: `We may update this policy periodically. Changes will be posted
+    on this page with an updated "Last Updated" date. Significant changes
     will be highlighted on the homepage.`,
   },
   {
     id: "contact",
     title: "Contact Us",
     content: `For privacy questions or to exercise your rights:
-    
-    Email: privacy@careconnect.ca
-    
+
+    Email: privacy@careconnect.ing
+
     Privacy Commissioner of Canada: https://www.priv.gc.ca
     Information and Privacy Commissioner of Ontario: https://www.ipc.on.ca`,
   },
@@ -556,7 +556,7 @@ export function EmergencyDisclaimer({
             {t("bannerMessage")}
             {/* "If you are experiencing a life-threatening emergency,
                 call 911 immediately. For mental health crises, call 988.
-                Kingston Care Connect is an information directory and is
+                CareConnect is an information directory and is
                 not a substitute for emergency services." */}
           </p>
 
@@ -604,7 +604,7 @@ Add `Emergency` namespace to all language files:
     "title": "Not an Emergency Service",
     "inlineMessage": "This is an information directory only. Always verify information with service providers. For emergencies, call 911.",
     "bannerTitle": "EMERGENCY NOTICE",
-    "bannerMessage": "If you are experiencing a life-threatening emergency, call 911 immediately. For mental health crises, call 988 (Suicide Crisis Helpline). Kingston Care Connect is an information directory and is not a substitute for emergency services, medical care, or professional counseling."
+    "bannerMessage": "If you are experiencing a life-threatening emergency, call 911 immediately. For mental health crises, call 988 (Suicide Crisis Helpline). CareConnect is an information directory and is not a substitute for emergency services, medical care, or professional counseling."
   }
 }
 ```
@@ -793,7 +793,7 @@ Subject: Insurance Quote Request - Non-Profit Information Service
 
 Dear [Provider],
 
-We are seeking insurance quotes for Kingston Care Connect, a community-led
+We are seeking insurance quotes for CareConnect, a community-led
 non-profit (incorporation pending) operating a social services directory
 in Kingston, Ontario.
 
@@ -829,7 +829,7 @@ Please provide quotes and any questions about our operations.
 
 Thank you,
 [Name]
-Kingston Care Connect
+CareConnect
 ```
 
 #### Action Items
@@ -856,14 +856,14 @@ Create dedicated Accessibility page with:
 ```typescript
 const accessibilityContent = {
   commitment: `
-    Kingston Care Connect is committed to ensuring equal access and 
-    participation for people with disabilities. We strive to meet the 
+    CareConnect is committed to ensuring equal access and
+    participation for people with disabilities. We strive to meet the
     accessibility needs of persons with disabilities in a timely manner.
   `,
 
   standards: `
-    We are committed to meeting the requirements of the Accessibility 
-    for Ontarians with Disabilities Act (AODA) and the Web Content 
+    We are committed to meeting the requirements of the Accessibility
+    for Ontarians with Disabilities Act (AODA) and the Web Content
     Accessibility Guidelines (WCAG) 2.0 Level AA.
   `,
 
@@ -899,18 +899,18 @@ const accessibilityContent = {
   },
 
   feedback: {
-    email: "accessibility@careconnect.ca",
+    email: "accessibility@careconnect.ing",
     process: `
-      We welcome feedback on the accessibility of Kingston Care Connect. 
+      We welcome feedback on the accessibility of CareConnect.
       Please let us know if you encounter accessibility barriers:
-      
-      - Email: accessibility@careconnect.ca
+
+      - Email: accessibility@careconnect.ing
       - Use the feedback form on any page
-      
+
       We will respond within 5 business days.
     `,
     alternativeFormats: `
-      Information on this website is available in alternative formats 
+      Information on this website is available in alternative formats
       upon request. Please contact us with your accessibility needs.
     `,
   },
@@ -937,7 +937,7 @@ const partnerTermsSections = [
     id: "eligibility",
     title: "Partner Eligibility",
     content: `
-      To claim a listing on Kingston Care Connect, you must:
+      To claim a listing on CareConnect, you must:
       - Be an authorized representative of the organization
       - Have authority to bind the organization to these terms
       - Provide accurate identification and contact information
@@ -953,8 +953,8 @@ const partnerTermsSections = [
       - Phone verification
       - Public records
       - Direct contact with the organization
-      
-      Fraudulent claims will result in immediate account termination 
+
+      Fraudulent claims will result in immediate account termination
       and may be reported to law enforcement.
     `,
   },
@@ -973,13 +973,13 @@ const partnerTermsSections = [
     id: "license-grant",
     title: "License Grant",
     content: `
-      You grant Kingston Care Connect a non-exclusive, royalty-free 
+      You grant CareConnect a non-exclusive, royalty-free
       license to:
       - Display your organization's information on our platform
       - Modify and format information for display purposes
       - Share information with users seeking services
       - Archive information for historical purposes
-      
+
       You retain ownership of your organization's intellectual property.
     `,
   },
@@ -987,7 +987,7 @@ const partnerTermsSections = [
     id: "indemnification",
     title: "Indemnification",
     content: `
-      You agree to indemnify and hold harmless Kingston Care Connect 
+      You agree to indemnify and hold harmless CareConnect
       from any claims arising from:
       - Inaccurate information you provide
       - Your organization's services
@@ -1002,7 +1002,7 @@ const partnerTermsSections = [
       As a partner, you may receive:
       - User feedback about your listings
       - Aggregated usage statistics (no personal data)
-      
+
       You agree to:
       - Handle feedback data in accordance with privacy laws
       - Not use feedback for marketing without consent
@@ -1016,11 +1016,11 @@ const partnerTermsSections = [
     content: `
       Either party may terminate this partnership:
       - Partner: By contacting us to remove your listing
-      - KCC: For violation of these terms, inaccurate information, 
+      - CareConnect: For violation of these terms, inaccurate information,
         or cessation of services
-      
-      Upon termination, your listing will be unclaimed and may be 
-      managed by KCC or hidden.
+
+      Upon termination, your listing will be unclaimed and may be
+      managed by CareConnect or hidden.
     `,
   },
 ]
@@ -1124,7 +1124,7 @@ CREATE POLICY "Partners can insert own acceptance"
 ## Purpose
 
 This document establishes the formal verification procedures for services
-listed in Kingston Care Connect. These procedures establish the standard
+listed in CareConnect. These procedures establish the standard
 of care for data accuracy and provide an audit trail for verification
 activities.
 
@@ -1187,7 +1187,7 @@ operating. This is the minimum level for public visibility.
 {
   "provenance": {
     "verified_at": "2026-01-15T14:30:00-05:00",
-    "verified_by": "kcc-volunteer-001",
+    "verified_by": "careconnect-volunteer-001",
     "method": "phone+web",
     "evidence_url": "https://example.org/services"
   }
@@ -1352,13 +1352,13 @@ All verification activities must be documented:
 
 ### Verifier Identifiers
 
-Format: `kcc-[role]-[number]`
+Format: `careconnect-[role]-[number]`
 
 Examples:
 
-- `kcc-volunteer-001`
-- `kcc-admin-001`
-- `kcc-ai-assisted`
+- `careconnect-volunteer-001`
+- `careconnect-admin-001`
+- `careconnect-ai-assisted`
 
 ````
 
@@ -1517,7 +1517,7 @@ Examples:
 **Template**:
 ````
 
-Subject: Important Security Notice from Kingston Care Connect
+Subject: Important Security Notice from CareConnect
 
 Dear [Name],
 
@@ -1540,13 +1540,13 @@ What You Can Do:
 [Recommended actions]
 
 We sincerely apologize for this incident. If you have questions,
-please contact us at: privacy@careconnect.ca
+please contact us at: privacy@careconnect.ing
 
 You also have the right to file a complaint with the Privacy
 Commissioner of Canada: https://www.priv.gc.ca
 
 Sincerely,
-Kingston Care Connect
+CareConnect
 
 ```
 
@@ -1625,7 +1625,7 @@ Review this plan:
 - Legal Counsel: [TBD - identify pro bono lawyer]
 
 ### Reporting
-- Report breaches to: security@careconnect.ca
+- Report breaches to: security@careconnect.ing
 ```
 
 ---
@@ -1767,12 +1767,12 @@ Document formal processes for:
    - Status updates provided
 
 2. **Privacy Complaints**
-   - Email: privacy@careconnect.ca
+   - Email: privacy@careconnect.ing
    - Response within 10 business days
    - Escalation to Privacy Commissioner
 
 3. **Accessibility Complaints**
-   - Email: accessibility@careconnect.ca
+   - Email: accessibility@careconnect.ing
    - Alternative formats available
    - Response within 5 business days
 
@@ -1943,6 +1943,6 @@ gantt
 - [ ] **Incorporation**
   - [ ] Perform NUANS name search (~$20) at [Ontario Business Registry](https://www.ontario.ca/page/ontario-business-registry).
   - [ ] File Articles of Incorporation (~$155).
-  - [ ] Update Footer to "Kingston Care Connect Inc." upon approval.
+  - [ ] Update Footer to "CareConnect Inc." upon approval.
 - [ ] **Insurance**
   - [ ] Request quotes using [Insurance Research](../docs/legal/insurance-research.md).

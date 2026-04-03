@@ -6,7 +6,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT_DIR/scripts/lib/local-supabase.sh"
-trap hb_cleanup_local_supabase EXIT
+trap cleanup_local_supabase EXIT
 
 echo "🔍 Running local CI validation..."
 echo ""
@@ -73,7 +73,7 @@ elif [[ "${RUN_DB_LOCAL:-auto}" == "false" ]]; then
   echo "⏭️ Skipping DB integration tests locally (RUN_DB_LOCAL=false)."
   echo "ℹ️ Run 'npm run test:db' on a Docker + psql machine when changing DB/auth lanes."
   echo ""
-elif hb_can_use_docker >/dev/null 2>&1 && command -v psql >/dev/null 2>&1; then
+elif can_use_docker >/dev/null 2>&1 && command -v psql >/dev/null 2>&1; then
   echo "🗄️ Running DB integration tests..."
   npm run test:db
   echo "✅ DB integration tests passed"

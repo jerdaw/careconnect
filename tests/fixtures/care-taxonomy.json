@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Comprehensive taxonomy of care needs for testing search functionality in HelpBridge",
+  "description": "Comprehensive taxonomy of care needs for testing search functionality in CareConnect",
   "version": "1.0.0",
   "categories": {
     "crisis": {

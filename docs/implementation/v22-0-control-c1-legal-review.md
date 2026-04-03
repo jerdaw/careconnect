@@ -46,7 +46,7 @@ Current review mode (2026-03-09):
    - [ADR-020: v22 Phase 0 Pilot Instrumentation and Privacy Guardrails](../adr/020-v22-pilot-phase0-instrumentation-and-privacy-guardrails.md)
    - [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
 3. Comparative/legal-risk context package:
-   - [HelpBridge vs 211 Objective Evaluation (2026-02-27)](../evaluation/HelpBridge_vs_211_Objective_Evaluation_2026-02-27.md)
+   - [CareConnect vs 211 Objective Evaluation (2026-02-27)](../evaluation/CareConnect_vs_211_Objective_Evaluation_2026-02-27.md)
 4. Submission workspace:
    - [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)
 

@@ -46,7 +46,7 @@ const messages = {
       languages: "Languages",
     },
     partnerCta: {
-      title: "Work with HelpBridge",
+      title: "Work with CareConnect",
       description: "Suggest updates or learn more about the source model.",
       suggestButton: "Suggest a service",
       learnMoreButton: "Learn more",
@@ -82,7 +82,7 @@ const messages = {
   CrisisAlert: {
     title: "Immediate help is available",
     message: "If this is urgent, call now.",
-    disclaimer: "HelpBridge is informational only.",
+    disclaimer: "CareConnect is informational only.",
     callButton: "Call 911",
     crisisLine: "Call 988",
   },

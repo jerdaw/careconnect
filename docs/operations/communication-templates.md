@@ -37,9 +37,9 @@ These templates ensure clear, consistent communication during launch and inciden
 ### Template
 
 ```
-🚀 **HelpBridge: LIVE**
+🚀 **CareConnect: LIVE**
 
-The platform is now publicly accessible at https://helpbridge.ca
+The platform is now publicly accessible at https://careconnect.ing
 
 **Current Status:**
 ✅ All systems operational
@@ -70,9 +70,9 @@ The platform is now publicly accessible at https://helpbridge.ca
 ### Example (Filled)
 
 ```
-🚀 **HelpBridge: LIVE**
+🚀 **CareConnect: LIVE**
 
-The platform is now publicly accessible at https://helpbridge.ca
+The platform is now publicly accessible at https://careconnect.ing
 
 **Current Status:**
 ✅ All systems operational
@@ -358,7 +358,7 @@ Special thanks to @sarah-chen for fast rollback and @alex-kim for root cause ana
 ### Template
 
 ```
-📊 **Week [#] Status Report: HelpBridge**
+📊 **Week [#] Status Report: CareConnect**
 
 **Reporting Period:** [Start Date] to [End Date]
 
@@ -459,7 +459,7 @@ Special thanks to @sarah-chen for fast rollback and @alex-kim for root cause ana
 ### Example (Week 1 Post-Launch)
 
 ```
-📊 **Week 1 Status Report: HelpBridge**
+📊 **Week 1 Status Report: CareConnect**
 
 **Reporting Period:** Feb 2-9, 2026
 
@@ -710,7 +710,7 @@ Special thanks to @sarah-chen for fast rollback and @alex-kim for root cause ana
 ⚠️ **External Service Impact: [Service Name]**
 
 **Issue:** [External service] is experiencing [issue]
-**Our Impact:** [How it affects HelpBridge]
+**Our Impact:** [How it affects CareConnect]
 
 **Current Status:**
 - Core search: [Working / Degraded / Down]

@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server"
 import { env } from "@/lib/env"
+import { getPublicAppUrl } from "@/lib/brand"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { handleApiError, createApiResponse, createApiError, validateContentType } from "@/lib/api-utils"
@@ -137,7 +138,7 @@ export async function POST(request: NextRequest) {
         app_id: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
         contents: { en: message },
         headings: { en: title },
-        url: url || "https://helpbridge.ca",
+        url: url || getPublicAppUrl(),
         // Use segments or filters based on target
         ...(oneSignalFilters.included_segments
           ? { included_segments: oneSignalFilters.included_segments }

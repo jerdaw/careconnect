@@ -1,4 +1,4 @@
-# Social Media Templates - HelpBridge
+# Social Media Templates - CareConnect
 
 **Purpose**: Ready-to-use copy for social media announcements
 **Last Updated**: February 2026
@@ -13,14 +13,14 @@
 #### Version 1: Direct & Clear
 
 ```
-🚀 Launching HelpBridge - find food banks, crisis support, housing help, and 190+ social services in Kingston, ON.
+🚀 Launching CareConnect - find food banks, crisis support, housing help, and 190+ social services in Kingston, ON.
 
 ✅ Works offline
 ✅ 7 languages
 ✅ Privacy-first (no tracking)
 ✅ Free forever
 
-Try it: helpbridge.ca
+Try it: careconnect.ing
 
 #KingstonON #SocialServices
 ```
@@ -30,13 +30,13 @@ Try it: helpbridge.ca
 ```
 Searching for help shouldn't be hard.
 
-HelpBridge makes finding food, shelter, crisis support & other services fast and private.
+CareConnect makes finding food, shelter, crisis support & other services fast and private.
 
 📱 Works offline
 🌍 7 languages
 🔒 No tracking
 
-helpbridge.ca
+careconnect.ing
 
 #KingstonON #CommunitySupport
 ```
@@ -44,13 +44,13 @@ helpbridge.ca
 #### Version 3: Crisis-Focused
 
 ```
-If you're searching "I need food today" or "I need help now" — HelpBridge is for you.
+If you're searching "I need food today" or "I need help now" — CareConnect is for you.
 
 196 verified services. 7 languages. Works offline. No tracking.
 
 Fast help when you need it most.
 
-helpbridge.ca
+careconnect.ing
 
 #KingstonON #CrisisSupport
 ```
@@ -61,12 +61,12 @@ helpbridge.ca
 
 #### Version 1: Comprehensive Announcement
 
-**Title**: Introducing HelpBridge 🚀
+**Title**: Introducing CareConnect 🚀
 
 **Body**:
 
 ```
-We're excited to announce the beta launch of HelpBridge — a new way to find social services in Kingston, Ontario.
+We're excited to announce the beta launch of CareConnect — a new way to find social services in Kingston, Ontario.
 
 🔍 WHAT IT IS
 A privacy-first directory of ~196 verified social services: food banks, crisis support, housing assistance, mental health resources, and more.
@@ -89,7 +89,7 @@ A privacy-first directory of ~196 verified social services: food banks, crisis s
 Special crisis detection means if you search "I need food today" or "I'm suicidal," you get immediate, direct connections to help. No clutter. No barriers.
 
 📱 TRY IT NOW
-Visit helpbridge.ca — works on any device, no account needed.
+Visit careconnect.ing — works on any device, no account needed.
 
 🙏 SPREAD THE WORD
 Know someone who could benefit? Share this post. The more people who know about it, the more people we can help.
@@ -99,7 +99,7 @@ Know someone who could benefit? Share this post. The more people who know about 
 
 #### Version 2: Story-Driven
 
-**Title**: Why We Built HelpBridge
+**Title**: Why We Built CareConnect
 
 **Body**:
 
@@ -115,7 +115,7 @@ You give up.
 
 This shouldn't happen. Not in 2026. Not in Kingston.
 
-So we built HelpBridge.
+So we built CareConnect.
 
 ✅ 196 verified services (actually accurate contact info)
 ✅ Works on any phone (even old ones)
@@ -132,7 +132,7 @@ If you've ever:
 
 This is for you.
 
-Try it: helpbridge.ca
+Try it: careconnect.ing
 
 Share it with someone who needs it. 💙
 
@@ -141,14 +141,14 @@ Share it with someone who needs it. 💙
 
 #### Version 3: Partner/Professional Announcement
 
-**Title**: HelpBridge - A New Tool for Social Service Professionals
+**Title**: CareConnect - A New Tool for Social Service Professionals
 
 **Body**:
 
 ```
 Excited to share a new resource for Kingston's social service community:
 
-HelpBridge (helpbridge.ca) is a privacy-first directory designed to help clients find services faster.
+CareConnect (careconnect.ing) is a privacy-first directory designed to help clients find services faster.
 
 📊 KEY FEATURES FOR PROFESSIONALS:
 → 196+ verified services across 15 categories
@@ -171,12 +171,12 @@ HelpBridge (helpbridge.ca) is a privacy-first directory designed to help clients
 → Safe for clients in sensitive situations (DV, addiction, etc.)
 
 💼 FOR SERVICE PROVIDERS:
-If you'd like to verify or update your organization's listing, contact us at feedback@helpbridge.ca
+If you'd like to verify or update your organization's listing, contact us at feedback@careconnect.ing
 
 🤝 PARTNERSHIPS WELCOME:
 We're open to partnerships with agencies, frontline workers, and community organizations.
 
-Try it: helpbridge.ca
+Try it: careconnect.ing
 
 #SocialWork #CaseManagement #KingstonON #CommunityServices
 ```
@@ -195,12 +195,12 @@ Try it: helpbridge.ca
 2. "Find 196+ Social Services"
 3. "7 Languages | Works Offline"
 4. "Privacy-First | No Tracking"
-5. "Try it: helpbridge.ca"
+5. "Try it: careconnect.ing"
 
 **Caption**:
 
 ```
-🚀 HelpBridge is LIVE
+🚀 CareConnect is LIVE
 
 Find food banks, crisis support, housing help, and 190+ social services in Kingston.
 
@@ -210,7 +210,7 @@ Find food banks, crisis support, housing help, and 190+ social services in Kings
 • 7 languages (EN, FR, ZH, AR, PT, ES, PA)
 • Free forever (no ads, ever)
 
-📱 Try it: helpbridge.ca
+📱 Try it: careconnect.ing
 (Link in bio)
 
 Tag someone who needs this. 💙
@@ -229,7 +229,7 @@ Tag someone who needs this. 💙
 
 When you search for crisis support, addiction resources, or domestic violence help — your searches should stay private.
 
-That's why HelpBridge is built privacy-first:
+That's why CareConnect is built privacy-first:
 
 ✅ Searches happen on YOUR device
 ✅ We don't log your queries
@@ -240,7 +240,7 @@ Safe. Private. Anonymous.
 
 Because everyone deserves help without judgment.
 
-helpbridge.ca
+careconnect.ing
 
 #Privacy #SafeSpace #KingstonON #MentalHealthSupport
 ```
@@ -254,7 +254,7 @@ helpbridge.ca
 ```
 🌍 Help in Your Language
 
-HelpBridge speaks 7 languages:
+CareConnect speaks 7 languages:
 
 🇨🇦 English
 🇫🇷 Français
@@ -266,7 +266,7 @@ HelpBridge speaks 7 languages:
 
 Because help should be accessible to everyone in our community.
 
-Find food, housing, crisis support & more at helpbridge.ca
+Find food, housing, crisis support & more at careconnect.ing
 
 #Multilingual #InclusiveCommunity #KingstonON #YGK
 ```
@@ -277,14 +277,14 @@ Find food, housing, crisis support & more at helpbridge.ca
 
 #### For Service Providers
 
-**Subject**: Your listing on HelpBridge
+**Subject**: Your listing on CareConnect
 
 **Message**:
 
 ```
 Hi [Organization Name],
 
-Your organization is listed on HelpBridge (helpbridge.ca), a new privacy-first directory of social services in Kingston.
+Your organization is listed on CareConnect (careconnect.ing), a new privacy-first directory of social services in Kingston.
 
 We've listed your service based on publicly available information, but we'd love to verify the details with you directly to ensure accuracy.
 
@@ -294,24 +294,24 @@ Could you confirm:
 ✓ Eligibility criteria
 ✓ Languages spoken
 
-Reply to this email or submit updates at: helpbridge.ca/submit-service
+Reply to this email or submit updates at: careconnect.ing/submit-service
 
 Thank you for the critical work you do for our community.
 
 Best,
-HelpBridge Team
+CareConnect Team
 ```
 
 #### For Beta Testers
 
-**Subject**: You're invited to beta test HelpBridge
+**Subject**: You're invited to beta test CareConnect
 
 **Message**:
 
 ```
 Hi [Name],
 
-You're invited to beta test HelpBridge — a privacy-first directory of social services in Kingston, ON.
+You're invited to beta test CareConnect — a privacy-first directory of social services in Kingston, ON.
 
 WHY WE NEED YOUR HELP:
 We want to make sure this tool actually helps people. Your feedback will shape the final product before public launch.
@@ -326,16 +326,16 @@ WHAT WE'RE TESTING:
 TIME COMMITMENT: 15-30 minutes over the next 2 weeks
 
 HOW TO PARTICIPATE:
-1. Visit helpbridge.ca
+1. Visit careconnect.ing
 2. Try searching for services you'd actually look for
-3. Send feedback to feedback@helpbridge.ca
+3. Send feedback to feedback@careconnect.ing
 
 THANK YOU for helping make social services more accessible in Kingston. 💙
 
 Questions? Reply to this email.
 
 Best,
-HelpBridge Team
+CareConnect Team
 ```
 
 ---
@@ -430,13 +430,13 @@ We're so glad it helps! Let us know if you have any feedback or suggestions. We'
 **Reply to "This service info is wrong"**:
 
 ```
-Thank you for letting us know! Please send corrections to feedback@helpbridge.ca and we'll update it ASAP. Accuracy is our top priority.
+Thank you for letting us know! Please send corrections to feedback@careconnect.ing and we'll update it ASAP. Accuracy is our top priority.
 ```
 
 **Reply to "Why isn't [service] listed?"**:
 
 ```
-Great question! We're gradually expanding. You can submit services for review at helpbridge.ca/submit-service or email feedback@helpbridge.ca
+Great question! We're gradually expanding. You can submit services for review at careconnect.ing/submit-service or email feedback@careconnect.ing
 ```
 
 ### Technical Questions
@@ -450,7 +450,7 @@ Yes! Works on any device with a web browser (iPhone, Android, tablets, computers
 **Reply to "How do you protect privacy?"**:
 
 ```
-By default, searches happen entirely on your device—we never see your queries. No user accounts, no tracking, no logging. Privacy policy at helpbridge.ca/privacy
+By default, searches happen entirely on your device—we never see your queries. No user accounts, no tracking, no logging. Privacy policy at careconnect.ing/privacy
 ```
 
 ---
@@ -592,7 +592,7 @@ By default, searches happen entirely on your device—we never see your queries.
 ### Engagement Metrics
 
 - Likes, shares, comments
-- Click-through rate to helpbridge.ca
+- Click-through rate to careconnect.ing
 - Hashtag usage and reach
 - Follower growth
 
@@ -650,10 +650,10 @@ By default, searches happen entirely on your device—we never see your queries.
 ## Contact & Support
 
 For social media strategy questions or asset creation:
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 
 For urgent social media issues (crisis mentions, misinformation):
-**Email**: feedback@helpbridge.ca
+**Email**: feedback@careconnect.ing
 **Response Time**: Within 2 hours during business hours
 
 ---

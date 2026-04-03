@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 concurrency:
-  group: helpbridge-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: careconnect-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -142,7 +142,7 @@ jobs:
       - name: Build production image
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_APP_URL=https://helpbridge.ca \
-            --build-arg NEXT_PUBLIC_BASE_URL=https://helpbridge.ca \
-            -t helpbridge-web:ci \
+            --build-arg NEXT_PUBLIC_APP_URL=https://careconnect.ing \
+            --build-arg NEXT_PUBLIC_BASE_URL=https://careconnect.ing \
+            -t careconnect-web:ci \
             .

@@ -8,7 +8,7 @@
 
 ## Goal
 
-To aggressively remediate legal and compliance risks identified in the "Legal & Compliance Audit v1.2" (Moffatt v. Air Canada, AODA, PIPEDA). This release focuses on **"Risk Mitigation"** rather than new features, ensuring KCC's liability is minimized while maintaining a helpful, privacy-first service.
+To aggressively remediate legal and compliance risks identified in the "Legal & Compliance Audit v1.2" (Moffatt v. Air Canada, AODA, PIPEDA). This release focuses on **"Risk Mitigation"** rather than new features, ensuring CareConnect's liability is minimized while maintaining a helpful, privacy-first service.
 
 ## Design Specification
 
@@ -49,7 +49,7 @@ _Focus: Preventing Gross Negligence and establishing the Legal Contract._
 - [ ] Update `Terms.sections.ai.content` with the following text.
   - _Note_: The renderer uses `whitespace-pre-line`, so use `\n\n` for spacing and `- ` for bullets. Do not use Markdown headers.
     **Required Text Component**:
-    "The AI assistant is for informational purposes only.\n\n- **No Professional Relationship**: The AI is not a doctor, lawyer, or social worker.\n\n- **Crisis Waiver**: This tool is unmonitored. Call 9-8-8 in a crisis.\n\n- **Volatility**: Availability is an estimate, not a guarantee.\n\n- **Device Security**: You are responsible for clearing your history on public devices.\n\n- **Liability**: KCC is not responsible for third-party data accuracy."
+    "The AI assistant is for informational purposes only.\n\n- **No Professional Relationship**: The AI is not a doctor, lawyer, or social worker.\n\n- **Crisis Waiver**: This tool is unmonitored. Call 9-8-8 in a crisis.\n\n- **Volatility**: Availability is an estimate, not a guarantee.\n\n- **Device Security**: You are responsible for clearing your history on public devices.\n\n- **Liability**: CareConnect is not responsible for third-party data accuracy."
 
 ---
 

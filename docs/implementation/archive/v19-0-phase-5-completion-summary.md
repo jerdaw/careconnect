@@ -137,7 +137,7 @@ Phase 5 created comprehensive, ready-to-use launch materials for beta and public
 
 **Practical Guidance**:
 
-- File naming conventions (`helpbridge-[type]-[variant]-[size].[ext]`)
+- File naming conventions (`careconnect-[type]-[variant]-[size].[ext]`)
 - Accessibility checklist (WCAG AA compliance)
 - Free tool recommendations (Figma, Canva, Inkscape, Lucide icons)
 - Timeline prioritization (Critical/Important/Nice-to-Have)

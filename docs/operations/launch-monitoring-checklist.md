@@ -35,8 +35,8 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 ### 1. Deployment Verification
 
 - [ ] **Confirm deployment successful**
-  - Confirm `/srv/apps/helpbridge-web/current` points at the intended release
-  - Verify `docker ps` shows `helpbridge-web` up on `127.0.0.1:3300`
+  - Confirm `/srv/apps/careconnect-web/current` points at the intended release
+  - Verify `docker ps` shows `careconnect-web` up on `127.0.0.1:3300`
   - Check container logs for warnings or crash loops
 
 - [ ] **Verify production URL accessible**
@@ -49,7 +49,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 - [ ] **Test health check endpoint**
 
   ```bash
-  curl https://helpbridge.ca/api/v1/health
+  curl https://careconnect.ing/api/v1/health
   ```
 
   - Expected: 200 OK status
@@ -216,7 +216,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 
 - [ ] **Check feedback channels**
   - Review feedback widget submissions
-  - Check email (feedback@helpbridge.ca)
+  - Check email (feedback@careconnect.ing)
   - Monitor social media (if applicable)
 
 - [ ] **Common issues?**
@@ -650,7 +650,7 @@ Overall Assessment:
 - **Observability Dashboard:** `/admin/observability`
 - **Health Check:** `/api/v1/health`
 - **Metrics:** `/api/v1/metrics` (dev/staging only)
-- **Status Page:** `status.helpbridge.ca` (when configured)
+- **Status Page:** `status.careconnect.ing` (when configured)
 
 ### Key Contacts
 

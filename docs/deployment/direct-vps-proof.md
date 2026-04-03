@@ -7,11 +7,11 @@ tags: [deployment, vps, docker, caddy, production, supabase, rls]
 
 # Direct VPS Deployment
 
-This document describes the **current active direct-VPS deployment path** for HelpBridge.
+This document describes the **current active direct-VPS deployment path** for CareConnect.
 
 Shared-VPS ownership note:
 
-1. This document is canonical for the HelpBridge direct-VPS runtime shape.
+1. This document is canonical for the CareConnect direct-VPS runtime shape.
 2. Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
 3. Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default boundary reference.
 
@@ -19,8 +19,8 @@ Current state:
 
 1. the app is packaged as a Docker container,
 2. the container is running successfully on the Hetzner VPS,
-3. the public host is `https://helpbridge.ca`,
-4. `www.helpbridge.ca` redirects to the apex,
+3. the public host is `https://careconnect.ing`,
+4. `www.careconnect.ing` redirects to the apex,
 5. the container binds privately at `127.0.0.1:3300`,
 6. `GET /api/v1/health` returns healthy on the VPS and publicly,
 7. the deployed health payload reports the staged release revision,
@@ -28,8 +28,8 @@ Current state:
 
 Important naming note:
 
-1. the public product/domain identity is `HelpBridge` / `helpbridge.ca`,
-2. the live VPS runtime identifiers are `helpbridge-web`.
+1. the public product/domain identity is `CareConnect` / `careconnect.ing`,
+2. the live VPS runtime identifiers are `careconnect-web`.
 
 This is the active production path. The historical Vercel path remains documented in [legacy-vercel.md](legacy-vercel.md) only.
 
@@ -71,7 +71,7 @@ It will:
 
 1. build a tagged image,
 2. prefer `docker buildx build` when available and fall back to legacy `docker build` only if `buildx` is missing,
-3. replace the existing `helpbridge-web` container if present,
+3. replace the existing `careconnect-web` container if present,
 4. run it with `--restart unless-stopped`,
 5. publish `127.0.0.1:3300:3000`,
 6. pass required `NEXT_PUBLIC_*` values into both the image build and container runtime,
@@ -89,12 +89,12 @@ release in one step:
 
 As of 2026-03-11, the deployment has been verified with:
 
-1. `docker ps` showing `helpbridge-web` healthy on the VPS,
+1. `docker ps` showing `careconnect-web` healthy on the VPS,
 2. `curl -fsS http://127.0.0.1:3300/api/v1/health`,
 3. `curl -sS -D - "http://127.0.0.1:3300/api/v1/services?limit=1"`.
-4. `curl -fsS https://helpbridge.ca/api/v1/health`,
-5. `curl -fsS https://helpbridge.ca/robots.txt`,
-6. `curl -fsS https://helpbridge.ca/sitemap.xml`.
+4. `curl -fsS https://careconnect.ing/api/v1/health`,
+5. `curl -fsS https://careconnect.ing/robots.txt`,
+6. `curl -fsS https://careconnect.ing/sitemap.xml`.
 
 Operational notes from the March 11, 2026 VPS stabilization work:
 
@@ -106,11 +106,11 @@ Operational notes from the March 11, 2026 VPS stabilization work:
 Public ingress now runs through host Caddy:
 
 ```caddy
-www.helpbridge.ca {
-    redir https://helpbridge.ca{uri} 308
+www.careconnect.ing {
+    redir https://careconnect.ing{uri} 308
 }
 
-helpbridge.ca {
+careconnect.ing {
     encode zstd gzip
     reverse_proxy 127.0.0.1:3300
 }

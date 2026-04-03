@@ -1,6 +1,6 @@
 # Keyboard Navigation Guide
 
-HelpBridge is designed to be fully navigable via keyboard, adhering to WCAG 2.1 Level AA standards.
+CareConnect is designed to be fully navigable via keyboard, adhering to WCAG 2.1 Level AA standards.
 
 ## Basic Navigation
 

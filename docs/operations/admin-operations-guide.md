@@ -1,11 +1,11 @@
 # Admin Operations Guide
 
 **Last Updated:** 2026-03-12
-**Audience:** HelpBridge operators and admins
+**Audience:** CareConnect operators and admins
 
 ## Overview
 
-This guide documents the current repo-backed admin and partner operations that already exist in HelpBridge. It is not a roadmap for future admin tooling.
+This guide documents the current repo-backed admin and partner operations that already exist in CareConnect. It is not a roadmap for future admin tooling.
 
 Use this guide with:
 

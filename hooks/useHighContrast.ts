@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
-const LEGACY_STORAGE_KEY = "kcc-high-contrast"
-const STORAGE_KEY = "helpbridge-high-contrast"
+const STORAGE_KEY = "careconnect-high-contrast"
+const LEGACY_STORAGE_KEYS = LEGACY_BRAND_KEYS.highContrast
 
 export function useHighContrast() {
   const [isHighContrast, setIsHighContrast] = useState(false)
@@ -11,14 +12,15 @@ export function useHighContrast() {
   // Initialize from localStorage on mount
   useEffect(() => {
     if (typeof window === "undefined") return
-    const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY)
+    const legacyKey = LEGACY_STORAGE_KEYS.find((key) => localStorage.getItem(key))
+    const stored = localStorage.getItem(STORAGE_KEY) ?? (legacyKey ? localStorage.getItem(legacyKey) : null)
     if (stored === "true") {
       setIsHighContrast(true)
       document.documentElement.classList.add("high-contrast")
     }
-    if (!localStorage.getItem(STORAGE_KEY) && localStorage.getItem(LEGACY_STORAGE_KEY)) {
+    if (!localStorage.getItem(STORAGE_KEY) && legacyKey) {
       localStorage.setItem(STORAGE_KEY, stored ?? "false")
-      localStorage.removeItem(LEGACY_STORAGE_KEY)
+      LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key))
     }
   }, [])
 
@@ -27,7 +29,7 @@ export function useHighContrast() {
       const next = !prev
       if (typeof window !== "undefined") {
         localStorage.setItem(STORAGE_KEY, String(next))
-        localStorage.removeItem(LEGACY_STORAGE_KEY)
+        LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key))
         if (next) {
           document.documentElement.classList.add("high-contrast")
         } else {

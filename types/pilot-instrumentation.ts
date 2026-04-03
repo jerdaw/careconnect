@@ -59,5 +59,5 @@ export interface PilotPreferenceFitEvent {
   org_id: string
   cohort_label: string
   recorded_at: string
-  preferred_via_helpbridge: boolean
+  preferred_via_careconnect: boolean
 }

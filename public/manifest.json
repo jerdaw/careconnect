@@ -1,6 +1,6 @@
 {
-  "name": "HelpBridge - Social Services Search",
-  "short_name": "HelpBridge",
+  "name": "CareConnect - Social Services Search",
+  "short_name": "CareConnect",
   "description": "Find essential community services in Kingston. Free, confidential, and instant. Health, housing, crisis, financial, and more.",
   "start_url": "/",
   "id": "/",
@@ -10,29 +10,6 @@
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
   "categories": ["social", "reference", "medical", "lifestyle"],
-  "screenshots": [
-    {
-      "src": "/screenshots/mobile-search.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Search for services on mobile"
-    },
-    {
-      "src": "/screenshots/mobile-detail.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "View service details"
-    },
-    {
-      "src": "/screenshots/tablet-search.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Search on tablet"
-    }
-  ],
   "icons": [
     { "src": "/icons/favicon-16.png", "sizes": "16x16", "type": "image/png" },
     { "src": "/icons/favicon-32.png", "sizes": "32x32", "type": "image/png" },

@@ -64,7 +64,7 @@ All must be marked `pass` for outcome `go`.
 
 If decision is `blocked`, choose one:
 
-1. Narrow HelpBridge scope to bounded local workflows that do not depend on restricted integration.
+1. Narrow CareConnect scope to bounded local workflows that do not depend on restricted integration.
 2. Trigger responsible deprecation path if non-duplicate value cannot be demonstrated.
 
 Record selected contingency:

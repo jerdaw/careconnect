@@ -34,7 +34,7 @@ describe("pilot-metrics", () => {
       dataDecaySampleSize: 20,
       dataDecayFatalCount: 1,
       preferenceFitTaskCount: 12,
-      preferenceFitKccTaskCount: 9,
+      preferenceFitCareConnectTaskCount: 9,
     })
 
     expect(scorecard.m1_failed_contact_rate).toBe(0.3)
@@ -60,7 +60,7 @@ describe("pilot-metrics", () => {
       dataDecaySampleSize: 20,
       dataDecayFatalCount: 2,
       preferenceFitTaskCount: 50,
-      preferenceFitKccTaskCount: 35,
+      preferenceFitCareConnectTaskCount: 35,
     })
 
     const gate = evaluateGate1Thresholds(scorecard, 0.55, 10000)
@@ -83,7 +83,7 @@ describe("pilot-metrics", () => {
       dataDecaySampleSize: 20,
       dataDecayFatalCount: 4,
       preferenceFitTaskCount: 50,
-      preferenceFitKccTaskCount: 20,
+      preferenceFitCareConnectTaskCount: 20,
     })
 
     const gate = evaluateGate1Thresholds(scorecard, 0.5, 10000)
@@ -107,7 +107,7 @@ describe("pilot-metrics", () => {
       dataDecaySampleSize: 20,
       dataDecayFatalCount: 1,
       preferenceFitTaskCount: 50,
-      preferenceFitKccTaskCount: 35,
+      preferenceFitCareConnectTaskCount: 35,
     })
 
     const zeroBaselineGate = evaluateGate1Thresholds(scorecard, 0, 0)
@@ -189,11 +189,11 @@ describe("pilot-metrics", () => {
         preferenceFitEvents: [
           {
             recorded_at: "2026-03-08T13:00:00.000Z",
-            preferred_via_helpbridge: true,
+            preferred_via_careconnect: true,
           },
           {
             recorded_at: "2026-03-08T13:05:00.000Z",
-            preferred_via_helpbridge: false,
+            preferred_via_careconnect: false,
           },
         ],
       },

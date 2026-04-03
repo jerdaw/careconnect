@@ -5,7 +5,7 @@
 
 ## Overview
 
-This guide covers migration execution and rollback planning for HelpBridge database changes. Use it alongside:
+This guide covers migration execution and rollback planning for CareConnect database changes. Use it alongside:
 
 - [Launch Rollback Procedures](launch-rollback-procedures.md)
 - [Production Checklist](../deployment/production-checklist.md)

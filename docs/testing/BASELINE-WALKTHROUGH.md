@@ -8,7 +8,7 @@
 
 ## Overview
 
-This walkthrough guides you through establishing performance baselines for HelpBridge. You'll run 4 load tests and document the results.
+This walkthrough guides you through establishing performance baselines for CareConnect. You'll run 4 load tests and document the results.
 
 ### What You'll Do
 

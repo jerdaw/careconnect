@@ -89,7 +89,7 @@ describe("Header", () => {
     it("should render site name", () => {
       render(<Header />)
 
-      expect(screen.getByText("HelpBridge")).toBeInTheDocument()
+      expect(screen.getByText("CareConnect")).toBeInTheDocument()
     })
 
     it("should render beta banner when not scrolled", () => {

@@ -17,7 +17,7 @@ Accepted
 
 ## Context
 
-HelpBridge uses **manual curation over automatic extraction**. We sometimes use “Deep Research” LLM workflows (ChatGPT / Gemini) to accelerate enrichment of missing structured fields in `data/services.json`, especially:
+CareConnect uses **manual curation over automatic extraction**. We sometimes use “Deep Research” LLM workflows (ChatGPT / Gemini) to accelerate enrichment of missing structured fields in `data/services.json`, especially:
 
 - `hours` (structured; used by the “Open Now” filter)
 - `access_script` (phone-anxiety support; “what to say when you call”)

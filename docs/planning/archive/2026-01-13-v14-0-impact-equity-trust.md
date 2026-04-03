@@ -15,7 +15,7 @@ This document is the **version definition and implementation plan** for v14.0, w
 
 ### The Vision
 
-Kingston Care Connect has achieved technical maturity (v13.x) with privacy-first architecture, legal compliance, and AI safety. However, we lack:
+CareConnect has achieved technical maturity (v13.x) with privacy-first architecture, legal compliance, and AI safety. However, we lack:
 
 1. **Measurability**: We don't know if the platform is helpful or where it's failing users
 2. **Equity**: Access barriers remain for marginalized communities (language, literacy, connectivity)
@@ -31,7 +31,7 @@ v14.0 addresses these gaps **without compromising privacy** through privacy-pres
 
 ### Strategic Alignment
 
-This roadmap positions KCC for:
+This roadmap positions CareConnect for:
 
 - **McMaster partnership**: Evaluation/QI capabilities demonstrate measurable outcomes
 - **Queen's partnership**: Kingston governance & partner engagement infrastructure
@@ -510,7 +510,7 @@ Clicking opens modal:
 │ 🔍 Verification Information                     │
 │                                                 │
 │ Last Verified: January 5, 2026                  │
-│ Verified By: Kingston Care Connect Team         │
+│ Verified By: CareConnect Team         │
 │ Method: Phone confirmation                      │
 │ Evidence: [Link to source]                      │
 │                                                 │
@@ -1512,7 +1512,7 @@ v14.0 is considered "done" when:
 │ 🔍 Verification Information                         │
 │                                                     │
 │ ✅ Last Verified: January 5, 2026                  │
-│ 👤 Verified By: Kingston Care Connect Team         │
+│ 👤 Verified By: CareConnect Team         │
 │ 📞 Method: Phone confirmation with staff           │
 │ 🔗 Evidence: www.example.org/services              │
 │                                                     │

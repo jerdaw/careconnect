@@ -142,7 +142,7 @@ async function generateReport() {
 
   // Generate report content
   const quarter = getQuarter(now)
-  const reportContent = `# HelpBridge - Quality Improvement Report
+  const reportContent = `# CareConnect - Quality Improvement Report
 
 **Report Period**: ${formatDate(ninetyDaysAgo)} to ${formatDate(now)}
 **Generated**: ${formatDate(now)}
@@ -152,7 +152,7 @@ async function generateReport() {
 
 ## Executive Summary
 
-This report provides transparency into how HelpBridge is serving the community and where we can improve. All metrics are collected without tracking individual users.
+This report provides transparency into how CareConnect is serving the community and where we can improve. All metrics are collected without tracking individual users.
 
 ---
 
@@ -217,7 +217,7 @@ _This section will be updated manually with specific improvements made based on 
 
 ---
 
-*Report generated automatically by HelpBridge*
+*Report generated automatically by CareConnect*
 `
 
   // Write report

@@ -1,4 +1,5 @@
 import { openDB, DBSchema, IDBPDatabase } from "idb"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 import { Service } from "@/types/service"
 
 export interface PendingFeedback {
@@ -11,7 +12,7 @@ export interface PendingFeedback {
   syncAttempts: number
 }
 
-interface HelpBridgeOfflineDB extends DBSchema {
+interface CareConnectOfflineDB extends DBSchema {
   services: {
     key: string
     value: Service
@@ -33,56 +34,61 @@ interface HelpBridgeOfflineDB extends DBSchema {
   }
 }
 
-const DB_NAME = "helpbridge-offline-v1"
-const LEGACY_DB_NAME = "kcc-offline-v1"
+const DB_NAME = "careconnect-offline-v1"
+const LEGACY_DB_NAMES = LEGACY_BRAND_KEYS.offlineDbNames
 const DB_VERSION = 1
 
 let migrationPromise: Promise<void> | null = null
 type OfflineStoreName = "services" | "embeddings" | "meta" | "pendingFeedback"
 
-async function migrateLegacyOfflineDB(db: IDBPDatabase<HelpBridgeOfflineDB>): Promise<void> {
+async function migrateLegacyOfflineDB(db: IDBPDatabase<CareConnectOfflineDB>): Promise<void> {
   if (typeof window === "undefined") return
 
   if (!migrationPromise) {
     migrationPromise = (async () => {
-      const alreadyMigrated = await db.get("meta", "legacy-migrated-from-kcc")
-      if (alreadyMigrated?.value === true) return
-
-      const legacyDb = await openDB<HelpBridgeOfflineDB>(LEGACY_DB_NAME, DB_VERSION)
       const legacyStores: OfflineStoreName[] = ["services", "embeddings", "meta", "pendingFeedback"]
-      const legacyStoreNames = legacyDb.objectStoreNames
-      const hasLegacyStores =
-        !!legacyStoreNames &&
-        (typeof legacyStoreNames.contains === "function"
-          ? legacyStores.some((store) => legacyStoreNames.contains(store))
-          : legacyStoreNames.length > 0)
 
-      if (!hasLegacyStores) {
+      for (const legacyDbName of LEGACY_DB_NAMES) {
+        const migrationKey = `legacy-migrated-from-${legacyDbName}`
+        const alreadyMigrated = await db.get("meta", migrationKey)
+        if (alreadyMigrated?.value === true) continue
+
+        const legacyDb = await openDB<CareConnectOfflineDB>(legacyDbName, DB_VERSION)
+        const legacyStoreNames = legacyDb.objectStoreNames
+        const hasLegacyStores =
+          !!legacyStoreNames &&
+          (typeof legacyStoreNames.contains === "function"
+            ? legacyStores.some((store) => legacyStoreNames.contains(store))
+            : legacyStoreNames.length > 0)
+
+        if (!hasLegacyStores) {
+          legacyDb.close?.()
+          window.indexedDB?.deleteDatabase?.(legacyDbName)
+          await db.put("meta", { id: migrationKey, value: true })
+          continue
+        }
+
+        const [services, embeddings, metaEntries, pendingFeedback] = await Promise.all([
+          legacyDb.getAll("services"),
+          legacyDb.getAll("embeddings"),
+          legacyDb.getAll("meta"),
+          legacyDb.getAll("pendingFeedback"),
+        ])
+
+        const tx = db.transaction(["services", "embeddings", "meta", "pendingFeedback"], "readwrite")
+
+        await Promise.all([
+          ...services.map((service) => tx.objectStore("services").put(service)),
+          ...embeddings.map((embedding) => tx.objectStore("embeddings").put(embedding)),
+          ...metaEntries.map((meta) => tx.objectStore("meta").put(meta)),
+          ...pendingFeedback.map((feedback) => tx.objectStore("pendingFeedback").put(feedback)),
+          tx.objectStore("meta").put({ id: migrationKey, value: true }),
+        ])
+
+        await tx.done
         legacyDb.close?.()
-        window.indexedDB?.deleteDatabase?.(LEGACY_DB_NAME)
-        await db.put("meta", { id: "legacy-migrated-from-kcc", value: true })
-        return
+        window.indexedDB?.deleteDatabase?.(legacyDbName)
       }
-
-      const [services, embeddings, metaEntries, pendingFeedback] = await Promise.all([
-        legacyDb.getAll("services"),
-        legacyDb.getAll("embeddings"),
-        legacyDb.getAll("meta"),
-        legacyDb.getAll("pendingFeedback"),
-      ])
-
-      const tx = db.transaction(["services", "embeddings", "meta", "pendingFeedback"], "readwrite")
-
-      await Promise.all([
-        ...services.map((service) => tx.objectStore("services").put(service)),
-        ...embeddings.map((embedding) => tx.objectStore("embeddings").put(embedding)),
-        ...metaEntries.map((meta) => tx.objectStore("meta").put(meta)),
-        ...pendingFeedback.map((feedback) => tx.objectStore("pendingFeedback").put(feedback)),
-        tx.objectStore("meta").put({ id: "legacy-migrated-from-kcc", value: true }),
-      ])
-
-      await tx.done
-      legacyDb.close?.()
     })()
   }
 
@@ -92,8 +98,8 @@ async function migrateLegacyOfflineDB(db: IDBPDatabase<HelpBridgeOfflineDB>): Pr
 /**
  * Open the offline database
  */
-export async function getOfflineDB(): Promise<IDBPDatabase<HelpBridgeOfflineDB>> {
-  const db = await openDB<HelpBridgeOfflineDB>(DB_NAME, DB_VERSION, {
+export async function getOfflineDB(): Promise<IDBPDatabase<CareConnectOfflineDB>> {
+  const db = await openDB<CareConnectOfflineDB>(DB_NAME, DB_VERSION, {
     upgrade(db) {
       if (!db.objectStoreNames.contains("services")) {
         const store = db.createObjectStore("services", { keyPath: "id" })

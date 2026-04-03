@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: helpbridge-production-smoke
+  group: careconnect-production-smoke
   cancel-in-progress: false
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
           import json
           import urllib.request
 
-          with urllib.request.urlopen("https://helpbridge.ca/api/v1/health", timeout=20) as response:
+          with urllib.request.urlopen("https://careconnect.ing/api/v1/health", timeout=20) as response:
               payload = json.load(response)
 
           assert payload.get("status") in {"healthy", "degraded"}, payload
@@ -39,23 +39,23 @@ jobs:
 
       - name: Verify apex response
         run: |
-          curl -sSI https://helpbridge.ca > apex.headers
+          curl -sSI https://careconnect.ing > apex.headers
           grep -Eq '^HTTP/.* (200|307)' apex.headers
 
       - name: Verify www redirect
         run: |
-          curl -sSI https://www.helpbridge.ca | tr -d '\r' > www.headers
+          curl -sSI https://www.careconnect.ing | tr -d '\r' > www.headers
           grep -Eq '^HTTP/.* 308' www.headers
-          grep -Eqi '^location: https://helpbridge\.ca/?$' www.headers
+          grep -Eqi '^location: https://careconnect\.ing/?$' www.headers
 
       - name: Verify robots and sitemap host
         run: |
-          curl -fsS https://helpbridge.ca/robots.txt > robots.txt
-          grep -Fx 'Sitemap: https://helpbridge.ca/sitemap.xml' robots.txt
-          curl -fsS https://helpbridge.ca/sitemap.xml > sitemap.xml
-          grep -F '<loc>https://helpbridge.ca/' sitemap.xml
+          curl -fsS https://careconnect.ing/robots.txt > robots.txt
+          grep -Fx 'Sitemap: https://careconnect.ing/sitemap.xml' robots.txt
+          curl -fsS https://careconnect.ing/sitemap.xml > sitemap.xml
+          grep -F '<loc>https://careconnect.ing/' sitemap.xml
 
       - name: Verify runtime security headers
         run: npm run validate:security-headers:runtime
         env:
-          SECURITY_HEADERS_BASE_URL: https://helpbridge.ca
+          SECURITY_HEADERS_BASE_URL: https://careconnect.ing

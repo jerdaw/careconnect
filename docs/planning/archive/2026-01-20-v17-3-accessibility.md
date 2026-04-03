@@ -751,11 +751,11 @@ test("keyboard navigation", async ({ page }) => {
 
 ## Accessibility for Ontarians with Disabilities Act (2005)
 
-Kingston Care Connect is committed to providing a barrier-free service to people with disabilities.
+CareConnect is committed to providing a barrier-free service to people with disabilities.
 
 ### WCAG 2.1 Level AA Compliance
 
-As of [DATE], Kingston Care Connect meets WCAG 2.1 Level AA standards:
+As of [DATE], CareConnect meets WCAG 2.1 Level AA standards:
 
 #### Perceivable
 
@@ -802,7 +802,7 @@ export default function AccessibilityPage() {
 
       <h2>Our Commitment</h2>
       <p>
-        Kingston Care Connect is committed to being accessible to
+        CareConnect is committed to being accessible to
         people with disabilities...
       </p>
 

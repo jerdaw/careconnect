@@ -34,7 +34,7 @@ describe("documentation hygiene", () => {
   it("tracks the live VPS deployment in the roadmap", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
 
-    expect(roadmap).toContain("https://helpbridge.ca")
+    expect(roadmap).toContain("https://careconnect.ing")
     expect(roadmap).toContain("Live on the direct-VPS path")
     expect(roadmap).not.toContain("Pre-production (not deployed")
   })
@@ -56,8 +56,8 @@ describe("documentation hygiene", () => {
 
     expect(monitoring).not.toContain("Vercel deployment status")
     expect(rollback).not.toContain("vercel rollback")
-    expect(rollback).toContain("/srv/apps/helpbridge-web/releases")
-    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/helpbridge-web.env")
+    expect(rollback).toContain("/srv/apps/careconnect-web/releases")
+    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env")
   })
 
   it("points shared VPS facts to platform-ops in active entry points", () => {

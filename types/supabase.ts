@@ -962,7 +962,7 @@ type PublicSchema = SchemaWithRelationships<{
         org_id: string
         cohort_label: string
         recorded_at: string
-        preferred_via_helpbridge: boolean
+        preferred_via_careconnect: boolean
         created_at: string
       }
       Insert: {
@@ -971,7 +971,7 @@ type PublicSchema = SchemaWithRelationships<{
         org_id: string
         cohort_label: string
         recorded_at: string
-        preferred_via_helpbridge: boolean
+        preferred_via_careconnect: boolean
         created_at?: string
       }
       Update: {
@@ -980,7 +980,7 @@ type PublicSchema = SchemaWithRelationships<{
         org_id?: string
         cohort_label?: string
         recorded_at?: string
-        preferred_via_helpbridge?: boolean
+        preferred_via_careconnect?: boolean
         created_at?: string
       }
     }

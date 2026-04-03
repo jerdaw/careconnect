@@ -2,7 +2,7 @@
 
 ## Overview
 
-HelpBridge sends automated Slack alerts for critical system events, enabling proactive incident detection and rapid response.
+CareConnect sends automated Slack alerts for critical system events, enabling proactive incident detection and rapid response.
 
 **Alert Types:**
 
@@ -62,7 +62,7 @@ HelpBridge sends automated Slack alerts for critical system events, enabling pro
 # Test webhook manually
 curl -X POST "YOUR_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
-  -d '{"text": "🧪 Test alert from HelpBridge"}'
+  -d '{"text": "🧪 Test alert from CareConnect"}'
 ```
 
 If successful, you should see the message appear in your Slack channel within 5 seconds.
@@ -291,7 +291,7 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 - Create dedicated channel: `#kingston-alerts`
 - Add key team members
 - Enable mobile push notifications
-- Set channel topic: "Production alerts - HelpBridge"
+- Set channel topic: "Production alerts - CareConnect"
 
 **Don't:**
 

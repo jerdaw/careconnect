@@ -6,7 +6,7 @@
 
 ## Overview
 
-Implementation of performance tracking, circuit breaker pattern, and load testing infrastructure to improve observability and resilience of the Kingston Care Connect platform.
+Implementation of performance tracking, circuit breaker pattern, and load testing infrastructure to improve observability and resilience of the CareConnect platform.
 
 ## Objectives
 

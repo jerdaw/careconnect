@@ -5,7 +5,7 @@
 
 ## Purpose
 
-This note describes the current HelpBridge privacy and compliance posture for international/privacy-adjacent review. It does not claim formal certification or legal approval.
+This note describes the current CareConnect privacy and compliance posture for international/privacy-adjacent review. It does not claim formal certification or legal approval.
 
 Use this note with:
 
@@ -25,7 +25,7 @@ Use this note with:
 ### Local Storage And Device Data
 
 - offline support uses IndexedDB and local browser storage for cached service data and queued feedback
-- this means data can exist on the user’s device even when HelpBridge does not retain it server-side
+- this means data can exist on the user’s device even when CareConnect does not retain it server-side
 - users need a clear local clearing path for device-stored history and cached data
 
 ### Feedback And Update Requests
@@ -36,14 +36,14 @@ Use this note with:
 
 ## GDPR / International Framing
 
-### What HelpBridge Can Reasonably Claim Today
+### What CareConnect Can Reasonably Claim Today
 
 - data minimization is a design goal
 - search telemetry is intentionally constrained
 - local-first/offline patterns reduce central collection risk
 - security headers, rate limiting, and documented incident procedures are part of the technical control set
 
-### What HelpBridge Should Not Claim Today
+### What CareConnect Should Not Claim Today
 
 - formal GDPR compliance certification
 - completed cross-border transfer analysis for every deployment path

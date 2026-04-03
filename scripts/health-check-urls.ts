@@ -19,7 +19,7 @@ interface HealthCheckResult {
 
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
 const REPORT_PATH = path.join(process.cwd(), "data/url-health-report.json")
-const USER_AGENT = "Mozilla/5.0 (compatible; HelpBridge-URLHealthCheck/1.0; +https://helpbridge.ca)"
+const USER_AGENT = "Mozilla/5.0 (compatible; CareConnect-URLHealthCheck/1.0; +https://careconnect.ing)"
 
 // Colors for console output
 const RED = "\x1b[31m"

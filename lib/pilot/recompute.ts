@@ -173,11 +173,11 @@ export async function recomputePilotMetrics(
     async () =>
       (await supabase
         .from("pilot_preference_fit_events")
-        .select("recorded_at, preferred_via_helpbridge")
+        .select("recorded_at, preferred_via_careconnect")
         .eq("pilot_cycle_id", pilotCycleId)
         .eq("org_id", orgId)) as QueryResult<{
         recorded_at: string
-        preferred_via_helpbridge: boolean
+        preferred_via_careconnect: boolean
       }>
   )
 

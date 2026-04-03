@@ -3,7 +3,7 @@ BEGIN;
 INSERT INTO organizations (id, name, email)
 VALUES (
   '11111111-1111-1111-1111-111111111111',
-  'HelpBridge Test Org',
+  'CareConnect Test Org',
   'partners@example.test'
 );
 

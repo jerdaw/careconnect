@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useShare } from "@/hooks/useShare"
 import { useToast } from "@/components/ui/use-toast"
+import { BRAND_NAME } from "@/lib/brand"
 
 interface ServiceActionBarProps {
   serviceId: string
@@ -27,7 +28,7 @@ export function ServiceActionBar({
   const handleShare = async () => {
     const result = await share({
       title: serviceName,
-      text: `Check out ${serviceName} on HelpBridge`,
+      text: `Check out ${serviceName} on ${BRAND_NAME}`,
       url: window.location.href,
     })
 

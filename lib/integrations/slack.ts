@@ -14,8 +14,7 @@
 
 import { logger } from "@/lib/logger"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
-
-const REPOSITORY_URL = "https://github.com/jerdaw/helpbridge"
+import { REPOSITORY_URL, getPublicAppUrl } from "@/lib/brand"
 
 /**
  * Slack message block types
@@ -92,23 +91,6 @@ function getSlackWebhookUrl(): string | null {
   }
 
   return webhookUrl
-}
-
-function normalizeBaseUrl(value: string): string {
-  const trimmed = value.trim().replace(/\/+$/, "")
-  return /^https?:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`
-}
-
-function getAppBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return normalizeBaseUrl(process.env.NEXT_PUBLIC_APP_URL)
-  }
-
-  if (process.env.VERCEL_URL) {
-    return normalizeBaseUrl(process.env.VERCEL_URL)
-  }
-
-  return "http://localhost:3000"
 }
 
 function getRepoDocUrl(path: string): string {
@@ -190,7 +172,7 @@ function formatCircuitBreakerMessage(event: CircuitBreakerEvent): SlackMessage {
       : `${emoji} Circuit Breaker ${stateLabel}`
 
   // Get dashboard and runbook URLs
-  const baseUrl = getAppBaseUrl()
+  const baseUrl = getPublicAppUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
   const runbookUrl = getRepoDocUrl("docs/runbooks/circuit-breaker-open.md")
 
@@ -323,7 +305,7 @@ export async function sendHighErrorRateAlert(errorRate: number, threshold: numbe
     return
   }
 
-  const baseUrl = getAppBaseUrl()
+  const baseUrl = getPublicAppUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
 
   const message: SlackMessage = {
@@ -393,7 +375,7 @@ function formatSLOViolationMessage(event: SLOViolationEvent): SlackMessage {
   const fallbackText = `${emoji} ${typeLabel} ${severity === "critical" ? "Violation" : "Warning"} - ${message}`
 
   // Get dashboard and runbook URLs
-  const baseUrl = getAppBaseUrl()
+  const baseUrl = getPublicAppUrl()
   const dashboardUrl = `${baseUrl}/admin/observability`
   const runbookUrl = getRepoDocUrl("docs/runbooks/slo-violation.md")
 

@@ -5,7 +5,7 @@
 
 ## Goal
 
-Establish public-facing credibility for Kingston Care Connect by documenting the project's mission, data sources, and governance structure. This provides the necessary evidence for professional applications (e.g., medical school OMSAS/Adcom) and community trust.
+Establish public-facing credibility for CareConnect by documenting the project's mission, data sources, and governance structure. This provides the necessary evidence for professional applications (e.g., medical school OMSAS/Adcom) and community trust.
 
 ## Background
 

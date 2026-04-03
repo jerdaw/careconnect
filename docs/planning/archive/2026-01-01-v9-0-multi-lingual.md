@@ -2,7 +2,7 @@
 
 ## Goal
 
-Extend the Kingston Care Connect platform to:
+Extend the CareConnect platform to:
 
 1.  **Multi-Lingual Translation**: UI support for Arabic, Chinese (Simplified), and Spanish in addition to EN/FR.
 2.  **Provincial Crisis Lines**: 16 Ontario-wide crisis services.

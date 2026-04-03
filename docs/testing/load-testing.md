@@ -1,9 +1,9 @@
 # Load Testing Guide
 
-This guide covers load testing for HelpBridge using k6.
+This guide covers load testing for CareConnect using k6.
 
 > [!IMPORTANT]
-> HelpBridge does **not** vendor the `k6` executable in git. Install `k6` locally and ensure it is available on your shell `PATH` before running any `npm run test:load*` command.
+> CareConnect does **not** vendor the `k6` executable in git. Install `k6` locally and ensure it is available on your shell `PATH` before running any `npm run test:load*` command.
 
 ## Overview
 
@@ -276,7 +276,7 @@ npm run test:load:smoke
 ### Staging/Preview
 
 ```bash
-BASE_URL=https://preview.helpbridge.ca npm run test:load:smoke
+BASE_URL=https://preview.careconnect.ing npm run test:load:smoke
 ```
 
 ### Production (Caution!)
@@ -284,7 +284,7 @@ BASE_URL=https://preview.helpbridge.ca npm run test:load:smoke
 ```bash
 # Only run smoke tests against production
 # NEVER run sustained or spike tests against production
-BASE_URL=https://helpbridge.ca npm run test:load:smoke
+BASE_URL=https://careconnect.ing npm run test:load:smoke
 ```
 
 ---
@@ -450,8 +450,8 @@ jobs:
 - [k6 Documentation](https://k6.io/docs/)
 - [k6 Documentation](https://grafana.com/docs/k6/latest/)
 - [Performance Testing Best Practices](https://k6.io/docs/testing-guides/automated-performance-testing/)
-- HelpBridge: `docs/adr/014-database-index-optimization.md`
-- HelpBridge: `docs/adr/013-unified-rls-policy.md`
+- CareConnect: `docs/adr/014-database-index-optimization.md`
+- CareConnect: `docs/adr/013-unified-rls-policy.md`
 
 ---
 

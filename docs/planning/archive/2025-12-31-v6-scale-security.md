@@ -948,7 +948,7 @@ export function usePushNotifications() {
     isLoading: true,
   })
 
-  const [preferences, setPreferences] = useLocalStorage<NotificationCategory[]>("kcc_notification_prefs", [])
+  const [preferences, setPreferences] = useLocalStorage<NotificationCategory[]>("careconnect_notification_prefs", [])
 
   useEffect(() => {
     const checkState = async () => {
@@ -1319,7 +1319,7 @@ async function syncServices() {
     if (!response.ok) throw new Error(`Sync failed: ${response.status}`)
 
     const services = await response.json()
-    const cache = await caches.open("kcc-services-v1")
+    const cache = await caches.open("careconnect-services-v1")
 
     // Update cache with fresh data
     await cache.put(

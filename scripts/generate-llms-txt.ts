@@ -18,8 +18,8 @@ const CORE_FILES = [
 function generateLLMsTxt() {
   console.log("Generating llms.txt...")
 
-  let content = "# HelpBridge - AI Context\n\n"
-  content += "This file contains the core architecture and development guidelines for HelpBridge.\n\n"
+  let content = "# CareConnect - AI Context\n\n"
+  content += "This file contains the core architecture and development guidelines for CareConnect.\n\n"
 
   for (const fileName of CORE_FILES) {
     const filePath = path.join(DOCS_DIR, fileName)

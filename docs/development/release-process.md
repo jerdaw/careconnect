@@ -2,7 +2,7 @@
 
 ## Overview
 
-HelpBridge uses **automated GitHub releases** triggered by git tags. Release notes are automatically generated from `CHANGELOG.md`, ensuring consistency between the changelog and GitHub releases.
+CareConnect uses **automated GitHub releases** triggered by git tags. Release notes are automatically generated from `CHANGELOG.md`, ensuring consistency between the changelog and GitHub releases.
 
 ## Release Workflow
 
@@ -106,7 +106,7 @@ node scripts/generate-release-notes.js v0.17.5 --no-footer --no-emoji
 
 ## Semantic Versioning
 
-HelpBridge follows [Semantic Versioning](https://semver.org/):
+CareConnect follows [Semantic Versioning](https://semver.org/):
 
 **MAJOR.MINOR.PATCH** (e.g., 1.2.3)
 

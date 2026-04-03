@@ -1,6 +1,7 @@
 import { renderHook, act } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { useHighContrast } from "@/hooks/useHighContrast"
+import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
 
 describe("useHighContrast", () => {
   beforeEach(() => {
@@ -27,7 +28,7 @@ describe("useHighContrast", () => {
   })
 
   it("should initialize with true if localStorage has true", () => {
-    localStorage.setItem("helpbridge-high-contrast", "true")
+    localStorage.setItem("careconnect-high-contrast", "true")
     const { result } = renderHook(() => useHighContrast())
     expect(result.current.isHighContrast).toBe(true)
     expect(document.documentElement.classList.contains("high-contrast")).toBe(true)
@@ -41,7 +42,7 @@ describe("useHighContrast", () => {
     })
 
     expect(result.current.isHighContrast).toBe(true)
-    expect(localStorage.getItem("helpbridge-high-contrast")).toBe("true")
+    expect(localStorage.getItem("careconnect-high-contrast")).toBe("true")
     expect(document.documentElement.classList.contains("high-contrast")).toBe(true)
 
     act(() => {
@@ -49,7 +50,18 @@ describe("useHighContrast", () => {
     })
 
     expect(result.current.isHighContrast).toBe(false)
-    expect(localStorage.getItem("helpbridge-high-contrast")).toBe("false")
+    expect(localStorage.getItem("careconnect-high-contrast")).toBe("false")
     expect(document.documentElement.classList.contains("high-contrast")).toBe(false)
+  })
+
+  it("migrates the legacy storage key", () => {
+    const legacyKey = LEGACY_BRAND_KEYS.highContrast[0]
+    localStorage.setItem(legacyKey, "true")
+
+    const { result } = renderHook(() => useHighContrast())
+
+    expect(result.current.isHighContrast).toBe(true)
+    expect(localStorage.getItem("careconnect-high-contrast")).toBe("true")
+    expect(localStorage.getItem(legacyKey)).toBeNull()
   })
 })

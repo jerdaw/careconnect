@@ -12,15 +12,17 @@ import { ChatAssistantShell } from "@/components/ai/ChatAssistantShell"
 import { TranslationBanner } from "@/components/layout/TranslationBanner"
 import { OfflineSync } from "@/components/offline/OfflineSync"
 import { OfflineBanner } from "@/components/ui/OfflineBanner"
+import { BRAND_NAME, getPublicBaseUrl } from "@/lib/brand"
 
 export const metadata: Metadata = {
-  title: "HelpBridge",
+  metadataBase: new URL(getPublicBaseUrl()),
+  title: BRAND_NAME,
   description: "Find local support services for food, housing, crisis, and health in Kingston, Ontario.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "HelpBridge",
+    title: BRAND_NAME,
   },
   formatDetection: {
     telephone: false,

@@ -10,7 +10,7 @@
 
 ## 0) Executive Summary
 
-We are expanding Kingston Care Connect to support **Ontario-wide services** that are relevant to Kingston residents (e.g., Telehealth, Provincial Crisis Lines, Legal Aid). This is **NOT** a pivot to become a generic "Ontario directory"; it is an expansion of _resources available to our users_ regardless of their physical location within the province.
+We are expanding CareConnect to support **Ontario-wide services** that are relevant to Kingston residents (e.g., Telehealth, Provincial Crisis Lines, Legal Aid). This is **NOT** a pivot to become a generic "Ontario directory"; it is an expansion of _resources available to our users_ regardless of their physical location within the province.
 
 **Key Constraints:**
 

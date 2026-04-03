@@ -37,7 +37,7 @@ describe("runtime security header validation", () => {
       })
 
     const result = await validateRuntimeSecurityHeaders({
-      baseUrl: "https://helpbridge.ca",
+      baseUrl: "https://careconnect.ing",
       paths: ["/en", "/api/v1/health"],
       fetchImpl,
     })
@@ -55,7 +55,7 @@ describe("runtime security header validation", () => {
       })
 
     const result = await validateRuntimeSecurityHeaders({
-      baseUrl: "https://helpbridge.ca",
+      baseUrl: "https://careconnect.ing",
       paths: ["/en", "/api/v1/health"],
       fetchImpl,
     })

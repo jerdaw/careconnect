@@ -38,8 +38,8 @@ This document provides detailed procedures for final quality assurance before la
 
 - [ ] **Access production environment**
   - SSH to the VPS
-  - Review `/etc/projects-merge/env/helpbridge-web.env`
-  - Confirm the staged release under `/srv/apps/helpbridge-web/current`
+  - Review `/etc/projects-merge/env/careconnect-web.env`
+  - Confirm the staged release under `/srv/apps/careconnect-web/current`
 
 - [ ] **Verify core variables present:**
   - [ ] `NEXT_PUBLIC_SUPABASE_URL` (public Supabase URL)
@@ -118,7 +118,7 @@ curl -X POST 'https://[your-project].supabase.co/rest/v1/services' \
 
 ### 1.3: Authentication Flow Testing (30 minutes)
 
-**Test in production environment (e.g., https://helpbridge.ca):**
+**Test in production environment (e.g., https://careconnect.ing):**
 
 **Signup Flow:**
 
@@ -164,7 +164,7 @@ curl -X POST 'https://[your-project].supabase.co/rest/v1/services' \
 
 ```bash
 # Validate deployed runtime headers
-SECURITY_HEADERS_BASE_URL=https://helpbridge.ca npm run validate:security-headers:runtime
+SECURITY_HEADERS_BASE_URL=https://careconnect.ing npm run validate:security-headers:runtime
 ```
 
 **Expected Headers:**
@@ -196,12 +196,12 @@ SECURITY_HEADERS_BASE_URL=https://helpbridge.ca npm run validate:security-header
 
 ```bash
 # Test search API endpoint
-curl -X POST https://helpbridge.ca/api/v1/search/services \
+curl -X POST https://careconnect.ing/api/v1/search/services \
   -H "Content-Type: application/json" \
   -d '{"query": "food bank", "limit": 5}'
 
 # Test health check endpoint
-curl https://helpbridge.ca/api/v1/health
+curl https://careconnect.ing/api/v1/health
 ```
 
 **Expected Results:**
@@ -242,7 +242,7 @@ curl https://helpbridge.ca/api/v1/health
 ```bash
 # Test rate limiting (60 req/min limit)
 for i in {1..65}; do
-  curl -X POST https://helpbridge.ca/api/v1/search/services \
+  curl -X POST https://careconnect.ing/api/v1/search/services \
     -H "Content-Type: application/json" \
     -d '{"query": "test"}' \
     -w "%{http_code}\n" \
@@ -267,7 +267,7 @@ done
 
 **Test 1: 404 Page**
 
-- [ ] Navigate to `https://helpbridge.ca/nonexistent-page`
+- [ ] Navigate to `https://careconnect.ing/nonexistent-page`
 - [ ] Verify custom 404 page displays (not default Next.js 404)
 - [ ] Verify "Return Home" link works
 
@@ -330,7 +330,7 @@ done
 **Steps:**
 
 1. **Navigate to production site**
-   - [ ] Open `https://helpbridge.ca` in browser
+   - [ ] Open `https://careconnect.ing` in browser
    - [ ] Page loads in <3 seconds
 
 2. **Perform crisis search**
@@ -523,7 +523,7 @@ done
 **Steps:**
 
 1. **Mobile page load**
-   - [ ] Navigate to `https://helpbridge.ca` on mobile
+   - [ ] Navigate to `https://careconnect.ing` on mobile
    - [ ] **Timer:** Page loads in <5 seconds on 4G ⏱️
    - [ ] Verify responsive layout (no horizontal scrolling)
    - [ ] Verify text readable without zooming
@@ -673,7 +673,7 @@ done
 **Run automated audit:**
 
 ```bash
-cd /path/to/helpbridge-ca
+cd /path/to/careconnect
 npm run audit:data
 ```
 

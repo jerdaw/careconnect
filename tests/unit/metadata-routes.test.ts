@@ -6,10 +6,10 @@ afterEach(() => {
 })
 
 describe("metadata routes", () => {
-  it("uses the helpbridge fallback for robots", async () => {
+  it("uses the careconnect fallback for robots", async () => {
     const { default: robots } = await import("@/app/robots")
 
-    expect(robots().sitemap).toBe("https://helpbridge.ca/sitemap.xml")
+    expect(robots().sitemap).toBe("https://careconnect.ing/sitemap.xml")
   })
 
   it("uses NEXT_PUBLIC_BASE_URL for robots and sitemap", async () => {

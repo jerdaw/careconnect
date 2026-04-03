@@ -12,7 +12,7 @@ on:
       - ".github/workflows/**"
 
 concurrency:
-  group: helpbridge-workflow-lint-${{ github.event.pull_request.number || github.ref }}
+  group: careconnect-workflow-lint-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:

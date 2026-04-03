@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Baseline Migration: HelpBridge Schema Foundation
+-- Baseline Migration: CareConnect Schema Foundation
 -- =====================================================================================
 -- This baseline consolidates all pre-March-2026 migrations into a single reproducible
 -- schema definition. It replaces 38 individual migration files that contained

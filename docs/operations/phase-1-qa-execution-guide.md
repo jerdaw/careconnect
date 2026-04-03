@@ -112,7 +112,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
   - `SUPABASE_SECRET_KEY`
-  - `NEXT_PUBLIC_APP_URL` (set to `https://helpbridge.ca`)
+  - `NEXT_PUBLIC_APP_URL` (set to `https://careconnect.ing`)
   - `NEXT_PUBLIC_APP_VERSION` (current version)
   - `NEXT_PUBLIC_SEARCH_MODE` (set to `local` or `server`)
 
@@ -138,9 +138,9 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 #### 1.2 Domain Configuration
 
-- [ ] Custom domain `helpbridge.ca` configured and SSL active
-- [ ] WWW redirect configured (www.helpbridge.ca → helpbridge.ca)
-- [ ] DNS records verified with `dig helpbridge.ca`
+- [ ] Custom domain `careconnect.ing` configured and SSL active
+- [ ] WWW redirect configured (www.careconnect.ing → careconnect.ing)
+- [ ] DNS records verified with `dig careconnect.ing`
 
 #### 1.3 Deployment Settings
 
@@ -157,7 +157,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Goal**: Verify core user flows work end-to-end in production.
 
-**Where to test**: Use production URL `https://helpbridge.ca`
+**Where to test**: Use production URL `https://careconnect.ing`
 
 #### 2.1 Search Flow (Crisis Query)
 
@@ -165,7 +165,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Test Steps**:
 
-1. Navigate to `https://helpbridge.ca`
+1. Navigate to `https://careconnect.ing`
 2. Enter search query: `"I need food today"`
 3. Press Enter or click Search
 
@@ -189,7 +189,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Test Steps**:
 
-1. Navigate to `https://helpbridge.ca`
+1. Navigate to `https://careconnect.ing`
 2. Enter search query: `"housing support"`
 3. Press Enter
 
@@ -237,7 +237,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Test Steps**:
 
-1. Navigate to `https://helpbridge.ca`
+1. Navigate to `https://careconnect.ing`
 2. Click language selector (top-right)
 3. Select "Français"
 4. Verify URL changes to `/fr`
@@ -263,7 +263,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Test Steps**:
 
-1. Navigate to `https://helpbridge.ca`
+1. Navigate to `https://careconnect.ing`
 2. Use only Tab, Enter, and Arrow keys (no mouse)
 3. Navigate through search → results → service detail
 
@@ -291,7 +291,7 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
 
 **Test Steps**:
 
-1. Open `https://helpbridge.ca` on mobile device
+1. Open `https://careconnect.ing` on mobile device
 2. Test search flow
 3. Test service detail page
 4. Test language switching
@@ -352,7 +352,7 @@ curl -X POST [SLACK_WEBHOOK_URL] \
 
 #### 3.3 SLO Dashboard Access
 
-Navigate to: `https://helpbridge.ca/admin/observability`
+Navigate to: `https://careconnect.ing/admin/observability`
 
 **Requirements**: Admin account required
 
@@ -381,7 +381,7 @@ INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
 
 #### 4.1 Top 20 Services Review
 
-**Instruction**: Open `https://helpbridge.ca` and search for each category below. Review the top result for completeness.
+**Instruction**: Open `https://careconnect.ing` and search for each category below. Review the top result for completeness.
 
 | #   | Category        | Service Name         | Complete? | Issues               |
 | --- | --------------- | -------------------- | --------- | -------------------- |
@@ -412,7 +412,7 @@ INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
 
 **Test Steps**:
 
-1. Navigate to `https://helpbridge.ca/en/nonexistent-page`
+1. Navigate to `https://careconnect.ing/en/nonexistent-page`
 2. Verify custom 404 page renders
 
 **Expected Behavior**:
@@ -478,7 +478,7 @@ INSERT INTO app_admins (user_id) VALUES ('your-user-uuid');
 
 ### Launch Readiness Decision
 
-**Based on QA results, HelpBridge is**:
+**Based on QA results, CareConnect is**:
 
 - [ ] ✅ **READY FOR BETA LAUNCH** — All checks passed, no blockers
 - [ ] ⚠️ **READY WITH KNOWN ISSUES** — Minor issues documented, can launch

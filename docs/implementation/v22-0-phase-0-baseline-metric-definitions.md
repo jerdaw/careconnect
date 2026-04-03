@@ -54,7 +54,7 @@ for a pilot cycle.
 | M4        | Freshness SLA Compliance         | `services_meeting_status_sla / pilot_services_total`                                | Services updated within SLA by tier                       | Pilot services in scope                        | rate                | 100% service SLA tier assignment      |
 | M5        | Repeat Failure Rate              | `hashed_entities_with_2plus_failures / distinct_hashed_entities`                    | Distinct `entity_key_hash` values with 2+ failed attempts | Distinct non-null `entity_key_hash` values     | rate                | >=95% stable entity hash coverage     |
 | M6        | Data-Decay Fatal Error Rate      | `records_with_access_blocking_errors / records_sampled`                             | Fatal errors from verification sample                     | Records sampled in period                      | rate + severity mix | dual-source verification completed    |
-| M7        | Preference-Fit Indicator         | `cohort_tasks_preferably_completed_via_helpbridge / cohort_total_tasks`             | Tasks completed via HelpBridge in target cohort           | All tracked cohort tasks                       | rate                | cohort attribution completeness >=90% |
+| M7        | Preference-Fit Indicator         | `cohort_tasks_preferably_completed_via_careconnect / cohort_total_tasks`            | Tasks completed via CareConnect in target cohort          | All tracked cohort tasks                       | rate                | cohort attribution completeness >=90% |
 
 ## Enumerations (Locked For Phase 0)
 

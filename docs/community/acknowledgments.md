@@ -1,14 +1,14 @@
 # Acknowledgments and Governance
 
-HelpBridge is an independent, community-oriented project shaped by manual curation, public reference sources, and ongoing feedback. This page lists stewardship details and source acknowledgments that can currently be confirmed publicly.
+CareConnect is an independent, community-oriented project shaped by manual curation, public reference sources, and ongoing feedback. This page lists stewardship details and source acknowledgments that can currently be confirmed publicly.
 
 ## Advisory Board Status
 
-HelpBridge has an advisory board charter, but the board is still being formed. Until members are confirmed and consent to be named publicly, this page does not list individual advisors or imply formal representation.
+CareConnect has an advisory board charter, but the board is still being formed. Until members are confirmed and consent to be named publicly, this page does not list individual advisors or imply formal representation.
 
 ## Project Stewardship
 
-- **Project Lead**: HelpBridge project lead
+- **Project Lead**: CareConnect project lead
 - **Maintainer Information**: Published here once confirmed for public listing
 
 ## Data Sources
@@ -25,4 +25,4 @@ Our "Kingston 150" dataset is manually curated and verification-led, but built u
 
 ---
 
-> To propose an addition to this list or express interest in future advisory participation, please contact [partners@helpbridge.ca](mailto:partners@helpbridge.ca).
+> To propose an addition to this list or express interest in future advisory participation, please contact [partners@careconnect.ing](mailto:partners@careconnect.ing).

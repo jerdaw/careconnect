@@ -25,6 +25,6 @@ export class HomePage {
   }
 
   async expectTitle() {
-    await expect(this.page).toHaveTitle(/HelpBridge/)
+    await expect(this.page).toHaveTitle(/CareConnect/)
   }
 }

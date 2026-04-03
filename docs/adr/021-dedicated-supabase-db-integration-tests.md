@@ -9,7 +9,7 @@ tags: [architecture, testing, supabase, ci, roadmap]
 
 ## Context and Problem Statement
 
-HelpBridge needed real DB-backed coverage for the public retrieval boundary: `services`, `services_public`, service detail, export, search, and RLS-backed policy behavior.
+CareConnect needed real DB-backed coverage for the public retrieval boundary: `services`, `services_public`, service detail, export, search, and RLS-backed policy behavior.
 
 The existing test posture relied mostly on mocks for Supabase behavior. During implementation, a second issue became explicit: the repository's historical migration chain is not currently sufficient to rebuild the full database from a fresh local reset.
 

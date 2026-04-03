@@ -6,9 +6,9 @@
 
 ## Questions générales
 
-### Qu'est-ce que HelpBridge ?
+### Qu'est-ce que CareConnect ?
 
-HelpBridge est un moteur de recherche gratuit qui vous aide à trouver des services sociaux à Kingston, Ontario. Nous avons des informations sur environ 200 services, y compris les banques alimentaires, le soutien en cas de crise, l'aide au logement, les services de santé, et plus encore.
+CareConnect est un moteur de recherche gratuit qui vous aide à trouver des services sociaux à Kingston, Ontario. Nous avons des informations sur environ 200 services, y compris les banques alimentaires, le soutien en cas de crise, l'aide au logement, les services de santé, et plus encore.
 
 **C'est comme Google, mais uniquement pour les services sociaux à Kingston.**
 
@@ -16,7 +16,7 @@ HelpBridge est un moteur de recherche gratuit qui vous aide à trouver des servi
 
 ### Est-ce un service gouvernemental officiel ?
 
-**Non.** HelpBridge est un projet communautaire créé par des bénévoles. Nous ne sommes **pas** affiliés à :
+**Non.** CareConnect est un projet communautaire créé par des bénévoles. Nous ne sommes **pas** affiliés à :
 
 - Ville de Kingston
 - Province de l'Ontario
@@ -57,7 +57,7 @@ La plateforme est complètement anonyme.
 
 Si vous trouvez des informations incorrectes ou périmées :
 
-**Envoyez-nous un courriel :** feedback@helpbridge.ca
+**Envoyez-nous un courriel :** feedback@careconnect.ing
 
 **Veuillez inclure :**
 
@@ -79,7 +79,7 @@ Nous n'avons peut-être pas listé un service pour plusieurs raisons :
 4. **Il a fermé ou fusionné** - Nous mettons à jour nos dossiers
 
 **Pour suggérer un service :**
-Envoyez un courriel à feedback@helpbridge.ca avec le nom du service, ce qu'il fait et les coordonnées.
+Envoyez un courriel à feedback@careconnect.ing avec le nom du service, ce qu'il fait et les coordonnées.
 
 ---
 
@@ -136,7 +136,7 @@ Toute activité de recherche est complètement privée.
 
 **Bonne question !** Voici comment vérifier :
 
-1. **Code open source :** Notre code est public sur github.com/jerdog/helpbridge-ca
+1. **Code open source :** Notre code est public sur github.com/jerdaw/careconnect
    - Tout le monde peut l'examiner
    - Des experts en sécurité ont vérifié nos revendications de confidentialité
 
@@ -222,7 +222,7 @@ Nous utilisons un **système de vérification à 3 niveaux** :
 
 **Pour suggérer un service :**
 
-1. Envoyez un courriel à feedback@helpbridge.ca
+1. Envoyez un courriel à feedback@careconnect.ing
 2. Incluez :
    - Nom du service
    - Ce qu'ils font
@@ -343,7 +343,7 @@ Nous utilisons un **système de vérification à 3 niveaux** :
 - ✅ Toutes les informations sont textuelles
 
 **Si vous trouvez un problème d'accessibilité :**
-Envoyez un courriel à feedback@helpbridge.ca et nous le corrigerons rapidement.
+Envoyez un courriel à feedback@careconnect.ing et nous le corrigerons rapidement.
 
 ---
 
@@ -438,11 +438,11 @@ Envoyez un courriel à feedback@helpbridge.ca et nous le corrigerons rapidement.
 
 **Contactez-nous :**
 
-- **Courriel :** feedback@helpbridge.ca
-- **GitHub :** github.com/jerdog/helpbridge-ca/issues
+- **Courriel :** feedback@careconnect.ing
+- **GitHub :** github.com/jerdaw/careconnect/issues
 
 **Temps de réponse :** Généralement 2-3 jours ouvrables
 
 ---
 
-**Merci d'utiliser HelpBridge !**
+**Merci d'utiliser CareConnect !**

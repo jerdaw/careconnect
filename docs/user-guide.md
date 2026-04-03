@@ -1,4 +1,4 @@
-# HelpBridge: User Guide
+# CareConnect: User Guide
 
 **Last Updated:** February 2026
 **Version:** 1.0
@@ -7,7 +7,7 @@
 
 ## Welcome
 
-HelpBridge helps you find social services in Kingston, Ontario. This guide will show you how to use the platform.
+CareConnect helps you find social services in Kingston, Ontario. This guide will show you how to use the platform.
 
 **Quick Start:**
 
@@ -35,9 +35,9 @@ HelpBridge helps you find social services in Kingston, Ontario. This guide will 
 
 ## Getting Started
 
-### What is HelpBridge?
+### What is CareConnect?
 
-HelpBridge is a search engine for social services. It helps you find:
+CareConnect is a search engine for social services. It helps you find:
 
 - **Food banks** and meal programs
 - **Crisis support** (mental health, suicide prevention, domestic violence)
@@ -367,7 +367,7 @@ This platform is **open source**. That means:
 - Anyone can see the code
 - Experts can check we're telling the truth
 - You can verify we don't track you
-- Code is at: github.com/jerdog/helpbridge-ca
+- Code is at: github.com/jerdaw/careconnect
 
 ### Cookies
 
@@ -411,7 +411,7 @@ We are a community project. Service information is:
 
 If you find incorrect information:
 
-1. **Email us:** feedback@helpbridge.ca
+1. **Email us:** feedback@careconnect.ing
 2. **Tell us:**
    - Which service has wrong info
    - What is wrong
@@ -423,7 +423,7 @@ We'll fix it quickly.
 
 We focus on high-impact social services in Kingston. If a service is missing:
 
-1. **Email us:** feedback@helpbridge.ca
+1. **Email us:** feedback@careconnect.ing
 2. **Include:**
    - Service name
    - What they do
@@ -479,8 +479,8 @@ If the site isn't working:
 
 **For questions or feedback:**
 
-- **Email:** feedback@helpbridge.ca
-- **GitHub Issues:** github.com/jerdog/helpbridge-ca/issues
+- **Email:** feedback@careconnect.ing
+- **GitHub Issues:** github.com/jerdaw/careconnect/issues
 
 We usually respond within 2-3 business days.
 
@@ -517,12 +517,12 @@ We are committed to making this platform accessible to everyone, including peopl
 
 **If you find an accessibility issue:**
 
-- Email: feedback@helpbridge.ca
+- Email: feedback@careconnect.ing
 - We will fix it as quickly as possible
 
 ---
 
-**Thank you for using HelpBridge!**
+**Thank you for using CareConnect!**
 
 We hope this tool helps you find the support you need.
 

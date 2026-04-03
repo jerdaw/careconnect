@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServiceById } from "@/lib/services"
+import { BRAND_NAME, getPublicAppUrl } from "@/lib/brand"
 
-const PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://helpbridge.ca"
+const PUBLIC_BASE_URL = getPublicAppUrl()
 
 // Format hours for display
 function formatHours(hours: Record<string, { open: string; close: string }> | null | undefined): string {
@@ -154,7 +155,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   
   <div class="footer">
     <div class="source">
-      Source: HelpBridge<br>
+      Source: ${BRAND_NAME}<br>
       ${PUBLIC_BASE_URL.replace(/^https?:\/\//, "")}
     </div>
     <div class="qr-container">

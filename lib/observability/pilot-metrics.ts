@@ -37,7 +37,7 @@ export interface PilotScorecardInputs {
   dataDecaySampleSize: number
   dataDecayFatalCount: number
   preferenceFitTaskCount: number
-  preferenceFitKccTaskCount: number
+  preferenceFitCareConnectTaskCount: number
 }
 
 export interface Gate1ThresholdEvaluation {
@@ -94,7 +94,7 @@ export interface PilotMetricSourceDataDecayAudit {
 
 export interface PilotMetricSourcePreferenceFitEvent {
   recorded_at: string
-  preferred_via_helpbridge: boolean
+  preferred_via_careconnect: boolean
 }
 
 export interface PilotMetricSourceSet {
@@ -224,8 +224,8 @@ export function computePilotMetricSnapshots(
 
   const entitiesWith2PlusFailures = [...failureCountsByEntity.values()].filter((count) => count >= 2).length
   const fatalDataDecayCount = sources.dataDecayAudits.filter((audit) => audit.is_fatal).length
-  const preferredViaHelpBridgeCount = sources.preferenceFitEvents.filter(
-    (event) => event.preferred_via_helpbridge
+  const preferredViaCareConnectCount = sources.preferenceFitEvents.filter(
+    (event) => event.preferred_via_careconnect
   ).length
 
   const scorecard = buildPilotScorecard(
@@ -245,7 +245,7 @@ export function computePilotMetricSnapshots(
       dataDecaySampleSize: sources.dataDecayAudits.length,
       dataDecayFatalCount: fatalDataDecayCount,
       preferenceFitTaskCount: sources.preferenceFitEvents.length,
-      preferenceFitKccTaskCount: preferredViaHelpBridgeCount,
+      preferenceFitCareConnectTaskCount: preferredViaCareConnectCount,
     },
     generated_at
   )
@@ -304,7 +304,7 @@ export function computePilotMetricSnapshots(
       {
         metric_id: "M7",
         metric_value: scorecard.m7_preference_fit_indicator,
-        numerator: preferredViaHelpBridgeCount,
+        numerator: preferredViaCareConnectCount,
         denominator: sources.preferenceFitEvents.length,
       },
     ],
@@ -327,7 +327,7 @@ export function buildPilotScorecard(
     m4_freshness_sla_compliance: computeRate(inputs.servicesMeetingSla, inputs.servicesInPilotScope),
     m5_repeat_failure_rate: computeRate(inputs.entitiesWith2PlusFailures, inputs.totalEntitiesForRepeatFailure),
     m6_data_decay_fatal_error_rate: computeRate(inputs.dataDecayFatalCount, inputs.dataDecaySampleSize),
-    m7_preference_fit_indicator: computeRate(inputs.preferenceFitKccTaskCount, inputs.preferenceFitTaskCount),
+    m7_preference_fit_indicator: computeRate(inputs.preferenceFitCareConnectTaskCount, inputs.preferenceFitTaskCount),
   }
 }
 

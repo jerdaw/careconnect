@@ -6,9 +6,9 @@
 
 ## General Questions
 
-### What is HelpBridge?
+### What is CareConnect?
 
-HelpBridge is a free search engine that helps you find social services in Kingston, Ontario. We have information on about 200 services including food banks, crisis support, housing help, health services, and more.
+CareConnect is a free search engine that helps you find social services in Kingston, Ontario. We have information on about 200 services including food banks, crisis support, housing help, health services, and more.
 
 **It's like Google, but only for social services in Kingston.**
 
@@ -16,7 +16,7 @@ HelpBridge is a free search engine that helps you find social services in Kingst
 
 ### Is this an official government service?
 
-**No.** HelpBridge is a community project created by volunteers. We are **not** affiliated with:
+**No.** CareConnect is a community project created by volunteers. We are **not** affiliated with:
 
 - City of Kingston
 - Province of Ontario
@@ -57,7 +57,7 @@ The platform is completely anonymous.
 
 If you find wrong or outdated information:
 
-**Email us:** feedback@helpbridge.ca
+**Email us:** feedback@careconnect.ing
 
 **Please include:**
 
@@ -79,7 +79,7 @@ We might not have listed a service for several reasons:
 4. **It closed or merged** - We're updating our records
 
 **To suggest a service:**
-Email feedback@helpbridge.ca with the service name, what they do, and contact information.
+Email feedback@careconnect.ing with the service name, what they do, and contact information.
 
 ---
 
@@ -136,7 +136,7 @@ All search activity is completely private.
 
 **Good question!** Here's how to check:
 
-1. **Open source code:** Our code is public at github.com/jerdog/helpbridge-ca
+1. **Open source code:** Our code is public at github.com/jerdaw/careconnect
    - Anyone can review it
    - Security experts have verified our privacy claims
 
@@ -222,7 +222,7 @@ We use a **3-level verification system**:
 
 **To suggest a service:**
 
-1. Email feedback@helpbridge.ca
+1. Email feedback@careconnect.ing
 2. Include:
    - Service name
    - What they do
@@ -343,7 +343,7 @@ We use a **3-level verification system**:
 - ✅ All information is text-based
 
 **If you find an accessibility issue:**
-Email feedback@helpbridge.ca and we'll fix it quickly.
+Email feedback@careconnect.ing and we'll fix it quickly.
 
 ---
 
@@ -438,11 +438,11 @@ Email feedback@helpbridge.ca and we'll fix it quickly.
 
 **Contact us:**
 
-- **Email:** feedback@helpbridge.ca
-- **GitHub:** github.com/jerdog/helpbridge-ca/issues
+- **Email:** feedback@careconnect.ing
+- **GitHub:** github.com/jerdaw/careconnect/issues
 
 **Response time:** Usually 2-3 business days
 
 ---
 
-**Thank you for using HelpBridge!**
+**Thank you for using CareConnect!**

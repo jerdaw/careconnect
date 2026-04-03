@@ -1,12 +1,12 @@
 # Privacy Impact Assessment (PIA)
 
 **Date**: January 3, 2026
-**Project**: HelpBridge (v12.0)
+**Project**: CareConnect (v12.0)
 **Status**: Initial Assessment
 
 ## 1. Project Overview
 
-HelpBridge (HelpBridge) is a community-led social services directory. It provides public access to information about food, housing, crisis, and health services.
+CareConnect (CareConnect) is a community-led social services directory. It provides public access to information about food, housing, crisis, and health services.
 
 ## 2. Data Inventory & Data Flow
 
@@ -66,8 +66,8 @@ HelpBridge (HelpBridge) is a community-led social services directory. It provide
 
 ### PHIPA (Health Information)
 
-- HelpBridge is **not** a Health Information Custodian (HIC).
-- HelpBridge does not purposefully collect PHI.
+- CareConnect is **not** a Health Information Custodian (HIC).
+- CareConnect does not purposefully collect PHI.
 - "Zero-Log" policy for search queries prevents incidental collection of sensitive health interests.
 
 ## 5. Recommendations
@@ -76,4 +76,4 @@ HelpBridge (HelpBridge) is a community-led social services directory. It provide
 2. Conduct annual access review for partner accounts.
 3. Formalize data sharing agreement with 211 Ontario if data synchronization is implemented.
 
-**Approved By**: HelpBridge Governance Committee
+**Approved By**: CareConnect Governance Committee
