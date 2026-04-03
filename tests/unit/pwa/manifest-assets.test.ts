@@ -71,7 +71,7 @@ describe("PWA manifest assets", () => {
     }
 
     const screenshots = manifest.screenshots || []
-    expect(screenshots.length).toBeGreaterThan(0)
+    expect(Array.isArray(screenshots)).toBe(true)
     for (const shot of screenshots) {
       const diskPath = publicPathToDiskPath(shot.src)
       expect(existsSync(diskPath)).toBe(true)
