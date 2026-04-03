@@ -2,15 +2,15 @@
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-01
+> **Last Updated**: 2026-04-03
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
-- **Services**: 198 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-01)
-- **Tests**: default Vitest suite green as of 2026-04-01 (`164` files; `1244` passed; `24` skipped)
+- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-03)
+- **Tests**: default Vitest suite green as of 2026-04-03 (`165` files; `1251` passed; `24` skipped)
 - **DB integration lane**: local Supabase-backed retrieval, route, export, search, and policy tests are green via `npm run test:db`
-- **Coverage**: `72.07%` statements / `78.73%` branches / `83.28%` functions / `72.07%` lines from `npm run test:coverage` on 2026-04-01
+- **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -23,17 +23,17 @@
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback and background sync
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
-- **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`
-- **Branding**: CareConnect rename is complete across this repo, the GitHub remote, `platform-ops`, and the live VPS runtime
+- **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
+- **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
-  - Scope: 2 missing
-  - Coordinates (any): 60 missing
+  - Scope: 0 missing
+  - Coordinates (any): 58 missing
   - Coordinates (required): 18 missing
   - Kingston missing address: 17
-  - Access scripts: 2 missing
-  - Structured hours (active services): 12 missing
-  - Hours text (active services): 12 missing
+  - Access scripts: 0 missing
+  - Structured hours (active services): 10 missing
+  - Hours text (active services): 10 missing
 
 ## Decision Summary
 
@@ -219,6 +219,7 @@ References:
 ### Recent Completed Milestones
 
 - **Tier 0 admissions-support hardening (2026-04-01)**: completed A3 pilot metric instrumentation, A11 public-claim hardening, A22 focused pilot/privacy test coverage, and bounded A6/A16 readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
+- **CareConnect production cutover and repo finalization (2026-04-03)**: completed the live `careconnect.ing` VPS cutover, legacy HelpBridge-domain redirects, GitHub repo rename to `jerdaw/careconnect`, and post-cutover observability-noise cleanup; archived in [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md).
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
 - **Workflow/runtime cleanup and 211 sync quarantine (2026-04-01)**: upgraded the remaining Node-runtime-sensitive GitHub Actions, replaced archived release creation with `gh`, removed placeholder 211 sync records, and restricted the 211 sync path to explicit manual execution only.
 - **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.

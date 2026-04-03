@@ -32,7 +32,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 - `README.md` → Getting started
 - `docs/architecture.md` → System design and data flow
-- `docs/llms.txt` → Consolidated context for AI agents
+- `docs/llms.txt` → Consolidated context for AI agents (generated via `npx tsx scripts/generate-llms-txt.ts`; may be absent locally until generated)
 - `docs/api/openapi.yaml` → OpenAPI 3.0 specification
 - `/home/jer/repos/platform-ops` → Shared VPS inventory, roadmap, handoff, and cross-project runbooks
 - `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` → Canonical shared-VPS documentation boundary

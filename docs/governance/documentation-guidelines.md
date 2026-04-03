@@ -19,7 +19,7 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Hooks & Utilities**: `docs/development/hooks.md`
 - **Roadmap**: `docs/planning/roadmap.md` (Active Plan)
 - **Historical Records**: `docs/planning/archive/` (Completed work)
-- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`)
+- **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`; gitignored and may be absent locally until generated)
 
 ## Document Metadata (Frontmatter)
 
@@ -47,7 +47,7 @@ Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to
 - **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
-- **AI Readiness**: The `llms.txt` file is auto-generated in CI to provide a "single source of truth" for agents.
+- **AI Readiness**: The `llms.txt` file is auto-generated in CI/docs builds to provide a "single source of truth" for agents.
 
 > [!IMPORTANT]
 > [Highlight breaking changes, deployment requirements, or decisions needing approval]

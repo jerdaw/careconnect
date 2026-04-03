@@ -9,7 +9,7 @@ Shared VPS facts that are not specific to CareConnect alone are canonical in:
 
 - [Architecture](architecture.md) - System design, data flow, and core concepts
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
-- [AI Context](llms.txt) - Consolidated docs for LLMs (generated)
+- [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
 - [Admin Operations Guide](operations/admin-operations-guide.md) - Current admin and partner ops surfaces
 - [Database Migration and Rollback Guide](operations/database-migration-and-rollback.md) - DB change execution and recovery
 - [International Privacy and Compliance Notes](legal/international-privacy-compliance-notes.md) - Current privacy posture and boundaries

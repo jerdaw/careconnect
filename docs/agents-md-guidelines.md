@@ -379,7 +379,6 @@ npm run build    # Production build
 
 ## References
 
-- [GitHub Blog: How to write a great agents.md](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) – Analysis of 2,500+ repositories
 - [agents.md specification](https://agents.md/) – Official format documentation
 - [Instruction Files Overview](https://aruniyer.github.io/blog/agents-md-instruction-files.html) – Comparison of formats
 ```
