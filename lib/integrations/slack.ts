@@ -80,17 +80,8 @@ function getSlackWebhookUrl(): string | null {
     return null
   }
 
-  const webhookUrl = process.env.SLACK_WEBHOOK_URL
-
-  if (!webhookUrl) {
-    logger.warn("Slack webhook URL not configured", {
-      component: "slack",
-      hint: "Set SLACK_WEBHOOK_URL environment variable",
-    })
-    return null
-  }
-
-  return webhookUrl
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL?.trim()
+  return webhookUrl || null
 }
 
 function getRepoDocUrl(path: string): string {
@@ -108,10 +99,6 @@ export async function sendSlackMessage(message: SlackMessage): Promise<boolean> 
 
   // No-op in development or if webhook not configured
   if (!webhookUrl) {
-    logger.info("Slack alert skipped (not in production or webhook not configured)", {
-      component: "slack",
-      messagePreview: message.text.substring(0, 100),
-    })
     return false
   }
 

@@ -44,6 +44,13 @@ export const SLO_TARGETS: SLOTargets = {
 }
 
 /**
+ * Minimum number of health-check samples required before uptime/error-budget
+ * violations are actionable enough to alert on. This avoids noisy false alarms
+ * during fresh deploys and process restarts.
+ */
+export const MIN_SLO_ALERT_SAMPLES = 20
+
+/**
  * Calculate allowed downtime budget based on uptime target
  * @param uptimeTarget - Target uptime (0-1)
  * @param windowDays - Measurement window in days

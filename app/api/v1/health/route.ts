@@ -18,6 +18,7 @@ import { env } from "@/lib/env"
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
 import { recordUptimeEvent, getSLOComplianceSummary } from "@/lib/observability/slo-tracker"
 import { sendSLOViolationAlert } from "@/lib/integrations/slack"
+import { MIN_SLO_ALERT_SAMPLES } from "@/lib/config/slo-targets"
 import { logger } from "@/lib/logger"
 
 /**
@@ -105,9 +106,10 @@ async function checkDatabase(): Promise<HealthCheckResponse["checks"]["database"
 async function checkAndAlertSLOViolations(compliance: ReturnType<typeof getSLOComplianceSummary>): Promise<void> {
   try {
     const timestamp = Date.now()
+    const hasEnoughAvailabilitySamples = compliance.uptime.totalChecks >= MIN_SLO_ALERT_SAMPLES
 
     // Check uptime SLO violation
-    if (!compliance.uptime.compliant) {
+    if (hasEnoughAvailabilitySamples && !compliance.uptime.compliant) {
       void sendSLOViolationAlert({
         type: "uptime",
         severity: "critical",
@@ -119,7 +121,7 @@ async function checkAndAlertSLOViolations(compliance: ReturnType<typeof getSLOCo
     }
 
     // Check error budget exhaustion
-    if (compliance.errorBudget.exhausted) {
+    if (hasEnoughAvailabilitySamples && compliance.errorBudget.exhausted) {
       void sendSLOViolationAlert({
         type: "error-budget",
         severity: "critical",
@@ -128,7 +130,10 @@ async function checkAndAlertSLOViolations(compliance: ReturnType<typeof getSLOCo
         timestamp,
         message: "Error budget exhausted - reduce incident rate",
       })
-    } else if (compliance.errorBudget.consumed >= compliance.errorBudget.warningThreshold) {
+    } else if (
+      hasEnoughAvailabilitySamples &&
+      compliance.errorBudget.consumed >= compliance.errorBudget.warningThreshold
+    ) {
       // Warning when 50% consumed
       void sendSLOViolationAlert({
         type: "error-budget",
