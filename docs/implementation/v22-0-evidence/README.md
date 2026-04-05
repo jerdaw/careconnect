@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-24
+last_updated: 2026-04-04
 owner: jer
 tags: [implementation, v22.0, evidence, gate-0]
 ---
@@ -26,4 +26,4 @@ Suggested workflow:
 
 1. Copy the relevant `SUBMISSION_TEMPLATE.md` into a dated file.
 2. Add the real evidence artifacts for that submission.
-3. Update the linked control doc and tracker only after the minimum evidence checks pass.
+3. Follow the [v22.0 Gate 0 Evidence Sync Runbook](../v22-0-gate-0-evidence-sync-runbook.md) after the minimum evidence checks pass.

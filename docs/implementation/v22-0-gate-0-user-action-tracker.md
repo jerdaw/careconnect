@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-29
+last_updated: 2026-04-04
 owner: jer
 tags: [implementation, v22.0, gate-0, actions, governance]
 ---
@@ -21,6 +21,7 @@ Related:
 3. [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
 4. [v22.0 Approval Checklist](../planning/v22-0-approval-checklist.md)
 5. [v22.0 Gate 0 Evidence Intake Pack](v22-0-gate-0-evidence-intake-pack.md)
+6. [v22.0 Gate 0 Evidence Sync Runbook](v22-0-gate-0-evidence-sync-runbook.md)
 
 ## User-Owned Blockers
 
@@ -50,6 +51,10 @@ Related:
 3. Update [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md) control tracker.
 4. Update [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md).
 5. Re-evaluate [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md) and run `npm run check:v22-gate0`.
+
+Detailed operator runbook:
+
+1. [v22.0 Gate 0 Evidence Sync Runbook](v22-0-gate-0-evidence-sync-runbook.md)
 
 ## Change Log
 

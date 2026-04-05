@@ -258,14 +258,16 @@ These commands require `k6` to be installed locally and available on your `PATH`
 
 #### Utility Scripts
 
-| Command                                    | Description                                              |
-| :----------------------------------------- | :------------------------------------------------------- |
-| `npm run tools:search "food bank"`         | Run the local CLI search tool                            |
-| `npm run search:qa`                        | Run curated local search QA scenarios                    |
-| `npm run verify:search-ranking`            | Verify API ranking against a running local app           |
-| `npm run verify:rls`                       | Check public/private Supabase access boundaries          |
-| `npm run normalize:services -- --dry-run`  | Preview legacy schema normalization without writing data |
-| `npm run ingest:import-response -- --help` | Show draft-import CLI usage                              |
+| Command                                                | Description                                               |
+| :----------------------------------------------------- | :-------------------------------------------------------- |
+| `npm run tools:search "food bank"`                     | Run the local CLI search tool                             |
+| `npm run search:qa`                                    | Run curated local search QA scenarios                     |
+| `npm run verify:search-ranking`                        | Verify API ranking against a running local app            |
+| `npm run verify:rls`                                   | Check public/private Supabase access boundaries           |
+| `npm run audit:pilot-readiness -- --scope-file <path>` | Export scoped pilot readiness JSON/Markdown/CSV artifacts |
+| `npm run check:v22-gate0`                              | Enforce the current v22 Gate 0 decision from docs         |
+| `npm run normalize:services -- --dry-run`              | Preview legacy schema normalization without writing data  |
+| `npm run ingest:import-response -- --help`             | Show draft-import CLI usage                               |
 
 `npm run db:types` requires a Docker-capable local environment because it boots the minimal local Supabase profile before generating `types/supabase.ts`.
 

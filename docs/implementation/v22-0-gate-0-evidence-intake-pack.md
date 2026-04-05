@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-01
+last_updated: 2026-04-04
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, intake]
 ---
@@ -15,6 +15,7 @@ Use with:
 2. [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md)
 3. [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md)
 4. [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
+5. [v22.0 Gate 0 Evidence Sync Runbook](v22-0-gate-0-evidence-sync-runbook.md)
 
 Rules:
 
@@ -175,3 +176,7 @@ After any accepted submission:
 3. Sync [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md).
 4. Re-evaluate [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md).
 5. Re-run gate check (`npm run check:v22-gate0`).
+
+Detailed operator sequence:
+
+1. [v22.0 Gate 0 Evidence Sync Runbook](v22-0-gate-0-evidence-sync-runbook.md)
