@@ -12,6 +12,10 @@ vi.mock("@/lib/offline/sync", () => ({
   syncOfflineData: vi.fn(),
 }))
 
+vi.mock("@/components/offline/OfflineSnapshotStatus", () => ({
+  OfflineSnapshotStatus: () => <div data-testid="offline-snapshot-status" />,
+}))
+
 vi.mock("next-intl", () => ({
   useTranslations: vi.fn(),
 }))
@@ -67,6 +71,7 @@ describe("OfflineBanner", () => {
       render(<OfflineBanner />)
 
       expect(screen.getByText("You're offline. Some features may be unavailable.")).toBeInTheDocument()
+      expect(screen.getByTestId("offline-snapshot-status")).toBeInTheDocument()
       expect(screen.getByRole("button", { name: /check connection/i })).toBeInTheDocument()
     })
 

@@ -204,7 +204,11 @@ Si vous voyez « Aucun résultat trouvé », essayez :
 
 **Étape 3 :** Cliquez sur une épingle pour voir les détails de ce service.
 
-**Étape 4 :** Cliquez sur **« Obtenir des directions »** pour ouvrir dans Google Maps.
+**Étape 4 :** Cliquez sur **« Charger l’aperçu de la carte »** si vous voulez voir la carte intégrée.
+
+**Étape 5 :** Cliquez sur **« Obtenir des directions »** pour ouvrir Google Maps directement.
+
+**Remarque :** L’aperçu de la carte est désactivé par défaut pour protéger la vie privée. Il ne se charge que si vous choisissez de l’afficher.
 
 ### Autoriser l'accès à la localisation
 
@@ -322,7 +326,7 @@ Le site fonctionne **même sans Internet**. Cela aide si vous :
 2. La recherche fonctionne normalement
 3. Vous voyez les résultats des données enregistrées
 
-**Remarque :** Les données hors ligne se mettent à jour automatiquement lorsque vous êtes en ligne.
+**Remarque :** Les données hors ligne se mettent à jour automatiquement lorsque vous êtes en ligne. Les surfaces hors ligne indiquent aussi la date de la dernière mise à jour et avertissent si la copie en cache peut être obsolète.
 
 ### Qu'est-ce qui fonctionne hors ligne ?
 

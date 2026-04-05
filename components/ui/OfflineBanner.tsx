@@ -7,6 +7,7 @@ import { syncOfflineData } from "@/lib/offline/sync"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { OfflineSnapshotStatus } from "@/components/offline/OfflineSnapshotStatus"
 
 export function OfflineBanner() {
   const { isOffline } = useNetworkStatus()
@@ -33,10 +34,13 @@ export function OfflineBanner() {
           exit={{ height: 0, opacity: 0 }}
           className="border-b border-amber-200 bg-amber-100 dark:border-amber-800 dark:bg-amber-900/30"
         >
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
+          <div className="mx-auto flex max-w-7xl items-start justify-between gap-3 px-4 py-2 text-sm sm:px-6 lg:px-8">
+            <div className="flex items-start gap-2 text-amber-800 dark:text-amber-200">
               <WifiOff className="h-4 w-4" />
-              <span>{t("bannerMessage")}</span>
+              <div>
+                <span>{t("bannerMessage")}</span>
+                <OfflineSnapshotStatus variant="banner" />
+              </div>
             </div>
 
             <Button

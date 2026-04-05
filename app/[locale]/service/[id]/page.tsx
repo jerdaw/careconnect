@@ -29,6 +29,7 @@ import { FeedbackWidget } from "@/components/feedback/FeedbackWidget"
 import { TrustPanel } from "@/components/services/TrustPanel"
 import { ServiceActionBar } from "@/components/services/ServiceActionBar"
 import { PartnerActionsPanel } from "@/components/services/PartnerActionsPanel"
+import { ExternalMapPanel } from "@/components/services/ExternalMapPanel"
 
 interface Props {
   params: Promise<{ id: string; locale: string }>
@@ -147,21 +148,6 @@ export default async function ServicePage({ params, searchParams }: Props) {
                     <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                       <MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />
                       <span className="text-lg">{address}</span>
-                    </div>
-
-                    {/* Map Integration */}
-                    <div className="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800">
-                      <iframe
-                        title={t("mapTitle", { name })}
-                        width="100%"
-                        height="200"
-                        style={{ border: 0, filter: "grayscale(100%) invert(0.92) opacity(0.8)" }}
-                        loading="lazy"
-                        allowFullScreen
-                        referrerPolicy="no-referrer-when-downgrade"
-                        src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
-                        className="dark:invert"
-                      />
                     </div>
                   </div>
                 )}
@@ -351,17 +337,14 @@ export default async function ServicePage({ params, searchParams }: Props) {
                             {t("getDirections")}
                           </a>
                         </Button>
-                        <div className="mt-3 overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700">
-                          <iframe
-                            title={t("mapTitle", { name })}
-                            width="100%"
-                            height="180"
-                            frameBorder="0"
-                            scrolling="no"
-                            src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                            className="grayscale-[50%] transition-all hover:grayscale-0 dark:hue-rotate-180 dark:invert"
-                          />
-                        </div>
+                        <ExternalMapPanel
+                          className="mt-3"
+                          mapTitle={t("mapTitle", { name })}
+                          embedUrl={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                          loadMapLabel={t("loadMapPreview")}
+                          privacyDescription={t("mapPrivacyDescription")}
+                          externalNotice={t("mapExternalNotice")}
+                        />
                       </div>
                     </div>
                   )}

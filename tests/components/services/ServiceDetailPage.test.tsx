@@ -85,6 +85,8 @@ describe("Service detail page", () => {
     expect(screen.getByTestId("trust-panel")).toHaveTextContent(mockService.id)
     expect(screen.getByTestId("partner-actions-panel")).toHaveTextContent(mockService.id)
     expect(screen.getByTestId("feedback-widget")).toHaveTextContent(mockService.id)
+    expect(screen.getByRole("button", { name: "loadMapPreview" })).toBeInTheDocument()
     expect(container.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
+    expect(container.querySelector('iframe[src*="maps.google.com"]')).not.toBeInTheDocument()
   })
 })

@@ -204,7 +204,11 @@ If you see "No results found," try:
 
 **Step 3:** Click a pin to see that service's details.
 
-**Step 4:** Click **"Get Directions"** to open in Google Maps.
+**Step 4:** Click **"Load map preview"** if you want to view the embedded map.
+
+**Step 5:** Click **"Get Directions"** to open Google Maps directly.
+
+**Note:** The map preview is off by default for privacy. It only loads after you choose to view it.
 
 ### Allow Location Access
 
@@ -322,7 +326,7 @@ The site works **even without internet**. This helps if you:
 2. Search works normally
 3. You see results from saved data
 
-**Note:** Offline data updates automatically when you go online.
+**Note:** Offline data updates automatically when you go online. Offline surfaces also show when the saved snapshot was last refreshed and warn you if the cached copy may be outdated.
 
 ### What Works Offline?
 

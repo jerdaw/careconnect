@@ -1,6 +1,6 @@
 ---
-status: draft
-last_updated: 2026-03-09
+status: stable
+last_updated: 2026-04-04
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -59,7 +59,7 @@ Out of scope:
 | F1         | high     | Enforce local queue payload minimization (no personal contact fields, no free-text notes)      | Engineering           | 2026-03-21 | Schema + payload inspection against pilot event contracts | no       |
 | F2         | high     | Confirm expiry and clear-on-sign-out behavior for pilot drafts in local storage                | Engineering           | 2026-03-21 | Manual QA scenario + unit tests around storage cleanup    | no       |
 | F3         | medium   | Add replay detection criteria (idempotency key + duplicate event suppression) to pilot runbook | Engineering           | 2026-03-21 | Integration test using repeated submission payload        | no       |
-| F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | UI walkthrough + screenshot evidence in pilot checklist   | no       |
+| F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | Focused component tests + offline UI walkthrough evidence | yes      |
 | F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | no       |
 
 ## Validation Checklist
@@ -73,7 +73,7 @@ Out of scope:
 ## Sign-Off
 
 - Security/governance owner review: `jer` (2026-03-09)
-- Notes: high-severity items have explicit owners and due dates; no unresolved critical findings.
+- Notes: high-severity items have explicit owners and due dates; no unresolved critical findings. F4 timestamp/stale-state surfacing is implemented on offline surfaces as of 2026-04-04.
 
 ## Gate 0 Security Outcome
 

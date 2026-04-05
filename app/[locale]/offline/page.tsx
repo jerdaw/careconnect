@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import { getCachedServices } from "@/lib/offline/cache"
 import ServiceCard from "@/components/services/ServiceCard"
 import { SearchResult } from "@/lib/search/types"
+import { OfflineSnapshotStatus } from "@/components/offline/OfflineSnapshotStatus"
 
 export default function OfflinePage() {
   const t = useTranslations("Offline")
@@ -35,6 +36,7 @@ export default function OfflinePage() {
           {t("title")}
         </h1>
         <p className="mt-2 max-w-sm text-neutral-600 dark:text-neutral-400">{t("description")}</p>
+        <OfflineSnapshotStatus />
 
         {cachedServices.length > 0 && (
           <section className="mt-8 w-full max-w-md text-left">

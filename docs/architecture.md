@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-03-30
+last_updated: 2026-04-04
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -236,6 +236,8 @@ We use a modular hook system to separate concerns:
 - **High Contrast Mode**: Global state managed via `useHighContrast` hook, applying `.high-contrast` class and CSS variable overrides.
 - **Print Optimization**: Specific `@media print` styles in `globals.css` and `PrintButton` component for physical delivery of information.
 - **Data Freshness**: `FreshnessBadge` provides visual cues on the reliability of data based on `last_verified` timestamps.
+- **Offline Safety Surfaces**: `OfflineSnapshotStatus` reads IndexedDB sync metadata (`lastSync`) and shows snapshot age plus stale-data warnings on offline surfaces when cached data may be outdated.
+- **External Maps**: Service-detail pages keep Google Maps loading opt-in. Directions remain available, but third-party map previews do not load until the user explicitly requests them.
 
 ## Development
 

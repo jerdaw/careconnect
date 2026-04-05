@@ -78,7 +78,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Open Now Filter**: Real-time availability based on structured operating hours.
 - **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
-- **Map Integration**: Embedded Google Maps on service detail pages for location context.
+- **Map Integration**: External map previews stay off by default; users can explicitly open directions or load a map preview on service detail pages.
 
 ### Decentralized AI Assistant
 
