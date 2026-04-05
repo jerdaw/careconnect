@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "service_id": "replace-with-real-service-id-1",
+      "sla_tier": "crisis",
+      "pilot_cycle_id": "v22-cycle-1",
+      "org_id": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "service_id": "replace-with-real-service-id-2",
+      "sla_tier": "standard"
+    }
+  ]
+}
