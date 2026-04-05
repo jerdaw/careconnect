@@ -1,9 +1,16 @@
+---
+status: stable
+last_updated: 2026-04-04
+owner: jer
+tags: [planning, admissions, v21.0, pilot, governance]
+---
+
 # v21.0: Admissions Portfolio & External Validation Plan
 
 **Status**: PARKED behind v22 Gate 0 / Gate 1, but now fully triaged as an admissions evidence backlog  
 **Priority**: Strategic, but subordinate to v22.0 non-duplicate-value proof  
 **Time Horizon**: 12 weeks once v22 allows external execution  
-**Last Updated**: 2026-04-01
+**Last Updated**: 2026-04-04
 
 ---
 
@@ -101,6 +108,9 @@ These are the first execution items once external pilot activity is allowed:
 5. `A13` Formalize the CareConnect-to-211 boundary and handoff workflow.
 6. `A7` Start targeted L3 provider-confirmation outreach.
 7. `A9` Recruit the first advisory reviewers and hold an initial meeting.
+8. `A27` Add a quick-exit / safe-leave flow for violence-sensitive browsing contexts.
+9. `A28` Expose referral-critical logistics already present in the data model, such as service area, virtual delivery, languages, and transit notes.
+10. `A29` Build shortlist / compare / multi-print referral workflows for referrers and partner staff.
 
 ### Tier 2: First 2-6 Weeks of Live Pilot Evidence
 
@@ -181,6 +191,9 @@ If the goal is for CareConnect to look like a serious, audited, adopted project 
 | `A24` | Make leadership and collaboration visible, not implied                              | Tier 3           | After first real collaborators exist     | Leadership is stronger when it is documented and shared                    | Updated roles page, contributor/governance ownership matrix, meeting cadence   | Do not fabricate team scale                                       |
 | `A25` | Publish a case study, poster, or preprint                                           | Tier 3 / 4       | After real pilot data exists             | Converts implementation into scholarship                                   | Poster, abstract, preprint, slide deck                                         | Needs clarification on venue and authorship                       |
 | `A26` | Present CareConnect to community or professional audiences and archive the feedback | Tier 3 / 4       | After initial proof artifacts exist      | Demonstrates communication and stakeholder engagement                      | Invitation, slides, attendance note, feedback summary                          | Needs clarification on audience access                            |
+| `A27` | Add a quick-exit / safe-leave flow for violence-sensitive browsing                  | Tier 1           | After Gate 0 exit                        | Reduces harm for users who may be searching in unsafe environments         | Quick-exit UX, copy review, crisis-safety validation notes                     | Align with `A14`; keep behavior discreet and keyboard-accessible  |
+| `A28` | Expose referral-critical logistics on public service pages                          | Tier 1           | After Gate 0 exit                        | Referrers care about access constraints as much as descriptions            | Updated detail UI, professional-usability findings, before/after screenshots   | Align with `A8`; use existing vetted fields only                  |
+| `A29` | Build shortlist / compare / multi-print workflows for referrers                     | Tier 1           | After Gate 0 exit                        | Makes partner adoption easier in real referral settings                    | Shortlist UX, printable packet flow, partner/referrer feedback                 | Align with `A23`; only build what pilot users actually need       |
 
 ---
 
@@ -189,7 +202,7 @@ If the goal is for CareConnect to look like a serious, audited, adopted project 
 If the project wants the highest admissions value without getting ahead of itself, the execution order should be:
 
 1. `A1`, then bounded `A6` / `A16`.
-2. `A2`, `A14`, `A8`, `A23`, `A13`, `A7`, `A9`.
+2. `A2`, `A14`, `A8`, `A23`, `A13`, `A27`, `A28`, `A29`, `A7`, `A9`.
 3. `A4`, `A5`, `A12`, `A21`, `A20`, `A15`, `A17`, `A18`.
 4. `A10`, `A24`, `A26`, `A25`.
 5. `A19` only if the external oversight question becomes real.
