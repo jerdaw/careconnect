@@ -77,6 +77,10 @@
     "noResultsHelpDifferentWords": "جرّب كلمات مختلفة (مثلاً: \"مساعدة غذائية\" بدلاً من \"بقالة\")",
     "noResultsHelpCheckSpelling": "تحقق من الإملاء",
     "noResultsHelpBroaderSearch": "ابحث عن موضوع أوسع (مثلاً: \"صحة\" بدلاً من \"عيادة سكري\")",
+    "matchReasonsHeading": "سبب ظهور هذه النتيجة",
+    "matchReasonsToggle": "عرض المزيد من أسباب المطابقة",
+    "hideMatchReasons": "إخفاء الأسباب الإضافية",
+    "matchReasonsListLabel": "أسباب المطابقة",
     "saveThisSearch": "حفظ هذا البحث"
   },
   "VoiceInput": {
@@ -654,6 +658,8 @@
     "permanentlyClosed": "مغلق نهائياً",
     "mergedDescription": "تم دمج هذه الخدمة مع منظمة أخرى. يرجى التحقق من الوصف للحصول على تفاصيل الاتصال الجديدة.",
     "closedDescription": "هذه الخدمة لم تعد تعمل. يرجى عدم زيارة هذا الموقع.",
+    "staleRecordTitle": "انتهت نافذة التحقق",
+    "staleRecordDescription": "هذا السجل أقدم من نافذة التحقق المعتمدة من CareConnect ومدتها 6 أشهر. أكّد التفاصيل مباشرة مع مقدم الخدمة قبل الاعتماد عليها.",
     "note": "ملاحظة:",
     "mapTitle": "موقع {name} على الخريطة",
     "mapPrivacyDescription": "لن يتم تحميل أي خريطة خارجية إلا إذا اخترت عرضها.",
@@ -758,11 +764,13 @@
     "verifiedOn": "آخر تحقق",
     "neverVerified": "لم يتم التحقق من هذه الخدمة مؤخراً",
     "outdatedTooltip": "هذه المعلومات قديمة منذ أكثر من 3 أشهر وقد تكون غير دقيقة.",
+    "expiredTooltip": "هذه المعلومات تجاوزت نافذة التحقق المعتمدة من CareConnect ومدتها 6 أشهر ويجب التأكد منها مباشرة.",
     "verifiedTooltip": "تم تأكيد المعلومات من قبل شريك في {date}",
     "levels": {
       "fresh": "تم التحقق مؤخرًا",
       "recent": "تم التحقق خلال 3 أشهر",
-      "stale": "التحقق قديم"
+      "stale": "التحقق قديم",
+      "expired": "انتهت صلاحية التحقق"
     }
   },
   "Feedback": {

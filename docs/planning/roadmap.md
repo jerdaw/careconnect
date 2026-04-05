@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-04
+last_updated: 2026-04-05
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-04
+> **Last Updated**: 2026-04-05
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -25,6 +25,10 @@ tags: [planning, roadmap, v22.0, governance]
 - **Accessibility**: WCAG 2.1 AA automation remains in place
 - **Languages**: 7 locales at translation-key parity
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
+- **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
+- **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
+- **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
+- **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
@@ -70,10 +74,12 @@ The active question is whether the project can prove non-duplicate value relativ
 
 **Status**: Phase 0 in progress - **Gate 0 Exit NO-GO**
 **Priority**: Critical
-**Timeline**: 90-day decision cycle (~13 weeks)
+**Timeline**: target 90-day decision review cycle (~13 weeks), contingent on external Gate 0 dependency closure
 **Created**: 2026-02-27
 
 CareConnect is being repositioned from possible directory duplication toward measurable last-mile outcome value. This path uses explicit hypotheses, strict kill criteria, and governance gates before any broader pilot execution.
+
+The 90-day window is a review target rather than a guaranteed engineering schedule. It is only realistic if legal/API review and partner-operations evidence arrive early enough to support a real decision inside that window.
 
 **Core objective**
 
@@ -132,10 +138,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
 3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-5. Audit the remaining GitHub Actions Node 24 warnings before the 2026 runner cutoff, especially `actions/setup-python@v5`, `actions/upload-artifact@v4`, and `actions/create-release@v1`.
-6. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
-7. Enforce the stale-data governance rule in runtime behavior so records beyond the approved freshness window are hidden or explicitly downgraded instead of only receiving a soft ranking penalty.
-8. Reconcile verification-level definitions, stale-data thresholds, and display policy across governance docs, runtime types, and public UI so the project has one source of truth.
+5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
 
 ## On Hold
 
@@ -216,8 +219,7 @@ Deferred items:
 2. Search AI metadata migration out of JSON
 3. Admin-facing data quality dashboard
 4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
-5. Search explainability UI that surfaces the existing match-reason data in public search results and detail views
-6. Unify client and server ranking around one shared scoring engine and retire the remaining placeholder scoring path
+5. Unify client and server ranking around one shared scoring engine and retire the remaining placeholder scoring path
 
 References:
 
@@ -230,6 +232,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Gate 0 wait maintenance bundle (2026-04-05)**: completed search explainability, stale-data runtime governance, workflow-runtime doc alignment, and solo-scale freshness-policy calibration while Gate 0 remained blocked; archived in [2026-04-05 v22.0 Gate 0 Wait Maintenance Bundle](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md).
 - **Map privacy and offline snapshot safety surfaces (2026-04-04)**: replaced automatic Google Maps embeds with explicit opt-in previews, surfaced offline snapshot age/stale warnings on offline surfaces, updated threat-model/user-guide/architecture docs, and added focused UI/helper coverage; archived in [2026-04-04 v22.0 Map Privacy and Offline Snapshot Safety](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md).
 - **Tier 0 admissions-support hardening (2026-04-01)**: completed A3 pilot metric instrumentation, A11 public-claim hardening, A22 focused pilot/privacy test coverage, and bounded A6/A16 readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
 - **CareConnect production cutover and repo finalization (2026-04-03)**: completed the live `careconnect.ing` VPS cutover, legacy HelpBridge-domain redirects, GitHub repo rename to `jerdaw/careconnect`, and post-cutover observability-noise cleanup; archived in [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md).
@@ -255,6 +258,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v22.0 Gate 0 Wait Maintenance Bundle Archive](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md)
 - [v22.0 Map Privacy and Offline Snapshot Safety Archive](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md)
 - [v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)
 - [v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)

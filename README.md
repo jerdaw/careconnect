@@ -120,6 +120,8 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Open Now Filter**: Real-time availability based on structured operating hours.
 - **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
+- **Search Explainability**: Public result cards and linked detail pages can show deduplicated match reasons for why a service ranked.
+- **Stale-Data Governance**: Records beyond the 180-day freshness window are hidden from search instead of lingering with only a soft score penalty.
 - **Map Integration**: External map previews stay off by default; users can explicitly open directions or load a map preview on service detail pages.
 
 ### Decentralized AI Assistant
@@ -153,7 +155,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
 - **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
 - **Printable Resource Cards** — High-contrast, one-page summaries for any service, designed for offline distribution.
-- **Trust Signals** — Visible "Verified At" badges and provenance data for every listing.
+- **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
 
 ---
 

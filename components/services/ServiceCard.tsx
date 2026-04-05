@@ -8,11 +8,13 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { FreshnessBadge } from "@/components/ui/FreshnessBadge"
+import ServiceMatchReasons from "@/components/services/ServiceMatchReasons"
 import { scaleOnHover } from "@/lib/motion"
 
 import { useLocale, useTranslations } from "next-intl"
 import { trackEvent } from "@/lib/analytics"
 import { highlightMatches } from "@/lib/search/highlight"
+import { buildMatchReasonSearchParams } from "@/lib/search/match-reasons"
 import { useUserContext } from "@/hooks/useUserContext"
 import { checkEligibility } from "@/lib/eligibility/checker"
 
@@ -42,7 +44,12 @@ const CategoryIcon = ({ category, className }: { category: string; className?: s
   }
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = [], onScopeFilter }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  service,
+  matchReasons = [],
+  highlightTokens = [],
+  onScopeFilter,
+}) => {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const locale = useLocale()
   const t = useTranslations()
@@ -64,6 +71,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
   const handleTrack = (type: "click_website" | "click_call") => {
     trackEvent(service.id, type)
   }
+
+  const detailSearchParams = buildMatchReasonSearchParams(matchReasons)
+  const detailHref =
+    detailSearchParams.size > 0 ? `/service/${service.id}?${detailSearchParams.toString()}` : `/service/${service.id}`
 
   return (
     <motion.div
@@ -180,6 +191,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
 
+          <ServiceMatchReasons reasons={matchReasons} />
+
           {/* Contact Info - inline */}
           <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-neutral-500 dark:text-neutral-400">
             {address && (
@@ -241,12 +254,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, highlightTokens = []
               className="h-7 gap-1 px-2 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100"
               asChild
             >
-              <Link href={`/service/${service.id}`} onClick={() => handleTrack("click_website")}>
+              <Link href={detailHref} onClick={() => handleTrack("click_website")}>
                 {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
               </Link>
             </Button>
             <Button size="sm" variant="ghost" className="h-7 gap-1 px-2 text-xs opacity-100 sm:hidden" asChild>
-              <Link href={`/service/${service.id}`} onClick={() => handleTrack("click_website")}>
+              <Link href={detailHref} onClick={() => handleTrack("click_website")}>
                 {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
               </Link>
             </Button>

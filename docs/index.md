@@ -78,6 +78,8 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Open Now Filter**: Real-time availability based on structured operating hours.
 - **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
+- **Search Explainability**: Public result cards and linked detail pages can show deduplicated match reasons for why a service ranked.
+- **Stale-Data Governance**: Records beyond the 180-day freshness window are hidden from search instead of lingering with only a soft score penalty.
 - **Map Integration**: External map previews stay off by default; users can explicitly open directions or load a map preview on service detail pages.
 
 ### Decentralized AI Assistant
@@ -104,6 +106,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **WCAG 2.1 AA Compliant** — High-contrast, skip-links, and keyboard navigation.
 - **Community Governance** — Residents can flag inaccurate data directly.
 - **Performance Optimized** — Loads instantly, even on slow connections.
+- **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
 - **Multi-Lingual Support** — Full support for 7 languages: English, Canadian French, Arabic, Simplified Chinese, Spanish, Punjabi, and Portuguese.
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.
 - **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
@@ -129,7 +132,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 22+
 - npm 10+
 
 ### Installation

@@ -148,4 +148,33 @@ describe("searchServices Logic", () => {
 
     expect(results[0]!.service.name).toBe("Near")
   })
+
+  it("hides services beyond the governance freshness window from search results", async () => {
+    const expiredDate = new Date()
+    expiredDate.setDate(expiredDate.getDate() - 200)
+
+    const mockServices = [
+      {
+        id: "1",
+        name: "Expired Service",
+        description: "Old record",
+        last_verified: expiredDate.toISOString(),
+        verification_level: 1,
+        intent_category: "food",
+      },
+      {
+        id: "2",
+        name: "Fresh Service",
+        description: "Current record",
+        last_verified: new Date().toISOString(),
+        verification_level: 1,
+        intent_category: "food",
+      },
+    ]
+    ;(loadServices as any).mockResolvedValue(mockServices)
+
+    const results = await searchServices("service")
+
+    expect(results.map((result) => result.service.name)).toEqual(["Fresh Service"])
+  })
 })

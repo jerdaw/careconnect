@@ -9,6 +9,7 @@ import { ServicePublic } from "@/types/service-public"
 import { trackPerformance } from "@/lib/performance/tracker"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
+import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
 
 export async function POST(request: NextRequest) {
   return trackPerformance(
@@ -92,6 +93,7 @@ export async function POST(request: NextRequest) {
           }
           return s
         })
+        services = services.filter((service) => !isBeyondGovernanceFreshnessWindow(service))
 
         // 7. Server-Side Scoring (The "Hybrid" Part)
         // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent

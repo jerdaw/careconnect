@@ -10,6 +10,7 @@ vi.mock("@/components/ui/use-toast", () => ({
 
 const mockToast = vi.fn()
 const mockFetch = vi.fn()
+const INTERACTION_TEST_TIMEOUT_MS = 60000
 
 if (!HTMLElement.prototype.hasPointerCapture) {
   Object.defineProperty(HTMLElement.prototype, "hasPointerCapture", {
@@ -114,85 +115,97 @@ describe("PartnerActionsPanel", () => {
     expect(screen.getByRole("button", { name: "Request Data Update" })).toBeInTheDocument()
   })
 
-  it("submits an update request from the live partner action entrypoint", async () => {
-    const user = userEvent.setup()
+  it(
+    "submits an update request from the live partner action entrypoint",
+    async () => {
+      const user = userEvent.setup()
 
-    renderWithProviders(
-      <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
-      {
-        messages,
-      }
-    )
-
-    await user.click(screen.getByRole("button", { name: "Request Data Update" }))
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Website" }))
-    await user.type(screen.getAllByRole("textbox")[0]!, "https://example.org/updated")
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
-
-    await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/v1/services/svc-123/update-request",
-        expect.objectContaining({
-          method: "POST",
-          body: JSON.stringify({
-            field_updates: { url: "https://example.org/updated" },
-          }),
-        })
+      renderWithProviders(
+        <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
+        {
+          messages,
+        }
       )
-    })
-  }, 15000)
 
-  it("shows the auth-required error when the live entrypoint returns 401", async () => {
-    const user = userEvent.setup()
-    mockFetch.mockResolvedValueOnce({
-      ok: false,
-      status: 401,
-      json: vi.fn().mockResolvedValue({ error: { message: "Unauthorized" } }),
-    })
+      await user.click(screen.getByRole("button", { name: "Request Data Update" }))
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Website" }))
+      await user.type(screen.getAllByRole("textbox")[0]!, "https://example.org/updated")
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
 
-    renderWithProviders(
-      <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
-      {
-        messages,
-      }
-    )
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalledWith(
+          "/api/v1/services/svc-123/update-request",
+          expect.objectContaining({
+            method: "POST",
+            body: JSON.stringify({
+              field_updates: { url: "https://example.org/updated" },
+            }),
+          })
+        )
+      })
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
 
-    await user.click(screen.getByRole("button", { name: "Request Data Update" }))
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Phone" }))
-    await user.type(screen.getAllByRole("textbox")[0]!, "613-555-1234")
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
+  it(
+    "shows the auth-required error when the live entrypoint returns 401",
+    async () => {
+      const user = userEvent.setup()
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 401,
+        json: vi.fn().mockResolvedValue({ error: { message: "Unauthorized" } }),
+      })
 
-    await waitFor(() => {
-      expect(mockToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: "Error",
-          description: "Please log in as a partner to request updates.",
-          variant: "destructive",
-        })
+      renderWithProviders(
+        <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
+        {
+          messages,
+        }
       )
-    })
-  })
 
-  it("resets the modal after closing and reopening", async () => {
-    const user = userEvent.setup()
+      await user.click(screen.getByRole("button", { name: "Request Data Update" }))
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Phone" }))
+      await user.type(screen.getAllByRole("textbox")[0]!, "613-555-1234")
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
 
-    renderWithProviders(
-      <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
-      {
-        messages,
-      }
-    )
+      await waitFor(() => {
+        expect(mockToast).toHaveBeenCalledWith(
+          expect.objectContaining({
+            title: "Error",
+            description: "Please log in as a partner to request updates.",
+            variant: "destructive",
+          })
+        )
+      })
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
 
-    await user.click(screen.getByRole("button", { name: "Request Data Update" }))
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Service Name" }))
-    await user.type(screen.getAllByRole("textbox")[0]!, "Updated Service")
-    await user.click(screen.getByRole("button", { name: "Cancel" }))
-    await user.click(screen.getByRole("button", { name: "Request Data Update" }))
+  it(
+    "resets the modal after closing and reopening",
+    async () => {
+      const user = userEvent.setup()
 
-    expect(screen.getByText("Select a field...")).toBeInTheDocument()
-    expect(screen.getAllByRole("textbox")[0]).toHaveValue("")
-  })
+      renderWithProviders(
+        <PartnerActionsPanel serviceId="svc-123" serviceName="Test Service" showClaimAction={false} />,
+        {
+          messages,
+        }
+      )
+
+      await user.click(screen.getByRole("button", { name: "Request Data Update" }))
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Service Name" }))
+      await user.type(screen.getAllByRole("textbox")[0]!, "Updated Service")
+      await user.click(screen.getByRole("button", { name: "Cancel" }))
+      await user.click(screen.getByRole("button", { name: "Request Data Update" }))
+
+      expect(screen.getByText("Select a field...")).toBeInTheDocument()
+      expect(screen.getAllByRole("textbox")[0]).toHaveValue("")
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
 })

@@ -63,6 +63,10 @@ vi.mock("@/components/services/SimplifiedServiceView", () => ({
   SimplifiedServiceView: () => <div data-testid="simplified-service-view" />,
 }))
 
+vi.mock("@/components/services/ServiceMatchReasons", () => ({
+  default: ({ reasons }: { reasons: string[] }) => <div data-testid="service-match-reasons">{reasons.join("|")}</div>,
+}))
+
 describe("Service detail page", () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -88,5 +92,47 @@ describe("Service detail page", () => {
     expect(screen.getByRole("button", { name: "loadMapPreview" })).toBeInTheDocument()
     expect(container.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
     expect(container.querySelector('iframe[src*="maps.google.com"]')).not.toBeInTheDocument()
+  })
+
+  it("renders search match reasons passed through the detail route", async () => {
+    const page = await ServicePage({
+      params: Promise.resolve({ id: mockService.id, locale: "en" }),
+      searchParams: Promise.resolve({
+        matchReason: [" Fresh Data Boost (+10%) ", "Semantic Boost (87%)", "semantic boost (87%)"],
+      }),
+    })
+
+    render(page)
+
+    expect(screen.getByTestId("service-match-reasons")).toHaveTextContent(
+      "Fresh Data Boost (+10%)|Semantic Boost (87%)"
+    )
+  })
+
+  it("renders an explicit stale-data warning for records beyond the governance window", async () => {
+    const expiredDate = new Date()
+    expiredDate.setDate(expiredDate.getDate() - 200)
+
+    vi.mocked(getServiceById).mockResolvedValueOnce({
+      ...mockService,
+      email: "",
+      phone: "",
+      url: "",
+      last_verified: expiredDate.toISOString(),
+      provenance: {
+        ...mockService.provenance,
+        verified_at: expiredDate.toISOString(),
+      },
+    })
+
+    const page = await ServicePage({
+      params: Promise.resolve({ id: mockService.id, locale: "en" }),
+      searchParams: Promise.resolve({}),
+    })
+
+    render(page)
+
+    expect(screen.getByText("staleRecordTitle")).toBeInTheDocument()
+    expect(screen.getByText("staleRecordDescription")).toBeInTheDocument()
   })
 })

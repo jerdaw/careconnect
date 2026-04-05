@@ -69,6 +69,10 @@
     "noResultsHelpDifferentWords": "Tente palavras diferentes (ex.: \"assistência alimentar\" em vez de \"mercearia\")",
     "noResultsHelpCheckSpelling": "Verifique sua ortografia",
     "noResultsHelpBroaderSearch": "Busque um tópico mais amplo (ex.: \"saúde\" em vez de \"clínica de diabetes\")",
+    "matchReasonsHeading": "Por que corresponde",
+    "matchReasonsToggle": "Ver mais motivos da correspondência",
+    "hideMatchReasons": "Ocultar motivos adicionais",
+    "matchReasonsListLabel": "Motivos da correspondência",
     "saveThisSearch": "Guardar esta pesquisa"
   },
   "VoiceInput": {
@@ -646,6 +650,8 @@
     "permanentlyClosed": "Fechado permanentemente",
     "mergedDescription": "Este serviço foi fundido com outra organização. Verifique a descrição para novos detalhes de contacto.",
     "closedDescription": "Este serviço já não está operacional. Por favor, não visite este local.",
+    "staleRecordTitle": "Janela de verificação expirada",
+    "staleRecordDescription": "Este registo ultrapassa a janela de verificação aprovada de 6 meses da CareConnect. Confirme os detalhes diretamente com o prestador antes de confiar neles.",
     "note": "Nota:",
     "mapTitle": "Localização no mapa de {name}",
     "mapPrivacyDescription": "Nenhum mapa externo é carregado a menos que você escolha visualizá-lo.",
@@ -750,11 +756,13 @@
     "verifiedOn": "Verificado pela última vez em",
     "neverVerified": "Este serviço não foi verificado recentemente",
     "outdatedTooltip": "Esta informação tem mais de 3 meses e pode estar imprecisa.",
+    "expiredTooltip": "Esta informação ultrapassa a janela de verificação aprovada de 6 meses da CareConnect e deve ser confirmada diretamente.",
     "verifiedTooltip": "Informação confirmada por um parceiro em {date}",
     "levels": {
       "fresh": "Verificado recentemente",
       "recent": "Verificado nos últimos 3 meses",
-      "stale": "Verificação obsoleta"
+      "stale": "Verificação obsoleta",
+      "expired": "Verificação expirada"
     }
   },
   "Feedback": {

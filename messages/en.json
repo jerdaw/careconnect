@@ -75,6 +75,10 @@
     "noResultsHelpDifferentWords": "Try different keywords (e.g., \"food assistance\" instead of \"groceries\")",
     "noResultsHelpCheckSpelling": "Check your spelling",
     "noResultsHelpBroaderSearch": "Search for a broader topic (e.g., \"health\" instead of \"diabetes clinic\")",
+    "matchReasonsHeading": "Why this matched",
+    "matchReasonsToggle": "See more match reasons",
+    "hideMatchReasons": "Hide extra match reasons",
+    "matchReasonsListLabel": "Match reasons",
     "showAllResults": "Show {count} province-wide results",
     "crisis": "🗣️ Crisis",
     "food": "Food",
@@ -793,11 +797,13 @@
     "verifiedOn": "Last verified",
     "neverVerified": "This service has not been verified recently",
     "outdatedTooltip": "This information is more than 3 months old and may be inaccurate.",
+    "expiredTooltip": "This information is older than CareConnect's approved 6-month verification window and should be rechecked directly.",
     "verifiedTooltip": "Information confirmed by a partner on {date}",
     "levels": {
       "fresh": "Verified recently",
       "recent": "Verified within 3 months",
-      "stale": "Verification outdated"
+      "stale": "Verification outdated",
+      "expired": "Verification expired"
     }
   },
   "Common": {
@@ -909,6 +915,8 @@
     "permanentlyClosed": "Permanently Closed",
     "mergedDescription": "This service has been merged with another organization. Please check the description for the new contact details.",
     "closedDescription": "This service is no longer operational. Please do not visit this location.",
+    "staleRecordTitle": "Verification window expired",
+    "staleRecordDescription": "This record is older than CareConnect's approved 6-month verification window. Confirm details directly with the provider before relying on it.",
     "note": "Note:",
     "mapTitle": "Map location for {name}",
     "mapPrivacyDescription": "No external map is loaded unless you choose to view it.",

@@ -1,13 +1,13 @@
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-04-05
 owner: jer
 tags: [governance, standards, verification]
 ---
 
 # Governance Protocol: The Kingston 150 Standard 🛡️
 
-**Document Version:** 1.0
+**Document Version:** 1.1
 **Effective Date:** Dec 29, 2025
 **Scope:** All services listed in the CareConnect database.
 
@@ -32,15 +32,15 @@ To protect user privacy, the following intent categories triggers a **Zero-Log P
 
 Every service in the database must be assigned a verification level.
 
-| Level  | Definition                                                                                                        | Display Policy             |
-| :----- | :---------------------------------------------------------------------------------------------------------------- | :------------------------- |
-| **L0** | **Unverified.** Raw data scraped from web or submitted by public.                                                 | **HIDDEN**                 |
-| **L1** | **Existence Verified.** Phone number calls through, Website loads. Confirmed active within 90 days.               | ✅ **VISIBLE**             |
-| **L2** | **Eligibility Verified.** Inclusion/Exclusion criteria verified against official documentation (PDF, About Page). | ✅ **VISIBLE**             |
-| **L3** | **Provider Confirmed.** Direct contact (email/phone) with service provider confirming details.                    | ✅ **VISIBLE** (Preferred) |
-| **L4** | **Official Partner.** Signed MOU or Data Sharing Agreement.                                                       | 🌟 **FEATURED**            |
+| Level  | Definition                                                                                                                                 | Display Policy             |
+| :----- | :----------------------------------------------------------------------------------------------------------------------------------------- | :------------------------- |
+| **L0** | **Unverified.** Raw data scraped from web or submitted by public.                                                                          | **HIDDEN**                 |
+| **L1** | **Existence Verified.** Phone number calls through, Website loads, and the record has been re-verified within the active freshness window. | ✅ **VISIBLE**             |
+| **L2** | **Eligibility Verified.** Inclusion/Exclusion criteria verified against official documentation (PDF, About Page).                          | ✅ **VISIBLE**             |
+| **L3** | **Provider Confirmed.** Direct contact (email/phone) with service provider confirming details.                                             | ✅ **VISIBLE** (Preferred) |
+| **L4** | **Official Partner.** Signed MOU or Data Sharing Agreement.                                                                                | 🌟 **FEATURED**            |
 
-> **Current Pilot Standard:** All visible services must be **L1 or higher**.
+> **Current Pilot Standard:** All visible services must be **L1 or higher** and must remain within the active freshness window.
 
 ---
 
@@ -59,9 +59,10 @@ To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must in
 
 ## 4. Maintenance Cycle
 
-- **Crisis Services:** Verified Monthly.
-- **General Services:** Verified Quarterly.
-- **Stale Data:** Any record not verified in > 6 months is auto-downgraded to **L0** (Hidden).
+- **Crisis Services:** Verify monthly.
+- **Pilot / priority services:** Target re-verification within 90 days.
+- **General directory services:** Re-verify within 180 days to remain publicly visible.
+- **Stale Data:** Any record not verified in > 180 days is auto-downgraded to **L0** (Hidden).
 
 ---
 

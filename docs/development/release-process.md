@@ -332,15 +332,16 @@ This is a pre-release version for testing. Not recommended for production use.
 
 Edit `.github/workflows/release.yml`:
 
-```yaml
+```bash
 - name: Create GitHub Release
-  uses: actions/create-release@v1
-  with:
-    tag_name: ${{ steps.version.outputs.tag }}
-    release_name: Release ${{ steps.version.outputs.tag }}
-    body: ${{ steps.notes.outputs.body }}
-    draft: false
-    prerelease: true # Mark as pre-release
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    gh release create "${{ steps.version.outputs.tag }}" \
+      --verify-tag \
+      --title "Release ${{ steps.version.outputs.tag }}" \
+      --notes-file release-notes.md \
+      --prerelease
 ```
 
 Or manually mark as pre-release in GitHub UI after creation.

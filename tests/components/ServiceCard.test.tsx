@@ -84,6 +84,23 @@ describe("ServiceCard Component", () => {
     expect(mockTrackEvent).toHaveBeenCalledWith(mockService.id, "click_website")
   })
 
+  it("preserves match reasons in the details link", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard
+          service={mockService}
+          matchReasons={["Fresh Data Boost (+10%)", "Semantic Boost (87%)", "Fresh Data Boost (+10%)"]}
+        />
+      </TestWrapper>
+    )
+
+    const link = screen.getAllByRole("link", { name: /Details/i })[0]
+    expect(link).toHaveAttribute(
+      "href",
+      "/service/test-service-id?matchReason=Fresh+Data+Boost+%28%2B10%25%29&matchReason=Semantic+Boost+%2887%25%29"
+    )
+  })
+
   it("renders specialized scope badges", () => {
     const provincialService = { ...mockService, scope: "ontario" as const }
     const { rerender } = render(
@@ -158,6 +175,35 @@ describe("ServiceCard Component", () => {
       </TestWrapper>
     )
     expect(screen.getByText("1.5 km")).toBeInTheDocument()
+  })
+
+  it("surfaces match reasons and reveals additional reasons on demand", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard
+          service={mockService}
+          matchReasons={[
+            " Fresh Data Boost (+10%) ",
+            "Semantic Boost (87%)",
+            "Authority Boost (+20%)",
+            "semantic boost (87%)",
+          ]}
+        />
+      </TestWrapper>
+    )
+
+    expect(screen.getByText("Why this matched")).toBeInTheDocument()
+    expect(screen.getByText("Fresh Data Boost (+10%)")).toBeInTheDocument()
+    expect(screen.getByText("Semantic Boost (87%)")).toBeInTheDocument()
+    expect(screen.queryByText("Authority Boost (+20%)")).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole("button", { name: "See more match reasons" }))
+
+    expect(screen.getByText("Authority Boost (+20%)")).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole("button", { name: "Hide extra match reasons" }))
+
+    expect(screen.queryByText("Authority Boost (+20%)")).not.toBeInTheDocument()
   })
 
   it("opens feedback modal when report is clicked", () => {

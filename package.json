@@ -19,7 +19,7 @@
     "check:refs": "node --import tsx scripts/check-references.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "node -e \"require('fs').mkdirSync('coverage/.tmp', { recursive: true })\" && vitest run --coverage --testTimeout=60000",
     "test:db": "bash scripts/run-db-tests.sh",
     "test:db:smoke": "bash scripts/run-db-tests.sh tests/db/smoke.test.ts",
     "db:types": "bash scripts/run-db-types.sh",

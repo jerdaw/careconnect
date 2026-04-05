@@ -69,6 +69,10 @@
     "noResultsHelpDifferentWords": "尝试不同的关键词（例如：\"食品援助\"而不是\"杂货\"）",
     "noResultsHelpCheckSpelling": "检查拼写",
     "noResultsHelpBroaderSearch": "搜索更广泛的主题（例如：\"健康\"而不是\"糖尿病诊所\"）",
+    "matchReasonsHeading": "匹配原因",
+    "matchReasonsToggle": "查看更多匹配原因",
+    "hideMatchReasons": "隐藏更多匹配原因",
+    "matchReasonsListLabel": "匹配原因列表",
     "saveThisSearch": "保存此搜索"
   },
   "VoiceInput": {
@@ -646,6 +650,8 @@
     "permanentlyClosed": "永久关闭",
     "mergedDescription": "此服务已与另一个组织合并。请查看描述以获取新的联系详情。",
     "closedDescription": "此服务已停止运营。请勿前往此地点。",
+    "staleRecordTitle": "验证窗口已失效",
+    "staleRecordDescription": "此记录已超过 CareConnect 批准的 6 个月验证窗口。请在依赖这些信息前直接向服务提供方确认细节。",
     "note": "注意：",
     "mapTitle": "{name} 的地图位置",
     "mapPrivacyDescription": "除非你选择查看，否则不会加载外部地图。",
@@ -750,11 +756,13 @@
     "verifiedOn": "最后验证",
     "neverVerified": "此服务最近未经验证",
     "outdatedTooltip": "此信息已超过3个月，可能不准确。",
+    "expiredTooltip": "此信息已超过 CareConnect 批准的 6 个月验证窗口，应直接再次确认。",
     "verifiedTooltip": "信息已由合作伙伴在 {date} 确认",
     "levels": {
       "fresh": "最近已验证",
       "recent": "3个月内已验证",
-      "stale": "验证已过期"
+      "stale": "验证已过期",
+      "expired": "验证窗口已失效"
     }
   },
   "Feedback": {

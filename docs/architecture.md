@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-04
+last_updated: 2026-04-05
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -54,6 +54,8 @@ graph TD
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads the optional WebLLM/WebGPU semantic stack in the background when the device supports it. Once ready, it re-ranks results based on vector similarity and on-device inference.
 4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
+5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
+6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
 
 ### Search Modes
 
@@ -235,9 +237,10 @@ We use a modular hook system to separate concerns:
 
 - **High Contrast Mode**: Global state managed via `useHighContrast` hook, applying `.high-contrast` class and CSS variable overrides.
 - **Print Optimization**: Specific `@media print` styles in `globals.css` and `PrintButton` component for physical delivery of information.
-- **Data Freshness**: `FreshnessBadge` provides visual cues on the reliability of data based on `last_verified` timestamps.
+- **Data Freshness**: `FreshnessBadge` provides visual cues on the reliability of data based on `last_verified` / `provenance.verified_at`, including an explicit expired state once a record crosses the 180-day governance limit.
 - **Offline Safety Surfaces**: `OfflineSnapshotStatus` reads IndexedDB sync metadata (`lastSync`) and shows snapshot age plus stale-data warnings on offline surfaces when cached data may be outdated.
 - **External Maps**: Service-detail pages keep Google Maps loading opt-in. Directions remain available, but third-party map previews do not load until the user explicitly requests them.
+- **Search Explainability Surfaces**: `ServiceMatchReasons` shows deduplicated match reasons on result cards and on detail pages when the user follows a search result with ranking context attached.
 
 ## Development
 

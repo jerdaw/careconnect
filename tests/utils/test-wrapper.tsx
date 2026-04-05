@@ -12,6 +12,12 @@ const defaultMessages = {
       details: "Details",
     },
   },
+  Search: {
+    matchReasonsHeading: "Why this matched",
+    matchReasonsToggle: "See more match reasons",
+    hideMatchReasons: "Hide extra match reasons",
+    matchReasonsListLabel: "Match reasons",
+  },
   Eligibility: {
     likelyQualify: "Likely Qualify",
   },

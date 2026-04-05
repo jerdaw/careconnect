@@ -13,6 +13,7 @@ import { expandQuery as expandSynonyms } from "./synonyms"
 import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
 import { trackPerformance } from "@/lib/performance/tracker"
+import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
 
 const SEMANTIC_SIMILARITY_THRESHOLD = 0.01
 const SEMANTIC_BOOST_DISPLAY_THRESHOLD = 30
@@ -59,6 +60,10 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         filteredServices = filteredServices.filter((s) => isOpenNow(s.hours))
       }
 
+      filteredServices = filteredServices.filter(
+        (service) => service.verification_level !== VerificationLevel.L0 && !isBeyondGovernanceFreshnessWindow(service)
+      )
+
       // Special Case: Empty Query but Category/Location selected
       if (query.trim().length === 0) {
         if (options.category || options.location) {
@@ -104,8 +109,6 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         "search.keywordScoring",
         async () => {
           for (const service of filteredServices) {
-            if (service.verification_level === VerificationLevel.L0) continue
-
             // Pass userContext to scoring
             const keywordResult = scoreServiceKeyword(service, tokens, options.category, {
               userContext: options.userContext,
@@ -156,8 +159,6 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         "search.vectorScoring",
         async () => {
           for (const service of filteredServices) {
-            if (service.verification_level === VerificationLevel.L0) continue
-
             // Use embedding from DB (on service object) OR fallback to local JSON
             // Note: data.ts doesn't export fallbackEmbeddings yet, let's fix that or import directly
             const serviceVector = service.embedding // data.ts already overlays these

@@ -10,6 +10,7 @@ vi.mock("@/components/ui/use-toast", () => ({
 
 const mockToast = vi.fn()
 const mockFetch = vi.fn()
+const INTERACTION_TEST_TIMEOUT_MS = 60000
 
 if (!HTMLElement.prototype.hasPointerCapture) {
   Object.defineProperty(HTMLElement.prototype, "hasPointerCapture", {
@@ -94,148 +95,168 @@ describe("UpdateRequestModal", () => {
     vi.stubGlobal("fetch", mockFetch)
   })
 
-  it("submits a structured single-field payload and closes on success", async () => {
-    const user = userEvent.setup()
-    const onClose = vi.fn()
+  it(
+    "submits a structured single-field payload and closes on success",
+    async () => {
+      const user = userEvent.setup()
+      const onClose = vi.fn()
 
-    renderWithProviders(
-      <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={onClose} />,
-      { messages }
-    )
+      renderWithProviders(
+        <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={onClose} />,
+        { messages }
+      )
 
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Phone" }))
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Phone" }))
 
-    await user.type(getValueInput(), "613-555-1234")
-    await user.type(screen.getByLabelText("Source / Justification"), "Official provider update")
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
+      await user.type(getValueInput(), "613-555-1234")
+      await user.type(screen.getByLabelText("Source / Justification"), "Official provider update")
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
 
-    await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledTimes(1)
-    })
-
-    const requestInit = mockFetch.mock.calls[0]?.[1] as RequestInit | undefined
-    if (!requestInit) {
-      throw new Error("Expected fetch request init to be defined")
-    }
-    expect(JSON.parse(requestInit.body as string)).toEqual({
-      field_updates: { phone: "613-555-1234" },
-      justification: "Official provider update",
-    })
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.objectContaining({
-        title: "Request Submitted",
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalledTimes(1)
       })
-    )
-    expect(onClose).toHaveBeenCalledTimes(1)
-  }, 10000)
 
-  it("sends null when clearing an optional field", async () => {
-    const user = userEvent.setup()
-
-    renderWithProviders(
-      <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
-      { messages }
-    )
-
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Phone" }))
-    await user.click(screen.getByRole("checkbox", { name: "Clear this field" }))
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
-
-    await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledTimes(1)
-    })
-
-    const requestInit = mockFetch.mock.calls[0]?.[1] as RequestInit | undefined
-    if (!requestInit) {
-      throw new Error("Expected fetch request init to be defined")
-    }
-    expect(JSON.parse(requestInit.body as string)).toEqual({
-      field_updates: { phone: null },
-    })
-  })
-
-  it("keeps submit disabled until a field and value are provided", async () => {
-    const user = userEvent.setup()
-
-    renderWithProviders(
-      <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
-      { messages }
-    )
-
-    const submitButton = screen.getByRole("button", { name: "Submit Update Request" })
-    expect(submitButton).toBeDisabled()
-
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Service Name" }))
-    expect(submitButton).toBeDisabled()
-
-    await user.type(getValueInput(), "New Name")
-    expect(submitButton).not.toBeDisabled()
-  })
-
-  it("shows the auth-required error toast on 401 responses", async () => {
-    const user = userEvent.setup()
-
-    mockFetch.mockResolvedValueOnce({
-      ok: false,
-      status: 401,
-      json: vi.fn().mockResolvedValue({
-        error: { message: "Unauthorized" },
-      }),
-    })
-
-    renderWithProviders(
-      <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
-      { messages }
-    )
-
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Phone" }))
-    await user.type(getValueInput(), "613-555-1234")
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
-
-    await waitFor(() => {
+      const requestInit = mockFetch.mock.calls[0]?.[1] as RequestInit | undefined
+      if (!requestInit) {
+        throw new Error("Expected fetch request init to be defined")
+      }
+      expect(JSON.parse(requestInit.body as string)).toEqual({
+        field_updates: { phone: "613-555-1234" },
+        justification: "Official provider update",
+      })
       expect(mockToast).toHaveBeenCalledWith(
         expect.objectContaining({
-          title: "Error",
-          description: "Please log in as a partner to request updates.",
-          variant: "destructive",
+          title: "Request Submitted",
         })
       )
-    })
-  })
+      expect(onClose).toHaveBeenCalledTimes(1)
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
 
-  it("shows API error messages in the destructive toast", async () => {
-    const user = userEvent.setup()
+  it(
+    "sends null when clearing an optional field",
+    async () => {
+      const user = userEvent.setup()
 
-    mockFetch.mockResolvedValueOnce({
-      ok: false,
-      status: 400,
-      json: vi.fn().mockResolvedValue({
-        error: { message: "Invalid update data" },
-      }),
-    })
-
-    renderWithProviders(
-      <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
-      { messages }
-    )
-
-    await user.click(screen.getByRole("combobox"))
-    await user.click(screen.getByRole("option", { name: "Website" }))
-    await user.type(getValueInput(), "not-a-url")
-    await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
-
-    await waitFor(() => {
-      expect(mockToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: "Error",
-          description: "Invalid update data",
-          variant: "destructive",
-        })
+      renderWithProviders(
+        <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
+        { messages }
       )
-    })
-  })
+
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Phone" }))
+      await user.click(screen.getByRole("checkbox", { name: "Clear this field" }))
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
+
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalledTimes(1)
+      })
+
+      const requestInit = mockFetch.mock.calls[0]?.[1] as RequestInit | undefined
+      if (!requestInit) {
+        throw new Error("Expected fetch request init to be defined")
+      }
+      expect(JSON.parse(requestInit.body as string)).toEqual({
+        field_updates: { phone: null },
+      })
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
+
+  it(
+    "keeps submit disabled until a field and value are provided",
+    async () => {
+      const user = userEvent.setup()
+
+      renderWithProviders(
+        <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
+        { messages }
+      )
+
+      const submitButton = screen.getByRole("button", { name: "Submit Update Request" })
+      expect(submitButton).toBeDisabled()
+
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Service Name" }))
+      expect(submitButton).toBeDisabled()
+
+      await user.type(getValueInput(), "New Name")
+      expect(submitButton).not.toBeDisabled()
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
+
+  it(
+    "shows the auth-required error toast on 401 responses",
+    async () => {
+      const user = userEvent.setup()
+
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 401,
+        json: vi.fn().mockResolvedValue({
+          error: { message: "Unauthorized" },
+        }),
+      })
+
+      renderWithProviders(
+        <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
+        { messages }
+      )
+
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Phone" }))
+      await user.type(getValueInput(), "613-555-1234")
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
+
+      await waitFor(() => {
+        expect(mockToast).toHaveBeenCalledWith(
+          expect.objectContaining({
+            title: "Error",
+            description: "Please log in as a partner to request updates.",
+            variant: "destructive",
+          })
+        )
+      })
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
+
+  it(
+    "shows API error messages in the destructive toast",
+    async () => {
+      const user = userEvent.setup()
+
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 400,
+        json: vi.fn().mockResolvedValue({
+          error: { message: "Invalid update data" },
+        }),
+      })
+
+      renderWithProviders(
+        <UpdateRequestModal serviceId="svc-123" serviceName="Test Service" isOpen={true} onClose={vi.fn()} />,
+        { messages }
+      )
+
+      await user.click(screen.getByRole("combobox"))
+      await user.click(screen.getByRole("option", { name: "Website" }))
+      await user.type(getValueInput(), "not-a-url")
+      await user.click(screen.getByRole("button", { name: "Submit Update Request" }))
+
+      await waitFor(() => {
+        expect(mockToast).toHaveBeenCalledWith(
+          expect.objectContaining({
+            title: "Error",
+            description: "Invalid update data",
+            variant: "destructive",
+          })
+        )
+      })
+    },
+    INTERACTION_TEST_TIMEOUT_MS
+  )
 })

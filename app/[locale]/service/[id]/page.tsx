@@ -30,10 +30,13 @@ import { TrustPanel } from "@/components/services/TrustPanel"
 import { ServiceActionBar } from "@/components/services/ServiceActionBar"
 import { PartnerActionsPanel } from "@/components/services/PartnerActionsPanel"
 import { ExternalMapPanel } from "@/components/services/ExternalMapPanel"
+import ServiceMatchReasons from "@/components/services/ServiceMatchReasons"
+import { normalizeMatchReasons } from "@/lib/search/match-reasons"
+import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
 
 interface Props {
   params: Promise<{ id: string; locale: string }>
-  searchParams: Promise<{ view?: string }>
+  searchParams: Promise<{ view?: string; matchReason?: string | string[] }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -52,10 +55,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServicePage({ params, searchParams }: Props) {
   const { id, locale } = await params
-  const { view } = await searchParams
+  const { view, matchReason } = await searchParams
   const service = await getServiceById(id)
   const t = await getTranslations("ServiceDetail")
   const tBadge = await getTranslations("VerificationLevels")
+  const searchMatchReasons = normalizeMatchReasons(
+    Array.isArray(matchReason) ? matchReason : matchReason ? [matchReason] : []
+  )
 
   if (!service) {
     notFound()
@@ -89,6 +95,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
 
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
+  const isBeyondFreshnessWindow = isBeyondGovernanceFreshnessWindow(service)
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
@@ -168,6 +175,24 @@ export default async function ServicePage({ params, searchParams }: Props) {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* Main Content */}
             <div className="space-y-8 lg:col-span-2">
+              {isBeyondFreshnessWindow && (
+                <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-200">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                    <div>
+                      <h2 className="font-semibold">{t("staleRecordTitle")}</h2>
+                      <p className="mt-1 text-sm">{t("staleRecordDescription")}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {searchMatchReasons.length > 0 && (
+                <Card className="p-8">
+                  <ServiceMatchReasons reasons={searchMatchReasons} />
+                </Card>
+              )}
+
               {/* About */}
               <Card className="p-8">
                 <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold">{t("aboutService")}</h2>

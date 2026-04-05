@@ -5,24 +5,11 @@ import { useTranslations, useLocale } from "next-intl"
 import { Clock, CheckCircle, AlertTriangle, XCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Tooltip } from "@/components/Tooltip/Tooltip"
+import { FreshnessLevel, getFreshnessLevel } from "@/lib/freshness"
 
 interface FreshnessBadgeProps {
   lastVerified?: string
   className?: string
-}
-
-type FreshnessLevel = "fresh" | "recent" | "stale" | "unknown"
-
-function getFreshnessLevel(lastVerified?: string): FreshnessLevel {
-  if (!lastVerified) return "unknown"
-
-  const verifiedDate = new Date(lastVerified)
-  const now = new Date()
-  const daysDiff = Math.floor((now.getTime() - verifiedDate.getTime()) / (1000 * 60 * 60 * 24))
-
-  if (daysDiff <= 30) return "fresh"
-  if (daysDiff <= 90) return "recent"
-  return "stale"
 }
 
 function formatRelativeDate(dateString: string, locale: string): string {
@@ -58,6 +45,11 @@ const freshnessConfig: Record<FreshnessLevel, { icon: typeof Clock; colorClass: 
       "border-amber-200 bg-amber-100 text-amber-800 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
     levelKey: "levels.stale",
   },
+  expired: {
+    icon: AlertTriangle,
+    colorClass: "border-red-200 bg-red-100 text-red-800 dark:border-red-900 dark:bg-red-900/30 dark:text-red-200",
+    levelKey: "levels.expired",
+  },
   unknown: {
     icon: XCircle,
     colorClass:
@@ -77,9 +69,11 @@ export function FreshnessBadge({ lastVerified, className }: FreshnessBadgeProps)
   const dateText = lastVerified ? new Date(lastVerified).toLocaleDateString(locale, { dateStyle: "long" }) : ""
 
   const tooltipText = lastVerified
-    ? level === "stale"
-      ? t("outdatedTooltip")
-      : t("verifiedTooltip", { date: dateText })
+    ? level === "expired"
+      ? t("expiredTooltip")
+      : level === "stale"
+        ? t("outdatedTooltip")
+        : t("verifiedTooltip", { date: dateText })
     : t("neverVerified")
 
   return (

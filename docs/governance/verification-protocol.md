@@ -1,13 +1,13 @@
 ---
 status: stable
-last_updated: 2026-01-23
+last_updated: 2026-04-05
 owner: jer
 tags: [governance, verification, protocol]
 ---
 
 # Service Verification Protocol
 
-**Version**: 1.0  
+**Version**: 1.1  
 **Effective Date**: January 3, 2026
 
 ## 1. Objective
@@ -16,13 +16,13 @@ To maintain the highest level of accuracy and safety for service listings in Car
 
 ## 2. Verification Levels (L-Scale)
 
-| Level  | Name        | Description                            | Requirements                                                             |
-| :----- | :---------- | :------------------------------------- | :----------------------------------------------------------------------- |
-| **L0** | Unverified  | Initial import or community suggestion | Valid name & category. Warning displayed.                                |
-| **L1** | Basic Check | Automated/Light check                  | valid phone/website, no user reports of inaccuracy.                      |
-| **L2** | Verified    | Confirmed by CareConnect Team          | Direct contact with provider (email/phone) within last 6 months.         |
-| **L3** | Partner     | Managed by Provider                    | Provider has claimed listing, accepted Terms, and updates data directly. |
-| **L4** | Accredited  | Official Government Source             | Data sync via API from municipal/provincial databases.                   |
+| Level  | Name        | Description                            | Requirements                                                                                          |
+| :----- | :---------- | :------------------------------------- | :---------------------------------------------------------------------------------------------------- |
+| **L0** | Unverified  | Initial import or community suggestion | Valid name & category. Warning displayed.                                                             |
+| **L1** | Basic Check | Automated/Light check                  | valid phone/website, no user reports of inaccuracy, and current within the 180-day visibility window. |
+| **L2** | Verified    | Confirmed by CareConnect Team          | Direct contact with provider (email/phone) within the last 180 days.                                  |
+| **L3** | Partner     | Managed by Provider                    | Provider has claimed listing, accepted Terms, and updates data directly.                              |
+| **L4** | Accredited  | Official Government Source             | Data sync via API from municipal/provincial databases.                                                |
 
 ## 3. Verification Process
 
@@ -37,6 +37,7 @@ To maintain the highest level of accuracy and safety for service listings in Car
   - Phone number connects.
   - Website is active.
   - Address exists in Kingston area.
+- Record `last_verified` or `provenance.verified_at` so freshness enforcement can keep the listing visible.
 
 ### Step 3: Confirmation (L1 to L2)
 
@@ -54,9 +55,11 @@ To maintain the highest level of accuracy and safety for service listings in Car
 
 ## 4. Maintenance Cycle
 
-- **L3 Listings**: Must renew verification every 6 months. Automatic reminders sent at 5 months.
-- **L0-L2 Listings**: CareConnect volunteers audit 10% of listings monthly.
-- **Stale Data**: Listings not verified for >12 months are downgraded to L0 and flagged "Potentially Outdated".
+- **Crisis / highly volatile listings**: Review monthly where operationally feasible.
+- **Pilot / priority listings**: Target re-verification within 90 days.
+- **General directory listings**: Must be re-verified within 180 days to remain publicly visible.
+- **Sampling discipline**: CareConnect can still audit a monthly sample across L0-L2 listings to catch decay earlier.
+- **Stale Data**: Listings not verified for >180 days are downgraded to L0, hidden from search, and may surface only with an explicit stale warning when directly linked.
 
 ## 5. Dispute Resolution
 

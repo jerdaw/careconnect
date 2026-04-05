@@ -69,6 +69,10 @@
     "noResultsHelpDifferentWords": "Intenta palabras diferentes (ej.: \"asistencia alimentaria\" en lugar de \"comestibles\")",
     "noResultsHelpCheckSpelling": "Verifica tu ortografía",
     "noResultsHelpBroaderSearch": "Busca un tema más amplio (ej.: \"salud\" en lugar de \"clínica de diabetes\")",
+    "matchReasonsHeading": "Por qué coincide",
+    "matchReasonsToggle": "Ver más razones de coincidencia",
+    "hideMatchReasons": "Ocultar razones adicionales",
+    "matchReasonsListLabel": "Razones de coincidencia",
     "saveThisSearch": "Guardar esta búsqueda"
   },
   "VoiceInput": {
@@ -646,6 +650,8 @@
     "permanentlyClosed": "Cerrado permanentemente",
     "mergedDescription": "Este servicio se ha fusionado con otra organización. Consulte la descripción para obtener los nuevos datos de contacto.",
     "closedDescription": "Este servicio ya no está operativo. Por favor, no visite este lugar.",
+    "staleRecordTitle": "Ventana de verificación vencida",
+    "staleRecordDescription": "Este registro supera la ventana de verificación aprobada de 6 meses de CareConnect. Confirme los detalles directamente con el proveedor antes de confiar en ellos.",
     "note": "Nota:",
     "mapTitle": "Ubicación en el mapa de {name}",
     "mapPrivacyDescription": "No se carga ningún mapa externo a menos que elijas verlo.",
@@ -750,11 +756,13 @@
     "verifiedOn": "Última verificación",
     "neverVerified": "Este servicio no ha sido verificado recientemente",
     "outdatedTooltip": "Esta información tiene más de 3 meses y puede ser inexacta.",
+    "expiredTooltip": "Esta información supera la ventana de verificación aprobada de 6 meses de CareConnect y debe volver a comprobarse directamente.",
     "verifiedTooltip": "Información confirmada por un socio el {date}",
     "levels": {
       "fresh": "Verificado recientemente",
       "recent": "Verificado en los últimos 3 meses",
-      "stale": "Verificación obsoleta"
+      "stale": "Verificación obsoleta",
+      "expired": "Verificación vencida"
     }
   },
   "Feedback": {

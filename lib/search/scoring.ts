@@ -1,6 +1,7 @@
 import { ScoringWeights } from "./types"
 import { Service, VerificationLevel, AuthorityTier } from "@/types/service"
 import { normalize } from "./utils"
+import { getFreshnessLevel } from "@/lib/freshness"
 
 export const WEIGHTS: ScoringWeights & {
   verificationL3: number
@@ -185,17 +186,11 @@ export function getVerificationMultiplier(level: VerificationLevel): number {
  * Recent verification = more reliable data = better ranking.
  */
 export function getFreshnessMultiplier(verifiedAt: string | undefined): number {
-  if (!verifiedAt) return WEIGHTS.freshnessStale // No date = assume stale
+  const freshnessLevel = getFreshnessLevel(verifiedAt)
 
-  const verifiedDate = new Date(verifiedAt)
-  if (isNaN(verifiedDate.getTime())) return WEIGHTS.freshnessStale
-
-  const now = new Date()
-  const daysSince = Math.floor((now.getTime() - verifiedDate.getTime()) / (1000 * 60 * 60 * 24))
-
-  if (daysSince <= 30) return WEIGHTS.freshnessRecent // 1.1
-  if (daysSince <= 90) return WEIGHTS.freshnessNormal // 1.0
-  return WEIGHTS.freshnessStale // 0.9
+  if (freshnessLevel === "fresh") return WEIGHTS.freshnessRecent
+  if (freshnessLevel === "recent") return WEIGHTS.freshnessNormal
+  return WEIGHTS.freshnessStale
 }
 
 /**

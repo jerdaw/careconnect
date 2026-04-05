@@ -154,4 +154,25 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.meta.offset).toBe(2)
     expect(json.meta.total).toBe(5)
   })
+
+  it("should exclude services beyond the governance freshness window", async () => {
+    const expiredDate = new Date()
+    expiredDate.setDate(expiredDate.getDate() - 200)
+
+    const expiredService = createMockService("expired", { last_verified: expiredDate.toISOString() })
+    const freshService = createMockService("fresh")
+
+    mockLimit.mockResolvedValue({
+      data: [expiredService, freshService],
+      error: null,
+    })
+
+    const req = createRequest({ query: "test", locale: "en" })
+    const res = await POST(req)
+    const json = (await res.json()) as { data: { id: string }[]; meta: { total: number } }
+
+    expect(json.data).toHaveLength(1)
+    expect(json.data[0]?.id).toBe("fresh")
+    expect(json.meta.total).toBe(1)
+  })
 })

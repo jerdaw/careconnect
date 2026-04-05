@@ -104,11 +104,13 @@ The platform is technically mature, but the next decision is strategic rather th
 
 ### Timeline
 
-**~90-day decision cycle**
+**Target ~90-day decision review cycle**
 
 - Phase 0: baseline + governance locks
 - Phase 1: pilot execution
 - Phase 2: objective go / conditional / stop decision
+
+This is a decision checkpoint target, not a guaranteed delivery schedule. The review window assumes external blockers such as legal review and partner evidence close in time to support a meaningful decision.
 
 ### Cost
 

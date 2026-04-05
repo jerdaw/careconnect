@@ -75,6 +75,10 @@
     "noResultsHelpDifferentWords": "Essayez des mots-clés différents (ex: \"aide alimentaire\" au lieu de \"épicerie\")",
     "noResultsHelpCheckSpelling": "Vérifiez votre orthographe",
     "noResultsHelpBroaderSearch": "Recherchez un sujet plus large (ex: \"santé\" au lieu de \"clinique du diabète\")",
+    "matchReasonsHeading": "Pourquoi ce résultat correspond",
+    "matchReasonsToggle": "Voir plus de raisons de correspondance",
+    "hideMatchReasons": "Masquer les raisons supplémentaires",
+    "matchReasonsListLabel": "Raisons de correspondance",
     "showAllResults": "Afficher {count} résultats provinciaux",
     "crisis": "🗣️ Crise",
     "food": "Alimentation",
@@ -251,11 +255,13 @@
     "verifiedOn": "Dernière vérification",
     "neverVerified": "Ce service n'a pas été vérifié récemment",
     "outdatedTooltip": "Cette information a plus de 3 mois et peut être inexacte.",
+    "expiredTooltip": "Cette information dépasse la fenêtre de vérification approuvée de 6 mois de CareConnect et doit être revérifiée directement.",
     "verifiedTooltip": "Information confirmée par un partenaire le {date}",
     "levels": {
       "fresh": "Vérifié récemment",
       "recent": "Vérifié au cours des 3 derniers mois",
-      "stale": "Vérification obsolète"
+      "stale": "Vérification obsolète",
+      "expired": "Vérification expirée"
     }
   },
   "Badges": {
@@ -679,6 +685,8 @@
     "permanentlyClosed": "Définitivement fermé",
     "mergedDescription": "Ce service a été fusionné avec une autre organisation. Veuillez vérifier la description pour les nouvelles coordonnées.",
     "closedDescription": "Ce service n'est plus opérationnel. Veuillez ne pas vous rendre à cet endroit.",
+    "staleRecordTitle": "Fenêtre de vérification expirée",
+    "staleRecordDescription": "Cet enregistrement dépasse la fenêtre de vérification approuvée de 6 mois de CareConnect. Confirmez directement les détails avec le fournisseur avant de vous y fier.",
     "note": "Note :",
     "mapTitle": "Emplacement sur la carte pour {name}",
     "mapPrivacyDescription": "Aucune carte externe n'est chargée tant que vous ne choisissez pas de l'afficher.",

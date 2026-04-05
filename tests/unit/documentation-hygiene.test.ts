@@ -60,6 +60,55 @@ describe("documentation hygiene", () => {
     expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env")
   })
 
+  it("keeps active CI documentation aligned with the live workflow runtime stack", () => {
+    const roadmap = readDoc("docs/planning/roadmap.md")
+    const releaseProcess = readDoc("docs/development/release-process.md")
+    const loadTesting = readDoc("docs/testing/load-testing.md")
+    const releaseWorkflow = readDoc(".github/workflows/release.yml")
+
+    expect(roadmap).toContain("Workflow runtime hygiene")
+    expect(roadmap).not.toContain("Audit the remaining GitHub Actions Node 24 warnings")
+
+    expect(releaseProcess).toContain("gh release create")
+    expect(releaseProcess).not.toContain("actions/create-release@v1")
+
+    expect(loadTesting).toContain("actions/checkout@v6")
+    expect(loadTesting).toContain("actions/setup-node@v6")
+    expect(loadTesting).toContain('node-version: "22"')
+    expect(loadTesting).toContain("actions/upload-artifact@v7")
+    expect(loadTesting).not.toContain("actions/upload-artifact@v4")
+
+    expect(releaseWorkflow).toContain("gh release create")
+    expect(releaseWorkflow).not.toContain("actions/create-release@v1")
+  })
+
+  it("keeps active freshness policy docs aligned with runtime governance", () => {
+    const standards = readDoc("docs/governance/standards.md")
+    const verificationProtocol = readDoc("docs/governance/verification-protocol.md")
+    const planningReadme = readDoc("docs/planning/README.md")
+    const roadmap = readDoc("docs/planning/roadmap.md")
+    const architecture = readDoc("docs/architecture.md")
+
+    expect(standards).toContain("Target re-verification within 90 days")
+    expect(standards).toContain("> 180 days is auto-downgraded to **L0**")
+    expect(standards).not.toContain("Confirmed active within 90 days")
+
+    expect(verificationProtocol).toContain("current within the 180-day visibility window")
+    expect(verificationProtocol).toContain("Target re-verification within 90 days")
+    expect(verificationProtocol).toContain("not verified for >180 days are downgraded to L0")
+    expect(verificationProtocol).not.toContain(">12 months")
+
+    expect(planningReadme).toContain("Target ~90-day decision review cycle")
+    expect(planningReadme).toContain("not a guaranteed delivery schedule")
+
+    expect(roadmap).toContain("180 days as the hard visibility limit")
+    expect(roadmap).toContain("review checkpoint rather than a guaranteed build schedule")
+
+    expect(architecture).toContain("Governance Freshness Enforcement")
+    expect(architecture).toContain("Result Explainability")
+    expect(architecture).toContain("180-day governance limit")
+  })
+
   it("points shared VPS facts to platform-ops in active entry points", () => {
     const readme = readDoc("README.md")
     const agents = readDoc("AGENTS.md")
