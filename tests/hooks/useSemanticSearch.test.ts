@@ -89,24 +89,28 @@ describe("useSemanticSearch Hook", () => {
       expect(result.current.isReady).toBe(false)
       expect(result.current.error).toBe("Init failed")
     })
+
+    await expect(result.current.generateEmbedding("text")).resolves.toBeNull()
   })
 
   it("generates embedding successfully", async () => {
     const mockEmbedding = [0.1, 0.2]
 
-    mockWorker.postMessage.mockImplementation(({ action, text }: { action: string; text?: string }) => {
-      if (action === "init") {
-        for (const handler of messageHandlers) {
-          handler({ data: { status: "ready" } } as any)
+    mockWorker.postMessage.mockImplementation(
+      ({ action, text, requestId }: { action: string; text?: string; requestId?: number }) => {
+        if (action === "init") {
+          for (const handler of messageHandlers) {
+            handler({ data: { status: "ready" } } as any)
+          }
         }
-      }
 
-      if (action === "embed") {
-        for (const handler of messageHandlers) {
-          handler({ data: { status: "complete", embedding: mockEmbedding, text } } as any)
+        if (action === "embed") {
+          for (const handler of messageHandlers) {
+            handler({ data: { status: "complete", embedding: mockEmbedding, text, requestId } } as any)
+          }
         }
       }
-    })
+    )
 
     const { result } = renderHook(() => useSemanticSearch())
     await act(async () => {
@@ -120,8 +124,41 @@ describe("useSemanticSearch Hook", () => {
       embeddingPromise = result.current.generateEmbedding("text")
     })
 
-    expect(mockWorker.postMessage).toHaveBeenCalledWith({ action: "embed", text: "text" })
+    expect(mockWorker.postMessage).toHaveBeenLastCalledWith({ action: "embed", text: "text", requestId: 0 })
     const embedding = await embeddingPromise!
     expect(embedding).toEqual(mockEmbedding)
+  })
+
+  it("settles embedding requests on worker embed errors", async () => {
+    mockWorker.postMessage.mockImplementation(
+      ({ action, text, requestId }: { action: string; text?: string; requestId?: number }) => {
+        if (action === "init") {
+          for (const handler of messageHandlers) {
+            handler({ data: { status: "ready" } } as any)
+          }
+        }
+
+        if (action === "embed") {
+          for (const handler of messageHandlers) {
+            handler({ data: { status: "error", error: "Embed failed", requestId, text } } as any)
+          }
+        }
+      }
+    )
+
+    const { result } = renderHook(() => useSemanticSearch())
+    await act(async () => {
+      await result.current.initSemanticSearch()
+    })
+
+    await waitFor(() => expect(result.current.isReady).toBe(true))
+
+    await expect(result.current.generateEmbedding("text")).resolves.toBeNull()
+    expect(mockWorker.removeEventListener).toHaveBeenCalledWith("message", expect.any(Function))
+
+    await waitFor(() => {
+      expect(result.current.isReady).toBe(false)
+      expect(result.current.error).toBe("Embed failed")
+    })
   })
 })

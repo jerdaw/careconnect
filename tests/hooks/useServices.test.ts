@@ -183,6 +183,34 @@ describe("useServices Hook", () => {
     ])
   })
 
+  it("keeps keyword-only results when semantic embedding is unavailable", async () => {
+    const baseResults: SearchResult[] = [
+      { service: { id: "base", scope: "kingston" } as any, score: 10, matchReasons: [] },
+    ]
+    mockGenerateEmbedding.mockResolvedValue(null)
+    ;(searchServices as any).mockResolvedValue(baseResults)
+
+    renderHook(() =>
+      useServices({
+        ...defaultProps,
+        query: "complex query",
+        isReady: true,
+      })
+    )
+    await flushSearchEffect()
+
+    expect(searchServices).toHaveBeenCalledTimes(1)
+    expect(searchServices).toHaveBeenCalledWith(
+      "complex query",
+      expect.objectContaining({
+        category: undefined,
+        location: undefined,
+        openNow: undefined,
+      })
+    )
+    expect(mockSetResults).toHaveBeenLastCalledWith(baseResults)
+  })
+
   it("applies scope filtering to both initial and enhanced local results", async () => {
     const mockEmbedding = [0.1, 0.2]
     mockGenerateEmbedding.mockResolvedValue(mockEmbedding)

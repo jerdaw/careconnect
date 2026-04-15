@@ -13,6 +13,10 @@ export const useSemanticSearch = () => {
   const worker = useRef<Worker | null>(null)
   const initPromiseRef = useRef<Promise<void> | null>(null)
   const initResolverRef = useRef<{ resolve: () => void; reject: (error: Error) => void } | null>(null)
+  const requestIdRef = useRef(0)
+  const pendingEmbeddingResolversRef = useRef(
+    new Map<number, { resolve: (value: number[] | null) => void; cleanup: () => void }>()
+  )
   const [status, setStatus] = useState<WorkerStatus>({
     isReady: false,
     hasStarted: false,
@@ -20,6 +24,27 @@ export const useSemanticSearch = () => {
     progress: null,
     error: null,
   })
+
+  const handleWorkerFailure = useCallback((message: string, options?: { rejectInit?: boolean }) => {
+    setStatus((prev) => ({
+      ...prev,
+      isReady: false,
+      hasStarted: true,
+      isInitializing: false,
+      error: message,
+    }))
+
+    if (options?.rejectInit) {
+      initResolverRef.current?.reject(new Error(message))
+      initResolverRef.current = null
+    }
+
+    for (const { resolve, cleanup } of pendingEmbeddingResolversRef.current.values()) {
+      cleanup()
+      resolve(null)
+    }
+    pendingEmbeddingResolversRef.current.clear()
+  }, [])
 
   const ensureWorker = useCallback(() => {
     if (worker.current) {
@@ -29,7 +54,7 @@ export const useSemanticSearch = () => {
     const nextWorker = new Worker(new URL("../app/worker.ts", import.meta.url))
 
     nextWorker.addEventListener("message", (event) => {
-      const { status: eventStatus, data, error } = event.data
+      const { status: eventStatus, data, error, requestId } = event.data
 
       if (eventStatus === "progress" && data.status === "progress") {
         setStatus((prev) => ({ ...prev, hasStarted: true, isInitializing: true, progress: data.progress }))
@@ -47,36 +72,22 @@ export const useSemanticSearch = () => {
         initResolverRef.current = null
       }
 
-      if (eventStatus === "error") {
+      if (eventStatus === "error" && requestId === undefined) {
         const message = typeof error === "string" ? error : "Failed to load model"
         logger.error("Worker Error:", message, { component: "useSemanticSearch" })
-        setStatus((prev) => ({
-          ...prev,
-          hasStarted: true,
-          isInitializing: false,
-          error: message,
-        }))
-        initResolverRef.current?.reject(new Error(message))
-        initResolverRef.current = null
+        handleWorkerFailure(message, { rejectInit: true })
       }
     })
 
     nextWorker.addEventListener("error", (event) => {
       const message = `Worker Error: ${event.message}`
       logger.error("Worker Script Error:", event.message, { component: "useSemanticSearch" })
-      setStatus((prev) => ({
-        ...prev,
-        hasStarted: true,
-        isInitializing: false,
-        error: message,
-      }))
-      initResolverRef.current?.reject(new Error(message))
-      initResolverRef.current = null
+      handleWorkerFailure(message, { rejectInit: true })
     })
 
     worker.current = nextWorker
     return nextWorker
-  }, [])
+  }, [handleWorkerFailure])
 
   const initSemanticSearch = useCallback(async () => {
     if (status.isReady) {
@@ -107,11 +118,14 @@ export const useSemanticSearch = () => {
   }, [ensureWorker, status.isReady])
 
   useEffect(() => {
+    const pendingEmbeddingResolvers = pendingEmbeddingResolversRef.current
+
     return () => {
       worker.current?.terminate()
       worker.current = null
       initResolverRef.current = null
       initPromiseRef.current = null
+      pendingEmbeddingResolvers.clear()
     }
   }, [])
 
@@ -123,19 +137,41 @@ export const useSemanticSearch = () => {
           return
         }
 
+        const currentWorker = worker.current
+        const requestId = requestIdRef.current++
+
         const handler = (event: MessageEvent) => {
-          const { status, embedding, text: responseText } = event.data
-          if (status === "complete" && responseText === text) {
-            worker.current?.removeEventListener("message", handler)
+          const { status, embedding, error, requestId: responseRequestId, text: responseText } = event.data
+          if (responseRequestId !== requestId || responseText !== text) {
+            return
+          }
+
+          const pendingRequest = pendingEmbeddingResolversRef.current.get(requestId)
+          pendingRequest?.cleanup()
+          pendingEmbeddingResolversRef.current.delete(requestId)
+
+          if (status === "complete") {
             resolve(embedding)
+            return
+          }
+
+          if (status === "error") {
+            const message = typeof error === "string" ? error : "Failed to generate embedding"
+            logger.error("Worker embedding error", message, { component: "useSemanticSearch" })
+            handleWorkerFailure(message)
+            resolve(null)
           }
         }
 
-        worker.current.addEventListener("message", handler)
-        worker.current.postMessage({ action: "embed", text })
+        pendingEmbeddingResolversRef.current.set(requestId, {
+          resolve,
+          cleanup: () => currentWorker.removeEventListener("message", handler),
+        })
+        currentWorker.addEventListener("message", handler)
+        currentWorker.postMessage({ action: "embed", text, requestId })
       })
     },
-    [status.isReady]
+    [handleWorkerFailure, status.isReady]
   )
 
   return {

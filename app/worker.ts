@@ -2,7 +2,10 @@
 
 let pipeline: any = null
 let env: any = null
-let isMockMode = false
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error)
+}
 
 class OptimizePipeline {
   static task = "feature-extraction"
@@ -10,57 +13,48 @@ class OptimizePipeline {
   static instance: any = null
 
   static async loadLibrary() {
-    if (!pipeline && !isMockMode) {
+    if (pipeline) {
+      return
+    }
+
+    try {
+      let transformers: any
       try {
-        let transformers: any
-        try {
-          // Dynamic CDN import - bypassing TypeScript module resolution
-          transformers = await import("@xenova/transformers").catch(async () => {
-            // Fallback: use dynamic import with inline comment
-            const url = "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"
-            return await import(/* webpackIgnore: true */ /* @vite-ignore */ url as any)
-          })
-        } catch (cdnErr) {
-          console.warn("[Worker] CDN import failed, trying local", cdnErr)
-          transformers = await import("@xenova/transformers")
-        }
-
-        // Handle CJS vs ESM default exports
-        if (transformers.default && !transformers.pipeline) {
-          transformers = transformers.default
-        }
-
-        pipeline = transformers.pipeline
-        env = transformers.env
-
-        if (!pipeline) {
-          throw new Error("Pipeline undefined after import")
-        }
-
-        if (env) {
-          env.allowLocalModels = false
-          env.useBrowserCache = true
-        }
-      } catch (e: any) {
-        console.error("[Worker] CRITICAL: Failed to load transformers library. Message:", e?.message || String(e))
-        console.warn("[Worker] Switching to MOCK MODE to allow UI testing.")
-        isMockMode = true
+        // Dynamic CDN import - bypassing TypeScript module resolution
+        transformers = await import("@xenova/transformers").catch(async () => {
+          // Fallback: use dynamic import with inline comment
+          const url = "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"
+          return await import(/* webpackIgnore: true */ /* @vite-ignore */ url as any)
+        })
+      } catch (cdnErr) {
+        console.warn("[Worker] CDN import failed, trying local", cdnErr)
+        transformers = await import("@xenova/transformers")
       }
+
+      // Handle CJS vs ESM default exports
+      if (transformers.default && !transformers.pipeline) {
+        transformers = transformers.default
+      }
+
+      pipeline = transformers.pipeline
+      env = transformers.env
+
+      if (!pipeline) {
+        throw new Error("Pipeline undefined after import")
+      }
+
+      if (env) {
+        env.allowLocalModels = false
+        env.useBrowserCache = true
+      }
+    } catch (error: unknown) {
+      console.error("[Worker] CRITICAL: Failed to load transformers library. Message:", getErrorMessage(error))
+      throw error
     }
   }
 
   static async getInstance(progress_callback: (data: any) => void) {
     await this.loadLibrary()
-
-    if (isMockMode) {
-      // Simulate progress for mock mode
-      progress_callback({ status: "progress", progress: 10 })
-      await new Promise((r) => setTimeout(r, 500))
-      progress_callback({ status: "progress", progress: 50 })
-      await new Promise((r) => setTimeout(r, 500))
-      progress_callback({ status: "progress", progress: 100 })
-      return "MOCK_PIPELINE"
-    }
 
     if (this.instance === null) {
       if (!pipeline) throw new Error("Transformers library not loaded")
@@ -71,7 +65,7 @@ class OptimizePipeline {
 }
 
 self.addEventListener("message", async (event) => {
-  const { action, text } = event.data
+  const { action, text, requestId } = event.data
 
   if (action === "init") {
     try {
@@ -90,26 +84,20 @@ self.addEventListener("message", async (event) => {
   }
 
   if (action === "embed") {
-    if (isMockMode) {
-      // Return dummy embedding
-      self.postMessage({ status: "complete", embedding: new Array(384).fill(0.1), text })
-      return
-    }
-
     try {
       const pipe = await OptimizePipeline.getInstance(() => {})
       const output = await pipe(text, { pooling: "mean", normalize: true })
 
       if (!output?.data) {
-        self.postMessage({ status: "error", error: "Embedding output undefined" })
+        self.postMessage({ status: "error", error: "Embedding output undefined", requestId, text })
         return
       }
 
       const embedding = Array.from(output.data)
-      self.postMessage({ status: "complete", embedding, text })
-    } catch (error: any) {
+      self.postMessage({ status: "complete", embedding, requestId, text })
+    } catch (error: unknown) {
       console.error("[Worker] Embed error:", error)
-      self.postMessage({ status: "error", error: String(error) })
+      self.postMessage({ status: "error", error: getErrorMessage(error), requestId, text })
     }
     return
   }

@@ -52,7 +52,7 @@ graph TD
 
 1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
-3. **Lazy Semantic Search**: Loads the optional WebLLM/WebGPU semantic stack in the background when the device supports it. Once ready, it re-ranks results based on vector similarity and on-device inference.
+3. **Lazy Semantic Search**: Loads the optional browser embedding worker in the background and upgrades local search with vector similarity only after the model initializes successfully. If worker initialization or embedding generation fails, the app fails closed to keyword-only search instead of emitting synthetic vectors.
 4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
 5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
 6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
@@ -134,7 +134,7 @@ sequenceDiagram
 
 ### Push Notifications
 
-- **Technology**: Web Push API + Service Worker (`app/worker.ts`).
+- **Technology**: Web Push API + Service Worker (`public/sw.js`, plus `public/custom-sw.js` for app-specific hooks).
 - **Flow**: User Opt-In -> Service Worker Subscribes -> Endpoint stored in `push_subscriptions` -> Server-side trigger via VAPID keys.
 - **Privacy**: No PII linked to subscriptions. User can revoked at any time via browser settings.
 

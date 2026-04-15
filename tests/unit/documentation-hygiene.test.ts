@@ -141,12 +141,14 @@ describe("documentation hygiene", () => {
     const serviceTypes = readDoc("types/service.ts")
     const serviceSchema = readDoc("lib/schemas/service.ts")
 
-    expect(architecture).toContain("WebLLM/WebGPU semantic stack")
+    expect(architecture).toContain("`@mlc-ai/web-llm` (WebGPU)")
     expect(architecture).not.toContain("TensorFlow.js")
+    expect(architecture).toContain("fails closed to keyword-only search")
     expect(architecture).toContain("Manually curated service records remain authoritative")
     expect(architecture).not.toContain("211 Ontario API (Raw Data) + Manual Verification (Golden Dataset)")
     expect(architecture).toContain("not currently represented in runtime types or search scoring")
     expect(architecture).toContain("7-locale switching")
+    expect(architecture).toContain("public/sw.js")
 
     expect(routing).toContain("7 locales")
     expect(routing).not.toContain("5 languages")
@@ -154,5 +156,13 @@ describe("documentation hygiene", () => {
     expect(serviceTypes).toContain('L3 = "L3"')
     expect(serviceTypes).not.toContain('L4 = "L4"')
     expect(serviceSchema).toContain('z.enum(["L0", "L1", "L2", "L3"])')
+  })
+
+  it("tracks the latest maintenance archive in planning docs", () => {
+    const planningIndex = readDoc("docs/planning/README.md")
+    const roadmap = readDoc("docs/planning/roadmap.md")
+
+    expect(planningIndex).toContain("2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md")
+    expect(roadmap).toContain("Semantic search fail-closed and lint hygiene (2026-04-15)")
   })
 })
