@@ -48,6 +48,7 @@ Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
 - **AI Readiness**: The `llms.txt` file is auto-generated in CI/docs builds to provide a "single source of truth" for agents.
+- **Docs Platform Freeze**: Keep this repo on MkDocs 1.x during the current wave. Do not start a Zensical migration here until the earlier shared waves succeed and the required `social`, `git-revision-date-localized`, and `swagger-ui-tag` parity is proven.
 
 > [!IMPORTANT]
 > [Highlight breaking changes, deployment requirements, or decisions needing approval]

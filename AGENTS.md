@@ -632,7 +632,9 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 - **Commit Hooks**: Husky runs lint + related tests on pre-commit
 - **Commit Convention**: Conventional commits enforced (see `commitlint.config.js`)
 - **XSS Prevention**: `highlightMatches` escapes HTML entities before applying `<mark>` tags
-- **Site Generation**: MkDocs Material for docs. Run `mkdocs serve` to view locally.
+- **Site Generation**: MkDocs 1.x Material remains the current docs stack. Run
+  `mkdocs serve` to view locally, and do not start the Zensical migration here
+  until the later shared wave is explicitly opened.
 
 ---
 

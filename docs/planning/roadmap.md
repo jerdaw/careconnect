@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-05
+last_updated: 2026-04-15
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-05
+> **Last Updated**: 2026-04-15
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -67,6 +67,16 @@ The active question is whether the project can prove non-duplicate value relativ
 3. Do not restart v19 launch execution while v22 remains `NO-GO`.
 4. Do not pull forward Tier 1-4 admissions packaging work before real pilot evidence exists.
 5. Do not pull forward parked enrichment or portfolio work unless it directly supports the active gate.
+
+## Cross-Repo Docs Platform Policy
+
+As of 2026-04-15, CareConnect follows the shared documentation-platform policy used across the affected MkDocs repos:
+
+1. Keep this repo on MkDocs 1.x plus Material in the short term, and treat that stack as supported legacy rather than the strategic default for new standalone docs sites.
+2. The intended MkDocs replacement is Zensical, but only after it clears the shared readiness gates: real strict-mode enforcement, a supported publish/deploy path, and parity for each repo's required plugins.
+3. The migration order is wave-based: `qquotes` first, then `visitbrief`, then `waittimecanada`, then plugin-heavier repos like CareConnect.
+4. CareConnect is a later-wave candidate because it depends on `social`, `git-revision-date-localized`, and `swagger-ui-tag`, so it should not be the proving ground.
+5. If Zensical stalls or fails to deliver the required compatibility in a reasonable window, use Sphinx + MyST as the mature fallback for any future standalone docs rebuild instead of starting fresh on MkDocs.
 
 ## Active Work
 
@@ -139,6 +149,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
 5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
+6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
 
 ## On Hold
 
