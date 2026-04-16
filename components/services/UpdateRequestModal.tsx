@@ -53,7 +53,6 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
     selectedField === "description" ||
     selectedField === "description_fr" ||
     selectedField === "hours_text" ||
-    selectedField === "hours_text_fr" ||
     selectedField === "eligibility_notes" ||
     selectedField === "eligibility_notes_fr" ||
     selectedField === "access_script" ||
@@ -69,7 +68,6 @@ export function UpdateRequestModal({ serviceId, serviceName, isOpen, onClose }: 
   }
 
   const getInputType = (field: ServiceUpdateFieldKey | "") => {
-    if (field === "email") return "email"
     if (field === "url") return "url"
     if (field === "phone") return "tel"
     return "text"

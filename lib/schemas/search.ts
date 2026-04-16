@@ -9,7 +9,7 @@ export const searchRequestSchema = z.object({
   filters: z
     .object({
       category: z.string().optional(),
-      // Future: verificationLevels, openNow, etc.
+      openNow: z.boolean().optional(),
     })
     .optional()
     .default({}),

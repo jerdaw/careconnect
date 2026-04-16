@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-05
+last_updated: 2026-04-16
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -53,7 +53,7 @@ graph TD
 1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads the optional browser embedding worker in the background and upgrades local search with vector similarity only after the model initializes successfully. If worker initialization or embedding generation fails, the app fails closed to keyword-only search instead of emitting synthetic vectors.
-4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings.
+4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings. The shared request contract now carries `category`, `location`, and `openNow` filters in both modes, including empty-query "open now" browsing.
 5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
 6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
 
@@ -73,6 +73,7 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
   - **No Data Egress**: Queries never leave the device.
   - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
   - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs) with `Cache-Control: no-store`. The database `services_public` view enforces a strict data boundary.
+  - **Share Target Handoff**: `POST /api/v1/share` stores shared search text in a short-lived first-party cookie and redirects without `?q=` so sensitive share text does not land in URLs, history, or referrers.
 - **Lifecycle**:
   - **Opt-In**: Model download only triggered by explicit user action.
   - **Idle Cleanup**: VRAM released after 5 minutes of inactivity.
@@ -108,6 +109,7 @@ sequenceDiagram
   - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
+- **Offline Export Contract**: `/api/v1/services/export` sanitizes the public payload, derives a stable SHA-256 fingerprint for both `version` and `ETag`, and offline sync clears the in-memory service cache after a successful refresh so newly synced data is visible immediately.
 
 ### User Feedback & Impact Loop (v14.0)
 
@@ -121,6 +123,7 @@ sequenceDiagram
 - **Localization Parity**: Full UI translation coverage for all 7 supported locales. Mandatory EN/FR parity for all service data.
 - **Simplified Views**: Optional plain-language summaries (Grade 6-8 reading level) for high-impact services, stored in `plain_language_summaries`.
 - **Low-Bandwidth Outputs**: Printable "Resource Cards" optimized for physical distribution and accessibility.
+- **Printable Card Privacy**: Printable cards escape interpolated service content and render QR codes locally as inline data URLs instead of calling third-party QR hosts.
 
 ### Visible Verification & Trust Signals (v14.0)
 
@@ -161,11 +164,12 @@ sequenceDiagram
 - **Roles**: `owner`, `admin`, `editor`, `viewer`.
 - **Functions**: CRUD operations for listings, member invites (invite/accept flow), and analytics viewing.
 - **Multi-Lingual Content**: Self-service editing for English and French fields (local services are EN/FR only).
+- **Mutation Guardrails**: Partner-facing write APIs use an explicit allowlist for editable fields. `owner` and `admin` can mutate any service in their organization, `editor` is limited to compatible ownership signals on services they created, and `viewer` is denied. Direct `access_script` edits remain on the update-request path until persistence is formalized.
 
 ### Data Flow
 
 - **Services**: Fetched via `/api/v1/services`. Cached using SWR-like strategies in hooks.
-- **Analytics**: Search events are logged to `/api/v1/analytics/search` asynchronously.
+- **Analytics**: Aggregate-only search events (`locale` + `resultCount`) are posted to `/api/v1/analytics/search` asynchronously. Raw query text, category, and location are not stored.
 
 ### v22 Phase 0 Pilot Instrumentation (Internal)
 
@@ -232,6 +236,7 @@ We use a modular hook system to separate concerns:
 
 - **Logger Utility**: Located in `lib/logger.ts`. Use instead of `console.log`.
 - **Error IDs**: The Error Boundary generates unique IDs (e.g., `ERR-K9X2J1`) for cross-referencing logs with user reports.
+- **Health Visibility**: In production, `/api/v1/health` exposes only basic public status. Detailed health checks remain admin-only.
 
 ### User Interface & Accessibility
 

@@ -1,9 +1,10 @@
 import "../../setup/next-mocks"
 import { describe, it, expect } from "vitest"
 import { POST } from "@/app/api/v1/share/route"
+import { SHARE_TARGET_QUERY_COOKIE_NAME } from "@/lib/share-target"
 
 describe("Share Target V1 API Route", () => {
-  it("redirects to home with shared text as query", async () => {
+  it("redirects to home and stores the shared query in a short-lived cookie", async () => {
     const formData = new FormData()
     formData.set("text", "food bank")
 
@@ -14,7 +15,11 @@ describe("Share Target V1 API Route", () => {
 
     const response = await POST(request)
     expect(response.status).toBe(303)
-    expect(response.headers.get("location")).toBe("http://localhost/?q=food%20bank")
+    expect(response.headers.get("location")).toBe("http://localhost/")
+    expect(response.headers.get("Cache-Control")).toBe("no-store")
+    expect(response.headers.get("set-cookie")).toContain(`${SHARE_TARGET_QUERY_COOKIE_NAME}=`)
+    expect(response.headers.get("set-cookie")).toContain("Max-Age=60")
+    expect(response.headers.get("set-cookie")).toContain("SameSite=lax")
   })
 
   it("falls back to title when text is missing", async () => {
@@ -28,7 +33,8 @@ describe("Share Target V1 API Route", () => {
 
     const response = await POST(request)
     expect(response.status).toBe(303)
-    expect(response.headers.get("location")).toBe("http://localhost/?q=Crisis%20resources")
+    expect(response.headers.get("location")).toBe("http://localhost/")
+    expect(response.headers.get("set-cookie")).toContain(`${SHARE_TARGET_QUERY_COOKIE_NAME}=`)
   })
 
   it("redirects to home on invalid form data", async () => {
@@ -41,5 +47,6 @@ describe("Share Target V1 API Route", () => {
     const response = await POST(request)
     expect(response.status).toBe(303)
     expect(response.headers.get("location")).toBe("http://localhost/")
+    expect(response.headers.get("Cache-Control")).toBe("no-store")
   })
 })

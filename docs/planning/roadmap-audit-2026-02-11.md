@@ -493,7 +493,7 @@ All 76 items have been added to `docs/planning/roadmap.md`:
 ## Audit Credits
 
 **Conducted**: 2026-02-11
-**Scope**: Comprehensive codebase analysis via 6 parallel AI agents
+**Scope**: Comprehensive codebase analysis across parallel audit passes
 
 - Project structure exploration
 - Git history analysis

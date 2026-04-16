@@ -582,7 +582,7 @@ Created 4 operational runbooks with step-by-step procedures:
 - Complete operational runbooks (4 scenarios covered)
 - Deployment checklist eliminates guesswork
 - Incident response plan provides clear procedures
-- CLAUDE.md updated with observability patterns for AI agents
+- Agent guidance files updated with observability patterns
 
 **Testing:**
 

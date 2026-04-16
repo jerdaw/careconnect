@@ -4,7 +4,7 @@
 > **Roadmap Version**: v16.0  
 > **Last Updated**: 2026-01-14
 > **Target Completion**: Q1 2026  
-> **Owner/Resourcing**: Solo dev + AI assistance  
+> **Owner/Resourcing**: Single-maintainer
 > **Scope Guardrail**: Improve search relevance through authority, completeness, and proximity scoring
 
 This document is the **version definition and implementation plan** for v16.0, which enhances search result ranking to surface authoritative sources, complete service information, and geographically relevant results.

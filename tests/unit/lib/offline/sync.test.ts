@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { syncOfflineData } from "@/lib/offline/sync"
 import * as db from "@/lib/offline/db"
+import { resetServiceDataCache } from "@/lib/search/data"
 
 // Mock DB
 vi.mock("@/lib/offline/db", () => ({
@@ -9,6 +10,10 @@ vi.mock("@/lib/offline/db", () => ({
   saveAllServices: vi.fn(),
   saveAllEmbeddings: vi.fn(),
   getAllServices: vi.fn(),
+}))
+
+vi.mock("@/lib/search/data", () => ({
+  resetServiceDataCache: vi.fn(),
 }))
 
 // Mock Fetch
@@ -22,6 +27,11 @@ vi.spyOn(console, "error").mockImplementation(() => {})
 describe("Offline Sync", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    vi.mocked(db.getMeta).mockImplementation(async (key: string) => {
+      if (key === "lastSync") return undefined
+      if (key === "version") return undefined
+      return undefined
+    })
   })
 
   it("should skip sync if recent and local data exists", async () => {
@@ -36,7 +46,6 @@ describe("Offline Sync", () => {
   })
 
   it("should perform full sync if no local data exists", async () => {
-    vi.mocked(db.getMeta).mockResolvedValue(undefined)
     mockFetch.mockResolvedValue({
       ok: true,
       status: 200,
@@ -56,10 +65,16 @@ describe("Offline Sync", () => {
     expect(db.saveAllServices).toHaveBeenCalled()
     expect(db.saveAllEmbeddings).toHaveBeenCalled()
     expect(db.setMeta).toHaveBeenCalledWith("lastSync", expect.any(String))
+    expect(db.setMeta).toHaveBeenCalledWith("version", "v1")
+    expect(resetServiceDataCache).toHaveBeenCalled()
   })
 
   it("should handle 304 Not Modified", async () => {
-    vi.mocked(db.getMeta).mockResolvedValue("2026-01-01")
+    vi.mocked(db.getMeta).mockImplementation(async (key: string) => {
+      if (key === "lastSync") return "2026-01-01"
+      if (key === "version") return "fingerprint-123"
+      return undefined
+    })
     mockFetch.mockResolvedValue({
       ok: true,
       status: 304,
@@ -70,11 +85,17 @@ describe("Offline Sync", () => {
     expect(result.status).toBe("up-to-date")
     expect(db.saveAllServices).not.toHaveBeenCalled()
     expect(db.setMeta).toHaveBeenCalledWith("lastSync", expect.any(String))
+    expect(mockFetch).toHaveBeenCalledWith(
+      "/api/v1/services/export",
+      expect.objectContaining({
+        headers: {
+          "If-None-Match": '"fingerprint-123"',
+        },
+      })
+    )
   })
 
   it("should retry on failure", async () => {
-    vi.mocked(db.getMeta).mockResolvedValue(undefined)
-
     // First two fail, third succeeds
     mockFetch
       .mockRejectedValueOnce(new Error("Network Fail"))
@@ -104,7 +125,6 @@ describe("Offline Sync", () => {
   })
 
   it("should return error status after max retries", async () => {
-    vi.mocked(db.getMeta).mockResolvedValue(undefined)
     mockFetch.mockRejectedValue(new Error("Permanent Failure"))
 
     vi.stubGlobal(

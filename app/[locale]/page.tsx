@@ -12,6 +12,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useSearchParams } from "next/navigation"
 import { parsePwaLaunchParams } from "@/lib/pwa/launch-params"
+import { consumeShareTargetQueryFromDocument } from "@/lib/share-target"
 
 // Modular Components
 import ModelStatus from "../../components/home/ModelStatus"
@@ -56,7 +57,7 @@ export default function Home() {
 
   // PWA launch hydration:
   // - `/` shortcut URLs (e.g. `/?category=Crisis`) are locale-resolved by middleware then land here.
-  // - Share Target redirects to `/?q=...`.
+  // - Share Target redirects to `/` and hands the shared query off via a short-lived first-party cookie.
   // This only applies when the URL params change, to avoid fighting user typing.
   useEffect(() => {
     const currentParamsKey = searchParams.toString()
@@ -64,8 +65,10 @@ export default function Home() {
     lastHydratedParams.current = currentParamsKey
 
     const { query: launchQuery, category: launchCategory, openNow: launchOpenNow } = parsePwaLaunchParams(searchParams)
+    const cookieQuery = launchQuery === null ? consumeShareTargetQueryFromDocument() : null
 
     if (launchQuery !== null) setQuery(launchQuery)
+    if (cookieQuery !== null) setQuery(cookieQuery)
     if (launchCategory !== null) setCategory(launchCategory)
     if (launchOpenNow !== null) setOpenNow(launchOpenNow)
   }, [searchParams, setQuery, setCategory, setOpenNow])

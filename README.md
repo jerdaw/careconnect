@@ -57,7 +57,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Proactive Monitoring**: Axiom integration for persistent metrics storage with <5ms overhead
 - **Automated Alerting**: Slack notifications for critical incidents (circuit breaker events, high error rates, SLO violations)
 - **SLO Tracking**: Service Level Objectives with 99.5% uptime target, p95 latency <800ms (PROVISIONAL)
-- **Observability Dashboard**: Real-time system health monitoring at `/admin/observability`
+- **Observability Dashboard**: Real-time system health monitoring at `/admin/observability`, with admin-only detailed diagnostics in production
 - **Operational Runbooks**: Incident response procedures for common failure scenarios (circuit breaker open, high error rates, slow queries, SLO violations)
 - **Circuit Breaker Telemetry**: 100% coverage on all API routes with automatic failover and alert integration
 
@@ -72,7 +72,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 - **Performance Tracking**: Real-time metrics with p50/p95/p99 latency tracking
 - **Circuit Breaker Pattern**: Automatic failover when database unavailable (fast-fail in <1ms)
-- **Health Check API**: Public and authenticated endpoints for system status
+- **Health Check API**: Public basic status plus admin-only detailed checks in production
 - **Load Testing**: k6 infrastructure for baseline metrics and regression detection
 - **Metrics Endpoint**: Development-only API for operational visibility
 
@@ -80,7 +80,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 - **Organization Management**: Create orgs, manage members with role-based access
 - **Service CRUD**: Partners can create, edit, and publish their listings
-- **Analytics**: View search analytics and user feedback
+- **Analytics**: View aggregate search analytics and user feedback
 - **Notifications**: Partner communication center
 - **RBAC System**: 4 role tiers (Owner, Admin, Editor, Viewer) with 19 granular permissions
 
@@ -117,8 +117,8 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 ### Search Intelligence
 
 - **Synonym Expansion**: "Hungry" returns food banks; "rent" surfaces eviction prevention resources.
-- **Open Now Filter**: Real-time availability based on structured operating hours.
-- **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
+- **Open Now Filter**: Real-time availability based on structured operating hours, aligned across local and server search.
+- **Privacy-First Analytics**: Tracks aggregate locale/result-count patterns without logging queries or filter details.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
 - **Search Explainability**: Public result cards and linked detail pages can show deduplicated match reasons for why a service ranked.
 - **Stale-Data Governance**: Records beyond the 180-day freshness window are hidden from search instead of lingering with only a soft score penalty.
@@ -154,7 +154,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.
 - **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
 - **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
-- **Printable Resource Cards** — High-contrast, one-page summaries for any service, designed for offline distribution.
+- **Printable Resource Cards** — High-contrast, one-page summaries for any service, designed for offline distribution with locally generated inline QR codes.
 - **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
 
 ---

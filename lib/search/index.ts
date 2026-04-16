@@ -64,9 +64,9 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         (service) => service.verification_level !== VerificationLevel.L0 && !isBeyondGovernanceFreshnessWindow(service)
       )
 
-      // Special Case: Empty Query but Category/Location selected
+      // Special Case: Empty Query but filters are active
       if (query.trim().length === 0) {
-        if (options.category || options.location) {
+        if (options.category || options.location || options.openNow) {
           // Return everything matching filter
           let results = filteredServices.map((service) => ({
             service,

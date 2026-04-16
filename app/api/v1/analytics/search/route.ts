@@ -3,12 +3,12 @@ import { trackSearchEvent } from "@/lib/analytics/search-analytics"
 import { z } from "zod"
 import { logger } from "@/lib/logger"
 import { validateContentType, ValidationError } from "@/lib/api-utils"
+import { SUPPORTED_LOCALES } from "@/lib/schemas/search"
 
 // Input Validation
 const analyticsSchema = z.object({
-  category: z.string().nullable().optional(),
+  locale: z.enum(SUPPORTED_LOCALES),
   resultCount: z.number().int().min(0),
-  hasLocation: z.boolean(),
 })
 
 const ANALYTICS_HEADERS = {
@@ -39,13 +39,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400, headers: ANALYTICS_HEADERS })
     }
 
-    const { category, resultCount, hasLocation } = validation.data
+    const { locale, resultCount } = validation.data
 
     // Log event safely (never logs query text)
     await trackSearchEvent({
-      category: category || null,
+      locale,
       resultCount,
-      hasLocation,
     })
 
     return NextResponse.json({ success: true }, { headers: ANALYTICS_HEADERS })

@@ -3,7 +3,7 @@
 > **Status**: ✅ Completed (2026-01-07)
 > **Roadmap Version**: v13.0 (Secure Data Architecture)
 > **Last Updated**: 2026-01-07
-> **Owner/Resourcing**: Solo dev + AI assistance (free-tier friendly)
+> **Owner/Resourcing**: Single-maintainer, free-tier friendly
 > **Scope Guardrail**: No IRL work (no outreach, no manual data expansion, no partnerships required)
 
 This document is the **version definition / implementation plan** for v13.0’s **Librarian Model**:

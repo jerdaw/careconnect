@@ -4,7 +4,7 @@
 > **Roadmap Version**: v14.0
 > **Last Updated**: 2026-01-12
 > **Target Completion**: Q1 2026
-> **Owner/Resourcing**: Solo dev + AI assistance (free-tier friendly)
+> **Owner/Resourcing**: Single-maintainer, free-tier friendly
 > **Scope Guardrail**: No IRL partnerships required; focus on product quality & measurability
 
 This document is the **version definition and implementation plan** for v14.0, which establishes **verifiable community impact without tracking**, **equity-first access**, and **visible verification trust signals**.
@@ -92,7 +92,7 @@ This roadmap positions CareConnect for:
 ### Key Constraints
 
 - **Privacy requirement**: Cannot introduce user tracking or persistent IDs
-- **Solo development**: Must be achievable with AI assistance, no team required
+- **Solo development**: Must remain achievable for a single maintainer without team staffing
 - **Free-tier friendly**: No paid services for core functionality
 - **Manual verification**: Cannot automate data quality (governance constraint)
 

@@ -5,6 +5,7 @@ import { DatabaseSimulator } from "./utils/db-simulator"
 import { trackEvent } from "@/lib/analytics"
 import { getServiceById } from "@/lib/services"
 import { syncOfflineData } from "@/lib/offline/sync"
+import * as offlineDb from "@/lib/offline/db"
 import { logger } from "@/lib/logger"
 
 // Mock logger to avoid noise
@@ -14,6 +15,14 @@ vi.mock("@/lib/logger", () => ({
     warn: vi.fn(),
     error: vi.fn(),
   },
+}))
+
+vi.mock("@/lib/offline/db", () => ({
+  getMeta: vi.fn(),
+  setMeta: vi.fn(),
+  saveAllServices: vi.fn(),
+  saveAllEmbeddings: vi.fn(),
+  getAllServices: vi.fn(),
 }))
 
 // Set environment variables for circuit breaker configuration
@@ -38,6 +47,11 @@ describe("Circuit Breaker Integration", () => {
     getSupabaseBreakerStats() // This will create the breaker if it doesn't exist
     resetSupabaseBreaker()
     dbSimulator.restore()
+    vi.mocked(offlineDb.getMeta).mockResolvedValue(undefined)
+    vi.mocked(offlineDb.setMeta).mockResolvedValue(undefined)
+    vi.mocked(offlineDb.saveAllServices).mockResolvedValue(undefined)
+    vi.mocked(offlineDb.saveAllEmbeddings).mockResolvedValue(undefined)
+    vi.mocked(offlineDb.getAllServices).mockResolvedValue([])
     // Use fake timers with Date mocking enabled
     vi.useFakeTimers({ shouldAdvanceTime: true })
     vi.setSystemTime(new Date("2024-01-01T00:00:00Z"))
@@ -190,9 +204,16 @@ describe("Circuit Breaker Integration", () => {
     expect(service).toBeNull()
   })
 
-  it("should skip offline sync when circuit is open", async () => {
+  it("should continue offline sync when circuit is open", async () => {
     // Mock window to avoid "Server-side sync not supported" error
     vi.stubGlobal("window", {})
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        status: 304,
+      })
+    )
 
     // Open the circuit
     dbSimulator.simulateFailure(3)
@@ -202,10 +223,9 @@ describe("Circuit Breaker Integration", () => {
       } catch {}
     }
 
-    // Sync should return error status immediately
+    // Sync should still proceed via the export fallback path
     const result = await syncOfflineData()
-    expect(result.status).toBe("error")
-    expect(result.error).toContain("Circuit breaker open")
+    expect(result.status).toBe("up-to-date")
 
     vi.unstubAllGlobals()
   })

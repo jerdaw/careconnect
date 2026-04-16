@@ -4,7 +4,11 @@ import { createApiResponse, createApiError, handleApiError, validateContentType 
 import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
-import { mapServicePayloadToUpdate } from "@/lib/service-db"
+import {
+  getDirectServiceWriteUnsupportedFields,
+  mapPartnerServiceEditToServiceUpdate,
+  PartnerServiceEditSchema,
+} from "@/lib/schemas/service-partner-edit"
 
 /**
  * GET /api/v1/services/[id]
@@ -80,12 +84,19 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     await assertServiceOwnership(supabaseAuth, user.id, id)
 
     validateContentType(request)
-    const body = (await request.json()) as Record<string, unknown>
+    const validation = PartnerServiceEditSchema.safeParse(await request.json())
+    if (!validation.success) {
+      return createApiError("Invalid service update payload", 400, validation.error.flatten())
+    }
 
-    // Prevent updating ID
-    delete body.id
+    const unsupportedFields = getDirectServiceWriteUnsupportedFields(validation.data)
+    if (unsupportedFields.length > 0) {
+      return createApiError("Unsupported direct update fields", 400, {
+        unsupportedFields,
+      })
+    }
 
-    const updates = mapServicePayloadToUpdate(body)
+    const updates = mapPartnerServiceEditToServiceUpdate(validation.data)
 
     const { data, error } = await withCircuitBreaker(async () =>
       supabaseAuth.from("services").update(updates).eq("id", id).select().single()
@@ -137,13 +148,19 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     await assertServiceOwnership(supabaseAuth, user.id, id)
 
     validateContentType(request)
-    const body = (await request.json()) as Record<string, unknown>
+    const validation = PartnerServiceEditSchema.safeParse(await request.json())
+    if (!validation.success) {
+      return createApiError("Invalid service update payload", 400, validation.error.flatten())
+    }
 
-    // Prevent updating ID or org_id easily via partial (safety)
-    delete body.id
-    delete body.org_id
+    const unsupportedFields = getDirectServiceWriteUnsupportedFields(validation.data)
+    if (unsupportedFields.length > 0) {
+      return createApiError("Unsupported direct update fields", 400, {
+        unsupportedFields,
+      })
+    }
 
-    const updates = mapServicePayloadToUpdate(body)
+    const updates = mapPartnerServiceEditToServiceUpdate(validation.data)
 
     const { data, error } = await withCircuitBreaker(async () =>
       supabaseAuth.from("services").update(updates).eq("id", id).select().single()

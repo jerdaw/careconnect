@@ -68,7 +68,7 @@ describe("ServiceCard Component", () => {
     expect(screen.getByText(mockService.name)).toBeInTheDocument()
   })
 
-  it("tracks clicks on details button", () => {
+  it("does not track internal detail navigation as a referral click", () => {
     render(
       <TestWrapper>
         <ServiceCard service={mockService} />
@@ -81,7 +81,21 @@ describe("ServiceCard Component", () => {
     const link = links[0]
     if (link) fireEvent.click(link)
 
-    expect(mockTrackEvent).toHaveBeenCalledWith(mockService.id, "click_website")
+    expect(mockTrackEvent).not.toHaveBeenCalled()
+  })
+
+  it("tracks call clicks", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard service={mockService} />
+      </TestWrapper>
+    )
+
+    const phoneLink = screen.getByRole("link", { name: mockService.phone })
+    phoneLink.addEventListener("click", (event) => event.preventDefault())
+    fireEvent.click(phoneLink)
+
+    expect(mockTrackEvent).toHaveBeenCalledWith(mockService.id, "click_call")
   })
 
   it("preserves match reasons in the details link", () => {

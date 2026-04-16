@@ -1,6 +1,7 @@
 import "../../setup/next-mocks"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { POST } from "@/app/api/v1/analytics/search/route"
+import { trackSearchEvent } from "@/lib/analytics/search-analytics"
 
 vi.mock("@/lib/analytics/search-analytics", () => ({
   trackSearchEvent: vi.fn().mockResolvedValue(undefined),
@@ -16,13 +17,14 @@ describe("POST /api/v1/analytics/search", () => {
       new Request("http://localhost/api/v1/analytics/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ category: "Food", resultCount: 3, hasLocation: false }),
+        body: JSON.stringify({ locale: "en", resultCount: 3 }),
       })
     )
 
     expect(response.status).toBe(200)
     expect(response.headers.get("Cache-Control")).toBe("no-store")
     expect(response.headers.get("X-Robots-Tag")).toBe("noindex")
+    expect(trackSearchEvent).toHaveBeenCalledWith({ locale: "en", resultCount: 3 })
   })
 
   it("rejects non-json content types", async () => {

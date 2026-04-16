@@ -20,6 +20,7 @@ import { recordUptimeEvent, getSLOComplianceSummary } from "@/lib/observability/
 import { sendSLOViolationAlert } from "@/lib/integrations/slack"
 import { MIN_SLO_ALERT_SAMPLES } from "@/lib/config/slo-targets"
 import { logger } from "@/lib/logger"
+import { isUserAdmin } from "@/lib/auth/authorization"
 
 /**
  * Health check response structure
@@ -165,13 +166,13 @@ async function checkAndAlertSLOViolations(compliance: ReturnType<typeof getSLOCo
   }
 }
 
-/**
- * Check if request is authenticated
- */
-async function isAuthenticated(): Promise<boolean> {
+async function getAuthenticatedUser(): Promise<{ authenticated: boolean; userId: string | null }> {
   try {
     if (!hasSupabaseCredentials()) {
-      return false
+      return {
+        authenticated: false,
+        userId: null,
+      }
     }
 
     const { createServerClient } = await import("@supabase/ssr")
@@ -193,9 +194,15 @@ async function isAuthenticated(): Promise<boolean> {
       data: { user },
     } = await supabaseAuth.auth.getUser()
 
-    return !!user
+    return {
+      authenticated: !!user,
+      userId: user?.id || null,
+    }
   } catch {
-    return false
+    return {
+      authenticated: false,
+      userId: null,
+    }
   }
 }
 
@@ -255,8 +262,31 @@ export async function GET(request: NextRequest) {
 
   // Check if request should get detailed metrics
   const isDevelopment = env.NODE_ENV === "development"
-  const authenticated = await isAuthenticated()
-  const showDetails = isDevelopment || authenticated
+  const { authenticated: isAuthenticatedUser, userId } = await getAuthenticatedUser()
+
+  let showDetails = isDevelopment || isAuthenticatedUser
+  if (env.NODE_ENV === "production") {
+    showDetails = false
+
+    if (isAuthenticatedUser && userId) {
+      const { createServerClient } = await import("@supabase/ssr")
+      const { cookies } = await import("next/headers")
+
+      const cookieStore = await cookies()
+      const supabaseAuth = createServerClient(
+        env.NEXT_PUBLIC_SUPABASE_URL || "",
+        env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
+        {
+          cookies: {
+            getAll: () => cookieStore.getAll(),
+            setAll: () => {},
+          },
+        }
+      )
+
+      showDetails = await isUserAdmin(supabaseAuth, userId)
+    }
+  }
 
   // Basic response (always public)
   const basicResponse = {

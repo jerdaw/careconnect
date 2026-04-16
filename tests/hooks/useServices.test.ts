@@ -51,6 +51,7 @@ vi.mock("@/lib/search/client-enhancer", () => ({
 }))
 
 import { searchServices } from "@/lib/search"
+import { getSearchMode, serverSearch } from "@/lib/search/search-mode"
 
 // Mock props
 const mockSetResults = vi.fn()
@@ -79,6 +80,8 @@ describe("useServices Hook", () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.useFakeTimers()
+    vi.mocked(getSearchMode).mockReturnValue("local")
+    vi.mocked(serverSearch).mockResolvedValue([])
     ;(global.fetch as any).mockReset()
     ;(global.fetch as any).mockResolvedValue({
       ok: true,
@@ -133,12 +136,69 @@ describe("useServices Hook", () => {
     const body = requestInit?.body ? JSON.parse(String(requestInit.body)) : null
 
     expect(body).toEqual({
-      category: undefined,
-      hasLocation: false,
+      locale: "en",
       resultCount: 0,
     })
     expect(body).not.toHaveProperty("query")
     expect(body).not.toHaveProperty("mode")
+  })
+
+  it("supports open-now-only searches without short-circuiting", async () => {
+    renderHook(() => useServices({ ...defaultProps, query: "", openNow: true }))
+    await flushSearchEffect()
+
+    expect(searchServices).toHaveBeenCalledWith(
+      "",
+      expect.objectContaining({
+        openNow: true,
+      })
+    )
+    expect(mockSetHasSearched).toHaveBeenLastCalledWith(true)
+  })
+
+  it("passes location and open-now filters through to server mode", async () => {
+    vi.mocked(getSearchMode).mockReturnValue("server")
+    vi.mocked(serverSearch).mockResolvedValue([{ id: "server-1" } as any])
+
+    renderHook(() =>
+      useServices({
+        ...defaultProps,
+        query: "housing",
+        category: "Housing",
+        openNow: true,
+        userLocation: { lat: 44.23, lng: -76.49 },
+      })
+    )
+    await flushSearchEffect()
+
+    expect(serverSearch).toHaveBeenCalledWith({
+      query: "housing",
+      locale: "en",
+      filters: { category: "Housing", openNow: true },
+      options: { limit: 50, offset: 0 },
+      location: { lat: 44.23, lng: -76.49 },
+    })
+  })
+
+  it("dedupes identical settled search analytics events", async () => {
+    const { rerender } = renderHook((props: typeof defaultProps & { query: string }) => useServices(props), {
+      initialProps: { ...defaultProps, query: "food" },
+    })
+    await flushSearchEffect()
+
+    const analyticsCallsAfterFirstSearch = vi
+      .mocked(global.fetch)
+      .mock.calls.filter(([url]) => url === "/api/v1/analytics/search").length
+
+    rerender({ ...defaultProps, query: "food" })
+    await flushSearchEffect()
+
+    const analyticsCallsAfterSecondSearch = vi
+      .mocked(global.fetch)
+      .mock.calls.filter(([url]) => url === "/api/v1/analytics/search").length
+
+    expect(analyticsCallsAfterFirstSearch).toBe(1)
+    expect(analyticsCallsAfterSecondSearch).toBe(1)
   })
 
   it("checks for suggestions", async () => {

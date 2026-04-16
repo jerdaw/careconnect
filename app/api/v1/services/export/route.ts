@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto"
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
 import { normalizeProvenance } from "@/lib/provenance"
@@ -40,16 +41,20 @@ function sanitizeForPublicExport(service: Service): PublicExportService {
   }
 }
 
+function createExportFingerprint(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex")
+}
+
+function normalizeEtag(value: string | null): string | null {
+  if (!value) {
+    return null
+  }
+
+  return value.replace(/^W\//, "").replace(/^"|"$/g, "")
+}
+
 export async function GET(request: Request) {
   try {
-    const dailyTag = `"${new Date().toISOString().split("T")[0]}"`
-
-    // Check If-None-Match
-    const ifNoneMatch = request.headers.get("If-None-Match")
-    if (ifNoneMatch === dailyTag) {
-      return new Response(null, { status: 304, headers: { ETag: dailyTag } })
-    }
-
     const rateLimit = await checkRateLimit(getClientIp(request), 60, 60 * 60 * 1000, "api:v1:services:export")
     if (!rateLimit.success) {
       return NextResponse.json(
@@ -63,29 +68,34 @@ export async function GET(request: Request) {
       .filter((s) => s.published !== false && !s.deleted_at)
       .map((s) => sanitizeForPublicExport(s))
     const publicIds = new Set(publicServices.map((s) => s.id))
+    const embeddings = services
+      .filter((s) => s.embedding && publicIds.has(s.id))
+      .map((s) => ({
+        id: s.id,
+        embedding: s.embedding!,
+      }))
+    const fingerprint = createExportFingerprint({
+      services: publicServices,
+      embeddings,
+    })
+    const etag = `"${fingerprint}"`
 
-    // Separate embeddings to reduce redundancy if needed, but for now we keep it simple
-    // Actually, separating them matches the IDB structure better and reduces JSON parsing overhead on the main service object if we want.
-    // But loadServices returns them integrated.
-    // Let's split them for the response to match the IDB save functions we just wrote.
+    if (normalizeEtag(request.headers.get("If-None-Match")) === fingerprint) {
+      return new Response(null, { status: 304, headers: { ETag: etag } })
+    }
 
     const exportData = {
-      version: new Date().toISOString(), // In a real app, this should be the max(updated_at)
+      version: fingerprint,
       count: publicServices.length,
       services: publicServices,
-      embeddings: services
-        .filter((s) => s.embedding && publicIds.has(s.id))
-        .map((s) => ({
-          id: s.id,
-          embedding: s.embedding!,
-        })),
+      embeddings,
     }
 
     // Add Cache-Control Headers
     return NextResponse.json(exportData, {
       headers: {
         "Cache-Control": "public, max-age=86400",
-        ETag: dailyTag,
+        ETag: etag,
       },
     })
   } catch (error) {
