@@ -7,6 +7,7 @@ import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
 import { ServiceUpdateSubmitSchema } from "@/types/feedback"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
+import { normalizePartnerServiceEditInput } from "@/lib/schemas/service-partner-edit"
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -61,7 +62,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       supabaseAuth.from("service_update_requests").insert({
         service_id: serviceId,
         requested_by: user.email ?? user.id,
-        field_updates,
+        field_updates: normalizePartnerServiceEditInput(field_updates),
         justification,
         status: "pending",
       })

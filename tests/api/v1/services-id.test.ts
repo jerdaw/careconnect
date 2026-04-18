@@ -1,14 +1,9 @@
 import "../../setup/next-mocks"
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { GET, PUT } from "@/app/api/v1/services/[id]/route"
+import { DELETE, GET, PATCH, PUT } from "@/app/api/v1/services/[id]/route"
 import { createMockRequest } from "@/tests/utils/api-test-utils"
 import { createServerClient } from "@supabase/ssr"
 import { supabase } from "@/lib/supabase"
-
-// --- Mock Setup for Chaining Supabase Calls ---
-const { mockUnsafeFrom } = vi.hoisted(() => ({
-  mockUnsafeFrom: vi.fn(),
-}))
 
 const createChainMock = () => ({
   select: vi.fn().mockReturnThis(),
@@ -21,20 +16,15 @@ const createChainMock = () => ({
 
 const publicChain = createChainMock()
 
-// Mock 'lib/supabase' (Public Client)
 vi.mock("@/lib/supabase", () => ({
   supabase: {
     from: vi.fn(),
   },
-  unsafeFrom: mockUnsafeFrom,
 }))
 
 const mockGetUser = vi.fn()
-
-// Persistent chains for the SSR client to handle multiple .from() calls
 const tableChains: Record<string, any> = {}
 
-// Standard SSR mocking via next-mocks
 vi.mocked(createServerClient).mockReturnValue({
   auth: {
     getUser: mockGetUser,
@@ -47,23 +37,50 @@ vi.mocked(createServerClient).mockReturnValue({
   },
 } as any)
 
+function mockServiceAuthorization(options: {
+  role: "owner" | "admin" | "editor" | "viewer"
+  service?: Record<string, unknown>
+  updatedRow?: Record<string, unknown>
+}) {
+  const servicesChain = createChainMock()
+  const membersChain = createChainMock()
+
+  tableChains["services"] = servicesChain
+  tableChains["organization_members"] = membersChain
+
+  servicesChain.single.mockResolvedValueOnce({
+    data: {
+      id: "123",
+      org_id: "org-1",
+      provenance: { verified_by: "user-1", method: "partner_submission" },
+      ...options.service,
+    },
+    error: null,
+  })
+
+  if (options.updatedRow) {
+    servicesChain.single.mockResolvedValueOnce({
+      data: options.updatedRow,
+      error: null,
+    })
+  }
+
+  membersChain.single.mockResolvedValue({
+    data: { role: options.role },
+    error: null,
+  })
+
+  return { servicesChain, membersChain }
+}
+
 describe("API v1 Services [id]", () => {
   beforeEach(() => {
     vi.clearAllMocks()
 
-    // Clear the persistent table chains
     for (const key in tableChains) delete tableChains[key]
 
-    // Link public client mock (used in GET)
     vi.mocked(supabase.from).mockReturnValue(publicChain as any)
-    mockUnsafeFrom.mockImplementation((_client: unknown, table: string) => {
-      if (!tableChains[table]) {
-        tableChains[table] = createChainMock()
-      }
-      return tableChains[table]
-    })
     publicChain.single.mockResolvedValue({ data: { id: "123", name: "Test Service" }, error: null })
-
     mockGetUser.mockResolvedValue({ data: { user: { id: "user-1" } }, error: null })
   })
 
@@ -107,39 +124,57 @@ describe("API v1 Services [id]", () => {
       expect(res.status).toBe(401)
     })
 
-    it("updates service and returns 200", async () => {
-      // 1. services table: first call for ownership, second for update
-      const servicesChain = createChainMock()
-      tableChains["services"] = servicesChain
-      servicesChain.single.mockResolvedValueOnce({ data: { org_id: "org-1" }, error: null }) // Ownership
-      servicesChain.single.mockResolvedValueOnce({ data: { id: "123", name: "Updated" }, error: null }) // Update
-
-      // 2. organization_members table: check membership
-      const membersChain = createChainMock()
-      tableChains["organization_members"] = membersChain
-      membersChain.single.mockResolvedValue({ data: { role: "admin" }, error: null })
+    it("allows admins to update any service in their organization", async () => {
+      const { servicesChain } = mockServiceAuthorization({
+        role: "admin",
+        updatedRow: { id: "123", name: "Updated" },
+      })
 
       const req = createMockRequest("http://localhost/api/v1/services/123", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: "Updated" }),
+        body: JSON.stringify({
+          name: "Updated",
+          eligibility_notes: "Must be 18+",
+          operating_hours: "Mon-Fri 9-5",
+        }),
       })
       const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
 
       expect(res.status).toBe(200)
-      const body = (await res.json()) as { data: any }
-      expect(body.data.name).toBe("Updated")
+      expect(servicesChain.update).toHaveBeenCalledWith({
+        name: "Updated",
+        eligibility: "Must be 18+",
+        hours_text: "Mon-Fri 9-5",
+      })
     })
 
-    it("returns 500 if database update fails", async () => {
-      const servicesChain = createChainMock()
-      tableChains["services"] = servicesChain
-      servicesChain.single.mockResolvedValueOnce({ data: { org_id: "org-1" }, error: null }) // Ownership
-      servicesChain.single.mockResolvedValueOnce({ data: null, error: { message: "DB Error" } }) // Update fails
+    it("allows editors to update only their own partner-submitted services", async () => {
+      mockServiceAuthorization({
+        role: "editor",
+        service: {
+          provenance: { verified_by: "user-1", method: "partner_submission" },
+        },
+        updatedRow: { id: "123", name: "Updated by editor" },
+      })
 
-      const membersChain = createChainMock()
-      tableChains["organization_members"] = membersChain
-      membersChain.single.mockResolvedValue({ data: { role: "admin" }, error: null })
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Updated by editor" }),
+      })
+      const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(200)
+    })
+
+    it("denies editors when the service is not owned by them", async () => {
+      mockServiceAuthorization({
+        role: "editor",
+        service: {
+          provenance: { verified_by: "other-user", method: "partner_submission" },
+        },
+      })
 
       const req = createMockRequest("http://localhost/api/v1/services/123", {
         method: "PUT",
@@ -148,7 +183,77 @@ describe("API v1 Services [id]", () => {
       })
       const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
 
-      expect(res.status).toBe(500)
+      expect(res.status).toBe(403)
+    })
+
+    it("denies viewers from mutating services", async () => {
+      mockServiceAuthorization({ role: "viewer" })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Updated" }),
+      })
+      const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(403)
+    })
+  })
+
+  describe("PATCH (Protected)", () => {
+    it("rejects unsupported direct-write fields with 400", async () => {
+      mockServiceAuthorization({
+        role: "admin",
+        updatedRow: { id: "123", name: "Updated" },
+      })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ access_script: "Say hello" }),
+      })
+      const res = await PATCH(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(400)
+    })
+
+    it("rejects forbidden or unknown payload keys with 400", async () => {
+      mockServiceAuthorization({
+        role: "admin",
+        updatedRow: { id: "123", name: "Updated" },
+      })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ published: true }),
+      })
+      const res = await PATCH(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(400)
+    })
+  })
+
+  describe("DELETE (Protected)", () => {
+    it("allows owners to delete services", async () => {
+      const { servicesChain } = mockServiceAuthorization({
+        role: "owner",
+      })
+      const deleteEq = vi.fn().mockResolvedValue({ error: null })
+      servicesChain.update.mockReturnValue({ eq: deleteEq })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "DELETE",
+      })
+      const res = await DELETE(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(200)
+      expect(servicesChain.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          deleted_by: "user-1",
+        })
+      )
+      expect(deleteEq).toHaveBeenCalledWith("id", "123")
     })
   })
 })

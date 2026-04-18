@@ -68,7 +68,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   // Distance is optionally added during search with geolocation
   const distance = service.distance
 
-  const handleTrack = (type: "click_website" | "click_call") => {
+  const handleTrack = (type: "click_call") => {
     trackEvent(service.id, type)
   }
 
@@ -254,12 +254,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               className="h-7 gap-1 px-2 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100"
               asChild
             >
-              <Link href={detailHref} onClick={() => handleTrack("click_website")}>
+              <Link href={detailHref}>
                 {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
               </Link>
             </Button>
             <Button size="sm" variant="ghost" className="h-7 gap-1 px-2 text-xs opacity-100 sm:hidden" asChild>
-              <Link href={detailHref} onClick={() => handleTrack("click_website")}>
+              <Link href={detailHref}>
                 {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
               </Link>
             </Button>

@@ -191,6 +191,32 @@ describe("POST /api/v1/services/[id]/update-request", () => {
     })
   })
 
+  it("normalizes the operating_hours alias to hours_text before storing the request", async () => {
+    const req = createMockRequest("http://localhost/api/v1/services/svc-123/update-request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        field_updates: {
+          operating_hours: "Mon-Fri 9-5",
+        },
+      }),
+    })
+
+    const res = await POST(req, { params: Promise.resolve({ id: "svc-123" }) })
+    const json = (await res.json()) as any
+
+    expect(res.status).toBe(200)
+    expect(json.data.success).toBe(true)
+    expect(tableChains["service_update_requests"]?.insert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        field_updates: {
+          operating_hours: "Mon-Fri 9-5",
+          hours_text: "Mon-Fri 9-5",
+        },
+      })
+    )
+  })
+
   it("accepts update request without justification (optional field)", async () => {
     const req = createMockRequest("http://localhost/api/v1/services/svc-123/update-request", {
       method: "POST",
@@ -252,18 +278,13 @@ describe("POST /api/v1/services/[id]/update-request", () => {
         description: "New Description",
         description_fr: "Nouvelle Description",
         phone: "613-555-1234",
-        email: "new@example.com",
         url: "https://new.example.com",
         address: "123 New St",
-        hours: { monday: { open: "09:00", close: "17:00" } },
         hours_text: "Mon-Fri 9-5",
-        hours_text_fr: "Lun-Ven 9-17",
         eligibility_notes: "New eligibility",
         eligibility_notes_fr: "Nouvelle éligibilité",
         access_script: "New access",
         access_script_fr: "Nouvel accès",
-        coordinates: { lat: 44.2312, lng: -76.486 },
-        status: "active",
       },
     }
 
@@ -296,12 +317,12 @@ describe("POST /api/v1/services/[id]/update-request", () => {
     expect(json.error.message).toBe("Invalid update data")
   })
 
-  it("returns 400 for invalid email format", async () => {
+  it("returns 400 when a no-longer-supported field is submitted", async () => {
     const req = createMockRequest("http://localhost/api/v1/services/svc-123/update-request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        field_updates: { email: "not-an-email" },
+        field_updates: { email: "new@example.com" },
       }),
     })
 

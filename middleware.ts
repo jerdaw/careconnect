@@ -3,6 +3,7 @@ import createMiddleware from "next-intl/middleware"
 import { routing } from "./i18n/routing"
 import { createServerClient, type CookieOptions } from "@supabase/ssr"
 import { env } from "@/lib/env"
+import { logger } from "@/lib/logger"
 
 // Initialize Internationalization Middleware
 const intlMiddleware = createMiddleware(routing)
@@ -53,15 +54,19 @@ export async function middleware(request: NextRequest) {
   // Refresh session if needed
   let user = null
   try {
-    // Skip auth check if using placeholder (CI/Test)
-    if (env.NEXT_PUBLIC_SUPABASE_URL?.includes("placeholder")) {
-      console.log("Skipping Supabase auth in middleware (Testing Mode)")
+    if (env.NODE_ENV === "test") {
+      logger.info("Skipping Supabase auth refresh in middleware during tests", {
+        component: "middleware",
+      })
     } else {
       const { data } = await supabase.auth.getUser()
       user = data.user
     }
   } catch (error) {
-    console.warn("Middleware Auth Error (Non-blocking):", error)
+    logger.warn("Middleware auth refresh failed", {
+      component: "middleware",
+      error: error instanceof Error ? error.message : String(error),
+    })
   }
 
   // 2. Internationalization (Run after auth check)

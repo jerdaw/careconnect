@@ -1,19 +1,38 @@
+import { NextResponse } from "next/server"
+import {
+  selectShareTargetQuery,
+  serializeShareTargetPayload,
+  SHARE_TARGET_QUERY_COOKIE_MAX_AGE_SECONDS,
+  SHARE_TARGET_QUERY_COOKIE_NAME,
+} from "@/lib/share-target"
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData()
+    const searchQuery = selectShareTargetQuery({
+      text: formData.get("text"),
+      title: formData.get("title"),
+      url: formData.get("url"),
+    })
 
-    const title = formData.get("title")
-    const text = formData.get("text")
-    const url = formData.get("url")
+    const response = NextResponse.redirect(new URL("/", request.url), 303)
+    response.headers.set("Cache-Control", "no-store")
 
-    const searchQuery =
-      (typeof text === "string" && text) ||
-      (typeof title === "string" && title) ||
-      (typeof url === "string" && url) ||
-      ""
+    if (searchQuery) {
+      response.cookies.set({
+        name: SHARE_TARGET_QUERY_COOKIE_NAME,
+        value: serializeShareTargetPayload({ query: searchQuery }),
+        maxAge: SHARE_TARGET_QUERY_COOKIE_MAX_AGE_SECONDS,
+        path: "/",
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+      })
+    }
 
-    return Response.redirect(new URL(`/?q=${encodeURIComponent(searchQuery)}`, request.url), 303)
+    return response
   } catch {
-    return Response.redirect(new URL("/", request.url), 303)
+    const response = NextResponse.redirect(new URL("/", request.url), 303)
+    response.headers.set("Cache-Control", "no-store")
+    return response
   }
 }

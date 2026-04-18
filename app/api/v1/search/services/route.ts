@@ -4,6 +4,7 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
 import { createApiResponse, createApiError, handleApiError } from "@/lib/api-utils"
 import { searchRequestSchema } from "@/lib/schemas/search"
 import { detectCrisis } from "@/lib/search/crisis"
+import { isOpenNow } from "@/lib/search/hours"
 import { scoreServicesServer } from "@/lib/search/server-scoring"
 import { ServicePublic } from "@/types/service-public"
 import { trackPerformance } from "@/lib/performance/tracker"
@@ -93,6 +94,9 @@ export async function POST(request: NextRequest) {
           }
           return s
         })
+        if (filters.openNow) {
+          services = services.filter((service) => isOpenNow(service.hours ?? undefined))
+        }
         services = services.filter((service) => !isBeyondGovernanceFreshnessWindow(service))
 
         // 7. Server-Side Scoring (The "Hybrid" Part)

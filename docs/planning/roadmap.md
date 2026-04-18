@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-15
+last_updated: 2026-04-16
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-15
+> **Last Updated**: 2026-04-16
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -36,7 +36,11 @@ tags: [planning, roadmap, v22.0, governance]
 - **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
+- **Partner write hardening**: partner-facing service mutation routes now use explicit editable-field allowlists, role-aware service ownership checks, and owner/admin-only delete semantics
+- **Search parity and freshness**: local and server search now align on `location` and `openNow` filters, including empty-query open-now browsing; offline export fingerprints are stable and successful syncs invalidate the in-memory service cache
+- **Privacy-safe sharing and analytics**: share-target hydration now uses a short-lived first-party cookie, printable cards generate inline QR codes locally, search analytics store only locale + result count, and detail-page analytics distinguish internal views from outbound referrals
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
+- **Health visibility**: `/api/v1/health` keeps public basic status while detailed production diagnostics are admin-only
 - **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
 - **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
@@ -233,6 +237,7 @@ Deferred items:
 3. Admin-facing data quality dashboard
 4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
 5. Unify client and server ranking around one shared scoring engine and retire the remaining placeholder scoring path
+6. Decide how direct partner service writes should persist `access_script` fields; the strict partner-edit contract now accepts them for update requests, but direct `PUT/PATCH` intentionally reject them until the storage contract is approved
 
 References:
 

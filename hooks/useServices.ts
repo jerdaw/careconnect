@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useLocale } from "next-intl"
 import type { SearchResult } from "@/lib/search"
 import { logger } from "@/lib/logger"
@@ -32,11 +32,12 @@ export function useServices({
   setSuggestion,
 }: UseServicesProps) {
   const locale = useLocale()
+  const lastAnalyticsSignature = useRef<string | null>(null)
 
   useEffect(() => {
     const performSearch = async () => {
       // Allow empty query if filters are active
-      if (query.trim().length === 0 && !category && !userLocation) {
+      if (query.trim().length === 0 && !category && !userLocation && !openNow) {
         setResults([])
         setHasSearched(false)
         setSuggestion(null)
@@ -73,8 +74,9 @@ export function useServices({
           const serverServices = await serverSearch({
             query,
             locale: locale as SupportedLocale,
-            filters: { category },
+            filters: { category, openNow },
             options: { limit: 50, offset: 0 },
+            location: userLocation,
           })
 
           // Map to SearchResult structure
@@ -122,17 +124,29 @@ export function useServices({
         }
 
         // Analytics
-        fetch("/api/v1/analytics/search", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            category,
-            hasLocation: !!userLocation,
-            resultCount: scopedResults.length,
-          }),
-        }).catch((err) =>
-          logger.error("Analytics tracking failed", err, { component: "useServices", action: "analytics" })
-        )
+        const analyticsSignature = JSON.stringify({
+          query: query.trim(),
+          category: category ?? null,
+          hasLocation: !!userLocation,
+          openNow: !!openNow,
+          resultCount: scopedResults.length,
+          locale,
+        })
+
+        if (lastAnalyticsSignature.current !== analyticsSignature) {
+          lastAnalyticsSignature.current = analyticsSignature
+
+          fetch("/api/v1/analytics/search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              locale,
+              resultCount: scopedResults.length,
+            }),
+          }).catch((err) =>
+            logger.error("Analytics tracking failed", err, { component: "useServices", action: "analytics" })
+          )
+        }
       } catch (err) {
         logger.error("Search failed", err, { component: "useServices", action: "performSearch" })
         setIsLoading(false)

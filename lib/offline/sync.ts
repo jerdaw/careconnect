@@ -1,7 +1,7 @@
 import { saveAllServices, saveAllEmbeddings, getMeta, setMeta, getAllServices } from "./db"
 import { logger } from "@/lib/logger"
 import { Service } from "@/types/service"
-import { isSupabaseAvailable, getSupabaseBreakerStats } from "@/lib/resilience/supabase-breaker"
+import { resetServiceDataCache } from "@/lib/search/data"
 
 interface SyncResult {
   status: "synced" | "up-to-date" | "error"
@@ -18,17 +18,8 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
   if (typeof window === "undefined") return { status: "error", error: "Server-side sync not supported" }
 
   try {
-    // Check circuit breaker state before attempting sync
-    if (!isSupabaseAvailable()) {
-      const stats = getSupabaseBreakerStats()
-      logger.warn("Sync skipped: Circuit breaker is open", { stats })
-      return {
-        status: "error",
-        error: `Circuit breaker open. Next attempt at ${new Date(stats.nextAttemptTime || 0).toISOString()}`,
-      }
-    }
-
     const lastSync = await getMeta<string>("lastSync")
+    const lastVersion = await getMeta<string>("version")
     const now = Date.now()
 
     // 1. Skip if recent (unless forced)
@@ -41,12 +32,13 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
 
     logger.info("Starting offline data sync")
 
-    // 2. Delta Sync check using ETag from last version/date
-    const dailyTag = `"${new Date().toISOString().split("T")[0]}"`
+    // 2. Delta Sync check using the last known export fingerprint
     const response = await fetch("/api/v1/services/export", {
-      headers: {
-        "If-None-Match": dailyTag, // Use a date tag as defined in the API
-      },
+      headers: lastVersion
+        ? {
+            "If-None-Match": `"${lastVersion}"`,
+          }
+        : undefined,
     })
 
     if (response.status === 304) {
@@ -68,6 +60,7 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
 
     await saveAllServices(data.services)
     await saveAllEmbeddings(data.embeddings)
+    resetServiceDataCache()
 
     const timestamp = new Date().toISOString()
     await setMeta("lastSync", timestamp)

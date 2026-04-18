@@ -9,6 +9,10 @@ import { mapServiceRowToService } from "@/lib/service-db"
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
 
+export function resetServiceDataCache() {
+  dataCache = null
+}
+
 /**
  * Loads services from Supabase (if configured) or falls back to local JSON.
  * Uses dynamic imports to avoid bundling large JSON files when running in server mode.

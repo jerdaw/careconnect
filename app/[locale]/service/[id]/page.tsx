@@ -30,7 +30,9 @@ import { TrustPanel } from "@/components/services/TrustPanel"
 import { ServiceActionBar } from "@/components/services/ServiceActionBar"
 import { PartnerActionsPanel } from "@/components/services/PartnerActionsPanel"
 import { ExternalMapPanel } from "@/components/services/ExternalMapPanel"
+import { ServiceDetailTracker } from "@/components/services/ServiceDetailTracker"
 import ServiceMatchReasons from "@/components/services/ServiceMatchReasons"
+import { TrackedServiceLink } from "@/components/services/TrackedServiceLink"
 import { normalizeMatchReasons } from "@/lib/search/match-reasons"
 import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
 
@@ -99,6 +101,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-50 dark:bg-neutral-950">
+      <ServiceDetailTracker serviceId={service.id} />
       <Header />
       <main id="main-content" tabIndex={-1}>
         {/* Hero Header */}
@@ -302,9 +305,14 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       </div>
                       <div>
                         <p className="text-sm font-medium text-neutral-500">{t("phone")}</p>
-                        <a href={`tel:${service.phone}`} className="text-primary-600 font-medium hover:underline">
+                        <TrackedServiceLink
+                          href={`tel:${service.phone}`}
+                          serviceId={service.id}
+                          eventType="click_call"
+                          className="text-primary-600 font-medium hover:underline"
+                        >
                           {service.phone}
-                        </a>
+                        </TrackedServiceLink>
                       </div>
                     </div>
                   )}
@@ -316,14 +324,16 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       </div>
                       <div>
                         <p className="text-sm font-medium text-neutral-500">{t("website")}</p>
-                        <a
+                        <TrackedServiceLink
                           href={service.url}
+                          serviceId={service.id}
+                          eventType="click_website"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary-600 font-medium break-all hover:underline"
                         >
                           {t("visitWebsite")}
-                        </a>
+                        </TrackedServiceLink>
                       </div>
                     </div>
                   )}

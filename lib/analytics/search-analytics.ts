@@ -3,9 +3,8 @@ import { logger } from "@/lib/logger"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 
 export interface SearchEvent {
-  category: string | null
+  locale: string
   resultCount: number
-  hasLocation: boolean
 }
 
 /**
@@ -29,6 +28,7 @@ export async function trackSearchEvent(event: SearchEvent) {
       supabase.from("search_analytics").insert({
         query: null,
         results_count: event.resultCount,
+        locale: event.locale,
       })
     )
 

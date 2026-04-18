@@ -9,7 +9,7 @@
  * - Recent incidents (last 24h)
  * - System health summary
  *
- * Access: Admin-only (enforced via middleware)
+ * Access: Admin-only (enforced in-page)
  */
 
 import { Metadata } from "next"

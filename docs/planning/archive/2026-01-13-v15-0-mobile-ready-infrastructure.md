@@ -4,7 +4,7 @@
 > **Roadmap Version**: v15.0
 > **Last Updated**: 2026-01-13
 > **Target Completion**: Q1 2026
-> **Owner/Resourcing**: Solo dev + AI assistance (free-tier friendly)
+> **Owner/Resourcing**: Single-maintainer, free-tier friendly
 > **Scope Guardrail**: Build infrastructure without requiring macOS or App Store accounts
 > **Follow-Up**: v15.1 (Mobile App Launch) will handle actual App Store deployment
 
@@ -149,7 +149,7 @@ This roadmap positions CareConnect for:
 - **No macOS Access**: Cannot build or test iOS apps; focus on cross-platform infrastructure
 - **No App Store Accounts**: Cannot submit apps; build backend and web-testable features
 - **Free-Tier Friendly**: Must use free or self-hosted solutions
-- **Solo Development**: Must be achievable with AI assistance, no team required
+- **Solo Development**: Must remain achievable for a single maintainer without team staffing
 - **Privacy Compliance**: No new tracking or data collection
 
 ---

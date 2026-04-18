@@ -45,12 +45,13 @@ describe("Search Analytics", () => {
   })
 
   it("stores only aggregate counts and never raw query text", async () => {
-    await trackSearchEvent({ category: "Food", resultCount: 10, hasLocation: true })
+    await trackSearchEvent({ locale: "en", resultCount: 10 })
     expect(mockFrom).toHaveBeenCalledWith("search_analytics")
     expect(mockInsert).toHaveBeenCalledWith(
       expect.objectContaining({
         query: null,
         results_count: 10,
+        locale: "en",
       })
     )
   })
@@ -58,7 +59,7 @@ describe("Search Analytics", () => {
   it("handles supabase errors silently", async () => {
     mockInsert.mockResolvedValue({ error: { message: "DB Error" } })
 
-    await trackSearchEvent({ category: "Food", resultCount: 5, hasLocation: true })
+    await trackSearchEvent({ locale: "fr", resultCount: 5 })
 
     expect(mockWarn).toHaveBeenCalled()
   })

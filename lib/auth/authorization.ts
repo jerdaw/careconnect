@@ -1,5 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js"
 import { AuthorizationError, NotFoundError } from "@/lib/api-utils"
+import { normalizeProvenance } from "@/lib/provenance"
 import { OrganizationRole, RolePermissions, hasPermission } from "@/lib/rbac"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
@@ -40,10 +41,10 @@ export async function assertServiceOwnership(
 ) {
   try {
     return await withCircuitBreaker(async () => {
-      // 1. Get the service's organization ID
+      // Fetch the full row so editor access can verify compatible ownership signals.
       const { data: service, error: serviceError } = await supabase
         .from("services")
-        .select("org_id")
+        .select("*")
         .eq("id", serviceId)
         .single()
 
@@ -73,6 +74,21 @@ export async function assertServiceOwnership(
       // 3. Check role
       if (!allowedRoles.includes(member.role)) {
         throw new AuthorizationError(`Access denied: Requires ${allowedRoles.join(" or ")} role`)
+      }
+
+      const role = member.role as OrganizationRole
+
+      if (role === "editor") {
+        const serviceRecord = service as Record<string, unknown> & { provenance?: unknown }
+        const createdBy = typeof serviceRecord.created_by === "string" ? serviceRecord.created_by : null
+        const provenance = normalizeProvenance(serviceRecord.provenance)
+        const isCompatOwnedByEditor =
+          createdBy === userId ||
+          (createdBy === null && provenance.method === "partner_submission" && provenance.verified_by === userId)
+
+        if (!isCompatOwnedByEditor) {
+          throw new AuthorizationError("Editors can only modify services they created")
+        }
       }
 
       return true

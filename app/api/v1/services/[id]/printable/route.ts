@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
+import QRCode from "qrcode"
 import { getServiceById } from "@/lib/services"
 import { BRAND_NAME, getPublicAppUrl } from "@/lib/brand"
 
 const PUBLIC_BASE_URL = getPublicAppUrl()
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;")
+}
 
 // Format hours for display
 function formatHours(hours: Record<string, { open: string; close: string }> | null | undefined): string {
@@ -35,14 +45,27 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     service.hours_text || formatHours(service.hours as Record<string, { open: string; close: string }> | null)
   const eligibility = service.eligibility_notes || service.eligibility || "Contact for eligibility information"
   const serviceUrl = `${PUBLIC_BASE_URL}/service/${id}`
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(serviceUrl)}`
+  const qrCodeUrl = await QRCode.toDataURL(serviceUrl, {
+    width: 100,
+    margin: 1,
+    errorCorrectionLevel: "M",
+  })
+
+  const escapedName = escapeHtml(name)
+  const escapedPhone = escapeHtml(phone)
+  const escapedAddress = escapeHtml(address)
+  const escapedHoursText = escapeHtml(hoursText)
+  const escapedEligibility = escapeHtml(eligibility)
+  const escapedBrandName = escapeHtml(BRAND_NAME)
+  const escapedPublicBaseUrl = escapeHtml(PUBLIC_BASE_URL.replace(/^https?:\/\//, ""))
+  const escapedQrCodeUrl = escapeHtml(qrCodeUrl)
 
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resource Card: ${name}</title>
+  <title>Resource Card: ${escapedName}</title>
   <style>
     * {
       margin: 0;
@@ -131,35 +154,35 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   </style>
 </head>
 <body>
-  <h1>${name}</h1>
+  <h1>${escapedName}</h1>
   
   <div class="field">
     <span class="label">Phone</span>
-    <span class="value">${phone}</span>
+    <span class="value">${escapedPhone}</span>
   </div>
   
   <div class="field">
     <span class="label">Address</span>
-    <span class="value">${address}</span>
+    <span class="value">${escapedAddress}</span>
   </div>
   
   <div class="field">
     <span class="label">Hours</span>
-    <span class="value">${hoursText}</span>
+    <span class="value">${escapedHoursText}</span>
   </div>
   
   <div class="field">
     <span class="label">Eligibility</span>
-    <span class="value">${eligibility}</span>
+    <span class="value">${escapedEligibility}</span>
   </div>
   
   <div class="footer">
     <div class="source">
-      Source: ${BRAND_NAME}<br>
-      ${PUBLIC_BASE_URL.replace(/^https?:\/\//, "")}
+      Source: ${escapedBrandName}<br>
+      ${escapedPublicBaseUrl}
     </div>
     <div class="qr-container">
-      <img src="${qrCodeUrl}" alt="QR code to service page">
+      <img src="${escapedQrCodeUrl}" alt="QR code to service page">
       <div class="qr-label">Scan for details</div>
     </div>
   </div>
