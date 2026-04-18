@@ -1,0 +1,28 @@
+version: 1
+repo_root: careconnect
+services:
+  - service_id: careconnect-web
+    inventory_repo: careconnect
+    runtime: docker
+    ingress: host-caddy
+    canonical_host: careconnect.ing
+    public_hosts:
+      - careconnect.ing
+    private_bind: 127.0.0.1:3300
+    container_name: careconnect-web
+    systemd_unit: null
+    env_file: /etc/projects-merge/env/careconnect-web.env
+    release_root: /srv/apps/careconnect-web/releases
+    health:
+      public:
+        url: https://careconnect.ing/api/v1/health
+        kind: json
+        expect_status:
+          - 200
+        expect_json_status:
+          - healthy
+          - degraded
+      private: null
+    boundary_entrypoints:
+      - docs/deployment/production-checklist.md
+      - docs/deployment/direct-vps-proof.md

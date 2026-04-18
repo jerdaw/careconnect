@@ -41,6 +41,13 @@ When in doubt, **read `README.md` and `docs/**` first\*\*.
 
 **Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
 
+Shared-touching live runtime facts for the live web service now also live in the
+repo-root `platform-ops-contract.yaml`. When changing the live canonical host,
+private bind, env-file path, release root, runtime owner, or shared health
+endpoint contract, update that manifest and the matching
+`/home/jer/repos/platform-ops` inventory/current-state surfaces in the same
+change window.
+
 ---
 
 ## Key Commands
