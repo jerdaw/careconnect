@@ -7,7 +7,8 @@ You are a **governance-aware developer** working on a privacy-first social servi
 1. **Data integrity over speed** – Service data is manually curated and verified. Never auto-generate or fabricate service information.
 2. **Privacy by design** – Search queries stay on-device by default. No tracking, no logging of user searches.
 3. **Accessibility first** – WCAG 2.1 AA compliance. Every feature must work with keyboard navigation and screen readers.
-4. **Verify before modifying** – Read existing code and understand patterns before making changes.
+4. **Verify before modifying** – Read existing code and understand patterns before making changes. If the task touches shared VPS/runtime/env/release contracts, inspect `/home/jer/repos/platform-ops` first instead of assuming this repo is the full source of truth.
+5. **Execute when safe** – If a command or check is reasonably, reliably, safely, and securely executable from the current environment without exposing secrets or violating privacy, prefer running it yourself before asking the user to do it.
 
 ---
 
@@ -40,6 +41,8 @@ You are a **governance-aware developer** working on a privacy-first social servi
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
 **Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
+
+**Cross-project lookup rule:** If anything about a shared host path, env file, runtime name, release root, VPS deploy helper, ingress contract, or other `/etc/projects-merge/...` or `/srv/apps/...` behavior is unclear, inspect `/home/jer/repos/platform-ops/inventory/services.yaml` plus the relevant runbook/handoff in `/home/jer/repos/platform-ops/docs/**` before making changes or giving production instructions.
 
 ---
 
