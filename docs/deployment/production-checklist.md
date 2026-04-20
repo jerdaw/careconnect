@@ -20,9 +20,9 @@ This is the active production checklist for CareConnect on the direct-VPS path.
 Shared-VPS ownership note:
 
 - This checklist is canonical for CareConnect production deploy, verify, and rollback steps.
-- Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
-- Boundary reference: `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
-- If any shared runtime/env path, release root, host bind, or VPS deploy contract is unclear, inspect `/home/jer/repos/platform-ops/inventory/services.yaml` and the relevant runbook/handoff there before assuming this repo alone is sufficient.
+- Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/vps/platform-ops`.
+- Boundary reference: `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`
+- If any shared runtime/env path, release root, host bind, or VPS deploy contract is unclear, inspect `/home/jer/repos/vps/platform-ops/inventory/services.yaml` and the relevant runbook/handoff there before assuming this repo alone is sufficient.
 
 GitHub Actions posture:
 

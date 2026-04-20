@@ -117,14 +117,16 @@ describe("documentation hygiene", () => {
     const directVpsProof = readDoc("docs/deployment/direct-vps-proof.md")
 
     for (const content of [readme, agents, docsIndex, productionChecklist, directVpsProof]) {
-      expect(content).toContain("/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md")
+      expect(content).toContain(
+        "/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md"
+      )
     }
 
     expect(productionChecklist).toContain(
-      "Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`."
+      "Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/vps/platform-ops`."
     )
     expect(directVpsProof).toContain(
-      "Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`."
+      "Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/vps/platform-ops`."
     )
   })
 

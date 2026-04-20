@@ -2,8 +2,8 @@
 
 Shared VPS facts that are not specific to CareConnect alone are canonical in:
 
-- `/home/jer/repos/platform-ops`
-- `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+- `/home/jer/repos/vps/platform-ops`
+- `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`
 
 ## Quick Links
 

@@ -32,7 +32,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 4. `www.careconnect.ing` redirects to the apex and the app container remains bound privately at `127.0.0.1:3300`.
 5. `helpbridge.ca` and `www.helpbridge.ca` now `308`-redirect to the canonical `careconnect.ing` host.
 6. The GitHub repository slug is now [jerdaw/careconnect](https://github.com/jerdaw/careconnect).
-7. Shared VPS inventory, roadmap, and cross-project runbooks now live in `/home/jer/repos/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`).
+7. Shared VPS inventory, roadmap, and cross-project runbooks now live in `/home/jer/repos/vps/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`).
 8. Push notifications are optional and stay disabled unless OneSignal is explicitly configured.
 
 ## Shared documentation boundary
@@ -48,7 +48,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
    - CareConnect runtime and environment contract
    - CareConnect deploy, verification, and rollback steps
 3. Boundary reference:
-   - `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+   - `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`
 
 ## Current Features
 

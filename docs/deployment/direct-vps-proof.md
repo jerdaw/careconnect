@@ -12,8 +12,8 @@ This document describes the **current active direct-VPS deployment path** for Ca
 Shared-VPS ownership note:
 
 1. This document is canonical for the CareConnect direct-VPS runtime shape.
-2. Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
-3. Use `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md` as the default boundary reference.
+2. Shared host topology, ingress ownership, service inventory, and other cross-project VPS facts are canonical in `/home/jer/repos/vps/platform-ops`.
+3. Use `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md` as the default boundary reference.
 
 Current state:
 

@@ -22,7 +22,7 @@ This guide covers migration execution and rollback planning for CareConnect data
   - policy/security-sensitive
 - confirm any app code that depends on the migration is deploy-synchronized
 - record the current deployed revision and the current database state snapshot
-- if the work depends on shared VPS/runtime/env/release assumptions, inspect `/home/jer/repos/platform-ops/inventory/services.yaml` and the relevant runbook/handoff before giving production instructions
+- if the work depends on shared VPS/runtime/env/release assumptions, inspect `/home/jer/repos/vps/platform-ops/inventory/services.yaml` and the relevant runbook/handoff before giving production instructions
 - for production or any non-disposable environment, run a read-only live-schema preflight before any write:
   - inspect the current table columns for each object the migration/backfill expects
   - inspect affected view definitions when the change touches a view

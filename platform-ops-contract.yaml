@@ -24,5 +24,8 @@ services:
           - degraded
       private: null
     boundary_entrypoints:
+      - README.md
+      - AGENTS.md
+      - docs/README.md
       - docs/deployment/production-checklist.md
       - docs/deployment/direct-vps-proof.md
