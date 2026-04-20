@@ -26,16 +26,16 @@ jobs:
 
       - name: Verify public health endpoint
         run: |
-          python - <<'PY'
+          # Cloudflare blocks Python's default urllib user agent on this route.
+          # Use curl for the probe and Python only for JSON validation.
+          curl -fsS -A 'CareConnectProductionSmoke/1.0' https://careconnect.ing/api/v1/health | python3 -c '
           import json
-          import urllib.request
+          import sys
 
-          with urllib.request.urlopen("https://careconnect.ing/api/v1/health", timeout=20) as response:
-              payload = json.load(response)
-
+          payload = json.load(sys.stdin)
           assert payload.get("status") in {"healthy", "degraded"}, payload
           print(payload)
-          PY
+          '
 
       - name: Verify apex response
         run: |
