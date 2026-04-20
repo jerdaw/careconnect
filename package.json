@@ -43,6 +43,7 @@
     "audit:hours": "node --import tsx scripts/export-hours-gaps.ts --out docs/audits/v17-5/hours/outputs/hours-gaps.json",
     "audit:access-scripts": "node --import tsx scripts/audit-access-scripts.ts --out docs/audits/v17-5/ai-results/reports/access-script-audit.json",
     "backfill:hours-text": "node --import tsx scripts/backfill-hours-text.ts",
+    "backfill:db-runtime-fields": "node --import tsx scripts/backfill-db-runtime-fields.ts",
     "audit:l3": "node --import tsx scripts/export-l3-candidate-suggestions.ts",
     "export:access-script-fr": "node --import tsx scripts/export-access-script-fr-translation-batches.ts --out-dir docs/audits/v17-5/ai-results/access-script-fr/input",
     "translate:prompt": "node --import tsx scripts/batch-translate-helper.ts generate-prompt",

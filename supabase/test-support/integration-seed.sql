@@ -143,16 +143,19 @@ VALUES
     'L3',
     'Crisis',
     '[]'::jsonb,
-    'kingston',
+    'canada',
     TRUE,
     'Crisis line',
     '2026-03-10T12:00:00Z',
     'government',
     '{"service_area_size":"national"}'::jsonb,
-    NULL,
-    NULL,
+    ARRAY['suicide help', 'crisis line', 'national crisis support'],
+    ARRAY['aide au suicide', 'ligne de crise', 'soutien national en situation de crise'],
     '{"lat":45.4215,"lng":-75.6972}'::jsonb,
-    NULL,
+    (
+      SELECT to_jsonb(array_agg(i / 1000.0 ORDER BY i))
+      FROM generate_series(1, 384) AS gs(i)
+    ),
     NULL,
     TRUE,
     '{"verified_by":"Test Verifier","verified_at":"2026-03-10T12:00:00Z","evidence_url":"https://example.test/evidence/988","method":"provider"}'::jsonb

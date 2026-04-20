@@ -1,7 +1,7 @@
 ```
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-04-18
 owner: jer
 tags: [search, ranking, performance]
 ---
@@ -22,8 +22,8 @@ The core challenge was that Supabase's PostgREST (via `supabase-js`) does not su
 
 We implemented a **Hybrid Scoring Strategy** for the Search API (`/api/v1/search/services`):
 
-1. **Candidate Retrieval (SQL)**: Fetch up to 100 services from the `services_public` view using basic `ILIKE` filters and category matches.
-2. **In-Memory Scoring (TypeScript)**: The API route uses the shared `scoreServicesServer` module to apply:
+1. **Candidate Retrieval (SQL)**: Fetch the full filtered candidate set from the `services_public` view using basic `ILIKE` filters and category matches for the current small curated dataset.
+2. **In-Memory Scoring (TypeScript)**: The API route uses the same shared ranking pipeline as local search to apply:
    - **Authority Multipliers**: 1.25x for government, 1.15x for healthcare, etc.
    - **Freshness Multipliers**: Decaying boost for recently verified data.
    - **Verification Multipliers**: Boost for L3/L2 verified services.
@@ -37,6 +37,6 @@ We implemented a **Hybrid Scoring Strategy** for the Search API (`/api/v1/search
 
 - **Positive**: Single source of truth for scoring logic in TypeScript. Code reuse between client and server modules. Rapid iteration on ranking factors without complex SQL migrations.
 - **Positive**: Ability to handle non-geometric proximity (exempting virtual services from decay) easily.
-- **Negative**: Scalability limit of 100 candidates per query (though sufficient for the current dataset of ~200 services).
+- **Negative**: Full in-memory scoring remains acceptable only while the curated dataset stays small; if the dataset grows materially, DB-side ranking/index work will need a follow-on ADR.
 - **Privacy**: No change to zero-knowledge guarantees; scoring happens in the ephemeral API execution context and is not logged.
 ```

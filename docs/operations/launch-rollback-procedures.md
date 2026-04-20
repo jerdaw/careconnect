@@ -169,7 +169,7 @@ This document provides step-by-step rollback procedures for different failure sc
 ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
   /srv/apps/careconnect-web/current
 cd /srv/apps/careconnect-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 **4. Verify Rollback Success (1 minute)**

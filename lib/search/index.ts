@@ -2,9 +2,9 @@ import { VerificationLevel } from "@/types/service"
 import { SearchResult, SearchOptions } from "./types"
 import { loadServices } from "./data"
 import { tokenize } from "./utils"
-import { scoreServiceKeyword, WEIGHTS } from "./scoring"
+import { rankServicesByQuery, WEIGHTS } from "./scoring"
 import { cosineSimilarity } from "./vector"
-import { resortByDistance, calculateDistanceKm } from "./geo"
+import { resortByDistance } from "./geo"
 import { detectCrisis, boostCrisisResults } from "./crisis"
 // import { UserContext } from '@/types/user-context';
 
@@ -67,35 +67,12 @@ export const searchServices = async (query: string, options: SearchOptions = {})
       // Special Case: Empty Query but filters are active
       if (query.trim().length === 0) {
         if (options.category || options.location || options.openNow) {
-          // Return everything matching filter
-          let results = filteredServices.map((service) => ({
-            service,
-            score: 1,
-            matchReasons: ["Filter Match"],
-          }))
-
-          // Sort by Distance if available
-          if (options.location) {
-            results = results
-              .map((r) => {
-                if (r.service.coordinates) {
-                  const dist = calculateDistanceKm(
-                    options.location!.lat,
-                    options.location!.lng,
-                    r.service.coordinates.lat,
-                    r.service.coordinates.lng
-                  )
-                  return { ...r, distance: dist }
-                }
-                return { ...r, distance: Infinity }
-              })
-              .sort((a, b) => {
-                const distA = a.distance ?? Infinity
-                const distB = b.distance ?? Infinity
-                return distA - distB
-              })
-          }
-          return results
+          return rankServicesByQuery(filteredServices, "", {
+            category: options.category,
+            location: options.location,
+            userContext: options.userContext,
+            allowFilterOnlyBaseMatch: true,
+          })
         }
         return []
       }
@@ -108,19 +85,11 @@ export const searchServices = async (query: string, options: SearchOptions = {})
       await trackPerformance(
         "search.keywordScoring",
         async () => {
-          for (const service of filteredServices) {
-            // Pass userContext to scoring
-            const keywordResult = scoreServiceKeyword(service, tokens, options.category, {
-              userContext: options.userContext,
-            })
-
-            if (keywordResult.score > 0) {
-              results.push({ service, score: keywordResult.score, matchReasons: keywordResult.reasons })
-            }
-          }
-
-          // Sort by Keyword Score
-          results.sort((a, b) => b.score - a.score)
+          results = rankServicesByQuery(filteredServices, query, {
+            category: options.category,
+            location: options.location,
+            userContext: options.userContext,
+          })
         },
         {
           servicesCount: filteredServices.length,
@@ -135,16 +104,6 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         // Privacy: We do NOT fetch embeddings from server/OpenAI.
         // If no vector passed from client, we fall back to pure keyword search.
 
-        // Safety Override: Check for Crisis intent
-        const isCrisis = detectCrisis(query)
-        if (isCrisis) {
-          results = boostCrisisResults(results, true)
-        }
-
-        // Apply Geo Sort if needed
-        if (options.location) {
-          return resortByDistance(results, options.location)
-        }
         return results
       }
 

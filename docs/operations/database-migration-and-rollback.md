@@ -22,21 +22,31 @@ This guide covers migration execution and rollback planning for CareConnect data
   - policy/security-sensitive
 - confirm any app code that depends on the migration is deploy-synchronized
 - record the current deployed revision and the current database state snapshot
+- if the work depends on shared VPS/runtime/env/release assumptions, inspect `/home/jer/repos/platform-ops/inventory/services.yaml` and the relevant runbook/handoff before giving production instructions
+- for production or any non-disposable environment, run a read-only live-schema preflight before any write:
+  - inspect the current table columns for each object the migration/backfill expects
+  - inspect affected view definitions when the change touches a view
+  - confirm the target environment actually has any prerequisite columns or earlier migrations the new change depends on
+  - stop and reconcile schema drift before executing writes if the live schema does not match expectations
 
 ## Migration Execution Order
 
 1. Read the migration and rollback notes before execution.
-2. Run the migration in the intended environment.
-3. Verify the expected objects now exist:
+2. In production or any shared environment, capture the live-schema preflight evidence first:
+   - `information_schema.columns` for affected tables/views
+   - `pg_get_viewdef(...)` for affected views
+   - any other read-only introspection query needed to validate prerequisites
+3. Run the migration in the intended environment.
+4. Verify the expected objects now exist:
    - tables/views/functions
    - indexes
    - policies
    - seed/reference data if applicable
-4. Run repo-local validation appropriate to the change:
+5. Run repo-local validation appropriate to the change:
    - `npm run type-check`
    - targeted route or integration tests
    - any migration-specific verification query
-5. Verify the live app path that depends on the migration.
+6. Verify the live app path that depends on the migration.
 
 ## Verification Checklist
 
@@ -47,6 +57,7 @@ After the migration:
 - confirm observability does not show elevated error rates
 - confirm background/admin operations still work if the migration touched their tables
 - document the completion timestamp and operator
+- if a backfill or follow-up script depends on newly added columns, rerun a read-only existence check before executing the backfill
 
 ## Rollback Strategy By Migration Type
 

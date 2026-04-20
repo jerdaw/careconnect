@@ -44,15 +44,3 @@ export const supabase = new Proxy({} as SupabaseClient<Database>, {
     return Reflect.get(getSupabaseClient() as object, prop, receiver)
   },
 })
-
-/**
- * Temporary escape hatch for stale generated Supabase schema types.
- *
- * Centralize unsafe table access here instead of scattering `as never` across
- * production code. Replace this helper by regenerating `types/supabase.ts`
- * from the live schema.
- */
-export function unsafeFrom(client: unknown, table: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- intentional escape hatch; see function JSDoc
-  return (client as any).from(table)
-}

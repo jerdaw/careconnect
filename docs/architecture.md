@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-16
+last_updated: 2026-04-18
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -53,7 +53,7 @@ graph TD
 1. **Instant Keyword Search**: Filters results locally/via basic db queries for immediate feedback.
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads the optional browser embedding worker in the background and upgrades local search with vector similarity only after the model initializes successfully. If worker initialization or embedding generation fails, the app fails closed to keyword-only search instead of emitting synthetic vectors.
-4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching candidates from the DB and scoring them in-memory using TypeScript logic to ensure consistency with client-side rankings. The shared request contract now carries `category`, `location`, and `openNow` filters in both modes, including empty-query "open now" browsing.
+4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching the full filtered candidate set from the DB and scoring it in-memory using the same TypeScript pipeline as local mode so synthetic-query and intent-only matches are preserved. The shared request contract now carries `category`, `location`, and `openNow` filters in both modes, including empty-query "open now" browsing.
 5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
 6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
 
@@ -72,7 +72,7 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
   - **Local-Only**: Inference runs entirely in the user's browser.
   - **No Data Egress**: Queries never leave the device.
   - **Zero-Knowledge**: Server knows _that_ a user is chatting, but not _what_ they are saying.
-  - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs) with `Cache-Control: no-store`. The database `services_public` view enforces a strict data boundary.
+  - **Zero-Logging Search (v13.0)**: When using Server Search, queries are sent as `POST` (no URL logs). Query-, location-, and open-now-driven responses are `Cache-Control: no-store`; only anonymous category-only browse responses may use short public caching. The database `services_public` view enforces a strict data boundary.
   - **Share Target Handoff**: `POST /api/v1/share` stores shared search text in a short-lived first-party cookie and redirects without `?q=` so sensitive share text does not land in URLs, history, or referrers.
 - **Lifecycle**:
   - **Opt-In**: Model download only triggered by explicit user action.
@@ -88,6 +88,7 @@ The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MOD
 ### Data Pipelines
 
 - **Source of Truth**: Manually curated service records remain authoritative. In development they live in `data/services.json`; in production the app reads from Supabase when configured, with local JSON fallback when the database is unavailable.
+- **DB-Authoritative Runtime Reads**: When Supabase is available, runtime search/detail loading now reads directly from the database contract instead of overlaying live search metadata from local JSON snapshots. Curated JSON remains the no-DB/offline fallback and the import source for backfills. Existing environments must run the rollout-safe curated backfill once after the contract change so blank DB runtime fields are populated without overwriting live values.
 
 ```mermaid
 sequenceDiagram
@@ -164,7 +165,7 @@ sequenceDiagram
 - **Roles**: `owner`, `admin`, `editor`, `viewer`.
 - **Functions**: CRUD operations for listings, member invites (invite/accept flow), and analytics viewing.
 - **Multi-Lingual Content**: Self-service editing for English and French fields (local services are EN/FR only).
-- **Mutation Guardrails**: Partner-facing write APIs use an explicit allowlist for editable fields. `owner` and `admin` can mutate any service in their organization, `editor` is limited to compatible ownership signals on services they created, and `viewer` is denied. Direct `access_script` edits remain on the update-request path until persistence is formalized.
+- **Mutation Guardrails**: Partner-facing write APIs use an explicit allowlist for editable fields. `owner` and `admin` can mutate any service in their organization, `editor` is limited to compatible ownership signals on services they created, and `viewer` is denied. Direct partner `PUT/PATCH` writes now persist `access_script` and `access_script_fr` through the typed service storage contract while still rejecting privileged/unknown fields.
 
 ### Data Flow
 
@@ -236,7 +237,7 @@ We use a modular hook system to separate concerns:
 
 - **Logger Utility**: Located in `lib/logger.ts`. Use instead of `console.log`.
 - **Error IDs**: The Error Boundary generates unique IDs (e.g., `ERR-K9X2J1`) for cross-referencing logs with user reports.
-- **Health Visibility**: In production, `/api/v1/health` exposes only basic public status. Detailed health checks remain admin-only.
+- **Health Visibility**: In production, `/api/v1/health` exposes only basic public status and has no SLO side effects. Detailed public-probe execution lives at `/api/v1/health/probe`, which requires `Authorization: Bearer ${HEALTH_PROBE_TOKEN}` and is the only path that records uptime samples and evaluates SLO alerts.
 
 ### User Interface & Accessibility
 

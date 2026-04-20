@@ -201,10 +201,10 @@ describe("API v1 Services [id]", () => {
   })
 
   describe("PATCH (Protected)", () => {
-    it("rejects unsupported direct-write fields with 400", async () => {
-      mockServiceAuthorization({
+    it("allows direct access script updates within the strict partner-edit allowlist", async () => {
+      const { servicesChain } = mockServiceAuthorization({
         role: "admin",
-        updatedRow: { id: "123", name: "Updated" },
+        updatedRow: { id: "123", name: "Updated", access_script: "Say hello" },
       })
 
       const req = createMockRequest("http://localhost/api/v1/services/123", {
@@ -214,7 +214,12 @@ describe("API v1 Services [id]", () => {
       })
       const res = await PATCH(req, { params: Promise.resolve({ id: "123" }) })
 
-      expect(res.status).toBe(400)
+      expect(res.status).toBe(200)
+      expect(servicesChain.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          access_script: "Say hello",
+        })
+      )
     })
 
     it("rejects forbidden or unknown payload keys with 400", async () => {

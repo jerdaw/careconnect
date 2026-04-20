@@ -8,7 +8,7 @@ vi.mock("@/lib/supabase", () => ({
   supabase: {
     from: vi.fn(),
   },
-  unsafeFrom: vi.fn(),
+  hasSupabaseCredentials: vi.fn(() => true),
 }))
 
 vi.mock("@/lib/resilience/supabase-breaker", () => ({
@@ -47,7 +47,7 @@ describe("getServiceById", () => {
     vi.clearAllMocks()
   })
 
-  it("fills missing provenance and metadata from static service data", async () => {
+  it("returns the DB-backed public row without overlaying static metadata", async () => {
     const single = vi.fn().mockResolvedValue({
       data: {
         id: "service-1",
@@ -73,13 +73,13 @@ describe("getServiceById", () => {
     expect(service).not.toBeNull()
     expect(service?.name).toBe("Database Service")
     expect(service?.provenance).toEqual({
-      verified_by: "Static Verifier",
-      verified_at: "2026-01-01T00:00:00Z",
-      evidence_url: "https://careconnect.ing/evidence/service-1",
-      method: "phone",
+      verified_by: "",
+      verified_at: "",
+      evidence_url: "",
+      method: "",
     })
-    expect(service?.identity_tags).toEqual([{ tag: "youth", evidence_url: "https://careconnect.ing/evidence/tag" }])
-    expect(service?.synthetic_queries).toEqual(["food help"])
+    expect(service?.identity_tags).toEqual([])
+    expect(service?.synthetic_queries).toEqual([])
   })
 
   it("parses JSON-backed fields from the services_public row", async () => {
@@ -119,6 +119,26 @@ describe("getServiceById", () => {
     expect(service?.hours).toEqual({
       monday: { open: "09:00", close: "17:00" },
     })
+  })
+
+  it("falls back to static service data when the DB lookup fails", async () => {
+    const single = vi.fn().mockResolvedValue({
+      data: null,
+      error: {
+        code: "PGRST500",
+        message: "boom",
+      },
+    })
+
+    const eq = vi.fn().mockReturnValue({ single })
+    const select = vi.fn().mockReturnValue({ eq })
+    vi.mocked(supabase.from).mockReturnValue({ select } as any)
+
+    const service = await getServiceById("service-1")
+
+    expect(service?.name).toBe("Static Service")
+    expect(service?.synthetic_queries).toEqual(["food help"])
+    expect(service?.provenance?.verified_by).toBe("Static Verifier")
   })
 
   it("does not refresh last_verified during generic service updates", async () => {

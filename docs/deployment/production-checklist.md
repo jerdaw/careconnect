@@ -22,6 +22,7 @@ Shared-VPS ownership note:
 - This checklist is canonical for CareConnect production deploy, verify, and rollback steps.
 - Shared host topology, ingress ownership, and other cross-project VPS facts are canonical in `/home/jer/repos/platform-ops`.
 - Boundary reference: `/home/jer/repos/platform-ops/PLAT-009-shared-vps-documentation-boundary.md`
+- If any shared runtime/env path, release root, host bind, or VPS deploy contract is unclear, inspect `/home/jer/repos/platform-ops/inventory/services.yaml` and the relevant runbook/handoff there before assuming this repo alone is sufficient.
 
 GitHub Actions posture:
 
@@ -52,6 +53,11 @@ If the deploy changes database structure, policies, or seed data:
 
 - [ ] migration reviewed and committed
 - [ ] rollback SQL or compensating step documented
+- [ ] read-only live-schema preflight completed against production before any write step
+  - [ ] affected `services` / other table columns checked via `information_schema.columns`
+  - [ ] affected view columns checked via `information_schema.columns`
+  - [ ] affected view definitions checked via `pg_get_viewdef(...)` when a view is being replaced or patched
+  - [ ] any drift between prod and repo/local schema reconciled before migration/backfill execution
 - [ ] `npm run validate-data`
 - [ ] `npm run db:verify`
 - [ ] any required embeddings regeneration completed
@@ -105,6 +111,13 @@ one step:
 ./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy
 ```
 
+Observed live note:
+
+- If the host still keeps `/etc/projects-merge/env` as `root:root 0700`, the
+  remote `--deploy` step can fail because `haadmin` cannot read the env file
+  directly. In that case, use `release-vps-proof.sh` for staging only, then SSH
+  to the VPS and run the deploy helper with `sudo`.
+
 ## 5. Deploy
 
 From the staged release on the VPS:
@@ -112,7 +125,7 @@ From the staged release on the VPS:
 ```bash
 cd /srv/apps/careconnect-web/current
 docker buildx version
-./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 - [ ] `docker buildx version` succeeds or the fallback warning is understood

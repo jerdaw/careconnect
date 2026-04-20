@@ -135,14 +135,15 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 ### Librarian Model (v13.0)
 
 - **Server-Side Search API**: Privacy-focused, rate-limited POST endpoint for enhanced security.
-- **Zero-Logging**: Search queries are strictly `no-store` and never logged to the database.
+- **Zero-Logging**: Query-, location-, and open-now-driven search responses are `no-store` and never logged to the database. Anonymous category-only browse responses may use short public edge caching.
+- **Shared Ranking Logic**: Local and server search now use the same in-memory ranking pipeline for authority, freshness, completeness, intent, proximity, and crisis handling.
 - **Dynamic Bundle**: Falls back to lightweight server queries, saving ~300KB on initial load.
 
 ### Additional Capabilities
 
 - **196 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
-- **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
+- **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
 - **Partner Claiming Workflow** — Organizations can claim, verify, and maintain their own listings.
 - **Progressive Web App** — Installable, works offline.
@@ -275,14 +276,15 @@ These commands require `k6` to be installed locally and available on your `PATH`
 
 #### Data Enrichment & Translation
 
-| Command                           | Description                                   |
-| :-------------------------------- | :-------------------------------------------- |
-| `npm run export:access-script-fr` | Export access_script fields for French        |
-| `npm run translate:prompt`        | Generate AI translation prompts               |
-| `npm run translate:parse`         | Parse AI response into structured JSON        |
-| `npm run translate:validate`      | Validate translation batch                    |
-| `npm run backfill:hours-text`     | Backfill hours_text from structured hours     |
-| `npm run geocode`                 | Geocode addresses (requires OPENCAGE_API_KEY) |
+| Command                              | Description                                      |
+| :----------------------------------- | :----------------------------------------------- |
+| `npm run export:access-script-fr`    | Export access_script fields for French           |
+| `npm run translate:prompt`           | Generate AI translation prompts                  |
+| `npm run translate:parse`            | Parse AI response into structured JSON           |
+| `npm run translate:validate`         | Validate translation batch                       |
+| `npm run backfill:hours-text`        | Backfill hours_text from structured hours        |
+| `npm run backfill:db-runtime-fields` | Fill missing DB runtime fields from curated JSON |
+| `npm run geocode`                    | Geocode addresses (requires OPENCAGE_API_KEY)    |
 
 See [French Translation Workflow](docs/workflows/french-translation-workflow.md) for detailed translation process.
 
@@ -323,6 +325,22 @@ To enable the Partner Portal, authentication, and analytics:
    ```bash
    npx tsx scripts/migrate-data.ts
    ```
+
+5. For existing Supabase environments that previously relied on the old DB-plus-JSON runtime overlay, run the rollout-safe DB backfill once:
+
+   ```bash
+   npm run backfill:db-runtime-fields
+   ```
+
+   This fills missing DB-authoritative runtime fields such as `synthetic_queries`, `coordinates`, `hours_text`, and `access_script` from the curated snapshot without overwriting non-empty live values.
+
+6. For authenticated uptime probes, set:
+
+   ```env
+   HEALTH_PROBE_TOKEN=your-random-probe-token
+   ```
+
+   `GET /api/v1/health` remains a public, read-only status endpoint. `GET /api/v1/health/probe` is the authenticated probe path that records uptime samples and evaluates alerting.
 
 ---
 

@@ -33,6 +33,8 @@ export const env = createEnv({
     SLACK_WEBHOOK_URL: z.string().url().optional(),
     // Cron Job Authentication (v18.0 Phase 2)
     CRON_SECRET: z.string().optional(),
+    // Health probe authentication (v20.1)
+    HEALTH_PROBE_TOKEN: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional().or(z.literal("")),

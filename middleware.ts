@@ -8,6 +8,13 @@ import { logger } from "@/lib/logger"
 // Initialize Internationalization Middleware
 const intlMiddleware = createMiddleware(routing)
 
+function applyResponseCookies(source: NextResponse, target: NextResponse) {
+  for (const cookie of source.cookies.getAll()) {
+    const { name, value, ...options } = cookie
+    target.cookies.set(name, value, options)
+  }
+}
+
 export async function middleware(request: NextRequest) {
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
   const preferredLocale =
@@ -86,9 +93,12 @@ export async function middleware(request: NextRequest) {
     const nextPath =
       firstSegment && (routing.locales as readonly string[]).includes(firstSegment) ? pathname : `/${locale}${pathname}`
     loginUrl.searchParams.set("next", nextPath)
-    return NextResponse.redirect(loginUrl)
+    const redirectResponse = NextResponse.redirect(loginUrl)
+    applyResponseCookies(response, redirectResponse)
+    return redirectResponse
   }
 
+  applyResponseCookies(response, intlResponse)
   return intlResponse
 }
 

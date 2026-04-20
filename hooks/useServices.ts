@@ -125,12 +125,8 @@ export function useServices({
 
         // Analytics
         const analyticsSignature = JSON.stringify({
-          query: query.trim(),
-          category: category ?? null,
-          hasLocation: !!userLocation,
-          openNow: !!openNow,
-          resultCount: scopedResults.length,
           locale,
+          resultCount: scopedResults.length,
         })
 
         if (lastAnalyticsSignature.current !== analyticsSignature) {
