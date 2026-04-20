@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-16
+last_updated: 2026-04-18
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-16
+> **Last Updated**: 2026-04-18
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -33,14 +33,17 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
-- **French service-data gaps**: `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr` remain incomplete
+- **French service-data gaps**: runtime hardening is complete, but governed content follow-through still remains for `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
 - **Partner write hardening**: partner-facing service mutation routes now use explicit editable-field allowlists, role-aware service ownership checks, and owner/admin-only delete semantics
-- **Search parity and freshness**: local and server search now align on `location` and `openNow` filters, including empty-query open-now browsing; offline export fingerprints are stable and successful syncs invalidate the in-memory service cache
+- **Search parity and freshness**: local and server search now align on `location` and `openNow` filters, including empty-query open-now browsing; local and server ranking now share the same scoring engine; offline export fingerprints are stable and successful syncs invalidate the in-memory service cache
 - **Privacy-safe sharing and analytics**: share-target hydration now uses a short-lived first-party cookie, printable cards generate inline QR codes locally, search analytics store only locale + result count, and detail-page analytics distinguish internal views from outbound referrals
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
-- **Health visibility**: `/api/v1/health` keeps public basic status while detailed production diagnostics are admin-only
+- **Health visibility**: `/api/v1/health` is public and read-only, while `/api/v1/health/probe` is the authenticated uptime-sampling and alert-evaluation path
+- **Middleware auth resilience**: refreshed Supabase session cookies now survive the locale middleware pass and protected-route redirects
+- **DB-authoritative runtime data**: search/detail loading no longer overlays live DB reads with local JSON metadata when Supabase is available
+- **DB rollout safety**: `npm run backfill:db-runtime-fields` now exists to fill blank runtime/search fields in existing Supabase environments after the JSON-overlay removal without overwriting non-empty live values
 - **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
 - **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
@@ -52,6 +55,10 @@ tags: [planning, roadmap, v22.0, governance]
   - Access scripts: 0 missing
   - Structured hours (active services): 10 missing
   - Hours text (active services): 10 missing
+  - French access scripts: 196 missing
+  - French hours text: 196 missing
+  - French eligibility notes: 118 missing
+  - French synthetic queries: 125 missing
 
 ## Decision Summary
 
@@ -152,7 +159,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 
 1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-3. Run `npm run db:types` on a Docker-capable machine and remove the last intentional untyped admin-audit access once generated schema coverage exists.
+3. Run `npm run db:types` on a Docker-capable machine to verify the committed `types/supabase.ts` against the new `services.access_script*`, `notification_audit`, and `services_public` schema contract.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
 5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
 6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
@@ -233,11 +240,8 @@ Useful maintenance items:
 Deferred items:
 
 1. Advanced French service-data enrichment
-2. Search AI metadata migration out of JSON
+2. Run and verify `npm run backfill:db-runtime-fields` in each deployed Supabase environment after the runtime JSON-overlay removal
 3. Admin-facing data quality dashboard
-4. Regenerate `types/supabase.ts` using `npm run db:types` on a Docker-capable machine and then type the remaining `notification_audit` path
-5. Unify client and server ranking around one shared scoring engine and retire the remaining placeholder scoring path
-6. Decide how direct partner service writes should persist `access_script` fields; the strict partner-edit contract now accepts them for update requests, but direct `PUT/PATCH` intentionally reject them until the storage contract is approved
 
 References:
 

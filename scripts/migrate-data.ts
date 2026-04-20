@@ -5,6 +5,7 @@ import { Service } from "../types/service"
 import { Database } from "../types/supabase"
 import dotenv from "dotenv"
 import { fileURLToPath } from "url"
+import { mapServiceToDatabaseUpsert } from "@/lib/service-db"
 
 // Load env vars
 dotenv.config({ path: ".env.local" })
@@ -45,40 +46,12 @@ async function migrate() {
   let errorCount = 0
 
   for (const service of services) {
-    // Map JSON structure to DB Columns
-    const dbRow = {
-      id: service.id, // Keeping ID for stability
-      name: service.name,
-      description: service.description,
-      address: service.address,
-      phone: service.phone,
-      url: service.url,
-      email: service.email,
-      hours: service.hours,
-      fees: service.fees,
-      eligibility: service.eligibility,
-      application_process: service.application_process,
-      languages: service.languages,
-      bus_routes: service.bus_routes,
-      accessibility: service.accessibility,
-      last_verified: service.last_verified,
-      verification_status: service.verification_level, // approximate mapping
+    const dbRow = mapServiceToDatabaseUpsert({
+      ...service,
+      embedding: service.embedding || embeddings[service.id],
+    })
 
-      // French
-      name_fr: service.name_fr,
-      description_fr: service.description_fr,
-      address_fr: service.address_fr,
-
-      // Search/Tags
-      category: service.intent_category,
-      tags: service.identity_tags as any, // Cast to Json compatible
-
-      // Embedding
-      // Lookup from embeddings file if not present on service object
-      embedding: JSON.stringify(service.embedding || embeddings[service.id]) as any,
-    }
-
-    const { error } = await supabase.from("services").upsert(dbRow as any, { onConflict: "id" })
+    const { error } = await supabase.from("services").upsert(dbRow, { onConflict: "id" })
 
     if (error) {
       console.error(`❌ Error migrating ${service.name}:`, error.message)

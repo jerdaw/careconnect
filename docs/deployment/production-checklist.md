@@ -52,6 +52,11 @@ If the deploy changes database structure, policies, or seed data:
 
 - [ ] migration reviewed and committed
 - [ ] rollback SQL or compensating step documented
+- [ ] read-only live-schema preflight completed against production before any write step
+  - [ ] affected `services` / other table columns checked via `information_schema.columns`
+  - [ ] affected view columns checked via `information_schema.columns`
+  - [ ] affected view definitions checked via `pg_get_viewdef(...)` when a view is being replaced or patched
+  - [ ] any drift between prod and repo/local schema reconciled before migration/backfill execution
 - [ ] `npm run validate-data`
 - [ ] `npm run db:verify`
 - [ ] any required embeddings regeneration completed

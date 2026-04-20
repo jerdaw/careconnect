@@ -174,8 +174,8 @@ export function mapServiceRowToService(
     synthetic_queries_fr: row.synthetic_queries_fr ?? staticService?.synthetic_queries_fr ?? undefined,
     eligibility_notes: staticService?.eligibility_notes,
     eligibility_notes_fr: staticService?.eligibility_notes_fr,
-    access_script: staticService?.access_script,
-    access_script_fr: staticService?.access_script_fr,
+    access_script: row.access_script ?? staticService?.access_script,
+    access_script_fr: row.access_script_fr ?? staticService?.access_script_fr,
     org_id: row.org_id ?? staticService?.org_id ?? undefined,
     plain_language_available: row.plain_language_available ?? staticService?.plain_language_available ?? undefined,
     status: staticService?.status,
@@ -257,6 +257,8 @@ export function mapServiceToDatabaseUpdate(service: Partial<Service>): ServiceUp
   }
   if (service.synthetic_queries !== undefined) update.synthetic_queries = service.synthetic_queries
   if (service.synthetic_queries_fr !== undefined) update.synthetic_queries_fr = service.synthetic_queries_fr
+  if (service.access_script !== undefined) update.access_script = service.access_script
+  if (service.access_script_fr !== undefined) update.access_script_fr = service.access_script_fr
   if (service.coordinates !== undefined) update.coordinates = service.coordinates as unknown as Json
   if (service.embedding !== undefined) update.embedding = service.embedding as unknown as Json
   if (service.plain_language_available !== undefined) {

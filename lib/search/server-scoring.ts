@@ -1,19 +1,6 @@
-/**
- * Server-side scoring wrapper.
- * Applies the same scoring logic as client-side but for ServicePublic objects.
- * v16.0: Search ranking enhancements.
- */
-import { ServicePublic } from "@/types/service-public"
-import {
-  getAuthorityMultiplier,
-  getCompletenessBoost,
-  getVerificationMultiplier,
-  getFreshnessMultiplier,
-  getIntentTargetingBoost,
-  getResourceBoost,
-} from "./scoring"
-import { getProximityMultiplier, calculateDistanceKm } from "./geo"
+import { rankServicesByQuery } from "./scoring"
 import { mapServicePublicToService } from "./map-service-public"
+import { ServicePublic } from "@/types/service-public"
 
 export interface ServerScoredResult {
   service: ServicePublic
@@ -24,111 +11,38 @@ export interface ServerScoredResult {
 export interface ServerScoringOptions {
   location?: { lat: number; lng: number }
   locale?: string
+  category?: string
+  allowFilterOnlyBaseMatch?: boolean
 }
 
 /**
- * Score services for server-side API.
- * Simplified vs client: no semantic matching (no vectors), no intent targeting.
- * Focus: authority, verification, freshness, completeness, proximity.
+ * Server-side wrapper around the shared ranking pipeline used by local search.
+ * This keeps authority/completeness/intent/proximity behavior aligned across modes.
  */
 export function scoreServicesServer(
   services: ServicePublic[],
   query: string,
   options: ServerScoringOptions = {}
 ): ServerScoredResult[] {
-  const results: ServerScoredResult[] = []
+  const mappedServices = services.map((service) => mapServicePublicToService(service))
+  const publicById = new Map(services.map((service) => [service.id, service]))
 
-  for (const service of services) {
-    const mappedService = mapServicePublicToService(service)
-    let score = 100 // Base score for keyword match (already filtered by DB)
-    const matchReasons: string[] = ["Keyword Match"]
-
-    // 1. Verification Level Multiplier
-    const verificationMultiplier = getVerificationMultiplier(mappedService.verification_level)
-    if (verificationMultiplier !== 1.0) {
-      score *= verificationMultiplier
-      const boostPercent = Math.round((verificationMultiplier - 1) * 100)
-      if (boostPercent > 0) {
-        matchReasons.push(`Verification Boost (+${boostPercent}%)`)
+  return rankServicesByQuery(mappedServices, query, {
+    category: options.category,
+    location: options.location,
+    allowFilterOnlyBaseMatch: options.allowFilterOnlyBaseMatch,
+  })
+    .map((result) => {
+      const originalService = publicById.get(result.service.id)
+      if (!originalService) {
+        return null
       }
-    }
 
-    // 2. Freshness Multiplier
-    const freshnessMultiplier = getFreshnessMultiplier(service.last_verified || undefined)
-    if (freshnessMultiplier !== 1.0) {
-      score *= freshnessMultiplier
-      const boostPercent = Math.round((freshnessMultiplier - 1) * 100)
-      if (boostPercent > 0) {
-        matchReasons.push(`Fresh Data Boost (+${boostPercent}%)`)
-      } else if (boostPercent < 0) {
-        matchReasons.push(`Stale Data Penalty (${boostPercent}%)`)
+      return {
+        service: originalService,
+        score: result.score,
+        matchReasons: result.matchReasons,
       }
-    }
-
-    // 3. Authority Tier Multiplier
-    const authorityMultiplier = getAuthorityMultiplier(mappedService.authority_tier)
-    if (authorityMultiplier !== 1.0) {
-      score *= authorityMultiplier
-      const boostPercent = Math.round((authorityMultiplier - 1) * 100)
-      if (boostPercent > 0) {
-        matchReasons.push(`Authority Boost (+${boostPercent}%)`)
-      } else if (boostPercent < 0) {
-        matchReasons.push(`Authority Penalty (${boostPercent}%)`)
-      }
-    }
-
-    // 4. Completeness Boost (only if base match exists)
-    const completenessResult = getCompletenessBoost(mappedService)
-    if (completenessResult.boost > 0) {
-      score += completenessResult.boost
-      matchReasons.push(...completenessResult.reasons)
-    }
-
-    // 5. Intent Targeting Boost (v16.0)
-    // Uses synthetic queries from DB view
-    if (mappedService.synthetic_queries.length > 0) {
-      const intentResult = getIntentTargetingBoost(mappedService, query)
-      if (intentResult.boost > 0) {
-        score += intentResult.boost
-        matchReasons.push(...intentResult.reasons)
-      }
-    }
-
-    // 6. Resource Capacity Boost (v16.0)
-    const resourceResult = getResourceBoost(mappedService)
-    if (resourceResult.boost > 0) {
-      score += resourceResult.boost
-      matchReasons.push(...resourceResult.reasons)
-    }
-
-    // 7. Proximity Decay (if location provided)
-    if (options.location && service.coordinates) {
-      const distance = calculateDistanceKm(
-        options.location.lat,
-        options.location.lng,
-        service.coordinates.lat,
-        service.coordinates.lng
-      )
-
-      const isVirtual = service.virtual_delivery === true
-      // Use scope logic similar to client-side. ServicePublic has scope.
-      const isWideArea = service.scope === "ontario" || service.scope === "canada"
-
-      const proximityMultiplier = getProximityMultiplier(distance, isVirtual, isWideArea)
-
-      score *= proximityMultiplier
-
-      // Only show reason if meaningful impact (e.g. < 95% or boosted?)
-      // Proximity is usually a penalty (decay).
-      if (!isVirtual && proximityMultiplier < 0.99) {
-        const proximityPercent = Math.round(proximityMultiplier * 100)
-        matchReasons.push(`Distance Adjusted (${Math.round(distance)}km, ${proximityPercent}%)`)
-      }
-    }
-
-    results.push({ service, score, matchReasons })
-  }
-
-  // Sort by score descending
-  return results.sort((a, b) => b.score - a.score)
+    })
+    .filter((result): result is ServerScoredResult => result !== null)
 }

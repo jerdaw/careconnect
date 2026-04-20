@@ -4,6 +4,7 @@ import { NextRequest } from "next/server"
 import { POST } from "@/app/api/v1/search/services/route"
 import { ServicePublic } from "@/types/service-public"
 import { supabase } from "@/lib/supabase"
+import { IntentCategory } from "@/types/service"
 
 // Mock Supabase Singleton
 vi.mock("@/lib/supabase", () => ({
@@ -18,24 +19,30 @@ vi.mock("@/lib/rate-limit", () => ({
   getClientIp: vi.fn().mockReturnValue("127.0.0.1"),
 }))
 
+vi.mock("@/lib/resilience/supabase-breaker", () => ({
+  withCircuitBreaker: vi.fn((operation: () => Promise<unknown>) => operation()),
+}))
+
 describe("Search API (Hybrid Scoring)", () => {
   const mockSelect = vi.fn()
   const mockOr = vi.fn()
   const mockEq = vi.fn()
-  const mockLimit = vi.fn()
+  let mockQueryResult: { data: ServicePublic[]; error: unknown } = { data: [], error: null }
+
+  const queryBuilder = {
+    or: (...args: unknown[]) => mockOr(...args),
+    eq: (...args: unknown[]) => mockEq(...args),
+    then: (resolve: (value: typeof mockQueryResult) => unknown, reject?: (reason?: unknown) => unknown) =>
+      Promise.resolve(mockQueryResult).then(resolve, reject),
+  }
 
   beforeEach(() => {
     vi.clearAllMocks()
+    mockQueryResult = { data: [], error: null }
 
-    // Setup chainable mock
-    mockLimit.mockResolvedValue({
-      data: [],
-      error: null,
-    })
-
-    mockEq.mockReturnValue({ limit: mockLimit })
-    mockOr.mockReturnValue({ eq: mockEq, limit: mockLimit })
-    mockSelect.mockReturnValue({ or: mockOr, eq: mockEq, limit: mockLimit })
+    mockEq.mockReturnValue(queryBuilder)
+    mockOr.mockReturnValue(queryBuilder)
+    mockSelect.mockReturnValue(queryBuilder)
 
     const mockChain = { select: mockSelect }
     vi.mocked(supabase.from).mockReturnValue(mockChain as any)
@@ -71,12 +78,12 @@ describe("Search API (Hybrid Scoring)", () => {
     const govService = createMockService("gov", { authority_tier: "government" })
     const commService = createMockService("comm", { authority_tier: "community" })
 
-    mockLimit.mockResolvedValue({
+    mockQueryResult = {
       data: [commService, govService],
       error: null,
-    })
+    }
 
-    const req = createRequest({ query: "test", locale: "en" })
+    const req = createRequest({ query: "service", locale: "en" })
     const res = await POST(req)
     const json = (await res.json()) as { data: { id: string }[] }
 
@@ -92,12 +99,12 @@ describe("Search API (Hybrid Scoring)", () => {
     })
     const sparseService = createMockService("sparse")
 
-    mockLimit.mockResolvedValue({
+    mockQueryResult = {
       data: [sparseService, completeService],
       error: null,
-    })
+    }
 
-    const req = createRequest({ query: "test", locale: "en" })
+    const req = createRequest({ query: "service", locale: "en" })
     const res = await POST(req)
     const json = (await res.json()) as { data: { id: string }[] }
 
@@ -112,13 +119,13 @@ describe("Search API (Hybrid Scoring)", () => {
       coordinates: { lat: 45.4215, lng: -75.6972 },
     })
 
-    mockLimit.mockResolvedValue({
+    mockQueryResult = {
       data: [ottawaService, kingstonService],
       error: null,
-    })
+    }
 
     const req = createRequest({
-      query: "test",
+      query: "service",
       locale: "en",
       location: { lat: 44.2334, lng: -76.5 },
     })
@@ -132,13 +139,13 @@ describe("Search API (Hybrid Scoring)", () => {
   it("should paginate results correctly", async () => {
     const services = Array.from({ length: 5 }, (_, i) => createMockService(`s${i}`))
 
-    mockLimit.mockResolvedValue({
+    mockQueryResult = {
       data: services,
       error: null,
-    })
+    }
 
     const req = createRequest({
-      query: "test",
+      query: "service",
       locale: "en",
       options: { limit: 2, offset: 2 },
     })
@@ -162,17 +169,76 @@ describe("Search API (Hybrid Scoring)", () => {
     const expiredService = createMockService("expired", { last_verified: expiredDate.toISOString() })
     const freshService = createMockService("fresh")
 
-    mockLimit.mockResolvedValue({
+    mockQueryResult = {
       data: [expiredService, freshService],
       error: null,
-    })
+    }
 
-    const req = createRequest({ query: "test", locale: "en" })
+    const req = createRequest({ query: "service", locale: "en" })
     const res = await POST(req)
     const json = (await res.json()) as { data: { id: string }[]; meta: { total: number } }
 
     expect(json.data).toHaveLength(1)
     expect(json.data[0]?.id).toBe("fresh")
     expect(json.meta.total).toBe(1)
+  })
+
+  it("uses no-store for query or location-driven searches", async () => {
+    mockQueryResult = {
+      data: [createMockService("cached")],
+      error: null,
+    }
+
+    const req = createRequest({
+      query: "",
+      locale: "en",
+      location: { lat: 44.2334, lng: -76.5 },
+    })
+
+    const res = await POST(req)
+
+    expect(res.headers.get("Cache-Control")).toBe("no-store")
+  })
+
+  it("allows short public caching for category-only browse", async () => {
+    mockQueryResult = {
+      data: [createMockService("food", { category: IntentCategory.Food })],
+      error: null,
+    }
+
+    const req = createRequest({
+      query: "",
+      locale: "en",
+      filters: { category: IntentCategory.Food },
+    })
+
+    const res = await POST(req)
+
+    expect(res.headers.get("Cache-Control")).toBe("public, s-maxage=60")
+  })
+
+  it("keeps synthetic-query-only candidates in play for server ranking parity", async () => {
+    mockQueryResult = {
+      data: [
+        createMockService("intent", {
+          name: "Community Wellness Support",
+          description: "Peer support and intake help.",
+          synthetic_queries: ["help with depression", "low mood"],
+        }),
+      ],
+      error: null,
+    }
+
+    const req = createRequest({
+      query: "depression",
+      locale: "en",
+    })
+
+    const res = await POST(req)
+    const json = (await res.json()) as { data: { id: string }[] }
+
+    expect(res.status).toBe(200)
+    expect(json.data[0]?.id).toBe("intent")
+    expect(mockOr).not.toHaveBeenCalled()
   })
 })

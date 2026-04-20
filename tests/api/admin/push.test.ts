@@ -22,7 +22,9 @@ const mockGetUser = vi.fn().mockResolvedValue({
   data: { user: { id: "admin1", app_metadata: { role: "admin" } } },
   error: null,
 })
-const mockSingle = vi.fn().mockResolvedValue({ data: { id: "audit123" }, error: null })
+const mockFrom = vi.fn()
+const mockNotificationAuditInsert = vi.fn().mockResolvedValue({ data: null, error: null })
+const mockAuditLogsInsert = vi.fn().mockResolvedValue({ data: null, error: null })
 const mockRpc = vi.fn().mockResolvedValue({ data: null, error: null })
 
 // Standard SSR mocking via next-mocks
@@ -30,14 +32,7 @@ vi.mocked(createServerClient).mockReturnValue({
   auth: {
     getUser: mockGetUser,
   },
-  from: vi.fn(() => ({
-    insert: vi.fn(() => ({
-      select: vi.fn(() => ({
-        single: mockSingle,
-      })),
-      then: (resolve: any) => resolve({ data: null, error: null }),
-    })),
-  })),
+  from: mockFrom,
   rpc: mockRpc,
 } as any)
 
@@ -55,7 +50,20 @@ describe("Push API", () => {
       data: { user: { id: "admin1", app_metadata: { role: "admin" } } },
       error: null,
     })
-    mockSingle.mockResolvedValue({ data: { id: "audit123" }, error: null })
+    mockNotificationAuditInsert.mockResolvedValue({ data: null, error: null })
+    mockAuditLogsInsert.mockResolvedValue({ data: null, error: null })
+    mockRpc.mockResolvedValue({ data: null, error: null })
+    mockFrom.mockImplementation((table: string) => {
+      if (table === "notification_audit") {
+        return { insert: mockNotificationAuditInsert }
+      }
+
+      if (table === "audit_logs") {
+        return { insert: mockAuditLogsInsert }
+      }
+
+      return { insert: vi.fn().mockResolvedValue({ data: null, error: null }) }
+    })
   })
 
   it("should send push notification and return success", async () => {
@@ -71,9 +79,13 @@ describe("Push API", () => {
 
     const response = await POST(request)
     expect(response.status).toBe(200)
-    const body = (await response.json()) as { data: { success: boolean; notificationId: string } }
+    const body = (await response.json()) as {
+      data: { success: boolean; notificationId: string; auditStatus: string; warnings: string[] }
+    }
     expect(body.data.success).toBe(true)
     expect(body.data.notificationId).toBe("push123")
+    expect(body.data.auditStatus).toBe("ok")
+    expect(body.data.warnings).toEqual([])
   })
 
   it("should return 400 for missing fields", async () => {
@@ -87,5 +99,31 @@ describe("Push API", () => {
 
     const response = await POST(request)
     expect(response.status).toBe(400)
+  })
+
+  it("returns degraded audit status when audit writes fail after send", async () => {
+    mockNotificationAuditInsert.mockResolvedValue({ data: null, error: { message: "audit insert failed" } })
+    mockAuditLogsInsert.mockResolvedValue({ data: null, error: { message: "log insert failed" } })
+    mockRpc.mockResolvedValue({ data: null, error: { message: "rpc failed" } })
+
+    const request = new NextRequest("http://localhost:3000/api/admin/push", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "Test push",
+        message: "Body of push",
+        type: "service_update",
+      }),
+    })
+
+    const response = await POST(request)
+    const body = (await response.json()) as {
+      data: { success: boolean; auditStatus: string; warnings: string[] }
+    }
+
+    expect(response.status).toBe(200)
+    expect(body.data.success).toBe(true)
+    expect(body.data.auditStatus).toBe("degraded")
+    expect(body.data.warnings).toEqual(["notification_audit", "audit_logs", "admin_actions"])
   })
 })

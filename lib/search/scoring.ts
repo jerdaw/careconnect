@@ -1,7 +1,11 @@
-import { ScoringWeights } from "./types"
+import { ScoringWeights, SearchResult } from "./types"
 import { Service, VerificationLevel, AuthorityTier } from "@/types/service"
 import { normalize } from "./utils"
 import { getFreshnessLevel } from "@/lib/freshness"
+import { tokenize } from "./utils"
+import { expandQuery as expandSynonyms } from "./synonyms"
+import { detectCrisis, boostCrisisResults } from "./crisis"
+import { resortByDistance } from "./geo"
 
 export const WEIGHTS: ScoringWeights & {
   verificationL3: number
@@ -136,6 +140,7 @@ export interface ScoringOptions {
     emergency?: number
   }
   userContext?: import("@/types/user-context").UserContext
+  allowFilterOnlyBaseMatch?: boolean
 }
 
 export function calculateScore(
@@ -144,24 +149,55 @@ export function calculateScore(
   categoryFilter?: string,
   options: ScoringOptions = {}
 ): number {
-  let score = 0
+  const tokens = expandSynonyms(tokenize(query))
+  return scoreServiceKeyword(service, tokens, categoryFilter, {
+    ...options,
+    allowFilterOnlyBaseMatch: options.allowFilterOnlyBaseMatch,
+  }).score
+}
 
-  // Placeholder logic (from current implementation) - implementation detail omitted
-  // This function is still a placeholder in current architecture, primarily used for future server-side scoring
+export interface RankServicesOptions {
+  category?: string
+  location?: { lat: number; lng: number }
+  userContext?: import("@/types/user-context").UserContext
+  allowFilterOnlyBaseMatch?: boolean
+}
 
-  // 6. Identity Match Boost (Personalization)
-  if (options.userContext?.identities.length && service.identity_tags) {
-    const matchingTags = service.identity_tags.filter((tag) => {
-      const normalizedTag = tag.tag.toLowerCase()
-      return isIdentityTag(normalizedTag) && options.userContext!.identities.includes(normalizedTag)
-    })
-    if (matchingTags.length > 0) {
-      const boostMultiplier = 1 + Math.min(0.3, matchingTags.length * 0.1)
-      score *= boostMultiplier
-    }
+export function rankServicesByQuery(
+  services: Service[],
+  query: string,
+  options: RankServicesOptions = {}
+): SearchResult[] {
+  const tokens = expandSynonyms(tokenize(query))
+
+  let results = services
+    .map((service) => ({
+      service,
+      ...(() => {
+        const ranked = scoreServiceKeyword(service, tokens, options.category, {
+          userContext: options.userContext,
+          allowFilterOnlyBaseMatch: options.allowFilterOnlyBaseMatch,
+        })
+
+        return {
+          score: ranked.score,
+          matchReasons: ranked.reasons,
+        }
+      })(),
+    }))
+    .filter((result) => result.score > 0)
+
+  results.sort((a, b) => b.score - a.score)
+
+  if (options.location) {
+    results = resortByDistance(results, options.location)
   }
 
-  return score
+  if (query.trim() && detectCrisis(query)) {
+    results = boostCrisisResults(results, true)
+  }
+
+  return results
 }
 
 /**
@@ -384,17 +420,28 @@ export const scoreServiceKeyword = (
   let score = 0
   const matchReasons: string[] = []
 
-  // 1. Check Synthetic Queries (English + French) - High Impact
-  const englishResult = scoreSyntheticQueries(service.synthetic_queries, tokens, "")
-  if (englishResult.score > 0) {
-    score += englishResult.score
-    matchReasons.push(`${englishResult.matchedQuery} (+${englishResult.score})`)
+  if (tokens.length === 0) {
+    if (!options.allowFilterOnlyBaseMatch) {
+      return { score: 0, reasons: [] }
+    }
+
+    score = 1
+    matchReasons.push("Filter Match")
   }
 
-  const frenchResult = scoreSyntheticQueries(service.synthetic_queries_fr, tokens, " (FR)")
-  if (frenchResult.score > 0) {
-    score += frenchResult.score
-    matchReasons.push(`${frenchResult.matchedQuery} (+${frenchResult.score})`)
+  // 1. Check Synthetic Queries (English + French) - High Impact
+  if (tokens.length > 0) {
+    const englishResult = scoreSyntheticQueries(service.synthetic_queries, tokens, "")
+    if (englishResult.score > 0) {
+      score += englishResult.score
+      matchReasons.push(`${englishResult.matchedQuery} (+${englishResult.score})`)
+    }
+
+    const frenchResult = scoreSyntheticQueries(service.synthetic_queries_fr, tokens, " (FR)")
+    if (frenchResult.score > 0) {
+      score += frenchResult.score
+      matchReasons.push(`${frenchResult.matchedQuery} (+${frenchResult.score})`)
+    }
   }
 
   // 2. Check Name (Medium Impact) - English & French
@@ -518,11 +565,13 @@ export const scoreServiceKeyword = (
 
   // 10. Intent Targeting Boost (v16.0)
   // Uses the original query string from options if available
-  const originalQuery = options.userContext?.identities ? tokens.join(" ") : tokens.join(" ")
-  const intentResult = getIntentTargetingBoost(service, originalQuery)
-  if (intentResult.boost > 0) {
-    score += intentResult.boost
-    matchReasons.push(...intentResult.reasons)
+  const originalQuery = tokens.join(" ")
+  if (originalQuery.trim()) {
+    const intentResult = getIntentTargetingBoost(service, originalQuery)
+    if (intentResult.boost > 0) {
+      score += intentResult.boost
+      matchReasons.push(...intentResult.reasons)
+    }
   }
 
   // 11. Resource Capacity Boost (v16.0)

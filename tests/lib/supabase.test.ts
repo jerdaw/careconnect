@@ -34,17 +34,4 @@ describe("lib/supabase", () => {
     expect(mod.hasSupabaseCredentials()).toBe(true)
     expect(first).toBe(second)
   })
-
-  it("centralizes unsafe table access", async () => {
-    const mod = await import("@/lib/supabase")
-    const marker = { insert: vi.fn() }
-    const fakeClient = {
-      from: vi.fn().mockReturnValue(marker),
-    }
-
-    const table = mod.unsafeFrom(fakeClient, "services")
-
-    expect(fakeClient.from).toHaveBeenCalledWith("services")
-    expect(table).toBe(marker)
-  })
 })

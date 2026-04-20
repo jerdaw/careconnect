@@ -53,7 +53,7 @@ describe("Server-Side Scoring", () => {
       name: "Comm Service",
     }
 
-    const results = scoreServicesServer([commService, govService], "test")
+    const results = scoreServicesServer([commService, govService], "service")
 
     expect(results[0]?.service.id).toBe("gov")
     expect(results[1]?.service.id).toBe("comm")
@@ -76,11 +76,10 @@ describe("Server-Side Scoring", () => {
       id: "sparse",
     }
 
-    const results = scoreServicesServer([sparseService, completeService], "test")
+    const results = scoreServicesServer([sparseService, completeService], "service")
 
     expect(results[0]?.service.id).toBe("complete")
-    expect(results[0]?.score).toBeGreaterThan(100)
-    // Check match reasons contain completeness details
+    expect(results[0]!.score).toBeGreaterThan(results[1]!.score)
     expect(results[0]?.matchReasons.some((r) => r.includes("Complete Data"))).toBe(true)
   })
 
@@ -98,7 +97,7 @@ describe("Server-Side Scoring", () => {
 
     const location = { lat: 44.2334, lng: -76.5 } // Nearby Kingston location
 
-    const results = scoreServicesServer([farService, nearService], "test", { location })
+    const results = scoreServicesServer([farService, nearService], "service", { location })
 
     expect(results[0]?.service.id).toBe("near")
     expect(results[1]?.service.id).toBe("far")
@@ -121,7 +120,7 @@ describe("Server-Side Scoring", () => {
 
     const location = { lat: 44.2312, lng: -76.486 } // Kingston
 
-    const results = scoreServicesServer([physicalFarService, virtualService], "test", { location })
+    const results = scoreServicesServer([physicalFarService, virtualService], "service", { location })
 
     expect(results[0]?.service.id).toBe("virtual")
     // Virtual service should preserve base score (approx 100 or boosted by freshness/verification)
@@ -143,7 +142,7 @@ describe("Server-Side Scoring", () => {
     const results = scoreServicesServer([otherService, intentService], "depression")
 
     expect(results[0]?.service.id).toBe("intent")
-    expect(results[0]?.matchReasons.some((r) => r.includes("Intent"))).toBe(true)
+    expect(results[0]?.matchReasons.some((r) => /intent/i.test(r))).toBe(true)
   })
 
   it("should apply resource capacity boost", () => {
@@ -158,7 +157,7 @@ describe("Server-Side Scoring", () => {
       resource_indicators: { staff_size: "small" as const },
     }
 
-    const results = scoreServicesServer([smallService, largeService], "test")
+    const results = scoreServicesServer([smallService, largeService], "service")
 
     expect(results[0]?.service.id).toBe("large")
     expect(results[0]?.matchReasons.some((r) => r.includes("Resource"))).toBe(true)

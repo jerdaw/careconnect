@@ -35,6 +35,12 @@ type InvitationListItem = {
   expires_at: string
 }
 
+const INVITATION_ROLES = ["admin", "editor", "viewer"] as const
+
+function isInvitationRole(role: string): role is InvitationListItem["role"] {
+  return INVITATION_ROLES.includes(role as InvitationListItem["role"])
+}
+
 type InvitationPermissionResult =
   | {
       supabase: Awaited<ReturnType<typeof createClient>>
@@ -102,7 +108,28 @@ export async function listOrganizationInvitations(organizationId: string): Promi
     return []
   }
 
-  return data
+  return data.flatMap((invitation) => {
+    if (!isInvitationRole(invitation.role)) {
+      logger.warn("Ignoring organization invitation with unsupported role", {
+        component: "OrganizationInvitationActions",
+        action: "listInvitations",
+        organizationId: validation.data,
+        invitationId: invitation.id,
+        role: invitation.role,
+      })
+      return []
+    }
+
+    return [
+      {
+        id: invitation.id,
+        email: invitation.email,
+        role: invitation.role,
+        invited_at: invitation.invited_at,
+        expires_at: invitation.expires_at,
+      },
+    ]
+  })
 }
 
 export async function createOrganizationInvitation(input: unknown): Promise<InvitationActionResult> {

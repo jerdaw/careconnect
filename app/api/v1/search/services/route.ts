@@ -30,36 +30,19 @@ export async function POST(request: NextRequest) {
         if (!parsed.success) {
           return createApiError("Invalid request", 400, parsed.error.flatten())
         }
-        const { query, locale, filters, options, location } = parsed.data
+        const { query, filters, options, location } = parsed.data
 
         // 3. Build Supabase query against services_public view
-        // HYBRID STRATEGY: Fetch a larger candidate set (limit=100) then score/sort in memory
-        // This allows using complex TypeScript scoring logic (authority, proximity) not easily done in SQL
+        // Fetch the full filtered candidate set, then apply the shared ranking pipeline in memory.
+        // We intentionally avoid SQL text prefiltering here because local ranking uses
+        // synthetic_queries and intent-targeting paths that name/description ILIKE alone
+        // would miss, breaking local/server parity on the current small curated dataset.
         let dbQuery = supabase.from("services_public").select("*")
 
-        // 4. Apply text search (locale-aware)
-        if (query.trim()) {
-          const nameField = locale === "fr" ? "name_fr" : "name"
-          const descField = locale === "fr" ? "description_fr" : "description"
-
-          // SECURITY: Escape ILIKE wildcards to prevent query manipulation
-          const escapeIlike = (value: string) => value.replace(/[%_\\]/g, "\\$&")
-          const safeQuery = escapeIlike(query)
-
-          // ILIKE search on name OR description
-          dbQuery = dbQuery.or(`${nameField}.ilike.%${safeQuery}%,${descField}.ilike.%${safeQuery}%`)
-        }
-
-        // 5. Apply category filter
+        // 4. Apply category filter
         if (filters.category) {
           dbQuery = dbQuery.eq("category", filters.category)
         }
-
-        // 6. Fetch Candidates
-        // Note: We don't perform SQL sorting or precise pagination here.
-        // We fetch enough candidates to likely contain the top results after re-scoring.
-        const CANDIDATE_LIMIT = 100
-        dbQuery = dbQuery.limit(CANDIDATE_LIMIT)
 
         const { data } = await trackPerformance(
           "api.search.dbQuery",
@@ -81,7 +64,8 @@ export async function POST(request: NextRequest) {
           {
             hasQuery: !!query.trim(),
             hasCategory: !!filters.category,
-            limit: CANDIDATE_LIMIT,
+            hasLocation: !!location,
+            openNow: !!filters.openNow,
           }
         )
 
@@ -106,7 +90,8 @@ export async function POST(request: NextRequest) {
           async () => {
             return scoreServicesServer(services, query, {
               location,
-              locale,
+              category: filters.category,
+              allowFilterOnlyBaseMatch: !query.trim(),
             })
           },
           {
@@ -138,11 +123,10 @@ export async function POST(request: NextRequest) {
           meta: { total, limit, offset },
         })
 
-        // Privacy: no caching when query present
-        if (query.trim()) {
+        // Privacy: cache only anonymous category browse responses.
+        if (query.trim() || location || filters.openNow || !filters.category) {
           response.headers.set("Cache-Control", "no-store")
         } else {
-          // Cache generic category lists for a short time
           response.headers.set("Cache-Control", "public, s-maxage=60")
         }
 

@@ -17,8 +17,6 @@ export const PARTNER_SERVICE_EDIT_FIELDS = [
   "access_script_fr",
 ] as const
 
-export const DIRECT_SERVICE_WRITE_UNSUPPORTED_FIELDS = ["access_script", "access_script_fr"] as const
-
 const nonEmptyString = (max: number) => z.string().trim().min(1).max(max)
 const nullableString = (max: number) => nonEmptyString(max).nullable().optional()
 
@@ -65,7 +63,8 @@ export function normalizePartnerServiceEditInput(input: PartnerServiceEditInput)
 }
 
 export function getDirectServiceWriteUnsupportedFields(input: PartnerServiceEditInput): string[] {
-  return DIRECT_SERVICE_WRITE_UNSUPPORTED_FIELDS.filter((field) => input[field] !== undefined)
+  void input
+  return []
 }
 
 export function mapPartnerServiceEditToServiceUpdate(input: PartnerServiceEditInput): ServiceUpdate {
@@ -82,6 +81,8 @@ export function mapPartnerServiceEditToServiceUpdate(input: PartnerServiceEditIn
   if (normalized.hours_text !== undefined) updates.hours_text = normalized.hours_text
   if (normalized.eligibility_notes !== undefined) updates.eligibility = normalized.eligibility_notes
   if (normalized.eligibility_notes_fr !== undefined) updates.eligibility_fr = normalized.eligibility_notes_fr
+  if (normalized.access_script !== undefined) updates.access_script = normalized.access_script
+  if (normalized.access_script_fr !== undefined) updates.access_script_fr = normalized.access_script_fr
 
   return updates
 }

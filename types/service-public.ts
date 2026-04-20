@@ -34,11 +34,15 @@ export interface ServicePublic {
   url: string | null
   email: string | null
   hours: ServicePublicHours
+  hours_text?: string | null
+  hours_text_fr?: string | null
   fees: string | null
   eligibility: string | null
+  eligibility_fr?: string | null
   eligibility_notes: string | null
   eligibility_notes_fr: string | null
   application_process: string | null
+  application_process_fr?: string | null
   languages: string[] | null
   bus_routes: string[] | null
   accessibility: ServicePublicAccessibility
@@ -56,4 +60,6 @@ export interface ServicePublic {
   resource_indicators?: ResourceIndicators | null
   coordinates?: ServicePublicCoordinates
   provenance?: ServicePublicProvenance
+  access_script?: string | null
+  access_script_fr?: string | null
 }

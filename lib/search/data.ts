@@ -72,25 +72,7 @@ export const loadServices = async (): Promise<Service[]> => {
       )
 
       if (!result.error && result.data && result.data.length > 0) {
-        // We still need metadata from JSON if we want to overlay it (AI/Synthetic queries)
-        // Dynamically load JSON for metadata overlay
-        // TODO: Move this metadata to DB in future phases to remove JSON dependency entirely
-        const { default: servicesData } = await import("@/data/services.json")
-        const { default: embeddingsData } = await import("@/data/embeddings.json")
-
-        const fallbackServices = servicesData as unknown as Service[]
-        const fallbackEmbeddings = embeddingsData as unknown as Record<string, number[]>
-
-        const mappedData: Service[] = result.data
-          .map((row) => {
-            const staticService = fallbackServices.find((service) => service.id === row.id)
-
-            return mapServiceRowToService(row, {
-              staticService,
-              fallbackEmbedding: fallbackEmbeddings[row.id],
-            })
-          })
-          .filter((s) => !s.deleted_at) // Filter soft deletes
+        const mappedData: Service[] = result.data.map((row) => mapServiceRowToService(row)).filter((s) => !s.deleted_at) // Filter soft deletes
 
         dataCache = { services: mappedData }
         return mappedData

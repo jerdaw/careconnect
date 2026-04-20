@@ -2,6 +2,16 @@ import { SupabaseClient } from "@supabase/supabase-js"
 import { computePilotMetricSnapshots } from "@/lib/observability/pilot-metrics"
 import { insertPilotMetricSnapshots } from "@/lib/pilot/storage"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
+import { ATTEMPT_OUTCOMES, type AttemptOutcome } from "@/types/pilot-contact-attempt"
+import { REFERRAL_STATES, type ReferralState } from "@/types/pilot-referral"
+import {
+  PILOT_DATA_DECAY_FATAL_ERROR_CATEGORIES,
+  PILOT_SCOPE_SLA_TIERS,
+  SERVICE_OPERATIONAL_STATUS_CODES,
+  type PilotDataDecayFatalErrorCategory,
+  type PilotScopeSlaTier,
+  type ServiceOperationalStatusCode,
+} from "@/types/pilot-instrumentation"
 import type { Database } from "@/types/supabase"
 
 type PilotSupabaseClient = SupabaseClient<Database>
@@ -28,6 +38,30 @@ export type PilotMetricRecomputeResult = {
 function isMissingTableError(error: DatabaseError | null): boolean {
   if (!error) return false
   return error.code === "42P01" || /does not exist|relation/i.test(error.message || "")
+}
+
+function isAllowedValue<T extends readonly string[]>(value: string, allowed: T): value is T[number] {
+  return allowed.includes(value)
+}
+
+function isAttemptOutcome(value: string): value is AttemptOutcome {
+  return isAllowedValue(value, ATTEMPT_OUTCOMES)
+}
+
+function isReferralState(value: string): value is ReferralState {
+  return isAllowedValue(value, REFERRAL_STATES)
+}
+
+function isPilotScopeSlaTier(value: string): value is PilotScopeSlaTier {
+  return isAllowedValue(value, PILOT_SCOPE_SLA_TIERS)
+}
+
+function isServiceOperationalStatusCode(value: string): value is ServiceOperationalStatusCode {
+  return isAllowedValue(value, SERVICE_OPERATIONAL_STATUS_CODES)
+}
+
+function isPilotDataDecayFatalErrorCategory(value: string): value is PilotDataDecayFatalErrorCategory {
+  return isAllowedValue(value, PILOT_DATA_DECAY_FATAL_ERROR_CATEGORIES)
 }
 
 async function readRows<T>(
@@ -190,16 +224,82 @@ export async function recomputePilotMetrics(
     return { data: null, error: null, missingTables: [...new Set(missingTables)] }
   }
 
+  const normalizedContactAttempts = contactAttempts.data.flatMap((attempt) =>
+    isAttemptOutcome(attempt.attempt_outcome)
+      ? [
+          {
+            id: attempt.id,
+            attempted_at: attempt.attempted_at,
+            attempt_outcome: attempt.attempt_outcome,
+            entity_key_hash: attempt.entity_key_hash,
+          },
+        ]
+      : []
+  )
+
+  const normalizedReferrals = referrals.data.flatMap((referral) =>
+    isReferralState(referral.referral_state)
+      ? [
+          {
+            id: referral.id,
+            created_at: referral.created_at,
+            referral_state: referral.referral_state,
+          },
+        ]
+      : []
+  )
+
+  const normalizedScopeServices = scopeServices.data.flatMap((service) =>
+    isPilotScopeSlaTier(service.sla_tier)
+      ? [
+          {
+            service_id: service.service_id,
+            sla_tier: service.sla_tier,
+          },
+        ]
+      : []
+  )
+
+  const normalizedServiceStatusEvents = serviceStatusEvents.data.flatMap((event) =>
+    isServiceOperationalStatusCode(event.status_code)
+      ? [
+          {
+            service_id: event.service_id,
+            checked_at: event.checked_at,
+            status_code: event.status_code,
+          },
+        ]
+      : []
+  )
+
+  const normalizedDataDecayAudits = dataDecayAudits.data.flatMap((audit) => {
+    if (
+      audit.fatal_error_category !== null &&
+      audit.fatal_error_category !== undefined &&
+      !isPilotDataDecayFatalErrorCategory(audit.fatal_error_category)
+    ) {
+      return []
+    }
+
+    return [
+      {
+        audited_at: audit.audited_at,
+        is_fatal: audit.is_fatal,
+        fatal_error_category: audit.fatal_error_category,
+      },
+    ]
+  })
+
   const calculatedAt = new Date().toISOString()
   const computed = computePilotMetricSnapshots(
     pilotCycleId,
     {
-      contactAttempts: contactAttempts.data,
-      referrals: referrals.data,
+      contactAttempts: normalizedContactAttempts,
+      referrals: normalizedReferrals,
       connections: connections.data,
-      scopeServices: scopeServices.data,
-      serviceStatusEvents: serviceStatusEvents.data,
-      dataDecayAudits: dataDecayAudits.data,
+      scopeServices: normalizedScopeServices,
+      serviceStatusEvents: normalizedServiceStatusEvents,
+      dataDecayAudits: normalizedDataDecayAudits,
       preferenceFitEvents: preferenceFitEvents.data,
     },
     calculatedAt

@@ -573,6 +573,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 - Modifying `data/services.json` – service data is hand-curated
 - Adding new verification levels or changing scoring weights
 - Database schema changes (migrations)
+- Running any production schema migration, SQL patch, or backfill before a read-only live-schema preflight confirms the target environment matches the expected tables/views/columns
 - Changes to RBAC permissions or role definitions
 - Adding new environment variables
 - Removing or skipping tests
@@ -586,6 +587,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 - Modify `node_modules/` or `vendor/` directories
 - Force push to main branch
 - Skip pre-commit hooks (`--no-verify`)
+- Assume production Supabase schema matches local migrations, generated types, or the repo state without first inspecting the live environment through read-only queries or an equivalent trusted admin workflow
 
 ---
 

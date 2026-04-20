@@ -2,13 +2,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import type { NextRequest } from "next/server"
 
-const { mockGetSLOComplianceSummary, mockSendSLOViolationAlert } = vi.hoisted(() => ({
+const { mockGetSLOComplianceSummary, mockSendSLOViolationAlert, mockRecordUptimeEvent } = vi.hoisted(() => ({
   mockGetSLOComplianceSummary: vi.fn(() => ({
     uptime: { compliant: true, actual: 1, target: 0.995, totalChecks: 25, successfulChecks: 25 },
     errorBudget: { exhausted: false, consumed: 0, remaining: 1, warningThreshold: 0.5 },
     latency: { hasData: false, compliant: true, actualP95: null, target: 800 },
   })),
   mockSendSLOViolationAlert: vi.fn(),
+  mockRecordUptimeEvent: vi.fn(),
 }))
 
 vi.mock("@/lib/resilience/supabase-breaker", () => ({
@@ -51,7 +52,7 @@ vi.mock("@/lib/rate-limit", () => ({
 }))
 
 vi.mock("@/lib/observability/slo-tracker", () => ({
-  recordUptimeEvent: vi.fn(),
+  recordUptimeEvent: mockRecordUptimeEvent,
   getSLOComplianceSummary: mockGetSLOComplianceSummary,
 }))
 
@@ -76,6 +77,7 @@ describe("GET /api/v1/health version reporting", () => {
     delete process.env.npm_package_version
     mockGetSLOComplianceSummary.mockClear()
     mockSendSLOViolationAlert.mockClear()
+    mockRecordUptimeEvent.mockClear()
     mockGetSLOComplianceSummary.mockReturnValue({
       uptime: { compliant: true, actual: 1, target: 0.995, totalChecks: 25, successfulChecks: 25 },
       errorBudget: { exhausted: false, consumed: 0, remaining: 1, warningThreshold: 0.5 },
@@ -127,5 +129,6 @@ describe("GET /api/v1/health version reporting", () => {
     await GET({} as NextRequest)
 
     expect(mockSendSLOViolationAlert).not.toHaveBeenCalled()
+    expect(mockRecordUptimeEvent).not.toHaveBeenCalled()
   })
 })
