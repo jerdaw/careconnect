@@ -2,7 +2,7 @@
 
 ## Overview
 
-Bundle size tracking is **enforced in CI** to prevent performance regressions from JavaScript bundle bloat. The system automatically compares bundle sizes between PRs and the main branch, posting detailed reports as PR comments.
+Bundle size tracking is **enforced in CI** to prevent performance regressions from JavaScript bundle bloat. The system automatically compares bundle sizes between PRs and the main branch, keeps routine reports in the GitHub Actions job summary, and only creates a sticky PR comment when there is an actionable regression or the analyzer itself fails.
 
 ## How It Works
 
@@ -10,8 +10,8 @@ Bundle size tracking is **enforced in CI** to prevent performance regressions fr
 
 The `.github/workflows/bundle-analysis.yml` workflow runs on:
 
-- **Push to main**: Establishes baseline bundle sizes
-- **Pull requests**: Compares against baseline and posts diff report
+- **Push to main**: Establishes baseline bundle sizes when bundle-affecting files change
+- **Pull requests**: Compares against baseline for bundle-affecting changes, updates the job summary, and only comments when action is needed
 
 ### Workflow Steps
 
@@ -31,7 +31,10 @@ The `.github/workflows/bundle-analysis.yml` workflow runs on:
    - Identifies page-level changes
    - Generates markdown diff report
 
-5. **Post PR Comment**: Automated comment with size diff table
+5. **Sync PR Warning Comment**: Only for actionable regressions or analyzer failures
+   - Routine passes do not create inbox-noise comments
+   - Existing warning comments are updated in place, not recreated
+   - Warning comments are deleted automatically after the regression is resolved
 
 6. **Create Job Summary**: GitHub Actions summary with results
 
@@ -49,12 +52,15 @@ The `.github/workflows/bundle-analysis.yml` workflow runs on:
 | Raw     | 1.2 MB  | 1.15 MB  | ⚠️ +50 KB (+4.35%) |
 | Gzipped | 350 KB  | 340 KB   | ⚠️ +10 KB (+2.94%) |
 
-### 🔍 Significant Changes
+### Status
+
+⚠️ Action required: detected a significant gzipped bundle regression.
+
+### ⚠️ Significant Regressions
 
 | Page         | Current (gzip) | Baseline (gzip) | Diff                |
 | ------------ | -------------- | --------------- | ------------------- |
 | `/dashboard` | 45 KB          | 35 KB           | ⚠️ +10 KB (+28.57%) |
-| `/search`    | 60 KB          | 65 KB           | ✅ -5 KB (-7.69%)   |
 
 ### 📊 Largest Pages (Top 5)
 
@@ -70,6 +76,12 @@ The `.github/workflows/bundle-analysis.yml` workflow runs on:
 - **⚠️ Warning**: Size increased significantly (>10 KB or >5%)
 - **✅ Improvement**: Size decreased
 - **📊 Neutral**: Minor or no change
+
+### Notification Behavior
+
+- **No PR comment**: No actionable bundle regression was detected
+- **Sticky PR comment**: A significant gzipped bundle regression needs attention
+- **Failed workflow + sticky PR comment**: The comparison automation itself failed and needs investigation
 
 ## Thresholds
 
@@ -201,7 +213,8 @@ const withAnalyzer = withBundleAnalyzer({
 Located in `.github/workflows/bundle-analysis.yml`:
 
 - **Artifact Retention**: 30 days
-- **Permissions**: Read contents, write PR comments
+- **Permissions**: Read contents, write sticky PR warning comments
+- **Concurrency**: Cancels older in-flight bundle runs for the same PR/branch
 - **Triggers**: Push to main, all PRs
 
 ### Comparison Script
@@ -219,11 +232,17 @@ Located in `scripts/compare-bundle-size.js`:
 
 **Solution**: Merge PR to establish baseline. Future PRs will compare against it.
 
+### No PR comment appeared
+
+**Cause**: This is the expected quiet path. Routine bundle checks now stay in the job summary unless a significant gzipped regression or analyzer failure is detected.
+
+**Solution**: No action needed. Open the workflow summary or artifacts if you want the full report.
+
 ### Workflow failing on "Compare bundle sizes"
 
 **Cause**: `compare-bundle-size.js` script error.
 
-**Solution**: Check job logs. The step has `continue-on-error: true`, so it won't block PR.
+**Solution**: Check job logs and the sticky warning comment link. The workflow fails in this case so the broken automation is visible.
 
 ### Bundle size looks wrong
 

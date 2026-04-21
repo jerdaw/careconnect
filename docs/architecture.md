@@ -146,7 +146,9 @@ sequenceDiagram
 
 - **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`).
 - **Phone Validator**: Connectivity checks using Twilio Lookup API (`scripts/validate-phones.ts`).
-- **Automation**: GitHub Actions (`.github/workflows/health-check.yml`) create issues for human review upon detection of failures.
+- **Automation**: GitHub Actions maintain quiet-by-default governance issues.
+- **Finding Workflows**: Health and staleness workflows reuse one bot issue per lane, update it while action is needed, and close it automatically after the condition clears.
+- **Reminder Workflows**: Monthly/quarterly verification reminders reuse one issue per lane, reopen it for the new cycle, and keep a compact recent-cycle history instead of opening a new issue every run.
 
 ### Database Security & Row Level Security (RLS)
 
