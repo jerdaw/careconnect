@@ -30,7 +30,7 @@ function formatDiff(current, baseline) {
   const sign = diff > 0 ? "+" : ""
 
   let emoji = "📊"
-  if (diff > WARN_INCREASE_BYTES && Math.abs(percent) > WARN_INCREASE_PERCENT) {
+  if (diff > WARN_INCREASE_BYTES || parseFloat(percent) > WARN_INCREASE_PERCENT) {
     emoji = "⚠️"
   } else if (diff < 0) {
     emoji = "✅"
@@ -52,6 +52,22 @@ function loadBundleData(filePath) {
   } catch {
     return null
   }
+}
+
+function setGitHubOutput(name, value) {
+  if (!process.env.GITHUB_OUTPUT) {
+    return
+  }
+
+  fs.appendFileSync(process.env.GITHUB_OUTPUT, `${name}=${String(value)}\n`)
+}
+
+function isSignificantChange(diff) {
+  return Math.abs(diff.diff) > WARN_INCREASE_BYTES || Math.abs(parseFloat(diff.percent)) > WARN_INCREASE_PERCENT
+}
+
+function isActionableRegression(diff) {
+  return diff.diff > WARN_INCREASE_BYTES || parseFloat(diff.percent) > WARN_INCREASE_PERCENT
 }
 
 function compareBundles() {
@@ -106,16 +122,33 @@ function compareBundles() {
   report += `| Raw | ${formatBytes(currentGlobal.raw)} | ${formatBytes(baselineGlobal.raw)} | ${rawDiff.emoji} ${rawDiff.formatted} |\n`
   report += `| Gzipped | ${formatBytes(currentGlobal.gzip)} | ${formatBytes(baselineGlobal.gzip)} | ${gzipDiff.emoji} ${gzipDiff.formatted} |\n\n`
 
-  // Significant changes
-  const significantChanges = pageComparisons.filter(
-    (p) => Math.abs(p.diff.diff) > WARN_INCREASE_BYTES || Math.abs(parseFloat(p.diff.percent)) > WARN_INCREASE_PERCENT
-  )
+  const significantRegressions = pageComparisons.filter((p) => p.diff.diff > 0 && isActionableRegression(p.diff))
+  const significantImprovements = pageComparisons.filter((p) => p.diff.diff < 0 && isSignificantChange(p.diff))
+  const hasActionableRegression = isActionableRegression(gzipDiff) || significantRegressions.length > 0
 
-  if (significantChanges.length > 0) {
-    report += "### 🔍 Significant Changes\n\n"
+  if (hasActionableRegression) {
+    report += "### Status\n\n"
+    report += "⚠️ Action required: detected a significant gzipped bundle regression.\n\n"
+  } else {
+    report += "### Status\n\n"
+    report += "✅ No actionable gzipped bundle regression detected.\n\n"
+  }
+
+  if (significantRegressions.length > 0) {
+    report += "### ⚠️ Significant Regressions\n\n"
     report += "| Page | Current (gzip) | Baseline (gzip) | Diff |\n"
     report += "|------|----------------|-----------------|------|\n"
-    significantChanges.forEach((p) => {
+    significantRegressions.forEach((p) => {
+      report += `| \`${p.page}\` | ${formatBytes(p.current)} | ${formatBytes(p.baseline)} | ${p.diff.emoji} ${p.diff.formatted} |\n`
+    })
+    report += "\n"
+  }
+
+  if (significantImprovements.length > 0) {
+    report += "### ✅ Significant Improvements\n\n"
+    report += "| Page | Current (gzip) | Baseline (gzip) | Diff |\n"
+    report += "|------|----------------|-----------------|------|\n"
+    significantImprovements.forEach((p) => {
       report += `| \`${p.page}\` | ${formatBytes(p.current)} | ${formatBytes(p.baseline)} | ${p.diff.emoji} ${p.diff.formatted} |\n`
     })
     report += "\n"
@@ -132,14 +165,7 @@ function compareBundles() {
   })
   report += "\n"
 
-  // Warnings
-  const hasLargeIncrease =
-    rawDiff.diff > WARN_INCREASE_BYTES * 2 ||
-    gzipDiff.diff > WARN_INCREASE_BYTES * 2 ||
-    parseFloat(rawDiff.percent) > WARN_INCREASE_PERCENT * 2 ||
-    parseFloat(gzipDiff.percent) > WARN_INCREASE_PERCENT * 2
-
-  if (hasLargeIncrease) {
+  if (hasActionableRegression) {
     report += "### ⚠️ Warning\n\n"
     report += `Bundle size increased significantly. Consider:\n`
     report += `- Reviewing new dependencies added\n`
@@ -159,7 +185,7 @@ function compareBundles() {
   console.log("Bundle comparison report generated at:", OUTPUT_PATH)
   console.log("\n" + report)
 
-  return { hasLargeIncrease, gzipDiff, rawDiff }
+  return { hasActionableRegression }
 }
 
 // Run comparison
@@ -172,14 +198,11 @@ try {
       "## 📦 Bundle Size Analysis\n\n✅ Bundle analysis complete. No baseline for comparison.\n\nThis will serve as the baseline for future PRs.\n"
     fs.writeFileSync(OUTPUT_PATH, message)
     console.log(message)
+    setGitHubOutput("should_comment", false)
     process.exit(0)
   }
 
-  // Exit with error if bundle size increased significantly (optional - can be removed if too strict)
-  // if (result.hasLargeIncrease) {
-  //   console.error("Bundle size increased significantly!")
-  //   process.exit(1)
-  // }
+  setGitHubOutput("should_comment", result.hasActionableRegression)
 
   process.exit(0)
 } catch (err) {

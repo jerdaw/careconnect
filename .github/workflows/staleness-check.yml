@@ -4,7 +4,17 @@ on:
   schedule:
     # Run at 9am ET on the 1st of each month
     - cron: "0 14 1 * *"
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview issue sync without creating, updating, or closing issues."
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: careconnect-staleness-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check-staleness:
@@ -26,51 +36,92 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Resolve dry-run mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.dry_run }}" == "true" ]]; then
+            echo "dry_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run staleness check
         id: staleness
         run: npx tsx scripts/check-staleness.ts
 
-      - name: Create issue if stale services found
-        if: steps.staleness.outputs.stale_count > 0
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const staleIds = '${{ steps.staleness.outputs.stale_ids }}'.split(',');
-            const staleCount = parseInt('${{ steps.staleness.outputs.stale_count }}');
+      - name: Prepare bot issue sync config
+        id: config
+        shell: bash
+        env:
+          DRY_RUN: ${{ steps.mode.outputs.dry_run }}
+          STALE_COUNT: ${{ steps.staleness.outputs.stale_count }}
+          STALE_IDS: ${{ steps.staleness.outputs.stale_ids }}
+          CONFIG_PATH: ${{ runner.temp }}/staleness-bot-issue.json
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "fs"
 
-            const body = `## 🔴 Stale Services Detected
+          const staleCount = Number(process.env.STALE_COUNT || "0")
+          const staleIds = (process.env.STALE_IDS || "")
+            .split(",")
+            .map((value) => value.trim())
+            .filter(Boolean)
 
-            **${staleCount} service(s)** have not been verified in over 6 months.
+          const body =
+            staleCount > 0
+              ? [
+                  "## 🔴 Stale Services Detected",
+                  "",
+                  `**${staleCount} service(s)** have not been verified in over 6 months.`,
+                  "",
+                  "Per the [Governance Protocol](docs/governance/standards.md), services not verified in >6 months should be downgraded to L0 (hidden).",
+                  "",
+                  "### Services Requiring Attention",
+                  "",
+                  ...staleIds.map((id) => `- [ ] \`${id}\``),
+                  "",
+                  "### Actions Required",
+                  "",
+                  "For each service above:",
+                  "1. Verify the service is still operating (call phone, check website)",
+                  "2. Update `provenance.verified_at` in `data/services.json`",
+                  '3. OR downgrade `verification_level` to "L0" if no longer valid',
+                  "",
+                  "### Verification Checklist",
+                  "",
+                  "- [ ] Phone number connects",
+                  "- [ ] Website loads",
+                  "- [ ] Hours are current",
+                  "- [ ] Address is correct",
+                  "- [ ] French translation is current",
+                  "",
+                  "---",
+                  "*This issue is maintained by the staleness check workflow and closes automatically when no stale services remain.*",
+                ].join("\n")
+              : ""
 
-            Per the [Governance Protocol](docs/governance/standards.md), services not verified in >6 months should be downgraded to L0 (hidden).
+          const config = {
+            marker: "careconnect-staleness-check-issue",
+            labels: ["data-quality", "governance"],
+            title: "🔴 Monthly Staleness Check: Stale Services Detected",
+            body,
+            legacy_matchers: [
+              {
+                title_includes: "Monthly Staleness Check",
+                body_includes: "staleness check workflow",
+              },
+            ],
+            close_when_resolved: true,
+            dry_run: process.env.DRY_RUN === "true",
+          }
 
-            ### Services Requiring Attention
+          fs.writeFileSync(process.env.CONFIG_PATH, JSON.stringify(config, null, 2))
+          EOF
 
-            ${staleIds.map(id => `- [ ] \`${id}\``).join('\n')}
+          echo "path=$CONFIG_PATH" >> "$GITHUB_OUTPUT"
 
-            ### Actions Required
-
-            For each service above:
-            1. Verify the service is still operating (call phone, check website)
-            2. Update \`provenance.verified_at\` in \`data/services.json\`
-            3. OR downgrade \`verification_level\` to "L0" if no longer valid
-
-            ### Verification Checklist
-
-            - [ ] Phone number connects
-            - [ ] Website loads
-            - [ ] Hours are current
-            - [ ] Address is correct
-            - [ ] French translation is current
-
-            ---
-            *This issue was automatically created by the staleness check workflow.*
-            `;
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔴 Monthly Staleness Check: ${staleCount} stale service(s) found`,
-              body: body,
-              labels: ['data-quality', 'governance']
-            });
+      - name: Sync bot issue
+        run: node --import tsx scripts/sync-bot-issue.ts "${{ steps.config.outputs.path }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

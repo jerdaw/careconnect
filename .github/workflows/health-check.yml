@@ -4,10 +4,24 @@ on:
   schedule:
     - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview issue sync without creating, updating, or closing issues."
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: careconnect-health-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   url-check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
     steps:
       - uses: actions/checkout@v6
 
@@ -18,46 +32,97 @@ jobs:
 
       - run: npm ci
 
+      - name: Resolve dry-run mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.dry_run }}" == "true" ]]; then
+            echo "dry_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run URL Health Check
         id: health-check
         run: npm run health-check
         continue-on-error: true
 
       - name: Upload Report
+        if: hashFiles('data/url-health-report.json') != ''
         uses: actions/upload-artifact@v7
         with:
           name: url-health-report
           path: data/url-health-report.json
 
-      - name: Create Issue on Failure
-        if: steps.health-check.outcome == 'failure'
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-            const reportPath = 'data/url-health-report.json';
+      - name: Prepare bot issue sync config
+        id: config
+        if: hashFiles('data/url-health-report.json') != ''
+        shell: bash
+        env:
+          DRY_RUN: ${{ steps.mode.outputs.dry_run }}
+          CONFIG_PATH: ${{ runner.temp }}/health-check-bot-issue.json
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "fs"
 
-            if (!fs.existsSync(reportPath)) {
-              console.log('No health report found. Skipping issue creation.');
-              return;
-            }
+          const report = JSON.parse(fs.readFileSync("data/url-health-report.json", "utf8"))
+          const broken = Array.isArray(report.broken) ? report.broken : []
+          const brokenList = broken
+            .map(
+              (entry) =>
+                `- [ ] **${entry.serviceName}** (ID: \`${entry.serviceId}\`)\n  - URL: ${entry.url}\n  - Error: ${entry.errorMessage || `HTTP ${entry.status}`}`
+            )
+            .join("\n")
 
-            const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
+          const body =
+            broken.length > 0
+              ? [
+                  "## URL Health Check Report",
+                  "",
+                  `**Generated**: ${report.generated}`,
+                  "",
+                  "### Summary",
+                  `- ✅ Healthy: ${report.summary.healthy}`,
+                  `- 🔀 Redirects: ${report.summary.redirects}`,
+                  `- ❌ Broken: ${report.summary.broken}`,
+                  "",
+                  "### Broken URLs",
+                  "",
+                  brokenList,
+                  "",
+                  "---",
+                  "*This issue is maintained by the monthly health check workflow and closes automatically after the report is clean.*",
+                ].join("\n")
+              : ""
 
-            if (!report.broken || report.broken.length === 0) {
-              console.log('No broken links found. Skipping issue creation.');
-              return;
-            }
+          const config = {
+            marker: "careconnect-health-check-issue",
+            labels: ["automated", "data-quality"],
+            title: "🔗 Monthly Health Check: Broken URLs Detected",
+            body,
+            legacy_matchers: [
+              {
+                title_includes: "Monthly Health Check",
+                body_includes: "monthly health check workflow",
+              },
+            ],
+            close_when_resolved: true,
+            dry_run: process.env.DRY_RUN === "true",
+          }
 
-            const brokenList = report.broken
-              .map(b => `- [ ] **${b.serviceName}** (ID: \`${b.serviceId}\`)\n  - URL: ${b.url}\n  - Error: ${b.errorMessage || `HTTP ${b.status}`}`)
-              .join('\n');
+          fs.writeFileSync(process.env.CONFIG_PATH, JSON.stringify(config, null, 2))
+          EOF
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔗 Monthly Health Check: ${report.broken.length} Broken URLs Found`,
-              body: `## URL Health Check Report\n\n**Generated**: ${report.generated}\n\n### Summary\n- ✅ Healthy: ${report.summary.healthy}\n- 🔀 Redirects: ${report.summary.redirects}\n- ❌ Broken: ${report.summary.broken}\n\n### Broken URLs\n\n${brokenList}\n\n---\n*This issue was automatically generated by the monthly health check workflow.*`,
-              labels: ['data-quality', 'automated']
-            });
+          echo "path=$CONFIG_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Sync bot issue
+        if: steps.config.outputs.path != ''
+        run: node --import tsx scripts/sync-bot-issue.ts "${{ steps.config.outputs.path }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail if health check did not produce a report
+        if: steps.health-check.outcome == 'failure' && hashFiles('data/url-health-report.json') == ''
+        run: |
+          echo "::error::URL health check failed before writing data/url-health-report.json."
+          exit 1

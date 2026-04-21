@@ -5,59 +5,126 @@ on:
     # Run at 9am ET on Jan 1, Apr 1, Jul 1, Oct 1
     - cron: "0 14 1 1,4,7,10 *"
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview issue sync without creating, updating, or closing issues."
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: careconnect-quarterly-verification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   create-reminder:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       issues: write
 
     steps:
-      - name: Create verification reminder issue
-        uses: actions/github-script@v8
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
         with:
-          script: |
-            const today = new Date();
-            const quarter = Math.floor(today.getMonth() / 3) + 1;
-            const year = today.getFullYear();
+          node-version: "22"
+          cache: "npm"
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `📋 Q${quarter} ${year} General Service Verification`,
-              body: `## Quarterly Service Verification
+      - run: npm ci
 
-            Per the [Governance Protocol](docs/governance/standards.md), general services must be verified **quarterly**.
+      - name: Resolve dry-run mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.dry_run }}" == "true" ]]; then
+            echo "dry_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+          fi
 
-            ### Categories to Review
+      - name: Prepare bot issue sync config
+        id: config
+        shell: bash
+        env:
+          DRY_RUN: ${{ steps.mode.outputs.dry_run }}
+          CONFIG_PATH: ${{ runner.temp }}/quarterly-verification-bot-issue.json
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "fs"
 
-            - [ ] Food (food banks, meal programs)
-            - [ ] Housing (shelters, housing help)
-            - [ ] Health (clinics, dental, mental health)
-            - [ ] Legal (legal clinics)
-            - [ ] Community (newcomer services, youth hubs)
-            - [ ] Indigenous (culturally-specific services)
+          const parts = Object.fromEntries(
+            new Intl.DateTimeFormat("en-CA", {
+              timeZone: "America/Toronto",
+              year: "numeric",
+              month: "numeric",
+            })
+              .formatToParts(new Date())
+              .filter((part) => part.type !== "literal")
+              .map((part) => [part.type, part.value])
+          )
 
-            ### Verification Checklist
+          const year = Number(parts.year)
+          const month = Number(parts.month)
+          const quarter = Math.floor((month - 1) / 3) + 1
 
-            For each service:
-            - [ ] Phone number connects
-            - [ ] Website loads and is current
-            - [ ] Address is correct
-            - [ ] Hours match current operations
-            - [ ] Eligibility criteria still accurate
-            - [ ] French translation is current
+          const body = [
+            "## Quarterly Service Verification",
+            "",
+            "Per the [Governance Protocol](docs/governance/standards.md), general services must be verified **quarterly**.",
+            "",
+            "### Categories to Review",
+            "",
+            "- [ ] Food (food banks, meal programs)",
+            "- [ ] Housing (shelters, housing help)",
+            "- [ ] Health (clinics, dental, mental health)",
+            "- [ ] Legal (legal clinics)",
+            "- [ ] Community (newcomer services, youth hubs)",
+            "- [ ] Indigenous (culturally-specific services)",
+            "",
+            "### Verification Checklist",
+            "",
+            "For each service:",
+            "- [ ] Phone number connects",
+            "- [ ] Website loads and is current",
+            "- [ ] Address is correct",
+            "- [ ] Hours match current operations",
+            "- [ ] Eligibility criteria still accurate",
+            "- [ ] French translation is current",
+            "",
+            "### Process",
+            "",
+            "1. Run `npm run check-staleness` to see which services are due",
+            "2. Verify each flagged service",
+            "3. Update `provenance.verified_at` in `data/services.json`",
+            "4. Commit changes",
+            "5. Close this issue when the current quarterly cycle is complete",
+            "",
+            "---",
+            "*This issue is maintained by the quarterly verification workflow. The next cycle will reopen it and refresh the checklist automatically.*",
+          ].join("\n")
 
-            ### Process
+          const config = {
+            marker: "careconnect-quarterly-verification-reminder",
+            labels: ["verification", "quarterly"],
+            title: `📋 Q${quarter} ${year} General Service Verification`,
+            body,
+            legacy_matchers: [
+              {
+                title_includes: "General Service Verification",
+                body_includes: "quarterly verification workflow",
+              },
+            ],
+            history_limit: 8,
+            dry_run: process.env.DRY_RUN === "true",
+          }
 
-            1. Run \`npm run check-staleness\` to see which services are due
-            2. Verify each flagged service
-            3. Update \`provenance.verified_at\` in \`data/services.json\`
-            4. Commit changes
-            5. Close this issue
+          fs.writeFileSync(process.env.CONFIG_PATH, JSON.stringify(config, null, 2))
+          EOF
 
-            ---
-            *Automatically created by quarterly verification workflow.*
-            `,
-              labels: ['verification', 'quarterly']
-            });
+          echo "path=$CONFIG_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Sync bot issue
+        run: node --import tsx scripts/sync-bot-issue.ts "${{ steps.config.outputs.path }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

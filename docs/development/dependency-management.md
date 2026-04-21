@@ -123,7 +123,7 @@ When reviewing a Dependabot PR:
 
 1. Dependabot opens PR (e.g., "chore(deps): bump next-intl from 3.0.0 to 3.1.0")
 2. CI runs automatically
-3. Auto-merge workflow comments "Manual Review Required"
+3. Auto-merge workflow posts or updates one sticky "Manual Review Required" comment
 
 **Action needed:**
 

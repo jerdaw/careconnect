@@ -5,55 +5,115 @@ on:
     # Run at 9am ET on the 1st of each month
     - cron: "0 14 1 * *"
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview issue sync without creating, updating, or closing issues."
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: careconnect-crisis-verification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   create-reminder:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       issues: write
 
     steps:
-      - name: Create verification reminder issue
-        uses: actions/github-script@v8
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
         with:
-          script: |
-            const today = new Date();
-            const month = today.toLocaleString('default', { month: 'long', year: 'numeric' });
+          node-version: "22"
+          cache: "npm"
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `📞 Monthly Crisis Service Verification - ${month}`,
-              body: `## Crisis Service Verification Checklist
+      - run: npm ci
 
-            Per the [Governance Protocol](docs/governance/standards.md), crisis services must be verified **monthly**.
+      - name: Resolve dry-run mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.dry_run }}" == "true" ]]; then
+            echo "dry_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+          fi
 
-            ### Services to Verify
+      - name: Prepare bot issue sync config
+        id: config
+        shell: bash
+        env:
+          DRY_RUN: ${{ steps.mode.outputs.dry_run }}
+          CONFIG_PATH: ${{ runner.temp }}/crisis-verification-bot-issue.json
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "fs"
 
-            - [ ] Kids Help Phone (1-800-668-6868)
-            - [ ] Trans Lifeline (1-877-330-6366)
-            - [ ] Hope for Wellness Helpline (1-855-242-3310)
-            - [ ] Assaulted Women's Helpline (1-866-863-0511)
-            - [ ] Kingston Interval House (613-546-1777)
-            - [ ] Telephone Aid Line Kingston (613-544-1771)
-            - [ ] Other crisis services in \`data/services.json\` with \`intent_category: "Crisis"\`
+          const now = new Date()
+          const month = new Intl.DateTimeFormat("en-CA", {
+            timeZone: "America/Toronto",
+            month: "long",
+            year: "numeric",
+          }).format(now)
 
-            ### Verification Steps
+          const body = [
+            "## Crisis Service Verification Checklist",
+            "",
+            "Per the [Governance Protocol](docs/governance/standards.md), crisis services must be verified **monthly**.",
+            "",
+            "### Services to Verify",
+            "",
+            "- [ ] Kids Help Phone (1-800-668-6868)",
+            "- [ ] Trans Lifeline (1-877-330-6366)",
+            "- [ ] Hope for Wellness Helpline (1-855-242-3310)",
+            "- [ ] Assaulted Women's Helpline (1-866-863-0511)",
+            "- [ ] Kingston Interval House (613-546-1777)",
+            "- [ ] Telephone Aid Line Kingston (613-544-1771)",
+            '- [ ] Other crisis services in `data/services.json` with `intent_category: "Crisis"`',
+            "",
+            "### Verification Steps",
+            "",
+            "For each service:",
+            "1. [ ] Call the phone number - does it connect?",
+            "2. [ ] Check the website - does it load?",
+            "3. [ ] Verify hours match what's in our data",
+            "4. [ ] Update `provenance.verified_at` to today's date",
+            "",
+            "### After Verification",
+            "",
+            "- Commit changes to `data/services.json`",
+            "- Run `npm run generate-embeddings` if descriptions changed",
+            "- Close this issue when the current monthly cycle is complete",
+            "",
+            "---",
+            "*This issue is maintained by the monthly verification reminder workflow. The next cycle will reopen it and refresh the checklist automatically.*",
+          ].join("\n")
 
-            For each service:
-            1. [ ] Call the phone number - does it connect?
-            2. [ ] Check the website - does it load?
-            3. [ ] Verify hours match what's in our data
-            4. [ ] Update \`provenance.verified_at\` to today's date
+          const config = {
+            marker: "careconnect-crisis-verification-reminder",
+            labels: ["verification", "crisis-services", "monthly"],
+            title: `📞 Monthly Crisis Service Verification - ${month}`,
+            body,
+            legacy_matchers: [
+              {
+                title_includes: "Monthly Crisis Service Verification",
+                body_includes: "verification reminder workflow",
+              },
+            ],
+            history_limit: 6,
+            dry_run: process.env.DRY_RUN === "true",
+          }
 
-            ### After Verification
+          fs.writeFileSync(process.env.CONFIG_PATH, JSON.stringify(config, null, 2))
+          EOF
 
-            - Commit changes to \`data/services.json\`
-            - Run \`npm run generate-embeddings\` if descriptions changed
-            - Close this issue
+          echo "path=$CONFIG_PATH" >> "$GITHUB_OUTPUT"
 
-            ---
-            *Automatically created by verification reminder workflow.*
-            `,
-              labels: ['verification', 'crisis-services', 'monthly']
-            });
+      - name: Sync bot issue
+        run: node --import tsx scripts/sync-bot-issue.ts "${{ steps.config.outputs.path }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

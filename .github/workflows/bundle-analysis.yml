@@ -3,11 +3,47 @@ name: Bundle Size Check
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/bundle-analysis.yml"
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "hooks/**"
+      - "i18n/**"
+      - "lib/**"
+      - "messages/**"
+      - "middleware.ts"
+      - "next.config.ts"
+      - "package-lock.json"
+      - "package.json"
+      - "public/**"
+      - "scripts/compare-bundle-size.js"
+      - "scripts/report-bundle-size.js"
   pull_request:
+    paths:
+      - ".github/workflows/bundle-analysis.yml"
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "hooks/**"
+      - "i18n/**"
+      - "lib/**"
+      - "messages/**"
+      - "middleware.ts"
+      - "next.config.ts"
+      - "package-lock.json"
+      - "package.json"
+      - "public/**"
+      - "scripts/compare-bundle-size.js"
+      - "scripts/report-bundle-size.js"
+
+concurrency:
+  group: careconnect-bundle-analysis-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
-  pull-requests: write # Needed for PR comments
+  pull-requests: write # Needed for sticky PR warning comments
 
 jobs:
   analyze:
@@ -58,22 +94,81 @@ jobs:
         if: github.event_name == 'pull_request'
         id: compare
         run: |
-          node scripts/compare-bundle-size.js || echo "comparison_failed=true" >> "$GITHUB_OUTPUT"
+          if node scripts/compare-bundle-size.js; then
+            echo "comparison_failed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "comparison_failed=true" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Comment PR with bundle size diff
-        if: github.event_name == 'pull_request' && steps.compare.outputs.comparison_failed != 'true'
+      - name: Sync PR bundle analysis comment
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v8
+        env:
+          COMPARE_FAILED: ${{ steps.compare.outputs.comparison_failed }}
+          SHOULD_COMMENT: ${{ steps.compare.outputs.should_comment }}
+          ACTIONS_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           script: |
             const fs = require('fs');
-            const diff = fs.readFileSync('.next/analyze/bundle-diff.md', 'utf8');
+            const marker = '<!-- careconnect-bundle-analysis -->';
+            const compareFailed = process.env.COMPARE_FAILED === 'true';
+            const shouldComment = process.env.SHOULD_COMMENT === 'true';
+            const runUrl = process.env.ACTIONS_RUN_URL;
 
-            github.rest.issues.createComment({
+            const comments = await github.paginate(github.rest.issues.listComments, {
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: diff
+              per_page: 100,
             });
+
+            const existing = comments.find((comment) =>
+              comment.user?.login === 'github-actions[bot]' && comment.body?.includes(marker)
+            );
+
+            let body = null;
+
+            if (compareFailed) {
+              body = [
+                marker,
+                '## 📦 Bundle Size Analysis',
+                '',
+                '⚠️ Bundle analysis could not compare this PR against the current baseline.',
+                '',
+                `Review the [workflow run](${runUrl}) for logs and artifacts.`,
+              ].join('\n');
+            } else if (shouldComment) {
+              const diff = fs.readFileSync('.next/analyze/bundle-diff.md', 'utf8');
+              body = `${marker}\n${diff}\n\nReview the [workflow run](${runUrl}) for the full analyzer artifacts.`;
+            }
+
+            if (body && existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else if (body) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body,
+              });
+            } else if (existing) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+              });
+            }
+
+      - name: Fail on comparison error
+        if: github.event_name == 'pull_request' && steps.compare.outputs.comparison_failed == 'true'
+        run: |
+          echo "Bundle analysis comparison failed. Check the workflow logs."
+          exit 1
 
       - name: Create job summary
         if: always()
