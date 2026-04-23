@@ -164,7 +164,7 @@ describe("documentation hygiene", () => {
     const planningIndex = readDoc("docs/planning/README.md")
     const roadmap = readDoc("docs/planning/roadmap.md")
 
-    expect(planningIndex).toContain("2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md")
-    expect(roadmap).toContain("Semantic search fail-closed and lint hygiene (2026-04-15)")
+    expect(planningIndex).toContain("2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md")
+    expect(roadmap).toContain("Quiet GitHub automation and URL health hardening (2026-04-23)")
   })
 })

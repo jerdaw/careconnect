@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-18
+last_updated: 2026-04-23
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -144,10 +144,10 @@ sequenceDiagram
 
 ### Automated Maintenance Bots
 
-- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`).
+- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`). When a provider's public page is bot-hostile from CI, the checker can fall back to a small allowlist of official provider override probes without changing the curated public URL stored in service data.
 - **Phone Validator**: Connectivity checks using Twilio Lookup API (`scripts/validate-phones.ts`).
-- **Automation**: GitHub Actions maintain quiet-by-default governance issues.
-- **Finding Workflows**: Health and staleness workflows reuse one bot issue per lane, update it while action is needed, and close it automatically after the condition clears.
+- **Automation**: GitHub Actions maintain quiet-by-default governance issues and prefer job summaries over routine PR comments.
+- **Finding Workflows**: Health and staleness workflows reuse one bot issue per lane, update it while action is needed, and close it automatically after the condition clears. The monthly URL health workflow also writes a readable summary of broken and inconclusive checks into the Actions run.
 - **Reminder Workflows**: Monthly/quarterly verification reminders reuse one issue per lane, reopen it for the new cycle, and keep a compact recent-cycle history instead of opening a new issue every run.
 
 ### Database Security & Row Level Security (RLS)
