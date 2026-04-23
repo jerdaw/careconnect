@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs"
 import path from "path"
 
 import { classifyUrlCheckOutcome, type UrlCheckOutcome, type UrlHealthClassification } from "@/lib/health/url-health"
+import { resolveUrlHealthProbe, type UrlHealthProbeSource } from "@/lib/health/url-health-probes"
 
 interface Service {
   id: string
@@ -14,9 +15,13 @@ interface HealthCheckResult extends UrlCheckOutcome {
   serviceId: string
   serviceName: string
   url: string
+  probeUrl: string
+  probeSource: UrlHealthProbeSource
+  probeReason?: string
   classification: UrlHealthClassification
   finalUrl?: string
   responseTime?: number
+  notes?: string
 }
 
 const SERVICES_PATH = path.join(process.cwd(), "data/services.json")
@@ -109,6 +114,54 @@ async function checkUrl(
   }
 }
 
+function formatOutcome(outcome: Pick<HealthCheckResult, "status" | "errorCode" | "errorMessage">): string {
+  if (outcome.status === "error") {
+    return `${outcome.errorCode ? `${outcome.errorCode}: ` : ""}${outcome.errorMessage}`
+  }
+
+  return `HTTP ${outcome.status}`
+}
+
+async function checkService(service: Service): Promise<HealthCheckResult> {
+  const primaryResult = await checkUrl(service.url!)
+  const probe = resolveUrlHealthProbe(service.id, service.url!)
+
+  if (primaryResult.classification !== "inconclusive" || probe.source === "service_url") {
+    return {
+      serviceId: service.id,
+      serviceName: service.name,
+      url: service.url!,
+      probeUrl: service.url!,
+      probeSource: "service_url",
+      ...primaryResult,
+    }
+  }
+
+  const overrideResult = await checkUrl(probe.probeUrl)
+  if (overrideResult.classification === "healthy") {
+    return {
+      serviceId: service.id,
+      serviceName: service.name,
+      url: service.url!,
+      probeUrl: probe.probeUrl,
+      probeSource: probe.source,
+      probeReason: probe.reason,
+      ...overrideResult,
+      notes: `Primary URL remained inconclusive (${formatOutcome(primaryResult)}); official override probe succeeded.`,
+    }
+  }
+
+  return {
+    serviceId: service.id,
+    serviceName: service.name,
+    url: service.url!,
+    probeUrl: service.url!,
+    probeSource: "service_url",
+    ...primaryResult,
+    notes: `Official override probe (${probe.probeUrl}) was ${formatOutcome(overrideResult)}.`,
+  }
+}
+
 async function main() {
   console.log(`${YELLOW}🔗 Running URL health check...${RESET}\n`)
 
@@ -126,13 +179,8 @@ async function main() {
   let checked = 0
 
   for (const service of servicesWithUrls) {
-    const result = await checkUrl(service.url!)
-    results.push({
-      serviceId: service.id,
-      serviceName: service.name,
-      url: service.url!,
-      ...result,
-    })
+    const result = await checkService(service)
+    results.push(result)
 
     checked++
     const statusIcon =
@@ -144,11 +192,16 @@ async function main() {
     const statusText =
       result.status === "error"
         ? `${result.errorCode ? `${result.errorCode}: ` : ""}${result.errorMessage}`
-        : `HTTP ${result.status}${result.finalUrl && result.finalUrl !== service.url ? ` → ${result.finalUrl}` : ""}`
+        : `HTTP ${result.status}${result.finalUrl && result.finalUrl !== result.probeUrl ? ` → ${result.finalUrl}` : ""}`
+    const probeText =
+      result.probeSource === "official_override"
+        ? ` via override ${result.probeUrl}${result.probeReason ? ` (${result.probeReason})` : ""}`
+        : ""
+    const notesText = result.notes ? ` ${result.notes}` : ""
 
     // Using a more readable multi-line output for CI/Terminal
     console.log(
-      `${statusIcon} [${checked}/${servicesWithUrls.length}] ${service.name}: ${statusText} (${result.responseTime}ms)`
+      `${statusIcon} [${checked}/${servicesWithUrls.length}] ${service.name}: ${statusText}${probeText}${notesText} (${result.responseTime}ms)`
     )
 
     // Rate limiting: 500ms between requests to avoid being blocked
@@ -174,6 +227,9 @@ async function main() {
     for (const result of broken) {
       console.log(`  - ${result.serviceName}`)
       console.log(`    URL: ${result.url}`)
+      if (result.probeSource === "official_override") {
+        console.log(`    Override Probe: ${result.probeUrl}`)
+      }
       console.log(`    Error: ${result.errorMessage || `HTTP ${result.status}`}\n`)
     }
   }
@@ -183,6 +239,9 @@ async function main() {
     for (const result of inconclusive) {
       console.log(`  - ${result.serviceName}`)
       console.log(`    URL: ${result.url}`)
+      if (result.probeSource === "official_override") {
+        console.log(`    Override Probe: ${result.probeUrl}`)
+      }
       console.log(
         `    Result: ${
           result.status === "error"

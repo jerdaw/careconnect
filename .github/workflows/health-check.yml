@@ -54,6 +54,53 @@ jobs:
           name: url-health-report
           path: data/url-health-report.json
 
+      - name: Write job summary
+        if: hashFiles('data/url-health-report.json') != ''
+        shell: bash
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "fs"
+
+          const report = JSON.parse(fs.readFileSync("data/url-health-report.json", "utf8"))
+          const broken = Array.isArray(report.broken) ? report.broken : []
+          const inconclusive = Array.isArray(report.inconclusive) ? report.inconclusive : []
+
+          const summaryLines = [
+            "## URL Health Check",
+            "",
+            `- ✅ Healthy: ${report.summary.healthy}`,
+            `- 🔀 Redirects: ${report.summary.redirects}`,
+            `- ⚠️ Inconclusive: ${report.summary.inconclusive ?? 0}`,
+            `- ❌ Broken: ${report.summary.broken}`,
+          ]
+
+          if (broken.length > 0) {
+            summaryLines.push("", "### Broken URLs")
+            for (const entry of broken.slice(0, 10)) {
+              summaryLines.push(
+                `- **${entry.serviceName}**: ${entry.errorMessage || `HTTP ${entry.status}`}`,
+                `  - Public URL: ${entry.url}`
+              )
+            }
+          }
+
+          if (inconclusive.length > 0) {
+            summaryLines.push("", "### Inconclusive URLs")
+            for (const entry of inconclusive.slice(0, 10)) {
+              const result = entry.status === "error" ? `${entry.errorCode ? `${entry.errorCode}: ` : ""}${entry.errorMessage}` : `HTTP ${entry.status}`
+              summaryLines.push(
+                `- **${entry.serviceName}**: ${result}`,
+                `  - Public URL: ${entry.url}`
+              )
+              if (entry.probeUrl && entry.probeUrl !== entry.url) {
+                summaryLines.push(`  - Override Probe: ${entry.probeUrl}`)
+              }
+            }
+          }
+
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${summaryLines.join("\n")}\n`)
+          EOF
+
       - name: Prepare bot issue sync config
         id: config
         if: hashFiles('data/url-health-report.json') != ''
@@ -70,7 +117,15 @@ jobs:
           const brokenList = broken
             .map(
               (entry) =>
-                `- [ ] **${entry.serviceName}** (ID: \`${entry.serviceId}\`)\n  - URL: ${entry.url}\n  - Error: ${entry.errorMessage || `HTTP ${entry.status}`}`
+                [
+                  `- [ ] **${entry.serviceName}** (ID: \`${entry.serviceId}\`)`,
+                  `  - URL: ${entry.url}`,
+                  entry.probeUrl && entry.probeUrl !== entry.url ? `  - Override Probe: ${entry.probeUrl}` : null,
+                  `  - Error: ${entry.errorMessage || `HTTP ${entry.status}`}`,
+                  entry.notes ? `  - Note: ${entry.notes}` : null,
+                ]
+                  .filter(Boolean)
+                  .join("\n")
             )
             .join("\n")
 
