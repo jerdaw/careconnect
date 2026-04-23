@@ -8,7 +8,7 @@ This file contains the core architecture and development guidelines for CareConn
 
 ---
 status: stable
-last_updated: 2026-04-18
+last_updated: 2026-04-23
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -152,10 +152,10 @@ sequenceDiagram
 
 ### Automated Maintenance Bots
 
-- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`).
+- **URL Health Bot**: Monthly check of all service URLs (`scripts/health-check-urls.ts`). When a provider's public page is bot-hostile from CI, the checker can fall back to a small allowlist of official provider override probes without changing the curated public URL stored in service data.
 - **Phone Validator**: Connectivity checks using Twilio Lookup API (`scripts/validate-phones.ts`).
-- **Automation**: GitHub Actions maintain quiet-by-default governance issues.
-- **Finding Workflows**: Health and staleness workflows reuse one bot issue per lane, update it while action is needed, and close it automatically after the condition clears.
+- **Automation**: GitHub Actions maintain quiet-by-default governance issues and prefer job summaries over routine PR comments.
+- **Finding Workflows**: Health and staleness workflows reuse one bot issue per lane, update it while action is needed, and close it automatically after the condition clears. The monthly URL health workflow also writes a readable summary of broken and inconclusive checks into the Actions run.
 - **Reminder Workflows**: Monthly/quarterly verification reminders reuse one issue per lane, reopen it for the new cycle, and keep a compact recent-cycle history instead of opening a new issue every run.
 
 ### Database Security & Row Level Security (RLS)
@@ -1333,7 +1333,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-04-18
+last_updated: 2026-04-23
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1342,7 +1342,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-20
+> **Last Updated**: 2026-04-23
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -1362,6 +1362,8 @@ tags: [planning, roadmap, v22.0, governance]
 - **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
 - **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
 - **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
+- **GitHub automation hygiene**: bundle analysis, Dependabot review gates, scheduled governance reminders, and finding workflows now run quiet-by-default with sticky comments/issues only when action is required
+- **URL health governance**: the monthly health check writes an Actions summary, auto-closes its finding issue when the report returns clean, and can use bounded official provider override probes for repeat CI-only false positives without changing curated public URLs
 - **Lint hygiene**: repo-wide ESLint now ignores local MkDocs build output under `site/`, so `npm run lint` remains actionable even when docs artifacts exist locally
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
@@ -1570,6 +1572,7 @@ Useful maintenance items:
 2. Keep the dedicated DB integration lane healthy and deterministic.
 3. Publish a fresh coverage snapshot.
 4. Fix repo-local regressions surfaced by routine validation.
+5. Reduce persistent monthly URL-health inconclusives only when they repeat across live runs and a stable official provider probe exists.
 
 Deferred items:
 
@@ -1587,6 +1590,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Quiet GitHub automation and URL health hardening (2026-04-23)**: converted routine GitHub governance workflows to quiet-by-default sticky issue/comment behavior, reconciled duplicate reminder issues, added reusable bot-issue synchronization for scheduled workflows, hardened the monthly URL health lane with official override probes plus Actions summaries, and verified clean auto-close/no-reopen behavior for the broken-URL issue lane; archived in [2026-04-23 v20.0 Quiet GitHub Automation and URL Health Hardening](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md).
 - **Semantic search fail-closed and lint hygiene (2026-04-15)**: removed synthetic semantic-search fallback vectors, made worker/embed failures degrade to keyword-only search, restored authoritative repo-wide linting by excluding local MkDocs output, synced architecture docs, and added focused hook/documentation hygiene coverage; archived in [2026-04-15 v20.0 Semantic Search Fail-Closed and Lint Hygiene](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md).
 - **Gate 0 wait maintenance bundle (2026-04-05)**: completed search explainability, stale-data runtime governance, workflow-runtime doc alignment, and solo-scale freshness-policy calibration while Gate 0 remained blocked; archived in [2026-04-05 v22.0 Gate 0 Wait Maintenance Bundle](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md).
 - **Map privacy and offline snapshot safety surfaces (2026-04-04)**: replaced automatic Google Maps embeds with explicit opt-in previews, surfaced offline snapshot age/stale warnings on offline surfaces, updated threat-model/user-guide/architecture docs, and added focused UI/helper coverage; archived in [2026-04-04 v22.0 Map Privacy and Offline Snapshot Safety](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md).
@@ -1614,6 +1618,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)
 - [v22.0 Gate 0 Wait Maintenance Bundle Archive](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md)
 - [v22.0 Map Privacy and Offline Snapshot Safety Archive](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md)
 - [v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)
