@@ -4066,7 +4066,7 @@
     "id": "kingston-access-bus",
     "name": "Kingston Access Services (Access Bus)",
     "description": "Provides specialized curb-to-curb transportation for people with mobility impairments who cannot use conventional transit. Registration is required.[50]",
-    "url": "https://kingstonaccessbus.com",
+    "url": "https://www.kingstonaccessbus.net/",
     "phone": "613-542-2512",
     "address": "751 Dalton Ave, Kingston, ON K7M 8N6",
     "verification_level": "L1",
@@ -4074,14 +4074,14 @@
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://kingstonaccessbus.com",
+      "evidence_url": "https://www.kingstonaccessbus.net/",
       "method": "Live Web Verification",
       "verification_notes": "Confirmed active status and admin hours."
     },
     "identity_tags": [
       {
         "tag": "Disability Transit",
-        "evidence_url": "https://kingstonaccessbus.com"
+        "evidence_url": "https://www.kingstonaccessbus.net/"
       }
     ],
     "synthetic_queries": [
@@ -4394,8 +4394,8 @@
     "id": "kchc-iipct",
     "name": "Indigenous Interprofessional Primary Care Team (IIPCT)",
     "description": "Provides culturally safe primary health care, mental health support, and traditional healing services. Integrates Indigenous knowledge with Western medicine.",
-    "url": "https://kchc.ca/weller-avenue/iipct/",
-    "phone": "343-477-0256",
+    "url": "https://iipct.org/",
+    "phone": "343-478-0196",
     "address": "730 Front Rd, Unit 7, Kingston, ON K7M 6P7",
     "verification_level": "L1",
     "intent_category": "Health",
@@ -4409,15 +4409,15 @@
     "identity_tags": [
       {
         "tag": "Indigenous Peoples",
-        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+        "evidence_url": "https://iipct.org/"
       },
       {
         "tag": "Health",
-        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+        "evidence_url": "https://iipct.org/"
       },
       {
         "tag": "Culturally Safe",
-        "evidence_url": "https://kchc.ca/weller-avenue/iipct/"
+        "evidence_url": "https://iipct.org/"
       }
     ],
     "synthetic_queries": [
@@ -4436,7 +4436,7 @@
     "name_fr": "Équipe de soins primaires interprofessionnels autochtones",
     "description_fr": "Fournit des soins de santé primaires culturellement sûrs, un soutien en santé mentale et des services de guérison traditionnelle.",
     "eligibility_notes_fr": "Ouvert aux résidents admissibles de Kingston. Voir le site web pour les détails.",
-    "email": "info@iipct.com",
+    "email": "iipct.reception@iipct.com",
     "status": "Active",
     "application_process": "Call to register",
     "fees": "Free (OHIP covered)",
@@ -4450,7 +4450,7 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP Card required. Free."
+    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP Card required. Free."
   },
   {
     "id": "metis-nation-ontario-kingston",
@@ -4894,25 +4894,25 @@
     "description": "A culturally grounded, fully confidential helpline for Indigenous women available in 14 languages.",
     "description_fr": "Une ligne d'écoute culturellement ancrée et entièrement confidentielle pour les femmes autochtones.",
     "phone": "1-855-554-4325",
-    "url": "https://www.talk4healing.com",
+    "url": "https://www.beendigen.com/programs/talk4healing/",
     "intent_category": "Crisis",
     "verification_level": "L1",
     "is_provincial": true,
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.talk4healing.com",
+      "evidence_url": "https://www.beendigen.com/programs/talk4healing/",
       "method": "Official Website",
       "verification_notes": "Verified."
     },
     "identity_tags": [
       {
         "tag": "Indigenous Peoples",
-        "evidence_url": "https://www.talk4healing.com"
+        "evidence_url": "https://www.beendigen.com/programs/talk4healing/"
       },
       {
         "tag": "Women",
-        "evidence_url": "https://www.talk4healing.com"
+        "evidence_url": "https://www.beendigen.com/programs/talk4healing/"
       }
     ],
     "synthetic_queries": ["Indigenous women help", "native women crisis"],
@@ -4932,7 +4932,7 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-855-554-4325. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call or text 1-855-554-4325, or use the live chat on the official website. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-trans-lifeline",
@@ -5032,15 +5032,15 @@
     "name_fr": "Ligne ontarienne d'aide sur le jeu problématique",
     "description": "Information and referral services for people concerned about their own or someone else's gambling.[52]",
     "description_fr": "Services d'information et d'orientation pour les personnes préoccupées par le jeu.",
-    "phone": "1-888-230-3505",
-    "url": "https://www.problemgamblinghelpline.ca",
+    "phone": "1-866-531-2600",
+    "url": "https://connexontario.ca/our-services/gambling-treatment/",
     "intent_category": "Crisis",
     "verification_level": "L1",
     "is_provincial": true,
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.problemgamblinghelpline.ca",
+      "evidence_url": "https://connexontario.ca/our-services/gambling-treatment/",
       "method": "Official Website",
       "verification_notes": "Verified."
     },
@@ -5050,7 +5050,7 @@
       "notes": "24/7"
     },
     "status": "Active",
-    "application_process": "Call",
+    "application_process": "Call, Text, Chat, or Email",
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "24/7",
@@ -5062,7 +5062,7 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-888-230-3505. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-531-2600 or text CONNEX to 247247 for free, confidential support. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-telehealth-ontario",
@@ -5228,27 +5228,27 @@
     "id": "crisis-text-line",
     "name": "Crisis Text Line",
     "name_fr": "Crisis Text Line",
-    "description": "Free, 24/7 support for people in crisis via text message.",
+    "description": "Free, 24/7 text support for youth across Canada through Kids Help Phone's Crisis Text Line service.",
     "description_fr": "Soutien gratuit 24/7 par SMS pour les personnes en crise.",
     "phone": "686868 (SMS)",
-    "url": "https://www.crisistextline.ca",
+    "url": "https://kidshelpphone.ca/text-faq",
     "intent_category": "Crisis",
     "verification_level": "L1",
     "is_provincial": true,
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.crisistextline.ca",
+      "evidence_url": "https://kidshelpphone.ca/text-faq",
       "method": "Official Website",
       "verification_notes": "Verified."
     },
     "identity_tags": [],
     "synthetic_queries": ["text crisis", "crisis text", "I need to text someone"],
     "hours": {
-      "notes": "24/7. Text HOME to 686868."
+      "notes": "24/7. Youth can text CONNECT to 686868. Adults can text 741741."
     },
     "status": "Active",
-    "application_process": "Text 'HOME' to 686868",
+    "application_process": "Text 'CONNECT' to 686868",
     "fees": "Free",
     "documents_required": "None",
     "hours_text": "24/7",
@@ -5260,7 +5260,7 @@
     },
     "scope": "canada",
     "plain_language_available": true,
-    "access_script": "Call 686868 (SMS). No fees. If you are in immediate danger, call 911."
+    "access_script": "Text CONNECT to 686868 for 24/7 youth support. Adults can text 741741. No fees. If you are in immediate danger, call 911."
   },
   {
     "id": "crisis-211-ontario",
@@ -5378,27 +5378,27 @@
     "name_fr": "Équipe de soins de santé primaires autochtones de KFL&A",
     "description": "See 'Indigenous Interprofessional Primary Care Team (IIPCT)'. This entry likely refers to the same team.",
     "description_fr": "Voir IIPCT.",
-    "url": "https://kchc.ca/indigenous-health-care-team/",
-    "phone": "343-477-0256",
+    "url": "https://iipct.org/",
+    "phone": "343-478-0196",
     "address": "730 Front Rd, Unit 7, Kingston, ON K7M 6P7",
     "intent_category": "Indigenous",
     "verification_level": "L1",
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.kchc.ca/indigenous-health-care-team/",
+      "evidence_url": "https://iipct.org/",
       "method": "Web Search",
       "verification_notes": "Note: Data matches IIPCT. Mapped address to 730 Front Rd to match verified IIPCT location."
     },
     "identity_tags": [
       {
         "tag": "Indigenous Health",
-        "evidence_url": "https://www.kchc.ca/indigenous-health-care-team/"
+        "evidence_url": "https://iipct.org/"
       }
     ],
     "synthetic_queries": ["Indigenous doctor Kingston", "First Nations health care", "Traditional healing Kingston"],
     "cultural_safety": true,
-    "email": "info@iipct.com",
+    "email": "iipct.reception@iipct.com",
     "status": "Active",
     "application_process": "Call",
     "fees": "Free",
@@ -5438,7 +5438,7 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 343-477-0256 or email info@iipct.com. OHIP required. No fees."
+    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP required. No fees."
   },
   {
     "id": "kingston-indigenous-friendship-centre",
@@ -5652,7 +5652,7 @@
     "name_fr": "Programmes d'apprentissage KFPL",
     "description": "Offers a wide variety of free learning programs, workshops, and events for all ages.[58]",
     "description_fr": "Offre une grande variété de programmes d'apprentissage gratuits.",
-    "url": "https://www.kfpl.ca/programs",
+    "url": "https://calendar.kfpl.ca/",
     "phone": "613-549-8888",
     "address": "130 Johnson St, Kingston, ON K7L 1X8",
     "intent_category": "Education",
@@ -5660,14 +5660,14 @@
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.kfpl.ca/programs",
+      "evidence_url": "https://calendar.kfpl.ca/",
       "method": "Live Web Verification",
       "verification_notes": "Verified Central Branch base."
     },
     "identity_tags": [
       {
         "tag": "All Ages",
-        "evidence_url": "https://www.kfpl.ca/programs"
+        "evidence_url": "https://calendar.kfpl.ca/"
       }
     ],
     "synthetic_queries": ["Free computer classes library", "Homework help Kingston", "Learn English free Kingston"],
@@ -5692,7 +5692,7 @@
     "hours": {
       "notes": "Hours vary by branch (e.g., Central branch Mon-Thu 09:00-20:00, Fri-Sat 09:00-17:00)."
     },
-    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://www.kfpl.ca/programs. Library Card (for registration) required. No fees."
+    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://calendar.kfpl.ca/. Library Card (for registration) required. No fees."
   },
   {
     "id": "kingston-transit-mfap",
@@ -5700,21 +5700,21 @@
     "name_fr": "Passe de transport abordable (MFAP)",
     "description": "Discounted transit passes available to low-income residents through the Municipal Fee Assistance Program.[59]",
     "description_fr": "Laisses de transport à prix réduit pour les résidents à faible revenu.",
-    "url": "https://www.cityofkingston.ca/residents/community-services/fee-assistance",
+    "url": "https://www.cityofkingston.ca/community-supports/municipal-fee-assistance-program/",
     "phone": "613-546-0000",
     "intent_category": "Transport",
     "verification_level": "L1",
     "provenance": {
       "verified_by": "CareConnect Research Batch 2",
       "verified_at": "2026-01-03T14:53:40.749Z",
-      "evidence_url": "https://www.cityofkingston.ca/residents/community-services/fee-assistance",
+      "evidence_url": "https://www.cityofkingston.ca/community-supports/municipal-fee-assistance-program/",
       "method": "Web Search",
       "verification_notes": "Verified phone as City Customer Service."
     },
     "identity_tags": [
       {
         "tag": "Low Income",
-        "evidence_url": "https://www.cityofkingston.ca/residents/community-services/fee-assistance"
+        "evidence_url": "https://www.cityofkingston.ca/community-supports/municipal-fee-assistance-program/"
       }
     ],
     "synthetic_queries": ["Cheap bus pass Kingston", "Low income transit discount", "Affordable transportation help"],
@@ -7177,7 +7177,7 @@
     "name_fr": "Garde-manger SLC",
     "description": "Emergency food pantry providing non-perishable food items and personal care products for St. Lawrence College students.",
     "description_fr": "Garde-manger d'urgence fournissant des aliments non périssables et des produits de soins personnels pour les étudiants du Collège St-Lawrence.",
-    "url": "https://www.slc.me",
+    "url": "https://www.saslc.ca/frequently-asked-questions",
     "verification_level": "L2",
     "intent_category": "Food",
     "provenance": {
@@ -7185,7 +7185,7 @@
       "verified_at": "2026-01-03T15:07:38.324Z",
       "method": "Direct verification",
       "verification_notes": "Access limited to once every 30 days.",
-      "evidence_url": "https://www.slc.me"
+      "evidence_url": "https://www.saslc.ca/frequently-asked-questions"
     },
     "identity_tags": [],
     "synthetic_queries": ["college food help"],
@@ -7211,7 +7211,7 @@
     "hours": {
       "notes": "By appointment only"
     },
-    "access_script": "Visit https://www.slc.me for information."
+    "access_script": "Visit the SLC Student Association FAQ page for the Food Pantry intake instructions. Valid student identification required. No fees."
   },
   {
     "id": "community-harvest-market",
@@ -9029,14 +9029,14 @@
     "name_fr": "Police de Kingston (Non-urgent)",
     "description": "Police services for reporting non-emergency crimes or concerns.",
     "description_fr": "Services de police pour signaler des crimes ou des préoccupations non urgents.",
-    "url": "https://www.kpf.ca",
+    "url": "https://www.kingstonpolice.ca/about-kp/contacts/",
     "verification_level": "L2",
     "intent_category": "Community",
     "provenance": {
       "verified_by": "Kingston 150",
       "verified_at": "2026-01-02T21:00:00Z",
       "method": "Direct verification",
-      "evidence_url": "https://www.kpf.ca"
+      "evidence_url": "https://www.kingstonpolice.ca/about-kp/contacts/"
     },
     "identity_tags": [],
     "synthetic_queries": ["report theft", "police check"],
@@ -9080,7 +9080,7 @@
       },
       "notes": "Non-emergency line and station front desk available 24/7."
     },
-    "access_script": "Visit https://www.kpf.ca for information.",
+    "access_script": "Visit https://www.kingstonpolice.ca/about-kp/contacts/ for the non-emergency contact details.",
     "hours_text": "24/7. Non-emergency line and station front desk available 24/7."
   },
   {
@@ -10681,13 +10681,13 @@
     "id": "diabetes-canada-information-support",
     "name_fr": "Diabète Canada - Information et soutien",
     "description_fr": "Information et soutien pour les personnes vivant avec le diabète, y compris l'accès au Programme de surveillance de la santé de l'Ontario pour une aide financière concernant les fournitures.",
-    "url": "https://www.diabetes.ca",
+    "url": "https://www.diabetes.ca/contact-us",
     "intent_category": "Health",
     "synthetic_queries": ["diabetes", "insulin", "support", "chronic disease", "monitoring"],
     "provenance": {
       "verified_by": "Pending manual verification",
       "verified_at": "2026-01-08T21:57:01.314Z",
-      "evidence_url": "https://www.diabetes.ca",
+      "evidence_url": "https://www.diabetes.ca/contact-us",
       "method": "Schema migration - requires verification"
     },
     "identity_tags": [],
@@ -12094,13 +12094,13 @@
     "status": "Active",
     "id": "law-society-referral-service",
     "description_fr": "Référence gratuite vers un avocat ou un parajuriste autorisé qui fournira une consultation gratuite de 30 minutes. Géré par le Barreau de l'Ontario pour mettre les gens en contact avec des professionnels du droit.",
-    "url": "https://findlegalhelp.ca",
+    "url": "https://lso.ca/public-resources/finding-a-lawyer-or-paralegal/law-society-referral-service",
     "intent_category": "Legal",
     "synthetic_queries": ["lawyer", "paralegal", "referral", "consultation", "legal help", "find lawyer"],
     "provenance": {
       "verified_by": "Pending manual verification",
       "verified_at": "2026-01-08T21:57:01.317Z",
-      "evidence_url": "https://findlegalhelp.ca",
+      "evidence_url": "https://lso.ca/public-resources/finding-a-lawyer-or-paralegal/law-society-referral-service",
       "method": "Schema migration - requires verification"
     },
     "identity_tags": [],

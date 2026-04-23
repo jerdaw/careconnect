@@ -84,6 +84,7 @@ jobs:
                   "### Summary",
                   `- ✅ Healthy: ${report.summary.healthy}`,
                   `- 🔀 Redirects: ${report.summary.redirects}`,
+                  `- ⚠️ Inconclusive: ${report.summary.inconclusive ?? 0}`,
                   `- ❌ Broken: ${report.summary.broken}`,
                   "",
                   "### Broken URLs",
