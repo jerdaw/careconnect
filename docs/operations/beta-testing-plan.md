@@ -1054,7 +1054,7 @@ See [Beta Feedback Analysis Framework](beta-feedback-analysis.md) for detailed p
 ### Monitoring Tools
 
 - **Observability Dashboard:** `/admin/observability`
-- **Vercel Analytics:** Built-in traffic stats
+- **Public health checks + VPS logs:** deployment and traffic smoke visibility
 - **Axiom:** Metrics storage (if configured)
 
 ### Communication Tools

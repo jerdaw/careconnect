@@ -845,7 +845,7 @@
       },
       "retention": {
         "title": "Data Retention",
-        "content": "Feedback is deleted after resolution (90 days). Partner data retained while active. Local storage is controlled by you."
+        "content": "Feedback is reviewed by humans and may remain in our systems until follow-up is complete. We do not currently publish a fixed automatic deletion timeline for resolved feedback. Partner data is retained while active. Local storage is controlled by you."
       },
       "rights": {
         "title": "Your Privacy Rights",

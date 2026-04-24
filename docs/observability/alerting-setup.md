@@ -23,7 +23,7 @@ CareConnect sends automated Slack alerts for critical system events, enabling pr
 
 - Slack workspace with admin access
 - 5 minutes for setup
-- Vercel deployment (for production alerts)
+- Access to the active direct-VPS runtime (`careconnect-web`) or a staged release that will be deployed there
 
 ---
 
@@ -85,21 +85,19 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 - Alerts will NOT send in development (production-only by design)
 - You can still test the integration with `NODE_ENV=production`
 
-**For Production (Vercel):**
+**For Production (direct VPS):**
 
-1. Go to Vercel dashboard → Your Project → Settings → Environment Variables
-2. Click **"Add New"**
-3. Fill in:
-   - **Name:** `SLACK_WEBHOOK_URL`
-   - **Value:** Your webhook URL (paste from Step 1)
-   - **Environment:** Select **"Production"** (and optionally "Preview" for staging)
-4. Click **"Save"**
+1. Update `/etc/projects-merge/env/careconnect-web.env`
+2. Add or update:
+   - `SLACK_WEBHOOK_URL=...`
+3. Keep the value out of git and shell history where possible
 
 **Redeploy:**
 
 ```bash
-# Trigger redeploy to apply new environment variable
-vercel --prod
+# Apply the updated env file on the VPS
+cd /srv/apps/careconnect-web/current
+sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ---
@@ -180,10 +178,8 @@ Time: 2026-01-30, 2:45:30 PM
 **Check 1: Webhook URL Configured**
 
 ```bash
-# Verify environment variable is set
-vercel env ls --prod
-
-# Should show SLACK_WEBHOOK_URL
+# Verify the production env file contains the secret
+sudo grep '^SLACK_WEBHOOK_URL=' /etc/projects-merge/env/careconnect-web.env | sed 's/=.*$/=<redacted>/'
 ```
 
 **Check 2: Production Environment**
@@ -191,8 +187,8 @@ vercel env ls --prod
 Alerts only send in production (`NODE_ENV=production`). Verify:
 
 ```bash
-# Check deployment logs
-vercel logs --prod | grep "Slack alert"
+# Check recent container logs
+docker logs --tail 200 careconnect-web 2>&1 | grep -i "Slack alert"
 ```
 
 **Check 3: Slack Channel Membership**
@@ -222,12 +218,12 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 
 ### Alerts Are Duplicated
 
-**Cause:** Multiple server instances or throttling not working.
+**Cause:** repeated trigger conditions, recent container restarts, or throttling not working.
 
 **Expected Behavior:**
 
-- In serverless (Vercel), each instance has its own throttle
-- You may see 1-2 duplicate alerts on redeploy
+- The current direct-VPS baseline normally runs one `careconnect-web` container
+- A recent redeploy or container restart resets the in-memory throttle window
 - This is acceptable (Axiom logs show all events for deduplication)
 
 **Not a concern unless:**
@@ -239,7 +235,7 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 
 ### Alerts Are Delayed
 
-**Cause:** Serverless cold starts or network latency.
+**Cause:** outbound network latency, container restart, or provider-side delay.
 
 **Expected Latency:**
 
@@ -248,9 +244,9 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 
 **If delays >1 minute:**
 
-1. Check Vercel function logs for errors
+1. Check `docker logs --tail 200 careconnect-web`
 2. Check Slack API status: https://status.slack.com
-3. Verify network connectivity from Vercel region
+3. Verify outbound network connectivity from the VPS
 
 ---
 
@@ -270,7 +266,7 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 
 **Symptom:** Receiving >1 alert per 10 minutes for circuit-open.
 
-**Cause:** Throttle is per-instance (serverless resets on redeploy).
+**Cause:** Throttle is in-process memory and resets on container restart or redeploy.
 
 **Expected:**
 
@@ -278,7 +274,7 @@ curl -X POST "$SLACK_WEBHOOK_URL" \
 - Subsequent alerts within 10min: Blocked
 - After server restart: Throttle resets
 
-**Not a bug:** Serverless architecture means throttle resets occasionally.
+**Not a bug:** container restarts and redeploys reset the in-memory throttle state.
 
 ---
 
@@ -388,15 +384,11 @@ GROUP BY alertType
 Verify alerting system is working:
 
 ```bash
-# Check environment variable
-echo $SLACK_WEBHOOK_URL
-
-# Check production deployment
-vercel env pull
-grep SLACK_WEBHOOK_URL .env.production.local
+# Check the production env file
+sudo grep '^SLACK_WEBHOOK_URL=' /etc/projects-merge/env/careconnect-web.env | sed 's/=.*$/=<redacted>/'
 
 # Check logs for recent alerts
-vercel logs --prod | grep -i "slack"
+docker logs --tail 200 careconnect-web 2>&1 | grep -i "slack"
 ```
 
 ---

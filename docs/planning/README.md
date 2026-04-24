@@ -25,6 +25,14 @@ This directory contains planning and strategy documents for CareConnect.
 
 ### Detailed Documentation (Optional)
 
+- [Repo Audit Follow-Up Board (2026-04-23)](2026-04-23-repo-audit-follow-up-board.md)
+  - Audit-only findings across code quality, security, privacy, documentation drift, and test drift
+  - **Reading time:** 10-15 minutes
+
+- [Repo Audit Remediation Plan (2026-04-23)](2026-04-23-repo-audit-remediation-plan.md)
+  - Ordered remediation sequencing from the audit board without applying fixes
+  - **Reading time:** 10 minutes
+
 3. **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
    - Canonical sign-off record for Gate 0 decisions
    - **Reading time:** 10 minutes
@@ -172,6 +180,8 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-03:** Finalized the CareConnect rebrand archive after the live `careconnect.ing` cutover, HelpBridge-domain redirect rollout, and GitHub repo rename to `jerdaw/careconnect`
 - **2026-04-15:** Added the semantic-search fail-closed and lint-hygiene archive after restoring actionable repo-wide linting and hardening the embedding-worker fallback path
 - **2026-04-23:** Added the quiet GitHub automation and URL-health hardening archive after converting recurring governance workflows to quiet-by-default issue reuse and stabilizing the monthly health check against CI-only false positives
+- **2026-04-23:** Added the repo audit follow-up board capturing current code quality, security, privacy, documentation drift, and test drift findings without applying fixes
+- **2026-04-23:** Added the repo audit remediation plan sequencing the current audit findings into bounded follow-up tracks without applying fixes
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

@@ -1,7 +1,7 @@
 # Incident Response Plan
 
 **Version:** 1.0
-**Last Updated:** 2026-02-03
+**Last Updated:** 2026-04-23
 **Maintained By:** Platform Team
 **Review Frequency:** Quarterly or after major incidents
 
@@ -26,6 +26,12 @@
 ### Purpose
 
 This plan defines CareConnect's approach to detecting, responding to, and resolving production incidents. The goal is to minimize user impact and restore normal service as quickly as possible.
+
+Current production baseline:
+
+- CareConnect is live on the direct-VPS path at `https://careconnect.ing`.
+- The app runs as the `careconnect-web` Docker container behind host-managed Caddy.
+- Use [Production Deployment Checklist](../deployment/production-checklist.md) and [Direct VPS Deployment](../deployment/direct-vps-proof.md) as the canonical runtime references during incidents.
 
 ### Scope
 
@@ -189,7 +195,7 @@ This plan covers all production incidents affecting:
 1. **Automated Monitoring:**
    - Slack alerts (circuit breaker, error rates)
    - Axiom alerts (custom queries)
-   - Vercel deployment failures
+   - VPS deploy failures (`careconnect-web` container replacement, public health failures, or ingress issues)
    - Health check failures
 
 2. **User Reports:**
@@ -266,7 +272,8 @@ Updates will be posted every 30 minutes.
 
 - [ ] Check observability dashboard (`/admin/observability`)
 - [ ] Review recent deployments (last 24 hours)
-- [ ] Check Vercel function logs
+- [ ] Check the current VPS release target and recent container logs
+- [ ] Run private and public health checks
 - [ ] Review Axiom events
 - [ ] Check circuit breaker status
 - [ ] Review database status (Supabase dashboard)
@@ -304,11 +311,15 @@ Use when:
 - Quick rollback is safe
 
 ```bash
-# Rollback to previous deployment
-vercel rollback <LAST_KNOWN_GOOD_URL>
+# Roll back to the previous staged VPS release
+ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
+  /srv/apps/careconnect-web/current
+cd /srv/apps/careconnect-web/current
+sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 
 # Verify service restored
-curl https://careconnect.ing/api/v1/health
+curl -fsS http://127.0.0.1:3300/api/v1/health
+curl -fsS https://careconnect.ing/api/v1/health
 ```
 
 **Option B: Hotfix Deployment (15-30 minutes)**
@@ -464,7 +475,7 @@ We apologize for any inconvenience.
 **Tools Required:**
 
 - Laptop with VPN access
-- Vercel admin access
+- VPS SSH access with permission to inspect Docker/Caddy state and redeploy `careconnect-web`
 - Supabase admin access
 - Slack mobile app
 - GitHub admin access
@@ -510,7 +521,7 @@ We apologize for any inconvenience.
 
 - Search & AI: Search algorithm, WebLLM, embeddings
 - Database: Supabase, schema, migrations
-- Infrastructure: Vercel, circuit breaker, observability
+- Infrastructure: direct-VPS runtime, Docker, Caddy, circuit breaker, observability
 - Security: Authentication, authorization, RLS
 - Frontend: React, Next.js, PWA
 
@@ -775,7 +786,7 @@ Alert Received
 
 - **Observability Dashboard:** `/admin/observability`
 - **Axiom:** https://app.axiom.co
-- **Vercel Dashboard:** https://vercel.com/dashboard
+- **Direct VPS runtime docs:** `docs/deployment/direct-vps-proof.md`
 - **Supabase Dashboard:** https://app.supabase.com
 
 ### Communication
@@ -793,7 +804,7 @@ Alert Received
 
 ### Tools
 
-- **Vercel CLI:** For rollbacks and deployments
+- **SSH + Docker + systemctl/journalctl:** For VPS rollback, logs, and ingress checks
 - **GitHub CLI:** For hotfix PRs
 - **curl/httpie:** For smoke tests
 - **jq:** For JSON parsing in tests
@@ -849,7 +860,7 @@ Is the entire service down?
 **External:**
 
 - Supabase Support: support@supabase.com
-- Vercel Support: Via dashboard
+- Host-provider escalation: use the current VPS provider support path for host-level incidents
 - Axiom Support: support@axiom.co
 
 ---

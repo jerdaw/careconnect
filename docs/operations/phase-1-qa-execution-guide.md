@@ -1,7 +1,7 @@
 # Phase 1 QA Execution Guide
 
 **Version**: v19.0 Phase 1
-**Last Updated**: 2026-02-09
+**Last Updated**: 2026-04-23
 **Purpose**: Step-by-step guide for executing Phase 1 Pre-Launch QA
 
 ---
@@ -102,13 +102,14 @@ npm run qa:prelaunch
 
 **Goal**: Verify production hosting platform is configured correctly.
 
-#### 1.1 Vercel Dashboard Review
+#### 1.1 Production Environment Review
 
-Navigate to: https://vercel.com/[your-project]/settings/environment-variables
+Use the active direct-VPS deployment path documented in `docs/deployment/production-checklist.md`.
 
 **Checklist**:
 
 - [ ] All required environment variables present
+  - Review `/etc/projects-merge/env/careconnect-web.env`
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
   - `SUPABASE_SECRET_KEY`
@@ -136,20 +137,22 @@ Navigate to: https://vercel.com/[your-project]/settings/environment-variables
   - `SLACK_WEBHOOK_URL` points to production channel
   - Never exposed in client-side code
 
+- [ ] Current release and container look correct
+  - `/srv/apps/careconnect-web/current` points at the intended release
+  - `docker ps` shows `careconnect-web` healthy on `127.0.0.1:3300`
+
 #### 1.2 Domain Configuration
 
 - [ ] Custom domain `careconnect.ing` configured and SSL active
 - [ ] WWW redirect configured (www.careconnect.ing → careconnect.ing)
 - [ ] DNS records verified with `dig careconnect.ing`
 
-#### 1.3 Deployment Settings
+#### 1.3 Deployment Contract
 
-- [ ] Production branch set to `main`
-- [ ] Auto-deployment enabled
-- [ ] Build command: `npm run build`
-- [ ] Output directory: `.next`
-- [ ] Install command: `npm install`
-- [ ] Node.js version: `22.x`
+- [ ] `scripts/archive/deploy-vps-proof.sh` exists in the staged release
+- [ ] Current runtime is Docker on the VPS, not a serverless host
+- [ ] Caddy is routing `careconnect.ing` to `127.0.0.1:3300`
+- [ ] Rollback path is understood before continuing
 
 ---
 
@@ -337,7 +340,7 @@ Navigate to: Your configured Slack channel
 **Checklist**:
 
 - [ ] Bot user connected to workspace
-- [ ] Webhook URL is correct in Vercel env vars
+- [ ] Webhook URL is correct in the current production env file
 - [ ] Test alert sent successfully (optional)
 
 **To test manually** (optional):
@@ -600,7 +603,7 @@ npm run i18n-audit
 
 **Fix**:
 
-1. Verify `AXIOM_TOKEN`, `AXIOM_ORG_ID`, `AXIOM_DATASET` in Vercel
+1. Verify `AXIOM_TOKEN`, `AXIOM_ORG_ID`, and `AXIOM_DATASET` in `/etc/projects-merge/env/careconnect-web.env`
 2. Check Axiom dashboard for recent logs
 3. Review `lib/observability/axiom.ts` implementation
 

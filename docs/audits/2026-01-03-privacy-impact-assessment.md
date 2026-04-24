@@ -12,13 +12,13 @@ CareConnect (CareConnect) is a community-led social services directory. It provi
 
 ### 2.1 Information Collected
 
-| Data Element         | Type         | Source               | Purpose                       | Storage               |
-| :------------------- | :----------- | :------------------- | :---------------------------- | :-------------------- |
-| **Feedback Content** | Free Text    | User Submission      | Data quality improvement      | Supabase DB           |
-| **Partner Email**    | Contact Info | Partner Registration | Authentication & Verification | Supabase Auth         |
-| **Partner Name**     | Contact Info | Partner Registration | Verification                  | Supabase DB           |
-| **Session Data**     | Metadata     | Browser              | Language/Theme preferences    | LocalStorage (Client) |
-| **IP Address**       | Metadata     | Network              | Security/Rate Limiting        | Server Logs (Vercel)  |
+| Data Element         | Type         | Source               | Purpose                       | Storage                               |
+| :------------------- | :----------- | :------------------- | :---------------------------- | :------------------------------------ |
+| **Feedback Content** | Free Text    | User Submission      | Data quality improvement      | Supabase DB                           |
+| **Partner Email**    | Contact Info | Partner Registration | Authentication & Verification | Supabase Auth                         |
+| **Partner Name**     | Contact Info | Partner Registration | Verification                  | Supabase DB                           |
+| **Session Data**     | Metadata     | Browser              | Language/Theme preferences    | LocalStorage (Client)                 |
+| **IP Address**       | Metadata     | Network              | Security/Rate Limiting        | Server logs on the direct-VPS runtime |
 
 ### 2.2 Information NOT Collected
 
@@ -35,7 +35,7 @@ CareConnect (CareConnect) is a community-led social services directory. It provi
 
 - Warning label on feedback forms ("Do not include personal information").
 - Feedback is private, accessible only to admins and the specific verified partner.
-- 90-day retention policy for resolved feedback.
+- Feedback is manually reviewed, and the current implementation does not publish a fixed automatic deletion timeline for resolved items.
 
 ### Risk 2: Partner Identity Exposure
 
@@ -73,7 +73,8 @@ CareConnect (CareConnect) is a community-led social services directory. It provi
 ## 5. Recommendations
 
 1. Implement automated scrubbing of potential PHI from feedback fields.
-2. Conduct annual access review for partner accounts.
-3. Formalize data sharing agreement with 211 Ontario if data synchronization is implemented.
+2. Publish an evidenced retention/deletion procedure for feedback before claiming a fixed automatic timeline.
+3. Conduct annual access review for partner accounts.
+4. Formalize data sharing agreement with 211 Ontario if data synchronization is implemented.
 
 **Approved By**: CareConnect Governance Committee

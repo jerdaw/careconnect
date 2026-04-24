@@ -1,8 +1,6 @@
 /**
  * Scheduled job to export metrics to Axiom
  *
- * Vercel Cron: https://vercel.com/docs/cron-jobs
- *
  * Schedule: Every hour (0 * * * *)
  */
 
@@ -16,7 +14,7 @@ export const runtime = "edge"
 export const dynamic = "force-dynamic"
 
 export async function GET(request: NextRequest) {
-  // Verify cron secret (Vercel sets this header)
+  // Require an explicit bearer token so any approved scheduler can call this route.
   const authHeader = request.headers.get("authorization")
   const expectedAuth = `Bearer ${env.CRON_SECRET}`
 
@@ -37,7 +35,7 @@ export async function GET(request: NextRequest) {
     const appUrl = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
     const healthResponse = await fetch(`${appUrl}/api/v1/health`, {
       headers: {
-        "User-Agent": "Vercel-Cron/1.0",
+        "User-Agent": "CareConnect-Scheduler/1.0",
       },
     })
 
