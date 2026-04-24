@@ -31,7 +31,7 @@ Every draft must include `_meta`:
 ```json
 {
   "_meta": {
-    "source": "Gemini Deep Research",
+    "source": "External research draft",
     "researched_at": "2026-01-07T21:00:00Z",
     "confidence": 0.95,
     "needs_review": true,
