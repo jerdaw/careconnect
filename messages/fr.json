@@ -222,7 +222,7 @@
       },
       "retention": {
         "title": "Conservation des données",
-        "content": "Commentaires supprimés après résolution (90 jours). Données partenaires conservées tant qu'actifs. Stockage local contrôlé par vous."
+        "content": "Les commentaires sont examinés par des humains et peuvent rester dans nos systèmes jusqu'à la fin du suivi. Nous ne publions pas actuellement de délai fixe de suppression automatique pour les commentaires résolus. Les données des partenaires sont conservées tant qu'ils sont actifs. Le stockage local est contrôlé par vous."
       },
       "rights": {
         "title": "Vos droits",

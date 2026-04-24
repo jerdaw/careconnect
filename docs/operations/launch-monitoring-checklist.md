@@ -2,7 +2,7 @@
 
 **Version:** 1.0
 **Date Created:** 2026-02-09
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-04-23
 **Purpose:** Systematic monitoring procedures for safe production launch
 
 ---
@@ -93,7 +93,7 @@ This checklist ensures comprehensive monitoring during the critical launch perio
 - [ ] **Verify Axiom metrics flowing**
   - Check Axiom dashboard for recent data
   - Confirm metrics are being exported
-  - Verify cron job is active
+  - Verify the current scheduled export path is active
 
 - [ ] **Check SLO dashboard status**
   - Visit SLO Compliance Card on observability page

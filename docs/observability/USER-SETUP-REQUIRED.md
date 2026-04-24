@@ -1,89 +1,46 @@
 # ⚠️ USER SETUP REQUIRED: Axiom & Slack Configuration
 
-**Status:** Task 2.1 (Axiom Integration) code is complete, but requires user configuration before it can function.
+**Status:** observability code is in the repo, but production still depends on human-managed credentials and a scheduler calling the export route.
 
-**Estimated Time:** 15 minutes
-
----
-
-## What Was Implemented (Task 2.1)
-
-✅ **Completed:**
-
-- Axiom SDK installed (`@axiomhq/js`)
-- Environment variable validation (`lib/env.ts`)
-- Axiom integration module (`lib/observability/axiom.ts`)
-- Performance metric export (`lib/performance/metrics.ts`)
-- Circuit breaker event streaming (`lib/resilience/telemetry.ts`)
-- Scheduled cron job (`app/api/cron/export-metrics/route.ts`)
-- Vercel cron configuration (`vercel.json`)
-
-✅ **Verification:**
-
-- Type-check: PASSED (0 errors)
-- Tests: 540/540 passing
-- Build: Successful
+**Estimated Time:** 15-20 minutes
 
 ---
 
-## What YOU Need to Do (15 minutes)
+## Current Production Baseline
 
-### Step 1: Create Axiom Account (~5 minutes)
+CareConnect is live on the direct-VPS path at `https://careconnect.ing`.
 
-**Why:** Axiom stores performance metrics and circuit breaker events in production.
-
-**Instructions:**
-
-1. Go to https://axiom.co
-2. Click "Sign Up" (choose free tier)
-3. Create account with email/password or GitHub
-4. Verify email if required
-
-**After Sign Up:**
-
-1. Create a new dataset:
-   - Click "Datasets" in sidebar
-   - Click "Create Dataset"
-   - Name: `kingston-care-production`
-   - Click "Create"
-
-2. Generate API token:
-   - Click "Settings" (gear icon)
-   - Go to "API Tokens" tab
-   - Click "Create API Token"
-   - Name: `kingston-care-production-token`
-   - Permissions: Select "Ingest" and "Query"
-   - Click "Create Token"
-   - **IMPORTANT:** Copy the token immediately (starts with `xait-`)
-   - Save it securely (you won't be able to see it again)
-
-3. Note your Organization ID:
-   - Still in Settings
-   - Look for "Organization ID" near the top
-   - Copy this value (it's a short alphanumeric string)
+- The app runs as `careconnect-web` on the VPS.
+- Production env lives in `/etc/projects-merge/env/careconnect-web.env`.
+- Metric export is handled by `GET /api/cron/export-metrics` with `Authorization: Bearer $CRON_SECRET`.
+- Do not follow historical Vercel-only setup steps for the active production path.
 
 ---
 
-### Step 2: Create Slack Webhook (~5 minutes)
+## What Is Already Implemented
 
-**Why:** Slack receives critical alerts (circuit breaker opens, high error rates).
+- Axiom SDK integration in `lib/observability/axiom.ts`
+- performance metric export in `lib/performance/metrics.ts`
+- Slack alert delivery in `lib/integrations/slack.ts`
+- alert throttling in `lib/observability/alert-throttle.ts`
+- scheduled export endpoint at `app/api/cron/export-metrics/route.ts`
 
-**Instructions:**
+---
 
-1. Go to https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
-2. Click "Add to Slack" (or "Add Configuration" if already installed)
-3. Select the channel for alerts:
-   - Recommended: Create a new channel called `#kingston-care-alerts`
-   - Alternative: Use existing channel like `#alerts` or `#monitoring`
-4. Click "Add Incoming WebHooks integration"
-5. **Copy the Webhook URL** (starts with `https://hooks.slack.com/services/`)
-   - Example: `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXX`
-6. (Optional) Customize the webhook:
-   - Name: `CareConnect`
-   - Icon: Choose an icon or emoji
-   - Click "Save Settings"
+## Required Setup
 
-**Test the Webhook (Optional):**
+### 1. Create the Axiom dataset and token
+
+1. Create or sign in to your Axiom account.
+2. Create the production dataset (currently `kingston-care-production` unless you intentionally rename it).
+3. Generate an API token with ingest permissions.
+4. Record the organization ID.
+
+### 2. Create the Slack incoming webhook
+
+1. Create or reuse a webhook for the production alerts channel.
+2. Copy the webhook URL.
+3. Test it once:
 
 ```bash
 curl -X POST "YOUR_WEBHOOK_URL_HERE" \
@@ -91,98 +48,71 @@ curl -X POST "YOUR_WEBHOOK_URL_HERE" \
   -d '{"text":"Test alert from CareConnect setup"}'
 ```
 
-You should see a message appear in your Slack channel immediately.
-
----
-
-### Step 3: Generate Cron Secret (~1 minute)
-
-**Why:** Secures the cron endpoint so only Vercel can trigger metric exports.
-
-**Instructions:**
+### 3. Generate the scheduler secret
 
 ```bash
 openssl rand -base64 32
 ```
 
-**Copy the output** (long random string, ~44 characters)
+This value becomes `CRON_SECRET`.
 
----
+### 4. Set local development values
 
-### Step 4: Add Environment Variables (~4 minutes)
-
-**Local Development (.env.local):**
-
-Create or update `.env.local` with these values:
+Update `.env.local`:
 
 ```bash
-# Axiom Observability (v18.0 Phase 2)
-AXIOM_TOKEN=xait-xxxx-xxxx-xxxx-xxxx-xxxx
-AXIOM_ORG_ID=your-org-id-here
+AXIOM_TOKEN=...
+AXIOM_ORG_ID=...
 AXIOM_DATASET=kingston-care-production
-
-# Slack Integration (v18.0 Phase 2)
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXX
-
-# Cron Job Authentication (v18.0 Phase 2)
-CRON_SECRET=your-random-secret-from-step-3
+SLACK_WEBHOOK_URL=...
+CRON_SECRET=...
 ```
 
-**Replace:**
+### 5. Set production values on the VPS
 
-- `xait-xxxx...` with your actual Axiom API token from Step 1
-- `your-org-id-here` with your Axiom Organization ID from Step 1
-- `https://hooks.slack.com/...` with your Slack webhook URL from Step 2
-- `your-random-secret...` with the output from Step 3
+Update `/etc/projects-merge/env/careconnect-web.env` with the same keys:
 
----
+```bash
+AXIOM_TOKEN=...
+AXIOM_ORG_ID=...
+AXIOM_DATASET=kingston-care-production
+SLACK_WEBHOOK_URL=...
+CRON_SECRET=...
+```
 
-### Step 5: Add to Vercel (Production)
+After updating the env file, redeploy the current staged release:
 
-**When deploying to production:**
+```bash
+cd /srv/apps/careconnect-web/current
+sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+```
 
-1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables
-2. Add each variable:
-   - `AXIOM_TOKEN` = `xait-xxxx...` (Production)
-   - `AXIOM_ORG_ID` = `your-org-id` (Production)
-   - `AXIOM_DATASET` = `kingston-care-production` (Production)
-   - `SLACK_WEBHOOK_URL` = `https://hooks.slack.com/...` (Production)
-   - `CRON_SECRET` = `your-random-secret` (Production)
+### 6. Ensure the production scheduler is calling the export route
 
-3. Redeploy the application for changes to take effect
+The scheduler mechanism is environment-owned and may change over time. The requirement is stable:
+
+- invoke `GET https://careconnect.ing/api/cron/export-metrics`
+- send `Authorization: Bearer $CRON_SECRET`
+- run on the agreed production cadence (historically hourly)
+
+If you change the scheduler mechanism, keep this repo and the shared VPS docs aligned.
 
 ---
 
 ## Verification
 
-### Test Local Setup (Development)
+### Local
 
-**Note:** Axiom integration is production-only, so local testing is limited.
-
-**1. Verify environment variables are loaded:**
+1. Start the app:
 
 ```bash
 npm run dev
-# Check console - should not see "Axiom credentials missing" warning
 ```
 
-**2. Test Slack webhook manually:**
+2. Confirm you do not see the `Axiom credentials missing` warning.
+3. Manually hit the export endpoint:
 
 ```bash
-curl -X POST "$SLACK_WEBHOOK_URL" \
-  -H "Content-Type: application/json" \
-  -d '{"text":"🧪 Test from CareConnect local dev"}'
-```
-
-Expected: Message appears in Slack channel
-
-**3. Test cron endpoint:**
-
-```bash
-# Start dev server in one terminal
-npm run dev
-
-# In another terminal:
 curl -H "Authorization: Bearer $CRON_SECRET" \
   http://localhost:3000/api/cron/export-metrics
 ```
@@ -192,141 +122,59 @@ Expected response:
 ```json
 {
   "success": true,
-  "timestamp": "2026-01-30T21:30:00.000Z"
+  "timestamp": "..."
 }
 ```
 
----
+### Production
 
-### Test Production Setup (After Deployment)
+1. Verify the env file contains the configured keys:
 
-**1. Verify Axiom is receiving events:**
+```bash
+sudo grep -E '^(AXIOM_TOKEN|AXIOM_ORG_ID|AXIOM_DATASET|SLACK_WEBHOOK_URL|CRON_SECRET)=' \
+  /etc/projects-merge/env/careconnect-web.env | sed 's/=.*$/=<redacted>/'
+```
 
-1. Deploy to Vercel with environment variables
-2. Wait for cron job to run (every hour at :00)
-3. Go to Axiom dashboard → Datasets → `kingston-care-production`
-4. Check for recent events (type: `performance`, `health_check`)
+2. Manually exercise the endpoint once from a secure shell:
 
-**2. Verify Slack alerts:**
+```bash
+curl -fsS \
+  -H "Authorization: Bearer $CRON_SECRET" \
+  https://careconnect.ing/api/cron/export-metrics
+```
 
-1. Trigger a circuit breaker open (simulate database failure)
-2. Check Slack channel for alert
-3. Should receive message within 30 seconds
+3. Confirm recent events appear in Axiom.
+4. Check recent container logs:
 
-**3. Check Vercel cron logs:**
-
-1. Go to Vercel Dashboard → Your Project → Logs
-2. Filter by `/api/cron/export-metrics`
-3. Verify executions every hour
-4. Check for errors
+```bash
+docker logs --tail 200 careconnect-web
+```
 
 ---
 
 ## Troubleshooting
 
-### Issue: "Axiom credentials missing" warning
+### `Axiom credentials missing`
 
-**Cause:** Environment variables not set or incorrect
+- verify the local or production env file contains all three Axiom variables
+- restart the app after env changes
+- check for typos in variable names
 
-**Fix:**
+### Slack webhook returns `404` or `401`
 
-1. Check `.env.local` has all three Axiom variables
-2. Restart dev server after adding env vars
-3. Verify no typos in variable names (must match exactly)
+- regenerate or re-copy the webhook URL
+- update `SLACK_WEBHOOK_URL`
+- redeploy the VPS release after changing production env
 
----
+### Export route returns `401 Unauthorized`
 
-### Issue: Slack webhook returns 404 or 401
+- confirm the request is sending `Authorization: Bearer $CRON_SECRET`
+- confirm production `CRON_SECRET` matches the caller secret
+- redeploy after updating the env file
 
-**Cause:** Webhook URL incorrect or webhook deleted
+### No production metrics appear in Axiom
 
-**Fix:**
-
-1. Go back to Slack incoming webhooks page
-2. Verify webhook is still active
-3. Copy URL again (may have changed)
-4. Update `SLACK_WEBHOOK_URL` in env vars
-
----
-
-### Issue: Cron job returns 401 Unauthorized
-
-**Cause:** `CRON_SECRET` mismatch or not set
-
-**Fix:**
-
-1. Verify `CRON_SECRET` is set in Vercel environment variables
-2. Regenerate secret: `openssl rand -base64 32`
-3. Update both local and Vercel env vars
-4. Redeploy
-
----
-
-### Issue: No metrics appearing in Axiom
-
-**Possible Causes:**
-
-1. **Production guard:** Axiom only sends in production (`NODE_ENV=production`)
-2. **Cron not running:** Check Vercel cron logs
-3. **API token expired:** Regenerate in Axiom settings
-4. **Dataset name mismatch:** Verify `AXIOM_DATASET` matches dataset in Axiom
-
-**Fix:**
-
-1. Check Vercel logs for errors
-2. Verify `NODE_ENV=production` in Vercel
-3. Check Axiom API token is valid
-4. Test cron endpoint manually with correct auth header
-
----
-
-## Next Steps
-
-**After completing setup:**
-
-✅ **You're ready for Task 2.2: Observability Dashboard**
-
-The dashboard will display:
-
-- Circuit breaker status (current state, failure count)
-- Performance metrics (p50/p95/p99 latency)
-- System health summary
-
-**When ready to continue:**
-
-- Confirm environment variables are set
-- Verify Axiom account is active
-- Verify Slack webhook works
-- Proceed to Task 2.2 implementation
-
----
-
-## Summary
-
-**What You Did:**
-
-1. ✅ Created Axiom account and dataset
-2. ✅ Generated Axiom API token
-3. ✅ Created Slack webhook
-4. ✅ Generated cron secret
-5. ✅ Added environment variables to `.env.local`
-6. ✅ (Optional) Added environment variables to Vercel
-
-**What's Working:**
-
-- Axiom SDK integrated and ready to send metrics
-- Slack webhook ready to receive alerts
-- Cron job ready to export metrics hourly
-- Circuit breaker events will stream to Axiom in production
-
-**What's Next:**
-
-- Task 2.2: Build observability dashboard UI
-- Task 2.3: Configure alerting logic
-- Task 2.4: Write operational runbooks
-
----
-
-**Setup Time:** ~15 minutes
-**Completion:** When all 5 steps done and verified
-**Status:** ⏸️ WAITING FOR USER SETUP
+- confirm the scheduler is actually calling `/api/cron/export-metrics`
+- check `docker logs --tail 200 careconnect-web`
+- verify `AXIOM_DATASET` matches the real dataset name
+- verify the Axiom token still has ingest permission

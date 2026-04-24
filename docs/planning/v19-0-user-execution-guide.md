@@ -52,8 +52,8 @@ This guide walks you through **exactly what you need to do** to take CareConnect
 
 **How:**
 
-1. Log into Vercel dashboard
-2. Navigate to: Project → Settings → Environment Variables
+1. SSH to the VPS
+2. Review `/etc/projects-merge/env/careconnect-web.env`
 3. Open checklist: `docs/operations/final-qa-procedures.md` Section 1.1
 4. Verify each variable:
    - `NEXT_PUBLIC_SUPABASE_URL` ✓
@@ -69,7 +69,7 @@ This guide walks you through **exactly what you need to do** to take CareConnect
 
 **Pass criteria:** All required variables present with real values.
 
-**If fail:** Add missing variables in Vercel, redeploy.
+**If fail:** Fix the VPS env file and redeploy the current staged release.
 
 ---
 
@@ -915,7 +915,7 @@ This guide walks you through **exactly what you need to do** to take CareConnect
 
 - **Symptoms:** Search broken, auth failing, data loss risk
 - **Response:** <5 minutes
-- **Action:** Immediate rollback via Vercel
+- **Action:** Immediate rollback to the last known good staged VPS release
 - **Follow:** `docs/operations/launch-rollback-procedures.md` SEV-1 procedure
 
 **Severity 2 (SEV-2): High Error Rate**
@@ -1079,7 +1079,7 @@ This guide walks you through **exactly what you need to do** to take CareConnect
 
 - **Stay calm.**
 - **Follow rollback procedures** in `docs/operations/launch-rollback-procedures.md`
-- **SEV-1 = rollback in <5 minutes** via Vercel dashboard
+- **SEV-1 = rollback in <5 minutes** via the VPS release rollback procedure
 - **Communicate** using templates in `docs/operations/communication-templates.md`
 - **Fix issue, re-deploy, monitor closely.**
 

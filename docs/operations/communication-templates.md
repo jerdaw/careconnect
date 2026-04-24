@@ -156,7 +156,7 @@ The platform is now publicly accessible at https://careconnect.ing
 1. Detected via automated alert at 14:23
 2. Confirmed issue affects all users
 3. Initiated rollback at 14:25
-4. Vercel deployment reverting to v18.2.1
+4. VPS rollback started to the last known good staged release
 
 **Next Steps:**
 - Rollback ETA: 2 minutes
