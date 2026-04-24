@@ -169,7 +169,7 @@ This document provides step-by-step rollback procedures for different failure sc
 ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
   /srv/apps/careconnect-web/current
 cd /srv/apps/careconnect-web/current
-sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 **4. Verify Rollback Success (1 minute)**
@@ -284,7 +284,7 @@ sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-w
 - [ ] Post in Slack: "⚠️ SEV-2: Rolling back - high error rate"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous working release
-- [ ] Run `./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
 - [ ] Wait for completion
 
 **4. Verify Rollback (3 minutes)**
@@ -407,7 +407,7 @@ sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-w
 - [ ] Post in Slack: "⚠️ SEV-3: Rolling back - performance degradation"
 - [ ] SSH to the VPS
 - [ ] Repoint `current` to the previous release
-- [ ] Run `./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
+- [ ] Run `./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env`
 - [ ] Monitor latency recovery
 
 **5. Verify Performance Restored (5 minutes)**
@@ -465,7 +465,7 @@ ls -1 /srv/apps/careconnect-web/releases
 ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
   /srv/apps/careconnect-web/current
 cd /srv/apps/careconnect-web/current
-./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ### Verify Rollback

@@ -97,7 +97,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```bash
 # Apply the updated env file on the VPS
 cd /srv/apps/careconnect-web/current
-sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ---

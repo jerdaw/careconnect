@@ -149,7 +149,7 @@ Use the active direct-VPS deployment path documented in `docs/deployment/product
 
 #### 1.3 Deployment Contract
 
-- [ ] `scripts/archive/deploy-vps-proof.sh` exists in the staged release
+- [ ] `scripts/deploy-vps-proof.sh` exists in the staged release
 - [ ] Current runtime is Docker on the VPS, not a serverless host
 - [ ] Caddy is routing `careconnect.ing` to `127.0.0.1:3300`
 - [ ] Rollback path is understood before continuing

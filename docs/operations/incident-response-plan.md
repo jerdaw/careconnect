@@ -315,7 +315,7 @@ Use when:
 ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
   /srv/apps/careconnect-web/current
 cd /srv/apps/careconnect-web/current
-sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 
 # Verify service restored
 curl -fsS http://127.0.0.1:3300/api/v1/health

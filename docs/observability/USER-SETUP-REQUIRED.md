@@ -84,7 +84,7 @@ After updating the env file, redeploy the current staged release:
 
 ```bash
 cd /srv/apps/careconnect-web/current
-sudo ./scripts/archive/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ### 6. Ensure the production scheduler is calling the export route

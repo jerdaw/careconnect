@@ -50,7 +50,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
 - **Ops documentation truth**: active incident, rollback, alerting, and launch QA docs now point at the direct-VPS runtime instead of the historical Vercel path
 - **Feedback retention copy**: privacy copy no longer promises a fixed automatic 90-day feedback deletion timeline that the implementation does not evidence
-- **Deploy contract drift**: the current live VPS frontend deploy path still requires `sudo ./scripts/archive/deploy-vps-proof.sh ...` because `/etc/projects-merge/env` remains root-only in the observed host contract
+- **Deploy contract drift**: the current live VPS frontend deploy path still requires `sudo ./scripts/deploy-vps-proof.sh ...` because `/etc/projects-merge/env` remains root-only in the observed host contract
 - **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
