@@ -224,9 +224,9 @@ Open `http://localhost:3000` to view the application.
 
 #### Release Helpers
 
-| Command                                                            | Description                                               |
-| :----------------------------------------------------------------- | :-------------------------------------------------------- |
-| `./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy` | Stage the current committed tree on the VPS and deploy it |
+| Command                                                   | Description                                                         |
+| :-------------------------------------------------------- | :------------------------------------------------------------------ |
+| `./scripts/archive/release-vps-proof.sh haadmin@your-vps` | Stage the current committed tree on the VPS; deploy there with sudo |
 
 #### Load Testing (v17.5)
 

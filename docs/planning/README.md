@@ -29,6 +29,10 @@ This directory contains planning and strategy documents for CareConnect.
   - Completed closeout for the 2026-04-23 audit findings and remediation wave
   - **Reading time:** 5-10 minutes
 
+- [v22.0 Gate 0 Prep and Deploy Contract Alignment Archive (2026-04-28)](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md)
+  - Completed autonomous maintenance pass for prep-only Gate 0 evidence packets, deploy-contract alignment, and validation
+  - **Reading time:** 5 minutes
+
 3. **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
    - Canonical sign-off record for Gate 0 decisions
    - **Reading time:** 10 minutes
@@ -96,6 +100,7 @@ docs/planning/
 ├── README.md ← You are here
 ├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
+├── archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md
 ├── archive/2026-04-24-v20-0-repo-audit-truth-remediation.md
 ├── archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md
 ├── v21-admissions-portfolio-plan.md
@@ -184,6 +189,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-15:** Added the semantic-search fail-closed and lint-hygiene archive after restoring actionable repo-wide linting and hardening the embedding-worker fallback path
 - **2026-04-23:** Added the quiet GitHub automation and URL-health hardening archive after converting recurring governance workflows to quiet-by-default issue reuse and stabilizing the monthly health check against CI-only false positives
 - **2026-04-24:** Archived the repo audit follow-up/remediation wave after the direct-VPS docs/privacy/planning reconciliation pass completed
+- **2026-04-28:** Archived the Gate 0 prep and deploy-contract alignment pass after adding prep-only C1/D4 evidence packets, syncing tracker wording, and validating the sudo-required shared frontend env-file contract
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

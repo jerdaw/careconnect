@@ -1,7 +1,7 @@
 # Production Deployment Checklist
 
 **Version:** 2.0
-**Last Updated:** 2026-04-01
+**Last Updated:** 2026-04-28
 **Maintained By:** Jeremy Dawson
 
 ---
@@ -104,19 +104,18 @@ readlink -f /srv/apps/careconnect-web/current
 ls /srv/apps/careconnect-web/current/scripts/deploy-vps-proof.sh
 ```
 
-From a local workstation you can stage and deploy the current committed tree in
-one step:
+From a local workstation, stage the current committed tree:
 
 ```bash
-./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy
+./scripts/archive/release-vps-proof.sh haadmin@your-vps
 ```
 
 Observed live note:
 
 - If the host still keeps `/etc/projects-merge/env` as `root:root 0700`, the
-  remote `--deploy` step can fail because `haadmin` cannot read the env file
-  directly. In that case, use `release-vps-proof.sh` for staging only, then SSH
-  to the VPS and run the deploy helper with `sudo`.
+  deploy helper must run with `sudo` because `haadmin` cannot read the env file
+  directly. Use `release-vps-proof.sh` for staging only, then SSH to the VPS
+  and run the deploy helper with `sudo`.
 
 ## 5. Deploy
 
@@ -209,7 +208,7 @@ Example:
 ln -sfn /srv/apps/careconnect-web/releases/<previous-release> \
   /srv/apps/careconnect-web/current
 cd /srv/apps/careconnect-web/current
-./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
 ```
 
 ## References

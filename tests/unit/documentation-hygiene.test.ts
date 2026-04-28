@@ -28,6 +28,7 @@ describe("documentation hygiene", () => {
     expect(contributing).toContain("See [AGENTS.md](AGENTS.md)")
     expect(contributing).toContain("`CLAUDE.md` and `GEMINI.md` are compatibility symlinks to `AGENTS.md`")
     expect(agents).toContain("Do not add AI tool attribution")
+    expect(agents).toContain("no Claude/Codex/Gemini/Copilot author or contributor credits")
     expect(agents).toContain("Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`")
   })
 
@@ -57,7 +58,7 @@ describe("documentation hygiene", () => {
     expect(monitoring).not.toContain("Vercel deployment status")
     expect(rollback).not.toContain("vercel rollback")
     expect(rollback).toContain("/srv/apps/careconnect-web/releases")
-    expect(rollback).toContain("./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env")
+    expect(rollback).toContain("sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env")
   })
 
   it("keeps active CI documentation aligned with the live workflow runtime stack", () => {
@@ -165,6 +166,43 @@ describe("documentation hygiene", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
 
     expect(planningIndex).toContain("2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md")
+    expect(planningIndex).toContain("2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md")
     expect(roadmap).toContain("Quiet GitHub automation and URL health hardening (2026-04-23)")
+    expect(roadmap).toContain("Gate 0 prep and deploy-contract alignment (2026-04-28)")
+  })
+
+  it("keeps Gate 0 prep packets from counting as closure evidence", () => {
+    const gateTracker = readDoc("docs/implementation/v22-0-gate-0-user-action-tracker.md")
+    const gateChecklist = readDoc("docs/implementation/v22-0-gate-0-exit-checklist.md")
+    const c1Submission = readDoc("docs/implementation/v22-0-evidence/c1-partner-terms/C1-20260428-submission.md")
+    const d4Submission = readDoc("docs/implementation/v22-0-evidence/d4-partner-ops/D4-20260428-submission.md")
+
+    expect(gateTracker).toContain("UA-1")
+    expect(gateTracker).toContain("Prep-only packet added")
+    expect(gateTracker).toContain("UA-3")
+    expect(gateTracker).toContain("execution evidence are still missing")
+    expect(gateChecklist).toContain("Gate 0 Exit Decision    | **NO-GO**")
+    expect(gateChecklist).toContain("Blocking Checks         | G0-3, G0-8")
+
+    for (const content of [c1Submission, d4Submission]) {
+      expect(content).toContain("evidence_status: prep_only")
+      expect(content).toContain("Preparation scaffold only")
+      expect(content).not.toContain("evidence_status: complete")
+    }
+  })
+
+  it("keeps direct VPS deploy docs aligned with the sudo-required env contract", () => {
+    const readme = readDoc("README.md")
+    const productionChecklist = readDoc("docs/deployment/production-checklist.md")
+    const directVpsProof = readDoc("docs/deployment/direct-vps-proof.md")
+    const releaseHelper = readDoc("scripts/archive/release-vps-proof.sh")
+
+    expect(readme).toContain("Stage the current committed tree on the VPS; deploy there with sudo")
+    expect(productionChecklist).toContain("/etc/projects-merge/env` as `root:root 0700`")
+    expect(productionChecklist).toContain(
+      "sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env"
+    )
+    expect(directVpsProof).toContain("The older one-step `--deploy` helper is not the current reliable")
+    expect(releaseHelper).toContain("The optional --deploy mode is only for targets")
   })
 })

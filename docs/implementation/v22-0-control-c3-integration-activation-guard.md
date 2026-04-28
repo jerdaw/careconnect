@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-03-09
+last_updated: 2026-04-28
 owner: jer
 tags: [implementation, v22.0, controls, integration, release-gate]
 ---
@@ -34,12 +34,12 @@ Prevent activation of any external integration pathway until C1 and C2 are compl
 | Artifact                                             | Location                                                                       | Reviewer | Date       | Status      |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------ | -------- | ---------- | ----------- |
 | C1 evidence                                          | [v22-0-control-c1-legal-review.md](v22-0-control-c1-legal-review.md)           | jer      | 2026-03-09 | in_progress |
-| C2 evidence                                          | [v22-0-control-c2-retention-mapping.md](v22-0-control-c2-retention-mapping.md) | jer      | 2026-03-09 | in_progress |
+| C2 evidence                                          | [v22-0-control-c2-retention-mapping.md](v22-0-control-c2-retention-mapping.md) | jer      | 2026-03-29 | complete    |
 | Release gate evidence                                | [production-checklist.md](../deployment/production-checklist.md)               | jer      | 2026-03-09 | complete    |
 | API-surface evidence (no external integration route) | `app/api/v1/pilot/integration-feasibility/route.ts`                            | jer      | 2026-03-09 | complete    |
 
 ## Status
 
 - Integration activation allowed: `no`
-- Reason: `C1/C2 pending`
-- Next review date: `2026-03-21`
+- Reason: `C1 pending; C2 complete`
+- Next review trigger: `C1 evidence attached and reviewed`

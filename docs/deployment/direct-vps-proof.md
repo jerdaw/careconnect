@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-04-01
+last_updated: 2026-04-28
 owner: jer
 tags: [deployment, vps, docker, caddy, production, supabase, rls]
 ---
@@ -67,6 +67,15 @@ The deploy script expects exactly one argument:
 ./scripts/deploy-vps-proof.sh /path/to/env-file
 ```
 
+On the current shared VPS contract, the production env directory
+`/etc/projects-merge/env` remains root-only. When deploying with
+`/etc/projects-merge/env/careconnect-web.env`, run the helper from the staged
+release with `sudo`:
+
+```bash
+sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+```
+
 It will:
 
 1. build a tagged image,
@@ -78,12 +87,15 @@ It will:
 7. set `APP_VERSION` so `/api/v1/health` reports the deployed revision,
 8. print the expected health URL.
 
-From a local workstation, you can also stage and optionally deploy a committed
-release in one step:
+From a local workstation, stage a committed release first:
 
 ```bash
-./scripts/archive/release-vps-proof.sh haadmin@your-vps --deploy
+./scripts/archive/release-vps-proof.sh haadmin@your-vps
 ```
+
+Then SSH to the VPS and run the deploy helper with `sudo` from the staged
+release. The older one-step `--deploy` helper is not the current reliable
+production path while `/etc/projects-merge/env` remains root-only.
 
 ## Verified Production State
 

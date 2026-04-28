@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-01
+last_updated: 2026-04-28
 owner: jer
 tags: [implementation, v22.0, evidence, legal]
 ---
@@ -17,6 +17,15 @@ Recommended dated contents:
 4. Candidate API terms
 5. Any addenda covering analytics, retention, audit, or re-identification
 6. Optional artifact inventory if the source bundle spans multiple files or screenshots
+
+Prepared draft packet:
+
+1. [C1-20260428-submission.md](C1-20260428-submission.md) - prep-only submission scaffold
+2. [C1-20260428-clause-matrix.md](C1-20260428-clause-matrix.md) - prep-only clause matrix
+3. [C1-20260428-artifact-inventory.md](C1-20260428-artifact-inventory.md) - prep-only artifact inventory
+
+These files are intentionally marked `prep_only`; they do not count as legal
+review evidence until real candidate terms and reviewer notes are attached.
 
 Minimum review contents:
 

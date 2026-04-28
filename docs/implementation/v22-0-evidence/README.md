@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-28
 owner: jer
 tags: [implementation, v22.0, evidence, gate-0]
 ---
@@ -15,6 +15,8 @@ Rules:
 2. Do not mark any Gate 0 blocker `complete` until the corresponding evidence also satisfies [v22.0 Gate 0 Evidence Intake Pack](../v22-0-gate-0-evidence-intake-pack.md).
 3. Keep every evidence submission dated and attributable.
 4. Do not fabricate evidence or backfill dates.
+5. Files marked `evidence_status: prep_only` are intake scaffolds, not evidence
+   of legal review, partner commitment, or outreach execution.
 
 Subfolders:
 

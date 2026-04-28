@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-01
+last_updated: 2026-04-28
 owner: jer
 tags: [implementation, v22.0, evidence, partner-ops]
 ---
@@ -16,6 +16,17 @@ Recommended dated contents:
 3. `D4-YYYYMMDD-outreach-log.csv` based on [OUTREACH_LOG_TEMPLATE.csv](OUTREACH_LOG_TEMPLATE.csv)
 4. Dated email exports, screenshots, or CRM notes that support the outreach log
 5. Optional `D4-YYYYMMDD-coverage-note.md` if targeted counts or gaps need narrative context
+
+Prepared draft packet:
+
+1. [D4-20260428-submission.md](D4-20260428-submission.md) - prep-only submission scaffold
+2. [D4-20260428-partner-list.md](D4-20260428-partner-list.md) - prep-only partner list
+3. [D4-20260428-outreach-log.csv](D4-20260428-outreach-log.csv) - prep-only outreach log
+4. [D4-20260428-artifact-inventory.md](D4-20260428-artifact-inventory.md) - prep-only artifact inventory
+
+These files are intentionally marked `prep_only`; they do not count as partner
+operations execution evidence until named targets, an outreach owner, and dated
+contact attempts are attached.
 
 Minimum execution contents:
 

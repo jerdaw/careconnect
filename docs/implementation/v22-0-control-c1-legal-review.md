@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-03-24
+last_updated: 2026-04-28
 owner: jer
 tags: [implementation, v22.0, controls, legal, integration]
 ---
@@ -30,6 +30,8 @@ Current review mode (2026-03-09):
 2. Candidate external partner contract artifacts are not yet attached in-repo.
 3. C1 cannot be fully closed until candidate terms are reviewed clause-by-clause.
 4. A canonical drop location now exists for future evidence submissions in [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md).
+5. A dated prep-only packet exists for the next evidence intake, but it does not
+   close C1 without real candidate terms and reviewer notes.
 
 ## Required Clause Checks
 
@@ -68,18 +70,19 @@ Acceptance criteria:
 
 ## Evidence Table
 
-| Artifact                    | Location                                                                   | Reviewer | Date       | Status                   |
-| --------------------------- | -------------------------------------------------------------------------- | -------- | ---------- | ------------------------ |
-| Legal readiness memo        | this document                                                              | jer      | 2026-03-09 | complete (repo evidence) |
-| Submission workspace        | [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md) | jer      | 2026-03-24 | complete (prep only)     |
-| Clause diff / redline notes | candidate partner terms (not yet attached)                                 | jer      | pending    | pending                  |
-| Final legal recommendation  | pending legal review package                                               | jer      | pending    | pending                  |
+| Artifact                    | Location                                                                               | Reviewer | Date       | Status                   |
+| --------------------------- | -------------------------------------------------------------------------------------- | -------- | ---------- | ------------------------ |
+| Legal readiness memo        | this document                                                                          | jer      | 2026-03-09 | complete (repo evidence) |
+| Submission workspace        | [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)             | jer      | 2026-03-24 | complete (prep only)     |
+| Prep-only C1 packet         | [C1-20260428-submission.md](v22-0-evidence/c1-partner-terms/C1-20260428-submission.md) | jer      | 2026-04-28 | complete (prep only)     |
+| Clause diff / redline notes | candidate partner terms (not yet attached)                                             | jer      | pending    | pending                  |
+| Final legal recommendation  | pending legal review package                                                           | jer      | pending    | pending                  |
 
 ## Decision
 
 - Result: `pending`
 - Blocking findings: `Candidate partner terms are not yet attached for clause-level legal review (C1-3 unresolved).`
-- Escalation needed: `Obtain candidate partner legal/API terms and run clause-level redline review by 2026-03-21.`
+- Escalation needed: `Obtain candidate partner legal/API terms and run clause-level redline review before Gate 0 re-review.`
 
 ## Verification Note
 

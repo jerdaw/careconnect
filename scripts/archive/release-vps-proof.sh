@@ -5,9 +5,17 @@ usage() {
   cat <<'EOF' >&2
 usage: scripts/release-vps-proof.sh <ssh-target> [--deploy]
 
-Creates a release from the current committed tree, uploads it to the VPS,
-repoints /srv/apps/careconnect-web/current, and optionally runs the
-VPS deploy script.
+Creates a release from the current committed tree, uploads it to the VPS, and
+repoints /srv/apps/careconnect-web/current.
+
+Current production note:
+  The shared VPS env directory /etc/projects-merge/env is root-only. For the
+  live careconnect-web env file, use this helper for staging, then SSH to the
+  VPS and run:
+    sudo ./scripts/deploy-vps-proof.sh /etc/projects-merge/env/careconnect-web.env
+
+The optional --deploy mode is only for targets where the SSH user can already
+read the env file and operate Docker without an interactive sudo step.
 
 Environment overrides:
   CARECONNECT_VPS_APP_ROOT   default: /srv/apps/careconnect-web
