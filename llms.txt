@@ -1333,7 +1333,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-04-23
+last_updated: 2026-04-28
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1342,7 +1342,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-23
+> **Last Updated**: 2026-04-28
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -1383,7 +1383,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
 - **Ops documentation truth**: active incident, rollback, alerting, and launch QA docs now point at the direct-VPS runtime instead of the historical Vercel path
 - **Feedback retention copy**: privacy copy no longer promises a fixed automatic 90-day feedback deletion timeline that the implementation does not evidence
-- **Deploy contract drift**: the current live VPS frontend deploy path still requires `sudo ./scripts/deploy-vps-proof.sh ...` because `/etc/projects-merge/env` remains root-only in the observed host contract
+- **Deploy contract alignment**: active CareConnect deploy docs now match `platform-ops`; the live VPS frontend deploy path remains `sudo ./scripts/deploy-vps-proof.sh ...` while `/etc/projects-merge/env` is root-only
 - **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
@@ -1498,7 +1498,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 
 1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-3. Reconcile the shared frontend env-file deploy contract with `platform-ops`: either restore a documented non-sudo operator-readable path that actually works with `/etc/projects-merge/env`, or standardize `sudo` as the current frontend deploy requirement across the shared runbooks.
+3. Watch for future `platform-ops` changes to the shared frontend env-file contract; until then, keep CareConnect deploy docs on the current `sudo`-required path.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
 5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
 6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
@@ -1595,6 +1595,7 @@ References:
 
 - **Quiet GitHub automation and URL health hardening (2026-04-23)**: converted routine GitHub governance workflows to quiet-by-default sticky issue/comment behavior, reconciled duplicate reminder issues, added reusable bot-issue synchronization for scheduled workflows, hardened the monthly URL health lane with official override probes plus Actions summaries, and verified clean auto-close/no-reopen behavior for the broken-URL issue lane; archived in [2026-04-23 v20.0 Quiet GitHub Automation and URL Health Hardening](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md).
 - **Repo audit truth remediation (2026-04-24)**: aligned the active direct-VPS incident/rollback/observability/QA docs with the live runtime, corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
+- **Gate 0 prep and deploy-contract alignment (2026-04-28)**: added prep-only C1/D4 evidence packets, synchronized Gate 0 tracker wording without closing evidence blockers, aligned active CareConnect deploy/rollback docs with the `platform-ops` sudo-required frontend env-file contract, and archived the pass in [2026-04-28 v22.0 Gate 0 Prep and Deploy Contract Alignment](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md).
 - **Semantic search fail-closed and lint hygiene (2026-04-15)**: removed synthetic semantic-search fallback vectors, made worker/embed failures degrade to keyword-only search, restored authoritative repo-wide linting by excluding local MkDocs output, synced architecture docs, and added focused hook/documentation hygiene coverage; archived in [2026-04-15 v20.0 Semantic Search Fail-Closed and Lint Hygiene](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md).
 - **Gate 0 wait maintenance bundle (2026-04-05)**: completed search explainability, stale-data runtime governance, workflow-runtime doc alignment, and solo-scale freshness-policy calibration while Gate 0 remained blocked; archived in [2026-04-05 v22.0 Gate 0 Wait Maintenance Bundle](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md).
 - **Map privacy and offline snapshot safety surfaces (2026-04-04)**: replaced automatic Google Maps embeds with explicit opt-in previews, surfaced offline snapshot age/stale warnings on offline surfaces, updated threat-model/user-guide/architecture docs, and added focused UI/helper coverage; archived in [2026-04-04 v22.0 Map Privacy and Offline Snapshot Safety](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md).
