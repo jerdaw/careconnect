@@ -1,4 +1,17 @@
+---
+status: archived
+last_updated: 2026-04-29
+owner: jer
+tags: [homepage, ui, archive]
+---
+
 # Homepage Premium UI Analysis
+
+> Historical note: this analysis records an earlier premium UI pass. The current
+> resting homepage discovery layer is documented in
+> [Component Usage Guide](../development/components.md#homepage-discovery-layer),
+> and the 2026-04-29 closeout is archived in
+> [v20.0 Homepage Search UX Polish](../planning/archive/2026-04-29-v20-0-homepage-search-ux-polish.md).
 
 ## Overview
 
@@ -6,7 +19,7 @@ Analysis of the homepage (`app/[locale]/page.tsx`) after the initial premium-ui-
 
 ## What's Working
 
-- **Modular component architecture** — SearchBar, HomeStats, TrustStrip, CategoryBrowseGrid, HowItWorks, PartnerCTA are all cleanly separated
+- **Modular component architecture** — SearchBar, HomeStats, CategoryBrowseGrid, HowItWorks, and PartnerCTA are cleanly separated
 - **Animated search border** — spinning idle / static active gradient is distinctive and polished
 - **Strong accessibility foundations** — aria labels, focus states, keyboard support throughout
 - **i18n infrastructure** — 7 locales with next-intl, all components use translation keys
@@ -23,7 +36,7 @@ Analysis of the homepage (`app/[locale]/page.tsx`) after the initial premium-ui-
 | 5   | PartnerCTA weak hierarchy — two low-contrast buttons, no visual pull                 | Medium | `PartnerCTA.tsx`   |
 | 6   | Inconsistent section spacing — py-10, py-12, py-16 creates arrhythmic flow           | Medium | All sections       |
 | 7   | Quick search chips visually weak — small neutral pills don't invite interaction      | Medium | `SearchChips.tsx`  |
-| 8   | TrustStrip cards lack differentiation — identical visual treatment                   | Low    | `TrustStrip.tsx`   |
+| 8   | Historical: the separate TrustStrip surface was later removed                        | Low    | Homepage discovery |
 | 9   | HowItWorks steps generic — numbered circles functional but not premium               | Low    | `HowItWorks.tsx`   |
 | 10  | Duplicate `searchChips` i18n key in en.json — first block silently overwritten       | Bug    | `messages/en.json` |
 

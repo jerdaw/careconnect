@@ -1218,16 +1218,16 @@
       "title": "How It Works",
       "subtitle": "Find help without accounts, tracking, or extra steps.",
       "step1": {
-        "title": "Private Search",
-        "description": "Use keywords or speak to our private AI assistant."
+        "title": "Search",
+        "description": "Use keywords, categories, or plain language."
       },
       "step2": {
-        "title": "Filter Results",
-        "description": "Instantly see what is Open Now and Near Me."
+        "title": "Narrow",
+        "description": "Filter by hours, location, and the kind of support you need."
       },
       "step3": {
         "title": "Connect",
-        "description": "Call, get directions, or visit websites in one tap."
+        "description": "Call, get directions, or visit the service website."
       }
     },
     "governance": {
@@ -1576,20 +1576,6 @@
       "categoriesValue": "12",
       "languagesValue": "7"
     },
-    "trustStrip": {
-      "privacy": {
-        "title": "Your searches stay private",
-        "description": "We never log what you search. No accounts required to find help."
-      },
-      "offline": {
-        "title": "Works without internet",
-        "description": "Install as an app to access the full directory offline."
-      },
-      "bilingual": {
-        "title": "Available in 7 languages",
-        "description": "Search and browse in English, French, Arabic, Mandarin, Spanish, Portuguese, and Punjabi."
-      }
-    },
     "categoryGrid": {
       "groupLabel": "Service categories",
       "ariaLabel": "Browse {category} services"
@@ -1601,7 +1587,31 @@
       "learnMoreButton": "How listings are reviewed"
     },
     "hero": {
-      "subtitle": "Find food, housing, crisis support, and 190+ verified services in Kingston — privately, in 7 languages."
+      "subtitle": "Search verified Kingston services for food, housing, crisis support, and more. Private by default and available in 7 languages."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Search privately, filter for what fits, then contact the provider directly.",
+      "steps": {
+        "privateSearch": {
+          "title": "Private Search",
+          "description": "No account. No search history.",
+          "details": ["Searches stay on your device", "Use the directory without signing in"],
+          "cardTitle": "Private by default"
+        },
+        "filterResults": {
+          "title": "Filter Results",
+          "description": "Cut the list to services that fit your situation.",
+          "details": ["Open Now and Near Me", "Category and support filters"],
+          "cardTitle": "Narrow quickly"
+        },
+        "connect": {
+          "title": "Connect",
+          "description": "Use the listing to take the next step directly.",
+          "details": ["Call, directions, and website links", "Confirm hours before you go"],
+          "cardTitle": "Ready to contact"
+        }
+      }
     }
   }
 }

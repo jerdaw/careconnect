@@ -15,7 +15,11 @@ pass while v22.0 Gate 0 remains blocked on external evidence.
 The work tightened the homepage search area, made the active search filters
 more compact, restored and refined the high-level service/category/language
 metrics rail, and kept the resting homepage focused on private search and trust
-signals. No curated service records or verification levels changed.
+signals. Follow-up polish folded the trust-strip content into a clearer
+`How It Works` section, refined the category-to-process spacing, improved the
+hero and footer copy/layout, and kept all user-facing copy localized across the
+seven supported UI locales. No curated service records or verification levels
+changed.
 
 ## Completed Outcomes
 
@@ -41,6 +45,19 @@ signals. No curated service records or verification levels changed.
    supported UI locales.
 9. Updated `SearchControls` component coverage for the collapsed/expanded
    category state.
+10. Replaced the separate homepage trust-strip row with concise, step-specific
+    `How It Works` detail cards that reinforce privacy, filtering, and direct
+    provider contact without adding a longer marketing section.
+11. Refined the category shortcut rail spacing and kept the shortcuts tied to
+    the existing search/category selection flow.
+12. Updated the homepage hero subtitle and `How It Works` copy to be clearer
+    and less repetitive while preserving the privacy-first message.
+13. Polished the `How It Works` heading, connector row, and cards with restrained
+    visual hierarchy, accessible headings, and no extra decorative icon layer.
+14. Improved the footer medium-width layout so the brand block and Community,
+    Resources, and Legal columns remain balanced.
+15. Localized the final homepage credibility copy for all seven supported UI
+    locales and refreshed component smoke coverage.
 
 ## Verification Snapshot
 
@@ -54,6 +71,10 @@ Validated on 2026-04-29:
 6. Commit hook checks: ESLint, Prettier, related Vitest, type-check, and i18n
    audit
 7. Pre-push `npm test`: `180` files passed, `1321` tests passed, `24` skipped
+8. Closeout verification for the follow-up polish:
+   `npm test -- tests/components/home/HomeSurfaces.test.tsx`,
+   `npm run lint`, `npm run type-check`, `npm run i18n-audit`,
+   `npm run format:check`, and `git diff --check`
 
 Local Playwright test suites were not run, per the free-tier CI testing posture.
 The UI spacing was inspected through the running local app with desktop and

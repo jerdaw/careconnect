@@ -930,16 +930,16 @@
       "title": "工作原理",
       "subtitle": "无需账户、跟踪或额外步骤即可找到帮助。",
       "step1": {
-        "title": "私人搜索",
-        "description": "使用关键字或与我们的私人AI助手交谈。"
+        "title": "搜索",
+        "description": "使用关键词、类别或自然语言。"
       },
       "step2": {
-        "title": "筛选结果",
-        "description": "立即查看现在营业和附近的内容。"
+        "title": "缩小范围",
+        "description": "按开放时间、位置和所需支持类型筛选。"
       },
       "step3": {
-        "title": "连接",
-        "description": "一键致电、获取路线或访问网站。"
+        "title": "联系",
+        "description": "致电、获取路线或访问服务网站。"
       }
     },
     "governance": {
@@ -1576,20 +1576,6 @@
       "categoriesValue": "12",
       "languagesValue": "7"
     },
-    "trustStrip": {
-      "privacy": {
-        "title": "您的搜索保持私密",
-        "description": "我们从不记录您的搜索内容。无需账户即可获取帮助。"
-      },
-      "offline": {
-        "title": "离线也可使用",
-        "description": "将应用安装后，可在没有网络的情况下访问完整目录。"
-      },
-      "bilingual": {
-        "title": "支持7种语言",
-        "description": "可使用英语、法语、阿拉伯语、普通话、西班牙语、葡萄牙语和旁遮普语进行搜索和浏览。"
-      }
-    },
     "categoryGrid": {
       "groupLabel": "服务类别",
       "ariaLabel": "浏览{category}服务"
@@ -1601,7 +1587,31 @@
       "learnMoreButton": "了解条目如何审核"
     },
     "hero": {
-      "subtitle": "查找食物、住房、危机支援及190多项金斯顿已验证服务——私密搜索，支持7种语言。"
+      "subtitle": "搜索金斯顿已验证的食物、住房、危机支持等服务。默认私密，支持7种语言。"
+    },
+    "howItWorks": {
+      "title": "使用方式",
+      "subtitle": "私密搜索，筛选合适的服务，然后直接联系服务提供者。",
+      "steps": {
+        "privateSearch": {
+          "title": "私密搜索",
+          "description": "无需账号。没有搜索记录。",
+          "details": ["搜索保留在您的设备上", "无需登录即可使用目录"],
+          "cardTitle": "默认私密"
+        },
+        "filterResults": {
+          "title": "筛选结果",
+          "description": "将列表缩小到适合您情况的服务。",
+          "details": ["现在开放和附近服务", "类别和支持类型筛选"],
+          "cardTitle": "快速缩小范围"
+        },
+        "connect": {
+          "title": "联系",
+          "description": "使用服务详情直接采取下一步。",
+          "details": ["电话、路线和网站链接", "出发前确认服务时间"],
+          "cardTitle": "准备联系"
+        }
+      }
     }
   }
 }

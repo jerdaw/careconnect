@@ -1,4 +1,15 @@
+---
+status: archived
+last_updated: 2026-04-29
+owner: jer
+tags: [homepage, ui, archive]
+---
+
 # Homepage Premium UI Improvement Plan
+
+> Historical note: this plan records an earlier premium UI pass. The separate
+> `TrustStrip` component was later removed and its trust messaging was folded
+> into the current `HowItWorks` homepage discovery flow.
 
 ## Summary of Changes Made
 

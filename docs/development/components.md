@@ -122,6 +122,20 @@ import ChatAssistant from "@/components/ai/ChatAssistant"
 </ClientOnly>
 ```
 
+### Homepage Discovery Layer
+
+The resting homepage discovery layer is composed of `HomeStats`,
+`CategoryBrowseGrid`, and `HowItWorks`.
+
+- `HomeStats` renders the semantic service/category/language metrics rail.
+- `CategoryBrowseGrid` provides category shortcuts and must call the existing
+  category setter/search flow rather than introducing a separate navigation
+  path.
+- `HowItWorks` explains the private-search to direct-contact flow with concise
+  localized copy and card details; avoid reintroducing a separate trust-strip
+  row for privacy/offline/language claims unless the homepage information
+  architecture is revisited.
+
 ### ServiceCardSkeleton
 
 Loading placeholder for ServiceCard.

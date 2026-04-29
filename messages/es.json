@@ -930,16 +930,16 @@
       "title": "Cómo Funciona",
       "subtitle": "Encuentre ayuda sin cuentas, rastreo ni pasos adicionales.",
       "step1": {
-        "title": "Búsqueda Privada",
-        "description": "Usa palabras clave o habla con nuestro asistente de IA privado."
+        "title": "Buscar",
+        "description": "Usa palabras clave, categorías o lenguaje natural."
       },
       "step2": {
-        "title": "Filtra Resultados",
-        "description": "Ve instantáneamente qué está Abierto Ahora y Cerca de Ti."
+        "title": "Refinar",
+        "description": "Filtra por horario, ubicación y tipo de apoyo que necesitas."
       },
       "step3": {
-        "title": "Conecta",
-        "description": "Llama, obtén direcciones o visita sitios web con un toque."
+        "title": "Conectar",
+        "description": "Llama, obtén indicaciones o visita el sitio web del servicio."
       }
     },
     "governance": {
@@ -1576,20 +1576,6 @@
       "categoriesValue": "12",
       "languagesValue": "7"
     },
-    "trustStrip": {
-      "privacy": {
-        "title": "Tus búsquedas permanecen privadas",
-        "description": "Nunca registramos lo que buscas. No se requiere cuenta para encontrar ayuda."
-      },
-      "offline": {
-        "title": "Funciona sin internet",
-        "description": "Instala como aplicación para acceder al directorio completo sin conexión."
-      },
-      "bilingual": {
-        "title": "Disponible en 7 idiomas",
-        "description": "Busca y navega en inglés, francés, árabe, mandarín, español, portugués y punjabi."
-      }
-    },
     "categoryGrid": {
       "groupLabel": "Categorías de servicios",
       "ariaLabel": "Navegar por servicios de {category}"
@@ -1601,7 +1587,31 @@
       "learnMoreButton": "Cómo se revisan los listados"
     },
     "hero": {
-      "subtitle": "Encuentra alimentos, vivienda, apoyo en crisis y más de 190 servicios verificados en Kingston — de forma privada, en 7 idiomas."
+      "subtitle": "Busca servicios verificados en Kingston para alimentos, vivienda, apoyo en crisis y más. Privado por defecto y disponible en 7 idiomas."
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "subtitle": "Busca en privado, filtra lo que encaja y contacta directamente al proveedor.",
+      "steps": {
+        "privateSearch": {
+          "title": "Búsqueda privada",
+          "description": "Sin cuenta. Sin historial de búsqueda.",
+          "details": ["Las búsquedas permanecen en tu dispositivo", "Usa el directorio sin iniciar sesión"],
+          "cardTitle": "Privada por defecto"
+        },
+        "filterResults": {
+          "title": "Filtrar resultados",
+          "description": "Reduce la lista a servicios que se ajusten a tu situación.",
+          "details": ["Abierto ahora y Cerca de mí", "Filtros de categoría y apoyo"],
+          "cardTitle": "Afina rápido"
+        },
+        "connect": {
+          "title": "Conectar",
+          "description": "Usa el listado para dar el siguiente paso directamente.",
+          "details": ["Llamada, indicaciones y enlaces web", "Confirma horarios antes de ir"],
+          "cardTitle": "Listo para contactar"
+        }
+      }
     }
   }
 }

@@ -930,16 +930,16 @@
       "title": "Como Funciona",
       "subtitle": "Encontre ajuda sem contas, rastreamento ou etapas extras.",
       "step1": {
-        "title": "Pesquisa Privada",
-        "description": "Use palavras-chave ou fale com o nosso Assistente de IA privado."
+        "title": "Buscar",
+        "description": "Use palavras-chave, categorias ou linguagem natural."
       },
       "step2": {
-        "title": "Filtrar Resultados",
-        "description": "Veja instantaneamente o que está aberto agora e o que está perto de si."
+        "title": "Refinar",
+        "description": "Filtre por horário, localização e tipo de apoio necessário."
       },
       "step3": {
         "title": "Conectar",
-        "description": "Ligue, obtenha direções ou visite websites com um toque."
+        "description": "Ligue, obtenha rotas ou visite o site do serviço."
       }
     },
     "governance": {
@@ -1576,20 +1576,6 @@
       "categoriesValue": "12",
       "languagesValue": "7"
     },
-    "trustStrip": {
-      "privacy": {
-        "title": "Suas pesquisas permanecem privadas",
-        "description": "Nunca registramos o que você pesquisa. Nenhuma conta necessária para encontrar ajuda."
-      },
-      "offline": {
-        "title": "Funciona sem internet",
-        "description": "Instale como aplicativo para acessar o diretório completo offline."
-      },
-      "bilingual": {
-        "title": "Disponível em 7 idiomas",
-        "description": "Pesquise e navegue em inglês, francês, árabe, mandarim, espanhol, português e punjabi."
-      }
-    },
     "categoryGrid": {
       "groupLabel": "Categorias de serviço",
       "ariaLabel": "Navegar por serviços de {category}"
@@ -1601,7 +1587,31 @@
       "learnMoreButton": "Como as listagens são revisadas"
     },
     "hero": {
-      "subtitle": "Encontre alimentação, moradia, apoio em crise e mais de 190 serviços verificados em Kingston — com privacidade, em 7 idiomas."
+      "subtitle": "Busque serviços verificados em Kingston para alimentação, moradia, apoio em crise e muito mais. Privado por padrão e disponível em 7 idiomas."
+    },
+    "howItWorks": {
+      "title": "Como funciona",
+      "subtitle": "Busque com privacidade, filtre o que se encaixa e fale diretamente com o provedor.",
+      "steps": {
+        "privateSearch": {
+          "title": "Busca privada",
+          "description": "Sem conta. Sem histórico de busca.",
+          "details": ["As buscas ficam no seu dispositivo", "Use o diretório sem entrar"],
+          "cardTitle": "Privada por padrão"
+        },
+        "filterResults": {
+          "title": "Filtrar resultados",
+          "description": "Reduza a lista a serviços que combinam com sua situação.",
+          "details": ["Aberto agora e Perto de mim", "Filtros de categoria e apoio"],
+          "cardTitle": "Refine rapidamente"
+        },
+        "connect": {
+          "title": "Conectar",
+          "description": "Use a listagem para dar o próximo passo diretamente.",
+          "details": ["Telefone, rotas e links do site", "Confirme horários antes de ir"],
+          "cardTitle": "Pronto para contato"
+        }
+      }
     }
   }
 }

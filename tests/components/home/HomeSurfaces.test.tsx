@@ -8,7 +8,6 @@ import HowItWorks from "@/components/home/HowItWorks"
 import PartnerCTA from "@/components/home/PartnerCTA"
 import SafetyAlert from "@/components/home/SafetyAlert"
 import SourceGovernanceBand from "@/components/about/SourceGovernanceBand"
-import TrustStrip from "@/components/home/TrustStrip"
 import ModelStatus from "@/components/home/ModelStatus"
 import ScopeFilterBar from "@/components/home/ScopeFilterBar"
 
@@ -53,18 +52,37 @@ const messages = {
       suggestButton: "Suggest a service",
       learnMoreButton: "Learn more",
     },
-    trustStrip: {
-      privacy: {
-        title: "Privacy-first",
-        description: "Searches stay private by default.",
-      },
-      offline: {
-        title: "Works offline",
-        description: "Directory data stays available without a connection.",
-      },
-      bilingual: {
-        title: "Multi-language",
-        description: "Seven locales supported today.",
+    howItWorks: {
+      title: "How it works",
+      subtitle: "Search privately, filter for what fits, then contact the provider directly.",
+      steps: {
+        privateSearch: {
+          title: "Private Search",
+          description: "No account. No search history.",
+          details: {
+            0: "Searches stay on your device",
+            1: "Use the directory without signing in",
+          },
+          cardTitle: "Private by default",
+        },
+        filterResults: {
+          title: "Filter Results",
+          description: "Cut the list to services that fit your situation.",
+          details: {
+            0: "Open Now and Near Me",
+            1: "Category and support filters",
+          },
+          cardTitle: "Narrow quickly",
+        },
+        connect: {
+          title: "Connect",
+          description: "Use the listing to take the next step directly.",
+          details: {
+            0: "Call, directions, and website links",
+            1: "Confirm hours before you go",
+          },
+          cardTitle: "Ready to contact",
+        },
       },
     },
     modelStatus: {
@@ -76,9 +94,9 @@ const messages = {
     howItWorks: {
       title: "How it works",
       subtitle: "Three steps",
-      step1: { title: "Search", description: "Start with a plain-language search." },
-      step2: { title: "Filter", description: "Use category and scope filters." },
-      step3: { title: "Act", description: "Call, visit, or share the service." },
+      step1: { title: "Search", description: "Use keywords, categories, or plain language." },
+      step2: { title: "Narrow", description: "Filter by hours, location, and support type." },
+      step3: { title: "Connect", description: "Call, get directions, or visit the service website." },
     },
     sourceGovernance: {
       eyebrow: "Source review",
@@ -150,21 +168,24 @@ describe("Home surface smoke coverage", () => {
     expect(onCategorySelect).toHaveBeenCalledWith("Employment")
   })
 
-  it("renders home stats, how-it-works, partner CTA, and trust strip", () => {
+  it("renders home stats, how-it-works, partner CTA, and trust items", () => {
     const { rerender } = renderWithProviders(
       <div>
         <HomeStats />
         <HowItWorks />
         <PartnerCTA />
-        <TrustStrip />
       </div>,
       { messages }
     )
 
     expect(screen.getByText("196")).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "How it works" })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "Private Search" })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "Filter Results" })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "Connect" })).toBeInTheDocument()
+    expect(screen.getByText("Searches stay on your device")).toBeInTheDocument()
+    expect(screen.getByText("Confirm hours before you go")).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "Suggest a service" })).toHaveAttribute("href", "/submit-service")
-    expect(screen.getByText("Privacy-first")).toBeInTheDocument()
 
     rerender(<div />)
   })

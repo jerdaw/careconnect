@@ -988,16 +988,16 @@
       "title": "Comment ça fonctionne",
       "subtitle": "Trouvez de l'aide sans compte, sans suivi et sans étapes inutiles.",
       "step1": {
-        "title": "Recherche privée",
-        "description": "Utilisez des mots-clés ou parlez à notre assistant IA privé."
+        "title": "Rechercher",
+        "description": "Utilisez des mots-clés, des catégories ou une formulation naturelle."
       },
       "step2": {
-        "title": "Résultats filtrés",
-        "description": "Trouvez instantanément ce qui est ouvert maintenant et près de chez vous."
+        "title": "Affiner",
+        "description": "Filtrez selon les heures, l'emplacement et le type de soutien nécessaire."
       },
       "step3": {
-        "title": "Connectez-vous",
-        "description": "Appelez ou obtenez l'itinéraire en un seul clic."
+        "title": "Contacter",
+        "description": "Appelez, obtenez un itinéraire ou visitez le site Web du service."
       }
     },
     "governance": {
@@ -1576,20 +1576,6 @@
       "categoriesValue": "12",
       "languagesValue": "7"
     },
-    "trustStrip": {
-      "privacy": {
-        "title": "Vos recherches restent privées",
-        "description": "Nous n'enregistrons jamais ce que vous recherchez. Aucun compte requis pour trouver de l'aide."
-      },
-      "offline": {
-        "title": "Fonctionne sans internet",
-        "description": "Installez l'application pour accéder au répertoire complet hors ligne."
-      },
-      "bilingual": {
-        "title": "Disponible en 7 langues",
-        "description": "Recherchez et naviguez en anglais, français, arabe, mandarin, espagnol, portugais et pendjabi."
-      }
-    },
     "categoryGrid": {
       "groupLabel": "Catégories de services",
       "ariaLabel": "Parcourir les services {category}"
@@ -1601,7 +1587,31 @@
       "learnMoreButton": "Comment les fiches sont revues"
     },
     "hero": {
-      "subtitle": "Trouvez nourriture, logement, soutien en cas de crise et plus de 190 services vérifiés à Kingston — en toute confidentialité, en 7 langues."
+      "subtitle": "Recherchez des services vérifiés à Kingston pour l'alimentation, le logement, le soutien en crise et plus encore. Privé par défaut et disponible en 7 langues."
+    },
+    "howItWorks": {
+      "title": "Comment ça fonctionne",
+      "subtitle": "Cherchez en privé, filtrez selon vos besoins, puis contactez directement le fournisseur.",
+      "steps": {
+        "privateSearch": {
+          "title": "Recherche privée",
+          "description": "Aucun compte. Aucun historique de recherche.",
+          "details": ["Les recherches restent sur votre appareil", "Utilisez le répertoire sans vous connecter"],
+          "cardTitle": "Privé par défaut"
+        },
+        "filterResults": {
+          "title": "Filtrer les résultats",
+          "description": "Réduisez la liste aux services adaptés à votre situation.",
+          "details": ["Ouvert maintenant et Près de moi", "Filtres par catégorie et soutien"],
+          "cardTitle": "Affinez rapidement"
+        },
+        "connect": {
+          "title": "Contacter",
+          "description": "Utilisez la fiche pour passer directement à l'étape suivante.",
+          "details": ["Appel, itinéraire et liens Web", "Confirmez les heures avant de partir"],
+          "cardTitle": "Prêt à contacter"
+        }
+      }
     }
   }
 }

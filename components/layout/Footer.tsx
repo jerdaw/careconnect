@@ -16,9 +16,9 @@ export function Footer() {
       <div className="from-primary-500 via-accent-500 to-primary-500 absolute top-0 right-0 left-0 h-1 bg-gradient-to-r" />
 
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(240px,1.8fr)_repeat(3,minmax(110px,1fr))] md:items-start md:gap-8 lg:gap-12">
           {/* Logo & Mission */}
-          <div className="space-y-6 md:col-span-2 lg:col-span-1">
+          <div className="space-y-5 md:pr-4">
             <div className="flex items-center gap-3">
               <div className="relative flex h-9 items-center justify-center transition-all">
                 <Image
@@ -31,7 +31,7 @@ export function Footer() {
               </div>
               <span className="heading-display text-xl font-bold tracking-tight text-white">CareConnect</span>
             </div>
-            <p className="max-w-md leading-relaxed text-neutral-400">{t("mission")}</p>
+            <p className="max-w-sm leading-relaxed text-neutral-400">{t("mission")}</p>
             <div className="flex gap-4">
               <a
                 href="https://github.com/jerdaw/careconnect"

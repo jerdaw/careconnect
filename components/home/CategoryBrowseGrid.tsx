@@ -108,7 +108,7 @@ export default function CategoryBrowseGrid({ onCategorySelect }: CategoryBrowseG
   const tGrid = useTranslations("Home.categoryGrid")
 
   return (
-    <Section className="py-6 md:py-7">
+    <Section className="pt-8 pb-5 md:pt-9 md:pb-6">
       <div
         role="group"
         aria-label={tGrid("groupLabel")}
