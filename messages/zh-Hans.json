@@ -41,6 +41,8 @@
     "filterByLocation": "按当前位置筛选",
     "utilityFilters": "搜索选项",
     "categoryFilters": "服务类别筛选",
+    "moreCategories": "更多类别",
+    "fewerCategories": "更少类别",
     "all": "全部",
     "crisis": "🗣️ 危机",
     "food": "食物",
@@ -926,7 +928,7 @@
     },
     "howItWorks": {
       "title": "工作原理",
-      "subtitle": "我们通过消除障碍和跟踪使寻找帮助变得简单。",
+      "subtitle": "无需账户、跟踪或额外步骤即可找到帮助。",
       "step1": {
         "title": "私人搜索",
         "description": "使用关键字或与我们的私人AI助手交谈。"

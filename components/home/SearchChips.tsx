@@ -17,7 +17,7 @@ const QUICK_SEARCH_KEYS = ["foodBank", "housing", "crisis", "mentalHealth", "leg
 export default function SearchChips({ savedSearches, removeSavedSearch, startSearch }: SearchChipsProps) {
   const t = useTranslations("Home.searchChips")
   return (
-    <div className="mt-6 flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4">
       {/* Saved Searches */}
       {savedSearches.length > 0 ? (
         <motion.div
@@ -26,7 +26,7 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
           initial="initial"
           animate="animate"
         >
-          <div className="w-full text-center text-xs font-semibold tracking-wider text-neutral-400 uppercase">
+          <div className="w-full text-center text-xs font-semibold tracking-wider text-neutral-600 uppercase dark:text-neutral-300">
             {t("savedLabel")}
           </div>
           {savedSearches.map((s) => (
@@ -59,12 +59,12 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
         </motion.div>
       ) : (
         <motion.div
-          className="flex flex-wrap justify-center gap-2"
+          className="flex max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1.5"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          <div className="w-full text-center text-xs font-semibold tracking-wider text-neutral-400 uppercase">
+          <div className="px-1 text-xs font-semibold tracking-wider text-neutral-600 uppercase dark:text-neutral-300">
             {t("quickSearchesLabel")}
           </div>
           {QUICK_SEARCH_KEYS.map((key) => (
@@ -72,7 +72,7 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
               key={key}
               variants={fadeInUp}
               onClick={() => startSearch(t(`quickSearch.${key}`))}
-              className="hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:bg-primary-900/30 dark:hover:text-primary-300 rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-600 transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+              className="focus-visible:ring-primary-500 rounded-md border border-neutral-200/70 bg-white/35 px-2.5 py-1 text-xs font-medium text-neutral-700 transition-colors hover:bg-white/70 hover:text-neutral-950 focus-visible:ring-2 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-neutral-200 dark:hover:bg-white/10 dark:hover:text-white"
             >
               {t(`quickSearch.${key}`)}
             </motion.button>

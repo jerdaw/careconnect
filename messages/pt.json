@@ -41,6 +41,8 @@
     "filterByLocation": "Filtrar por localização atual",
     "utilityFilters": "Opções de pesquisa",
     "categoryFilters": "Filtros por categoria de serviço",
+    "moreCategories": "Mais categorias",
+    "fewerCategories": "Menos categorias",
     "all": "Todos",
     "crisis": "🗣️ Crise",
     "food": "Alimentação",
@@ -926,7 +928,7 @@
     },
     "howItWorks": {
       "title": "Como Funciona",
-      "subtitle": "Tornamos a procura de ajuda simples, removendo barreiras e rastreamento.",
+      "subtitle": "Encontre ajuda sem contas, rastreamento ou etapas extras.",
       "step1": {
         "title": "Pesquisa Privada",
         "description": "Use palavras-chave ou fale com o nosso Assistente de IA privado."

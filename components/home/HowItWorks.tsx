@@ -24,7 +24,7 @@ export default function HowItWorks() {
     <Section className="py-12 md:py-16">
       <div className="mb-10 text-center">
         <h2 className="heading-2 text-neutral-900 dark:text-white">{t("title")}</h2>
-        <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">{t("subtitle")}</p>
+        <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{t("subtitle")}</p>
       </div>
       <ol className="m-0 grid list-none grid-cols-1 gap-8 p-0 md:grid-cols-3 md:gap-0">
         {steps.map(({ number, title, description }, index) => {
@@ -38,7 +38,7 @@ export default function HowItWorks() {
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mb-2 font-semibold text-neutral-900 dark:text-white">{title}</h3>
-              <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{description}</p>
+              <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">{description}</p>
             </li>
           )
         })}

@@ -34,7 +34,7 @@ export default function TrustStrip() {
   ]
 
   return (
-    <Section className="py-12 md:py-16">
+    <Section className="pt-8 pb-12 md:pt-10 md:pb-16">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map(({ icon: Icon, title, description, iconBg, iconColor }) => (
           <Card key={title} variant="glass" padding="default">
@@ -43,7 +43,7 @@ export default function TrustStrip() {
                 <Icon className={cn("h-5 w-5", iconColor)} aria-hidden="true" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">{title}</h3>
+                <p className="text-sm font-semibold text-neutral-900 dark:text-white">{title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">{description}</p>
               </div>
             </div>

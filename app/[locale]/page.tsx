@@ -23,9 +23,7 @@ import SearchResultsList from "../../components/home/SearchResultsList"
 import SafetyAlert from "../../components/home/SafetyAlert"
 import HomeStats from "../../components/home/HomeStats"
 import TrustStrip from "../../components/home/TrustStrip"
-import CategoryBrowseGrid from "../../components/home/CategoryBrowseGrid"
 import HowItWorks from "../../components/home/HowItWorks"
-import PartnerCTA from "../../components/home/PartnerCTA"
 
 export default function Home() {
   const t = useTranslations()
@@ -109,12 +107,9 @@ export default function Home() {
     }
   }, [hasSearched])
 
-  const handleCategorySelect = (cat: string) => {
-    setCategory(cat)
-    searchBarRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
-
   const isActive = isFocused || query.length > 0
+  const hasActiveSearch =
+    hasSearched || isLoading || query.trim().length > 0 || Boolean(category) || openNow || Boolean(userLocation)
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
@@ -200,21 +195,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <SearchControls
-                  userLocation={userLocation}
-                  toggleLocation={toggleLocation}
-                  isLocating={isLocating}
-                  category={category}
-                  setCategory={setCategory}
-                  openNow={openNow}
-                  setOpenNow={setOpenNow}
-                />
-              </div>
-
               {/* Suggestions & Chips */}
               {!hasSearched && query.length === 0 && (
-                <div className="mt-8">
+                <div className="mt-6">
                   <SearchChips
                     savedSearches={savedSearches}
                     removeSavedSearch={removeSavedSearch}
@@ -229,20 +212,32 @@ export default function Home() {
         {/* Discovery Layer — hidden when results are shown */}
         <div
           className={cn(
-            "transition-all duration-500",
-            hasSearched ? "pointer-events-none h-0 overflow-hidden opacity-0" : "opacity-100"
+            "mt-4 transition-all duration-500",
+            hasActiveSearch ? "pointer-events-none h-0 overflow-hidden opacity-0" : "opacity-100"
           )}
-          aria-hidden={hasSearched || undefined}
+          aria-hidden={hasActiveSearch || undefined}
         >
           <HomeStats />
           <TrustStrip />
-          <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
           <HowItWorks />
-          <PartnerCTA />
         </div>
 
         {/* Results Section */}
-        <Section className={hasSearched ? "pt-0" : "h-0 overflow-hidden py-0 opacity-0"}>
+        <Section className={hasActiveSearch ? "pt-0" : "h-0 overflow-hidden py-0 opacity-0"}>
+          {hasActiveSearch && (
+            <div className="mt-1 mb-5 md:mt-0 md:mb-6">
+              <SearchControls
+                userLocation={userLocation}
+                toggleLocation={toggleLocation}
+                isLocating={isLocating}
+                category={category}
+                setCategory={setCategory}
+                openNow={openNow}
+                setOpenNow={setOpenNow}
+              />
+            </div>
+          )}
+
           {suggestion && !isLoading && (
             <div className="bg-primary-50/50 dark:bg-primary-900/10 border-primary-100 dark:border-primary-800/50 mb-8 rounded-xl border p-4 text-center">
               <p className="text-primary-700 dark:text-primary-300 text-sm">

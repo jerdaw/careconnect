@@ -61,6 +61,8 @@
     "filterByLocation": "Filtrer par position actuelle",
     "utilityFilters": "Options de recherche",
     "categoryFilters": "Filtres par catégorie de service",
+    "moreCategories": "Plus de catégories",
+    "fewerCategories": "Moins de catégories",
     "all": "Tous",
     "scope": {
       "all": "Tous",
@@ -984,7 +986,7 @@
     },
     "howItWorks": {
       "title": "Comment ça fonctionne",
-      "subtitle": "Nous simplifions la recherche d'aide en supprimant les barrières.",
+      "subtitle": "Trouvez de l'aide sans compte, sans suivi et sans étapes inutiles.",
       "step1": {
         "title": "Recherche privée",
         "description": "Utilisez des mots-clés ou parlez à notre assistant IA privé."

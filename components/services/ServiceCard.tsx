@@ -102,7 +102,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <div className="min-w-0 flex-1">
               {/* Title Row with inline badges */}
               <div className="flex flex-wrap items-center gap-1.5">
-                <h3
+                <h2
                   className="truncate text-sm leading-tight font-semibold text-neutral-900 dark:text-white"
                   dangerouslySetInnerHTML={{ __html: nameHtml }}
                 />
@@ -232,12 +232,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 </Badge>
               ))}
               {service.identity_tags.length > 2 && (
-                <span className="text-xs text-neutral-400">+{service.identity_tags.length - 2}</span>
+                <span className="text-xs text-neutral-600 dark:text-neutral-300">
+                  +{service.identity_tags.length - 2}
+                </span>
               )}
               <button
                 type="button"
                 onClick={() => setFeedbackOpen(true)}
-                className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-neutral-400 transition-colors hover:text-neutral-600 dark:hover:text-neutral-300"
+                className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
               >
                 <Flag className="h-3 w-3" />
                 {t("ServiceDetail.report")}

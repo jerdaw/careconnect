@@ -198,7 +198,7 @@ export default function ChatAssistant({ initialOpen = false }: { initialOpen?: b
     <aside
       role="complementary"
       aria-label="AI Chat Assistant"
-      className="fixed right-6 bottom-6 z-50 flex flex-col items-end"
+      className="fixed right-4 bottom-4 z-50 flex flex-col items-end sm:right-6 sm:bottom-6"
     >
       <EmergencyModal isOpen={isEmergencyModalOpen} onClose={() => setIsEmergencyModalOpen(false)} />
 
@@ -439,7 +439,7 @@ export default function ChatAssistant({ initialOpen = false }: { initialOpen?: b
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "pointer-events-auto z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-colors duration-300",
+          "pointer-events-auto z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-colors duration-300 sm:h-14 sm:w-14",
           isOpen
             ? "bg-neutral-200 text-neutral-600 dark:bg-neutral-700 dark:text-neutral-200"
             : "from-primary-600 to-accent-600 bg-gradient-to-r text-white"

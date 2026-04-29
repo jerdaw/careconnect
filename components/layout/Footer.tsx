@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing"
 import { useTranslations, useLocale } from "next-intl"
-import { ShieldCheck, Mail, Github } from "lucide-react"
+import { Mail, Github } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
@@ -136,11 +136,6 @@ export function Footer() {
 
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p>{t("copyright")}</p>
-
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4" />
-              <span>{t("privacyMessage")}</span>
-            </div>
           </div>
         </div>
       </div>

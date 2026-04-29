@@ -61,6 +61,8 @@
     "filterByLocation": "Filter by current location",
     "utilityFilters": "Search options",
     "categoryFilters": "Service category filters",
+    "moreCategories": "More categories",
+    "fewerCategories": "Fewer categories",
     "all": "All",
     "scope": {
       "all": "All",
@@ -1214,7 +1216,7 @@
     },
     "howItWorks": {
       "title": "How It Works",
-      "subtitle": "We make finding help simple by removing barriers and tracking.",
+      "subtitle": "Find help without accounts, tracking, or extra steps.",
       "step1": {
         "title": "Private Search",
         "description": "Use keywords or speak to our private AI assistant."

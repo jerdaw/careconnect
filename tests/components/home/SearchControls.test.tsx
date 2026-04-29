@@ -9,10 +9,6 @@ vi.mock("next-intl", () => ({
   useTranslations: vi.fn(),
 }))
 
-vi.mock("@/components/settings", () => ({
-  ProfileSettings: () => <button data-testid="profile-settings">Profile</button>,
-}))
-
 import { useTranslations } from "next-intl"
 
 describe("SearchControls", () => {
@@ -31,6 +27,8 @@ describe("SearchControls", () => {
       label: "Filter by category",
       utilityFilters: "Utility filters",
       categoryFilters: "Filter by category",
+      moreCategories: "More Categories",
+      fewerCategories: "Fewer Categories",
       all: "All",
       crisis: "Crisis",
       food: "Food",
@@ -69,7 +67,6 @@ describe("SearchControls", () => {
 
       expect(screen.getByRole("button", { name: /open now/i })).toBeInTheDocument()
       expect(screen.getByRole("button", { name: /filter by location/i })).toBeInTheDocument()
-      expect(screen.getByTestId("profile-settings")).toBeInTheDocument()
     })
 
     it("should render all category buttons", () => {
@@ -98,6 +95,28 @@ describe("SearchControls", () => {
       expect(screen.getByRole("button", { name: "Wellness" })).toBeInTheDocument()
       expect(screen.getByRole("button", { name: "Community" })).toBeInTheDocument()
       expect(screen.getByRole("button", { name: "Indigenous" })).toBeInTheDocument()
+    })
+
+    it("should collapse secondary categories until expanded", async () => {
+      const user = userEvent.setup()
+      render(
+        <SearchControls
+          userLocation={undefined}
+          toggleLocation={mockToggleLocation}
+          isLocating={false}
+          category={undefined}
+          setCategory={mockSetCategory}
+          openNow={false}
+          setOpenNow={mockSetOpenNow}
+        />
+      )
+
+      expect(screen.getByRole("button", { name: "Financial" })).toHaveClass("hidden")
+
+      await user.click(screen.getByRole("button", { name: "More Categories" }))
+
+      expect(screen.getByRole("button", { name: "Financial" })).not.toHaveClass("hidden")
+      expect(screen.getByRole("button", { name: "Fewer Categories" })).toHaveAttribute("aria-expanded", "true")
     })
 
     it("should show loading state when locating", () => {
@@ -359,7 +378,7 @@ describe("SearchControls", () => {
       )
 
       const crisisButton = screen.getByRole("button", { name: "Crisis" })
-      expect(crisisButton).toHaveClass("border-red-200")
+      expect(crisisButton).toHaveClass("text-red-800")
     })
 
     it("should apply selected styling to Crisis category when selected", () => {

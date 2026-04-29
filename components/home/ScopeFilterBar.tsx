@@ -26,8 +26,8 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
   if (isHomogeneous) {
     return (
       <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
-        <span className="text-primary-600 dark:text-primary-400 text-sm font-medium">{totalCount}</span>
-        <span className="text-sm text-neutral-500 dark:text-neutral-400">
+        <span className="text-primary-700 dark:text-primary-300 text-sm font-medium">{totalCount}</span>
+        <span className="text-sm text-neutral-700 dark:text-neutral-300">
           {totalCount === 1 ? t("resultSingular") : t("resultPlural")}
         </span>
       </div>
@@ -52,8 +52,8 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
             className={cn(
               "relative flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium transition-all outline-none",
               isActive
-                ? "text-primary-600 dark:text-primary-400"
-                : "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                ? "text-primary-700 dark:text-primary-300"
+                : "text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
             )}
           >
             {isActive && (
@@ -65,7 +65,14 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
               />
             )}
             <span className="relative z-10">{scope.label}</span>
-            <span className="relative z-10 text-xs opacity-60">{scope.count}</span>
+            <span
+              className={cn(
+                "relative z-10 text-xs",
+                isActive ? "text-primary-700 dark:text-primary-300" : "text-neutral-700 dark:text-neutral-300"
+              )}
+            >
+              {scope.count}
+            </span>
           </button>
         )
       })}
