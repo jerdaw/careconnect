@@ -25,6 +25,10 @@ This directory contains planning and strategy documents for CareConnect.
 
 ### Detailed Documentation (Optional)
 
+- [v20.0 Homepage Search UX Polish Archive (2026-04-29)](archive/2026-04-29-v20-0-homepage-search-ux-polish.md)
+  - Completed homepage search/filter spacing and active-filter UX polish
+  - **Reading time:** 5 minutes
+
 - [v20.0 Repo Audit Truth Remediation Archive (2026-04-24)](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)
   - Completed closeout for the 2026-04-23 audit findings and remediation wave
   - **Reading time:** 5-10 minutes
@@ -100,6 +104,7 @@ docs/planning/
 ├── README.md ← You are here
 ├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
+├── archive/2026-04-29-v20-0-homepage-search-ux-polish.md
 ├── archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md
 ├── archive/2026-04-24-v20-0-repo-audit-truth-remediation.md
 ├── archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md
