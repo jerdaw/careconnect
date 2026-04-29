@@ -24,6 +24,7 @@ import SafetyAlert from "../../components/home/SafetyAlert"
 import HomeStats from "../../components/home/HomeStats"
 import HowItWorks from "../../components/home/HowItWorks"
 import CategoryBrowseGrid from "../../components/home/CategoryBrowseGrid"
+import TrustStrip from "../../components/home/TrustStrip"
 
 export default function Home() {
   const t = useTranslations()
@@ -224,6 +225,7 @@ export default function Home() {
           <HomeStats />
           <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
           <HowItWorks />
+          <TrustStrip />
         </div>
 
         {/* Results Section */}
