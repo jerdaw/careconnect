@@ -219,8 +219,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           </div>
 
           {/* Footer: Tags + Actions - minimal spacing */}
-          <div className="mt-2 flex items-center justify-between">
-            <div className="flex items-center gap-1">
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex min-w-0 flex-wrap items-center gap-1">
               {service.identity_tags.slice(0, 2).map((tag, idx) => (
                 <Badge
                   key={idx}
@@ -235,6 +235,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 <span className="text-xs text-neutral-400">+{service.identity_tags.length - 2}</span>
               )}
               <button
+                type="button"
                 onClick={() => setFeedbackOpen(true)}
                 className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-neutral-400 transition-colors hover:text-neutral-600 dark:hover:text-neutral-300"
               >
@@ -249,16 +250,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               onClose={() => setFeedbackOpen(false)}
             />
 
-            <Button
-              size="sm"
-              className="h-7 gap-1 px-2 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100"
-              asChild
-            >
-              <Link href={detailHref}>
-                {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
-              </Link>
-            </Button>
-            <Button size="sm" variant="ghost" className="h-7 gap-1 px-2 text-xs opacity-100 sm:hidden" asChild>
+            <Button size="sm" className="h-7 gap-1 px-2 text-xs" asChild>
               <Link href={detailHref}>
                 {t("ServiceDetail.details")} <ArrowRight className="h-3 w-3" />
               </Link>

@@ -28,7 +28,7 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
       <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
         <span className="text-primary-600 dark:text-primary-400 text-sm font-medium">{totalCount}</span>
         <span className="text-sm text-neutral-500 dark:text-neutral-400">
-          {totalCount === 1 ? "Result" : "Results"}
+          {totalCount === 1 ? t("resultSingular") : t("resultPlural")}
         </span>
       </div>
     )

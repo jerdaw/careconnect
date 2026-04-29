@@ -3,6 +3,7 @@
 import { useState } from "react"
 import dynamic from "next/dynamic"
 import { MessageSquare } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 const ChatAssistant = dynamic(() => import("@/components/ai/ChatAssistant"), {
   ssr: false,
@@ -11,6 +12,7 @@ const ChatAssistant = dynamic(() => import("@/components/ai/ChatAssistant"), {
 
 export function ChatAssistantShell() {
   const [shouldLoadAssistant, setShouldLoadAssistant] = useState(false)
+  const t = useTranslations("ChatAssistant")
 
   if (shouldLoadAssistant) {
     return <ChatAssistant initialOpen />
@@ -26,7 +28,7 @@ export function ChatAssistantShell() {
         type="button"
         onClick={() => setShouldLoadAssistant(true)}
         className="pointer-events-auto z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-primary-600)] to-[var(--color-accent-600)] text-white shadow-xl transition-transform duration-200 hover:scale-105 active:scale-95"
-        aria-label="Open AI Assistant"
+        aria-label={t("open")}
       >
         <MessageSquare className="h-6 w-6" />
       </button>

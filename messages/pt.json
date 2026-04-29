@@ -30,6 +30,7 @@
   "Search": {
     "placeholder": "Encontrar ajuda...",
     "label": "Pesquisar serviços",
+    "clearSearch": "Limpar pesquisa",
     "loading": "A potenciar a capacidade de pesquisa...",
     "active": "Pesquisa Neural Privada Ativa",
     "didYouMean": "Queria dizer:",
@@ -38,6 +39,8 @@
     "useLocation": "Usar localização",
     "clearLocation": "Limpar filtro de localização",
     "filterByLocation": "Filtrar por localização atual",
+    "utilityFilters": "Opções de pesquisa",
+    "categoryFilters": "Filtros por categoria de serviço",
     "all": "Todos",
     "crisis": "🗣️ Crise",
     "food": "Alimentação",
@@ -59,6 +62,10 @@
     "filterBar": {
       "showing": "A mostrar"
     },
+    "loadingResults": "A procurar serviços correspondentes...",
+    "resultsCount": "{count, plural, =0 {Sem resultados} one {# resultado} other {# resultados}}",
+    "resultSingular": "resultado",
+    "resultPlural": "resultados",
     "noLocalResults": "Não foram encontrados serviços locais para esta pesquisa.",
     "noResults": "Nenhum resultado encontrado para \"{query}\".",
     "noResultsInCategory": "Nenhum resultado encontrado para \"{query}\" em {category}.",
@@ -81,6 +88,9 @@
     "processing": "A transcrever no dispositivo...",
     "error": "Erro",
     "notSupported": "Entrada de voz não suportada"
+  },
+  "ChatAssistant": {
+    "open": "Abrir assistente de IA"
   },
   "SubmitService": {
     "title": "Sugerir um Serviço",
@@ -160,6 +170,8 @@
     "partnerLogin": "Login de Parceiro",
     "dashboard": "Painel",
     "language": "Idioma",
+    "settings": "Definições",
+    "mainNavigation": "Navegação principal",
     "closeMenu": "Fechar menu",
     "openMenu": "Abrir menu",
     "skipToMain": "Saltar para o conteúdo principal"
@@ -1498,13 +1510,13 @@
     "searchChips": {
       "savedLabel": "Salvo",
       "removeSavedSearch": "Remover pesquisa salva: {term}",
-      "quickSearchesLabel": "Popular searches",
+      "quickSearchesLabel": "Pesquisas populares",
       "quickSearch": {
-        "foodBank": "food bank",
-        "housing": "housing help",
-        "crisis": "crisis support",
-        "mentalHealth": "mental health",
-        "legalAid": "legal aid"
+        "foodBank": "banco de alimentos",
+        "housing": "ajuda habitacional",
+        "crisis": "apoio em crise",
+        "mentalHealth": "saúde mental",
+        "legalAid": "assistência jurídica"
       }
     },
     "stats": {
@@ -1533,7 +1545,7 @@
       "title": "Navegar por Categoria",
       "subtitle": "Encontre serviços pelo tipo de apoio que você precisa.",
       "servicesCount": "{count} serviços",
-      "ariaLabel": "Navegar por serviços de {category}, {count} disponíveis"
+      "ariaLabel": "Navegar por serviços de {category}"
     },
     "partnerCta": {
       "title": "Sua organização está listada?",

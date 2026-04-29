@@ -28,6 +28,7 @@ describe("SearchBar", () => {
       start: "Start voice input",
       stop: "Stop listening",
       saveThisSearch: "Save this search",
+      clearSearch: "Clear search",
     }
     return translations[key] || key
   })
@@ -480,7 +481,7 @@ describe("SearchBar", () => {
       expect(saveButton).toHaveAccessibleName()
     })
 
-    it("should support keyboard navigation to save button", async () => {
+    it("should support keyboard navigation through search actions", async () => {
       const user = userEvent.setup()
       render(
         <SearchBar
@@ -494,6 +495,11 @@ describe("SearchBar", () => {
 
       const input = screen.getByRole("textbox")
       await user.click(input)
+      await user.tab()
+
+      const clearButton = screen.getByRole("button", { name: /clear search/i })
+      expect(clearButton).toHaveFocus()
+
       await user.tab()
 
       const saveButton = screen.getByRole("button", { name: /save this search/i })
@@ -512,7 +518,8 @@ describe("SearchBar", () => {
         />
       )
 
-      // Tab to input, then to save button
+      // Tab to input, clear button, then save button
+      await user.tab()
       await user.tab()
       await user.tab()
 

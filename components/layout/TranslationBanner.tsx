@@ -40,7 +40,7 @@ export function TranslationBanner() {
   return (
     <div
       // Positioned above the chat assistant (approx bottom-24, right-4)
-      className="animate-in fade-in slide-in-from-bottom-4 fixed right-4 bottom-24 z-[40] max-w-[300px] duration-500"
+      className="animate-in fade-in fixed right-3 bottom-3 left-3 z-[40] max-w-[calc(100vw-1.5rem)] duration-500 sm:right-4 sm:bottom-24 sm:left-auto sm:max-w-[300px]"
       role="status"
     >
       {/* Adjust backdrop-blur-* to control glass effect intensity (sm, md, lg, xl) */}

@@ -29,6 +29,8 @@ describe("SearchControls", () => {
       clearLocation: "Clear Location",
       filterByLocation: "Filter by Location",
       label: "Filter by category",
+      utilityFilters: "Utility filters",
+      categoryFilters: "Filter by category",
       all: "All",
       crisis: "Crisis",
       food: "Food",
@@ -473,7 +475,8 @@ describe("SearchControls", () => {
 
       expect(mockT).toHaveBeenCalledWith("openNow")
       expect(mockT).toHaveBeenCalledWith("useLocation")
-      expect(mockT).toHaveBeenCalledWith("label")
+      expect(mockT).toHaveBeenCalledWith("utilityFilters")
+      expect(mockT).toHaveBeenCalledWith("categoryFilters")
     })
   })
 })

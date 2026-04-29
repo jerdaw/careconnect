@@ -16,11 +16,11 @@ export default function PartnerCTA() {
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">{t("title")}</h2>
             <p className="mt-2 max-w-xl text-sm text-neutral-500 dark:text-neutral-400">{t("description")}</p>
           </div>
-          <div className="flex shrink-0 gap-3">
-            <Button variant="default" asChild>
+          <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
+            <Button variant="default" className="w-full sm:w-auto" asChild>
               <Link href="/submit-service">{t("suggestButton")}</Link>
             </Button>
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" className="w-full sm:w-auto" asChild>
               <Link href="/about/partners">{t("learnMoreButton")}</Link>
             </Button>
           </div>

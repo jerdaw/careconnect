@@ -24,6 +24,8 @@ const messages = {
     financial: "Financial",
     indigenous: "Indigenous",
     transport: "Transport",
+    resultSingular: "Result",
+    resultPlural: "Results",
     scope: {
       all: "All",
       local: "Kingston",
@@ -34,7 +36,7 @@ const messages = {
     categoryGrid: {
       title: "Browse by category",
       subtitle: "Jump straight to common needs",
-      ariaLabel: "{category}, {count} services",
+      ariaLabel: "Browse {category} services",
       servicesCount: "{count} services",
     },
     stats: {
@@ -95,7 +97,7 @@ describe("Home surface smoke coverage", () => {
     renderWithProviders(<CategoryBrowseGrid onCategorySelect={onCategorySelect} />, { messages })
 
     expect(screen.getByRole("group", { name: "Browse by category" })).toBeInTheDocument()
-    fireEvent.click(screen.getByRole("button", { name: /Food, 15 services/i }))
+    fireEvent.click(screen.getByRole("button", { name: /browse food services/i }))
     expect(onCategorySelect).toHaveBeenCalledWith("Food")
   })
 

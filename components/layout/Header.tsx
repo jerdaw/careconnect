@@ -107,7 +107,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             </button>
 
             {/* Navigation Links Group */}
-            <nav className="flex items-center gap-5" aria-label="Main navigation">
+            <nav className="flex items-center gap-5" aria-label={t("mainNavigation")}>
               <Link
                 href="/about"
                 className={cn(
@@ -142,7 +142,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                   "text-neutral-800 dark:text-neutral-200"
                 )}
               >
-                Settings
+                {t("settings")}
               </Link>
             </nav>
 
@@ -230,7 +230,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                   href="/settings"
                   className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
                 >
-                  Settings
+                  {t("settings")}
                 </Link>
 
                 <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />

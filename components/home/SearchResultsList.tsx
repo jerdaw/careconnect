@@ -60,6 +60,9 @@ export default function SearchResultsList({
   if (isLoading) {
     return (
       <div className="space-y-4">
+        <p className="sr-only" aria-live="polite">
+          {t("loadingResults")}
+        </p>
         <ServiceCardSkeleton />
         <ServiceCardSkeleton />
         <ServiceCardSkeleton />
@@ -71,10 +74,21 @@ export default function SearchResultsList({
   if (hasSearched && results.length === 0) {
     return (
       <div className="space-y-6">
+        <p className="sr-only" aria-live="polite">
+          {t("resultsCount", { count: 0 })}
+        </p>
         <div className="rounded-lg bg-neutral-100 p-6 text-center dark:bg-neutral-900">
           <p className="text-neutral-600 dark:text-neutral-400">
             {category ? t("noResultsInCategory", { query, category }) : t("noResults", { query })}
           </p>
+          <div className="mt-5 text-left">
+            <h2 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">{t("noResultsHelpTitle")}</h2>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-neutral-600 dark:text-neutral-400">
+              <li>{t("noResultsHelpDifferentWords")}</li>
+              <li>{t("noResultsHelpCheckSpelling")}</li>
+              <li>{t("noResultsHelpBroaderSearch")}</li>
+            </ul>
+          </div>
         </div>
         <NotFoundFeedback />
       </div>
@@ -85,6 +99,9 @@ export default function SearchResultsList({
   if (hasSearched && filteredResults.length === 0) {
     return (
       <div className="rounded-lg bg-neutral-100 p-8 text-center dark:bg-neutral-900">
+        <p className="sr-only" aria-live="polite">
+          {t("resultsCount", { count: 0 })}
+        </p>
         <p className="mb-4 text-neutral-600 dark:text-neutral-400">{t("noLocalResults")}</p>
         <Button variant="outline" onClick={() => setActiveScope("all")}>
           {t("showAllResults", { count: results.length })}
@@ -95,9 +112,14 @@ export default function SearchResultsList({
 
   return (
     <div className="space-y-2">
+      {hasSearched && (
+        <p className="sr-only" aria-live="polite">
+          {t("resultsCount", { count: filteredResults.length })}
+        </p>
+      )}
       {/* Results Header Row - scope filter and print button */}
       {hasSearched && filteredResults.length > 0 && (
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           {/* Left: Scope Filter (or simple results count if homogeneous) */}
           <ScopeFilterBar
             counts={scopeCounts}

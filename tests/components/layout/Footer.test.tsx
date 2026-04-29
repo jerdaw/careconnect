@@ -84,11 +84,11 @@ describe("Footer", () => {
       expect(links.length).toBeGreaterThan(0)
     })
 
-    it("should have accessible social media links", () => {
+    it("should have accessible contact links", () => {
       render(<Footer />)
 
       expect(screen.getByLabelText("GitHub")).toBeInTheDocument()
-      expect(screen.getByLabelText("Twitter")).toBeInTheDocument()
+      expect(screen.getByLabelText("Contact by Email")).toBeInTheDocument()
     })
   })
 
@@ -139,14 +139,14 @@ describe("Footer", () => {
       expect(footer).toBeInTheDocument()
     })
 
-    it("should have accessible social media links", () => {
+    it("should have accessible contact links", () => {
       render(<Footer />)
 
       const githubLink = screen.getByLabelText("GitHub")
       expect(githubLink).toHaveAccessibleName("GitHub")
 
-      const twitterLink = screen.getByLabelText("Twitter")
-      expect(twitterLink).toHaveAccessibleName("Twitter")
+      const emailLink = screen.getByLabelText("Contact by Email")
+      expect(emailLink).toHaveAccessibleName("Contact by Email")
     })
 
     it("should have all links accessible", () => {

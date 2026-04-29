@@ -30,6 +30,7 @@
   "Search": {
     "placeholder": "ਮਦਦ ਲੱਭੋ...",
     "label": "ਸੇਵਾਵਾਂ ਦੀ ਖੋਜ ਕਰੋ",
+    "clearSearch": "ਖੋਜ ਸਾਫ਼ ਕਰੋ",
     "loading": "ਖੋਜ ਸਮਰੱਥਾ ਨੂੰ ਵਧਾ ਰਿਹਾ ਹੈ...",
     "active": "ਪ੍ਰਾਈਵੇਟ ਨਿਊਰਲ ਖੋਜ ਕਿਰਿਆਸ਼ੀਲ",
     "didYouMean": "ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ ਸੀ:",
@@ -38,6 +39,8 @@
     "useLocation": "ਸਥਾਨ ਦੀ ਵਰਤੋਂ ਕਰੋ",
     "clearLocation": "ਸਥਾਨ ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ",
     "filterByLocation": "ਮੌਜੂਦਾ ਸਥਾਨ ਦੁਆਰਾ ਫਿਲਟਰ ਕਰੋ",
+    "utilityFilters": "ਖੋਜ ਵਿਕਲਪ",
+    "categoryFilters": "ਸੇਵਾ ਸ਼੍ਰੇਣੀ ਫਿਲਟਰ",
     "all": "ਸਭ",
     "crisis": "🗣️ ਸੰਕਟ",
     "food": "ਭੋਜਨ",
@@ -59,6 +62,10 @@
     "filterBar": {
       "showing": "ਦਿਖਾ ਰਿਹਾ ਹੈ"
     },
+    "loadingResults": "ਮਿਲਦੀਆਂ ਸੇਵਾਵਾਂ ਲੱਭ ਰਿਹਾ ਹੈ...",
+    "resultsCount": "{count, plural, =0 {ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ} one {# ਨਤੀਜਾ} other {# ਨਤੀਜੇ}}",
+    "resultSingular": "ਨਤੀਜਾ",
+    "resultPlural": "ਨਤੀਜੇ",
     "noLocalResults": "ਇਸ ਖੋਜ ਲਈ ਕੋਈ ਸਥਾਨਕ ਸੇਵਾਵਾਂ ਨਹੀਂ ਮਿਲੀਆਂ।",
     "noResults": "\"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
     "noResultsInCategory": "{category} ਵਿੱਚ \"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
@@ -81,6 +88,9 @@
     "processing": "ਡਿਵਾਈਸ 'ਤੇ ਟ੍ਰਾਂਸਕ੍ਰਾਈਬਿੰਗ...",
     "error": "ਗਲਤੀ",
     "notSupported": "ਵੌਇਸ ਇਨਪੁਟ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ"
+  },
+  "ChatAssistant": {
+    "open": "AI ਸਹਾਇਕ ਖੋਲ੍ਹੋ"
   },
   "SubmitService": {
     "title": "ਸੇਵਾ ਦਾ ਸੁਝਾਅ ਦਿਓ",
@@ -160,6 +170,8 @@
     "partnerLogin": "ਪਾਰਟਨਰ ਲੌਗਇਨ",
     "dashboard": "ਡੈਸ਼ਬੋਰਡ",
     "language": "ਭਾਸ਼ਾ",
+    "settings": "ਸੈਟਿੰਗਾਂ",
+    "mainNavigation": "ਮੁੱਖ ਨੇਵੀਗੇਸ਼ਨ",
     "closeMenu": "ਮੇਨੂ ਬੰਦ ਕਰੋ",
     "openMenu": "ਮੇਨੂ ਖੋਲ੍ਹੋ",
     "skipToMain": "ਮੁੱਖ ਸਮੱਗਰੀ 'ਤੇ ਜਾਓ"
@@ -1498,13 +1510,13 @@
     "searchChips": {
       "savedLabel": "ਸੁਰੱਖਿਅਤ",
       "removeSavedSearch": "ਸੁਰੱਖਿਅਤ ਖੋਜ ਹਟਾਓ: {term}",
-      "quickSearchesLabel": "Popular searches",
+      "quickSearchesLabel": "ਲੋਕਪ੍ਰਿਯ ਖੋਜਾਂ",
       "quickSearch": {
-        "foodBank": "food bank",
-        "housing": "housing help",
-        "crisis": "crisis support",
-        "mentalHealth": "mental health",
-        "legalAid": "legal aid"
+        "foodBank": "ਫੂਡ ਬੈਂਕ",
+        "housing": "ਰਿਹਾਇਸ਼ ਸਹਾਇਤਾ",
+        "crisis": "ਸੰਕਟ ਸਹਾਇਤਾ",
+        "mentalHealth": "ਮਾਨਸਿਕ ਸਿਹਤ",
+        "legalAid": "ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ"
       }
     },
     "stats": {
@@ -1533,7 +1545,7 @@
       "title": "ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
       "subtitle": "ਤੁਹਾਨੂੰ ਲੋੜੀਂਦੇ ਸਹਾਇਤਾ ਦੀ ਕਿਸਮ ਅਨੁਸਾਰ ਸੇਵਾਵਾਂ ਲੱਭੋ।",
       "servicesCount": "{count} ਸੇਵਾਵਾਂ",
-      "ariaLabel": "{category} ਸੇਵਾਵਾਂ ਬ੍ਰਾਊਜ਼ ਕਰੋ, {count} ਉਪਲਬਧ"
+      "ariaLabel": "{category} ਸੇਵਾਵਾਂ ਬ੍ਰਾਊਜ਼ ਕਰੋ"
     },
     "partnerCta": {
       "title": "ਕੀ ਤੁਹਾਡੀ ਸੰਸਥਾ ਸੂਚੀਬੱਧ ਹੈ?",

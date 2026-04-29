@@ -117,7 +117,7 @@ export default function Home() {
   const isActive = isFocused || query.length > 0
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="bg-noise" />
       <Header />
       <main id="main-content" tabIndex={-1}>
@@ -158,7 +158,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-12 scroll-mt-24"
+              className="mx-auto mt-12 w-full max-w-3xl scroll-mt-24 md:max-w-4xl"
               ref={searchBarRef}
             >
               <div className="shadow-primary-900/5 relative transform overflow-hidden rounded-[2rem] p-[2px] shadow-2xl transition-all duration-500 hover:scale-[1.01]">

@@ -49,6 +49,7 @@
   "Search": {
     "placeholder": "Search for food, housing, crisis support, health services...",
     "label": "Search for services",
+    "clearSearch": "Clear search",
     "searchHint": "Try: food bank, mental health, housing, legal aid",
     "loading": "Enhancing search capability...",
     "active": "Private Neural Search Active",
@@ -58,6 +59,8 @@
     "useLocation": "Use Location",
     "clearLocation": "Clear location filter",
     "filterByLocation": "Filter by current location",
+    "utilityFilters": "Search options",
+    "categoryFilters": "Service category filters",
     "all": "All",
     "scope": {
       "all": "All",
@@ -67,6 +70,10 @@
     "filterBar": {
       "showing": "Showing"
     },
+    "loadingResults": "Searching for matching services...",
+    "resultsCount": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "resultSingular": "Result",
+    "resultPlural": "Results",
     "noLocalResults": "No local Kingston services match this search. Try browsing province-wide services or use different keywords.",
     "noResults": "No services found for \"{query}\". Try using different keywords, browsing categories below, or checking your spelling.",
     "noResultsInCategory": "No {category} services found for \"{query}\". Try different keywords or browse other categories.",
@@ -100,6 +107,9 @@
     "processing": "Transcribing on device...",
     "error": "Error",
     "notSupported": "Voice input not supported"
+  },
+  "ChatAssistant": {
+    "open": "Open AI assistant"
   },
   "SubmitService": {
     "title": "Suggest a Service",
@@ -409,6 +419,8 @@
     "partnerLogin": "Partner Login",
     "dashboard": "Dashboard",
     "language": "Language",
+    "settings": "Settings",
+    "mainNavigation": "Main navigation",
     "closeMenu": "Close menu",
     "openMenu": "Open menu",
     "skipToMain": "Skip to main content"
@@ -1533,7 +1545,7 @@
       "title": "Browse by Category",
       "subtitle": "Find services by the type of support you need.",
       "servicesCount": "{count} services",
-      "ariaLabel": "Browse {category} services, {count} available"
+      "ariaLabel": "Browse {category} services"
     },
     "partnerCta": {
       "title": "Is your organization listed?",

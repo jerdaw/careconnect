@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing"
 import { useTranslations, useLocale } from "next-intl"
-import { ShieldCheck, Mail, Github, Twitter } from "lucide-react"
+import { ShieldCheck, Mail, Github } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
@@ -34,18 +34,13 @@ export function Footer() {
             <p className="max-w-md leading-relaxed text-neutral-400">{t("mission")}</p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://github.com/jerdaw/careconnect"
                 aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
               >
                 <Github className="h-5 w-5 text-neutral-400" />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
-              >
-                <Twitter className="h-5 w-5 text-neutral-400" />
               </a>
               <a
                 href="mailto:feedback@careconnect.ing"

@@ -1,8 +1,9 @@
 "use client"
 
-import { Search, Heart } from "lucide-react"
+import { Search, Heart, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
+import { cn } from "@/lib/utils"
 
 interface SearchBarProps {
   query: string
@@ -24,6 +25,8 @@ export default function SearchBar({
   onBlur,
 }: SearchBarProps) {
   const t = useTranslations("Search")
+  const hasQuery = query.trim().length > 0
+
   return (
     <div className="group relative">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
@@ -31,7 +34,10 @@ export default function SearchBar({
       </div>
       <input
         type="text"
-        className="block w-full rounded-2xl border-0 !border-none bg-transparent py-4 pr-14 pl-14 text-neutral-900 !shadow-none !ring-0 ring-0 !outline-none outline-none placeholder:text-neutral-400 focus:border-0 focus:shadow-none focus:ring-0 focus:outline-none sm:text-lg sm:leading-6 dark:text-white"
+        className={cn(
+          "block w-full rounded-2xl border-0 !border-none bg-transparent py-4 pl-14 text-neutral-900 !shadow-none !ring-0 ring-0 !outline-none outline-none placeholder:text-neutral-400 focus:border-0 focus:shadow-none focus:ring-0 focus:outline-none sm:text-lg sm:leading-6 dark:text-white",
+          hasQuery ? "pr-36" : "pr-14"
+        )}
         placeholder={placeholder}
         aria-label={label}
         value={query}
@@ -39,26 +45,39 @@ export default function SearchBar({
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      {query.length > 0 && (
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleSaveSearch}
-          className="absolute inset-y-0 right-12 my-auto h-11 w-11 text-neutral-400 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/20"
-          title={t("saveThisSearch")}
-          aria-label={t("saveThisSearch")}
-        >
-          <Heart className="h-5 w-5" />
-        </Button>
-      )}
-      <VoiceSearchButton onResult={(text) => setQuery(text)} />
+      <div className="absolute inset-y-0 right-2 flex items-center gap-1">
+        {hasQuery && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setQuery("")}
+              className="h-10 w-10 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+              title={t("clearSearch")}
+              aria-label={t("clearSearch")}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleSaveSearch}
+              className="h-10 w-10 text-neutral-400 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/20"
+              title={t("saveThisSearch")}
+              aria-label={t("saveThisSearch")}
+            >
+              <Heart className="h-5 w-5" />
+            </Button>
+          </>
+        )}
+        <VoiceSearchButton onResult={(text) => setQuery(text)} />
+      </div>
     </div>
   )
 }
 
 import { Mic, Loader2 } from "lucide-react"
 import { useVoiceInput } from "@/hooks/useVoiceInput"
-import { cn } from "@/lib/utils"
 
 function VoiceSearchButton({ onResult }: { onResult: (text: string) => void }) {
   const t = useTranslations("VoiceInput")
@@ -81,7 +100,7 @@ function VoiceSearchButton({ onResult }: { onResult: (text: string) => void }) {
       size="icon"
       onClick={isActive ? stopListening : startListening}
       className={cn(
-        "absolute inset-y-0 right-2 my-auto h-11 w-11 transition-colors",
+        "h-10 w-10 transition-colors",
         isActive
           ? "animate-pulse bg-red-50 text-red-600 dark:bg-red-900/20"
           : "hover:text-primary-500 text-neutral-400",

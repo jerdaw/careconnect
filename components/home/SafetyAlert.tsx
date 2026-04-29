@@ -1,30 +1,16 @@
 import { AlertTriangle, Phone } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
+import { detectCrisis } from "@/lib/search/crisis"
 
 interface SafetyAlertProps {
   query: string
   category?: string
 }
 
-const CRISIS_KEYWORDS = [
-  "suicide",
-  "kill",
-  "die",
-  "hurt",
-  "crisis",
-  "emergency",
-  "help",
-  "911",
-  "dead",
-  "depression",
-  "anxiety",
-]
-
 export default function SafetyAlert({ query, category }: SafetyAlertProps) {
   const t = useTranslations("CrisisAlert")
-  const isCrisisSearch =
-    category === "Crisis" || CRISIS_KEYWORDS.some((keyword) => query.toLowerCase().includes(keyword))
+  const isCrisisSearch = category === "Crisis" || detectCrisis(query)
 
   return (
     <AnimatePresence>

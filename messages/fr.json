@@ -49,6 +49,7 @@
   "Search": {
     "placeholder": "Chercher nourriture, logement, soutien en crise, services de santé...",
     "label": "Rechercher des services",
+    "clearSearch": "Effacer la recherche",
     "searchHint": "Essayez: banque alimentaire, santé mentale, logement, aide juridique",
     "loading": "Amélioration de la capacité de recherche...",
     "active": "Recherche neuronale privée active",
@@ -58,6 +59,8 @@
     "useLocation": "Utiliser ma position",
     "clearLocation": "Effacer le filtre de localisation",
     "filterByLocation": "Filtrer par position actuelle",
+    "utilityFilters": "Options de recherche",
+    "categoryFilters": "Filtres par catégorie de service",
     "all": "Tous",
     "scope": {
       "all": "Tous",
@@ -67,6 +70,10 @@
     "filterBar": {
       "showing": "Affichage"
     },
+    "loadingResults": "Recherche de services correspondants...",
+    "resultsCount": "{count, plural, =0 {Aucun résultat} one {# résultat} other {# résultats}}",
+    "resultSingular": "résultat",
+    "resultPlural": "résultats",
     "noLocalResults": "Aucun service de Kingston ne correspond à cette recherche. Essayez les services provinciaux ou utilisez des mots-clés différents.",
     "noResults": "Aucun service trouvé pour \"{query}\". Essayez des mots-clés différents, parcourez les catégories ci-dessous ou vérifiez l'orthographe.",
     "noResultsInCategory": "Aucun service {category} trouvé pour \"{query}\". Essayez des mots-clés différents ou parcourez d'autres catégories.",
@@ -100,6 +107,9 @@
     "processing": "Transcription sur l'appareil...",
     "error": "Erreur",
     "notSupported": "Entrée vocale non prise en charge"
+  },
+  "ChatAssistant": {
+    "open": "Ouvrir l'assistant IA"
   },
   "SubmitService": {
     "title": "Suggérer un service",
@@ -179,6 +189,8 @@
     "partnerLogin": "Connexion partenaire",
     "dashboard": "Tableau de bord",
     "language": "Langue",
+    "settings": "Paramètres",
+    "mainNavigation": "Navigation principale",
     "closeMenu": "Fermer le menu",
     "openMenu": "Ouvrir le menu",
     "skipToMain": "Aller au contenu principal"
@@ -1498,13 +1510,13 @@
     "searchChips": {
       "savedLabel": "Enregistré",
       "removeSavedSearch": "Supprimer la recherche enregistrée : {term}",
-      "quickSearchesLabel": "Popular searches",
+      "quickSearchesLabel": "Recherches populaires",
       "quickSearch": {
-        "foodBank": "food bank",
-        "housing": "housing help",
-        "crisis": "crisis support",
-        "mentalHealth": "mental health",
-        "legalAid": "legal aid"
+        "foodBank": "banque alimentaire",
+        "housing": "aide au logement",
+        "crisis": "soutien en crise",
+        "mentalHealth": "santé mentale",
+        "legalAid": "aide juridique"
       }
     },
     "stats": {
@@ -1533,7 +1545,7 @@
       "title": "Parcourir par catégorie",
       "subtitle": "Trouvez des services selon le type de soutien dont vous avez besoin.",
       "servicesCount": "{count} services",
-      "ariaLabel": "Parcourir les services {category}, {count} disponibles"
+      "ariaLabel": "Parcourir les services {category}"
     },
     "partnerCta": {
       "title": "Votre organisation est-elle répertoriée ?",

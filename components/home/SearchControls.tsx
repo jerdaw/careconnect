@@ -42,8 +42,12 @@ export default function SearchControls({
   const t = useTranslations("Search")
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex flex-wrap items-center justify-center gap-2">
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4">
+      <div
+        className="flex w-full flex-wrap items-center justify-center gap-2"
+        role="group"
+        aria-label={t("utilityFilters")}
+      >
         {/* Open Now Toggle */}
         <Button
           variant={openNow ? "default" : "pill"}
@@ -74,7 +78,7 @@ export default function SearchControls({
       </div>
 
       {/* Category Scroll */}
-      <div className="flex flex-wrap justify-center gap-2" role="group" aria-label={t("label")}>
+      <div className="flex w-full flex-wrap justify-center gap-2" role="group" aria-label={t("categoryFilters")}>
         <Button
           variant={!category ? "default" : "secondary"}
           size="sm"

@@ -38,6 +38,7 @@
   "Search": {
     "placeholder": "ابحث عن مساعدة...",
     "label": "البحث عن الخدمات",
+    "clearSearch": "مسح البحث",
     "loading": "تحسين قدرة البحث...",
     "active": "البحث العصبي الخاص نشط",
     "didYouMean": "هل تقصد:",
@@ -46,6 +47,8 @@
     "useLocation": "استخدم الموقع",
     "clearLocation": "مسح فلتر الموقع",
     "filterByLocation": "تصفية حسب الموقع الحالي",
+    "utilityFilters": "خيارات البحث",
+    "categoryFilters": "مرشحات فئات الخدمة",
     "all": "الكل",
     "crisis": "🗣️ أزمة",
     "food": "طعام",
@@ -67,6 +70,10 @@
     "filterBar": {
       "showing": "عرض"
     },
+    "loadingResults": "جارٍ البحث عن الخدمات المناسبة...",
+    "resultsCount": "{count, plural, =0 {لا توجد نتائج} one {# نتيجة} two {# نتيجتان} few {# نتائج} many {# نتيجة} other {# نتيجة}}",
+    "resultSingular": "نتيجة",
+    "resultPlural": "نتائج",
     "noLocalResults": "لم يتم العثور على خدمات محلية لهذا البحث.",
     "noResults": "لم يتم العثور على نتائج لـ \"{query}\".",
     "noResultsInCategory": "لم يتم العثور على نتائج لـ \"{query}\" في {category}.",
@@ -82,6 +89,9 @@
     "hideMatchReasons": "إخفاء الأسباب الإضافية",
     "matchReasonsListLabel": "أسباب المطابقة",
     "saveThisSearch": "حفظ هذا البحث"
+  },
+  "ChatAssistant": {
+    "open": "فتح مساعد الذكاء الاصطناعي"
   },
   "VoiceInput": {
     "start": "بدء البحث الصوتي الخاص",
@@ -161,13 +171,15 @@
     }
   },
   "Navigation": {
-    "home": "Home",
-    "about": "About",
-    "suggest": "Suggest Service",
+    "home": "الرئيسية",
+    "about": "حول",
+    "suggest": "اقتراح خدمة",
     "admin": "Admin",
     "partnerLogin": "دخول الشركاء",
     "dashboard": "لوحة التحكم",
     "language": "اللغة",
+    "settings": "الإعدادات",
+    "mainNavigation": "التنقل الرئيسي",
     "closeMenu": "إغلاق القائمة",
     "openMenu": "فتح القائمة",
     "skipToMain": "تخطي إلى المحتوى الرئيسي"
@@ -1498,13 +1510,13 @@
     "searchChips": {
       "savedLabel": "محفوظ",
       "removeSavedSearch": "إزالة البحث المحفوظ: {term}",
-      "quickSearchesLabel": "Popular searches",
+      "quickSearchesLabel": "عمليات بحث شائعة",
       "quickSearch": {
-        "foodBank": "food bank",
-        "housing": "housing help",
-        "crisis": "crisis support",
-        "mentalHealth": "mental health",
-        "legalAid": "legal aid"
+        "foodBank": "بنك طعام",
+        "housing": "مساعدة السكن",
+        "crisis": "دعم الأزمات",
+        "mentalHealth": "الصحة النفسية",
+        "legalAid": "مساعدة قانونية"
       }
     },
     "stats": {
@@ -1533,7 +1545,7 @@
       "title": "تصفّح حسب الفئة",
       "subtitle": "ابحث عن الخدمات حسب نوع الدعم الذي تحتاجه.",
       "servicesCount": "{count} خدمة",
-      "ariaLabel": "تصفّح خدمات {category}، {count} متاح"
+      "ariaLabel": "تصفّح خدمات {category}"
     },
     "partnerCta": {
       "title": "هل منظمتك مدرجة؟",
