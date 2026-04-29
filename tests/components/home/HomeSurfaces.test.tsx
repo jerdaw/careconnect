@@ -2,10 +2,12 @@ import { describe, it, expect, vi } from "vitest"
 import { fireEvent } from "@testing-library/react"
 import { renderWithProviders, screen } from "@/tests/utils/test-wrapper"
 import CategoryBrowseGrid from "@/components/home/CategoryBrowseGrid"
+import CareConnectBoundaries from "@/components/home/CareConnectBoundaries"
 import HomeStats from "@/components/home/HomeStats"
 import HowItWorks from "@/components/home/HowItWorks"
 import PartnerCTA from "@/components/home/PartnerCTA"
 import SafetyAlert from "@/components/home/SafetyAlert"
+import SourceGovernanceBand from "@/components/home/SourceGovernanceBand"
 import TrustStrip from "@/components/home/TrustStrip"
 import ModelStatus from "@/components/home/ModelStatus"
 import ScopeFilterBar from "@/components/home/ScopeFilterBar"
@@ -34,10 +36,25 @@ const messages = {
   },
   Home: {
     categoryGrid: {
-      title: "Browse by category",
+      eyebrow: "Browse by need",
+      title: "Start with the support you need",
       subtitle: "Jump straight to common needs",
       ariaLabel: "Browse {category} services",
       servicesCount: "{count} services",
+      items: {
+        Crisis: { description: "Urgent help" },
+        Health: { description: "Health services" },
+        Community: { description: "Community support" },
+        Legal: { description: "Legal help" },
+        Food: { description: "Food support" },
+        Housing: { description: "Housing support" },
+        Employment: { description: "Work support" },
+        Wellness: { description: "Wellness support" },
+        Education: { description: "Learning support" },
+        Financial: { description: "Money support" },
+        Indigenous: { description: "Identity-aware support" },
+        Transport: { description: "Transit support" },
+      },
     },
     stats: {
       servicesValue: "196",
@@ -71,6 +88,53 @@ const messages = {
       privacyFirst: "Privacy-first search ready",
       neuralSearchActive: "Neural search active",
     },
+    sourceGovernance: {
+      eyebrow: "Source review",
+      title: "Built for verified, private discovery",
+      description: "CareConnect is a directory.",
+      items: {
+        sources: {
+          title: "Reference sources",
+          description: "See sources used for review.",
+        },
+        review: {
+          title: "Manual review",
+          description: "Listings are checked.",
+        },
+        privacy: {
+          title: "No search tracking",
+          description: "Searches stay private.",
+        },
+        languages: {
+          title: "Accessible by design",
+          description: "Seven languages are supported.",
+        },
+      },
+    },
+    boundaries: {
+      eyebrow: "Clear boundaries",
+      title: "What CareConnect does and doesn't do",
+      description: "Find the next step.",
+      does: {
+        title: "CareConnect helps you",
+        items: {
+          0: "Search verified listings",
+          1: "Keep searches private",
+          2: "Find contact actions",
+          3: "See why results matched",
+        },
+      },
+      doesnt: {
+        title: "CareConnect does not",
+        items: {
+          0: "Dispatch emergency help",
+          1: "Guarantee availability",
+          2: "Replace provider confirmation",
+          3: "Profile public searches",
+        },
+      },
+      note: "Verify details with the provider.",
+    },
   },
   About: {
     howItWorks: {
@@ -96,15 +160,17 @@ describe("Home surface smoke coverage", () => {
 
     renderWithProviders(<CategoryBrowseGrid onCategorySelect={onCategorySelect} />, { messages })
 
-    expect(screen.getByRole("group", { name: "Browse by category" })).toBeInTheDocument()
+    expect(screen.getByRole("group", { name: "Start with the support you need" })).toBeInTheDocument()
     fireEvent.click(screen.getByRole("button", { name: /browse food services/i }))
     expect(onCategorySelect).toHaveBeenCalledWith("Food")
   })
 
-  it("renders home stats, how-it-works, partner CTA, and trust strip", () => {
+  it("renders home stats, credibility sections, how-it-works, partner CTA, and trust strip", () => {
     const { rerender } = renderWithProviders(
       <div>
         <HomeStats />
+        <SourceGovernanceBand />
+        <CareConnectBoundaries />
         <HowItWorks />
         <PartnerCTA />
         <TrustStrip />
@@ -113,8 +179,11 @@ describe("Home surface smoke coverage", () => {
     )
 
     expect(screen.getByText("196")).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "Built for verified, private discovery" })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "What CareConnect does and doesn't do" })).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "How it works" })).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "Suggest a service" })).toHaveAttribute("href", "/submit-service")
+    expect(screen.getByRole("link", { name: /Reference sources/i })).toHaveAttribute("href", "/en/about/partners")
     expect(screen.getByText("Privacy-first")).toBeInTheDocument()
 
     rerender(<div />)

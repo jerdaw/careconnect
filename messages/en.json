@@ -1544,16 +1544,102 @@
       }
     },
     "categoryGrid": {
-      "title": "Browse by Category",
-      "subtitle": "Find services by the type of support you need.",
+      "eyebrow": "Browse by need",
+      "title": "Start with the support you need",
+      "subtitle": "Choose a starting point, then narrow results by location, hours, and service scope.",
       "servicesCount": "{count} services",
-      "ariaLabel": "Browse {category} services"
+      "ariaLabel": "Browse {category} services",
+      "items": {
+        "Crisis": {
+          "description": "24/7 lines and urgent supports"
+        },
+        "Health": {
+          "description": "Clinics, counselling, and public health"
+        },
+        "Community": {
+          "description": "Local help, navigation, and referrals"
+        },
+        "Legal": {
+          "description": "Legal aid, rights, and tenant help"
+        },
+        "Food": {
+          "description": "Food banks and meal programs"
+        },
+        "Housing": {
+          "description": "Shelter, housing, and rent support"
+        },
+        "Employment": {
+          "description": "Jobs, training, and workplace help"
+        },
+        "Wellness": {
+          "description": "Mental health and daily wellbeing"
+        },
+        "Education": {
+          "description": "School, language, and learning supports"
+        },
+        "Financial": {
+          "description": "Income, benefits, and tax help"
+        },
+        "Indigenous": {
+          "description": "Indigenous-led and identity-aware supports"
+        },
+        "Transport": {
+          "description": "Transit, rides, and mobility help"
+        }
+      }
     },
     "partnerCta": {
       "title": "Is your organization listed?",
       "description": "If you provide social services in Kingston and want to ensure your information is accurate, you can suggest an update or review how CareConnect handles source review and listings.",
       "suggestButton": "Suggest a Service",
       "learnMoreButton": "How listings are reviewed"
+    },
+    "sourceGovernance": {
+      "eyebrow": "Source review",
+      "title": "Built for verified, private discovery",
+      "description": "CareConnect combines manually reviewed reference sources with privacy-first search. It is a directory, not an emergency dispatch or provider portal.",
+      "items": {
+        "sources": {
+          "title": "Reference sources",
+          "description": "See the public and community sources used to support listing review and updates."
+        },
+        "review": {
+          "title": "Manual review",
+          "description": "Listings are curated and checked before they are presented as verified services."
+        },
+        "privacy": {
+          "title": "No search tracking",
+          "description": "Search terms stay on your device by default; no account is needed to look for help."
+        },
+        "languages": {
+          "title": "Accessible by design",
+          "description": "Core navigation and search surfaces are available across 7 supported languages."
+        }
+      }
+    },
+    "boundaries": {
+      "eyebrow": "Clear boundaries",
+      "title": "What CareConnect does and doesn't do",
+      "description": "The directory is designed to help people find the right next step while keeping provider confirmation and emergencies where they belong.",
+      "does": {
+        "title": "CareConnect helps you",
+        "items": {
+          "0": "Search verified social-service listings",
+          "1": "Keep searches private by default",
+          "2": "Find calls, directions, websites, and next actions",
+          "3": "See why a result matched your search"
+        }
+      },
+      "doesnt": {
+        "title": "CareConnect does not",
+        "items": {
+          "0": "Dispatch emergency help or replace 911",
+          "1": "Guarantee hours, eligibility, or real-time availability",
+          "2": "Replace confirmation from the service provider",
+          "3": "Log, sell, or profile public search activity"
+        }
+      },
+      "note": "Always verify details with the provider before traveling or sharing personal information. For emergencies, call 911."
     },
     "hero": {
       "subtitle": "Find food, housing, crisis support, and 190+ verified services in Kingston — privately, in 7 languages."

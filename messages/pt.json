@@ -1544,16 +1544,102 @@
       }
     },
     "categoryGrid": {
-      "title": "Navegar por Categoria",
-      "subtitle": "Encontre serviços pelo tipo de apoio que você precisa.",
+      "eyebrow": "Navegar por necessidade",
+      "title": "Comece pelo apoio de que você precisa",
+      "subtitle": "Escolha um ponto de partida e depois filtre por localização, horário e alcance do serviço.",
       "servicesCount": "{count} serviços",
-      "ariaLabel": "Navegar por serviços de {category}"
+      "ariaLabel": "Navegar por serviços de {category}",
+      "items": {
+        "Crisis": {
+          "description": "Linhas 24/7 e apoios urgentes"
+        },
+        "Health": {
+          "description": "Clínicas, aconselhamento e saúde pública"
+        },
+        "Community": {
+          "description": "Ajuda local, orientação e encaminhamentos"
+        },
+        "Legal": {
+          "description": "Assistência jurídica, direitos e apoio a inquilinos"
+        },
+        "Food": {
+          "description": "Bancos de alimentos e refeições"
+        },
+        "Housing": {
+          "description": "Abrigo, moradia e apoio para aluguel"
+        },
+        "Employment": {
+          "description": "Empregos, treinamento e apoio no trabalho"
+        },
+        "Wellness": {
+          "description": "Saúde mental e bem-estar diário"
+        },
+        "Education": {
+          "description": "Escola, idiomas e aprendizagem"
+        },
+        "Financial": {
+          "description": "Renda, benefícios e impostos"
+        },
+        "Indigenous": {
+          "description": "Apoios indígenas e sensíveis à identidade"
+        },
+        "Transport": {
+          "description": "Transporte, viagens e mobilidade"
+        }
+      }
     },
     "partnerCta": {
       "title": "Sua organização está listada?",
       "description": "Se você presta serviços sociais em Kingston e quer garantir que suas informações estejam corretas, pode sugerir uma atualização ou consultar como o CareConnect faz a revisão de fontes e listagens.",
       "suggestButton": "Sugerir um Serviço",
       "learnMoreButton": "Como as listagens são revisadas"
+    },
+    "sourceGovernance": {
+      "eyebrow": "Revisão de fontes",
+      "title": "Criado para descoberta verificada e privada",
+      "description": "O CareConnect combina fontes de referência revisadas manualmente com busca centrada na privacidade. É um diretório, não um serviço de emergência nem um portal de provedores.",
+      "items": {
+        "sources": {
+          "title": "Fontes de referência",
+          "description": "Veja as fontes públicas e comunitárias usadas para apoiar a revisão e as atualizações das listagens."
+        },
+        "review": {
+          "title": "Revisão manual",
+          "description": "As listagens são curadas e verificadas antes de serem apresentadas como serviços verificados."
+        },
+        "privacy": {
+          "title": "Sem rastreamento de busca",
+          "description": "Os termos de busca ficam no seu dispositivo por padrão; nenhuma conta é necessária para procurar ajuda."
+        },
+        "languages": {
+          "title": "Acessível por design",
+          "description": "A navegação principal e as áreas de busca estão disponíveis em 7 idiomas suportados."
+        }
+      }
+    },
+    "boundaries": {
+      "eyebrow": "Limites claros",
+      "title": "O que o CareConnect faz e não faz",
+      "description": "O diretório ajuda as pessoas a encontrar o próximo passo adequado, mantendo a confirmação com os provedores e as emergências nos canais corretos.",
+      "does": {
+        "title": "O CareConnect ajuda você a",
+        "items": {
+          "0": "buscar listagens verificadas de serviços sociais",
+          "1": "manter as buscas privadas por padrão",
+          "2": "encontrar ligações, rotas, sites e próximos passos",
+          "3": "ver por que um resultado correspondeu à sua busca"
+        }
+      },
+      "doesnt": {
+        "title": "O CareConnect não faz",
+        "items": {
+          "0": "despachar ajuda de emergência nem substituir o 911",
+          "1": "garantir horários, elegibilidade ou disponibilidade em tempo real",
+          "2": "substituir a confirmação do provedor do serviço",
+          "3": "registrar, vender ou criar perfil da atividade pública de busca"
+        }
+      },
+      "note": "Sempre confirme os detalhes com o provedor antes de viajar ou compartilhar informações pessoais. Em emergências, ligue para 911."
     },
     "hero": {
       "subtitle": "Encontre alimentação, moradia, apoio em crise e mais de 190 serviços verificados em Kingston — com privacidade, em 7 idiomas."

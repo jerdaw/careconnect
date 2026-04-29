@@ -22,8 +22,10 @@ import SearchChips from "../../components/home/SearchChips"
 import SearchResultsList from "../../components/home/SearchResultsList"
 import SafetyAlert from "../../components/home/SafetyAlert"
 import HomeStats from "../../components/home/HomeStats"
-import TrustStrip from "../../components/home/TrustStrip"
 import HowItWorks from "../../components/home/HowItWorks"
+import CategoryBrowseGrid from "../../components/home/CategoryBrowseGrid"
+import SourceGovernanceBand from "../../components/home/SourceGovernanceBand"
+import CareConnectBoundaries from "../../components/home/CareConnectBoundaries"
 
 export default function Home() {
   const t = useTranslations()
@@ -110,6 +112,10 @@ export default function Home() {
   const isActive = isFocused || query.length > 0
   const hasActiveSearch =
     hasSearched || isLoading || query.trim().length > 0 || Boolean(category) || openNow || Boolean(userLocation)
+
+  const handleCategorySelect = (selectedCategory: string) => {
+    setCategory(selectedCategory)
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
@@ -218,7 +224,9 @@ export default function Home() {
           aria-hidden={hasActiveSearch || undefined}
         >
           <HomeStats />
-          <TrustStrip />
+          <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
+          <SourceGovernanceBand />
+          <CareConnectBoundaries />
           <HowItWorks />
         </div>
 
