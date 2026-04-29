@@ -26,7 +26,7 @@ This directory contains planning and strategy documents for CareConnect.
 ### Detailed Documentation (Optional)
 
 - [v20.0 Homepage Search UX Polish Archive (2026-04-29)](archive/2026-04-29-v20-0-homepage-search-ux-polish.md)
-  - Completed homepage search/filter spacing and active-filter UX polish
+  - Completed homepage search/filter spacing, active-filter UX polish, and restored metrics-rail refinement
   - **Reading time:** 5 minutes
 
 - [v20.0 Repo Audit Truth Remediation Archive (2026-04-24)](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)
@@ -195,6 +195,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-23:** Added the quiet GitHub automation and URL-health hardening archive after converting recurring governance workflows to quiet-by-default issue reuse and stabilizing the monthly health check against CI-only false positives
 - **2026-04-24:** Archived the repo audit follow-up/remediation wave after the direct-VPS docs/privacy/planning reconciliation pass completed
 - **2026-04-28:** Archived the Gate 0 prep and deploy-contract alignment pass after adding prep-only C1/D4 evidence packets, syncing tracker wording, and validating the sudo-required shared frontend env-file contract
+- **2026-04-29:** Archived the homepage search UX polish pass after moving filters into the active search/results state, restoring and refining the service/category/language metrics rail, and validating spacing/contrast updates
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

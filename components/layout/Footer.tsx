@@ -11,7 +11,7 @@ export function Footer() {
   const isNonEnglish = locale !== "en"
 
   return (
-    <footer className="relative mt-24 overflow-hidden bg-neutral-950 text-white">
+    <footer className="relative mt-12 overflow-hidden bg-neutral-950 text-white md:mt-16">
       {/* Gradient accent line */}
       <div className="from-primary-500 via-accent-500 to-primary-500 absolute top-0 right-0 left-0 h-1 bg-gradient-to-r" />
 

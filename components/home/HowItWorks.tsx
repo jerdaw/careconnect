@@ -21,7 +21,7 @@ export default function HowItWorks() {
   ]
 
   return (
-    <Section className="py-12 md:py-16">
+    <Section className="pt-8 pb-12 md:pt-10 md:pb-14">
       <div className="mb-10 text-center">
         <h2 className="heading-2 text-neutral-900 dark:text-white">{t("title")}</h2>
         <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{t("subtitle")}</p>

@@ -212,8 +212,8 @@ export default function Home() {
         {/* Discovery Layer — hidden when results are shown */}
         <div
           className={cn(
-            "mt-4 transition-all duration-500",
-            hasActiveSearch ? "pointer-events-none h-0 overflow-hidden opacity-0" : "opacity-100"
+            "transition-all duration-500",
+            hasActiveSearch ? "pointer-events-none mt-0 h-0 overflow-hidden opacity-0" : "mt-4 opacity-100"
           )}
           aria-hidden={hasActiveSearch || undefined}
         >
