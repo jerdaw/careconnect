@@ -8,6 +8,8 @@ import { Footer } from "@/components/layout/Footer"
 import { Section } from "@/components/ui/section"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import SourceGovernanceBand from "@/components/about/SourceGovernanceBand"
+import CareConnectBoundaries from "@/components/about/CareConnectBoundaries"
 import Link from "next/link"
 
 export default function AboutPage() {
@@ -103,6 +105,10 @@ export default function AboutPage() {
             ))}
           </div>
         </Section>
+
+        <SourceGovernanceBand />
+
+        <CareConnectBoundaries />
 
         {/* How It Works */}
         <Section className="py-24">

@@ -29,10 +29,10 @@ const ITEMS = [
 ] as const
 
 export default function SourceGovernanceBand() {
-  const t = useTranslations("Home.sourceGovernance")
+  const t = useTranslations("About.sourceGovernance")
 
   return (
-    <Section className="border-b border-neutral-200/70 bg-neutral-50/80 py-12 md:py-14 dark:border-white/10 dark:bg-slate-950/60">
+    <Section className="border-y border-neutral-200/70 bg-neutral-50/80 py-14 md:py-16 dark:border-white/10 dark:bg-slate-950/60">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.6fr] lg:items-start">
         <div>
           <p className="text-primary-700 dark:text-primary-300 text-xs font-semibold tracking-[0.16em] uppercase">

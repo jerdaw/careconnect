@@ -950,6 +950,53 @@
       "title": "准备好寻找帮助了吗？",
       "search": "浏览服务",
       "partners": "查看参考来源"
+    },
+    "sourceGovernance": {
+      "eyebrow": "来源审查",
+      "title": "为已验证、私密的查找体验而建",
+      "description": "CareConnect 结合人工审查的参考来源和隐私优先的搜索。它是目录，不是紧急调度服务，也不是服务提供者门户。",
+      "items": {
+        "sources": {
+          "title": "参考来源",
+          "description": "查看用于支持条目审查和更新的公共及社区来源。"
+        },
+        "review": {
+          "title": "人工审查",
+          "description": "条目经过整理和核查后，才会作为已验证服务呈现。"
+        },
+        "privacy": {
+          "title": "不追踪搜索",
+          "description": "搜索词默认保留在您的设备上；查找帮助无需账户。"
+        },
+        "languages": {
+          "title": "无障碍设计",
+          "description": "核心导航和搜索界面支持7种语言。"
+        }
+      }
+    },
+    "boundaries": {
+      "eyebrow": "清晰边界",
+      "title": "CareConnect 会做什么和不会做什么",
+      "description": "该目录帮助人们找到合适的下一步，同时把服务确认留给提供者，把紧急情况交给相应渠道。",
+      "does": {
+        "title": "CareConnect 帮助您",
+        "items": {
+          "0": "搜索已验证的社会服务条目",
+          "1": "默认保持搜索私密",
+          "2": "找到电话、路线、网站和下一步行动",
+          "3": "了解结果为什么匹配您的搜索"
+        }
+      },
+      "doesnt": {
+        "title": "CareConnect 不会",
+        "items": {
+          "0": "派遣紧急救援或替代911",
+          "1": "保证营业时间、资格或实时可用性",
+          "2": "替代服务提供者的确认",
+          "3": "记录、出售或分析公共搜索活动"
+        }
+      },
+      "note": "出行或分享个人信息前，请务必向服务提供者确认详情。紧急情况请拨打911。"
     }
   },
   "Partners": {
@@ -1545,8 +1592,8 @@
     },
     "categoryGrid": {
       "eyebrow": "按需求浏览",
-      "title": "从您需要的支持开始",
-      "subtitle": "先选择一个方向，再按位置、营业时间和服务范围缩小结果。",
+      "title": "浏览常见需求",
+      "subtitle": "选择一个类别开始搜索，或在上方输入您自己的关键词。",
       "servicesCount": "{count} 项服务",
       "ariaLabel": "浏览{category}服务",
       "items": {
@@ -1586,60 +1633,14 @@
         "Transport": {
           "description": "公交、接送和行动支持"
         }
-      }
+      },
+      "secondaryLabel": "更多需求"
     },
     "partnerCta": {
       "title": "您的组织是否已列入？",
       "description": "如果您在金斯顿提供社会服务并希望确保信息准确，您可以建议更新，或查看 CareConnect 如何进行来源审查和条目审核。",
       "suggestButton": "建议添加服务",
       "learnMoreButton": "了解条目如何审核"
-    },
-    "sourceGovernance": {
-      "eyebrow": "来源审查",
-      "title": "为已验证、私密的查找体验而建",
-      "description": "CareConnect 结合人工审查的参考来源和隐私优先的搜索。它是目录，不是紧急调度服务，也不是服务提供者门户。",
-      "items": {
-        "sources": {
-          "title": "参考来源",
-          "description": "查看用于支持条目审查和更新的公共及社区来源。"
-        },
-        "review": {
-          "title": "人工审查",
-          "description": "条目经过整理和核查后，才会作为已验证服务呈现。"
-        },
-        "privacy": {
-          "title": "不追踪搜索",
-          "description": "搜索词默认保留在您的设备上；查找帮助无需账户。"
-        },
-        "languages": {
-          "title": "无障碍设计",
-          "description": "核心导航和搜索界面支持7种语言。"
-        }
-      }
-    },
-    "boundaries": {
-      "eyebrow": "清晰边界",
-      "title": "CareConnect 会做什么和不会做什么",
-      "description": "该目录帮助人们找到合适的下一步，同时把服务确认留给提供者，把紧急情况交给相应渠道。",
-      "does": {
-        "title": "CareConnect 帮助您",
-        "items": {
-          "0": "搜索已验证的社会服务条目",
-          "1": "默认保持搜索私密",
-          "2": "找到电话、路线、网站和下一步行动",
-          "3": "了解结果为什么匹配您的搜索"
-        }
-      },
-      "doesnt": {
-        "title": "CareConnect 不会",
-        "items": {
-          "0": "派遣紧急救援或替代911",
-          "1": "保证营业时间、资格或实时可用性",
-          "2": "替代服务提供者的确认",
-          "3": "记录、出售或分析公共搜索活动"
-        }
-      },
-      "note": "出行或分享个人信息前，请务必向服务提供者确认详情。紧急情况请拨打911。"
     },
     "hero": {
       "subtitle": "查找食物、住房、危机支援及190多项金斯顿已验证服务——私密搜索，支持7种语言。"

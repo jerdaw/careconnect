@@ -2,12 +2,12 @@ import { describe, it, expect, vi } from "vitest"
 import { fireEvent } from "@testing-library/react"
 import { renderWithProviders, screen } from "@/tests/utils/test-wrapper"
 import CategoryBrowseGrid from "@/components/home/CategoryBrowseGrid"
-import CareConnectBoundaries from "@/components/home/CareConnectBoundaries"
+import CareConnectBoundaries from "@/components/about/CareConnectBoundaries"
 import HomeStats from "@/components/home/HomeStats"
 import HowItWorks from "@/components/home/HowItWorks"
 import PartnerCTA from "@/components/home/PartnerCTA"
 import SafetyAlert from "@/components/home/SafetyAlert"
-import SourceGovernanceBand from "@/components/home/SourceGovernanceBand"
+import SourceGovernanceBand from "@/components/about/SourceGovernanceBand"
 import TrustStrip from "@/components/home/TrustStrip"
 import ModelStatus from "@/components/home/ModelStatus"
 import ScopeFilterBar from "@/components/home/ScopeFilterBar"
@@ -37,8 +37,9 @@ const messages = {
   Home: {
     categoryGrid: {
       eyebrow: "Browse by need",
-      title: "Start with the support you need",
-      subtitle: "Jump straight to common needs",
+      title: "Browse common needs",
+      subtitle: "Pick a category to start a search",
+      secondaryLabel: "More needs",
       ariaLabel: "Browse {category} services",
       servicesCount: "{count} services",
       items: {
@@ -88,6 +89,15 @@ const messages = {
       privacyFirst: "Privacy-first search ready",
       neuralSearchActive: "Neural search active",
     },
+  },
+  About: {
+    howItWorks: {
+      title: "How it works",
+      subtitle: "Three steps",
+      step1: { title: "Search", description: "Start with a plain-language search." },
+      step2: { title: "Filter", description: "Use category and scope filters." },
+      step3: { title: "Act", description: "Call, visit, or share the service." },
+    },
     sourceGovernance: {
       eyebrow: "Source review",
       title: "Built for verified, private discovery",
@@ -136,15 +146,6 @@ const messages = {
       note: "Verify details with the provider.",
     },
   },
-  About: {
-    howItWorks: {
-      title: "How it works",
-      subtitle: "Three steps",
-      step1: { title: "Search", description: "Start with a plain-language search." },
-      step2: { title: "Filter", description: "Use category and scope filters." },
-      step3: { title: "Act", description: "Call, visit, or share the service." },
-    },
-  },
   CrisisAlert: {
     title: "Immediate help is available",
     message: "If this is urgent, call now.",
@@ -155,22 +156,21 @@ const messages = {
 } as const
 
 describe("Home surface smoke coverage", () => {
-  it("renders the category grid and forwards category selection", () => {
+  it("renders the compact category grid and forwards category selection", () => {
     const onCategorySelect = vi.fn()
 
     renderWithProviders(<CategoryBrowseGrid onCategorySelect={onCategorySelect} />, { messages })
 
-    expect(screen.getByRole("group", { name: "Start with the support you need" })).toBeInTheDocument()
+    expect(screen.getByRole("group", { name: "Browse common needs" })).toBeInTheDocument()
+    expect(screen.getByText("More needs")).toBeInTheDocument()
     fireEvent.click(screen.getByRole("button", { name: /browse food services/i }))
     expect(onCategorySelect).toHaveBeenCalledWith("Food")
   })
 
-  it("renders home stats, credibility sections, how-it-works, partner CTA, and trust strip", () => {
+  it("renders home stats, how-it-works, partner CTA, and trust strip", () => {
     const { rerender } = renderWithProviders(
       <div>
         <HomeStats />
-        <SourceGovernanceBand />
-        <CareConnectBoundaries />
         <HowItWorks />
         <PartnerCTA />
         <TrustStrip />
@@ -179,14 +179,25 @@ describe("Home surface smoke coverage", () => {
     )
 
     expect(screen.getByText("196")).toBeInTheDocument()
-    expect(screen.getByRole("heading", { name: "Built for verified, private discovery" })).toBeInTheDocument()
-    expect(screen.getByRole("heading", { name: "What CareConnect does and doesn't do" })).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "How it works" })).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "Suggest a service" })).toHaveAttribute("href", "/submit-service")
-    expect(screen.getByRole("link", { name: /Reference sources/i })).toHaveAttribute("href", "/en/about/partners")
     expect(screen.getByText("Privacy-first")).toBeInTheDocument()
 
     rerender(<div />)
+  })
+
+  it("renders about credibility sections", () => {
+    renderWithProviders(
+      <div>
+        <SourceGovernanceBand />
+        <CareConnectBoundaries />
+      </div>,
+      { messages }
+    )
+
+    expect(screen.getByRole("heading", { name: "Built for verified, private discovery" })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "What CareConnect does and doesn't do" })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /Reference sources/i })).toHaveAttribute("href", "/en/about/partners")
   })
 
   it("shows the crisis safety alert for crisis-like queries", () => {

@@ -24,8 +24,6 @@ import SafetyAlert from "../../components/home/SafetyAlert"
 import HomeStats from "../../components/home/HomeStats"
 import HowItWorks from "../../components/home/HowItWorks"
 import CategoryBrowseGrid from "../../components/home/CategoryBrowseGrid"
-import SourceGovernanceBand from "../../components/home/SourceGovernanceBand"
-import CareConnectBoundaries from "../../components/home/CareConnectBoundaries"
 
 export default function Home() {
   const t = useTranslations()
@@ -225,8 +223,6 @@ export default function Home() {
         >
           <HomeStats />
           <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
-          <SourceGovernanceBand />
-          <CareConnectBoundaries />
           <HowItWorks />
         </div>
 

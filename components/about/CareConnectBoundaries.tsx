@@ -24,10 +24,10 @@ const LISTS = [
 ] as const
 
 export default function CareConnectBoundaries() {
-  const t = useTranslations("Home.boundaries")
+  const t = useTranslations("About.boundaries")
 
   return (
-    <Section className="bg-white/55 py-12 md:py-16 dark:bg-slate-950/30">
+    <Section className="bg-white/55 py-14 md:py-16 dark:bg-slate-950/30">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-primary-700 dark:text-primary-300 text-xs font-semibold tracking-[0.16em] uppercase">
           {t("eyebrow")}
