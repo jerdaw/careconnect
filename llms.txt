@@ -394,6 +394,20 @@ import ChatAssistant from "@/components/ai/ChatAssistant"
 </ClientOnly>
 ```
 
+### Homepage Discovery Layer
+
+The resting homepage discovery layer is composed of `HomeStats`,
+`CategoryBrowseGrid`, and `HowItWorks`.
+
+- `HomeStats` renders the semantic service/category/language metrics rail.
+- `CategoryBrowseGrid` provides category shortcuts and must call the existing
+  category setter/search flow rather than introducing a separate navigation
+  path.
+- `HowItWorks` explains the private-search to direct-contact flow with concise
+  localized copy and card details; avoid reintroducing a separate trust-strip
+  row for privacy/offline/language claims unless the homepage information
+  architecture is revisited.
+
 ### ServiceCardSkeleton
 
 Loading placeholder for ServiceCard.
@@ -1333,7 +1347,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-04-28
+last_updated: 2026-04-29
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1342,13 +1356,13 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-28
+> **Last Updated**: 2026-04-29
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
 - **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-03)
-- **Tests**: default Vitest suite green as of 2026-04-20 (`177` files; `1305` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-04-29 (`180` files; `1321` passed; `24` skipped)
 - **DB integration lane**: `npm run db:types` and `npm run test:db` are green as of 2026-04-20 on a Docker-capable machine, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -1358,6 +1372,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
 - **Accessibility**: WCAG 2.1 AA automation remains in place
 - **Languages**: 7 locales at translation-key parity
+- **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
 - **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
 - **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
@@ -1593,9 +1608,10 @@ References:
 
 ### Recent Completed Milestones
 
-- **Quiet GitHub automation and URL health hardening (2026-04-23)**: converted routine GitHub governance workflows to quiet-by-default sticky issue/comment behavior, reconciled duplicate reminder issues, added reusable bot-issue synchronization for scheduled workflows, hardened the monthly URL health lane with official override probes plus Actions summaries, and verified clean auto-close/no-reopen behavior for the broken-URL issue lane; archived in [2026-04-23 v20.0 Quiet GitHub Automation and URL Health Hardening](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md).
-- **Repo audit truth remediation (2026-04-24)**: aligned the active direct-VPS incident/rollback/observability/QA docs with the live runtime, corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
+- **Homepage search UX polish (2026-04-29)**: moved filters into the active search/results state, compacted category controls with an accessible "more categories" expansion, restored and refined the service/category/language metrics rail, folded trust-strip content into a clearer `How It Works` flow, tuned desktop/mobile section spacing and footer layout, and refreshed related copy/i18n/test coverage; archived in [2026-04-29 v20.0 Homepage Search UX Polish](archive/2026-04-29-v20-0-homepage-search-ux-polish.md).
 - **Gate 0 prep and deploy-contract alignment (2026-04-28)**: added prep-only C1/D4 evidence packets, synchronized Gate 0 tracker wording without closing evidence blockers, aligned active CareConnect deploy/rollback docs with the `platform-ops` sudo-required frontend env-file contract, and archived the pass in [2026-04-28 v22.0 Gate 0 Prep and Deploy Contract Alignment](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md).
+- **Repo audit truth remediation (2026-04-24)**: aligned the active direct-VPS incident/rollback/observability/QA docs with the live runtime, corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
+- **Quiet GitHub automation and URL health hardening (2026-04-23)**: converted routine GitHub governance workflows to quiet-by-default sticky issue/comment behavior, reconciled duplicate reminder issues, added reusable bot-issue synchronization for scheduled workflows, hardened the monthly URL health lane with official override probes plus Actions summaries, and verified clean auto-close/no-reopen behavior for the broken-URL issue lane; archived in [2026-04-23 v20.0 Quiet GitHub Automation and URL Health Hardening](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md).
 - **Semantic search fail-closed and lint hygiene (2026-04-15)**: removed synthetic semantic-search fallback vectors, made worker/embed failures degrade to keyword-only search, restored authoritative repo-wide linting by excluding local MkDocs output, synced architecture docs, and added focused hook/documentation hygiene coverage; archived in [2026-04-15 v20.0 Semantic Search Fail-Closed and Lint Hygiene](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md).
 - **Gate 0 wait maintenance bundle (2026-04-05)**: completed search explainability, stale-data runtime governance, workflow-runtime doc alignment, and solo-scale freshness-policy calibration while Gate 0 remained blocked; archived in [2026-04-05 v22.0 Gate 0 Wait Maintenance Bundle](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md).
 - **Map privacy and offline snapshot safety surfaces (2026-04-04)**: replaced automatic Google Maps embeds with explicit opt-in previews, surfaced offline snapshot age/stale warnings on offline surfaces, updated threat-model/user-guide/architecture docs, and added focused UI/helper coverage; archived in [2026-04-04 v22.0 Map Privacy and Offline Snapshot Safety](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md).
