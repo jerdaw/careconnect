@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "Parcourir par besoin",
-      "title": "Parcourir les besoins courants",
-      "subtitle": "Choisissez une catégorie pour lancer une recherche, ou saisissez vos propres mots ci-dessus.",
-      "servicesCount": "{count} services",
-      "ariaLabel": "Parcourir les services {category}",
-      "items": {
-        "Crisis": {
-          "description": "Lignes 24/7 et soutiens urgents"
-        },
-        "Health": {
-          "description": "Cliniques, counselling et santé publique"
-        },
-        "Community": {
-          "description": "Aide locale, orientation et aiguillage"
-        },
-        "Legal": {
-          "description": "Aide juridique, droits et aide aux locataires"
-        },
-        "Food": {
-          "description": "Banques alimentaires et repas"
-        },
-        "Housing": {
-          "description": "Refuges, logement et aide au loyer"
-        },
-        "Employment": {
-          "description": "Emploi, formation et aide au travail"
-        },
-        "Wellness": {
-          "description": "Santé mentale et mieux-être quotidien"
-        },
-        "Education": {
-          "description": "École, langues et apprentissage"
-        },
-        "Financial": {
-          "description": "Revenu, prestations et impôts"
-        },
-        "Indigenous": {
-          "description": "Soutiens autochtones et adaptés à l'identité"
-        },
-        "Transport": {
-          "description": "Transport, trajets et mobilité"
-        }
-      },
-      "secondaryLabel": "Autres besoins"
+      "groupLabel": "Catégories de services",
+      "ariaLabel": "Parcourir les services {category}"
     },
     "partnerCta": {
       "title": "Votre organisation est-elle répertoriée ?",

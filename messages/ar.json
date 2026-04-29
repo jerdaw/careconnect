@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "تصفّح حسب الحاجة",
-      "title": "تصفّح الاحتياجات الشائعة",
-      "subtitle": "اختر فئة لبدء البحث، أو اكتب كلماتك الخاصة أعلاه.",
-      "servicesCount": "{count} خدمة",
-      "ariaLabel": "تصفّح خدمات {category}",
-      "items": {
-        "Crisis": {
-          "description": "خطوط 24/7 ودعم عاجل"
-        },
-        "Health": {
-          "description": "عيادات واستشارة وصحة عامة"
-        },
-        "Community": {
-          "description": "مساعدة محلية وتوجيه وإحالات"
-        },
-        "Legal": {
-          "description": "مساعدة قانونية وحقوق ودعم للمستأجرين"
-        },
-        "Food": {
-          "description": "بنوك طعام وبرامج وجبات"
-        },
-        "Housing": {
-          "description": "مأوى وسكن ودعم للإيجار"
-        },
-        "Employment": {
-          "description": "وظائف وتدريب ومساعدة في العمل"
-        },
-        "Wellness": {
-          "description": "صحة نفسية ورفاه يومي"
-        },
-        "Education": {
-          "description": "مدرسة ولغات ودعم تعلّم"
-        },
-        "Financial": {
-          "description": "دخل ومزايا ومساعدة ضريبية"
-        },
-        "Indigenous": {
-          "description": "دعم تقوده مجتمعات السكان الأصليين ويراعي الهوية"
-        },
-        "Transport": {
-          "description": "نقل ورحلات ومساعدة على التنقل"
-        }
-      },
-      "secondaryLabel": "احتياجات أخرى"
+      "groupLabel": "فئات الخدمات",
+      "ariaLabel": "تصفّح خدمات {category}"
     },
     "partnerCta": {
       "title": "هل منظمتك مدرجة؟",

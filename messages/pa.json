@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "ਲੋੜ ਅਨੁਸਾਰ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
-      "title": "ਆਮ ਲੋੜਾਂ ਵੇਖੋ",
-      "subtitle": "ਖੋਜ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕੋਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ, ਜਾਂ ਉੱਪਰ ਆਪਣੇ ਸ਼ਬਦ ਲਿਖੋ।",
-      "servicesCount": "{count} ਸੇਵਾਵਾਂ",
-      "ariaLabel": "{category} ਸੇਵਾਵਾਂ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
-      "items": {
-        "Crisis": {
-          "description": "24/7 ਲਾਈਨਾਂ ਅਤੇ ਤੁਰੰਤ ਸਹਾਇਤਾ"
-        },
-        "Health": {
-          "description": "ਕਲੀਨਿਕ, ਕਾਊਂਸਲਿੰਗ ਅਤੇ ਜਨਤਕ ਸਿਹਤ"
-        },
-        "Community": {
-          "description": "ਸਥਾਨਕ ਮਦਦ, ਰਾਹਨੁਮਾਈ ਅਤੇ ਰੈਫਰਲ"
-        },
-        "Legal": {
-          "description": "ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ, ਹੱਕ ਅਤੇ ਕਿਰਾਏਦਾਰ ਮਦਦ"
-        },
-        "Food": {
-          "description": "ਫੂਡ ਬੈਂਕ ਅਤੇ ਭੋਜਨ ਪ੍ਰੋਗਰਾਮ"
-        },
-        "Housing": {
-          "description": "ਸ਼ਰਨ, ਰਿਹਾਇਸ਼ ਅਤੇ ਕਿਰਾਇਆ ਸਹਾਇਤਾ"
-        },
-        "Employment": {
-          "description": "ਨੌਕਰੀਆਂ, ਟ੍ਰੇਨਿੰਗ ਅਤੇ ਕੰਮ ਵਾਲੀ ਮਦਦ"
-        },
-        "Wellness": {
-          "description": "ਮਾਨਸਿਕ ਸਿਹਤ ਅਤੇ ਰੋਜ਼ਾਨਾ ਭਲਾਈ"
-        },
-        "Education": {
-          "description": "ਸਕੂਲ, ਭਾਸ਼ਾਵਾਂ ਅਤੇ ਸਿੱਖਣ ਦੀ ਸਹਾਇਤਾ"
-        },
-        "Financial": {
-          "description": "ਆਮਦਨ, ਲਾਭ ਅਤੇ ਟੈਕਸ ਮਦਦ"
-        },
-        "Indigenous": {
-          "description": "ਇੰਡਿਜਿਨਸ-ਚਲਾਈ ਅਤੇ ਪਛਾਣ-ਸਮਝ ਸਹਾਇਤਾ"
-        },
-        "Transport": {
-          "description": "ਟ੍ਰਾਂਜ਼ਿਟ, ਰਾਈਡਾਂ ਅਤੇ ਆਵਾਜਾਈ ਮਦਦ"
-        }
-      },
-      "secondaryLabel": "ਹੋਰ ਲੋੜਾਂ"
+      "groupLabel": "ਸੇਵਾ ਸ਼੍ਰੇਣੀਆਂ",
+      "ariaLabel": "{category} ਸੇਵਾਵਾਂ ਬ੍ਰਾਊਜ਼ ਕਰੋ"
     },
     "partnerCta": {
       "title": "ਕੀ ਤੁਹਾਡੀ ਸੰਸਥਾ ਸੂਚੀਬੱਧ ਹੈ?",

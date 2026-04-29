@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "Browse by need",
-      "title": "Browse common needs",
-      "subtitle": "Pick a category to start a search, or type your own words above.",
-      "servicesCount": "{count} services",
-      "ariaLabel": "Browse {category} services",
-      "items": {
-        "Crisis": {
-          "description": "24/7 lines and urgent supports"
-        },
-        "Health": {
-          "description": "Clinics, counselling, and public health"
-        },
-        "Community": {
-          "description": "Local help, navigation, and referrals"
-        },
-        "Legal": {
-          "description": "Legal aid, rights, and tenant help"
-        },
-        "Food": {
-          "description": "Food banks and meal programs"
-        },
-        "Housing": {
-          "description": "Shelter, housing, and rent support"
-        },
-        "Employment": {
-          "description": "Jobs, training, and workplace help"
-        },
-        "Wellness": {
-          "description": "Mental health and daily wellbeing"
-        },
-        "Education": {
-          "description": "School, language, and learning supports"
-        },
-        "Financial": {
-          "description": "Income, benefits, and tax help"
-        },
-        "Indigenous": {
-          "description": "Indigenous-led and identity-aware supports"
-        },
-        "Transport": {
-          "description": "Transit, rides, and mobility help"
-        }
-      },
-      "secondaryLabel": "More needs"
+      "groupLabel": "Service categories",
+      "ariaLabel": "Browse {category} services"
     },
     "partnerCta": {
       "title": "Is your organization listed?",

@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "按需求浏览",
-      "title": "浏览常见需求",
-      "subtitle": "选择一个类别开始搜索，或在上方输入您自己的关键词。",
-      "servicesCount": "{count} 项服务",
-      "ariaLabel": "浏览{category}服务",
-      "items": {
-        "Crisis": {
-          "description": "24/7热线和紧急支持"
-        },
-        "Health": {
-          "description": "诊所、咨询和公共卫生"
-        },
-        "Community": {
-          "description": "本地帮助、导航和转介"
-        },
-        "Legal": {
-          "description": "法律援助、权利和租户帮助"
-        },
-        "Food": {
-          "description": "食物银行和餐食项目"
-        },
-        "Housing": {
-          "description": "庇护、住房和租金支持"
-        },
-        "Employment": {
-          "description": "工作、培训和职场帮助"
-        },
-        "Wellness": {
-          "description": "心理健康和日常福祉"
-        },
-        "Education": {
-          "description": "学校、语言和学习支持"
-        },
-        "Financial": {
-          "description": "收入、福利和税务帮助"
-        },
-        "Indigenous": {
-          "description": "原住民主导和身份敏感支持"
-        },
-        "Transport": {
-          "description": "公交、接送和行动支持"
-        }
-      },
-      "secondaryLabel": "更多需求"
+      "groupLabel": "服务类别",
+      "ariaLabel": "浏览{category}服务"
     },
     "partnerCta": {
       "title": "您的组织是否已列入？",

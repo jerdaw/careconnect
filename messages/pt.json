@@ -1591,50 +1591,8 @@
       }
     },
     "categoryGrid": {
-      "eyebrow": "Navegar por necessidade",
-      "title": "Navegue por necessidades comuns",
-      "subtitle": "Escolha uma categoria para iniciar uma busca ou digite seus próprios termos acima.",
-      "servicesCount": "{count} serviços",
-      "ariaLabel": "Navegar por serviços de {category}",
-      "items": {
-        "Crisis": {
-          "description": "Linhas 24/7 e apoios urgentes"
-        },
-        "Health": {
-          "description": "Clínicas, aconselhamento e saúde pública"
-        },
-        "Community": {
-          "description": "Ajuda local, orientação e encaminhamentos"
-        },
-        "Legal": {
-          "description": "Assistência jurídica, direitos e apoio a inquilinos"
-        },
-        "Food": {
-          "description": "Bancos de alimentos e refeições"
-        },
-        "Housing": {
-          "description": "Abrigo, moradia e apoio para aluguel"
-        },
-        "Employment": {
-          "description": "Empregos, treinamento e apoio no trabalho"
-        },
-        "Wellness": {
-          "description": "Saúde mental e bem-estar diário"
-        },
-        "Education": {
-          "description": "Escola, idiomas e aprendizagem"
-        },
-        "Financial": {
-          "description": "Renda, benefícios e impostos"
-        },
-        "Indigenous": {
-          "description": "Apoios indígenas e sensíveis à identidade"
-        },
-        "Transport": {
-          "description": "Transporte, viagens e mobilidade"
-        }
-      },
-      "secondaryLabel": "Mais necessidades"
+      "groupLabel": "Categorias de serviço",
+      "ariaLabel": "Navegar por serviços de {category}"
     },
     "partnerCta": {
       "title": "Sua organização está listada?",

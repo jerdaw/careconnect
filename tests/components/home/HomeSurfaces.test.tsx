@@ -36,26 +36,8 @@ const messages = {
   },
   Home: {
     categoryGrid: {
-      eyebrow: "Browse by need",
-      title: "Browse common needs",
-      subtitle: "Pick a category to start a search",
-      secondaryLabel: "More needs",
+      groupLabel: "Service categories",
       ariaLabel: "Browse {category} services",
-      servicesCount: "{count} services",
-      items: {
-        Crisis: { description: "Urgent help" },
-        Health: { description: "Health services" },
-        Community: { description: "Community support" },
-        Legal: { description: "Legal help" },
-        Food: { description: "Food support" },
-        Housing: { description: "Housing support" },
-        Employment: { description: "Work support" },
-        Wellness: { description: "Wellness support" },
-        Education: { description: "Learning support" },
-        Financial: { description: "Money support" },
-        Indigenous: { description: "Identity-aware support" },
-        Transport: { description: "Transit support" },
-      },
     },
     stats: {
       servicesValue: "196",
@@ -156,15 +138,16 @@ const messages = {
 } as const
 
 describe("Home surface smoke coverage", () => {
-  it("renders the compact category grid and forwards category selection", () => {
+  it("renders the category shortcut rail and forwards category selection", () => {
     const onCategorySelect = vi.fn()
 
     renderWithProviders(<CategoryBrowseGrid onCategorySelect={onCategorySelect} />, { messages })
 
-    expect(screen.getByRole("group", { name: "Browse common needs" })).toBeInTheDocument()
-    expect(screen.getByText("More needs")).toBeInTheDocument()
-    fireEvent.click(screen.getByRole("button", { name: /browse food services/i }))
-    expect(onCategorySelect).toHaveBeenCalledWith("Food")
+    expect(screen.getByRole("group", { name: "Service categories" })).toBeInTheDocument()
+    expect(screen.queryByText("Browse common needs")).not.toBeInTheDocument()
+    expect(screen.queryByText("More needs")).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole("button", { name: /browse employment services/i }))
+    expect(onCategorySelect).toHaveBeenCalledWith("Employment")
   })
 
   it("renders home stats, how-it-works, partner CTA, and trust strip", () => {
