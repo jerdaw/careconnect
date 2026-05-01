@@ -272,7 +272,7 @@ We use a modular hook system to separate concerns:
 
 ---
 status: stable
-last_updated: 2026-01-15
+last_updated: 2026-04-30
 owner: jer
 tags: [development, components, ui]
 ---
@@ -407,6 +407,23 @@ The resting homepage discovery layer is composed of `HomeStats`,
   localized copy and card details; avoid reintroducing a separate trust-strip
   row for privacy/offline/language claims unless the homepage information
   architecture is revisited.
+
+### About Page Surfaces
+
+The About page uses a single editorial content rail with the hero, integrated
+trust overview, boundaries surface, context cards, and final CTA aligned to the
+same grid.
+
+- `AboutTrustOverview` owns the source review, privacy/accessibility trust
+  items, and "does / doesn't do" boundaries content.
+- Avoid reintroducing homepage metrics, duplicated trust-strip content, or
+  separate stacked governance sections on `/about`.
+- The primary About CTAs use `about-gradient-border-button` only as a scoped
+  page helper for the solid `#6366f1` fill and white text treatment; keep the
+  underlying `Button` sizing/elevation consistent with neighboring outline
+  buttons.
+- Keep `/about` focused on trust, boundaries, source context, and governance
+  context rather than marketing-style feature cards.
 
 ### ServiceCardSkeleton
 
@@ -1347,7 +1364,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-04-29
+last_updated: 2026-04-30
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1356,7 +1373,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-04-29
+> **Last Updated**: 2026-04-30
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -1373,6 +1390,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Accessibility**: WCAG 2.1 AA automation remains in place
 - **Languages**: 7 locales at translation-key parity
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
+- **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
 - **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
 - **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
@@ -1608,6 +1626,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **About page polish (2026-04-30)**: rebuilt `/about` as a calmer trust and context page, removed duplicated homepage-style sections, restored the page-level background wash, aligned hero/source/context/CTA sections on a shared rail, and refined the primary CTA treatment without changing service data or search behavior; archived in [2026-04-30 v20.0 About Page Polish](archive/2026-04-30-v20-0-about-page-polish.md).
 - **Homepage search UX polish (2026-04-29)**: moved filters into the active search/results state, compacted category controls with an accessible "more categories" expansion, restored and refined the service/category/language metrics rail, folded trust-strip content into a clearer `How It Works` flow, tuned desktop/mobile section spacing and footer layout, and refreshed related copy/i18n/test coverage; archived in [2026-04-29 v20.0 Homepage Search UX Polish](archive/2026-04-29-v20-0-homepage-search-ux-polish.md).
 - **Gate 0 prep and deploy-contract alignment (2026-04-28)**: added prep-only C1/D4 evidence packets, synchronized Gate 0 tracker wording without closing evidence blockers, aligned active CareConnect deploy/rollback docs with the `platform-ops` sudo-required frontend env-file contract, and archived the pass in [2026-04-28 v22.0 Gate 0 Prep and Deploy Contract Alignment](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md).
 - **Repo audit truth remediation (2026-04-24)**: aligned the active direct-VPS incident/rollback/observability/QA docs with the live runtime, corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
@@ -1639,6 +1658,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v20.0 About Page Polish Archive](archive/2026-04-30-v20-0-about-page-polish.md)
 - [v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)
 - [v22.0 Gate 0 Wait Maintenance Bundle Archive](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md)
 - [v22.0 Map Privacy and Offline Snapshot Safety Archive](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md)
