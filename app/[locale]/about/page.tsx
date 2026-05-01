@@ -13,7 +13,7 @@ import { Link } from "@/i18n/routing"
 export default function AboutPage() {
   const t = useTranslations("About")
   const accentCtaClassName =
-    "border border-accent-700 bg-accent-700 text-white shadow-md shadow-accent-900/10 hover:translate-y-0 hover:border-accent-600 hover:bg-accent-600 hover:text-white hover:shadow-lg hover:shadow-accent-900/15 dark:border-accent-500 dark:bg-accent-600 dark:hover:bg-accent-500"
+    "about-gradient-border-button text-white hover:text-white dark:text-white dark:hover:text-white"
 
   const contextCards = [
     {
@@ -31,21 +31,13 @@ export default function AboutPage() {
   ] as const
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-slate-50 font-sans dark:bg-slate-950">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[radial-gradient(circle_at_14%_6%,rgba(34,211,238,0.22),transparent_24rem),radial-gradient(circle_at_82%_7%,rgba(99,102,241,0.16),transparent_26rem),radial-gradient(circle_at_50%_84%,rgba(34,211,238,0.06),transparent_30rem),linear-gradient(180deg,rgba(239,253,255,0.98)_0%,rgba(248,250,252,0.96)_18%,rgba(255,255,255,0.98)_34%,rgba(255,255,255,0.98)_72%,rgba(248,250,252,0.96)_88%,rgba(241,245,249,0.98)_100%)] font-sans dark:bg-[radial-gradient(circle_at_14%_6%,rgba(8,145,178,0.18),transparent_24rem),radial-gradient(circle_at_82%_7%,rgba(79,70,229,0.16),transparent_26rem),radial-gradient(circle_at_50%_84%,rgba(8,145,178,0.08),transparent_30rem),linear-gradient(180deg,rgba(2,6,23,0.98)_0%,rgba(15,23,42,0.96)_28%,rgba(15,23,42,0.94)_72%,rgba(2,6,23,0.98)_100%)]">
       <div className="bg-noise" />
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="bg-primary-400/35 animate-float absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:bg-indigo-600/25 dark:mix-blend-screen" />
-        <div className="bg-accent-400/35 animate-float-delayed absolute top-[10%] left-[-10%] h-[50%] w-[50%] rounded-full mix-blend-multiply blur-[150px] dark:bg-cyan-600/20 dark:mix-blend-screen" />
-        <div className="animate-pulse-glow absolute right-[18%] bottom-[-12%] h-[58%] w-[58%] rounded-full bg-indigo-300/30 mix-blend-multiply blur-[150px] dark:bg-blue-700/20 dark:mix-blend-screen" />
-      </div>
       <Header />
 
-      <main id="main-content" className="relative z-10 flex-1">
-        <Section
-          animate={false}
-          className="relative pt-40 pb-10 before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:h-20 before:bg-gradient-to-b before:from-transparent before:to-white/40 before:content-[''] md:pt-44 md:pb-20 dark:before:to-slate-900/30"
-        >
-          <div className="mx-auto max-w-4xl">
+      <main id="main-content" className="flex-1">
+        <Section animate={false} className="relative pt-40 pb-10 md:pt-44 md:pb-12">
+          <div className="mx-auto max-w-5xl">
             <p className="text-accent-700 dark:text-accent-300 text-xs font-semibold tracking-[0.16em] uppercase">
               {t("hero.eyebrow")}
             </p>
@@ -75,16 +67,13 @@ export default function AboutPage() {
 
         <AboutTrustOverview />
 
-        <Section
-          animate={false}
-          className="relative -mt-px bg-white/55 py-12 backdrop-blur-md md:py-14 dark:bg-slate-900/45"
-        >
-          <div className="grid gap-4 lg:grid-cols-2">
+        <Section animate={false} className="relative py-12 md:py-14">
+          <div className="mx-auto grid max-w-5xl gap-4 lg:grid-cols-2">
             {contextCards.map(({ key, title, description, Icon }) => (
               <Card
                 key={key}
                 padding="none"
-                className="h-full border-neutral-200/75 bg-white/90 shadow-lg ring-1 shadow-slate-900/5 ring-white/70 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/70 dark:ring-white/10"
+                className="h-full border-neutral-200/75 bg-white/86 shadow-[0_14px_34px_rgba(15,23,42,0.05)] ring-1 ring-white/70 backdrop-blur-md dark:border-white/10 dark:bg-white/[0.06] dark:ring-white/10"
               >
                 <div className="flex h-full flex-col gap-4 p-5 md:p-6">
                   <div className="flex items-center gap-3">
@@ -100,8 +89,8 @@ export default function AboutPage() {
           </div>
         </Section>
 
-        <Section animate={false} className="relative bg-slate-50/80 py-12 md:py-16 dark:bg-slate-950/80">
-          <div className="relative overflow-hidden rounded-2xl border border-neutral-200/75 bg-white/90 p-5 shadow-lg ring-1 shadow-slate-900/5 ring-white/70 backdrop-blur-md md:flex md:items-center md:justify-between md:gap-8 md:p-6 dark:border-white/10 dark:bg-slate-900/70 dark:ring-white/10">
+        <Section animate={false} className="relative pt-10 pb-12 md:pt-12 md:pb-16">
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-neutral-200/75 bg-white/88 p-5 shadow-[0_14px_34px_rgba(15,23,42,0.05)] ring-1 ring-white/70 backdrop-blur-md md:flex md:items-center md:justify-between md:gap-8 md:p-6 dark:border-white/10 dark:bg-white/[0.06] dark:ring-white/10">
             <div>
               <h2 className="text-xl font-semibold text-neutral-950 dark:text-white">{t("cta.title")}</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
@@ -120,9 +109,7 @@ export default function AboutPage() {
         </Section>
       </main>
 
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }

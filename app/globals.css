@@ -420,6 +420,29 @@ body {
   border: 1px solid rgba(248, 250, 252, 0.08);
 }
 
+.about-gradient-border-button {
+  border-color: #6366f1 !important;
+  background: #6366f1 !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.about-gradient-border-button:hover {
+  border-color: #6366f1 !important;
+  background: #6366f1 !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.dark .about-gradient-border-button {
+  background: #6366f1 !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.dark .about-gradient-border-button:hover {
+  border-color: #6366f1 !important;
+  background: #6366f1 !important;
+  color: rgb(255, 255, 255) !important;
+}
+
 /* Premium Elevation Utilities */
 .elevated-sm {
   box-shadow: var(--shadow-sm);
