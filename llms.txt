@@ -1364,7 +1364,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-05-01
+last_updated: 2026-05-03
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1373,18 +1373,18 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-05-01
+> **Last Updated**: 2026-05-03
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
-- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-04-03)
-- **Tests**: default Vitest suite green as of 2026-04-29 (`180` files; `1321` passed; `24` skipped)
+- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-05-03)
+- **Tests**: default Vitest suite green as of 2026-05-03 (`189` files; `1361` passed; `24` skipped)
 - **DB integration lane**: `npm run db:types` and `npm run test:db` are green as of 2026-04-20 on a Docker-capable machine, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
-- **Dependency audit**: `npm audit --omit=dev` reports `0 vulnerabilities`
-- **Full audit lane**: `npm audit --audit-level=high` still reports unresolved high/critical findings in the current dependency tree, so the GitHub CI audit step remains advisory for now
+- **Production dependency audit**: `npm audit --omit=dev` on 2026-05-03 reports `9` vulnerabilities (`2` moderate, `3` high, `4` critical), including issues in `next`, `@xmldom/xmldom`, `protobufjs`, `postcss`, and `next-intl`
+- **Full audit lane**: `npm audit --audit-level=high` on 2026-05-03 reports `10` vulnerabilities (`2` moderate, `4` high, `4` critical), including the production findings plus `vite`; the GitHub CI audit step remains advisory until remediation is planned and verified
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
 - **Accessibility**: WCAG 2.1 AA automation remains in place
@@ -1537,6 +1537,7 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
 6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
 7. Complete authenticated desktop/mobile visual QA for `/dashboard/**` and `/admin/**` once a valid local Supabase environment and signed-in partner/admin session are available. The authenticated-surface implementation is code-complete, but authenticated browser review remains environment-gated because this local workspace currently lacks `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+8. Resolve the current dependency-audit findings as bounded maintenance: apply non-breaking fixes where available, split breaking remediation for `next-intl` and `@xenova/transformers` into a reviewed plan, and do not merge routine Dependabot major-version workflow PRs while required validation is failing.
 
 ## On Hold
 
