@@ -207,6 +207,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-28:** Archived the Gate 0 prep and deploy-contract alignment pass after adding prep-only C1/D4 evidence packets, syncing tracker wording, and validating the sudo-required shared frontend env-file contract
 - **2026-04-29:** Archived the homepage search UX polish pass after moving filters into the active search/results state, restoring and refining the service/category/language metrics rail, folding trust-strip content into the `How It Works` flow, and validating spacing/contrast updates
 - **2026-04-30:** Archived the About page polish pass after consolidating trust/context content, restoring the smooth page-level background, aligning sections on a shared rail, and validating CTA styling updates
+- **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`
