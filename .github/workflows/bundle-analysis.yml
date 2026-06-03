@@ -81,7 +81,7 @@ jobs:
           retention-days: 30
 
       - name: Download baseline bundle analysis
-        uses: dawidd6/action-download-artifact@v20
+        uses: dawidd6/action-download-artifact@v21
         if: github.event_name == 'pull_request'
         continue-on-error: true
         with:
@@ -102,7 +102,7 @@ jobs:
 
       - name: Sync PR bundle analysis comment
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           COMPARE_FAILED: ${{ steps.compare.outputs.comparison_failed }}
           SHOULD_COMMENT: ${{ steps.compare.outputs.should_comment }}
