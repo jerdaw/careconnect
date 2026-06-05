@@ -11,8 +11,8 @@ function readDoc(relPath: string) {
   return readFileSync(path.join(repoRoot(), relPath), "utf8")
 }
 
-const canonicalBoundaryPath =
-  "/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md"
+const privateBoundaryPathPattern =
+  /\/home\/jer\/repos\/vps\/platform-ops\/docs\/standards\/PLAT-009-shared-vps-documentation-boundary\.md/
 
 describe("documentation hygiene", () => {
   it("keeps agent compatibility files as relative symlinks", () => {
@@ -38,14 +38,15 @@ describe("documentation hygiene", () => {
   it("keeps deployment details behind the public documentation boundary", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
     const readme = readDoc("README.md")
-    const contract = readDoc("platform-ops-contract.yaml")
+    const contract = readDoc("platform-ops-contract.example.yaml")
 
     expect(readme).toContain("Public Documentation Boundary")
     expect(roadmap).toContain("active deployment facts are maintained privately")
-    expect(contract).toContain("careconnect-web")
-    expect(contract).not.toContain("omitted-from-public-docs")
-    expect(readme).toContain(canonicalBoundaryPath)
-    expect(contract).toContain(canonicalBoundaryPath)
+    expect(contract).toContain("careconnect-example")
+    expect(contract).toContain("example.org")
+    expect(contract).not.toContain("careconnect.ing")
+    expect(readme).not.toMatch(privateBoundaryPathPattern)
+    expect(contract).not.toMatch(privateBoundaryPathPattern)
     expect(roadmap).not.toContain("Pre-production (not deployed")
   })
 
@@ -129,7 +130,7 @@ describe("documentation hygiene", () => {
 
     for (const content of [readme, agents, docsIndex]) {
       expect(content).toContain("Public")
-      expect(content).toContain(canonicalBoundaryPath)
+      expect(content).not.toMatch(privateBoundaryPathPattern)
       expect(content).not.toMatch(/\/etc\/projects-/)
       expect(content).not.toMatch(/\/srv\/apps/)
     }

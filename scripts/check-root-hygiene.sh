@@ -42,7 +42,7 @@ ALLOWED_FILES=(
   "commitlint.config.js"
   "git-conventional-commits.yaml"
   "components.json"
-  "platform-ops-contract.yaml"
+  "platform-ops-contract.example.yaml"
 
   # Deployment
   "vercel.json"

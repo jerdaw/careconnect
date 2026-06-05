@@ -28,7 +28,9 @@ CareConnect is an active, health-adjacent community resource discovery project. 
 
 This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory are intentionally excluded from public documentation.
 
-Shared VPS documentation ownership is defined in `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
+Production deployment details, shared-host ownership notes, private
+inventories, and environment-specific operations are intentionally excluded
+from this public repository.
 
 Push notifications and external integrations are optional and disabled unless explicitly configured by a maintainer.
 
@@ -287,9 +289,9 @@ To enable the Partner Portal, authentication, and analytics:
 2. Add your credentials to `.env.local`:
 
    ```env
-   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
-   SUPABASE_SECRET_KEY=your-secret-key
+   NEXT_PUBLIC_SUPABASE_URL=https://example.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=example-publishable-key
+   SUPABASE_SECRET_KEY=
    ```
 
 3. Apply the schema via Supabase CLI migrations:
@@ -316,7 +318,7 @@ To enable the Partner Portal, authentication, and analytics:
 6. For authenticated uptime probes, set:
 
    ```env
-   HEALTH_PROBE_TOKEN=your-random-probe-token
+   HEALTH_PROBE_TOKEN=
    ```
 
    `GET /api/v1/health` remains a public, read-only status endpoint. `GET /api/v1/health/probe` is the authenticated probe path that records uptime samples and evaluates alerting.

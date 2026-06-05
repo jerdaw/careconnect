@@ -28,7 +28,7 @@ export const env = createEnv({
     // Axiom Observability (v18.0 Phase 2)
     AXIOM_TOKEN: z.string().optional(),
     AXIOM_ORG_ID: z.string().optional(),
-    AXIOM_DATASET: z.string().optional().default("kingston-care-production"),
+    AXIOM_DATASET: z.string().optional().default("careconnect-dev"),
     // Slack Integration (v18.0 Phase 2)
     SLACK_WEBHOOK_URL: z.string().url().optional(),
     // Cron Job Authentication (v18.0 Phase 2)

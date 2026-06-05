@@ -76,7 +76,7 @@ export async function ingestEvents(dataset: string, events: Record<string, unkno
  * Send performance metrics to Axiom
  */
 export async function sendPerformanceMetrics(metrics: Record<string, unknown>): Promise<void> {
-  await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
+  await ingestEvents(env.AXIOM_DATASET || "careconnect-dev", [
     {
       _time: new Date().toISOString(),
       type: "performance",
@@ -95,7 +95,7 @@ export async function sendCircuitBreakerEvent(event: {
   successCount: number
   failureRate: number
 }): Promise<void> {
-  await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
+  await ingestEvents(env.AXIOM_DATASET || "careconnect-dev", [
     {
       _time: new Date().toISOString(),
       type: "circuit_breaker",
@@ -109,7 +109,7 @@ export async function sendCircuitBreakerEvent(event: {
  * Send health check result to Axiom
  */
 export async function sendHealthCheck(healthData: Record<string, unknown>): Promise<void> {
-  await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
+  await ingestEvents(env.AXIOM_DATASET || "careconnect-dev", [
     {
       _time: new Date().toISOString(),
       type: "health_check",
@@ -128,7 +128,7 @@ export async function sendApiError(error: {
   errorMessage: string
   userId?: string
 }): Promise<void> {
-  await ingestEvents(env.AXIOM_DATASET || "kingston-care-production", [
+  await ingestEvents(env.AXIOM_DATASET || "careconnect-dev", [
     {
       _time: new Date().toISOString(),
       type: "api_error",

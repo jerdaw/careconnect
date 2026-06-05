@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-04
+last_updated: 2026-06-05
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-06-04
+> **Last Updated**: 2026-06-05
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -19,7 +19,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **DB integration lane**: `npm run db:types` and `npm run test:db` are green as of 2026-04-20 on a Docker-capable machine, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
-- **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, and maintainer-only operational details excluded from public GitHub documentation
+- **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
 - **Production dependency audit**: `npm audit --omit=dev` on 2026-05-03 reports `9` vulnerabilities (`2` moderate, `3` high, `4` critical), including issues in `next`, `@xmldom/xmldom`, `protobufjs`, `postcss`, and `next-intl`
 - **Full audit lane**: `npm audit --audit-level=high` on 2026-05-03 reports `10` vulnerabilities (`2` moderate, `4` high, `4` critical), including the production findings plus `vite`; the GitHub CI audit step remains advisory until remediation is planned and verified
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -266,7 +266,7 @@ References:
 
 ### Recent Completed Milestones
 
-- **Public GitHub cleanup (2026-06-04)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, preserved private originals under ignored private paths, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
+- **Public GitHub cleanup (2026-06-05)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, replaced the real platform contract with a fake-only example, preserved private originals under ignored private paths, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
 - **Public and operational surface polish (2026-05-01)**: completed the bounded reference sources, suggest-service intake, route-reference cleanup, public workflow, static legal/help/trust, settings, and authenticated dashboard/admin polish wave without changing service-data, search, auth, or schema contracts; archived in [2026-05-01 v20.0 Public and Operational Surface Polish](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md).
 - **About page polish (2026-04-30)**: rebuilt `/about` as a calmer trust and context page, removed duplicated homepage-style sections, restored the page-level background wash, aligned hero/source/context/CTA sections on a shared rail, and refined the primary CTA treatment without changing service data or search behavior; archived in [2026-04-30 v20.0 About Page Polish](archive/2026-04-30-v20-0-about-page-polish.md).
 - **Homepage search UX polish (2026-04-29)**: moved filters into the active search/results state, compacted category controls with an accessible "more categories" expansion, restored and refined the service/category/language metrics rail, folded trust-strip content into a clearer `How It Works` flow, tuned desktop/mobile section spacing and footer layout, and refreshed related copy/i18n/test coverage; archived in [2026-04-29 v20.0 Homepage Search UX Polish](archive/2026-04-29-v20-0-homepage-search-ux-polish.md).

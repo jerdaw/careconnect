@@ -40,7 +40,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
-**Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared host access posture, ingress ownership, live inventory, release roots, environment-file locations, and cross-project operations state belong in private/shared operations material, not public GitHub docs. The canonical shared-VPS documentation boundary is `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
+**Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared host access posture, ingress ownership, live inventory, release roots, environment-file locations, and cross-project operations state belong in private/shared operations material, not public GitHub docs. Shared-host documentation ownership and production deployment details are maintained outside this public repository in private maintainer operations notes.
 
 **Cross-project lookup rule:** If anything about shared runtime, environment, release, ingress, or production instructions is unclear, inspect the private/shared operations inventory and runbooks before making changes or giving live instructions. Public docs should remain boundary-safe.
 

@@ -1,6 +1,6 @@
 ---
 status: archived
-last_updated: 2026-06-04
+last_updated: 2026-06-05
 owner: jer
 tags: [planning, archive, public-docs, maintenance, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, archive, public-docs, maintenance, governance]
 
 ## Status
 
-Complete as of 2026-06-04.
+Complete as of 2026-06-05.
 
 ## Scope
 
@@ -19,13 +19,14 @@ Completed work:
 
 1. Replaced public deployment and operations docs with public-safe summaries.
 2. Removed exact deployment commands, private host-path examples, alert-routing examples, and maintainer-only runtime procedures from public prose docs.
-3. Kept `platform-ops-contract.yaml` as the controlled runtime-contract exception that mirrors platform-ops live inventory for shared CI drift checks.
+3. Replaced the public platform contract with `platform-ops-contract.example.yaml`, preserving schema shape with fake values only.
 4. Preserved private originals under ignored private maintainer paths.
 5. Replaced the admissions-focused v21 planning track with a public-interest external-validation backlog.
 6. Softened legal, privacy, accessibility, and compliance wording to avoid unsupported formal-compliance claims.
 7. Kept `AGENTS.md` as the canonical contributor instruction file and verified `CLAUDE.md` and `GEMINI.md` are relative symlinks.
 8. Updated tests and scripts so public docs and release helpers rely on boundary-safe contracts.
 9. Added ADR-022 to make the public documentation boundary explicit.
+10. Follow-up cleanup removed production-like observability dataset defaults from public code/config examples.
 
 ## Verification
 
@@ -43,7 +44,7 @@ Completed local checks:
 10. `npm run check:root`.
 11. `npm test -- --run`.
 12. Targeted docs, alerting, and Slack integration Vitest files.
-13. Shared platform-ops documentation-boundary and runtime-contract sync checks.
+13. Public-boundary scans for exact private paths, real platform-contract filenames, compliance overclaims, and production-like observability placeholders.
 14. `git diff --check`.
 
 Validation limitations:

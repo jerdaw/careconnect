@@ -11,7 +11,9 @@ tags: [documentation, index, public-docs]
 
 This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, and environment-specific production paths are intentionally excluded from public documentation.
 
-Shared VPS documentation ownership is defined in `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
+Shared-host documentation ownership and production deployment details are
+maintained outside this public repository in private maintainer operations
+notes.
 
 ## Quick Links
 
