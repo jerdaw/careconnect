@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Established ADR-022 for the public documentation boundary and sanitized public deployment, observability, operations, planning, legal, and release materials to exclude private runtime details.
 - Updated active contributor docs to treat `AGENTS.md` as canonical with `CLAUDE.md` and `GEMINI.md` as compatibility symlinks
 - Refreshed roadmap language to reflect completed autonomous Gate 0 prep work and current CI free-tier testing posture
 - Approved the C2 retention policy, updated the code-backed retention status to `APPROVED`, and synced Gate 0 trackers so only C1 and D4 remain blocking

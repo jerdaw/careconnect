@@ -13,7 +13,7 @@ describe("Slack Integration", () => {
     resetAllThrottles()
     // Set production environment for tests
     vi.stubEnv("NODE_ENV", "production")
-    vi.stubEnv("SLACK_WEBHOOK_URL", "https://hooks.slack.com/services/TEST/WEBHOOK/URL")
+    vi.stubEnv("SLACK_WEBHOOK_URL", "https://example.com/test-webhook")
   })
 
   afterEach(() => {
@@ -34,7 +34,7 @@ describe("Slack Integration", () => {
 
       expect(result).toBe(true)
       expect(fetch).toHaveBeenCalledWith(
-        "https://hooks.slack.com/services/TEST/WEBHOOK/URL",
+        "https://example.com/test-webhook",
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },

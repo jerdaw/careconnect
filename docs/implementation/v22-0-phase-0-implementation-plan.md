@@ -38,7 +38,7 @@ Completed:
 11. Baseline M1/M3 execution completed (window: 2026-02-10 to 2026-03-09) and recorded in baseline report.
 12. Extended metric sources for M2/M4/M5/M6/M7 are implemented via additive schema, internal APIs, and recompute-to-snapshot flow.
 13. Pilot-scope readiness audit/export tooling is implemented for JSON, Markdown, and CSV outputs without changing `data/services.json`.
-14. Public claim hardening and focused pilot/privacy route coverage are complete for the Tier 0 admissions-support bundle.
+14. Public claim hardening and focused pilot/privacy route coverage are complete for the Tier 0 external-validation support bundle.
 
 Remaining:
 

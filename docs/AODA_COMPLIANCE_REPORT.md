@@ -1,12 +1,12 @@
-# AODA Compliance Report
+# Accessibility Report
 
 ## Accessibility for Ontarians with Disabilities Act (2005)
 
 CareConnect is committed to providing a barrier-free service to people with disabilities. We strive to ensure our platform is accessible to all users, regardless of ability or technology.
 
-### WCAG 2.1 Level AA Compliance
+### WCAG 2.1 Level AA Criteria
 
-As of January 20, 2026, CareConnect aims to meet WCAG 2.1 Level AA standards.
+As of January 20, 2026, CareConnect is designed and tested against WCAG 2.1 Level AA criteria. This report is not a formal certification.
 
 #### Perceivable
 
@@ -36,7 +36,7 @@ As of January 20, 2026, CareConnect aims to meet WCAG 2.1 Level AA standards.
 
 ### Evaluation Methods
 
-We utilized the following methods to ensure compliance:
+We used the following methods to assess accessibility:
 
 1.  **Automated Testing:**
     - `@axe-core/playwright` audits integrated into CI/CD pipelines.

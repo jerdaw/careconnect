@@ -76,7 +76,7 @@ A privacy-first directory of ~196 verified social services: food banks, crisis s
 → Quality Over Quantity: Every service manually verified
 → Works Offline: Progressive Web App technology
 → 7 Languages: EN, FR, ZH, AR, PT, ES, PA
-→ Accessibility-First: WCAG 2.1 AA compliant
+→ Accessibility-First: designed and tested against WCAG 2.1 AA criteria
 → Free Forever: No ads, no paywalls, no gimmicks
 
 🎯 WHO IT'S FOR
@@ -155,7 +155,7 @@ CareConnect (careconnect.ing) is a privacy-first directory designed to help clie
 → Tiered verification system (L1-L3)
 → Offline functionality for clients without stable internet
 → 7-language support for diverse client populations
-→ Accessibility-compliant (WCAG 2.1 AA)
+→ Accessibility-oriented (WCAG 2.1 AA criteria)
 → Crisis-optimized for emergency situations
 
 🎯 USE CASES:

@@ -75,7 +75,7 @@ This roadmap positions CareConnect for:
 - **196 verified services** (169 Kingston + 27 Ontario-wide) with 100% embedding coverage
 - **Privacy-first architecture**: Server-side search, no-store cache headers, no query logging
 - **AI compliance**: Crisis circuit breaker, deterministic results, safety preambles
-- **Legal foundation**: PIPEDA/AODA compliant ToS, Privacy Policy, Accessibility Policy
+- **Legal/privacy foundation**: privacy-conscious ToS, Privacy Policy, and Accessibility Policy informed by Canadian privacy and accessibility principles
 - **7 locales**: EN, FR, AR, ZH-HANS, ES, PA, PT with routing and basic translations
 - **Basic feedback**: Mailto fallback + API endpoint (existing but underutilized)
 - **Partner portal**: Service CRUD, analytics dashboard (partners can manage their listings)

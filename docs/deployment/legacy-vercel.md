@@ -6,14 +6,12 @@
 > only if you intentionally need the old Vercel deployment path. Do not treat
 > it as the long-term production baseline.
 
-Current production work should use the active direct-VPS path documented in:
+Current production work should use private maintainer deployment procedures. Public-safe architecture notes are documented in:
 
 1. [`direct-vps-proof.md`](direct-vps-proof.md)
 2. [`production-checklist.md`](production-checklist.md)
 
-The direct-VPS public cutover completed successfully on 2026-03-11. The app is
-now live at `https://careconnect.ing`, with `www.careconnect.ing` redirecting to
-the apex and the container bound privately at `127.0.0.1:3300`.
+The current managed deployment is maintained outside this public guide.
 
 This document records the older **Vercel** deployment path.
 
@@ -21,7 +19,7 @@ This document records the older **Vercel** deployment path.
 
 - A GitHub account (where this repo is pushed).
 - A Vercel account (if you are intentionally using the legacy deployment path).
-- Your `OPENAI_API_KEY` (Required for the build step).
+- Any optional provider credentials required by the legacy path, stored outside git.
 
 ## 2. Deploy Steps
 

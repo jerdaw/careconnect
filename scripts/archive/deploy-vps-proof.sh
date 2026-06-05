@@ -6,9 +6,22 @@ if [[ $# -ne 1 ]]; then
   exit 1
 fi
 
-env_file="$1"
 app_dir="$(cd "$(dirname "$0")/../.." && pwd)"
-image_name="careconnect-web"
+env_file="$1"
+image_name="${CARECONNECT_IMAGE_NAME:-careconnect-app}"
+container_name="${CARECONNECT_CONTAINER_NAME:-careconnect-app}"
+host_bind="${CARECONNECT_HOST_BIND:-}"
+health_url="${CARECONNECT_HEALTH_URL:-}"
+
+if [[ -z "$host_bind" ]]; then
+  echo "CARECONNECT_HOST_BIND must be set for public-safe deployments (example: 127.0.0.1:3000:3000)" >&2
+  exit 1
+fi
+
+if [[ -z "$health_url" ]]; then
+  echo "CARECONNECT_HEALTH_URL must be set for public-safe deployments" >&2
+  exit 1
+fi
 
 if git_revision="$(git -C "$app_dir" rev-parse --short HEAD 2>/dev/null)"; then
   tag="$git_revision"
@@ -17,9 +30,6 @@ elif [[ -f "$app_dir/REVISION" ]]; then
 else
   tag="$(date -u +%Y%m%d%H%M%S)"
 fi
-
-container_name="careconnect-web"
-host_bind="127.0.0.1:3300:3000"
 
 read_env_value() {
   local key="$1"
@@ -85,12 +95,12 @@ docker run -d \
 
 echo "container=${container_name}"
 echo "image=${image_name}:${tag}"
-echo "health_url=http://127.0.0.1:3300/api/v1/health"
+echo "health_url=${health_url}"
 
 echo "Waiting for container to become healthy..."
 health_ok=false
 for i in 1 2 3 4 5; do
-  if curl -fsS http://127.0.0.1:3300/api/v1/health >/dev/null 2>&1; then
+  if curl -fsS "$health_url" >/dev/null 2>&1; then
     health_ok=true
     break
   fi

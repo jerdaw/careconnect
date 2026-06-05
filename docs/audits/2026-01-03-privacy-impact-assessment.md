@@ -55,18 +55,20 @@ CareConnect (CareConnect) is a community-led social services directory. It provi
 - **UI Disclaimers**: Prominent warnings about AI limitations.
 - **Emergency Interception**: UI detects crisis keywords and shows 911 banner.
 
-## 4. Compliance Assessment
+## 4. Privacy Considerations
+
+This section is a technical/privacy review, not a legal compliance determination.
 
 ### PIPEDA
 
-- **Accountability**: Privacy Officer designated (Project Lead).
-- **Consent**: Implied consent for service use; explicit opt-in for AI.
+- **Accountability**: Maintainer ownership identified.
+- **Consent**: Consent and notice patterns should be reviewed as the project matures.
 - **Limiting Collection**: Minimal data collection policy enforced.
-- **Safeguards**: Encryption in transit (TLS) and at rest (Supabase).
+- **Safeguards**: Encryption in transit and provider-managed storage safeguards where configured.
 
 ### PHIPA (Health Information)
 
-- CareConnect is **not** a Health Information Custodian (HIC).
+- CareConnect is designed as a community resource directory, not as a health information custodian workflow.
 - CareConnect does not purposefully collect PHI.
 - "Zero-Log" policy for search queries prevents incidental collection of sensitive health interests.
 
@@ -77,4 +79,4 @@ CareConnect (CareConnect) is a community-led social services directory. It provi
 3. Conduct annual access review for partner accounts.
 4. Formalize data sharing agreement with 211 Ontario if data synchronization is implemented.
 
-**Approved By**: CareConnect Governance Committee
+**Review Status**: Internal technical assessment; formal legal/privacy review may still be required.

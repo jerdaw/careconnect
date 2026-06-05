@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-05-03
+last_updated: 2026-06-04
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-05-03
+> **Last Updated**: 2026-06-04
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -19,6 +19,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **DB integration lane**: `npm run db:types` and `npm run test:db` are green as of 2026-04-20 on a Docker-capable machine, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
+- **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, and maintainer-only operational details excluded from public GitHub documentation
 - **Production dependency audit**: `npm audit --omit=dev` on 2026-05-03 reports `9` vulnerabilities (`2` moderate, `3` high, `4` critical), including issues in `next`, `@xmldom/xmldom`, `protobufjs`, `postcss`, and `next-intl`
 - **Full audit lane**: `npm audit --audit-level=high` on 2026-05-03 reports `10` vulnerabilities (`2` moderate, `4` high, `4` critical), including the production findings plus `vite`; the GitHub CI audit step remains advisory until remediation is planned and verified
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -50,11 +51,11 @@ tags: [planning, roadmap, v22.0, governance]
 - **Middleware auth resilience**: refreshed Supabase session cookies now survive the locale middleware pass and protected-route redirects
 - **DB-authoritative runtime data**: search/detail loading no longer overlays live DB reads with local JSON metadata when Supabase is available
 - **DB rollout safety**: `npm run backfill:db-runtime-fields` now exists to fill blank runtime/search fields in existing Supabase environments after the JSON-overlay removal without overwriting non-empty live values, and the current production Supabase environment has been backfilled successfully
-- **Deployment**: Live on the direct-VPS path at `https://careconnect.ing`, with `helpbridge.ca` and `www.helpbridge.ca` redirecting to the canonical host
-- **Ops documentation truth**: active incident, rollback, alerting, and launch QA docs now point at the direct-VPS runtime instead of the historical Vercel path
+- **Deployment**: active deployment facts are maintained privately; public docs now describe only high-level release and verification boundaries
+- **Ops documentation truth**: public incident, rollback, alerting, and launch QA docs now omit private host paths, alert channels, and exact live procedures
 - **Feedback retention copy**: privacy copy no longer promises a fixed automatic 90-day feedback deletion timeline that the implementation does not evidence
-- **Deploy contract alignment**: active CareConnect deploy docs now match `platform-ops`; the live VPS frontend deploy path remains `sudo ./scripts/deploy-vps-proof.sh ...` while `/etc/projects-merge/env` is root-only
-- **Branding**: CareConnect rename is complete across this repo, the `jerdaw/careconnect` GitHub repo slug, `platform-ops`, and the live VPS runtime
+- **Deploy documentation boundary**: exact deployment contracts are maintained in private operations material; public docs keep only reproducible local checks and high-level architecture
+- **Branding**: CareConnect rename is complete across this repo and the `jerdaw/careconnect` GitHub repo slug
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
 - **Data quality gaps**:
   - Scope: 0 missing
@@ -79,7 +80,7 @@ The active question is whether the project can prove non-duplicate value relativ
 
 1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
 2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
-3. If pulling forward any admissions backlog work, treat `A3`, `A11`, and `A22` as complete; only `A1` and bounded `A6` / `A16` remain valid near-term Tier 0 execution.
+3. If pulling forward any external-validation backlog work, keep it limited to pilot readiness, safety, or evidence discipline.
 4. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## What Not To Do Now
@@ -87,8 +88,8 @@ The active question is whether the project can prove non-duplicate value relativ
 1. Do not expand directory breadth to compete with 211.
 2. Do not start new pilot-facing features before Gate 0 evidence is accepted.
 3. Do not restart v19 launch execution while v22 remains `NO-GO`.
-4. Do not pull forward Tier 1-4 admissions packaging work before real pilot evidence exists.
-5. Do not pull forward parked enrichment or portfolio work unless it directly supports the active gate.
+4. Do not pull forward public packaging work before real pilot evidence exists.
+5. Do not pull forward parked enrichment or external-validation work unless it directly supports the active gate.
 
 ## Cross-Repo Docs Platform Policy
 
@@ -168,9 +169,9 @@ These items are worth doing only if they do not distract from Gate 0 closure:
 
 1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-3. Watch for future `platform-ops` changes to the shared frontend env-file contract; until then, keep CareConnect deploy docs on the current `sudo`-required path.
+3. Keep public deployment docs boundary-safe; exact shared-runtime contracts belong in private operations material.
 4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-5. From the admissions backlog, only execute the still-open Tier 0 items that strengthen pilot readiness or evidence discipline: `A1` and bounded `A6` / `A16`.
+5. From the external-validation backlog, only execute items that strengthen pilot readiness or evidence discipline.
 6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
 7. Complete authenticated desktop/mobile visual QA for `/dashboard/**` and `/admin/**` once a valid local Supabase environment and signed-in partner/admin session are available. The authenticated-surface implementation is code-complete, but authenticated browser review remains environment-gated because this local workspace currently lacks `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
 8. Resolve the current dependency-audit findings as bounded maintenance: apply non-breaking fixes where available, split breaking remediation for `next-intl` and `@xenova/transformers` into a reviewed plan, and do not merge routine Dependabot major-version workflow PRs while required validation is failing.
@@ -197,15 +198,15 @@ The launch-prep stream is intentionally paused. The repo-local automation is alr
 - [v19.0 User Execution Guide](v19-0-user-execution-guide.md)
 - [v19.0 Phase 1 Execution Handoff (2026-03-09)](../implementation/archive/v19-phase-1-execution-handoff-2026-03-09.md)
 
-### v21.0: Admissions Portfolio & Launch Narrative ⏸️ PARKED
+### v21.0: External Validation ⏸️ PARKED
 
-**Status**: Parked until after v22 Gate 0 / Gate 1 evidence, but fully re-triaged on 2026-04-01
+**Status**: Parked until after v22 Gate 0 / Gate 1 evidence.
 
-This backlog is now explicitly sorted by admissions value under the current v22 constraints. The sequencing rule is:
+This backlog is sorted by public-interest validation value under the current v22 constraints. The sequencing rule is:
 
 1. Close v22 blockers first.
 2. Then create real pilot evidence.
-3. Then package that evidence for admissions and external audiences.
+3. Then publish external-validation artifacts grounded in that evidence.
 
 **Allowed now only if they directly support v22**
 
@@ -231,11 +232,11 @@ This backlog is now explicitly sorted by admissions value under the current v22 
 2. Leadership/collaboration visibility updates.
 3. Presentations, poster/case-study, and other dissemination artifacts.
 
-This work remains strategically useful, but it depends on real operational evidence. Keep it parked until the v22 pilot produces something defensible to package.
+This work remains strategically useful, but it depends on real operational evidence. Keep it parked until the v22 pilot produces something defensible to publish.
 
 Reference:
 
-- [v21.0 Admissions Portfolio Plan](v21-admissions-portfolio-plan.md)
+- [v21.0 External Validation Plan](v21-external-validation-plan.md)
 
 ### v20.0: Testing and Technical Excellence ⏸️ MAINTENANCE MODE
 
@@ -265,17 +266,18 @@ References:
 
 ### Recent Completed Milestones
 
+- **Public GitHub cleanup (2026-06-04)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, preserved private originals under ignored private paths, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
 - **Public and operational surface polish (2026-05-01)**: completed the bounded reference sources, suggest-service intake, route-reference cleanup, public workflow, static legal/help/trust, settings, and authenticated dashboard/admin polish wave without changing service-data, search, auth, or schema contracts; archived in [2026-05-01 v20.0 Public and Operational Surface Polish](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md).
 - **About page polish (2026-04-30)**: rebuilt `/about` as a calmer trust and context page, removed duplicated homepage-style sections, restored the page-level background wash, aligned hero/source/context/CTA sections on a shared rail, and refined the primary CTA treatment without changing service data or search behavior; archived in [2026-04-30 v20.0 About Page Polish](archive/2026-04-30-v20-0-about-page-polish.md).
 - **Homepage search UX polish (2026-04-29)**: moved filters into the active search/results state, compacted category controls with an accessible "more categories" expansion, restored and refined the service/category/language metrics rail, folded trust-strip content into a clearer `How It Works` flow, tuned desktop/mobile section spacing and footer layout, and refreshed related copy/i18n/test coverage; archived in [2026-04-29 v20.0 Homepage Search UX Polish](archive/2026-04-29-v20-0-homepage-search-ux-polish.md).
-- **Gate 0 prep and deploy-contract alignment (2026-04-28)**: added prep-only C1/D4 evidence packets, synchronized Gate 0 tracker wording without closing evidence blockers, aligned active CareConnect deploy/rollback docs with the `platform-ops` sudo-required frontend env-file contract, and archived the pass in [2026-04-28 v22.0 Gate 0 Prep and Deploy Contract Alignment](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md).
-- **Repo audit truth remediation (2026-04-24)**: aligned the active direct-VPS incident/rollback/observability/QA docs with the live runtime, corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
+- **Gate 0 prep and deploy-contract alignment (2026-04-28)**: added prep-only C1/D4 evidence packets, synchronized Gate 0 tracker wording without closing evidence blockers, and archived the pass in [2026-04-28 v22.0 Gate 0 Prep and Deploy Contract Alignment](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md).
+- **Repo audit truth remediation (2026-04-24)**: corrected the public feedback-retention claim to the evidenced implementation, normalized the remaining tool-provenance example in active docs, and archived the completed follow-through in [2026-04-24 v20.0 Repo Audit Truth Remediation](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md).
 - **Quiet GitHub automation and URL health hardening (2026-04-23)**: converted routine GitHub governance workflows to quiet-by-default sticky issue/comment behavior, reconciled duplicate reminder issues, added reusable bot-issue synchronization for scheduled workflows, hardened the monthly URL health lane with official override probes plus Actions summaries, and verified clean auto-close/no-reopen behavior for the broken-URL issue lane; archived in [2026-04-23 v20.0 Quiet GitHub Automation and URL Health Hardening](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md).
 - **Semantic search fail-closed and lint hygiene (2026-04-15)**: removed synthetic semantic-search fallback vectors, made worker/embed failures degrade to keyword-only search, restored authoritative repo-wide linting by excluding local MkDocs output, synced architecture docs, and added focused hook/documentation hygiene coverage; archived in [2026-04-15 v20.0 Semantic Search Fail-Closed and Lint Hygiene](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md).
 - **Gate 0 wait maintenance bundle (2026-04-05)**: completed search explainability, stale-data runtime governance, workflow-runtime doc alignment, and solo-scale freshness-policy calibration while Gate 0 remained blocked; archived in [2026-04-05 v22.0 Gate 0 Wait Maintenance Bundle](archive/2026-04-05-v22-0-gate-0-wait-maintenance-bundle.md).
 - **Map privacy and offline snapshot safety surfaces (2026-04-04)**: replaced automatic Google Maps embeds with explicit opt-in previews, surfaced offline snapshot age/stale warnings on offline surfaces, updated threat-model/user-guide/architecture docs, and added focused UI/helper coverage; archived in [2026-04-04 v22.0 Map Privacy and Offline Snapshot Safety](archive/2026-04-04-v22-0-map-privacy-and-offline-snapshot-safety.md).
-- **Tier 0 admissions-support hardening (2026-04-01)**: completed A3 pilot metric instrumentation, A11 public-claim hardening, A22 focused pilot/privacy test coverage, and bounded A6/A16 readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
-- **CareConnect production cutover and repo finalization (2026-04-03)**: completed the live `careconnect.ing` VPS cutover, legacy HelpBridge-domain redirects, GitHub repo rename to `jerdaw/careconnect`, and post-cutover observability-noise cleanup; archived in [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md).
+- **Tier 0 external-validation support hardening (2026-04-01)**: completed pilot metric instrumentation, public-claim hardening, focused pilot/privacy test coverage, and bounded readiness-audit tooling; archived in [2026-04-01 v22.0 Pilot Metric Instrumentation and Tier 0 Hardening](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md).
+- **CareConnect repo finalization (2026-04-03)**: completed the GitHub repo rename to `jerdaw/careconnect` and related public documentation cleanup; archived in [CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md).
 - **C2 retention control closure (2026-03-29)**: approved retention policy, captured privacy sign-off, attached dated read-only verification evidence, and moved `G0-4` to `pass`.
 - **Workflow/runtime cleanup and 211 sync quarantine (2026-04-01)**: upgraded the remaining Node-runtime-sensitive GitHub Actions, replaced archived release creation with `gh`, removed placeholder 211 sync records, and restricted the 211 sync path to explicit manual execution only.
 - **Audit remediation hardening (2026-03-30)**: enforced org-scoped service creation, removed fabricated provenance, fixed Slack/runbook links and dashboard CSV parsing, added focused runtime coverage, repaired noisy scheduled workflows, and reduced the localized home-route first-load JS to `315 kB`.
@@ -298,6 +300,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [Public GitHub Cleanup Archive](archive/2026-06-04-public-github-cleanup.md)
 - [v20.0 Public and Operational Surface Polish Archive](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md)
 - [v20.0 About Page Polish Archive](archive/2026-04-30-v20-0-about-page-polish.md)
 - [v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)
@@ -326,7 +329,7 @@ Update this roadmap when any of the following happen:
 2. Gate 0 moves from `NO-GO` to `GO`, or is re-affirmed as `NO-GO`.
 3. v19 resumes or is explicitly deferred further.
 4. A major data-quality, testing, or deployment baseline changes.
-5. v21 tier sequencing changes or a new admissions evidence artifact materially changes what is worth prioritizing.
+5. v21 tier sequencing changes or a new external-validation evidence artifact materially changes what is worth prioritizing.
 6. A new strategic version becomes active.
 
 ## Operating Rule

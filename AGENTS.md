@@ -7,7 +7,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 1. **Data integrity over speed** – Service data is manually curated and verified. Never auto-generate or fabricate service information.
 2. **Privacy by design** – Search queries stay on-device by default. No tracking, no logging of user searches.
 3. **Accessibility first** – WCAG 2.1 AA compliance. Every feature must work with keyboard navigation and screen readers.
-4. **Verify before modifying** – Read existing code and understand patterns before making changes. If the task touches shared VPS/runtime/env/release contracts, inspect `/home/jer/repos/vps/platform-ops` first instead of assuming this repo is the full source of truth.
+4. **Verify before modifying** – Read existing code and understand patterns before making changes. If the task touches shared runtime, environment, release, or operations contracts, inspect the private/shared operations source of truth first instead of assuming this repo is complete.
 5. **Execute when safe** – If a command or check is reasonably, reliably, safely, and securely executable from the current environment without exposing secrets or violating privacy, prefer running it yourself before asking the user to do it.
 
 ---
@@ -35,20 +35,14 @@ You are a **governance-aware developer** working on a privacy-first social servi
 - `docs/architecture.md` → System design and data flow
 - `docs/llms.txt` → Consolidated context for AI agents (generated via `npx tsx scripts/generate-llms-txt.ts`; may be absent locally until generated)
 - `docs/api/openapi.yaml` → OpenAPI 3.0 specification
-- `/home/jer/repos/vps/platform-ops` → Shared VPS inventory, roadmap, handoff, and cross-project runbooks
-- `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md` → Canonical shared-VPS documentation boundary
+- Private/shared operations inventory → shared runtime, release, and cross-project runbook details
+- Public deployment docs → high-level architecture and local verification only
 
 When in doubt, **read `README.md` and `docs/**` first\*\*.
 
-**Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared VPS standards, live service inventory, shared ingress ownership, shared host access posture, and cross-project migration/operations state belong in `/home/jer/repos/vps/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`). Use `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md` as the default ownership rule. Host-side paths under `/etc/projects-merge/...` remain intentionally unchanged.
+**Cross-project ops note:** CareConnect app behavior belongs in this repo. Shared host access posture, ingress ownership, live inventory, release roots, environment-file locations, and cross-project operations state belong in private/shared operations material, not public GitHub docs. The canonical shared-VPS documentation boundary is `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
 
-**Cross-project lookup rule:** If anything about a shared host path, env file, runtime name, release root, VPS deploy helper, ingress contract, or other `/etc/projects-merge/...` or `/srv/apps/...` behavior is unclear, inspect `/home/jer/repos/vps/platform-ops/inventory/services.yaml` plus the relevant runbook/handoff in `/home/jer/repos/vps/platform-ops/docs/**` before making changes or giving production instructions.
-Shared-touching live runtime facts for the live web service now also live in the
-repo-root `platform-ops-contract.yaml`. When changing the live canonical host,
-private bind, env-file path, release root, runtime owner, or shared health
-endpoint contract, update that manifest and the matching
-`/home/jer/repos/vps/platform-ops` inventory/current-state surfaces in the same
-change window.
+**Cross-project lookup rule:** If anything about shared runtime, environment, release, ingress, or production instructions is unclear, inspect the private/shared operations inventory and runbooks before making changes or giving live instructions. Public docs should remain boundary-safe.
 
 ---
 
@@ -305,14 +299,14 @@ await withCircuitBreaker(async () => supabase.from("services").insert(newService
 
 **Production Observability & Alerting** (v18.0+):
 
-Proactive monitoring and alerting system for production incidents.
+Aggregate monitoring and optional alerting system for production incidents. Public docs must not include webhook URLs, alert-channel names, provider credentials, or private dashboard links.
 
 **Core Components:**
 
-- `lib/integrations/slack.ts` - Slack webhook integration for alerts
+- `lib/integrations/slack.ts` - Optional alert delivery integration
 - `lib/observability/alert-throttle.ts` - Alert rate limiting (10min throttle window)
-- `lib/observability/axiom.ts` - Persistent metrics storage (Axiom integration)
-- `lib/resilience/telemetry.ts` - Circuit breaker event telemetry with Slack alerts
+- `lib/observability/axiom.ts` - Optional persistent metrics storage integration
+- `lib/resilience/telemetry.ts` - Circuit breaker event telemetry
 
 **Alert Types:**
 
@@ -330,7 +324,7 @@ Service Level Objectives (SLOs) track service reliability targets:
 - **Configuration:** `lib/config/slo-targets.ts` (PROVISIONAL targets)
 - **Tracker:** `lib/observability/slo-tracker.ts` (in-memory 30-day window)
 - **Dashboard:** `/admin/observability` (SLO Compliance Card)
-- **Alerts:** Integrated with Slack alerting via `lib/integrations/slack.ts`
+- **Alerts:** Integrated through optional alert delivery hooks
 
 **SLO Targets (PROVISIONAL - Review Required):**
 
@@ -354,7 +348,7 @@ Service Level Objectives (SLOs) track service reliability targets:
 - Uptime tracked via `/api/v1/health` endpoint (records success/failure)
 - Error budget calculated from uptime vs. target
 - Latency measured via performance metrics
-- Violations trigger Slack alerts (throttled)
+- Violations may trigger configured alerts (throttled)
 
 **Important Notes:**
 
@@ -371,14 +365,9 @@ Service Level Objectives (SLOs) track service reliability targets:
 - `docs/runbooks/slo-violation.md` - Incident response procedures
 - `docs/planning/v18-0-phase-3-slo-decision-guide.md` - Decision guide
 
-**Required Environment Variables:**
+**Environment Variables:**
 
-```bash
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T.../B.../XXX
-AXIOM_TOKEN=xait-your-api-token
-AXIOM_ORG_ID=your-organization-id
-AXIOM_DATASET=kingston-care-production
-```
+Use `.env.example` for supported variable names. Store live values outside git in ignored environment files, a password manager, or an approved secret store.
 
 **Operational Runbooks:**
 

@@ -14,7 +14,7 @@ Use with:
 
 1. [v22.0 Phase 0 Implementation Plan](../v22-0-phase-0-implementation-plan.md)
 2. [v22.0 Gate 0 Evidence Sync Runbook](../v22-0-gate-0-evidence-sync-runbook.md)
-3. [v21.0 Admissions Portfolio Plan](../../planning/v21-admissions-portfolio-plan.md)
+3. [v21.0 External Validation Plan](../../planning/v21-external-validation-plan.md)
 
 Rules:
 

@@ -15,11 +15,11 @@ The AI Advisory Board (the "Board") is a volunteer body established to provide e
 
 The Board shall consist of at least three (3) volunteer members representing the following expertise:
 
-| Role                        | Responsibility                                                                                                             |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| **Clinical Lead**           | Social worker or health professional. Reviews for "Unauthorized Practice of Medicine" risks and clinical accuracy.         |
-| **Legal/Ethics Lead**       | Lawyer or paralegal. Reviews compliance with PIPEDA, PHIPA, and common law negligence standards (_Moffatt v. Air Canada_). |
-| **User/Community Advocate** | Kingston resident or community organizer. Ensures the AI remains accessible (AODA) and culturally sensitive.               |
+| Role                        | Responsibility                                                                                                                   |
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| **Clinical Lead**           | Social worker or health professional. Reviews for "Unauthorized Practice of Medicine" risks and clinical accuracy.               |
+| **Legal/Ethics Lead**       | Lawyer or paralegal. Reviews privacy, safety, and liability risks informed by Canadian privacy principles and relevant case law. |
+| **User/Community Advocate** | Kingston resident or community organizer. Ensures the AI remains accessible (AODA) and culturally sensitive.                     |
 
 ## 3. Scope of Review
 

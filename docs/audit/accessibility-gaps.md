@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-The automated accessibility audit has been completed with **all critical violations resolved**. The application now achieves **WCAG 2.1 Level AA compliance** across all tested routes.
+The automated accessibility audit has been completed with **all critical violations resolved** across the tested routes. The application is designed and tested against WCAG 2.1 Level AA criteria, but this report is not a formal certification.
 
 ## Detailed Findings
 
@@ -39,7 +39,7 @@ All phases of the v17.3 Accessibility Roadmap have been completed:
 - **Developer Guide**: `docs/ACCESSIBILITY_GUIDE.md` - Comprehensive accessibility best practices
 - **Image Audit Script**: `scripts/audit-images.ts` - Automated alt text verification
 - **Keyboard Navigation Guide**: `docs/KEYBOARD_NAVIGATION.md` - User and developer reference
-- **AODA Report**: `docs/AODA_COMPLIANCE_REPORT.md` - Formal compliance documentation
+- **Accessibility Report**: `docs/AODA_COMPLIANCE_REPORT.md` - Accessibility documentation
 - **Public Statement**: `/en/accessibility` - User-facing accessibility commitment
 - **Screen Reader Checklist**: `docs/audit/screen-reader-testing.md` - Manual testing guide
 
@@ -56,6 +56,6 @@ The following tools ensure continued compliance:
 
 ## Conclusion
 
-The CareConnect platform has achieved **full WCAG 2.1 Level AA compliance** with comprehensive automated and manual testing. All identified gaps have been addressed, and ongoing enforcement mechanisms are in place.
+The tested CareConnect routes currently pass the documented automated accessibility checks, and ongoing enforcement mechanisms are in place.
 
 **Status:** ✅ **PRODUCTION READY**

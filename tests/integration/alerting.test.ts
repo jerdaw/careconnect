@@ -10,7 +10,7 @@ describe("Alerting Integration", () => {
     vi.clearAllMocks()
     resetAllThrottles()
     vi.stubEnv("NODE_ENV", "production")
-    vi.stubEnv("SLACK_WEBHOOK_URL", "https://hooks.slack.com/services/TEST/WEBHOOK")
+    vi.stubEnv("SLACK_WEBHOOK_URL", "https://example.com/test-webhook")
   })
 
   afterEach(() => {
@@ -52,7 +52,7 @@ describe("Alerting Integration", () => {
       expect(calls.length).toBeGreaterThan(0)
 
       // Find the Slack webhook call
-      const slackCall = calls.find((call) => call[0]?.toString().includes("hooks.slack.com"))
+      const slackCall = calls.find((call) => call[0]?.toString().includes("example.com/test-webhook"))
 
       expect(slackCall).toBeDefined()
 
@@ -105,7 +105,9 @@ describe("Alerting Integration", () => {
       await new Promise((resolve) => setTimeout(resolve, 100))
 
       // Second alert should be throttled (no new Slack calls)
-      const slackCalls = vi.mocked(fetch).mock.calls.filter((call) => call[0]?.toString().includes("hooks.slack.com"))
+      const slackCalls = vi
+        .mocked(fetch)
+        .mock.calls.filter((call) => call[0]?.toString().includes("example.com/test-webhook"))
       expect(slackCalls.length).toBe(0) // Throttled
     })
 
@@ -145,7 +147,9 @@ describe("Alerting Integration", () => {
       await new Promise((resolve) => setTimeout(resolve, 100))
 
       // Check if recovery alert was sent (may be throttled)
-      const slackCalls = vi.mocked(fetch).mock.calls.filter((call) => call[0]?.toString().includes("hooks.slack.com"))
+      const slackCalls = vi
+        .mocked(fetch)
+        .mock.calls.filter((call) => call[0]?.toString().includes("example.com/test-webhook"))
 
       // Recovery alert should be sent (if not throttled)
       if (slackCalls.length > 0 && slackCalls[0] && slackCalls[0][1]?.body) {
