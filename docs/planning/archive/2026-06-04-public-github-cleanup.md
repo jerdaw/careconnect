@@ -20,13 +20,14 @@ Completed work:
 1. Replaced public deployment and operations docs with public-safe summaries.
 2. Removed exact deployment commands, private host-path examples, alert-routing examples, and maintainer-only runtime procedures from public prose docs.
 3. Replaced the public platform contract with `platform-ops-contract.example.yaml`, preserving schema shape with fake values only.
-4. Preserved private originals under ignored private maintainer paths.
-5. Replaced the admissions-focused v21 planning track with a public-interest external-validation backlog.
-6. Softened legal, privacy, accessibility, and compliance wording to avoid unsupported formal-compliance claims.
-7. Kept `AGENTS.md` as the canonical contributor instruction file and verified `CLAUDE.md` and `GEMINI.md` are relative symlinks.
-8. Updated tests and scripts so public docs and release helpers rely on boundary-safe contracts.
-9. Added ADR-022 to make the public documentation boundary explicit.
-10. Follow-up cleanup removed production-like observability dataset defaults from public code/config examples.
+4. Added a sanitized `platform-ops-contract.yaml` tombstone at the legacy path so stale raw/CDN requests receive harmless example content.
+5. Preserved private originals under ignored private maintainer paths.
+6. Replaced the admissions-focused v21 planning track with a public-interest external-validation backlog.
+7. Softened legal, privacy, accessibility, and compliance wording to avoid unsupported formal-compliance claims.
+8. Kept `AGENTS.md` as the canonical contributor instruction file and verified `CLAUDE.md` and `GEMINI.md` are relative symlinks.
+9. Updated tests and scripts so public docs and release helpers rely on boundary-safe contracts.
+10. Added ADR-022 to make the public documentation boundary explicit.
+11. Follow-up cleanup removed production-like observability dataset defaults from public code/config examples.
 
 ## Verification
 

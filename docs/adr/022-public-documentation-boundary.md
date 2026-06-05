@@ -17,7 +17,7 @@ The repository previously mixed public project documentation with environment-sp
 
 - Keep public docs useful for development, architecture review, and governance review.
 - Avoid publishing deployment coordinates, private operations notes, provider routing details, or maintainer-only runtime procedures in prose docs.
-- Preserve only schema-shape examples in public platform-contract files.
+- Preserve only schema-shape examples and stale-link tombstones in public platform-contract files.
 - Preserve private maintainer context without committing plaintext private notes.
 - Keep authorship and contributor references human-owned, with no AI tool attribution in docs, commits, or release material.
 - Keep service-data integrity rules intact: AI-assisted material may inform drafts or enrichment workflows, but public service information requires manual curation and verification.
@@ -38,7 +38,7 @@ CareConnect public documentation now follows this boundary:
 1. Public docs describe architecture, local development, high-level release principles, privacy posture, testing posture, and governance process.
 2. Public boundary entrypoints may state that shared-host documentation ownership and production deployment details are maintained outside this public repository.
 3. Exact production host paths, live bind details, alert routing, credentials, private deployment procedures, and maintainer-only operational runbooks stay out of public prose docs.
-4. The repo-root `platform-ops-contract.example.yaml` file preserves schema shape only and must use fake/example values.
+4. The repo-root `platform-ops-contract.example.yaml` file and legacy-path `platform-ops-contract.yaml` tombstone preserve schema shape only and must use fake/example values.
 5. Private plaintext notes belong under ignored private paths, or in a separately governed private operations repository.
 6. Public release and deployment scripts must use explicit environment variables for environment-specific runtime facts instead of hardcoded private paths.
 7. `AGENTS.md` remains the canonical contributor instruction file, with `CLAUDE.md` and `GEMINI.md` kept as relative symlinks for compatibility.
@@ -63,6 +63,7 @@ CareConnect public documentation now follows this boundary:
 - Public docs were rewritten to remove private deployment coordinates, alert routing examples, and over-specific operational paths.
 - Private originals were preserved under ignored private maintainer paths.
 - `.gitignore` now blocks plaintext private notes under `private/`.
+- A sanitized `platform-ops-contract.yaml` tombstone remains at the legacy path so stale branch-based raw/CDN requests receive harmless example content.
 - Documentation hygiene tests now assert the public boundary while allowing only example platform-contract values in public Git.
 
 ## Related Decisions
