@@ -38,15 +38,20 @@ describe("documentation hygiene", () => {
   it("keeps deployment details behind the public documentation boundary", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
     const readme = readDoc("README.md")
-    const contract = readDoc("platform-ops-contract.example.yaml")
+    const contracts = [
+      readDoc("platform-ops-contract.yaml"),
+      readDoc("platform-ops-contract.example.yaml"),
+    ]
 
     expect(readme).toContain("Public Documentation Boundary")
     expect(roadmap).toContain("active deployment facts are maintained privately")
-    expect(contract).toContain("careconnect-example")
-    expect(contract).toContain("example.org")
-    expect(contract).not.toContain("careconnect.ing")
+    for (const contract of contracts) {
+      expect(contract).toContain("careconnect-example")
+      expect(contract).toContain("example.org")
+      expect(contract).not.toContain("careconnect" + ".ing")
+      expect(contract).not.toMatch(privateBoundaryPathPattern)
+    }
     expect(readme).not.toMatch(privateBoundaryPathPattern)
-    expect(contract).not.toMatch(privateBoundaryPathPattern)
     expect(roadmap).not.toContain("Pre-production (not deployed")
   })
 
