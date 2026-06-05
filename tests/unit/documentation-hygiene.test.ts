@@ -38,10 +38,7 @@ describe("documentation hygiene", () => {
   it("keeps deployment details behind the public documentation boundary", () => {
     const roadmap = readDoc("docs/planning/roadmap.md")
     const readme = readDoc("README.md")
-    const contracts = [
-      readDoc("platform-ops-contract.yaml"),
-      readDoc("platform-ops-contract.example.yaml"),
-    ]
+    const contracts = [readDoc("platform-ops-contract.yaml"), readDoc("platform-ops-contract.example.yaml")]
 
     expect(readme).toContain("Public Documentation Boundary")
     expect(roadmap).toContain("active deployment facts are maintained privately")
