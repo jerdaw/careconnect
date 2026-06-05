@@ -169,8 +169,8 @@ Special handling for crisis queries:
 - **Framework**: Next.js 15 (React)
 - **Database**: Supabase (PostgreSQL + pgvector)
 - **Search**: Hybrid keyword + semantic vector search
-- **Hosting**: Direct VPS deployment using Docker and Caddy
-- **Monitoring**: Axiom (observability), Slack (alerts)
+- **Hosting**: Docker-based web deployment managed by maintainers
+- **Monitoring**: Privacy-conscious aggregate service-health monitoring
 
 ---
 
@@ -214,7 +214,7 @@ Special handling for crisis queries:
 - **Categories**: 15+ service categories
 - **Languages**: 7 languages supported
 - **Accessibility**: Automated accessibility checks are in place; manual verification remains ongoing
-- **Uptime Target**: 99.5% (with automated monitoring configured)
+- **Reliability Target**: provisional uptime and latency targets used for maintainer review
 - **Response Goal**: fast search results on common paths
 
 ### Current Evaluation Priorities
@@ -264,7 +264,7 @@ Services in CareConnect are verified at four levels:
 ## Current Rollout Status
 
 - CareConnect is currently operating as a live public pilot.
-- Deployment, monitoring, and rollback procedures are documented.
+- Deployment, monitoring, and rollback procedures are documented privately for maintainers.
 - Broader launch and partnership activity remain gated by pilot evidence and governance review.
 
 ---
@@ -279,7 +279,7 @@ Services in CareConnect are verified at four levels:
 
 **Accessibility Always**: Keyboard navigation and screen reader support aren't afterthoughts—they're requirements.
 
-**Manual Curation**: AI-generated content is never used for service information. Service publication depends on manual curation and verification workflows.
+**Manual Curation**: AI-assisted suggestions are never published as authoritative service information without manual curation and verification workflows.
 
 ### Technology Choices
 
@@ -287,7 +287,7 @@ We chose:
 
 - **Next.js**: For best-in-class performance and SEO
 - **Supabase**: For open-source database with built-in security
-- **Direct VPS deployment**: For current runtime control and deployment verification
+- **Managed deployment**: For current runtime control and release verification
 - **Progressive Web App**: For offline functionality without app store gatekeepers
 
 We avoided:

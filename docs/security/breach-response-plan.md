@@ -12,7 +12,7 @@ tags: [security, incident-response, playbook]
 
 ## 1. Purpose
 
-To mitigate the impact of any security incident involving personal data (Partners) or analytics data, and to comply with PIPEDA mandatory breach reporting requirements.
+To mitigate the impact of any security incident involving partner data or aggregate analytics data, and to support privacy/legal review under applicable Canadian privacy obligations.
 
 ## 2. Breach Definition
 
@@ -35,7 +35,7 @@ _Examples: SQL injection accessing partner emails, accidentally publishing the u
 
 ### Phase 2: Classification (24-48 Hours)
 
-Determine "Real Risk of Significant Harm" (RROSH) as per PIPEDA.
+Assess whether there may be a real risk of significant harm and escalate for privacy/legal review before making formal determinations.
 
 - **Sensitive Data?** (Passwords, Health Info?) -> **High Risk**
 - **Public Data?** (Public business emails) -> **Low Risk**

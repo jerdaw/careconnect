@@ -1,21 +1,30 @@
+---
+status: stable
+last_updated: 2026-06-04
+owner: jer
+tags: [documentation, index, public-docs]
+---
+
 # Documentation Index
 
-Shared VPS facts that are not specific to CareConnect alone are canonical in:
+## Public Documentation Boundary
 
-- `/home/jer/repos/vps/platform-ops`
-- `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`
+This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, and environment-specific production paths are intentionally excluded from public documentation.
+
+Shared VPS documentation ownership is defined in `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
 
 ## Quick Links
 
 - [Architecture](architecture.md) - System design, data flow, and core concepts
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
-- [Direct VPS Deployment](deployment/direct-vps-proof.md) - Current production runtime shape
-- [Production Deployment Checklist](deployment/production-checklist.md) - Current deploy, verify, and rollback checklist
-- [Incident Response Plan](operations/incident-response-plan.md) - Active production incident workflow
+- [Deployment Boundary](deployment/direct-vps-proof.md) - Public deployment architecture notes
+- [Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md) - Decision record for public/private documentation split
+- [Release Checklist](deployment/production-checklist.md) - Public-safe release verification checklist
+- [Incident Response Overview](operations/incident-response-plan.md) - Public incident-response principles
 - [Admin Operations Guide](operations/admin-operations-guide.md) - Current admin and partner ops surfaces
-- [Database Migration and Rollback Guide](operations/database-migration-and-rollback.md) - DB change execution and recovery
-- [International Privacy and Compliance Notes](legal/international-privacy-compliance-notes.md) - Current privacy posture and boundaries
+- [Database Change Safety](operations/database-migration-and-rollback.md) - Public DB change principles
+- [International Privacy Notes](legal/international-privacy-compliance-notes.md) - Current privacy posture and boundaries
 
 ## Directories
 
@@ -23,15 +32,15 @@ Shared VPS facts that are not specific to CareConnect alone are canonical in:
 | ------------------------------------ | ------------------------------------------------------------------- |
 | [`adr/`](adr/)                       | Architecture Decision Records                                       |
 | [`api/`](api/)                       | API reference and OpenAPI spec                                      |
-| [`audits/`](audits/)                 | Compliance audits (EDIA, Privacy)                                   |
+| [`audits/`](audits/)                 | Privacy, accessibility, and governance review notes                 |
 | [`community/`](community/)           | Acknowledgments and community docs                                  |
 | [`development/`](development/)       | Developer guides (testing, i18n, hooks, components)                 |
-| [`deployment/`](deployment/)         | Active and legacy deployment runbooks                               |
+| [`deployment/`](deployment/)         | Public deployment architecture notes and local release checks       |
 | [`governance/`](governance/)         | Standards, verification protocols, documentation guidelines         |
 | [`implementation/`](implementation/) | Active implementation records, control docs, and execution evidence |
-| [`legal/`](legal/)                   | AI compliance, data licenses, insurance research                    |
+| [`legal/`](legal/)                   | AI/privacy risk notes, data licenses, and boundary statements       |
 | [`planning/`](planning/)             | Roadmap, version planning, and archived versions                    |
-| [`runbooks/`](runbooks/)             | Operational procedures                                              |
+| [`runbooks/`](runbooks/)             | Public troubleshooting summaries                                    |
 | [`security/`](security/)             | Database security and breach response                               |
 | [`templates/`](templates/)           | Standard document templates (ADR, guides, plans)                    |
 | [`whitepapers/`](whitepapers/)       | Privacy architecture and research papers                            |
@@ -53,7 +62,7 @@ Shared VPS facts that are not specific to CareConnect alone are canonical in:
 ## Audits
 
 - [EDIA Audit](audits/2025-12-29-EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
-- [Privacy Audit](audits/2025-12-29-privacy-technical-audit.md) - Privacy compliance
+- [Privacy Audit](audits/2025-12-29-privacy-technical-audit.md) - Privacy architecture review
 
 ## Planning & Roadmaps
 

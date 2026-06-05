@@ -1,3 +1,10 @@
+---
+status: stable
+last_updated: 2026-06-04
+owner: jer
+tags: [planning, roadmap, governance, public-docs]
+---
+
 # Planning Documents
 
 This directory contains planning and strategy documents for CareConnect.
@@ -25,6 +32,10 @@ This directory contains planning and strategy documents for CareConnect.
 
 ### Detailed Documentation (Optional)
 
+- [Public GitHub Cleanup Archive (2026-06-04)](archive/2026-06-04-public-github-cleanup.md)
+  - Completed public documentation boundary cleanup, private-note preservation, ADR-022 creation, and boundary-safe script/test updates
+  - **Reading time:** 5 minutes
+
 - [v20.0 Public and Operational Surface Polish Archive (2026-05-01)](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md)
   - Completed reference sources, suggest-service intake, settings, public workflow, static legal/help/trust, and authenticated operational surface polish
   - **Reading time:** 5 minutes
@@ -45,63 +56,58 @@ This directory contains planning and strategy documents for CareConnect.
   - Completed autonomous maintenance pass for prep-only Gate 0 evidence packets, deploy-contract alignment, and validation
   - **Reading time:** 5 minutes
 
-3. **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
-   - Canonical sign-off record for Gate 0 decisions
-   - **Reading time:** 10 minutes
+- **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
+  - Canonical sign-off record for Gate 0 decisions
+  - **Reading time:** 10 minutes
 
-4. **[v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)**
-   - Technical execution spec for pilot instrumentation and governance evidence
-   - **Reading time:** 20-30 minutes
+- **[v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)**
+  - Technical execution spec for pilot instrumentation and governance evidence
+  - **Reading time:** 20-30 minutes
 
-5. **[CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)**
-   - Historical record of the completed repo + runtime rename
-   - **Reading time:** 5 minutes
+- **[CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)**
+  - Historical record of the completed repo + runtime rename
+  - **Reading time:** 5 minutes
 
-6. **[v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)**
-   - Historical record of the completed real DB integration test lane and the remaining migration-history follow-up
-   - **Reading time:** 5 minutes
+- **[v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)**
+  - Historical record of the completed real DB integration test lane and the remaining migration-history follow-up
+  - **Reading time:** 5 minutes
 
-7. **[v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)**
-   - Historical record of the completed repo-maintenance batch: typed service writes, dashboard action extraction, search typing cleanup, script/reference hygiene, and dependency cleanup
-   - **Reading time:** 5-10 minutes
+- **[v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)**
+  - Historical record of the completed repo-maintenance batch: typed service writes, dashboard action extraction, search typing cleanup, script/reference hygiene, and dependency cleanup
+  - **Reading time:** 5-10 minutes
 
-8. **[v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)**
-   - Historical record of the completed audit-driven hardening wave: privacy/governance fixes, org-scoped service creation, CSV import repair, lazy AI/search loading, and workflow cleanup
-   - **Reading time:** 5-10 minutes
+- **[v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)**
+  - Historical record of the completed audit-driven hardening wave: privacy/governance fixes, org-scoped service creation, CSV import repair, lazy AI/search loading, and workflow cleanup
+  - **Reading time:** 5-10 minutes
 
-9. **[v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)**
-   - Historical record of the completed maintenance wave that quarantined the experimental 211 sync path and closed the remaining GitHub Actions runtime follow-up
-   - **Reading time:** 5 minutes
+- **[v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)**
+  - Historical record of the completed maintenance wave that quarantined the experimental 211 sync path and closed the remaining GitHub Actions runtime follow-up
+  - **Reading time:** 5 minutes
 
-10. **[v21.0 Admissions Portfolio & External Validation Plan](v21-admissions-portfolio-plan.md)**
+- **[v21.0 External Validation Plan](v21-external-validation-plan.md)**
+  - Public-interest external-validation backlog, ordered by current strategic value
+  - Read this only after the main roadmap so the v22 gate-first constraints stay clear
+  - **Reading time:** 10-15 minutes
 
-- Fully triaged admissions / external-validation backlog, ordered by current strategic value
-- Read this only after the main roadmap so the v22 gate-first constraints stay clear
-- **Reading time:** 10-15 minutes
+- **[v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)**
+  - Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
+  - Use this when you need a concise historical record of what landed on 2026-04-01
+  - **Reading time:** 5-10 minutes
 
-11. **[v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)**
+- **[v20.0 Semantic Search Fail-Closed and Lint Hygiene Archive](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md)**
+  - Completed closeout for the semantic worker fail-closed hardening, lint-boundary cleanup, and related docs/test updates
+  - Use this when you need the historical record for the 2026-04-15 maintenance pass
+  - **Reading time:** 5 minutes
 
-- Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
-- Use this when you need a concise historical record of what landed on 2026-04-01
-- **Reading time:** 5-10 minutes
+- **[v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)**
+  - Completed closeout for the quiet-by-default GitHub automation rollout, bot-issue reconciliation, and URL-health false-positive hardening
+  - Use this when you need the historical record for the 2026-04-23 maintenance pass
+  - **Reading time:** 5 minutes
 
-12. **[v20.0 Semantic Search Fail-Closed and Lint Hygiene Archive](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md)**
-
-- Completed closeout for the semantic worker fail-closed hardening, lint-boundary cleanup, and related docs/test updates
-- Use this when you need the historical record for the 2026-04-15 maintenance pass
-- **Reading time:** 5 minutes
-
-13. **[v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)**
-
-- Completed closeout for the quiet-by-default GitHub automation rollout, bot-issue reconciliation, and URL-health false-positive hardening
-- Use this when you need the historical record for the 2026-04-23 maintenance pass
-- **Reading time:** 5 minutes
-
-14. **[v20.0 Repo Audit Truth Remediation Archive](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)**
-
-- Completed closeout for the 2026-04-23 audit findings after the direct-VPS docs/privacy/planning reconciliation pass
-- Use this when you need the historical record for the 2026-04-24 maintenance pass
-- **Reading time:** 5 minutes
+- **[v20.0 Repo Audit Truth Remediation Archive](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)**
+  - Completed closeout for the 2026-04-23 audit findings after the direct-VPS docs/privacy/planning reconciliation pass
+  - Use this when you need the historical record for the 2026-04-24 maintenance pass
+  - **Reading time:** 5 minutes
 
 ---
 
@@ -112,13 +118,14 @@ docs/planning/
 ├── README.md ← You are here
 ├── roadmap.md (main roadmap, updated for v22.0)
 ├── archive/ (completed version plans)
+├── archive/2026-06-04-public-github-cleanup.md
 ├── archive/2026-05-01-v20-0-public-and-operational-surface-polish.md
 ├── archive/2026-04-30-v20-0-about-page-polish.md
 ├── archive/2026-04-29-v20-0-homepage-search-ux-polish.md
 ├── archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md
 ├── archive/2026-04-24-v20-0-repo-audit-truth-remediation.md
 ├── archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md
-├── v21-admissions-portfolio-plan.md
+├── v21-external-validation-plan.md
 ├── archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md
 ├── archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md
 ├── v22-0-non-duplicate-value-decision-plan.md
@@ -198,9 +205,9 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
 - **2026-03-30:** Added the v20.0 runtime hardening and performance remediation archive and refreshed roadmap baseline metrics after the audit-driven maintenance wave
 - **2026-04-01:** Added the v20.0 workflow runtime cleanup and 211 sync quarantine archive after closing the remaining Node-runtime workflow follow-up
-- **2026-04-01:** Added the v22.0 Tier 0 admissions-support hardening archive and updated the roadmap to treat A3/A11/A22 as complete baseline capability
-- **2026-04-01:** Added the re-triaged v21 admissions / external-validation plan to the planning index and aligned the main roadmap with the new tiered sequencing
-- **2026-04-03:** Finalized the CareConnect rebrand archive after the live `careconnect.ing` cutover, HelpBridge-domain redirect rollout, and GitHub repo rename to `jerdaw/careconnect`
+- **2026-04-01:** Added the v22.0 Tier 0 external-validation support archive and updated the roadmap to treat pilot metric, public-claim, and focused privacy test hardening as complete baseline capability
+- **2026-04-01:** Added the re-triaged v21 external-validation plan to the planning index and aligned the main roadmap with the new tiered sequencing
+- **2026-04-03:** Finalized the CareConnect rebrand archive after the GitHub repo rename to `jerdaw/careconnect`
 - **2026-04-15:** Added the semantic-search fail-closed and lint-hygiene archive after restoring actionable repo-wide linting and hardening the embedding-worker fallback path
 - **2026-04-23:** Added the quiet GitHub automation and URL-health hardening archive after converting recurring governance workflows to quiet-by-default issue reuse and stabilizing the monthly health check against CI-only false positives
 - **2026-04-24:** Archived the repo audit follow-up/remediation wave after the direct-VPS docs/privacy/planning reconciliation pass completed
@@ -208,6 +215,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-29:** Archived the homepage search UX polish pass after moving filters into the active search/results state, restoring and refining the service/category/language metrics rail, folding trust-strip content into the `How It Works` flow, and validating spacing/contrast updates
 - **2026-04-30:** Archived the About page polish pass after consolidating trust/context content, restoring the smooth page-level background, aligning sections on a shared rail, and validating CTA styling updates
 - **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
+- **2026-06-04:** Added the public GitHub cleanup archive after establishing ADR-022 and sanitizing public deployment, operations, planning, legal, and observability documentation
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

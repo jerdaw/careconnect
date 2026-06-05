@@ -84,6 +84,7 @@ ALLOWED_DIRS=(
   "messages"
   "node_modules"
   "playwright-report"
+  "private"
   "public"
   "scripts"
   "styles"

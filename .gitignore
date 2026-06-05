@@ -32,6 +32,22 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Local/private maintainer notes. Do not commit plaintext private notes.
+private/**/*.md
+private/**/*.txt
+private/**/*.log
+private/**/*.local.*
+private/**/*.yaml
+private/**/*.yml
+private/**/*.json
+private/**/*.sh
+.private/
+
+# Encrypted private notes may be tracked only if an encryption workflow is intentionally used.
+!private/**/*.age
+!private/**/*.md.age
+!private/**/*.enc.md
+
 # claude code local settings
 .claude/*.local.json
 storybook-static/

@@ -1,5 +1,6 @@
 version: 1
 repo_root: careconnect
+public_boundary: true
 services:
   - service_id: careconnect-web
     inventory_repo: careconnect
@@ -27,5 +28,8 @@ services:
       - README.md
       - AGENTS.md
       - docs/README.md
-      - docs/deployment/production-checklist.md
-      - docs/deployment/direct-vps-proof.md
+
+notes:
+  - Shared VPS documentation ownership is defined in /home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md.
+  - This manifest is the repo-local runtime contract and intentionally mirrors the live platform-ops inventory fields checked by CI.
+  - Public prose documentation intentionally omits production host paths, release commands, and shared-host operational procedures.

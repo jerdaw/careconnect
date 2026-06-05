@@ -18,48 +18,29 @@ We maintain a hand-verified dataset of the **196 highest-impact services** avail
 
 ---
 
-## Current Version
+## Project Status
 
-**v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-04-03)
+**v22.0** - decision-gated pilot / public-interest prototype.
 
-Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) and partner-ops execution evidence (`D4`) are closed. The retention/privacy control (`C2`) is complete. See [docs/planning/roadmap.md](docs/planning/roadmap.md) for the canonical project state.
+CareConnect is an active, health-adjacent community resource discovery project. It is not a clinical decision support system, not an emergency service, and not an official government or 211 service. Current work is focused on governance, verification, privacy-conscious design, and evidence for whether the project creates non-duplicate value relative to existing referral pathways.
 
-## Deployment Status
+## Public Documentation Boundary
 
-1. Legacy production guidance in this repo still references Vercel where explicitly marked historical.
-2. The active production path is now the direct-VPS deployment documented in [docs/deployment/direct-vps-proof.md](docs/deployment/direct-vps-proof.md).
-3. The app is live on the Hetzner VPS at [https://careconnect.ing](https://careconnect.ing).
-4. `www.careconnect.ing` redirects to the apex and the app container remains bound privately at `127.0.0.1:3300`.
-5. `helpbridge.ca` and `www.helpbridge.ca` now `308`-redirect to the canonical `careconnect.ing` host.
-6. The GitHub repository slug is now [jerdaw/careconnect](https://github.com/jerdaw/careconnect).
-7. Shared VPS inventory, roadmap, and cross-project runbooks now live in `/home/jer/repos/vps/platform-ops` (historical local alias: `/home/jer/repos/projects-merge`).
-8. Push notifications are optional and stay disabled unless OneSignal is explicitly configured.
+This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory are intentionally excluded from public documentation.
 
-## Shared documentation boundary
+Shared VPS documentation ownership is defined in `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`.
 
-1. `platform-ops/` is the default home for shared VPS facts that are not specific to CareConnect alone:
-   - shared host access posture
-   - shared ingress ownership
-   - cross-project service inventory
-   - shared host path conventions
-   - host-wide hardening and maintenance state
-2. `careconnect/` owns the CareConnect-specific subset:
-   - application behavior and user-facing governance
-   - CareConnect runtime and environment contract
-   - CareConnect deploy, verification, and rollback steps
-3. Boundary reference:
-   - `/home/jer/repos/vps/platform-ops/docs/standards/PLAT-009-shared-vps-documentation-boundary.md`
+Push notifications and external integrations are optional and disabled unless explicitly configured by a maintainer.
 
 ## Current Features
 
-### Production Observability (v18.0)
+### Production Readiness And Observability (v18.0)
 
-- **Proactive Monitoring**: Axiom integration for persistent metrics storage with <5ms overhead
-- **Automated Alerting**: Slack notifications for critical incidents (circuit breaker events, high error rates, SLO violations)
-- **SLO Tracking**: Service Level Objectives with 99.5% uptime target, p95 latency <800ms (PROVISIONAL)
-- **Observability Dashboard**: Real-time system health monitoring at `/admin/observability`, with admin-only detailed diagnostics in production
-- **Operational Runbooks**: Incident response procedures for common failure scenarios (circuit breaker open, high error rates, slow queries, SLO violations)
-- **Circuit Breaker Telemetry**: 100% coverage on all API routes with automatic failover and alert integration
+- **Operational Instrumentation**: Aggregate system-health metrics for maintainers.
+- **Alert-Ready Architecture**: Optional alerting hooks for critical service degradation.
+- **SLO Tracking**: Provisional service objectives for uptime and latency review.
+- **Observability Dashboard**: Admin-only system health views for authorized maintainers.
+- **Circuit Breaker Telemetry**: API route coverage for database degradation and recovery signals.
 
 ### Authorization Resilience (v17.6)
 
@@ -84,9 +65,9 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Notifications**: Partner communication center
 - **RBAC System**: 4 role tiers (Owner, Admin, Editor, Viewer) with 19 granular permissions
 
-### Accessibility & Compliance (v17.3)
+### Accessibility (v17.3)
 
-- **WCAG 2.1 AA Compliant**: High-contrast mode, skip-links, keyboard navigation
+- **WCAG 2.1 AA-Oriented**: High-contrast mode, skip-links, and keyboard navigation, with automated accessibility checks.
 - **Comprehensive Testing**: Automated accessibility audits with Axe-core
 - **Voice Input**: Natural language voice search support
 
@@ -105,12 +86,12 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 ### Core Search Features (v12.0-v16.0)
 
-### Legal & Compliance Infrastructure
+### Privacy, Safety, And Governance Infrastructure
 
-- **Enforceable Protections**: Robust Terms of Service and Privacy Policy (PIPEDA/PHIPA compliant).
+- **Privacy-Conscious Legal Surfaces**: Terms of Service and Privacy Policy designed with Canadian privacy principles and PIPEDA/PHIPA considerations in mind. This project is not a formal legal compliance determination.
 - **Emergency Safeguards**: Prominent disclaimers and immediate 911/988 access on crisis pages.
 - **AI Transparency**: Detailed disclaimers for browser-based AI features.
-- **AODA Compliance**: Dedicated Accessibility Policy and multi-year compliance plan.
+- **Accessibility Planning**: Dedicated Accessibility Policy and multi-year improvement plan.
 - **Governance Audit**: Public-facing Content Moderation Policy and Feedback Process.
 - **Entity Preparedness**: Documented research for Non-Profit incorporation and liability insurance.
 
@@ -147,7 +128,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
 - **Partner Claiming Workflow** — Organizations can claim, verify, and maintain their own listings.
 - **Progressive Web App** — Installable, works offline.
-- **WCAG 2.1 AA Compliant** — High-contrast, skip-links, and keyboard navigation.
+- **WCAG 2.1 AA-Oriented** — High-contrast, skip-links, keyboard navigation, and automated checks.
 - **Community Governance** — Residents can flag inaccurate data directly.
 - **Performance Optimized** — Loads instantly, even on slow connections.
 - **Structured Observability** — High-context logging system with timers for performance monitoring.
@@ -224,9 +205,7 @@ Open `http://localhost:3000` to view the application.
 
 #### Release Helpers
 
-| Command                                                   | Description                                                         |
-| :-------------------------------------------------------- | :------------------------------------------------------------------ |
-| `./scripts/archive/release-vps-proof.sh haadmin@your-vps` | Stage the current committed tree on the VPS; deploy there with sudo |
+Public documentation does not include production host paths or release commands. Maintainers should use the private deployment notes and shared operations inventory for live releases.
 
 #### Load Testing (v17.5)
 

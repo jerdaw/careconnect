@@ -6,19 +6,18 @@ DOCKER_SHIM_DIR=""
 LOCAL_SUPABASE_WORKDIR=""
 
 find_windows_docker() {
-  local candidates=(
-    "/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe"
-    "/mnt/c/ProgramData/chocolatey/bin/docker.exe"
-    "/mnt/c/Users/${USER}/AppData/Local/Programs/Docker/Docker/resources/bin/docker.exe"
-    "/mnt/c/Users/${USER}/AppData/Local/Microsoft/WindowsApps/docker.exe"
-  )
+  if [[ -z "${CARECONNECT_DOCKER_CANDIDATES:-}" ]]; then
+    return 1
+  fi
 
-  for candidate in "${candidates[@]}"; do
+  local candidate
+  while IFS= read -r candidate; do
+    [[ -z "$candidate" ]] && continue
     if [[ -x "$candidate" ]]; then
       printf '%s\n' "$candidate"
       return 0
     fi
-  done
+  done <<<"$CARECONNECT_DOCKER_CANDIDATES"
 
   return 1
 }

@@ -63,7 +63,7 @@
 **Visual asset specifications** for designers:
 
 - Logo requirements (formats, sizes, variants)
-- Color palette (WCAG-compliant)
+- Color palette reviewed against WCAG contrast criteria
 - Typography guidelines
 - Social media graphics specs (OG images, profile pictures, covers)
 - Instagram templates (feed posts, stories, carousels)

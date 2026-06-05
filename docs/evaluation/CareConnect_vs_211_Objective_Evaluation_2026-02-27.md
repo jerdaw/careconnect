@@ -98,7 +98,7 @@ Evidence:
 
 Implication:
 
-1. External messaging should avoid absolute "fully compliant" phrasing unless backed by repeatable CI evidence in intended test matrix.
+1. External messaging should avoid absolute formal-certification phrasing unless backed by repeatable CI evidence in the intended test matrix.
 
 ### 6) Existing "7 vs 2 languages" claim is partially true, but easy to misinterpret
 

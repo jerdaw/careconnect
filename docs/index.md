@@ -22,7 +22,9 @@ We maintain a hand-verified dataset of the **196 highest-impact services** avail
 
 **v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-03-29)
 
-Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) and partner-ops execution evidence (`D4`) are closed. The retention/privacy control (`C2`) is complete. See [docs/planning/roadmap.md](planning/roadmap.md) for the canonical project state.
+CareConnect is an active, decision-gated pilot / public-interest prototype. It is not a clinical decision support system, not an emergency service, and not an official government or 211 service.
+
+Public documentation intentionally excludes deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory.
 
 ## Current Features
 
@@ -42,9 +44,9 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **RBAC System**: 4 role tiers (Owner, Admin, Editor, Viewer) with 19 granular permissions
 - **Member Management**: Invite members, change roles, and manage access
 
-### Accessibility & Compliance (v17.3)
+### Accessibility (v17.3)
 
-- **WCAG 2.1 AA Compliant**: High-contrast mode, skip-links, and keyboard navigation
+- **WCAG 2.1 AA-Oriented**: High-contrast mode, skip-links, keyboard navigation, and automated checks
 - **Comprehensive Testing**: Automated accessibility audits with Axe-core
 - **Voice Input**: Natural language voice search support
 
@@ -63,12 +65,12 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 
 ### Legacy Features (v12.0-v16.0)
 
-#### Legal & Compliance Infrastructure
+#### Privacy, Safety, And Governance Infrastructure
 
-- **Enforceable Protections**: Robust Terms of Service and Privacy Policy (PIPEDA/PHIPA compliant).
+- **Privacy-Conscious Legal Surfaces**: Terms of Service and Privacy Policy designed with Canadian privacy principles and PIPEDA/PHIPA considerations in mind. This project is not a formal legal compliance determination.
 - **Emergency Safeguards**: Prominent disclaimers and immediate 911/988 access on crisis pages.
 - **AI Transparency**: Detailed disclaimers for browser-based AI features.
-- **AODA Compliance**: Dedicated Accessibility Policy and multi-year compliance plan.
+- **Accessibility Planning**: Dedicated Accessibility Policy and multi-year improvement plan.
 - **Governance Audit**: Public-facing Content Moderation Policy and Feedback Process.
 - **Entity Preparedness**: Documented research for Non-Profit incorporation and liability insurance.
 
@@ -103,7 +105,7 @@ Current operating state: Gate 0 remains `NO-GO` until legal/API review (`C1`) an
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
 - **Partner Claiming Workflow** — Organizations can claim, verify, and maintain their own listings.
 - **Progressive Web App** — Installable, works offline.
-- **WCAG 2.1 AA Compliant** — High-contrast, skip-links, and keyboard navigation.
+- **WCAG 2.1 AA-Oriented** — High-contrast, skip-links, keyboard navigation, and automated checks.
 - **Community Governance** — Residents can flag inaccurate data directly.
 - **Performance Optimized** — Loads instantly, even on slow connections.
 - **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.

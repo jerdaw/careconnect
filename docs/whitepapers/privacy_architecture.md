@@ -15,7 +15,7 @@ CareConnect employs a "Zero-Egress" architecture for its AI Assistant. Unlike tr
 
 ## 2. Data Flow Architecture
 
-The following measures ensure compliance with PIPEDA and PHIPA:
+The following measures are designed with Canadian privacy principles and PIPEDA/PHIPA considerations in mind. This whitepaper is a technical architecture note, not a formal legal compliance determination.
 
 ### A. Local Inference
 
@@ -29,7 +29,7 @@ The following measures ensure compliance with PIPEDA and PHIPA:
 - **Context Injection**: The application layer injects directory data into the local model.
 - **Sovereignty**: The "Source of Truth" remains our controlled database, never shared with external aggregators.
 
-## 3. Mitigation of "Software Distributor Liability"
+## 3. Mitigation Of AI And Software Risk
 
 To protect against XSS and injection attacks:
 
@@ -38,7 +38,7 @@ To protect against XSS and injection attacks:
 
 ## 4. Conclusion
 
-By eliminating the "Third-Party Data Egress" vector, CareConnect provides a safer clinical environment than standard "GPT-wrappers," meeting the highest bars for digital sovereignty in social work.
+By reducing third-party data egress and rendering verified directory data instead of free-form answers, CareConnect aims to provide a privacy-conscious community resource discovery experience. It is not a clinical environment or clinical decision support tool.
 
 ---
 

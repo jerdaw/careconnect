@@ -2,14 +2,14 @@
 status: archived
 last_updated: 2026-04-01
 owner: jer
-tags: [planning, v22.0, admissions, pilot, metrics, privacy, testing, documentation]
+tags: [planning, v22.0, external-validation, pilot, metrics, privacy, testing, documentation]
 ---
 
 # v22.0 Pilot Metric Instrumentation and Tier 0 Hardening
 
 ## Summary
 
-This archive records the completed Tier 0 admissions-support bundle executed while v22.0 Gate 0 remained blocked on user-owned legal and partner evidence.
+This archive records the completed Tier 0 external-validation support bundle executed while v22.0 Gate 0 remained blocked on user-owned legal and partner evidence.
 
 The work intentionally stayed inside the allowed near-term scope:
 
@@ -58,7 +58,7 @@ The work intentionally stayed inside the allowed near-term scope:
 
 1. [Architecture](../../architecture.md)
 2. [Main Roadmap](../roadmap.md)
-3. [v21 Admissions Portfolio Plan](../v21-admissions-portfolio-plan.md)
+3. [v21 External Validation Plan](../v21-external-validation-plan.md)
 4. [v22.0 Phase 0 Baseline Metric Definitions](../../implementation/v22-0-phase-0-baseline-metric-definitions.md)
 5. [v22.0 Phase 0 Baseline Query Spec](../../implementation/v22-0-phase-0-baseline-query-spec.md)
 6. [v22.0 Phase 0 Baseline SQL Editor Runbook](../../implementation/v22-0-phase-0-baseline-sql-editor-runbook.md)
@@ -78,7 +78,7 @@ Not fully validated in this environment:
 
 ## What Remains Open
 
-This archive does not close the broader admissions backlog.
+This archive does not close the broader external-validation backlog.
 
 Still-open near-term work:
 
