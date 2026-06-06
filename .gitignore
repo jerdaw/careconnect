@@ -33,6 +33,8 @@ yarn-error.log*
 .env.production.local
 
 # Local/private maintainer notes. Do not commit plaintext private notes.
+/private
+/.private-local-backups/
 private/**/*.md
 private/**/*.txt
 private/**/*.log
