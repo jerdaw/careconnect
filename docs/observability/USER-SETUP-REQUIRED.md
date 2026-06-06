@@ -10,7 +10,7 @@ Some observability setup requires maintainer-owned accounts, credentials, and pr
 - Store live credentials in a password manager or approved secret store.
 - Configure production monitoring outside this public repository.
 - Keep alerting privacy-preserving: no search queries, no sensitive user text, and no unnecessary identifiers.
-- Document exact live steps only in private maintainer notes.
+- Document exact live steps only in private/shared operations material.
 
 ## Local Development
 

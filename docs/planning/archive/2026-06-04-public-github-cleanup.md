@@ -21,7 +21,7 @@ Completed work:
 2. Removed exact deployment commands, private host-path examples, alert-routing examples, and maintainer-only runtime procedures from public prose docs.
 3. Replaced the public platform contract with `platform-ops-contract.example.yaml`, preserving schema shape with fake values only.
 4. Added a sanitized `platform-ops-contract.yaml` tombstone at the legacy path so stale raw/CDN requests receive harmless example content.
-5. Preserved private originals under ignored private maintainer paths.
+5. Migrated durable private originals to the private/shared operations source of truth while preserving ignored local copies for convenience.
 6. Replaced the admissions-focused v21 planning track with a public-interest external-validation backlog.
 7. Softened legal, privacy, accessibility, and compliance wording to avoid unsupported formal-compliance claims.
 8. Kept `AGENTS.md` as the canonical contributor instruction file and verified `CLAUDE.md` and `GEMINI.md` are relative symlinks.

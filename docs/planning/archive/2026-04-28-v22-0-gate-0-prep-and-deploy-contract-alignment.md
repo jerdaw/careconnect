@@ -12,4 +12,4 @@ This archive records a maintenance pass that added prep-only Gate 0 evidence pac
 
 ## Boundary
 
-The original detailed deploy-contract notes were preserved in ignored private notes during public GitHub cleanup.
+The original detailed deploy-contract notes were migrated to the private/shared operations source of truth during public GitHub cleanup; ignored local copies were preserved for convenience.

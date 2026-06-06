@@ -13,4 +13,4 @@ This implementation plan covered alert routing and incident-response readiness f
 
 ## Boundary
 
-The original step-by-step provider setup and incident procedures were preserved in ignored private notes. Public documentation intentionally omits webhook URLs, alert channels, provider account steps, dashboard locations, and host-specific commands.
+The original step-by-step provider setup and incident procedures were migrated to the private/shared operations source of truth; ignored local copies were preserved for convenience. Public documentation intentionally omits webhook URLs, alert channels, provider account steps, dashboard locations, and host-specific commands.

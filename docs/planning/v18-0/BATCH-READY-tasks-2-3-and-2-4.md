@@ -2,7 +2,7 @@
 
 **Public archive summary.**
 
-The original detailed observability setup notes were moved to private maintainer notes during public GitHub cleanup because they included alert-provider setup steps and private operational details.
+The original detailed observability setup notes were moved to private/shared operations material during public GitHub cleanup because they included alert-provider setup steps and private operational details.
 
 ## Public Summary
 

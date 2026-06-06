@@ -14,7 +14,7 @@ This public document intentionally omits webhook URLs, alert-channel names, prod
 2. Health checks should report service status without exposing secrets or private infrastructure.
 3. Alerting should focus on aggregate service degradation, not individual user behavior.
 4. Any persistent telemetry should use minimization, access controls, and documented retention.
-5. Production alert routing and incident response details belong in private maintainer notes.
+5. Production alert routing and incident response details belong in private/shared operations material.
 
 ## Signals
 

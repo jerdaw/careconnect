@@ -1,8 +1,8 @@
 # Database Change Safety
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-06-05
 
-This public guide documents database-change principles. Exact production SQL execution steps, host access details, backup locations, and emergency rollback commands belong in private maintainer notes.
+This public guide documents database-change principles. Exact production SQL execution steps, host access details, backup locations, and emergency rollback commands belong in private/shared operations material.
 
 ## Principles
 
@@ -21,4 +21,4 @@ npm run type-check
 npm test
 ```
 
-Use local or disposable test databases for development validation. Live execution requires private maintainer procedures.
+Use local or disposable test databases for development validation. Live execution requires private/shared operations procedures.

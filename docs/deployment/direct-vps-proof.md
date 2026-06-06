@@ -1,6 +1,6 @@
 ---
 status: public
-last_updated: 2026-06-04
+last_updated: 2026-06-05
 owner: maintainer
 tags: [deployment, public-boundary, docker, production]
 ---
@@ -47,7 +47,7 @@ npm run tools:search "food bank"
 
 Copy `.env.example` to `.env.local` for local development. Do not commit `.env.local`, credentials, webhook URLs, private keys, database passwords, or host-specific release paths.
 
-Public docs may name supported environment variables, but live values and host-specific locations belong in private maintainer notes.
+Public docs may name supported environment variables, but live values and host-specific locations belong in private/shared operations material.
 
 ## Health Verification
 

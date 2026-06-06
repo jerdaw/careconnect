@@ -7,7 +7,7 @@ This public plan records launch-preparation categories without publishing privat
 
 ## Public Boundary
 
-CareConnect public docs include reproducible local checks, methodology, limitations, and governance principles. Exact live launch execution belongs in private maintainer notes.
+CareConnect public docs include reproducible local checks, methodology, limitations, and governance principles. Exact live launch execution belongs in private/shared operations material.
 
 ## Preparation Areas
 

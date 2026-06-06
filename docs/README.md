@@ -11,9 +11,9 @@ tags: [documentation, index, public-docs]
 
 This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, and environment-specific production paths are intentionally excluded from public documentation.
 
-Shared-host documentation ownership and production deployment details are
-maintained outside this public repository in private maintainer operations
-notes.
+Shared-host documentation ownership, private project notes, and production
+deployment details are maintained outside this public repository in the
+private/shared operations source of truth.
 
 ## Quick Links
 

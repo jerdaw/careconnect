@@ -2,7 +2,7 @@
 
 **Last Updated:** 2026-06-04
 
-This public page describes communication principles. Exact incident templates, escalation contacts, private channels, and launch messaging drafts are private maintainer material.
+This public page describes communication principles. Exact incident templates, escalation contacts, private channels, and launch messaging drafts are private/shared operations material.
 
 ## Principles
 

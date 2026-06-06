@@ -12,4 +12,4 @@ This phase planned aggregate observability, alerting, runbook structure, and pri
 - maintainer-only operational views,
 - privacy boundaries around search text and sensitive user data.
 
-Exact provider setup, channel names, credentials, and live commands are private maintainer material.
+Exact provider setup, channel names, credentials, and live commands are private/shared operations material.

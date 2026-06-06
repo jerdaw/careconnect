@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-01
+last_updated: 2026-06-05
 owner: jer
 tags: [governance, documentation, guidelines]
 ---
@@ -19,6 +19,9 @@ Keep documentation accurate, minimal, and easy to maintain.
 - **Hooks & Utilities**: `docs/development/hooks.md`
 - **Roadmap**: `docs/planning/roadmap.md` (Active Plan)
 - **Historical Records**: `docs/planning/archive/` (Completed work)
+- **Private/shared operations source of truth**: private project notes, live
+  deployment procedures, private contracts, and operator runbooks that are not
+  safe for this public repository
 - **AI Context**: `docs/llms.txt` (Generated via `npx tsx scripts/generate-llms-txt.ts`; gitignored and may be absent locally until generated)
 
 ## Document Metadata (Frontmatter)
@@ -73,7 +76,10 @@ To ensure documentation is effectively used by AI agents and LLMs:
 - **Update the index**: Update `mkdocs.yml` nav if you add new pages. `README.md` and `AGENTS.md` should point to the MkDocs site URL where appropriate.
 - **English-Only**: Internal documentation should be English-only.
 - **No Phase Labels**: Avoid "phase" labels in permanent docs. Documentation should describe **what exists and how to use it**, not the order it was implemented.
-- **Public-Safe**: No secrets, private emails, or internal IPs in public repos.
+- **Public-Safe**: No secrets, private emails, internal IPs, live host paths,
+  or operator-only runbooks in public repos. Durable private project and
+  operations notes belong in the private/shared operations source of truth;
+  ignored local `private/` folders are convenience copies only.
 - **Professional Emojis Only**: Use only professional symbols (e.g., ✅, ❌, ⚠️, ➡️, ⭐) for status and alerts. Avoid playful or conversational emojis.
 
 ## Roadmap workflow

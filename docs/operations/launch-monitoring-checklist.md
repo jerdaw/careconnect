@@ -2,7 +2,7 @@
 
 **Last Updated:** 2026-06-04
 
-This checklist describes public-safe launch observation. Exact monitoring dashboards, alert routing, host commands, and rollback procedures are private maintainer material.
+This checklist describes public-safe launch observation. Exact monitoring dashboards, alert routing, host commands, and rollback procedures are private/shared operations material.
 
 ## Before Launch
 
