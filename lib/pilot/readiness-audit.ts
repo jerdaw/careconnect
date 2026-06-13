@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js"
 import fs from "fs/promises"
+import { z } from "zod"
 import type { Service } from "@/types/service"
-import type { PilotScopeSlaTier } from "@/types/pilot-instrumentation"
+import { PILOT_SCOPE_SLA_TIERS, type PilotScopeSlaTier } from "@/types/pilot-instrumentation"
 import type { Database } from "@/types/supabase"
 
 export interface PilotScopeEntry {
@@ -56,11 +57,65 @@ interface ScopeFilePayload {
   services?: PilotScopeEntry[]
 }
 
+const PilotScopeEntrySchema = z
+  .object({
+    service_id: z.string().min(1).max(100),
+    sla_tier: z.enum(PILOT_SCOPE_SLA_TIERS),
+    org_id: z.string().uuid().optional(),
+    pilot_cycle_id: z.string().min(1).max(100).optional(),
+  })
+  .strict()
+
 const STALENESS_THRESHOLDS = {
   crisis: 30,
   general: 90,
   stale: 180,
 } as const
+
+function formatScopeIssuePath(path: (string | number)[]): string {
+  const [entryIndex, ...fieldPath] = path
+  const entryLabel = typeof entryIndex === "number" ? `entry ${entryIndex + 1}` : "entry"
+  const fieldLabel = fieldPath.length > 0 ? fieldPath.join(".") : "value"
+  return `${entryLabel} ${fieldLabel}`
+}
+
+function parsePilotScopeEntries(entries: unknown[], source: "file" | "Supabase" | "report"): PilotScopeEntry[] {
+  const result = z.array(PilotScopeEntrySchema).safeParse(entries)
+
+  if (!result.success) {
+    const issuePaths = [...new Set(result.error.issues.map((issue) => formatScopeIssuePath(issue.path)))]
+    throw new Error(`Invalid pilot scope ${source} entries: ${issuePaths.join(", ")}`)
+  }
+
+  const seenEntries = new Map<string, number>()
+  for (const [index, entry] of result.data.entries()) {
+    const identityKey = [entry.pilot_cycle_id ?? "", entry.org_id ?? "", entry.service_id].join("\u001f")
+    const existingIndex = seenEntries.get(identityKey)
+
+    if (existingIndex !== undefined) {
+      throw new Error(`Invalid pilot scope ${source} entries: entry ${index + 1} duplicates entry ${existingIndex + 1}`)
+    }
+
+    seenEntries.set(identityKey, index)
+  }
+
+  return result.data
+}
+
+function extractScopeEntriesFromFilePayload(payload: unknown): unknown[] {
+  if (Array.isArray(payload)) {
+    return payload
+  }
+
+  if (payload && typeof payload === "object") {
+    const services = (payload as ScopeFilePayload).services
+    if (Array.isArray(services)) {
+      return services
+    }
+  }
+
+  throw new Error("Invalid pilot scope file: expected an array or an object with a services array")
+}
 
 function isActive(service: Service): boolean {
   if (service.deleted_at) return false
@@ -102,13 +157,15 @@ function getVerificationStatus(service: Service): "missing" | "fresh" | "due" | 
 
 export async function loadPilotScopeEntriesFromFile(filePath: string): Promise<PilotScopeEntry[]> {
   const raw = await fs.readFile(filePath, "utf-8")
-  const parsed = JSON.parse(raw) as PilotScopeEntry[] | ScopeFilePayload
+  let parsed: unknown
 
-  if (Array.isArray(parsed)) {
-    return parsed
+  try {
+    parsed = JSON.parse(raw)
+  } catch {
+    throw new Error("Invalid pilot scope file: JSON parse failed")
   }
 
-  return parsed.services ?? []
+  return parsePilotScopeEntries(extractScopeEntriesFromFilePayload(parsed), "file")
 }
 
 export async function loadPilotScopeEntriesFromSupabase(options: {
@@ -135,14 +192,15 @@ export async function loadPilotScopeEntriesFromSupabase(options: {
 
   const { data, error } = await query.order("service_id", { ascending: true })
   if (error) {
-    throw new Error(`Failed to load pilot scope: ${error.message}`)
+    throw new Error(`Failed to load pilot scope from Supabase (${error.code ?? "unknown"})`)
   }
 
-  return (data ?? []) as PilotScopeEntry[]
+  return parsePilotScopeEntries(data ?? [], "Supabase")
 }
 
 export function buildPilotReadinessReport(services: Service[], scopeEntries: PilotScopeEntry[]): PilotReadinessReport {
   const serviceMap = new Map(services.map((service) => [service.id, service]))
+  const validScopeEntries = parsePilotScopeEntries(scopeEntries, "report")
   const matchedRows: PilotReadinessServiceRow[] = []
   const missingServiceRecords: string[] = []
 
@@ -165,7 +223,7 @@ export function buildPilotReadinessReport(services: Service[], scopeEntries: Pil
     verification_stale: 0,
   }
 
-  for (const entry of scopeEntries) {
+  for (const entry of validScopeEntries) {
     slaTierDistribution[entry.sla_tier] += 1
     const service = serviceMap.get(entry.service_id)
     if (!service) {
@@ -214,7 +272,7 @@ export function buildPilotReadinessReport(services: Service[], scopeEntries: Pil
 
   return {
     generated_at: new Date().toISOString(),
-    total_scoped_services: scopeEntries.length,
+    total_scoped_services: validScopeEntries.length,
     matched_services: matchedRows.length,
     missing_service_records: missingServiceRecords,
     verification_level_distribution: verificationLevelDistribution,
@@ -261,7 +319,8 @@ export function renderPilotReadinessMarkdown(report: PilotReadinessReport): stri
 
 function csvEscape(value: string | boolean | null): string {
   if (value === null) return ""
-  const text = String(value)
+  const rawText = String(value)
+  const text = /^[=+\-@\t\r]|^\s+[=+\-@]/.test(rawText) ? `'${rawText}` : rawText
   if (text.includes(",") || text.includes('"') || text.includes("\n")) {
     return `"${text.replaceAll('"', '""')}"`
   }

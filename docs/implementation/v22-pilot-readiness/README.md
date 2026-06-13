@@ -44,6 +44,17 @@ Optional fields per entry:
 1. `pilot_cycle_id`
 2. `org_id`
 
+Validation behavior:
+
+1. Scope input fails closed if it is not a top-level array or an object with a
+   `services` array.
+2. Each entry must contain only the supported fields listed above.
+3. `org_id`, when present, must be a UUID.
+4. Duplicate `(pilot_cycle_id, org_id, service_id)` scope identities fail
+   closed so audit counts cannot be inflated by repeated rows.
+5. Invalid file or Supabase scope entries report only field-level validation
+   paths, not raw entry values or partner notes.
+
 Allowed `sla_tier` values:
 
 1. `crisis`
@@ -78,6 +89,10 @@ The command writes:
 1. `pilot-readiness-audit.json`
 2. `pilot-readiness-summary.md`
 3. `pilot-verification-worksheet.csv`
+
+The CSV worksheet neutralizes spreadsheet formula prefixes in text cells before
+writing output. This keeps service names or reviewer-entered fields readable as
+text if the worksheet is opened in spreadsheet software.
 
 ## Step 3: Review and Prioritize
 
