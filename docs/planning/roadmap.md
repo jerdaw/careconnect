@@ -15,8 +15,8 @@ tags: [planning, roadmap, v22.0, governance]
 ## Current State
 
 - **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-05-03)
-- **Tests**: default Vitest suite green as of 2026-05-03 (`189` files; `1361` passed; `24` skipped)
-- **DB integration lane**: `npm run db:types` and `npm run test:db` are green as of 2026-04-20 on a Docker-capable machine, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
+- **Tests**: default Vitest suite green as of 2026-06-13 (`198` files; `1599` passed; `24` skipped)
+- **DB integration lane**: PR DB integration checks are green as of 2026-06-13, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
@@ -40,7 +40,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
-- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are packaged as a reviewable checkpoint; no additional autonomous hardening is planned before external C1/D4 evidence arrives
+- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are packaged as a reviewable checkpoint with the completed maintenance record archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **French service-data gaps**: runtime hardening is complete, but governed content follow-through still remains for `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
@@ -165,7 +165,7 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 - [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)
 - [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md)
 - [v22.0 Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)
-- [v22.0 Autonomous Gate 0 Maintenance Pass (2026-06-12)](../implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md)
+- [v22.0 Autonomous Gate 0 Maintenance Pass Archive (2026-06-13)](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
 - [v22.0 Worktree Checkpoint (2026-06-13)](../implementation/v22-0-worktree-checkpoint-2026-06-13.md)
 
 ## Parallel Maintenance While Gate 0 Waits
@@ -271,6 +271,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **v22 Gate 0 autonomous maintenance checkpoint (2026-06-13)**: completed the bounded repo-local maintenance pass for C1/D4 evidence guards, D4 artifact-inventory validation, offline privacy/recovery hardening, pilot event contracts, OpenAPI coverage, readiness input validation, and roadmap stop-rule cleanup while leaving Gate 0 blocked on external evidence; archived in [2026-06-13 v22.0 Autonomous Gate 0 Maintenance](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md).
 - **Public GitHub cleanup (2026-06-05)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, replaced the real platform contract with fake-only example content plus a legacy-path tombstone, migrated durable private originals to the private/shared operations source of truth while preserving ignored local copies, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
 - **Public and operational surface polish (2026-05-01)**: completed the bounded reference sources, suggest-service intake, route-reference cleanup, public workflow, static legal/help/trust, settings, and authenticated dashboard/admin polish wave without changing service-data, search, auth, or schema contracts; archived in [2026-05-01 v20.0 Public and Operational Surface Polish](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md).
 - **About page polish (2026-04-30)**: rebuilt `/about` as a calmer trust and context page, removed duplicated homepage-style sections, restored the page-level background wash, aligned hero/source/context/CTA sections on a shared rail, and refined the primary CTA treatment without changing service data or search behavior; archived in [2026-04-30 v20.0 About Page Polish](archive/2026-04-30-v20-0-about-page-polish.md).
@@ -305,6 +306,7 @@ The project already has the technical base for a live, privacy-first, resilient 
 ### Archive and Historical Plans
 
 - [Planning Archive](archive/)
+- [v22.0 Autonomous Gate 0 Maintenance Archive](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
 - [Public GitHub Cleanup Archive](archive/2026-06-04-public-github-cleanup.md)
 - [v20.0 Public and Operational Surface Polish Archive](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md)
 - [v20.0 About Page Polish Archive](archive/2026-04-30-v20-0-about-page-polish.md)

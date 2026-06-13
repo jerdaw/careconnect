@@ -1,8 +1,8 @@
 ---
-status: stable
-last_updated: 2026-06-12
+status: archived
+last_updated: 2026-06-13
 owner: jer
-tags: [implementation, v22.0, gate-0, governance, maintenance]
+tags: [implementation, archive, v22.0, gate-0, governance, maintenance]
 ---
 
 # v22.0 Autonomous Gate 0 Maintenance Pass (2026-06-12)
@@ -415,7 +415,7 @@ Commands run from the repo root:
 14. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/event-replay-policy.test.ts` - passed (`4` tests).
 15. `node node_modules/eslint/bin/eslint.js lib/pilot/event-replay-policy.ts tests/lib/pilot/event-replay-policy.test.ts` - passed.
 16. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts tests/lib/schemas/privacy-guards.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/pilot/event-replay-policy.test.ts` - passed (`32` tests).
-17. `node node_modules/prettier/bin/prettier.cjs --check docs/runbooks/offline-local-recovery.md docs/runbooks/README.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+17. `node node_modules/prettier/bin/prettier.cjs --check docs/runbooks/offline-local-recovery.md docs/runbooks/README.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 18. `node node_modules/vitest/vitest.mjs run tests/lib/offline/pilot-draft-cleanup.test.ts tests/components/AuthProvider.test.tsx` - passed (`8` tests).
 19. `node node_modules/eslint/bin/eslint.js lib/offline/pilot-draft-cleanup.ts components/layout/AuthProvider.tsx tests/lib/offline/pilot-draft-cleanup.test.ts tests/components/AuthProvider.test.tsx` - passed.
 20. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts tests/lib/schemas/privacy-guards.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/components/AuthProvider.test.tsx` - passed (`40` tests).
@@ -433,7 +433,7 @@ Commands run from the repo root:
 32. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts tests/lib/schemas/privacy-guards.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/storage.test.ts tests/lib/pilot/responses.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/local-recovery-audit.test.ts tests/components/AuthProvider.test.tsx tests/api/pilot-contact-attempt.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`110` tests).
 33. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`14` tests).
 34. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-35. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+35. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 36. `node --import tsx scripts/check-references.ts` - passed (`143` files checked).
 37. `git diff --check` - passed.
 38. `bash scripts/check-v22-evidence-intake.sh` - passed.
@@ -442,7 +442,7 @@ Commands run from the repo root:
 41. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 42. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-metrics-recompute.test.ts` - passed (`21` tests).
 43. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts tests/api/pilot-metrics-recompute.test.ts` - passed.
-44. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+44. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 45. `node --import tsx scripts/check-references.ts` - passed (`143` files checked).
 46. `git diff --check` - passed.
 47. `node node_modules/typescript/bin/tsc --noEmit` - passed.
@@ -450,17 +450,17 @@ Commands run from the repo root:
 49. `bash scripts/check-v22-evidence-intake.sh` - passed.
 50. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 51. Static OpenAPI route-contract check with the bundled desktop Node runtime - passed after adding full internal pilot route path coverage.
-52. Bundled desktop Node `prettier --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+52. Bundled desktop Node `prettier --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 53. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`26` tests).
 54. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-55. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+55. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 56. `bash -n scripts/check-v22-threat-model.sh && bash scripts/check-v22-threat-model.sh` - passed.
 57. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-threat-model.test.ts` - passed (`5` tests).
 58. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-threat-model.test.ts` - passed.
 59. `npm run check:v22-threat-model` - passed.
 60. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result after threat-model guard integration: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 61. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-threat-model.test.ts tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`40` tests).
-62. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-threat-model.test.ts package.json .github/workflows/ci.yml README.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts` - passed.
+62. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-threat-model.test.ts package.json .github/workflows/ci.yml README.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts` - passed.
 63. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh` - passed.
 64. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-threat-model.test.ts tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts tests/unit/openapi-pilot-events.test.ts` - passed.
 65. `node node_modules/typescript/bin/tsc --noEmit` - passed.
@@ -470,7 +470,7 @@ Commands run from the repo root:
 69. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 70. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts` - passed (`41` tests).
 71. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts` - passed.
-72. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+72. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 73. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 74. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 75. `git diff --check` - passed.
@@ -481,7 +481,7 @@ Commands run from the repo root:
 80. `node node_modules/eslint/bin/eslint.js tests/lib/pilot/storage.test.ts` - passed.
 81. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/storage.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`95` tests).
 82. `node node_modules/eslint/bin/eslint.js tests/lib/pilot/storage.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/unit/openapi-pilot-events.test.ts` - passed.
-83. `node node_modules/prettier/bin/prettier.cjs --check tests/lib/pilot/storage.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts` - passed.
+83. `node node_modules/prettier/bin/prettier.cjs --check tests/lib/pilot/storage.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md docs/api/openapi.yaml tests/unit/openapi-pilot-events.test.ts` - passed.
 84. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 85. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 86. `git diff --check` - passed.
@@ -490,7 +490,7 @@ Commands run from the repo root:
 89. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 90. `node node_modules/vitest/vitest.mjs run tests/unit/documentation-hygiene.test.ts` - passed (`14` tests).
 91. `node node_modules/eslint/bin/eslint.js tests/unit/documentation-hygiene.test.ts` - passed.
-92. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-evidence/c2-retention/README.md docs/implementation/v22-0-evidence/c2-retention/C2-20260329.md tests/unit/documentation-hygiene.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+92. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-evidence/c2-retention/README.md docs/implementation/v22-0-evidence/c2-retention/C2-20260329.md tests/unit/documentation-hygiene.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 93. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 94. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 95. `git diff --check` - passed.
@@ -499,7 +499,7 @@ Commands run from the repo root:
 98. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 99. `node node_modules/vitest/vitest.mjs run tests/unit/documentation-hygiene.test.ts` - passed (`15` tests).
 100. `node node_modules/eslint/bin/eslint.js tests/unit/documentation-hygiene.test.ts` - passed.
-101. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-phase-0-baseline-report-2026-03-09.md tests/unit/documentation-hygiene.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting the maintenance log.
+101. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-phase-0-baseline-report-2026-03-09.md tests/unit/documentation-hygiene.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting the maintenance log.
 102. `git diff --check` - passed.
 103. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 104. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
@@ -508,7 +508,7 @@ Commands run from the repo root:
 107. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 108. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts` - passed (`8` tests).
 109. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts` - passed.
-110. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting the maintenance log.
+110. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting the maintenance log.
 111. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`40` tests).
 112. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed.
 113. `node node_modules/typescript/bin/tsc --noEmit` - passed.
@@ -521,7 +521,7 @@ Commands run from the repo root:
 120. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-integration-feasibility.test.ts` - passed.
 121. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-integration-feasibility.test.ts tests/api/v1/pilot-referral.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`44` tests).
 122. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-integration-feasibility.test.ts tests/api/v1/pilot-referral.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed.
-123. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-integration-feasibility.test.ts tests/api/v1/pilot-referral.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+123. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-integration-feasibility.test.ts tests/api/v1/pilot-referral.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 124. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 125. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 126. `git diff --check` - passed.
@@ -532,7 +532,7 @@ Commands run from the repo root:
 131. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-referral.test.ts` - passed.
 132. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts tests/lib/schemas/pilot-events.test.ts` - passed (`64` tests).
 133. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts tests/lib/schemas/pilot-events.test.ts` - passed.
-134. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+134. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 135. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 136. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 137. `git diff --check` - passed.
@@ -543,7 +543,7 @@ Commands run from the repo root:
 142. `node node_modules/eslint/bin/eslint.js tests/api/pilot-instrumentation-routes.test.ts` - passed.
 143. `node node_modules/vitest/vitest.mjs run tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`114` tests).
 144. `node node_modules/eslint/bin/eslint.js tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed.
-145. `node node_modules/prettier/bin/prettier.cjs --check tests/api/pilot-instrumentation-routes.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+145. `node node_modules/prettier/bin/prettier.cjs --check tests/api/pilot-instrumentation-routes.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 146. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 147. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 148. `git diff --check` - passed.
@@ -553,7 +553,7 @@ Commands run from the repo root:
 152. `node node_modules/vitest/vitest.mjs run tests/api/pilot-metrics-recompute.test.ts` - passed (`7` tests).
 153. `node node_modules/vitest/vitest.mjs run tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/observability/pilot-metrics.test.ts tests/lib/schemas/pilot-events.test.ts` - passed (`71` tests).
 154. `node node_modules/eslint/bin/eslint.js tests/api/pilot-metrics-recompute.test.ts` - passed.
-155. `node node_modules/prettier/bin/prettier.cjs --check tests/api/pilot-metrics-recompute.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+155. `node node_modules/prettier/bin/prettier.cjs --check tests/api/pilot-metrics-recompute.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 156. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 157. `node --import tsx scripts/check-references.ts` - passed.
 158. `git diff --check` - passed.
@@ -563,7 +563,7 @@ Commands run from the repo root:
 162. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-referral.test.ts` - passed (`15` tests).
 163. `node node_modules/vitest/vitest.mjs run tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts tests/lib/pilot/responses.test.ts` - passed (`122` tests).
 164. `node node_modules/eslint/bin/eslint.js tests/api/v1/pilot-referral.test.ts` - passed.
-165. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+165. `node node_modules/prettier/bin/prettier.cjs --check tests/api/v1/pilot-referral.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 166. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 167. `node --import tsx scripts/check-references.ts` - passed.
 168. `git diff --check` - passed.
@@ -572,7 +572,7 @@ Commands run from the repo root:
 171. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 172. `node node_modules/vitest/vitest.mjs run tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`116` tests).
 173. `node node_modules/eslint/bin/eslint.js tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed.
-174. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+174. `node node_modules/prettier/bin/prettier.cjs --check docs/api/openapi.yaml tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 175. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 176. `node --import tsx scripts/check-references.ts` - passed.
 177. `git diff --check` - passed.
@@ -582,7 +582,7 @@ Commands run from the repo root:
 181. `node node_modules/vitest/vitest.mjs run tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts tests/lib/pilot/responses.test.ts` - passed (`148` tests).
 182. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`38` tests).
 183. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-184. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+184. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 185. `node --import tsx scripts/check-references.ts` - passed.
 186. `git diff --check` - passed.
 187. `bash scripts/check-root-hygiene.sh` - passed.
@@ -591,7 +591,7 @@ Commands run from the repo root:
 190. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`49` tests).
 191. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`170` tests).
 192. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-193. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+193. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 194. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 195. `node --import tsx scripts/check-references.ts` - passed.
 196. `git diff --check` - passed.
@@ -601,7 +601,7 @@ Commands run from the repo root:
 200. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`50` tests).
 201. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`171` tests).
 202. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-203. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+203. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 204. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 205. `node --import tsx scripts/check-references.ts` - passed.
 206. `git diff --check` - passed.
@@ -611,7 +611,7 @@ Commands run from the repo root:
 210. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`61` tests).
 211. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`182` tests).
 212. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-213. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+213. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 214. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 215. `node --import tsx scripts/check-references.ts` - passed.
 216. `git diff --check` - passed.
@@ -621,7 +621,7 @@ Commands run from the repo root:
 220. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`85` tests).
 221. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`206` tests).
 222. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-223. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+223. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 224. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 225. `node --import tsx scripts/check-references.ts` - passed.
 226. `git diff --check` - passed.
@@ -631,7 +631,7 @@ Commands run from the repo root:
 230. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`108` tests).
 231. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`229` tests).
 232. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-233. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+233. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 234. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 235. `node --import tsx scripts/check-references.ts` - passed.
 236. `git diff --check` - passed.
@@ -641,7 +641,7 @@ Commands run from the repo root:
 240. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts` - passed (`118` tests).
 241. `node node_modules/vitest/vitest.mjs run tests/unit/openapi-pilot-events.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/v1/pilot-referral.test.ts tests/api/v1/pilot-integration-feasibility.test.ts tests/api/pilot-metrics-recompute.test.ts tests/api/pilot-scorecard.test.ts tests/api/v1/pilot-scorecard.test.ts tests/lib/schemas/pilot-events.test.ts tests/lib/schemas/integration-feasibility.test.ts` - passed (`239` tests).
 242. `node node_modules/eslint/bin/eslint.js tests/unit/openapi-pilot-events.test.ts` - passed.
-243. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+243. `node node_modules/prettier/bin/prettier.cjs --check tests/unit/openapi-pilot-events.test.ts docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 244. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 245. `node --import tsx scripts/check-references.ts` - passed.
 246. `git diff --check` - passed.
@@ -651,7 +651,7 @@ Commands run from the repo root:
 250. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts` - passed (`14` tests).
 251. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/AuthProvider.test.tsx` - passed (`20` tests).
 252. `node node_modules/eslint/bin/eslint.js lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts` - passed.
-253. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+253. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 254. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 255. `node --import tsx scripts/check-references.ts` - passed.
 256. `git diff --check` - passed.
@@ -660,7 +660,7 @@ Commands run from the repo root:
 259. `bash scripts/check-v22-gate0-exit.sh` - expected blocked result: evidence intake and threat-model checks pass, then Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`.
 260. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/AuthProvider.test.tsx` - passed (`24` tests).
 261. `node node_modules/eslint/bin/eslint.js lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts` - passed.
-262. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+262. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 263. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 264. `node --import tsx scripts/check-references.ts` - passed.
 265. `git diff --check` - passed.
@@ -670,7 +670,7 @@ Commands run from the repo root:
 269. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts` - passed (`10` tests).
 270. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/AuthProvider.test.tsx` - passed (`25` tests).
 271. `node node_modules/eslint/bin/eslint.js lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts` - passed.
-272. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+272. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts tests/lib/offline/local-recovery-audit.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 273. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 274. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 275. `git diff --check` - passed.
@@ -680,7 +680,7 @@ Commands run from the repo root:
 279. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts` - passed (`15` tests).
 280. `node node_modules/vitest/vitest.mjs run tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/AuthProvider.test.tsx` - passed (`26` tests).
 281. `node node_modules/eslint/bin/eslint.js lib/offline/local-recovery-audit.ts lib/offline/pilot-draft-cleanup.ts tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts` - passed.
-282. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts lib/offline/pilot-draft-cleanup.ts tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `tests/lib/offline/local-recovery-audit.test.ts`.
+282. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/local-recovery-audit.ts lib/offline/pilot-draft-cleanup.ts tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts docs/runbooks/offline-local-recovery.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `tests/lib/offline/local-recovery-audit.test.ts`.
 283. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 284. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 285. `git diff --check` - passed.
@@ -689,7 +689,7 @@ Commands run from the repo root:
 288. `node node_modules/vitest/vitest.mjs run tests/lib/offline/feedback.test.ts` - passed (`10` tests).
 289. `node node_modules/vitest/vitest.mjs run tests/lib/offline/feedback.test.ts tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/offline/OfflineSync.test.tsx tests/components/AuthProvider.test.tsx` - passed (`54` tests).
 290. `node node_modules/eslint/bin/eslint.js lib/offline/feedback.ts tests/lib/offline/feedback.test.ts` - passed.
-291. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/feedback.ts tests/lib/offline/feedback.test.ts docs/runbooks/offline-local-recovery.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `lib/offline/feedback.ts` and `docs/security/v22-0-offline-local-threat-model.md`.
+291. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/feedback.ts tests/lib/offline/feedback.test.ts docs/runbooks/offline-local-recovery.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `lib/offline/feedback.ts` and `docs/security/v22-0-offline-local-threat-model.md`.
 292. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 293. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 294. `git diff --check` - passed.
@@ -698,7 +698,7 @@ Commands run from the repo root:
 297. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/storage.test.ts` - passed (`6` tests).
 298. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/storage.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/responses.test.ts tests/api/pilot-contact-attempt.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/v1/pilot-referral.test.ts` - passed (`84` tests).
 299. `node node_modules/eslint/bin/eslint.js lib/pilot/storage.ts tests/lib/pilot/storage.test.ts` - passed.
-300. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/storage.ts tests/lib/pilot/storage.test.ts docs/runbooks/pilot-event-replay.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `docs/security/v22-0-offline-local-threat-model.md`.
+300. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/storage.ts tests/lib/pilot/storage.test.ts docs/runbooks/pilot-event-replay.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `docs/security/v22-0-offline-local-threat-model.md`.
 301. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 302. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 303. `git diff --check` - passed.
@@ -707,7 +707,7 @@ Commands run from the repo root:
 306. `node node_modules/vitest/vitest.mjs run tests/unit/lib/offline/sync.test.ts tests/components/offline/OfflineSync.test.tsx` - passed (`24` tests).
 307. `node node_modules/vitest/vitest.mjs run tests/unit/lib/offline/sync.test.ts tests/components/offline/OfflineSync.test.tsx tests/lib/offline/feedback.test.ts tests/lib/offline/local-recovery-audit.test.ts tests/lib/offline/pilot-draft-cleanup.test.ts tests/lib/offline/snapshot.test.ts tests/components/offline/OfflineSnapshotStatus.test.tsx tests/components/ui/OfflineBanner.test.tsx tests/components/AuthProvider.test.tsx` - passed (`70` tests) after retrying an intermittent WSL transport failure.
 308. `node node_modules/eslint/bin/eslint.js lib/offline/sync.ts components/offline/OfflineSync.tsx tests/unit/lib/offline/sync.test.ts tests/components/offline/OfflineSync.test.tsx` - passed.
-309. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/sync.ts components/offline/OfflineSync.tsx tests/unit/lib/offline/sync.test.ts tests/components/offline/OfflineSync.test.tsx docs/runbooks/offline-local-recovery.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `docs/security/v22-0-offline-local-threat-model.md` and `docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md`.
+309. `node node_modules/prettier/bin/prettier.cjs --check lib/offline/sync.ts components/offline/OfflineSync.tsx tests/unit/lib/offline/sync.test.ts tests/components/offline/OfflineSync.test.tsx docs/runbooks/offline-local-recovery.md docs/security/v22-0-offline-local-threat-model.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `docs/security/v22-0-offline-local-threat-model.md` and `docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md`.
 310. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 311. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 312. `git diff --check` - passed.
@@ -715,7 +715,7 @@ Commands run from the repo root:
 314. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh && if bash scripts/check-v22-gate0-exit.sh; then echo GATE0_EXIT_ZERO; else echo GATE0_EXIT_NONZERO; fi` - expected blocked result: consistency guards pass, Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`, and the guard exits nonzero.
 315. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts` - passed (`7` tests).
 316. `node node_modules/eslint/bin/eslint.js lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts` - passed.
-317. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+317. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 318. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 319. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts tests/lib/pilot/storage.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/responses.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`190` tests).
 320. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
@@ -725,7 +725,7 @@ Commands run from the repo root:
 324. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts` - passed (`8` tests).
 325. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts tests/lib/pilot/storage.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/responses.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`191` tests).
 326. `node node_modules/eslint/bin/eslint.js lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts` - passed.
-327. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `tests/lib/pilot/readiness-audit.test.ts`.
+327. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `tests/lib/pilot/readiness-audit.test.ts`.
 328. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 329. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 330. `git diff --check` - passed.
@@ -734,7 +734,7 @@ Commands run from the repo root:
 333. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts` - passed (`9` tests).
 334. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts tests/lib/pilot/storage.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/responses.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`192` tests).
 335. `node node_modules/eslint/bin/eslint.js lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts` - passed.
-336. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+336. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 337. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 338. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 339. `git diff --check` - passed.
@@ -742,7 +742,7 @@ Commands run from the repo root:
 341. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh && if bash scripts/check-v22-gate0-exit.sh; then echo GATE0_EXIT_ZERO; else echo GATE0_EXIT_NONZERO; fi` - expected blocked result: consistency guards pass, Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`, and the guard exits nonzero.
 342. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts` - passed (`11` tests).
 343. `node node_modules/eslint/bin/eslint.js lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts` - passed.
-344. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `lib/pilot/readiness-audit.ts`.
+344. `node node_modules/prettier/bin/prettier.cjs --check lib/pilot/readiness-audit.ts tests/lib/pilot/readiness-audit.test.ts docs/implementation/v22-pilot-readiness/README.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `lib/pilot/readiness-audit.ts`.
 345. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 346. `node node_modules/vitest/vitest.mjs run tests/lib/pilot/readiness-audit.test.ts tests/lib/pilot/storage.test.ts tests/lib/pilot/event-replay-policy.test.ts tests/lib/pilot/responses.test.ts tests/api/pilot-instrumentation-routes.test.ts tests/api/pilot-metrics-recompute.test.ts tests/unit/openapi-pilot-events.test.ts` - passed (`194` tests).
 347. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
@@ -751,7 +751,7 @@ Commands run from the repo root:
 350. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`12` tests).
 351. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 352. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts` - passed.
-353. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `tests/scripts/check-v22-evidence-intake.test.ts`.
+353. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `tests/scripts/check-v22-evidence-intake.test.ts`.
 354. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 355. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 356. `git diff --check && bash scripts/check-root-hygiene.sh` - passed.
@@ -759,7 +759,7 @@ Commands run from the repo root:
 358. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`14` tests).
 359. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 360. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts` - passed.
-361. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md`.
+361. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md`.
 362. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 363. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 364. `git diff --check && bash scripts/check-root-hygiene.sh` - passed.
@@ -767,7 +767,7 @@ Commands run from the repo root:
 366. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`16` tests).
 367. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 368. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts` - passed.
-369. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `tests/scripts/check-v22-evidence-intake.test.ts`.
+369. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `tests/scripts/check-v22-evidence-intake.test.ts`.
 370. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 371. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 372. `git diff --check && bash scripts/check-root-hygiene.sh` - passed.
@@ -775,7 +775,7 @@ Commands run from the repo root:
 374. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`18` tests).
 375. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 376. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts` - passed.
-377. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+377. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 378. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 379. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 380. `git diff --check && bash scripts/check-root-hygiene.sh` - passed.
@@ -783,7 +783,7 @@ Commands run from the repo root:
 382. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`21` tests).
 383. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 384. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts` - passed.
-385. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting `docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md`.
+385. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting `docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md`.
 386. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 387. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 388. `git diff --check && bash scripts/check-root-hygiene.sh` - passed.
@@ -791,7 +791,7 @@ Commands run from the repo root:
 390. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`22` tests).
 391. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 392. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed.
-393. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+393. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 394. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 395. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 396. `git diff --check` - passed.
@@ -800,7 +800,7 @@ Commands run from the repo root:
 399. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`25` tests).
 400. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 401. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed.
-402. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-evidence/c1-partner-terms/ARTIFACT_INVENTORY_TEMPLATE.md docs/implementation/v22-0-evidence/c1-partner-terms/C1-20260428-artifact-inventory.md docs/implementation/v22-0-evidence/c1-partner-terms/README.md docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed after formatting the C1 prep inventory scaffold.
+402. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-evidence/c1-partner-terms/ARTIFACT_INVENTORY_TEMPLATE.md docs/implementation/v22-0-evidence/c1-partner-terms/C1-20260428-artifact-inventory.md docs/implementation/v22-0-evidence/c1-partner-terms/README.md docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed after formatting the C1 prep inventory scaffold.
 403. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 404. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 405. `git diff --check` - passed.
@@ -809,29 +809,29 @@ Commands run from the repo root:
 408. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`27` tests).
 409. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 410. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed.
-411. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+411. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 412. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 413. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 414. `git diff --check` - passed after retrying a transient WSL transport failure.
 415. `bash scripts/check-root-hygiene.sh` - passed.
 416. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh && if bash scripts/check-v22-gate0-exit.sh; then echo GATE0_EXIT_ZERO; else echo GATE0_EXIT_NONZERO; fi` - expected blocked result: consistency guards pass, Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`, and the guard exits nonzero.
-417. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-evidence/c1-partner-terms/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-evidence/c1-partner-terms/README.md docs/implementation/v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-evidence/d4-partner-ops/README.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md` - passed.
+417. `node node_modules/prettier/bin/prettier.cjs --check docs/implementation/v22-0-evidence/c1-partner-terms/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-evidence/c1-partner-terms/README.md docs/implementation/v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-evidence/d4-partner-ops/README.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md` - passed.
 418. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 419. `git diff --check` - passed.
 420. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh && if bash scripts/check-v22-gate0-exit.sh; then echo GATE0_EXIT_ZERO; else echo GATE0_EXIT_NONZERO; fi` - expected blocked result: consistency guards pass, Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`, and the guard exits nonzero.
 421. `node node_modules/vitest/vitest.mjs run tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed (`29` tests).
 422. `bash -n scripts/check-v22-evidence-intake.sh && bash -n scripts/check-v22-gate0-exit.sh && bash -n scripts/check-v22-threat-model.sh` - passed.
 423. `node node_modules/eslint/bin/eslint.js tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts` - passed.
-424. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-evidence/d4-partner-ops/ARTIFACT_INVENTORY_TEMPLATE.md docs/implementation/v22-0-evidence/d4-partner-ops/D4-20260428-artifact-inventory.md docs/implementation/v22-0-evidence/d4-partner-ops/README.md docs/implementation/v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md docs/implementation/v22-0-worktree-checkpoint-2026-06-13.md` - passed after formatting the D4 prep inventory scaffold, sync runbook, script tests, and maintenance ledger.
+424. `node node_modules/prettier/bin/prettier.cjs --check tests/scripts/check-v22-evidence-intake.test.ts tests/scripts/check-v22-gate0-exit.test.ts docs/implementation/v22-0-evidence/d4-partner-ops/ARTIFACT_INVENTORY_TEMPLATE.md docs/implementation/v22-0-evidence/d4-partner-ops/D4-20260428-artifact-inventory.md docs/implementation/v22-0-evidence/d4-partner-ops/README.md docs/implementation/v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md docs/implementation/v22-0-gate-0-evidence-intake-pack.md docs/implementation/v22-0-gate-0-evidence-sync-runbook.md docs/implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md docs/implementation/v22-0-worktree-checkpoint-2026-06-13.md` - passed after formatting the D4 prep inventory scaffold, sync runbook, script tests, and maintenance ledger.
 425. `node node_modules/typescript/bin/tsc --noEmit` - passed.
 426. `node --import tsx scripts/check-references.ts` - passed (`144` files checked).
 427. `git diff --check` - passed.
 428. `bash scripts/check-root-hygiene.sh` - passed.
 429. `bash scripts/check-v22-threat-model.sh && bash scripts/check-v22-evidence-intake.sh && if bash scripts/check-v22-gate0-exit.sh; then echo GATE0_EXIT_ZERO; else echo GATE0_EXIT_NONZERO; fi` - expected blocked result: consistency guards pass, Gate 0 remains `NO-GO` with blocking checks `G0-3`, `G0-8`, and the guard exits nonzero.
 
-The desktop shell did not expose `npm` on WSL `PATH`, so validation used the
-Linux Node runtime at `/home/jer/.cache/codex-node-v24.14.0-linux-x64/bin/node`
-directly with repo-local `node_modules`. WSL later became intermittently
+The desktop shell did not expose `npm` on WSL `PATH`, so validation used an
+available Linux Node runtime directly with repo-local `node_modules`.
+WSL later became intermittently
 unavailable with `Wsl/Service/E_UNEXPECTED`, so the final path-coverage-only
 OpenAPI assertion was also checked with the bundled desktop Node runtime.
 

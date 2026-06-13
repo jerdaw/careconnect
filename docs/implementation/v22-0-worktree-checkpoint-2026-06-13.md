@@ -1,5 +1,5 @@
 ---
-status: draft
+status: stable
 last_updated: 2026-06-13
 owner: jer
 tags: [implementation, v22.0, checkpoint, review]
@@ -65,26 +65,31 @@ runbook instructions.
 - Expanded route, storage, OpenAPI, and script fixture tests for the changed
   contracts.
 
-## Recommended Commit Boundaries
+## Committed Review Boundaries
 
-1. `chore: add v22 gate0 evidence and threat guards`
+1. `chore: add v22 gate0 validation guards`
    - Gate 0 guard scripts, CI/npm wiring, evidence templates, evidence
      runbooks, and script tests.
-2. `fix: harden offline privacy and local recovery paths`
+2. `fix: harden offline recovery privacy`
    - Offline sync/feedback sanitization, recovery diagnostics, draft cleanup,
      runbooks, threat-model updates, and related tests.
-3. `feat: add pilot event idempotent retry contracts`
+3. `feat: add pilot event retry contracts`
    - Optional event IDs, supplied-ID retry behavior, shared pilot responses,
      storage duplicate handling, OpenAPI docs, and route tests.
-4. `test: pin internal pilot OpenAPI and route contracts`
+4. `test: pin internal pilot openapi contracts`
    - Derived route/method inventory tests, operation metadata checks, JSON
      write `415` coverage, and documented response-envelope checks.
-5. `fix: validate pilot readiness audit inputs`
+5. `fix: validate pilot readiness inputs`
    - Scope validation, sanitized readiness diagnostics, duplicate detection,
      CSV formula neutralization, readiness docs, and tests.
-6. `docs: align existing v22 evidence records`
+6. `fix: tighten pilot privacy key guards`
+   - Pilot privacy-key schema validation and focused guard coverage.
+7. `docs: checkpoint v22 maintenance worktree`
    - C2 retention wording, Phase 0 baseline note, roadmap/runbook references,
      and documentation hygiene tests.
+8. `docs: clarify v22 remaining roadmap work`
+   - Roadmap cleanup so the remaining default path is external C1/D4 evidence,
+     not open-ended autonomous hardening.
 
 ## Verification To Preserve
 
