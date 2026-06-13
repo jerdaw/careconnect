@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-04
+last_updated: 2026-06-13
 owner: jer
 tags: [planning, roadmap, governance, public-docs]
 ---
@@ -17,7 +17,7 @@ This directory contains planning and strategy documents for CareConnect.
 
 ## Active Planning: v22.0
 
-**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete)
+**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete; repo-local maintenance checkpoint review-ready)
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
@@ -55,6 +55,10 @@ This directory contains planning and strategy documents for CareConnect.
 - [v22.0 Gate 0 Prep and Deploy Contract Alignment Archive (2026-04-28)](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md)
   - Completed autonomous maintenance pass for prep-only Gate 0 evidence packets, deploy-contract alignment, and validation
   - **Reading time:** 5 minutes
+
+- [v22.0 Autonomous Gate 0 Maintenance Archive (2026-06-13)](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
+  - Completed bounded repo-local maintenance pass for evidence guards, D4 artifact-inventory validation, offline recovery/privacy, pilot event contracts, and readiness validation while leaving C1/D4 evidence externally blocked
+  - **Reading time:** 10 minutes
 
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions

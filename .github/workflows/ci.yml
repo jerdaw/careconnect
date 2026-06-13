@@ -42,6 +42,10 @@ jobs:
         run: npm run check:root
       - name: Check Repo References
         run: npm run check:refs
+      - name: Check v22 Gate 0 Evidence Intake
+        run: npm run check:v22-evidence
+      - name: Check v22 Threat Model
+        run: npm run check:v22-threat-model
       - name: Validate Security Headers
         run: npm run validate:security-headers
 

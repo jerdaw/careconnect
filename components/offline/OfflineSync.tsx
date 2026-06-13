@@ -6,6 +6,18 @@ import { syncOfflineData } from "@/lib/offline/sync"
 import { syncPendingFeedback } from "@/lib/offline/feedback"
 import { logger } from "@/lib/logger"
 
+function getClientSyncErrorType(error: unknown): string {
+  if (typeof DOMException !== "undefined" && error instanceof DOMException) {
+    return error.name || "DOMException"
+  }
+
+  if (error instanceof Error) {
+    return "Error"
+  }
+
+  return typeof error
+}
+
 export function OfflineSync() {
   const locale = useLocale()
 
@@ -37,7 +49,7 @@ export function OfflineSync() {
         if (!cancelled) {
           logger.warn("Service worker registration failed", {
             component: "OfflineSync",
-            error: err instanceof Error ? err.message : String(err),
+            errorType: getClientSyncErrorType(err),
           })
         }
       }
@@ -73,11 +85,19 @@ export function OfflineSync() {
             logger.info("Offline data synced successfully", { component: "OfflineSync", action: "initial_sync" })
           }
         })
-        .catch((err) => logger.error("Offline sync failed", err, { component: "OfflineSync" }))
+        .catch((err) =>
+          logger.warn("Offline sync failed", {
+            component: "OfflineSync",
+            errorType: getClientSyncErrorType(err),
+          })
+        )
 
       // Also try to sync pending feedback
       syncPendingFeedback().catch((err) =>
-        logger.error("Pending feedback sync failed", err, { component: "OfflineSync" })
+        logger.warn("Pending feedback sync failed", {
+          component: "OfflineSync",
+          errorType: getClientSyncErrorType(err),
+        })
       )
     }
 
@@ -100,7 +120,12 @@ export function OfflineSync() {
   // Keep the Workbox navigation fallback (`/offline`) warm for the current locale.
   // This reduces the chance of showing a stale-language cached offline page after a locale switch.
   useEffect(() => {
-    fetch("/offline").catch((err) => logger.warn("Offline fallback prewarm failed", { err, locale }))
+    fetch("/offline").catch((err) =>
+      logger.warn("Offline fallback prewarm failed", {
+        errorType: getClientSyncErrorType(err),
+        locale,
+      })
+    )
   }, [locale])
 
   return null

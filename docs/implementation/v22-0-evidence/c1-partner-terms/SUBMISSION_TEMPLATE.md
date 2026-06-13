@@ -1,4 +1,5 @@
 Submission ID: C1-YYYYMMDD
+Submission ID rule: must match the dated filename prefix, for example `C1-YYYYMMDD-submission.md`.
 Submitted by:
 Reviewer:
 Date:

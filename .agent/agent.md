@@ -1,13 +1,15 @@
-# CareConnect - AI Context
+# CareConnect - Agent Context
 
-This file provides context for AI agents working on the CareConnect project.
+This file provides context for automation and development agents working on the
+CareConnect project.
 
 ## Development Principles
 
 1. **Separation of Content**: No hardcoded strings in UI. Use translation files.
 2. **SSR Safety**: Always guard client-side APIs (localStorage, window) with `typeof window !== 'undefined'`.
 3. **Privacy First**: Avoid adding tracking scripts or invasive cookies.
-4. **Verified Data**: The "Kingston 150" dataset is manually curated. Update via `scripts/migrate-data.ts`.
+4. **Verified Data**: The service dataset is manually curated. Update via governed data workflows only.
+5. **Authorship**: Commits, docs, changelogs, acknowledgments, and release notes may list only actual human contributors as authors or contributors. Do not add AI tool attribution, generated-by signatures, or AI co-author trailers.
 
 ## Tech Stack
 

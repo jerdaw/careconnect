@@ -1,4 +1,29 @@
-const DISALLOWED_PRIVACY_KEYS = new Set(["query", "query_text", "message", "user_text", "notes"])
+const DISALLOWED_PRIVACY_KEYS = new Set([
+  "client_address",
+  "client_name",
+  "comment",
+  "comments",
+  "contact_email",
+  "contact_name",
+  "contact_phone",
+  "email",
+  "email_address",
+  "first_name",
+  "free_text",
+  "full_name",
+  "home_address",
+  "last_name",
+  "message",
+  "note",
+  "notes",
+  "person_name",
+  "phone",
+  "phone_number",
+  "query",
+  "query_text",
+  "street_address",
+  "user_text",
+])
 
 function walk(value: unknown, path: string[] = [], found: string[] = []): string[] {
   if (!value || typeof value !== "object") {

@@ -218,6 +218,42 @@ describe("documentation hygiene", () => {
     }
   })
 
+  it("keeps C2 retention evidence aligned with its completed Gate 0 status", () => {
+    const gateChecklist = readDoc("docs/implementation/v22-0-gate-0-exit-checklist.md")
+    const c2Readme = readDoc("docs/implementation/v22-0-evidence/c2-retention/README.md")
+    const c2Submission = readDoc("docs/implementation/v22-0-evidence/c2-retention/C2-20260329.md")
+
+    expect(gateChecklist).toContain("G0-4")
+    expect(gateChecklist).toContain("C2 retention mapping approved")
+    expect(gateChecklist).toContain("Policy approved and dated verification evidence attached")
+
+    expect(c2Readme).toContain("Attached human-supplied artifacts")
+    expect(c2Readme).toContain("Dated read-only verification evidence")
+    expect(c2Readme).not.toContain("Human-supplied artifacts still required")
+
+    expect(c2Submission).toContain("Verification evidence:")
+    expect(c2Submission).toContain("- Status: complete")
+    expect(c2Submission).toContain("Observed result:")
+    expect(c2Submission).not.toContain("verification_evidence: pending dated read-only query output")
+  })
+
+  it("keeps baseline execution evidence distinct from pending formal sign-off", () => {
+    const gateChecklist = readDoc("docs/implementation/v22-0-gate-0-exit-checklist.md")
+    const baselineReport = readDoc("docs/implementation/v22-0-phase-0-baseline-report-2026-03-09.md")
+
+    expect(gateChecklist).toContain("Baseline M1/M3 execution completed and recorded")
+    expect(gateChecklist).toContain("Values are `NULL` due zero denominator in baseline window")
+
+    expect(baselineReport).toContain("| M1")
+    expect(baselineReport).toContain("| M3")
+    expect(baselineReport).toContain("Executed at (UTC)")
+    expect(baselineReport).toContain("Product owner: `pending`")
+    expect(baselineReport).toContain("Governance owner: `pending`")
+    expect(baselineReport).toContain("M1/M3 execution evidence is recorded above")
+    expect(baselineReport).toContain("sign-off fields remain pending and are not used as Gate 0 closure evidence")
+    expect(baselineReport).not.toContain("ready for value entry once database execution context is available")
+  })
+
   it("keeps public deploy docs free of live host commands", () => {
     const readme = readDoc("README.md")
     const productionChecklist = readDoc("docs/deployment/production-checklist.md")

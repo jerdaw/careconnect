@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-28
+last_updated: 2026-06-12
 owner: jer
 tags: [implementation, v22.0, gate-0, actions, governance]
 ---
@@ -39,6 +39,7 @@ Related:
 - [x] Sync control statuses in [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md).
 - [x] Sync evidence matrix in [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md).
 - [x] Re-evaluate required checks and decision in [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md).
+- [x] Re-run evidence-intake guard: `npm run check:v22-evidence`.
 - [x] Re-run CI guard: `npm run check:v22-gate0`.
 
 ## Synchronization Order (When UA Status Changes)
@@ -50,7 +51,8 @@ Related:
    - `UA-3` -> [v22.0 Approval Checklist](../planning/v22-0-approval-checklist.md)
 3. Update [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md) control tracker.
 4. Update [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md).
-5. Re-evaluate [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md) and run `npm run check:v22-gate0`.
+5. Re-evaluate [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md).
+6. Run `npm run check:v22-evidence` and `npm run check:v22-gate0`.
 
 Detailed operator runbook:
 
@@ -64,3 +66,4 @@ Detailed operator runbook:
 | 2026-03-24 | Autonomous prep     | Added evidence workspace scaffolding and a draft C2 retention/deletion policy artifact     |
 | 2026-03-29 | C2 closure          | Recorded policy approval, privacy sign-off, verification evidence, and Gate 0 tracker sync |
 | 2026-04-28 | Autonomous prep     | Added prep-only C1 and D4 dated evidence packets; UA-1 and UA-3 remain pending             |
+| 2026-06-12 | Autonomous guard    | Added C1/D4 evidence-intake validation; UA-1 and UA-3 remain pending                       |

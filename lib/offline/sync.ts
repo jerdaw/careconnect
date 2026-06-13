@@ -3,19 +3,63 @@ import { logger } from "@/lib/logger"
 import { Service } from "@/types/service"
 import { resetServiceDataCache } from "@/lib/search/data"
 
-interface SyncResult {
+export type SyncErrorSummary = {
+  errorType: string
+  httpStatus?: number
+}
+
+export interface SyncResult {
   status: "synced" | "up-to-date" | "error"
   count?: number
-  error?: unknown
+  error?: SyncErrorSummary
 }
 
 const SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000 // 24 hours
+
+class OfflineSyncHttpError extends Error {
+  constructor(readonly status: number) {
+    super("Offline sync HTTP request failed")
+    this.name = "OfflineSyncHttpError"
+  }
+}
+
+function summarizeSyncError(error: unknown): SyncErrorSummary {
+  if (error instanceof OfflineSyncHttpError) {
+    return {
+      errorType: "HttpError",
+      httpStatus: error.status,
+    }
+  }
+
+  if (typeof DOMException !== "undefined" && error instanceof DOMException) {
+    return {
+      errorType: error.name || "DOMException",
+    }
+  }
+
+  if (error instanceof Error) {
+    return {
+      errorType: "Error",
+    }
+  }
+
+  return {
+    errorType: typeof error,
+  }
+}
 
 /**
  * Syncs offline data from the API
  */
 export async function syncOfflineData(force = false, retryCount = 0): Promise<SyncResult> {
-  if (typeof window === "undefined") return { status: "error", error: "Server-side sync not supported" }
+  if (typeof window === "undefined") {
+    return {
+      status: "error",
+      error: {
+        errorType: "ServerContext",
+      },
+    }
+  }
 
   try {
     const lastSync = await getMeta<string>("lastSync")
@@ -48,7 +92,7 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
     }
 
     if (!response.ok) {
-      throw new Error(`Sync failed: ${response.status} ${response.statusText}`)
+      throw new OfflineSyncHttpError(response.status)
     }
 
     const data = (await response.json()) as {
@@ -70,7 +114,8 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
 
     return { status: "synced", count: data.count }
   } catch (error) {
-    logger.error("Offline sync error", { error })
+    const errorSummary = summarizeSyncError(error)
+    logger.warn("Offline sync error", { ...errorSummary, attempt: retryCount + 1 })
 
     // 3. Simple Retry Logic (Max 2 retries)
     if (retryCount < 2) {
@@ -80,7 +125,7 @@ export async function syncOfflineData(force = false, retryCount = 0): Promise<Sy
       return syncOfflineData(force, retryCount + 1)
     }
 
-    return { status: "error", error }
+    return { status: "error", error: errorSummary }
   }
 }
 

@@ -1,4 +1,5 @@
 Submission ID: D4-YYYYMMDD
+Submission ID rule: must match the dated filename prefix, for example `D4-YYYYMMDD-submission.md`.
 Submitted by:
 Date:
 Pilot partner list artifact:
@@ -6,6 +7,7 @@ Outreach owner:
 Execution evidence bundle and filenames:
 
 - outreach log
+- artifact inventory
 - dated contact attempts
 - outcomes/status notes
 - supporting screenshots or email exports (optional)

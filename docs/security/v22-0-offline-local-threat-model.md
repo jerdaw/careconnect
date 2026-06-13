@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-04
+last_updated: 2026-06-12
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -62,6 +62,20 @@ Out of scope:
 | F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | Focused component tests + offline UI walkthrough evidence | yes      |
 | F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | no       |
 
+## 2026-06-12 Mitigation Evidence Audit
+
+This audit covered repo-local implementation evidence only. It did not inspect
+private/shared operations material and does not close any partner, legal, or
+production-readiness evidence gates.
+
+| Finding ID | Evidence Inspected                                                                                                                                                                                                                                                                                                                                                            | Current Result                                                                                                                                                                                                                                                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| F1         | `lib/schemas/privacy-guards.ts`, `lib/schemas/pilot-events.ts`, `tests/lib/schemas/privacy-guards.test.ts`, `tests/lib/schemas/pilot-events.test.ts`                                                                                                                                                                                                                          | Partially mitigated at the pilot event contract boundary: schemas reject raw query/message/notes fields, personal contact fields, and free-text fields. The local queue-specific behavior remains unverified, so `Verified` stays `no`.                                                                                                          |
+| F2         | `lib/offline/pilot-draft-cleanup.ts`, `components/layout/AuthProvider.tsx`, `tests/lib/offline/pilot-draft-cleanup.test.ts`, `tests/components/AuthProvider.test.tsx`                                                                                                                                                                                                         | Pilot draft TTL, malformed-envelope pruning, and sign-out cleanup for reserved pilot draft keys are implemented and covered by unit/component tests. No actual pilot draft queue was identified, and manual QA evidence is still missing, so `Verified` stays `no`.                                                                              |
+| F3         | `lib/pilot/event-replay-policy.ts`, `lib/pilot/storage.ts`, pilot event routes, `tests/lib/pilot/event-replay-policy.test.ts`, `tests/lib/pilot/storage.test.ts`, route tests                                                                                                                                                                                                 | Replay criteria, deterministic privacy-safe fingerprints, and supplied-ID primary-key retry handling are unit/API/storage covered. Non-primary duplicate constraints are not suppressed as idempotent retries. Live repeated-submission integration evidence remains missing, so `Verified` stays `no`.                                          |
+| F4         | Existing threat-model record                                                                                                                                                                                                                                                                                                                                                  | Previously verified stale-state surfacing remains recorded as `yes`; this pass did not re-open it.                                                                                                                                                                                                                                               |
+| F5         | `docs/runbooks/offline-local-recovery.md`, `lib/offline/local-recovery-audit.ts`, `tests/lib/offline/local-recovery-audit.test.ts`, `lib/offline/feedback.ts`, `tests/lib/offline/feedback.test.ts`, `lib/offline/db.ts`, `lib/offline/sync.ts`, `tests/unit/lib/offline/sync.test.ts`, `components/offline/OfflineSync.tsx`, `tests/components/offline/OfflineSync.test.tsx` | A public-safe recovery workflow and aggregate audit helper now cover queue counts, cache counts, sync metadata, non-destructive re-sync, destructive-clearing safeguards, API-schema validation before feedback queue storage/replay, and sanitized sync failure metadata. Dry-run execution evidence remains missing, so `Verified` stays `no`. |
+
 ## Validation Checklist
 
 - [x] Device-loss scenario assessed for all local data classes
@@ -82,3 +96,10 @@ Out of scope:
 | Critical findings resolved                       | GO     |
 | High findings have owners and mitigation plans   | GO     |
 | Threat model signed by security/governance owner | GO     |
+
+## Automated Consistency Check
+
+Run `npm run check:v22-threat-model` after editing this file. The guard checks
+the mitigation matrix and Gate 0 security outcome for internal consistency; it
+does not judge whether a mitigation is strategically sufficient or close any
+finding that still lacks its stated verification evidence.

@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-06-12
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, intake]
 ---
@@ -64,13 +64,21 @@ Supporting templates:
 
 1. [C1 Submission Template](v22-0-evidence/c1-partner-terms/SUBMISSION_TEMPLATE.md)
 2. [C1 Clause Matrix Template](v22-0-evidence/c1-partner-terms/CLAUSE_MATRIX_TEMPLATE.md)
+3. [C1 Artifact Inventory Template](v22-0-evidence/c1-partner-terms/ARTIFACT_INVENTORY_TEMPLATE.md)
 
 Minimum evidence checks:
 
 - [ ] Partner legal/API terms bundle is attached and accessible.
-- [ ] Clause-level outcomes are provided for C1-1 through C1-4.
-- [ ] Any failed clause includes explicit rejection rationale.
+- [ ] Submission ID matches the dated submission filename prefix.
+- [ ] Artifact inventory uses the canonical template header and maps each
+      clause-matrix source artifact to an Artifact ID or Filename / location
+      marked `Used in clause matrix` = `yes`.
+- [ ] Clause matrix uses the canonical template header and exactly one row for
+      each required clause ID (`C1-1` through `C1-4`).
+- [ ] Any non-pass clause includes explicit notes/rationale and a required
+      mitigation or fallback.
 - [ ] Final legal recommendation is present and signed.
+- [ ] Submission `Date` and `Sign-off date` use `YYYY-MM-DD`.
 
 Pass rule:
 
@@ -146,21 +154,36 @@ Suggested dated artifacts:
 1. `D4-YYYYMMDD-submission.md`
 2. `D4-YYYYMMDD-partner-list.md`
 3. `D4-YYYYMMDD-outreach-log.csv`
-4. `D4-YYYYMMDD-coverage-note.md`
-5. Any dated screenshots, email exports, or CRM notes used as supporting evidence
+4. `D4-YYYYMMDD-artifact-inventory.md`
+5. `D4-YYYYMMDD-coverage-note.md`
+6. Any dated screenshots, email exports, or CRM notes used as supporting evidence
 
 Supporting templates:
 
 1. [D4 Submission Template](v22-0-evidence/d4-partner-ops/SUBMISSION_TEMPLATE.md)
 2. [D4 Partner List Template](v22-0-evidence/d4-partner-ops/PARTNER_LIST_TEMPLATE.md)
 3. [D4 Outreach Log Template](v22-0-evidence/d4-partner-ops/OUTREACH_LOG_TEMPLATE.csv)
+4. [D4 Artifact Inventory Template](v22-0-evidence/d4-partner-ops/ARTIFACT_INVENTORY_TEMPLATE.md)
 
 Minimum evidence checks:
 
 - [ ] Named pilot partner list is attached.
+- [ ] Submission ID matches the dated submission filename prefix.
+- [ ] Artifact inventory uses the canonical template header and maps each
+      outreach-log `source_artifact` to an Artifact ID or Filename / location
+      marked `Supports outreach-log row` = `yes`.
+- [ ] Partner list uses the canonical template header, no duplicate
+      organization rows, and exact partner types of `provider` or
+      `frontline organization`.
 - [ ] Outreach owner is explicitly identified.
 - [ ] Dated execution evidence bundle is attached.
 - [ ] Coverage note includes targeted counts and any remaining gaps.
+- [ ] Outreach log uses the canonical CSV header, `YYYY-MM-DD` dates, positive
+      `attempt_number` values, and a `source_artifact` reference on each
+      execution row.
+- [ ] Target and contact-attempt counts are positive integers.
+- [ ] Submitted target and contact-attempt counts match the partner-list rows
+      and outreach-log execution rows.
 
 Pass rule:
 
@@ -175,7 +198,40 @@ After any accepted submission:
 2. Sync the corresponding control/evidence docs (C1 or C2, plus approval checklist for D4).
 3. Sync [v22.0 Gate 0 Evidence Status (2026-03-09)](v22-0-gate-0-evidence-status-2026-03-09.md).
 4. Re-evaluate [v22.0 Gate 0 Exit Checklist (Decision Control)](v22-0-gate-0-exit-checklist.md).
-5. Re-run gate check (`npm run check:v22-gate0`).
+5. Re-run evidence-intake validation (`npm run check:v22-evidence`).
+6. Re-run gate check (`npm run check:v22-gate0`).
+
+## Machine Validation
+
+Use `npm run check:v22-evidence` before any Gate 0 re-review. The guard is
+status-aware:
+
+1. It passes while `UA-1/G0-3` and `UA-3/G0-8` remain pending and only
+   `prep_only` scaffolds exist.
+2. It fails if either blocker is marked `complete` or `pass` while the
+   corresponding evidence bundle is still `prep_only`.
+3. For C1 closure, it validates the canonical artifact-inventory header,
+   non-placeholder inventory rows, at least one artifact marked used in the
+   clause matrix, and clause-matrix source references against inventory Artifact
+   IDs or Filename / location values.
+4. For C1 closure, it validates the canonical matrix header, exactly one row
+   for each required clause, source references, outcomes, and
+   rationale/mitigation fields for non-pass clause outcomes.
+5. For D4 closure, it validates the artifact-inventory canonical header,
+   non-placeholder inventory rows, at least one artifact marked as supporting
+   an outreach-log row, and outreach-log `source_artifact` values against
+   inventory Artifact IDs or Filename / location values.
+6. For D4 closure, it validates the partner-list canonical header, exact
+   partner types, duplicate organization rows, target range, and the outreach
+   log's canonical header, date format, attempt numbers, and artifact
+   traceability fields.
+7. For C1/D4 closure submissions, it validates that `Submission ID` matches
+   the dated submission filename prefix, `YYYY-MM-DD` submission dates, and
+   positive integer D4 target/contact-attempt counts.
+8. It compares D4 submitted counts against the attached partner-list and
+   outreach-log artifacts.
+9. It checks only evidence-structure and status consistency. It does not make
+   legal, partner-quality, or outreach-sufficiency judgments.
 
 Detailed operator sequence:
 

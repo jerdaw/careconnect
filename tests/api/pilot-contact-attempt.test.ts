@@ -168,6 +168,27 @@ describe("POST /api/v1/pilot/events/contact-attempt", () => {
     expect(json.error.details).toBe("database unavailable")
   })
 
+  it("returns 200 for idempotent retries with a client event id", async () => {
+    const idempotentPayload = {
+      ...validPayload,
+      id: "11111111-1111-4111-8111-111111111111",
+    }
+    vi.mocked(insertContactAttempt).mockResolvedValue({
+      data: null,
+      duplicate: true,
+      error: null,
+      missingTable: false,
+    })
+
+    const response = await POST(createRequest(idempotentPayload))
+    const json = (await response.json()) as any
+
+    expect(response.status).toBe(200)
+    expect(response.headers.get("cache-control")).toBe("no-store")
+    expect(json.data).toEqual({ success: true, duplicate: true })
+    expect(insertContactAttempt).toHaveBeenCalledWith(mockSupabaseAuth, idempotentPayload)
+  })
+
   it("returns 201 with success payload and no-store header on success", async () => {
     const response = await POST(createRequest())
     const json = (await response.json()) as any

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-04
+last_updated: 2026-06-12
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, runbook]
 ---
@@ -38,18 +38,40 @@ Rules:
 Confirm all of the following:
 
 1. Candidate partner legal/API terms are attached in [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md).
-2. Clause-level outcomes exist for `C1-1` through `C1-4`.
-3. Any conflicting clause is explicitly marked `reject` or `acceptable_with_conditions`.
-4. Final legal recommendation is present with reviewer and date.
+2. Submission ID matches the dated submission filename prefix.
+3. Artifact inventory uses the canonical header, includes non-placeholder
+   source metadata, marks at least one artifact as used in the clause matrix,
+   and maps each clause-matrix source artifact to an Artifact ID or Filename /
+   location.
+4. Clause matrix uses the canonical header and has exactly one row for each
+   required clause ID (`C1-1` through `C1-4`).
+5. Any non-pass clause has explicit notes/rationale and a required mitigation
+   or fallback in the clause matrix.
+6. Final legal recommendation is present with reviewer and date.
+7. Submission `Date` and `Sign-off date` use `YYYY-MM-DD`.
 
 ### `UA-3 / G0-8 / D4`
 
 Confirm all of the following:
 
 1. Named pilot partner list is attached in [v22.0 Evidence Workspace / D4](v22-0-evidence/d4-partner-ops/README.md).
-2. Outreach owner is explicitly named.
-3. Dated contact attempts are recorded in the outreach bundle.
-4. Coverage note includes targeted counts and any remaining gaps.
+2. Submission ID matches the dated submission filename prefix.
+3. Artifact inventory uses the canonical header, includes non-placeholder
+   source metadata, marks at least one artifact as supporting an outreach-log
+   row, and maps each outreach-log `source_artifact` to an Artifact ID or
+   Filename / location.
+4. Partner list uses the canonical header, exact partner types of `provider` or
+   `frontline organization`, and no duplicate organization rows.
+5. Outreach owner is explicitly named.
+6. Dated contact attempts are recorded in the outreach bundle.
+7. Coverage note includes targeted counts and any remaining gaps.
+8. The outreach log follows the canonical CSV header and each execution row has
+   a `YYYY-MM-DD` date, positive `attempt_number`, outcome, owner, and
+   `source_artifact` reference.
+9. Target and contact-attempt counts in the D4 submission are positive
+   integers.
+10. Submitted counts match the attached artifacts: provider rows, frontline
+    organization rows, and outreach-log execution rows.
 
 ## Step 2: Update the Source Record First
 
@@ -96,19 +118,21 @@ Required sync points:
 4. checklist pass/pending state
 5. overall Gate 0 decision, if all blockers are now closed
 
-## Step 4: Re-Run the Gate Check
+## Step 4: Re-Run Evidence and Gate Checks
 
 Run:
 
 ```bash
+npm run check:v22-evidence
 npm run check:v22-gate0
 ```
 
 Interpretation:
 
-1. `BLOCKED` with `G0-3` or `G0-8` is expected if only one blocker has been closed.
-2. `OK` is valid only when the checklist decision is `GO` and every `G0-*` row is `pass`.
-3. Any mismatch between the checklist and the script output means the synced docs are inconsistent and must be corrected before further work.
+1. `npm run check:v22-evidence` must pass before a closure decision is accepted.
+2. `BLOCKED` with `G0-3` or `G0-8` is expected if only one blocker has been closed.
+3. `OK` from `npm run check:v22-gate0` is valid only when the checklist decision is `GO` and every `G0-*` row is `pass`.
+4. Any mismatch between the checklist and the script output means the synced docs are inconsistent and must be corrected before further work.
 
 ## Step 5: Preserve Evidence Discipline
 

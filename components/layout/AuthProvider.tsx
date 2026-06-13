@@ -5,6 +5,7 @@ import { User, Session } from "@supabase/supabase-js"
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase"
 import { logger } from "@/lib/logger"
 import { useRouter } from "next/navigation"
+import { clearPilotDraftStorageOnSignOut } from "@/lib/offline/pilot-draft-cleanup"
 
 interface AuthContextType {
   user: User | null
@@ -90,6 +91,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       return
     }
 
+    await clearPilotDraftStorageOnSignOut()
     await supabase.auth.signOut()
     router.refresh()
   }

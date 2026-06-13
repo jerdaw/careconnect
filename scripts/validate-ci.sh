@@ -54,6 +54,16 @@ npm run check:refs
 echo "✅ Reference check passed"
 echo ""
 
+echo "🧾 Checking v22 Gate 0 evidence intake..."
+npm run check:v22-evidence
+echo "✅ v22 Gate 0 evidence intake check passed"
+echo ""
+
+echo "🧾 Checking v22 threat model..."
+npm run check:v22-threat-model
+echo "✅ v22 threat model check passed"
+echo ""
+
 echo "🛡️ Validating security headers..."
 npm run validate:security-headers
 echo "✅ Security header validation passed"
