@@ -20,6 +20,7 @@ const ServiceOperationalStatusCodeEnum = z.enum(SERVICE_OPERATIONAL_STATUS_CODES
 const DataDecayFatalErrorCategoryEnum = z.enum(PILOT_DATA_DECAY_FATAL_ERROR_CATEGORIES)
 const DataDecayVerificationModeEnum = z.enum(PILOT_DATA_DECAY_VERIFICATION_MODES)
 const Sha256HexSchema = z.string().regex(/^[0-9a-fA-F]{64}$/, "entity_key_hash must be a SHA-256 hex digest")
+const ClientEventIdSchema = z.string().uuid()
 
 function addPrivacyFieldIssues(value: unknown, context: z.RefinementCtx) {
   const disallowedPaths = findDisallowedPrivacyKeyPaths(value)
@@ -33,6 +34,7 @@ function addPrivacyFieldIssues(value: unknown, context: z.RefinementCtx) {
 
 export const PilotContactAttemptCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     service_id: z.string().min(1).max(100),
     recorded_by_org_id: z.string().uuid(),
@@ -48,6 +50,7 @@ export const PilotContactAttemptCreateSchema = z
 
 export const PilotReferralCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     source_org_id: z.string().uuid(),
     target_service_id: z.string().min(1).max(100),
@@ -62,6 +65,7 @@ export const PilotReferralCreateSchema = z
 
 export const PilotConnectionCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     org_id: z.string().uuid(),
     service_id: z.string().min(1).max(100),
@@ -94,6 +98,7 @@ export const PilotServiceScopeCreateSchema = z
 
 export const ServiceOperationalStatusEventCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     org_id: z.string().uuid(),
     service_id: z.string().min(1).max(100),
@@ -105,6 +110,7 @@ export const ServiceOperationalStatusEventCreateSchema = z
 
 export const PilotDataDecayAuditCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     org_id: z.string().uuid(),
     service_id: z.string().min(1).max(100),
@@ -136,6 +142,7 @@ export const PilotDataDecayAuditCreateSchema = z
 
 export const PilotPreferenceFitEventCreateSchema = z
   .object({
+    id: ClientEventIdSchema.optional(),
     pilot_cycle_id: z.string().min(1).max(100),
     org_id: z.string().uuid(),
     cohort_label: z.string().min(1).max(100),

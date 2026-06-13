@@ -7,6 +7,7 @@ import { POST as postPilotScopeService } from "@/app/api/v1/pilot/scope/services
 import { POST as postServiceStatus } from "@/app/api/v1/pilot/events/service-status/route"
 import { POST as postDataDecayAudit } from "@/app/api/v1/pilot/events/data-decay-audit/route"
 import { POST as postPreferenceFit } from "@/app/api/v1/pilot/events/preference-fit/route"
+import { checkRateLimit } from "@/lib/rate-limit"
 import { requireAuthenticatedUser } from "@/lib/pilot/auth"
 import { assertPermission } from "@/lib/auth/authorization"
 import {
@@ -57,6 +58,14 @@ function createRequest(url: string, body: unknown) {
   })
 }
 
+function createNonJsonRequest(url: string, body: string = "not-json") {
+  return createMockRequest(url, {
+    method: "POST",
+    headers: { "content-type": "text/plain" },
+    body,
+  })
+}
+
 describe("pilot instrumentation write routes", () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -88,6 +97,7 @@ describe("pilot instrumentation write routes", () => {
       },
       storageMock: insertConnectionEvent,
       missingTableMessage: "Pilot storage not ready: missing pilot_connection_events table",
+      supportsClientEventId: true,
     },
     {
       name: "scope service",
@@ -107,6 +117,7 @@ describe("pilot instrumentation write routes", () => {
       },
       storageMock: upsertPilotScopeService,
       missingTableMessage: "Pilot storage not ready: missing pilot_service_scope table",
+      supportsClientEventId: false,
     },
     {
       name: "service status",
@@ -128,6 +139,7 @@ describe("pilot instrumentation write routes", () => {
       },
       storageMock: insertServiceOperationalStatusEvent,
       missingTableMessage: "Pilot storage not ready: missing service_operational_status_events table",
+      supportsClientEventId: true,
     },
     {
       name: "data decay audit",
@@ -153,6 +165,7 @@ describe("pilot instrumentation write routes", () => {
       },
       storageMock: insertPilotDataDecayAudit,
       missingTableMessage: "Pilot storage not ready: missing pilot_data_decay_audits table",
+      supportsClientEventId: true,
     },
     {
       name: "preference fit",
@@ -174,6 +187,7 @@ describe("pilot instrumentation write routes", () => {
       },
       storageMock: insertPilotPreferenceFitEvent,
       missingTableMessage: "Pilot storage not ready: missing pilot_preference_fit_events table",
+      supportsClientEventId: true,
     },
   ] as const
 
@@ -184,6 +198,18 @@ describe("pilot instrumentation write routes", () => {
         error: null,
         missingTable: false,
       })
+    })
+
+    it("returns 429 when rate limited", async () => {
+      vi.mocked(checkRateLimit).mockResolvedValueOnce({ success: false } as never)
+
+      const response = await testCase.route(createRequest(testCase.url, testCase.payload))
+      const json = (await response.json()) as { error: { message: string } }
+
+      expect(response.status).toBe(429)
+      expect(json.error.message).toBe("Rate limit exceeded")
+      expect(requireAuthenticatedUser).not.toHaveBeenCalled()
+      expect(testCase.storageMock).not.toHaveBeenCalled()
     })
 
     it("returns 401 when auth is missing", async () => {
@@ -212,6 +238,15 @@ describe("pilot instrumentation write routes", () => {
       expect(response.status).toBe(400)
     })
 
+    it("returns 415 when content type is not json", async () => {
+      const response = await testCase.route(createNonJsonRequest(testCase.url))
+      const json = (await response.json()) as { error: { message: string } }
+
+      expect(response.status).toBe(415)
+      expect(json.error.message).toBe("Content-Type must be application/json")
+      expect(testCase.storageMock).not.toHaveBeenCalled()
+    })
+
     it("returns 400 when disallowed privacy fields are present", async () => {
       const response = await testCase.route(
         createRequest(testCase.url, {
@@ -237,6 +272,32 @@ describe("pilot instrumentation write routes", () => {
 
       expect(response.status).toBe(501)
       expect(json.error.message).toBe(testCase.missingTableMessage)
+    })
+
+    it("returns 200 for idempotent retries with a client event id", async () => {
+      if (!testCase.supportsClientEventId) {
+        expect(testCase.name).toBe("scope service")
+        return
+      }
+
+      vi.mocked(testCase.storageMock).mockResolvedValue({
+        data: null,
+        duplicate: true,
+        error: null,
+        missingTable: false,
+      })
+      const payload = {
+        ...testCase.payload,
+        id: "11111111-1111-4111-8111-111111111111",
+      }
+
+      const response = await testCase.route(createRequest(testCase.url, payload))
+      const json = (await response.json()) as any
+
+      expect(response.status).toBe(200)
+      expect(response.headers.get("cache-control")).toBe("no-store")
+      expect(json.data).toEqual({ success: true, duplicate: true })
+      expect(testCase.storageMock).toHaveBeenCalledWith(expect.anything(), payload)
     })
 
     it("returns 201 with no-store header on success", async () => {

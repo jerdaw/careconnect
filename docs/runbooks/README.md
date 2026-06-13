@@ -1,6 +1,6 @@
 # Public Runbooks Overview
 
-**Last Updated:** 2026-06-05
+**Last Updated:** 2026-06-12
 
 This directory contains public troubleshooting summaries for CareConnect. Detailed incident response steps, alert routing, dashboard locations, host access, and recovery commands are intentionally excluded from public GitHub documentation.
 
@@ -15,6 +15,8 @@ This repository contains public project documentation and reproducible developme
 - [Slow Queries](slow-queries.md)
 - [SLO Violation](slo-violation.md)
 - [PWA Testing](pwa-testing.md)
+- [Pilot Event Replay](pilot-event-replay.md)
+- [Offline Local Data Recovery](offline-local-recovery.md)
 - [Remote Migration Repair](remote-migration-repair.md)
 
 ## Shared Principles

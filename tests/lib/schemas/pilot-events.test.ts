@@ -14,6 +14,7 @@ import {
 describe("pilot-events schema", () => {
   it("accepts a valid contact attempt payload", () => {
     const result = PilotContactAttemptCreateSchema.safeParse({
+      id: "11111111-1111-4111-8111-111111111111",
       pilot_cycle_id: "v22-cycle-1",
       service_id: "kingston-food-bank",
       recorded_by_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
@@ -26,6 +27,21 @@ describe("pilot-events schema", () => {
     expect(result.success).toBe(true)
   })
 
+  it("rejects invalid client event ids", () => {
+    const result = PilotContactAttemptCreateSchema.safeParse({
+      id: "not-a-uuid",
+      pilot_cycle_id: "v22-cycle-1",
+      service_id: "kingston-food-bank",
+      recorded_by_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+      entity_key_hash: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      attempt_channel: "phone",
+      attempt_outcome: "connected",
+      attempted_at: "2026-03-08T15:00:00.000Z",
+    })
+
+    expect(result.success).toBe(false)
+  })
+
   it("rejects contact payload with disallowed privacy field", () => {
     const result = PilotContactAttemptCreateSchema.safeParse({
       pilot_cycle_id: "v22-cycle-1",
@@ -36,6 +52,21 @@ describe("pilot-events schema", () => {
       attempt_outcome: "connected",
       attempted_at: "2026-03-08T15:00:00.000Z",
       query_text: "i need food",
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it("rejects contact payload with personal contact fields", () => {
+    const result = PilotContactAttemptCreateSchema.safeParse({
+      pilot_cycle_id: "v22-cycle-1",
+      service_id: "kingston-food-bank",
+      recorded_by_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+      entity_key_hash: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      attempt_channel: "phone",
+      attempt_outcome: "connected",
+      attempted_at: "2026-03-08T15:00:00.000Z",
+      contact_phone: "555-0100",
     })
 
     expect(result.success).toBe(false)
@@ -66,6 +97,20 @@ describe("pilot-events schema", () => {
     })
 
     expect(result.success).toBe(true)
+  })
+
+  it("rejects referral payloads with raw contact identity fields", () => {
+    const result = PilotReferralCreateSchema.safeParse({
+      pilot_cycle_id: "v22-cycle-1",
+      source_org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+      target_service_id: "kingston-housing-help",
+      referral_state: "initiated",
+      created_at: "2026-03-08T15:00:00.000Z",
+      updated_at: "2026-03-08T15:00:00.000Z",
+      contact_email: "person@example.test",
+    })
+
+    expect(result.success).toBe(false)
   })
 
   it("rejects terminal referral state update without terminal_at", () => {
@@ -156,6 +201,20 @@ describe("pilot-events schema", () => {
       is_fatal: false,
       fatal_error_category: "wrong_or_disconnected_phone",
       verification_mode: "web_plus_call",
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it("rejects data decay audits with free-text notes", () => {
+    const result = PilotDataDecayAuditCreateSchema.safeParse({
+      pilot_cycle_id: "v22-cycle-1",
+      org_id: "3e4f36f6-2b92-4fa8-af31-c7c5d75a3f5e",
+      service_id: "svc-1",
+      audited_at: "2026-03-08T15:30:00.000Z",
+      is_fatal: false,
+      verification_mode: "web_plus_call",
+      comments: "unstructured personal context",
     })
 
     expect(result.success).toBe(false)

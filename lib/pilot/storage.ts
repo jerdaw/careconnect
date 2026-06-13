@@ -16,16 +16,20 @@ import type { Database } from "@/types/supabase"
 
 type DatabaseError = {
   code?: string
+  constraint?: string
+  details?: string
   message?: string
 }
 
 export type PilotStorageResult<T> = {
   data: T | null
+  duplicate?: boolean
   error: DatabaseError | null
   missingTable: boolean
 }
 
 type PilotSupabaseClient = SupabaseClient<Database>
+type PilotEventInsert<T extends { id: string }> = Omit<T, "id"> & Partial<Pick<T, "id">>
 type ContactAttemptRow = Database["public"]["Tables"]["pilot_contact_attempt_events"]["Row"]
 type ReferralRow = Database["public"]["Tables"]["pilot_referral_events"]["Row"]
 type ConnectionRow = Database["public"]["Tables"]["pilot_connection_events"]["Row"]
@@ -44,34 +48,61 @@ function isMissingTableError(error: DatabaseError | null): boolean {
   return error.code === "42P01" || /does not exist|relation/i.test(error.message || "")
 }
 
+function isDuplicatePrimaryKeyError(error: DatabaseError | null): boolean {
+  if (!error) return false
+  const isDuplicate = error.code === "23505" || /duplicate key/i.test(error.message || "")
+  if (!isDuplicate) return false
+
+  return (
+    /(^|_)pkey$/i.test(error.constraint || "") ||
+    /unique constraint "[^"]*_pkey"/i.test(error.message || "") ||
+    /Key \(id\)=/i.test(error.details || "")
+  )
+}
+
+function toPilotStorageResult<T, Payload extends { id?: string }>(
+  data: T | null | undefined,
+  error: DatabaseError | null,
+  payload: Payload
+): PilotStorageResult<T> {
+  const duplicate = Boolean(payload.id && isDuplicatePrimaryKeyError(error))
+
+  return {
+    data: data ?? null,
+    duplicate,
+    error: duplicate ? null : error,
+    missingTable: duplicate ? false : isMissingTableError(error),
+  }
+}
+
 export async function insertContactAttempt(
   supabase: PilotSupabaseClient,
-  payload: Omit<PilotContactAttemptEvent, "id">
+  payload: PilotEventInsert<PilotContactAttemptEvent>
 ): Promise<PilotStorageResult<ContactAttemptRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_contact_attempt_events").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function insertReferralEvent(
   supabase: PilotSupabaseClient,
-  payload: Omit<PilotReferralEvent, "id">
+  payload: PilotEventInsert<PilotReferralEvent>
 ): Promise<PilotStorageResult<ReferralRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_referral_events").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function insertConnectionEvent(
   supabase: PilotSupabaseClient,
-  payload: Omit<PilotConnectionEvent, "id">
+  payload: PilotEventInsert<PilotConnectionEvent>
 ): Promise<PilotStorageResult<ConnectionRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_connection_events").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function upsertPilotScopeService(
@@ -85,37 +116,37 @@ export async function upsertPilotScopeService(
       .select()
       .single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, duplicate: false, error, missingTable: isMissingTableError(error) }
 }
 
 export async function insertServiceOperationalStatusEvent(
   supabase: PilotSupabaseClient,
-  payload: Omit<ServiceOperationalStatusEvent, "id">
+  payload: PilotEventInsert<ServiceOperationalStatusEvent>
 ): Promise<PilotStorageResult<ServiceStatusRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("service_operational_status_events").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function insertPilotDataDecayAudit(
   supabase: PilotSupabaseClient,
-  payload: Omit<PilotDataDecayAudit, "id">
+  payload: PilotEventInsert<PilotDataDecayAudit>
 ): Promise<PilotStorageResult<DataDecayAuditRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_data_decay_audits").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function insertPilotPreferenceFitEvent(
   supabase: PilotSupabaseClient,
-  payload: Omit<PilotPreferenceFitEvent, "id">
+  payload: PilotEventInsert<PilotPreferenceFitEvent>
 ): Promise<PilotStorageResult<PreferenceFitRow>> {
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_preference_fit_events").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return toPilotStorageResult(data, error, payload)
 }
 
 export async function updateReferralEvent(
@@ -126,7 +157,7 @@ export async function updateReferralEvent(
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_referral_events").update(payload).eq("id", id).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, duplicate: false, error, missingTable: isMissingTableError(error) }
 }
 
 export async function insertIntegrationDecision(
@@ -136,7 +167,7 @@ export async function insertIntegrationDecision(
   const { data, error } = await withCircuitBreaker(async () =>
     supabase.from("pilot_integration_feasibility_decisions").insert(payload).select().single()
   )
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, duplicate: false, error, missingTable: isMissingTableError(error) }
 }
 
 export async function insertPilotMetricSnapshots(
@@ -163,7 +194,7 @@ export async function insertPilotMetricSnapshots(
       .select("metric_id, metric_value, numerator, denominator, calculated_at")
   )
 
-  return { data: data ?? null, error, missingTable: isMissingTableError(error) }
+  return { data: data ?? null, duplicate: false, error, missingTable: isMissingTableError(error) }
 }
 
 export async function getScorecardByCycle(
@@ -181,11 +212,11 @@ export async function getScorecardByCycle(
   )
 
   if (isMissingTableError(error)) {
-    return { data: null, error, missingTable: true }
+    return { data: null, duplicate: false, error, missingTable: true }
   }
 
   if (error || !data) {
-    return { data: null, error, missingTable: false }
+    return { data: null, duplicate: false, error, missingTable: false }
   }
 
   const byMetric = new Map<SnapshotRow["metric_id"], number | null>()
@@ -226,5 +257,5 @@ export async function getScorecardByCycle(
   scorecard.m6_data_decay_fatal_error_rate = byMetric.get("M6") ?? null
   scorecard.m7_preference_fit_indicator = byMetric.get("M7") ?? null
 
-  return { data: scorecard, error: null, missingTable: false }
+  return { data: scorecard, duplicate: false, error: null, missingTable: false }
 }
