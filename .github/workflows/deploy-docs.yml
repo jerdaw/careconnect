@@ -64,6 +64,10 @@ jobs:
             --verbose
             --no-progress
             --root-dir .
+            --exclude 'https://webaim.org/articles/'
+            --exclude 'https://webaim.org/resources/contrastchecker/'
+            --exclude 'https://status.supabase.com/'
+            --exclude 'https://huggingface.co/docs/transformers.js/'
             ./docs/README.md
             ./docs/ACCESSIBILITY_GUIDE.md
             ./docs/architecture.md
