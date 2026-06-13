@@ -416,10 +416,22 @@ paths:
             schema:
               $ref: "#/components/schemas/PilotContactAttemptCreate"
       responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "201":
           description: Contact attempt recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "400":
           description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
         "401":
           description: Unauthorized
         "403":
@@ -448,10 +460,22 @@ paths:
             schema:
               $ref: "#/components/schemas/PilotReferralCreate"
       responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "201":
           description: Referral event recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "400":
           description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
         "401":
           description: Unauthorized
         "403":
@@ -486,8 +510,233 @@ paths:
       responses:
         "200":
           description: Referral event updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "400":
           description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/scope/services:
+    post:
+      summary: Upsert Pilot Service Scope (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for registering services in the pilot scope.
+        This endpoint records only organization, service, cycle, and SLA-tier metadata.
+      operationId: upsertPilotServiceScope
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotServiceScopeCreate"
+      responses:
+        "201":
+          description: Pilot service scope entry stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/events/connection:
+    post:
+      summary: Record Pilot Connection Event (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for connection-time instrumentation.
+        A client-generated `id` may be supplied for idempotent offline retries.
+      operationId: recordPilotConnectionEvent
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotConnectionCreate"
+      responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "201":
+          description: Connection event recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/events/service-status:
+    post:
+      summary: Record Pilot Service Status Event (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for operational status checks.
+        A client-generated `id` may be supplied for idempotent offline retries.
+      operationId: recordPilotServiceStatusEvent
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotServiceStatusCreate"
+      responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "201":
+          description: Service status event recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/events/data-decay-audit:
+    post:
+      summary: Record Pilot Data Decay Audit (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for data decay audit instrumentation.
+        A client-generated `id` may be supplied for idempotent offline retries.
+      operationId: recordPilotDataDecayAudit
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotDataDecayAuditCreate"
+      responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "201":
+          description: Data decay audit recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/events/preference-fit:
+    post:
+      summary: Record Pilot Preference Fit Event (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for preference-fit instrumentation.
+        A client-generated `id` may be supplied for idempotent offline retries.
+      operationId: recordPilotPreferenceFitEvent
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotPreferenceFitCreate"
+      responses:
+        "200":
+          description: Idempotent retry accepted; the client-supplied event id was already recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "201":
+          description: Preference fit event recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
         "401":
           description: Unauthorized
         "403":
@@ -516,12 +765,57 @@ paths:
       responses:
         "201":
           description: Decision recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotWriteSuccess"
         "400":
           description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
         "401":
           description: Unauthorized
         "403":
           description: Admin required
+        "429":
+          description: Rate limited
+        "501":
+          description: Pilot storage not initialized
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /pilot/metrics/recompute:
+    post:
+      summary: Recompute Pilot Metrics (Internal)
+      description: |
+        Internal v22 Phase 0 endpoint for recomputing pilot metric snapshots
+        and the latest scorecard for one pilot cycle and organization.
+      operationId: recomputePilotMetrics
+      tags:
+        - Pilot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PilotMetricsRecomputeRequest"
+      responses:
+        "200":
+          description: Pilot metrics recomputed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PilotMetricsRecomputeResult"
+        "400":
+          description: Validation error
+        "415":
+          description: Unsupported media type; request body must be application/json
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "429":
           description: Rate limited
         "501":
@@ -568,22 +862,15 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      scorecard:
-                        $ref: "#/components/schemas/PilotScorecard"
-                      gate1Evaluation:
-                        type: object
-                        nullable: true
+                $ref: "#/components/schemas/PilotScorecardResponse"
         "400":
           description: Validation error
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
+        "404":
+          description: Pilot scorecard not found
         "429":
           description: Rate limited
         "501":
@@ -792,6 +1079,10 @@ components:
         - attempt_outcome
         - attempted_at
       properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
         pilot_cycle_id:
           type: string
         service_id:
@@ -830,6 +1121,10 @@ components:
         - created_at
         - updated_at
       properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
         pilot_cycle_id:
           type: string
         source_org_id:
@@ -877,6 +1172,163 @@ components:
         failure_reason_code:
           type: string
           nullable: true
+
+    PilotConnectionCreate:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+        - service_id
+        - connected_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+        service_id:
+          type: string
+        connected_at:
+          type: string
+          format: date-time
+        contact_attempt_event_id:
+          type: string
+          format: uuid
+          nullable: true
+        referral_event_id:
+          type: string
+          format: uuid
+          nullable: true
+      description: Exactly one of `contact_attempt_event_id` or `referral_event_id` is required.
+
+    PilotServiceScopeCreate:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+        - service_id
+        - sla_tier
+      properties:
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+        service_id:
+          type: string
+        sla_tier:
+          type: string
+          enum: [crisis, high_demand, standard]
+      description: Privacy-safe pilot scope metadata. Raw query text, client identifiers, and contact fields are not accepted.
+
+    PilotServiceStatusCreate:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+        - service_id
+        - checked_at
+        - status_code
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+        service_id:
+          type: string
+        checked_at:
+          type: string
+          format: date-time
+        status_code:
+          type: string
+          enum: [available, temporarily_unavailable, closed, unknown]
+
+    PilotDataDecayAuditCreate:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+        - service_id
+        - audited_at
+        - is_fatal
+        - verification_mode
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+        service_id:
+          type: string
+        audited_at:
+          type: string
+          format: date-time
+        is_fatal:
+          type: boolean
+        fatal_error_category:
+          type: string
+          enum:
+            - wrong_or_disconnected_phone
+            - invalid_or_defunct_intake_path
+            - materially_incorrect_eligibility
+            - service_closed_or_unavailable_but_listed_available
+          nullable: true
+        verification_mode:
+          type: string
+          enum: [web_only, web_plus_call, provider_confirmation]
+
+    PilotPreferenceFitCreate:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+        - cohort_label
+        - recorded_at
+        - preferred_via_careconnect
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Optional client-generated event id for idempotent offline retries.
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+        cohort_label:
+          type: string
+        recorded_at:
+          type: string
+          format: date-time
+        preferred_via_careconnect:
+          type: boolean
+
+    PilotWriteSuccess:
+      type: object
+      properties:
+        data:
+          type: object
+          required:
+            - success
+          properties:
+            success:
+              type: boolean
+            duplicate:
+              type: boolean
+              description: Present and true when a supplied client event id was already recorded.
 
     IntegrationFeasibilityDecision:
       type: object
@@ -950,6 +1402,75 @@ components:
         m7_preference_fit_indicator:
           type: number
           nullable: true
+
+    Gate1ThresholdEvaluation:
+      type: object
+      properties:
+        failedContactRateReductionPass:
+          type: boolean
+        timeToConnectionReductionPass:
+          type: boolean
+        freshnessSlaPass:
+          type: boolean
+        referralCapturePass:
+          type: boolean
+        fatalErrorRatePass:
+          type: boolean
+        passedAll:
+          type: boolean
+
+    PilotScorecardResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          required:
+            - scorecard
+          properties:
+            scorecard:
+              $ref: "#/components/schemas/PilotScorecard"
+            gate1Evaluation:
+              allOf:
+                - $ref: "#/components/schemas/Gate1ThresholdEvaluation"
+              nullable: true
+
+    PilotMetricsRecomputeRequest:
+      type: object
+      required:
+        - pilot_cycle_id
+        - org_id
+      properties:
+        pilot_cycle_id:
+          type: string
+        org_id:
+          type: string
+          format: uuid
+      description: Privacy-safe recompute selector. Raw query text, client identifiers, and contact fields are not accepted.
+
+    PilotMetricsRecomputeResult:
+      type: object
+      properties:
+        data:
+          type: object
+          required:
+            - success
+            - calculatedAt
+            - snapshotsWritten
+            - scorecard
+          properties:
+            success:
+              type: boolean
+            calculatedAt:
+              type: string
+              format: date-time
+              nullable: true
+            snapshotsWritten:
+              type: integer
+              minimum: 0
+            scorecard:
+              allOf:
+                - $ref: "#/components/schemas/PilotScorecard"
+              nullable: true
 
     Error:
       type: object
