@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-28
+last_updated: 2026-06-12
 owner: jer
 tags: [implementation, v22.0, gate-0, checklist, governance]
 ---
@@ -14,6 +14,8 @@ Rule:
 1. Gate 0 exit is `GO` only if all required checks are `pass`.
 2. Any `fail` or `pending` check keeps Gate 0 at `NO-GO`.
 3. Step 1 approval lock (`D1-D7`) is necessary but not sufficient for Gate 0 exit.
+4. When the decision is `NO-GO`, the `Blocking Checks` row must match the
+   current non-`pass` required checks.
 
 Related:
 

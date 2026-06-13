@@ -249,6 +249,8 @@ These commands require `k6` to be installed locally and available on your `PATH`
 | `npm run verify:search-ranking`                        | Verify API ranking against a running local app            |
 | `npm run verify:rls`                                   | Check public/private Supabase access boundaries           |
 | `npm run audit:pilot-readiness -- --scope-file <path>` | Export scoped pilot readiness JSON/Markdown/CSV artifacts |
+| `npm run check:v22-evidence`                           | Validate C1/D4 Gate 0 evidence-intake consistency         |
+| `npm run check:v22-threat-model`                       | Validate v22 threat-model Gate 0 consistency              |
 | `npm run check:v22-gate0`                              | Enforce the current v22 Gate 0 decision from docs         |
 | `npm run normalize:services -- --dry-run`              | Preview legacy schema normalization without writing data  |
 | `npm run ingest:import-response -- --help`             | Show draft-import CLI usage                               |
