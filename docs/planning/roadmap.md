@@ -40,7 +40,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
-- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are checkpointed for review; the next repo-local step is commit/review prep rather than more autonomous hardening
+- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are packaged as a reviewable checkpoint; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **French service-data gaps**: runtime hardening is complete, but governed content follow-through still remains for `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
@@ -79,10 +79,10 @@ The active question is whether the project can prove non-duplicate value relativ
 
 ## What To Do Now
 
-1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
-2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
-3. Review and commit the current autonomous maintenance checkpoint before starting any new hardening slice.
-4. If pulling forward any external-validation backlog work, keep it limited to pilot readiness, safety, or evidence discipline.
+1. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
+2. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
+3. Review and merge the current autonomous maintenance checkpoint after CI/review confirms it, without broadening its scope.
+4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
 5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## What Not To Do Now
@@ -170,7 +170,7 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 
 ## Parallel Maintenance While Gate 0 Waits
 
-These items are worth doing only if they do not distract from Gate 0 closure:
+These items are backlog candidates, not default next steps. Start one only as an explicitly named bounded task and only if it does not distract from Gate 0 closure:
 
 1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
 2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
