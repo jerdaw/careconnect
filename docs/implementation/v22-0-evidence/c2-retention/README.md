@@ -16,8 +16,9 @@ Prepared artifacts already in repo:
 3. Code-backed proposal in `lib/config/pilot-retention.ts`
 4. Approved submission bundle: [C2-20260329](C2-20260329.md)
 
-Human-supplied artifacts still required:
+Attached human-supplied artifacts:
 
-1. Dated verification evidence showing the agreed deletion path behavior
+1. Dated read-only verification evidence in [C2-20260329](C2-20260329.md)
 
-Use [SUBMISSION_TEMPLATE.md](SUBMISSION_TEMPLATE.md) for the actual evidence submission.
+Use [SUBMISSION_TEMPLATE.md](SUBMISSION_TEMPLATE.md) for any future C2 evidence
+refresh.

@@ -78,4 +78,4 @@ Preflight results:
 
 - Product owner: `pending`
 - Governance owner: `pending`
-- Notes: This artifact is structurally complete and ready for value entry once database execution context is available.
+- Notes: M1/M3 execution evidence is recorded above. Product/governance sign-off fields remain pending and are not used as Gate 0 closure evidence.

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-05
+last_updated: 2026-06-13
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-06-05
+> **Last Updated**: 2026-06-13
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -40,6 +40,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
+- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are checkpointed for review; the next repo-local step is commit/review prep rather than more autonomous hardening
 - **French service-data gaps**: runtime hardening is complete, but governed content follow-through still remains for `access_script_fr`, `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
@@ -80,8 +81,9 @@ The active question is whether the project can prove non-duplicate value relativ
 
 1. Close the remaining v22.0 Gate 0 blockers in strict order: C1 legal review, then D4 partner operations evidence.
 2. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
-3. If pulling forward any external-validation backlog work, keep it limited to pilot readiness, safety, or evidence discipline.
-4. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+3. Review and commit the current autonomous maintenance checkpoint before starting any new hardening slice.
+4. If pulling forward any external-validation backlog work, keep it limited to pilot readiness, safety, or evidence discipline.
+5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## What Not To Do Now
 
@@ -126,7 +128,8 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 2. Step 1 approval locks are complete.
 3. Gate 0 evidence scaffolding is in repo.
 4. C2 retention policy approval, privacy sign-off, and dated verification evidence are complete.
-5. Gate 0 remains `NO-GO` because C1 legal evidence and D4 partner-ops evidence are still incomplete.
+5. C1/D4 evidence-intake validation now protects against accidentally treating `prep_only` packets as closure evidence, including dated submission IDs, canonical artifact templates, C1/D4 traceability inventories, and D4 outreach-log source-artifact checks.
+6. Gate 0 remains `NO-GO` because C1 legal evidence and D4 partner-ops evidence are still incomplete.
 
 **Immediate blockers**
 
@@ -143,7 +146,7 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 
 1. Update the Gate 0 trackers and source control docs.
 2. Sync the integration decision record, approval checklist references, and evidence matrix.
-3. Re-evaluate Gate 0 and re-run `npm run check:v22-gate0`.
+3. Re-evaluate Gate 0 and re-run `npm run check:v22-evidence` plus `npm run check:v22-gate0`.
 4. Keep pilot APIs, schemas, tests, and docs aligned with any approved control changes.
 
 **Gate 1 success thresholds**
@@ -162,6 +165,8 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 - [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)
 - [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md)
 - [v22.0 Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)
+- [v22.0 Autonomous Gate 0 Maintenance Pass (2026-06-12)](../implementation/v22-0-autonomous-gate0-maintenance-2026-06-12.md)
+- [v22.0 Worktree Checkpoint (2026-06-13)](../implementation/v22-0-worktree-checkpoint-2026-06-13.md)
 
 ## Parallel Maintenance While Gate 0 Waits
 
