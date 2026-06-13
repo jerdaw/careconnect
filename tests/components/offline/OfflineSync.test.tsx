@@ -125,10 +125,12 @@ describe("OfflineSync", () => {
       render(<OfflineSync />)
 
       await waitFor(() => {
-        expect(mockLogger.error).toHaveBeenCalledWith("Offline sync failed", error, {
+        expect(mockLogger.warn).toHaveBeenCalledWith("Offline sync failed", {
           component: "OfflineSync",
+          errorType: "Error",
         })
       })
+      expect(JSON.stringify(mockLogger.warn.mock.calls)).not.toContain("Sync failed")
     })
 
     it("should log error when feedback sync fails", async () => {
@@ -138,10 +140,12 @@ describe("OfflineSync", () => {
       render(<OfflineSync />)
 
       await waitFor(() => {
-        expect(mockLogger.error).toHaveBeenCalledWith("Pending feedback sync failed", error, {
+        expect(mockLogger.warn).toHaveBeenCalledWith("Pending feedback sync failed", {
           component: "OfflineSync",
+          errorType: "Error",
         })
       })
+      expect(JSON.stringify(mockLogger.warn.mock.calls)).not.toContain("Feedback sync failed")
     })
   })
 
@@ -201,7 +205,7 @@ describe("OfflineSync", () => {
       vi.stubEnv("NODE_ENV", "production")
 
       const getRegistrations = vi.fn().mockResolvedValue([])
-      const error = new Error("registration failed")
+      const error = new Error("raw registration failure detail")
       const register = vi.fn().mockRejectedValue(error)
 
       Object.defineProperty(window.navigator, "serviceWorker", {
@@ -217,9 +221,10 @@ describe("OfflineSync", () => {
       await waitFor(() => {
         expect(mockLogger.warn).toHaveBeenCalledWith("Service worker registration failed", {
           component: "OfflineSync",
-          error: "registration failed",
+          errorType: "Error",
         })
       })
+      expect(JSON.stringify(mockLogger.warn.mock.calls)).not.toContain("raw registration failure detail")
     })
   })
 
@@ -320,10 +325,11 @@ describe("OfflineSync", () => {
 
       await waitFor(() => {
         expect(mockLogger.warn).toHaveBeenCalledWith("Offline fallback prewarm failed", {
-          err: error,
+          errorType: "Error",
           locale: "en",
         })
       })
+      expect(JSON.stringify(mockLogger.warn.mock.calls)).not.toContain("Fetch failed")
 
       fetchSpy.mockRestore()
     })

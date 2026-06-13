@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 import { syncOfflineData } from "@/lib/offline/sync"
 import * as db from "@/lib/offline/db"
 import { resetServiceDataCache } from "@/lib/search/data"
+import { logger } from "@/lib/logger"
 
 // Mock DB
 vi.mock("@/lib/offline/db", () => ({
@@ -16,6 +17,13 @@ vi.mock("@/lib/search/data", () => ({
   resetServiceDataCache: vi.fn(),
 }))
 
+vi.mock("@/lib/logger", () => ({
+  logger: {
+    info: vi.fn(),
+    warn: vi.fn(),
+  },
+}))
+
 // Mock Fetch
 const mockFetch = vi.fn()
 global.fetch = mockFetch
@@ -26,7 +34,9 @@ vi.spyOn(console, "error").mockImplementation(() => {})
 
 describe("Offline Sync", () => {
   beforeEach(() => {
+    vi.unstubAllGlobals()
     vi.clearAllMocks()
+    mockFetch.mockReset()
     vi.mocked(db.getMeta).mockImplementation(async (key: string) => {
       if (key === "lastSync") return undefined
       if (key === "version") return undefined
@@ -135,6 +145,44 @@ describe("Offline Sync", () => {
     const result = await syncOfflineData()
 
     expect(result.status).toBe("error")
+    expect(result.error).toEqual({ errorType: "Error" })
     expect(mockFetch).toHaveBeenCalledTimes(3) // Initial + 2 retries
+    expect(logger.warn).toHaveBeenCalledWith("Offline sync error", {
+      attempt: 3,
+      errorType: "Error",
+    })
+    expect(JSON.stringify(result)).not.toContain("Permanent Failure")
+    expect(JSON.stringify(vi.mocked(logger.warn).mock.calls)).not.toContain("Permanent Failure")
+  })
+
+  it("should return sanitized HTTP failure metadata after max retries", async () => {
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 503,
+      statusText: "backend included internal details",
+    })
+
+    vi.stubGlobal(
+      "setTimeout",
+      vi.fn((cb) => cb())
+    )
+
+    const result = await syncOfflineData()
+
+    expect(result).toEqual({
+      status: "error",
+      error: {
+        errorType: "HttpError",
+        httpStatus: 503,
+      },
+    })
+    expect(mockFetch).toHaveBeenCalledTimes(3)
+    expect(logger.warn).toHaveBeenCalledWith("Offline sync error", {
+      attempt: 3,
+      errorType: "HttpError",
+      httpStatus: 503,
+    })
+    expect(JSON.stringify(result)).not.toContain("backend included internal details")
+    expect(JSON.stringify(vi.mocked(logger.warn).mock.calls)).not.toContain("backend included internal details")
   })
 })
