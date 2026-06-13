@@ -6,6 +6,7 @@ import { POST } from "@/app/api/v1/pilot/metrics/recompute/route"
 import { requireAuthenticatedUser } from "@/lib/pilot/auth"
 import { assertPermission } from "@/lib/auth/authorization"
 import { recomputePilotMetrics } from "@/lib/pilot/recompute"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 vi.mock("@/lib/logger", () => ({
   logger: {
@@ -47,8 +48,17 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
     })
   }
 
+  function createNonJsonRequest() {
+    return createMockRequest("http://localhost/api/v1/pilot/metrics/recompute", {
+      method: "POST",
+      headers: { "content-type": "text/plain" },
+      body: "not-json",
+    })
+  }
+
   beforeEach(() => {
     vi.clearAllMocks()
+    vi.mocked(checkRateLimit).mockResolvedValue({ success: true } as never)
     vi.mocked(requireAuthenticatedUser).mockResolvedValue({
       error: null,
       supabaseAuth: {} as never,
@@ -78,6 +88,15 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
     })
   })
 
+  it("returns 429 when rate limited", async () => {
+    vi.mocked(checkRateLimit).mockResolvedValueOnce({ success: false } as never)
+
+    const response = await POST(createRequest())
+
+    expect(response.status).toBe(429)
+    expect(requireAuthenticatedUser).not.toHaveBeenCalled()
+  })
+
   it("returns 401 when auth is missing", async () => {
     vi.mocked(requireAuthenticatedUser).mockResolvedValue({
       error: null,
@@ -92,6 +111,15 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
   it("returns 400 for invalid payloads", async () => {
     const response = await POST(createRequest({ pilot_cycle_id: "" }))
     expect(response.status).toBe(400)
+  })
+
+  it("returns 415 when content type is not json", async () => {
+    const response = await POST(createNonJsonRequest())
+    const json = (await response.json()) as { error: { message: string } }
+
+    expect(response.status).toBe(415)
+    expect(json.error.message).toBe("Content-Type must be application/json")
+    expect(recomputePilotMetrics).not.toHaveBeenCalled()
   })
 
   it("returns 403 when permission assertion fails", async () => {
