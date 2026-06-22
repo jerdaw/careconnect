@@ -29,9 +29,7 @@ function safeRelativeRedirect(value: string | null): string {
 
 function authCallbackUrl(nextPath: string): string {
   const baseUrl =
-    process.env.NODE_ENV === "development" && typeof window !== "undefined"
-      ? window.location.origin
-      : getPublicAppUrl()
+    process.env.NODE_ENV === "development" && typeof window !== "undefined" ? window.location.origin : getPublicAppUrl()
   const url = new URL("/auth/callback", baseUrl)
   url.searchParams.set("next", nextPath)
   return url.toString()
