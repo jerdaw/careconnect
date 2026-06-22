@@ -34,6 +34,8 @@ jobs:
         run: npm run lint
       - name: Validate Service Data
         run: npm run validate-data
+      - name: Run Search QA
+        run: npm run search:qa
       - name: Run Type Check
         run: npm run type-check
       - name: Run i18n Audit

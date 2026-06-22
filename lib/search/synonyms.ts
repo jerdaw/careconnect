@@ -19,6 +19,8 @@ export const SYNONYMS: Record<string, string[]> = {
 
   // Health
   health: ["doctor", "nurse", "hospital", "clinic", "medical", "santé", "médecin"],
+  healthcare: ["health", "doctor", "nurse", "clinic", "medical", "santé", "médecin"],
+  medical: ["health", "healthcare", "doctor", "nurse", "clinic", "santé", "médecin"],
   doctor: ["physician", "md", "gp", "practitioner", "docteur"],
   dental: ["teeth", "tooth", "dentist", "cavity", "pain", "dentaire"],
   therapy: ["counseling", "psychologist", "psychiatrist", "mental health", "talk", "thérapie"],

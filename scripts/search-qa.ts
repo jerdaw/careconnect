@@ -57,6 +57,9 @@ const SCENARIOS: TestScenario[] = [
   {
     query: "free food",
     expectedServiceNames: [
+      "Partners in Mission Food Bank",
+      "SLC Food Pantry",
+      "AMS Food Bank (Queen's)",
       "Martha's Table",
       "Lunch by George",
       "AMS Food Bank",
@@ -89,6 +92,9 @@ const SCENARIOS: TestScenario[] = [
   {
     query: "need a place to stay",
     expectedServiceNames: [
+      "Kingston Home Base Non-Profit Housing",
+      "Ryandale Transitional Housing",
+      "In From the Cold Emergency Shelter",
       "Kingston Home Base Housing",
       "Kingston Youth Shelter",
       "Elizabeth Fry Society (Housing Support)",
@@ -120,7 +126,11 @@ const SCENARIOS: TestScenario[] = [
   // === IDENTITY / EQUITY ===
   {
     query: "trans healthcare",
-    expectedServiceNames: ["KCHC Transgender Health Care", "Trellis HIV & Community Care"],
+    expectedServiceNames: [
+      "Transgender Health Program (KCHC)",
+      "KCHC Transgender Health Care",
+      "Trellis HIV & Community Care",
+    ],
     description: "Gender-affirming care",
   },
   {
@@ -140,7 +150,12 @@ const SCENARIOS: TestScenario[] = [
   // === FINANCIAL / LEGAL ===
   {
     query: "I need money for rent",
-    expectedServiceNames: ["Ontario Works Kingston", "Queen's Financial Aid & Awards (OSAP)"],
+    expectedServiceNames: [
+      "Salvation Army Housing Resource Centre",
+      "ODSP Kingston Office",
+      "Ontario Works Kingston",
+      "Queen's Financial Aid & Awards (OSAP)",
+    ],
     description: "Financial assistance",
   },
   {
