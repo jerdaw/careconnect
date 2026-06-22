@@ -50,9 +50,7 @@ const allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i)
   return acc
 }, {})
 
-const globalAppDirBundle = Array.from(
-  new Set([...(buildMeta.polyfillFiles || []), ...(buildMeta.rootMainFiles || [])])
-)
+const globalAppDirBundle = Array.from(new Set([...(buildMeta.polyfillFiles || []), ...(buildMeta.rootMainFiles || [])]))
 const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle)
 
 const allAppDirSizes = getAppDirSizes(globalAppDirBundle)
@@ -76,9 +74,7 @@ fs.writeFileSync(path.join(nextMetaRoot, "analyze/__bundle_analysis.json"), rawD
 
 // given an array of scripts, return the total of their combined file sizes
 function getScriptSizes(scriptPaths) {
-  const existingScriptPaths = scriptPaths.filter((scriptPath) =>
-    fs.existsSync(path.join(nextMetaRoot, scriptPath))
-  )
+  const existingScriptPaths = scriptPaths.filter((scriptPath) => fs.existsSync(path.join(nextMetaRoot, scriptPath)))
   const res = existingScriptPaths.reduce(
     (acc, scriptPath) => {
       const [rawSize, gzipSize] = getScriptSize(scriptPath)
@@ -101,9 +97,7 @@ function getAppDirSizes(globalAppDirBundle) {
 
     return Object.values(appDirMeta.pages).reduce((acc, scriptPaths, i) => {
       const pagePath = Object.keys(appDirMeta.pages)[i]
-      const scriptSizes = getScriptSizes(
-        scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath))
-      )
+      const scriptSizes = getScriptSizes(scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath)))
       acc[pagePath] = scriptSizes
 
       return acc
