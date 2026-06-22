@@ -17,7 +17,7 @@ tags: [architecture, overview, system-design]
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
 - **Database**: Supabase (PostgreSQL + Vector)
@@ -896,9 +896,9 @@ Local helper behavior:
 
 ## Mocks & Best Practices
 
-### Next.js 15 SSR Mocks (CRITICAL)
+### Next.js App Router SSR Mocks (CRITICAL)
 
-Next.js 15 `cookies()` and `headers()` are async. Use the standardized mock setup:
+Next.js App Router `cookies()` and `headers()` are async. Use the standardized mock setup:
 
 - Import `tests/setup/next-mocks.ts` mocking logic (or copy the pattern)
 - Mock `@supabase/ssr` using the Builder Pattern to support method chaining (`.from().select().eq()`)
@@ -1419,7 +1419,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Privacy-safe sharing and analytics**: share-target hydration now uses a short-lived first-party cookie, printable cards generate inline QR codes locally, search analytics store only locale + result count, and detail-page analytics distinguish internal views from outbound referrals
 - **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
 - **Health visibility**: `/api/v1/health` is public and read-only, while `/api/v1/health/probe` is the authenticated uptime-sampling and alert-evaluation path
-- **Middleware auth resilience**: refreshed Supabase session cookies now survive the locale middleware pass and protected-route redirects
+- **Proxy auth resilience**: refreshed Supabase session cookies now survive the locale proxy pass and protected-route redirects
 - **DB-authoritative runtime data**: search/detail loading no longer overlays live DB reads with local JSON metadata when Supabase is available
 - **DB rollout safety**: `npm run backfill:db-runtime-fields` now exists to fill blank runtime/search fields in existing Supabase environments after the JSON-overlay removal without overwriting non-empty live values, and the current production Supabase environment has been backfilled successfully
 - **Deployment**: active deployment facts are maintained privately; public docs now describe only high-level release and verification boundaries
@@ -1549,7 +1549,7 @@ These items are backlog candidates, not default next steps. Start one only as an
 5. From the external-validation backlog, only execute items that strengthen pilot readiness or evidence discipline.
 6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
 7. Complete authenticated desktop/mobile visual QA for `/dashboard/**` and `/admin/**` once a valid local Supabase environment and signed-in partner/admin session are available. The authenticated-surface implementation is code-complete, but authenticated browser review remains environment-gated because this local workspace currently lacks `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
-8. Resolve the current dependency-audit findings as bounded maintenance: apply non-breaking fixes where available, split breaking remediation for `next-intl` and `@xenova/transformers` into a reviewed plan, and do not merge routine Dependabot major-version workflow PRs while required validation is failing.
+8. Resolve the current dependency-audit findings as bounded maintenance: apply non-breaking fixes where available, split breaking remediation for `next-intl` and `@huggingface/transformers` into a reviewed plan, and do not merge routine Dependabot major-version workflow PRs while required validation is failing.
 
 ## On Hold
 
