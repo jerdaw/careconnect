@@ -21,14 +21,14 @@ class OptimizePipeline {
       let transformers: any
       try {
         // Dynamic CDN import - bypassing TypeScript module resolution
-        transformers = await import("@xenova/transformers").catch(async () => {
+        transformers = await import("@huggingface/transformers").catch(async () => {
           // Fallback: use dynamic import with inline comment
-          const url = "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"
+          const url = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0"
           return await import(/* webpackIgnore: true */ /* @vite-ignore */ url as any)
         })
       } catch (cdnErr) {
         console.warn("[Worker] CDN import failed, trying local", cdnErr)
-        transformers = await import("@xenova/transformers")
+        transformers = await import("@huggingface/transformers")
       }
 
       // Handle CJS vs ESM default exports

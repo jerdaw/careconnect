@@ -6,6 +6,8 @@ import LoginPage from "@/app/[locale]/login/page"
 import { renderWithProviders, screen, waitFor } from "@/tests/utils/test-wrapper"
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase"
 
+const mockSearchParams = vi.hoisted(() => new URLSearchParams())
+
 vi.mock("@/components/layout/Header", () => ({
   Header: () => <header data-testid="login-header" />,
 }))
@@ -16,6 +18,10 @@ vi.mock("@/components/layout/Footer", () => ({
 
 vi.mock("@/i18n/routing", () => ({
   Link: ({ href, children }: { href: string; children: ReactNode }) => <a href={href}>{children}</a>,
+}))
+
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => mockSearchParams,
 }))
 
 vi.mock("@/lib/supabase", () => ({
@@ -30,6 +36,7 @@ vi.mock("@/lib/supabase", () => ({
 describe("LoginPage", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockSearchParams.delete("next")
     vi.mocked(hasSupabaseCredentials).mockReturnValue(false)
     vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({ data: { user: null, session: null }, error: null })
   })
@@ -75,11 +82,32 @@ describe("LoginPage", () => {
       expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
         email: "partner@example.org",
         options: {
-          emailRedirectTo: "http://localhost:3000/auth/callback",
+          emailRedirectTo: "https://careconnect.ing/auth/callback?next=%2Fen%2Fdashboard",
         },
       })
     })
     expect(screen.getByText("Magic link sent! Check your email to sign in.")).toBeInTheDocument()
+  })
+
+  it("preserves a safe next path in the magic-link callback URL", async () => {
+    const user = userEvent.setup()
+    mockSearchParams.set("next", "/en/admin")
+    vi.mocked(hasSupabaseCredentials).mockReturnValue(true)
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({ data: { user: null, session: null }, error: null })
+
+    renderWithProviders(<LoginPage />, { messages: enMessages })
+
+    await user.type(screen.getByLabelText(/Email address/), "partner@example.org")
+    await user.click(screen.getByRole("button", { name: /Sign in with Email/ }))
+
+    await waitFor(() => {
+      expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
+        email: "partner@example.org",
+        options: {
+          emailRedirectTo: "https://careconnect.ing/auth/callback?next=%2Fen%2Fadmin",
+        },
+      })
+    })
   })
 
   it("routes the new-partner CTA to the existing reference sources page", () => {

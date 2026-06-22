@@ -1,5 +1,5 @@
 #!/usr/bin/env npx tsx
-import { pipeline } from "@xenova/transformers"
+import { pipeline } from "@huggingface/transformers"
 import { readFileSync, writeFileSync } from "fs"
 import path from "path"
 

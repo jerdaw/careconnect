@@ -1,4 +1,5 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js"
+import { createBrowserClient } from "@supabase/ssr"
+import type { SupabaseClient } from "@supabase/supabase-js"
 import { Database } from "@/types/supabase"
 
 export class SupabaseNotConfiguredError extends Error {
@@ -30,11 +31,7 @@ export function getSupabaseClient() {
     throw new SupabaseNotConfiguredError()
   }
 
-  supabaseClient = createClient<Database>(supabaseUrl, supabaseKey, {
-    auth: {
-      persistSession: typeof window !== "undefined",
-    },
-  })
+  supabaseClient = createBrowserClient<Database>(supabaseUrl, supabaseKey)
 
   return supabaseClient
 }

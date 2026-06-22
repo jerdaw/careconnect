@@ -4,7 +4,7 @@ import { logger } from "@/lib/logger"
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Whisper model instance type not exported by @xenova/transformers
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Whisper model instance type not exported by @huggingface/transformers
   private static instance: any = null
   private static isLoading = false
 
@@ -22,18 +22,16 @@ class WhisperTranscriber {
     this.isLoading = true
     try {
       // Dynamic import to prevent side effects during testing/SSG and optimize load time
-      const { pipeline, env } = await import("@xenova/transformers")
+      const { pipeline, env } = await import("@huggingface/transformers")
 
       // Configure Transformers.js
-      env.allowLocalModels = false // We'll fetch from Xenova CDN for this demo to minimize repo size
+      env.allowLocalModels = false // We'll fetch from the model hub for this demo to minimize repo size
       env.useBrowserCache = true
 
-      // Load Whisper Tiny (quantized) - ~40MB
+      // Load Whisper Tiny - model size is kept small for browser-side demo use.
       // Task: automatic-speech-recognition
       // Model: Xenova/whisper-tiny.en
-      this.instance = await pipeline("automatic-speech-recognition", "Xenova/whisper-tiny.en", {
-        quantized: true,
-      })
+      this.instance = await pipeline("automatic-speech-recognition", "Xenova/whisper-tiny.en")
       logger.info("✅ [Transcriber] Whisper model loaded successfully")
     } catch (error) {
       logger.error("❌ [Transcriber] Failed to load model", { error })

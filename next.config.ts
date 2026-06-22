@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
   transpilePackages: [],
-  serverExternalPackages: ["@xenova/transformers"],
+  serverExternalPackages: ["@huggingface/transformers"],
 
   // Optimize package imports to reduce bundle size
   experimental: {

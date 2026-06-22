@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase"
+import { getPublicAppUrl } from "@/lib/brand"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
@@ -10,6 +11,7 @@ import { Footer } from "@/components/layout/Footer"
 import { ShieldCheck, Mail, ArrowRight, CheckCircle2, AlertCircle, FileCheck2, LockKeyhole } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { useSearchParams } from "next/navigation"
 
 const LOGIN_POINTS = [
   { key: "review", Icon: FileCheck2 },
@@ -17,12 +19,32 @@ const LOGIN_POINTS = [
   { key: "privacy", Icon: LockKeyhole },
 ] as const
 
+function safeRelativeRedirect(value: string | null): string {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+    return "/en/dashboard"
+  }
+
+  return value
+}
+
+function authCallbackUrl(nextPath: string): string {
+  const baseUrl =
+    process.env.NODE_ENV === "development" && typeof window !== "undefined"
+      ? window.location.origin
+      : getPublicAppUrl()
+  const url = new URL("/auth/callback", baseUrl)
+  url.searchParams.set("next", nextPath)
+  return url.toString()
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const t = useTranslations("Login")
   const authConfigured = hasSupabaseCredentials()
+  const searchParams = useSearchParams()
+  const nextPath = safeRelativeRedirect(searchParams.get("next"))
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,7 +63,7 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: authCallbackUrl(nextPath),
         },
       })
 

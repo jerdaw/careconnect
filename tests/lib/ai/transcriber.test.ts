@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { pipeline } from "@xenova/transformers"
+import { pipeline } from "@huggingface/transformers"
 
 // Mock transformers
-vi.mock("@xenova/transformers", () => ({
+vi.mock("@huggingface/transformers", () => ({
   pipeline: vi.fn(),
   env: { allowLocalModels: false, useBrowserCache: true },
 }))
@@ -39,7 +39,7 @@ describe("Audio Transcriber", () => {
     const { transcribeAudio } = await getTranscriberModule()
     const result = await transcribeAudio(blob)
 
-    expect(pipeline).toHaveBeenCalledWith("automatic-speech-recognition", "Xenova/whisper-tiny.en", expect.any(Object))
+    expect(pipeline).toHaveBeenCalledWith("automatic-speech-recognition", "Xenova/whisper-tiny.en")
     expect(mockTranscriber).toHaveBeenCalled()
     expect(result).toBe("Hello world")
   })

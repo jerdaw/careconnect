@@ -886,7 +886,7 @@
       },
       "dataCollection": {
         "title": "Information We Collect",
-        "content": "**Information You Provide**\n- **Feedback Forms**: Information you verify or report.\n- **Partner Portal**: Organization details for partners.\n\n**Information Collected Automatically**\n- **Local Storage**: Preferences stored on your device.\n- **Technical Data**: Standard server logs for security (no tracking).\n\n**Information We Do NOT Collect**\n- No search query logging\n- No tracking cookies\n- No analytics services\n- We implement a Zero-Log Policy for your searches."
+        "content": "**Information You Provide**\n- **Feedback Forms**: Information you verify or report, plus an email address if you choose to include one for follow-up.\n- **Partner Portal**: Organization details for partners.\n- **Location and geolocation**: If you use location-aware search or map features, your browser may ask for permission to use your approximate location. We use that location only to help sort or show nearby services.\n\n**Information Collected Automatically**\n- **Local Storage**: Preferences stored on your device.\n- **Authentication and sessions**: Login, account, auth, and session records needed to operate protected admin or partner areas.\n- **Technical Data**: Standard server logs, metrics, and telemetry for security, reliability, abuse prevention, and incident response (no advertising tracking).\n\n**Information We Do NOT Collect**\n- No search query logging\n- No tracking cookies\n- No advertising analytics services\n- We implement a Zero-Log Policy for your searches."
       },
       "aiPrivacy": {
         "title": "AI Assistant Privacy",
@@ -898,7 +898,7 @@
       },
       "sharing": {
         "title": "Information Sharing",
-        "content": "We share information only with verified Partners (feedback) or Service Providers (hosting/database). We do NOT sell information."
+        "content": "We share information only with verified Partners (feedback) or service providers needed to operate CareConnect. Current third-party infrastructure and processors can include Supabase for authentication, sessions, and database storage; Cloudflare for public edge, TLS, and abuse protection; Hetzner or similar VPS hosting for application runtime; and Mapbox or browser geolocation services for optional map/location features. We do NOT sell information."
       },
       "retention": {
         "title": "Data Retention",

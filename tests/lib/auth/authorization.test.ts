@@ -4,6 +4,7 @@ import {
   assertOrganizationMembership,
   getEffectivePermissions,
   assertAdminRole,
+  assertPermission,
   getUserOrganizationRole,
 } from "@/lib/auth/authorization"
 import { AuthorizationError, NotFoundError } from "@/lib/api-utils"
@@ -193,6 +194,16 @@ describe("Authorization Utilities", () => {
       vi.mocked(withCircuitBreaker).mockRejectedValueOnce(new CircuitOpenError("supabase"))
 
       await expect(assertAdminRole(mockSupabase as any, "user-1")).rejects.toThrow(AuthorizationError)
+    })
+  })
+
+  describe("assertPermission", () => {
+    it("fails closed on circuit open for the high-risk default", async () => {
+      vi.mocked(withCircuitBreaker).mockRejectedValueOnce(new CircuitOpenError("supabase"))
+
+      await expect(assertPermission(mockSupabase as any, "user-1", "org-1", "canDeleteServices")).rejects.toThrow(
+        CircuitOpenError
+      )
     })
   })
 })
