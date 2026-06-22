@@ -6,7 +6,7 @@ CareConnect implements comprehensive security headers to protect against common 
 
 ## Configured Security Headers
 
-All security headers are defined in `next.config.ts` and applied to every route via Next.js middleware.
+All security headers are defined in `next.config.ts` and applied to every route via Next.js headers configuration.
 
 ### Content-Security-Policy (CSP)
 

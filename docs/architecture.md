@@ -9,7 +9,7 @@ tags: [architecture, overview, system-design]
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
 - **Database**: Supabase (PostgreSQL + Vector)

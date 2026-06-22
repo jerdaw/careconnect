@@ -45,11 +45,11 @@ const REPO_ROOT_FILES = [
   "README.md",
   "SECURITY.md",
   "capacitor.config.ts",
-  "middleware.ts",
   "mkdocs.yml",
   "next.config.ts",
   "package.json",
   "playwright.config.ts",
+  "proxy.ts",
   "tsconfig.json",
   "vitest.config.mts",
 ] as const

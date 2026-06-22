@@ -51,9 +51,9 @@ vi.mock("@/lib/logger", () => ({
   },
 }))
 
-import { middleware } from "@/middleware"
+import { proxy } from "@/proxy"
 
-describe("middleware auth cookie propagation", () => {
+describe("proxy auth cookie propagation", () => {
   beforeEach(() => {
     vi.clearAllMocks()
     mockGetUser.mockResolvedValue({
@@ -65,7 +65,7 @@ describe("middleware auth cookie propagation", () => {
   it("copies refreshed auth cookies onto the intl response", async () => {
     const request = new NextRequest("http://localhost:3000/en")
 
-    const response = await middleware(request)
+    const response = await proxy(request)
 
     expect(mockIntlHandler).toHaveBeenCalled()
     expect(response.cookies.get("sb-access-token")?.value).toBe("refreshed-token")
@@ -78,7 +78,7 @@ describe("middleware auth cookie propagation", () => {
     })
 
     const request = new NextRequest("http://localhost:3000/en/dashboard")
-    const response = await middleware(request)
+    const response = await proxy(request)
 
     expect(response.status).toBe(307)
     expect(response.headers.get("location")).toContain("/en/login")

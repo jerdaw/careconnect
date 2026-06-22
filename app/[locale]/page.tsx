@@ -54,7 +54,7 @@ export default function Home() {
   } = useSearch()
 
   // PWA launch hydration:
-  // - `/` shortcut URLs (e.g. `/?category=Crisis`) are locale-resolved by middleware then land here.
+  // - `/` shortcut URLs (e.g. `/?category=Crisis`) are locale-resolved by proxy then land here.
   // - Share Target redirects to `/` and hands the shared query off via a short-lived first-party cookie.
   // This only applies when the URL params change, to avoid fighting user typing.
   useEffect(() => {

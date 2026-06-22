@@ -21,12 +21,12 @@ You are a **governance-aware developer** working on a privacy-first social servi
 **Tech Stack**:
 | Layer | Technology | Version |
 |-------|------------|---------|
-| Framework | Next.js (App Router) | 15.x |
+| Framework | Next.js (App Router) | 16.x |
 | Language | TypeScript (strict mode) | 5.x |
 | Runtime | Node.js | 22+ |
 | Styling | Tailwind CSS + Radix UI | v4 |
 | Database | Supabase (PostgreSQL + pgvector) | — |
-| Embeddings | @xenova/transformers (all-MiniLM-L6-v2) | — |
+| Embeddings | @huggingface/transformers (all-MiniLM-L6-v2) | — |
 | On-device AI | WebLLM (Llama-3.2-1B) | — |
 
 **Key Documentation**:
@@ -51,7 +51,7 @@ When in doubt, **read `README.md` and `docs/**` first\*\*.
 ### Development
 
 ```bash
-npm run dev              # Start dev server with Turbo (port 3000)
+npm run dev              # Start dev server (port 3000)
 npm run build            # Production build (runs postbuild to generate embeddings)
 npm run generate-embeddings # Regenerate local embeddings without a full build
 npm run start            # Start production server
@@ -253,7 +253,7 @@ npm run tools:search "food bank"
 **Embeddings:**
 
 - Generated via `scripts/generate-embeddings.ts` (postbuild hook)
-- 384-dimensional vectors via @xenova/transformers (all-MiniLM-L6-v2)
+- 384-dimensional vectors via @huggingface/transformers (all-MiniLM-L6-v2)
 - Also stored in Supabase `services.embedding` column (pgvector)
 
 ### Offline Infrastructure (v15.0)
@@ -434,7 +434,7 @@ export async function myProtectedAction() {
 **Routing:**
 
 - All pages under `app/[locale]/`
-- Middleware in `middleware.ts` handles locale detection + auth
+- Proxy in `proxy.ts` handles locale detection + auth
 - Routing config: `i18n/routing.ts`
 
 **Translation Files:** `messages/{locale}.json`
@@ -607,7 +607,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 5. **Authorization**: `lib/auth/authorization.ts`
 6. **Main Search UI**: `components/search/SearchInterface.tsx`
 7. **Service Schema**: `types/service.ts`
-8. **Middleware**: `middleware.ts`
+8. **Proxy**: `proxy.ts`
 9. **Resilience**: `lib/resilience/supabase-breaker.ts`, `lib/performance/tracker.ts`
 
 ---
@@ -628,7 +628,7 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 ## Development Notes
 
 - **Node Version**: 22+ required
-- **Turbo Mode**: Dev server uses `--turbo` flag for fast refresh
+- **Turbopack**: Next.js 16 uses Turbopack by default for development and builds
 - **Commit Hooks**: Husky runs lint + related tests on pre-commit
 - **Commit Convention**: Conventional commits enforced (see `commitlint.config.js`)
 - **XSS Prevention**: `highlightMatches` escapes HTML entities before applying `<mark>` tags

@@ -31,7 +31,7 @@ The following major version updates are **ignored** and require manual upgrades:
 - **React/React-DOM**: Major versions (breaking changes common)
 - **TypeScript**: Major versions (syntax/type system changes)
 - **@types/react**: Major versions (tied to React version)
-- **@xenova/transformers**: Major versions (ML model compatibility)
+- **@huggingface/transformers**: Major versions (ML model compatibility)
 
 ## Auto-Merge Policy
 

@@ -15,7 +15,7 @@ function applyResponseCookies(source: NextResponse, target: NextResponse) {
   }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
   const preferredLocale =
     cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
@@ -62,16 +62,16 @@ export async function middleware(request: NextRequest) {
   let user = null
   try {
     if (env.NODE_ENV === "test") {
-      logger.info("Skipping Supabase auth refresh in middleware during tests", {
-        component: "middleware",
+      logger.info("Skipping Supabase auth refresh in proxy during tests", {
+        component: "proxy",
       })
     } else {
       const { data } = await supabase.auth.getUser()
       user = data.user
     }
   } catch (error) {
-    logger.warn("Middleware auth refresh failed", {
-      component: "middleware",
+    logger.warn("Proxy auth refresh failed", {
+      component: "proxy",
       error: error instanceof Error ? error.message : String(error),
     })
   }

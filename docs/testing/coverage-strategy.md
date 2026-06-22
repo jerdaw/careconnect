@@ -103,7 +103,7 @@ The following are **excluded from coverage** (not testable via unit tests):
 - `scripts/**` - CLI scripts
 - `app/**/page.tsx` - Next.js pages (covered by E2E)
 - `app/**/layout.tsx` - Next.js layouts
-- `middleware.ts` - Next.js middleware
+- `proxy.ts` - Next.js proxy
 - `*.config.*` - Configuration files
 - `app/api/**` - API routes (covered by integration tests)
 - `lib/external/**` - Mocked external dependencies

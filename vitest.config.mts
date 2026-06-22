@@ -49,7 +49,7 @@ export default defineConfig({
         "scripts/**",
         "app/**/page.tsx",
         "app/**/layout.tsx",
-        "middleware.ts",
+        "proxy.ts",
         "*.config.*",
         "public/**",
         "lp-items.tsx",

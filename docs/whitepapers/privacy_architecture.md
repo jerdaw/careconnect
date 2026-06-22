@@ -19,7 +19,7 @@ The following measures are designed with Canadian privacy principles and PIPEDA/
 
 ### A. Local Inference
 
-- **Engine**: `@xenova/transformers` (Wasm/WebGPU).
+- **Engine**: `@huggingface/transformers` (Wasm/WebGPU).
 - **Process**: The AI model is downloaded to the browser's cache once. All subsequent "thinking" occurs in the user's local RAM.
 - **Result**: No keystrokes or chat logs ever leave the user's local device.
 

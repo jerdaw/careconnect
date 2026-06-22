@@ -180,9 +180,9 @@ Local helper behavior:
 
 ## Mocks & Best Practices
 
-### Next.js 15 SSR Mocks (CRITICAL)
+### Next.js App Router SSR Mocks (CRITICAL)
 
-Next.js 15 `cookies()` and `headers()` are async. Use the standardized mock setup:
+Next.js App Router `cookies()` and `headers()` are async. Use the standardized mock setup:
 
 - Import `tests/setup/next-mocks.ts` mocking logic (or copy the pattern)
 - Mock `@supabase/ssr` using the Builder Pattern to support method chaining (`.from().select().eq()`)

@@ -166,7 +166,7 @@ Special handling for crisis queries:
 
 ### Built With
 
-- **Framework**: Next.js 15 (React)
+- **Framework**: Next.js 16 (React)
 - **Database**: Supabase (PostgreSQL + pgvector)
 - **Search**: Hybrid keyword + semantic vector search
 - **Hosting**: Docker-based web deployment managed by maintainers

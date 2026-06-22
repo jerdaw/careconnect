@@ -28,22 +28,22 @@ See [AGENTS.md](AGENTS.md) for complete development guidelines. `CLAUDE.md` and 
 
 ### Tech Stack
 
-| Layer        | Technology                          | Version |
-| ------------ | ----------------------------------- | ------- |
-| Framework    | Next.js (App Router)                | 15.x    |
-| Language     | TypeScript (strict mode)            | 5.x     |
-| Runtime      | Node.js                             | 22+     |
-| Styling      | Tailwind CSS v4 + Radix UI          | —       |
-| Database     | Supabase (PostgreSQL + pgvector)    | —       |
-| Embeddings   | @xenova/transformers (MiniLM-L6-v2) | —       |
-| On-device AI | WebLLM (Llama-3.2-1B)               | —       |
-| Testing      | Vitest + Playwright                 | —       |
+| Layer        | Technology                               | Version |
+| ------------ | ---------------------------------------- | ------- |
+| Framework    | Next.js (App Router)                     | 16.x    |
+| Language     | TypeScript (strict mode)                 | 5.x     |
+| Runtime      | Node.js                                  | 22+     |
+| Styling      | Tailwind CSS v4 + Radix UI               | —       |
+| Database     | Supabase (PostgreSQL + pgvector)         | —       |
+| Embeddings   | @huggingface/transformers (MiniLM-L6-v2) | —       |
+| On-device AI | WebLLM (Llama-3.2-1B)                    | —       |
+| Testing      | Vitest + Playwright                      | —       |
 
 ### Key Directories
 
 ```
 careconnect/
-├── app/                    # Next.js 15 App Router
+├── app/                    # Next.js 16 App Router
 │   ├── [locale]/          # Multi-language routes (7 locales)
 │   ├── api/               # API routes (search, feedback, admin)
 │   └── worker.ts          # Service Worker for offline support
@@ -81,7 +81,7 @@ careconnect/
 | **lib/auth/authorization.ts**                                             | Centralized authorization helpers         |
 | **lib/rbac.ts**                                                           | Role-based access control matrix          |
 | **types/service.ts**                                                      | Service data schema                       |
-| **middleware.ts**                                                         | Next.js middleware (auth, locale, CSP)    |
+| **proxy.ts**                                                              | Next.js proxy (auth, locale, CSP)         |
 | **lib/resilience/supabase-breaker.ts**                                    | Circuit breaker for database failures     |
 | **vitest.config.mts**                                                     | Test configuration + coverage thresholds  |
 | **docs/architecture.md**                                                  | System architecture deep-dive             |

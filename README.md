@@ -145,15 +145,15 @@ Push notifications and external integrations are optional and disabled unless ex
 
 ## Tech Stack
 
-| Layer           | Technology                                                            |
-| :-------------- | :-------------------------------------------------------------------- |
-| Framework       | [Next.js 15](https://nextjs.org/) (App Router)                        |
-| Language        | [TypeScript](https://www.typescriptlang.org/)                         |
-| Styling         | [Tailwind CSS v4](https://tailwindcss.com/)                           |
-| UI Components   | [Radix UI](https://www.radix-ui.com/)                                 |
-| AI / Embeddings | [@xenova/transformers](https://huggingface.co/docs/transformers.js/)  |
-| Testing         | [Vitest](https://vitest.dev/) · [Playwright](https://playwright.dev/) |
-| Database        | [Supabase](https://supabase.com/) (PostgreSQL + pgvector)             |
+| Layer           | Technology                                                                |
+| :-------------- | :------------------------------------------------------------------------ |
+| Framework       | [Next.js 16](https://nextjs.org/) (App Router)                            |
+| Language        | [TypeScript](https://www.typescriptlang.org/)                             |
+| Styling         | [Tailwind CSS v4](https://tailwindcss.com/)                               |
+| UI Components   | [Radix UI](https://www.radix-ui.com/)                                     |
+| AI / Embeddings | [@huggingface/transformers](https://huggingface.co/docs/transformers.js/) |
+| Testing         | [Vitest](https://vitest.dev/) · [Playwright](https://playwright.dev/)     |
+| Database        | [Supabase](https://supabase.com/) (PostgreSQL + pgvector)                 |
 
 ---
 
