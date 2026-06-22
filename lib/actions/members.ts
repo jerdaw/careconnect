@@ -60,7 +60,6 @@ export async function getOrganizationMembersWithEmails(
 
   // If profiles table doesn't exist or doesn't have emails, try auth.users
   // This requires service role key, so it will fail in client-side contexts
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase join response typing
   const enrichedMembers = members.map((member: any) => ({
     id: member.id,
     user_id: member.user_id,

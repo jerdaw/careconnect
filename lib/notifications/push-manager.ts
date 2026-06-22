@@ -57,8 +57,6 @@ export class PushNotificationManager {
       if (!subscription) {
         subscription = await this.registration.pushManager.subscribe({
           userVisibleOnly: true,
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- applicationServerKey type accepts Uint8Array but TS definitions differ
           applicationServerKey: this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as any,
         })
       }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Copyright (c) HashiCorp, Inc.
  * SPDX-License-Identifier: MPL-2.0

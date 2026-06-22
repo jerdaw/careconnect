@@ -197,7 +197,6 @@ Rules:
       repetition_penalty: 1,
       max_tokens: 160,
       // Best-effort JSON mode (WebLLM supports OpenAI-compatible response_format).
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- WebLLM response_format lacks exported types
       response_format: { type: "json_object" } as any,
     })
 

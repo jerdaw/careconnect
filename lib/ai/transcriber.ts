@@ -4,7 +4,6 @@ import { logger } from "@/lib/logger"
 
 // Singleton to hold the model instance
 class WhisperTranscriber {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Whisper model instance type not exported by @huggingface/transformers
   private static instance: any = null
   private static isLoading = false
 

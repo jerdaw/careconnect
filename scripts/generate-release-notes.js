@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Generate GitHub release notes from CHANGELOG.md
  * Extracts content for a specific version and formats it for GitHub releases

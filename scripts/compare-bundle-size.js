@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Compare bundle sizes between current build and baseline (main branch)
  * Generates a markdown report showing size differences

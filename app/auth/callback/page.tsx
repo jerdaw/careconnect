@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { Suspense, useEffect, useMemo, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase"
 
@@ -12,7 +12,15 @@ function safeRelativeRedirect(value: string | null): string {
   return value
 }
 
-export default function AuthCallbackPage() {
+function AuthCallbackStatus({ status }: { status: string }) {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-white px-4 text-neutral-800 dark:bg-neutral-950 dark:text-neutral-100">
+      <p className="text-sm font-medium">{status}</p>
+    </main>
+  )
+}
+
+function AuthCallbackContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const nextPath = useMemo(() => safeRelativeRedirect(searchParams.get("next")), [searchParams])
@@ -86,9 +94,13 @@ export default function AuthCallbackPage() {
     }
   }, [nextPath, router, searchParams])
 
+  return <AuthCallbackStatus status={status} />
+}
+
+export default function AuthCallbackPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-4 text-neutral-800 dark:bg-neutral-950 dark:text-neutral-100">
-      <p className="text-sm font-medium">{status}</p>
-    </main>
+    <Suspense fallback={<AuthCallbackStatus status="Completing sign in..." />}>
+      <AuthCallbackContent />
+    </Suspense>
   )
 }
