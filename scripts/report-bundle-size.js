@@ -29,7 +29,6 @@ try {
 
 // if so, we can import the build manifest
 const buildMeta = require(path.join(nextMetaRoot, "build-manifest.json"))
-const appDirMeta = require(path.join(nextMetaRoot, "app-build-manifest.json"))
 
 // this memory cache ensures we dont read any script file more than once
 // bundles are often shared between pages
@@ -51,16 +50,12 @@ const allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i)
   return acc
 }, {})
 
-const globalAppDirBundle = buildMeta.rootMainFiles
+const globalAppDirBundle = Array.from(
+  new Set([...(buildMeta.polyfillFiles || []), ...(buildMeta.rootMainFiles || [])])
+)
 const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle)
 
-const allAppDirSizes = Object.values(appDirMeta.pages).reduce((acc, scriptPaths, i) => {
-  const pagePath = Object.keys(appDirMeta.pages)[i]
-  const scriptSizes = getScriptSizes(scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath)))
-  acc[pagePath] = scriptSizes
-
-  return acc
-}, {})
+const allAppDirSizes = getAppDirSizes(globalAppDirBundle)
 
 // format and write the output
 const rawData = JSON.stringify({
@@ -81,7 +76,10 @@ fs.writeFileSync(path.join(nextMetaRoot, "analyze/__bundle_analysis.json"), rawD
 
 // given an array of scripts, return the total of their combined file sizes
 function getScriptSizes(scriptPaths) {
-  const res = scriptPaths.reduce(
+  const existingScriptPaths = scriptPaths.filter((scriptPath) =>
+    fs.existsSync(path.join(nextMetaRoot, scriptPath))
+  )
+  const res = existingScriptPaths.reduce(
     (acc, scriptPath) => {
       const [rawSize, gzipSize] = getScriptSize(scriptPath)
       acc.raw += rawSize
@@ -93,6 +91,72 @@ function getScriptSizes(scriptPaths) {
   )
 
   return res
+}
+
+function getAppDirSizes(globalAppDirBundle) {
+  const appBuildManifestPath = path.join(nextMetaRoot, "app-build-manifest.json")
+
+  if (fs.existsSync(appBuildManifestPath)) {
+    const appDirMeta = require(appBuildManifestPath)
+
+    return Object.values(appDirMeta.pages).reduce((acc, scriptPaths, i) => {
+      const pagePath = Object.keys(appDirMeta.pages)[i]
+      const scriptSizes = getScriptSizes(
+        scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath))
+      )
+      acc[pagePath] = scriptSizes
+
+      return acc
+    }, {})
+  }
+
+  const appServerRoot = path.join(nextMetaRoot, "server/app")
+  if (!fs.existsSync(appServerRoot)) {
+    return {}
+  }
+
+  return findFiles(appServerRoot, "build-manifest.json").reduce((acc, manifestPath) => {
+    const manifest = require(manifestPath)
+    const routePath = getRoutePathFromManifestPath(appServerRoot, manifestPath)
+    const scriptPaths = getManifestScriptPaths(manifest).filter(
+      (scriptPath) => !globalAppDirBundle.includes(scriptPath)
+    )
+
+    acc[routePath] = getScriptSizes(scriptPaths)
+    return acc
+  }, {})
+}
+
+function getManifestScriptPaths(manifest) {
+  return Array.from(
+    new Set([
+      ...(manifest.polyfillFiles || []),
+      ...(manifest.rootMainFiles || []),
+      ...(manifest.lowPriorityFiles || []),
+      ...Object.values(manifest.pages || {}).flat(),
+    ])
+  )
+}
+
+function getRoutePathFromManifestPath(appServerRoot, manifestPath) {
+  const relativeDirectory = path.relative(appServerRoot, path.dirname(manifestPath)).split(path.sep)
+  const routeSegments = relativeDirectory.filter((segment) => segment !== "page" && segment !== "route")
+
+  return `/${routeSegments.join("/")}`
+}
+
+function findFiles(directory, fileName) {
+  const entries = fs.readdirSync(directory, { withFileTypes: true })
+
+  return entries.flatMap((entry) => {
+    const entryPath = path.join(directory, entry.name)
+
+    if (entry.isDirectory()) {
+      return findFiles(entryPath, fileName)
+    }
+
+    return entry.isFile() && entry.name === fileName ? [entryPath] : []
+  })
 }
 
 // given an individual path to a script, return its file size
