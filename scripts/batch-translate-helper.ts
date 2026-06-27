@@ -12,11 +12,50 @@ import fs from "fs"
 import path from "path"
 
 interface TranslationBatch {
-  services: Array<{
-    id: string
-    access_script: string
-    access_script_fr?: string
-  }>
+  batch?: number
+  total_batches?: number
+  services?: TranslationInputItem[]
+  items?: TranslationInputItem[]
+}
+
+interface TranslationInputItem {
+  id: string
+  name?: string
+  name_fr?: string | null
+  scope?: string | null
+  access_script: string
+  access_script_fr?: string
+}
+
+function getBatchItems(batch: TranslationBatch): TranslationInputItem[] {
+  if (Array.isArray(batch.items)) return batch.items
+  if (Array.isArray(batch.services)) return batch.services
+  return []
+}
+
+function withBatchItems(inputBatch: TranslationBatch, items: TranslationInputItem[]): TranslationBatch {
+  if (Array.isArray(inputBatch.services) && !Array.isArray(inputBatch.items)) {
+    return { ...inputBatch, services: items }
+  }
+
+  return { ...inputBatch, items }
+}
+
+function derivePromptPath(batchPath: string): string {
+  return batchPath
+    .replace(/([/\\])input([/\\])/, "$1prompts$2")
+    .replace(/\.input\.json$/i, ".prompt.md")
+    .replace(/\.json$/i, ".prompt.md")
+}
+
+function deriveOutputPath(batchPath: string): string {
+  const outputPath = batchPath.replace(/([/\\])input([/\\])/, "$1output$2")
+
+  if (/\.input\.json$/i.test(outputPath)) {
+    return outputPath.replace(/\.input\.json$/i, ".output.json")
+  }
+
+  return outputPath.replace(/\.json$/i, ".output.json")
 }
 
 /**
@@ -24,6 +63,7 @@ interface TranslationBatch {
  */
 export function generateTranslationPrompts(batchPath: string): string {
   const batch = JSON.parse(fs.readFileSync(batchPath, "utf-8")) as TranslationBatch
+  const items = getBatchItems(batch)
 
   let prompt = `# French Translation Request\n\n`
   prompt += `Please translate the following English "access_script" fields to French.\n\n`
@@ -35,8 +75,20 @@ export function generateTranslationPrompts(batchPath: string): string {
   prompt += `**Format:** For each service, provide the French translation.\n\n`
   prompt += `---\n\n`
 
-  batch.services.forEach((service, idx) => {
+  items.forEach((service, idx) => {
     prompt += `## Service ${idx + 1} (ID: ${service.id})\n\n`
+    if (service.name) {
+      prompt += `**Service Name:** ${service.name}\n`
+    }
+    if (service.name_fr) {
+      prompt += `**French Service Name:** ${service.name_fr}\n`
+    }
+    if (service.scope) {
+      prompt += `**Scope:** ${service.scope}\n`
+    }
+    if (service.name || service.name_fr || service.scope) {
+      prompt += `\n`
+    }
     prompt += `**English:**\n${service.access_script}\n\n`
     prompt += `**French Translation:**\n[YOUR TRANSLATION HERE]\n\n`
     prompt += `---\n\n`
@@ -50,6 +102,7 @@ export function generateTranslationPrompts(batchPath: string): string {
  */
 export function parseTranslationResponse(inputBatchPath: string, translationText: string): TranslationBatch {
   const inputBatch = JSON.parse(fs.readFileSync(inputBatchPath, "utf-8")) as TranslationBatch
+  const inputItems = getBatchItems(inputBatch)
 
   // Parse translation text (expects service IDs as markers)
   // Simple regex-based parsing
@@ -66,14 +119,13 @@ export function parseTranslationResponse(inputBatchPath: string, translationText
   }
 
   // Merge translations into output batch
-  const outputBatch: TranslationBatch = {
-    services: inputBatch.services.map((service) => ({
+  return withBatchItems(
+    inputBatch,
+    inputItems.map((service) => ({
       ...service,
       access_script_fr: translations.get(service.id) || "",
-    })),
-  }
-
-  return outputBatch
+    }))
+  )
 }
 
 /**
@@ -84,8 +136,13 @@ export function validateTranslationBatch(batch: TranslationBatch): {
   errors: string[]
 } {
   const errors: string[] = []
+  const items = getBatchItems(batch)
 
-  batch.services.forEach((service, idx) => {
+  if (items.length === 0) {
+    errors.push("Batch has no services/items to validate")
+  }
+
+  items.forEach((service, idx) => {
     if (!service.access_script_fr) {
       errors.push(`Service ${idx + 1} (${service.id}): Missing French translation`)
     }
@@ -124,7 +181,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       console.log(prompt)
 
       // Save to file
-      const outputPath = batchPath.replace("/input/", "/prompts/").replace(".json", "-prompt.md")
+      const outputPath = derivePromptPath(batchPath)
       try {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true })
         fs.writeFileSync(outputPath, prompt)
@@ -155,7 +212,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       }
 
       // Save output
-      const outputPath = inputBatchPath.replace("/input/", "/output/")
+      const outputPath = deriveOutputPath(inputBatchPath)
       try {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true })
         fs.writeFileSync(outputPath, JSON.stringify(outputBatch, null, 2))

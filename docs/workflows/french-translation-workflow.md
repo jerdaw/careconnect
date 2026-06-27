@@ -29,10 +29,10 @@ This creates JSON files in `docs/audits/v17-5/ai-results/access-script-fr/input`
 Generate a formatted prompt for your translation workflow.
 
 ```bash
-npm run translate:prompt docs/audits/v17-5/ai-results/access-script-fr/input/batch-001.json
+npm run translate:prompt docs/audits/v17-5/ai-results/access-script-fr/input/batch-001.input.json
 ```
 
-This will output a `batch-001-prompt.md` file in the `prompts/` directory (adjacent to `input/`).
+This will output a `batch-001.prompt.md` file in the `prompts/` directory (adjacent to `input/`).
 
 ### 3. Get External Translation
 
@@ -45,17 +45,17 @@ This will output a `batch-001-prompt.md` file in the `prompts/` directory (adjac
 Convert the returned text response back into structured JSON.
 
 ```bash
-npm run translate:parse docs/audits/v17-5/ai-results/access-script-fr/input/batch-001.json response-001.txt
+npm run translate:parse docs/audits/v17-5/ai-results/access-script-fr/input/batch-001.input.json response-001.txt
 ```
 
-This creates a completed release batch in `docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.json`.
+This creates a completed release batch in `docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.output.json`.
 
 ### 5. Validate and Commit
 
 Validate the output before committing.
 
 ```bash
-npm run translate:validate docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.json
+npm run translate:validate docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.output.json
 ```
 
 Once validated, commit the `output/` batch file. It is now ready for ingestion by the `backfill` or `import` workflows.

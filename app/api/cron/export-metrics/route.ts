@@ -10,7 +10,6 @@ import { sendHealthCheck } from "@/lib/observability/axiom"
 import { logger } from "@/lib/logger"
 import { env } from "@/lib/env"
 
-export const runtime = "edge"
 export const dynamic = "force-dynamic"
 
 export async function GET(request: NextRequest) {

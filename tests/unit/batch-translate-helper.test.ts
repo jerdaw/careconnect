@@ -24,6 +24,19 @@ describe("Translation Helper Script", () => {
       { id: "2", access_script: "Visit website." },
     ],
   }
+  const mockExportedBatch = {
+    batch: 1,
+    total_batches: 1,
+    items: [
+      {
+        id: "1",
+        name: "Example Service",
+        name_fr: "Service exemple",
+        scope: "food",
+        access_script: "Call us.",
+      },
+    ],
+  }
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -39,6 +52,18 @@ describe("Translation Helper Script", () => {
       expect(prompt).toContain("**English:**\nCall us.")
       expect(prompt).toContain("## Service 2 (ID: 2)")
       expect(prompt).toContain("**English:**\nVisit website.")
+    })
+
+    it("should support exported access_script_fr batches", () => {
+      vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify(mockExportedBatch))
+
+      const prompt = generateTranslationPrompts("batch-001.input.json")
+
+      expect(prompt).toContain("## Service 1 (ID: 1)")
+      expect(prompt).toContain("**Service Name:** Example Service")
+      expect(prompt).toContain("**French Service Name:** Service exemple")
+      expect(prompt).toContain("**Scope:** food")
+      expect(prompt).toContain("**English:**\nCall us.")
     })
   })
 
@@ -59,9 +84,9 @@ Visitez le site web.
 `
       const result = parseTranslationResponse("mock-input.json", mockResponse)
 
-      expect(result.services).toHaveLength(2)
-      expect(result.services[0]!.access_script_fr).toBe("Appelez-nous.")
-      expect(result.services[1]!.access_script_fr).toBe("Visitez le site web.")
+      expect(result.services!).toHaveLength(2)
+      expect(result.services![0]!.access_script_fr).toBe("Appelez-nous.")
+      expect(result.services![1]!.access_script_fr).toBe("Visitez le site web.")
     })
 
     it("should handle empty or missing translations gracefully", () => {
@@ -72,8 +97,24 @@ Appelez-nous.
 `
       const result = parseTranslationResponse("mock-input.json", mockResponse)
 
-      expect(result.services[0]!.access_script_fr).toBe("Appelez-nous.")
-      expect(result.services[1]!.access_script_fr).toBe("") // Missing
+      expect(result.services![0]!.access_script_fr).toBe("Appelez-nous.")
+      expect(result.services![1]!.access_script_fr).toBe("") // Missing
+    })
+
+    it("should preserve exported batch metadata and items shape", () => {
+      vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify(mockExportedBatch))
+      const mockResponse = `
+## Service 1 (ID: 1)
+**French Translation:**
+Appelez-nous.
+`
+
+      const result = parseTranslationResponse("batch-001.input.json", mockResponse)
+
+      expect(result.batch).toBe(1)
+      expect(result.total_batches).toBe(1)
+      expect(result.items).toHaveLength(1)
+      expect(result.items![0]!.access_script_fr).toBe("Appelez-nous.")
     })
   })
 
@@ -113,6 +154,17 @@ Appelez-nous.
       // Should still be valid but have errors/warnings in list
       expect(result.valid).toBe(false)
       expect(result.errors[0]).toContain("WARNING - May contain untranslated English words")
+    })
+
+    it("should validate exported items batches", () => {
+      const validBatch = {
+        items: [{ id: "1", access_script: "Call.", access_script_fr: "Appelez maintenant." }],
+      }
+
+      const result = validateTranslationBatch(validBatch)
+
+      expect(result.valid).toBe(true)
+      expect(result.errors).toHaveLength(0)
     })
   })
 })

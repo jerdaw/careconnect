@@ -245,7 +245,7 @@
       "name": "Crisis Text Line",
       "name_fr": "Crisis Text Line",
       "scope": "canada",
-      "access_script": "Call 686868 (SMS). No fees. If you are in immediate danger, call 911."
+      "access_script": "Text CONNECT to 686868 for 24/7 youth support. Adults can text 741741. No fees. If you are in immediate danger, call 911."
     },
     {
       "id": "dawn-house-womens-shelter",
