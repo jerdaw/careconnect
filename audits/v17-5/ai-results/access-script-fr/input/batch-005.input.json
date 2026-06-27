@@ -35,7 +35,7 @@
       "name": "SLC Food Pantry",
       "name_fr": "Garde-manger SLC",
       "scope": "kingston",
-      "access_script": "Visit https://www.slc.me for information."
+      "access_script": "Visit the SLC Student Association FAQ page for the Food Pantry intake instructions. Valid student identification required. No fees."
     },
     {
       "id": "south-frontenac-community-services",
@@ -126,7 +126,7 @@
       "name": "Talk4Healing",
       "name_fr": "Talk4Healing",
       "scope": "ontario",
-      "access_script": "Call 1-855-554-4325. No fees. If you are in immediate danger, call 911."
+      "access_script": "Call or text 1-855-554-4325, or use the live chat on the official website. No fees. If you are in immediate danger, call 911."
     },
     {
       "id": "telephone-aid-line-kingston-talk",

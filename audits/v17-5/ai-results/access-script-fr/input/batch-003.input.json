@@ -21,7 +21,7 @@
       "name": "KFPL Learning Programs",
       "name_fr": "Programmes d'apprentissage KFPL",
       "scope": "kingston",
-      "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://www.kfpl.ca/programs. Library Card (for registration) required. No fees."
+      "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://calendar.kfpl.ca/. Library Card (for registration) required. No fees."
     },
     {
       "id": "kids-help-phone",
@@ -168,7 +168,7 @@
       "name": "Kingston Police (Non-Emergency)",
       "name_fr": "Police de Kingston (Non-urgent)",
       "scope": "kingston",
-      "access_script": "Visit https://www.kpf.ca for information."
+      "access_script": "Visit https://www.kingstonpolice.ca/about-kp/contacts/ for the non-emergency contact details."
     },
     {
       "id": "kingston-pregnancy-care",
