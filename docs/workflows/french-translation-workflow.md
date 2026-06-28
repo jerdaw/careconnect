@@ -1,8 +1,17 @@
+---
+status: stable
+last_updated: 2026-06-28
+owner: jer
+tags: [workflow, translation, bilingual, data-quality]
+---
+
 # French Translation Workflow
 
 ## Overview
 
-This workflow describes the process for translating `access_script` content from English to French. Since automated translation APIs are not used in production, we use a semi-automated batch process assisted by developer scripts and human review.
+This workflow describes the process for translating `access_script` content from English to French. Since automated translation APIs are not used in production, CareConnect uses a semi-automated batch process assisted by developer scripts, review, and data validation.
+
+The workflow is translation-only. Do not add service facts, eligibility, fees, hours, crisis advice, URLs, phone numbers, or verification metadata during translation review.
 
 ## Tools
 
@@ -11,6 +20,7 @@ We have added helper scripts to `package.json` to streamline this process:
 - `npm run translate:prompt <input-batch>`: Generates a prompt file for the translation workflow.
 - `npm run translate:parse <input-batch> <response-file>`: Parses the returned translation output into a JSON batch.
 - `npm run translate:validate <batch-path>`: Validates the structure and quality of the batch.
+- `npx tsx scripts/merge-ai-enrichment.ts <output-batches...>`: Merges reviewed `access_script_fr` values into `data/services.json`.
 
 ## Workflow Steps
 
@@ -50,12 +60,31 @@ npm run translate:parse docs/audits/v17-5/ai-results/access-script-fr/input/batc
 
 This creates a completed release batch in `docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.output.json`.
 
-### 5. Validate and Commit
+### 5. Validate Reviewed Output
 
-Validate the output before committing.
+Validate every reviewed output batch before merging.
 
 ```bash
 npm run translate:validate docs/audits/v17-5/ai-results/access-script-fr/output/batch-001.output.json
 ```
 
-Once validated, commit the `output/` batch file. It is now ready for ingestion by the `backfill` or `import` workflows.
+Repeat validation for each output batch. If a permanently closed or otherwise excluded record requires translation, place the reviewed record in a clearly named supplemental output batch and validate it the same way.
+
+### 6. Merge Reviewed Translations
+
+Merge only after review confirms meaning preservation and token preservation for phone numbers, URLs, email addresses, emergency numbers, addresses, fees, and eligibility wording.
+
+```bash
+npx tsx scripts/merge-ai-enrichment.ts docs/audits/v17-5/ai-results/access-script-fr/output/*.output.json
+```
+
+After merging, confirm the service-data diff is limited to `access_script_fr`, then run:
+
+```bash
+npm run validate-data
+npm run bilingual-check
+npm run audit:access-scripts
+npm run search:qa
+```
+
+Commit the reviewed output batches, review checklist or summary, refreshed audit report, and `data/services.json` together so the audit trail matches the data merge.
