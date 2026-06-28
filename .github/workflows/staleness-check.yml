@@ -1,9 +1,8 @@
 name: Monthly Staleness Check
 
 on:
-  schedule:
-    # Run at 9am ET on the 1st of each month
-    - cron: "0 14 1 * *"
+  # Critical-only mode: manual dispatch only so staleness drift is reviewed
+  # deliberately instead of opening scheduled reminder issues.
   workflow_dispatch:
     inputs:
       dry_run:

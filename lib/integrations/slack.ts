@@ -15,6 +15,14 @@
 import { logger } from "@/lib/logger"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
 import { REPOSITORY_URL, getPublicAppUrl } from "@/lib/brand"
+import {
+  getOperationalNotificationMode,
+  markOpsIncidentNotified,
+  resolveOpsIncident,
+  shouldSendOpsNotification,
+  wasOpsIncidentNotified,
+  type OpsNotificationPolicy,
+} from "@/lib/observability/ops-notification-policy"
 
 /**
  * Slack message block types
@@ -86,6 +94,39 @@ function getSlackWebhookUrl(): string | null {
 
 function getRepoDocUrl(path: string): string {
   return `${REPOSITORY_URL}/blob/main/${path}`
+}
+
+async function sendPolicyGatedSlackMessage(policy: OpsNotificationPolicy, message: SlackMessage): Promise<boolean> {
+  if (!shouldSendOpsNotification(policy)) {
+    logger.info("Ops Slack alert suppressed by notification mode", {
+      component: "slack",
+      tier: policy.tier,
+      incidentKey: policy.incidentKey,
+      isRecovery: Boolean(policy.isRecovery),
+    })
+    return false
+  }
+
+  const mode = policy.mode ?? getOperationalNotificationMode()
+  if (mode === "critical_only" && policy.isRecovery && !(await wasOpsIncidentNotified(policy.incidentKey))) {
+    logger.info("Ops Slack recovery suppressed because the incident did not page", {
+      component: "slack",
+      incidentKey: policy.incidentKey,
+    })
+    return false
+  }
+
+  const sent = await sendSlackMessage(message)
+  if (!sent) {
+    return false
+  }
+
+  if (policy.isRecovery) {
+    await resolveOpsIncident(policy.incidentKey)
+  } else {
+    await markOpsIncidentNotified(policy)
+  }
+  return true
 }
 
 /**
@@ -252,6 +293,31 @@ function formatCircuitBreakerMessage(event: CircuitBreakerEvent): SlackMessage {
  * @param event - Circuit breaker event data
  */
 export async function sendCircuitBreakerAlert(event: CircuitBreakerEvent): Promise<void> {
+  const policy: OpsNotificationPolicy = {
+    tier: event.state === CircuitState.OPEN ? "P2" : "P3",
+    incidentKey: "circuit-breaker:database",
+    isRecovery: event.state === CircuitState.CLOSED,
+    channel: "slack",
+  }
+
+  if (!shouldSendOpsNotification(policy)) {
+    logger.info("Circuit breaker alert suppressed by notification mode", {
+      component: "slack",
+      state: event.state,
+      tier: policy.tier,
+    })
+    return
+  }
+
+  const mode = policy.mode ?? getOperationalNotificationMode()
+  if (mode === "critical_only" && policy.isRecovery && !(await wasOpsIncidentNotified(policy.incidentKey))) {
+    logger.info("Circuit breaker recovery suppressed because the incident did not page", {
+      component: "slack",
+      state: event.state,
+    })
+    return
+  }
+
   // Import throttling dynamically to avoid circular dependencies
   const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
 
@@ -269,7 +335,15 @@ export async function sendCircuitBreakerAlert(event: CircuitBreakerEvent): Promi
 
   // Send alert
   const message = formatCircuitBreakerMessage(event)
-  await sendSlackMessage(message)
+  const sent = await sendSlackMessage(message)
+  if (!sent) {
+    return
+  }
+  if (policy.isRecovery) {
+    await resolveOpsIncident(policy.incidentKey)
+  } else {
+    await markOpsIncidentNotified(policy)
+  }
 }
 
 /**
@@ -279,6 +353,21 @@ export async function sendCircuitBreakerAlert(event: CircuitBreakerEvent): Promi
  * @param threshold - Threshold that was exceeded
  */
 export async function sendHighErrorRateAlert(errorRate: number, threshold: number): Promise<void> {
+  const policy: OpsNotificationPolicy = {
+    tier: "P2",
+    incidentKey: "slo:high-error-rate",
+    channel: "slack",
+  }
+  if (!shouldSendOpsNotification(policy)) {
+    logger.info("High error rate alert suppressed by notification mode", {
+      component: "slack",
+      errorRate,
+      threshold,
+      tier: policy.tier,
+    })
+    return
+  }
+
   // Import throttling dynamically to avoid circular dependencies
   const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
 
@@ -341,7 +430,7 @@ export async function sendHighErrorRateAlert(errorRate: number, threshold: numbe
     ],
   }
 
-  await sendSlackMessage(message)
+  await sendPolicyGatedSlackMessage(policy, message)
 }
 
 /**
@@ -447,6 +536,21 @@ function formatSLOViolationMessage(event: SLOViolationEvent): SlackMessage {
  * @param event - SLO violation event data
  */
 export async function sendSLOViolationAlert(event: SLOViolationEvent): Promise<void> {
+  const policy: OpsNotificationPolicy = {
+    tier: event.type === "uptime" && event.severity === "critical" ? "P1" : "P2",
+    incidentKey: `slo:${event.type}`,
+    channel: "slack",
+  }
+  if (!shouldSendOpsNotification(policy)) {
+    logger.info("SLO violation alert suppressed by notification mode", {
+      component: "slack",
+      type: event.type,
+      severity: event.severity,
+      tier: policy.tier,
+    })
+    return
+  }
+
   // Import throttling dynamically to avoid circular dependencies
   const { shouldSendAlert } = await import("@/lib/observability/alert-throttle")
 
@@ -470,5 +574,5 @@ export async function sendSLOViolationAlert(event: SLOViolationEvent): Promise<v
 
   // Send alert
   const message = formatSLOViolationMessage(event)
-  await sendSlackMessage(message)
+  await sendPolicyGatedSlackMessage(policy, message)
 }

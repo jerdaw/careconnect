@@ -1,9 +1,8 @@
 name: Monthly Crisis Service Verification
 
 on:
-  schedule:
-    # Run at 9am ET on the 1st of each month
-    - cron: "0 14 1 * *"
+  # Critical-only mode: manual dispatch only. Emergency/crisis user surfaces
+  # remain active; this workflow only creates operator reminder issues.
   workflow_dispatch:
     inputs:
       dry_run:
