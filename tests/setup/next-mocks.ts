@@ -1,7 +1,7 @@
 import { vi } from "vitest"
 
 /**
- * Standard Next.js 15 mocking setup for API route tests.
+ * Standard App Router mocking setup for API route tests.
  * Includes mocks for next/headers and @supabase/ssr.
  */
 

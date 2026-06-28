@@ -117,6 +117,15 @@ export const EXPECTED_SECURITY_HEADERS: Record<string, ExpectedHeaderConfig> = {
   },
 }
 
+function formatRuntimeFetchError(error: unknown): string {
+  const message = error instanceof Error ? error.message : String(error)
+  return [
+    "Runtime security header target is unreachable.",
+    "Start the app with `npm run dev` or set SECURITY_HEADERS_BASE_URL to a reachable deployment.",
+    `Fetch error: ${message}`,
+  ].join(" ")
+}
+
 export function parseCSP(csp: string): Map<string, string> {
   const directives = new Map<string, string>()
   const parts = csp.split(";").map((segment) => segment.trim())
@@ -379,7 +388,7 @@ export async function validateRuntimeSecurityHeaders({
         path: pathValue,
         url,
         passed: false,
-        error: error instanceof Error ? error.message : String(error),
+        error: formatRuntimeFetchError(error),
       })
     }
   }

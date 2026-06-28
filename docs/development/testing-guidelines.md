@@ -71,6 +71,9 @@ npm run type-check
 npm run build
 ```
 
+`npm run build` runs the `postbuild` embedding generator. If `data/embeddings.json` changes, review the diff before
+including it; when `data/services.json` did not change, treat an embeddings diff as unexpected until explained.
+
 > [!TIP]
 > While GitHub Actions is running in free-tier budget mode, leave Playwright execution to CI/manual dispatch by default. Run local Playwright only when a user explicitly requests it or when debugging a browser-only regression that cannot be reproduced another way.
 

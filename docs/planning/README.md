@@ -60,6 +60,10 @@ This directory contains planning and strategy documents for CareConnect.
   - Completed bounded repo-local maintenance pass for evidence guards, D4 artifact-inventory validation, offline recovery/privacy, pilot event contracts, and readiness validation while leaving C1/D4 evidence externally blocked
   - **Reading time:** 10 minutes
 
+- [Autonomous Maintenance Plan Archive (2026-06-28)](archive/2026-06-28-autonomous-maintenance-plan.md)
+  - Completed documentation, validation, local CI parity, and read-only embeddings freshness maintenance queue while leaving v22 C1/D4 evidence externally blocked
+  - **Reading time:** 5-10 minutes
+
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions
   - **Reading time:** 10 minutes
@@ -135,6 +139,8 @@ docs/planning/
 ├── v22-0-non-duplicate-value-decision-plan.md
 ├── v22-0-approval-checklist.md
 ├── archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md
+├── archive/2026-06-28-autonomous-maintenance-plan.md
+├── archive/2026-06-28-autonomous-maintenance-status.md
 ├── archive/2026-03-18-careconnect-rebrand.md
 ├── archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md
 └── archive/2026-03-29-v20-0-repo-audit-remediation.md

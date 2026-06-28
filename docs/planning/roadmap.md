@@ -15,10 +15,10 @@ tags: [planning, roadmap, v22.0, governance]
 ## Current State
 
 - **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28)
-- **Tests**: default Vitest suite green as of 2026-06-28 (`199` files; `1614` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-06-28 (`201` files; `1620` passed; `24` skipped)
 - **DB integration lane**: PR DB integration checks are green as of 2026-06-28, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
-- **Repo hygiene**: `npm run check:refs`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
+- **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
 - **Dependency audit**: `npm audit --audit-level=low` on 2026-06-28 reports `0` vulnerabilities
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
@@ -39,7 +39,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
-- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, and readiness-audit validation are packaged as a reviewable checkpoint with the completed maintenance record archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
+- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **French service-data gaps**: `access_script_fr` is complete for all 196 records; governed content follow-through still remains for `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action

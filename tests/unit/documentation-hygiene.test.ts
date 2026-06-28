@@ -1,6 +1,6 @@
 /** @vitest-environment node */
 import { describe, expect, it } from "vitest"
-import { lstatSync, readFileSync, readlinkSync } from "node:fs"
+import { existsSync, lstatSync, readdirSync, readFileSync, readlinkSync, statSync } from "node:fs"
 import path from "node:path"
 
 function repoRoot() {
@@ -9,6 +9,28 @@ function repoRoot() {
 
 function readDoc(relPath: string) {
   return readFileSync(path.join(repoRoot(), relPath), "utf8")
+}
+
+function collectMarkdownFiles(relDir: string): string[] {
+  const absDir = path.join(repoRoot(), relDir)
+  const files: string[] = []
+
+  for (const entry of readdirSync(absDir)) {
+    const relPath = path.join(relDir, entry)
+    const absPath = path.join(repoRoot(), relPath)
+    const stat = statSync(absPath)
+
+    if (stat.isDirectory()) {
+      files.push(...collectMarkdownFiles(relPath))
+      continue
+    }
+
+    if (entry.endsWith(".md")) {
+      files.push(relPath)
+    }
+  }
+
+  return files.sort()
 }
 
 const privateBoundaryPathPattern =
@@ -33,6 +55,56 @@ describe("documentation hygiene", () => {
     expect(agents).toContain("Do not add AI tool attribution")
     expect(agents).toContain("no Claude/Codex/Gemini/Copilot author or contributor credits")
     expect(agents).toContain("Keep `CLAUDE.md` and `GEMINI.md` as relative symlinks to `AGENTS.md`")
+  })
+
+  it("keeps active development docs from recommending hook bypasses", () => {
+    const agents = readDoc("AGENTS.md")
+    expect(agents).toContain("Skip pre-commit hooks (`--no-verify`)")
+
+    for (const relPath of collectMarkdownFiles("docs/development")) {
+      const content = readDoc(relPath)
+      expect(content, relPath).not.toMatch(/--no-verify|Emergency Override/)
+    }
+
+    expect(readDoc("docs/development/git-workflow.md")).toContain("Do not bypass project hooks.")
+  })
+
+  it("keeps tracked agent context aligned with current governance rules", () => {
+    const agentContext = readDoc(".agent/agent.md")
+    const dataEnrichmentWorkflow = readDoc(".agent/workflows/data-enrichment.md")
+    const rootHygieneWorkflow = readDoc(".agent/workflows/root-hygiene.md")
+
+    expect(agentContext).toContain("Next.js 16")
+    expect(agentContext).toContain("Verified Data")
+    expect(agentContext).not.toContain("Next.js 15")
+
+    expect(dataEnrichmentWorkflow).toContain("does not authorize autonomous edits to")
+    expect(dataEnrichmentWorkflow).toContain("Ask first before modifying `data/services.json`")
+    expect(dataEnrichmentWorkflow).not.toMatch(/convert-hours-to-structured|assign-access-scripts/)
+
+    expect(rootHygieneWorkflow).toContain("npm run check:root")
+  })
+
+  it("keeps active workflow file references resolvable", () => {
+    const activeDocs = [
+      "README.md",
+      "AGENTS.md",
+      "CONTRIBUTING.md",
+      "docs/development/dependency-management.md",
+      "docs/development/release-process.md",
+      "docs/planning/README.md",
+      "docs/planning/roadmap.md",
+    ]
+    const workflowPathPattern = /\.github\/workflows\/[A-Za-z0-9_.-]+\.ya?ml/g
+
+    for (const relPath of activeDocs) {
+      const content = readDoc(relPath)
+
+      for (const match of content.matchAll(workflowPathPattern)) {
+        const workflowPath = match[0]
+        expect(existsSync(path.join(repoRoot(), workflowPath)), `${relPath} references ${workflowPath}`).toBe(true)
+      }
+    }
   })
 
   it("keeps deployment details behind the public documentation boundary", () => {

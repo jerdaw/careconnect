@@ -93,6 +93,7 @@ Load-testing commands require a locally installed `k6` binary on `PATH`. Do not 
 npm run validate-data    # Validate service schema with Zod
 npm run db:validate      # Alias for validate-data
 npm run db:verify        # Verify database integrity (row count, embeddings, RLS)
+npm run check:embeddings # Validate local service IDs and embedding vector shape without regenerating files
 npm run health-check     # Validate all service URLs
 npm run phone-validate   # Validate phone numbers via Twilio
 npm run check-staleness  # Check for stale/unverified data

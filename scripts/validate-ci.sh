@@ -34,6 +34,11 @@ npm run validate-data
 echo "✅ Service data validation passed"
 echo ""
 
+echo "🔎 Running search QA scenarios..."
+npm run search:qa
+echo "✅ Search QA passed"
+echo ""
+
 echo "📋 Running type check..."
 npm run type-check
 echo "✅ Type check passed"

@@ -72,12 +72,24 @@ async function main() {
     console.log()
   }
 
+  const fetchFailureCount = result.results.filter((pathResult) => pathResult.error).length
+  const allFetchesFailed = fetchFailureCount === result.results.length
+  const partialFetchFailure = fetchFailureCount > 0 && !allFetchesFailed
+
   console.log(`${colors.bold}Summary:${colors.reset}`)
-  console.log(
-    result.passed
-      ? `${colors.green}All checked runtime responses exposed the required security headers${colors.reset}`
-      : `${colors.red}One or more runtime responses are missing or misconfiguring security headers${colors.reset}`
-  )
+  if (result.passed) {
+    console.log(`${colors.green}All checked runtime responses exposed the required security headers${colors.reset}`)
+  } else if (allFetchesFailed) {
+    console.log(`${colors.red}Runtime target unreachable; no security headers could be checked${colors.reset}`)
+  } else if (partialFetchFailure) {
+    console.log(
+      `${colors.red}Some runtime responses were unreachable or exposed misconfigured security headers${colors.reset}`
+    )
+  } else {
+    console.log(
+      `${colors.red}One or more runtime responses are missing or misconfiguring security headers${colors.reset}`
+    )
+  }
 
   if (warningCount > 0) {
     console.log(`${colors.yellow}${warningCount} warning(s) - review recommended${colors.reset}`)

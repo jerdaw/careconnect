@@ -128,6 +128,14 @@ npm run validate:security-headers
 SECURITY_HEADERS_BASE_URL=http://127.0.0.1:3000 npm run validate:security-headers:runtime
 ```
 
+Runtime validation fetches real HTTP responses. It requires either:
+
+1. a local app already running, usually from `npm run dev`, or
+2. `SECURITY_HEADERS_BASE_URL` set to a reachable deployed or preview URL.
+
+If the app is not reachable, the runtime validator exits nonzero with an unreachable-target message. That means no
+response headers were checked; it is an environment/setup blocker, not evidence that headers are missing.
+
 **What It Checks**:
 
 - ✅ All required headers are present

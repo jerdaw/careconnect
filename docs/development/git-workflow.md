@@ -51,7 +51,8 @@ Before pushing to the remote repository, a `pre-push` hook runs:
 
 This ensures that you don't push broken code to the CI.
 
-> **Emergency Override**: In rare cases where you need to bypass these hooks (e.g. WIP save), use `git commit --no-verify` or `git push --no-verify`.
+> **Blocked hooks**: If a hook blocks a commit or push, fix the failing check or ask a maintainer to review the
+> exception path. Do not bypass project hooks.
 
 ## 4. Continuous Integration (GitHub Actions)
 

@@ -77,6 +77,9 @@ describe("runtime security header validation", () => {
     })
 
     expect(result.passed).toBe(false)
+    expect(result.results[0]?.error).toContain("Runtime security header target is unreachable")
+    expect(result.results[0]?.error).toContain("npm run dev")
+    expect(result.results[0]?.error).toContain("SECURITY_HEADERS_BASE_URL")
     expect(result.results[0]?.error).toContain("ECONNREFUSED")
   })
 })

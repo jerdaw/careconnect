@@ -19,6 +19,7 @@
     "check:v22-evidence": "bash scripts/check-v22-evidence-intake.sh",
     "check:v22-threat-model": "bash scripts/check-v22-threat-model.sh",
     "check:refs": "node --import tsx scripts/check-references.ts",
+    "check:embeddings": "node --import tsx scripts/check-embeddings-freshness.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "node -e \"require('fs').mkdirSync('coverage/.tmp', { recursive: true })\" && vitest run --coverage --testTimeout=60000",

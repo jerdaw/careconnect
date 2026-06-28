@@ -1,106 +1,77 @@
 ---
-description: Run data enrichment workflow to fill missing service fields
+description: Audit data-enrichment gaps without fabricating service facts
 ---
 
-# Data Enrichment Workflow
+# Data Enrichment Audit Workflow
 
-This workflow runs the standardized data enrichment process to address gaps in scope, coordinates, hours, and access scripts.
+This workflow identifies service-data gaps and prepares review artifacts. It does not authorize autonomous edits to
+`data/services.json`.
 
-## Prerequisites
+## Governance Boundary
 
-- OpenCage API key (for geocoding) — set in `.env.local`
-- Backup of current data
+- Service data is manually curated and evidence-backed.
+- Do not invent hours, locations, eligibility, phone scripts, translations, or verification metadata.
+- Ask first before modifying `data/services.json`.
+- Record source evidence and reviewer notes before any later data-change commit.
+- Do not run credential-backed tools such as geocoding unless the maintainer explicitly provides the required setup.
 
-## Step 1: Create Backup
-
-// turbo
-
-```bash
-cp data/services.json data/services.backup.json
-```
-
-## Step 2: Run Data Audit
+## Step 1: Run Current Gap Audits
 
 // turbo
 
 ```bash
 npm run audit:data
+npm run audit:coords
+npm run audit:hours
+npm run audit:access-scripts
+npm run bilingual-check
 ```
 
-Review output to understand current gaps.
+Review the generated reports before proposing data changes.
 
-## Step 3: Assign Scopes
+## Step 2: Review Verification Queue
 
 // turbo
 
 ```bash
-npx tsx scripts/assign-scopes.ts
+npm run check-staleness
 ```
 
-Spot-check 20 random services after running.
+Use the current service verification workplan under `docs/audits/` when one exists. Update service facts only after
+manual evidence is recorded.
 
-## Step 4: Geocode Addresses
-
-Requires `OPENCAGE_API_KEY` in environment.
-
-```bash
-OPENCAGE_API_KEY=$OPENCAGE_API_KEY npx tsx scripts/geocode-services.ts
-```
-
-Review failures and manually add coordinates for 10-20 services if needed.
-
-## Step 5: Parse Hours
+## Step 3: Prepare Translation Review Batches
 
 // turbo
 
 ```bash
-npx tsx scripts/convert-hours-to-structured.ts
+npm run export:access-script-fr
 ```
 
-For complex formats, use ChatGPT with the prompt from the SOP.
+For French access-script work, follow `docs/workflows/french-translation-workflow.md`. Translation review is
+translation-only: preserve source meaning and do not add new service facts.
 
-## Step 6: Generate Access Scripts
+## Step 4: Optional Credential-Backed Geocoding
 
-// turbo
+Run geocoding only after maintainer approval and with `OPENCAGE_API_KEY` configured outside git.
 
 ```bash
-npx tsx scripts/assign-access-scripts.ts
+OPENCAGE_API_KEY=$OPENCAGE_API_KEY npm run geocode
 ```
 
-## Step 7: Run Plain Language Audit
+Review every generated coordinate against evidence before committing any service-data change.
 
-// turbo
-
-```bash
-npx tsx scripts/audit-plain-language.ts
-```
-
-## Step 8: Validate Data
+## Step 5: Validate After Any Approved Data Change
 
 // turbo
 
 ```bash
 npm run validate-data
-```
-
-All validations must pass.
-
-## Step 9: Run Final Audit
-
-// turbo
-
-```bash
 npm run audit:data
+npm run search:qa
 ```
 
-Compare with Step 2 output to verify improvement.
-
-## Step 10: Commit Changes
-
-```bash
-git add data/services.json
-git commit -m "data: enrich services with scope, coordinates, hours"
-```
+If French fields changed, also run `npm run bilingual-check`.
 
 ## Reference
 

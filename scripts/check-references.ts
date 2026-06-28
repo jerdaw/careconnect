@@ -4,6 +4,7 @@ import path from "node:path"
 const ROOT_DIR = process.cwd()
 
 const ACTIVE_ROOTS = [
+  ".agent",
   ".github",
   "README.md",
   "AGENTS.md",
@@ -17,6 +18,8 @@ const ACTIVE_ROOTS = [
   "docs/governance",
   "docs/index.md",
   "docs/operations",
+  "docs/planning/README.md",
+  "docs/planning/roadmap.md",
   "docs/runbooks",
   "docs/security",
   "docs/workflows",
@@ -33,7 +36,7 @@ const GENERATED_PATH_PREFIXES = [
   "out/",
 ]
 const GENERATED_PATHS = new Set(["docs/llms.txt"])
-const REPO_PATH_PREFIXES = [".github", "docs", "scripts", "supabase", "tests", "data", "public", "app"]
+const REPO_PATH_PREFIXES = [".agent", ".github", "docs", "scripts", "supabase", "tests", "data", "public", "app"]
 const REPO_ROOT_FILES = [
   "AGENTS.md",
   "CHANGELOG.md",

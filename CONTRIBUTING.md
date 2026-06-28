@@ -109,6 +109,9 @@ npm test                # Unit tests
 npm run build           # Production build validation
 ```
 
+`npm run build` also runs the `postbuild` embedding generator. Review any `data/embeddings.json` diff before including
+it, especially when `data/services.json` did not change.
+
 ### 2. Pre-Commit Hooks
 
 Husky automatically runs these checks before commits:
@@ -118,7 +121,7 @@ Husky automatically runs these checks before commits:
 - **Related Tests**: Vitest runs tests for changed files
 - **Formatting**: Prettier validation
 
-If hooks fail, fix the issues and try again. **Never use `--no-verify`** unless absolutely necessary.
+If hooks fail, fix the issues and try again. Do not bypass project hooks.
 
 ### 3. Commit Message Format
 
@@ -363,7 +366,7 @@ logger.info("Search performed", {
 - Add user tracking or analytics to public search
 - Modify `node_modules/` or `vendor/` directories
 - Force push to main branch
-- Skip pre-commit hooks (`--no-verify`) without good reason
+- Skip or bypass pre-commit hooks
 
 ## Adding Search Synonyms
 

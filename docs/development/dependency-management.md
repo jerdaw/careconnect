@@ -74,7 +74,7 @@ gh pr close <number>
 When reviewing a Dependabot PR:
 
 1. **Check CI Status**: All checks must pass
-   - ✅ Tests (895+ passing)
+   - ✅ Current test suite
    - ✅ Type check
    - ✅ Lint
    - ✅ Coverage thresholds
@@ -172,19 +172,20 @@ If a Dependabot PR has merge conflicts:
 
 Dependabot also creates **security updates** when vulnerabilities are detected.
 
-## Pull Request Dependency Review
+## Pull Request Dependency Checks
 
-CareConnect now also runs GitHub's dependency review action on pull requests via `.github/workflows/dependency-review.yml`.
+CareConnect currently uses Dependabot PRs, the Dependabot auto-merge workflow, and the advisory security-audit lane in
+`.github/workflows/ci.yml` for dependency visibility.
 
 What it does:
 
-- compares dependency manifest and lockfile changes introduced by the PR
-- fails the PR when newly introduced dependencies carry **high** or **critical** advisories
-- complements `npm audit` instead of replacing it
+- runs `npm audit --audit-level=high` in CI as a non-blocking signal
+- keeps dependency-update PRs grouped through Dependabot
+- auto-approves only the safe update classes described above
 
 What it does not do:
 
-- it does not block on unrelated historical ecosystem noise outside the PR diff
+- it does not currently run a separate dependency-review workflow file
 - it does not replace local review of changelogs, bundle impact, or framework compatibility
 
 ### Identifying Security Updates

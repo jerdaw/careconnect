@@ -279,7 +279,7 @@ Edit `.github/workflows/release.yml` to:
 
 Before creating a release:
 
-- [ ] All tests passing (895+ tests)
+- [ ] Current test suite passing
 - [ ] Coverage thresholds met (50% statements, 80% branches/functions)
 - [ ] No ESLint warnings
 - [ ] Bundle size acceptable (review if changed significantly)
