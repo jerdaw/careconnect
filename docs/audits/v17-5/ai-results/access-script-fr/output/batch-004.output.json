@@ -1,0 +1,406 @@
+{
+  "batch": 4,
+  "total_batches": 5,
+  "items": [
+    {
+      "id": "marthas-table",
+      "name": "Martha's Table",
+      "name_fr": "Martha's Table",
+      "scope": "kingston",
+      "access_script": "Email info@marthastable.ca or visit 629 Princess Street, Kingston, ON K7L 1E2. No fees.",
+      "access_script_fr": "Envoyez un courriel a info@marthastable.ca ou visitez 629 Princess Street, Kingston, ON K7L 1E2. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "memorial-centre-market",
+      "name": "Memorial Centre Farmers Market",
+      "name_fr": "Marché fermier du Centre Memorial",
+      "scope": "kingston",
+      "access_script": "Visit https://www.memorialcentrefarmersmarket.ca for information.",
+      "access_script_fr": "Visitez https://www.memorialcentrefarmersmarket.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "metis-nation-ontario-kingston",
+      "name": "Métis Nation of Ontario (Kingston Office)",
+      "name_fr": "Nation Métisse de l'Ontario",
+      "scope": "kingston",
+      "access_script": "Call 613-549-1674 or email contactus@metisnation.org. MNO Citizenship card (for some programs) required. No fees.",
+      "access_script_fr": "Appelez le 613-549-1674 ou envoyez un courriel a contactus@metisnation.org. Carte de citoyennete MNO requise pour certains programmes. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-metis-crisis-line",
+      "name": "Métis Nation of Ontario Crisis Line",
+      "name_fr": "Métis Nation of Ontario Crisis Line",
+      "scope": "ontario",
+      "access_script": "Métis Nation of Ontario citizens can call 1-877-767-7572 for mental health and addictions support. This crisis line is free and operates 24/7. If you are in immediate danger, call 911.",
+      "access_script_fr": "Les citoyens de la Metis Nation of Ontario peuvent appeler le 1-877-767-7572 pour obtenir du soutien en sante mentale et en dependances. Cette ligne de crise est gratuite et fonctionne 24/7. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-mmiwg-crisis-line",
+      "name": "MMIWG Crisis Line",
+      "name_fr": "Ligne de crise FFADA",
+      "scope": "canada",
+      "access_script": "Individuals impacted by missing and murdered Indigenous women, girls, or 2SLGBTQQIA+ people can call 1-844-413-6649 for support. This national crisis line is available 24/7. If you are in immediate danger, call 911.",
+      "access_script_fr": "Les personnes touchees par la disparition ou le meurtre de femmes, de filles ou de personnes 2SLGBTQQIA+ autochtones peuvent appeler le 1-844-413-6649 pour obtenir du soutien. Cette ligne nationale de crise est disponible 24/7. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ms-knowledge-network-ms-canada-",
+      "name": "MS Knowledge Network (MS Canada)",
+      "name_fr": "Réseau de connaissances sur la SP (SP Canada)",
+      "scope": "canada",
+      "access_script": "Call 1-844-859-6789 (Monday–Friday, 8 AM to 8 PM Eastern) to connect with an MS Navigator for information and support related to multiple sclerosis. This service is free and available to anyone affected by MS.",
+      "access_script_fr": "Appelez le 1-844-859-6789 (du lundi au vendredi, de 8 h a 20 h, heure de l'Est) pour communiquer avec un navigateur de la SP afin d'obtenir de l'information et du soutien lies a la sclerose en plaques. Ce service est gratuit et offert a toute personne touchee par la SP.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-naseeha",
+      "name": "Naseeha Mental Health",
+      "name_fr": "Naseeha Mental Health",
+      "scope": "canada",
+      "access_script": "Muslim youth and others can call or text 1-866-627-3342 at any time for free, anonymous mental health support. If you are in immediate danger, call 911.",
+      "access_script_fr": "Les jeunes musulmans et d'autres personnes peuvent appeler ou texter le 1-866-627-3342 en tout temps pour obtenir gratuitement du soutien anonyme en sante mentale. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-eating-disorders",
+      "name": "National Eating Disorder Information Centre (NEDIC)",
+      "name_fr": "NEDIC",
+      "scope": "ontario",
+      "access_script": "Call 1-866-633-4220 or email nedic@uhn.ca. No fees.",
+      "access_script_fr": "Appelez le 1-866-633-4220 ou envoyez un courriel a nedic@uhn.ca. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-nors",
+      "name": "National Overdose Response Service (NORS)",
+      "name_fr": "National Overdose Response Service (NORS)",
+      "scope": "canada",
+      "access_script": "If you plan to use drugs alone, you can call 1-888-688-6677 so an operator stays on the line to monitor your safety and respond in case of overdose. This service is available 24/7. If you are in immediate danger, call 911.",
+      "access_script_fr": "Si vous prevoyez consommer des drogues seul, vous pouvez appeler le 1-888-688-6677 afin qu'un operateur reste en ligne pour surveiller votre securite et intervenir en cas de surdose. Ce service est disponible 24/7. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "nishnawbe-aski-legal-services-nalsc-",
+      "name": "Nishnawbe-Aski Legal Services (NALSC)",
+      "name_fr": "Nishnawbe-Aski Legal Services (NALSC)",
+      "scope": "ontario",
+      "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)",
+      "access_script_fr": "Les residents autochtones du territoire de Nishnawbe Aski Nation peuvent appeler le 1-800-465-5581 pour acceder a des services d'aide juridique. Les services sont gratuits, mais des criteres d'admissibilite financiere peuvent s'appliquer pour une aide continue.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "odsp-kingston",
+      "name": "ODSP Kingston Office",
+      "name_fr": "Bureau POSPH Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://www.ontario.ca for information.",
+      "access_script_fr": "Visitez https://www.ontario.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "office-of-the-worker-adviser-owa-",
+      "name": "Office of the Worker Adviser (OWA)",
+      "name_fr": "Bureau du conseiller des travailleurs (BCT)",
+      "scope": "ontario",
+      "access_script": "Non-unionized workers who have been injured on the job or faced reprisals can call 1-800-435-8980 for free legal advice and representation. The Office of the Worker Adviser helps with WSIB claims and occupational health and safety reprisal cases at no cost.",
+      "access_script_fr": "Les travailleurs non syndiques qui ont ete blesses au travail ou qui ont subi des represailles peuvent appeler le 1-800-435-8980 pour obtenir gratuitement des conseils juridiques et de la representation. Le Bureau des conseillers des travailleurs aide avec les demandes de la WSIB et les cas de represailles en sante et securite au travail, sans frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "one-roof-youth-hub",
+      "name": "One Roof Kingston Youth Hub",
+      "name_fr": "One Roof Kingston Youth Hub",
+      "scope": "kingston",
+      "access_script": "Hi, I'm 20 and having a hard time finding a job and a place to live. Can I drop by to see a worker?",
+      "access_script_fr": "Bonjour, j'ai 20 ans et j'ai de la difficulte a trouver un emploi et un endroit ou vivre. Puis-je passer voir un intervenant?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ongwanada",
+      "name": "Ongwanada",
+      "name_fr": "Ongwanada",
+      "scope": "kingston",
+      "access_script": "Hi, I need information about support services for my child with a developmental disability.",
+      "access_script_fr": "Bonjour, j'ai besoin d'information sur les services de soutien pour mon enfant ayant une deficience developpementale.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-caregiver-helpline",
+      "name": "Ontario Caregiver Helpline",
+      "name_fr": "Ligne d'assistance aux aidants naturels de l'Ontario",
+      "scope": "ontario",
+      "access_script": "Ontario caregivers can call 1-833-416-2273 at any time for information, assessment, and referrals to local support services. This helpline is free of charge.",
+      "access_script_fr": "Les proches aidants de l'Ontario peuvent appeler le 1-833-416-2273 en tout temps pour obtenir de l'information, une evaluation et des aiguillages vers des services de soutien locaux. Cette ligne d'aide est gratuite.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-legal-information-centre",
+      "name": "Ontario Legal Information Centre",
+      "name_fr": "Centre d'information juridique de l'Ontario",
+      "scope": "ontario",
+      "access_script": "Call 1-844-343-7462 to request a free 30-minute consultation with a lawyer through the Ontario Legal Information Centre. This service is available to any Ontario resident, regardless of income, and no documents are required to access it.",
+      "access_script_fr": "Appelez le 1-844-343-7462 pour demander une consultation gratuite de 30 minutes avec un avocat par l'entremise du Centre d'information juridique de l'Ontario. Ce service est offert a tout resident de l'Ontario, peu importe son revenu, et aucun document n'est requis pour y acceder.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-poison-control",
+      "name": "Ontario Poison Centre",
+      "name_fr": "Centre antipoison de l'Ontario",
+      "scope": "ontario",
+      "access_script": "Call 1-800-268-9017 or email poison.information@sickkids.ca. No fees. If you are in immediate danger, call 911.",
+      "access_script_fr": "Appelez le 1-800-268-9017 ou envoyez un courriel a poison.information@sickkids.ca. Aucuns frais. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-ontario-gambling",
+      "name": "Ontario Problem Gambling Helpline",
+      "name_fr": "Ligne ontarienne d'aide sur le jeu problématique",
+      "scope": "ontario",
+      "access_script": "Call 1-866-531-2600 or text CONNEX to 247247 for free, confidential support. If you are in immediate danger, call 911.",
+      "access_script_fr": "Appelez le 1-866-531-2600 ou textez CONNEX to 247247 for free, confidential support. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-ontx-distress",
+      "name": "ONTX - Ontario Online & Text Crisis Services",
+      "name_fr": "ONTX - Ontario Online & Text Crisis Services",
+      "scope": "ontario",
+      "access_script": "Text the word \"SUPPORT\" to 258258 to connect with Ontario’s distress text line (available daily from 2:00 PM to 2:00 AM). If you are in immediate danger, call 911.",
+      "access_script_fr": "Textez le mot \"SUPPORT\" au 258258 pour communiquer avec la ligne texto de detresse de l Ontario, disponible tous les jours de 14 h a 2 h. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "opp-frontenac",
+      "name": "OPP Frontenac Detachment",
+      "name_fr": "Détachement de la PPO Frontenac",
+      "scope": "kingston",
+      "access_script": "Visit https://www.opp.ca for information.",
+      "access_script_fr": "Visitez https://www.opp.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "parkinson-canada",
+      "name": "Parkinson Canada",
+      "name_fr": "Parkinson Canada",
+      "scope": "canada",
+      "access_script": "Call 1-888-664-1974 (Monday–Friday, 9 AM to 4 PM Eastern) for information and support on Parkinson’s disease. You can also email support@parkinson.ca for assistance.",
+      "access_script_fr": "Appelez le 1-888-664-1974 (du lundi au vendredi, de 9 h a 16 h, heure de l'Est) pour obtenir de l'information et du soutien sur la maladie de Parkinson. Vous pouvez aussi envoyer un courriel a support@parkinson.ca pour obtenir de l'aide.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "partners-in-mission-food-bank",
+      "name": "Partners in Mission Food Bank",
+      "name_fr": "Banque alimentaire Partners in Mission",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to register for a food hamper. What documents do you need me to bring?",
+      "access_script_fr": "Bonjour, j'aimerais m'inscrire pour recevoir un panier alimentaire. Quels documents dois-je apporter?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-pflag-canada",
+      "name": "PFLAG Canada",
+      "name_fr": "PFLAG Canada",
+      "scope": "ontario",
+      "access_script": "Call 1-888-530-6777 or email inquiries@pflagcanada.ca. No fees.",
+      "access_script_fr": "Appelez le 1-888-530-6777 ou envoyez un courriel a inquiries@pflagcanada.ca. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "pro-bono-ontario",
+      "name": "Pro Bono Ontario",
+      "name_fr": "Pro Bono Ontario",
+      "scope": "ontario",
+      "access_script": "Call 1-855-255-7256. No fees.",
+      "access_script_fr": "Appelez le 1-855-255-7256. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "providence-care-hospital",
+      "name": "Providence Care Hospital",
+      "name_fr": "Hôpital Providence Care",
+      "scope": "kingston",
+      "access_script": "Call 613-544-4900 for assistance, or visit https://providencecare.ca.",
+      "access_script_fr": "Appelez le 613-544-4900 pour obtenir de l'aide, ou visitez https://providencecare.ca.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "queens-legal-aid",
+      "name": "Queen's Legal Aid",
+      "name_fr": "Services d'aide juridique Queen's",
+      "scope": "kingston",
+      "access_script": "Hi, I've been charged with an offence and I can't afford a lawyer. Can I speak to someone at the clinic?",
+      "access_script_fr": "Bonjour, j'ai ete accuse d'une infraction et je n'ai pas les moyens de payer un avocat. Puis-je parler a quelqu'un a la clinique?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "legal-clinic-queens",
+      "name": "Queen's Legal Aid",
+      "name_fr": "Services juridiques de Queen's",
+      "scope": "kingston",
+      "access_script": "Call 613-533-2102 for assistance.",
+      "access_script_fr": "Appelez le 613-533-2102 pour obtenir de l'aide.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "resolve-counselling",
+      "name": "Resolve Counselling Services Canada",
+      "name_fr": "Services de counseling Resolve",
+      "scope": "kingston",
+      "access_script": "Hi, I'm looking for counselling but I don't have insurance. Can you tell me about your sliding scale options?",
+      "access_script_fr": "Bonjour, je cherche du counseling, mais je n'ai pas d'assurance. Pouvez-vous m'expliquer vos options a tarif variable?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "restart-kingston",
+      "name": "ReStart Employment Services",
+      "name_fr": "ReStart Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I need help finding a job. Do I need an appointment to see an employment counsellor?",
+      "access_script_fr": "Bonjour, j'ai besoin d'aide pour trouver un emploi. Dois-je prendre rendez-vous pour voir un conseiller en emploi?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "re-start-employment",
+      "name": "ReStart Employment Services",
+      "name_fr": "ReStart Employment Services",
+      "scope": "kingston",
+      "access_script": "Call 613-542-7373 for assistance, or visit https://restartnow.ca.",
+      "access_script_fr": "Appelez le 613-542-7373 pour obtenir de l'aide, ou visitez https://restartnow.ca.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "rideau-heights-community-centre",
+      "name": "Rideau Heights Community Centre",
+      "name_fr": "Centre communautaire Rideau Heights",
+      "scope": "kingston",
+      "access_script": "Visit 85 Maccauley St, Kingston, ON K7K 2V8. Fees: Varies by program.",
+      "access_script_fr": "Visitez 85 Maccauley St, Kingston, ON K7K 2V8. Frais : variables selon le programme.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "rural-frontenac-community-services",
+      "name": "Rural Frontenac Community Services",
+      "name_fr": "Services communautaires de Rural Frontenac",
+      "scope": "kingston",
+      "access_script": "Call 613-279-3151 for assistance, or visit https://rfcs.ca.",
+      "access_script_fr": "Appelez le 613-279-3151 pour obtenir de l'aide, ou visitez https://rfcs.ca.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ryandale-shelter",
+      "name": "Ryandale Transitional Housing",
+      "name_fr": "Logement de transition Ryandale",
+      "scope": "kingston",
+      "access_script": "Hi, I'm currently on the street and need a place to warm up. Are you open for drop-in?",
+      "access_script_fr": "Bonjour, je suis actuellement dans la rue et j'ai besoin d'un endroit pour me rechauffer. Etes-vous ouvert pour les visites sans rendez-vous?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "salvation-army-cfs",
+      "name": "Salvation Army Community & Family Services",
+      "name_fr": "Armée du Salut Services communautaires et familiaux",
+      "scope": "kingston",
+      "access_script": "Call 613-548-4411 or email KingstonCitadel.CFS@salvationarmy.ca. ID, Proof of income/address required. No fees.",
+      "access_script_fr": "Appelez le 613-548-4411 ou envoyez un courriel a KingstonCitadel.CFS@salvationarmy.ca. Piece d'identite, Preuve de revenu et d'adresse requise. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "salvation-army-housing-help",
+      "name": "Salvation Army Housing Resource Centre",
+      "name_fr": "Centre de ressources en logement de l'Armée du Salut",
+      "scope": "kingston",
+      "access_script": "Hi, I'm behind on my rent and worried about losing my apartment. Can I apply for the rent bank?",
+      "access_script_fr": "Bonjour, je suis en retard dans mon loyer et je crains de perdre mon appartement. Puis-je faire une demande au fonds d'aide au loyer?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "salvation-army-rideau-heights",
+      "name": "Salvation Army Rideau Heights Corps",
+      "name_fr": "Armée du Salut - Rideau Heights",
+      "scope": "kingston",
+      "access_script": "Hi, I live in Rideau Heights and need food assistance. Can I book an appointment for a hamper?",
+      "access_script_fr": "Bonjour, j'habite a Rideau Heights et j'ai besoin d'aide alimentaire. Puis-je prendre rendez-vous pour un panier?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "seniors-association-kingston",
+      "name": "Seniors Association Kingston Region",
+      "name_fr": "Association des aînés de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I'm interested in joining the Seniors Association. Can I come in for a tour?",
+      "access_script_fr": "Bonjour, je souhaite me joindre a la Seniors Association. Puis-je venir faire une visite?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-seniors-safety-line",
+      "name": "Seniors Safety Line",
+      "name_fr": "Seniors Safety Line",
+      "scope": "ontario",
+      "access_script": "Call 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. If you are in immediate danger, call 911.",
+      "access_script_fr": "Appelez le 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "service-canada-kingston",
+      "name": "Service Canada Centre",
+      "name_fr": "Centre Service Canada",
+      "scope": "kingston",
+      "access_script": "Visit https://www.canada.ca for information.",
+      "access_script_fr": "Visitez https://www.canada.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "service-ontario-kingston",
+      "name": "ServiceOntario",
+      "name_fr": "ServiceOntario",
+      "scope": "kingston",
+      "access_script": "Visit https://www.ontario.ca for information.",
+      "access_script_fr": "Visitez https://www.ontario.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    }
+  ]
+}

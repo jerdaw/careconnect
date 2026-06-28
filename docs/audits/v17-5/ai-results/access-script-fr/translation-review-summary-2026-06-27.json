@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-06-27",
+  "status": "draft_pending_human_review",
+  "governance_boundary": "Review artifacts only; data/services.json not modified by this prep work.",
+  "active_services_exported": 195,
+  "inactive_service_excluded_from_active_export": "pathways-for-children-youth",
+  "output_batches": [
+    {
+      "input": "batch-001.input.json",
+      "output": "batch-001.output.json",
+      "items": 40
+    },
+    {
+      "input": "batch-002.input.json",
+      "output": "batch-002.output.json",
+      "items": 40
+    },
+    {
+      "input": "batch-003.input.json",
+      "output": "batch-003.output.json",
+      "items": 40
+    },
+    {
+      "input": "batch-004.input.json",
+      "output": "batch-004.output.json",
+      "items": 40
+    },
+    {
+      "input": "batch-005.input.json",
+      "output": "batch-005.output.json",
+      "items": 35
+    }
+  ],
+  "warnings": []
+}

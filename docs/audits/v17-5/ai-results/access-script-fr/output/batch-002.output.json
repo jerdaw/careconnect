@@ -1,0 +1,406 @@
+{
+  "batch": 2,
+  "total_batches": 5,
+  "items": [
+    {
+      "id": "elizabeth-fry-society-kingston",
+      "name": "Elizabeth Fry Society of Kingston",
+      "name_fr": "Société Elizabeth Fry de Kingston",
+      "scope": "kingston",
+      "access_script": "Hi, I am being released soon and will have nowhere to go. Do you have any supportive housing units available?",
+      "access_script_fr": "Bonjour, je serai bientot libere et je n'aurai nulle part ou aller. Avez-vous des logements avec soutien disponibles?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "employment-standards-information-centre",
+      "name": "Employment Standards Information Centre",
+      "name_fr": "Centre d'information sur les normes d'emploi",
+      "scope": "ontario",
+      "access_script": "Call 1-800-531-5551 for information about Ontario’s Employment Standards Act (e.g., wages, hours of work, overtime, vacation rules). This free information line is available to both workers and employers.",
+      "access_script_fr": "Appelez le 1-800-531-5551 pour obtenir des renseignements sur la Loi sur les normes d'emploi de l'Ontario (p. ex., salaires, heures de travail, heures supplementaires, regles sur les vacances). Cette ligne d'information gratuite est offerte aux travailleurs et aux employeurs.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-farmer-wellness",
+      "name": "Farmer Wellness Initiative",
+      "name_fr": "Farmer Wellness Initiative",
+      "scope": "ontario",
+      "access_script": "Ontario farmers, farm families, and farm workers can call 1-866-267-6255 to access free counselling support at any time. Intake is available 24/7 and no fees or paperwork are required.",
+      "access_script_fr": "Les agriculteurs, les familles agricoles et les travailleurs agricoles de l'Ontario peuvent appeler le 1-866-267-6255 pour acceder gratuitement a du soutien en counseling en tout temps. L'accueil est disponible 24/7 et aucuns frais ni formulaires ne sont requis.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-femaide",
+      "name": "Fem'aide",
+      "name_fr": "Fem'aide",
+      "scope": "ontario",
+      "access_script": "Francophone women facing violence can call or text 1-877-336-2433 for free, confidential support in French (24/7). If you are in immediate danger, call 911.",
+      "access_script_fr": "Les femmes d expression francaise faisant face a la violence peuvent appeler ou texter le 1-877-336-2433 pour obtenir gratuitement du soutien confidentiel en francais (24/7). Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "four-directions-indigenous-centre",
+      "name": "Four Directions Indigenous Student Centre",
+      "name_fr": "Four Directions Indigenous Student Centre",
+      "scope": "kingston",
+      "access_script": "Email 4direct@queensu.ca or visit 144-146 Barrie St, Kingston, ON K7L 3J9. Student ID required. No fees.",
+      "access_script_fr": "Envoyez un courriel a 4direct@queensu.ca ou visitez 144-146 Barrie St, Kingston, ON K7L 3J9. Carte etudiante requise. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "geneva-centre-autism",
+      "name": "Geneva Centre for Autism (Virtual)",
+      "name_fr": "Centre Genève pour l'Autisme (Virtuel)",
+      "scope": "kingston",
+      "access_script": "Visit https://www.autism.net for information.",
+      "access_script_fr": "Visitez https://www.autism.net pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-good2talk",
+      "name": "Good2Talk",
+      "name_fr": "Allo J'écoute",
+      "scope": "ontario",
+      "access_script": "Call 1-866-925-5454 or text GOOD2TALKON to 686868. No fees. If you are in immediate danger, call 911.",
+      "access_script_fr": "Appelez le 1-866-925-5454 ou textez GOOD2TALKON to 686868. Aucuns frais. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hart-centre",
+      "name": "H'art Centre",
+      "name_fr": "Centre H'art",
+      "scope": "kingston",
+      "access_script": "Hi, I'm interested in your art programs for my sibling with a disability. Can we visit the studio?",
+      "access_script_fr": "Bonjour, je m'interesse a vos programmes artistiques pour mon frere ou ma soeur ayant un handicap. Pouvons-nous visiter le studio?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "habitat-for-humanity-kingston",
+      "name": "Habitat for Humanity Kingston",
+      "name_fr": "Habitat pour l'humanité Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://habitatkingston.com for information.",
+      "access_script_fr": "Visitez https://habitatkingston.com pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "habitat-restore-kingston",
+      "name": "Habitat for Humanity Kingston ReStore",
+      "name_fr": "Habitat pour l'humanité Kingston ReStore",
+      "scope": "kingston",
+      "access_script": "Hi, I have some furniture I'd like to donate. Do you offer pick-up services?",
+      "access_script_fr": "Bonjour, j'ai des meubles que j'aimerais donner. Offrez-vous un service de ramassage?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-telehealth-ontario",
+      "name": "Health811 (formerly Telehealth Ontario)",
+      "name_fr": "Santé811",
+      "scope": "ontario",
+      "access_script": "Call 811 or visit https://health811.ontario.ca. OHIP card is helpful but not required. No fees.",
+      "access_script_fr": "Appelez le 811 ou visitez https://health811.ontario.ca. La carte OHIP est utile, mais non requise. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "heart-and-stroke-foundation",
+      "name": "Heart and Stroke Foundation",
+      "name_fr": "Cœur + AVC (Fondation des maladies du cœur et de l'AVC)",
+      "scope": "canada",
+      "access_script": "Call 1-888-473-4636 for free, evidence-based information on heart disease and stroke. The Heart and Stroke Foundation’s help line can answer questions about prevention, risk factors, treatment, and recovery resources.",
+      "access_script_fr": "Appelez le 1-888-473-4636 pour obtenir gratuitement de l'information fondee sur des donnees probantes au sujet des maladies du coeur et de l'AVC. La ligne d'aide de Coeur + AVC peut repondre aux questions sur la prevention, les facteurs de risque, le traitement et les ressources de retablissement.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hiv-aids-legal-clinic-ontario-halco-",
+      "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
+      "name_fr": "Clinique juridique VIH & sida de l'Ontario (HALCO)",
+      "scope": "ontario",
+      "access_script": "Ontario residents living with HIV or AIDS can call 1-888-705-8889 for free legal advice on issues like privacy, human rights, immigration, and income support. No fees are charged for this service.",
+      "access_script_fr": "Les residents de l'Ontario vivant avec le VIH ou le sida peuvent appeler le 1-888-705-8889 pour obtenir gratuitement des conseils juridiques sur des questions comme la vie privee, les droits de la personne, l'immigration et le soutien du revenu. Aucuns frais ne sont factures pour ce service.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hope-for-wellness-helpline",
+      "name": "Hope for Wellness Helpline",
+      "name_fr": "Ligne d’écoute d’espoir pour le mieux-être",
+      "scope": "canada",
+      "access_script": "Hi, I am Indigenous and I'm having a hard time. I'd like to speak with a culturally safe counsellor.",
+      "access_script_fr": "Bonjour, je suis Autochtone et je traverse une periode difficile. J'aimerais parler a un conseiller culturellement securisant.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "crisis-hope-for-wellness",
+      "name": "Hope for Wellness Helpline",
+      "name_fr": "Ligne d’écoute d’espoir pour le mieux-être",
+      "scope": "canada",
+      "access_script": "Call 855-242-3310. No fees. If you are in immediate danger, call 911.",
+      "access_script_fr": "Appelez le 855-242-3310. Aucuns frais. Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hospice-kingston",
+      "name": "Hospice Kingston (Providence Care)",
+      "name_fr": "Hospice Kingston",
+      "scope": "kingston",
+      "access_script": "Visit https://providencecare.ca/hospice-kingston for information.",
+      "access_script_fr": "Visitez https://providencecare.ca/hospice-kingston pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hospice-palliative-care-ontario-hpco-",
+      "name": "Hospice Palliative Care Ontario (HPCO)",
+      "name_fr": "Hospice Palliative Care Ontario (HPCO)",
+      "scope": "ontario",
+      "access_script": "Call 1-833-621-0728 for information and navigation assistance with hospice and palliative care services in Ontario. (The HPCO information line is staffed Monday to Friday, 8:30 AM to 4:30 PM.)",
+      "access_script_fr": "Appelez le 1-833-621-0728 pour obtenir de l'information et de l'aide a l'orientation pour les services de soins palliatifs et de soins en hospice en Ontario. La ligne d'information de HPCO est dotee en personnel du lundi au vendredi, de 8 h 30 a 16 h 30.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hotel-dieu-urgent-care",
+      "name": "Hotel Dieu Hospital Urgent Care Centre (KHSC)",
+      "name_fr": "Centre de soins urgents de l'Hôpital Hôtel-Dieu",
+      "scope": "kingston",
+      "access_script": "Hi, I think I have a minor bone break. Are you still accepting patients for today, or is capacity reached?",
+      "access_script_fr": "Bonjour, je pense avoir une fracture mineure. Acceptez-vous encore des patients aujourd'hui, ou la capacite est-elle atteinte?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "hotel-dieu-site",
+      "name": "Hotel Dieu Hospital Urgent Care Centre (KHSC)",
+      "name_fr": "Centre de soins urgents de l'hôpital Hôtel-Dieu (KHSC)",
+      "scope": "kingston",
+      "access_script": "Call 613-546-1240 for assistance, or visit https://kingstonhsc.ca/programs-and-departments/urgent-care-centre.",
+      "access_script_fr": "Appelez le 613-546-1240 pour obtenir de l'aide, ou visitez https://kingstonhsc.ca/programs-and-departments/urgent-care-centre.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "human-rights-legal-support-centre-hrlsc-",
+      "name": "Human Rights Legal Support Centre (HRLSC)",
+      "name_fr": "Centre d'assistance juridique en matière de droits de la personne (CAJDP)",
+      "scope": "ontario",
+      "access_script": "If you have experienced discrimination in Ontario, call 1-866-625-5179 for free legal advice and help filing a human rights application. The Human Rights Legal Support Centre’s services are provided at no cost.",
+      "access_script_fr": "Si vous avez vecu de la discrimination en Ontario, appelez le 1-866-625-5179 pour obtenir gratuitement des conseils juridiques et de l'aide pour deposer une requete en droits de la personne. Les services du Human Rights Legal Support Centre sont fournis sans frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "in-from-the-cold",
+      "name": "In From the Cold Emergency Shelter",
+      "name_fr": "Refuge d'urgence In From the Cold",
+      "scope": "kingston",
+      "access_script": "Call 613-542-6672 or email info@kingstonhomebase.ca or visit 540 Montreal St, Kingston, ON K7K 3J2. No fees.",
+      "access_script_fr": "Appelez le 613-542-6672 ou envoyez un courriel a info@kingstonhomebase.ca ou visitez 540 Montreal St, Kingston, ON K7K 3J2. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "ontario-irs-crisis-line",
+      "name": "Indian Residential Schools Crisis Line",
+      "name_fr": "Ligne de crise des pensionnats indiens",
+      "scope": "canada",
+      "access_script": "Former residential school students and their families can call 1-866-925-4419 for emotional crisis support at any time (24/7). If you are in immediate danger, call 911.",
+      "access_script_fr": "Les anciens eleves des pensionnats et leurs familles peuvent appeler le 1-866-925-4419 pour obtenir du soutien en cas de crise emotionnelle en tout temps (24/7). Si vous etes en danger immediat, appelez le 911.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kchc-iipct",
+      "name": "Indigenous Interprofessional Primary Care Team (IIPCT)",
+      "name_fr": "Équipe de soins primaires interprofessionnels autochtones",
+      "scope": "kingston",
+      "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP Card required. Free.",
+      "access_script_fr": "Appelez le 343-478-0196 ou envoyez un courriel a iipct.reception@iipct.com. Carte OHIP requise. Gratuit.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "injured-workers-community-legal-clinic-iwc-",
+      "name": "Injured Workers Community Legal Clinic (IWC)",
+      "name_fr": "Clinique juridique communautaire pour accidentés du travail (IWC)",
+      "scope": "ontario",
+      "access_script": "Injured workers in Ontario can call 1-833-461-2411 for free legal help with workers’ compensation (WSIB) claims and appeals. The Injured Workers Community Legal Clinic provides assistance at no charge.",
+      "access_script_fr": "Les travailleurs blesses en Ontario peuvent appeler le 1-833-461-2411 pour obtenir gratuitement de l'aide juridique concernant les demandes et appels d'indemnisation des travailleurs (WSIB). La Injured Workers Community Legal Clinic fournit de l'aide sans frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "integrated-care-hub",
+      "name": "Integrated Care Hub (ICH)",
+      "name_fr": "Carrefour de soins intégrés",
+      "scope": "kingston",
+      "access_script": "Email hubcoordinator@kingston.net or visit 661 Montreal St, Kingston, ON K7K 3J4. No fees.",
+      "access_script_fr": "Envoyez un courriel a hubcoordinator@kingston.net ou visitez 661 Montreal St, Kingston, ON K7K 3J4. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "invista-centre",
+      "name": "INVISTA Centre",
+      "name_fr": "Centre INVISTA",
+      "scope": "kingston",
+      "access_script": "Visit 1350 Gardiners Rd, Kingston, ON K7P 0E5. Fees: Varies.",
+      "access_script_fr": "Visitez 1350 Gardiners Rd, Kingston, ON K7P 0E5. Frais : variables.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "jobwell-kingston",
+      "name": "Jobwell",
+      "name_fr": "Jobwell",
+      "scope": "kingston",
+      "access_script": "Call 613-540-6165 ext. 34109 or email info@jobwell.ca. Application form required. No fees.",
+      "access_script_fr": "Appelez le 613-540-6165 ext. 34109 ou envoyez un courriel a info@jobwell.ca. Formulaire de demande requis. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "jordan-s-principle-call-centre",
+      "name": "Jordan's Principle Call Centre",
+      "name_fr": "Centre d'appel du Principe de Jordan",
+      "scope": "canada",
+      "access_script": "First Nations families can call 1-855-572-4453 (Jordan’s Principle Call Centre) for help accessing health, social, or education services for their children. The call centre is open 24/7 and there are no fees.",
+      "access_script_fr": "Les familles des Premieres Nations peuvent appeler le 1-855-572-4453 pour obtenir de l'aide afin d'acceder a des services de sante, sociaux ou educatifs pour leurs enfants. Le centre d'appel est ouvert 24/7 et il n'y a aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "justice-for-children-youth",
+      "name": "Justice for Children and Youth (JFCY)",
+      "name_fr": "Justice for Children and Youth",
+      "scope": "ontario",
+      "access_script": "Call 1-866-522-2024 or email info@jfcy.org. No fees.",
+      "access_script_fr": "Appelez le 1-866-522-2024 ou envoyez un courriel a info@jfcy.org. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "justice-for-children-and-youth-jfcy-",
+      "name": "Justice for Children and Youth (JFCY)",
+      "name_fr": "Justice pour enfants et jeunes (JFCY)",
+      "scope": "ontario",
+      "access_script": "Young people in Ontario (under 18, or under 25 if homeless) can call 1-866-999-5329 for free legal advice. Justice for Children and Youth can help with issues in areas like education, family, youth criminal justice, and more.",
+      "access_script_fr": "Les jeunes en Ontario (moins de 18 ans, ou moins de 25 ans s'ils sont sans abri) peuvent appeler le 1-866-999-5329 pour obtenir gratuitement des conseils juridiques. Justice for Children and Youth peut aider pour des questions liees notamment a l'education, a la famille, a la justice penale pour les jeunes et a d'autres domaines.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "keys-job-centre",
+      "name": "KEYS Job Centre",
+      "name_fr": "Centre d'emploi KEYS",
+      "scope": "kingston",
+      "access_script": "Hi, I'm looking for work and need help with my resume. Can I book an appointment with a counsellor?",
+      "access_script_fr": "Bonjour, je cherche du travail et j'ai besoin d'aide pour mon curriculum vitae. Puis-je prendre rendez-vous avec un conseiller?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "keys-job-centre-2",
+      "name": "KEYS Job Centre",
+      "name_fr": "Centre d'emploi KEYS",
+      "scope": "kingston",
+      "access_script": "Call 613-546-5559 for assistance, or visit https://keys.ca.",
+      "access_script_fr": "Appelez le 613-546-5559 pour obtenir de l'aide, ou visitez https://keys.ca.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfla-children-services",
+      "name": "KFL&A Children's Services",
+      "name_fr": "Services à l'enfance KFL&A",
+      "scope": "kingston",
+      "access_script": "Visit https://www.cityofkingston.ca for information.",
+      "access_script_fr": "Visitez https://www.cityofkingston.ca pour obtenir des renseignements.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfla-indigenous-health-team",
+      "name": "KFL&A Indigenous Primary Health Care Team",
+      "name_fr": "Équipe de soins de santé primaires autochtones de KFL&A",
+      "scope": "kingston",
+      "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP required. No fees.",
+      "access_script_fr": "Appelez le 343-478-0196 ou envoyez un courriel a iipct.reception@iipct.com. OHIP requis. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfl-public-health-vaccine",
+      "name": "KFL&A Public Health - Immunization",
+      "name_fr": "Santé publique KFL&A - Immunisation",
+      "scope": "kingston",
+      "access_script": "Call 613-549-1232 for assistance, or visit https://www.kflaph.ca.",
+      "access_script_fr": "Appelez le 613-549-1232 pour obtenir de l'aide, ou visitez https://www.kflaph.ca.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfla-public-health-dental",
+      "name": "KFL&A Public Health Dental Services",
+      "name_fr": "Services dentaires de santé publique KFL&A",
+      "scope": "kingston",
+      "access_script": "Hi, I have a severe toothache and I am on Ontario Works. Can I book an emergency appointment?",
+      "access_script_fr": "Bonjour, j'ai un mal de dents severe et je recois Ontario au travail. Puis-je prendre un rendez-vous d'urgence?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfla-sexual-health-clinic",
+      "name": "KFL&A Public Health: Sexual Health Clinic",
+      "name_fr": "Santé publique KFL&A : Clinique de santé sexuelle",
+      "scope": "kingston",
+      "access_script": "Hi, I'd like to get tested for STIs. Do I need an appointment or can I just walk in?",
+      "access_script_fr": "Bonjour, j'aimerais passer un test de depistage des ITS. Ai-je besoin d'un rendez-vous ou puis-je me presenter sans rendez-vous?",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfl-public-health-sexual",
+      "name": "KFL&A Public Health: Sexual Health Clinic",
+      "name_fr": "Clinique de santé sexuelle de santé publique KFL&A",
+      "scope": "kingston",
+      "access_script": "Call 613-549-1232 ext. 1275 for assistance, or visit https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx.",
+      "access_script_fr": "Appelez le 613-549-1232 ext. 1275 pour obtenir de l'aide, ou visitez https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfpl-calvin-park",
+      "name": "KFPL - Calvin Park Branch",
+      "name_fr": "KFPL - Succursale Calvin Park",
+      "scope": "kingston",
+      "access_script": "Email contact@kfpl.ca or visit 88 Wright Crescent, Kingston, ON K7L 4T9. Library Card for loans required. No fees.",
+      "access_script_fr": "Envoyez un courriel a contact@kfpl.ca ou visitez 88 Wright Crescent, Kingston, ON K7L 4T9. Carte de bibliotheque requise pour les emprunts. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    },
+    {
+      "id": "kfpl-isabel-turner",
+      "name": "KFPL - Isabel Turner Branch",
+      "name_fr": "KFPL - Succursale Isabel Turner",
+      "scope": "kingston",
+      "access_script": "Email contact@kfpl.ca or visit 935 Gardiners Rd, Kingston, ON K7M 9A9. Library Card for loans required. No fees.",
+      "access_script_fr": "Envoyez un courriel a contact@kfpl.ca ou visitez 935 Gardiners Rd, Kingston, ON K7M 9A9. Carte de bibliotheque requise pour les emprunts. Aucuns frais.",
+      "translation_review_status": "machine_draft_pending_human_review",
+      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+    }
+  ]
+}
