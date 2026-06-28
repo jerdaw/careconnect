@@ -1,8 +1,8 @@
 name: Monthly Health Check
 
 on:
-  schedule:
-    - cron: "0 8 1 * *" # 8 AM UTC on the 1st of each month
+  # Critical-only mode: manual dispatch only so URL drift creates a work item
+  # when intentionally requested, not a scheduled operator interruption.
   workflow_dispatch:
     inputs:
       dry_run:

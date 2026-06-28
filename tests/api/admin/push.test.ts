@@ -8,14 +8,17 @@ vi.mock("@/lib/auth/authorization", () => ({
   assertAdminRole: vi.fn().mockResolvedValue(true),
 }))
 
+const mockEnv = vi.hoisted(() => ({
+  NEXT_PUBLIC_SUPABASE_URL: "https://test.supabase.co",
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "test-key",
+  NEXT_PUBLIC_ONESIGNAL_APP_ID: "test-app-id",
+  ONESIGNAL_REST_API_KEY: "test-rest-key",
+  USER_NOTIFICATION_MODE: "normal",
+}))
+
 // Mock env
 vi.mock("@/lib/env", () => ({
-  env: {
-    NEXT_PUBLIC_SUPABASE_URL: "https://test.supabase.co",
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "test-key",
-    NEXT_PUBLIC_ONESIGNAL_APP_ID: "test-app-id",
-    ONESIGNAL_REST_API_KEY: "test-rest-key",
-  },
+  env: mockEnv,
 }))
 
 const mockGetUser = vi.fn().mockResolvedValue({
@@ -46,6 +49,7 @@ global.fetch = mockFetch
 describe("Push API", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockEnv.USER_NOTIFICATION_MODE = "normal"
     mockGetUser.mockResolvedValue({
       data: { user: { id: "admin1", app_metadata: { role: "admin" } } },
       error: null,
@@ -125,5 +129,47 @@ describe("Push API", () => {
     expect(body.data.success).toBe(true)
     expect(body.data.auditStatus).toBe("degraded")
     expect(body.data.warnings).toEqual(["notification_audit", "audit_logs", "admin_actions"])
+  })
+
+  it("rejects non-emergency broadcasts in critical-only mode", async () => {
+    mockEnv.USER_NOTIFICATION_MODE = "critical_only"
+
+    const request = new NextRequest("http://localhost:3000/api/admin/push", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "Test push",
+        message: "Body of push",
+        type: "service_update",
+      }),
+    })
+
+    const response = await POST(request)
+    const body = (await response.json()) as {
+      error: { details: { code: string; allowedTypes: string[] } }
+    }
+
+    expect(response.status).toBe(403)
+    expect(body.error.details.code).toBe("notification_mode_restricted")
+    expect(body.error.details.allowedTypes).toEqual(["emergency"])
+    expect(mockFetch).not.toHaveBeenCalled()
+  })
+
+  it("allows emergency broadcasts in critical-only mode", async () => {
+    mockEnv.USER_NOTIFICATION_MODE = "critical_only"
+
+    const request = new NextRequest("http://localhost:3000/api/admin/push", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "Emergency",
+        message: "Emergency update",
+        type: "emergency",
+      }),
+    })
+
+    const response = await POST(request)
+    expect(response.status).toBe(200)
+    expect(mockFetch).toHaveBeenCalled()
   })
 })

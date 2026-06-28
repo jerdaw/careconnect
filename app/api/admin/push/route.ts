@@ -145,6 +145,15 @@ export async function POST(request: NextRequest) {
     }
 
     const { title, message, url, type, target, filters } = validation.data
+    const notificationType = type || "general"
+
+    if ((env.USER_NOTIFICATION_MODE ?? "normal") === "critical_only" && notificationType !== "emergency") {
+      return createApiError("Notification mode restricted", 403, {
+        code: "notification_mode_restricted",
+        mode: "critical_only",
+        allowedTypes: ["emergency"],
+      })
+    }
 
     if (!env.ONESIGNAL_REST_API_KEY || !env.NEXT_PUBLIC_ONESIGNAL_APP_ID) {
       return createApiError("OneSignal not configured", 500)
@@ -170,7 +179,7 @@ export async function POST(request: NextRequest) {
           ? { included_segments: oneSignalFilters.included_segments }
           : { filters: oneSignalFilters.filters }),
         data: {
-          type: type || "general",
+          type: notificationType,
           url: url || "/",
         },
       }),
@@ -188,7 +197,7 @@ export async function POST(request: NextRequest) {
     const { error: notificationAuditError } = await supabase.from("notification_audit").insert({
       title,
       message,
-      notification_type: type,
+      notification_type: notificationType,
       onesignal_id: result.id,
       sent_by: user.id,
       sent_at: new Date().toISOString(),
@@ -208,7 +217,7 @@ export async function POST(request: NextRequest) {
       record_id: result.id,
       operation: "CREATE",
       performed_by: user.id,
-      metadata: { title, type },
+      metadata: { title, type: notificationType },
     })
     if (auditLogError) {
       auditWarnings.push("audit_logs")
@@ -227,6 +236,7 @@ export async function POST(request: NextRequest) {
         title,
         message,
         target,
+        type: notificationType,
         notification_id: result.id,
         has_filters: !!filters,
       },

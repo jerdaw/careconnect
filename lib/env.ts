@@ -31,6 +31,9 @@ export const env = createEnv({
     AXIOM_DATASET: z.string().optional().default("careconnect-dev"),
     // Slack Integration (v18.0 Phase 2)
     SLACK_WEBHOOK_URL: z.string().url().optional(),
+    // Critical-only notification controls
+    OPERATIONAL_NOTIFICATION_MODE: z.enum(["normal", "critical_only"]).optional().default("normal"),
+    USER_NOTIFICATION_MODE: z.enum(["normal", "critical_only"]).optional().default("normal"),
     // Cron Job Authentication (v18.0 Phase 2)
     CRON_SECRET: z.string().optional(),
     // Health probe authentication (v20.1)

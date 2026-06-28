@@ -1,9 +1,8 @@
 name: Quarterly General Service Verification
 
 on:
-  schedule:
-    # Run at 9am ET on Jan 1, Apr 1, Jul 1, Oct 1
-    - cron: "0 14 1 1,4,7,10 *"
+  # Critical-only mode: manual dispatch only so verification reminders do not
+  # create scheduled operator issue noise.
   workflow_dispatch:
     inputs:
       dry_run:

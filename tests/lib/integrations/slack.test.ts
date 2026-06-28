@@ -1,5 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { sendSlackMessage, sendCircuitBreakerAlert, sendHighErrorRateAlert } from "@/lib/integrations/slack"
+import {
+  sendSlackMessage,
+  sendCircuitBreakerAlert,
+  sendHighErrorRateAlert,
+  sendSLOViolationAlert,
+} from "@/lib/integrations/slack"
 import { CircuitState } from "@/lib/resilience/circuit-breaker"
 import { resetAllThrottles } from "@/lib/observability/alert-throttle"
 
@@ -248,6 +253,21 @@ describe("Slack Integration", () => {
       expect(hasFailureRate).toBe(true)
       expect(hasFailureCount).toBe(true)
     })
+
+    it("suppresses circuit breaker alerts in critical-only mode", async () => {
+      vi.stubEnv("OPERATIONAL_NOTIFICATION_MODE", "critical_only")
+
+      await sendCircuitBreakerAlert({
+        state: CircuitState.OPEN,
+        previousState: CircuitState.CLOSED,
+        failureCount: 7,
+        successCount: 0,
+        failureRate: 0.85,
+        timestamp: Date.now(),
+      })
+
+      expect(fetch).not.toHaveBeenCalled()
+    })
   })
 
   describe("sendHighErrorRateAlert", () => {
@@ -329,6 +349,53 @@ describe("Slack Integration", () => {
       const hasThreshold = fieldsBlock.fields.some((f: any) => f.text.includes("20%"))
       expect(hasErrorRate).toBe(true)
       expect(hasThreshold).toBe(true)
+    })
+
+    it("suppresses high error rate alerts in critical-only mode", async () => {
+      vi.stubEnv("OPERATIONAL_NOTIFICATION_MODE", "critical_only")
+
+      await sendHighErrorRateAlert(25.8, 20)
+
+      expect(fetch).not.toHaveBeenCalled()
+    })
+  })
+
+  describe("sendSLOViolationAlert", () => {
+    it("allows critical uptime alerts in critical-only mode", async () => {
+      vi.stubEnv("OPERATIONAL_NOTIFICATION_MODE", "critical_only")
+      vi.mocked(fetch).mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+      } as Response)
+
+      await sendSLOViolationAlert({
+        type: "uptime",
+        severity: "critical",
+        actual: 0.9,
+        target: 0.99,
+        timestamp: Date.now(),
+        message: "Uptime below target",
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      const [, requestInit] = vi.mocked(fetch).mock.calls[0] ?? []
+      const body = JSON.parse((requestInit?.body as string | undefined) ?? "{}") as Record<string, any>
+      expect(body.text).toContain("Uptime SLO")
+    })
+
+    it("suppresses latency alerts in critical-only mode", async () => {
+      vi.stubEnv("OPERATIONAL_NOTIFICATION_MODE", "critical_only")
+
+      await sendSLOViolationAlert({
+        type: "latency",
+        severity: "critical",
+        actual: 2500,
+        target: 1000,
+        timestamp: Date.now(),
+        message: "Latency above target",
+      })
+
+      expect(fetch).not.toHaveBeenCalled()
     })
   })
 })

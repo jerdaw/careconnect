@@ -1,6 +1,6 @@
 # Observability And Alerting Notes
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-06-27
 
 CareConnect includes optional observability and alerting hooks so maintainers can detect service degradation without collecting user search queries.
 
@@ -32,6 +32,21 @@ The application can expose or derive these aggregate signals:
 For local development, observability integrations are optional. The app should run without alerting provider credentials.
 
 Use `.env.example` for supported variable names and keep live values in ignored environment files or a password manager.
+
+## Critical-Only Mode
+
+CareConnect supports a reversible critical-only posture for low-interruption
+operation:
+
+1. `OPERATIONAL_NOTIFICATION_MODE=critical_only` suppresses noncritical
+   operational alert notifications while preserving sustained critical outage
+   paths and future security/privacy incidents.
+2. `USER_NOTIFICATION_MODE=critical_only` allows emergency user broadcasts and
+   blocks general or noncritical service-update broadcasts.
+3. Recovery notifications should only send when the original incident produced
+   a critical notification.
+
+Use `normal` for either mode to restore the standard notification behavior.
 
 ## Related Docs
 

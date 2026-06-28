@@ -3,6 +3,8 @@ version: 2
 # Dependabot Configuration for CareConnect
 # Automatically updates dependencies to keep the project secure and up-to-date
 # See: docs/development/dependency-management.md for handling update PRs
+# Critical-only mode: version-update PRs are paused with
+# open-pull-requests-limit: 0; security updates can still use this config.
 
 updates:
   # npm production dependencies
@@ -29,7 +31,7 @@ updates:
         update-types:
           - "patch"
           - "minor"
-    open-pull-requests-limit: 10 # Increased from 5 to handle grouped updates
+    open-pull-requests-limit: 0
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
@@ -63,7 +65,7 @@ updates:
     schedule:
       interval: "monthly"
       day: "monday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     commit-message:
       prefix: "ci"
     labels:
