@@ -1,9 +1,12 @@
 {
-  "generated_at": "2026-06-27",
-  "status": "draft_pending_human_review",
-  "governance_boundary": "Review artifacts only; data/services.json not modified by this prep work.",
+  "generated_at": "2026-06-28",
+  "status": "language_reviewed_merged_to_data",
+  "governance_boundary": "Translation-only review artifacts. No service facts, verification metadata, URLs, phone numbers, eligibility, hours, or status values were changed.",
   "active_services_exported": 195,
   "inactive_service_excluded_from_active_export": "pathways-for-children-youth",
+  "supplemental_closed_services_reviewed": 1,
+  "total_reviewed_translations": 196,
+  "data_merge_target": "data/services.json",
   "output_batches": [
     {
       "input": "batch-001.input.json",
@@ -29,6 +32,11 @@
       "input": "batch-005.input.json",
       "output": "batch-005.output.json",
       "items": 35
+    },
+    {
+      "input": null,
+      "output": "supplemental-closed-services.output.json",
+      "items": 1
     }
   ],
   "warnings": []

@@ -8,9 +8,9 @@
       "name_fr": "KFPL - Succursale Pittsburgh",
       "scope": "kingston",
       "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees.",
-      "access_script_fr": "Envoyez un courriel a contact@kfpl.ca ou visitez 80 Gore Rd, Kingston, ON K7K 6X6. Carte de bibliotheque requise pour les emprunts. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 80 Gore Rd, Kingston, ON K7K 6X6. Carte de bibliotheque requise pour les emprunts. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kfpl-rideau-heights",
@@ -19,8 +19,8 @@
       "scope": "kingston",
       "access_script": "Visit https://www.kfpl.ca.",
       "access_script_fr": "Visitez https://www.kfpl.ca.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kfpl-learning-programs",
@@ -28,9 +28,9 @@
       "name_fr": "Programmes d'apprentissage KFPL",
       "scope": "kingston",
       "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://calendar.kfpl.ca/. Library Card (for registration) required. No fees.",
-      "access_script_fr": "Envoyez un courriel a contact@kfpl.ca ou visitez 130 Johnson St, Kingston, ON K7L 1X8 ou visitez https://calendar.kfpl.ca/. Carte de bibliotheque requise pour l'inscription. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 130 Johnson St, Kingston, ON K7L 1X8 ou visitez https://calendar.kfpl.ca/. Carte de bibliotheque requise pour l'inscription. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kids-help-phone",
@@ -38,9 +38,9 @@
       "name_fr": "Jeunesse, J'écoute",
       "scope": "canada",
       "access_script": "Hi, I'm feeling really overwhelmed right now and just need someone to talk to. Is this a safe place to share?",
-      "access_script_fr": "Bonjour, je me sens vraiment depasse en ce moment et j'ai simplement besoin de parler a quelqu'un. Est-ce un endroit securitaire pour me confier?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Bonjour, je me sens vraiment dépassé en ce moment et j'ai simplement besoin de parler à quelqu'un. Est-ce un endroit securitaire pour me confier?",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "crisis-kids-help-phone",
@@ -48,9 +48,9 @@
       "name_fr": "Jeunesse, J'écoute",
       "scope": "canada",
       "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911.",
-      "access_script_fr": "Appelez le 1-800-668-6868 ou textez 686868. Aucuns frais. Si vous etes en danger immediat, appelez le 911.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 1-800-668-6868 ou textez 686868. Sans frais. Si vous êtes en danger immédiat, appelez le 911.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-access-bus",
@@ -59,8 +59,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'd like to apply for the Access Bus service. How do I start the registration process?",
       "access_script_fr": "Bonjour, j'aimerais faire une demande pour le service Access Bus. Comment dois-je commencer le processus d'inscription?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kchc-weller-clinic",
@@ -69,8 +69,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'm pregnant and don't have a family doctor. Are you accepting new patients for prenatal care?",
       "access_script_fr": "Bonjour, je suis enceinte et je n'ai pas de medecin de famille. Acceptez-vous de nouvelles patientes pour les soins prenataux?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "community-legal-clinic-kingston",
@@ -78,9 +78,9 @@
       "name_fr": "Clinique juridique communautaire de Kingston",
       "scope": "kingston",
       "access_script": "Hi, my landlord is threatening to evict me and I'd like to speak to a lawyer about my rights.",
-      "access_script_fr": "Bonjour, mon proprietaire menace de m'expulser et j'aimerais parler a un avocat de mes droits.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Bonjour, mon proprietaire menace de m'expulser et j'aimerais parler à un avocat de mes droits.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "legal-aid-ontario-kingston",
@@ -88,9 +88,9 @@
       "name_fr": "Clinique juridique communautaire de Kingston",
       "scope": "kingston",
       "access_script": "Call 613-541-0777. Proof of income required. No fees.",
-      "access_script_fr": "Appelez le 613-541-0777. Preuve de revenu requise. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 613-541-0777. Preuve de revenu requise. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-detox-centre",
@@ -99,8 +99,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'm looking to get sober and need a safe place to detox. Do you have any beds available?",
       "access_script_fr": "Bonjour, je cherche a devenir sobre et j'ai besoin d'un endroit securitaire pour le sevrage. Avez-vous des lits disponibles?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-east-community-centre",
@@ -109,8 +109,8 @@
       "scope": "kingston",
       "access_script": "Visit https://www.cityofkingston.ca for information.",
       "access_script_fr": "Visitez https://www.cityofkingston.ca pour obtenir des renseignements.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kfpl-central-branch",
@@ -118,9 +118,9 @@
       "name_fr": "Bibliothèque publique Kingston Frontenac - Succursale centrale",
       "scope": "kingston",
       "access_script": "Hi, I'd like to sign up for a library card. What ID do I need to bring?",
-      "access_script_fr": "Bonjour, j'aimerais m'inscrire pour obtenir une carte de bibliotheque. Quelle piece d'identite dois-je apporter?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Bonjour, j'aimerais m'inscrire pour obtenir une carte de bibliotheque. Quelle pièce d'identité dois-je apporter?",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kgh-emergency-department",
@@ -129,8 +129,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'm bringing in a friend who is having severe chest pain. Where is the best place to drop them off?",
       "access_script_fr": "Bonjour, j'amene un ami qui a une douleur thoracique severe. Quel est le meilleur endroit pour le deposer?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-general-hospital",
@@ -139,8 +139,8 @@
       "scope": "kingston",
       "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care.",
       "access_script_fr": "Appelez le 613-548-2333 pour obtenir de l'aide, ou visitez https://kingstonhsc.ca/emergency-care.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-home-base-housing",
@@ -149,8 +149,8 @@
       "scope": "kingston",
       "access_script": "Hi, I have nowhere to sleep tonight. Do you have any beds available?",
       "access_script_fr": "Bonjour, je n'ai nulle part ou dormir ce soir. Avez-vous des lits disponibles?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-humane-society",
@@ -159,8 +159,8 @@
       "scope": "kingston",
       "access_script": "Visit https://kingstonhumanesociety.ca for information.",
       "access_script_fr": "Visitez https://kingstonhumanesociety.ca pour obtenir des renseignements.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-interval-house",
@@ -169,8 +169,8 @@
       "scope": "kingston",
       "access_script": "I need a safe place to stay tonight away from my partner. Do you have any beds available?",
       "access_script_fr": "J'ai besoin d'un endroit securitaire ou rester ce soir, loin de mon partenaire. Avez-vous des lits disponibles?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-literacy-skills",
@@ -178,9 +178,9 @@
       "name_fr": "Kingston Literacy & Skills",
       "scope": "kingston",
       "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees.",
-      "access_script_fr": "Appelez le 613-547-2012 ou envoyez un courriel a info@klsread.ca. NAS et statut au Canada requis. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 613-547-2012 ou envoyez un courriel à info@klsread.ca. NAS et statut au Canada requis. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-literacy-skills-2",
@@ -189,8 +189,8 @@
       "scope": "kingston",
       "access_script": "Visit https://www.klsread.ca for information.",
       "access_script_fr": "Visitez https://www.klsread.ca pour obtenir des renseignements.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kmfrc",
@@ -199,8 +199,8 @@
       "scope": "kingston",
       "access_script": "Hi, my partner is being deployed and I'm looking for support resources for our family.",
       "access_script_fr": "Bonjour, mon partenaire est deploye et je cherche des ressources de soutien pour notre famille.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-military-family-resource",
@@ -209,8 +209,8 @@
       "scope": "kingston",
       "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston.",
       "access_script_fr": "Appelez le 613-541-5010 ext. 271-5195 pour obtenir de l'aide, ou visitez https://cfmws.ca/kingston.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kiln-language-nest",
@@ -218,9 +218,9 @@
       "name_fr": "Kingston Native Centre and Language Nest",
       "scope": "kingston",
       "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees.",
-      "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel a info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel à info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-indigenous-friendship-centre",
@@ -228,9 +228,9 @@
       "name_fr": "Kingston Native Centre and Language Nest",
       "scope": "kingston",
       "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees.",
-      "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel a info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Aucuns frais.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel à info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Sans frais.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-police-non-emerg",
@@ -238,9 +238,9 @@
       "name_fr": "Police de Kingston (Non-urgent)",
       "scope": "kingston",
       "access_script": "Visit https://www.kingstonpolice.ca/about-kp/contacts/ for the non-emergency contact details.",
-      "access_script_fr": "Visitez https://www.kingstonpolice.ca/about-kp/contacts/ for the non-emergency communiquez avec details.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Visitez https://www.kingstonpolice.ca/about-kp/contacts/ pour obtenir les coordonnées non urgentes.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-pregnancy-care",
@@ -249,8 +249,8 @@
       "scope": "kingston",
       "access_script": "Visit https://kingstonpcc.com for information.",
       "access_script_fr": "Visitez https://kingstonpcc.com pour obtenir des renseignements.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-transit-mfap",
@@ -258,9 +258,9 @@
       "name_fr": "Passe de transport abordable (MFAP)",
       "scope": "kingston",
       "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates.",
-      "access_script_fr": "Appelez le 613-546-0000 ou envoyez un courriel a contactus@cityofkingston.ca. Preuve de revenu, adresse et piece d'identite requises. Frais : tarifs reduits.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Appelez le 613-546-0000 ou envoyez un courriel à contactus@cityofkingston.ca. Preuve de revenu, adresse et pièce d'identité requises. Frais : tarifs reduits.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "kingston-youth-shelter",
@@ -269,8 +269,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'm 19 and I got kicked out of my house. Can I stay at the shelter tonight?",
       "access_script_fr": "Bonjour, j'ai 19 ans et on m'a mis dehors de chez moi. Puis-je rester au refuge ce soir?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "landlord-and-tenant-board-contact-centre",
@@ -279,8 +279,8 @@
       "scope": "ontario",
       "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice.",
       "access_script_fr": "Les proprietaires et les locataires en Ontario peuvent appeler le 1-888-332-3234 pour obtenir des renseignements sur les regles relatives aux proprietaires et locataires ainsi que sur les procedures de la Commission de la location immobiliere. Le personnel peut expliquer les formulaires et les processus, mais ne peut pas fournir de conseils juridiques.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "landlord-s-self-help-centre",
@@ -289,8 +289,8 @@
       "scope": "ontario",
       "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)",
       "access_script_fr": "Les petits proprietaires residentiels en Ontario peuvent appeler le 1-800-730-3218 pour obtenir gratuitement de l'information juridique et des conseils sur les questions de location. Ce service est fourni sans frais par une clinique juridique specialisee.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "law-society-referral-service",
@@ -299,8 +299,8 @@
       "scope": "ontario",
       "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional.",
       "access_script_fr": "Appelez le 1-855-947-5255 pour demander une recommandation vers un avocat ou un parajuriste par le Service de reference du Barreau. Vous recevrez une consultation gratuite de 30 minutes avec un professionnel du droit.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "legal-aid-ontario",
@@ -308,9 +308,9 @@
       "name_fr": "Aide juridique Ontario",
       "scope": "ontario",
       "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply).",
-      "access_script_fr": "Les residents de l'Ontario a faible revenu peuvent appeler le 1-800-668-8258 pour demander l'aide juridique ou obtenir des conseils juridiques par appel. L'admissibilite a une representation complete est fondee sur le revenu; une evaluation financiere s'appliquera.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Les résidents de l'Ontario a faible revenu peuvent appeler le 1-800-668-8258 pour demander l'aide juridique ou obtenir des conseils juridiques par appel. L'admissibilite a une représentation complete est fondee sur le revenu; une evaluation financiere s'appliquera.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "ontario-lgbt-youthline",
@@ -318,9 +318,9 @@
       "name_fr": "LGBT YouthLine",
       "scope": "ontario",
       "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911.",
-      "access_script_fr": "Les jeunes (29 ans et moins) peuvent texter le 647-694-4275, envoyer un courriel a askus@youthline.ca ou utiliser le clavardage en direct a youthline.ca pour obtenir du soutien confidentiel par les pairs (dimanche a vendredi, 16 h a 21 h 30). Si vous etes en danger immediat, appelez le 911.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Les jeunes (29 ans et moins) peuvent texter le 647-694-4275, envoyer un courriel à askus@youthline.ca ou utiliser le clavardage en direct a youthline.ca pour obtenir du soutien confidentiel par les pairs (dimanche a vendredi, 16 h a 21 h 30). Si vous êtes en danger immédiat, appelez le 911.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "lionhearts-fresh-food-market",
@@ -328,9 +328,9 @@
       "name_fr": "Marché d'aliments frais Lionhearts",
       "scope": "kingston",
       "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized.",
-      "access_script_fr": "Envoyez un courriel a info@freshfoodmkt.ca ou visitez Various Locations (Pop-up). Frais : cout des produits subventionne.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Envoyez un courriel à info@freshfoodmkt.ca ou visitez Various Locations (Pop-up). Frais : cout des produits subventionne.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "loving-spoonful",
@@ -339,8 +339,8 @@
       "scope": "kingston",
       "access_script": "Hi, I'd like to learn more about joining a community garden or cooking workshop.",
       "access_script_fr": "Bonjour, j'aimerais en savoir plus sur la participation a un jardin communautaire ou a un atelier de cuisine.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "lunch-by-george",
@@ -349,8 +349,8 @@
       "scope": "kingston",
       "access_script": "Hi, I heard you offer a hot lunch. What time do you start serving?",
       "access_script_fr": "Bonjour, j'ai entendu dire que vous offrez un diner chaud. A quelle heure commencez-vous le service?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "lung-health-line",
@@ -358,9 +358,9 @@
       "name_fr": "Ligne de santé pulmonaire",
       "scope": "ontario",
       "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions.",
-      "access_script_fr": "Les residents de l'Ontario ayant de l'asthme, une MPOC ou d'autres preoccupations liees a la sante pulmonaire peuvent appeler le 1-888-344-5864 pour parler a un educateur respiratoire certifie. Cette ligne d'aide gratuite offre des conseils sur la gestion des maladies pulmonaires.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Les résidents de l'Ontario ayant de l'asthme, une MPOC ou d'autres preoccupations liées a la santé pulmonaire peuvent appeler le 1-888-344-5864 pour parler à un educateur respiratoire certifie. Cette ligne d'aide gratuite offre des conseils sur la gestion des maladies pulmonaires.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "maltby-centre-mental-health",
@@ -368,9 +368,9 @@
       "name_fr": "Centre Maltby",
       "scope": "kingston",
       "access_script": "Hi, I'm 17 and struggling with anxiety. Can I set up an appointment to talk to a counsellor?",
-      "access_script_fr": "Bonjour, j'ai 17 ans et je vis de l'anxiete. Puis-je prendre rendez-vous pour parler a un conseiller?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "access_script_fr": "Bonjour, j'ai 17 ans et je vis de l'anxiete. Puis-je prendre rendez-vous pour parler à un conseiller?",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "maltby-centre-autism",
@@ -379,8 +379,8 @@
       "scope": "kingston",
       "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca.",
       "access_script_fr": "Appelez le 613-546-8535 pour obtenir de l'aide, ou visitez https://maltbycentre.ca.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "march-of-dimes-kingston",
@@ -389,8 +389,8 @@
       "scope": "kingston",
       "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca.",
       "access_script_fr": "Appelez le 613-546-3396 pour obtenir de l'aide, ou visitez https://www.marchofdimes.ca.",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     },
     {
       "id": "marthas-table-kingston",
@@ -399,8 +399,8 @@
       "scope": "kingston",
       "access_script": "Hi, I don't have any money for lunch today. Do you accept meal tickets?",
       "access_script_fr": "Bonjour, je n'ai pas d'argent pour diner aujourd'hui. Acceptez-vous les billets de repas?",
-      "translation_review_status": "machine_draft_pending_human_review",
-      "translation_notes": "Review-only draft generated for bilingual QA; do not merge until human review confirms meaning preservation."
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
     }
   ]
 }

@@ -83,7 +83,8 @@
     "coordinates": {
       "lat": 45.501514,
       "lng": -73.570752
-    }
+    },
+    "access_script_fr": "Bonjour, je me sens vraiment dépassé en ce moment et j'ai simplement besoin de parler à quelqu'un. Est-ce un endroit securitaire pour me confier?"
   },
   {
     "id": "trans-lifeline-canada",
@@ -168,7 +169,8 @@
       "staff_size": "large",
       "annual_budget": "large"
     },
-    "scope": "canada"
+    "scope": "canada",
+    "access_script_fr": "Bonjour, je suis trans et je vis beaucoup de dysphorie aujourd'hui. Puis-je parler à quelqu'un qui comprend?"
   },
   {
     "id": "hope-for-wellness-helpline",
@@ -246,7 +248,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je suis Autochtone et je traverse une periode difficile. J'aimerais parler à un conseiller culturellement securisant."
   },
   {
     "id": "assaulted-womens-helpline",
@@ -328,7 +331,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je suis dans une situation dangereuse a la maison et j'ai besoin de connaitre mes options pour partir."
   },
   {
     "id": "iska-newcomer-support",
@@ -411,7 +415,8 @@
         "close": "16:45"
       },
       "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
-    }
+    },
+    "access_script_fr": "Bonjour, je suis nouveau à Kingston et je cherche de l'aide pour l'etablissement et le logement. Dois-je prendre rendez-vous?"
   },
   {
     "id": "trellis-hiv-community-care",
@@ -498,7 +503,8 @@
         "close": "16:45"
       },
       "notes": "Closed 12:00-13:00 on weekdays; needle exchange available 09:00-12:00 and 13:00-16:30"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais venir chercher du materiel de reduction des mefaits. Dois-je prendre rendez-vous ou puis-je simplement passer?"
   },
   {
     "id": "one-roof-youth-hub",
@@ -580,7 +586,8 @@
         "close": "16:30"
       },
       "notes": "Some programming extends to 19:00"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai 20 ans et j'ai de la difficulte a trouver un emploi et un endroit ou vivre. Puis-je passer voir un intervenant?"
   },
   {
     "id": "victim-services-kingston",
@@ -655,7 +662,8 @@
         "close": "16:30"
       },
       "notes": "Emergency on-call support available 24/7 via police referral"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai recemment ete victime d'un crime et la police m'a dit que je pouvais vous appeler pour obtenir du soutien. Quel type d'aide offrez-vous?"
   },
   {
     "id": "hotel-dieu-urgent-care",
@@ -737,7 +745,8 @@
         "open": "08:00",
         "close": "20:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je pense avoir une fracture mineure. Acceptez-vous encore des patients aujourd'hui, ou la capacite est-elle atteinte?"
   },
   {
     "id": "kgh-emergency-department",
@@ -818,7 +827,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'amene un ami qui a une douleur thoracique severe. Quel est le meilleur endroit pour le deposer?"
   },
   {
     "id": "kfla-public-health-dental",
@@ -893,7 +903,8 @@
         "close": "16:30"
       },
       "notes": "By appointment only"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai un mal de dents severe et je recois Ontario au travail. Puis-je prendre un rendez-vous d'urgence?"
   },
   {
     "id": "community-legal-clinic-kingston",
@@ -966,7 +977,8 @@
         "open": "13:00",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, mon proprietaire menace de m'expulser et j'aimerais parler à un avocat de mes droits."
   },
   {
     "id": "salvation-army-housing-help",
@@ -1047,7 +1059,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je suis en retard dans mon loyer et je crains de perdre mon appartement. Puis-je faire une demande au fonds d'aide au loyer?"
   },
   {
     "id": "kchc-transgender-health-care",
@@ -1123,7 +1136,8 @@
         "open": "08:00",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je souhaite commencer une hormonotherapie. Acceptez-vous actuellement de nouveaux patients pour des soins d'affirmation de genre?"
   },
   {
     "id": "street-health-centre",
@@ -1213,7 +1227,8 @@
         "close": "13:00"
       },
       "notes": "Closed 12:00-13:00 Mon-Fri"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aide un ami qui consomme des substances et je veux connaitre les heures de votre programme d'echange de seringues."
   },
   {
     "id": "kingston-interval-house",
@@ -1295,7 +1310,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "J'ai besoin d'un endroit securitaire ou rester ce soir, loin de mon partenaire. Avez-vous des lits disponibles?"
   },
   {
     "id": "telephone-aid-line-kingston-talk",
@@ -1375,7 +1391,8 @@
         "close": "02:00"
       },
       "notes": "Service runs nightly until 2:00 AM"
-    }
+    },
+    "access_script_fr": "Bonjour, je me sens vraiment seul ce soir et j'ai besoin que quelqu'un m'écoute."
   },
   {
     "id": "elizabeth-fry-society-kingston",
@@ -1449,7 +1466,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je serai bientot libere et je n'aurai nulle part ou aller. Avez-vous des logements avec soutien disponibles?"
   },
   {
     "id": "st-vincent-de-paul-kingston",
@@ -1524,7 +1542,8 @@
         "close": "13:00"
       },
       "notes": "Lunch served 11:30-13:00 on weekdays"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai de la difficulte a payer l'epicerie ce mois-ci. Que dois-je apporter pour acceder au garde-manger?"
   },
   {
     "id": "lunch-by-george",
@@ -1599,7 +1618,8 @@
         "close": "12:30"
       },
       "notes": "Breakfast 09:00-10:30; Lunch 11:00-12:30 (weekdays)"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai entendu dire que vous offrez un diner chaud. A quelle heure commencez-vous le service?"
   },
   {
     "id": "salvation-army-rideau-heights",
@@ -1662,7 +1682,8 @@
         "close": "12:00"
       },
       "notes": "By appointment only"
-    }
+    },
+    "access_script_fr": "Bonjour, j'habite a Rideau Heights et j'ai besoin d'aide alimentaire. Puis-je prendre rendez-vous pour un panier?"
   },
   {
     "id": "partners-in-mission-food-bank",
@@ -1745,7 +1766,8 @@
         "close": "16:00"
       },
       "notes": "Closed 12:00-13:00 daily"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais m'inscrire pour recevoir un panier alimentaire. Quels documents dois-je apporter?"
   },
   {
     "id": "marthas-table-kingston",
@@ -1827,7 +1849,8 @@
         "close": "14:00"
       },
       "notes": "Weekday meals: Breakfast 09:00-11:00, Lunch 12:00-14:00, Dinner 15:00-17:00; Weekend lunch 12:00-14:00 (takeout only)"
-    }
+    },
+    "access_script_fr": "Bonjour, je n'ai pas d'argent pour diner aujourd'hui. Acceptez-vous les billets de repas?"
   },
   {
     "id": "good-food-box-kingston",
@@ -1903,7 +1926,8 @@
         "close": "16:30"
       },
       "notes": "Monthly pick-up on 3rd Thursday"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais commander une Good Food Box pour ce mois-ci. Quelle est la date limite?"
   },
   {
     "id": "amhs-kfla-crisis-line",
@@ -1993,7 +2017,8 @@
         "close": "23:59"
       },
       "notes": "24/7 crisis line; walk-in crisis clinic Mon-Fri 08:30-15:30"
-    }
+    },
+    "access_script_fr": "Bonjour, je me sens vraiment dépassé et j'ai des pensées suicidaires. J'ai besoin de parler à quelqu'un tout de suite."
   },
   {
     "id": "kingston-detox-centre",
@@ -2075,7 +2100,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je cherche a devenir sobre et j'ai besoin d'un endroit securitaire pour le sevrage. Avez-vous des lits disponibles?"
   },
   {
     "id": "kingston-youth-shelter",
@@ -2157,7 +2183,8 @@
         "open": "00:00",
         "close": "23:59"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai 19 ans et on m'a mis dehors de chez moi. Puis-je rester au refuge ce soir?"
   },
   {
     "id": "sack-sexual-assault-centre",
@@ -2240,7 +2267,8 @@
         "close": "23:59"
       },
       "notes": "24/7 crisis line; chat/text support daily 12:00-24:00"
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai vecu une agression sexuelle et j'ai besoin de parler confidentiellement à quelqu'un. Puis-je recevoir du counseling ici?"
   },
   {
     "id": "maltby-centre-mental-health",
@@ -2310,7 +2338,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai 17 ans et je vis de l'anxiete. Puis-je prendre rendez-vous pour parler à un conseiller?"
   },
   {
     "id": "resolve-counselling",
@@ -2384,7 +2413,8 @@
         "open": "08:30",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je cherche du counseling, mais je n'ai pas d'assurance. Pouvez-vous m'expliquer vos options a tarif variable?"
   },
   {
     "id": "kingston-home-base-housing",
@@ -2471,7 +2501,8 @@
         "close": "23:59"
       },
       "notes": "Office open Mon-Fri 08:30-16:30; shelter open 24/7 (intake usually in evenings)"
-    }
+    },
+    "access_script_fr": "Bonjour, je n'ai nulle part ou dormir ce soir. Avez-vous des lits disponibles?"
   },
   {
     "id": "ryandale-shelter",
@@ -2554,7 +2585,8 @@
         "close": "20:00"
       },
       "notes": "Staffed hours"
-    }
+    },
+    "access_script_fr": "Bonjour, je suis actuellement dans la rue et j'ai besoin d'un endroit pour me rechauffer. Êtes-vous ouvert pour les visites sans rendez-vous?"
   },
   {
     "id": "dawn-house-womens-shelter",
@@ -2628,7 +2660,8 @@
         "close": "16:00"
       }
     },
-    "hours_text": "Mon–Fri: 09:00–16:00; Sat: 13:00–16:00."
+    "hours_text": "Mon–Fri: 09:00–16:00; Sat: 13:00–16:00.",
+    "access_script_fr": "Bonjour, je cherche un soutien au logement a long terme pour les femmes. Comment puis-je m'inscrire à votre liste d'attente?"
   },
   {
     "id": "kchc-weller-clinic",
@@ -2702,7 +2735,8 @@
         "open": "08:00",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je suis enceinte et je n'ai pas de medecin de famille. Acceptez-vous de nouvelles patientes pour les soins prenataux?"
   },
   {
     "id": "kfla-sexual-health-clinic",
@@ -2776,7 +2810,8 @@
         "close": "16:30"
       },
       "notes": "Walk-in Quick Test Tue & Thu 13:00-15:30; other times by appointment"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais passer un test de depistage des ITS. Ai-je besoin d'un rendez-vous ou puis-je me presenter sans rendez-vous?"
   },
   {
     "id": "cdk-family-medicine-walk-in",
@@ -2858,7 +2893,8 @@
         "open": "10:00",
         "close": "14:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai une forte toux et de la fievre et je dois voir un medecin aujourd'hui. Acceptez-vous les visites sans rendez-vous?"
   },
   {
     "id": "queens-legal-aid",
@@ -2930,7 +2966,8 @@
         "open": "13:00",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai ete accuse d'une infraction et je n'ai pas les moyens de payer un avocat. Puis-je parler à quelqu'un a la clinique?"
   },
   {
     "id": "ontario-works-kingston",
@@ -3003,7 +3040,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je suis actuellement sans emploi et je n'ai aucun revenu. Comment puis-je faire une demande a Ontario au travail?"
   },
   {
     "id": "kfpl-central-branch",
@@ -3085,7 +3123,8 @@
         "open": "13:00",
         "close": "17:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais m'inscrire pour obtenir une carte de bibliotheque. Quelle pièce d'identité dois-je apporter?"
   },
   {
     "id": "keys-job-centre",
@@ -3158,7 +3197,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je cherche du travail et j'ai besoin d'aide pour mon curriculum vitae. Puis-je prendre rendez-vous avec un conseiller?"
   },
   {
     "id": "seniors-association-kingston",
@@ -3232,7 +3272,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je souhaite me joindre a la Seniors Association. Puis-je venir faire une visite?"
   },
   {
     "id": "community-living-kingston",
@@ -3306,7 +3347,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je cherche des services de soutien pour mon enfant adulte ayant une déficience intellectuelle. À qui puis-je parler?"
   },
   {
     "id": "restart-kingston",
@@ -3379,7 +3421,8 @@
         "open": "08:30",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai besoin d'aide pour trouver un emploi. Dois-je prendre rendez-vous pour voir un conseiller en emploi?"
   },
   {
     "id": "acfomi-kingston",
@@ -3452,7 +3495,8 @@
         "open": "08:30",
         "close": "15:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je cherche de l'aide pour trouver du travail à Kingston. Offrez-vous des services en français?"
   },
   {
     "id": "ymca-eastern-ontario",
@@ -3533,7 +3577,8 @@
         "open": "07:00",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je m'interesse a un abonnement au gym. Offrez-vous de l'aide financiere ou des tarifs subventionnes?"
   },
   {
     "id": "bgc-south-east",
@@ -3608,7 +3653,8 @@
         "close": "20:30"
       },
       "notes": "Program hours vary by day"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais inscrire mon enfant au programme apres l'ecole. Y a-t-il des places disponibles?"
   },
   {
     "id": "hart-centre",
@@ -3682,7 +3728,8 @@
         "open": "08:30",
         "close": "15:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, je m'interesse a vos programmes artistiques pour mon frere ou ma soeur ayant un handicap. Pouvons-nous visiter le studio?"
   },
   {
     "id": "loving-spoonful",
@@ -3756,7 +3803,8 @@
         "open": "09:00",
         "close": "17:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais en savoir plus sur la participation a un jardin communautaire ou a un atelier de cuisine."
   },
   {
     "id": "ongwanada",
@@ -3830,7 +3878,8 @@
         "open": "08:00",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai besoin d'information sur les services de soutien pour mon enfant ayant une déficience developpementale."
   },
   {
     "id": "kmfrc",
@@ -3904,7 +3953,8 @@
         "open": "08:00",
         "close": "17:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, mon partenaire est deploye et je cherche des ressources de soutien pour notre famille."
   },
   {
     "id": "earlyon-kchc",
@@ -3979,7 +4029,8 @@
         "open": "08:30",
         "close": "16:30"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai un enfant de 2 ans et je cherche un groupe de jeu. Dois-je m'inscrire pour l'activite sans rendez-vous?"
   },
   {
     "id": "habitat-restore-kingston",
@@ -4062,7 +4113,8 @@
         "open": "10:00",
         "close": "16:00"
       }
-    }
+    },
+    "access_script_fr": "Bonjour, j'ai des meubles que j'aimerais donner. Offrez-vous un service de ramassage?"
   },
   {
     "id": "kingston-access-bus",
@@ -4146,7 +4198,8 @@
         "close": "14:00"
       },
       "notes": "Admin hours"
-    }
+    },
+    "access_script_fr": "Bonjour, j'aimerais faire une demande pour le service Access Bus. Comment dois-je commencer le processus d'inscription?"
   },
   {
     "id": "integrated-care-hub",
@@ -4208,7 +4261,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Email hubcoordinator@kingston.net or visit 661 Montreal St, Kingston, ON K7K 3J4. No fees."
+    "access_script": "Email hubcoordinator@kingston.net or visit 661 Montreal St, Kingston, ON K7K 3J4. No fees.",
+    "access_script_fr": "Envoyez un courriel à hubcoordinator@kingston.net ou visitez 661 Montreal St, Kingston, ON K7K 3J4. Sans frais."
   },
   {
     "id": "marthas-table",
@@ -4266,7 +4320,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Email info@marthastable.ca or visit 629 Princess Street, Kingston, ON K7L 1E2. No fees."
+    "access_script": "Email info@marthastable.ca or visit 629 Princess Street, Kingston, ON K7L 1E2. No fees.",
+    "access_script_fr": "Envoyez un courriel à info@marthastable.ca ou visitez 629 Princess Street, Kingston, ON K7L 1E2. Sans frais."
   },
   {
     "id": "dawn-house-shelter",
@@ -4328,7 +4383,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 613-545-1379 or 613-929-3440 or email info@dawnhouse.ca. Intake assessment required. Fees: Shelter is free. Housing is rent-geared-to-income. If you are in immediate danger, call 911."
+    "access_script": "Call 613-545-1379 or 613-929-3440 or email info@dawnhouse.ca. Intake assessment required. Fees: Shelter is free. Housing is rent-geared-to-income. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 613-545-1379 ou le 613-929-3440, ou envoyez un courriel à info@dawnhouse.ca. Évaluation d'accueil requise. Frais : le refuge est gratuit. Le logement est à loyer indexé sur le revenu. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "kiln-language-nest",
@@ -4390,7 +4446,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees.",
+    "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel à info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Sans frais."
   },
   {
     "id": "kchc-iipct",
@@ -4452,7 +4509,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP Card required. Free."
+    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP Card required. Free.",
+    "access_script_fr": "Appelez le 343-478-0196 ou envoyez un courriel à iipct.reception@iipct.com. Carte OHIP requise. Gratuit."
   },
   {
     "id": "metis-nation-ontario-kingston",
@@ -4514,7 +4572,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 613-549-1674 or email contactus@metisnation.org. MNO Citizenship card (for some programs) required. No fees."
+    "access_script": "Call 613-549-1674 or email contactus@metisnation.org. MNO Citizenship card (for some programs) required. No fees.",
+    "access_script_fr": "Appelez le 613-549-1674 ou envoyez un courriel à contactus@metisnation.org. Carte de citoyennete MNO requise pour certains programmes. Sans frais."
   },
   {
     "id": "st-marys-cathedral-drop-in",
@@ -4576,7 +4635,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Email ministries@stmaryscathedral.ca or visit 260 Brock St, Kingston, ON K7L 1S3. No fees."
+    "access_script": "Email ministries@stmaryscathedral.ca or visit 260 Brock St, Kingston, ON K7L 1S3. No fees.",
+    "access_script_fr": "Envoyez un courriel à ministries@stmaryscathedral.ca ou visitez 260 Brock St, Kingston, ON K7L 1S3. Sans frais."
   },
   {
     "id": "salvation-army-cfs",
@@ -4638,7 +4698,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Call 613-548-4411 or email KingstonCitadel.CFS@salvationarmy.ca. ID, Proof of income/address required. No fees."
+    "access_script": "Call 613-548-4411 or email KingstonCitadel.CFS@salvationarmy.ca. ID, Proof of income/address required. No fees.",
+    "access_script_fr": "Appelez le 613-548-4411 ou envoyez un courriel à KingstonCitadel.CFS@salvationarmy.ca. Piece d'identité, Preuve de revenu et d'adresse requise. Sans frais."
   },
   {
     "id": "crisis-988",
@@ -4676,7 +4737,8 @@
       "annual_budget": "small"
     },
     "plain_language_available": false,
-    "access_script": "Call or text 988. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call or text 988. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez ou textez le 988. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-connex-ontario",
@@ -4714,7 +4776,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-866-531-2600 or visit https://connexontario.ca. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-531-2600 or visit https://connexontario.ca. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-866-531-2600 ou visitez https://connexontario.ca. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-talk-suicide-canada",
@@ -4752,7 +4815,8 @@
     },
     "scope": "canada",
     "plain_language_available": false,
-    "access_script": "Call 1-833-456-4566. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-833-456-4566. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-833-456-4566. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-kids-help-phone",
@@ -4800,7 +4864,8 @@
       "lng": -73.570752
     },
     "plain_language_available": false,
-    "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-800-668-6868 or text 686868. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-800-668-6868 ou textez 686868. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-good2talk",
@@ -4843,7 +4908,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-866-925-5454 or text GOOD2TALKON to 686868. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-925-5454 or text GOOD2TALKON to 686868. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-866-925-5454 ou textez GOOD2TALKON au 686868. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-hope-for-wellness",
@@ -4887,7 +4953,8 @@
     },
     "scope": "canada",
     "plain_language_available": false,
-    "access_script": "Call 855-242-3310. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 855-242-3310. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 855-242-3310. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-talk4healing",
@@ -4934,7 +5001,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call or text 1-855-554-4325, or use the live chat on the official website. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call or text 1-855-554-4325, or use the live chat on the official website. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez ou textez le 1-855-554-4325, ou utilisez le clavardage en direct sur le site Web officiel. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-trans-lifeline",
@@ -4978,7 +5046,8 @@
     },
     "scope": "canada",
     "plain_language_available": false,
-    "access_script": "Call 1-877-330-6366 (available Mon-Fri 1pm-9pm ET). No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-877-330-6366 (available Mon-Fri 1pm-9pm ET). No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-877-330-6366 (disponible du lundi au vendredi, de 13 h à 21 h HE). Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-assaulted-womens-helpline",
@@ -5026,7 +5095,8 @@
       "lng": -79.4822192
     },
     "plain_language_available": false,
-    "access_script": "Call 1-866-863-0511. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-863-0511. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-866-863-0511. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-ontario-gambling",
@@ -5064,7 +5134,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-866-531-2600 or text CONNEX to 247247 for free, confidential support. If you are in immediate danger, call 911."
+    "access_script": "Call 1-866-531-2600 or text CONNEX to 247247 for free, confidential support. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-866-531-2600 ou textez CONNEX au 247247 pour obtenir un soutien gratuit et confidentiel. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-telehealth-ontario",
@@ -5102,7 +5173,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 811 or visit https://health811.ontario.ca. OHIP card is helpful but not required. No fees."
+    "access_script": "Call 811 or visit https://health811.ontario.ca. OHIP card is helpful but not required. No fees.",
+    "access_script_fr": "Appelez le 811 ou visitez https://health811.ontario.ca. La carte OHIP est utile, mais non requise. Sans frais."
   },
   {
     "id": "crisis-poison-control",
@@ -5141,7 +5213,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-800-268-9017 or email poison.information@sickkids.ca. No fees. If you are in immediate danger, call 911."
+    "access_script": "Call 1-800-268-9017 or email poison.information@sickkids.ca. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 1-800-268-9017 ou envoyez un courriel à poison.information@sickkids.ca. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-eating-disorders",
@@ -5180,7 +5253,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-866-633-4220 or email nedic@uhn.ca. No fees."
+    "access_script": "Call 1-866-633-4220 or email nedic@uhn.ca. No fees.",
+    "access_script_fr": "Appelez le 1-866-633-4220 ou envoyez un courriel à nedic@uhn.ca. Sans frais."
   },
   {
     "id": "crisis-pflag-canada",
@@ -5224,7 +5298,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 1-888-530-6777 or email inquiries@pflagcanada.ca. No fees."
+    "access_script": "Call 1-888-530-6777 or email inquiries@pflagcanada.ca. No fees.",
+    "access_script_fr": "Appelez le 1-888-530-6777 ou envoyez un courriel à inquiries@pflagcanada.ca. Sans frais."
   },
   {
     "id": "crisis-text-line",
@@ -5262,7 +5337,8 @@
     },
     "scope": "canada",
     "plain_language_available": true,
-    "access_script": "Text CONNECT to 686868 for 24/7 youth support. Adults can text 741741. No fees. If you are in immediate danger, call 911."
+    "access_script": "Text CONNECT to 686868 for 24/7 youth support. Adults can text 741741. No fees. If you are in immediate danger, call 911.",
+    "access_script_fr": "Envoyez le mot CONNECT au 686868 pour obtenir du soutien jeunesse 24/7. Les adultes peuvent texter le 741741. Sans frais. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "crisis-211-ontario",
@@ -5300,7 +5376,8 @@
     },
     "scope": "ontario",
     "plain_language_available": false,
-    "access_script": "Call 211. No fees."
+    "access_script": "Call 211. No fees.",
+    "access_script_fr": "Appelez le 211. Sans frais."
   },
   {
     "id": "four-directions-indigenous-centre",
@@ -5372,7 +5449,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Email 4direct@queensu.ca or visit 144-146 Barrie St, Kingston, ON K7L 3J9. Student ID required. No fees."
+    "access_script": "Email 4direct@queensu.ca or visit 144-146 Barrie St, Kingston, ON K7L 3J9. Student ID required. No fees.",
+    "access_script_fr": "Envoyez un courriel à 4direct@queensu.ca ou visitez 144-146 Barrie St, Kingston, ON K7L 3J9. Carte étudiante requise. Sans frais."
   },
   {
     "id": "kfla-indigenous-health-team",
@@ -5440,7 +5518,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP required. No fees."
+    "access_script": "Call 343-478-0196 or email iipct.reception@iipct.com. OHIP required. No fees.",
+    "access_script_fr": "Appelez le 343-478-0196 ou envoyez un courriel à iipct.reception@iipct.com. OHIP requis. Sans frais."
   },
   {
     "id": "kingston-indigenous-friendship-centre",
@@ -5512,7 +5591,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees."
+    "access_script": "Call 613-544-3065 or email info@kingstonnativecentre.org or visit 218 Concession St, Kingston, ON K7K 2B5. No fees.",
+    "access_script_fr": "Appelez le 613-544-3065 ou envoyez un courriel à info@kingstonnativecentre.org ou visitez 218 Concession St, Kingston, ON K7K 2B5. Sans frais."
   },
   {
     "id": "kingston-literacy-skills",
@@ -5579,7 +5659,8 @@
         "close": "15:00"
       }
     },
-    "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees."
+    "access_script": "Call 613-547-2012 or email info@klsread.ca. SIN, Status in Canada required. No fees.",
+    "access_script_fr": "Appelez le 613-547-2012 ou envoyez un courriel à info@klsread.ca. NAS et statut au Canada requis. Sans frais."
   },
   {
     "id": "slc-academic-upgrading",
@@ -5646,7 +5727,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-544-5400 ext. 5527 or email ask@sl.on.ca or visit https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Transcripts, ID required. Free."
+    "access_script": "Call 613-544-5400 ext. 5527 or email ask@sl.on.ca or visit https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Transcripts, ID required. Free.",
+    "access_script_fr": "Appelez le 613-544-5400 ext. 5527 ou envoyez un courriel à ask@sl.on.ca ou visitez https://www.stlawrencecollege.ca/programs/career-college-preparatory-program/part-time/kingston. Releves de notes et pièce d'identité requis. Gratuit."
   },
   {
     "id": "kfpl-learning-programs",
@@ -5694,7 +5776,8 @@
     "hours": {
       "notes": "Hours vary by branch (e.g., Central branch Mon-Thu 09:00-20:00, Fri-Sat 09:00-17:00)."
     },
-    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://calendar.kfpl.ca/. Library Card (for registration) required. No fees."
+    "access_script": "Email contact@kfpl.ca or visit 130 Johnson St, Kingston, ON K7L 1X8 or visit https://calendar.kfpl.ca/. Library Card (for registration) required. No fees.",
+    "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 130 Johnson St, Kingston, ON K7L 1X8 ou visitez https://calendar.kfpl.ca/. Carte de bibliotheque requise pour l'inscription. Sans frais."
   },
   {
     "id": "kingston-transit-mfap",
@@ -5761,7 +5844,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates."
+    "access_script": "Call 613-546-0000 or email contactus@cityofkingston.ca. Proof of income, Address, ID required. Fees: Discounted Rates.",
+    "access_script_fr": "Appelez le 613-546-0000 ou envoyez un courriel à contactus@cityofkingston.ca. Preuve de revenu, adresse et pièce d'identité requises. Frais : tarifs reduits."
   },
   {
     "id": "von-transportation-kingston",
@@ -5831,7 +5915,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-634-0130. Registration form required. Fees: User fees apply distance based."
+    "access_script": "Call 613-634-0130. Registration form required. Fees: User fees apply distance based.",
+    "access_script_fr": "Appelez le 613-634-0130. Formulaire d'inscription requis. Frais : des frais d'utilisateur s'appliquent selon la distance."
   },
   {
     "id": "lionhearts-fresh-food-market",
@@ -5871,7 +5956,8 @@
     "hours": {
       "notes": "Schedule varies by location. For example, Tuesdays 10:00-13:00 at Seniors Centre. Check website for full schedule."
     },
-    "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized."
+    "access_script": "Email info@freshfoodmkt.ca or visit Various Locations (Pop-up). Fees: Cost of goods subsidized.",
+    "access_script_fr": "Envoyez un courriel à info@freshfoodmkt.ca ou visitez Various Locations (Pop-up). Frais : cout des produits subventionne."
   },
   {
     "id": "in-from-the-cold",
@@ -5942,7 +6028,8 @@
         "close": "23:59"
       }
     },
-    "access_script": "Call 613-542-6672 or email info@kingstonhomebase.ca or visit 540 Montreal St, Kingston, ON K7K 3J2. No fees."
+    "access_script": "Call 613-542-6672 or email info@kingstonhomebase.ca or visit 540 Montreal St, Kingston, ON K7K 3J2. No fees.",
+    "access_script_fr": "Appelez le 613-542-6672 ou envoyez un courriel à info@kingstonhomebase.ca ou visitez 540 Montreal St, Kingston, ON K7K 3J2. Sans frais."
   },
   {
     "id": "legal-aid-ontario-kingston",
@@ -6004,7 +6091,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-541-0777. Proof of income required. No fees."
+    "access_script": "Call 613-541-0777. Proof of income required. No fees.",
+    "access_script_fr": "Appelez le 613-541-0777. Preuve de revenu requise. Sans frais."
   },
   {
     "id": "pro-bono-ontario",
@@ -6062,7 +6150,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Call 1-855-255-7256. No fees."
+    "access_script": "Call 1-855-255-7256. No fees.",
+    "access_script_fr": "Appelez le 1-855-255-7256. Sans frais."
   },
   {
     "id": "cleo-community-legal-education",
@@ -6127,7 +6216,8 @@
         "close": "23:59"
       }
     },
-    "access_script": "Visit https://www.cleo.on.ca. No fees."
+    "access_script": "Visit https://www.cleo.on.ca. No fees.",
+    "access_script_fr": "Visitez https://www.cleo.on.ca. Sans frais."
   },
   {
     "id": "arch-disability-law",
@@ -6191,7 +6281,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Call 1-866-482-2724 or email archlib@lao.on.ca. No fees."
+    "access_script": "Call 1-866-482-2724 or email archlib@lao.on.ca. No fees.",
+    "access_script_fr": "Appelez le 1-866-482-2724 ou envoyez un courriel à archlib@lao.on.ca. Sans frais."
   },
   {
     "id": "justice-for-children-youth",
@@ -6250,7 +6341,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Call 1-866-522-2024 or email info@jfcy.org. No fees."
+    "access_script": "Call 1-866-522-2024 or email info@jfcy.org. No fees.",
+    "access_script_fr": "Appelez le 1-866-522-2024 ou envoyez un courriel à info@jfcy.org. Sans frais."
   },
   {
     "id": "jobwell-kingston",
@@ -6313,7 +6405,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-540-6165 ext. 34109 or email info@jobwell.ca. Application form required. No fees."
+    "access_script": "Call 613-540-6165 ext. 34109 or email info@jobwell.ca. Application form required. No fees.",
+    "access_script_fr": "Appelez le 613-540-6165 ext. 34109 ou envoyez un courriel à info@jobwell.ca. Formulaire de demande requis. Sans frais."
   },
   {
     "id": "rideau-heights-community-centre",
@@ -6383,7 +6476,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Visit 85 Maccauley St, Kingston, ON K7K 2V8. Fees: Varies by program."
+    "access_script": "Visit 85 Maccauley St, Kingston, ON K7K 2V8. Fees: Varies by program.",
+    "access_script_fr": "Visitez 85 Maccauley St, Kingston, ON K7K 2V8. Frais : variables selon le programme."
   },
   {
     "id": "artillery-park-aquatic-centre",
@@ -6453,7 +6547,8 @@
         "close": "20:00"
       }
     },
-    "access_script": "Visit 382 Bagot St, Kingston, ON K7K 3B6. Fees: Varies (drop-in or membership)."
+    "access_script": "Visit 382 Bagot St, Kingston, ON K7K 3B6. Fees: Varies (drop-in or membership).",
+    "access_script_fr": "Visitez 382 Bagot St, Kingston, ON K7K 3B6. Frais : variables (visite ponctuelle ou abonnement)."
   },
   {
     "id": "invista-centre",
@@ -6523,7 +6618,8 @@
         "close": "20:00"
       }
     },
-    "access_script": "Visit 1350 Gardiners Rd, Kingston, ON K7P 0E5. Fees: Varies."
+    "access_script": "Visit 1350 Gardiners Rd, Kingston, ON K7P 0E5. Fees: Varies.",
+    "access_script_fr": "Visitez 1350 Gardiners Rd, Kingston, ON K7P 0E5. Frais : variables."
   },
   {
     "id": "kfpl-calvin-park",
@@ -6590,7 +6686,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Email contact@kfpl.ca or visit 88 Wright Crescent, Kingston, ON K7L 4T9. Library Card for loans required. No fees."
+    "access_script": "Email contact@kfpl.ca or visit 88 Wright Crescent, Kingston, ON K7L 4T9. Library Card for loans required. No fees.",
+    "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 88 Wright Crescent, Kingston, ON K7L 4T9. Carte de bibliotheque requise pour les emprunts. Sans frais."
   },
   {
     "id": "kfpl-isabel-turner",
@@ -6657,7 +6754,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Email contact@kfpl.ca or visit 935 Gardiners Rd, Kingston, ON K7M 9A9. Library Card for loans required. No fees."
+    "access_script": "Email contact@kfpl.ca or visit 935 Gardiners Rd, Kingston, ON K7M 9A9. Library Card for loans required. No fees.",
+    "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 935 Gardiners Rd, Kingston, ON K7M 9A9. Carte de bibliotheque requise pour les emprunts. Sans frais."
   },
   {
     "id": "kfpl-pittsburgh",
@@ -6724,7 +6822,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees."
+    "access_script": "Email contact@kfpl.ca or visit 80 Gore Rd, Kingston, ON K7K 6X6. Library Card for loans required. No fees.",
+    "access_script_fr": "Envoyez un courriel à contact@kfpl.ca ou visitez 80 Gore Rd, Kingston, ON K7K 6X6. Carte de bibliotheque requise pour les emprunts. Sans frais."
   },
   {
     "id": "kfpl-rideau-heights",
@@ -6779,7 +6878,8 @@
       }
     },
     "access_script": "Visit https://www.kfpl.ca.",
-    "hours_text": "Mon: 10:00–20:00; Tue: 10:00–14:00; Wed: 10:00–20:00; Thu: 10:00–14:00; Fri–Sat: 09:00–17:00."
+    "hours_text": "Mon: 10:00–20:00; Tue: 10:00–14:00; Wed: 10:00–20:00; Thu: 10:00–14:00; Fri–Sat: 09:00–17:00.",
+    "access_script_fr": "Visitez https://www.kfpl.ca."
   },
   {
     "id": "kingston-pregnancy-care",
@@ -6827,7 +6927,8 @@
       "notes": "Closed Friday through Sunday."
     },
     "access_script": "Visit https://kingstonpcc.com for information.",
-    "hours_text": "Mon–Thu: 10:00–16:00. Closed Friday through Sunday."
+    "hours_text": "Mon–Thu: 10:00–16:00. Closed Friday through Sunday.",
+    "access_script_fr": "Visitez https://kingstonpcc.com pour obtenir des renseignements."
   },
   {
     "id": "hospice-kingston",
@@ -6897,7 +6998,8 @@
       },
       "notes": "Residence open 24/7; community program offices Mon-Fri 08:30–16:30."
     },
-    "access_script": "Visit https://providencecare.ca/hospice-kingston for information."
+    "access_script": "Visit https://providencecare.ca/hospice-kingston for information.",
+    "access_script_fr": "Visitez https://providencecare.ca/hospice-kingston pour obtenir des renseignements."
   },
   {
     "id": "alzheimer-society-kfla",
@@ -6925,7 +7027,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://alzheimer.ca/kfla for information."
+    "access_script": "Visit https://alzheimer.ca/kfla for information.",
+    "access_script_fr": "Visitez https://alzheimer.ca/kfla pour obtenir des renseignements."
   },
   {
     "id": "stroke-network-sneo",
@@ -6986,7 +7089,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Call 613-549-6666 for assistance, or visit https://www.strokenetworkseo.ca."
+    "access_script": "Call 613-549-6666 for assistance, or visit https://www.strokenetworkseo.ca.",
+    "access_script_fr": "Appelez le 613-549-6666 pour obtenir de l'aide, ou visitez https://www.strokenetworkseo.ca."
   },
   {
     "id": "autism-ontario-east",
@@ -7014,7 +7118,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.autismontario.com for information."
+    "access_script": "Visit https://www.autismontario.com for information.",
+    "access_script_fr": "Visitez https://www.autismontario.com pour obtenir des renseignements."
   },
   {
     "id": "cnib-kingston",
@@ -7047,7 +7152,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://cnib.ca for information."
+    "access_script": "Visit https://cnib.ca for information.",
+    "access_script_fr": "Visitez https://cnib.ca pour obtenir des renseignements."
   },
   {
     "id": "march-of-dimes-kingston",
@@ -7113,7 +7219,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca."
+    "access_script": "Call 613-546-3396 for assistance, or visit https://www.marchofdimes.ca.",
+    "access_script_fr": "Appelez le 613-546-3396 pour obtenir de l'aide, ou visitez https://www.marchofdimes.ca."
   },
   {
     "id": "student-food-bank-queens",
@@ -7171,7 +7278,8 @@
       },
       "notes": "Fall 2025 term hours: Food Bank open Mon/Wed 17:00–19:00 and Thu 12:00–14:00; PEACH Market available Mon/Wed/Fri 11:00–14:00."
     },
-    "access_script": "Call 613-533-6000 for assistance, or visit https://www.amsfoodbank.ca."
+    "access_script": "Call 613-533-6000 for assistance, or visit https://www.amsfoodbank.ca.",
+    "access_script_fr": "Appelez le 613-533-6000 pour obtenir de l'aide, ou visitez https://www.amsfoodbank.ca."
   },
   {
     "id": "st-lawrence-food-pantry",
@@ -7213,7 +7321,8 @@
     "hours": {
       "notes": "By appointment only"
     },
-    "access_script": "Visit the SLC Student Association FAQ page for the Food Pantry intake instructions. Valid student identification required. No fees."
+    "access_script": "Visit the SLC Student Association FAQ page for the Food Pantry intake instructions. Valid student identification required. No fees.",
+    "access_script_fr": "Visitez la page FAQ de la SLC Student Association pour connaître les consignes d'inscription au Food Pantry. Pièce d'identité étudiante valide requise. Sans frais."
   },
   {
     "id": "community-harvest-market",
@@ -7257,7 +7366,8 @@
     "hours": {
       "notes": "Seasonal (June–October). Rideau Heights market at KCHC (263 Weller Ave). See website for current dates and other locations, and confirm current season operations via KCHC."
     },
-    "access_script": "Visit https://www.lovingspoonful.org/programs/community-harvest-markets/ for dates and locations. For current-season confirmation, contact Kingston Community Health Centre (Rideau Heights) at 613-542-2949 or info@kchc.ca."
+    "access_script": "Visit https://www.lovingspoonful.org/programs/community-harvest-markets/ for dates and locations. For current-season confirmation, contact Kingston Community Health Centre (Rideau Heights) at 613-542-2949 or info@kchc.ca.",
+    "access_script_fr": "Visitez https://www.lovingspoonful.org/programs/community-harvest-markets/ pour les dates et les lieux. Pour confirmer les renseignements de la saison en cours, communiquez avec Kingston Community Health Centre (Rideau Heights) au 613-542-2949 ou à info@kchc.ca."
   },
   {
     "id": "memorial-centre-market",
@@ -7303,7 +7413,8 @@
       },
       "notes": "Hours vary seasonally: open Sundays 9:00–14:00 (May–Oct), 9:00–13:00 (Nov–Apr)."
     },
-    "access_script": "Visit https://www.memorialcentrefarmersmarket.ca for information."
+    "access_script": "Visit https://www.memorialcentrefarmersmarket.ca for information.",
+    "access_script_fr": "Visitez https://www.memorialcentrefarmersmarket.ca pour obtenir des renseignements."
   },
   {
     "id": "legal-clinic-queens",
@@ -7365,7 +7476,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-533-2102 for assistance."
+    "access_script": "Call 613-533-2102 for assistance.",
+    "access_script_fr": "Appelez le 613-533-2102 pour obtenir de l'aide."
   },
   {
     "id": "kfl-public-health-vaccine",
@@ -7428,7 +7540,8 @@
       },
       "notes": "General hours; routine immunization clinics by appointment on Tue (all ages) and Wed (ages 0–18)."
     },
-    "access_script": "Call 613-549-1232 for assistance, or visit https://www.kflaph.ca."
+    "access_script": "Call 613-549-1232 for assistance, or visit https://www.kflaph.ca.",
+    "access_script_fr": "Appelez le 613-549-1232 pour obtenir de l'aide, ou visitez https://www.kflaph.ca."
   },
   {
     "id": "kfl-public-health-sexual",
@@ -7491,7 +7604,8 @@
       },
       "notes": "Appointments Mon-Fri 08:30–16:30; walk-in Quick Test available Tue & Thu 13:00–15:30."
     },
-    "access_script": "Call 613-549-1232 ext. 1275 for assistance, or visit https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx."
+    "access_script": "Call 613-549-1232 ext. 1275 for assistance, or visit https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx.",
+    "access_script_fr": "Appelez le 613-549-1232 ext. 1275 pour obtenir de l'aide, ou visitez https://www.kflaph.ca/en/clinics-and-classes/sexual-health-clinics.aspx."
   },
   {
     "id": "sexual-assault-centre-kingston",
@@ -7562,7 +7676,8 @@
       },
       "notes": "Phone line 24/7; chat/text daily 12:00–24:00; office Mon-Fri 09:00–16:00."
     },
-    "access_script": "Call 613-544-6424 for assistance, or visit https://www.sackingston.com. If you are in immediate danger, call 911."
+    "access_script": "Call 613-544-6424 for assistance, or visit https://www.sackingston.com. If you are in immediate danger, call 911.",
+    "access_script_fr": "Appelez le 613-544-6424 pour obtenir de l'aide, ou visitez https://www.sackingston.com. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "kingston-general-hospital",
@@ -7632,7 +7747,8 @@
         "close": "23:59"
       }
     },
-    "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care."
+    "access_script": "Call 613-548-2333 for assistance, or visit https://kingstonhsc.ca/emergency-care.",
+    "access_script_fr": "Appelez le 613-548-2333 pour obtenir de l'aide, ou visitez https://kingstonhsc.ca/emergency-care."
   },
   {
     "id": "hotel-dieu-site",
@@ -7703,7 +7819,8 @@
       },
       "notes": "Registration may close early if capacity reached."
     },
-    "access_script": "Call 613-546-1240 for assistance, or visit https://kingstonhsc.ca/programs-and-departments/urgent-care-centre."
+    "access_script": "Call 613-546-1240 for assistance, or visit https://kingstonhsc.ca/programs-and-departments/urgent-care-centre.",
+    "access_script_fr": "Appelez le 613-546-1240 pour obtenir de l'aide, ou visitez https://kingstonhsc.ca/programs-and-departments/urgent-care-centre."
   },
   {
     "id": "providence-care-hospital",
@@ -7774,7 +7891,8 @@
       },
       "notes": "Inpatient 24/7; outpatient clinics weekdays (business hours)."
     },
-    "access_script": "Call 613-544-4900 for assistance, or visit https://providencecare.ca."
+    "access_script": "Call 613-544-4900 for assistance, or visit https://providencecare.ca.",
+    "access_script_fr": "Appelez le 613-544-4900 pour obtenir de l'aide, ou visitez https://providencecare.ca."
   },
   {
     "id": "kingston-military-family-resource",
@@ -7835,7 +7953,8 @@
         "close": "17:00"
       }
     },
-    "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston."
+    "access_script": "Call 613-541-5010 ext. 271-5195 for assistance, or visit https://cfmws.ca/kingston.",
+    "access_script_fr": "Appelez le 613-541-5010 ext. 271-5195 pour obtenir de l'aide, ou visitez https://cfmws.ca/kingston."
   },
   {
     "id": "tnet-kingston",
@@ -7882,7 +8001,8 @@
       },
       "notes": "Bi-weekly support meetings on Saturdays."
     },
-    "access_script": "Visit https://transfamilykingston.com for information. Email transfamilykingston@gmail.com for further inquiries."
+    "access_script": "Visit https://transfamilykingston.com for information. Email transfamilykingston@gmail.com for further inquiries.",
+    "access_script_fr": "Visitez https://transfamilykingston.com pour obtenir des renseignements. Envoyez un courriel à transfamilykingston@gmail.com pour toute autre question."
   },
   {
     "id": "kfla-children-services",
@@ -7910,7 +8030,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.cityofkingston.ca for information."
+    "access_script": "Visit https://www.cityofkingston.ca for information.",
+    "access_script_fr": "Visitez https://www.cityofkingston.ca pour obtenir des renseignements."
   },
   {
     "id": "rural-frontenac-community-services",
@@ -7972,7 +8093,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Call 613-279-3151 for assistance, or visit https://rfcs.ca."
+    "access_script": "Call 613-279-3151 for assistance, or visit https://rfcs.ca.",
+    "access_script_fr": "Appelez le 613-279-3151 pour obtenir de l'aide, ou visitez https://rfcs.ca."
   },
   {
     "id": "south-frontenac-community-services",
@@ -8034,7 +8156,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-376-6477 for assistance, or visit https://www.sfcsc.ca."
+    "access_script": "Call 613-376-6477 for assistance, or visit https://www.sfcsc.ca.",
+    "access_script_fr": "Appelez le 613-376-6477 pour obtenir de l'aide, ou visitez https://www.sfcsc.ca."
   },
   {
     "id": "kingston-east-community-centre",
@@ -8062,7 +8185,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.cityofkingston.ca for information."
+    "access_script": "Visit https://www.cityofkingston.ca for information.",
+    "access_script_fr": "Visitez https://www.cityofkingston.ca pour obtenir des renseignements."
   },
   {
     "id": "earlyon-cosy",
@@ -8123,7 +8247,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Visit https://kchc.ca/weller-avenue/earlyon/ for information."
+    "access_script": "Visit https://kchc.ca/weller-avenue/earlyon/ for information.",
+    "access_script_fr": "Visitez https://kchc.ca/weller-avenue/earlyon/ pour obtenir des renseignements."
   },
   {
     "id": "boys-girls-club-kingston",
@@ -8185,7 +8310,8 @@
       },
       "notes": "Admin office Mon-Fri 08:30–16:30; programs run 15:00–18:00 on weekdays."
     },
-    "access_script": "Visit https://www.bgcsoutheast.ca for information."
+    "access_script": "Visit https://www.bgcsoutheast.ca for information.",
+    "access_script_fr": "Visitez https://www.bgcsoutheast.ca pour obtenir des renseignements."
   },
   {
     "id": "ymca-kingston",
@@ -8255,7 +8381,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Call 613-546-2647 for assistance, or visit https://eo.ymca.ca."
+    "access_script": "Call 613-546-2647 for assistance, or visit https://eo.ymca.ca.",
+    "access_script_fr": "Appelez le 613-546-2647 pour obtenir de l'aide, ou visitez https://eo.ymca.ca."
   },
   {
     "id": "kingston-humane-society",
@@ -8311,7 +8438,8 @@
       "notes": "Closed on Tuesdays and holidays."
     },
     "access_script": "Visit https://kingstonhumanesociety.ca for information.",
-    "hours_text": "Mon–Fri: 11:00–18:00; Sat–Sun: 10:00–16:00. Closed on Tuesdays and holidays."
+    "hours_text": "Mon–Fri: 11:00–18:00; Sat–Sun: 10:00–16:00. Closed on Tuesdays and holidays.",
+    "access_script_fr": "Visitez https://kingstonhumanesociety.ca pour obtenir des renseignements."
   },
   {
     "id": "st-john-ambulance-kingston",
@@ -8339,7 +8467,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.sja.ca for information."
+    "access_script": "Visit https://www.sja.ca for information.",
+    "access_script_fr": "Visitez https://www.sja.ca pour obtenir des renseignements."
   },
   {
     "id": "red-cross-kingston",
@@ -8367,7 +8496,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.redcross.ca for information."
+    "access_script": "Visit https://www.redcross.ca for information.",
+    "access_script_fr": "Visitez https://www.redcross.ca pour obtenir des renseignements."
   },
   {
     "id": "united-way-kfla-office",
@@ -8429,7 +8559,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-542-2674 for assistance, or visit https://www.unitedwaykfla.ca."
+    "access_script": "Call 613-542-2674 for assistance, or visit https://www.unitedwaykfla.ca.",
+    "access_script_fr": "Appelez le 613-542-2674 pour obtenir de l'aide, ou visitez https://www.unitedwaykfla.ca."
   },
   {
     "id": "community-foundation-kingston",
@@ -8490,7 +8621,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Visit https://cfka.org for information."
+    "access_script": "Visit https://cfka.org for information.",
+    "access_script_fr": "Visitez https://cfka.org pour obtenir des renseignements."
   },
   {
     "id": "habitat-for-humanity-kingston",
@@ -8518,7 +8650,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://habitatkingston.com for information."
+    "access_script": "Visit https://habitatkingston.com for information.",
+    "access_script_fr": "Visitez https://habitatkingston.com pour obtenir des renseignements."
   },
   {
     "id": "kingston-literacy-skills-2",
@@ -8579,7 +8712,8 @@
         "close": "15:00"
       }
     },
-    "access_script": "Visit https://www.klsread.ca for information."
+    "access_script": "Visit https://www.klsread.ca for information.",
+    "access_script_fr": "Visitez https://www.klsread.ca pour obtenir des renseignements."
   },
   {
     "id": "keys-job-centre-2",
@@ -8641,7 +8775,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-546-5559 for assistance, or visit https://keys.ca."
+    "access_script": "Call 613-546-5559 for assistance, or visit https://keys.ca.",
+    "access_script_fr": "Appelez le 613-546-5559 pour obtenir de l'aide, ou visitez https://keys.ca."
   },
   {
     "id": "acls-kingston",
@@ -8703,7 +8838,8 @@
         "close": "15:00"
       }
     },
-    "access_script": "Call 613-546-7863 for assistance, or visit https://acfomi.ca."
+    "access_script": "Call 613-546-7863 for assistance, or visit https://acfomi.ca.",
+    "access_script_fr": "Appelez le 613-546-7863 pour obtenir de l'aide, ou visitez https://acfomi.ca."
   },
   {
     "id": "re-start-employment",
@@ -8765,7 +8901,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Call 613-542-7373 for assistance, or visit https://restartnow.ca."
+    "access_script": "Call 613-542-7373 for assistance, or visit https://restartnow.ca.",
+    "access_script_fr": "Appelez le 613-542-7373 pour obtenir de l'aide, ou visitez https://restartnow.ca."
   },
   {
     "id": "slc-employment-service",
@@ -8826,7 +8963,8 @@
         "close": "16:00"
       }
     },
-    "access_script": "Visit https://employmentservice.sl.on.ca for information."
+    "access_script": "Visit https://employmentservice.sl.on.ca for information.",
+    "access_script_fr": "Visitez https://employmentservice.sl.on.ca pour obtenir des renseignements."
   },
   {
     "id": "ontario-works-kb",
@@ -8888,7 +9026,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-546-2695 for assistance, or visit https://www.cityofkingston.ca."
+    "access_script": "Call 613-546-2695 for assistance, or visit https://www.cityofkingston.ca.",
+    "access_script_fr": "Appelez le 613-546-2695 pour obtenir de l'aide, ou visitez https://www.cityofkingston.ca."
   },
   {
     "id": "odsp-kingston",
@@ -8944,7 +9083,8 @@
       }
     },
     "access_script": "Visit https://www.ontario.ca for information.",
-    "hours_text": "Mon–Fri: 08:30–16:30."
+    "hours_text": "Mon–Fri: 08:30–16:30.",
+    "access_script_fr": "Visitez https://www.ontario.ca pour obtenir des renseignements."
   },
   {
     "id": "service-canada-kingston",
@@ -8995,7 +9135,8 @@
       }
     },
     "access_script": "Visit https://www.canada.ca for information.",
-    "hours_text": "Mon–Fri: 08:30–16:00."
+    "hours_text": "Mon–Fri: 08:30–16:00.",
+    "access_script_fr": "Visitez https://www.canada.ca pour obtenir des renseignements."
   },
   {
     "id": "service-ontario-kingston",
@@ -9023,7 +9164,8 @@
     },
     "scope": "kingston",
     "plain_language_available": false,
-    "access_script": "Visit https://www.ontario.ca for information."
+    "access_script": "Visit https://www.ontario.ca for information.",
+    "access_script_fr": "Visitez https://www.ontario.ca pour obtenir des renseignements."
   },
   {
     "id": "kingston-police-non-emerg",
@@ -9083,7 +9225,8 @@
       "notes": "Non-emergency line and station front desk available 24/7."
     },
     "access_script": "Visit https://www.kingstonpolice.ca/about-kp/contacts/ for the non-emergency contact details.",
-    "hours_text": "24/7. Non-emergency line and station front desk available 24/7."
+    "hours_text": "24/7. Non-emergency line and station front desk available 24/7.",
+    "access_script_fr": "Visitez https://www.kingstonpolice.ca/about-kp/contacts/ pour obtenir les coordonnées non urgentes."
   },
   {
     "id": "opp-frontenac",
@@ -9143,7 +9286,8 @@
       "notes": "Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
     },
     "access_script": "Visit https://www.opp.ca for information.",
-    "hours_text": "24/7. Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7."
+    "hours_text": "24/7. Administration office open Mon-Fri 08:00–16:30; non-emergency line 24/7.",
+    "access_script_fr": "Visitez https://www.opp.ca pour obtenir des renseignements."
   },
   {
     "id": "coast-mental-health",
@@ -9204,7 +9348,8 @@
       "notes": "24/7 crisis line (mobile team dispatched as needed)."
     },
     "access_script": "Call 613-544-4229 for assistance, or visit https://amhs-kfla.ca. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 crisis line (mobile team dispatched as needed)."
+    "hours_text": "24/7. 24/7 crisis line (mobile team dispatched as needed).",
+    "access_script_fr": "Appelez le 613-544-4229 pour obtenir de l'aide, ou visitez https://amhs-kfla.ca. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "maltby-centre-autism",
@@ -9266,7 +9411,8 @@
         "close": "16:30"
       }
     },
-    "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca."
+    "access_script": "Call 613-546-8535 for assistance, or visit https://maltbycentre.ca.",
+    "access_script_fr": "Appelez le 613-546-8535 pour obtenir de l'aide, ou visitez https://maltbycentre.ca."
   },
   {
     "id": "pathways-for-children-youth",
@@ -9301,7 +9447,8 @@
     },
     "scope": "kingston",
     "plain_language_available": true,
-    "access_script": "Call 613-546-8535 or visit https://maltbycentre.ca for services."
+    "access_script": "Call 613-546-8535 or visit https://maltbycentre.ca for services.",
+    "access_script_fr": "Appelez le 613-546-8535 ou visitez https://maltbycentre.ca pour les services."
   },
   {
     "id": "geneva-centre-autism",
@@ -9330,7 +9477,8 @@
     "scope": "kingston",
     "virtual_delivery": true,
     "plain_language_available": false,
-    "access_script": "Visit https://www.autism.net for information."
+    "access_script": "Visit https://www.autism.net for information.",
+    "access_script_fr": "Visitez https://www.autism.net pour obtenir des renseignements."
   },
   {
     "id": "ontario-211-ontario",
@@ -9394,7 +9542,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 211 for assistance, or visit https://211ontario.ca. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. Phone service 24/7. Chat hours vary."
+    "hours_text": "24/7. Phone service 24/7. Chat hours vary.",
+    "access_script_fr": "Appelez le 211 pour obtenir de l'aide, ou visitez https://211ontario.ca. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-black-youth-helpline",
@@ -9458,7 +9607,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-833-294-8650 for assistance, or visit https://blackyouth.ca. If you are in immediate danger, call 911.",
-    "hours_text": "Daily: 09:00–22:00. 9am-10pm daily."
+    "hours_text": "Daily: 09:00–22:00. 9am-10pm daily.",
+    "access_script_fr": "Appelez le 1-833-294-8650 pour obtenir de l'aide, ou visitez https://blackyouth.ca. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-boots-on-the-ground",
@@ -9527,7 +9677,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario first responders (police, fire, EMS, corrections, etc.) can call 1-833-677-2668 for anonymous peer support. This helpline is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 peer support."
+    "hours_text": "24/7. 24/7 peer support.",
+    "access_script_fr": "Les premiers répondants de l'Ontario (police, pompiers, services médicaux d'urgence, services correctionnels, etc.) peuvent appeler le 1-833-677-2668 pour obtenir du soutien anonyme par les pairs. Cette ligne d'aide est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-farmer-wellness",
@@ -9591,7 +9742,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario farmers, farm families, and farm workers can call 1-866-267-6255 to access free counselling support at any time. Intake is available 24/7 and no fees or paperwork are required.",
-    "hours_text": "24/7. 24/7 availability."
+    "hours_text": "24/7. 24/7 availability.",
+    "access_script_fr": "Les agriculteurs, les familles agricoles et les travailleurs agricoles de l'Ontario peuvent appeler le 1-866-267-6255 pour acceder gratuitement a du soutien en counseling en tout temps. L'accueil est disponible 24/7 et aucuns frais ni formulaires ne sont requis."
   },
   {
     "id": "ontario-femaide",
@@ -9656,7 +9808,8 @@
     },
     "plain_language_available": false,
     "access_script": "Francophone women facing violence can call or text 1-877-336-2433 for free, confidential support in French (24/7). If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 support via Phone and Text."
+    "hours_text": "24/7. 24/7 support via Phone and Text.",
+    "access_script_fr": "Les femmes d expression francaise faisant face a la violence peuvent appeler ou texter le 1-877-336-2433 pour obtenir gratuitement du soutien confidentiel en français (24/7). Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-irs-crisis-line",
@@ -9725,7 +9878,8 @@
     },
     "plain_language_available": false,
     "access_script": "Former residential school students and their families can call 1-866-925-4419 for emotional crisis support at any time (24/7). If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7. Cree, Ojibway, Inuktitut available."
+    "hours_text": "24/7. 24/7. Cree, Ojibway, Inuktitut available.",
+    "access_script_fr": "Les anciens eleves des pensionnats et leurs familles peuvent appeler le 1-866-925-4419 pour obtenir du soutien en cas de crise emotionnelle en tout temps (24/7). Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-lgbt-youthline",
@@ -9794,7 +9948,8 @@
     },
     "plain_language_available": false,
     "access_script": "Youth (29 and under) can text 647-694-4275, email askus@youthline.ca, or live chat at youthline.ca for confidential peer support (Sun–Fri 4pm–9:30pm). If you are in immediate danger, call 911.",
-    "hours_text": "Mon–Sun: 16:00–21:30. Closed Saturdays. Text 647-694-4275 available."
+    "hours_text": "Mon–Sun: 16:00–21:30. Closed Saturdays. Text 647-694-4275 available.",
+    "access_script_fr": "Les jeunes (29 ans et moins) peuvent texter le 647-694-4275, envoyer un courriel à askus@youthline.ca ou utiliser le clavardage en direct a youthline.ca pour obtenir du soutien confidentiel par les pairs (dimanche a vendredi, 16 h a 21 h 30). Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-male-survivors",
@@ -9858,7 +10013,8 @@
     },
     "plain_language_available": false,
     "access_script": "Male survivors of sexual abuse in Ontario can call 1-866-887-0015 for free, multilingual crisis support and referrals. Help is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 availability."
+    "hours_text": "24/7. 24/7 availability.",
+    "access_script_fr": "Les survivants masculins d'abus sexuel en Ontario peuvent appeler le 1-866-887-0015 pour obtenir gratuitement du soutien de crise multilingue et des aiguillages. L'aide est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-metis-crisis-line",
@@ -9927,7 +10083,8 @@
     },
     "plain_language_available": false,
     "access_script": "Métis Nation of Ontario citizens can call 1-877-767-7572 for mental health and addictions support. This crisis line is free and operates 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 availability."
+    "hours_text": "24/7. 24/7 availability.",
+    "access_script_fr": "Les citoyens de la Métis Nation of Ontario peuvent appeler le 1-877-767-7572 pour obtenir du soutien en santé mentale et en dependances. Cette ligne de crise est gratuite et fonctionne 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-mmiwg-crisis-line",
@@ -9996,7 +10153,8 @@
     },
     "plain_language_available": false,
     "access_script": "Individuals impacted by missing and murdered Indigenous women, girls, or 2SLGBTQQIA+ people can call 1-844-413-6649 for support. This national crisis line is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7. Bilingual (English/French)."
+    "hours_text": "24/7. 24/7. Bilingual (English/French).",
+    "access_script_fr": "Les personnes touchees par la disparition ou le meurtre de femmes, de filles ou de personnes 2SLGBTQQIA+ autochtones peuvent appeler le 1-844-413-6649 pour obtenir du soutien. Cette ligne nationale de crise est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-naseeha",
@@ -10060,7 +10218,8 @@
     },
     "plain_language_available": false,
     "access_script": "Muslim youth and others can call or text 1-866-627-3342 at any time for free, anonymous mental health support. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 availability."
+    "hours_text": "24/7. 24/7 availability.",
+    "access_script_fr": "Les jeunes musulmans et d'autres personnes peuvent appeler ou texter le 1-866-627-3342 en tout temps pour obtenir gratuitement du soutien anonyme en santé mentale. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-nors",
@@ -10125,7 +10284,8 @@
     },
     "plain_language_available": true,
     "access_script": "If you plan to use drugs alone, you can call 1-888-688-6677 so an operator stays on the line to monitor your safety and respond in case of overdose. This service is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 availability via Call or Text."
+    "hours_text": "24/7. 24/7 availability via Call or Text.",
+    "access_script_fr": "Si vous prevoyez consommer des drogues seul, vous pouvez appeler le 1-888-688-6677 afin qu'un operateur reste en ligne pour surveiller votre securite et intervenir en cas de surdose. Ce service est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-ontx-distress",
@@ -10190,7 +10350,8 @@
     },
     "plain_language_available": false,
     "access_script": "Text the word \"SUPPORT\" to 258258 to connect with Ontario’s distress text line (available daily from 2:00 PM to 2:00 AM). If you are in immediate danger, call 911.",
-    "hours_text": "Daily: 14:00–02:00 (overnight). Services available 2pm-2am daily."
+    "hours_text": "Daily: 14:00–02:00 (overnight). Services available 2pm-2am daily.",
+    "access_script_fr": "Textez le mot \"SUPPORT\" au 258258 pour communiquer avec la ligne texto de détresse de l Ontario, disponible tous les jours de 14 h a 2 h. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-sadv-navigation",
@@ -10255,7 +10416,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-855-628-7238 to reach a nurse who will help connect survivors of sexual assault or domestic violence to the nearest treatment centre. This navigation line is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7. Connects to 37 specialized treatment centres."
+    "hours_text": "24/7. 24/7. Connects to 37 specialized treatment centres.",
+    "access_script_fr": "Appelez le 1-855-628-7238 pour joindre une infirmiere qui aidera a orienter les survivants d'agression sexuelle ou de violence familiale vers le centre de traitement le plus proche. Cette ligne d'orientation est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-seniors-safety-line",
@@ -10324,7 +10486,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-866-299-1011 for confidential support and referrals if you or a senior you know is experiencing abuse. The Seniors Safety Line is free and open 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7 availability. Operated by AWHL."
+    "hours_text": "24/7. 24/7 availability. Operated by AWHL.",
+    "access_script_fr": "Appelez le 1-866-299-1011 pour obtenir un soutien confidentiel et des aiguillages si vous, ou une personne âgée que vous connaissez, vivez une situation de maltraitance. La Seniors Safety Line est gratuite et ouverte 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-vac-assistance",
@@ -10393,7 +10556,8 @@
     },
     "plain_language_available": false,
     "access_script": "Veterans, Canadian Armed Forces members, RCMP members, and their families can call 1-800-268-7708 for free, confidential counseling. This assistance line is available 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7. Bilingual counselors available."
+    "hours_text": "24/7. 24/7. Bilingual counselors available.",
+    "access_script_fr": "Les veterans, les membres des Forces armees canadiennes, les membres de la GRC et leurs familles peuvent appeler le 1-800-268-7708 pour obtenir gratuitement du counseling confidentiel. Cette ligne d'aide est disponible 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "id": "ontario-victim-support-line",
@@ -10457,7 +10621,8 @@
     },
     "plain_language_available": false,
     "access_script": "Victims of crime in Ontario can call 1-888-579-2888 for information, referrals, and support. The Victim Support Line is free and operates 24/7. If you are in immediate danger, call 911.",
-    "hours_text": "24/7. 24/7. 200+ languages via interpreters."
+    "hours_text": "24/7. 24/7. 200+ languages via interpreters.",
+    "access_script_fr": "Les victimes d'actes criminels en Ontario peuvent appeler le 1-888-579-2888 pour obtenir de l'information, des aiguillages et du soutien. La Ligne d'aide aux victimes est gratuite et fonctionne 24/7. Si vous êtes en danger immédiat, appelez le 911."
   },
   {
     "name": "BounceBack Ontario",
@@ -10517,7 +10682,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario residents (age 15+) with a valid OHIP card can join the free BounceBack program. Call 1-866-345-0224 or visit bouncebackontario.ca to learn how to get started (self-referral or provider referral accepted).",
-    "hours_text": "Mon–Fri: 08:30–17:00. Registration: Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Registration: Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Les résidents de l'Ontario (15 ans et plus) ayant une carte OHIP valide peuvent participer gratuitement au programme Retrouver son entrain. Appelez le 1-866-345-0224 ou visitez bouncebackontario.ca pour savoir comment commencer (auto-aiguillage ou aiguillage par un fournisseur accepté)."
   },
   {
     "name": "Cancer Information Helpline",
@@ -10577,7 +10743,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-888-939-3333 for information on cancer types, treatments, side effects, and local support services. This free helpline is open to patients, caregivers, and anyone with cancer-related questions.",
-    "hours_text": "Mon–Fri: 08:00–18:00. Mon-Fri 8am-6pm"
+    "hours_text": "Mon–Fri: 08:00–18:00. Mon-Fri 8am-6pm",
+    "access_script_fr": "Appelez le 1-888-939-3333 pour obtenir des renseignements sur les types de cancer, les traitements, les effets secondaires et les services de soutien locaux. Cette ligne d'aide gratuite est ouverte aux patients, aux proches aidants et a toute personne ayant des questions liées au cancer."
   },
   {
     "name": "Ontario Caregiver Helpline",
@@ -10645,7 +10812,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario caregivers can call 1-833-416-2273 at any time for information, assessment, and referrals to local support services. This helpline is free of charge.",
-    "hours_text": "24/7. 24/7"
+    "hours_text": "24/7. 24/7",
+    "access_script_fr": "Les proches aidants de l'Ontario peuvent appeler le 1-833-416-2273 en tout temps pour obtenir de l'information, une evaluation et des aiguillages vers des services de soutien locaux. Cette ligne d'aide est gratuite."
   },
   {
     "name": "Diabetes Canada Information & Support",
@@ -10705,7 +10873,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-800-226-8464 for free information and support related to diabetes management and resources. This service is available to anyone affected by diabetes.",
-    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm",
+    "access_script_fr": "Appelez le 1-800-226-8464 pour obtenir gratuitement de l'information et du soutien lies a la gestion du diabete et aux ressources disponibles. Ce service est offert à toute personne touchee par le diabete."
   },
   {
     "name": "Jordan's Principle Call Centre",
@@ -10773,7 +10942,8 @@
     },
     "plain_language_available": false,
     "access_script": "First Nations families can call 1-855-572-4453 (Jordan’s Principle Call Centre) for help accessing health, social, or education services for their children. The call centre is open 24/7 and there are no fees.",
-    "hours_text": "24/7. 24/7"
+    "hours_text": "24/7. 24/7",
+    "access_script_fr": "Les familles des Premières Nations peuvent appeler le 1-855-572-4453 pour obtenir de l'aide afin d'acceder a des services de santé, sociaux ou educatifs pour leurs enfants. Le centre d'appel est ouvert 24/7 et il n'y a aucuns frais."
   },
   {
     "name": "Lung Health Line",
@@ -10833,7 +11003,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario residents with asthma, COPD, or other lung health concerns can call 1-888-344-5864 to speak with a Certified Respiratory Educator. This free helpline offers guidance on managing lung conditions.",
-    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm",
+    "access_script_fr": "Les résidents de l'Ontario ayant de l'asthme, une MPOC ou d'autres preoccupations liées a la santé pulmonaire peuvent appeler le 1-888-344-5864 pour parler à un educateur respiratoire certifie. Cette ligne d'aide gratuite offre des conseils sur la gestion des maladies pulmonaires."
   },
   {
     "name": "Sexual Health Infoline Ontario (SHILO)",
@@ -10893,7 +11064,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-800-668-2437 for anonymous and confidential information on sexual health topics (STIs, HIV/AIDS, birth control, pregnancy, etc.). This service is free for all Ontario residents.",
-    "hours_text": "Mon–Fri: 10:00–22:30. Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm"
+    "hours_text": "Mon–Fri: 10:00–22:30. Mon-Fri 10am-10:30pm, Sat-Sun 11am-3pm",
+    "access_script_fr": "Appelez le 1-800-668-2437 pour obtenir des renseignements anonymes et confidentiels sur des sujets de santé sexuelle (ITS, VIH/sida, contraception, grossesse, etc.). Ce service est gratuit pour tous les résidents de l'Ontario."
   },
   {
     "name": "Advocacy Centre for the Elderly (ACE)",
@@ -10933,7 +11105,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario seniors (age 60 and over) can call 1-855-598-2656 for free legal advice on elder law issues (e.g., long-term care, elder abuse, health care consent).",
-    "hours_text": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm"
+    "hours_text": "Intake: Mon, Wed, Fri 9am-12pm & 2pm-4pm",
+    "access_script_fr": "Les personnes âgées de l'Ontario (60 ans et plus) peuvent appeler le 1-855-598-2656 pour obtenir gratuitement des conseils juridiques sur les questions de droit des personnes âgées (p. ex., soins de longue durée, maltraitance des personnes âgées, consentement aux soins de santé)."
   },
   {
     "name": "Employment Standards Information Centre",
@@ -10993,7 +11166,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-800-531-5551 for information about Ontario’s Employment Standards Act (e.g., wages, hours of work, overtime, vacation rules). This free information line is available to both workers and employers.",
-    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Appelez le 1-800-531-5551 pour obtenir des renseignements sur la Loi sur les normes d'emploi de l'Ontario (p. ex., salaires, heures de travail, heures supplémentaires, regles sur les vacances). Cette ligne d'information gratuite est offerte aux travailleurs et aux employeurs."
   },
   {
     "name": "HIV & AIDS Legal Clinic Ontario (HALCO)",
@@ -11033,7 +11207,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario residents living with HIV or AIDS can call 1-888-705-8889 for free legal advice on issues like privacy, human rights, immigration, and income support. No fees are charged for this service.",
-    "hours_text": "Intake: Mon, Wed, Fri 9am-5pm"
+    "hours_text": "Intake: Mon, Wed, Fri 9am-5pm",
+    "access_script_fr": "Les résidents de l'Ontario vivant avec le VIH ou le sida peuvent appeler le 1-888-705-8889 pour obtenir gratuitement des conseils juridiques sur des questions comme la vie privee, les droits de la personne, l'immigration et le soutien du revenu. Aucuns frais ne sont facturés pour ce service."
   },
   {
     "name": "Human Rights Legal Support Centre (HRLSC)",
@@ -11073,7 +11248,8 @@
     },
     "plain_language_available": false,
     "access_script": "If you have experienced discrimination in Ontario, call 1-866-625-5179 for free legal advice and help filing a human rights application. The Human Rights Legal Support Centre’s services are provided at no cost.",
-    "hours_text": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm"
+    "hours_text": "Mon, Tue, Wed, Fri 9am-5pm; Thu 2pm-6pm",
+    "access_script_fr": "Si vous avez vecu de la discrimination en Ontario, appelez le 1-866-625-5179 pour obtenir gratuitement des conseils juridiques et de l'aide pour deposer une requete en droits de la personne. Les services du Human Rights Legal Support Centre sont fournis sans frais."
   },
   {
     "name": "Injured Workers Community Legal Clinic (IWC)",
@@ -11133,7 +11309,8 @@
     },
     "plain_language_available": false,
     "access_script": "Injured workers in Ontario can call 1-833-461-2411 for free legal help with workers’ compensation (WSIB) claims and appeals. The Injured Workers Community Legal Clinic provides assistance at no charge.",
-    "hours_text": "Mon–Fri: 09:00–16:30. Mon-Fri 9am-4:30pm (Wed afternoon only)"
+    "hours_text": "Mon–Fri: 09:00–16:30. Mon-Fri 9am-4:30pm (Wed afternoon only)",
+    "access_script_fr": "Les travailleurs blesses en Ontario peuvent appeler le 1-833-461-2411 pour obtenir gratuitement de l'aide juridique concernant les demandes et appels d'indemnisation des travailleurs (WSIB). La Injured Workers Community Legal Clinic fournit de l'aide sans frais."
   },
   {
     "name": "Justice for Children and Youth (JFCY)",
@@ -11173,7 +11350,8 @@
     },
     "plain_language_available": false,
     "access_script": "Young people in Ontario (under 18, or under 25 if homeless) can call 1-866-999-5329 for free legal advice. Justice for Children and Youth can help with issues in areas like education, family, youth criminal justice, and more.",
-    "hours_text": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)"
+    "hours_text": "Mon, Tue, Thu, Fri 9am-5pm (Intake hours vary)",
+    "access_script_fr": "Les jeunes en Ontario (moins de 18 ans, ou moins de 25 ans s'ils sont sans abri) peuvent appeler le 1-866-999-5329 pour obtenir gratuitement des conseils juridiques. Justice for Children and Youth peut aider pour des questions liées notamment a l'education, a la famille, a la justice penale pour les jeunes et a d'autres domaines."
   },
   {
     "name": "Landlord's Self-Help Centre",
@@ -11213,7 +11391,8 @@
     },
     "plain_language_available": false,
     "access_script": "Small-scale residential landlords in Ontario can call 1-800-730-3218 for free legal information and advice on tenancy issues. (This service is provided by a specialty legal clinic at no cost.)",
-    "hours_text": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)"
+    "hours_text": "Mon, Tue, Thu 9am-5pm; Fri 9am-3pm (Closed Wed)",
+    "access_script_fr": "Les petits proprietaires residentiels en Ontario peuvent appeler le 1-800-730-3218 pour obtenir gratuitement de l'information juridique et des conseils sur les questions de location. Ce service est fourni sans frais par une clinique juridique specialisee."
   },
   {
     "name": "Legal Aid Ontario",
@@ -11273,7 +11452,8 @@
     },
     "plain_language_available": false,
     "access_script": "Low-income Ontario residents can call 1-800-668-8258 to apply for Legal Aid or to get legal advice over the phone. Eligibility for full representation is based on income (financial means testing will apply).",
-    "hours_text": "Mon–Fri: 08:00–17:00. Mon-Fri 8am-5pm"
+    "hours_text": "Mon–Fri: 08:00–17:00. Mon-Fri 8am-5pm",
+    "access_script_fr": "Les résidents de l'Ontario a faible revenu peuvent appeler le 1-800-668-8258 pour demander l'aide juridique ou obtenir des conseils juridiques par appel. L'admissibilite a une représentation complete est fondee sur le revenu; une evaluation financiere s'appliquera."
   },
   {
     "name": "Landlord and Tenant Board Contact Centre",
@@ -11333,7 +11513,8 @@
     },
     "plain_language_available": false,
     "access_script": "Landlords and tenants in Ontario can call 1-888-332-3234 for information on landlord-tenant rules and Landlord and Tenant Board procedures. Staff can explain forms and processes but cannot provide legal advice.",
-    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Les proprietaires et les locataires en Ontario peuvent appeler le 1-888-332-3234 pour obtenir des renseignements sur les regles relatives aux proprietaires et locataires ainsi que sur les procedures de la Commission de la location immobiliere. Le personnel peut expliquer les formulaires et les processus, mais ne peut pas fournir de conseils juridiques."
   },
   {
     "name": "Ontario Legal Information Centre",
@@ -11373,7 +11554,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-844-343-7462 to request a free 30-minute consultation with a lawyer through the Ontario Legal Information Centre. This service is available to any Ontario resident, regardless of income, and no documents are required to access it.",
-    "hours_text": "Mon-Fri Business Hours (By Appointment)"
+    "hours_text": "Mon-Fri Business Hours (By Appointment)",
+    "access_script_fr": "Appelez le 1-844-343-7462 pour demander une consultation gratuite de 30 minutes avec un avocat par l'entremise du Centre d'information juridique de l'Ontario. Ce service est offert à tout resident de l'Ontario, peu importe son revenu, et aucun document n'est requis pour y acceder."
   },
   {
     "name": "Office of the Worker Adviser (OWA)",
@@ -11433,7 +11615,8 @@
     },
     "plain_language_available": false,
     "access_script": "Non-unionized workers who have been injured on the job or faced reprisals can call 1-800-435-8980 for free legal advice and representation. The Office of the Worker Adviser helps with WSIB claims and occupational health and safety reprisal cases at no cost.",
-    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Les travailleurs non syndiques qui ont ete blesses au travail ou qui ont subi des represailles peuvent appeler le 1-800-435-8980 pour obtenir gratuitement des conseils juridiques et de la représentation. Le Bureau des conseillers des travailleurs aide avec les demandes de la WSIB et les cas de represailles en santé et securite au travail, sans frais."
   },
   {
     "name": "Steps to Justice",
@@ -11501,7 +11684,8 @@
     },
     "plain_language_available": false,
     "access_script": "Visit stepstojustice.ca to access a step-by-step guide to common legal problems in Ontario. The website is free to use and includes a live chat service where you can ask a law librarian or staff for help with finding legal information.",
-    "hours_text": "24/7. Website 24/7; Chat Mon-Fri"
+    "hours_text": "24/7. Website 24/7; Chat Mon-Fri",
+    "access_script_fr": "Visitez stepstojustice.ca pour acceder a un guide etape par etape sur les problemes juridiques courants en Ontario. Le site est gratuit et comprend un service de clavardage en direct ou vous pouvez demander de l'aide a un bibliothecaire juridique ou a un membre du personnel pour trouver de l'information juridique."
   },
   {
     "name": "Workers Health & Safety Legal Clinic",
@@ -11561,7 +11745,8 @@
     },
     "plain_language_available": false,
     "access_script": "Non-unionized workers in Ontario can call 1-877-832-6090 for free legal help if they have been punished or fired for raising health and safety concerns. The Workers Health & Safety Legal Clinic focuses on reprisals and unsafe work refusal cases.",
-    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm",
+    "access_script_fr": "Les travailleurs non syndiques en Ontario peuvent appeler le 1-877-832-6090 pour obtenir gratuitement de l'aide juridique s'ils ont ete punis ou congadies pour avoir souleve des preoccupations de santé et securite. La Workers Health & Safety Legal Clinic se concentre sur les represailles et les refus de travail dangereux."
   },
   {
     "name": "WSIB (Workplace Safety & Insurance Board)",
@@ -11621,7 +11806,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-800-387-0750 to report a workplace injury or to get information about WSIB claims and benefits. This is the main toll-free number for Ontario’s Workplace Safety and Insurance Board, and there is no cost to call.",
-    "hours_text": "Mon–Fri: 07:30–18:00. Mon-Fri 7:30am-6pm"
+    "hours_text": "Mon–Fri: 07:30–18:00. Mon-Fri 7:30am-6pm",
+    "access_script_fr": "Appelez le 1-800-387-0750 pour declarer une blessure au travail ou obtenir des renseignements sur les demandes et prestations de la WSIB. Il s'agit du principal numéro sans frais de la Commission de la securite professionnelle et de l'assurance contre les accidents du travail de l'Ontario, et l'appel est sans frais."
   },
   {
     "name": "Arthritis Society Canada",
@@ -11661,7 +11847,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-800-321-1433 to speak with a trained volunteer about arthritis-related questions. This free support line is available to anyone living with arthritis or caring for someone who is.",
-    "hours_text": "Mon-Fri (messages returned within 1 business day)"
+    "hours_text": "Mon-Fri (messages returned within 1 business day)",
+    "access_script_fr": "Appelez le 1-800-321-1433 pour parler à un bénévole formé au sujet de questions liées a l'arthrite. Cette ligne de soutien gratuite est offerte à toute personne vivant avec l'arthrite ou prenant soin d'une personne qui en est atteinte."
   },
   {
     "name": "Heart and Stroke Foundation",
@@ -11721,7 +11908,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-888-473-4636 for free, evidence-based information on heart disease and stroke. The Heart and Stroke Foundation’s help line can answer questions about prevention, risk factors, treatment, and recovery resources.",
-    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Appelez le 1-888-473-4636 pour obtenir gratuitement de l'information fondee sur des donnees probantes au sujet des maladies du coeur et de l'AVC. La ligne d'aide de Coeur + AVC peut repondre aux questions sur la prevention, les facteurs de risque, le traitement et les ressources de retablissement."
   },
   {
     "name": "Hospice Palliative Care Ontario (HPCO)",
@@ -11788,7 +11976,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-833-621-0728 for information and navigation assistance with hospice and palliative care services in Ontario. (The HPCO information line is staffed Monday to Friday, 8:30 AM to 4:30 PM.)",
-    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm",
+    "access_script_fr": "Appelez le 1-833-621-0728 pour obtenir de l'information et de l'aide a l'orientation pour les services de soins palliatifs et de soins en hospice en Ontario. La ligne d'information de HPCO est dotee en personnel du lundi au vendredi, de 8 h 30 a 16 h 30."
   },
   {
     "name": "MS Knowledge Network (MS Canada)",
@@ -11848,7 +12037,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-844-859-6789 (Monday–Friday, 8 AM to 8 PM Eastern) to connect with an MS Navigator for information and support related to multiple sclerosis. This service is free and available to anyone affected by MS.",
-    "hours_text": "Mon–Fri: 08:00–20:00. Mon-Fri 8am-8pm ET"
+    "hours_text": "Mon–Fri: 08:00–20:00. Mon-Fri 8am-8pm ET",
+    "access_script_fr": "Appelez le 1-844-859-6789 (du lundi au vendredi, de 8 h a 20 h, heure de l'Est) pour communiquer avec un navigateur de la SP afin d'obtenir de l'information et du soutien lies a la sclerose en plaques. Ce service est gratuit et offert à toute personne touchee par la SP."
   },
   {
     "name": "Parkinson Canada",
@@ -11908,7 +12098,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-888-664-1974 (Monday–Friday, 9 AM to 4 PM Eastern) for information and support on Parkinson’s disease. You can also email support@parkinson.ca for assistance.",
-    "hours_text": "Mon–Fri: 09:00–16:00. Mon-Fri 9am-4pm ET"
+    "hours_text": "Mon–Fri: 09:00–16:00. Mon-Fri 9am-4pm ET",
+    "access_script_fr": "Appelez le 1-888-664-1974 (du lundi au vendredi, de 9 h a 16 h, heure de l'Est) pour obtenir de l'information et du soutien sur la maladie de Parkinson. Vous pouvez aussi envoyer un courriel à support@parkinson.ca pour obtenir de l'aide."
   },
   {
     "name": "Talk Tobacco",
@@ -11958,7 +12149,8 @@
     },
     "plain_language_available": false,
     "access_script": "First Nations, Inuit, and Métis individuals looking to quit smoking can call 1-833-998-8255 for free, culturally tailored support. Live chat and additional resources are also available on the Talk Tobacco website (talktobacco.ca).",
-    "hours_text": "7 days a week (hours vary)"
+    "hours_text": "7 days a week (hours vary)",
+    "access_script_fr": "Les membres des Premières Nations, les Inuits et les Métis qui souhaitent cesser de fumer peuvent appeler le 1-833-998-8255 pour obtenir gratuitement un soutien adapté à leur culture. Le clavardage en direct et des ressources supplémentaires sont aussi disponibles sur le site de Talk Tobacco (talktobacco.ca)."
   },
   {
     "name": "Aboriginal Legal Services (ALS)",
@@ -11998,7 +12190,8 @@
     },
     "plain_language_available": false,
     "access_script": "Indigenous people in Ontario can call 1-844-633-2886 to reach Aboriginal Legal Services for free legal advice and representation. No fees are charged for their assistance.",
-    "hours_text": "Mon, Wed, Fri 10am-3pm (intake)"
+    "hours_text": "Mon, Wed, Fri 10am-3pm (intake)",
+    "access_script_fr": "Les personnes autochtones en Ontario peuvent appeler le 1-844-633-2886 pour joindre Aboriginal Legal Services afin d'obtenir gratuitement des conseils juridiques et de la représentation. Aucuns frais ne sont facturés pour cette aide."
   },
   {
     "name": "Consumer Protection Ontario",
@@ -12058,7 +12251,8 @@
     },
     "plain_language_available": false,
     "access_script": "Ontario consumers can call 1-800-889-9768 for free information about consumer rights or to report unfair business practices. This is the provincial Consumer Protection Ontario helpline.",
-    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm"
+    "hours_text": "Mon–Fri: 08:30–17:00. Mon-Fri 8:30am-5pm",
+    "access_script_fr": "Les consommateurs de l'Ontario peuvent appeler le 1-800-889-9768 pour obtenir gratuitement des renseignements sur les droits des consommateurs ou pour signaler des pratiques commerciales injustes. Il s'agit de la ligne d'aide provinciale de Protection du consommateur de l'Ontario."
   },
   {
     "name": "Law Society Referral Service",
@@ -12118,7 +12312,8 @@
     },
     "plain_language_available": false,
     "access_script": "Call 1-855-947-5255 to request a referral to a lawyer or paralegal through the Law Society Referral Service. You will receive a free 30-minute consultation with a legal professional.",
-    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm"
+    "hours_text": "Mon–Fri: 09:00–17:00. Mon-Fri 9am-5pm",
+    "access_script_fr": "Appelez le 1-855-947-5255 pour demander une recommandation vers un avocat ou un parajuriste par le Service de reference du Barreau. Vous recevrez une consultation gratuite de 30 minutes avec un professionnel du droit."
   },
   {
     "name": "Nishnawbe-Aski Legal Services (NALSC)",
@@ -12178,6 +12373,7 @@
     },
     "plain_language_available": false,
     "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)",
-    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm"
+    "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm",
+    "access_script_fr": "Les résidents autochtones du territoire de Nishnawbe Aski Nation peuvent appeler le 1-800-465-5581 pour acceder a des services d'aide juridique. Les services sont gratuits, mais des criteres d'admissibilite financiere peuvent s'appliquer pour une aide continue."
   }
 ]

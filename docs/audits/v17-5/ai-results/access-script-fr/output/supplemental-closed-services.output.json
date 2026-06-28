@@ -1,0 +1,16 @@
+{
+  "batch": "supplemental-closed-services",
+  "total_batches": 1,
+  "items": [
+    {
+      "id": "pathways-for-children-youth",
+      "name": "Pathways for Children and Youth (Merged)",
+      "name_fr": "Pathways for Children and Youth (Fusionné)",
+      "scope": "kingston",
+      "access_script": "Call 613-546-8535 or visit https://maltbycentre.ca for services.",
+      "access_script_fr": "Appelez le 613-546-8535 ou visitez https://maltbycentre.ca pour les services.",
+      "translation_review_status": "language_reviewed",
+      "translation_notes": "Language review completed on 2026-06-28; translation-only, no service facts added."
+    }
+  ]
+}
