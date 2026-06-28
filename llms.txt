@@ -1404,7 +1404,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
 - **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
 - **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
-- **GitHub automation hygiene**: bundle analysis, Dependabot review gates, scheduled governance reminders, and finding workflows now run quiet-by-default with sticky comments/issues only when action is required
+- **GitHub automation hygiene**: bundle analysis, Dependabot review gates, scheduled governance reminders, and finding workflows now run quiet-by-default; critical-only mode keeps repo reminders manual unless action is required
 - **URL health governance**: the monthly health check writes an Actions summary, auto-closes its finding issue when the report returns clean, and can use bounded official provider override probes for repeat CI-only false positives without changing curated public URLs
 - **Lint hygiene**: repo-wide ESLint now ignores local MkDocs build output under `site/`, so `npm run lint` remains actionable even when docs artifacts exist locally
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
@@ -1417,7 +1417,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Partner write hardening**: partner-facing service mutation routes now use explicit editable-field allowlists, role-aware service ownership checks, and owner/admin-only delete semantics
 - **Search parity and freshness**: local and server search now align on `location` and `openNow` filters, including empty-query open-now browsing; local and server ranking now share the same scoring engine; offline export fingerprints are stable and successful syncs invalidate the in-memory service cache
 - **Privacy-safe sharing and analytics**: share-target hydration now uses a short-lived first-party cookie, printable cards generate inline QR codes locally, search analytics store only locale + result count, and detail-page analytics distinguish internal views from outbound referrals
-- **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live
+- **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live; `OPERATIONAL_NOTIFICATION_MODE=critical_only` gates interrupting Slack alerts to critical incidents and matching recoveries
 - **Health visibility**: `/api/v1/health` is public and read-only, while `/api/v1/health/probe` is the authenticated uptime-sampling and alert-evaluation path
 - **Proxy auth resilience**: refreshed Supabase session cookies now survive the locale proxy pass and protected-route redirects
 - **DB-authoritative runtime data**: search/detail loading no longer overlays live DB reads with local JSON metadata when Supabase is available
