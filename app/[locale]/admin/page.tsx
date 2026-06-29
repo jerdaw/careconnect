@@ -12,6 +12,25 @@ import { ReindexProgress } from "@/components/admin/ReindexProgress"
 import { useTranslations } from "next-intl"
 import { DashboardShell, DashboardSurface } from "@/components/dashboard/DashboardShell"
 
+type AdminDataResponse = {
+  services?: Service[]
+  data?: {
+    services?: Service[]
+  }
+} | null
+
+function getServicesFromAdminDataResponse(payload: AdminDataResponse): Service[] {
+  if (Array.isArray(payload?.data?.services)) {
+    return payload.data.services
+  }
+
+  if (Array.isArray(payload?.services)) {
+    return payload.services
+  }
+
+  return []
+}
+
 export default function AdminPage() {
   const t = useTranslations("Admin")
   const [services, setServices] = useState<Service[]>([])
@@ -29,9 +48,9 @@ export default function AdminPage() {
     // BUT to get "write" capability we likely need to fetch from an endpoint
     // that reads the file fresh.
     fetch("/api/admin/data")
-      .then((res) => res.json() as Promise<{ services: Service[] }>)
+      .then((res) => res.json() as Promise<AdminDataResponse>)
       .then((data) => {
-        setServices(data.services)
+        setServices(getServicesFromAdminDataResponse(data))
         setIsLoading(false)
       })
       .catch(() => {
