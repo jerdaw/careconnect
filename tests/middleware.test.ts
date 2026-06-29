@@ -51,7 +51,7 @@ vi.mock("@/lib/logger", () => ({
   },
 }))
 
-import { proxy } from "@/proxy"
+import { config, proxy } from "@/proxy"
 
 describe("proxy auth cookie propagation", () => {
   beforeEach(() => {
@@ -94,5 +94,9 @@ describe("proxy auth cookie propagation", () => {
     expect(mockIntlHandler).not.toHaveBeenCalled()
     expect(mockGetUser).not.toHaveBeenCalled()
     expect(response.headers.get("location")).toBeNull()
+  })
+
+  it("excludes the Supabase auth callback route from the proxy matcher", () => {
+    expect(config.matcher.join(" ")).toContain("auth/callback")
   })
 })
