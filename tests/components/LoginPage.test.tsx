@@ -82,7 +82,7 @@ describe("LoginPage", () => {
       expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
         email: "partner@example.org",
         options: {
-          emailRedirectTo: "https://careconnect.ing/auth/callback?next=%2Fen%2Fdashboard",
+          emailRedirectTo: "https://careconnect.ing/en/auth/callback?next=%2Fen%2Fdashboard",
         },
       })
     })
@@ -104,7 +104,7 @@ describe("LoginPage", () => {
       expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
         email: "partner@example.org",
         options: {
-          emailRedirectTo: "https://careconnect.ing/auth/callback?next=%2Fen%2Fadmin",
+          emailRedirectTo: "https://careconnect.ing/en/auth/callback?next=%2Fen%2Fadmin",
         },
       })
     })

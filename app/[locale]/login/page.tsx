@@ -19,6 +19,8 @@ const LOGIN_POINTS = [
   { key: "privacy", Icon: LockKeyhole },
 ] as const
 
+const SUPPORTED_LOCALES = new Set(["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"])
+
 function safeRelativeRedirect(value: string | null): string {
   if (!value || !value.startsWith("/") || value.startsWith("//")) {
     return "/en/dashboard"
@@ -30,7 +32,9 @@ function safeRelativeRedirect(value: string | null): string {
 function authCallbackUrl(nextPath: string): string {
   const baseUrl =
     process.env.NODE_ENV === "development" && typeof window !== "undefined" ? window.location.origin : getPublicAppUrl()
-  const url = new URL("/auth/callback", baseUrl)
+  const nextLocale = nextPath.split("/").filter(Boolean)[0]
+  const callbackLocale = nextLocale && SUPPORTED_LOCALES.has(nextLocale) ? nextLocale : "en"
+  const url = new URL(`/${callbackLocale}/auth/callback`, baseUrl)
   url.searchParams.set("next", nextPath)
   return url.toString()
 }
