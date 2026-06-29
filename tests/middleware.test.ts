@@ -85,4 +85,14 @@ describe("proxy auth cookie propagation", () => {
     expect(response.headers.get("location")).toContain("next=%2Fen%2Fdashboard")
     expect(response.cookies.get("sb-access-token")?.value).toBe("refreshed-token")
   })
+
+  it("does not localize the Supabase auth callback route", async () => {
+    const request = new NextRequest("http://localhost:3000/auth/callback?next=%2Fen%2Fadmin")
+
+    const response = await proxy(request)
+
+    expect(mockIntlHandler).not.toHaveBeenCalled()
+    expect(mockGetUser).not.toHaveBeenCalled()
+    expect(response.headers.get("location")).toBeNull()
+  })
 })

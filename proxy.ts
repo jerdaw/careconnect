@@ -16,6 +16,16 @@ function applyResponseCookies(source: NextResponse, target: NextResponse) {
 }
 
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
+  if (pathname === "/auth/callback" || pathname === "/auth/callback/") {
+    return NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    })
+  }
+
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
   const preferredLocale =
     cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
@@ -80,7 +90,6 @@ export async function proxy(request: NextRequest) {
   const intlResponse = intlMiddleware(request)
 
   // 3. Protected Route Logic
-  const { pathname } = request.nextUrl
   const isProtectedRoute = pathname.includes("/dashboard") || pathname.includes("/admin")
 
   if (isProtectedRoute && !user) {
