@@ -3,12 +3,14 @@ import { assertAdminRole } from "@/lib/auth/authorization"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { env } from "@/lib/env"
-import { REINDEX_COOLDOWN_MS, REINDEX_TIMEOUT_MS } from "../route"
 import type { Database } from "@/types/supabase"
 
 type JsonRecord = Record<string, unknown>
 
 type ProofStatus = "yes" | "no"
+
+const REINDEX_TIMEOUT_MS = 15 * 60 * 1000
+const REINDEX_COOLDOWN_MS = 60 * 1000
 
 function yesNo(value: boolean): ProofStatus {
   return value ? "yes" : "no"
