@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { getPublicAppUrl } from "@/lib/brand"
 import { createClient } from "@/utils/supabase/server"
 
 const SUPPORTED_LOCALES = new Set(["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"])
@@ -17,7 +18,7 @@ function localeFromPath(pathname: string): string {
 }
 
 function loginRedirect(request: NextRequest, error: string) {
-  const url = new URL(`/${localeFromPath(request.nextUrl.pathname)}/login`, request.url)
+  const url = new URL(`/${localeFromPath(request.nextUrl.pathname)}/login`, getPublicAppUrl())
   url.searchParams.set("error", error)
   return NextResponse.redirect(url)
 }
@@ -40,5 +41,7 @@ export async function GET(request: NextRequest) {
     return loginRedirect(request, "auth_callback")
   }
 
-  return NextResponse.redirect(new URL(safeRelativeRedirect(request.nextUrl.searchParams.get("next")), request.url))
+  return NextResponse.redirect(
+    new URL(safeRelativeRedirect(request.nextUrl.searchParams.get("next")), getPublicAppUrl())
+  )
 }

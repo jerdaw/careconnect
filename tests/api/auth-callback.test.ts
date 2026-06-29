@@ -31,6 +31,15 @@ describe("auth callback route", () => {
     expect(response.headers.get("location")).toBe("https://careconnect.ing/en/admin")
   })
 
+  it("uses the public app URL instead of an internal reverse-proxy origin", async () => {
+    const request = new NextRequest("https://0.0.0.0:3000/en/auth/callback?code=test-code&next=%2Fen%2Fadmin")
+
+    const response = await GET(request)
+
+    expect(response.status).toBe(307)
+    expect(response.headers.get("location")).toBe("https://careconnect.ing/en/admin")
+  })
+
   it("falls back to the localized login page when the exchange fails", async () => {
     mockExchangeCodeForSession.mockResolvedValue({ data: {}, error: new Error("exchange failed") })
     const request = new NextRequest("https://careconnect.ing/fr/auth/callback?code=test-code&next=%2Ffr%2Fadmin")
