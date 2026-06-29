@@ -10,8 +10,8 @@ import type { Database } from "@/types/supabase"
 
 const execPromise = util.promisify(exec)
 const REINDEX_COMMAND = "npm run generate-embeddings"
-const REINDEX_TIMEOUT_MS = 15 * 60 * 1000
-const REINDEX_COOLDOWN_MS = 60 * 1000
+export const REINDEX_TIMEOUT_MS = 15 * 60 * 1000
+export const REINDEX_COOLDOWN_MS = 60 * 1000
 
 type ReindexGuardState = {
   inFlight: boolean
