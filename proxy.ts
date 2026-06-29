@@ -7,6 +7,21 @@ import { logger } from "@/lib/logger"
 
 // Initialize Internationalization Middleware
 const intlMiddleware = createMiddleware(routing)
+const authCallbackLocales = new Set(routing.locales)
+
+function isAuthCallbackPath(pathname: string) {
+  if (pathname === "/auth/callback" || pathname === "/auth/callback/") {
+    return true
+  }
+
+  const segments = pathname.split("/").filter(Boolean)
+  return (
+    segments.length === 3 &&
+    authCallbackLocales.has(segments[0] as (typeof routing.locales)[number]) &&
+    segments[1] === "auth" &&
+    segments[2] === "callback"
+  )
+}
 
 function applyResponseCookies(source: NextResponse, target: NextResponse) {
   for (const cookie of source.cookies.getAll()) {
@@ -18,7 +33,7 @@ function applyResponseCookies(source: NextResponse, target: NextResponse) {
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  if (pathname === "/auth/callback" || pathname === "/auth/callback/") {
+  if (isAuthCallbackPath(pathname)) {
     return NextResponse.next({
       request: {
         headers: request.headers,

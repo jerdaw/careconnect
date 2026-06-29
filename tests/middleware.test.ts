@@ -96,6 +96,16 @@ describe("proxy auth cookie propagation", () => {
     expect(response.headers.get("location")).toBeNull()
   })
 
+  it("does not localize the localized Supabase auth callback route", async () => {
+    const request = new NextRequest("http://localhost:3000/en/auth/callback?next=%2Fen%2Fadmin")
+
+    const response = await proxy(request)
+
+    expect(mockIntlHandler).not.toHaveBeenCalled()
+    expect(mockGetUser).not.toHaveBeenCalled()
+    expect(response.headers.get("location")).toBeNull()
+  })
+
   it("excludes the Supabase auth callback route from the proxy matcher", () => {
     expect(config.matcher.join(" ")).toContain("auth/callback")
   })
