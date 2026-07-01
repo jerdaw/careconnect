@@ -43,6 +43,20 @@ decision aid, not a new feature plan.
 | PLAN-032 public repo side                            | Done                      | Tests and roadmap status are in this repo; private production smoke execution remains private-ops gated.                                          |
 | CI health                                            | Done                      | Latest main-branch workflows are green.                                                                                                           |
 
+## Closed In This Workstream
+
+These closeout items are done and should not be reopened in this workstream
+unless a new regression appears:
+
+1. Repos were left clean, pushed, and even with `origin/main`.
+2. CareConnect active implementation is paused while Gate 0 evidence is still
+   missing.
+3. The completed auth/admin regression and restricted production-automation
+   work is documented and handed off.
+4. Live auth/admin smoke and automated production reindex smoke are explicitly
+   deferred, not treated as forgotten work.
+5. The remaining work is now roadmap-owned rather than closeout-owned.
+
 ## Finish Now
 
 These are the only items that should be treated as finish-now candidates before

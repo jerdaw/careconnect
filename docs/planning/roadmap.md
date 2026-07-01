@@ -86,6 +86,29 @@ The active question is whether the project can prove non-duplicate value relativ
 4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
 5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
+## Roadmap Items Kept After 2026-07-01 Closeout
+
+The July 2026 closeout intentionally moved the remaining work out of the active
+closeout workstream and back onto the roadmap. Treat these as explicit backlog
+or owner-owned items:
+
+1. **Gate 0 evidence**
+   - `G0-3 / C1`: attach candidate partner legal/API terms and complete clause-level review.
+   - `G0-8 / D4`: attach the named pilot partner list, outreach owners, and dated partner-operations evidence.
+2. **Service verification**
+   - Issue `#13`: monthly crisis-service verification.
+   - Issue `#14`: quarterly general-service verification.
+3. **Deferred production automation**
+   - Optional synthetic-mailbox live auth/admin smoke.
+   - Optional production reindex guardrail automation, explicit and on-demand only.
+4. **Human-owned provider work**
+   - Provider-console, credential, and private configuration actions remain outside public-repo automation unless a later approved private-ops path covers them.
+5. **Noncritical maintenance backlog**
+   - Broad UI polish that does not affect launch safety, admin reliability, or user-facing correctness.
+   - Advanced French service-data enrichment beyond the completed French access-script merge.
+   - Remaining DB migration-history cleanup.
+   - Admin-facing data-quality dashboard.
+
 ## What Not To Do Now
 
 1. Do not expand directory breadth to compete with 211.
