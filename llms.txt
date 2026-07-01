@@ -1373,7 +1373,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-06-30
+last_updated: 2026-07-01
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1382,13 +1382,13 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-06-30
+> **Last Updated**: 2026-07-01
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
 - **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28)
-- **Tests**: default Vitest suite green as of 2026-06-28 (`201` files; `1620` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-07-01 (`204` files; `1637` passed; `24` skipped)
 - **DB integration lane**: PR DB integration checks are green as of 2026-06-28, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -1414,6 +1414,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
 - **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **Auth/admin regression guardrails**: magic-link redirect, locale callback, safe `next`, admin dashboard envelope parsing, and reindex guardrail behavior now have focused regression coverage; authenticated production smoke automation remains private-ops gated rather than a public-repo workflow
+- **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
 - **French service-data gaps**: `access_script_fr` is complete for all 196 records; governed content follow-through still remains for `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
@@ -1455,7 +1456,7 @@ The active question is whether the project can prove non-duplicate value relativ
 1. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
 2. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
 3. Execute the verification queue using the 2026-06-27 service verification workplan, starting with the Crisis lane; update service facts and provenance only after manual evidence is recorded.
-4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work.
+4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
 5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## What Not To Do Now
@@ -1645,6 +1646,8 @@ References:
 ### Recent Completed Milestones
 
 - **Close-out prep and French access-script merge (2026-06-28)**: completed the reviewed `access_script_fr` batch merge for all 196 service records, refreshed the access-script audit to `0` missing French access scripts, added the service verification workplan for all 196 due services, and closed the French translation review issue while leaving manual verification and Gate 0 evidence blockers tracked separately.
+- **Closeout triage checkpoint (2026-07-01)**: recorded the current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation; no additional repo-side implementation is recommended before Gate 0 evidence unless a concrete regression appears.
+- **Auth/admin regression guardrails (2026-07-01)**: added focused auth callback/login/admin regression coverage and a non-production browser smoke spec after the production auth/admin troubleshooting pass.
 - **v22 Gate 0 autonomous maintenance checkpoint (2026-06-13)**: completed the bounded repo-local maintenance pass for C1/D4 evidence guards, D4 artifact-inventory validation, offline privacy/recovery hardening, pilot event contracts, OpenAPI coverage, readiness input validation, and roadmap stop-rule cleanup while leaving Gate 0 blocked on external evidence; archived in [2026-06-13 v22.0 Autonomous Gate 0 Maintenance](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md).
 - **Public GitHub cleanup (2026-06-05)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, replaced the real platform contract with fake-only example content plus a legacy-path tombstone, migrated durable private originals to the private/shared operations source of truth while preserving ignored local copies, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
 - **Public and operational surface polish (2026-05-01)**: completed the bounded reference sources, suggest-service intake, route-reference cleanup, public workflow, static legal/help/trust, settings, and authenticated dashboard/admin polish wave without changing service-data, search, auth, or schema contracts; archived in [2026-05-01 v20.0 Public and Operational Surface Polish](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md).
