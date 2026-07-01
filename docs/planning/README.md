@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-13
+last_updated: 2026-07-01
 owner: jer
 tags: [planning, roadmap, governance, public-docs]
 ---
@@ -63,6 +63,10 @@ This directory contains planning and strategy documents for CareConnect.
 - [Autonomous Maintenance Plan Archive (2026-06-28)](archive/2026-06-28-autonomous-maintenance-plan.md)
   - Completed documentation, validation, local CI parity, and read-only embeddings freshness maintenance queue while leaving v22 C1/D4 evidence externally blocked
   - **Reading time:** 5-10 minutes
+
+- [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
+  - Current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation
+  - **Reading time:** 5 minutes
 
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions
