@@ -74,7 +74,7 @@ This closeout investigation is done when:
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Branch                      | `main`                                                                                                                                                                                                        |
 | Git status                  | Clean and even with `origin/main` before this audit document was added                                                                                                                                        |
-| Latest local commit         | `41666bc1 docs: record CareConnect roadmap closeout split`                                                                                                                                                    |
+| Latest local commit         | `c42d057 fix: close out CareConnect current-state audit`                                                                                                                                                      |
 | Open PRs                    | None found via `gh pr list --repo jerdaw/careconnect --limit 20`                                                                                                                                              |
 | Recent CI                   | Latest `CI`, `Platform Ops Integration`, `Deploy Documentation`, and Pages deployment runs are green                                                                                                          |
 | Instruction files inspected | `AGENTS.md`, `docs/documentation-guidelines.md`, `docs/governance/documentation-guidelines.md`, `docs/testing-guidelines.md`, `docs/development/testing-guidelines.md`, `docs/development/roadmap-process.md` |
@@ -212,9 +212,27 @@ locales (`91` route checks). Live and local differed on `12` routes:
 Interpretation: production is serving an older localized About/About Partners
 copy than the current repo.
 
-Supporting signal: live `/api/v1/health` reported `version=f250afc`, while the
-current repo head is `41666bc1`. The `f250afc` marker is not a current
-`origin/main` ref in this checkout.
+Pre-deploy supporting signal: live `/api/v1/health` reported
+`version=f250afc`, while the then-current repo head was `41666bc1`. The
+`f250afc` marker was not a current `origin/main` ref in this checkout.
+
+### Post-Deploy Update
+
+After owner approval on 2026-07-01, private operations deployed the current
+`origin/main` build through the restricted production maintenance wrapper.
+Post-deploy public smoke checks reported:
+
+| Check                                           | Result                                            |
+| ----------------------------------------------- | ------------------------------------------------- |
+| `/api/v1/health`                                | `200`, `status=healthy`, `version=c42d057`        |
+| Representative localized About/Partners pages   | `2xx`                                             |
+| Representative localized Content Policy pages   | `2xx`                                             |
+| `/api/v1/services/kids-help-phone`              | `2xx`                                             |
+| `/api/v1/search/services` with valid body shape | `2xx`, nonzero result class                       |
+| Restricted wrapper `service-health`             | `ok=true`, loopback HTTP `200`, container present |
+
+No raw logs, env values, cookies, bearer tokens, session values, raw
+authenticated responses, or provider secrets were collected.
 
 ## Local Runtime Findings
 
@@ -301,30 +319,28 @@ cookies, browser storage, or raw authenticated responses were collected.
 
 ## Final Triage
 
-| Item                                             | Severity | Decision                    | Owner               | Evidence                                                                      | Next Step                                                                                         |
-| ------------------------------------------------ | -------- | --------------------------- | ------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Simplified Chinese content-policy rich-text tags | Medium   | already-done                | Repo                | Local route sweep and new unit test                                           | Deploy current repo when production update is approved                                            |
-| Live production app version behind current repo  | Medium   | finish-now or defer-roadmap | Owner / private ops | Live health `version=f250afc`; local repo `41666bc1`; localized heading diffs | Decide whether to deploy current repo before pausing                                              |
-| Browser-console inspection from this WSL session | Low      | defer-roadmap               | Local tooling       | Playwright package present, browser dependencies missing                      | Install local browser dependencies or use Chrome control surface in a future browser-debug window |
-| Authenticated live auth/admin smoke              | Medium   | defer-roadmap               | Private ops / owner | Existing PLAN-032 state                                                       | Add root-only synthetic mailbox config before automating                                          |
-| Production reindex guardrail automation          | Medium   | defer-roadmap               | Private ops / owner | Existing manual proof                                                         | Keep explicit/on-demand only                                                                      |
-| Gate 0 C1 legal/API terms evidence               | High     | blocked-human               | Owner               | Existing roadmap and Gate 0 checks                                            | Attach candidate terms and complete clause-level review                                           |
-| Gate 0 D4 partner-ops evidence                   | High     | blocked-human               | Owner               | Existing roadmap and Gate 0 checks                                            | Attach named partner list, outreach owner, and dated evidence                                     |
+| Item                                             | Severity | Decision      | Owner               | Evidence                                                                      | Next Step                                                                                         |
+| ------------------------------------------------ | -------- | ------------- | ------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Simplified Chinese content-policy rich-text tags | Medium   | completed     | Repo / private ops  | Local route sweep, new unit test, post-deploy `2xx` `/zh-Hans/content-policy` | Monitor normally                                                                                  |
+| Live production app version behind current repo  | Medium   | completed     | Owner / private ops | Post-deploy live health `version=c42d057`; localized page/API smoke passed    | Monitor normally                                                                                  |
+| Browser-console inspection from this WSL session | Low      | defer-roadmap | Local tooling       | Playwright package present, browser dependencies missing                      | Install local browser dependencies or use Chrome control surface in a future browser-debug window |
+| Authenticated live auth/admin smoke              | Medium   | defer-roadmap | Private ops / owner | Existing PLAN-032 state                                                       | Add root-only synthetic mailbox config before automating                                          |
+| Production reindex guardrail automation          | Medium   | defer-roadmap | Private ops / owner | Existing manual proof                                                         | Keep explicit/on-demand only                                                                      |
+| Gate 0 C1 legal/API terms evidence               | High     | blocked-human | Owner               | Existing roadmap and Gate 0 checks                                            | Attach candidate terms and complete clause-level review                                           |
+| Gate 0 D4 partner-ops evidence                   | High     | blocked-human | Owner               | Existing roadmap and Gate 0 checks                                            | Attach named partner list, outreach owner, and dated evidence                                     |
 
 ## Manual Or Approval Bundle
 
-No secret-bearing manual output is needed to preserve this audit. The remaining
-human-owned decisions are:
+No secret-bearing manual output is needed to preserve this audit. The production
+deploy approval item was completed on 2026-07-01. The remaining human-owned
+decisions are:
 
-1. Decide whether to approve a production deploy of current `origin/main` before
-   pausing CareConnect. This would pick up the localized About/About Partners
-   copy and the Simplified Chinese content-policy fix.
-2. If console-level browser inspection is still desired, either expose a working
+1. If console-level browser inspection is still desired, either expose a working
    Chrome control surface in a future session or approve local browser
    dependency installation for the WSL environment. The missing Linux libraries
    are NSS/NSPR browser runtime dependencies.
-3. Keep synthetic live auth/admin smoke deferred until private operations has a
+2. Keep synthetic live auth/admin smoke deferred until private operations has a
    root-only synthetic mailbox config.
-4. Keep production reindex guardrail automation explicit and on-demand.
-5. Continue Gate 0 closure through the existing owner-owned C1 and D4 evidence
+3. Keep production reindex guardrail automation explicit and on-demand.
+4. Continue Gate 0 closure through the existing owner-owned C1 and D4 evidence
    tasks.
