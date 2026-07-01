@@ -42,6 +42,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **Auth/admin regression guardrails**: magic-link redirect, locale callback, safe `next`, admin dashboard envelope parsing, and reindex guardrail behavior now have focused regression coverage; authenticated production smoke automation remains private-ops gated rather than a public-repo workflow
 - **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
+- **Current-state closeout audit**: the 2026-07-01 route audit fixed a Simplified Chinese content-policy rich-text issue locally and found production is still serving older localized About/About Partners copy than `origin/main`; see [CareConnect Current-State Closeout Audit (2026-07-01)](../implementation/careconnect-current-state-closeout-audit-2026-07-01.md)
 - **French service-data gaps**: `access_script_fr` is complete for all 196 records; governed content follow-through still remains for `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
@@ -84,7 +85,8 @@ The active question is whether the project can prove non-duplicate value relativ
 2. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
 3. Execute the verification queue using the 2026-06-27 service verification workplan, starting with the Crisis lane; update service facts and provenance only after manual evidence is recorded.
 4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
-5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+5. Decide whether to deploy the current `origin/main` build before pausing so production picks up the localized About/About Partners copy and the Simplified Chinese content-policy rich-text fix recorded in the [current-state closeout audit](../implementation/careconnect-current-state-closeout-audit-2026-07-01.md).
+6. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## Roadmap Items Kept After 2026-07-01 Closeout
 
@@ -108,6 +110,7 @@ or owner-owned items:
    - Advanced French service-data enrichment beyond the completed French access-script merge.
    - Remaining DB migration-history cleanup.
    - Admin-facing data-quality dashboard.
+   - Browser-console closeout pass once a working browser runtime or Chrome control surface is available.
 
 ## What Not To Do Now
 
