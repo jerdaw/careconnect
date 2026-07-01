@@ -110,6 +110,48 @@ describe("LoginPage", () => {
     })
   })
 
+  it("falls back to the public dashboard when next is an absolute internal URL", async () => {
+    const user = userEvent.setup()
+    mockSearchParams.set("next", "http://0.0.0.0:3000/en/admin")
+    vi.mocked(hasSupabaseCredentials).mockReturnValue(true)
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({ data: { user: null, session: null }, error: null })
+
+    renderWithProviders(<LoginPage />, { messages: enMessages })
+
+    await user.type(screen.getByLabelText(/Email address/), "partner@example.org")
+    await user.click(screen.getByRole("button", { name: /Sign in with Email/ }))
+
+    await waitFor(() => {
+      expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
+        email: "partner@example.org",
+        options: {
+          emailRedirectTo: "https://careconnect.ing/en/auth/callback?next=%2Fen%2Fdashboard",
+        },
+      })
+    })
+  })
+
+  it("does not pass protocol-relative next paths into the magic-link callback URL", async () => {
+    const user = userEvent.setup()
+    mockSearchParams.set("next", "//evil.example/en/admin")
+    vi.mocked(hasSupabaseCredentials).mockReturnValue(true)
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({ data: { user: null, session: null }, error: null })
+
+    renderWithProviders(<LoginPage />, { messages: enMessages })
+
+    await user.type(screen.getByLabelText(/Email address/), "partner@example.org")
+    await user.click(screen.getByRole("button", { name: /Sign in with Email/ }))
+
+    await waitFor(() => {
+      expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
+        email: "partner@example.org",
+        options: {
+          emailRedirectTo: "https://careconnect.ing/en/auth/callback?next=%2Fen%2Fdashboard",
+        },
+      })
+    })
+  })
+
   it("routes the new-partner CTA to the existing reference sources page", () => {
     renderWithProviders(<LoginPage />, { messages: enMessages })
 

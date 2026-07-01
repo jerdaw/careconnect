@@ -2,6 +2,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { NextRequest } from "next/server"
 import { GET } from "@/app/auth/callback/route"
+import { GET as LOCALIZED_GET } from "@/app/[locale]/auth/callback/route"
 
 const { mockExchangeCodeForSession } = vi.hoisted(() => ({
   mockExchangeCodeForSession: vi.fn(),
@@ -68,5 +69,24 @@ describe("auth callback route", () => {
     const response = await GET(request)
 
     expect(response.headers.get("location")).toBe("https://careconnect.ing/en/dashboard")
+  })
+
+  it("rejects internal localhost-style next paths after a successful exchange", async () => {
+    const request = new NextRequest(
+      "https://careconnect.ing/en/auth/callback?code=test-code&next=http%3A%2F%2F0.0.0.0%3A3000%2Fen%2Fadmin"
+    )
+
+    const response = await GET(request)
+
+    expect(response.headers.get("location")).toBe("https://careconnect.ing/en/dashboard")
+  })
+
+  it("keeps the localized callback route wired to the server callback implementation", async () => {
+    const request = new NextRequest("https://careconnect.ing/en/auth/callback?code=test-code&next=%2Fen%2Fadmin")
+
+    const response = await LOCALIZED_GET(request)
+
+    expect(mockExchangeCodeForSession).toHaveBeenCalledWith("test-code")
+    expect(response.headers.get("location")).toBe("https://careconnect.ing/en/admin")
   })
 })
