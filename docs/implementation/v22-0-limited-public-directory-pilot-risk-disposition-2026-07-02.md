@@ -34,7 +34,7 @@ expansion, 211 integration, legal claims, or outreach execution.
 
 The owner self-review used these public reference surfaces:
 
-1. Office of the Privacy Commissioner of Canada, [PIPEDA overview](https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-electronic-documents-act-pipeda/) and [PIPEDA requirements in brief](https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-electronic-documents-act-pipeda/pipeda_brief/).
+1. Government of Canada, [PIPEDA full text](https://laws-lois.justice.gc.ca/eng/acts/P-8.6/FullText.html), and Office of the Privacy Commissioner of Canada, [summary of privacy laws in Canada](https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/).
 2. Government of Ontario, [Personal Health Information Protection Act, 2004](https://www.ontario.ca/laws/statute/04p03).
 3. CRTC, [CASL FAQ](https://crtc.gc.ca/eng/com500/faq500.htm) and [guidance on implied consent](https://crtc.gc.ca/eng/com500/guide.htm).
 4. 211 Ontario, [Terms of Use / Privacy Policy](https://211ontario.ca/privacy-policy/), treated as source-specific terms that must be reviewed before any integration or content-reuse dependency.
