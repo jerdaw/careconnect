@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-28
+last_updated: 2026-07-02
 owner: jer
 tags: [implementation, v22.0, gate-0, evidence, status]
 ---
@@ -17,20 +17,21 @@ Canonical decision control:
 
 ## Evidence Matrix
 
-| Workstream                       | Artifact                                                                                          | Status      | Notes                                                                                          |
-| -------------------------------- | ------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------- |
-| Baseline metrics                 | [v22.0 Phase 0 Baseline Report (2026-03-09)](v22-0-phase-0-baseline-report-2026-03-09.md)         | complete    | M1/M3 executed; both denominators were zero so values are `NULL`                               |
-| Baseline SQL execution path      | [v22.0 Phase 0 Baseline SQL Editor Runbook](v22-0-phase-0-baseline-sql-editor-runbook.md)         | complete    | Execution instructions and fixed window documented                                             |
-| Integration feasibility decision | [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)        | in_progress | Conditional; C1 still open, C2/C3 complete                                                     |
-| User-owned blocker execution     | [v22.0 Gate 0 User Action Tracker](v22-0-gate-0-user-action-tracker.md)                           | in_progress | UA-1 and UA-3 pending; UA-2 complete                                                           |
-| Evidence intake template set     | [v22.0 Gate 0 Evidence Intake Pack](v22-0-gate-0-evidence-intake-pack.md)                         | complete    | Canonical intake templates defined for UA-1/UA-2/UA-3                                          |
-| Evidence workspace scaffolding   | [v22.0 Gate 0 Evidence Workspace](v22-0-evidence/README.md)                                       | complete    | Canonical drop locations and prep-only dated packets added for C1, C2, and D4 evidence bundles |
-| C1 legal control evidence        | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                 | in_progress | Prep-only packet exists; awaiting candidate partner terms for clause-level closure             |
-| C2 retention control evidence    | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)               | complete    | Policy approval, privacy sign-off, and dated read-only verification evidence are attached      |
-| C3 activation guard              | [v22.0 Control C3 Integration Activation Guard](v22-0-control-c3-integration-activation-guard.md) | complete    | Release gate is active; external integration remains blocked while C1 is pending               |
-| Threat model                     | [v22.0 Offline/Local Data Threat Model](../security/v22-0-offline-local-threat-model.md)          | complete    | No unresolved critical findings                                                                |
-| External claim revalidation      | [v22.0 External-Claim Re-Validation Log](v22-0-external-claim-revalidation-log.md)                | complete    | E1-E5 reviewed with validate/reject outcomes and impact log                                    |
-| Step 1 decision locks            | [v22.0 Step 1 Decision Locks (2026-03-09)](v22-0-step-1-decision-locks-2026-03-09.md)             | complete    | D1-D7 locked                                                                                   |
+| Workstream                                 | Artifact                                                                                                                                  | Status      | Notes                                                                                                                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------- |
+| Baseline metrics                           | [v22.0 Phase 0 Baseline Report (2026-03-09)](v22-0-phase-0-baseline-report-2026-03-09.md)                                                 | complete    | M1/M3 executed; both denominators were zero so values are `NULL`                                                      |
+| Baseline SQL execution path                | [v22.0 Phase 0 Baseline SQL Editor Runbook](v22-0-phase-0-baseline-sql-editor-runbook.md)                                                 | complete    | Execution instructions and fixed window documented                                                                    |
+| Integration feasibility decision           | [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)                                                | in_progress | Conditional; C1 still open, C2/C3 complete                                                                            |
+| User-owned blocker execution               | [v22.0 Gate 0 User Action Tracker](v22-0-gate-0-user-action-tracker.md)                                                                   | in_progress | UA-1 and UA-3 pending; UA-2 complete                                                                                  |
+| Evidence intake template set               | [v22.0 Gate 0 Evidence Intake Pack](v22-0-gate-0-evidence-intake-pack.md)                                                                 | complete    | Canonical intake templates defined for UA-1/UA-2/UA-3                                                                 |
+| Evidence workspace scaffolding             | [v22.0 Gate 0 Evidence Workspace](v22-0-evidence/README.md)                                                                               | complete    | Canonical drop locations and prep-only dated packets added for C1, C2, and D4 evidence bundles                        |
+| C1 legal control evidence                  | [v22.0 Control C1 Legal Review](v22-0-control-c1-legal-review.md)                                                                         | in_progress | Prep-only packet exists; awaiting candidate partner terms for clause-level closure                                    |
+| Limited public-directory pilot disposition | [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md) | complete    | Owner self-review allows only constrained public-directory operation; it is not legal advice and does not close C1/D4 |
+| C2 retention control evidence              | [v22.0 Control C2 Privacy Retention Mapping](v22-0-control-c2-retention-mapping.md)                                                       | complete    | Policy approval, privacy sign-off, and dated read-only verification evidence are attached                             |
+| C3 activation guard                        | [v22.0 Control C3 Integration Activation Guard](v22-0-control-c3-integration-activation-guard.md)                                         | complete    | Release gate is active; external integration remains blocked while C1 is pending                                      |
+| Threat model                               | [v22.0 Offline/Local Data Threat Model](../security/v22-0-offline-local-threat-model.md)                                                  | complete    | No unresolved critical findings                                                                                       |
+| External claim revalidation                | [v22.0 External-Claim Re-Validation Log](v22-0-external-claim-revalidation-log.md)                                                        | complete    | E1-E5 reviewed with validate/reject outcomes and impact log                                                           |
+| Step 1 decision locks                      | [v22.0 Step 1 Decision Locks (2026-03-09)](v22-0-step-1-decision-locks-2026-03-09.md)                                                     | complete    | D1-D7 locked                                                                                                          |
 
 ## Gate 0 Exit Conditions Snapshot
 
@@ -54,6 +55,14 @@ Open blockers:
 3. D4 operational readiness remains incomplete (named pilot partner list and outreach owner execution evidence pending).
 4. Baseline metrics are structurally complete but signal quality is currently low (`M1` and `M3` are `NULL` due to zero denominator in baseline window).
 
+Limited disposition:
+
+1. The 2026-07-02 owner self-review permits only constrained public-directory
+   operation.
+2. Full partner/API Gate 0 exit remains blocked on C1 and D4.
+3. The limited disposition is not lawyer review and is not a legal compliance
+   certification.
+
 ## Owner Notes
 
 1. No evidence values are fabricated.
@@ -61,3 +70,4 @@ Open blockers:
 3. This tracker is updated whenever any linked artifact status changes.
 4. User-owned blocker tracking follows gate-event updates only.
 5. Evidence workspace scaffolding, prep-only C1/D4 packets, and approved C2 policy artifacts reduce prep work, but Gate 0 still requires real C1 legal evidence and D4 partner-ops execution evidence.
+6. Limited public-directory operation is allowed only while the constraints in the 2026-07-02 disposition remain true.

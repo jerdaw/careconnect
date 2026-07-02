@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-01
+last_updated: 2026-07-02
 owner: jer
 tags: [implementation, triage, gate-0, auth, admin, verification]
 ---
@@ -27,7 +27,11 @@ decision aid, not a new feature plan.
    - `npm run check:v22-gate0` exits non-zero as expected because Gate 0 is
      still `NO-GO` with blockers `G0-3` and `G0-8`.
    - `npm run check:refs` passes.
-6. Current code markers:
+6. Limited-pilot disposition:
+   - The 2026-07-02 owner self-review records that a constrained public
+     directory pilot may continue without treating that as legal approval.
+   - Full partner/API Gate 0 remains `NO-GO` pending C1 and D4 evidence.
+7. Current code markers:
    - No current actionable `TODO`/`FIXME` was found in active app code that
      should interrupt Gate 0 triage.
    - The only active skipped test patterns found are credential-gated RLS
@@ -56,6 +60,8 @@ unless a new regression appears:
 4. Live auth/admin smoke and automated production reindex smoke are explicitly
    deferred, not treated as forgotten work.
 5. The remaining work is now roadmap-owned rather than closeout-owned.
+6. The limited public-directory disposition is recorded as a constraints-based
+   owner decision, not as full Gate 0 closure.
 
 ## Finish Now
 
@@ -96,7 +102,8 @@ These items are useful, but they should not pull the project away from Gate 0:
 These cannot be completed autonomously from repo evidence alone:
 
 1. `G0-3 / C1`: attach candidate partner legal/API terms and complete
-   clause-level review.
+   clause-level review. The 2026-07-02 owner self-review permits only the
+   constrained public-directory pilot and does not close C1.
 2. `G0-8 / D4`: attach named pilot partner list, outreach owner assignments,
    and dated execution evidence.
 3. Monthly crisis-service verification.
@@ -106,8 +113,9 @@ These cannot be completed autonomously from repo evidence alone:
 
 ## Recommended Triage Decision
 
-Treat CareConnect as technically stable enough to pause active implementation.
-The next strategic blocker is not more app code; it is Gate 0 evidence.
+Treat CareConnect as technically stable enough to pause active implementation
+and continue only the constrained public-directory pilot. The next strategic
+blocker is not more app code; it is Gate 0 evidence.
 
 Recommended state:
 

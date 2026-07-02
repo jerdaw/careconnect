@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-01
+last_updated: 2026-07-02
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-07-01
+> **Last Updated**: 2026-07-02
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -42,6 +42,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **Auth/admin regression guardrails**: magic-link redirect, locale callback, safe `next`, admin dashboard envelope parsing, and reindex guardrail behavior now have focused regression coverage; authenticated production smoke automation remains private-ops gated rather than a public-repo workflow
 - **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
+- **Limited public-directory disposition**: the 2026-07-02 owner self-review allows only a constrained public-directory pilot; full Gate 0 remains `NO-GO` until C1 and D4 evidence is attached; see [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
 - **Current-state closeout audit**: the 2026-07-01 route audit fixed a Simplified Chinese content-policy rich-text issue and the approved production deploy now serves `version=c42d057`; see [CareConnect Current-State Closeout Audit (2026-07-01)](../implementation/careconnect-current-state-closeout-audit-2026-07-01.md)
 - **French service-data gaps**: `access_script_fr` is complete for all 196 records; governed content follow-through still remains for `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
@@ -81,11 +82,12 @@ The active question is whether the project can prove non-duplicate value relativ
 
 ## What To Do Now
 
-1. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
-2. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
-3. Execute the verification queue using the 2026-06-27 service verification workplan, starting with the Crisis lane; update service facts and provenance only after manual evidence is recorded.
-4. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
-5. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+1. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
+2. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
+3. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
+4. Execute the verification queue using the 2026-06-27 service verification workplan, starting with the Crisis lane; update service facts and provenance only after manual evidence is recorded.
+5. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
+6. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
 ## Roadmap Items Kept After 2026-07-01 Closeout
 
@@ -96,6 +98,7 @@ or owner-owned items:
 1. **Gate 0 evidence**
    - `G0-3 / C1`: attach candidate partner legal/API terms and complete clause-level review.
    - `G0-8 / D4`: attach the named pilot partner list, outreach owners, and dated partner-operations evidence.
+   - 2026-07-02 limited public-directory disposition is recorded, but it does not close full Gate 0.
 2. **Service verification**
    - Issue `#13`: monthly crisis-service verification.
    - Issue `#14`: quarterly general-service verification.
@@ -156,6 +159,7 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 4. C2 retention policy approval, privacy sign-off, and dated verification evidence are complete.
 5. C1/D4 evidence-intake validation now protects against accidentally treating `prep_only` packets as closure evidence, including dated submission IDs, canonical artifact templates, C1/D4 traceability inventories, and D4 outreach-log source-artifact checks.
 6. Gate 0 remains `NO-GO` because C1 legal evidence and D4 partner-ops evidence are still incomplete.
+7. The 2026-07-02 limited public-directory disposition permits only constrained directory operation and is not legal approval.
 
 **Immediate blockers**
 
@@ -191,6 +195,7 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 - [v22.0 Gate 0 User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)
 - [v22.0 Gate 0 Evidence Intake Pack](../implementation/v22-0-gate-0-evidence-intake-pack.md)
 - [v22.0 Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)
+- [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
 - [v22.0 Autonomous Gate 0 Maintenance Pass Archive (2026-06-13)](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
 - [v22.0 Worktree Checkpoint (2026-06-13)](../implementation/v22-0-worktree-checkpoint-2026-06-13.md)
 

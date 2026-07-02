@@ -71,3 +71,4 @@ private/shared operations source of truth.
 - [Current Roadmap](planning/roadmap.md)
 - [Archive](planning/archive/)
 - [v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)
+- [v22 Limited Public Directory Pilot Risk Disposition](implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)

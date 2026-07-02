@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-04-28
+last_updated: 2026-07-02
 owner: jer
 tags: [implementation, v22.0, controls, legal, integration]
 ---
@@ -32,6 +32,15 @@ Current review mode (2026-03-09):
 4. A canonical drop location now exists for future evidence submissions in [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md).
 5. A dated prep-only packet exists for the next evidence intake, but it does not
    close C1 without real candidate terms and reviewer notes.
+
+Limited public-directory disposition (2026-07-02):
+
+1. The owner completed a non-lawyer solo-dev risk disposition for a narrow
+   public-directory pilot.
+2. That disposition does not close C1 and must not be treated as legal approval.
+3. Full partner/API mode remains blocked until candidate terms are attached and
+   reviewed clause-by-clause.
+4. See [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md).
 
 ## Required Clause Checks
 
@@ -70,18 +79,19 @@ Acceptance criteria:
 
 ## Evidence Table
 
-| Artifact                    | Location                                                                               | Reviewer | Date       | Status                   |
-| --------------------------- | -------------------------------------------------------------------------------------- | -------- | ---------- | ------------------------ |
-| Legal readiness memo        | this document                                                                          | jer      | 2026-03-09 | complete (repo evidence) |
-| Submission workspace        | [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)             | jer      | 2026-03-24 | complete (prep only)     |
-| Prep-only C1 packet         | [C1-20260428-submission.md](v22-0-evidence/c1-partner-terms/C1-20260428-submission.md) | jer      | 2026-04-28 | complete (prep only)     |
-| Clause diff / redline notes | candidate partner terms (not yet attached)                                             | jer      | pending    | pending                  |
-| Final legal recommendation  | pending legal review package                                                           | jer      | pending    | pending                  |
+| Artifact                              | Location                                                                                                                                   | Reviewer | Date       | Status                                               |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ---------- | ---------------------------------------------------- |
+| Legal readiness memo                  | this document                                                                                                                              | jer      | 2026-03-09 | complete (repo evidence)                             |
+| Submission workspace                  | [v22.0 Evidence Workspace / C1](v22-0-evidence/c1-partner-terms/README.md)                                                                 | jer      | 2026-03-24 | complete (prep only)                                 |
+| Prep-only C1 packet                   | [C1-20260428-submission.md](v22-0-evidence/c1-partner-terms/C1-20260428-submission.md)                                                     | jer      | 2026-04-28 | complete (prep only)                                 |
+| Limited public pilot risk disposition | [v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md](v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md) | jer      | 2026-07-02 | complete (owner self-review only; does not close C1) |
+| Clause diff / redline notes           | candidate partner terms (not yet attached)                                                                                                 | jer      | pending    | pending                                              |
+| Final legal recommendation            | pending legal review package                                                                                                               | jer      | pending    | pending                                              |
 
 ## Decision
 
 - Result: `pending`
-- Blocking findings: `Candidate partner terms are not yet attached for clause-level legal review (C1-3 unresolved).`
+- Blocking findings: `Candidate partner terms are not yet attached for clause-level legal review (C1-3 unresolved); 2026-07-02 owner self-review allows only limited public-directory operation with constraints.`
 - Escalation needed: `Obtain candidate partner legal/API terms and run clause-level redline review before Gate 0 re-review.`
 
 ## Verification Note

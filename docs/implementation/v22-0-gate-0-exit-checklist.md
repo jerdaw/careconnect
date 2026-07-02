@@ -1,6 +1,6 @@
 ---
 status: draft
-last_updated: 2026-06-12
+last_updated: 2026-07-02
 owner: jer
 tags: [implementation, v22.0, gate-0, checklist, governance]
 ---
@@ -47,6 +47,16 @@ Related:
 | Decision Date           | 2026-03-09                          |
 | Blocking Checks         | G0-3, G0-8                          |
 | Earliest Re-Review Date | After C1 and D4 evidence submission |
+
+## Limited Public-Directory Disposition
+
+On 2026-07-02 the owner recorded a conservative solo-dev disposition for a
+narrow public-directory pilot:
+[v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md).
+
+This disposition allows only constrained public-directory operation. It is not
+legal advice, not lawyer review, and not full Gate 0 approval. `G0-3 / C1` and
+`G0-8 / D4` remain `pending`, and this checklist remains `NO-GO`.
 
 ## Required Sign-Off
 
