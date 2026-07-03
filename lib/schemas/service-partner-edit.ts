@@ -1,5 +1,6 @@
 import { z } from "zod"
 import type { ServiceUpdate } from "@/lib/service-db"
+import { NullableHttpUrlSchema } from "@/lib/schemas/http-url"
 
 export const PARTNER_SERVICE_EDIT_FIELDS = [
   "name",
@@ -34,7 +35,7 @@ export const PartnerServiceEditSchema = z
       .regex(/^[\d\s\-\(\)\+]+$/, "Invalid phone format")
       .nullable()
       .optional(),
-    url: z.string().trim().url("Invalid URL").nullable().optional(),
+    url: NullableHttpUrlSchema,
     address: nullableString(500),
     hours_text: nullableString(200),
     operating_hours: nullableString(200),

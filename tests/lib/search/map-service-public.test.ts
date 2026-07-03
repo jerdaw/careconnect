@@ -62,6 +62,30 @@ describe("mapServicePublicToService", () => {
     expect(mapped.provenance).toEqual(baseService.provenance)
   })
 
+  it("replaces UUID-shaped public provenance verifier IDs with a public label", () => {
+    const mapped = mapServicePublicToService({
+      ...baseService,
+      provenance: {
+        ...baseService.provenance!,
+        verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      },
+    })
+
+    expect(mapped.provenance?.verified_by).toBe("CareConnect Admin")
+  })
+
+  it("keeps non-UUID public provenance verifier labels", () => {
+    const mapped = mapServicePublicToService({
+      ...baseService,
+      provenance: {
+        ...baseService.provenance!,
+        verified_by: "Community Partner",
+      },
+    })
+
+    expect(mapped.provenance?.verified_by).toBe("Community Partner")
+  })
+
   it("falls back safely when category, verification, tags, or provenance are absent", () => {
     const mapped = mapServicePublicToService({
       ...baseService,

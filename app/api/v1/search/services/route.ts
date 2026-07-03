@@ -11,6 +11,7 @@ import { trackPerformance } from "@/lib/performance/tracker"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
 import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
+import { sanitizePublicServiceProvenance } from "@/lib/public-provenance"
 
 export async function POST(request: NextRequest) {
   return trackPerformance(
@@ -81,7 +82,9 @@ export async function POST(request: NextRequest) {
         if (filters.openNow) {
           services = services.filter((service) => isOpenNow(service.hours ?? undefined))
         }
-        services = services.filter((service) => !isBeyondGovernanceFreshnessWindow(service))
+        services = services
+          .map((service) => sanitizePublicServiceProvenance(service))
+          .filter((service) => !isBeyondGovernanceFreshnessWindow(service))
 
         // 7. Server-Side Scoring (The "Hybrid" Part)
         // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent

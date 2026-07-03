@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { HttpUrlOrEmptySchema, httpUrl } from "./http-url"
 
 // Verification levels matching types/service.ts
 export const VerificationLevelSchema = z.enum(["L0", "L1", "L2", "L3"])
@@ -25,14 +26,14 @@ export const ScopeSchema = z.enum(["kingston", "ontario", "canada"])
 // Identity tag with evidence
 export const IdentityTagSchema = z.object({
   tag: z.string().min(1, "Tag cannot be empty"),
-  evidence_url: z.string().url("Evidence URL must be a valid URL"),
+  evidence_url: httpUrl("Evidence URL must use http or https"),
 })
 
 // Provenance information
 export const ProvenanceSchema = z.object({
   verified_by: z.string().min(1),
   verified_at: z.string().datetime({ message: "Must be ISO 8601 datetime" }),
-  evidence_url: z.string().url(),
+  evidence_url: httpUrl(),
   method: z.string().min(1),
 })
 
@@ -62,7 +63,7 @@ export const ServiceSchema = z
     synthetic_queries: z.array(z.string()),
 
     // Contact (at least one required - validated via refine)
-    url: z.string().url().optional().or(z.literal("")),
+    url: HttpUrlOrEmptySchema,
     phone: z.string().optional().or(z.literal("")),
     email: z.string().email().optional().or(z.literal("")),
     address: z.string().optional().or(z.literal("")),

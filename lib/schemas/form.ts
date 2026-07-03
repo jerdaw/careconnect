@@ -1,11 +1,12 @@
 import { z } from "zod"
+import { HttpUrlOrEmptySchema } from "./http-url"
 
 export const serviceSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   description: z.string().min(10, "Description must be at least 10 characters"),
   address: z.string().optional(),
   phone: z.string().optional(),
-  url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  url: HttpUrlOrEmptySchema,
   email: z.string().email("Must be a valid email").optional().or(z.literal("")),
   hours: z.string().optional(),
   fees: z.string().optional(),

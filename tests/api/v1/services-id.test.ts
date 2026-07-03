@@ -108,6 +108,29 @@ describe("API v1 Services [id]", () => {
       const body = (await res.json()) as { data: any }
       expect(body.data).toHaveProperty("id", "123")
     })
+
+    it("sanitizes UUID-shaped provenance verifier IDs in public detail responses", async () => {
+      publicChain.single.mockResolvedValue({
+        data: {
+          id: "123",
+          name: "Test Service",
+          provenance: {
+            verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+            verified_at: "2026-03-01T12:00:00.000Z",
+            evidence_url: "https://example.test/evidence",
+            method: "partner_submission",
+          },
+        },
+        error: null,
+      })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123")
+      const res = await GET(req, { params: Promise.resolve({ id: "123" }) })
+      const body = (await res.json()) as { data: { provenance?: { verified_by?: string } } }
+
+      expect(res.status).toBe(200)
+      expect(body.data.provenance?.verified_by).toBe("CareConnect Admin")
+    })
   })
 
   describe("PUT (Protected)", () => {
@@ -147,6 +170,23 @@ describe("API v1 Services [id]", () => {
         eligibility: "Must be 18+",
         hours_text: "Mon-Fri 9-5",
       })
+    })
+
+    it("rejects non-http service URLs", async () => {
+      const { servicesChain } = mockServiceAuthorization({
+        role: "admin",
+        updatedRow: { id: "123", name: "Updated" },
+      })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: "javascript:alert(1)" }),
+      })
+      const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(400)
+      expect(servicesChain.update).not.toHaveBeenCalled()
     })
 
     it("allows editors to update only their own partner-submitted services", async () => {
@@ -236,6 +276,23 @@ describe("API v1 Services [id]", () => {
       const res = await PATCH(req, { params: Promise.resolve({ id: "123" }) })
 
       expect(res.status).toBe(400)
+    })
+
+    it("rejects non-http service URLs", async () => {
+      const { servicesChain } = mockServiceAuthorization({
+        role: "admin",
+        updatedRow: { id: "123", name: "Updated" },
+      })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: "data:text/html,<script>alert(1)</script>" }),
+      })
+      const res = await PATCH(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(400)
+      expect(servicesChain.update).not.toHaveBeenCalled()
     })
   })
 

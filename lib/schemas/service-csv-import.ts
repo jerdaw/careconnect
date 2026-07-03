@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { httpUrl } from "./http-url"
 import { IntentCategorySchema } from "./service"
 import type { ServiceCreateInput } from "./service-create"
 
@@ -130,7 +131,7 @@ export const CSVImportRowSchema = z
       .string()
       .optional()
       .transform((val) => (val && val.trim() ? val.trim() : undefined))
-      .pipe(z.string().url("Invalid URL format").optional()),
+      .pipe(httpUrl("URL must use http or https").optional()),
 
     address: z
       .string()

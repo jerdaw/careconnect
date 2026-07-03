@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { HttpUrlOrEmptySchema } from "./http-url"
 import { IntentCategorySchema, ScopeSchema, IdentityTagSchema, ServiceHoursSchema } from "./service"
 
 /**
@@ -13,7 +14,7 @@ export const ServiceCreateSchema = z
     intent_category: IntentCategorySchema,
 
     // Contact (at least one required)
-    url: z.string().url().optional().or(z.literal("")),
+    url: HttpUrlOrEmptySchema,
     phone: z
       .string()
       .regex(/^[\d\s\-\(\)\+]+$/, "Invalid phone format")

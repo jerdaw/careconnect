@@ -7,6 +7,7 @@ import {
   type ServiceScope,
 } from "@/types/service"
 import { normalizeProvenance } from "@/lib/provenance"
+import { sanitizePublicProvenance } from "@/lib/public-provenance"
 import {
   SERVICE_PUBLIC_CATEGORIES,
   SERVICE_PUBLIC_VERIFICATION_LEVELS,
@@ -117,7 +118,7 @@ export function mapServicePublicToService(service: ServicePublic): Service {
     identity_tags: normalizeIdentityTags(service.tags),
     synthetic_queries: service.synthetic_queries ?? [],
     synthetic_queries_fr: service.synthetic_queries_fr ?? undefined,
-    provenance: normalizeProvenance(service.provenance),
+    provenance: normalizeProvenance(sanitizePublicProvenance(service.provenance)),
     scope: normalizeScope(service.scope),
     virtual_delivery: service.virtual_delivery ?? undefined,
     primary_phone_label: service.primary_phone_label ?? undefined,

@@ -4,6 +4,7 @@ import { createApiResponse, createApiError, handleApiError, validateContentType 
 import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
+import { sanitizePublicServiceProvenance } from "@/lib/public-provenance"
 import {
   getDirectServiceWriteUnsupportedFields,
   mapPartnerServiceEditToServiceUpdate,
@@ -37,7 +38,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       return createApiError("Service not found", 404)
     }
 
-    const response = createApiResponse(data)
+    const response = createApiResponse(sanitizePublicServiceProvenance(data))
 
     // Cache individual service for 5 minutes
     response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600")

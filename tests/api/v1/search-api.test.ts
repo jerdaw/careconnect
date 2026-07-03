@@ -162,6 +162,30 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.meta.total).toBe(5)
   })
 
+  it("sanitizes UUID-shaped provenance verifier IDs before returning public search results", async () => {
+    mockQueryResult = {
+      data: [
+        createMockService("uuid-provenance", {
+          name: "UUID Provenance Service",
+          provenance: {
+            verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+            verified_at: new Date().toISOString(),
+            evidence_url: "https://example.test/evidence",
+            method: "partner_submission",
+          },
+        }),
+      ],
+      error: null,
+    }
+
+    const req = createRequest({ query: "uuid provenance", locale: "en" })
+    const res = await POST(req)
+    const json = (await res.json()) as { data: Array<{ provenance?: { verified_by?: string } }> }
+
+    expect(res.status).toBe(200)
+    expect(json.data[0]?.provenance?.verified_by).toBe("CareConnect Admin")
+  })
+
   it("should exclude services beyond the governance freshness window", async () => {
     const expiredDate = new Date()
     expiredDate.setDate(expiredDate.getDate() - 200)

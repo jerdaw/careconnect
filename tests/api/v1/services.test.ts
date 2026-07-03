@@ -163,6 +163,25 @@ describe("API v1 Services", () => {
     expect(data.data.id).toBe("new-1")
   })
 
+  it("POST rejects non-http service URLs", async () => {
+    const req = createMockRequest("http://localhost/api/v1/services", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "New Service",
+        intent_category: "Health",
+        description: "This is a valid service description.",
+        url: "javascript:alert(1)",
+      }),
+    })
+
+    const res = await POST(req)
+    const { status, data } = await parseResponse<{ error: { message: string } }>(res)
+
+    expect(status).toBe(400)
+    expect(data.error.message).toMatch(/validation failed/i)
+  })
+
   it("POST rejects users without organization membership", async () => {
     vi.mocked(createServerClient).mockReturnValue(createAuthClient({ membershipOrgId: null }) as any)
 

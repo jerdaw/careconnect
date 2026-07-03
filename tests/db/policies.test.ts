@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { createAnonClient, createAuthenticatedClient, seededIds, seededUsers } from "./helpers"
+import { createAnonClient, createAuthenticatedClient, createServiceRoleClient, seededIds, seededUsers } from "./helpers"
 
 describe("DB policies", () => {
   it("exposes only public rows through services and services_public", async () => {
@@ -24,6 +24,54 @@ describe("DB policies", () => {
     expect(publicShapeError).toBeNull()
     expect(publicShapeRows?.[0]).not.toHaveProperty("admin_notes")
     expect(publicShapeRows?.[0]).not.toHaveProperty("deleted_at")
+  })
+
+  it("sanitizes UUID-shaped provenance verifier IDs in services_public", async () => {
+    const serviceRoleClient = createServiceRoleClient()
+    const anonClient = createAnonClient()
+    const id = "db-public-uuid-provenance"
+
+    try {
+      const { error: insertError } = await serviceRoleClient.from("services").insert({
+        id,
+        name: "UUID Provenance Service",
+        description: "Public service with internal verifier provenance.",
+        verification_status: "L2",
+        category: "Food",
+        published: true,
+        provenance: {
+          verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+          verified_at: "2026-03-01T12:00:00Z",
+          evidence_url: "https://example.test/evidence",
+          method: "partner_submission",
+        },
+      })
+      expect(insertError).toBeNull()
+
+      const { data: publicRows, error: publicError } = await anonClient
+        .from("services_public")
+        .select("id, provenance")
+        .eq("id", id)
+      expect(publicError).toBeNull()
+      expect(publicRows?.[0]?.provenance).toEqual(
+        expect.objectContaining({
+          verified_by: "CareConnect Admin",
+        })
+      )
+
+      const { data: sourceRows, error: sourceError } = await serviceRoleClient
+        .from("services")
+        .select("id, provenance")
+        .eq("id", id)
+      expect(sourceError).toBeNull()
+      expect(sourceRows?.[0]?.provenance).toEqual(
+        expect.objectContaining({
+          verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+        })
+      )
+    } finally {
+      await serviceRoleClient.from("services").delete().eq("id", id)
+    }
   })
 
   it("allows feedback and analytics only for visible services", async () => {
