@@ -140,6 +140,7 @@ Push notifications and external integrations are optional and disabled unless ex
 - **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
 - **Printable Resource Cards** — High-contrast, one-page summaries for any service, designed for offline distribution with locally generated inline QR codes.
 - **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
+- **Public-Safe Provenance** — Public API and `services_public` responses keep provenance fields but replace UUID-shaped verifier identifiers with `CareConnect Admin`; underlying service provenance remains unchanged for authenticated ownership and audit workflows.
 
 ---
 

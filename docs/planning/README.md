@@ -68,6 +68,10 @@ This directory contains planning and strategy documents for CareConnect.
   - Current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation
   - **Reading time:** 5 minutes
 
+- [Residual Security Closure Archive (2026-07-03)](archive/2026-07-03-residual-security-closure.md)
+  - Completed public provenance projection hardening and related API/schema verification
+  - **Reading time:** 5 minutes
+
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions
   - **Reading time:** 10 minutes

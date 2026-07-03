@@ -15,6 +15,7 @@ For current naming and operational guidance:
 
 Recent maintenance archives:
 
+- `2026-07-03-residual-security-closure.md` — public provenance projection hardening, public API sanitizer coverage, URL schema hardening, and residual security closure
 - `2026-05-01-v20-0-public-and-operational-surface-polish.md` — reference sources, suggest-service intake, settings, public workflow, legal/help/trust, and authenticated operational surface polish
 - `2026-04-30-v20-0-about-page-polish.md` — About page trust/context layout, background, shared-rail alignment, CTA styling, and related UI validation
 - `2026-04-29-v20-0-homepage-search-ux-polish.md` — homepage search/filter spacing, active-filter UX, metrics-rail restore/refinement, homepage credibility flow polish, and related contrast/i18n/test coverage

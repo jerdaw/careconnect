@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-04-23
+last_updated: 2026-07-03
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -153,7 +153,7 @@ sequenceDiagram
 ### Database Security & Row Level Security (RLS)
 
 - **Security Model**: Supabase PostgreSQL with Row Level Security ensures data isolation and privacy.
-- **Public Views**: `services_public` view created with `security_invoker = true` to use invoker's permissions (not definer's).
+- **Public Views**: `services_public` view created with `security_invoker = true` to use invoker's permissions (not definer's). Public projections keep provenance available for transparency, but UUID-shaped `provenance.verified_by` values are replaced with `CareConnect Admin`; the source `services.provenance` value is preserved for authenticated ownership and audit workflows.
 - **Hardened Policies**: All INSERT policies validate foreign keys (e.g., `service_id IN (SELECT id FROM services_public)`) to prevent spam and invalid data.
 - **Performance Optimizations**: Auth function calls wrapped in scalar subqueries `(SELECT auth.uid())` to avoid per-row re-evaluation.
 - **Policy Consolidation**: Separate policies for SELECT/INSERT/UPDATE/DELETE to avoid "Multiple Permissive Policies" performance warnings.

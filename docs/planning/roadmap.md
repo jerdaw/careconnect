@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-02
+last_updated: 2026-07-03
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,7 +9,7 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-07-02
+> **Last Updated**: 2026-07-03
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
@@ -30,6 +30,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Public and operational surface polish**: `/about/partners`, `/submit-service`, `/settings`, `/service/[id]`, `/login`, `/offline`, static legal/help/trust pages, and authenticated `/dashboard/**` plus `/admin/**` surfaces now share the polished page system; authenticated visual QA remains environment-gated and tracked below
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
 - **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
+- **Public provenance boundary**: public `services_public`, search, and detail responses preserve provenance shape while replacing UUID-shaped `verified_by` values with `CareConnect Admin`; source `services.provenance` remains unchanged for authenticated ownership and audit workflows
 - **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
 - **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
 - **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
@@ -112,6 +113,7 @@ or owner-owned items:
    - Advanced French service-data enrichment beyond the completed French access-script merge.
    - Remaining DB migration-history cleanup.
    - Admin-facing data-quality dashboard.
+   - Search QA relevance drift against the current 49-service fallback dataset before treating `npm run ci:check` as fully green locally.
    - Browser-console closeout pass once a working browser runtime or Chrome control surface is available.
 
 ## What Not To Do Now
