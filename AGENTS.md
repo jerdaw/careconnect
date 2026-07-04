@@ -96,7 +96,7 @@ npm run db:verify        # Verify database integrity (row count, embeddings, RLS
 npm run check:embeddings # Validate local service IDs and embedding vector shape without regenerating files
 npm run health-check     # Validate all service URLs
 npm run phone-validate   # Validate phone numbers via Twilio
-npm run check-staleness  # Check for stale/unverified data
+npm run check-staleness  # Check stale data; use -- --as-of YYYY-MM-DD --out-dir <dir> for dated audit exports
 npm run audit:data       # Comprehensive data completeness audit
 npm run audit:qa         # Data quality and integrity audit
 ```

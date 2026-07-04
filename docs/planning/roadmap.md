@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-03
+last_updated: 2026-07-04
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -9,12 +9,12 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-07-03
+> **Last Updated**: 2026-07-04
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
-- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28)
+- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28; freshness snapshot recorded on 2026-07-04)
 - **Tests**: default Vitest suite green as of 2026-07-01 (`204` files; `1637` passed; `24` skipped)
 - **DB integration lane**: PR DB integration checks are green as of 2026-06-28, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
 - **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
@@ -31,7 +31,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
 - **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
 - **Public provenance boundary**: public `services_public`, search, and detail responses preserve provenance shape while replacing UUID-shaped `verified_by` values with `CareConnect Admin`; source `services.provenance` remains unchanged for authenticated ownership and audit workflows
-- **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning
+- **Stale-data governance**: search now excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning; the 2026-07-04 freshness audit found 49 records still visible but due for reverification and 147 records hidden pending reverification
 - **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
 - **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
 - **GitHub automation hygiene**: bundle analysis, Dependabot review gates, scheduled governance reminders, and finding workflows now run quiet-by-default; critical-only mode keeps repo reminders manual unless action is required
@@ -40,6 +40,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
 - **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
 - **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
+- **Service freshness reporting**: `npm run check-staleness -- --as-of YYYY-MM-DD --out-dir <dir>` now exports full-directory JSON/Markdown/CSV freshness queues without mutating curated service data; the active snapshot is [Service Freshness Audit (2026-07-04)](../audits/service-freshness/2026-07-04/staleness-summary.md)
 - **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
 - **Auth/admin regression guardrails**: magic-link redirect, locale callback, safe `next`, admin dashboard envelope parsing, and reindex guardrail behavior now have focused regression coverage; authenticated production smoke automation remains private-ops gated rather than a public-repo workflow
 - **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
@@ -86,7 +87,7 @@ The active question is whether the project can prove non-duplicate value relativ
 1. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 2. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
 3. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
-4. Execute the verification queue using the 2026-06-27 service verification workplan, starting with the Crisis lane; update service facts and provenance only after manual evidence is recorded.
+4. Execute the verification queue using the [2026-07-04 service freshness audit](../audits/service-freshness/2026-07-04/staleness-summary.md), starting with stale Crisis records; update service facts and provenance only after manual evidence is recorded.
 5. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
 6. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
 
@@ -103,6 +104,7 @@ or owner-owned items:
 2. **Service verification**
    - Issue `#13`: monthly crisis-service verification.
    - Issue `#14`: quarterly general-service verification.
+   - Work from `docs/audits/service-freshness/2026-07-04/verification-worksheet.csv`; as of 2026-07-04, 147 records are hidden pending reverification and 49 are still visible but due.
 3. **Deferred production automation**
    - Optional synthetic-mailbox live auth/admin smoke.
    - Optional production reindex guardrail automation, explicit and on-demand only.
@@ -113,7 +115,6 @@ or owner-owned items:
    - Advanced French service-data enrichment beyond the completed French access-script merge.
    - Remaining DB migration-history cleanup.
    - Admin-facing data-quality dashboard.
-   - Search QA relevance drift against the current 49-service fallback dataset before treating `npm run ci:check` as fully green locally.
    - Browser-console closeout pass once a working browser runtime or Chrome control surface is available.
 
 ## What Not To Do Now

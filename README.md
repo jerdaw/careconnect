@@ -223,24 +223,24 @@ These commands require `k6` to be installed locally and available on your `PATH`
 
 #### Data Validation & Audits
 
-| Command                        | Description                                                                      |
-| :----------------------------- | :------------------------------------------------------------------------------- |
-| `npm run validate-data`        | Validate data schema (Zod)                                                       |
-| `npm run db:validate`          | Alias for validate-data                                                          |
-| `npm run db:verify`            | Verify database integrity (row count, RLS)                                       |
-| `npm run check:embeddings`     | Validate local service IDs and embedding vector shape without regenerating files |
-| `npm run health-check`         | Validate all service URLs                                                        |
-| `npm run phone-validate`       | Validate phone numbers (Twilio)                                                  |
-| `npm run check-staleness`      | Check for stale/unverified data                                                  |
-| `npm run audit:data`           | Comprehensive data completeness audit                                            |
-| `npm run audit:qa`             | Data quality and integrity audit                                                 |
-| `npm run audit:coords`         | Export services with missing coordinates                                         |
-| `npm run audit:hours`          | Export services with missing operating hours                                     |
-| `npm run audit:access-scripts` | Audit access_script quality                                                      |
-| `npm run audit:l3`             | Export L3 verification candidates                                                |
-| `npm run bilingual-check`      | Check bilingual content coverage                                                 |
-| `npm run i18n-audit`           | Audit i18n translation key coverage                                              |
-| `npm run analyze`              | Analyze production bundle size                                                   |
+| Command                        | Description                                                                                                            |
+| :----------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `npm run validate-data`        | Validate data schema (Zod)                                                                                             |
+| `npm run db:validate`          | Alias for validate-data                                                                                                |
+| `npm run db:verify`            | Verify database integrity (row count, RLS)                                                                             |
+| `npm run check:embeddings`     | Validate local service IDs and embedding vector shape without regenerating files                                       |
+| `npm run health-check`         | Validate all service URLs                                                                                              |
+| `npm run phone-validate`       | Validate phone numbers (Twilio)                                                                                        |
+| `npm run check-staleness`      | Check for stale/unverified data; add `-- --as-of YYYY-MM-DD --out-dir <dir>` to export a dated JSON/Markdown/CSV queue |
+| `npm run audit:data`           | Comprehensive data completeness audit                                                                                  |
+| `npm run audit:qa`             | Data quality and integrity audit                                                                                       |
+| `npm run audit:coords`         | Export services with missing coordinates                                                                               |
+| `npm run audit:hours`          | Export services with missing operating hours                                                                           |
+| `npm run audit:access-scripts` | Audit access_script quality                                                                                            |
+| `npm run audit:l3`             | Export L3 verification candidates                                                                                      |
+| `npm run bilingual-check`      | Check bilingual content coverage                                                                                       |
+| `npm run i18n-audit`           | Audit i18n translation key coverage                                                                                    |
+| `npm run analyze`              | Analyze production bundle size                                                                                         |
 
 #### Utility Scripts
 

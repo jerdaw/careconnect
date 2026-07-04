@@ -1,11 +1,17 @@
 ---
-status: draft
-last_updated: 2026-06-27
+status: archived
+last_updated: 2026-07-04
 owner: jer
 tags: [audit, data-quality, verification, closeout-prep]
 ---
 
 # Service Verification Workplan - 2026-06-27
+
+> [!NOTE]
+> Superseded by the 2026-07-04 service freshness audit under
+> `docs/audits/service-freshness/2026-07-04/`. This file remains as the
+> historical queue snapshot from 2026-06-27, before many records crossed the
+> 180-day visibility threshold.
 
 This workplan organizes the current manual verification queue. It does not update service facts, verification dates, or provenance.
 

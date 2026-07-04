@@ -189,7 +189,7 @@ Open `http://localhost:3000` to view the application.
 | `npm run db:verify` | Verify database integrity (row count, RLS) |
 | `npm run health-check` | Validate all service URLs |
 | `npm run phone-validate` | Validate phone numbers (Twilio) |
-| `npm run check-staleness` | Check for stale/unverified data |
+| `npm run check-staleness` | Check stale data; add `-- --as-of YYYY-MM-DD --out-dir <dir>` to export a dated JSON/Markdown/CSV queue |
 | `npm run audit:data` | Comprehensive data completeness audit |
 | `npm run audit:qa` | Data quality and integrity audit |
 | `npm run audit:coords` | Export services with missing coordinates |

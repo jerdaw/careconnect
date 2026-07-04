@@ -205,6 +205,7 @@ sequenceDiagram
   - `pilot_service_scope` is the canonical scoped-service source for bounded pilot readiness audits.
   - `npm run audit:pilot-readiness -- --pilot-cycle-id <id> [--org-id <uuid>]` exports scoped JSON, Markdown, and CSV artifacts without mutating curated service data.
   - `docs/implementation/v22-pilot-readiness/` contains the scope-file-first handoff bundle, including the runbook and `scope.template.json` for cases where a committed pilot cycle does not yet exist.
+  - `npm run check-staleness -- --as-of YYYY-MM-DD --out-dir <dir>` exports a full-directory freshness report and verification worksheet without mutating curated service data.
 
 ### Routing & Discovery
 
