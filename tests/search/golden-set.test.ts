@@ -8,10 +8,17 @@
  * Run: npm test -- tests/search/golden-set.test.ts
  */
 
-import { describe, it, expect } from "vitest"
+import { afterAll, beforeAll, describe, it, expect, vi } from "vitest"
 import { searchServices } from "@/lib/search"
 import { detectCrisis } from "@/lib/search/crisis"
 import testQueries from "../fixtures/search-test-queries.json"
+
+vi.mock("@/lib/env", () => ({
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: "",
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "",
+  },
+}))
 
 interface GoldenQuery {
   id: string
@@ -25,6 +32,18 @@ interface GoldenQuery {
 }
 
 const goldenQueries = testQueries.goldenSet.queries as GoldenQuery[]
+const GOLDEN_SET_REFERENCE_DATE = new Date("2026-06-30T12:00:00.000Z")
+
+beforeAll(() => {
+  // Golden-set tests measure search quality against the checked-in fixture.
+  // Freshness-window behavior is covered separately in freshness/search tests.
+  vi.useFakeTimers({ shouldAdvanceTime: true })
+  vi.setSystemTime(GOLDEN_SET_REFERENCE_DATE)
+})
+
+afterAll(() => {
+  vi.useRealTimers()
+})
 
 describe("Search Golden Set", () => {
   // Group tests by category for better organization
