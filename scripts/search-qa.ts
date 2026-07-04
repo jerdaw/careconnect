@@ -7,12 +7,16 @@
  * user scenarios to ensure the tuning is correct.
  */
 
+import { mock } from "node:test"
+
 if (process.argv.includes("--help")) {
   console.log("Usage: npm run search:qa")
   console.log("")
   console.log("Runs curated natural-language search scenarios against the local search engine.")
   process.exit(0)
 }
+
+const SEARCH_QA_REFERENCE_DATE = new Date("2026-06-30T12:00:00.000Z")
 
 interface TestScenario {
   query: string
@@ -167,6 +171,8 @@ const SCENARIOS: TestScenario[] = [
 
 async function runTests() {
   process.env.NODE_ENV ||= "development"
+  mock.timers.enable({ apis: ["Date"], now: SEARCH_QA_REFERENCE_DATE })
+
   const { searchServices } = await import("../lib/search")
 
   console.log("🧪 Search Quality Assurance Test Suite\n")
@@ -200,10 +206,17 @@ async function runTests() {
 
   if (failed > 0) {
     console.log(`\n⚠️  ${failed} scenarios need attention.`)
-    process.exit(1)
+    process.exitCode = 1
   } else {
     console.log(`\n🎉 All scenarios passed!`)
   }
 }
 
 runTests()
+  .catch((error: unknown) => {
+    console.error(error)
+    process.exitCode = 1
+  })
+  .finally(() => {
+    mock.timers.reset()
+  })
