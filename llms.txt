@@ -148,7 +148,7 @@ sequenceDiagram
 
 - **Technology**: Web Push API + Service Worker (`public/sw.js`, plus `public/custom-sw.js` for app-specific hooks).
 - **Flow**: User Opt-In -> Service Worker Subscribes -> Endpoint stored in `push_subscriptions` -> Server-side trigger via VAPID keys.
-- **Privacy**: No PII linked to subscriptions. User can revoked at any time via browser settings.
+- **Privacy**: No PII linked to subscriptions. Users can revoke permission at any time via browser settings.
 
 ### Automated Maintenance Bots
 
@@ -241,7 +241,7 @@ sequenceDiagram
 
 We use a modular hook system to separate concerns:
 
-- **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
+- **Search Hooks**: `useSearch` coordinates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
 - **Utility Hooks**: Generic hooks for `localStorage` and `Geolocation` ensure SSR safety and consistency.
 
 ### Logging & Monitoring
@@ -651,7 +651,7 @@ Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to
 ## Advanced Features
 
 - **Code Annotations**: Use `(1)` in code blocks and a numbered list below to create floating explanations.
-- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
+- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing. Exclude an external URL from Lychee only when it is a verified public reference that is unreliable for automated checks, and keep the exception scoped to the exact URL.
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
 - **AI Readiness**: The `llms.txt` file is auto-generated in CI/docs builds to provide a "single source of truth" for agents.
@@ -1127,7 +1127,7 @@ Every service in the database must be assigned a verification level.
 
 ## 3. Identity & Equity Attributes
 
-We do not apply "vibes-based" tagging. All identity tags must be **Evidence-Based**.
+We do not apply unsupported identity tagging. All identity tags must be **Evidence-Based**.
 
 ### 3.1 Affirming Care Standards
 
@@ -1394,6 +1394,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Maintenance audit**: the 2026-07-05 maintenance pass fixed invalid search-mode fallback, malformed search JSON handling, generic API error redaction, environment-validator drift, MkDocs nav drift, and a repeated service-card context lookup; deferred follow-ups remain in [Maintenance Audit](../maintenance-audit.md)
+- **Code-adjacent writing hygiene**: the 2026-07-05 professionalization audit tightened public docs, contributor examples, governance wording, and durable test comments while preserving historical archives and deliberate AI/provenance records; see [Professionalization Audit](../audits/2026-07-05-professionalization-audit.md)
 - **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
 - **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
