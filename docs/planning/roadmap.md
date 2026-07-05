@@ -20,6 +20,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Maintenance audit**: the 2026-07-05 maintenance pass fixed invalid search-mode fallback, malformed search JSON handling, generic API error redaction, environment-validator drift, MkDocs nav drift, and a repeated service-card context lookup; deferred follow-ups remain in [Maintenance Audit](../maintenance-audit.md)
+- **Code-adjacent writing hygiene**: the 2026-07-05 professionalization audit tightened public docs, contributor examples, governance wording, and durable test comments while preserving historical archives and deliberate AI/provenance records; see [Professionalization Audit](../audits/2026-07-05-professionalization-audit.md)
 - **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
 - **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral

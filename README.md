@@ -28,9 +28,9 @@ CareConnect is an active, health-adjacent community resource discovery project. 
 
 This repository contains public project documentation and reproducible development information. Deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory are intentionally excluded from public documentation.
 
-Production deployment details, shared-host ownership notes, private
-inventories, and environment-specific operations are intentionally excluded
-from this public repository.
+Shared-host documentation ownership, private project notes, production
+deployment details, and environment-specific operations are maintained outside
+this public repository in the private/shared operations source of truth.
 
 Push notifications and external integrations are optional and disabled unless explicitly configured by a maintainer.
 
@@ -132,7 +132,7 @@ Push notifications and external integrations are optional and disabled unless ex
 - **Progressive Web App** — Installable, works offline.
 - **WCAG 2.1 AA-Oriented** — High-contrast, skip-links, keyboard navigation, and automated checks.
 - **Community Governance** — Residents can flag inaccurate data directly.
-- **Performance Optimized** — Loads instantly, even on slow connections.
+- **Performance-Oriented** — Designed for fast local search and low-bandwidth use, with regression checks for bundle size and load behavior.
 - **Structured Observability** — High-context logging system with timers for performance monitoring.
 - **Multi-Lingual Support** — Full support for 7 languages: English, Canadian French, Arabic, Simplified Chinese, Spanish, Punjabi, and Portuguese.
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.

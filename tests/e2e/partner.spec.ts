@@ -13,14 +13,8 @@ test.describe("Partner Features", () => {
   })
 
   test("Claim Flow button appears on unverified service", async ({ page }) => {
-    // Navigate to a service page (mocked UUID)
-    // Note: In real app we rely on getServiceById.
-    // For E2E we might touch a real page if seeded, or rely on mock.
-    // Assuming /service/123 renders if we rely on mocked data or if it handles loose IDs.
-    // Actually, without seeding, this might 404.
-    // Let's rely on checking the component existence via unit-like test or assume the user has data.
-    // Better: Navigate to homepage, click a result if any.
-
+    // Exercise a real search-result detail page from the available test data.
+    // The claim affordance is conditional because verified services may not expose it.
     await page.goto("/")
     await page.waitForLoadState("domcontentloaded")
 
@@ -31,12 +25,6 @@ test.describe("Partner Features", () => {
 
     // Click first card title
     await page.locator("h3").first().click()
-
-    // On Detail page
-    // Expect "Claim This Listing" if unverified.
-    // Most seeded data might be unverified (L1).
-    // If it shows up, we pass. If not (because it's L2/verified), we skip or soft fail.
-    // Let's just check if the page loads and look for text if present.
 
     const claimText = page.getByText("Own this organization?")
     if (await claimText.isVisible()) {

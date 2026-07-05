@@ -67,6 +67,7 @@ private/shared operations source of truth.
 - [EDIA Audit](audits/2025-12-29-EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
 - [Privacy Audit](audits/2025-12-29-privacy-technical-audit.md) - Privacy architecture review
 - [Service Freshness Audit](audits/service-freshness/README.md) - Dated freshness snapshots and reverification worksheets
+- [Professionalization Audit](audits/2026-07-05-professionalization-audit.md) - Code-adjacent writing review, changes, and remaining recommendations
 - [Maintenance Audit](maintenance-audit.md) - Repo-health audit, fixes, verification, and remaining recommendations
 
 ## Planning & Roadmaps

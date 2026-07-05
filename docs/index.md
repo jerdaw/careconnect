@@ -78,7 +78,7 @@ Public documentation intentionally excludes deployment details, credentials, mon
 
 - **Synonym Expansion**: "Hungry" returns food banks; "rent" surfaces eviction prevention resources.
 - **Open Now Filter**: Real-time availability based on structured operating hours.
-- **Privacy-First Analytics**: Tracks unmet needs through zero-result patterns without logging queries.
+- **Privacy-First Analytics**: Tracks aggregate locale/result-count patterns without logging queries or filter details.
 - **Crisis Detection**: Automatically boosts emergency services when high-risk language is detected.
 - **Search Explainability**: Public result cards and linked detail pages can show deduplicated match reasons for why a service ranked.
 - **Stale-Data Governance**: Records beyond the 180-day freshness window are hidden from search instead of lingering with only a soft score penalty.
@@ -94,20 +94,20 @@ Public documentation intentionally excludes deployment details, credentials, mon
 ### Librarian Model (v13.0)
 
 - **Server-Side Search API**: Privacy-focused, rate-limited POST endpoint for enhanced security.
-- **Zero-Logging**: Search queries are strictly `no-store` and never logged to the database.
+- **Zero-Logging**: Query-, location-, and open-now-driven search responses are `no-store` and never logged to the database. Anonymous category-only browse responses may use short public caching.
 - **Dynamic Bundle**: Falls back to lightweight server queries, saving ~300KB on initial load.
 
 ### Additional Capabilities
 
 - **196 Verified Services** — Hand-curated Kingston services across 12 categories.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
-- **Privacy by Design** — No cookies, no tracking, no search logging. All inference runs in-browser or anonymously.
+- **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
 - **Partner Claiming Workflow** — Organizations can claim, verify, and maintain their own listings.
 - **Progressive Web App** — Installable, works offline.
 - **WCAG 2.1 AA-Oriented** — High-contrast, skip-links, keyboard navigation, and automated checks.
 - **Community Governance** — Residents can flag inaccurate data directly.
-- **Performance Optimized** — Loads instantly, even on slow connections.
+- **Performance-Oriented** — Designed for fast local search and low-bandwidth use, with regression checks for bundle size and load behavior.
 - **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
 - **Multi-Lingual Support** — Full support for 7 languages: English, Canadian French, Arabic, Simplified Chinese, Spanish, Punjabi, and Portuguese.
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.

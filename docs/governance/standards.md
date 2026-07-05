@@ -46,7 +46,7 @@ Every service in the database must be assigned a verification level.
 
 ## 3. Identity & Equity Attributes
 
-We do not apply "vibes-based" tagging. All identity tags must be **Evidence-Based**.
+We do not apply unsupported identity tagging. All identity tags must be **Evidence-Based**.
 
 ### 3.1 Affirming Care Standards
 

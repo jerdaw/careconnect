@@ -12,8 +12,8 @@ We will acknowledge your report within 48 hours and provide a timeline for a fix
 
 CareConnect is designed to be privacy-first:
 
-- **Zero Cookies:** No tracking cookies are used.
+- **No tracking cookies:** Functional first-party cookies may be used for locale, authentication, or short-lived share-target handoff.
 - **Client-Side Inference:** Semantic search embeddings are computed in your browser or anonymously on the server.
 - **Zero Logging Policy:** We do not log user search queries or personal identifiers.
 
-For more details, see our [Privacy Audit](docs/audits/PRIVACY_AUDIT.md).
+For more details, see the [Privacy Technical Audit](docs/audits/2025-12-29-privacy-technical-audit.md).

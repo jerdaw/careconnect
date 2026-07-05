@@ -175,11 +175,11 @@ docs: update roadmap and plan for B2 completion
 
 We use a **pragmatic tiered testing strategy**:
 
-| Tier          | Scope                         | CI Behavior   |
-| ------------- | ----------------------------- | ------------- |
-| **Critical**  | Data integrity, API contracts | Block merge   |
-| **Core Flow** | Crisis, Accessibility         | Block merge   |
-| **Polish**    | UI interactions               | Skip if flaky |
+| Tier          | Scope                         | CI Behavior              |
+| ------------- | ----------------------------- | ------------------------ |
+| **Critical**  | Data integrity, API contracts | Block merge              |
+| **Core Flow** | Crisis, Accessibility         | Block merge              |
+| **Polish**    | UI interactions               | Warn/manual; see ADR-015 |
 
 See [docs/development/testing-guidelines.md](docs/development/testing-guidelines.md) for details.
 
@@ -303,12 +303,12 @@ Search scoring applies multipliers: L3 = 1.5x, L2 = 1.2x, L1 = 1.0x
 import { logger } from "@/lib/logger"
 
 // ❌ Don't use console.log
-console.log("User searched for food banks")
+console.log("Search debug")
 
 // ✅ Use structured logging
-logger.info("Search performed", {
-  query: "food banks",
+logger.info("Search completed", {
   resultCount: 12,
+  searchMode: "local",
   component: "SearchInterface",
 })
 ```
@@ -437,22 +437,6 @@ export const SYNONYMS: Record<string, string[]> = {
 
 ## Current Development Status
 
-**v20.0: Technical Excellence & Testing** (IN PROGRESS)
+Current status is tracked in [README.md](README.md) and [docs/planning/roadmap.md](docs/planning/roadmap.md). Treat archived version plans as project history, not as the active implementation source of truth.
 
-- **Completion**: 21/38 items done
-- **Focus**: Achieving 75% test coverage, reducing technical debt, improving documentation
-- **See**: [docs/planning/roadmap.md](docs/planning/roadmap.md) and [docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md](docs/planning/archive/2026-02-12-v20-0-phase-1-implementation-plan.md)
-
-Recent completions:
-
-- ✅ A1-A6: Code quality improvements (console.log → logger, ESLint reduction, validation hardening)
-- ✅ B1-B3: Core test coverage (search utilities, hooks, API routes)
-- ✅ C1, C3-C4: i18n and search enrichment
-- ✅ D1: Documentation templates
-- ✅ E1: Git tags for milestones
-
----
-
-**Welcome to the team! 🎉**
-
-If you have questions or suggestions for improving this guide, please open an issue or submit a PR.
+If you have questions or suggestions for improving this guide, open an issue or submit a PR.

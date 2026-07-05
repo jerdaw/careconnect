@@ -140,7 +140,7 @@ sequenceDiagram
 
 - **Technology**: Web Push API + Service Worker (`public/sw.js`, plus `public/custom-sw.js` for app-specific hooks).
 - **Flow**: User Opt-In -> Service Worker Subscribes -> Endpoint stored in `push_subscriptions` -> Server-side trigger via VAPID keys.
-- **Privacy**: No PII linked to subscriptions. User can revoked at any time via browser settings.
+- **Privacy**: No PII linked to subscriptions. Users can revoke permission at any time via browser settings.
 
 ### Automated Maintenance Bots
 
@@ -233,7 +233,7 @@ sequenceDiagram
 
 We use a modular hook system to separate concerns:
 
-- **Search Hooks**: `useSearch` coordindates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
+- **Search Hooks**: `useSearch` coordinates state, `useServices` handles logic, and `useSemanticSearch` manages the worker.
 - **Utility Hooks**: Generic hooks for `localStorage` and `Geolocation` ensure SSR safety and consistency.
 
 ### Logging & Monitoring
