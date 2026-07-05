@@ -1374,7 +1374,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-07-04
+last_updated: 2026-07-05
 owner: jer
 tags: [planning, roadmap, v22.0, governance]
 ---
@@ -1383,18 +1383,19 @@ tags: [planning, roadmap, v22.0, governance]
 
 > **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
 > **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-07-04
+> **Last Updated**: 2026-07-05
 > **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
 
 ## Current State
 
 - **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28; freshness snapshot recorded on 2026-07-04)
-- **Tests**: default Vitest suite green as of 2026-07-01 (`204` files; `1637` passed; `24` skipped)
+- **Tests**: default Vitest suite green as of 2026-07-05 (`208` files; `1662` passed; `24` skipped during `npm run test:coverage`)
 - **DB integration lane**: PR DB integration checks are green as of 2026-06-28, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
-- **Coverage**: `72.13%` statements / `78.85%` branches / `83.20%` functions / `72.13%` lines from `npm run test:coverage` on 2026-04-03
+- **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
+- **Maintenance audit**: the 2026-07-05 maintenance pass fixed invalid search-mode fallback, malformed search JSON handling, generic API error redaction, environment-validator drift, MkDocs nav drift, and a repeated service-card context lookup; deferred follow-ups remain in [Maintenance Audit](../maintenance-audit.md)
 - **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
-- **Dependency audit**: `npm audit --audit-level=low` on 2026-06-28 reports `0` vulnerabilities
+- **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
 - **Accessibility**: WCAG 2.1 AA automation remains in place
