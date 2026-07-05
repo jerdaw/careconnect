@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-04
+last_updated: 2026-07-05
 owner: jer
 tags: [documentation, index, public-docs]
 ---
@@ -20,6 +20,7 @@ private/shared operations source of truth.
 - [Architecture](architecture.md) - System design, data flow, and core concepts
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
+- [Maintenance Audit](maintenance-audit.md) - Latest repo-health audit, verification status, and follow-ups
 - [Deployment Boundary](deployment/direct-vps-proof.md) - Public deployment architecture notes
 - [Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md) - Decision record for public/private documentation split
 - [Release Checklist](deployment/production-checklist.md) - Public-safe release verification checklist
@@ -66,6 +67,7 @@ private/shared operations source of truth.
 - [EDIA Audit](audits/2025-12-29-EDIA_AUDIT.md) - Equity, Diversity, Inclusion, Accessibility
 - [Privacy Audit](audits/2025-12-29-privacy-technical-audit.md) - Privacy architecture review
 - [Service Freshness Audit](audits/service-freshness/README.md) - Dated freshness snapshots and reverification worksheets
+- [Maintenance Audit](maintenance-audit.md) - Repo-health audit, fixes, verification, and remaining recommendations
 
 ## Planning & Roadmaps
 

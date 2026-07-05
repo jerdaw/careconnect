@@ -53,6 +53,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const locale = useLocale()
   const t = useTranslations()
+  const { context: userContext } = useUserContext()
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
 
@@ -152,7 +153,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     {t("ServiceDetail.free")}
                   </Badge>
                 )}
-                {checkEligibility(service, useUserContext().context) === "eligible" && (
+                {checkEligibility(service, userContext) === "eligible" && (
                   <Badge
                     variant="secondary"
                     size="sm"

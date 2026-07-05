@@ -224,6 +224,14 @@ NEXT_PUBLIC_SEARCH_MODE=server
 
 (Defaults to `local` if unset).
 
+Optional configuration:
+
+- `APP_VERSION` sets the server-side version string returned by health endpoints.
+- `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`, and `OPENCAGE_API_KEY` support maintainer-only enrichment workflows.
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` enable distributed rate limiting; leave them unset to use the in-memory fallback.
+- `ALLOW_211_SYNC=1` and `API_211_KEY` are required together for an explicitly approved manual 211 sync. Leave both unset for normal development.
+- `npm run validate:env` checks `.env.local`; local placeholder values intentionally fail that production-readiness check.
+
 ### Partner Platform (Supabase)
 
 To enable the Partner Portal, authentication, and analytics:

@@ -228,6 +228,25 @@ describe("documentation hygiene", () => {
     expect(docsIndex).toContain("[Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md)")
   })
 
+  it("keeps MkDocs navigation targets resolvable", () => {
+    const mkdocsConfig = readDoc("mkdocs.yml")
+    const navStart = mkdocsConfig.indexOf("\nnav:")
+    const navConfig = navStart >= 0 ? mkdocsConfig.slice(navStart) : ""
+    const navTargetPattern = /^\s*-\s+[^:\n]+:[ \t]+(.+?)\s*$/gm
+
+    expect(navConfig).not.toBe("")
+
+    for (const match of navConfig.matchAll(navTargetPattern)) {
+      const target = match[1]?.trim()
+      if (!target || target.startsWith("http")) continue
+
+      expect(
+        existsSync(path.join(repoRoot(), "docs", target)),
+        `mkdocs.yml references missing docs target: ${target}`
+      ).toBe(true)
+    }
+  })
+
   it("keeps runtime architecture facts aligned with the codebase", () => {
     const architecture = readDoc("docs/architecture.md")
     const routing = readDoc("i18n/routing.ts")

@@ -96,6 +96,10 @@ export function handleApiError(error: unknown) {
     return createApiError("Validation Error", 400, error.errors)
   }
 
+  if (error instanceof SyntaxError) {
+    return createApiError("Invalid JSON", 400)
+  }
+
   if (error instanceof AuthorizationError) {
     return createApiError(error.message, 403)
   }
@@ -106,10 +110,6 @@ export function handleApiError(error: unknown) {
 
   if (error instanceof ValidationError) {
     return createApiError(error.message, 415)
-  }
-
-  if (error instanceof Error) {
-    return createApiError(error.message, 500)
   }
 
   return createApiError("Internal Server Error", 500)

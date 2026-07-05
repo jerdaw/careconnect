@@ -26,7 +26,13 @@ export async function POST(request: NextRequest) {
 
       try {
         // 2. Parse and validate body
-        const body = await request.json()
+        let body: unknown
+        try {
+          body = await request.json()
+        } catch {
+          return createApiError("Invalid JSON", 400)
+        }
+
         const parsed = searchRequestSchema.safeParse(body)
         if (!parsed.success) {
           return createApiError("Invalid request", 400, parsed.error.flatten())

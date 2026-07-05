@@ -162,6 +162,21 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.meta.total).toBe(5)
   })
 
+  it("returns 400 for malformed JSON bodies", async () => {
+    const req = new NextRequest("http://localhost:3000/api/v1/search/services", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "{not-json",
+    })
+
+    const res = await POST(req)
+    const json = (await res.json()) as { error: { message: string } }
+
+    expect(res.status).toBe(400)
+    expect(json.error.message).toBe("Invalid JSON")
+    expect(mockSelect).not.toHaveBeenCalled()
+  })
+
   it("sanitizes UUID-shaped provenance verifier IDs before returning public search results", async () => {
     mockQueryResult = {
       data: [

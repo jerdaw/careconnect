@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-01
+last_updated: 2026-07-05
 owner: jer
 tags: [planning, roadmap, governance, public-docs]
 ---
@@ -17,7 +17,7 @@ This directory contains planning and strategy documents for CareConnect.
 
 ## Active Planning: v22.0
 
-**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete; repo-local maintenance checkpoint review-ready)
+**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete; latest repo-local maintenance checkpoint recorded)
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
@@ -71,6 +71,10 @@ This directory contains planning and strategy documents for CareConnect.
 - [Residual Security Closure Archive (2026-07-03)](archive/2026-07-03-residual-security-closure.md)
   - Completed public provenance projection hardening and related API/schema verification
   - **Reading time:** 5 minutes
+
+- [Maintenance Audit (2026-07-05)](../maintenance-audit.md)
+  - Completed repo-health maintenance report covering scoped code fixes, docs updates, verification status, and remaining follow-ups
+  - **Reading time:** 10-15 minutes
 
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions
@@ -234,6 +238,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-04-30:** Archived the About page polish pass after consolidating trust/context content, restoring the smooth page-level background, aligning sections on a shared rail, and validating CTA styling updates
 - **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
 - **2026-06-04:** Added the public GitHub cleanup archive after establishing ADR-022 and sanitizing public deployment, operations, planning, legal, and observability documentation
+- **2026-07-05:** Added the maintenance audit checkpoint and refreshed roadmap test, coverage, and dependency-audit baselines after the repo-health pass
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

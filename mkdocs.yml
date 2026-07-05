@@ -64,19 +64,20 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Maintenance Audit: maintenance-audit.md
   - Architecture: architecture.md
   - API Reference: api/README.md
   - Guidelines:
       - Documentation: documentation-guidelines.md
       - Testing: testing-guidelines.md
       - Bilingual: bilingual-dev-guide.md
-  - Components: components.md
+  - Components: development/components.md
   - API: api/
   - Deployment: deployment/
   - Development: development/
   - Implementation: implementation/
   - Governance: governance/
   - Legal: legal/
-  - Roadmaps: roadmaps/
+  - Planning: planning/
   - Security: security/
   - Whitepapers: whitepapers/

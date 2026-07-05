@@ -20,6 +20,11 @@ describe("Search Mode Utilities", () => {
       process.env.NEXT_PUBLIC_SEARCH_MODE = "server"
       expect(getSearchMode()).toBe("server")
     })
+
+    it("falls back to local for invalid configuration values", () => {
+      process.env.NEXT_PUBLIC_SEARCH_MODE = "serve"
+      expect(getSearchMode()).toBe("local")
+    })
   })
 
   describe("serverSearch", () => {

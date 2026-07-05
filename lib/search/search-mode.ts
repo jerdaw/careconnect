@@ -6,7 +6,7 @@ import { mapServicePublicToService } from "@/lib/search/map-service-public"
 export type SearchMode = "local" | "server"
 
 export function getSearchMode(): SearchMode {
-  return (process.env.NEXT_PUBLIC_SEARCH_MODE as SearchMode) || "local"
+  return process.env.NEXT_PUBLIC_SEARCH_MODE === "server" ? "server" : "local"
 }
 
 export async function serverSearch(params: SearchRequest): Promise<Service[]> {

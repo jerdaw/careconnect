@@ -8,6 +8,7 @@
 
 import { readFileSync, existsSync } from "fs"
 import path from "path"
+import { pathToFileURL } from "url"
 
 const ENV_EXAMPLE_PATH = path.join(process.cwd(), ".env.example")
 const ENV_LOCAL_PATH = path.join(process.cwd(), ".env.local")
@@ -29,19 +30,24 @@ const PLACEHOLDER_PATTERNS = [
   /<.*>/, // <value> format
 ]
 
-const OPTIONAL_VARS = [
+const OPTIONAL_VARS = new Set([
+  // App metadata and public URL defaults
+  "NEXT_PUBLIC_BASE_URL",
+  "APP_VERSION",
+  "NEXT_PUBLIC_SEARCH_MODE",
   // Phone validation (dev/testing only)
   "TWILIO_ACCOUNT_SID",
   "TWILIO_AUTH_TOKEN",
   // Push notifications (optional feature)
   "NEXT_PUBLIC_VAPID_PUBLIC_KEY",
   "VAPID_PRIVATE_KEY",
-  "ONESIGNAL_APP_ID",
+  "NEXT_PUBLIC_ONESIGNAL_APP_ID",
   "ONESIGNAL_REST_API_KEY",
   // Geocoding (optional enrichment)
   "OPENCAGE_API_KEY",
   // AI features (optional)
   "OPENAI_API_KEY",
+  "GOOGLE_AI_API_KEY",
   // Mobile infrastructure (optional)
   "NEXT_PUBLIC_MOBILE_INFRASTRUCTURE",
   // Performance tracking (optional, defaults to false)
@@ -55,16 +61,21 @@ const OPTIONAL_VARS = [
   "AXIOM_ORG_ID",
   "AXIOM_DATASET",
   "SLACK_WEBHOOK_URL",
+  "OPERATIONAL_NOTIFICATION_MODE",
+  "USER_NOTIFICATION_MODE",
+  // Optional distributed rate limiting; in-memory fallback is used when unset
+  "UPSTASH_REDIS_REST_URL",
+  "UPSTASH_REDIS_REST_TOKEN",
   // Vercel cron (production only)
   "CRON_SECRET",
-]
+  // Health probe authentication (optional unless authenticated probes are enabled)
+  "HEALTH_PROBE_TOKEN",
+  // Quarantined 211 sync workflow (manual approval only)
+  "ALLOW_211_SYNC",
+  "API_211_KEY",
+])
 
-function parseEnvFile(filePath: string): Map<string, string> {
-  if (!existsSync(filePath)) {
-    return new Map()
-  }
-
-  const content = readFileSync(filePath, "utf-8")
+export function parseEnvContent(content: string): Map<string, string> {
   const vars = new Map<string, string>()
 
   for (const line of content.split("\n")) {
@@ -75,20 +86,49 @@ function parseEnvFile(filePath: string): Map<string, string> {
 
     // Parse KEY=VALUE
     const match = trimmed.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/)
-    if (match) {
-      const [, key, value] = match
-      vars.set(key, value)
-    }
+    if (!match) continue
+
+    const key = match[1]
+    if (!key) continue
+
+    const value = parseEnvValue(match[2] ?? "")
+    vars.set(key, value)
   }
 
   return vars
+}
+
+function parseEnvValue(rawValue: string): string {
+  const trimmed = rawValue.trim()
+
+  const quote = trimmed[0]
+  if (quote === '"' || quote === "'") {
+    const closingQuoteIndex = trimmed.indexOf(quote, 1)
+    if (closingQuoteIndex > 0) {
+      const trailing = trimmed.slice(closingQuoteIndex + 1).trim()
+      if (!trailing || trailing.startsWith("#")) {
+        return trimmed.slice(1, closingQuoteIndex)
+      }
+    }
+  }
+
+  return trimmed.replace(/\s+#.*$/, "").trim()
+}
+
+export function parseEnvFile(filePath: string): Map<string, string> {
+  if (!existsSync(filePath)) {
+    return new Map()
+  }
+
+  const content = readFileSync(filePath, "utf-8")
+  return parseEnvContent(content)
 }
 
 function isPlaceholder(value: string): boolean {
   return PLACEHOLDER_PATTERNS.some((pattern) => pattern.test(value))
 }
 
-function analyzeEnvVars(
+export function analyzeEnvVars(
   envExample: Map<string, string>,
   envLocal: Map<string, string>
 ): {
@@ -101,7 +141,7 @@ function analyzeEnvVars(
   const placeholdersInLocal: string[] = []
 
   for (const [name, exampleValue] of envExample) {
-    const isOptional = OPTIONAL_VARS.includes(name)
+    const isOptional = OPTIONAL_VARS.has(name)
     const localValue = envLocal.get(name)
 
     exampleVars.push({
@@ -202,4 +242,6 @@ function main() {
   }
 }
 
-main()
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main()
+}
