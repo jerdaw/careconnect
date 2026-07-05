@@ -68,6 +68,8 @@ jobs:
             --exclude 'https://webaim.org/resources/contrastchecker/'
             --exclude 'https://status.supabase.com/'
             --exclude 'https://huggingface.co/docs/transformers.js/'
+            --exclude 'https://laws-lois.justice.gc.ca/eng/acts/P-8.6/FullText.html'
+            --exclude 'https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/'
             ./docs/README.md
             ./docs/ACCESSIBILITY_GUIDE.md
             ./docs/architecture.md
