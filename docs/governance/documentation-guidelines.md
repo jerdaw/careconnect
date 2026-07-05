@@ -47,7 +47,7 @@ Formal documentation (ADRs, roadmaps, guides) should include YAML frontmatter to
 ## Advanced Features
 
 - **Code Annotations**: Use `(1)` in code blocks and a numbered list below to create floating explanations.
-- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing.
+- **Link Validation**: GitHub Actions run `Lychee` on every push. Verify external links before committing. Exclude an external URL from Lychee only when it is a verified public reference that is unreliable for automated checks, and keep the exception scoped to the exact URL.
 - **Visual Diagrams**: Use `mermaid` code blocks for architecture and sequence diagrams. Mermaid is supported natively via `pymdownx.superfences`.
 - **API Documentation**: Use the `!openapi <path>` directive to render OpenAPI specs. The canonical reference is at `docs/api/openapi.yaml`.
 - **AI Readiness**: The `llms.txt` file is auto-generated in CI/docs builds to provide a "single source of truth" for agents.
