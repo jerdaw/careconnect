@@ -42,6 +42,21 @@ export function serviceServesPlace(service: CoverageCompatibleService, placeId: 
   })
 }
 
+export function hasPlaceSpecificCoverage(service: CoverageCompatibleService, placeId: PlaceId): boolean {
+  return normalizeServiceCoverage(service).some((coverage) => {
+    if (coverage.kind !== "local" && coverage.kind !== "regional") {
+      return false
+    }
+
+    return coverage.placeIds?.includes(placeId) ?? false
+  })
+}
+
+export function isBroadCoverageOnly(service: CoverageCompatibleService): boolean {
+  const coverage = normalizeServiceCoverage(service)
+  return coverage.length > 0 && coverage.every((area) => area.kind === "provincial" || area.kind === "national")
+}
+
 export function filterServicesByPlace<T extends { service: CoverageCompatibleService }>(
   results: T[],
   placeId: PlaceId | undefined

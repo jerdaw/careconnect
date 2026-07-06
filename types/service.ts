@@ -1,5 +1,5 @@
 /**
- * Verification Levels for the Kingston 150 Governance Schema.
+ * Verification levels for the CareConnect local verification standard.
  */
 export enum VerificationLevel {
   L0 = "L0", // Unverified

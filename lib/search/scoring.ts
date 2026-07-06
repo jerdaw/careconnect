@@ -6,6 +6,8 @@ import { tokenize } from "./utils"
 import { expandQuery as expandSynonyms } from "./synonyms"
 import { detectCrisis, boostCrisisResults } from "./crisis"
 import { resortByDistance } from "./geo"
+import { hasPlaceSpecificCoverage } from "@/lib/places/coverage"
+import type { PlaceId } from "@/types/service"
 
 export const WEIGHTS: ScoringWeights & {
   verificationL3: number
@@ -36,6 +38,8 @@ export const WEIGHTS: ScoringWeights & {
   resourceLarge: number
   resourceMedium: number
   resourceSmall: number
+  // Multi-city: small preference for local/regional coverage in the selected place
+  placeSpecificCoverage: number
 } = {
   vector: 100, // Semantic match is the gold standard
   syntheticQuery: 50,
@@ -71,6 +75,7 @@ export const WEIGHTS: ScoringWeights & {
   resourceLarge: 15,
   resourceMedium: 8,
   resourceSmall: 3,
+  placeSpecificCoverage: 8,
 }
 
 import type { IdentityTag } from "@/types/user-context"
@@ -161,6 +166,7 @@ export interface RankServicesOptions {
   location?: { lat: number; lng: number }
   userContext?: import("@/types/user-context").UserContext
   allowFilterOnlyBaseMatch?: boolean
+  placeId?: PlaceId
 }
 
 export function rankServicesByQuery(
@@ -180,8 +186,13 @@ export function rankServicesByQuery(
         })
 
         return {
-          score: ranked.score,
-          matchReasons: ranked.reasons,
+          score:
+            ranked.score +
+            (options.placeId && hasPlaceSpecificCoverage(service, options.placeId) ? WEIGHTS.placeSpecificCoverage : 0),
+          matchReasons:
+            options.placeId && hasPlaceSpecificCoverage(service, options.placeId)
+              ? [...ranked.reasons, "Local coverage for selected place"]
+              : ranked.reasons,
         }
       })(),
     }))

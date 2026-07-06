@@ -78,6 +78,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
             location: options.location,
             userContext: options.userContext,
             allowFilterOnlyBaseMatch: true,
+            placeId: options.placeId,
           })
         }
         return []
@@ -95,6 +96,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
             category: options.category,
             location: options.location,
             userContext: options.userContext,
+            placeId: options.placeId,
           })
         },
         {

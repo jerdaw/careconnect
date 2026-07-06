@@ -1,6 +1,7 @@
 import { rankServicesByQuery } from "./scoring"
 import { mapServicePublicToService } from "./map-service-public"
 import { ServicePublic } from "@/types/service-public"
+import type { PlaceId } from "@/types/service"
 
 export interface ServerScoredResult {
   service: ServicePublic
@@ -13,6 +14,7 @@ export interface ServerScoringOptions {
   locale?: string
   category?: string
   allowFilterOnlyBaseMatch?: boolean
+  placeId?: PlaceId
 }
 
 /**
@@ -31,6 +33,7 @@ export function scoreServicesServer(
     category: options.category,
     location: options.location,
     allowFilterOnlyBaseMatch: options.allowFilterOnlyBaseMatch,
+    placeId: options.placeId,
   })
     .map((result) => {
       const originalService = publicById.get(result.service.id)

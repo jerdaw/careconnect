@@ -29,8 +29,14 @@ Output JSON only:
     "candidate_name": "string",
     "candidate_program_name": "string or UNKNOWN",
     "target_place_id": "{PLACE_ID}",
-    "coverage_kind": "place | regional | provincial | national",
-    "coverage_label": "string",
+    "coverage": [
+      {
+        "kind": "local | regional | provincial | national",
+        "placeIds": ["{PLACE_ID}"],
+        "regionIds": ["string, only when a verified regional identifier is already defined"],
+        "label": "string"
+      }
+    ],
     "intent_category": "Food | Crisis | Housing | Health | Legal | Wellness | Financial | Employment | Community",
     "why_core": "one sentence explaining why this belongs in the first small launch set",
     "service_area_evidence": "short quote-free summary of the evidence that it serves the target place",

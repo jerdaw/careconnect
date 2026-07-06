@@ -12,6 +12,7 @@ import { NotFoundFeedback } from "../feedback/NotFoundFeedback"
 import { tokenize } from "@/lib/search/utils"
 import type { PlaceId } from "@/types/service"
 import { getSelectedPlaceLabel } from "@/lib/places/selection"
+import { isBroadCoverageOnly } from "@/lib/places/coverage"
 
 interface SearchResultsListProps {
   isLoading: boolean
@@ -37,8 +38,8 @@ export default function SearchResultsList({
 
   // Calculate scope counts
   const scopeCounts = useMemo(() => {
-    const local = results.filter((r) => r.service.scope === "kingston" || !r.service.scope).length
-    const provincial = results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada").length
+    const local = results.filter((r) => !isBroadCoverageOnly(r.service)).length
+    const provincial = results.filter((r) => isBroadCoverageOnly(r.service)).length
     return { all: results.length, local, provincial }
   }, [results])
 
@@ -49,10 +50,10 @@ export default function SearchResultsList({
   const filteredResults = useMemo(() => {
     if (activeScope === "all") return results
     if (activeScope === "kingston") {
-      return results.filter((r) => r.service.scope === "kingston" || !r.service.scope)
+      return results.filter((r) => !isBroadCoverageOnly(r.service))
     }
     if (activeScope === "provincial") {
-      return results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada")
+      return results.filter((r) => isBroadCoverageOnly(r.service))
     }
     return results
   }, [results, activeScope])

@@ -106,6 +106,7 @@ export async function POST(request: NextRequest) {
               location,
               category: filters.category,
               allowFilterOnlyBaseMatch: !query.trim(),
+              placeId: filters.placeId,
             })
           },
           {

@@ -102,6 +102,8 @@ describe("getServiceById", () => {
         hours: JSON.stringify({
           monday: { open: "09:00", close: "17:00" },
         }),
+        primary_place_id: "brampton-on",
+        coverage: JSON.stringify([{ kind: "local", placeIds: ["brampton-on"] }]),
       },
       error: null,
     })
@@ -119,6 +121,8 @@ describe("getServiceById", () => {
     expect(service?.hours).toEqual({
       monday: { open: "09:00", close: "17:00" },
     })
+    expect(service?.primary_place_id).toBe("brampton-on")
+    expect(service?.coverage).toEqual([{ kind: "local", placeIds: ["brampton-on"] }])
   })
 
   it("falls back to static service data when the DB lookup fails", async () => {

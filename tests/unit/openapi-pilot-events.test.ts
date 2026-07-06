@@ -350,3 +350,16 @@ describe("OpenAPI pilot contract", () => {
     expect(gateEvaluationSchema).toContain("passedAll:")
   })
 })
+
+describe("OpenAPI service coverage contract", () => {
+  it("documents the implemented coverage shape", () => {
+    const serviceCoverage = schemaSection("ServiceCoverage")
+
+    expect(serviceCoverage).toContain("enum: [local, regional, provincial, national]")
+    expect(serviceCoverage).toContain("placeIds:")
+    expect(serviceCoverage).toContain("regionIds:")
+    expect(serviceCoverage).toContain("enum: [kingston-on, brampton-on]")
+    expect(serviceCoverage).not.toContain("place_id:")
+    expect(serviceCoverage).not.toContain("enum: [place, regional, provincial, national]")
+  })
+})

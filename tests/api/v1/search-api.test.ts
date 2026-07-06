@@ -288,6 +288,37 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.data.map((service) => service.id)).toEqual(["brampton", "ontario"])
   })
 
+  it("ranks selected-place coverage ahead of broad coverage when relevance is comparable", async () => {
+    mockQueryResult = {
+      data: [
+        createMockService("ontario", {
+          name: "Food Support",
+          description: "Food support",
+          category: IntentCategory.Food,
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+        } as any),
+        createMockService("brampton", {
+          name: "Food Support",
+          description: "Food support",
+          category: IntentCategory.Food,
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+        } as any),
+      ],
+      error: null,
+    }
+
+    const req = createRequest({
+      query: "food",
+      locale: "en",
+      filters: { category: IntentCategory.Food, placeId: "brampton-on" },
+    })
+
+    const res = await POST(req)
+    const json = (await res.json()) as { data: { id: string }[] }
+
+    expect(json.data.map((service) => service.id)).toEqual(["brampton", "ontario"])
+  })
+
   it("keeps synthetic-query-only candidates in play for server ranking parity", async () => {
     mockQueryResult = {
       data: [

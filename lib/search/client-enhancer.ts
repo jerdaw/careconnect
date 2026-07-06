@@ -1,6 +1,6 @@
 import { type SearchResult } from "./types"
 import { type SearchMode } from "./search-mode"
-import { filterServicesByPlace } from "@/lib/places/coverage"
+import { filterServicesByPlace, isBroadCoverageOnly } from "@/lib/places/coverage"
 import type { PlaceId } from "@/types/service"
 
 type SearchScope = "all" | "kingston" | "provincial"
@@ -31,10 +31,10 @@ export function filterSearchResultsByScope(results: SearchResult[], scope: Searc
   if (scope === "all") return results
 
   if (scope === "kingston") {
-    return results.filter((result) => result.service.scope === "kingston" || !result.service.scope)
+    return results.filter((result) => !isBroadCoverageOnly(result.service))
   }
 
-  return results.filter((result) => result.service.scope === "ontario" || result.service.scope === "canada")
+  return results.filter((result) => isBroadCoverageOnly(result.service))
 }
 
 export function filterSearchResultsByPlace(results: SearchResult[], placeId: PlaceId | undefined): SearchResult[] {

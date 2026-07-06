@@ -921,6 +921,7 @@ components:
           description: Primary supported place for local records, when applicable.
         coverage:
           type: array
+          nullable: true
           description: Places or broad regions where the service is available.
           items:
             $ref: "#/components/schemas/ServiceCoverage"
@@ -1027,14 +1028,24 @@ components:
       properties:
         kind:
           type: string
-          enum: [place, regional, provincial, national]
-        place_id:
-          type: string
-          enum: [kingston-on, brampton-on]
-          description: Present when kind is `place`.
+          enum: [local, regional, provincial, national]
+        placeIds:
+          type: array
+          description: Supported place IDs where a local coverage record is available.
+          items:
+            type: string
+            enum: [kingston-on, brampton-on]
+        regionIds:
+          type: array
+          description: Future regional coverage identifiers, such as a verified Peel-region record.
+          items:
+            type: string
         label:
           type: string
           description: Human-readable region label for regional, provincial, or national coverage.
+        notes:
+          type: string
+          description: Optional public nuance about the verified service area.
 
     AnalyticsEntry:
       type: object

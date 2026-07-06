@@ -4,6 +4,8 @@ import {
   getPrimaryPlaceLabel,
   normalizeServiceCoverage,
   serviceServesPlace,
+  hasPlaceSpecificCoverage,
+  isBroadCoverageOnly,
 } from "@/lib/places/coverage"
 import { IntentCategory, VerificationLevel, type Service } from "@/types/service"
 
@@ -49,6 +51,16 @@ describe("coverage helpers", () => {
     expect(serviceServesPlace(service, "kingston-on")).toBe(false)
   })
 
+  it("allows regional coverage to explicitly serve a supported place", () => {
+    const service: Service = {
+      ...baseService,
+      coverage: [{ kind: "regional", placeIds: ["brampton-on"], label: "Peel Region" }],
+    }
+
+    expect(serviceServesPlace(service, "brampton-on")).toBe(true)
+    expect(serviceServesPlace(service, "kingston-on")).toBe(false)
+  })
+
   it("returns human-readable coverage badges", () => {
     const service: Service = {
       ...baseService,
@@ -63,5 +75,44 @@ describe("coverage helpers", () => {
 
   it("returns a primary place label when available", () => {
     expect(getPrimaryPlaceLabel({ ...baseService, primary_place_id: "brampton-on" })).toBe("Brampton")
+  })
+
+  it("classifies broad-only coverage for compatibility filters", () => {
+    expect(isBroadCoverageOnly({ ...baseService, coverage: [{ kind: "provincial", label: "Ontario-wide" }] })).toBe(
+      true
+    )
+    expect(isBroadCoverageOnly({ ...baseService, coverage: [{ kind: "local", placeIds: ["brampton-on"] }] })).toBe(
+      false
+    )
+    expect(
+      isBroadCoverageOnly({
+        ...baseService,
+        coverage: [
+          { kind: "local", placeIds: ["brampton-on"] },
+          { kind: "provincial", label: "Ontario-wide" },
+        ],
+      })
+    ).toBe(false)
+  })
+
+  it("detects place-specific local or regional coverage", () => {
+    expect(
+      hasPlaceSpecificCoverage(
+        { ...baseService, coverage: [{ kind: "local", placeIds: ["brampton-on"] }] },
+        "brampton-on"
+      )
+    ).toBe(true)
+    expect(
+      hasPlaceSpecificCoverage(
+        { ...baseService, coverage: [{ kind: "regional", placeIds: ["brampton-on"], label: "Peel Region" }] },
+        "brampton-on"
+      )
+    ).toBe(true)
+    expect(
+      hasPlaceSpecificCoverage(
+        { ...baseService, coverage: [{ kind: "provincial", label: "Ontario-wide" }] },
+        "brampton-on"
+      )
+    ).toBe(false)
   })
 })
