@@ -224,15 +224,26 @@ The implementation plan should prioritize authoritative and direct sources:
 
 ### 7.1 Homepage
 
-The homepage should move from "Kingston CareConnect" to "CareConnect" with city-aware supporting copy.
+The homepage should keep the current region-led identity pattern but make it city-aware. Instead of removing
+"Kingston CareConnect", the hero should render an animated supported-region prefix before the stable CareConnect brand.
 
 Recommended first-viewport behavior:
 
 1. brand remains CareConnect,
-2. active place is visible near the search box,
-3. users can change place without opening settings,
-4. search examples and stats adapt to the selected place,
-5. Brampton preview state can say that coverage is starting with core services.
+2. the hero headline cycles through supported region labels such as "Kingston CareConnect" and "Brampton CareConnect",
+3. the selected/active place is still visible near the search box and is not hidden behind the animation,
+4. users can change place without opening settings,
+5. search examples and stats adapt to the selected place,
+6. Brampton preview state can say that coverage is starting with core services.
+
+Hero animation requirements:
+
+1. The rotating word or phrase must be driven by the place registry, not a separate hard-coded list.
+2. The animation should include only supported live or preview places, not future hidden regions.
+3. The stable accessible heading should remain clear to screen readers, for example "CareConnect for supported Ontario communities".
+4. The visual animation must respect `prefers-reduced-motion`; reduced-motion users should see a static selected-place or default-supported-place heading.
+5. The animation must not cause layout shift when labels differ in length.
+6. The animation must not replace the explicit selected-place control; it is brand/positioning, not the user's search filter state.
 
 ### 7.2 Service Cards
 
@@ -273,7 +284,7 @@ The public narrative should become:
 Required copy changes:
 
 1. README mission and dataset description.
-2. homepage hero and stats.
+2. homepage hero, rotating supported-region headline, and stats.
 3. page metadata in `app/[locale]/layout.tsx`.
 4. About page title, subtitle, and governance language.
 5. Partners/source page reference organizations and descriptions.
@@ -287,7 +298,8 @@ Project naming:
 
 1. Keep the product name **CareConnect**.
 2. Do not rename to Brampton CareConnect.
-3. Use city context in UI copy: "CareConnect for Brampton" or "Showing services for Brampton" where needed.
+3. Keep region-led homepage expressions such as "Kingston CareConnect" and "Brampton CareConnect" as dynamic display copy.
+4. Use city context in UI copy: "CareConnect for Brampton" or "Showing services for Brampton" where needed.
 
 Land acknowledgment:
 
@@ -381,7 +393,7 @@ Search should work offline with the selected place stored locally.
 
 ### Phase 4: Public Positioning
 
-1. Replace Kingston-only product copy with city-aware copy.
+1. Replace Kingston-only product copy with city-aware copy while keeping the animated supported-region hero pattern.
 2. Update About, partners, FAQ, user guide, metadata, and launch materials.
 3. Rename or revise "Kingston 150" governance language to a place-neutral standard.
 4. Update i18n messages across all supported locales.
@@ -415,7 +427,8 @@ Required automated checks:
 7. Offline export shape tests.
 8. Service card badge tests.
 9. City selector accessibility tests.
-10. i18n audit after copy changes.
+10. Hero rotating-region tests, including stable layout and reduced-motion behavior.
+11. i18n audit after copy changes.
 
 Required manual checks:
 
@@ -425,6 +438,8 @@ Required manual checks:
 4. Brampton sparse search paths.
 5. Crisis search behavior in both cities.
 6. Service-detail pages for local, regional, provincial, and national records.
+7. Hero animation cycles through supported regions without hiding the selected-place control.
+8. Hero reduced-motion behavior is static and readable.
 
 ## 12. Risks And Controls
 
@@ -433,6 +448,8 @@ Required manual checks:
 | Bad Brampton data due to AI drafting   | AI output remains draft-only; L1 checks required before visibility        |
 | Duplicated services across cities      | Canonical service identity plus coverage areas                            |
 | Confusing city inference               | Visible selected-place control and manual override                        |
+| Hero animation implies selected city   | Animation stays separate from explicit selected-place control             |
+| Hero animation harms accessibility     | Reduced-motion fallback, stable heading semantics, and layout-shift tests |
 | Privacy regression                     | No IP inference, local selected-place storage, no query logging           |
 | Kingston regressions                   | Compatibility mapping from current `scope` and tests for Kingston context |
 | Sparse Brampton results feel broken    | Honest empty states and broad-resource fallback                           |
@@ -448,8 +465,10 @@ The multi-city foundation is ready when:
 3. Browser geolocation can suggest a supported place only after user permission.
 4. Brampton searches include Brampton, regional, Ontario-wide, and Canada-wide services while excluding Kingston-only services.
 5. Existing provincial and national services continue to appear where appropriate.
-6. Public copy no longer implies the whole product is Kingston-only.
-7. Brampton records are visible only after L1 review.
-8. Offline search respects the selected place.
-9. Server search and local search use the same coverage semantics.
-10. Accessibility, type-checking, linting, data validation, and targeted tests pass.
+6. Homepage hero cycles through supported region labels from the place registry while preserving a stable CareConnect brand.
+7. The hero respects reduced-motion preferences and does not obscure the selected-place control.
+8. Public copy no longer implies the whole product is Kingston-only.
+9. Brampton records are visible only after L1 review.
+10. Offline search respects the selected place.
+11. Server search and local search use the same coverage semantics.
+12. Accessibility, type-checking, linting, data validation, and targeted tests pass.
