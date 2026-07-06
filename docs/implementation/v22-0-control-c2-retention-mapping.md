@@ -37,7 +37,7 @@ Key references:
 
 1. [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)
 2. [ADR-020: v22 Phase 0 Pilot Instrumentation and Privacy Guardrails](../adr/020-v22-pilot-phase0-instrumentation-and-privacy-guardrails.md)
-3. [Governance Protocol: The Kingston 150 Standard](../governance/standards.md)
+3. [Governance Protocol: The CareConnect Local Verification Standard](../governance/standards.md)
 4. [v22.0 C2 Retention Policy Proposal](v22-0-c2-retention-policy-proposal.md)
 5. [v22.0 C2 Deletion Verification Runbook](v22-0-c2-deletion-verification-runbook.md)
 6. `lib/config/pilot-retention.ts`

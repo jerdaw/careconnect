@@ -8,23 +8,23 @@
 
 ## Quick Facts
 
-| Detail              | Information                                                                            |
-| ------------------- | -------------------------------------------------------------------------------------- |
-| **Name**            | CareConnect                                                                            |
-| **Tagline**         | Find social services in Kingston, Ontario                                              |
-| **Mission**         | Bridge the gap between people in need and a manually curated social-services directory |
-| **Current Status**  | Live public pilot                                                                      |
-| **Platform**        | Web application (Progressive Web App)                                                  |
-| **URL**             | https://careconnect.ing                                                                |
-| **Service Area**    | Kingston, Ontario, Canada                                                              |
-| **Languages**       | English, French, plus 5 additional community languages                                 |
-| **Services Listed** | ~196 manually curated social services                                                  |
+| Detail              | Information                                                                                              |
+| ------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Name**            | CareConnect                                                                                              |
+| **Tagline**         | Find verified local social services                                                                      |
+| **Mission**         | Bridge the gap between people in need and a manually curated social-services directory                   |
+| **Current Status**  | Live public pilot                                                                                        |
+| **Platform**        | Web application (Progressive Web App)                                                                    |
+| **URL**             | https://careconnect.ing                                                                                  |
+| **Service Area**    | Kingston live; Brampton expansion in progress; Ontario-wide and Canada-wide records shown where relevant |
+| **Languages**       | English, French, plus 5 additional community languages                                                   |
+| **Services Listed** | ~196 manually curated social services                                                                    |
 
 ---
 
 ## Executive Summary
 
-CareConnect is a privacy-first social services directory that helps Kingston residents find food banks, crisis support, housing assistance, mental health services, and other community resources.
+CareConnect is a privacy-first social services directory that helps people in supported Ontario communities find food banks, crisis support, housing assistance, mental health services, and other community resources. Kingston is live; Brampton is the next expansion area.
 
 Unlike traditional directories, CareConnect:
 
@@ -42,7 +42,7 @@ Unlike traditional directories, CareConnect:
 
 ### Information Overload
 
-Kingston residents facing crisis often encounter:
+People facing crisis often encounter:
 
 - **Fragmented Information**: Services listed across dozens of websites, PDFs, and directories
 - **Outdated Contact Info**: Phone numbers and addresses that haven't been verified in years
@@ -96,7 +96,7 @@ We don't scrape websites or use AI to generate service information. The director
 
 **Categories**: Food, Crisis Support, Housing, Mental Health, Addiction, Health, Legal, Employment, Family Support, Youth, Seniors, Disabilities, Indigenous Services
 
-**Local Focus**: Every service serves Kingston. No generic provincial or national listings.
+**Local Focus**: Every visible service must serve a supported place or clearly operate province-wide or Canada-wide. Brampton coverage starts with a small reviewed core-service set before broader expansion.
 
 ---
 
@@ -256,6 +256,7 @@ Services in CareConnect are verified at four levels:
 
 - 211 Ontario database
 - City of Kingston official resources
+- Brampton and Peel-region public references as reviewed for the expansion
 - Direct contact with service providers
 - Community feedback and corrections
 
@@ -345,9 +346,9 @@ Our curation team verifies services through public records, direct contact, and 
 
 Currently, submissions are reviewed and added manually to maintain quality. Providers can submit corrections or new services via our feedback form at feedback@careconnect.ing.
 
-### Why only Kingston?
+### Why expand one city at a time?
 
-Starting local allows CareConnect to focus on local relevance, governance, and quality. Any broader expansion would require the same level of local curation and evidence discipline.
+Starting city by city lets CareConnect preserve local relevance, governance, and quality. Brampton is the next expansion target, beginning with a small reviewed core-service dataset before broader coverage.
 
 ### What about user privacy?
 
@@ -355,7 +356,7 @@ By default, search queries stay on your device (local search mode). Even in serv
 
 ### How is this different from 211?
 
-211 Ontario provides broader provincial coverage and live navigation channels. CareConnect focuses on Kingston-first digital access with local relevance, privacy-first search defaults, offline support, and a community-specific interface. It is intended to complement 211, not replace it.
+211 Ontario provides broader provincial coverage and live navigation channels. CareConnect focuses on verified local digital access with privacy-first search defaults, offline support, and community-specific interfaces. It is intended to complement 211, not replace it.
 
 ### Is the code open source?
 
@@ -391,15 +392,15 @@ The platform is built on open-source technologies. Code availability details are
 
 ### Short (50 words)
 
-CareConnect is a privacy-first social services directory helping Kingston residents find food banks, crisis support, housing assistance, and other community resources. Available in 7 languages with offline functionality, it prioritizes quality over quantity with ~196 manually curated services.
+CareConnect is a privacy-first social services directory helping people in supported Ontario communities find food banks, crisis support, housing assistance, and other community resources. Kingston is live, Brampton is expanding next, and the platform prioritizes quality over quantity with manually curated services.
 
 ### Medium (100 words)
 
-CareConnect is a privacy-first social services directory serving Kingston, Ontario. Unlike traditional directories, it prioritizes quality over quantity with ~196 manually curated services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform helps people searching for immediate support connect to emergency resources quickly, without requiring user accounts or third-party tracking.
+CareConnect is a privacy-first social services directory serving supported Ontario communities, starting with Kingston and expanding next to Brampton. Unlike traditional directories, it prioritizes quality over quantity with manually curated services, offers full offline functionality via Progressive Web App technology, and supports 7 languages including English, French, and community languages. Built with accessibility and crisis response in mind, the platform helps people searching for immediate support connect to emergency resources quickly, without requiring user accounts or third-party tracking.
 
 ### Long (200 words)
 
-CareConnect is a privacy-first social services directory that helps Kingston, Ontario residents find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with approximately 196 manually curated social services rather than a broad scraped directory.
+CareConnect is a privacy-first social services directory that helps people in supported Ontario communities find food banks, crisis support, housing assistance, mental health services, and other community resources. Built on the principle that people in crisis deserve fast, accurate, accessible help, the platform prioritizes quality over quantity with manually curated social services rather than a broad scraped directory.
 
 Key features include seven-language support, full offline functionality via Progressive Web App technology, accessibility-focused development, and privacy-by-design architecture where local search keeps queries on-device by default. Special crisis detection helps route people searching for immediate help toward emergency resources like the 988 Suicide Crisis Helpline.
 

@@ -17,7 +17,7 @@ import { BRAND_NAME, getPublicBaseUrl } from "@/lib/brand"
 export const metadata: Metadata = {
   metadataBase: new URL(getPublicBaseUrl()),
   title: BRAND_NAME,
-  description: "Find local support services for food, housing, crisis, and health in Kingston, Ontario.",
+  description: "Find local support services for food, housing, crisis, and health in supported Ontario communities.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

@@ -169,7 +169,7 @@ class AIEngine {
   public async refineSearchQuery(userQuery: string): Promise<RefinedSearchQuery | null> {
     if (!this.engine) return null
 
-    const system = `You are a query rewriter for a local social services directory search in Kingston, Ontario.
+    const system = `You are a query rewriter for a local social services directory search in supported Ontario communities.
 
 Output MUST be valid JSON (no markdown, no extra text) with this schema:
 {

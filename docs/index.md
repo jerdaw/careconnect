@@ -1,6 +1,6 @@
 # CareConnect
 
-> A verified, governance-first search engine for social services in Kingston, Ontario—covering food security, crisis intervention, and housing support.
+> A verified, governance-first search engine for social services in supported Ontario communities—starting with Kingston and expanding next to Brampton.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
@@ -10,7 +10,7 @@
 
 Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **196 highest-impact services** available to Kingston residents. Every entry is:
+We maintain a hand-verified dataset of the **196 highest-impact services** currently available through the Kingston directory. Brampton expansion starts with a smaller high-confidence emergency and core-service set before broader coverage. Every visible entry is:
 
 - **Verified** — No broken links or disconnected phone numbers.
 - **Accessible** — Clear eligibility requirements.
@@ -99,7 +99,7 @@ Public documentation intentionally excludes deployment details, credentials, mon
 
 ### Additional Capabilities
 
-- **196 Verified Services** — Hand-curated Kingston services across 12 categories.
+- **Place-Aware Service Coverage** — Kingston remains live while Brampton is added through reviewed local and regional records.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -111,7 +111,7 @@ Public documentation intentionally excludes deployment details, credentials, mon
 - **Trust Signals** — Visible freshness badges, provenance data, and explicit stale-record warnings for direct links beyond the governance freshness window.
 - **Multi-Lingual Support** — Full support for 7 languages: English, Canadian French, Arabic, Simplified Chinese, Spanish, Punjabi, and Portuguese.
 - **Indigenous Health Services** — Dedicated filters and culturally safe tags.
-- **Land Acknowledgment** — Respecting the traditional lands of Kingston (Katarokwi).
+- **Place-Specific Public Copy** — Local acknowledgments and place language are published only when verified for that place.
 - **Provincial Crisis Lines** — 16 Ontario-wide crisis services (988, ConnexOntario, Kids Help Phone, etc.).
 
 ---
@@ -277,7 +277,7 @@ This project is community-led. Safety and accuracy take precedence over volume.
 
 Proposed services must meet these criteria:
 
-- Serves the Kingston, Ontario area.
+- Serves a supported CareConnect place, or is clearly available province-wide or Canada-wide.
 - Has a verifiable phone number or physical address.
 - Free or subsidized.
 

@@ -52,7 +52,7 @@ Limited public-directory disposition (2026-07-02):
 ## Evidence Snapshot
 
 1. Governance redline baseline:
-   - [Governance Protocol: The Kingston 150 Standard](../governance/standards.md)
+   - [Governance Protocol: The CareConnect Local Verification Standard](../governance/standards.md)
 2. Privacy and instrumentation controls:
    - [ADR-020: v22 Phase 0 Pilot Instrumentation and Privacy Guardrails](../adr/020-v22-pilot-phase0-instrumentation-and-privacy-guardrails.md)
    - [v22.0 Integration Feasibility Decision Record](v22-0-integration-feasibility-decision.md)

@@ -41,7 +41,7 @@ Repo-local instructions and conventions considered:
 
 ## Repo Profile
 
-CareConnect is a public, privacy-first, health-adjacent social-services search application for Kingston, Ontario. It is a Next.js 16 App Router / TypeScript strict application using Tailwind CSS v4, Radix UI, Supabase/PostgreSQL with pgvector, WebLLM/on-device AI, local JSON fallback data, Vitest, Playwright, k6, MkDocs, and GitHub Actions.
+CareConnect is a public, privacy-first, health-adjacent social-services search application for supported Ontario communities. It is a Next.js 16 App Router / TypeScript strict application using Tailwind CSS v4, Radix UI, Supabase/PostgreSQL with pgvector, WebLLM/on-device AI, local JSON fallback data, Vitest, Playwright, k6, MkDocs, and GitHub Actions.
 
 Risk level is elevated. Search privacy, service data integrity, crisis/resource routing, authentication/authorization, public documentation boundaries, and accessibility are safety-sensitive for vulnerable users. This pass therefore prioritized conservative correctness, privacy, docs/config accuracy, and verification over broad cleanup or speculative architecture work.
 

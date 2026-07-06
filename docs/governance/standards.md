@@ -5,11 +5,13 @@ owner: jer
 tags: [governance, standards, verification]
 ---
 
-# Governance Protocol: The Kingston 150 Standard 🛡️
+# Governance Protocol: The CareConnect Local Verification Standard
 
 **Document Version:** 1.1
 **Effective Date:** Dec 29, 2025
 **Scope:** All services listed in the CareConnect database.
+
+This standard supersedes the earlier Kingston-specific framing while preserving the same accuracy-over-coverage rule. Kingston remains a live supported place; Brampton records must meet the same visible-listing threshold before launch.
 
 ---
 

@@ -8,9 +8,9 @@
 
 ### Qu'est-ce que CareConnect ?
 
-CareConnect est un moteur de recherche gratuit qui vous aide à trouver des services sociaux à Kingston, Ontario. Nous avons des informations sur 196 services vérifiés, y compris les banques alimentaires, le soutien en cas de crise, l'aide au logement, les services de santé, et plus encore.
+CareConnect est un moteur de recherche gratuit qui vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston est déjà en ligne avec 196 services vérifiés; Brampton est la prochaine zone d'expansion et commence avec un plus petit ensemble de services d'urgence et de base révisés.
 
-**C'est comme Google, mais uniquement pour les services sociaux à Kingston.**
+**C'est comme Google, mais axé sur les services sociaux locaux et régionaux vérifiés.**
 
 ---
 
@@ -18,7 +18,7 @@ CareConnect est un moteur de recherche gratuit qui vous aide à trouver des serv
 
 **Non.** CareConnect est un projet communautaire créé par des bénévoles. Nous ne sommes **pas** affiliés à :
 
-- Ville de Kingston
+- Ville de Kingston ou Ville de Brampton
 - Province de l'Ontario
 - Gouvernement fédéral
 - Toute agence de services sociaux spécifique
@@ -74,7 +74,7 @@ Nous corrigeons généralement les problèmes dans les 2-3 jours ouvrables.
 Nous n'avons peut-être pas listé un service pour plusieurs raisons :
 
 1. **Nous ne le connaissons pas encore** - Envoyez-nous un courriel pour le suggérer
-2. **Il est en dehors de Kingston** - Nous nous concentrons sur les services de Kingston
+2. **Il est en dehors d'un lieu pris en charge** - Nous nous concentrons sur les services disponibles pour les collectivités prises en charge par CareConnect
 3. **Ce n'est pas un service social** - Nous nous concentrons sur les services essentiels (nourriture, logement, santé, crise, etc.)
 4. **Il a fermé ou fusionné** - Nous mettons à jour nos dossiers
 

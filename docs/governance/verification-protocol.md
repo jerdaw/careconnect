@@ -36,7 +36,7 @@ To maintain the highest level of accuracy and safety for service listings in Car
 - Volunteer verifies:
   - Phone number connects.
   - Website is active.
-  - Address exists in Kingston area.
+  - Address exists in the listed service area, or the source confirms the service is available to the selected supported place.
 - Record `last_verified` or `provenance.verified_at` so freshness enforcement can keep the listing visible.
 
 ### Step 3: Confirmation (L1 to L2)

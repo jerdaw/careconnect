@@ -13,10 +13,14 @@ CareConnect has an advisory board charter, but the board is still being formed. 
 
 ## Data Sources
 
-Our "Kingston 150" dataset is manually curated and verification-led, but built upon the foundation of public data provided by:
+Our service dataset is manually curated and verification-led, but built upon the foundation of public data provided by:
 
 - **211 Ontario / Findhelp Information Services**: For maintaining the provincial standard of social service formatting.
 - **OpenStreetMap**: For geocoding and mapping support.
+
+## Land Acknowledgments
+
+CareConnect keeps land acknowledgments place-specific. Kingston/Katarokwi acknowledgment text remains scoped to Kingston public surfaces. Brampton-specific land acknowledgment wording must not be published until it is verified through reliable local or Indigenous-led public sources.
 
 ## Special Thanks
 

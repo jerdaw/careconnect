@@ -21,7 +21,7 @@ tags: [development, localization, i18n]
 | `pa`      | ਪੰਜਾਬੀ                 | LTR       | EDIA / South Asian Community |
 | `pt`      | Português              | LTR       | EDIA / Lusophone Community   |
 
-> **Note:** The `fr` locale uses Canadian French (fr-CA), not France French. This is a Kingston, Ontario project and follows Canadian French spelling, vocabulary, and conventions.
+> **Note:** The `fr` locale uses Canadian French (fr-CA), not France French. CareConnect serves Ontario communities and follows Canadian French spelling, vocabulary, and conventions.
 
 ## 2. Architecture
 

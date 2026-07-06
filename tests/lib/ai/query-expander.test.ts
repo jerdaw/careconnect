@@ -209,7 +209,7 @@ describe("Query Expander", () => {
 
       const callContent = vi.mocked(aiEngine.chat).mock.calls[0]![0]![0]!.content
       expect(callContent).toContain("social services search assistant")
-      expect(callContent).toContain("Kingston, Ontario")
+      expect(callContent).toContain("supported Ontario communities")
       expect(callContent).toContain("JSON array of strings")
       expect(callContent).toContain("ODSP")
       expect(callContent).toContain("OW")

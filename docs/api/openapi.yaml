@@ -3,7 +3,7 @@ openapi: 3.0.3
 info:
   title: CareConnect API
   description: |
-    Public API for accessing community services in Kingston, Ontario.
+    Public API for accessing community services in supported Ontario communities.
 
     **Base URL:** `https://careconnect.ing/api/v1`
 
@@ -914,6 +914,16 @@ components:
         verification_status:
           type: string
           enum: [L0, L1, L2, L3]
+        primary_place_id:
+          type: string
+          nullable: true
+          enum: [kingston-on, brampton-on]
+          description: Primary supported place for local records, when applicable.
+        coverage:
+          type: array
+          description: Places or broad regions where the service is available.
+          items:
+            $ref: "#/components/schemas/ServiceCoverage"
 
     ServiceDetail:
       allOf:
@@ -967,6 +977,10 @@ components:
           properties:
             category:
               type: string
+            placeId:
+              type: string
+              enum: [kingston-on, brampton-on]
+              description: Filters results to services available to a supported place.
         options:
           type: object
           properties:
@@ -1005,6 +1019,22 @@ components:
               type: integer
             offset:
               type: integer
+
+    ServiceCoverage:
+      type: object
+      required:
+        - kind
+      properties:
+        kind:
+          type: string
+          enum: [place, regional, provincial, national]
+        place_id:
+          type: string
+          enum: [kingston-on, brampton-on]
+          description: Present when kind is `place`.
+        label:
+          type: string
+          description: Human-readable region label for regional, provincial, or national coverage.
 
     AnalyticsEntry:
       type: object
