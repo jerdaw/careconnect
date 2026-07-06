@@ -84,6 +84,13 @@
     "matchReasonsListLabel": "匹配原因列表",
     "saveThisSearch": "保存此搜索"
   },
+  "PlaceSelector": {
+    "label": "服务地区",
+    "selected": "正在显示 {place}",
+    "change": "更改城市",
+    "useLocation": "使用我的位置",
+    "locating": "正在查找位置"
+  },
   "VoiceInput": {
     "start": "开始私人语音搜索",
     "stop": "停止监听",
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "了解条目如何审核"
     },
     "hero": {
-      "subtitle": "搜索金斯顿已验证的食物、住房、危机支持等服务。默认私密，支持7种语言。"
+      "accessibleTitle": "面向受支持安大略社区的 CareConnect",
+      "brand": "CareConnect",
+      "subtitle": "搜索已验证的本地食物、住房、危机支持等服务。默认私密，支持7种语言。"
     },
     "howItWorks": {
       "title": "使用方式",

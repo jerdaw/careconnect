@@ -107,6 +107,13 @@
     "indigenous": "Autochtones",
     "saveThisSearch": "Enregistrer cette recherche"
   },
+  "PlaceSelector": {
+    "label": "Zone de service",
+    "selected": "Affichage de {place}",
+    "change": "Changer de ville",
+    "useLocation": "Utiliser ma position",
+    "locating": "Recherche de la position"
+  },
   "VoiceInput": {
     "start": "Démarrer la recherche vocale privée",
     "stop": "Arrêter l'écoute",
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "Comment les fiches sont revues"
     },
     "hero": {
-      "subtitle": "Recherchez des services vérifiés à Kingston pour l'alimentation, le logement, le soutien en crise et plus encore. Privé par défaut et disponible en 7 langues."
+      "accessibleTitle": "CareConnect pour les communautés ontariennes prises en charge",
+      "brand": "CareConnect",
+      "subtitle": "Recherchez des services locaux vérifiés pour l'alimentation, le logement, le soutien en crise et plus encore. Privé par défaut et disponible en 7 langues."
     },
     "howItWorks": {
       "title": "Comment ça fonctionne",

@@ -96,6 +96,13 @@
     "matchReasonsListLabel": "أسباب المطابقة",
     "saveThisSearch": "حفظ هذا البحث"
   },
+  "PlaceSelector": {
+    "label": "منطقة الخدمة",
+    "selected": "عرض {place}",
+    "change": "تغيير المدينة",
+    "useLocation": "استخدام موقعي",
+    "locating": "جارٍ تحديد الموقع"
+  },
   "ChatAssistant": {
     "open": "فتح مساعد الذكاء الاصطناعي"
   },
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "كيف تُراجع القوائم"
     },
     "hero": {
-      "subtitle": "ابحث عن خدمات موثّقة في كينغستون للطعام والسكن ودعم الأزمات والمزيد. خاص بشكل افتراضي ومتاح بـ 7 لغات."
+      "accessibleTitle": "CareConnect للمجتمعات المدعومة في أونتاريو",
+      "brand": "CareConnect",
+      "subtitle": "ابحث عن خدمات محلية موثّقة للطعام والسكن ودعم الأزمات والمزيد. خاص بشكل افتراضي ومتاح بـ 7 لغات."
     },
     "howItWorks": {
       "title": "كيف يعمل",

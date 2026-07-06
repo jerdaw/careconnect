@@ -84,6 +84,13 @@
     "matchReasonsListLabel": "Razones de coincidencia",
     "saveThisSearch": "Guardar esta búsqueda"
   },
+  "PlaceSelector": {
+    "label": "Área de servicio",
+    "selected": "Mostrando {place}",
+    "change": "Cambiar ciudad",
+    "useLocation": "Usar mi ubicación",
+    "locating": "Buscando ubicación"
+  },
   "VoiceInput": {
     "start": "Iniciar Búsqueda por Voz Privada",
     "stop": "Dejar de Escuchar",
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "Cómo se revisan los listados"
     },
     "hero": {
-      "subtitle": "Busca servicios verificados en Kingston para alimentos, vivienda, apoyo en crisis y más. Privado por defecto y disponible en 7 idiomas."
+      "accessibleTitle": "CareConnect para comunidades admitidas de Ontario",
+      "brand": "CareConnect",
+      "subtitle": "Busca servicios locales verificados para alimentos, vivienda, apoyo en crisis y más. Privado por defecto y disponible en 7 idiomas."
     },
     "howItWorks": {
       "title": "Cómo funciona",

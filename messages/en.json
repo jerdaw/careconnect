@@ -107,6 +107,13 @@
     "indigenous": "Indigenous",
     "saveThisSearch": "Save this search"
   },
+  "PlaceSelector": {
+    "label": "Service area",
+    "selected": "Showing {place}",
+    "change": "Change city",
+    "useLocation": "Use my location",
+    "locating": "Finding location"
+  },
   "VoiceInput": {
     "start": "Start Private Voice Search",
     "stop": "Stop Listening",
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "How listings are reviewed"
     },
     "hero": {
-      "subtitle": "Search verified Kingston services for food, housing, crisis support, and more. Private by default and available in 7 languages."
+      "accessibleTitle": "CareConnect for supported Ontario communities",
+      "brand": "CareConnect",
+      "subtitle": "Search verified local services for food, housing, crisis support, and more. Private by default and available in 7 languages."
     },
     "howItWorks": {
       "title": "How It Works",

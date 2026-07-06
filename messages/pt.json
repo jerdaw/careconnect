@@ -84,6 +84,13 @@
     "matchReasonsListLabel": "Motivos da correspondência",
     "saveThisSearch": "Guardar esta pesquisa"
   },
+  "PlaceSelector": {
+    "label": "Área de serviço",
+    "selected": "Mostrando {place}",
+    "change": "Alterar cidade",
+    "useLocation": "Usar minha localização",
+    "locating": "Localizando"
+  },
   "VoiceInput": {
     "start": "Iniciar pesquisa por voz privada",
     "stop": "Parar de ouvir",
@@ -1693,7 +1700,9 @@
       "learnMoreButton": "Como as listagens são revisadas"
     },
     "hero": {
-      "subtitle": "Busque serviços verificados em Kingston para alimentação, moradia, apoio em crise e muito mais. Privado por padrão e disponível em 7 idiomas."
+      "accessibleTitle": "CareConnect para comunidades atendidas em Ontário",
+      "brand": "CareConnect",
+      "subtitle": "Busque serviços locais verificados para alimentação, moradia, apoio em crise e muito mais. Privado por padrão e disponível em 7 idiomas."
     },
     "howItWorks": {
       "title": "Como funciona",

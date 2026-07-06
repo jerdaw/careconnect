@@ -1,10 +1,17 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { SearchResult } from "@/lib/search"
 import { useLocalStorage } from "./useLocalStorage"
 import { useGeolocation } from "./useGeolocation"
 import { logger } from "@/lib/logger"
 import { useUserContext } from "./useUserContext"
 import { LEGACY_BRAND_KEYS } from "@/lib/legacy-brand"
+import type { PlaceId } from "@/types/service"
+import {
+  getDefaultPlaceId,
+  inferPlaceFromCoordinates,
+  normalizeSelectedPlace,
+  SELECTED_PLACE_STORAGE_KEY,
+} from "@/lib/places/selection"
 
 const LEGACY_SAVED_SEARCH_KEYS = [...LEGACY_BRAND_KEYS.savedSearches]
 
@@ -23,6 +30,7 @@ export function useSearch(initialQuery = "") {
   const [category, setCategory] = useState<string | undefined>(undefined)
   const [openNow, setOpenNow] = useState(false)
   const [scope, setScope] = useState<"all" | "kingston" | "provincial">("all")
+  const [manualPlaceOverride, setManualPlaceOverride] = useState(false)
   const [results, setResults] = useState<SearchResult[]>([])
   const [hasSearched, setHasSearched] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -32,6 +40,11 @@ export function useSearch(initialQuery = "") {
   const [savedSearches, setSavedSearches] = useLocalStorage<string[]>("careconnect_saved_searches", [], {
     legacyKeys: LEGACY_SAVED_SEARCH_KEYS,
   })
+  const [storedSelectedPlaceId, setStoredSelectedPlaceId] = useLocalStorage<PlaceId>(
+    SELECTED_PLACE_STORAGE_KEY,
+    getDefaultPlaceId()
+  )
+  const selectedPlaceId = normalizeSelectedPlace(storedSelectedPlaceId)
   const { coordinates: userLocation, isLocating, error: geoError, requestLocation, clearLocation } = useGeolocation()
 
   // Import User Context for personalization
@@ -60,6 +73,28 @@ export function useSearch(initialQuery = "") {
     }
   }, [userLocation, clearLocation, requestLocation])
 
+  const setSelectedPlaceId = useCallback(
+    (placeId: PlaceId) => {
+      setManualPlaceOverride(true)
+      setStoredSelectedPlaceId(normalizeSelectedPlace(placeId))
+    },
+    [setStoredSelectedPlaceId]
+  )
+
+  const useLocationForPlace = useCallback(() => {
+    setManualPlaceOverride(false)
+    requestLocation()
+  }, [requestLocation])
+
+  useEffect(() => {
+    if (manualPlaceOverride) return
+
+    const inferredPlaceId = inferPlaceFromCoordinates(userLocation)
+    if (inferredPlaceId && inferredPlaceId !== selectedPlaceId) {
+      setStoredSelectedPlaceId(inferredPlaceId)
+    }
+  }, [manualPlaceOverride, selectedPlaceId, setStoredSelectedPlaceId, userLocation])
+
   // Handle geo errors by logging and alerting (MVP style)
   if (geoError && isLocating === false && hasSearched === false) {
     logger.error("Geolocation error in useSearch", new Error(geoError), { component: "useSearch" })
@@ -76,6 +111,9 @@ export function useSearch(initialQuery = "") {
     setOpenNow,
     scope,
     setScope,
+    selectedPlaceId,
+    setSelectedPlaceId,
+    useLocationForPlace,
     userLocation: userLocation || undefined,
     toggleLocation,
     isLocating,
