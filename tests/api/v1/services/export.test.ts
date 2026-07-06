@@ -14,6 +14,8 @@ vi.mock("@/lib/search/data", () => ({
       published: true,
       verification_level: "L2",
       intent_category: "Food",
+      primary_place_id: "brampton-on",
+      coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
       last_verified: "2026-03-01T00:00:00.000Z",
       provenance: null,
     },
@@ -60,6 +62,10 @@ describe("Export API", () => {
     const data = (await response.json()) as { count: number; services: any[]; version: string }
     expect(data.count).toBe(1)
     expect(data.services[0].id).toBe("s1")
+    expect(data.services[0]).toMatchObject({
+      primary_place_id: "brampton-on",
+      coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+    })
     expect(data.services[0].provenance).toEqual({
       verified_by: "",
       verified_at: "",

@@ -5,8 +5,10 @@ import {
   VerificationLevel,
   type AuthorityTier,
   type IdentityTag,
+  type PlaceId,
   type ResourceIndicators,
   type Service,
+  type ServiceCoverageArea,
   type ServiceHours,
   type ServiceScope,
 } from "@/types/service"
@@ -18,6 +20,7 @@ export type ServiceUpdate = Database["public"]["Tables"]["services"]["Update"]
 
 const SERVICE_CATEGORIES = new Set<string>(Object.values(IntentCategory))
 const SERVICE_SCOPES = new Set<ServiceScope>(["kingston", "ontario", "canada"])
+const PLACE_IDS = new Set<PlaceId>(["kingston-on", "brampton-on"])
 const VERIFICATION_LEVELS = new Set<string>(Object.values(VerificationLevel))
 const AUTHORITY_TIERS = new Set<AuthorityTier>([
   "government",
@@ -138,6 +141,14 @@ function normalizeScope(value: unknown, fallback?: Service["scope"]): ServiceSco
   return fallback
 }
 
+function normalizePlaceId(value: unknown, fallback?: Service["primary_place_id"]): PlaceId | undefined {
+  if (typeof value === "string" && PLACE_IDS.has(value as PlaceId)) {
+    return value as PlaceId
+  }
+
+  return fallback
+}
+
 function normalizeAuthorityTier(value: unknown, fallback?: Service["authority_tier"]): AuthorityTier | undefined {
   if (typeof value === "string" && AUTHORITY_TIERS.has(value as AuthorityTier)) {
     return value as AuthorityTier
@@ -200,6 +211,8 @@ export function mapServiceRowToService(
       parseJsonField<{ lat: number; lng: number }>(row.coordinates) ?? staticService?.coordinates ?? undefined,
     cultural_safety: staticService?.cultural_safety,
     scope: normalizeScope(row.scope, staticService?.scope),
+    primary_place_id: normalizePlaceId(row.primary_place_id, staticService?.primary_place_id),
+    coverage: parseJsonField<ServiceCoverageArea[]>(row.coverage) ?? staticService?.coverage ?? undefined,
     virtual_delivery: row.virtual_delivery ?? staticService?.virtual_delivery ?? undefined,
     primary_phone_label: row.primary_phone_label ?? staticService?.primary_phone_label ?? undefined,
     service_area: row.service_area ?? staticService?.service_area ?? undefined,
@@ -248,6 +261,8 @@ export function mapServiceToDatabaseUpdate(service: Partial<Service>): ServiceUp
   if (service.intent_category !== undefined) update.category = service.intent_category
   if (service.identity_tags !== undefined) update.tags = service.identity_tags as unknown as Json
   if (service.scope !== undefined) update.scope = service.scope
+  if (service.primary_place_id !== undefined) update.primary_place_id = service.primary_place_id
+  if (service.coverage !== undefined) update.coverage = service.coverage as unknown as Json
   if (service.virtual_delivery !== undefined) update.virtual_delivery = service.virtual_delivery
   if (service.primary_phone_label !== undefined) update.primary_phone_label = service.primary_phone_label
   if (service.service_area !== undefined) update.service_area = service.service_area
@@ -380,6 +395,7 @@ export function mapServicePayloadToUpdate(payload: Record<string, unknown>): Ser
     maybeSetString("category", payload.intent_category)
   }
   maybeSetString("scope", payload.scope)
+  maybeSetString("primary_place_id", payload.primary_place_id)
   maybeSetString("primary_phone_label", payload.primary_phone_label)
   maybeSetString("service_area", payload.service_area)
   maybeSetString("authority_tier", payload.authority_tier)
@@ -420,6 +436,9 @@ export function mapServicePayloadToUpdate(payload: Record<string, unknown>): Ser
 
   const provenance = toJsonField(payload.provenance)
   if (provenance !== undefined) update.provenance = provenance
+
+  const coverage = toJsonField(payload.coverage)
+  if (coverage !== undefined) update.coverage = coverage
 
   const languages = toStringArray(payload.languages)
   if (languages !== undefined) update.languages = languages
