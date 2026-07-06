@@ -23,6 +23,16 @@ export const IntentCategorySchema = z.enum([
 // v11.0: Service scope for geographic availability
 export const ScopeSchema = z.enum(["kingston", "ontario", "canada"])
 
+export const PlaceIdSchema = z.enum(["kingston-on", "brampton-on"])
+export const CoverageKindSchema = z.enum(["local", "regional", "provincial", "national"])
+export const ServiceCoverageAreaSchema = z.object({
+  kind: CoverageKindSchema,
+  placeIds: z.array(PlaceIdSchema).optional(),
+  regionIds: z.array(z.string().min(1)).optional(),
+  label: z.string().optional(),
+  notes: z.string().optional(),
+})
+
 // Identity tag with evidence
 export const IdentityTagSchema = z.object({
   tag: z.string().min(1, "Tag cannot be empty"),
@@ -101,6 +111,8 @@ export const ServiceSchema = z
     plain_language_available: z.boolean().optional(),
     // v11.0: Scope expansion fields
     scope: ScopeSchema.optional(),
+    primary_place_id: PlaceIdSchema.optional(),
+    coverage: z.array(ServiceCoverageAreaSchema).optional(),
     virtual_delivery: z.boolean().optional(),
     primary_phone_label: z.string().optional(),
     service_area: z.string().optional(),
