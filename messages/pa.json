@@ -69,6 +69,7 @@
     "resultSingular": "ਨਤੀਜਾ",
     "resultPlural": "ਨਤੀਜੇ",
     "noLocalResults": "ਇਸ ਖੋਜ ਲਈ ਕੋਈ ਸਥਾਨਕ ਸੇਵਾਵਾਂ ਨਹੀਂ ਮਿਲੀਆਂ।",
+    "noPlaceResults": "{place} ਲਈ ਅਜੇ ਕੋਈ ਰਿਕਾਰਡ ਇਸ ਖੋਜ ਨਾਲ ਨਹੀਂ ਮਿਲਦਾ। ਓਨਟਾਰੀਓ-ਵਿਆਪੀ ਸੇਵਾਵਾਂ ਵੇਖੋ ਜਾਂ ਸਥਾਨਕ ਸੇਵਾ ਦਾ ਸੁਝਾਅ ਦਿਓ।",
     "noResults": "\"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
     "noResultsInCategory": "{category} ਵਿੱਚ \"{query}\" ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ।",
     "showAllResults": "{count} ਸੂਬਾਈ ਨਤੀਜੇ ਦਿਖਾਓ",

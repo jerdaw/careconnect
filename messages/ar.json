@@ -81,6 +81,7 @@
     "resultSingular": "نتيجة",
     "resultPlural": "نتائج",
     "noLocalResults": "لم يتم العثور على خدمات محلية لهذا البحث.",
+    "noPlaceResults": "لا توجد سجلات لـ {place} تطابق هذا البحث حتى الآن. جرّب خدمات على مستوى أونتاريو أو اقترح خدمة محلية.",
     "noResults": "لم يتم العثور على نتائج لـ \"{query}\".",
     "noResultsInCategory": "لم يتم العثور على نتائج لـ \"{query}\" في {category}.",
     "showAllResults": "عرض {count} نتيجة على مستوى المقاطعة",

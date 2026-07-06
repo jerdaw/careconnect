@@ -69,6 +69,7 @@
     "resultSingular": "个结果",
     "resultPlural": "个结果",
     "noLocalResults": "未找到此搜索的本地服务。",
+    "noPlaceResults": "目前没有与此搜索匹配的 {place} 记录。请尝试安大略省范围服务，或建议添加本地服务。",
     "noResults": "未找到“{query}”的结果。",
     "noResultsInCategory": "在 {category} 中未找到“{query}”的结果。",
     "showAllResults": "显示 {count} 个省级结果",

@@ -274,6 +274,7 @@ export default function Home() {
             query={query}
             category={category}
             userLocation={userLocation}
+            selectedPlaceId={selectedPlaceId}
           />
         </Section>
       </main>

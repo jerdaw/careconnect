@@ -120,6 +120,8 @@ export function mapServicePublicToService(service: ServicePublic): Service {
     synthetic_queries_fr: service.synthetic_queries_fr ?? undefined,
     provenance: normalizeProvenance(sanitizePublicProvenance(service.provenance)),
     scope: normalizeScope(service.scope),
+    primary_place_id: service.primary_place_id ?? undefined,
+    coverage: service.coverage ?? undefined,
     virtual_delivery: service.virtual_delivery ?? undefined,
     primary_phone_label: service.primary_phone_label ?? undefined,
     authority_tier: normalizeAuthorityTier(service.authority_tier ?? null),

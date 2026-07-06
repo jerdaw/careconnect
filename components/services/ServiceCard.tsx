@@ -17,6 +17,8 @@ import { highlightMatches } from "@/lib/search/highlight"
 import { buildMatchReasonSearchParams } from "@/lib/search/match-reasons"
 import { useUserContext } from "@/hooks/useUserContext"
 import { checkEligibility } from "@/lib/eligibility/checker"
+import { getCoverageBadges, getPrimaryPlaceLabel } from "@/lib/places/coverage"
+import { cn } from "@/lib/utils"
 
 /**
  * Props for the ServiceCard component.
@@ -68,6 +70,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   // Distance is optionally added during search with geolocation
   const distance = service.distance
+  const coverageBadges = getCoverageBadges(service)
+  const primaryPlaceLabel = getPrimaryPlaceLabel(service)
+  const coverageMetaLabel =
+    coverageBadges.find((badge) => badge.kind === "provincial" || badge.kind === "national")?.label ??
+    primaryPlaceLabel ??
+    t("ServiceDetail.kingston")
 
   const handleTrack = (type: "click_call") => {
     trackEvent(service.id, type)
@@ -117,20 +125,29 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     {service.status === "Merged" ? t("ServiceDetail.merged") : t("ServiceDetail.closed")}
                   </Badge>
                 )}
-                {service.scope === "ontario" && (
-                  <Badge
-                    variant="outline"
-                    size="sm"
-                    className="cursor-pointer border-blue-200 bg-blue-50 px-1.5 py-0 text-xs text-blue-700 transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300 dark:hover:bg-blue-900/40"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      onScopeFilter?.("provincial")
-                    }}
-                  >
-                    {t("Badges.ontarioWide")}
-                  </Badge>
-                )}
-                {service.scope === "canada" && (
+                {coverageBadges.map((badge) => {
+                  const isBroadCoverage = badge.kind === "provincial" || badge.kind === "national"
+                  return (
+                    <Badge
+                      key={badge.key}
+                      variant="outline"
+                      size="sm"
+                      className={cn(
+                        "border-blue-200 bg-blue-50 px-1.5 py-0 text-xs text-blue-700 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
+                        isBroadCoverage &&
+                          "cursor-pointer transition-colors hover:bg-blue-100 dark:hover:bg-blue-900/40"
+                      )}
+                      onClick={(e) => {
+                        if (!isBroadCoverage) return
+                        e.stopPropagation()
+                        onScopeFilter?.("provincial")
+                      }}
+                    >
+                      {badge.label}
+                    </Badge>
+                  )
+                })}
+                {service.scope === "canada" && coverageBadges.length === 0 && (
                   <Badge
                     variant="outline"
                     size="sm"
@@ -180,7 +197,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                       ? t("Distance.canadaWide")
                       : distance
                         ? `${distance.toFixed(1)} km`
-                        : t("ServiceDetail.kingston")}
+                        : coverageMetaLabel}
                 </span>
               </div>
             </div>

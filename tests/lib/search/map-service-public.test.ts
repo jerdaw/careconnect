@@ -86,6 +86,17 @@ describe("mapServicePublicToService", () => {
     expect(mapped.provenance?.verified_by).toBe("Community Partner")
   })
 
+  it("maps public coverage and primary place fields", () => {
+    const mapped = mapServicePublicToService({
+      ...baseService,
+      primary_place_id: "brampton-on",
+      coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+    } as ServicePublic)
+
+    expect(mapped.primary_place_id).toBe("brampton-on")
+    expect(mapped.coverage).toEqual([{ kind: "local", placeIds: ["brampton-on"] }])
+  })
+
   it("falls back safely when category, verification, tags, or provenance are absent", () => {
     const mapped = mapServicePublicToService({
       ...baseService,

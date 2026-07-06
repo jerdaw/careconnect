@@ -81,6 +81,7 @@
     "resultSingular": "Result",
     "resultPlural": "Results",
     "noLocalResults": "No local Kingston services match this search. Try browsing province-wide services or use different keywords.",
+    "noPlaceResults": "No {place} records match this search yet. Try Ontario-wide services or suggest a local service.",
     "noResults": "No services found for \"{query}\". Try using different keywords, browsing categories below, or checking your spelling.",
     "noResultsInCategory": "No {category} services found for \"{query}\". Try different keywords or browse other categories.",
     "noResultsHelpTitle": "Can't find what you need?",

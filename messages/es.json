@@ -69,6 +69,7 @@
     "resultSingular": "resultado",
     "resultPlural": "resultados",
     "noLocalResults": "No se encontraron servicios locales para esta búsqueda.",
+    "noPlaceResults": "Todavía no hay registros de {place} que coincidan con esta búsqueda. Prueba servicios de todo Ontario o sugiere un servicio local.",
     "noResults": "No se encontraron resultados para \"{query}\".",
     "noResultsInCategory": "No se encontraron resultados para \"{query}\" en {category}.",
     "showAllResults": "Mostrar {count} resultados provinciales",

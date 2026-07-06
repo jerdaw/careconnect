@@ -81,6 +81,7 @@
     "resultSingular": "résultat",
     "resultPlural": "résultats",
     "noLocalResults": "Aucun service de Kingston ne correspond à cette recherche. Essayez les services provinciaux ou utilisez des mots-clés différents.",
+    "noPlaceResults": "Aucune fiche pour {place} ne correspond encore à cette recherche. Essayez les services provinciaux ou suggérez un service local.",
     "noResults": "Aucun service trouvé pour \"{query}\". Essayez des mots-clés différents, parcourez les catégories ci-dessous ou vérifiez l'orthographe.",
     "noResultsInCategory": "Aucun service {category} trouvé pour \"{query}\". Essayez des mots-clés différents ou parcourez d'autres catégories.",
     "noResultsHelpTitle": "Vous ne trouvez pas ce dont vous avez besoin ?",

@@ -133,6 +133,22 @@ describe("ServiceCard Component", () => {
     expect(screen.getAllByText(/Canada-wide/i)[0]).toBeInTheDocument()
   })
 
+  it("renders structured coverage badges", () => {
+    render(
+      <TestWrapper>
+        <ServiceCard
+          service={{
+            ...mockService,
+            primary_place_id: "brampton-on",
+            coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+          }}
+        />
+      </TestWrapper>
+    )
+
+    expect(screen.getAllByText("Brampton")[0]).toBeInTheDocument()
+  })
+
   it("calls onScopeFilter when scope badge is clicked", () => {
     const onScopeFilter = vi.fn()
     render(

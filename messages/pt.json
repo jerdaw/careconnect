@@ -69,6 +69,7 @@
     "resultSingular": "resultado",
     "resultPlural": "resultados",
     "noLocalResults": "Não foram encontrados serviços locais para esta pesquisa.",
+    "noPlaceResults": "Nenhum registro de {place} corresponde a esta busca ainda. Tente serviços em Ontário ou sugira um serviço local.",
     "noResults": "Nenhum resultado encontrado para \"{query}\".",
     "noResultsInCategory": "Nenhum resultado encontrado para \"{query}\" em {category}.",
     "showAllResults": "Mostrar {count} resultados provinciais",
