@@ -14,6 +14,7 @@ import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
 import { trackPerformance } from "@/lib/performance/tracker"
 import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
+import { serviceServesPlace } from "@/lib/places/coverage"
 
 const SEMANTIC_SIMILARITY_THRESHOLD = 0.01
 const SEMANTIC_BOOST_DISPLAY_THRESHOLD = 30
@@ -60,13 +61,18 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         filteredServices = filteredServices.filter((s) => isOpenNow(s.hours))
       }
 
+      const placeId = options.placeId
+      if (placeId) {
+        filteredServices = filteredServices.filter((service) => serviceServesPlace(service, placeId))
+      }
+
       filteredServices = filteredServices.filter(
         (service) => service.verification_level !== VerificationLevel.L0 && !isBeyondGovernanceFreshnessWindow(service)
       )
 
       // Special Case: Empty Query but filters are active
       if (query.trim().length === 0) {
-        if (options.category || options.location || options.openNow) {
+        if (options.category || options.location || options.openNow || options.placeId) {
           return rankServicesByQuery(filteredServices, "", {
             category: options.category,
             location: options.location,
@@ -188,6 +194,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
       queryLength: query.length,
       hasCategory: !!options.category,
       hasLocation: !!options.location,
+      hasPlace: !!options.placeId,
       hasVectorOverride: !!options.vectorOverride,
       useAIExpansion: !!options.useAIExpansion,
     }

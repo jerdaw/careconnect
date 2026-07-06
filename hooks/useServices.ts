@@ -3,11 +3,13 @@ import { useLocale } from "next-intl"
 import type { SearchResult } from "@/lib/search"
 import { logger } from "@/lib/logger"
 import { type SupportedLocale } from "@/lib/schemas/search"
+import type { PlaceId } from "@/types/service"
 
 interface UseServicesProps {
   query: string
   category?: string
   scope?: "all" | "kingston" | "provincial"
+  placeId?: PlaceId
   userLocation?: { lat: number; lng: number }
   openNow?: boolean
   isReady: boolean
@@ -22,6 +24,7 @@ export function useServices({
   query,
   category,
   scope = "all",
+  placeId,
   userLocation,
   openNow,
   isReady,
@@ -55,7 +58,7 @@ export function useServices({
           { isOffline },
           { setCachedServices },
           { getSearchMode, serverSearch },
-          { enhanceSearchResults, filterSearchResultsByScope },
+          { enhanceSearchResults, filterSearchResultsByPlace, filterSearchResultsByScope },
         ] = await Promise.all([
           import("@/lib/search"),
           import("@/lib/offline/status"),
@@ -74,7 +77,7 @@ export function useServices({
           const serverServices = await serverSearch({
             query,
             locale: locale as SupportedLocale,
-            filters: { category, openNow },
+            filters: { category, openNow, placeId },
             options: { limit: 50, offset: 0 },
             location: userLocation,
           })
@@ -91,12 +94,13 @@ export function useServices({
             category,
             location: userLocation,
             openNow,
+            placeId,
             onSuggestion: setSuggestion,
           })
         }
 
-        // Apply scope filter
-        const scopedResults = filterSearchResultsByScope(initialResults, scope)
+        // Apply compatibility scope filter, then the selected-place boundary.
+        const scopedResults = filterSearchResultsByPlace(filterSearchResultsByScope(initialResults, scope), placeId)
 
         setResults(scopedResults)
         setHasSearched(true)
@@ -115,6 +119,7 @@ export function useServices({
           isReady,
           mode,
           scope,
+          placeId,
           generateEmbedding,
           search: searchServices,
         })
@@ -163,6 +168,7 @@ export function useServices({
     query,
     category,
     scope,
+    placeId,
     userLocation,
     openNow,
     isReady,

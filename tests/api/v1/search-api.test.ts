@@ -256,6 +256,38 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(res.headers.get("Cache-Control")).toBe("public, s-maxage=60")
   })
 
+  it("uses no-store for place-filtered searches", async () => {
+    mockQueryResult = {
+      data: [
+        createMockService("kingston", {
+          category: IntentCategory.Food,
+          coverage: [{ kind: "local", placeIds: ["kingston-on"] }],
+        } as any),
+        createMockService("brampton", {
+          category: IntentCategory.Food,
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+        } as any),
+        createMockService("ontario", {
+          category: IntentCategory.Food,
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+        } as any),
+      ],
+      error: null,
+    }
+
+    const req = createRequest({
+      query: "",
+      locale: "en",
+      filters: { category: IntentCategory.Food, placeId: "brampton-on" },
+    })
+
+    const res = await POST(req)
+    const json = (await res.json()) as { data: { id: string }[] }
+
+    expect(res.headers.get("Cache-Control")).toBe("no-store")
+    expect(json.data.map((service) => service.id)).toEqual(["brampton", "ontario"])
+  })
+
   it("keeps synthetic-query-only candidates in play for server ranking parity", async () => {
     mockQueryResult = {
       data: [

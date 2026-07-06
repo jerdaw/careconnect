@@ -177,4 +177,37 @@ describe("searchServices Logic", () => {
 
     expect(results.map((result) => result.service.name)).toEqual(["Fresh Service"])
   })
+
+  it("filters Kingston-only services out of Brampton searches", async () => {
+    ;(loadServices as any).mockResolvedValue([
+      {
+        id: "kingston-food",
+        name: "Kingston Food",
+        description: "Food support",
+        verification_level: "L1",
+        intent_category: "Food",
+        coverage: [{ kind: "local", placeIds: ["kingston-on"] }],
+      },
+      {
+        id: "brampton-food",
+        name: "Brampton Food",
+        description: "Food support",
+        verification_level: "L1",
+        intent_category: "Food",
+        coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+      },
+      {
+        id: "ontario-food",
+        name: "Ontario Food Line",
+        description: "Food support",
+        verification_level: "L1",
+        intent_category: "Food",
+        coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+      },
+    ])
+
+    const results = await searchServices("food", { placeId: "brampton-on" })
+
+    expect(results.map((result) => result.service.id)).toEqual(["brampton-food", "ontario-food"])
+  })
 })

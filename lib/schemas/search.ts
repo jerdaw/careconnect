@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { PlaceIdSchema } from "@/lib/schemas/service"
 
 export const SUPPORTED_LOCALES = ["en", "fr", "ar", "zh-Hans", "es", "pa", "pt"] as const
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
@@ -10,6 +11,7 @@ export const searchRequestSchema = z.object({
     .object({
       category: z.string().optional(),
       openNow: z.boolean().optional(),
+      placeId: PlaceIdSchema.optional(),
     })
     .optional()
     .default({}),

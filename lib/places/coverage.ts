@@ -1,13 +1,18 @@
 import type { PlaceId, Service, ServiceCoverageArea } from "@/types/service"
 import { getPlaceById } from "@/lib/places/registry"
 
+type CoverageCompatibleService = {
+  coverage?: ServiceCoverageArea[] | null
+  scope?: Service["scope"] | null
+}
+
 export interface CoverageBadge {
   key: string
   label: string
   kind: ServiceCoverageArea["kind"]
 }
 
-export function normalizeServiceCoverage(service: Pick<Service, "coverage" | "scope">): ServiceCoverageArea[] {
+export function normalizeServiceCoverage(service: CoverageCompatibleService): ServiceCoverageArea[] {
   if (service.coverage && service.coverage.length > 0) {
     return service.coverage
   }
@@ -27,7 +32,7 @@ export function normalizeServiceCoverage(service: Pick<Service, "coverage" | "sc
   return []
 }
 
-export function serviceServesPlace(service: Pick<Service, "coverage" | "scope">, placeId: PlaceId): boolean {
+export function serviceServesPlace(service: CoverageCompatibleService, placeId: PlaceId): boolean {
   return normalizeServiceCoverage(service).some((coverage) => {
     if (coverage.kind === "provincial" || coverage.kind === "national") {
       return true
@@ -37,7 +42,7 @@ export function serviceServesPlace(service: Pick<Service, "coverage" | "scope">,
   })
 }
 
-export function filterServicesByPlace<T extends { service: Pick<Service, "coverage" | "scope"> }>(
+export function filterServicesByPlace<T extends { service: CoverageCompatibleService }>(
   results: T[],
   placeId: PlaceId | undefined
 ): T[] {

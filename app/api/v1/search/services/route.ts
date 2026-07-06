@@ -12,6 +12,7 @@ import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
 import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
 import { sanitizePublicServiceProvenance } from "@/lib/public-provenance"
+import { serviceServesPlace } from "@/lib/places/coverage"
 
 export async function POST(request: NextRequest) {
   return trackPerformance(
@@ -88,6 +89,10 @@ export async function POST(request: NextRequest) {
         if (filters.openNow) {
           services = services.filter((service) => isOpenNow(service.hours ?? undefined))
         }
+        const placeId = filters.placeId
+        if (placeId) {
+          services = services.filter((service) => serviceServesPlace(service, placeId))
+        }
         services = services
           .map((service) => sanitizePublicServiceProvenance(service))
           .filter((service) => !isBeyondGovernanceFreshnessWindow(service))
@@ -133,7 +138,7 @@ export async function POST(request: NextRequest) {
         })
 
         // Privacy: cache only anonymous category browse responses.
-        if (query.trim() || location || filters.openNow || !filters.category) {
+        if (query.trim() || location || filters.openNow || filters.placeId || !filters.category) {
           response.headers.set("Cache-Control", "no-store")
         } else {
           response.headers.set("Cache-Control", "public, s-maxage=60")

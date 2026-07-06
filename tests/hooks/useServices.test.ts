@@ -29,7 +29,7 @@ vi.mock("@/lib/offline/cache", () => ({
 }))
 
 vi.mock("@/lib/search/client-enhancer", () => ({
-  enhanceSearchResults: vi.fn(async ({ isReady, query, generateEmbedding, search }) => {
+  enhanceSearchResults: vi.fn(async ({ isReady, query, generateEmbedding, search, placeId }) => {
     if (!isReady) {
       return null
     }
@@ -39,7 +39,7 @@ vi.mock("@/lib/search/client-enhancer", () => ({
       return null
     }
 
-    return search(query, { vectorOverride: embedding })
+    return search(query, { vectorOverride: embedding, placeId })
   }),
   filterSearchResultsByScope: vi.fn((results: SearchResult[], scope: string) => {
     if (scope !== "provincial") {
@@ -47,6 +47,22 @@ vi.mock("@/lib/search/client-enhancer", () => ({
     }
 
     return results.filter((result) => result.service.scope === "canada" || result.service.scope === "ontario")
+  }),
+  filterSearchResultsByPlace: vi.fn((results: SearchResult[], placeId?: string) => {
+    if (!placeId) {
+      return results
+    }
+
+    return results.filter((result) => {
+      const coverage = (result.service as { coverage?: Array<{ kind: string; placeIds?: string[] }> }).coverage
+      if (Array.isArray(coverage)) {
+        return coverage.some(
+          (area) => area.kind === "provincial" || area.kind === "national" || area.placeIds?.includes(placeId)
+        )
+      }
+
+      return result.service.scope === "ontario" || result.service.scope === "canada"
+    })
   }),
 }))
 
@@ -178,6 +194,30 @@ describe("useServices Hook", () => {
       options: { limit: 50, offset: 0 },
       location: { lat: 44.23, lng: -76.49 },
     })
+  })
+
+  it("passes selected place through to local and server search", async () => {
+    renderHook(() => useServices({ ...defaultProps, query: "food", placeId: "brampton-on" as any }))
+    await flushSearchEffect()
+
+    expect(searchServices).toHaveBeenCalledWith(
+      "food",
+      expect.objectContaining({
+        placeId: "brampton-on",
+      })
+    )
+
+    vi.mocked(getSearchMode).mockReturnValue("server")
+    vi.mocked(serverSearch).mockResolvedValue([{ id: "server-brampton" } as any])
+
+    renderHook(() => useServices({ ...defaultProps, query: "food", placeId: "brampton-on" as any }))
+    await flushSearchEffect()
+
+    expect(serverSearch).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        filters: expect.objectContaining({ placeId: "brampton-on" }),
+      })
+    )
   })
 
   it("dedupes identical settled search analytics events", async () => {
