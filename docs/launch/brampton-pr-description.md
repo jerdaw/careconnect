@@ -36,7 +36,7 @@
 - `git diff --check`: passed.
 - Brampton source URL reachability check: passed, 14 source URLs returned HTTP 200 on 2026-07-07.
 - `npm run test:db:smoke`: passed with extracted user-space PostgreSQL client binaries, 2 smoke tests.
-- `npm run test:a11y -- --project=chromium`: passed with extracted user-space Chromium libraries, 10 Chromium tests. The run logged serious contrast and hidden-focus axe findings for follow-up; see `docs/launch/brampton-manual-qa.md`.
+- `npm run test:a11y -- --project=chromium`: passed with extracted user-space Chromium libraries, 10 Chromium tests. The run logged serious contrast and hidden-focus axe findings plus a semantic-search worker fetch error for follow-up; see `docs/launch/brampton-manual-qa.md`.
 - Restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks: passed without collecting secret values or raw sensitive output.
 - Authenticated live Supabase schema inspection: blocked because local credentials returned unauthorized and Supabase MCP authentication was expired.
 

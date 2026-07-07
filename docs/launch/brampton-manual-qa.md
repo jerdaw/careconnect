@@ -74,6 +74,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - Manual keyboard pass: not manually verified.
 - Focus order issues: one serious `aria-hidden-focus` axe finding was logged on `/en?q=health` while the suite still passed; this needs follow-up triage because hidden focusable result content can affect keyboard and assistive-technology users.
 - Contrast issues: serious `color-contrast` axe findings were logged on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone` while the suite still passed; this needs separate a11y remediation.
+- Console issues: the passing Chromium run also logged a `useSemanticSearch` worker `Failed to fetch` error; triage separately if reproduced during browser QA.
 - Screen-reader label issues: no issue found in markup/component checks for the place selector.
 
 ## Fixes Made
@@ -87,4 +88,5 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - Full visual QA still needs manual screenshot review across desktop, tablet, and mobile.
 - The user-space dependency path under `/tmp/careconnect-local-deps` is ephemeral; recreate it or install system packages before future local browser and DB smoke reruns.
 - Axe logged serious contrast and hidden-focus findings even though the Chromium a11y suite passed; track these as follow-up accessibility defects.
+- The Chromium run logged a semantic-search worker fetch error even though the suite passed; track as a separate browser-console follow-up.
 - Deferred Brampton draft services still require L1 approval before live data entry.

@@ -77,6 +77,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - Place-selection focused tests: pass, 4 files and 29 tests passed.
 - Playwright a11y command: pass after extracting Chromium runtime dependencies to `/tmp/careconnect-local-deps`, 10 Chromium tests passed.
 - Axe follow-up: the run logged serious `color-contrast` findings on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`, plus a serious `aria-hidden-focus` finding on `/en?q=health`; the test command still exited successfully.
+- Browser-console follow-up: the passing run also logged a `useSemanticSearch` worker `Failed to fetch` error; triage separately if reproduced during browser QA.
 - Chrome-control fallback: blocked by connector metadata failure before browser selection.
 - Full viewport visual QA: not completed in this environment; see `docs/launch/brampton-manual-qa.md`.
 
