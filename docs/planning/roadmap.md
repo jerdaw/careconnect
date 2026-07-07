@@ -15,7 +15,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ## Current State
 
 - **Services**: 203 manually curated social services. Kingston remains live, and Brampton has a seven-record L1 first launch set focused on urgent and core supports.
-- **Tests**: default Vitest suite green as of 2026-07-07 (`216` files; `1701` passed; `24` skipped during `npm test -- --run` in the Brampton readiness pass)
+- **Tests**: default Vitest suite green as of 2026-07-07 (`216` files; `1703` passed; `24` skipped during `npm test -- --run` in the Brampton readiness pass)
 - **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -25,7 +25,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 - **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
-- **Accessibility**: WCAG 2.1 AA automation remains in place. The 2026-07-07 Chromium a11y run passed 10 tests but logged serious `color-contrast` findings, one `aria-hidden-focus` finding, and a semantic-search worker console error for follow-up.
+- **Accessibility**: WCAG 2.1 AA automation remains in place. The 2026-07-07 Brampton closeout remediated the logged `color-contrast` and `aria-hidden-focus` findings, added strict Axe regression coverage, handled optional semantic-search worker failures as keyword-only fallback, and passed the Chromium a11y suite.
 - **Languages**: 7 locales at translation-key parity
 - **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
 - **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed L1 first launch set; deferred Brampton candidates remain draft-only until the same L1 workflow approves them.
@@ -91,9 +91,9 @@ Brampton is the exception now in progress because it is a bounded, approved city
 
 ## What To Do Now
 
-1. Close the Brampton quality follow-ups that are safe and repo-local: serious contrast findings, the `/en?q=health` hidden-focus finding, semantic-search worker console error triage, and manual desktop/tablet/mobile screenshot QA.
-2. Decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
-3. After migration approval, run post-migration checks, deploy approval, and post-deploy smoke checks.
+1. Review the Brampton branch for merge approval; the remaining Brampton quality follow-ups are approval/rollout gates rather than repo-local QA blockers.
+2. Confirm backup/rollback posture through the approved private/shared operations source of truth, then decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
+3. After migration approval, run post-migration checks, request deploy approval, and run post-deploy smoke checks.
 4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
 6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
@@ -124,11 +124,9 @@ or owner-owned items:
    - Advanced French service-data enrichment beyond the completed French access-script merge.
    - Remaining DB migration-history cleanup.
    - Admin-facing data-quality dashboard.
-   - Browser-console closeout for the current semantic-search worker warning and any repeat findings from browser QA.
+   - Browser-console follow-up only for new repeat findings from future browser QA runs.
 6. **Brampton bounded launch gates**
-   - Fix or explicitly accept the a11y findings logged by the passing 2026-07-07 Chromium run.
-   - Complete manual screenshot QA across desktop, tablet, and mobile.
-   - Review completed authenticated live schema inspection before production migration approval.
+   - Review completed authenticated live schema inspection and backup/rollback posture before production migration approval.
    - Keep land acknowledgment and official/partner wording human-approved.
    - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
 
@@ -154,7 +152,7 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ### Brampton Constrained Multi-City Launch Readiness 🔄 ACTIVE
 
-**Status**: Foundation and first L1 records implemented; production launch gates remain open
+**Status**: Foundation, first L1 records, and local QA implemented; production launch gates remain open
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
@@ -165,22 +163,21 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 1. Multi-city registry, explicit coverage, selected-place search, search API filters, OpenAPI coverage shape, DB mapping/export behavior, and Brampton regression tests are implemented.
 2. Seven Brampton L1 records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
 3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
-4. Browser a11y and DB smoke now run locally via user-space dependencies; both passed on 2026-07-07.
+4. Browser a11y, strict Axe regression coverage, desktop/tablet/mobile visual QA, and DB smoke now run locally via user-space dependencies; all passed on 2026-07-07.
 5. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed; migration remains unapplied.
 
 **Immediate blockers**
 
-1. A11y remediation: serious contrast findings on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`; serious hidden-focus finding on `/en?q=health`.
-2. Browser-console triage: `useSemanticSearch` worker `Failed to fetch` during the passing Chromium a11y run.
-3. Manual visual QA: desktop, tablet, and mobile screenshot review.
-4. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
+1. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
+2. Backup/rollback posture confirmation through the approved private/shared operations source of truth before production migration.
+3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
 **Next agent-suitable work**
 
-1. Fix the a11y findings and add focused regression coverage where practical.
-2. Triage the semantic-search worker console error and confirm expected keyword-only fallback behavior.
-3. Run and document manual screenshot QA across the launch-critical viewports.
-4. After migration approval, run post-migration read-only checks and update the launch checklist.
+1. After migration approval, run post-migration read-only checks and update the launch checklist.
+2. After deploy approval, run Kingston, Brampton, broad-coverage, and privacy/no-query-logging smoke checks.
+3. Keep docs, tests, and data-validation evidence aligned with any PR review feedback.
+4. Continue deferred Brampton verification only when a specific candidate is approved for the L1 workflow.
 
 **Human-gated work**
 
