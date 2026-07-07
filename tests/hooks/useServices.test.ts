@@ -220,6 +220,45 @@ describe("useServices Hook", () => {
     )
   })
 
+  it("keeps Brampton selected-place results broad or Brampton-specific in local mode", async () => {
+    const mockResults: SearchResult[] = [
+      {
+        service: {
+          id: "kingston-local",
+          name: "Kingston Local Food",
+          coverage: [{ kind: "local", placeIds: ["kingston-on"] }],
+        } as any,
+        score: 10,
+        matchReasons: [],
+      },
+      {
+        service: {
+          id: "brampton-local",
+          name: "Brampton Local Food",
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+        } as any,
+        score: 9,
+        matchReasons: [],
+      },
+      {
+        service: {
+          id: "ontario-wide",
+          name: "Ontario Wide Food",
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+        } as any,
+        score: 8,
+        matchReasons: [],
+      },
+    ]
+    ;(searchServices as any).mockResolvedValue(mockResults)
+
+    renderHook(() => useServices({ ...defaultProps, query: "food", placeId: "brampton-on" as any }))
+    await flushSearchEffect()
+
+    expect(mockSetResults).toHaveBeenCalledWith([mockResults[1], mockResults[2]])
+    expect(setCachedServices).toHaveBeenCalledWith([mockResults[1], mockResults[2]])
+  })
+
   it("dedupes identical settled search analytics events", async () => {
     const { rerender } = renderHook((props: typeof defaultProps & { query: string }) => useServices(props), {
       initialProps: { ...defaultProps, query: "food" },

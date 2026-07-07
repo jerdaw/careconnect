@@ -288,6 +288,21 @@ describe("Search API (Hybrid Scoring)", () => {
     expect(json.data.map((service) => service.id)).toEqual(["brampton", "ontario"])
   })
 
+  it("returns 400 for unsupported selected place filters", async () => {
+    const req = createRequest({
+      query: "food",
+      locale: "en",
+      filters: { placeId: "mississauga-on" },
+    })
+
+    const res = await POST(req)
+    const json = (await res.json()) as { error: { message: string } }
+
+    expect(res.status).toBe(400)
+    expect(json.error.message).toBe("Invalid request")
+    expect(mockSelect).not.toHaveBeenCalled()
+  })
+
   it("ranks selected-place coverage ahead of broad coverage when relevance is comparable", async () => {
     mockQueryResult = {
       data: [

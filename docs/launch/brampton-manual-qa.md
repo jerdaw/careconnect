@@ -8,6 +8,21 @@ Date: 2026-07-06
 - HTTP availability: pass, `curl -I http://localhost:3000/en` returned `HTTP/1.1 200 OK`.
 - Browser automation: blocked by local WSL browser dependencies. `npx playwright install chromium` succeeded, but Chromium could not launch because `libnspr4.so`, `libnss3.so`, and `libnssutil3.so` are missing. `npx playwright install-deps chromium --dry-run` showed the required apt packages, but passwordless sudo is unavailable in this session.
 - Chrome-control fallback: blocked by connector metadata failure before browser selection: `sandboxCwd is not a local file URI: file:///home/jer/repos/vps/careconnect`.
+- 2026-07-07 rerun: `npm run test:a11y -- --project=chromium` still failed before app assertions because Chromium could not load `libnspr4.so`.
+- Rerun browser QA after dependencies are available:
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run test:a11y -- --project=chromium
+```
+
+- Local DB smoke is blocked until `psql` is installed on PATH. Rerun after `psql --version` succeeds:
+- 2026-07-07 rerun: `npm run test:db:smoke` still exited with `Missing required command: psql`.
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run test:db:smoke
+```
 
 ## Viewports
 
@@ -53,3 +68,5 @@ Date: 2026-07-06
 
 - Full visual QA still needs a browser-capable environment or local installation of Chromium dependencies.
 - Full automated a11y QA still needs a browser-capable environment or local installation of Chromium dependencies.
+- DB smoke QA still needs a local `psql` binary.
+- Brampton draft services still require human L1 approval before live data entry.

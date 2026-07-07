@@ -1,0 +1,36 @@
+{
+  "id": "brampton-knights-table-food-bank-meals",
+  "name": "Knights Table Food Bank and Meal Programs",
+  "description": "Food bank and meal supports for people in Brampton and Peel dealing with hunger, poverty, or homelessness.",
+  "url": "https://knightstable.org/",
+  "phone": "905-454-8725",
+  "verification_level": "L1",
+  "intent_category": "Food",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://211ontario.ca/service/71926537/knights-table-our-pantry/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": ["Knights Table Brampton", "food bank Brampton", "meal program Peel", "hunger support Brampton"],
+  "eligibility_notes": "211 Ontario lists individuals and families dealing with hunger, poverty, and homelessness in Peel; confirm current provider wording before live entry.",
+  "application_process": "211 Ontario lists new intakes Monday to Thursday between 10 AM and 2 PM on a first come, first served basis; provider confirmation is still required.",
+  "documents_required": "211 Ontario lists identification for all household members and proof of address.",
+  "fees": "None listed by 211 Ontario.",
+  "hours_text": "211 Ontario lists pantry hours Monday to Friday 10 AM to 3:30 PM for registered users. Provider homepage address differs from 211 pantry address and must be resolved before live entry.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "local",
+      "placeIds": ["brampton-on"],
+      "label": "Brampton",
+      "notes": "Brampton provider; exact pantry address requires human L1 resolution."
+    }
+  ],
+  "primary_phone_label": "Office",
+  "service_area": "Peel Region"
+}

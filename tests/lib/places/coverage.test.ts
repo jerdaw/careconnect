@@ -115,4 +115,31 @@ describe("coverage helpers", () => {
       )
     ).toBe(false)
   })
+
+  it("keeps Brampton local and regional draft-shaped records out of Kingston results", () => {
+    const bramptonLocal: Service = {
+      ...baseService,
+      id: "brampton-local",
+      primary_place_id: "brampton-on",
+      coverage: [{ kind: "local", placeIds: ["brampton-on"], label: "Brampton" }],
+    }
+    const bramptonRegional: Service = {
+      ...baseService,
+      id: "brampton-regional",
+      primary_place_id: "brampton-on",
+      coverage: [
+        {
+          kind: "regional",
+          placeIds: ["brampton-on"],
+          regionIds: ["peel-region"],
+          label: "Peel Region",
+        },
+      ],
+    }
+
+    expect(serviceServesPlace(bramptonLocal, "brampton-on")).toBe(true)
+    expect(serviceServesPlace(bramptonLocal, "kingston-on")).toBe(false)
+    expect(serviceServesPlace(bramptonRegional, "brampton-on")).toBe(true)
+    expect(serviceServesPlace(bramptonRegional, "kingston-on")).toBe(false)
+  })
 })

@@ -1,0 +1,41 @@
+{
+  "id": "brampton-regeneration-marketplace-food-bank",
+  "name": "Regeneration Marketplace Food Bank",
+  "description": "Food bank offering grocery-style food and household-item support through Regeneration Outreach Community in Brampton.",
+  "url": "https://regenbrampton.com/service/marketplace/",
+  "email": "marketplace@regenbrampton.com",
+  "phone": "905-796-5888 ext. 4000",
+  "address": "253 Queen Street East, Brampton, ON L6W 2B8",
+  "verification_level": "L1",
+  "intent_category": "Food",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://regenbrampton.com/service/marketplace/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "food bank Brampton",
+    "Regeneration Marketplace groceries",
+    "free groceries Brampton",
+    "household items food support Brampton"
+  ],
+  "eligibility_notes": "Provider asks first-time visitors to bring government-issued photo identification; exact eligibility should be confirmed before live entry.",
+  "application_process": "First-time visitors can register during hours of operation; provider says no appointment is needed and asks visitors to bring government-issued ID.",
+  "hours_text": "Marketplace hours listed by provider: Monday closed; Tuesday 9 AM-11:30 AM and 1 PM-3:30 PM; Wednesday 9 AM-3:30 PM; Thursday 9 AM-11:30 AM and 1 PM-3:30 PM; Friday 9 AM-11:30 AM and 1 PM-3:30 PM; Saturday 8:30 AM-1:30 PM; Sunday closed.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "local",
+      "placeIds": ["brampton-on"],
+      "label": "Brampton",
+      "notes": "Brampton food bank location."
+    }
+  ],
+  "primary_phone_label": "Marketplace",
+  "service_area": "Brampton"
+}

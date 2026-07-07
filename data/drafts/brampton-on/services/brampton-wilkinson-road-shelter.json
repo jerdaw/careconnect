@@ -1,0 +1,52 @@
+{
+  "id": "brampton-wilkinson-road-shelter",
+  "name": "Wilkinson Road Shelter",
+  "description": "Emergency homeless shelter in Brampton for men, with access to shelter supports through Peel Central Intake.",
+  "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
+  "phone": "905-450-1996",
+  "address": "15 Wilkinson Road, Brampton, ON L6T 4M3",
+  "verification_level": "L1",
+  "intent_category": "Housing",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://211central.ca/record/73523437/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "men shelter Brampton",
+    "Wilkinson Road shelter",
+    "emergency shelter Brampton",
+    "homeless shelter men Peel"
+  ],
+  "eligibility_notes": "211 Central lists men 25 years and older who are homeless or at risk of homelessness; confirm before live entry.",
+  "application_process": "Call 905-450-1996 for screening before intake.",
+  "documents_required": "Identification; contact for information.",
+  "fees": "None listed by 211 Central.",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "Shelter is listed as open Monday to Sunday, 24 hours; office hours differ."
+  },
+  "hours_text": "Shelter Monday to Sunday, 24 hours; office Monday to Friday 8 AM to 4 PM per 211 Central.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "local",
+      "placeIds": ["brampton-on"],
+      "label": "Brampton",
+      "notes": "Brampton shelter accessed through Peel shelter intake."
+    }
+  ],
+  "primary_phone_label": "Central Intake",
+  "service_area": "Peel Region"
+}

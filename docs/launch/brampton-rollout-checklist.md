@@ -18,6 +18,7 @@
 - [ ] Approve any partner or official relationship wording.
 - [ ] Approve production migration.
 - [ ] Approve deploy/merge.
+- [ ] Resolve any draft-source conflicts, including the Knights Table address mismatch between the provider homepage and 211 Ontario pantry listing.
 
 ## Data Launch After Approval
 
@@ -28,6 +29,23 @@
 - [ ] Run `npm run check:embeddings`.
 - [ ] Run search QA for Kingston and Brampton.
 - [ ] Commit data and embeddings together.
+- [ ] Confirm each promoted Brampton record came from `data/drafts/brampton-on/services/` or an explicitly reviewed successor draft.
+
+## Local QA Reruns
+
+- [ ] After Chromium dependencies are available, run:
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run test:a11y -- --project=chromium
+```
+
+- [ ] After `psql` is available, run:
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run test:db:smoke
+```
 
 ## Production Database Preflight
 
