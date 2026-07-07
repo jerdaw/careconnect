@@ -50,7 +50,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
   npm run test:db:smoke
 ```
 
-- [ ] Triage serious axe findings logged by the passing Chromium a11y run: `color-contrast` on `/en`, `/en?q=health`, `/en/submit-service`, and `/en/service/kids-help-phone`; `aria-hidden-focus` on `/en?q=health`.
+- [ ] Triage serious axe findings logged by the passing Chromium a11y run: `color-contrast` on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`; `aria-hidden-focus` on `/en?q=health`.
 - [ ] Complete manual screenshot review for desktop, tablet, and mobile viewports.
 
 ## Production Database Preflight

@@ -73,7 +73,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - Automated a11y command: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests.
 - Manual keyboard pass: not manually verified.
 - Focus order issues: one serious `aria-hidden-focus` axe finding was logged on `/en?q=health` while the suite still passed; this needs follow-up triage because hidden focusable result content can affect keyboard and assistive-technology users.
-- Contrast issues: serious `color-contrast` axe findings were logged on `/en`, `/en?q=health`, `/en/submit-service`, and `/en/service/kids-help-phone` while the suite still passed; this needs separate a11y remediation.
+- Contrast issues: serious `color-contrast` axe findings were logged on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone` while the suite still passed; this needs separate a11y remediation.
 - Screen-reader label issues: no issue found in markup/component checks for the place selector.
 
 ## Fixes Made
