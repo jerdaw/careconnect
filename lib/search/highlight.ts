@@ -43,7 +43,7 @@ export function highlightMatches(text: string, tokens: string[]): string {
   // Replace with mark tag
   result = result.replace(
     regex,
-    '<mark class="bg-yellow-200 dark:bg-yellow-900/50 text-inherit px-0.5 rounded">$1</mark>'
+    '<mark class="rounded bg-yellow-200 px-0.5 text-neutral-950 dark:bg-yellow-300 dark:text-neutral-950">$1</mark>'
   )
 
   return result

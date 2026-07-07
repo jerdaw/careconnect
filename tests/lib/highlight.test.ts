@@ -17,7 +17,7 @@ describe("highlightMatches", () => {
 
     it("should wrap matching tokens in mark tags", () => {
       const result = highlightMatches("Hello World", ["World"])
-      expect(result).toContain('<mark class="bg-yellow-200')
+      expect(result).toContain('<mark class="rounded bg-yellow-200 px-0.5 text-neutral-950')
       expect(result).toContain(">World</mark>")
     })
 

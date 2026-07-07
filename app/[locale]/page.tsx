@@ -84,7 +84,9 @@ export default function Home() {
       return
     }
 
-    void initSemanticSearch()
+    void initSemanticSearch().catch(() => {
+      // Semantic search is optional; keyword search remains available through useServices.
+    })
   }, [initSemanticSearch, query])
 
   // Perform Search Logic
@@ -222,17 +224,13 @@ export default function Home() {
         </section>
 
         {/* Discovery Layer — hidden when results are shown */}
-        <div
-          className={cn(
-            "transition-all duration-500",
-            hasActiveSearch ? "pointer-events-none mt-0 h-0 overflow-hidden opacity-0" : "mt-4 opacity-100"
-          )}
-          aria-hidden={hasActiveSearch || undefined}
-        >
-          <HomeStats />
-          <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
-          <HowItWorks />
-        </div>
+        {!hasActiveSearch && (
+          <div className="mt-4 transition-opacity duration-500">
+            <HomeStats />
+            <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
+            <HowItWorks />
+          </div>
+        )}
 
         {/* Results Section */}
         <Section className={hasActiveSearch ? "pt-0" : "h-0 overflow-hidden py-0 opacity-0"}>

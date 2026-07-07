@@ -3,8 +3,6 @@
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
-import { motion } from "framer-motion"
-import { fadeInUp, staggerContainer } from "@/lib/motion"
 
 interface SearchChipsProps {
   savedSearches: string[]
@@ -20,24 +18,20 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
     <div className="flex flex-col items-center gap-4">
       {/* Saved Searches */}
       {savedSearches.length > 0 ? (
-        <motion.div
-          className="flex flex-wrap justify-center gap-2"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <div className="w-full text-center text-xs font-semibold tracking-wider text-neutral-600 uppercase dark:text-neutral-300">
-            {t("savedLabel")}
+        <div className="flex flex-wrap justify-center gap-2">
+          <div className="w-full text-center">
+            <span className="inline-flex rounded-full bg-white px-2 py-0.5 text-xs font-bold tracking-wider text-neutral-950 uppercase ring-1 ring-neutral-200 dark:bg-white dark:text-neutral-950 dark:ring-neutral-200">
+              {t("savedLabel")}
+            </span>
           </div>
           {savedSearches.map((s) => (
-            <motion.div
+            <div
               key={s}
-              variants={fadeInUp}
-              className="group flex items-center gap-1 rounded-full bg-blue-50 py-1 pr-1 pl-3 text-xs font-medium text-blue-700 ring-1 ring-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-800"
+              className="group flex items-center gap-1 rounded-full bg-blue-50 py-1 pr-1 pl-3 text-xs font-medium text-blue-900 ring-1 ring-blue-300 dark:bg-blue-50 dark:text-blue-900 dark:ring-blue-300"
             >
               <Button
                 variant="link"
-                className="h-auto p-0 text-xs text-blue-700 dark:text-blue-300"
+                className="h-auto p-0 text-xs text-blue-900 dark:text-blue-900"
                 onClick={() => startSearch(s)}
               >
                 {s}
@@ -45,7 +39,7 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-5 w-5 text-blue-400 hover:text-blue-600"
+                className="h-5 w-5 text-blue-800 hover:text-blue-950 dark:text-blue-800 dark:hover:text-blue-950"
                 onClick={(e) => {
                   e.stopPropagation()
                   removeSavedSearch(s)
@@ -54,30 +48,26 @@ export default function SearchChips({ savedSearches, removeSavedSearch, startSea
               >
                 <X className="h-3 w-3" />
               </Button>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       ) : (
-        <motion.div
-          className="flex max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1.5"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <div className="px-1 text-xs font-semibold tracking-wider text-neutral-600 uppercase dark:text-neutral-300">
-            {t("quickSearchesLabel")}
+        <div className="flex max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1.5">
+          <div className="px-1">
+            <span className="inline-flex rounded-full bg-white px-2 py-0.5 text-xs font-bold tracking-wider text-neutral-950 uppercase ring-1 ring-neutral-200 dark:bg-white dark:text-neutral-950 dark:ring-neutral-200">
+              {t("quickSearchesLabel")}
+            </span>
           </div>
           {QUICK_SEARCH_KEYS.map((key) => (
-            <motion.button
+            <button
               key={key}
-              variants={fadeInUp}
               onClick={() => startSearch(t(`quickSearch.${key}`))}
-              className="focus-visible:ring-primary-500 rounded-md border border-neutral-200/70 bg-white/35 px-2.5 py-1 text-xs font-medium text-neutral-700 transition-colors hover:bg-white/70 hover:text-neutral-950 focus-visible:ring-2 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-neutral-200 dark:hover:bg-white/10 dark:hover:text-white"
+              className="focus-visible:ring-primary-500 rounded-md border border-neutral-300 bg-white px-2.5 py-1 text-xs font-medium text-neutral-950 transition-colors hover:bg-neutral-50 hover:text-neutral-950 focus-visible:ring-2 focus-visible:outline-none dark:border-neutral-300 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100"
             >
               {t(`quickSearch.${key}`)}
-            </motion.button>
+            </button>
           ))}
-        </motion.div>
+        </div>
       )}
     </div>
   )

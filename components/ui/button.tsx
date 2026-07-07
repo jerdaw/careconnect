@@ -13,12 +13,13 @@ const buttonVariants = cva(
           "bg-primary-600 text-white shadow-lg shadow-primary-500/25 hover:bg-primary-500 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5 border border-white/10",
         destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm hover:shadow-red-600/20",
         outline:
-          "border border-neutral-200 bg-white/50 hover:bg-white text-neutral-900 shadow-sm hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-100 dark:hover:bg-neutral-800",
+          "border border-neutral-300 bg-white text-neutral-950 shadow-sm hover:bg-neutral-50 hover:text-neutral-950 hover:shadow-md dark:border-neutral-300 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-50 dark:hover:text-neutral-950",
         secondary:
-          "bg-white text-neutral-900 shadow-sm border border-neutral-200 hover:bg-neutral-50 hover:border-neutral-300 dark:bg-neutral-800 dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-700",
-        ghost: "hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white",
-        link: "text-primary-600 underline-offset-4 hover:underline dark:text-primary-400",
-        pill: "rounded-full bg-white text-neutral-700 shadow-sm ring-1 ring-inset ring-neutral-200 hover:bg-neutral-50 hover:ring-neutral-300 dark:bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800",
+          "bg-white text-neutral-950 shadow-sm border border-neutral-300 hover:bg-neutral-50 hover:border-neutral-400 hover:text-neutral-950 dark:bg-neutral-100 dark:text-neutral-950 dark:border-neutral-300 dark:hover:bg-white",
+        ghost:
+          "text-neutral-800 hover:bg-neutral-100 hover:text-neutral-950 dark:text-neutral-900 dark:hover:bg-neutral-100 dark:hover:text-neutral-950",
+        link: "text-primary-700 underline-offset-4 hover:underline dark:text-primary-800",
+        pill: "rounded-full bg-white text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 hover:text-neutral-950 hover:ring-neutral-400 dark:bg-neutral-100 dark:text-neutral-950 dark:ring-neutral-300 dark:hover:bg-white",
         gradient:
           "bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5 border-none",
         glass:

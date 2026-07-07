@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { getHeroPlaces } from "@/lib/places/registry"
@@ -9,29 +10,38 @@ export default function RotatingRegionHero() {
   const reduceMotion = useReducedMotion()
   const places = getHeroPlaces()
   const staticPlace = places[0]?.heroLabel ?? "Kingston"
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activePlace = places[activeIndex]?.heroLabel ?? staticPlace
+
+  useEffect(() => {
+    if (reduceMotion || places.length <= 1) {
+      return
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % places.length)
+    }, 2200)
+
+    return () => window.clearInterval(interval)
+  }, [places.length, reduceMotion])
 
   return (
     <h1 className="heading-1 heading-display relative text-neutral-900 dark:text-white">
       <span className="sr-only">{t("accessibleTitle")}</span>
       <span aria-hidden="true" className="relative z-10 inline-grid min-w-[11ch] justify-items-center">
-        {reduceMotion
-          ? staticPlace
-          : places.map((place, index) => (
-              <motion.span
-                key={place.id}
-                className="col-start-1 row-start-1"
-                initial={{ opacity: index === 0 ? 1 : 0, y: index === 0 ? 0 : 12 }}
-                animate={{ opacity: [0, 1, 1, 0], y: [12, 0, 0, -12] }}
-                transition={{
-                  duration: 4,
-                  delay: index * 2.2,
-                  repeat: Infinity,
-                  repeatDelay: Math.max(0, places.length * 2.2 - 4),
-                }}
-              >
-                {place.heroLabel}
-              </motion.span>
-            ))}
+        {reduceMotion ? (
+          staticPlace
+        ) : (
+          <motion.span
+            key={activePlace}
+            className="col-start-1 row-start-1"
+            initial={{ y: 8 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {activePlace}
+          </motion.span>
+        )}
       </span>
       <span
         aria-hidden="true"

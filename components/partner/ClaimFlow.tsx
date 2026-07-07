@@ -50,7 +50,11 @@ export function ClaimFlow({ serviceName }: ClaimFlowProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" variant="outline" className="gap-2">
+        <Button
+          size="sm"
+          variant="outline"
+          className="gap-2 !border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
+        >
           <ShieldCheck className="h-4 w-4" />
           {t("button")}
         </Button>

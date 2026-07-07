@@ -50,15 +50,15 @@ export default function SearchControls({
   const t = useTranslations("Search")
   const [showAllCategories, setShowAllCategories] = useState(false)
   const inactiveSegmentClass =
-    "border-transparent bg-transparent text-neutral-700 shadow-none hover:translate-y-0 hover:bg-neutral-100 hover:text-neutral-950 hover:shadow-none dark:text-neutral-200 dark:hover:bg-white/10 dark:hover:text-white"
+    "border-transparent bg-white text-neutral-950 shadow-none hover:translate-y-0 hover:bg-neutral-50 hover:text-neutral-950 hover:shadow-none dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-50 dark:hover:!text-neutral-950"
   const activeSegmentClass =
-    "border-transparent bg-neutral-900 text-white shadow-none hover:translate-y-0 hover:bg-neutral-800 hover:shadow-none dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200"
+    "border-neutral-900 bg-white text-neutral-950 shadow-none ring-1 ring-neutral-900 hover:translate-y-0 hover:!bg-white hover:!text-neutral-950 hover:shadow-none dark:!border-neutral-900 dark:!bg-white dark:!text-neutral-950 dark:!ring-neutral-900 dark:hover:!bg-white dark:hover:!text-neutral-950"
 
   return (
     <div className="mx-auto w-full max-w-3xl">
       <div className="flex flex-col items-center gap-2.5">
         <div
-          className="inline-flex max-w-full flex-wrap items-center justify-center gap-1 rounded-lg border border-neutral-200/70 bg-white/45 p-1 dark:border-white/10 dark:bg-slate-900/40"
+          className="inline-flex max-w-full flex-wrap items-center justify-center gap-1 rounded-lg border border-neutral-200/70 bg-white/70 p-1 dark:border-neutral-200 dark:bg-white/80"
           role="group"
           aria-label={t("utilityFilters")}
         >
@@ -91,7 +91,7 @@ export default function SearchControls({
         {/* Category Scroll */}
         <div
           id="homepage-category-filters"
-          className="inline-flex max-w-full flex-wrap justify-center gap-1 rounded-lg border border-neutral-200/70 bg-white/45 p-1 dark:border-white/10 dark:bg-slate-900/40"
+          className="inline-flex max-w-full flex-wrap justify-center gap-1 rounded-lg border border-neutral-200/70 bg-white/70 p-1 dark:border-neutral-200 dark:bg-white/80"
           role="group"
           aria-label={t("categoryFilters")}
         >
@@ -121,7 +121,7 @@ export default function SearchControls({
                   category !== cat && inactiveSegmentClass,
                   cat === "Crisis" &&
                     !category &&
-                    "text-red-800 hover:bg-red-50 hover:text-red-900 dark:text-red-200 dark:hover:bg-red-900/30",
+                    "bg-red-50 text-red-900 hover:bg-red-100 hover:text-red-950 dark:bg-red-50 dark:text-red-900 dark:hover:bg-red-100 dark:hover:text-red-950",
                   cat === "Crisis" &&
                     category === "Crisis" &&
                     "border-transparent bg-red-600 text-white shadow-none hover:translate-y-0 hover:bg-red-700 hover:shadow-none dark:bg-red-600 dark:hover:bg-red-700",

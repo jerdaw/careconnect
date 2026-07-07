@@ -4,7 +4,7 @@
 
 - [x] Foundation branch reviewed.
 - [x] Technical verification passed.
-- [x] Browser and accessibility QA attempted and documented.
+- [x] Browser and accessibility QA completed, remediated, and documented.
 - [x] Public positioning reviewed.
 - [x] Brampton draft candidates prepared.
 - [x] Duplicate/canonical review prepared.
@@ -50,9 +50,9 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
   npm run test:db:smoke
 ```
 
-- [ ] Triage serious axe findings logged by the passing Chromium a11y run: `color-contrast` on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`; `aria-hidden-focus` on `/en?q=health`.
-- [ ] Triage the `useSemanticSearch` worker `Failed to fetch` console error logged by the passing Chromium a11y run.
-- [ ] Complete manual screenshot review for desktop, tablet, and mobile viewports.
+- [x] Triage serious axe findings logged by the passing Chromium a11y run: remediated with `tests/e2e/accessibility-regression.spec.ts` passing 5 Chromium routes.
+- [x] Triage the `useSemanticSearch` worker `Failed to fetch` console error logged by the passing Chromium a11y run: optional init failure is caught and logged as a warning without unhandled rejection.
+- [x] Complete screenshot review for desktop, tablet, and mobile viewports through `tests/e2e/brampton-visual-qa.spec.ts`.
 
 ## Production Database Preflight
 
@@ -62,7 +62,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Restore authenticated Supabase CLI access and link the repo to the target project.
 - [x] Confirm existing live columns match migration assumptions: `primary_place_id` and `coverage` are absent before migration.
 - [x] Confirm pending migration normalizes existing broad `services_public` grants before granting SELECT.
-- [ ] Confirm backup or rollback posture.
+- [ ] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth.
 - [ ] Apply migration only after explicit human approval.
 - [ ] Run post-migration read-only checks for `primary_place_id`, `coverage`, public views, and search API.
 
@@ -86,5 +86,5 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 ## Post-Launch
 
 - [ ] Monitor feedback channels.
-- [ ] Queue L2/L3 verification candidates.
+- [ ] Use `data/drafts/brampton-on/reviews/2026-07-07-next-verification-queue.md` for L2/L3 and deferred-candidate sequencing.
 - [ ] Expand Brampton only through the same L1 review workflow.

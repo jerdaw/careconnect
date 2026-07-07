@@ -41,15 +41,16 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 ## Viewports
 
-- Desktop 1440 x 900: covered by automated Chromium a11y navigation, but not manually screenshot-reviewed.
-- Tablet 768 x 1024: not manually screenshot-reviewed.
-- Mobile 390 x 844: not manually screenshot-reviewed.
+- Desktop 1440 x 900: pass by `tests/e2e/brampton-visual-qa.spec.ts`; `home-desktop.png` and `search-health-desktop.png` show readable hero/search controls, visible region controls, scannable cards, and no overlapping app UI.
+- Tablet 768 x 1024: pass by `tests/e2e/brampton-visual-qa.spec.ts`; `home-tablet.png` confirms the compact header is used and no longer clips the Partner Login action, and `search-health-tablet.png` shows wrapped filters and readable cards.
+- Mobile 390 x 844: pass by `tests/e2e/brampton-visual-qa.spec.ts`; `home-mobile.png` and `search-health-mobile.png` show readable text, wrapped chips, visible city controls, and no app UI overlap.
+- Screenshot artifacts were regenerated under `test-results/brampton-visual-qa/` and are ignored by git.
 
 ## Homepage Region Animation
 
 - Registry-sourced labels: pass by component tests and code review. `RotatingRegionHero` is backed by `getHeroPlaces()`, and `tests/components/home/RotatingRegionHero.test.tsx` passed.
 - Reduced motion: pass by component test coverage. `RotatingRegionHero` reduced-motion behavior is covered and passed.
-- No text overlap: not manually screenshot-reviewed.
+- No text overlap: pass by visual QA screenshot review across desktop, tablet, and mobile.
 - Kingston still visible: pass by HTTP markup check. The local homepage server-rendered `Kingston`.
 - Brampton visible with accurate status: pass by HTTP markup check before promotion. After 2026-07-07 approval, Brampton is configured as a live supported place with the first L1 launch records.
 
@@ -70,23 +71,25 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 ## Accessibility
 
-- Automated a11y command: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests.
-- Manual keyboard pass: not manually verified.
-- Focus order issues: one serious `aria-hidden-focus` axe finding was logged on `/en?q=health` while the suite still passed; this needs follow-up triage because hidden focusable result content can affect keyboard and assistive-technology users.
-- Contrast issues: serious `color-contrast` axe findings were logged on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone` while the suite still passed; this needs separate a11y remediation.
-- Console issues: the passing Chromium run also logged a `useSemanticSearch` worker `Failed to fetch` error; triage separately if reproduced during browser QA.
+- Strict Axe regression: pass, `npx playwright test tests/e2e/accessibility-regression.spec.ts --project=chromium`, 5 Chromium route tests.
+- Automated a11y command: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests and 0 Axe violations on audited routes.
+- Manual keyboard pass: covered by the interactive Playwright a11y suite; not separately human-tabbed.
+- Focus order issues: remediated. Active search now unmounts the discovery layer instead of hiding focusable content with `aria-hidden`.
+- Contrast issues: remediated for the recorded homepage, active-search, dashboard, submit-service, and service-detail findings.
+- Console issues: optional semantic-search worker fetch failure now logs as a warning and is caught by the homepage; the a11y run did not report an unhandled rejection.
 - Screen-reader label issues: no issue found in markup/component checks for the place selector.
 
 ## Fixes Made
 
-- No runtime code changes were made during this QA update.
+- Added a strict a11y regression spec for the routes that previously logged serious findings.
+- Removed hidden focusable homepage discovery content during active searches.
+- Strengthened contrast for header, city selector, search chips, filter controls, result cards, badges, feedback actions, trust-panel actions, and service-detail controls.
+- Caught optional semantic-search initialization failure so keyword search remains usable without an unhandled rejection.
+- Added visual QA screenshot capture for desktop, tablet, and mobile homepage/search states.
 - Local environment blockers were bypassed with user-space dependencies under `/tmp/careconnect-local-deps`.
-- Axe follow-up findings were recorded but not remediated in this pass.
 
 ## Open Issues
 
-- Full visual QA still needs manual screenshot review across desktop, tablet, and mobile.
 - The user-space dependency path under `/tmp/careconnect-local-deps` is ephemeral; recreate it or install system packages before future local browser and DB smoke reruns.
-- Axe logged serious contrast and hidden-focus findings even though the Chromium a11y suite passed; track these as follow-up accessibility defects.
-- The Chromium run logged a semantic-search worker fetch error even though the suite passed; track as a separate browser-console follow-up.
 - Deferred Brampton draft services still require L1 approval before live data entry.
+- Production migration, deployment, land acknowledgment wording, and official relationship wording remain approval-gated.

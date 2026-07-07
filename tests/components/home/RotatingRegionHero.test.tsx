@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { act, render, screen } from "@testing-library/react"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import RotatingRegionHero from "@/components/home/RotatingRegionHero"
 
 vi.mock("next-intl", () => ({
@@ -20,16 +20,24 @@ vi.mock("framer-motion", () => ({
 }))
 
 describe("RotatingRegionHero", () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   it("renders a stable accessible heading", () => {
     render(<RotatingRegionHero />)
 
     expect(screen.getByRole("heading", { name: "CareConnect for supported Ontario communities" })).toBeInTheDocument()
   })
 
-  it("renders supported registry region labels visually", () => {
+  it("cycles supported registry region labels visually", () => {
+    vi.useFakeTimers()
     render(<RotatingRegionHero />)
 
     expect(screen.getByText("Kingston")).toBeInTheDocument()
+    act(() => {
+      vi.advanceTimersByTime(2200)
+    })
     expect(screen.getByText("Brampton")).toBeInTheDocument()
     expect(screen.getByText("CareConnect")).toBeInTheDocument()
   })

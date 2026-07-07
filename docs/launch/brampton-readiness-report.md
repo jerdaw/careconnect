@@ -30,13 +30,16 @@ Branch: `codex/multi-city-brampton-foundation`
 - 2026-07-07: Replaced the local Chromium and `psql` blockers with a user-space dependency extraction under `/tmp/careconnect-local-deps`; browser a11y and DB smoke reruns completed.
 - 2026-07-07: Ran restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks through the approved private operations wrapper; all completed successfully without collecting secret values or raw sensitive output.
 - 2026-07-07: Completed authenticated live Supabase schema inspection through `npx supabase db query --linked` after CLI login and project linking.
+- 2026-07-07: Remediated recorded strict Axe findings for hidden focusable content, contrast, and optional semantic-search worker rejection handling.
+- 2026-07-07: Added Brampton visual QA screenshot coverage for desktop, tablet, and mobile homepage/search states; tablet header clipping was fixed by moving desktop navigation to the `lg` breakpoint.
+- 2026-07-07: Prepared `docs/launch/brampton-production-approval-packet.md` and `data/drafts/brampton-on/reviews/2026-07-07-next-verification-queue.md`; both remain approval/draft artifacts only.
 
 ## Findings
 
 - No app-level launch blocker identified in the local test, build, data, or source-reachability lanes.
 - Browser a11y is no longer environment-blocked for this session; the Chromium suite passed using extracted user-space libraries.
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
-- Full viewport visual QA remains manual follow-up work.
+- Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
 - Live Supabase schema preflight is complete; production migration remains unapplied and approval-gated.
 
 ## Technical Verification
@@ -46,7 +49,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - Existing data comparison: pass. Structured comparison against `HEAD:data/services.json` confirmed 196 existing records were unchanged, with seven Brampton records added and no removals.
 - Targeted Vitest suite: pass, 15 files and 230 tests passed.
 - Brampton promotion suite: pass, 5 files and 39 tests passed.
-- Full Vitest suite: pass, 216 files and 1701 tests passed, 24 skipped.
+- Full Vitest suite: pass, 216 files and 1703 tests passed, 24 skipped.
 - Lint: pass, `npm run lint`.
 - Type check: pass, `npm run type-check`.
 - Format check: pass, `npm run format:check`.
@@ -55,16 +58,19 @@ Branch: `codex/multi-city-brampton-foundation`
 - Data validation: pass, 203 services.
 - DB validation alias: pass, 203 records.
 - Embedding consistency check: pass, 203 services, 203 embeddings, 384 dimensions.
-- Build: pass, Next.js production build completed and postbuild embedding generation ran for 203 services.
+- Build: pass, `SKIP_EMBEDDINGS=1 npm run build`; Next.js production build completed and postbuild embedding generation was intentionally skipped.
 - Whitespace diff check: pass, `git diff --check`.
 - Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests.
+- Strict a11y regression: pass, `npx playwright test tests/e2e/accessibility-regression.spec.ts --project=chromium`, 5 Chromium tests.
+- Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
+- Production approval packet: prepared; migration and deploy remain unapplied and approval-gated.
+- Future verification queue: prepared as draft-only; no additional Brampton records promoted.
 
 ## Technical Residual Risks
 
-- Browser visual QA is tracked separately in `docs/launch/brampton-manual-qa.md`.
-- Axe logged serious contrast and hidden-focus findings while the Chromium a11y suite still passed; these should be remediated as separate accessibility defects.
+- Browser visual QA is documented in `docs/launch/brampton-manual-qa.md`.
 - Production migration was not applied.
 - Live Supabase schema inspection completed through the Supabase CLI. The pending Brampton coverage migration is not applied in production.
 - Production deploy was not performed.
@@ -75,11 +81,11 @@ Branch: `codex/multi-city-brampton-foundation`
 - Homepage HTTP check: pass, `/en` returned `HTTP/1.1 200 OK`.
 - Homepage server-rendered multi-city signals: pass, markup includes the supported-community meta description, accessible hero title, `Kingston`, `Brampton`, visible `Showing Kingston`, and a `Change city` combobox.
 - Place-selection focused tests: pass, 4 files and 29 tests passed.
-- Playwright a11y command: pass after extracting Chromium runtime dependencies to `/tmp/careconnect-local-deps`, 10 Chromium tests passed.
-- Axe follow-up: the run logged serious `color-contrast` findings on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`, plus a serious `aria-hidden-focus` finding on `/en?q=health`; the test command still exited successfully.
-- Browser-console follow-up: the passing run also logged a `useSemanticSearch` worker `Failed to fetch` error; triage separately if reproduced during browser QA.
+- Strict Axe regression: pass, 5 routes with no serious or critical WCAG A/AA violations.
+- Playwright a11y command: pass after extracting Chromium runtime dependencies to `/tmp/careconnect-local-deps`, 10 Chromium tests passed with 0 Axe violations on audited routes.
+- Browser-console follow-up: optional `useSemanticSearch` worker fetch failure is caught and logged as a warning; no unhandled rejection appeared in the a11y output.
 - Chrome-control fallback: blocked by connector metadata failure before browser selection.
-- Full viewport visual QA: not completed in this environment; see `docs/launch/brampton-manual-qa.md`.
+- Full viewport visual QA: pass; see `docs/launch/brampton-manual-qa.md`.
 
 ## Public Positioning Review
 
@@ -130,7 +136,7 @@ Branch: `codex/multi-city-brampton-foundation`
 
 ## Final Readiness Decision
 
-- Ready to merge foundation/readiness code: yes after local verification; browser visual QA and axe follow-up remediation remain manual/product-quality follow-ups.
+- Ready to merge foundation/readiness code: yes after local verification; production migration, deployment, land acknowledgment wording, and official relationship wording remain approval-gated.
 - Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
 - Ready for production migration: no, requires explicit human approval. The read-only live schema preflight is complete.
 - Ready for deployment: no, requires human approval.

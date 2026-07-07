@@ -64,7 +64,7 @@ describe("Match Highlighting", () => {
     const text = "The quick brown fox"
     const tokens = ["quick", "fox"]
     const highlighted = highlightMatches(text, tokens)
-    expect(highlighted).toContain('<mark class="bg-yellow-200')
+    expect(highlighted).toContain('<mark class="rounded bg-yellow-200 px-0.5 text-neutral-950')
     expect(highlighted).toContain(">quick</mark>")
     expect(highlighted).toContain(">fox</mark>")
     expect(highlighted).not.toContain(">brown</mark>")

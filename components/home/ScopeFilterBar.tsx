@@ -25,9 +25,9 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
 
   if (isHomogeneous) {
     return (
-      <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
-        <span className="text-primary-700 dark:text-primary-300 text-sm font-medium">{totalCount}</span>
-        <span className="text-sm text-neutral-700 dark:text-neutral-300">
+      <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-300 bg-white px-3 shadow-sm dark:border-neutral-300 dark:bg-white">
+        <span className="text-primary-800 dark:text-primary-800 text-sm font-medium">{totalCount}</span>
+        <span className="text-sm text-neutral-900 dark:text-neutral-900">
           {totalCount === 1 ? t("resultSingular") : t("resultPlural")}
         </span>
       </div>
@@ -42,7 +42,7 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
   ]
 
   return (
-    <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-200 bg-white/50 px-1 shadow-sm dark:border-neutral-700 dark:bg-neutral-900/50">
+    <div className="flex h-8 items-center gap-0.5 rounded-lg border border-neutral-300 bg-white px-1 shadow-sm dark:border-neutral-300 dark:bg-white">
       {scopes.map((scope) => {
         const isActive = activeScope === scope.id
         return (
@@ -52,14 +52,14 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
             className={cn(
               "relative flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium transition-all outline-none",
               isActive
-                ? "text-primary-700 dark:text-primary-300"
-                : "text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+                ? "text-primary-900 dark:text-primary-900"
+                : "text-neutral-900 hover:text-neutral-950 dark:text-neutral-900 dark:hover:text-neutral-950"
             )}
           >
             {isActive && (
               <motion.div
                 layoutId="activeScope"
-                className="absolute inset-0 rounded-md bg-neutral-100 dark:bg-neutral-800"
+                className="absolute inset-0 rounded-md bg-neutral-100 dark:bg-neutral-100"
                 initial={false}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
               />
@@ -68,7 +68,7 @@ export default function ScopeFilterBar({ counts, activeScope, onScopeChange, tot
             <span
               className={cn(
                 "relative z-10 text-xs",
-                isActive ? "text-primary-700 dark:text-primary-300" : "text-neutral-700 dark:text-neutral-300"
+                isActive ? "text-primary-900 dark:text-primary-900" : "text-neutral-800 dark:text-neutral-800"
               )}
             >
               {scope.count}

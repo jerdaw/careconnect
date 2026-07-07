@@ -28,7 +28,11 @@ export function PartnerActionsPanel({ serviceId, serviceName, showClaimAction }:
       ) : null}
 
       <div className={showClaimAction ? "mt-4" : ""}>
-        <Button variant="outline" className="w-full gap-2" onClick={() => setIsUpdateModalOpen(true)}>
+        <Button
+          variant="outline"
+          className="w-full gap-2 !border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
+          onClick={() => setIsUpdateModalOpen(true)}
+        >
           <FilePenLine className="h-4 w-4" />
           {feedback("requestUpdateTitle")}
         </Button>

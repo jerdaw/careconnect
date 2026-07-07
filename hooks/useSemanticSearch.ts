@@ -51,7 +51,15 @@ export const useSemanticSearch = () => {
       return worker.current
     }
 
-    const nextWorker = new Worker(new URL("../app/worker.ts", import.meta.url))
+    let nextWorker: Worker
+    try {
+      nextWorker = new Worker(new URL("../app/worker.ts", import.meta.url))
+    } catch {
+      const message = "Failed to load semantic search worker"
+      logger.warn(message, { component: "useSemanticSearch" })
+      handleWorkerFailure(message, { rejectInit: true })
+      throw new Error(message)
+    }
 
     nextWorker.addEventListener("message", (event) => {
       const { status: eventStatus, data, error, requestId } = event.data
@@ -74,14 +82,14 @@ export const useSemanticSearch = () => {
 
       if (eventStatus === "error" && requestId === undefined) {
         const message = typeof error === "string" ? error : "Failed to load model"
-        logger.error("Worker Error:", message, { component: "useSemanticSearch" })
+        logger.warn("Semantic search worker initialization failed", { component: "useSemanticSearch", error: message })
         handleWorkerFailure(message, { rejectInit: true })
       }
     })
 
     nextWorker.addEventListener("error", (event) => {
       const message = `Worker Error: ${event.message}`
-      logger.error("Worker Script Error:", event.message, { component: "useSemanticSearch" })
+      logger.warn("Semantic search worker script failed", { component: "useSemanticSearch", error: event.message })
       handleWorkerFailure(message, { rejectInit: true })
     })
 

@@ -61,7 +61,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
         className={cn(
           "fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300",
           isSolid || mobileMenuOpen
-            ? "border-neutral-200/50 bg-white shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-950"
+            ? "border-neutral-200/50 bg-white shadow-sm backdrop-blur-xl dark:border-neutral-200 dark:bg-white"
             : "border-transparent bg-transparent"
         )}
       >
@@ -98,9 +98,9 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             <span
               className={cn(
                 "heading-display text-lg font-bold tracking-tight transition-all",
-                "text-black dark:text-white",
+                "text-black dark:text-black",
                 // Mobile: only show when scrolled (hero not visible)
-                isSolid ? "block" : "hidden md:block"
+                isSolid ? "block" : "hidden lg:block"
               )}
             >
               CareConnect
@@ -108,11 +108,11 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden items-center md:flex">
+          <div className="hidden items-center lg:flex">
             {/* Emergency - High priority, always visible */}
             <button
               onClick={() => setEmergencyModalOpen(true)}
-              className="mr-6 inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-200 dark:hover:bg-red-900/50"
+              className="mr-6 inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-100 dark:text-red-800 dark:hover:bg-red-200"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -134,8 +134,8 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                     className={cn(
                       "after:bg-primary-500/70 relative px-0.5 py-1.5 text-sm font-medium transition-colors duration-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-px after:w-6 after:-translate-x-1/2 after:rounded-full",
                       active
-                        ? "text-primary-700 dark:text-primary-200 after:opacity-100"
-                        : "hover:text-primary-600 dark:hover:text-primary-200 text-neutral-800 after:opacity-0 dark:text-neutral-200"
+                        ? "text-primary-700 dark:text-primary-700 after:opacity-100"
+                        : "hover:text-primary-600 dark:hover:text-primary-700 text-neutral-800 after:opacity-0 dark:text-neutral-800"
                     )}
                   >
                     {label}
@@ -145,7 +145,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
             </nav>
 
             {/* Separator */}
-            <div className="mx-4 h-5 w-px bg-neutral-200 dark:bg-neutral-700" aria-hidden="true" />
+            <div className="mx-4 h-5 w-px bg-neutral-200 dark:bg-neutral-200" aria-hidden="true" />
 
             {/* Utility Controls Group */}
             <div className="flex items-center gap-1">
@@ -166,7 +166,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 lg:hidden">
             <ThemeToggle />
             <button
               className="p-2 text-neutral-600 dark:text-neutral-300"
@@ -185,7 +185,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="border-t border-neutral-200 bg-white/95 backdrop-blur-xl md:hidden dark:border-neutral-800 dark:bg-slate-950/95"
+              className="border-t border-neutral-200 bg-white/95 backdrop-blur-xl lg:hidden dark:border-neutral-200 dark:bg-white/95"
             >
               <div className="flex flex-col space-y-2 p-4">
                 {/* Emergency - prominent at top */}
@@ -194,7 +194,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                     setMobileMenuOpen(false)
                     setEmergencyModalOpen(true)
                   }}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-red-100 px-4 py-3 text-sm font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-200"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-red-100 px-4 py-3 text-sm font-bold text-red-800 transition-colors hover:bg-red-200 dark:bg-red-100 dark:text-red-800"
                 >
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -203,7 +203,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                   {tEmergency("buttonLabel")}
                 </button>
 
-                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />
+                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-200" />
 
                 {/* Navigation Links */}
                 {navItems.map(({ href, label, exact }) => {
@@ -217,8 +217,8 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                       className={cn(
                         "before:bg-primary-500/70 relative rounded-md px-3 py-2.5 text-sm font-medium transition-colors before:absolute before:top-2 before:bottom-2 before:left-0 before:w-0.5 before:rounded-full before:opacity-0",
                         active
-                          ? "text-primary-700 dark:text-primary-200 before:opacity-100"
-                          : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                          ? "text-primary-700 dark:text-primary-700 before:opacity-100"
+                          : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-700 dark:hover:bg-neutral-100"
                       )}
                     >
                       {label}
@@ -226,15 +226,15 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
                   )
                 })}
 
-                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />
+                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-200" />
 
                 {/* Language Switcher */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-neutral-500 dark:text-neutral-400">{t("language")}</span>
+                  <span className="text-sm text-neutral-500 dark:text-neutral-700">{t("language")}</span>
                   <LanguageSwitcher />
                 </div>
 
-                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-700" />
+                <div className="my-2 h-px bg-neutral-200 dark:bg-neutral-200" />
 
                 {/* Primary CTA */}
                 {user ? (

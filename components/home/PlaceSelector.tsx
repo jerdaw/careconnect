@@ -27,13 +27,16 @@ export default function PlaceSelector({
 
   return (
     <div className="flex max-w-full flex-wrap items-center justify-center gap-2" role="group" aria-label={t("label")}>
-      <span className="inline-flex h-8 items-center gap-1.5 rounded-md border border-neutral-200/70 bg-white/70 px-2.5 text-xs font-medium text-neutral-700 dark:border-white/10 dark:bg-white/10 dark:text-neutral-200">
+      <span className="inline-flex h-8 items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-2.5 text-xs font-medium text-neutral-950 dark:border-neutral-300 dark:bg-white dark:text-neutral-950">
         <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
         {t("selected", { place: selectedLabel })}
       </span>
 
       <Select value={selectedPlaceId} onValueChange={(value) => onPlaceChange(value as PlaceId)}>
-        <SelectTrigger className="h-8 w-[150px] bg-white/70 text-xs dark:bg-white/10" aria-label={t("change")}>
+        <SelectTrigger
+          className="h-8 w-[150px] border-neutral-300 bg-white text-xs text-neutral-950 dark:border-neutral-300 dark:bg-white dark:text-neutral-950"
+          aria-label={t("change")}
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -45,7 +48,13 @@ export default function PlaceSelector({
         </SelectContent>
       </Select>
 
-      <Button type="button" variant="ghost" size="sm" className="h-8 px-2.5 text-xs" onClick={onUseLocation}>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="h-8 px-2.5 text-xs text-neutral-900 hover:text-neutral-950 dark:text-neutral-900 dark:hover:text-neutral-950"
+        onClick={onUseLocation}
+      >
         <Navigation className="h-3.5 w-3.5" aria-hidden="true" />
         {isLocating ? t("locating") : t("useLocation")}
       </Button>

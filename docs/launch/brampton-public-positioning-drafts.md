@@ -101,6 +101,52 @@ Draft paragraph:
 
 > CareConnect grows through careful review of public service information and community feedback. When a provider, municipality, or community organization wants to help improve a record, we welcome corrections and verification through the update process.
 
+## Approval Matrix
+
+| Surface                    | Safe Autonomous State                                                      | Human Approval Required Before                                                 |
+| -------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Homepage supported regions | `CareConnect` umbrella with Kingston and Brampton as supported communities | Claims that coverage is complete or officially endorsed                        |
+| Brampton live copy         | Small reviewed launch set for urgent/core supports                         | Copy describing a full Brampton directory                                      |
+| Partner/source pages       | Public sources support manual review                                       | Any provider, municipal, regional, provincial, or Indigenous partnership claim |
+| Land acknowledgment        | Source checklist and draft-only options                                    | Final wording in public UI or docs                                             |
+| Project name               | `CareConnect` public umbrella                                              | Rebranding into a city-specific or region-specific product name                |
+| Production rollout copy    | Approval-gated release notes and smoke-test checklist                      | Public launch announcement that implies deploy is complete                     |
+
+## Approval-Ready Copy Options
+
+### Homepage Region Line
+
+Option A:
+
+> Search reviewed food, housing, crisis, and community supports across Kingston and Brampton, with broader Ontario resources included where they apply.
+
+Option B:
+
+> CareConnect supports Kingston and Brampton with reviewed local records and broader Ontario services where coverage applies.
+
+### Brampton First Launch Set
+
+Option A:
+
+> Brampton coverage begins with a small reviewed set of urgent and core supports. More records will be added through the same manual review process used for Kingston.
+
+Option B:
+
+> Brampton is live with an initial reviewed launch set for shelter, crisis, emergency assistance, and food support.
+
+### Source Reference
+
+> CareConnect uses public provider, directory, and government sources as inputs for manual review. A source link does not mean the source endorses, operates, or partners with CareConnect.
+
+## Land Acknowledgment Publication Gate
+
+Do not move Brampton-specific land acknowledgment wording into public UI until:
+
+- A human reviewer confirms the preferred source basis.
+- The wording avoids implying endorsement by any Nation, municipality, or community organization.
+- The wording is reviewed in the context where it will appear.
+- The Kingston/Katarokwi wording is reviewed for consistency with the multi-city framing.
+
 ## Documentation Direction
 
 - Use `Brampton launch`, `Brampton coverage`, or `Brampton first launch set`.
