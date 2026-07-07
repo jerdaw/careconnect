@@ -1,22 +1,22 @@
 ---
 status: stable
-last_updated: 2026-07-05
+last_updated: 2026-07-07
 owner: jer
-tags: [planning, roadmap, v22.0, governance]
+tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ---
 
 # CareConnect: Product Roadmap
 
-> **Current Version**: v22.0 (Non-Duplicate Value Decision Plan, Phase 0)
-> **Next Milestone**: v22.0 Gate 0 Exit (C1/D4 blocker closure)
-> **Last Updated**: 2026-07-05
-> **Platform Status**: Strategic Repositioning - v22.0 Decision-Gated Planning
+> **Current Version**: v22.0 plus constrained Brampton multi-city launch readiness
+> **Next Milestone**: Brampton production preflight/auth gate plus v22.0 Gate 0 C1/D4 blocker closure
+> **Last Updated**: 2026-07-07
+> **Platform Status**: Strategic Repositioning with bounded Brampton launch gates
 
 ## Current State
 
-- **Services**: 196 manually curated social services (`npm run validate-data` and `npm run audit:data` on 2026-06-28; freshness snapshot recorded on 2026-07-04)
-- **Tests**: default Vitest suite green as of 2026-07-05 (`208` files; `1662` passed; `24` skipped during `npm run test:coverage`)
-- **DB integration lane**: PR DB integration checks are green as of 2026-06-28, and local Supabase-backed retrieval, route, export, search, and policy tests remain healthy
+- **Services**: 203 manually curated social services. Kingston remains live, and Brampton has a seven-record L1 first launch set focused on urgent and core supports.
+- **Tests**: default Vitest suite green as of 2026-07-07 (`216` files; `1701` passed; `24` skipped during `npm test -- --run` in the Brampton readiness pass)
+- **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
 - **Maintenance audit**: the 2026-07-05 maintenance pass fixed invalid search-mode fallback, malformed search JSON handling, generic API error redaction, environment-validator drift, MkDocs nav drift, and a repeated service-card context lookup; deferred follow-ups remain in [Maintenance Audit](../maintenance-audit.md)
@@ -25,8 +25,12 @@ tags: [planning, roadmap, v22.0, governance]
 - **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
 - **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
 - **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
-- **Accessibility**: WCAG 2.1 AA automation remains in place
+- **Accessibility**: WCAG 2.1 AA automation remains in place. The 2026-07-07 Chromium a11y run passed 10 tests but logged serious `color-contrast` findings, one `aria-hidden-focus` finding, and a semantic-search worker console error for follow-up.
 - **Languages**: 7 locales at translation-key parity
+- **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
+- **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed L1 first launch set; deferred Brampton candidates remain draft-only until the same L1 workflow approves them.
+- **Brampton production gate**: restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; authenticated live Supabase schema inspection remains blocked by unavailable/expired authenticated access.
+- **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. Land acknowledgment and official/partner wording remain approval-gated, with Brampton source research recorded in launch docs.
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
 - **Public and operational surface polish**: `/about/partners`, `/submit-service`, `/settings`, `/service/[id]`, `/login`, `/offline`, static legal/help/trust pages, and authenticated `/dashboard/**` plus `/admin/**` surfaces now share the polished page system; authenticated visual QA remains environment-gated and tracked below
@@ -48,7 +52,7 @@ tags: [planning, roadmap, v22.0, governance]
 - **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
 - **Limited public-directory disposition**: the 2026-07-02 owner self-review allows only a constrained public-directory pilot; full Gate 0 remains `NO-GO` until C1 and D4 evidence is attached; see [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
 - **Current-state closeout audit**: the 2026-07-01 route audit fixed a Simplified Chinese content-policy rich-text issue and the approved production deploy now serves `version=c42d057`; see [CareConnect Current-State Closeout Audit (2026-07-01)](../implementation/careconnect-current-state-closeout-audit-2026-07-01.md)
-- **French service-data gaps**: `access_script_fr` is complete for all 196 records; governed content follow-through still remains for `hours_text_fr`, `eligibility_notes_fr`, and `synthetic_queries_fr`
+- **French service-data gaps**: French names, descriptions, eligibility notes, and access scripts are complete for all applicable records; governed content follow-through remains for 192 `hours_text_fr` fields and 132 `synthetic_queries_fr` sets.
 - **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
 - **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
 - **Partner write hardening**: partner-facing service mutation routes now use explicit editable-field allowlists, role-aware service ownership checks, and owner/admin-only delete semantics
@@ -65,33 +69,36 @@ tags: [planning, roadmap, v22.0, governance]
 - **Deploy documentation boundary**: exact deployment contracts are maintained in private operations material; public docs keep only reproducible local checks and high-level architecture
 - **Branding**: CareConnect rename is complete across this repo and the `jerdaw/careconnect` GitHub repo slug
 - **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
-- **Data quality gaps**:
-  - Scope: 0 missing
-  - Coordinates (any): 58 missing
+- **Data quality gaps** (`npm run audit:data` on 2026-07-07):
+  - Scope: 7 missing by the legacy `scope` audit path; these are Brampton coverage-first records and schema validation passes
+  - Coordinates (any): 65 missing
   - Coordinates (required): 18 missing
   - Kingston missing address: 17
   - Access scripts: 0 missing
-  - Structured hours (active services): 10 missing
-  - Hours text (active services): 10 missing
-  - French access scripts: 0 missing
-  - French hours text: 196 missing
-  - French eligibility notes: 118 missing
-  - French synthetic queries: 125 missing
+  - Structured hours (active services): 13 missing
+  - Hours text (active services): 11 missing
+  - French name, description, eligibility notes, and access scripts: complete for all applicable records by `npm run bilingual-check`
+  - French hours text for records with `hours_text`: 192 missing
+  - French synthetic queries for records with `synthetic_queries`: 132 missing
 
 ## Decision Summary
 
-CareConnect is not currently in a breadth-expansion phase.
+CareConnect is not currently in a broad directory-expansion phase.
 
 The active question is whether the project can prove non-duplicate value relative to 211 through measurable last-mile outcomes such as connection success, reliability, and referral completion. Until that is demonstrated, roadmap priority stays on governance closure, pilot readiness, and evidence discipline rather than new feature expansion.
 
+Brampton is the exception now in progress because it is a bounded, approved city-step launch with a small high-confidence emergency/core set. Treat it as a controlled multi-city foundation and relocation-support launch, not as a mandate to fill the region or compete with 211 on directory breadth.
+
 ## What To Do Now
 
-1. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
-2. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
-3. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
-4. Execute the verification queue using the [2026-07-04 service freshness audit](../audits/service-freshness/2026-07-04/staleness-summary.md), starting with stale Crisis records; update service facts and provenance only after manual evidence is recorded.
-5. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
-6. Preserve launch readiness materials, but do not resume beta or public-launch execution until v22 permits it.
+1. Close the Brampton quality follow-ups that are safe and repo-local: serious contrast findings, the `/en?q=health` hidden-focus finding, semantic-search worker console error triage, and manual desktop/tablet/mobile screenshot QA.
+2. Restore authenticated Supabase schema-inspection access or add an approved restricted operations wrapper command for read-only live schema inspection.
+3. After live schema preflight passes, decide whether to approve the Brampton production migration, deploy, and post-deploy smoke checks.
+4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
+5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
+6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
+7. Execute the verification queue using the [2026-07-04 service freshness audit](../audits/service-freshness/2026-07-04/staleness-summary.md), starting with stale Crisis records; update service facts and provenance only after manual evidence is recorded.
+8. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
 
 ## Roadmap Items Kept After 2026-07-01 Closeout
 
@@ -117,7 +124,13 @@ or owner-owned items:
    - Advanced French service-data enrichment beyond the completed French access-script merge.
    - Remaining DB migration-history cleanup.
    - Admin-facing data-quality dashboard.
-   - Browser-console closeout pass once a working browser runtime or Chrome control surface is available.
+   - Browser-console closeout for the current semantic-search worker warning and any repeat findings from browser QA.
+6. **Brampton bounded launch gates**
+   - Fix or explicitly accept the a11y findings logged by the passing 2026-07-07 Chromium run.
+   - Complete manual screenshot QA across desktop, tablet, and mobile.
+   - Restore authenticated live schema inspection before production migration.
+   - Keep land acknowledgment and official/partner wording human-approved.
+   - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
 
 ## What Not To Do Now
 
@@ -138,6 +151,53 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 5. If Zensical stalls or fails to deliver the required compatibility in a reasonable window, use Sphinx + MyST as the mature fallback for any future standalone docs rebuild instead of starting fresh on MkDocs.
 
 ## Active Work
+
+### Brampton Constrained Multi-City Launch Readiness 🔄 ACTIVE
+
+**Status**: Foundation and first L1 records implemented; production launch gates remain open
+**Priority**: High, bounded
+**Created**: 2026-07-06
+
+Brampton is the next supported-place step, not a broad regional expansion. Kingston remains live. Brampton starts with a small high-confidence L1 emergency/core set and grows only through the same manual review workflow.
+
+**Current technical position**
+
+1. Multi-city registry, explicit coverage, selected-place search, search API filters, OpenAPI coverage shape, DB mapping/export behavior, and Brampton regression tests are implemented.
+2. Seven Brampton L1 records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
+3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
+4. Browser a11y and DB smoke now run locally via user-space dependencies; both passed on 2026-07-07.
+5. Restricted production control-plane readiness/status/service-health checks passed, but authenticated live Supabase schema inspection is still blocked.
+
+**Immediate blockers**
+
+1. A11y remediation: serious contrast findings on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`; serious hidden-focus finding on `/en?q=health`.
+2. Browser-console triage: `useSemanticSearch` worker `Failed to fetch` during the passing Chromium a11y run.
+3. Manual visual QA: desktop, tablet, and mobile screenshot review.
+4. Production database preflight: authenticated live schema inspection for `services`, public views, indexes, and RLS policies.
+5. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
+
+**Next agent-suitable work**
+
+1. Fix the a11y findings and add focused regression coverage where practical.
+2. Triage the semantic-search worker console error and confirm expected keyword-only fallback behavior.
+3. Run and document manual screenshot QA across the launch-critical viewports.
+4. If authenticated schema access becomes available, run read-only live schema preflight and update the launch checklist.
+
+**Human-gated work**
+
+1. Approve final Brampton land acknowledgment wording, if any is used publicly.
+2. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
+3. Approve production migration and deployment.
+4. Approve future Brampton L2/L3 verification or deferred candidate promotion.
+
+**Canonical references**
+
+- [Brampton Launch Readiness Report](../launch/brampton-readiness-report.md)
+- [Brampton Rollout Checklist](../launch/brampton-rollout-checklist.md)
+- [Brampton Manual QA](../launch/brampton-manual-qa.md)
+- [Brampton Public Positioning Drafts](../launch/brampton-public-positioning-drafts.md)
+- [Multi-City Brampton Foundation Design](../superpowers/specs/2026-07-06-multi-city-brampton-foundation-design.md)
+- [Multi-City Brampton Foundation Plan](../superpowers/plans/2026-07-06-multi-city-brampton-foundation.md)
 
 ### v22.0: Non-Duplicate Value Decision Plan 🔄 ACTIVE
 
@@ -307,9 +367,11 @@ References:
 
 ### Recent Completed Milestones
 
-- **Close-out prep and French access-script merge (2026-06-28)**: completed the reviewed `access_script_fr` batch merge for all 196 service records, refreshed the access-script audit to `0` missing French access scripts, added the service verification workplan for all 196 due services, and closed the French translation review issue while leaving manual verification and Gate 0 evidence blockers tracked separately.
+- **Brampton multi-city foundation and first L1 launch set (2026-07-07)**: implemented place-aware coverage/search foundations, promoted the approved seven-record Brampton L1 launch set, regenerated embeddings, verified Kingston/Brampton regression behavior, recorded production/readiness gates, and kept deferred candidates draft-only.
+- **Brampton launch QA and positioning evidence (2026-07-07)**: unblocked local Chromium a11y and DB smoke runs with user-space dependencies, documented passing QA plus a11y/browser-console follow-ups, completed draft-only land acknowledgment source research, and preserved production migration/deploy/partner wording as explicit approval gates.
 - **Closeout triage checkpoint (2026-07-01)**: recorded the current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation; no additional repo-side implementation is recommended before Gate 0 evidence unless a concrete regression appears.
 - **Auth/admin regression guardrails (2026-07-01)**: added focused auth callback/login/admin regression coverage and a non-production browser smoke spec after the production auth/admin troubleshooting pass.
+- **Close-out prep and French access-script merge (2026-06-28)**: completed the reviewed `access_script_fr` batch merge for all 196 service records, refreshed the access-script audit to `0` missing French access scripts, added the service verification workplan for all 196 due services, and closed the French translation review issue while leaving manual verification and Gate 0 evidence blockers tracked separately.
 - **v22 Gate 0 autonomous maintenance checkpoint (2026-06-13)**: completed the bounded repo-local maintenance pass for C1/D4 evidence guards, D4 artifact-inventory validation, offline privacy/recovery hardening, pilot event contracts, OpenAPI coverage, readiness input validation, and roadmap stop-rule cleanup while leaving Gate 0 blocked on external evidence; archived in [2026-06-13 v22.0 Autonomous Gate 0 Maintenance](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md).
 - **Public GitHub cleanup (2026-06-05)**: established the public documentation boundary in ADR-022, sanitized public deployment/operations/planning/legal docs, replaced the real platform contract with fake-only example content plus a legacy-path tombstone, migrated durable private originals to the private/shared operations source of truth while preserving ignored local copies, updated boundary tests/scripts, and archived the completed pass in [2026-06-04 Public GitHub Cleanup](archive/2026-06-04-public-github-cleanup.md).
 - **Public and operational surface polish (2026-05-01)**: completed the bounded reference sources, suggest-service intake, route-reference cleanup, public workflow, static legal/help/trust, settings, and authenticated dashboard/admin polish wave without changing service-data, search, auth, or schema contracts; archived in [2026-05-01 v20.0 Public and Operational Surface Polish](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md).
