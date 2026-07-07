@@ -58,9 +58,10 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 - [x] Confirm target environment path through approved private/shared operations source of truth.
 - [x] Run restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks without collecting secrets or raw sensitive output.
-- [ ] Run read-only live schema inspection for `services`, public service views, indexes, and RLS policies.
-- [ ] Restore authenticated Supabase schema-inspection access, or add an approved restricted operations wrapper command for read-only schema inspection.
-- [ ] Confirm existing live columns match migration assumptions.
+- [x] Run read-only live schema inspection for `services`, public service views, indexes, and RLS policies.
+- [x] Restore authenticated Supabase CLI access and link the repo to the target project.
+- [x] Confirm existing live columns match migration assumptions: `primary_place_id` and `coverage` are absent before migration.
+- [x] Confirm pending migration normalizes existing broad `services_public` grants before granting SELECT.
 - [ ] Confirm backup or rollback posture.
 - [ ] Apply migration only after explicit human approval.
 - [ ] Run post-migration read-only checks for `primary_place_id`, `coverage`, public views, and search API.
@@ -68,7 +69,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 ## Production Rollout After Approval
 
 - [x] Inspect private/shared operations source of truth for environment and release instructions.
-- [ ] Perform authenticated read-only production schema preflight.
+- [x] Perform authenticated read-only production schema preflight.
 - [ ] Apply migration.
 - [ ] Deploy application.
 - [ ] Smoke test Kingston search.

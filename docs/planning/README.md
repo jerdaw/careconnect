@@ -217,7 +217,7 @@ Current dependencies:
 - Baseline evidence already published
 - Integration feasibility decision already recorded in conditional mode
 - Offline/local threat-model completion already recorded
-- Brampton authenticated live Supabase schema preflight before migration/deploy
+- Brampton migration/deploy approval after completed authenticated live Supabase schema preflight
 - Brampton a11y/browser-console/manual visual QA follow-up closure or explicit acceptance
 
 ---
@@ -231,8 +231,8 @@ Use the active roadmap and launch checklist to finish the bounded Brampton track
 1. Fix or explicitly accept the logged a11y findings
 2. Triage the semantic-search worker console error
 3. Complete desktop/tablet/mobile screenshot QA
-4. Restore authenticated live schema inspection
-5. Approve production migration/deploy only after preflight
+4. Review the completed live schema preflight
+5. Approve production migration/deploy only after preflight and rollback posture are accepted
 
 ### Option 2: Close Gate 0
 
@@ -270,7 +270,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
 - **2026-06-04:** Added the public GitHub cleanup archive after establishing ADR-022 and sanitizing public deployment, operations, planning, legal, and observability documentation
 - **2026-07-05:** Added the maintenance audit checkpoint and refreshed roadmap test, coverage, and dependency-audit baselines after the repo-health pass
-- **2026-07-07:** Updated the active roadmap for the Brampton constrained multi-city launch track, refreshed 203-record data-quality counts, linked launch readiness docs, and reordered next work around a11y/browser QA, authenticated schema preflight, and approval gates
+- **2026-07-07:** Updated the active roadmap for the Brampton constrained multi-city launch track, refreshed 203-record data-quality counts, linked launch readiness docs, and reordered next work around a11y/browser QA, completed authenticated schema preflight, and approval gates
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

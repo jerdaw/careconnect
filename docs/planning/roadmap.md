@@ -8,7 +8,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 # CareConnect: Product Roadmap
 
 > **Current Version**: v22.0 plus constrained Brampton multi-city launch readiness
-> **Next Milestone**: Brampton production preflight/auth gate plus v22.0 Gate 0 C1/D4 blocker closure
+> **Next Milestone**: Brampton migration approval/quality gates plus v22.0 Gate 0 C1/D4 blocker closure
 > **Last Updated**: 2026-07-07
 > **Platform Status**: Strategic Repositioning with bounded Brampton launch gates
 
@@ -29,7 +29,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 - **Languages**: 7 locales at translation-key parity
 - **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
 - **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed L1 first launch set; deferred Brampton candidates remain draft-only until the same L1 workflow approves them.
-- **Brampton production gate**: restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; authenticated live Supabase schema inspection remains blocked by unavailable/expired authenticated access.
+- **Brampton production gate**: restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; authenticated live Supabase schema inspection is complete; production migration remains unapplied and approval-gated.
 - **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. Land acknowledgment and official/partner wording remain approval-gated, with Brampton source research recorded in launch docs.
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
@@ -92,8 +92,8 @@ Brampton is the exception now in progress because it is a bounded, approved city
 ## What To Do Now
 
 1. Close the Brampton quality follow-ups that are safe and repo-local: serious contrast findings, the `/en?q=health` hidden-focus finding, semantic-search worker console error triage, and manual desktop/tablet/mobile screenshot QA.
-2. Restore authenticated Supabase schema-inspection access or add an approved restricted operations wrapper command for read-only live schema inspection.
-3. After live schema preflight passes, decide whether to approve the Brampton production migration, deploy, and post-deploy smoke checks.
+2. Decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
+3. After migration approval, run post-migration checks, deploy approval, and post-deploy smoke checks.
 4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
 6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
@@ -128,7 +128,7 @@ or owner-owned items:
 6. **Brampton bounded launch gates**
    - Fix or explicitly accept the a11y findings logged by the passing 2026-07-07 Chromium run.
    - Complete manual screenshot QA across desktop, tablet, and mobile.
-   - Restore authenticated live schema inspection before production migration.
+   - Review completed authenticated live schema inspection before production migration approval.
    - Keep land acknowledgment and official/partner wording human-approved.
    - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
 
@@ -166,22 +166,21 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 2. Seven Brampton L1 records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
 3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
 4. Browser a11y and DB smoke now run locally via user-space dependencies; both passed on 2026-07-07.
-5. Restricted production control-plane readiness/status/service-health checks passed, but authenticated live Supabase schema inspection is still blocked.
+5. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed; migration remains unapplied.
 
 **Immediate blockers**
 
 1. A11y remediation: serious contrast findings on `/en`, `/en?q=health`, `/en/dashboard`, `/en/submit-service`, and `/en/service/kids-help-phone`; serious hidden-focus finding on `/en?q=health`.
 2. Browser-console triage: `useSemanticSearch` worker `Failed to fetch` during the passing Chromium a11y run.
 3. Manual visual QA: desktop, tablet, and mobile screenshot review.
-4. Production database preflight: authenticated live schema inspection for `services`, public views, indexes, and RLS policies.
-5. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
+4. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
 
 **Next agent-suitable work**
 
 1. Fix the a11y findings and add focused regression coverage where practical.
 2. Triage the semantic-search worker console error and confirm expected keyword-only fallback behavior.
 3. Run and document manual screenshot QA across the launch-critical viewports.
-4. If authenticated schema access becomes available, run read-only live schema preflight and update the launch checklist.
+4. After migration approval, run post-migration read-only checks and update the launch checklist.
 
 **Human-gated work**
 

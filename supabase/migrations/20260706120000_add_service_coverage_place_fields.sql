@@ -77,4 +77,5 @@ WHERE
   AND verification_status IN ('L1', 'L2', 'L3');
 
 ALTER VIEW services_public SET (security_invoker = true);
+REVOKE ALL ON services_public FROM anon, authenticated;
 GRANT SELECT ON services_public TO anon, authenticated, service_role;

@@ -38,11 +38,11 @@
 - `npm run test:db:smoke`: passed with extracted user-space PostgreSQL client binaries, 2 smoke tests.
 - `npm run test:a11y -- --project=chromium`: passed with extracted user-space Chromium libraries, 10 Chromium tests. The run logged serious contrast and hidden-focus axe findings plus a semantic-search worker fetch error for follow-up; see `docs/launch/brampton-manual-qa.md`.
 - Restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks: passed without collecting secret values or raw sensitive output.
-- Authenticated live Supabase schema inspection: blocked because local credentials returned unauthorized and Supabase MCP authentication was expired.
+- Authenticated live Supabase schema inspection: passed through `npx supabase db query --linked` after CLI login and project linking. The Brampton coverage migration is not applied; live `services`/`services_public` lack `primary_place_id` and `coverage`; existing live grants are broader than the repo baseline expects, so the pending migration now normalizes `services_public` grants before granting SELECT.
 
 ## Rollout Notes
 
-- Production migration requires explicit approval and read-only schema preflight.
+- Production migration requires explicit approval. Read-only schema preflight is complete.
 - Deployment requires explicit approval.
 - Brampton can be positioned as a live supported place with a small first L1 launch set, not a complete local directory.
 - Browser visual QA still needs manual screenshot review before deploy.

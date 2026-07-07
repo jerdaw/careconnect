@@ -29,7 +29,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - 2026-07-07: Added seven approved Brampton L1 records to `data/services.json`, regenerated `data/embeddings.json`, and kept deferred candidates draft-only.
 - 2026-07-07: Replaced the local Chromium and `psql` blockers with a user-space dependency extraction under `/tmp/careconnect-local-deps`; browser a11y and DB smoke reruns completed.
 - 2026-07-07: Ran restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks through the approved private operations wrapper; all completed successfully without collecting secret values or raw sensitive output.
-- 2026-07-07: Attempted authenticated live Supabase schema inspection. Local Supabase credentials returned unauthorized, and the Supabase MCP auth token was expired, so live schema inspection remains blocked.
+- 2026-07-07: Completed authenticated live Supabase schema inspection through `npx supabase db query --linked` after CLI login and project linking.
 
 ## Findings
 
@@ -37,7 +37,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - Browser a11y is no longer environment-blocked for this session; the Chromium suite passed using extracted user-space libraries.
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
 - Full viewport visual QA remains manual follow-up work.
-- Live Supabase schema preflight remains blocked by authentication, not by local tooling.
+- Live Supabase schema preflight is complete; production migration remains unapplied and approval-gated.
 
 ## Technical Verification
 
@@ -66,7 +66,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - Browser visual QA is tracked separately in `docs/launch/brampton-manual-qa.md`.
 - Axe logged serious contrast and hidden-focus findings while the Chromium a11y suite still passed; these should be remediated as separate accessibility defects.
 - Production migration was not applied.
-- Live Supabase schema inspection was not completed because authenticated access was unavailable.
+- Live Supabase schema inspection completed through the Supabase CLI. The pending Brampton coverage migration is not applied in production.
 - Production deploy was not performed.
 
 ## Browser And Accessibility QA
@@ -120,24 +120,24 @@ Branch: `codex/multi-city-brampton-foundation`
 ## Migration And Database Readiness
 
 - Migration file reviewed: `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`.
-- Local migration safety review: pass. The migration adds `primary_place_id` and `coverage` with `IF NOT EXISTS`, backfills from legacy `scope`, recreates `services_public`, and grants read access to expected roles.
+- Local migration safety review: pass. The migration adds `primary_place_id` and `coverage` with `IF NOT EXISTS`, backfills from legacy `scope`, recreates `services_public`, normalizes public-view grants, and grants read access to expected roles.
 - Public view review: pass. `services_public` exposes `primary_place_id` and `coverage` while continuing to sanitize UUID-shaped verifier identifiers in provenance.
 - DB mapping/export tests: pass, 5 files and 29 tests.
 - Local disposable DB smoke lane: pass after extracting PostgreSQL client binaries to `/tmp/careconnect-local-deps`, 2 smoke tests passed.
 - Production control-plane preflight: pass for wrapper-gated readiness, preflight summary, status summary, and CareConnect service-health checks.
-- Live Supabase schema inspection: blocked. Local environment credentials returned unauthorized and Supabase MCP authentication was expired, so read-only schema inspection for live `services`, public views, indexes, and RLS policies could not be completed.
+- Live Supabase schema inspection: pass. The linked database is PostgreSQL 17.6. The previous `services_public` provenance-sanitizing migration is applied; the Brampton coverage migration is not applied. Live `services` and `services_public` do not yet have `primary_place_id` or `coverage`. `services_public` still sanitizes UUID-shaped verifier identifiers and has `security_invoker=true`. `services` has RLS enabled with select/insert/update/delete policies. Existing live grants on `services` and `services_public` are broader than the repo baseline expects; `services` writes are constrained by RLS, and the pending Brampton migration now explicitly revokes anon/authenticated privileges on `services_public` before granting SELECT.
 - Production SQL: not applied.
 
 ## Final Readiness Decision
 
 - Ready to merge foundation/readiness code: yes after local verification; browser visual QA and axe follow-up remediation remain manual/product-quality follow-ups.
 - Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
-- Ready for production migration: no, requires authenticated live schema preflight and explicit human approval.
+- Ready for production migration: no, requires explicit human approval. The read-only live schema preflight is complete.
 - Ready for deployment: no, requires human approval.
 
 ## Recommended Next Human Decisions
 
-1. Restore authenticated Supabase schema-inspection access or add an approved restricted wrapper command for read-only schema preflight.
-2. Decide whether to run production migration after live schema preflight.
+1. Decide whether to approve the Brampton production migration after reviewing the completed live schema preflight.
+2. Decide whether to deploy after migration approval and post-migration checks.
 3. Approve any land acknowledgment or official relationship wording before publication.
 4. Continue Brampton expansion through deferred L1 reviews only.
