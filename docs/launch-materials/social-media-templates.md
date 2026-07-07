@@ -1,8 +1,8 @@
 # Social Media Templates - CareConnect
 
 **Purpose**: Ready-to-use copy for social media announcements
-**Last Updated**: February 2026
-**Version**: 1.0
+**Last Updated**: July 2026
+**Version**: 1.1
 
 ---
 
@@ -13,7 +13,7 @@
 #### Version 1: Direct & Clear
 
 ```
-🚀 Launching CareConnect - find food banks, crisis support, housing help, and 190+ social services in Kingston, ON.
+🚀 CareConnect helps people find food banks, crisis support, housing help, and 200+ service records across supported Ontario communities.
 
 ✅ Works offline
 ✅ 7 languages
@@ -22,7 +22,7 @@
 
 Try it: careconnect.ing
 
-#KingstonON #SocialServices
+#KingstonON #BramptonON #SocialServices
 ```
 
 #### Version 2: Problem-Focused
@@ -38,7 +38,7 @@ CareConnect makes finding food, shelter, crisis support & other services fast an
 
 careconnect.ing
 
-#KingstonON #CommunitySupport
+#KingstonON #BramptonON #CommunitySupport
 ```
 
 #### Version 3: Crisis-Focused
@@ -46,13 +46,13 @@ careconnect.ing
 ```
 If you're searching "I need food today" or "I need help now" — CareConnect is for you.
 
-196 verified services. 7 languages. Works offline. No tracking.
+203 reviewed service records. 7 languages. Works offline. No tracking.
 
 Fast help when you need it most.
 
 careconnect.ing
 
-#KingstonON #CrisisSupport
+#KingstonON #BramptonON #CrisisSupport
 ```
 
 ---
@@ -66,10 +66,10 @@ careconnect.ing
 **Body**:
 
 ```
-We're excited to announce the beta launch of CareConnect — a new way to find social services in Kingston, Ontario.
+CareConnect is a privacy-first way to find social services across supported Ontario communities.
 
 🔍 WHAT IT IS
-A privacy-first directory of ~196 verified social services: food banks, crisis support, housing assistance, mental health resources, and more.
+A privacy-first directory of 203 reviewed service records: food banks, crisis support, housing assistance, mental health resources, and more.
 
 ✨ WHY IT'S DIFFERENT
 → Privacy-First: Your searches stay on your device—no tracking
@@ -94,7 +94,7 @@ Visit careconnect.ing — works on any device, no account needed.
 🙏 SPREAD THE WORD
 Know someone who could benefit? Share this post. The more people who know about it, the more people we can help.
 
-#KingstonON #SocialServices #CommunitySupport #MentalHealth #FoodSecurity #AccessibleTech
+#KingstonON #BramptonON #SocialServices #CommunitySupport #MentalHealth #FoodSecurity #AccessibleTech
 ```
 
 #### Version 2: Story-Driven
@@ -104,7 +104,7 @@ Know someone who could benefit? Share this post. The more people who know about 
 **Body**:
 
 ```
-Imagine this: You need to find a food bank today. You're on your phone with 20% battery. You search "food bank Kingston" and get:
+Imagine this: You need to find a food bank today. You're on your phone with 20% battery. You search for local food help and get:
 
 ❌ A PDF from 2019 with disconnected phone numbers
 ❌ A government website that crashes on mobile
@@ -113,11 +113,11 @@ Imagine this: You need to find a food bank today. You're on your phone with 20% 
 
 You give up.
 
-This shouldn't happen. Not in 2026. Not in Kingston.
+This shouldn't happen. Not in 2026. Not in any supported community.
 
 So we built CareConnect.
 
-✅ 196 verified services (actually accurate contact info)
+✅ 203 reviewed service records
 ✅ Works on any phone (even old ones)
 ✅ No account needed (privacy-first, always)
 ✅ 7 languages (EN, FR, ZH, AR, PT, ES, PA)
@@ -136,7 +136,7 @@ Try it: careconnect.ing
 
 Share it with someone who needs it. 💙
 
-#KingstonON #CommunitySupport #SocialServices #AccessibleTech
+#KingstonON #BramptonON #CommunitySupport #SocialServices #AccessibleTech
 ```
 
 #### Version 3: Partner/Professional Announcement
@@ -146,12 +146,12 @@ Share it with someone who needs it. 💙
 **Body**:
 
 ```
-Excited to share a new resource for Kingston's social service community:
+Excited to share a resource for supported Ontario communities:
 
 CareConnect (careconnect.ing) is a privacy-first directory designed to help clients find services faster.
 
 📊 KEY FEATURES FOR PROFESSIONALS:
-→ 196+ verified services across 15 categories
+→ 203 reviewed service records across 15 categories
 → Tiered verification system (L1-L3)
 → Offline functionality for clients without stable internet
 → 7-language support for diverse client populations
@@ -178,7 +178,7 @@ We're open to partnerships with agencies, frontline workers, and community organ
 
 Try it: careconnect.ing
 
-#SocialWork #CaseManagement #KingstonON #CommunityServices
+#SocialWork #CaseManagement #KingstonON #BramptonON #CommunityServices
 ```
 
 ---
@@ -192,7 +192,7 @@ Try it: careconnect.ing
 **Carousel Slides** (5 slides suggested):
 
 1. Logo + "Launching Now"
-2. "Find 196+ Social Services"
+2. "Find 203 Reviewed Service Records"
 3. "7 Languages | Works Offline"
 4. "Privacy-First | No Tracking"
 5. "Try it: careconnect.ing"
@@ -202,7 +202,7 @@ Try it: careconnect.ing
 ```
 🚀 CareConnect is LIVE
 
-Find food banks, crisis support, housing help, and 190+ social services in Kingston.
+Find food banks, crisis support, housing help, and 200+ service records across supported Ontario communities.
 
 ✨ What makes it special:
 • Privacy-first (your searches stay private)
@@ -215,7 +215,7 @@ Find food banks, crisis support, housing help, and 190+ social services in Kings
 
 Tag someone who needs this. 💙
 
-#KingstonON #CommunitySupport #SocialServices #MentalHealth #FoodSecurity #HousingSupport #AccessibleTech #YGK
+#KingstonON #BramptonON #CommunitySupport #SocialServices #MentalHealth #FoodSecurity #HousingSupport #AccessibleTech
 ```
 
 #### Post 2: Feature Highlight - Privacy
@@ -268,7 +268,7 @@ Because help should be accessible to everyone in our community.
 
 Find food, housing, crisis support & more at careconnect.ing
 
-#Multilingual #InclusiveCommunity #KingstonON #YGK
+#Multilingual #InclusiveCommunity #KingstonON #BramptonON
 ```
 
 ---
@@ -284,7 +284,7 @@ Find food, housing, crisis support & more at careconnect.ing
 ```
 Hi [Organization Name],
 
-Your organization is listed on CareConnect (careconnect.ing), a new privacy-first directory of social services in Kingston.
+Your organization is listed on CareConnect (careconnect.ing), a privacy-first directory of social services in supported Ontario communities.
 
 We've listed your service based on publicly available information, but we'd love to verify the details with you directly to ensure accuracy.
 
@@ -311,7 +311,7 @@ CareConnect Team
 ```
 Hi [Name],
 
-You're invited to beta test CareConnect — a privacy-first directory of social services in Kingston, ON.
+You're invited to beta test CareConnect — a privacy-first directory of social services in supported Ontario communities.
 
 WHY WE NEED YOUR HELP:
 We want to make sure this tool actually helps people. Your feedback will shape the final product before public launch.
@@ -330,7 +330,7 @@ HOW TO PARTICIPATE:
 2. Try searching for services you'd actually look for
 3. Send feedback to feedback@careconnect.ing
 
-THANK YOU for helping make social services more accessible in Kingston. 💙
+THANK YOU for helping make social services more accessible in supported Ontario communities. 💙
 
 Questions? Reply to this email.
 
@@ -345,6 +345,7 @@ CareConnect Team
 ### Primary Hashtags (Always Use)
 
 - #KingstonON
+- #BramptonON
 - #YGK (local Kingston hashtag)
 
 ### Category Hashtags (Use 2-3 per post)
@@ -626,7 +627,7 @@ By default, searches happen entirely on your device—we never see your queries.
 ❌ **Don't make unverifiable claims**
 
 - "Best social services directory in Canada" ❌
-- "Find 196+ verified services in Kingston" ✅
+- "Find reviewed services in supported Ontario communities" ✅
 
 ❌ **Don't share user data or stories without explicit permission**
 

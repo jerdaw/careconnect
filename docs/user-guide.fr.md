@@ -7,7 +7,7 @@
 
 ## Bienvenue
 
-CareConnect vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston est déjà en ligne, et Brampton est ajouté ensuite avec un plus petit ensemble de services de base révisés.
+CareConnect vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston demeure en ligne, et Brampton commence avec un plus petit ensemble révisé de services de base.
 
 **Démarrage rapide :**
 
@@ -47,7 +47,7 @@ CareConnect est un moteur de recherche pour les services sociaux. Il vous aide �
 - **Emploi** et programmes d'éducation
 - **Services familiaux** (garde d'enfants, soutien parental)
 
-Nous avons des informations sur **196 services vérifiés** dans le répertoire de Kingston. La couverture de Brampton commence plus petite et s'élargit seulement après la révision des fiches.
+Nous avons des informations sur **203 fiches de services visibles** dans les collectivités ontariennes prises en charge. La couverture de Brampton commence avec un plus petit ensemble révisé de services de base et s'élargit seulement après la révision des fiches.
 
 ### Qui peut utiliser ceci ?
 

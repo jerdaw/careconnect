@@ -8,7 +8,7 @@
 
 ### Qu'est-ce que CareConnect ?
 
-CareConnect est un moteur de recherche gratuit qui vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston est déjà en ligne avec 196 services vérifiés; Brampton est la prochaine zone d'expansion et commence avec un plus petit ensemble de services d'urgence et de base révisés.
+CareConnect est un moteur de recherche gratuit qui vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston demeure en ligne, et Brampton commence avec un plus petit ensemble révisé de services d'urgence et de base.
 
 **C'est comme Google, mais axé sur les services sociaux locaux et régionaux vérifiés.**
 

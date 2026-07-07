@@ -1,6 +1,6 @@
 # CareConnect - Press Kit
 
-**Last Updated**: April 2026
+**Last Updated**: July 2026
 **Version**: 1.1 - Live Pilot
 **Contact**: feedback@careconnect.ing
 
@@ -8,28 +8,28 @@
 
 ## Quick Facts
 
-| Detail              | Information                                                                                              |
-| ------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Name**            | CareConnect                                                                                              |
-| **Tagline**         | Find verified local social services                                                                      |
-| **Mission**         | Bridge the gap between people in need and a manually curated social-services directory                   |
-| **Current Status**  | Live public pilot                                                                                        |
-| **Platform**        | Web application (Progressive Web App)                                                                    |
-| **URL**             | https://careconnect.ing                                                                                  |
-| **Service Area**    | Kingston live; Brampton expansion in progress; Ontario-wide and Canada-wide records shown where relevant |
-| **Languages**       | English, French, plus 5 additional community languages                                                   |
-| **Services Listed** | ~196 manually curated social services                                                                    |
+| Detail              | Information                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| **Name**            | CareConnect                                                                            |
+| **Tagline**         | Find verified local social services                                                    |
+| **Mission**         | Bridge the gap between people in need and a manually curated social-services directory |
+| **Current Status**  | Live public pilot                                                                      |
+| **Platform**        | Web application (Progressive Web App)                                                  |
+| **URL**             | https://careconnect.ing                                                                |
+| **Service Area**    | Kingston and Brampton live; Ontario-wide and Canada-wide records shown where relevant  |
+| **Languages**       | English, French, plus 5 additional community languages                                 |
+| **Services Listed** | 203 visible, manually curated service records                                          |
 
 ---
 
 ## Executive Summary
 
-CareConnect is a privacy-first social services directory that helps people in supported Ontario communities find food banks, crisis support, housing assistance, mental health services, and other community resources. Kingston is live; Brampton is the next expansion area.
+CareConnect is a privacy-first social services directory that helps people in supported Ontario communities find food banks, crisis support, housing assistance, mental health services, and other community resources. Kingston remains live, and Brampton starts with a smaller reviewed emergency and core-service launch set.
 
 Unlike traditional directories, CareConnect:
 
 - **Prioritizes Privacy**: Local search keeps queries on-device by default, with no third-party tracking and no query-text logging
-- **Focuses on Quality**: ~196 hand-curated services with visible listings held at L1+ verification
+- **Focuses on Quality**: 203 hand-curated visible service records held at L1+ verification
 - **Serves Everyone**: Available in 7 languages including English, French, Simplified Chinese, Arabic, Portuguese, Spanish, and Punjabi
 - **Works Offline**: Progressive Web App technology ensures access even without internet
 - **Ranks by Authority**: Services are scored using governance and verification signals alongside search relevance

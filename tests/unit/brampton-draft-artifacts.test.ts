@@ -30,7 +30,7 @@ const expectedDraftFiles = [
 ]
 
 describe("Brampton draft service artifacts", () => {
-  it("keeps recommended Brampton service records as draft-only coverage-explicit artifacts", () => {
+  it("keeps promoted Brampton service records traceable to coverage-explicit draft artifacts", () => {
     const liveServiceIds = new Set(services.map((service) => service.id))
 
     for (const fileName of expectedDraftFiles) {
@@ -38,7 +38,7 @@ describe("Brampton draft service artifacts", () => {
       const draft = JSON.parse(fs.readFileSync(filePath, "utf8")) as DraftService
 
       expect(draft.id).toBe(fileName.replace(/\.json$/, ""))
-      expect(liveServiceIds.has(draft.id)).toBe(false)
+      expect(liveServiceIds.has(draft.id)).toBe(true)
       expect(draft.primary_place_id).toBe("brampton-on")
       expect(draft.coverage?.length).toBeGreaterThan(0)
       expect(draft.coverage?.some((area) => area.placeIds?.includes("brampton-on"))).toBe(true)

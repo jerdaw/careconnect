@@ -1,9 +1,9 @@
 # Brampton Canonical And Duplicate Review
 
 Date: 2026-07-06
-Status: draft analysis only
+Status: duplicate analysis; first launch decisions updated 2026-07-07
 
-This review compares `data/drafts/brampton-on/candidates/2026-07-06-core-services.md` against current `data/services.json` identifiers, names, phone numbers, URLs, legacy scope, and primary place values. It does not approve live data entry.
+This review compares `data/drafts/brampton-on/candidates/2026-07-06-core-services.md` against current `data/services.json` identifiers, names, phone numbers, URLs, legacy scope, and primary place values. The first seven recommended records were later approved and promoted on 2026-07-07; deferred candidates remain draft-only.
 
 ## Decision Summary
 
@@ -168,4 +168,4 @@ Do not create Brampton-local duplicates for these existing records unless their 
 
 ## Live Data Guard
 
-No changes were made to `data/services.json` or `data/embeddings.json` during this duplicate review.
+No changes were made to `data/services.json` or `data/embeddings.json` during the original duplicate review. On 2026-07-07, the approved first launch set was promoted through the L1 recommendation workflow; deferred candidates remain outside live data.

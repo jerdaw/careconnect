@@ -7,7 +7,7 @@
 
 ## Welcome
 
-CareConnect helps you find social services in supported Ontario communities. Kingston is live, and Brampton is being added next with a smaller reviewed core-service set.
+CareConnect helps you find social services in supported Ontario communities. Kingston remains live, and Brampton starts with a smaller reviewed core-service set.
 
 **Quick Start:**
 
@@ -47,7 +47,7 @@ CareConnect is a search engine for social services. It helps you find:
 - **Employment** and education programs
 - **Family services** (childcare, parenting support)
 
-We have information on **196 verified services** in the Kingston directory. Brampton coverage begins smaller and grows only after records pass review.
+We have information on **203 visible service records** across supported Ontario communities. Brampton coverage begins with a smaller reviewed core-service set and grows only after records pass review.
 
 ### Who Can Use This?
 

@@ -1,21 +1,20 @@
 # Brampton Launch Readiness Report
 
-Date: 2026-07-06
+Date: 2026-07-07
 Branch: `codex/multi-city-brampton-foundation`
 
 ## Status
 
-- Foundation code: review in progress in this readiness pass.
-- Kingston live behavior: not yet verified in this readiness pass.
-- Brampton preview behavior: not yet verified in this readiness pass.
-- Brampton live service data: not added by this autonomous pass.
+- Foundation code: verified in this readiness pass.
+- Kingston live behavior: verified by local and server search regressions.
+- Brampton first-launch behavior: verified by local and server search regressions.
+- Brampton live service data: seven approved L1 records added.
 - Production migration: not applied by this autonomous pass.
 - Deployment: not performed by this autonomous pass.
 
 ## Approval Gates
 
-- Human approval required before adding records to `data/services.json`.
-- Human approval required before changing Brampton from preview/draft language to live language.
+- Additional Brampton record promotions require the same L1 approval workflow.
 - Human approval required before production schema migration.
 - Human approval required before deployment or merge.
 - Human approval required for land acknowledgment and partner relationship wording.
@@ -24,33 +23,41 @@ Branch: `codex/multi-city-brampton-foundation`
 
 - 2026-07-06: Confirmed current branch is `codex/multi-city-brampton-foundation`.
 - 2026-07-06: Reviewed the approved multi-city foundation design and implementation plan.
-- 2026-07-06: Confirmed this autonomous pass must not edit `data/services.json`, regenerate service embeddings for new records, apply production migrations, deploy, or publish official/partner/land-acknowledgment wording without human approval.
+- 2026-07-07: Project owner approved the recommended Brampton first launch set and requested additional research for unresolved source conflicts.
+- 2026-07-07: Additional Knights Table research resolved the L1 address decision to the official provider contact page at `73 Hale Road`; the older 211 Ontario pantry address remains documented for L2 follow-up.
+- 2026-07-07: All 14 source URLs used for the promoted Brampton records returned HTTP 200 during source reachability checks.
+- 2026-07-07: Added seven approved Brampton L1 records to `data/services.json`, regenerated `data/embeddings.json`, and kept deferred candidates draft-only.
 
 ## Findings
 
-- No launch blocker identified during the baseline audit.
+- No app-level launch blocker identified in the local test, build, data, or source-reachability lanes.
+- Browser a11y and visual QA remain environment-blocked until Chromium system libraries are installed.
+- Local DB smoke remains environment-blocked until `psql` is installed.
 
 ## Technical Verification
 
-- Branch diff reviewed: pass. Changes are scoped to multi-city foundation code, search/UI contracts, public docs, migration, tests, and readiness artifacts.
-- Critical contracts reviewed: pass. `PlaceId` uses stable IDs, legacy `scope` remains compatible, explicit `coverage` takes precedence, local and server search accept `placeId`, selected-place ranking includes a local/regional coverage preference, OpenAPI matches the implemented coverage shape, and the search API keeps `no-store` for query/location/open-now/place-filtered searches.
+- Branch diff reviewed: pass. Changes are scoped to multi-city foundation code, search/UI contracts, public docs, migration, tests, readiness artifacts, and approved Brampton live data.
+- Critical contracts reviewed: pass. `PlaceId` uses stable IDs, explicit `coverage` takes precedence, local and server search accept `placeId`, selected-place ranking includes a local/regional coverage preference, OpenAPI matches the implemented coverage shape, and the search API keeps `no-store` for query/location/open-now/place-filtered searches.
+- Existing data comparison: pass. Structured comparison against `HEAD:data/services.json` confirmed 196 existing records were unchanged, with seven Brampton records added and no removals.
 - Targeted Vitest suite: pass, 15 files and 230 tests passed.
+- Brampton promotion suite: pass, 5 files and 39 tests passed.
+- Full Vitest suite: pass, 216 files and 1701 tests passed, 24 skipped.
 - Lint: pass, `npm run lint`.
 - Type check: pass, `npm run type-check`.
 - Format check: pass, `npm run format:check`.
 - i18n audit: pass, 7 locales with 1219 keys each and no missing or extra keys.
 - Reference check: pass across 151 files.
-- Data validation: pass, 196 services.
-- DB validation alias: pass, 196 records.
-- Embedding consistency check: pass, 196 services, 196 embeddings, 384 dimensions.
-- Build with `SKIP_EMBEDDINGS=1`: pass, Next.js production build completed and postbuild embedding generation was skipped.
+- Data validation: pass, 203 services.
+- DB validation alias: pass, 203 records.
+- Embedding consistency check: pass, 203 services, 203 embeddings, 384 dimensions.
+- Build: pass, Next.js production build completed and postbuild embedding generation ran for 203 services.
 - Whitespace diff check: pass, `git diff --check`.
 
 ## Technical Residual Risks
 
 - Browser visual QA is tracked separately in `docs/launch/brampton-manual-qa.md`.
 - Production migration was not applied.
-- Brampton live records were not added.
+- Production deploy was not performed.
 
 ## Browser And Accessibility QA
 
@@ -58,7 +65,7 @@ Branch: `codex/multi-city-brampton-foundation`
 - Homepage HTTP check: pass, `/en` returned `HTTP/1.1 200 OK`.
 - Homepage server-rendered multi-city signals: pass, markup includes the supported-community meta description, accessible hero title, `Kingston`, `Brampton`, visible `Showing Kingston`, and a `Change city` combobox.
 - Place-selection focused tests: pass, 4 files and 29 tests passed.
-- Playwright a11y command: blocked by local WSL browser dependencies. Chromium downloaded successfully, but launch failed because `libnspr4.so`, `libnss3.so`, and `libnssutil3.so` are missing. Passwordless sudo is unavailable, so dependencies could not be installed from this session.
+- Playwright a11y command: blocked by local WSL browser dependencies. The 2026-07-07 rerun started the Playwright web server and attempted 10 Chromium tests, but Chromium could not load `libnspr4.so`. Earlier dependency dry-run also identified `libnss3.so` and `libnssutil3.so`. Passwordless sudo is unavailable, so dependencies could not be installed from this session.
 - Chrome-control fallback: blocked by connector metadata failure before browser selection.
 - Full viewport visual QA: not completed in this environment; see `docs/launch/brampton-manual-qa.md`.
 
@@ -67,6 +74,7 @@ Branch: `codex/multi-city-brampton-foundation`
 ### Safe Updates Made
 
 - Updated `components/layout/BetaBanner.tsx` feedback email subject from Kingston-specific pilot wording to neutral `CareConnect Pilot Feedback`.
+- Updated public service-count and Brampton launch wording to describe Brampton as a small first launch set, not a complete local directory.
 
 ### Human Approval Required
 
@@ -81,18 +89,20 @@ Branch: `codex/multi-city-brampton-foundation`
 ## Brampton Draft Candidate Packet
 
 - Draft candidate artifact: `data/drafts/brampton-on/candidates/2026-07-06-core-services.md`.
-- Candidate count: 11 draft-only candidates.
+- Candidate count: 11 candidates.
+- Promoted L1 count: 7 records.
+- Deferred count: 4 records.
 - Scope covered: shelter/housing crisis, victim and family-violence crisis support, Ontario Works/emergency assistance, food access, newcomer support, and community health/wellness.
-- Source reachability: pass. Every source URL in the candidate packet returned HTTP 200 during this readiness pass.
-- L1 status: all candidates remain `needs_l1_review`; none were promoted to live data.
-- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are identified for reuse rather than Brampton duplication.
+- Source reachability: pass. Every source URL used by the promoted Brampton records returned HTTP 200 during this readiness pass.
+- L1 status: seven candidates were approved and promoted to live data; deferred candidates remain draft-only.
+- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated for Brampton.
 
 ## Duplicate And Canonical Review
 
 - Duplicate review artifact: `data/drafts/brampton-on/duplicates/2026-07-06-canonical-review.md`.
 - Existing data comparison: reviewed current `data/services.json` identifiers, names, phone numbers, URLs, legacy scopes, and primary place values.
-- Live data guard: pass. `git diff -- data/services.json data/embeddings.json` produced no output.
-- Main canonical caution: several organizations may need narrower program records after L1 review instead of broad organization-level records.
+- Main canonical caution: several deferred organizations may need narrower program records after L1 review instead of broad organization-level records.
+- Knights Table L1 note: official provider contact page is canonical for the L1 address; 211 Ontario still lists an older pantry address and should be rechecked before L2.
 
 ## Migration And Database Readiness
 
@@ -105,14 +115,14 @@ Branch: `codex/multi-city-brampton-foundation`
 
 ## Final Readiness Decision
 
-- Ready to merge foundation/readiness code: conditionally yes after final verification in this pass; browser visual QA remains an environment-limited manual follow-up.
-- Ready to publish Brampton live records: no, requires human-approved L1 records.
+- Ready to merge foundation/readiness code: yes after local verification; browser visual QA remains an environment-limited manual follow-up.
+- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
 - Ready for production migration: no, requires human approval and live schema preflight.
 - Ready for deployment: no, requires human approval.
 
 ## Recommended Next Human Decisions
 
-1. Review Brampton draft candidates.
-2. Choose the first approved L1 records.
-3. Approve or revise public positioning language.
-4. Decide whether to run production migration and deploy after live schema preflight.
+1. Decide whether to run production migration after live schema preflight.
+2. Decide whether to deploy after browser-capable QA is rerun.
+3. Approve any land acknowledgment or official relationship wording before publication.
+4. Continue Brampton expansion through deferred L1 reviews only.

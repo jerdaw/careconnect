@@ -12375,5 +12375,532 @@
     "access_script": "Indigenous residents of Nishnawbe Aski Nation territory can call 1-800-465-5581 for legal aid services. (Services are free of charge, but financial eligibility criteria may apply for ongoing assistance.)",
     "hours_text": "Mon–Fri: 08:30–16:30. Mon-Fri 8:30am-4:30pm",
     "access_script_fr": "Les résidents autochtones du territoire de Nishnawbe Aski Nation peuvent appeler le 1-800-465-5581 pour acceder a des services d'aide juridique. Les services sont gratuits, mais des criteres d'admissibilite financiere peuvent s'appliquer pour une aide continue."
+  },
+  {
+    "id": "brampton-peel-centralized-shelter-intake",
+    "name": "Peel Centralized Shelter Intake and Homeless Supports",
+    "name_fr": "Accueil centralise pour refuges et soutien aux personnes sans abri de Peel",
+    "description": "Centralized intake for emergency and transitional shelter, street outreach, support services, and help finding permanent housing in Peel Region.",
+    "description_fr": "[Traduction en cours] Centralized intake for emergency and transitional shelter, street outreach, support services, and help finding permanent housing in Peel Region.",
+    "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
+    "phone": "905-450-1996",
+    "address": "10 Peel Centre Dr, Suite A and B, Brampton, ON L6T 4B9",
+    "verification_level": "L1",
+    "intent_category": "Housing",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://211ontario.ca/service/78231605/peel-region-housing-and-shelter-peel-centralized-shelter-intake-and-homeless-supports/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Peel Region shelter page and 211 Ontario both identify centralized shelter intake for Peel; eligibility details should be reviewed again before L2."
+    },
+    "identity_tags": [
+      {
+        "tag": "Homeless or at risk of homelessness",
+        "evidence_url": "https://211ontario.ca/service/78231605/peel-region-housing-and-shelter-peel-centralized-shelter-intake-and-homeless-supports/"
+      }
+    ],
+    "synthetic_queries": [
+      "emergency shelter intake Brampton",
+      "homeless shelter Peel Region",
+      "nowhere to stay Brampton",
+      "street outreach Peel"
+    ],
+    "eligibility_notes": "Serving individuals 16 years and older and families who are homeless or at risk of becoming homeless; Peel residency requirements may apply.",
+    "eligibility_notes_fr": "[Traduction en cours] Serving individuals 16 years and older and families who are homeless or at risk of becoming homeless; Peel residency requirements may apply.",
+    "access_script": "Hi, I need a safe place to stay in Peel. Can you tell me what shelter options are available and what information you need from me?",
+    "access_script_fr": "[Traduction en cours] Hi, I need a safe place to stay in Peel. Can you tell me what shelter options are available and what information you need from me?",
+    "application_process": "Call the Centralized Shelter Intake line for shelter access and screening.",
+    "fees": "None listed by 211 Ontario.",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Centralized Shelter Intake is listed as Monday to Sunday, 24 hours."
+    },
+    "hours_text": "Centralized Shelter Intake Monday to Sunday, 24 hours; Street Outreach hours require review if represented separately.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "regional",
+        "placeIds": ["brampton-on"],
+        "regionIds": ["peel-region"],
+        "label": "Peel Region",
+        "notes": "Regional shelter intake serving Peel, including Brampton."
+      }
+    ],
+    "virtual_delivery": true,
+    "primary_phone_label": "Centralized Shelter Intake",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
+  },
+  {
+    "id": "brampton-wilkinson-road-shelter",
+    "name": "Wilkinson Road Shelter",
+    "name_fr": "Refuge Wilkinson Road",
+    "description": "Emergency homeless shelter in Brampton for men, with access to shelter supports through Peel Central Intake.",
+    "description_fr": "[Traduction en cours] Emergency homeless shelter in Brampton for men, with access to shelter supports through Peel Central Intake.",
+    "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
+    "phone": "905-450-1996",
+    "address": "15 Wilkinson Road, Brampton, ON L6T 4M3",
+    "verification_level": "L1",
+    "intent_category": "Housing",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://211central.ca/record/73523437/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Peel Region public shelter page names Wilkinson Shelter in Brampton; 211 Central lists central intake and office details."
+    },
+    "identity_tags": [
+      {
+        "tag": "Men 25 years and older",
+        "evidence_url": "https://211central.ca/record/73523437/"
+      }
+    ],
+    "synthetic_queries": [
+      "men shelter Brampton",
+      "Wilkinson Road shelter",
+      "emergency shelter Brampton",
+      "homeless shelter men Peel"
+    ],
+    "eligibility_notes": "211 Central lists men 25 years and older who are homeless or at risk of homelessness; call to confirm current intake fit.",
+    "eligibility_notes_fr": "[Traduction en cours] 211 Central lists men 25 years and older who are homeless or at risk of homelessness; call to confirm current intake fit.",
+    "access_script": "Hi, I am looking for emergency shelter in Brampton. Can you screen me for Wilkinson Road Shelter or another available Peel shelter?",
+    "access_script_fr": "[Traduction en cours] Hi, I am looking for emergency shelter in Brampton. Can you screen me for Wilkinson Road Shelter or another available Peel shelter?",
+    "application_process": "Call 905-450-1996 for screening before intake.",
+    "documents_required": "Identification; contact for information.",
+    "fees": "None listed by 211 Central.",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Shelter is listed as open Monday to Sunday, 24 hours; office hours differ."
+    },
+    "hours_text": "Shelter Monday to Sunday, 24 hours; office Monday to Friday 8 AM to 4 PM per 211 Central.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "local",
+        "placeIds": ["brampton-on"],
+        "label": "Brampton",
+        "notes": "Brampton shelter accessed through Peel shelter intake."
+      }
+    ],
+    "primary_phone_label": "Central Intake",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
+  },
+  {
+    "id": "brampton-victim-services-of-peel",
+    "name": "Victim Services of Peel",
+    "name_fr": "Services aux victimes de Peel",
+    "description": "Crisis support and referrals for people affected by crime, tragedy, or trauma in Peel.",
+    "description_fr": "[Traduction en cours] Crisis support and referrals for people affected by crime, tragedy, or trauma in Peel.",
+    "url": "https://www.vspeel.org/",
+    "email": "info@vspeel.org",
+    "phone": "905-568-1068",
+    "address": "7750 Hurontario Street, Brampton, ON L6V 3W6",
+    "verification_level": "L1",
+    "intent_category": "Crisis",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://www.vspeel.org/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Provider lists crisis line, Brampton mailing address, and 24-hour availability; ONVSP listing supports provider identity."
+    },
+    "identity_tags": [
+      {
+        "tag": "Victims of crime, tragedy, or trauma",
+        "evidence_url": "https://www.vspeel.org/"
+      }
+    ],
+    "synthetic_queries": [
+      "victim crisis support Peel",
+      "crime victim support Brampton",
+      "trauma support Peel Region",
+      "Victim Services of Peel crisis line"
+    ],
+    "eligibility_notes": "Public sources identify support for people affected by crime, tragedy, or trauma; call to confirm program fit.",
+    "eligibility_notes_fr": "[Traduction en cours] Public sources identify support for people affected by crime, tragedy, or trauma; call to confirm program fit.",
+    "access_script": "Hi, I was affected by a crime or traumatic event in Peel. Can I speak with someone about crisis support and referrals?",
+    "access_script_fr": "[Traduction en cours] Hi, I was affected by a crime or traumatic event in Peel. Can I speak with someone about crisis support and referrals?",
+    "application_process": "Call the 24-hour crisis line or use the provider contact paths.",
+    "hours": {
+      "monday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "tuesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "wednesday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "thursday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "friday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "saturday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "00:00",
+        "close": "23:59"
+      },
+      "notes": "Provider lists crisis line availability as 24 hours a day, 365 days a year."
+    },
+    "hours_text": "Crisis line available 24 hours a day, 365 days a year; office hours require confirmation.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "regional",
+        "placeIds": ["brampton-on"],
+        "regionIds": ["peel-region"],
+        "label": "Peel Region",
+        "notes": "Regional victim support provider for Peel."
+      }
+    ],
+    "primary_phone_label": "24-hour crisis line",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
+  },
+  {
+    "id": "brampton-safe-centre-of-peel",
+    "name": "Safe Centre of Peel",
+    "name_fr": "Safe Centre of Peel",
+    "description": "Multi-agency support hub for people experiencing violence or abuse in Peel.",
+    "description_fr": "[Traduction en cours] Multi-agency support hub for people experiencing violence or abuse in Peel.",
+    "url": "https://scopeel.org/",
+    "email": "scop@cfspd.com",
+    "phone": "905-450-4650",
+    "address": "60 West Drive, Suite 110, Brampton, ON L6T 3T6",
+    "verification_level": "L1",
+    "intent_category": "Crisis",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://scopeel.org/contact-us/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Provider contact page lists Brampton location, phone support, and onsite hours; 211 Ontario listing supports provider identity."
+    },
+    "identity_tags": [
+      {
+        "tag": "People experiencing violence or abuse",
+        "evidence_url": "https://scopeel.org/contact-us/"
+      }
+    ],
+    "synthetic_queries": [
+      "family violence support Brampton",
+      "abuse support Peel",
+      "Safe Centre of Peel",
+      "intimate partner violence help Brampton"
+    ],
+    "eligibility_notes": "Public sources frame the centre around violence, abuse, and navigation support; call to confirm program fit.",
+    "eligibility_notes_fr": "[Traduction en cours] Public sources frame the centre around violence, abuse, and navigation support; call to confirm program fit.",
+    "access_script": "Hi, I need support around violence or abuse in Peel. Can you tell me how to access Safe Centre services safely?",
+    "access_script_fr": "[Traduction en cours] Hi, I need support around violence or abuse in Peel. Can you tell me how to access Safe Centre services safely?",
+    "application_process": "Call or use provider contact paths. If in immediate danger, call 911.",
+    "hours": {
+      "monday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "tuesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "wednesday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "thursday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "friday": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "notes": "Onsite services are listed as Monday to Friday, 9 AM to 5 PM; phone support is listed as 24/7."
+    },
+    "hours_text": "Onsite services Monday to Friday 9 AM to 5 PM; phone support available 24/7.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "regional",
+        "placeIds": ["brampton-on"],
+        "regionIds": ["peel-region"],
+        "label": "Peel Region",
+        "notes": "Brampton-based hub serving Peel."
+      }
+    ],
+    "primary_phone_label": "Safe Centre phone support",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "medium",
+      "annual_budget": "medium"
+    }
+  },
+  {
+    "id": "brampton-peel-ontario-works-emergency-assistance",
+    "name": "Region of Peel Ontario Works and Emergency Assistance",
+    "name_fr": "Ontario au travail et aide d’urgence de la Region de Peel",
+    "description": "Financial and emergency assistance access for Peel residents through Ontario Works and emergency assistance pathways.",
+    "description_fr": "[Traduction en cours] Financial and emergency assistance access for Peel residents through Ontario Works and emergency assistance pathways.",
+    "url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
+    "phone": "905-793-9200",
+    "verification_level": "L1",
+    "intent_category": "Financial",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Peel Region page lists Ontario Works and emergency assistance application paths and Brampton/Mississauga phone number."
+    },
+    "identity_tags": [
+      {
+        "tag": "Financial need",
+        "evidence_url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance"
+      }
+    ],
+    "synthetic_queries": [
+      "Ontario Works Brampton",
+      "emergency assistance Peel",
+      "financial help Brampton",
+      "social assistance Peel Region"
+    ],
+    "eligibility_notes": "Eligibility and application route depend on Ontario Works or emergency assistance criteria; use Peel and Ontario application paths for current requirements.",
+    "eligibility_notes_fr": "[Traduction en cours] Eligibility and application route depend on Ontario Works or emergency assistance criteria; use Peel and Ontario application paths for current requirements.",
+    "access_script": "Hi, I live in Peel and need financial or emergency assistance. Can you tell me whether I should apply for Ontario Works or emergency assistance?",
+    "access_script_fr": "[Traduction en cours] Hi, I live in Peel and need financial or emergency assistance. Can you tell me whether I should apply for Ontario Works or emergency assistance?",
+    "application_process": "Apply through Ontario government pathways or call the Brampton and Mississauga number listed by Peel Region.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "regional",
+        "placeIds": ["brampton-on"],
+        "regionIds": ["peel-region"],
+        "label": "Peel Region",
+        "notes": "Regional delivery agent for Brampton and Peel residents."
+      }
+    ],
+    "virtual_delivery": true,
+    "primary_phone_label": "Brampton and Mississauga Ontario Works",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "government",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "large",
+      "annual_budget": "large"
+    }
+  },
+  {
+    "id": "brampton-regeneration-marketplace-food-bank",
+    "name": "Regeneration Marketplace Food Bank",
+    "name_fr": "Banque alimentaire Regeneration Marketplace",
+    "description": "Food bank offering grocery-style food and household-item support through Regeneration Outreach Community in Brampton.",
+    "description_fr": "[Traduction en cours] Food bank offering grocery-style food and household-item support through Regeneration Outreach Community in Brampton.",
+    "url": "https://regenbrampton.com/service/marketplace/",
+    "email": "marketplace@regenbrampton.com",
+    "phone": "905-796-5888 ext. 4000",
+    "address": "253 Queen Street East, Brampton, ON L6W 2B8",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://regenbrampton.com/service/marketplace/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval. Provider marketplace page lists address, phone extension, email, registration guidance, and hours."
+    },
+    "identity_tags": [
+      {
+        "tag": "Food support",
+        "evidence_url": "https://regenbrampton.com/service/marketplace/"
+      }
+    ],
+    "synthetic_queries": [
+      "food bank Brampton",
+      "Regeneration Marketplace groceries",
+      "free groceries Brampton",
+      "household items food support Brampton"
+    ],
+    "eligibility_notes": "Provider asks first-time visitors to bring government-issued photo identification; call to confirm current requirements.",
+    "eligibility_notes_fr": "[Traduction en cours] Provider asks first-time visitors to bring government-issued photo identification; call to confirm current requirements.",
+    "access_script": "Hi, I need groceries from the Marketplace. Can you tell me when I can come in and what I should bring for registration?",
+    "access_script_fr": "[Traduction en cours] Hi, I need groceries from the Marketplace. Can you tell me when I can come in and what I should bring for registration?",
+    "application_process": "First-time visitors can register during hours of operation; provider says no appointment is needed and asks visitors to bring government-issued ID.",
+    "hours_text": "Marketplace hours listed by provider: Monday closed; Tuesday 9 AM-11:30 AM and 1 PM-3:30 PM; Wednesday 9 AM-3:30 PM; Thursday 9 AM-11:30 AM and 1 PM-3:30 PM; Friday 9 AM-11:30 AM and 1 PM-3:30 PM; Saturday 8:30 AM-1:30 PM; Sunday closed.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "local",
+        "placeIds": ["brampton-on"],
+        "label": "Brampton",
+        "notes": "Brampton food bank location."
+      }
+    ],
+    "primary_phone_label": "Marketplace",
+    "service_area": "Brampton",
+    "plain_language_available": false,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "local",
+      "staff_size": "small",
+      "annual_budget": "medium"
+    }
+  },
+  {
+    "id": "brampton-knights-table-food-bank-meals",
+    "name": "Knights Table Food Bank and Meal Programs",
+    "name_fr": "Banque alimentaire et programmes de repas Knights Table",
+    "description": "Food bank and meal supports for people in Brampton and Peel dealing with hunger, poverty, or homelessness.",
+    "description_fr": "[Traduction en cours] Food bank and meal supports for people in Brampton and Peel dealing with hunger, poverty, or homelessness.",
+    "url": "https://knightstable.org/contact-us/",
+    "phone": "905-454-8725",
+    "address": "73 Hale Road, Brampton, ON L6W 3J9",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-07T16:00:00.000Z",
+      "evidence_url": "https://knightstable.org/contact-us/",
+      "method": "public_source_review",
+      "verification_notes": "Promoted after human approval and additional research. Official provider contact page and site move notice list 73 Hale Road. 211 Ontario still lists Our Pantry at 287 Glidden Rd, Unit 4; recheck before L2 and consider submitting an update to 211."
+    },
+    "identity_tags": [
+      {
+        "tag": "Food support",
+        "evidence_url": "https://knightstable.org/contact-us/"
+      }
+    ],
+    "synthetic_queries": [
+      "Knights Table Brampton",
+      "food bank Brampton",
+      "meal program Peel",
+      "hunger support Brampton"
+    ],
+    "eligibility_notes": "211 Ontario lists individuals and families dealing with hunger, poverty, and homelessness in Peel; call provider to confirm current intake and location.",
+    "eligibility_notes_fr": "[Traduction en cours] 211 Ontario lists individuals and families dealing with hunger, poverty, and homelessness in Peel; call provider to confirm current intake and location.",
+    "access_script": "Hi, I need food support in Brampton. Can you confirm your current location, pantry intake times, and what documents I should bring?",
+    "access_script_fr": "[Traduction en cours] Hi, I need food support in Brampton. Can you confirm your current location, pantry intake times, and what documents I should bring?",
+    "application_process": "Call to confirm current food bank or meal access. 211 Ontario lists pantry intake details, but the provider site indicates a move to 73 Hale Road.",
+    "documents_required": "211 Ontario lists identification for all household members and proof of address; confirm with provider.",
+    "fees": "None listed by 211 Ontario.",
+    "hours_text": "Call to confirm current pantry and meal hours. 211 Ontario lists pantry hours Monday to Friday 10 AM to 3:30 PM for registered users, while the provider site indicates a move to 73 Hale Road.",
+    "last_verified": "2026-07-07",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "local",
+        "placeIds": ["brampton-on"],
+        "label": "Brampton",
+        "notes": "Provider site lists 73 Hale Road; 211 pantry address needs follow-up before L2."
+      }
+    ],
+    "primary_phone_label": "Office",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "small",
+      "annual_budget": "medium"
+    }
   }
 ]

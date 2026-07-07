@@ -1,9 +1,9 @@
 # Brampton Public Positioning Drafts
 
 Date: 2026-07-07
-Status: approval-pending copy only
+Status: Brampton launch direction approved; gated sections remain review-only
 
-These drafts are not approved public copy. They are prepared for review before Brampton is promoted from preview/draft coverage to live service coverage.
+These notes record the approved public positioning direction for the Brampton first launch set. Land acknowledgment wording, official relationship wording, and production rollout copy remain gated until separately reviewed.
 
 ## Naming Default
 
@@ -14,7 +14,7 @@ These drafts are not approved public copy. They are prepared for review before B
 
 ## Homepage Supported-Region Copy
 
-### Current Preview-Friendly Direction
+### Supported-Region Direction
 
 CareConnect helps people find verified food, housing, crisis, and community support across supported Ontario communities.
 
@@ -28,7 +28,7 @@ Brampton now includes a small reviewed launch set focused on urgent and core sup
 
 ## Preview-To-Live Transition Language
 
-Use this once the first Brampton L1 records are approved and added to live data:
+Approved transition direction after the first Brampton L1 records are added to live data:
 
 > Brampton coverage starts with a small reviewed launch set for urgent and core supports. More local records will be added as they complete CareConnect review.
 
@@ -91,5 +91,6 @@ Draft paragraph:
 
 - Use `Brampton launch`, `Brampton coverage`, or `Brampton first launch set`.
 - Use `Kingston remains live` when explaining rollout continuity.
-- Use `draft`, `preview`, or `pending L1 approval` for records that are not in `data/services.json`.
+- Use `first launch set`, `L1`, or `reviewed launch records` for approved Brampton records in `data/services.json`.
+- Use `draft`, `preview`, or `pending L1 approval` only for records that are not in `data/services.json`.
 - Keep operational deployment details in the private/shared operations source of truth, not public docs.

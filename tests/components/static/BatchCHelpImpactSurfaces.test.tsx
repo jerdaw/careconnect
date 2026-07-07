@@ -94,7 +94,10 @@ describe("Batch C help and impact surfaces", () => {
     expect(screen.getByRole("heading", { name: "FAQ - CareConnect" })).toBeInTheDocument()
     expect(screen.queryByRole("heading", { name: "Frequently Asked Questions (FAQ)" })).not.toBeInTheDocument()
     expect(screen.getByText("Last reviewed: May 1, 2026")).toBeInTheDocument()
-    expect(screen.getByText(/196 verified services/)).toBeInTheDocument()
+    expect(screen.getByText(/Kingston remains live/)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Brampton starts with a smaller reviewed emergency and core-service set/)
+    ).toBeInTheDocument()
     expect(screen.queryByText(/about 200 services/i)).not.toBeInTheDocument()
   })
 
@@ -107,7 +110,8 @@ describe("Batch C help and impact surfaces", () => {
     expect(screen.queryByRole("heading", { name: "CareConnect: User Guide" })).not.toBeInTheDocument()
     expect(screen.getByText("Last reviewed: May 1, 2026")).toBeInTheDocument()
     expect(screen.getByText(/Version:/)).toBeInTheDocument()
-    expect(screen.getByText(/196 verified services/)).toBeInTheDocument()
+    expect(screen.getByText(/203 visible service records/)).toBeInTheDocument()
+    expect(screen.getByText(/Brampton coverage begins with a smaller reviewed core-service set/)).toBeInTheDocument()
     expect(screen.queryByText(/about 200 services/i)).not.toBeInTheDocument()
   })
 

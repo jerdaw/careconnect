@@ -1,6 +1,6 @@
 # Brampton Draft Curation
 
-This folder is for Brampton expansion research drafts only. Nothing in this folder is live service data, and nothing here should be represented as verified until it is promoted through the normal service review workflow.
+This folder is for Brampton expansion research drafts and review artifacts only. Nothing in this folder is the live service-data source of truth, and nothing here should be represented as verified until it is promoted through the normal service review workflow.
 
 ## Scope
 
@@ -8,6 +8,8 @@ This folder is for Brampton expansion research drafts only. Nothing in this fold
 - Launch mode: small emergency/core-service set first
 - Minimum visible threshold: L1, current within the active freshness window
 - Kingston remains live while Brampton records are reviewed
+
+2026-07-07 update: the first seven Brampton L1 records were approved and promoted to `data/services.json`. The draft files remain here as provenance and review artifacts.
 
 ## Draft Rules
 

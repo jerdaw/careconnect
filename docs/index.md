@@ -1,6 +1,6 @@
 # CareConnect
 
-> A verified, governance-first search engine for social services in supported Ontario communities—starting with Kingston and expanding next to Brampton.
+> A verified, governance-first search engine for social services in supported Ontario communities, starting with Kingston and Brampton.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
@@ -10,7 +10,7 @@
 
 Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **196 highest-impact services** currently available through the Kingston directory. Brampton expansion starts with a smaller high-confidence emergency and core-service set before broader coverage. Every visible entry is:
+We maintain a hand-verified dataset of **203 visible service records**. Kingston remains live, and Brampton starts with a smaller high-confidence emergency and core-service set before broader coverage. Every visible entry is:
 
 - **Verified** — No broken links or disconnected phone numbers.
 - **Accessible** — Clear eligibility requirements.
@@ -99,7 +99,7 @@ Public documentation intentionally excludes deployment details, credentials, mon
 
 ### Additional Capabilities
 
-- **Place-Aware Service Coverage** — Kingston remains live while Brampton is added through reviewed local and regional records.
+- **Place-Aware Service Coverage** — Kingston remains live while Brampton starts with reviewed local and regional records.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.

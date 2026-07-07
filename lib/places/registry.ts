@@ -18,7 +18,7 @@ export const SUPPORTED_PLACES: readonly SupportedPlace[] = [
     name: "Brampton",
     province: "Ontario",
     country: "Canada",
-    status: "preview",
+    status: "live",
     heroLabel: "Brampton",
     serviceLabel: "Brampton",
     centroid: { lat: 43.7315, lng: -79.7624 },

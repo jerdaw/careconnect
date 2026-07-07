@@ -13,23 +13,23 @@
 
 ## Human Approval Gates
 
-- [ ] Approve first Brampton L1 records for `data/services.json`.
+- [x] Approve first Brampton L1 records for `data/services.json`.
 - [ ] Approve any land acknowledgment changes.
 - [ ] Approve any partner or official relationship wording.
 - [ ] Approve production migration.
 - [ ] Approve deploy/merge.
-- [ ] Resolve any draft-source conflicts, including the Knights Table address mismatch between the provider homepage and 211 Ontario pantry listing.
+- [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
 ## Data Launch After Approval
 
-- [ ] Add approved Brampton records to `data/services.json`.
-- [ ] Run `npm run validate-data`.
-- [ ] Run `npm run db:validate`.
-- [ ] Run `npm run build` to regenerate embeddings.
-- [ ] Run `npm run check:embeddings`.
-- [ ] Run search QA for Kingston and Brampton.
-- [ ] Commit data and embeddings together.
-- [ ] Confirm each promoted Brampton record came from `data/drafts/brampton-on/services/` or an explicitly reviewed successor draft.
+- [x] Add approved Brampton records to `data/services.json`.
+- [x] Run `npm run validate-data`.
+- [x] Run `npm run db:validate`.
+- [x] Run `npm run build` to regenerate embeddings.
+- [x] Run `npm run check:embeddings`.
+- [x] Run search QA for Kingston and Brampton.
+- [x] Commit data and embeddings together.
+- [x] Confirm each promoted Brampton record came from `data/drafts/brampton-on/services/` or an explicitly reviewed successor draft.
 
 ## Local QA Reruns
 
