@@ -27,12 +27,17 @@ Branch: `codex/multi-city-brampton-foundation`
 - 2026-07-07: Additional Knights Table research resolved the L1 address decision to the official provider contact page at `73 Hale Road`; the older 211 Ontario pantry address remains documented for L2 follow-up.
 - 2026-07-07: All 14 source URLs used for the promoted Brampton records returned HTTP 200 during source reachability checks.
 - 2026-07-07: Added seven approved Brampton L1 records to `data/services.json`, regenerated `data/embeddings.json`, and kept deferred candidates draft-only.
+- 2026-07-07: Replaced the local Chromium and `psql` blockers with a user-space dependency extraction under `/tmp/careconnect-local-deps`; browser a11y and DB smoke reruns completed.
+- 2026-07-07: Ran restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks through the approved private operations wrapper; all completed successfully without collecting secret values or raw sensitive output.
+- 2026-07-07: Attempted authenticated live Supabase schema inspection. Local Supabase credentials returned unauthorized, and the Supabase MCP auth token was expired, so live schema inspection remains blocked.
 
 ## Findings
 
 - No app-level launch blocker identified in the local test, build, data, or source-reachability lanes.
-- Browser a11y and visual QA remain environment-blocked until Chromium system libraries are installed.
-- Local DB smoke remains environment-blocked until `psql` is installed.
+- Browser a11y is no longer environment-blocked for this session; the Chromium suite passed using extracted user-space libraries.
+- Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
+- Full viewport visual QA remains manual follow-up work.
+- Live Supabase schema preflight remains blocked by authentication, not by local tooling.
 
 ## Technical Verification
 
@@ -52,11 +57,16 @@ Branch: `codex/multi-city-brampton-foundation`
 - Embedding consistency check: pass, 203 services, 203 embeddings, 384 dimensions.
 - Build: pass, Next.js production build completed and postbuild embedding generation ran for 203 services.
 - Whitespace diff check: pass, `git diff --check`.
+- Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests.
+- DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack.
+- Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
 
 ## Technical Residual Risks
 
 - Browser visual QA is tracked separately in `docs/launch/brampton-manual-qa.md`.
+- Axe logged serious contrast and hidden-focus findings while the Chromium a11y suite still passed; these should be remediated as separate accessibility defects.
 - Production migration was not applied.
+- Live Supabase schema inspection was not completed because authenticated access was unavailable.
 - Production deploy was not performed.
 
 ## Browser And Accessibility QA
@@ -65,7 +75,8 @@ Branch: `codex/multi-city-brampton-foundation`
 - Homepage HTTP check: pass, `/en` returned `HTTP/1.1 200 OK`.
 - Homepage server-rendered multi-city signals: pass, markup includes the supported-community meta description, accessible hero title, `Kingston`, `Brampton`, visible `Showing Kingston`, and a `Change city` combobox.
 - Place-selection focused tests: pass, 4 files and 29 tests passed.
-- Playwright a11y command: blocked by local WSL browser dependencies. The 2026-07-07 rerun started the Playwright web server and attempted 10 Chromium tests, but Chromium could not load `libnspr4.so`. Earlier dependency dry-run also identified `libnss3.so` and `libnssutil3.so`. Passwordless sudo is unavailable, so dependencies could not be installed from this session.
+- Playwright a11y command: pass after extracting Chromium runtime dependencies to `/tmp/careconnect-local-deps`, 10 Chromium tests passed.
+- Axe follow-up: the run logged serious `color-contrast` findings on `/en`, `/en?q=health`, `/en/submit-service`, and `/en/service/kids-help-phone`, plus a serious `aria-hidden-focus` finding on `/en?q=health`; the test command still exited successfully.
 - Chrome-control fallback: blocked by connector metadata failure before browser selection.
 - Full viewport visual QA: not completed in this environment; see `docs/launch/brampton-manual-qa.md`.
 
@@ -79,6 +90,7 @@ Branch: `codex/multi-city-brampton-foundation`
 ### Human Approval Required
 
 - Land acknowledgment wording: unchanged. Brampton-specific wording remains gated until verified through reliable local or Indigenous-led public sources.
+- Land acknowledgment source review: updated in `docs/launch/brampton-public-positioning-drafts.md` with municipal, regional, and Indigenous-governance source links. Final wording remains human-approval gated.
 - Partner page relationship wording: unchanged. Existing public copy frames source references as inputs for manual review, not endorsements or official partnerships.
 - Any copy implying official municipal, regional, provincial, or provider affiliation: no new affiliation wording added.
 
@@ -110,19 +122,21 @@ Branch: `codex/multi-city-brampton-foundation`
 - Local migration safety review: pass. The migration adds `primary_place_id` and `coverage` with `IF NOT EXISTS`, backfills from legacy `scope`, recreates `services_public`, and grants read access to expected roles.
 - Public view review: pass. `services_public` exposes `primary_place_id` and `coverage` while continuing to sanitize UUID-shaped verifier identifiers in provenance.
 - DB mapping/export tests: pass, 5 files and 29 tests.
-- Local disposable DB smoke lane: not run to completion because `psql` is unavailable in this environment.
+- Local disposable DB smoke lane: pass after extracting PostgreSQL client binaries to `/tmp/careconnect-local-deps`, 2 smoke tests passed.
+- Production control-plane preflight: pass for wrapper-gated readiness, preflight summary, status summary, and CareConnect service-health checks.
+- Live Supabase schema inspection: blocked. Local environment credentials returned unauthorized and Supabase MCP authentication was expired, so read-only schema inspection for live `services`, public views, indexes, and RLS policies could not be completed.
 - Production SQL: not applied.
 
 ## Final Readiness Decision
 
-- Ready to merge foundation/readiness code: yes after local verification; browser visual QA remains an environment-limited manual follow-up.
+- Ready to merge foundation/readiness code: yes after local verification; browser visual QA and axe follow-up remediation remain manual/product-quality follow-ups.
 - Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
-- Ready for production migration: no, requires human approval and live schema preflight.
+- Ready for production migration: no, requires authenticated live schema preflight and explicit human approval.
 - Ready for deployment: no, requires human approval.
 
 ## Recommended Next Human Decisions
 
-1. Decide whether to run production migration after live schema preflight.
-2. Decide whether to deploy after browser-capable QA is rerun.
+1. Restore authenticated Supabase schema-inspection access or add an approved restricted wrapper command for read-only schema preflight.
+2. Decide whether to run production migration after live schema preflight.
 3. Approve any land acknowledgment or official relationship wording before publication.
 4. Continue Brampton expansion through deferred L1 reviews only.

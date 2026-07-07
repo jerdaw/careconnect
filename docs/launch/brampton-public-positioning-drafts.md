@@ -60,12 +60,26 @@ Avoid:
 
 Do not publish Brampton-specific land acknowledgment wording until a human reviewer approves sources and wording.
 
-Before drafting final wording, review:
+Source review completed on 2026-07-07:
 
-- City of Brampton public land acknowledgment guidance.
-- Peel Region public land acknowledgment guidance.
-- Local Indigenous-led or Indigenous-governance public guidance, where available.
+- [City of Brampton Land Acknowledgement](https://www.brampton.ca/EN/City-Hall/Equity-Office/Pages/Land-Acknowledgement.aspx): names the Mississaugas of the Credit, Haudenosaunee, and Wendat Nations; identifies the Ajetance Purchase, Treaty 19, 1818.
+- [Peel Region Land Acknowledgement Statement](https://peelregion.ca/about/peel-region-council/land-acknowledgement-statement): notes that Peel's statement is under revision with Indigenous Knowledge Holders and Communities; interim wording names the Mississaugas of the Credit First Nation and the traditional territory of the Anishinaabeg, Haudenosaunee, and Huron-Wendat.
+- [Mississaugas of the Credit First Nation](https://mncfn.ca/): primary Indigenous-governance source for MCFN identity, treaty lands, and territory context.
+- [The Indigenous Network, listed by the Ontario Federation of Indigenous Friendship Centres](https://ofifc.org/friendship-centre/the-indigenous-network/): local Peel Indigenous community-service context.
+
+Before final publication, decide:
+
 - Whether CareConnect should use one Ontario-wide acknowledgment, separate city acknowledgments, or a concise project-level statement.
+- Whether Brampton wording should follow City of Brampton wording, Peel Region's interim wording, or a shorter product-context statement.
+- Whether any Indigenous-led review is available before using Brampton-specific wording in public UI.
+
+Draft-only Brampton source synthesis:
+
+> Public municipal and Indigenous-governance sources identify Brampton as being on lands connected to the Mississaugas of the Credit, Haudenosaunee, and Wendat/Huron-Wendat, including Treaty 19, the Ajetance Purchase of 1818. Peel Region's public statement is under revision, so CareConnect should not publish final wording until reviewed.
+
+Draft-only product-context option:
+
+> CareConnect supports Brampton on lands identified by public municipal and Indigenous-governance sources as traditional territories of the Mississaugas of the Credit, Haudenosaunee, and Wendat/Huron-Wendat, within Treaty 19, the Ajetance Purchase of 1818. Final wording requires review and does not imply endorsement by any Nation, municipality, or community organization.
 
 Approval requirements:
 

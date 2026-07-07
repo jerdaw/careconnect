@@ -35,15 +35,18 @@
 - `npm run build`: passed, including postbuild embedding generation for 203 services.
 - `git diff --check`: passed.
 - Brampton source URL reachability check: passed, 14 source URLs returned HTTP 200 on 2026-07-07.
-- `npm run test:db:smoke`: blocked because local `psql` is unavailable.
-- `npm run test:a11y -- --project=chromium`: blocked by local WSL browser dependencies; Chromium cannot load `libnspr4.so`. See `docs/launch/brampton-manual-qa.md`.
+- `npm run test:db:smoke`: passed with extracted user-space PostgreSQL client binaries, 2 smoke tests.
+- `npm run test:a11y -- --project=chromium`: passed with extracted user-space Chromium libraries, 10 Chromium tests. The run logged serious contrast and hidden-focus axe findings for follow-up; see `docs/launch/brampton-manual-qa.md`.
+- Restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks: passed without collecting secret values or raw sensitive output.
+- Authenticated live Supabase schema inspection: blocked because local credentials returned unauthorized and Supabase MCP authentication was expired.
 
 ## Rollout Notes
 
 - Production migration requires explicit approval and read-only schema preflight.
 - Deployment requires explicit approval.
 - Brampton can be positioned as a live supported place with a small first L1 launch set, not a complete local directory.
-- Browser visual QA should be rerun in a browser-capable environment before deploy.
+- Browser visual QA still needs manual screenshot review before deploy.
+- Land acknowledgment source research is documented, but final wording remains approval-gated.
 
 ## Reviewer Checklist
 

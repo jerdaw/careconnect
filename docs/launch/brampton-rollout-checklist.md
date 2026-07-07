@@ -33,24 +33,32 @@
 
 ## Local QA Reruns
 
-- [ ] After Chromium dependencies are available, run:
+- [x] Browser a11y rerun completed on 2026-07-07 using extracted user-space Chromium libraries:
 
 ```bash
 source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
-npm run test:a11y -- --project=chromium
+LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu/nss:${LD_LIBRARY_PATH:-} \
+  npm run test:a11y -- --project=chromium
 ```
 
-- [ ] After `psql` is available, run:
+- [x] DB smoke rerun completed on 2026-07-07 using extracted PostgreSQL client binaries:
 
 ```bash
 source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
-npm run test:db:smoke
+PATH=/tmp/careconnect-local-deps/usr/lib/postgresql/16/bin:/tmp/careconnect-local-deps/usr/bin:$PATH \
+LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH:-} \
+  npm run test:db:smoke
 ```
+
+- [ ] Triage serious axe findings logged by the passing Chromium a11y run: `color-contrast` on `/en`, `/en?q=health`, `/en/submit-service`, and `/en/service/kids-help-phone`; `aria-hidden-focus` on `/en?q=health`.
+- [ ] Complete manual screenshot review for desktop, tablet, and mobile viewports.
 
 ## Production Database Preflight
 
-- [ ] Confirm target environment and project ID through approved private/shared operations source of truth.
+- [x] Confirm target environment path through approved private/shared operations source of truth.
+- [x] Run restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks without collecting secrets or raw sensitive output.
 - [ ] Run read-only live schema inspection for `services`, public service views, indexes, and RLS policies.
+- [ ] Restore authenticated Supabase schema-inspection access, or add an approved restricted operations wrapper command for read-only schema inspection.
 - [ ] Confirm existing live columns match migration assumptions.
 - [ ] Confirm backup or rollback posture.
 - [ ] Apply migration only after explicit human approval.
@@ -58,8 +66,8 @@ npm run test:db:smoke
 
 ## Production Rollout After Approval
 
-- [ ] Inspect private/shared operations source of truth for environment and release instructions.
-- [ ] Perform read-only production schema preflight.
+- [x] Inspect private/shared operations source of truth for environment and release instructions.
+- [ ] Perform authenticated read-only production schema preflight.
 - [ ] Apply migration.
 - [ ] Deploy application.
 - [ ] Smoke test Kingston search.
