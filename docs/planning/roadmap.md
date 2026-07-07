@@ -92,7 +92,7 @@ Brampton is the exception now in progress because it is a bounded, approved city
 ## What To Do Now
 
 1. Review the Brampton branch for merge approval; the remaining Brampton quality follow-ups are approval/rollout gates rather than repo-local QA blockers.
-2. Confirm backup/rollback posture through the approved private/shared operations source of truth, then decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
+2. Decide whether to complete CareConnect restore/provider proof before migration approval or explicitly accept the current backup/rollback risk, then decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
 3. After migration approval, run post-migration checks, request deploy approval, and run post-deploy smoke checks.
 4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
@@ -169,7 +169,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 **Immediate blockers**
 
 1. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
-2. Backup/rollback posture confirmation through the approved private/shared operations source of truth before production migration.
+2. Backup/rollback posture decision before production migration: CareConnect restore/provider proof is planned in private/shared operations material but not recorded as complete.
 3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
 **Next agent-suitable work**
@@ -183,7 +183,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 
 1. Approve final Brampton land acknowledgment wording, if any is used publicly.
 2. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
-3. Approve production migration and deployment.
+3. Approve production migration and deployment, including the backup/rollback posture decision.
 4. Approve future Brampton L2/L3 verification or deferred candidate promotion.
 
 **Canonical references**

@@ -17,13 +17,18 @@ Approve or reject applying the Brampton coverage migration and deploying the mul
 - `services` has RLS enabled.
 - Existing live grants are broader than the repo baseline, so the pending migration now explicitly revokes `services_public` privileges before granting expected read access.
 - The Brampton coverage migration has not been applied.
+- The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
 
-- Backup/restore posture is confirmed through the approved private operations source of truth.
+- Backup/restore posture is either proven through the approved private operations source of truth or explicitly accepted as a known release risk by the approving human.
 - The exact target environment is confirmed.
 - The approving human explicitly authorizes the migration and deployment.
 - A rollback owner and decision path are identified.
+
+## Backup And Rollback Posture
+
+Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific proof is not yet recorded as complete. Do not treat backup/rollback posture as confirmed for Brampton production approval unless that proof is completed or the approving human explicitly accepts the risk for this release.
 
 ## Read-Only Pre-Approval Commands
 

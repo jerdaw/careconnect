@@ -132,18 +132,20 @@ Branch: `codex/multi-city-brampton-foundation`
 - Local disposable DB smoke lane: pass after extracting PostgreSQL client binaries to `/tmp/careconnect-local-deps`, 2 smoke tests passed.
 - Production control-plane preflight: pass for wrapper-gated readiness, preflight summary, status summary, and CareConnect service-health checks.
 - Live Supabase schema inspection: pass. The linked database is PostgreSQL 17.6. The previous `services_public` provenance-sanitizing migration is applied; the Brampton coverage migration is not applied. Live `services` and `services_public` do not yet have `primary_place_id` or `coverage`. `services_public` still sanitizes UUID-shaped verifier identifiers and has `security_invoker=true`. `services` has RLS enabled with select/insert/update/delete policies. Existing live grants on `services` and `services_public` are broader than the repo baseline expects; `services` writes are constrained by RLS, and the pending Brampton migration now explicitly revokes anon/authenticated privileges on `services_public` before granting SELECT.
+- Backup/rollback posture: not yet proven for CareConnect-specific restore/provider recovery. The private/shared operations source of truth records this as a planned proof target, so production approval should either complete the proof or explicitly accept the risk.
 - Production SQL: not applied.
 
 ## Final Readiness Decision
 
 - Ready to merge foundation/readiness code: yes after local verification; production migration, deployment, land acknowledgment wording, and official relationship wording remain approval-gated.
 - Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
-- Ready for production migration: no, requires explicit human approval. The read-only live schema preflight is complete.
+- Ready for production migration: no, requires explicit human approval and a backup/rollback posture decision. The read-only live schema preflight is complete.
 - Ready for deployment: no, requires human approval.
 
 ## Recommended Next Human Decisions
 
-1. Decide whether to approve the Brampton production migration after reviewing the completed live schema preflight.
-2. Decide whether to deploy after migration approval and post-migration checks.
-3. Approve any land acknowledgment or official relationship wording before publication.
-4. Continue Brampton expansion through deferred L1 reviews only.
+1. Decide whether to complete CareConnect restore/provider proof before migration approval or explicitly accept the current backup/rollback risk for this release.
+2. Decide whether to approve the Brampton production migration after reviewing the completed live schema preflight.
+3. Decide whether to deploy after migration approval and post-migration checks.
+4. Approve any land acknowledgment or official relationship wording before publication.
+5. Continue Brampton expansion through deferred L1 reviews only.

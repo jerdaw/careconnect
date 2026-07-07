@@ -62,7 +62,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Restore authenticated Supabase CLI access and link the repo to the target project.
 - [x] Confirm existing live columns match migration assumptions: `primary_place_id` and `coverage` are absent before migration.
 - [x] Confirm pending migration normalizes existing broad `services_public` grants before granting SELECT.
-- [ ] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth.
+- [ ] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: CareConnect restore/provider proof is planned but not recorded as complete, so approval must either complete the proof or explicitly accept the risk.
 - [ ] Apply migration only after explicit human approval.
 - [ ] Run post-migration read-only checks for `primary_place_id`, `coverage`, public views, and search API.
 
