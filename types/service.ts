@@ -1,5 +1,5 @@
 /**
- * Verification Levels for the Kingston 150 Governance Schema.
+ * Verification levels for the CareConnect local verification standard.
  */
 export enum VerificationLevel {
   L0 = "L0", // Unverified
@@ -31,6 +31,18 @@ export enum IntentCategory {
  * v11.0: Replaces is_provincial boolean with explicit scope enum.
  */
 export type ServiceScope = "kingston" | "ontario" | "canada"
+
+export type PlaceId = "kingston-on" | "brampton-on"
+
+export type ServiceCoverageKind = "local" | "regional" | "provincial" | "national"
+
+export interface ServiceCoverageArea {
+  kind: ServiceCoverageKind
+  placeIds?: PlaceId[]
+  regionIds?: string[]
+  label?: string
+  notes?: string
+}
 
 /**
  * Authority categories for search ranking (v16.0).
@@ -207,6 +219,16 @@ export interface Service {
    * v11.0: Replaces is_provincial boolean.
    */
   scope?: ServiceScope
+
+  /**
+   * Primary place for the service's main physical or local operating context.
+   */
+  primary_place_id?: PlaceId
+
+  /**
+   * Structured geographic availability. New code should use this instead of the legacy `scope` enum.
+   */
+  coverage?: ServiceCoverageArea[]
 
   /**
    * If true, service is delivered virtually (phone/online) with no physical location required.

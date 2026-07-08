@@ -378,7 +378,7 @@ describe("SearchControls", () => {
       )
 
       const crisisButton = screen.getByRole("button", { name: "Crisis" })
-      expect(crisisButton).toHaveClass("text-red-800")
+      expect(crisisButton).toHaveClass("text-red-900")
     })
 
     it("should apply selected styling to Crisis category when selected", () => {

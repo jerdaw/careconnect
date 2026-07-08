@@ -4,7 +4,9 @@ import type {
   Provenance,
   ResourceIndicators,
   Service,
+  ServiceCoverageArea,
   ServiceHours,
+  PlaceId,
   ServiceScope,
 } from "./service"
 import { IntentCategory, VerificationLevel } from "./service"
@@ -15,6 +17,8 @@ export type ServicePublicTags = Array<IdentityTag | string> | null
 export type ServicePublicHours = ServiceHours | null
 export type ServicePublicAccessibility = Service["accessibility"] | null
 export type ServicePublicScope = ServiceScope | null
+export type ServicePublicPrimaryPlaceId = PlaceId | null
+export type ServicePublicCoverage = ServiceCoverageArea[] | null
 export type ServicePublicCoordinates = Service["coordinates"] | null
 export type ServicePublicAuthorityTier = AuthorityTier | null
 export type ServicePublicProvenance = Provenance | null
@@ -51,6 +55,8 @@ export interface ServicePublic {
   category: ServicePublicCategory
   tags: ServicePublicTags
   scope: ServicePublicScope
+  primary_place_id?: ServicePublicPrimaryPlaceId
+  coverage?: ServicePublicCoverage
   virtual_delivery: boolean | null
   primary_phone_label: string | null
   created_at: string

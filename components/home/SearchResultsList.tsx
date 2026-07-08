@@ -10,6 +10,9 @@ import { PrintButton } from "@/components/ui/PrintButton"
 import ScopeFilterBar, { ScopeFilter } from "./ScopeFilterBar"
 import { NotFoundFeedback } from "../feedback/NotFoundFeedback"
 import { tokenize } from "@/lib/search/utils"
+import type { PlaceId } from "@/types/service"
+import { getSelectedPlaceLabel } from "@/lib/places/selection"
+import { isBroadCoverageOnly } from "@/lib/places/coverage"
 
 interface SearchResultsListProps {
   isLoading: boolean
@@ -18,6 +21,7 @@ interface SearchResultsListProps {
   query: string
   category?: string
   userLocation?: { lat: number; lng: number }
+  selectedPlaceId?: PlaceId
 }
 
 export default function SearchResultsList({
@@ -26,14 +30,16 @@ export default function SearchResultsList({
   hasSearched,
   query,
   category,
+  selectedPlaceId,
 }: SearchResultsListProps) {
   const t = useTranslations("Search")
   const [activeScope, setActiveScope] = useState<ScopeFilter>("all")
+  const selectedPlaceLabel = selectedPlaceId ? getSelectedPlaceLabel(selectedPlaceId) : null
 
   // Calculate scope counts
   const scopeCounts = useMemo(() => {
-    const local = results.filter((r) => r.service.scope === "kingston" || !r.service.scope).length
-    const provincial = results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada").length
+    const local = results.filter((r) => !isBroadCoverageOnly(r.service)).length
+    const provincial = results.filter((r) => isBroadCoverageOnly(r.service)).length
     return { all: results.length, local, provincial }
   }, [results])
 
@@ -44,10 +50,10 @@ export default function SearchResultsList({
   const filteredResults = useMemo(() => {
     if (activeScope === "all") return results
     if (activeScope === "kingston") {
-      return results.filter((r) => r.service.scope === "kingston" || !r.service.scope)
+      return results.filter((r) => !isBroadCoverageOnly(r.service))
     }
     if (activeScope === "provincial") {
-      return results.filter((r) => r.service.scope === "ontario" || r.service.scope === "canada")
+      return results.filter((r) => isBroadCoverageOnly(r.service))
     }
     return results
   }, [results, activeScope])
@@ -79,7 +85,11 @@ export default function SearchResultsList({
         </p>
         <div className="rounded-lg bg-neutral-100 p-6 text-center dark:bg-neutral-900">
           <p className="text-neutral-600 dark:text-neutral-400">
-            {category ? t("noResultsInCategory", { query, category }) : t("noResults", { query })}
+            {selectedPlaceLabel
+              ? t("noPlaceResults", { place: selectedPlaceLabel })
+              : category
+                ? t("noResultsInCategory", { query, category })
+                : t("noResults", { query })}
           </p>
           <div className="mt-5 text-left">
             <h2 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">{t("noResultsHelpTitle")}</h2>

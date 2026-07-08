@@ -1,0 +1,53 @@
+{
+  "id": "brampton-peel-centralized-shelter-intake",
+  "name": "Peel Centralized Shelter Intake and Homeless Supports",
+  "description": "Centralized intake for emergency and transitional shelter, street outreach, support services, and help finding permanent housing in Peel Region.",
+  "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
+  "phone": "905-450-1996",
+  "address": "10 Peel Centre Dr, Suite A and B, Brampton, ON L6T 4B9",
+  "verification_level": "L1",
+  "intent_category": "Housing",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://211ontario.ca/service/78231605/peel-region-housing-and-shelter-peel-centralized-shelter-intake-and-homeless-supports/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "emergency shelter intake Brampton",
+    "homeless shelter Peel Region",
+    "nowhere to stay Brampton",
+    "street outreach Peel"
+  ],
+  "eligibility_notes": "Serving individuals 16 years and older and families who are homeless or at risk of becoming homeless; Peel residency requirements require human L1 confirmation before live entry.",
+  "application_process": "Call the Centralized Shelter Intake line for shelter access and screening.",
+  "fees": "None listed by 211 Ontario.",
+  "hours": {
+    "monday": { "open": "00:00", "close": "23:59" },
+    "tuesday": { "open": "00:00", "close": "23:59" },
+    "wednesday": { "open": "00:00", "close": "23:59" },
+    "thursday": { "open": "00:00", "close": "23:59" },
+    "friday": { "open": "00:00", "close": "23:59" },
+    "saturday": { "open": "00:00", "close": "23:59" },
+    "sunday": { "open": "00:00", "close": "23:59" },
+    "notes": "Centralized Shelter Intake is listed as Monday to Sunday, 24 hours."
+  },
+  "hours_text": "Centralized Shelter Intake Monday to Sunday, 24 hours; Street Outreach hours require review if represented separately.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "regional",
+      "placeIds": ["brampton-on"],
+      "regionIds": ["peel-region"],
+      "label": "Peel Region",
+      "notes": "Regional shelter intake serving Peel, including Brampton."
+    }
+  ],
+  "virtual_delivery": true,
+  "primary_phone_label": "Centralized Shelter Intake",
+  "service_area": "Peel Region"
+}

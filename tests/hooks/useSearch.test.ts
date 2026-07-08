@@ -4,14 +4,21 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 
 // Mock dependencies
 const mockSetSavedSearches = vi.fn()
+const mockSetSelectedPlaceId = vi.fn()
 const mockRequestLocation = vi.fn()
 const mockClearLocation = vi.fn()
 
 vi.mock("@/hooks/useLocalStorage", () => ({
-  useLocalStorage: () => [
-    ["saved-term"], // initial saved searches
-    mockSetSavedSearches,
-  ],
+  useLocalStorage: (key: string) => {
+    if (key === "careconnect_selected_place_id") {
+      return ["kingston-on", mockSetSelectedPlaceId]
+    }
+
+    return [
+      ["saved-term"], // initial saved searches
+      mockSetSavedSearches,
+    ]
+  },
 }))
 
 vi.mock("@/hooks/useGeolocation", () => ({
@@ -42,6 +49,7 @@ describe("useSearch Hook", () => {
     expect(result.current.results).toEqual([])
     expect(result.current.savedSearches).toEqual(["saved-term"])
     expect(result.current.userLocation).toEqual({ lat: 40, lng: -70 })
+    expect(result.current.selectedPlaceId).toBe("kingston-on")
   })
 
   it("updates query state", () => {
@@ -74,6 +82,16 @@ describe("useSearch Hook", () => {
     // Note: To test the "else" branch (requestLocation), we would need to re-mock
     // useGeolocation to return null coordinates, or split tests.
     // For simplicity here we verify the "clear" path which corresponds to initial mock state.
+  })
+
+  it("stores a normalized selected place", () => {
+    const { result } = renderHook(() => useSearch())
+
+    act(() => {
+      result.current.setSelectedPlaceId("brampton-on")
+    })
+
+    expect(mockSetSelectedPlaceId).toHaveBeenCalledWith("brampton-on")
   })
 
   it("saves search terms", () => {

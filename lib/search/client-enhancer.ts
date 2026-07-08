@@ -1,5 +1,7 @@
 import { type SearchResult } from "./types"
 import { type SearchMode } from "./search-mode"
+import { filterServicesByPlace, isBroadCoverageOnly } from "@/lib/places/coverage"
+import type { PlaceId } from "@/types/service"
 
 type SearchScope = "all" | "kingston" | "provincial"
 
@@ -11,6 +13,7 @@ interface VectorUpgradeOptions {
   isReady: boolean
   mode: SearchMode
   scope: SearchScope
+  placeId?: PlaceId
   generateEmbedding: (text: string) => Promise<number[] | null>
   search: (
     query: string,
@@ -19,6 +22,7 @@ interface VectorUpgradeOptions {
       location?: { lat: number; lng: number }
       vectorOverride?: number[] | null
       openNow?: boolean
+      placeId?: PlaceId
     }
   ) => Promise<SearchResult[]>
 }
@@ -27,10 +31,14 @@ export function filterSearchResultsByScope(results: SearchResult[], scope: Searc
   if (scope === "all") return results
 
   if (scope === "kingston") {
-    return results.filter((result) => result.service.scope === "kingston" || !result.service.scope)
+    return results.filter((result) => !isBroadCoverageOnly(result.service))
   }
 
-  return results.filter((result) => result.service.scope === "ontario" || result.service.scope === "canada")
+  return results.filter((result) => isBroadCoverageOnly(result.service))
+}
+
+export function filterSearchResultsByPlace(results: SearchResult[], placeId: PlaceId | undefined): SearchResult[] {
+  return filterServicesByPlace(results, placeId)
 }
 
 export async function enhanceSearchResults({
@@ -41,6 +49,7 @@ export async function enhanceSearchResults({
   isReady,
   mode,
   scope,
+  placeId,
   generateEmbedding,
   search,
 }: VectorUpgradeOptions): Promise<SearchResult[] | null> {
@@ -58,7 +67,8 @@ export async function enhanceSearchResults({
     location: userLocation,
     vectorOverride: embedding,
     openNow,
+    placeId,
   })
 
-  return filterSearchResultsByScope(enhancedResults, scope)
+  return filterSearchResultsByPlace(filterSearchResultsByScope(enhancedResults, scope), placeId)
 }

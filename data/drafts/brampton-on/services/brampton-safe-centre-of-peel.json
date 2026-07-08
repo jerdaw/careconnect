@@ -1,0 +1,50 @@
+{
+  "id": "brampton-safe-centre-of-peel",
+  "name": "Safe Centre of Peel",
+  "description": "Multi-agency support hub for people experiencing violence or abuse in Peel.",
+  "url": "https://scopeel.org/",
+  "email": "scop@cfspd.com",
+  "phone": "905-450-4650",
+  "address": "60 West Drive, Suite 110, Brampton, ON L6T 3T6",
+  "verification_level": "L1",
+  "intent_category": "Crisis",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://scopeel.org/contact-us/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "family violence support Brampton",
+    "abuse support Peel",
+    "Safe Centre of Peel",
+    "intimate partner violence help Brampton"
+  ],
+  "eligibility_notes": "Public sources frame the centre around violence, abuse, and navigation support; program-specific eligibility requires human L1 confirmation.",
+  "application_process": "Call or use provider contact paths. If in immediate danger, call 911.",
+  "hours": {
+    "monday": { "open": "09:00", "close": "17:00" },
+    "tuesday": { "open": "09:00", "close": "17:00" },
+    "wednesday": { "open": "09:00", "close": "17:00" },
+    "thursday": { "open": "09:00", "close": "17:00" },
+    "friday": { "open": "09:00", "close": "17:00" },
+    "notes": "Onsite services are listed as Monday to Friday, 9 AM to 5 PM; phone support is listed as 24/7."
+  },
+  "hours_text": "Onsite services Monday to Friday 9 AM to 5 PM; phone support available 24/7.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "regional",
+      "placeIds": ["brampton-on"],
+      "regionIds": ["peel-region"],
+      "label": "Peel Region",
+      "notes": "Brampton-based hub serving Peel."
+    }
+  ],
+  "primary_phone_label": "Safe Centre phone support",
+  "service_area": "Peel Region"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "brampton-peel-ontario-works-emergency-assistance",
+  "name": "Region of Peel Ontario Works and Emergency Assistance",
+  "description": "Financial and emergency assistance access for Peel residents through Ontario Works and emergency assistance pathways.",
+  "url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
+  "phone": "905-793-9200",
+  "verification_level": "L1",
+  "intent_category": "Financial",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "Ontario Works Brampton",
+    "emergency assistance Peel",
+    "financial help Brampton",
+    "social assistance Peel Region"
+  ],
+  "eligibility_notes": "Eligibility and application route depend on Ontario Works or emergency assistance criteria; confirm current wording before live entry.",
+  "application_process": "Apply through Ontario government pathways or call the Brampton and Mississauga number listed by Peel Region.",
+  "last_verified": "2026-07-07",
+  "status": "Draft - pending human L1 approval",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "regional",
+      "placeIds": ["brampton-on"],
+      "regionIds": ["peel-region"],
+      "label": "Peel Region",
+      "notes": "Regional delivery agent for Brampton and Peel residents."
+    }
+  ],
+  "virtual_delivery": true,
+  "primary_phone_label": "Brampton and Mississauga Ontario Works",
+  "service_area": "Peel Region"
+}

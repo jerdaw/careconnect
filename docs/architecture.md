@@ -107,7 +107,7 @@ sequenceDiagram
 
 - **Ingestion**:
   - Human-reviewed JSON, CSV, and municipal/provider seed files are validated before import.
-  - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal (City of Kingston) and specialized (Indigenous/Faith) seed files.
+  - `scripts/import/geojson-import.ts`: Generic utility for ingesting municipal and specialized (Indigenous/Faith) seed files.
   - `generate-embeddings.ts`: Generates logical-semantic embeddings at build time.
 - **Versioning**: `generate-changelog.ts` tracks diffs between syncs.
 - **Offline Export Contract**: `/api/v1/services/export` sanitizes the public payload, derives a stable SHA-256 fingerprint for both `version` and `ETag`, and offline sync clears the in-memory service cache after a successful refresh so newly synced data is visible immediately.
@@ -213,7 +213,7 @@ sequenceDiagram
   - `/service/[id]`: Rich detail page.
   - `/submit-service`: Public crowdsourcing form.
   - `/dashboard`: Partner portal.
-  - `/about`: Project mission and impact metrics. Includes **Katarokwi Land Acknowledgment**.
+  - `/about`: Project mission and impact metrics. Includes place-scoped acknowledgment content where verified.
   - `/about/partners`: Data source transparency and verification process.
 - **Provincial Services Discovery**:
   - `is_provincial` flag allows services to be promoted in search results globally.

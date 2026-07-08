@@ -1,8 +1,8 @@
 ---
 status: stable
-last_updated: 2026-07-05
+last_updated: 2026-07-07
 owner: jer
-tags: [planning, roadmap, governance, public-docs]
+tags: [planning, roadmap, governance, public-docs, multi-city, brampton]
 ---
 
 # Planning Documents
@@ -15,22 +15,38 @@ This directory contains planning and strategy documents for CareConnect.
 > Treat those references as historical only; current operational guidance uses
 > the CareConnect name and `careconnect.ing`.
 
-## Active Planning: v22.0
+## Active Planning: v22.0 and Brampton
 
-**Status:** GATE 0 DECISION WORK IN PROGRESS (`NO-GO` pending C1/D4 closure; C2 complete; latest repo-local maintenance checkpoint recorded)
+**Status:** v22 Gate 0 decision work remains `NO-GO` pending C1/D4 closure. Brampton constrained multi-city launch readiness is active with foundation/data work complete and production/a11y/approval gates still open.
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
 
 1. **[Roadmap](roadmap.md)** ⭐ START HERE
-   - Current product state, active work, completed work, and follow-ups
+   - Current product state, active work, completed work, Brampton launch gates, and follow-ups
    - **Reading time:** 10 minutes
 
 2. **[v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
    - Strategic objective, hypotheses, kill rules, and stage gates
    - **Reading time:** 15 minutes
 
+3. **[Brampton Launch Readiness Report](../launch/brampton-readiness-report.md)**
+   - Current Brampton launch evidence, production blockers, QA status, and approval gates
+   - **Reading time:** 10 minutes
+
 ### Detailed Documentation (Optional)
+
+- [Brampton Rollout Checklist](../launch/brampton-rollout-checklist.md)
+  - Operational checklist for local QA, production schema preflight, migration/deploy approval, rollback, and post-launch work
+  - **Reading time:** 5 minutes
+
+- [Brampton Manual QA](../launch/brampton-manual-qa.md)
+  - Browser/a11y, DB smoke, viewport, selector, and search QA evidence plus current follow-up defects
+  - **Reading time:** 5 minutes
+
+- [Brampton Public Positioning Drafts](../launch/brampton-public-positioning-drafts.md)
+  - Supported-region copy direction, partner/source-reference wording, and draft-only land acknowledgment source review
+  - **Reading time:** 5 minutes
 
 - [Public GitHub Cleanup Archive (2026-06-04)](archive/2026-06-04-public-github-cleanup.md)
   - Completed public documentation boundary cleanup, private-note preservation, ADR-022 creation, and boundary-safe script/test updates
@@ -136,7 +152,7 @@ This directory contains planning and strategy documents for CareConnect.
 ```
 docs/planning/
 ├── README.md ← You are here
-├── roadmap.md (main roadmap, updated for v22.0)
+├── roadmap.md (main roadmap, updated for v22.0 and Brampton)
 ├── archive/ (completed version plans)
 ├── archive/2026-06-04-public-github-cleanup.md
 ├── archive/2026-05-01-v20-0-public-and-operational-surface-polish.md
@@ -162,11 +178,14 @@ docs/planning/
 
 ## Quick Reference
 
-### What is v22.0?
+### What is active now?
 
-**v22.0: Non-Duplicate Value Decision Plan**
+Two tracks are active:
 
-The current strategic planning track for proving non-duplicate value relative to 211 through measured connection outcomes, strict privacy constraints, and explicit kill criteria.
+1. **v22.0: Non-Duplicate Value Decision Plan**
+   - The strategic planning track for proving non-duplicate value relative to 211 through measured connection outcomes, strict privacy constraints, and explicit kill criteria.
+2. **Brampton constrained multi-city launch readiness**
+   - The bounded first city-step after Kingston, limited to a small reviewed L1 emergency/core set until production gates and future curation approvals are complete.
 
 ### Why Now?
 
@@ -198,23 +217,35 @@ Current dependencies:
 - Baseline evidence already published
 - Integration feasibility decision already recorded in conditional mode
 - Offline/local threat-model completion already recorded
+- Brampton migration/deploy approval after completed authenticated live Supabase schema preflight
+- Brampton a11y/browser-console/manual visual QA follow-up closure or explicit acceptance
 
 ---
 
 ## How to Proceed
 
-### Option 1: Close Gate 0
+### Option 1: Close Brampton Launch Gates
 
-Use the active roadmap and Gate 0 tracker to close the remaining blocking items:
+Use the active roadmap and launch checklist to finish the bounded Brampton track:
+
+1. Fix or explicitly accept the logged a11y findings
+2. Triage the semantic-search worker console error
+3. Complete desktop/tablet/mobile screenshot QA
+4. Review the completed live schema preflight
+5. Approve production migration/deploy only after preflight and rollback posture are accepted
+
+### Option 2: Close Gate 0
+
+Use the active roadmap and Gate 0 tracker to close the remaining v22 blocking items:
 
 1. Attach candidate partner legal/API terms for C1 review
 2. Attach named pilot partner and outreach execution evidence for D4
 
-### Option 2: Ask Questions
+### Option 3: Ask Questions
 
 Review documents and ask clarifying questions about scope, timeline, or approach.
 
-### Option 3: Request Changes
+### Option 4: Request Changes
 
 Propose modifications to scope, timeline, or implementation strategy.
 
@@ -239,6 +270,7 @@ Propose modifications to scope, timeline, or implementation strategy.
 - **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
 - **2026-06-04:** Added the public GitHub cleanup archive after establishing ADR-022 and sanitizing public deployment, operations, planning, legal, and observability documentation
 - **2026-07-05:** Added the maintenance audit checkpoint and refreshed roadmap test, coverage, and dependency-audit baselines after the repo-health pass
+- **2026-07-07:** Updated the active roadmap for the Brampton constrained multi-city launch track, refreshed 203-record data-quality counts, linked launch readiness docs, and reordered next work around a11y/browser QA, completed authenticated schema preflight, and approval gates
 - **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
 - **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
 - **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`

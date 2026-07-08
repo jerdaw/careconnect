@@ -1,4 +1,5 @@
 import { Service } from "@/types/service"
+import type { PlaceId } from "@/types/service"
 
 export interface SearchResult {
   service: Service
@@ -11,6 +12,7 @@ export interface SearchOptions {
   location?: { lat: number; lng: number }
   vectorOverride?: number[] | null
   openNow?: boolean
+  placeId?: PlaceId
 
   limit?: number
   userContext?: import("@/types/user-context").UserContext

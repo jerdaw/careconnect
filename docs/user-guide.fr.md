@@ -7,7 +7,7 @@
 
 ## Bienvenue
 
-CareConnect vous aide à trouver des services sociaux à Kingston, Ontario. Ce guide vous montrera comment utiliser la plateforme.
+CareConnect vous aide à trouver des services sociaux dans les collectivités ontariennes prises en charge. Kingston demeure en ligne, et Brampton commence avec un plus petit ensemble révisé de services de base.
 
 **Démarrage rapide :**
 
@@ -47,7 +47,7 @@ CareConnect est un moteur de recherche pour les services sociaux. Il vous aide �
 - **Emploi** et programmes d'éducation
 - **Services familiaux** (garde d'enfants, soutien parental)
 
-Nous avons des informations sur **196 services vérifiés** à Kingston.
+Nous avons des informations sur **203 fiches de services visibles** dans les collectivités ontariennes prises en charge. La couverture de Brampton commence avec un plus petit ensemble révisé de services de base et s'élargit seulement après la révision des fiches.
 
 ### Qui peut utiliser ceci ?
 
@@ -61,7 +61,7 @@ Vous n'avez pas besoin de :
 
 ### Qui a créé ceci ?
 
-Cette plateforme a été créée par des membres de la communauté qui voulaient faciliter la recherche d'aide à Kingston. Ce **n'est pas** un site web gouvernemental officiel.
+Cette plateforme a été créée par des membres de la communauté qui voulaient faciliter la recherche d'aide locale. Ce **n'est pas** un site web gouvernemental officiel.
 
 ---
 
@@ -106,7 +106,7 @@ Cette plateforme a été créée par des membres de la communauté qui voulaient
 **Rechercher près de chez vous :**
 
 - Autorisez l'accès à la localisation pour voir les services triés par distance
-- Ou tapez votre quartier (comme « centre-ville de Kingston »)
+- Ou tapez votre quartier (comme « centre-ville de Kingston » ou « Brampton »)
 
 ### Recherches de crise
 
@@ -388,7 +388,7 @@ Nous n'utilisons **jamais** de témoins pour :
 
 ### Ce service est-il officiel ?
 
-**Non.** Ce **n'est pas** un site web officiel de la Ville de Kingston ou du gouvernement.
+**Non.** Ce **n'est pas** un site web officiel municipal ou gouvernemental.
 
 Nous sommes un projet communautaire. Les informations sur les services sont :
 
@@ -425,7 +425,7 @@ Nous le corrigerons rapidement.
 
 ### Pourquoi [mon service] n'est-il pas listé ?
 
-Nous nous concentrons sur les services sociaux à fort impact à Kingston. Si un service est manquant :
+Nous nous concentrons sur les services sociaux à fort impact dans les lieux pris en charge. Si un service est manquant :
 
 1. **Envoyez-nous un courriel :** feedback@careconnect.ing
 2. **Incluez :**

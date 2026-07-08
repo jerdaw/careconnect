@@ -17,6 +17,8 @@ import { highlightMatches } from "@/lib/search/highlight"
 import { buildMatchReasonSearchParams } from "@/lib/search/match-reasons"
 import { useUserContext } from "@/hooks/useUserContext"
 import { checkEligibility } from "@/lib/eligibility/checker"
+import { getCoverageBadges, getPrimaryPlaceLabel } from "@/lib/places/coverage"
+import { cn } from "@/lib/utils"
 
 /**
  * Props for the ServiceCard component.
@@ -68,6 +70,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   // Distance is optionally added during search with geolocation
   const distance = service.distance
+  const coverageBadges = getCoverageBadges(service)
+  const primaryPlaceLabel = getPrimaryPlaceLabel(service)
+  const coverageMetaLabel =
+    coverageBadges.find((badge) => badge.kind === "provincial" || badge.kind === "national")?.label ??
+    primaryPlaceLabel ??
+    t("ServiceDetail.kingston")
 
   const handleTrack = (type: "click_call") => {
     trackEvent(service.id, type)
@@ -86,17 +94,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       className="h-full"
     >
-      <Card className="service-card-print group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+      <Card className="service-card-print group hover:border-primary-100 relative h-full overflow-hidden border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-300 dark:bg-white">
         {/* Top Gradient Line on Hover */}
         <div className="from-primary-500 to-accent-500 absolute top-0 right-0 left-0 h-0.5 origin-left scale-x-0 transform bg-gradient-to-r transition-transform duration-300 group-hover:scale-x-100" />
 
         <div className="flex h-full flex-col p-1.5">
           {/* Header Row - Icon + Title + Badges */}
           <div className="flex items-start gap-2">
-            <div className="from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br">
+            <div className="from-primary-50 to-primary-100 dark:from-primary-50 dark:to-primary-100 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br">
               <CategoryIcon
                 category={service.intent_category}
-                className="text-primary-600 dark:text-primary-400 h-4 w-4"
+                className="text-primary-600 dark:text-primary-700 h-4 w-4"
               />
             </div>
 
@@ -104,7 +112,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               {/* Title Row with inline badges */}
               <div className="flex flex-wrap items-center gap-1.5">
                 <h2
-                  className="truncate text-sm leading-tight font-semibold text-neutral-900 dark:text-white"
+                  className="truncate text-sm leading-tight font-semibold text-neutral-900 dark:text-neutral-950"
                   dangerouslySetInnerHTML={{ __html: nameHtml }}
                 />
                 {/* Status Badge */}
@@ -117,24 +125,33 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     {service.status === "Merged" ? t("ServiceDetail.merged") : t("ServiceDetail.closed")}
                   </Badge>
                 )}
-                {service.scope === "ontario" && (
+                {coverageBadges.map((badge) => {
+                  const isBroadCoverage = badge.kind === "provincial" || badge.kind === "national"
+                  return (
+                    <Badge
+                      key={badge.key}
+                      variant="outline"
+                      size="sm"
+                      className={cn(
+                        "border-blue-300 bg-blue-50 px-1.5 py-0 text-xs text-blue-900 dark:border-blue-400 dark:bg-blue-950 dark:text-blue-100",
+                        isBroadCoverage && "cursor-pointer transition-colors hover:bg-blue-100 dark:hover:bg-blue-100",
+                        "dark:border-blue-300 dark:bg-blue-50 dark:text-blue-900"
+                      )}
+                      onClick={(e) => {
+                        if (!isBroadCoverage) return
+                        e.stopPropagation()
+                        onScopeFilter?.("provincial")
+                      }}
+                    >
+                      {badge.label}
+                    </Badge>
+                  )
+                })}
+                {service.scope === "canada" && coverageBadges.length === 0 && (
                   <Badge
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer border-blue-200 bg-blue-50 px-1.5 py-0 text-xs text-blue-700 transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300 dark:hover:bg-blue-900/40"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      onScopeFilter?.("provincial")
-                    }}
-                  >
-                    {t("Badges.ontarioWide")}
-                  </Badge>
-                )}
-                {service.scope === "canada" && (
-                  <Badge
-                    variant="outline"
-                    size="sm"
-                    className="cursor-pointer border-purple-200 bg-purple-50 px-1.5 py-0 text-xs text-purple-700 transition-colors hover:bg-purple-100 dark:border-purple-800 dark:bg-purple-900/20 dark:text-purple-300 dark:hover:bg-purple-900/40"
+                    className="cursor-pointer border-purple-300 bg-purple-50 px-1.5 py-0 text-xs text-purple-900 transition-colors hover:bg-purple-100 dark:border-purple-300 dark:bg-purple-50 dark:text-purple-900 dark:hover:bg-purple-100"
                     onClick={(e) => {
                       e.stopPropagation()
                       onScopeFilter?.("provincial")
@@ -148,7 +165,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   <Badge
                     variant="secondary"
                     size="sm"
-                    className="border-green-200 bg-green-50 px-1.5 py-0 text-xs text-green-700 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300"
+                    className="border-green-300 bg-green-50 px-1.5 py-0 text-xs text-green-900 dark:border-green-300 dark:bg-green-50 dark:text-green-900"
                   >
                     {t("ServiceDetail.free")}
                   </Badge>
@@ -157,7 +174,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   <Badge
                     variant="secondary"
                     size="sm"
-                    className="gap-0.5 border-green-200 bg-green-100 px-1.5 py-0 text-xs text-green-800 dark:border-green-800 dark:bg-green-900/30 dark:text-green-300"
+                    className="gap-0.5 border-green-300 bg-green-100 px-1.5 py-0 text-xs text-green-900 dark:border-green-300 dark:bg-green-100 dark:text-green-900"
                   >
                     {t("Eligibility.likelyQualify")}
                   </Badge>
@@ -170,9 +187,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 {service.last_verified && <FreshnessBadge lastVerified={service.last_verified} />}
               </div>
               {/* Meta row: category + distance/scope */}
-              <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-neutral-500">
+              <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-neutral-700 dark:text-neutral-700">
                 <span className="font-medium">{service.intent_category}</span>
-                <span className="text-neutral-300">•</span>
+                <span className="text-neutral-500 dark:text-neutral-500">•</span>
                 <span>
                   {service.scope === "ontario"
                     ? t("Distance.ontarioWide")
@@ -180,7 +197,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                       ? t("Distance.canadaWide")
                       : distance
                         ? `${distance.toFixed(1)} km`
-                        : t("ServiceDetail.kingston")}
+                        : coverageMetaLabel}
                 </span>
               </div>
             </div>
@@ -188,26 +205,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
           {/* Description - single line */}
           <p
-            className="mt-1.5 line-clamp-1 text-[13px] text-neutral-600 dark:text-neutral-400"
+            className="mt-1.5 line-clamp-1 text-[13px] text-neutral-700 dark:text-neutral-700"
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
 
           <ServiceMatchReasons reasons={matchReasons} />
 
           {/* Contact Info - inline */}
-          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-neutral-500 dark:text-neutral-400">
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-neutral-700 dark:text-neutral-700">
             {address && (
               <div className="flex items-center gap-1 truncate">
-                <MapPin className="h-3.5 w-3.5 shrink-0 text-neutral-400" />
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-neutral-600 dark:text-neutral-600" />
                 <span className="max-w-[180px] truncate">{address}</span>
               </div>
             )}
             {service.phone && (
               <div className="flex items-center gap-1">
-                <Phone className="h-3.5 w-3.5 shrink-0 text-neutral-400" />
+                <Phone className="h-3.5 w-3.5 shrink-0 text-neutral-600 dark:text-neutral-600" />
                 <a
                   href={`tel:${service.phone}`}
-                  className="hover:text-primary-600 transition-colors hover:underline"
+                  className="hover:text-primary-700 dark:hover:text-primary-700 text-neutral-800 transition-colors hover:underline dark:text-neutral-800"
                   onClick={(e) => {
                     e.stopPropagation()
                     handleTrack("click_call")
@@ -227,20 +244,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   key={idx}
                   variant="secondary"
                   size="sm"
-                  className="bg-neutral-50 px-1.5 py-0 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400"
+                  className="bg-neutral-50 px-1.5 py-0 text-xs text-neutral-800 dark:bg-neutral-100 dark:text-neutral-800"
                 >
                   {tag.tag}
                 </Badge>
               ))}
               {service.identity_tags.length > 2 && (
-                <span className="text-xs text-neutral-600 dark:text-neutral-300">
+                <span className="text-xs text-neutral-600 dark:text-neutral-600">
                   +{service.identity_tags.length - 2}
                 </span>
               )}
               <button
                 type="button"
                 onClick={() => setFeedbackOpen(true)}
-                className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-800 dark:hover:text-neutral-950"
               >
                 <Flag className="h-3 w-3" />
                 {t("ServiceDetail.report")}

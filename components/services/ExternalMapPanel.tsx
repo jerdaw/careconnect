@@ -57,7 +57,7 @@ export function ExternalMapPanel({
         type="button"
         variant="outline"
         size="sm"
-        className="mt-4 w-full sm:w-auto"
+        className="mt-4 w-full !border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 sm:w-auto dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
         onClick={() => setIsLoaded(true)}
       >
         <MapPinned className="h-4 w-4" aria-hidden="true" />

@@ -6,7 +6,12 @@ import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { mapServiceToDatabaseUpdate } from "@/lib/service-db"
 import { hasSupabaseCredentials } from "@/lib/supabase"
 import { mapServicePublicToService } from "@/lib/search/map-service-public"
-import type { ServicePublicAuthorityTier, ServicePublicScope } from "@/types/service-public"
+import type {
+  ServicePublicAuthorityTier,
+  ServicePublicCoverage,
+  ServicePublicPrimaryPlaceId,
+  ServicePublicScope,
+} from "@/types/service-public"
 
 let staticServicesPromise: Promise<Service[]> | null = null
 
@@ -23,6 +28,8 @@ type ServiceRow = Record<string, unknown> & {
   languages?: string | string[] | null
   bus_routes?: string | string[] | null
   coordinates?: string | Service["coordinates"] | null
+  primary_place_id?: string | null
+  coverage?: string | Service["coverage"] | null
 }
 
 async function loadStaticServices(): Promise<Service[]> {
@@ -144,6 +151,10 @@ export async function getServiceById(id: string): Promise<Service | null> {
       category: typeof serviceRow.category === "string" ? serviceRow.category : null,
       tags: parseJsonField<Service["identity_tags"]>(serviceRow.tags) ?? null,
       scope: (typeof serviceRow.scope === "string" ? serviceRow.scope : null) as ServicePublicScope,
+      primary_place_id: (typeof serviceRow.primary_place_id === "string"
+        ? serviceRow.primary_place_id
+        : null) as ServicePublicPrimaryPlaceId,
+      coverage: (parseJsonField<Service["coverage"]>(serviceRow.coverage) ?? null) as ServicePublicCoverage,
       virtual_delivery: typeof serviceRow.virtual_delivery === "boolean" ? serviceRow.virtual_delivery : null,
       primary_phone_label: typeof serviceRow.primary_phone_label === "string" ? serviceRow.primary_phone_label : null,
       created_at: typeof serviceRow.created_at === "string" ? serviceRow.created_at : new Date().toISOString(),

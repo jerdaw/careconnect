@@ -7,7 +7,7 @@
 
 ## Welcome
 
-CareConnect helps you find social services in Kingston, Ontario. This guide will show you how to use the platform.
+CareConnect helps you find social services in supported Ontario communities. Kingston remains live, and Brampton starts with a smaller reviewed core-service set.
 
 **Quick Start:**
 
@@ -47,7 +47,7 @@ CareConnect is a search engine for social services. It helps you find:
 - **Employment** and education programs
 - **Family services** (childcare, parenting support)
 
-We have information on **196 verified services** in Kingston.
+We have information on **203 visible service records** across supported Ontario communities. Brampton coverage begins with a smaller reviewed core-service set and grows only after records pass review.
 
 ### Who Can Use This?
 
@@ -61,7 +61,7 @@ You don't need to:
 
 ### Who Made This?
 
-This platform was created by community members who wanted to make it easier to find help in Kingston. It is **not** an official government website.
+This platform was created by community members who wanted to make it easier to find local help. It is **not** an official government website.
 
 ---
 
@@ -106,7 +106,7 @@ This platform was created by community members who wanted to make it easier to f
 **Search near you:**
 
 - Allow location access to see services sorted by distance
-- Or type your neighborhood (like "downtown Kingston")
+- Or type your neighborhood (like "downtown Kingston" or "Brampton")
 
 ### Crisis Searches
 
@@ -388,7 +388,7 @@ We **never** use cookies for:
 
 ### Is This Service Official?
 
-**No.** This is **not** an official City of Kingston or government website.
+**No.** This is **not** an official municipal or government website.
 
 We are a community project. Service information is:
 
@@ -425,7 +425,7 @@ We'll fix it quickly.
 
 ### Why isn't [my service] listed?
 
-We focus on high-impact social services in Kingston. If a service is missing:
+We focus on high-impact social services in supported places. If a service is missing:
 
 1. **Email us:** feedback@careconnect.ing
 2. **Include:**

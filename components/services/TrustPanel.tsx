@@ -68,7 +68,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
         <CardContent className="space-y-4 p-4 pt-4 text-sm">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+              <span className="block text-[10px] font-bold tracking-wider text-neutral-600 uppercase dark:text-neutral-100">
                 {t("lastVerified")}
               </span>
               <div className="flex items-center gap-2">
@@ -78,7 +78,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
             </div>
 
             <div className="space-y-1">
-              <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+              <span className="block text-[10px] font-bold tracking-wider text-neutral-600 uppercase dark:text-neutral-100">
                 {t("verifiedBy")}
               </span>
               <div className="flex items-center gap-2">
@@ -90,7 +90,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
 
           {verificationMethod && (
             <div className="space-y-1 border-t border-neutral-100 pt-3 dark:border-neutral-800">
-              <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+              <span className="block text-[10px] font-bold tracking-wider text-neutral-600 uppercase dark:text-neutral-100">
                 {t("method")}
               </span>
               <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
 
           {evidenceUrl && (
             <div className="space-y-1 border-t border-neutral-100 pt-3 dark:border-neutral-800">
-              <span className="block text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+              <span className="block text-[10px] font-bold tracking-wider text-neutral-600 uppercase dark:text-neutral-100">
                 {t("evidence")}
               </span>
               <a
@@ -122,9 +122,9 @@ export function TrustPanel({ service, locale }: TrustPanelProps) {
           <div className="border-t border-neutral-100 pt-2 dark:border-neutral-800">
             <button
               onClick={() => setIsIssueModalOpen(true)}
-              className="hover:text-primary-600 flex items-center gap-1.5 text-[10px] font-medium tracking-tight text-neutral-500 uppercase transition-colors"
+              className="hover:text-primary-600 flex items-center gap-1.5 text-[10px] font-medium tracking-tight text-neutral-700 uppercase transition-colors dark:text-neutral-100 dark:hover:text-white"
             >
-              <HelpCircle className="h-3.5 w-3.5 text-neutral-400" />
+              <HelpCircle className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-100" />
               {t("updateHint")}
             </button>
           </div>

@@ -26,6 +26,10 @@ vi.mock("next-intl", () => ({
 
 describe("SearchResultsList Component", () => {
   const mockTranslations = (key: string) => key
+  const mockTranslationsWithValues = (key: string, values?: Record<string, string>) => {
+    if (key === "noPlaceResults") return `No ${values?.place} records match this search yet.`
+    return key
+  }
   const mockResults = [
     { service: { id: "1", name: "Kingston Food", scope: "kingston", description: "desc" }, score: 1 },
     { service: { id: "2", name: "Ontario Health", scope: "ontario", description: "desc" }, score: 0.8 },
@@ -61,9 +65,58 @@ describe("SearchResultsList Component", () => {
     expect(screen.queryByText("Kingston Food")).not.toBeInTheDocument()
   })
 
+  it("filters explicit coverage records without relying on legacy scope", () => {
+    const coverageResults = [
+      {
+        service: {
+          id: "brampton-local",
+          name: "Brampton Local Food",
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+          description: "desc",
+        },
+        score: 1,
+      },
+      {
+        service: {
+          id: "ontario-wide",
+          name: "Ontario Wide Health",
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+          description: "desc",
+        },
+        score: 0.8,
+      },
+    ]
+
+    render(<SearchResultsList isLoading={false} results={coverageResults as any} hasSearched={true} query="help" />)
+
+    expect(screen.getByText("Brampton Local Food")).toBeInTheDocument()
+    expect(screen.getByText("Ontario Wide Health")).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText("Switch to Ontario"))
+
+    expect(screen.getByText("Ontario Wide Health")).toBeInTheDocument()
+    expect(screen.queryByText("Brampton Local Food")).not.toBeInTheDocument()
+  })
+
   it("shows no results message when empty", () => {
     render(<SearchResultsList isLoading={false} results={[]} hasSearched={true} query="unknown" />)
     expect(screen.getByText("noResults")).toBeInTheDocument()
+  })
+
+  it("shows selected-place empty result copy when a place is active", () => {
+    vi.mocked(useTranslations).mockReturnValue(mockTranslationsWithValues as any)
+
+    render(
+      <SearchResultsList
+        isLoading={false}
+        results={[]}
+        hasSearched={true}
+        query="unknown"
+        selectedPlaceId="brampton-on"
+      />
+    )
+
+    expect(screen.getByText("No Brampton records match this search yet.")).toBeInTheDocument()
   })
 
   it("shows no local results message and allows switching", () => {

@@ -96,6 +96,7 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
             onClick={() => handleVote("helpful_yes")}
             disabled={isSubmitting}
             aria-label={t("yes")}
+            className="bg-white text-neutral-950 hover:bg-neutral-50 dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-white"
           >
             {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ThumbsUp className="mr-2 h-4 w-4" />}
             {t("yes")}
@@ -107,6 +108,7 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
             onClick={() => handleVote("helpful_no")}
             disabled={isSubmitting}
             aria-label={t("no")}
+            className="bg-white text-neutral-950 hover:bg-neutral-50 dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-white"
           >
             {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ThumbsDown className="mr-2 h-4 w-4" />}
             {t("no")}
@@ -115,10 +117,10 @@ export function FeedbackWidget({ serviceId, serviceName, className }: FeedbackWi
           <div className="bg-border mx-2 h-6 w-px" aria-hidden="true" />
 
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={() => setIsIssueModalOpen(true)}
-            className="text-muted-foreground hover:text-foreground"
+            className="!border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
           >
             <Flag className="mr-2 h-4 w-4" />
             {t("reportIssue")}

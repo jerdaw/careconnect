@@ -260,6 +260,39 @@ export type Database = {
         }
         Relationships: []
       }
+      ops_alert_state: {
+        Row: {
+          active: boolean
+          channel: string
+          incident_key: string
+          last_notified_at: string | null
+          last_resolved_at: string | null
+          notification_tier: string
+          opened_at: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          channel?: string
+          incident_key: string
+          last_notified_at?: string | null
+          last_resolved_at?: string | null
+          notification_tier: string
+          opened_at?: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          channel?: string
+          incident_key?: string
+          last_notified_at?: string | null
+          last_resolved_at?: string | null
+          notification_tier?: string
+          opened_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       organization_invitations: {
         Row: {
           accepted_at: string | null
@@ -1197,6 +1230,7 @@ export type Database = {
           bus_routes: string[] | null
           category: string | null
           coordinates: Json | null
+          coverage: Json | null
           created_at: string
           deleted_at: string | null
           deleted_by: string | null
@@ -1222,6 +1256,7 @@ export type Database = {
           phone: string | null
           plain_language_available: boolean | null
           primary_phone_label: string | null
+          primary_place_id: string | null
           provenance: Json | null
           published: boolean
           resource_indicators: Json | null
@@ -1249,6 +1284,7 @@ export type Database = {
           bus_routes?: string[] | null
           category?: string | null
           coordinates?: Json | null
+          coverage?: Json | null
           created_at?: string
           deleted_at?: string | null
           deleted_by?: string | null
@@ -1274,6 +1310,7 @@ export type Database = {
           phone?: string | null
           plain_language_available?: boolean | null
           primary_phone_label?: string | null
+          primary_place_id?: string | null
           provenance?: Json | null
           published?: boolean
           resource_indicators?: Json | null
@@ -1301,6 +1338,7 @@ export type Database = {
           bus_routes?: string[] | null
           category?: string | null
           coordinates?: Json | null
+          coverage?: Json | null
           created_at?: string
           deleted_at?: string | null
           deleted_by?: string | null
@@ -1326,6 +1364,7 @@ export type Database = {
           phone?: string | null
           plain_language_available?: boolean | null
           primary_phone_label?: string | null
+          primary_place_id?: string | null
           provenance?: Json | null
           published?: boolean
           resource_indicators?: Json | null
@@ -1496,6 +1535,7 @@ export type Database = {
           bus_routes: string[] | null
           category: string | null
           coordinates: Json | null
+          coverage: Json | null
           created_at: string | null
           description: string | null
           description_fr: string | null
@@ -1513,6 +1553,7 @@ export type Database = {
           name_fr: string | null
           phone: string | null
           primary_phone_label: string | null
+          primary_place_id: string | null
           provenance: Json | null
           resource_indicators: Json | null
           scope: string | null
@@ -1535,6 +1576,7 @@ export type Database = {
           bus_routes?: string[] | null
           category?: string | null
           coordinates?: Json | null
+          coverage?: Json | null
           created_at?: string | null
           description?: string | null
           description_fr?: string | null
@@ -1552,7 +1594,8 @@ export type Database = {
           name_fr?: string | null
           phone?: string | null
           primary_phone_label?: string | null
-          provenance?: Json | null
+          primary_place_id?: string | null
+          provenance?: never
           resource_indicators?: Json | null
           scope?: string | null
           synthetic_queries?: string[] | null
@@ -1574,6 +1617,7 @@ export type Database = {
           bus_routes?: string[] | null
           category?: string | null
           coordinates?: Json | null
+          coverage?: Json | null
           created_at?: string | null
           description?: string | null
           description_fr?: string | null
@@ -1591,7 +1635,8 @@ export type Database = {
           name_fr?: string | null
           phone?: string | null
           primary_phone_label?: string | null
-          provenance?: Json | null
+          primary_place_id?: string | null
+          provenance?: never
           resource_indicators?: Json | null
           scope?: string | null
           synthetic_queries?: string[] | null

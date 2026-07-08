@@ -44,17 +44,25 @@ export function ServiceActionBar({
     <div className="flex flex-wrap gap-3">
       <Link
         href="?view=simple"
-        className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white px-4 text-sm font-semibold shadow-sm transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+        className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white px-4 text-sm font-semibold text-neutral-950 shadow-sm transition-colors hover:bg-neutral-50 hover:text-neutral-950 dark:border-neutral-300 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100"
       >
         <BookOpen className="h-4 w-4" />
         {plainLanguageLabel}
       </Link>
 
-      <Button variant="outline" className="gap-2" onClick={handleShare}>
+      <Button
+        variant="outline"
+        className="gap-2 !border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
+        onClick={handleShare}
+      >
         <Share2 className="h-4 w-4" /> {shareLabel}
       </Button>
 
-      <Button variant="outline" className="gap-2" asChild>
+      <Button
+        variant="outline"
+        className="gap-2 !border-neutral-300 !bg-white !text-neutral-950 hover:!bg-neutral-50 hover:!text-neutral-950 dark:!border-neutral-300 dark:!bg-white dark:!text-neutral-950 dark:hover:!bg-neutral-100"
+        asChild
+      >
         <a href={`/api/v1/services/${serviceId}/printable`} target="_blank" rel="noopener noreferrer">
           <Printer className="h-4 w-4" /> {printLabel}
         </a>

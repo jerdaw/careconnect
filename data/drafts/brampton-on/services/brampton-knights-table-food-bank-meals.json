@@ -1,0 +1,37 @@
+{
+  "id": "brampton-knights-table-food-bank-meals",
+  "name": "Knights Table Food Bank and Meal Programs",
+  "description": "Food bank and meal supports for people in Brampton and Peel dealing with hunger, poverty, or homelessness.",
+  "url": "https://knightstable.org/contact-us/",
+  "phone": "905-454-8725",
+  "verification_level": "L1",
+  "intent_category": "Food",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-07T16:00:00.000Z",
+    "evidence_url": "https://knightstable.org/contact-us/",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": ["Knights Table Brampton", "food bank Brampton", "meal program Peel", "hunger support Brampton"],
+  "address": "73 Hale Road, Brampton, ON L6W 3J9",
+  "eligibility_notes": "211 Ontario lists individuals and families dealing with hunger, poverty, and homelessness in Peel; confirm current provider wording before L2.",
+  "application_process": "211 Ontario lists new intakes Monday to Thursday between 10 AM and 2 PM on a first come, first served basis; provider confirmation is still required for L2.",
+  "documents_required": "211 Ontario lists identification for all household members and proof of address.",
+  "fees": "None listed by 211 Ontario.",
+  "hours_text": "211 Ontario lists pantry hours Monday to Friday 10 AM to 3:30 PM for registered users. Official provider contact page lists 73 Hale Road; 211 Ontario still lists 287 Glidden Rd, Unit 4 and should be rechecked before L2.",
+  "last_verified": "2026-07-07",
+  "status": "Promoted to live L1 on 2026-07-07",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "local",
+      "placeIds": ["brampton-on"],
+      "label": "Brampton",
+      "notes": "Provider site lists 73 Hale Road; 211 pantry address needs follow-up before L2."
+    }
+  ],
+  "primary_phone_label": "Office",
+  "service_area": "Peel Region"
+}

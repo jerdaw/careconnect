@@ -1,7 +1,7 @@
 import { aiEngine } from "./engine"
 import { logger } from "@/lib/logger"
 
-const EXPANSION_PROMPT = `You are a social services search assistant for Kingston, Ontario. Given a user query, generate 3-5 semantically related search terms that would help find relevant community services.
+const EXPANSION_PROMPT = `You are a social services search assistant for supported Ontario communities. Given a user query, generate 3-5 semantically related search terms that would help find relevant community services.
 
 Rules:
 - Output ONLY a JSON array of strings, nothing else.

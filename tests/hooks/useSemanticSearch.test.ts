@@ -93,6 +93,54 @@ describe("useSemanticSearch Hook", () => {
     await expect(result.current.generateEmbedding("text")).resolves.toBeNull()
   })
 
+  it("reports worker construction failure without leaving an initializing state", async () => {
+    global.Worker = vi.fn(() => {
+      throw new Error("Worker unavailable")
+    }) as any
+
+    const { result } = renderHook(() => useSemanticSearch())
+
+    await act(async () => {
+      await expect(result.current.initSemanticSearch()).rejects.toThrow("Failed to load semantic search worker")
+    })
+
+    await waitFor(() => {
+      expect(result.current.isReady).toBe(false)
+      expect(result.current.isInitializing).toBe(false)
+      expect(result.current.error).toBe("Failed to load semantic search worker")
+    })
+  })
+
+  it("clears failed init promises so semantic search can be retried without unhandled state", async () => {
+    mockWorker.postMessage.mockImplementationOnce(({ action }: { action: string }) => {
+      if (action === "init") {
+        for (const handler of messageHandlers) {
+          handler({ data: { status: "error", error: "Failed to fetch" } } as any)
+        }
+      }
+    })
+
+    const { result } = renderHook(() => useSemanticSearch())
+
+    await act(async () => {
+      await expect(result.current.initSemanticSearch()).rejects.toThrow("Failed to fetch")
+    })
+
+    mockWorker.postMessage.mockImplementationOnce(({ action }: { action: string }) => {
+      if (action === "init") {
+        for (const handler of messageHandlers) {
+          handler({ data: { status: "ready" } } as any)
+        }
+      }
+    })
+
+    await act(async () => {
+      await result.current.initSemanticSearch()
+    })
+
+    await waitFor(() => expect(result.current.isReady).toBe(true))
+  })
+
   it("generates embedding successfully", async () => {
     const mockEmbedding = [0.1, 0.2]
 

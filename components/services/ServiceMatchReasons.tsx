@@ -26,7 +26,7 @@ export default function ServiceMatchReasons({ reasons, previewCount = 2 }: Servi
     <div className="mt-2 space-y-1.5">
       <p
         id={headingId}
-        className="text-[11px] font-medium tracking-[0.08em] text-neutral-500 uppercase dark:text-neutral-400"
+        className="text-[11px] font-medium tracking-[0.08em] text-neutral-700 uppercase dark:text-neutral-700"
       >
         {t("matchReasonsHeading")}
       </p>
@@ -37,7 +37,7 @@ export default function ServiceMatchReasons({ reasons, previewCount = 2 }: Servi
             <Badge
               variant="outline"
               size="sm"
-              className="max-w-full border-neutral-200 bg-neutral-50 text-[11px] font-medium whitespace-normal text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-300"
+              className="max-w-full border-neutral-300 bg-white text-[11px] font-medium whitespace-normal text-neutral-800 dark:border-neutral-300 dark:bg-white dark:text-neutral-800"
             >
               {reason}
             </Badge>
@@ -49,7 +49,7 @@ export default function ServiceMatchReasons({ reasons, previewCount = 2 }: Servi
         <div className="space-y-2">
           <button
             type="button"
-            className="text-primary-700 focus-visible:ring-primary-500/60 dark:text-primary-300 text-xs font-medium underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none"
+            className="text-primary-800 focus-visible:ring-primary-500/60 dark:text-primary-800 text-xs font-medium underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none"
             aria-expanded={expanded}
             aria-controls={hiddenReasonsId}
             onClick={() => setExpanded((value) => !value)}
@@ -61,7 +61,7 @@ export default function ServiceMatchReasons({ reasons, previewCount = 2 }: Servi
             <ul
               id={hiddenReasonsId}
               aria-label={t("matchReasonsListLabel")}
-              className="ml-4 list-disc space-y-1 text-xs text-neutral-600 dark:text-neutral-300"
+              className="ml-4 list-disc space-y-1 text-xs text-neutral-800 dark:text-neutral-800"
             >
               {hidden.map((reason) => (
                 <li key={reason}>{reason}</li>

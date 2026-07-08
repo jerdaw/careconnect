@@ -153,7 +153,7 @@ Primary upside:
 
 ## Primary Objective
 
-Improve successful service connection outcomes for Kingston residents and frontline workers.
+Improve successful service connection outcomes for residents of supported places and frontline workers.
 
 ## Secondary Objectives
 

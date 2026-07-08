@@ -198,7 +198,11 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-3">
-                  <Button variant="outline" className="w-full" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full border-neutral-300 bg-white text-neutral-950 hover:bg-neutral-50 hover:text-neutral-950 dark:border-neutral-300 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100"
+                    asChild
+                  >
                     <Link href="/about/partners">{t("applyPartner")}</Link>
                   </Button>
                 </div>

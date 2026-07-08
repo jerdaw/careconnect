@@ -24,6 +24,8 @@ import SafetyAlert from "../../components/home/SafetyAlert"
 import HomeStats from "../../components/home/HomeStats"
 import HowItWorks from "../../components/home/HowItWorks"
 import CategoryBrowseGrid from "../../components/home/CategoryBrowseGrid"
+import PlaceSelector from "../../components/home/PlaceSelector"
+import RotatingRegionHero from "../../components/home/RotatingRegionHero"
 
 export default function Home() {
   const t = useTranslations()
@@ -37,6 +39,9 @@ export default function Home() {
     setCategory,
     openNow,
     setOpenNow,
+    selectedPlaceId,
+    setSelectedPlaceId,
+    useLocationForPlace,
     userLocation,
     toggleLocation,
     isLocating,
@@ -79,13 +84,16 @@ export default function Home() {
       return
     }
 
-    void initSemanticSearch()
+    void initSemanticSearch().catch(() => {
+      // Semantic search is optional; keyword search remains available through useServices.
+    })
   }, [initSemanticSearch, query])
 
   // Perform Search Logic
   useServices({
     query,
     category,
+    placeId: selectedPlaceId,
     userLocation,
     openNow,
     isReady,
@@ -137,14 +145,7 @@ export default function Home() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="space-y-6"
             >
-              <h1 className="heading-1 heading-display relative text-neutral-900 dark:text-white">
-                <span className="relative z-10">Kingston</span>
-                <span className="from-primary-600 via-primary-500 to-accent-500 relative z-10 bg-gradient-to-r bg-clip-text text-transparent">
-                  {" "}
-                  CareConnect
-                </span>
-                <div className="absolute -inset-x-8 -inset-y-4 -z-10 rounded-[50%] bg-white/30 blur-3xl dark:bg-white/5" />
-              </h1>
+              <RotatingRegionHero />
 
               <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl dark:text-neutral-300">
                 {t("Home.hero.subtitle")}
@@ -199,6 +200,15 @@ export default function Home() {
                 </div>
               </div>
 
+              <div className="mt-4">
+                <PlaceSelector
+                  selectedPlaceId={selectedPlaceId}
+                  isLocating={isLocating}
+                  onUseLocation={useLocationForPlace}
+                  onPlaceChange={setSelectedPlaceId}
+                />
+              </div>
+
               {/* Suggestions & Chips */}
               {!hasSearched && query.length === 0 && (
                 <div className="mt-6">
@@ -214,17 +224,13 @@ export default function Home() {
         </section>
 
         {/* Discovery Layer — hidden when results are shown */}
-        <div
-          className={cn(
-            "transition-all duration-500",
-            hasActiveSearch ? "pointer-events-none mt-0 h-0 overflow-hidden opacity-0" : "mt-4 opacity-100"
-          )}
-          aria-hidden={hasActiveSearch || undefined}
-        >
-          <HomeStats />
-          <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
-          <HowItWorks />
-        </div>
+        {!hasActiveSearch && (
+          <div className="mt-4 transition-opacity duration-500">
+            <HomeStats />
+            <CategoryBrowseGrid onCategorySelect={handleCategorySelect} />
+            <HowItWorks />
+          </div>
+        )}
 
         {/* Results Section */}
         <Section className={hasActiveSearch ? "pt-0" : "h-0 overflow-hidden py-0 opacity-0"}>
@@ -266,6 +272,7 @@ export default function Home() {
             query={query}
             category={category}
             userLocation={userLocation}
+            selectedPlaceId={selectedPlaceId}
           />
         </Section>
       </main>
