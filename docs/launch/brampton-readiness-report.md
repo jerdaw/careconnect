@@ -1,6 +1,7 @@
 # Brampton Launch Readiness Report
 
 Date: 2026-07-07
+Updated: 2026-07-08
 Branch: `main` after PR #33 merge
 
 ## Status
@@ -8,14 +9,15 @@ Branch: `main` after PR #33 merge
 - Foundation code: verified and merged to `main` in PR #33.
 - Kingston live behavior: verified by local and server search regressions.
 - Brampton first-launch behavior: verified by local and server search regressions.
-- Brampton live service data: seven approved L1 records added.
+- Brampton repo service data: seven approved L1 records added to `data/services.json`.
+- Brampton production service data: pending. Production currently has 0 of the 7 approved Brampton rows.
 - Production migration: applied after approval; post-migration DB checks passed.
-- Deployment: not performed.
+- Deployment: application release `d7cc6e4` deployed and public health checks passed.
 
 ## Approval Gates
 
 - Additional Brampton record promotions require the same L1 approval workflow.
-- Human approval required before deployment.
+- Human approval required before syncing the seven approved Brampton rows into production Supabase.
 - Human approval required for land acknowledgment and partner relationship wording.
 
 ## Evidence Log
@@ -38,6 +40,10 @@ Branch: `main` after PR #33 merge
 - 2026-07-07: Project owner approved applying the production migration with the documented precautions, while accepting the unresolved CareConnect-specific restore/provider proof risk for this release.
 - 2026-07-07: Applied the reviewed Brampton coverage migration to production through the authenticated Supabase migration tool using the exact SQL from `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`. Supabase recorded the remote migration as `20260708005230 add_service_coverage_place_fields`.
 - 2026-07-07: Post-migration checks confirmed `primary_place_id` and `coverage` exist on `services` and `services_public`; all 196 production services have coverage; `services` still has RLS enabled; `services_public` remains `security_invoker=true`; `anon` and `authenticated` have SELECT-only access to `services_public`.
+- 2026-07-08: Project owner approved deployment of CareConnect `main` commit `d7cc6e4`; the approved operator deploy path built image `careconnect-web:d7cc6e4`, restarted the `careconnect-web` container, and local/public health checks returned `version: "d7cc6e4"`.
+- 2026-07-08: Independent public smoke checks confirmed `https://careconnect.ing/api/v1/health` returns healthy with `version: "d7cc6e4"`, `/` redirects to `/en`, `/en` loads, invalid `filters.placeId` returns `400`, and Kingston selected-place food search returns results.
+- 2026-07-08: Post-deploy Brampton selected-place searches for `shelter` and `food` returned valid empty result sets; authenticated read-only Supabase query confirmed none of the seven approved Brampton IDs are present in production `services`.
+- 2026-07-08: Added a bounded Brampton production data closeout plan and sync helper path. The helper selects exactly the seven approved IDs, validates Brampton coverage and 384-dimensional embeddings, defaults to dry-run, and refuses `--apply` without an explicit approval token.
 
 ## Findings
 
@@ -45,7 +51,8 @@ Branch: `main` after PR #33 merge
 - Browser a11y is no longer environment-blocked for this session; the Chromium suite passed using extracted user-space libraries.
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
 - Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
-- Live Supabase schema migration is complete; deployment remains unapplied and approval-gated.
+- Live Supabase schema migration is complete; application deployment is complete.
+- Remaining launch blocker: production Supabase still needs the seven approved Brampton L1 service rows synced after explicit approval.
 
 ## Technical Verification
 
@@ -70,15 +77,15 @@ Branch: `main` after PR #33 merge
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
-- Production approval packet: prepared; migration applied after approval; deploy remains unapplied and approval-gated.
+- Production approval packet: prepared; migration and deployment applied after approval; seven-row production data sync remains approval-gated.
 - Future verification queue: prepared as draft-only; no additional Brampton records promoted.
 
 ## Technical Residual Risks
 
 - Browser visual QA is documented in `docs/launch/brampton-manual-qa.md`.
-- Production migration was applied after explicit approval. The application deployment was not performed.
+- Production migration was applied after explicit approval. The application deployment was performed on 2026-07-08 and health checks passed.
 - Live Supabase schema inspection completed through the Supabase CLI and authenticated Supabase tooling. The Brampton coverage migration is applied in production.
-- Production deploy was not performed.
+- Production data inspection confirmed the seven approved Brampton rows are not yet in production.
 
 ## Browser And Accessibility QA
 
@@ -139,21 +146,24 @@ Branch: `main` after PR #33 merge
 - Pre-migration live Supabase schema inspection: pass. The linked database is PostgreSQL 17.6. The previous `services_public` provenance-sanitizing migration was applied; the Brampton coverage migration was not applied yet. At that point, live `services` and `services_public` did not have `primary_place_id` or `coverage`. `services_public` sanitized UUID-shaped verifier identifiers and had `security_invoker=true`. `services` had RLS enabled with select/insert/update/delete policies. Existing live grants on `services` and `services_public` were broader than the repo baseline expected; `services` writes were constrained by RLS, and the Brampton migration explicitly revoked anon/authenticated privileges on `services_public` before granting SELECT.
 - Post-merge Supabase read-only check: pass. `npx supabase migration list --linked` shows `20260706120000` as local-only, and `npx supabase db query --linked` confirmed no production `primary_place_id` or `coverage` columns yet.
 - Production migration approval: granted by the project owner with the documented precautions, accepting the unresolved CareConnect-specific restore/provider proof risk for this release.
+- Production deployment approval: granted by the project owner for CareConnect `main` commit `d7cc6e4`; deployment completed on 2026-07-08.
 - Production SQL: applied through the authenticated Supabase migration tool using the exact reviewed migration SQL. Because `db push` was blocked by historical migration drift, Supabase recorded the remote migration as `20260708005230 add_service_coverage_place_fields`; the local reviewed file remains `20260706120000_add_service_coverage_place_fields.sql`.
 - Post-migration schema check: pass. `services.primary_place_id`, `services.coverage`, `services_public.primary_place_id`, and `services_public.coverage` exist with expected `text`/`jsonb` types.
 - Post-migration data check: pass. Production has 196 services, 196 services with non-null coverage, 195 Kingston-local records with `primary_place_id = 'kingston-on'`, and one Canada-wide record with national coverage.
 - Post-migration public view check: pass. `services_public` remains a `security_invoker=true` view, and `anon`/`authenticated` have SELECT-only access to `services_public`.
+- Post-deploy data gap check: pass. Production has 0 rows for the seven approved Brampton IDs, so Brampton selected-place searches correctly return empty results until the seven-row data sync is approved and applied.
 
 ## Final Readiness Decision
 
 - Foundation/readiness code: merged to `main` in PR #33 after local and GitHub verification.
-- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set.
+- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set, pending the explicit production data-sync approval.
 - Production migration: applied after approval; post-migration DB checks passed.
-- Ready for deployment: no, requires human approval and post-deploy smoke checks.
+- Production deployment: applied after approval; health and Kingston/API guardrail smoke checks passed.
+- Ready for Brampton public results: not yet. Production Supabase must receive the seven approved Brampton rows and pass post-sync smoke checks.
 
 ## Recommended Next Human Decisions
 
-1. Decide whether to deploy after reviewing the applied migration and post-migration checks.
+1. Approve or reject syncing the seven approved Brampton L1 rows into production Supabase.
 2. Approve any land acknowledgment or official relationship wording before publication.
 3. Continue Brampton expansion through deferred L1 reviews only.
 4. Complete CareConnect restore/provider proof as follow-up hardening even though the migration risk was accepted for this release.

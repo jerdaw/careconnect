@@ -37,6 +37,8 @@
     "verify:search-ranking": "node --import tsx scripts/verify-search-ranking.ts",
     "verify:rls": "node --import tsx scripts/verify-rls.ts",
     "normalize:services": "node --import tsx scripts/normalize-services.ts",
+    "sync:brampton:dry-run": "node --import tsx scripts/sync-brampton-production-data.ts --dry-run",
+    "sync:brampton:apply": "node --import tsx scripts/sync-brampton-production-data.ts --apply",
     "ingest:import-response": "node --import tsx scripts/ingest/import-response.ts",
     "prepare": "husky",
     "bilingual-check": "node --import tsx scripts/bilingual-audit.ts",

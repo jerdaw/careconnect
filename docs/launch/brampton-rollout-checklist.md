@@ -18,7 +18,8 @@
 - [ ] Approve any land acknowledgment changes.
 - [ ] Approve any partner or official relationship wording.
 - [x] Approve production migration.
-- [ ] Approve deployment.
+- [x] Approve deployment.
+- [ ] Approve syncing the seven approved Brampton L1 rows into production Supabase.
 - [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
 ## Data Launch After Approval
@@ -67,17 +68,20 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: CareConnect restore/provider proof is planned but not recorded as complete; the project owner explicitly accepted this risk for the migration.
 - [x] Apply migration only after explicit human approval.
 - [x] Run post-migration DB read-only checks for `primary_place_id`, `coverage`, and public views.
-- [ ] Run post-deploy search API checks after deployment approval.
+- [x] Run post-deploy search API checks after deployment approval.
+- [x] Confirm production currently has 0 of the 7 approved Brampton rows before data sync.
 
 ## Production Rollout After Approval
 
 - [x] Inspect private/shared operations source of truth for environment and release instructions.
 - [x] Perform authenticated read-only production schema preflight.
 - [x] Apply migration.
-- [ ] Deploy application.
-- [ ] Smoke test Kingston search.
-- [ ] Smoke test Brampton selected-place behavior.
-- [ ] Smoke test broad Ontario/Canada services.
+- [x] Deploy application.
+- [x] Smoke test Kingston search.
+- [x] Smoke test Brampton selected-place behavior before data sync: valid empty result set, confirming rows are not live yet.
+- [ ] Sync the seven approved Brampton L1 rows into production Supabase after explicit approval.
+- [ ] Smoke test Brampton selected-place behavior after data sync.
+- [ ] Smoke test broad Ontario/Canada services after data sync.
 - [ ] Confirm no user search logging was introduced.
 
 ## Rollback

@@ -1,11 +1,12 @@
 # Brampton Production Approval Packet
 
 Date: 2026-07-07
-Status: migration approved and applied; deployment approval still required
+Updated: 2026-07-08
+Status: migration and deployment approved/applied; seven-record production data sync still required
 
 ## Decision Needed
 
-Approve or reject deploying the multi-city application release after the Brampton coverage migration.
+Approve or reject syncing the seven approved Brampton L1 service rows into production Supabase.
 
 ## What Is Already Confirmed
 
@@ -18,13 +19,16 @@ Approve or reject deploying the multi-city application release after the Brampto
 - Existing live grants are broader than the repo baseline, so the pending migration now explicitly revokes `services_public` privileges before granting expected read access.
 - The Brampton coverage migration was applied after owner approval using the exact reviewed SQL from `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`.
 - Supabase recorded the applied remote migration as `20260708005230 add_service_coverage_place_fields` because the normal `db push` path is blocked by historical migration drift.
+- CareConnect `main` commit `d7cc6e4` was deployed after owner approval, and public health checks returned `version: "d7cc6e4"`.
+- Read-only production checks on 2026-07-08 confirmed the seven approved Brampton IDs are not yet present in production `services`.
+- Live Brampton selected-place searches return valid empty result sets until the seven approved rows are synced.
 - The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
 
 - The exact target environment is confirmed.
-- The approving human explicitly authorizes deployment.
-- A rollback owner and decision path are identified.
+- The approving human explicitly authorizes syncing exactly the seven approved Brampton L1 rows.
+- A data correction owner and decision path are identified.
 
 ## Backup And Rollback Posture
 
@@ -79,7 +83,30 @@ source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
 npx supabase db query --linked --output json "select count(*)::int as services_with_coverage from public.services where coverage is not null;"
 ```
 
-## Application Smoke Checks After Deploy Approval
+## Deployment Smoke Checks Completed
+
+- Public health returned healthy with `version: "d7cc6e4"`.
+- `/` redirected to `/en`.
+- `/en` loaded successfully.
+- Kingston selected-place food search returned live results.
+- Invalid `filters.placeId` returned `400 Invalid request`.
+- Brampton selected-place `shelter` and `food` searches returned valid empty result sets before production data sync.
+
+## Seven-Record Production Data Sync Scope
+
+Only these IDs are in scope:
+
+- `brampton-peel-centralized-shelter-intake`
+- `brampton-wilkinson-road-shelter`
+- `brampton-victim-services-of-peel`
+- `brampton-safe-centre-of-peel`
+- `brampton-peel-ontario-works-emergency-assistance`
+- `brampton-regeneration-marketplace-food-bank`
+- `brampton-knights-table-food-bank-meals`
+
+The bounded sync helper must select these exact IDs from `data/services.json`, attach existing 384-dimensional embeddings from `data/embeddings.json`, and upsert no other rows.
+
+## Application Smoke Checks After Data Sync Approval
 
 - Kingston selected-place search returns Kingston-local records and broad Ontario/Canada records.
 - Brampton selected-place search returns the approved Brampton first launch set and broad Ontario/Canada records.
@@ -89,6 +116,6 @@ npx supabase db query --linked --output json "select count(*)::int as services_w
 
 ## Rollback Boundaries
 
-- Application rollback can revert to the previous release after deploy approval.
-- Data correction must use a follow-up reviewed data commit.
+- Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
+- Data correction must use a follow-up reviewed data commit or an explicitly approved seven-ID production correction.
 - Schema rollback requires separate database rollback approval.
