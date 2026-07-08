@@ -1,7 +1,7 @@
 # Brampton Manual QA
 
 Date: 2026-07-06
-Updated: 2026-07-07
+Updated: 2026-07-08
 
 ## Environment
 
@@ -92,4 +92,5 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 - The user-space dependency path under `/tmp/careconnect-local-deps` is ephemeral; recreate it or install system packages before future local browser and DB smoke reruns.
 - Deferred Brampton draft services still require L1 approval before live data entry.
-- Production migration, deployment, land acknowledgment wording, and official relationship wording remain approval-gated.
+- Land acknowledgment wording and official relationship wording remain approval-gated.
+- Production rollback remains approval-gated; migration, deployment, seven-row data sync, and broad coverage correction were approved, applied, and smoke-tested on 2026-07-08.

@@ -89,13 +89,13 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Smoke test broad Ontario/Canada services after correction.
 - [x] Confirm no user search logging was introduced.
 
-## Rollback
+## Rollback Posture
 
-- [ ] Revert application deployment to prior release.
-- [ ] If data records caused the issue, remove or correct the approved Brampton records in a follow-up data commit.
+- Application rollback is not indicated after the successful deployment and smoke checks. If a future incident requires it, revert only after explicit approval through the documented app rollback path.
+- If approved Brampton data records cause a future issue, remove or correct them only through an approved follow-up data commit or an explicitly approved production correction.
 - [x] Prepare exact seven-ID data rollback for approval after the broad-service post-sync smoke miss; see `docs/launch/brampton-seven-id-data-rollback-prep.md`. Do not execute without explicit approval.
 - [x] Prepare broad-record correction rollback SQL. Do not execute without explicit approval after a failed approved correction smoke.
-- [ ] Do not roll back production schema without explicit database rollback approval.
+- Production schema rollback is not indicated and must not run without explicit database rollback approval.
 
 ## Post-Launch
 
