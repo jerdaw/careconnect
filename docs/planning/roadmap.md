@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-07
+last_updated: 2026-07-08
 owner: jer
 tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ---
@@ -8,14 +8,14 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 # CareConnect: Product Roadmap
 
 > **Current Version**: v22.0 plus constrained Brampton multi-city launch readiness
-> **Next Milestone**: Brampton deploy approval/quality gates plus v22.0 Gate 0 C1/D4 blocker closure
-> **Last Updated**: 2026-07-07
+> **Next Milestone**: Brampton broad-record coverage correction decision plus v22.0 Gate 0 C1/D4 blocker closure
+> **Last Updated**: 2026-07-08
 > **Platform Status**: Strategic Repositioning with bounded Brampton launch gates
 
 ## Current State
 
 - **Services**: 203 manually curated social services. Kingston remains live, and Brampton has a seven-record L1 first launch set focused on urgent and core supports.
-- **Tests**: default Vitest suite green as of 2026-07-07 (`216` files; `1703` passed; `24` skipped during `npm test -- --run` in the Brampton readiness pass)
+- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1730` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
 - **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -29,7 +29,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 - **Languages**: 7 locales at translation-key parity
 - **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
 - **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed L1 first launch set; deferred Brampton candidates remain draft-only until the same L1 workflow approves them.
-- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; the production DB migration is applied and verified; deployment remains approval-gated.
+- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; the production DB migration, application deployment, and seven-record production data sync are applied and verified. A separate broad Ontario/Canada coverage correction remains approval-gated, with dry-run SQL, rollback SQL, and manifest verification prepared.
 - **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. Land acknowledgment and official/partner wording remain approval-gated, with Brampton source research recorded in launch docs.
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
@@ -153,7 +153,7 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ### Brampton Constrained Multi-City Launch Closeout 🔄 ACTIVE
 
-**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, and seven-row production data sync are complete; broad-record coverage correction remains approval-gated
+**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, seven-row production data sync, and broad-correction verifier prep are complete; broad-record coverage correction remains approval-gated
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
@@ -171,6 +171,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 8. CareConnect `main` commit `d7cc6e4` was deployed after owner approval and public health checks passed.
 9. The seven approved Brampton L1 records were synced to production Supabase after owner approval; post-sync checks confirmed all seven are present with Brampton coverage and embeddings.
 10. Broad Ontario/Canada production coverage correction has been prepared as a dry-run only: 72 existing broad records selected from a read-only production snapshot, with apply and rollback SQL guarded to update only `scope`, `primary_place_id`, and `coverage`.
+11. The broad-correction manifest verifier passed on 2026-07-08, confirming apply/rollback SQL hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
 
 **Immediate blockers**
 

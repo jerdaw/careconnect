@@ -20,6 +20,8 @@ Sources checked on 2026-07-08:
 | Mississaugas of the Credit First Nation    | https://mncfn.ca/                                                                  | Indigenous-governance source for MCFN identity and treaty/territory context. The site includes treaty lands and territory resources, including Ajetance Treaty, No. 19.                                              | Primary Indigenous-governance context source; do not paraphrase beyond reviewed facts.                   |
 | The Indigenous Network via OFIFC           | https://ofifc.org/friendship-centre/the-indigenous-network/                        | OFIFC listing identifies The Indigenous Network in Peel and notes Peel is situated in the traditional territory of the Mississaugas of the New Credit.                                                               | Local Indigenous community-service context; not a land acknowledgment authority for CareConnect wording. |
 
+Link reachability recheck on 2026-07-08: all four source URLs returned HTTP 200.
+
 ## Draft Source Synthesis
 
 Public municipal, regional, and Indigenous-governance sources identify Brampton/Peel context involving the Mississaugas of the Credit, Haudenosaunee, Wendat or Huron-Wendat, and Treaty 19, the Ajetance Purchase of 1818.

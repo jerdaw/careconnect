@@ -27,6 +27,8 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - Live Brampton selected-place searches return the approved seven-record first-launch set.
 - A post-sync broad-service smoke found that existing production broad records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have `coverage` backfilled as local `kingston-on`; this needs a separate approved correction.
 - A read-only production snapshot found 203 rows and generated dry-run SQL for 72 broad-record corrections: 49 provincial and 23 national. The prepared SQL updates only `scope`, `primary_place_id`, and `coverage`, references no Brampton launch IDs, and has a prepared rollback SQL file.
+- The broad-record correction manifest verifier passed on 2026-07-08. It confirmed the prepared apply and rollback SQL hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
+- A fresh read-only production check on 2026-07-08 confirmed the seven Brampton rows remain live with Brampton coverage and embeddings, while a five-ID reviewed broad-record sample still has only one broad-shaped record; the broad correction remains unapplied.
 - The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
@@ -154,6 +156,13 @@ Prepared artifacts:
 - Apply SQL: `/tmp/careconnect-broad-coverage-correction.sql`
 - Rollback SQL: `/tmp/careconnect-broad-coverage-rollback.sql`
 - Manifest: `/tmp/careconnect-broad-coverage-correction-manifest.json`
+- Verifier command:
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run sync:broad-coverage:verify -- \
+  --manifest /tmp/careconnect-broad-coverage-correction-manifest.json
+```
 
 Dry-run summary:
 
@@ -164,6 +173,7 @@ Dry-run summary:
 - Generated SQL has exact 72-row assertions.
 - Generated SQL references no `brampton-` IDs.
 - Manifest records apply SQL SHA-256 `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee` and rollback SQL SHA-256 `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665`.
+- Manifest verifier result on 2026-07-08: `ok: true`.
 - Production write was not executed.
 
 ## Rollback Boundaries

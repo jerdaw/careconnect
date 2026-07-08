@@ -14,6 +14,10 @@ import {
   buildBroadCoverageCorrectionManifest,
   parseBroadCoverageCorrectionArgs,
 } from "@/scripts/prepare-broad-coverage-production-correction"
+import {
+  parseBroadCoverageVerificationArgs,
+  verifyBroadCoverageCorrectionManifest,
+} from "@/scripts/verify-broad-coverage-production-correction"
 import type { Service } from "@/types/service"
 
 const services = servicesRaw as Service[]
@@ -323,6 +327,104 @@ describe("broad coverage correction manifest", () => {
       disallowedSetColumnsPresent: [],
       mentionsBramptonIds: false,
       hasExactAssertion: true,
+    })
+  })
+})
+
+describe("broad coverage correction manifest verifier", () => {
+  it("accepts SQL files that match the reviewed manifest", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const rollbackSql = buildBroadCoverageRollbackSql(plan)
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      rollbackSql,
+      applySqlPath: "/tmp/apply.sql",
+      rollbackSqlPath: "/tmp/rollback.sql",
+      generatedAt: "2026-07-08T13:00:00.000Z",
+    })
+
+    expect(
+      verifyBroadCoverageCorrectionManifest({
+        manifest,
+        applySql,
+        rollbackSql,
+      })
+    ).toEqual({
+      ok: true,
+      failures: [],
+      checked: {
+        ids: 3,
+        applySqlSha256Matches: true,
+        rollbackSqlSha256Matches: true,
+        applyGuardrailsMatch: true,
+        rollbackGuardrailsMatch: true,
+        writesEnabledFalse: true,
+      },
+    })
+  })
+
+  it("rejects SQL that no longer matches the reviewed manifest hash", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const rollbackSql = buildBroadCoverageRollbackSql(plan)
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      rollbackSql,
+      applySqlPath: "/tmp/apply.sql",
+      rollbackSqlPath: "/tmp/rollback.sql",
+    })
+
+    const result = verifyBroadCoverageCorrectionManifest({
+      manifest,
+      applySql: `${applySql}\n-- tampered`,
+      rollbackSql,
+    })
+
+    expect(result.ok).toBe(false)
+    expect(result.failures).toContain("Apply SQL SHA-256 mismatch")
+    expect(result.checked.applySqlSha256Matches).toBe(false)
+  })
+
+  it("rejects manifests that are not marked as dry-run only", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      applySqlPath: "/tmp/apply.sql",
+    })
+    const unsafeManifest = { ...manifest, writesEnabled: true } as unknown as typeof manifest
+
+    const result = verifyBroadCoverageCorrectionManifest({
+      manifest: unsafeManifest,
+      applySql,
+    })
+
+    expect(result.ok).toBe(false)
+    expect(result.failures).toContain("Manifest writesEnabled must be false")
+    expect(result.checked.writesEnabledFalse).toBe(false)
+  })
+
+  it("parses verification arguments", () => {
+    expect(() => parseBroadCoverageVerificationArgs([])).toThrow("--manifest is required")
+    expect(() => parseBroadCoverageVerificationArgs(["--manifest"])).toThrow("--manifest requires a value")
+    expect(() => parseBroadCoverageVerificationArgs(["--manifest", "/tmp/manifest.json", "--apply"])).toThrow(
+      "Unknown argument: --apply"
+    )
+    expect(parseBroadCoverageVerificationArgs(["--manifest", "/tmp/manifest.json"])).toEqual({
+      manifestPath: "/tmp/manifest.json",
     })
   })
 })

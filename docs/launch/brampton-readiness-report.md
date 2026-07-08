@@ -52,6 +52,8 @@ Branch: `main` after PR #33 merge
 - 2026-07-08: The broad Ontario/Canada Brampton smoke did not return expected broad records. Read-only production inspection showed records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have production `coverage` backfilled as local `kingston-on`, while repo JSON marks those services as broader `scope` values. This is a separate production data parity gap and is not fixed by rolling back the seven Brampton rows.
 - 2026-07-08: Prepared the exact seven-ID data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md` for approval only. It was not executed.
 - 2026-07-08: Captured a fresh read-only production coverage snapshot with 203 rows and generated dry-run broad-coverage correction SQL, rollback SQL, and a manifest with SHA-256 hashes. The dry run selected 72 existing broad records, 49 provincial and 23 national. Guardrails confirmed the SQL updates only `scope`, `primary_place_id`, and `coverage`, has exact 72-row assertions, and references no Brampton launch IDs. Production write was not executed; see `docs/launch/brampton-broad-coverage-correction-approval.md`.
+- 2026-07-08: Added and ran the broad-coverage manifest verifier. `npm run sync:broad-coverage:verify -- --manifest /tmp/careconnect-broad-coverage-correction-manifest.json` returned `ok: true`, confirmed 72 reviewed IDs, matched apply and rollback SQL SHA-256 values, matched apply and rollback SQL guardrails, and confirmed `writesEnabled: false`.
+- 2026-07-08: Reconfirmed production state read-only after verifier prep. Public health returned healthy at `version: "d7cc6e4"`. Supabase read-only checks found all seven Brampton rows still present with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings. A reviewed broad-record sample found 1 of 5 sampled IDs already broad-shaped, confirming the 72-record broad correction remains unapplied.
 - 2026-07-08: Rechecked the private/shared operations source of truth for CareConnect restore/provider proof. Public-safe finding remains: a CareConnect restore/provider proof target is planned but not recorded as complete, and no safe autonomous restore/provider proof runner was found for this repo. Reindex readiness is separately closed and auth/admin smoke remains synthetic-config gated; neither substitutes for restore/provider proof.
 
 ## Findings
@@ -69,9 +71,10 @@ Branch: `main` after PR #33 merge
 - Branch diff reviewed: pass. Changes are scoped to multi-city foundation code, search/UI contracts, public docs, migration, tests, readiness artifacts, and approved Brampton live data.
 - Critical contracts reviewed: pass. `PlaceId` uses stable IDs, explicit `coverage` takes precedence, local and server search accept `placeId`, selected-place ranking includes a local/regional coverage preference, OpenAPI matches the implemented coverage shape, and the search API keeps `no-store` for query/location/open-now/place-filtered searches.
 - Existing data comparison: pass. Structured comparison against `HEAD:data/services.json` confirmed 196 existing records were unchanged, with seven Brampton records added and no removals.
-- Targeted Vitest suite: pass, 15 files and 230 tests passed.
+- Targeted Vitest suite: pass, 15 files and 230 tests passed in the original Brampton readiness pass.
+- Autonomous closeout targeted suite: pass, `npm test -- tests/scripts/broad-coverage-production-correction.test.ts tests/api/v1/search-api.test.ts tests/hooks/useServices.test.ts tests/lib/places/coverage.test.ts --run`, 4 files and 53 tests passed on 2026-07-08.
 - Brampton promotion suite: pass, 5 files and 39 tests passed.
-- Full Vitest suite: pass, 216 files and 1703 tests passed, 24 skipped.
+- Full Vitest suite: pass, 218 files and 1730 tests passed, 24 skipped on 2026-07-08.
 - Lint: pass, `npm run lint`.
 - Type check: pass, `npm run type-check`.
 - Format check: pass, `npm run format:check`.
@@ -82,10 +85,10 @@ Branch: `main` after PR #33 merge
 - Embedding consistency check: pass, 203 services, 203 embeddings, 384 dimensions.
 - Build: pass, `SKIP_EMBEDDINGS=1 npm run build`; Next.js production build completed and postbuild embedding generation was intentionally skipped.
 - Whitespace diff check: pass, `git diff --check`.
-- Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests.
+- Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests, rerun on 2026-07-08.
 - Strict a11y regression: pass, `npx playwright test tests/e2e/accessibility-regression.spec.ts --project=chromium`, 5 Chromium tests.
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
-- DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack.
+- DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack, rerun on 2026-07-08.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
 - Production approval packet: prepared; migration, deployment, and seven-row production data sync applied after approval; broad-record coverage correction dry-run is prepared and remains separately approval-gated.
 - Production data sync: applied after approval for exactly seven Brampton L1 records; post-sync DB and core API smokes completed.
@@ -167,6 +170,7 @@ Branch: `main` after PR #33 merge
 - Post-deploy data gap check: pass. Production has 0 rows for the seven approved Brampton IDs, so Brampton selected-place searches correctly return empty results until the seven-row data sync is approved and applied.
 - Post-sync data check: pass for the approved seven Brampton rows. Production has all seven approved IDs, all seven with Brampton primary place, explicit coverage, null legacy scope, and embeddings.
 - Post-sync broad coverage check: follow-up required. Production broad records inspected during the smoke still carry Kingston-local coverage, so broad Ontario/Canada reuse in Brampton needs a separate approved correction. Dry-run correction prep selected 72 broad records for approval.
+- Broad coverage manifest verification: pass. The verifier command confirmed the prepared apply SQL, rollback SQL, manifest hashes, guardrails, reviewed ID count, and dry-run-only flag before any approval-gated production write.
 
 ## Final Readiness Decision
 

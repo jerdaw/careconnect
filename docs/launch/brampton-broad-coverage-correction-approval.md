@@ -87,6 +87,18 @@ Manifest path:
 
 The manifest records `writesEnabled: false`, the 72-ID reviewed set, SQL byte counts, SQL SHA-256 hashes, and guardrail facts for the generated apply and rollback SQL.
 
+Manifest verifier:
+
+```bash
+source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
+npm run sync:broad-coverage:verify -- \
+  --manifest /tmp/careconnect-broad-coverage-correction-manifest.json
+```
+
+Latest verifier result on 2026-07-08: pass, `ok: true`, 72 IDs checked, apply and rollback SQL SHA-256 values matched, apply and rollback guardrails matched, and `writesEnabled` was confirmed false.
+
+Do not apply production SQL unless the manifest verifier returns `ok: true` immediately before execution.
+
 The update assignment in both SQL files is limited to:
 
 ```sql
@@ -172,7 +184,7 @@ coverage = updates.coverage
 
 ## Post-Approval Execution Plan
 
-After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and verify the apply SQL SHA-256 still matches `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee`. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
+After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and run the manifest verifier. The verifier must confirm the apply SQL SHA-256 still matches `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee`, the rollback SQL SHA-256 still matches `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665`, and both SQL files still match the recorded guardrails. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
 
 The transaction must abort if it cannot prove exactly 72 reviewed rows match the intended post-update values.
 
