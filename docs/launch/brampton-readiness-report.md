@@ -77,7 +77,7 @@ Branch: `main` after PR #33 merge
 - Targeted Vitest suite: pass, 15 files and 230 tests passed in the original Brampton readiness pass.
 - Autonomous closeout targeted suite: pass, `npm test -- tests/scripts/broad-coverage-production-correction.test.ts tests/api/v1/search-api.test.ts tests/hooks/useServices.test.ts tests/lib/places/coverage.test.ts --run`, 4 files and 53 tests passed on 2026-07-08.
 - Brampton promotion suite: pass, 5 files and 39 tests passed.
-- Full Vitest suite: pass, 218 files and 1730 tests passed, 24 skipped on 2026-07-08.
+- Full Vitest suite: pass, 218 files and 1732 tests passed, 24 skipped on 2026-07-08.
 - Lint: pass, `npm run lint`.
 - Type check: pass, `npm run type-check`.
 - Format check: pass, `npm run format:check`.
@@ -93,7 +93,7 @@ Branch: `main` after PR #33 merge
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack, rerun on 2026-07-08.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
-- Production approval packet: prepared; migration, deployment, and seven-row production data sync applied after approval; broad-record coverage correction dry-run is prepared and remains separately approval-gated.
+- Production approval packet: prepared; migration, deployment, seven-row production data sync, and broad-record coverage correction applied after approval.
 - Production data sync: applied after approval for exactly seven Brampton L1 records; post-sync DB and core API smokes completed.
 - Future verification queue: prepared as draft-only; no additional Brampton records promoted.
 
@@ -103,7 +103,7 @@ Branch: `main` after PR #33 merge
 - Production migration was applied after explicit approval. The application deployment was performed on 2026-07-08 and health checks passed.
 - Live Supabase schema inspection completed through the Supabase CLI and authenticated Supabase tooling. The Brampton coverage migration is applied in production.
 - Production data inspection confirmed the seven approved Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
-- Existing production broad records still need a separate approved data correction because the migration backfilled several repo-broad records as Kingston-local from the previous live values. Apply and rollback SQL have been prepared from a read-only production snapshot but not executed.
+- Existing production broad records were corrected after approval because the migration had backfilled several repo-broad records as Kingston-local from the previous live values. Rollback SQL remains prepared but is not indicated and must not be executed without explicit approval.
 - Provider-assisted CareConnect restore evidence has been received from Supabase Support and post-restore checks passed. Recurring autonomous restore-proof automation remains a private-ops hardening follow-up.
 
 ## Browser And Accessibility QA
