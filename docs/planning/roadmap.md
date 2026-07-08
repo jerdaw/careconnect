@@ -91,14 +91,15 @@ Brampton is the exception now in progress because it is a bounded, approved city
 
 ## What To Do Now
 
-1. Decide whether to complete CareConnect restore/provider proof before migration approval or explicitly accept the current backup/rollback risk.
-2. Decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
-3. After migration approval, run post-migration checks, request deploy approval, and run post-deploy smoke checks.
-4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
-5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
-6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
-7. Execute the verification queue using the [2026-07-04 service freshness audit](../audits/service-freshness/2026-07-04/staleness-summary.md), starting with stale Crisis records; update service facts and provenance only after manual evidence is recorded.
-8. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
+1. Approve or reject the prepared broad Ontario/Canada production coverage correction before treating broad canonical reuse as live in Brampton selected-place production results.
+2. Complete CareConnect restore/provider proof in the private/shared operations source of truth, or keep its status explicitly recorded as an accepted hardening follow-up. Current status: planned, not recorded complete; no safe autonomous restore/provider proof runner was found on 2026-07-08.
+3. Keep Brampton land acknowledgment and official/partner wording behind explicit review.
+4. Continue deferred Brampton verification only through the same L1 workflow.
+5. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
+6. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
+7. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
+8. Execute the verification queue using the [2026-07-04 service freshness audit](../audits/service-freshness/2026-07-04/staleness-summary.md), starting with stale Crisis records; update service facts and provenance only after manual evidence is recorded.
+9. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
 
 ## Roadmap Items Kept After 2026-07-01 Closeout
 
@@ -126,7 +127,7 @@ or owner-owned items:
    - Admin-facing data-quality dashboard.
    - Browser-console follow-up only for new repeat findings from future browser QA runs.
 6. **Brampton bounded launch gates**
-   - Review completed authenticated live schema inspection and backup/rollback posture before production migration approval.
+   - Prepare and decide the broad Ontario/Canada coverage correction after the first seven Brampton rows are live.
    - Keep land acknowledgment and official/partner wording human-approved.
    - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
 
@@ -150,13 +151,13 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ## Active Work
 
-### Brampton Constrained Multi-City Launch Readiness 🔄 ACTIVE
+### Brampton Constrained Multi-City Launch Closeout 🔄 ACTIVE
 
-**Status**: Foundation, first L1 records, local QA, merge, and production DB migration implemented; deployment gate remains open
+**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, and seven-row production data sync are complete; broad-record coverage correction remains approval-gated
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
-Brampton is the next supported-place step, not a broad regional expansion. Kingston remains live. Brampton starts with a small high-confidence L1 emergency/core set and grows only through the same manual review workflow.
+Brampton is the next supported-place step, not a broad regional expansion. Kingston remains live. Brampton has a small high-confidence L1 emergency/core set and grows only through the same manual review workflow.
 
 **Current technical position**
 
@@ -167,24 +168,27 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 5. PR #33 merged the foundation to `main`; post-merge local verification passed.
 6. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed.
 7. The Brampton production DB migration was applied after owner approval; post-migration checks confirmed `primary_place_id` and `coverage` on `services` and `services_public`, complete coverage backfill for 196 production services, `services` RLS still enabled, and `services_public` still `security_invoker=true`.
+8. CareConnect `main` commit `d7cc6e4` was deployed after owner approval and public health checks passed.
+9. The seven approved Brampton L1 records were synced to production Supabase after owner approval; post-sync checks confirmed all seven are present with Brampton coverage and embeddings.
+10. Broad Ontario/Canada production coverage correction has been prepared as a dry-run only: 72 existing broad records selected from a read-only production snapshot, with apply and rollback SQL guarded to update only `scope`, `primary_place_id`, and `coverage`.
 
 **Immediate blockers**
 
-1. Human approval: deployment, land acknowledgment wording, and any official/partner wording.
-2. Backup/rollback hardening follow-up: CareConnect restore/provider proof is planned in private/shared operations material but not recorded as complete; the project owner accepted that risk for the migration.
+1. Human approval: broad Ontario/Canada production coverage correction, land acknowledgment wording, and any official/partner wording.
+2. Backup/rollback hardening follow-up: CareConnect restore/provider proof is planned in private/shared operations material but not recorded as complete; a 2026-07-08 safe check found no autonomous restore/provider proof runner, and the project owner accepted that risk for the migration.
 3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
 **Next agent-suitable work**
 
-1. After deploy approval, run Kingston, Brampton, broad-coverage, and privacy/no-query-logging smoke checks.
-2. Keep docs, tests, and data-validation evidence aligned with deployment evidence.
+1. If the broad correction is approved, apply the prepared SQL, run post-correction public smokes, and prepare rollback for approval before executing any rollback if smokes fail.
+2. Keep docs, tests, and data-validation evidence aligned with production correction evidence.
 3. Continue deferred Brampton verification only when a specific candidate is approved for the L1 workflow.
 
 **Human-gated work**
 
 1. Approve final Brampton land acknowledgment wording, if any is used publicly.
 2. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
-3. Approve deployment.
+3. Approve or reject the prepared broad-record production correction in `docs/launch/brampton-broad-coverage-correction-approval.md`.
 4. Approve future Brampton L2/L3 verification or deferred candidate promotion.
 
 **Canonical references**
@@ -193,6 +197,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 - [Brampton Rollout Checklist](../launch/brampton-rollout-checklist.md)
 - [Brampton Manual QA](../launch/brampton-manual-qa.md)
 - [Brampton Public Positioning Drafts](../launch/brampton-public-positioning-drafts.md)
+- [Brampton Broad Coverage Correction Approval Packet](../launch/brampton-broad-coverage-correction-approval.md)
 - [Multi-City Brampton Foundation Design](../superpowers/specs/2026-07-06-multi-city-brampton-foundation-design.md)
 - [Multi-City Brampton Foundation Plan](../superpowers/plans/2026-07-06-multi-city-brampton-foundation.md)
 

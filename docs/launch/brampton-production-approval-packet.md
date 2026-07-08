@@ -2,11 +2,11 @@
 
 Date: 2026-07-07
 Updated: 2026-07-08
-Status: migration, deployment, and seven-record Brampton production data sync approved/applied; broad-record coverage correction remains separate
+Status: migration, deployment, and seven-record Brampton production data sync approved/applied; broad-record coverage correction dry-run prepared but not applied
 
 ## Decision Needed
 
-Approve or reject a separate production data correction for existing broad Ontario/Canada records that were backfilled as Kingston-local during migration.
+Approve or reject the separate production data correction for existing broad Ontario/Canada records that were backfilled as Kingston-local during migration. The dry-run approval packet is `docs/launch/brampton-broad-coverage-correction-approval.md`.
 
 Approve or reject executing the prepared seven-ID Brampton data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md`. Current recommendation: do not roll back unless the intended outcome is to remove Brampton public results, because rollback would not fix the broad-record coverage gap.
 
@@ -26,6 +26,7 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - The seven approved Brampton IDs are present in production `services` with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
 - Live Brampton selected-place searches return the approved seven-record first-launch set.
 - A post-sync broad-service smoke found that existing production broad records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have `coverage` backfilled as local `kingston-on`; this needs a separate approved correction.
+- A read-only production snapshot found 203 rows and generated dry-run SQL for 72 broad-record corrections: 49 provincial and 23 national. The prepared SQL updates only `scope`, `primary_place_id`, and `coverage`, references no Brampton launch IDs, and has a prepared rollback SQL file.
 - The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
@@ -35,9 +36,11 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - The approving human explicitly authorizes any seven-ID Brampton data rollback.
 - A data correction owner and decision path are identified for any follow-up production data write.
 
+The required approval text for the broad-record correction is recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
+
 ## Backup And Rollback Posture
 
-Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific proof is not yet recorded as complete. The project owner explicitly accepted this risk for the Brampton migration after the preflight checks passed. Complete the proof as follow-up hardening.
+Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific restore/provider proof is not recorded as complete. A 2026-07-08 safe private-source check found no autonomous restore/provider proof runner for CareConnect. The project owner explicitly accepted this risk for the Brampton migration after the preflight checks passed. Complete the proof as follow-up hardening through the private/shared operations workflow.
 
 ## Read-Only Pre-Approval Commands
 
@@ -142,9 +145,29 @@ The bounded sync helper selects these exact IDs from `data/services.json`, attac
 - Public search introduces no raw user query logging or tracking; the search route records only boolean/length metadata through existing performance tracking.
 - Broad Ontario/Canada records did not appear in Brampton selected-place smokes because several existing production broad records still carry Kingston-local coverage. This is a separate production data correction from the seven Brampton-row sync.
 
+## Broad Coverage Correction Prep
+
+Prepared artifacts:
+
+- Approval packet: `docs/launch/brampton-broad-coverage-correction-approval.md`
+- Read-only snapshot rows: `/tmp/careconnect-production-services-coverage-snapshot.rows.json`
+- Apply SQL: `/tmp/careconnect-broad-coverage-correction.sql`
+- Rollback SQL: `/tmp/careconnect-broad-coverage-rollback.sql`
+
+Dry-run summary:
+
+- 203 production rows read.
+- 72 existing broad records selected for correction.
+- 49 provincial records and 23 national records.
+- Generated SQL updates only `scope`, `primary_place_id`, and `coverage`.
+- Generated SQL has exact 72-row assertions.
+- Generated SQL references no `brampton-` IDs.
+- Production write was not executed.
+
 ## Rollback Boundaries
 
 - Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
 - Data correction must use a follow-up reviewed data commit or an explicitly approved production correction.
 - The prepared seven-ID Brampton data rollback is in `docs/launch/brampton-seven-id-data-rollback-prep.md` and was not executed.
+- The broad-record correction rollback SQL is prepared locally but must not be executed without explicit approval if post-correction smoke checks fail.
 - Schema rollback requires separate database rollback approval.

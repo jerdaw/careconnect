@@ -5,6 +5,12 @@ Status: Brampton launch direction approved; gated sections remain review-only
 
 These notes record the approved public positioning direction for the Brampton first launch set. Land acknowledgment wording, official relationship wording, and production rollout copy remain gated until separately reviewed.
 
+Detailed follow-up packets:
+
+- `docs/launch/brampton-land-acknowledgment-review.md`
+- `docs/launch/brampton-partner-source-wording-review.md`
+- `docs/launch/brampton-broad-coverage-correction-approval.md`
+
 ## Naming Default
 
 - Public umbrella name: `CareConnect`.
@@ -60,6 +66,8 @@ Avoid:
 
 Do not publish Brampton-specific land acknowledgment wording until a human reviewer approves sources and wording.
 
+Detailed review packet: `docs/launch/brampton-land-acknowledgment-review.md`.
+
 Source review completed on 2026-07-07:
 
 - [City of Brampton Land Acknowledgement](https://www.brampton.ca/EN/City-Hall/Equity-Office/Pages/Land-Acknowledgement.aspx): names the Mississaugas of the Credit, Haudenosaunee, and Wendat Nations; identifies the Ajetance Purchase, Treaty 19, 1818.
@@ -89,6 +97,8 @@ Approval requirements:
 - [ ] Wording fits the public product context and is not treated as a decorative footer.
 
 ## Partner Page Direction
+
+Detailed wording review packet: `docs/launch/brampton-partner-source-wording-review.md`.
 
 Recommended structure:
 

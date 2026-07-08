@@ -20,6 +20,7 @@
 - [x] Approve production migration.
 - [x] Approve deployment.
 - [x] Approve syncing the seven approved Brampton L1 rows into production Supabase.
+- [ ] Approve broad Ontario/Canada production coverage correction.
 - [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
 ## Data Launch After Approval
@@ -81,7 +82,9 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Smoke test Brampton selected-place behavior before data sync: valid empty result set, confirming rows are not live yet.
 - [x] Sync the seven approved Brampton L1 rows into production Supabase after explicit approval.
 - [x] Smoke test Brampton selected-place behavior after data sync.
-- [ ] Smoke test broad Ontario/Canada services after data sync: blocked by existing production broad-record coverage values backfilled as Kingston-local; requires a separate approved production data correction.
+- [x] Prepare broad Ontario/Canada coverage correction dry-run and rollback SQL from a read-only production snapshot; see `docs/launch/brampton-broad-coverage-correction-approval.md`.
+- [ ] Apply broad Ontario/Canada coverage correction after explicit approval.
+- [ ] Smoke test broad Ontario/Canada services after correction: currently blocked by approval-gated production data correction.
 - [x] Confirm no user search logging was introduced.
 
 ## Rollback
@@ -89,10 +92,12 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [ ] Revert application deployment to prior release.
 - [ ] If data records caused the issue, remove or correct the approved Brampton records in a follow-up data commit.
 - [x] Prepare exact seven-ID data rollback for approval after the broad-service post-sync smoke miss; see `docs/launch/brampton-seven-id-data-rollback-prep.md`. Do not execute without explicit approval.
+- [x] Prepare broad-record correction rollback SQL. Do not execute without explicit approval after a failed approved correction smoke.
 - [ ] Do not roll back production schema without explicit database rollback approval.
 
 ## Post-Launch
 
 - [ ] Monitor feedback channels.
+- [ ] Complete CareConnect restore/provider proof through the private/shared operations workflow; current public-safe status is planned, not recorded complete.
 - [ ] Use `data/drafts/brampton-on/reviews/2026-07-07-next-verification-queue.md` for L2/L3 and deferred-candidate sequencing.
 - [ ] Expand Brampton only through the same L1 review workflow.

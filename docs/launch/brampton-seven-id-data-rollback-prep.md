@@ -9,6 +9,8 @@ The approved seven-record Brampton data sync completed, and Brampton selected-pl
 
 This rollback is prepared only because the production sync approval required an exact seven-ID rollback path if post-sync smoke checks failed. Do not execute it without explicit human approval.
 
+Current recommendation: do not execute this rollback unless the intended outcome is to remove Brampton public results. The appropriate follow-up for broad canonical reuse is the separately approval-gated broad coverage correction in `docs/launch/brampton-broad-coverage-correction-approval.md`.
+
 ## Scope
 
 Rollback would delete only these seven rows from production `public.services`:

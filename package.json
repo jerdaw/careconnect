@@ -39,6 +39,7 @@
     "normalize:services": "node --import tsx scripts/normalize-services.ts",
     "sync:brampton:dry-run": "node --import tsx scripts/sync-brampton-production-data.ts --dry-run",
     "sync:brampton:apply": "node --import tsx scripts/sync-brampton-production-data.ts --apply",
+    "sync:broad-coverage:prepare": "node --import tsx scripts/prepare-broad-coverage-production-correction.ts",
     "ingest:import-response": "node --import tsx scripts/ingest/import-response.ts",
     "prepare": "husky",
     "bilingual-check": "node --import tsx scripts/bilingual-audit.ts",
