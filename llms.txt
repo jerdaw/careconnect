@@ -1405,7 +1405,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 - **Languages**: 7 locales at translation-key parity
 - **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
 - **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed L1 first launch set; deferred Brampton candidates remain draft-only until the same L1 workflow approves them.
-- **Brampton production gate**: restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; authenticated live Supabase schema inspection is complete; production migration remains unapplied and approval-gated.
+- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; authenticated live Supabase schema inspection is complete; production migration remains unapplied and approval-gated.
 - **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. Land acknowledgment and official/partner wording remain approval-gated, with Brampton source research recorded in launch docs.
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
@@ -1467,8 +1467,8 @@ Brampton is the exception now in progress because it is a bounded, approved city
 
 ## What To Do Now
 
-1. Review the Brampton branch for merge approval; the remaining Brampton quality follow-ups are approval/rollout gates rather than repo-local QA blockers.
-2. Decide whether to complete CareConnect restore/provider proof before migration approval or explicitly accept the current backup/rollback risk, then decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
+1. Decide whether to complete CareConnect restore/provider proof before migration approval or explicitly accept the current backup/rollback risk.
+2. Decide whether to approve the Brampton production migration now that read-only live schema preflight is complete.
 3. After migration approval, run post-migration checks, request deploy approval, and run post-deploy smoke checks.
 4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
@@ -1528,7 +1528,7 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ### Brampton Constrained Multi-City Launch Readiness 🔄 ACTIVE
 
-**Status**: Foundation, first L1 records, and local QA implemented; production launch gates remain open
+**Status**: Foundation, first L1 records, local QA, and merge implemented; production launch gates remain open
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
@@ -1540,11 +1540,12 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 2. Seven Brampton L1 records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
 3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
 4. Browser a11y, strict Axe regression coverage, desktop/tablet/mobile visual QA, and DB smoke now run locally via user-space dependencies; all passed on 2026-07-07.
-5. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed; migration remains unapplied.
+5. PR #33 merged the foundation to `main`; post-merge local verification passed.
+6. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed; migration remains unapplied.
 
 **Immediate blockers**
 
-1. Human approval: production migration, deploy/merge, land acknowledgment wording, and any official/partner wording.
+1. Human approval: production migration, deployment, land acknowledgment wording, and any official/partner wording.
 2. Backup/rollback posture decision before production migration: CareConnect restore/provider proof is planned in private/shared operations material but not recorded as complete.
 3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
