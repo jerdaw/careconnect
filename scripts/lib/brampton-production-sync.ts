@@ -93,7 +93,10 @@ export function buildBramptonProductionSyncPlan(input: {
       throw new Error(`Missing 384-dimensional embedding for approved Brampton service: ${service.id}`)
     }
 
-    return mapServiceToDatabaseUpsert({ ...service, embedding })
+    return {
+      ...mapServiceToDatabaseUpsert({ ...service, embedding }),
+      scope: null,
+    }
   })
 
   return {

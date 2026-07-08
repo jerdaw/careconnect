@@ -62,6 +62,7 @@ describe("Brampton production sync planner", () => {
       const row = plan.rows.find((candidate) => candidate.id === id)
 
       expect(hasBramptonCoverage(service)).toBe(true)
+      expect(row?.scope).toBeNull()
       expect(row?.primary_place_id).toBe("brampton-on")
       expect(row?.coverage).toEqual(service.coverage)
       expect(Array.isArray(row?.embedding)).toBe(true)

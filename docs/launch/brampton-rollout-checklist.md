@@ -19,7 +19,7 @@
 - [ ] Approve any partner or official relationship wording.
 - [x] Approve production migration.
 - [x] Approve deployment.
-- [ ] Approve syncing the seven approved Brampton L1 rows into production Supabase.
+- [x] Approve syncing the seven approved Brampton L1 rows into production Supabase.
 - [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
 ## Data Launch After Approval
@@ -79,15 +79,16 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Deploy application.
 - [x] Smoke test Kingston search.
 - [x] Smoke test Brampton selected-place behavior before data sync: valid empty result set, confirming rows are not live yet.
-- [ ] Sync the seven approved Brampton L1 rows into production Supabase after explicit approval.
-- [ ] Smoke test Brampton selected-place behavior after data sync.
-- [ ] Smoke test broad Ontario/Canada services after data sync.
-- [ ] Confirm no user search logging was introduced.
+- [x] Sync the seven approved Brampton L1 rows into production Supabase after explicit approval.
+- [x] Smoke test Brampton selected-place behavior after data sync.
+- [ ] Smoke test broad Ontario/Canada services after data sync: blocked by existing production broad-record coverage values backfilled as Kingston-local; requires a separate approved production data correction.
+- [x] Confirm no user search logging was introduced.
 
 ## Rollback
 
 - [ ] Revert application deployment to prior release.
 - [ ] If data records caused the issue, remove or correct the approved Brampton records in a follow-up data commit.
+- [x] Prepare exact seven-ID data rollback for approval after the broad-service post-sync smoke miss; see `docs/launch/brampton-seven-id-data-rollback-prep.md`. Do not execute without explicit approval.
 - [ ] Do not roll back production schema without explicit database rollback approval.
 
 ## Post-Launch

@@ -2,11 +2,13 @@
 
 Date: 2026-07-07
 Updated: 2026-07-08
-Status: migration and deployment approved/applied; seven-record production data sync still required
+Status: migration, deployment, and seven-record Brampton production data sync approved/applied; broad-record coverage correction remains separate
 
 ## Decision Needed
 
-Approve or reject syncing the seven approved Brampton L1 service rows into production Supabase.
+Approve or reject a separate production data correction for existing broad Ontario/Canada records that were backfilled as Kingston-local during migration.
+
+Approve or reject executing the prepared seven-ID Brampton data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md`. Current recommendation: do not roll back unless the intended outcome is to remove Brampton public results, because rollback would not fix the broad-record coverage gap.
 
 ## What Is Already Confirmed
 
@@ -16,19 +18,22 @@ Approve or reject syncing the seven approved Brampton L1 service rows into produ
 - The previous provenance-sanitizing public-view migration is applied.
 - `services_public` uses `security_invoker=true`.
 - `services` has RLS enabled.
-- Existing live grants are broader than the repo baseline, so the pending migration now explicitly revokes `services_public` privileges before granting expected read access.
+- Existing live grants were broader than the repo baseline, so the applied migration explicitly revoked `services_public` privileges before granting expected read access.
 - The Brampton coverage migration was applied after owner approval using the exact reviewed SQL from `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`.
 - Supabase recorded the applied remote migration as `20260708005230 add_service_coverage_place_fields` because the normal `db push` path is blocked by historical migration drift.
 - CareConnect `main` commit `d7cc6e4` was deployed after owner approval, and public health checks returned `version: "d7cc6e4"`.
-- Read-only production checks on 2026-07-08 confirmed the seven approved Brampton IDs are not yet present in production `services`.
-- Live Brampton selected-place searches return valid empty result sets until the seven approved rows are synced.
+- The project owner approved syncing exactly the seven approved Brampton L1 rows to production Supabase.
+- The seven approved Brampton IDs are present in production `services` with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
+- Live Brampton selected-place searches return the approved seven-record first-launch set.
+- A post-sync broad-service smoke found that existing production broad records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have `coverage` backfilled as local `kingston-on`; this needs a separate approved correction.
 - The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
 
 - The exact target environment is confirmed.
-- The approving human explicitly authorizes syncing exactly the seven approved Brampton L1 rows.
-- A data correction owner and decision path are identified.
+- The approving human explicitly authorizes any broad-record production data correction.
+- The approving human explicitly authorizes any seven-ID Brampton data rollback.
+- A data correction owner and decision path are identified for any follow-up production data write.
 
 ## Backup And Rollback Posture
 
@@ -92,9 +97,9 @@ npx supabase db query --linked --output json "select count(*)::int as services_w
 - Invalid `filters.placeId` returned `400 Invalid request`.
 - Brampton selected-place `shelter` and `food` searches returned valid empty result sets before production data sync.
 
-## Seven-Record Production Data Sync Scope
+## Seven-Record Production Data Sync Completed
 
-Only these IDs are in scope:
+The approved sync upserted only these IDs:
 
 - `brampton-peel-centralized-shelter-intake`
 - `brampton-wilkinson-road-shelter`
@@ -104,18 +109,42 @@ Only these IDs are in scope:
 - `brampton-regeneration-marketplace-food-bank`
 - `brampton-knights-table-food-bank-meals`
 
-The bounded sync helper must select these exact IDs from `data/services.json`, attach existing 384-dimensional embeddings from `data/embeddings.json`, and upsert no other rows.
+Post-sync read-only database checks found:
+
+- 7 of 7 approved IDs present.
+- 7 of 7 with `primary_place_id = 'brampton-on'`.
+- 7 of 7 with `scope is null`.
+- 7 of 7 with explicit `coverage`.
+- 7 of 7 with embeddings.
+- 203 total production services and 203 services with coverage.
+
+## Seven-Record Production Data Sync Scope
+
+Only these IDs were in scope:
+
+- `brampton-peel-centralized-shelter-intake`
+- `brampton-wilkinson-road-shelter`
+- `brampton-victim-services-of-peel`
+- `brampton-safe-centre-of-peel`
+- `brampton-peel-ontario-works-emergency-assistance`
+- `brampton-regeneration-marketplace-food-bank`
+- `brampton-knights-table-food-bank-meals`
+
+The bounded sync helper selects these exact IDs from `data/services.json`, attaches existing 384-dimensional embeddings from `data/embeddings.json`, sets legacy `scope` to null for those upsert rows, and upserts no other rows.
 
 ## Application Smoke Checks After Data Sync Approval
 
-- Kingston selected-place search returns Kingston-local records and broad Ontario/Canada records.
-- Brampton selected-place search returns the approved Brampton first launch set and broad Ontario/Canada records.
-- Brampton selected-place search does not return Kingston-only local services.
-- `/api/v1/search/services` rejects invalid `filters.placeId` with `400`.
-- Public search introduces no user query logging or tracking.
+- Public health returned healthy with `version: "d7cc6e4"`.
+- Kingston selected-place food search still returned live results.
+- Brampton selected-place `shelter` and `food` searches returned the approved Brampton first launch set.
+- Brampton selected-place food search with limit 50 returned no obvious Kingston-only IDs.
+- `/api/v1/search/services` still rejects invalid `filters.placeId` with `400 Invalid request`.
+- Public search introduces no raw user query logging or tracking; the search route records only boolean/length metadata through existing performance tracking.
+- Broad Ontario/Canada records did not appear in Brampton selected-place smokes because several existing production broad records still carry Kingston-local coverage. This is a separate production data correction from the seven Brampton-row sync.
 
 ## Rollback Boundaries
 
 - Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
-- Data correction must use a follow-up reviewed data commit or an explicitly approved seven-ID production correction.
+- Data correction must use a follow-up reviewed data commit or an explicitly approved production correction.
+- The prepared seven-ID Brampton data rollback is in `docs/launch/brampton-seven-id-data-rollback-prep.md` and was not executed.
 - Schema rollback requires separate database rollback approval.

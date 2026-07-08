@@ -10,14 +10,16 @@ Branch: `main` after PR #33 merge
 - Kingston live behavior: verified by local and server search regressions.
 - Brampton first-launch behavior: verified by local and server search regressions.
 - Brampton repo service data: seven approved L1 records added to `data/services.json`.
-- Brampton production service data: pending. Production currently has 0 of the 7 approved Brampton rows.
+- Brampton production service data: seven approved L1 records synced to production Supabase after approval.
+- Broad production service coverage: follow-up required. Existing production broad Ontario/Canada records were previously backfilled as Kingston-local and do not yet serve Brampton selected-place searches.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Deployment: application release `d7cc6e4` deployed and public health checks passed.
 
 ## Approval Gates
 
 - Additional Brampton record promotions require the same L1 approval workflow.
-- Human approval required before syncing the seven approved Brampton rows into production Supabase.
+- Human approval required before any broad Ontario/Canada production coverage correction.
+- Human approval required before executing the prepared seven-ID Brampton data rollback.
 - Human approval required for land acknowledgment and partner relationship wording.
 
 ## Evidence Log
@@ -44,6 +46,11 @@ Branch: `main` after PR #33 merge
 - 2026-07-08: Independent public smoke checks confirmed `https://careconnect.ing/api/v1/health` returns healthy with `version: "d7cc6e4"`, `/` redirects to `/en`, `/en` loads, invalid `filters.placeId` returns `400`, and Kingston selected-place food search returns results.
 - 2026-07-08: Post-deploy Brampton selected-place searches for `shelter` and `food` returned valid empty result sets; authenticated read-only Supabase query confirmed none of the seven approved Brampton IDs are present in production `services`.
 - 2026-07-08: Added a bounded Brampton production data closeout plan and sync helper path. The helper selects exactly the seven approved IDs, validates Brampton coverage and 384-dimensional embeddings, defaults to dry-run, and refuses `--apply` without an explicit approval token.
+- 2026-07-08: Project owner approved syncing exactly the seven approved Brampton L1 records to production Supabase and running post-sync smoke checks.
+- 2026-07-08: Applied the seven-record production data sync through the authenticated Supabase CLI path. Post-sync DB checks found all seven approved IDs, all seven with `primary_place_id = 'brampton-on'`, all seven with `scope is null`, all seven with coverage, and all seven with embeddings. Production now has 203 services, 203 services with coverage, and 7 Brampton-primary rows.
+- 2026-07-08: Post-sync public smokes confirmed health is healthy at `version: "d7cc6e4"`, Brampton `shelter` and `food` selected-place searches return the approved seven-record first-launch set, Kingston selected-place food search still returns live results, invalid `filters.placeId` still returns `400 Invalid request`, and Brampton food search with limit 50 returned no obvious Kingston-only IDs.
+- 2026-07-08: The broad Ontario/Canada Brampton smoke did not return expected broad records. Read-only production inspection showed records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have production `coverage` backfilled as local `kingston-on`, while repo JSON marks those services as broader `scope` values. This is a separate production data parity gap and is not fixed by rolling back the seven Brampton rows.
+- 2026-07-08: Prepared the exact seven-ID data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md` for approval only. It was not executed.
 
 ## Findings
 
@@ -52,7 +59,8 @@ Branch: `main` after PR #33 merge
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
 - Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
 - Live Supabase schema migration is complete; application deployment is complete.
-- Remaining launch blocker: production Supabase still needs the seven approved Brampton L1 service rows synced after explicit approval.
+- The seven approved Brampton L1 service rows are live in production.
+- Remaining production data follow-up: broad Ontario/Canada records need a separate approved correction before Brampton selected-place results can include the intended broad canonical records.
 
 ## Technical Verification
 
@@ -77,7 +85,8 @@ Branch: `main` after PR #33 merge
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
-- Production approval packet: prepared; migration and deployment applied after approval; seven-row production data sync remains approval-gated.
+- Production approval packet: prepared; migration, deployment, and seven-row production data sync applied after approval; broad-record coverage correction remains separately approval-gated.
+- Production data sync: applied after approval for exactly seven Brampton L1 records; post-sync DB and core API smokes completed.
 - Future verification queue: prepared as draft-only; no additional Brampton records promoted.
 
 ## Technical Residual Risks
@@ -85,7 +94,8 @@ Branch: `main` after PR #33 merge
 - Browser visual QA is documented in `docs/launch/brampton-manual-qa.md`.
 - Production migration was applied after explicit approval. The application deployment was performed on 2026-07-08 and health checks passed.
 - Live Supabase schema inspection completed through the Supabase CLI and authenticated Supabase tooling. The Brampton coverage migration is applied in production.
-- Production data inspection confirmed the seven approved Brampton rows are not yet in production.
+- Production data inspection confirmed the seven approved Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
+- Existing production broad records still need a separate approved data correction because the migration backfilled several repo-broad records as Kingston-local from the previous live values.
 
 ## Browser And Accessibility QA
 
@@ -126,7 +136,7 @@ Branch: `main` after PR #33 merge
 - Scope covered: shelter/housing crisis, victim and family-violence crisis support, Ontario Works/emergency assistance, food access, newcomer support, and community health/wellness.
 - Source reachability: pass. Every source URL used by the promoted Brampton records returned HTTP 200 during this readiness pass.
 - L1 status: seven candidates were approved and promoted to live data; deferred candidates remain draft-only.
-- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated for Brampton.
+- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated in repo data. Production broad-record coverage still needs a separate approved correction before this reuse is reflected in Brampton selected-place results.
 
 ## Duplicate And Canonical Review
 
@@ -152,18 +162,21 @@ Branch: `main` after PR #33 merge
 - Post-migration data check: pass. Production has 196 services, 196 services with non-null coverage, 195 Kingston-local records with `primary_place_id = 'kingston-on'`, and one Canada-wide record with national coverage.
 - Post-migration public view check: pass. `services_public` remains a `security_invoker=true` view, and `anon`/`authenticated` have SELECT-only access to `services_public`.
 - Post-deploy data gap check: pass. Production has 0 rows for the seven approved Brampton IDs, so Brampton selected-place searches correctly return empty results until the seven-row data sync is approved and applied.
+- Post-sync data check: pass for the approved seven Brampton rows. Production has all seven approved IDs, all seven with Brampton primary place, explicit coverage, null legacy scope, and embeddings.
+- Post-sync broad coverage check: follow-up required. Production broad records inspected during the smoke still carry Kingston-local coverage, so broad Ontario/Canada reuse in Brampton needs a separate approved correction.
 
 ## Final Readiness Decision
 
 - Foundation/readiness code: merged to `main` in PR #33 after local and GitHub verification.
-- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set, pending the explicit production data-sync approval.
+- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set. The rows are live in production.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Production deployment: applied after approval; health and Kingston/API guardrail smoke checks passed.
-- Ready for Brampton public results: not yet. Production Supabase must receive the seven approved Brampton rows and pass post-sync smoke checks.
+- Ready for Brampton public results: yes for the approved first-launch set. Do not claim broad Ontario/Canada canonical reuse in Brampton production results until the separate broad-coverage data correction is approved and applied.
 
 ## Recommended Next Human Decisions
 
-1. Approve or reject syncing the seven approved Brampton L1 rows into production Supabase.
-2. Approve any land acknowledgment or official relationship wording before publication.
-3. Continue Brampton expansion through deferred L1 reviews only.
-4. Complete CareConnect restore/provider proof as follow-up hardening even though the migration risk was accepted for this release.
+1. Approve or reject a separate broad Ontario/Canada production coverage correction for existing canonical records.
+2. Approve or reject executing the prepared seven-ID Brampton data rollback. Current recommendation: do not roll back unless the desired outcome is to remove Brampton public results; rollback would not fix the broad-record coverage gap.
+3. Approve any land acknowledgment or official relationship wording before publication.
+4. Continue Brampton expansion through deferred L1 reviews only.
+5. Complete CareConnect restore/provider proof as follow-up hardening even though the migration risk was accepted for this release.
