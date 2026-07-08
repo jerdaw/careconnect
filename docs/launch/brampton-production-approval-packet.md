@@ -1,11 +1,11 @@
 # Brampton Production Approval Packet
 
 Date: 2026-07-07
-Status: approval required before any production write, migration, deploy, merge, or rollback
+Status: migration approved and applied; deployment approval still required
 
 ## Decision Needed
 
-Approve or reject applying the Brampton coverage migration and deploying the multi-city application release.
+Approve or reject deploying the multi-city application release after the Brampton coverage migration.
 
 ## What Is Already Confirmed
 
@@ -16,19 +16,19 @@ Approve or reject applying the Brampton coverage migration and deploying the mul
 - `services_public` uses `security_invoker=true`.
 - `services` has RLS enabled.
 - Existing live grants are broader than the repo baseline, so the pending migration now explicitly revokes `services_public` privileges before granting expected read access.
-- The Brampton coverage migration has not been applied.
+- The Brampton coverage migration was applied after owner approval using the exact reviewed SQL from `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`.
+- Supabase recorded the applied remote migration as `20260708005230 add_service_coverage_place_fields` because the normal `db push` path is blocked by historical migration drift.
 - The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
 
 ## Must Not Proceed Until
 
-- Backup/restore posture is either proven through the approved private operations source of truth or explicitly accepted as a known release risk by the approving human.
 - The exact target environment is confirmed.
-- The approving human explicitly authorizes the migration and deployment.
+- The approving human explicitly authorizes deployment.
 - A rollback owner and decision path are identified.
 
 ## Backup And Rollback Posture
 
-Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific proof is not yet recorded as complete. Do not treat backup/rollback posture as confirmed for Brampton production approval unless that proof is completed or the approving human explicitly accepts the risk for this release.
+Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific proof is not yet recorded as complete. The project owner explicitly accepted this risk for the Brampton migration after the preflight checks passed. Complete the proof as follow-up hardening.
 
 ## Read-Only Pre-Approval Commands
 
@@ -49,13 +49,20 @@ source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
 npx supabase db query --linked --output json "select relname, relrowsecurity from pg_class join pg_namespace on pg_namespace.oid = pg_class.relnamespace where nspname = 'public' and relname in ('services', 'services_public') order by relname;"
 ```
 
-## Migration Command
+## Migration Execution
 
-Do not run this command without explicit approval:
+The normal `npx supabase db push --linked` path was not used because dry-run output showed historical migration drift. The reviewed Brampton SQL was applied through the authenticated Supabase migration tool instead.
 
-```bash
-source ~/.nvm/nvm.sh && nvm use 22.13.1 >/dev/null
-npx supabase db push --linked
+Applied SQL source:
+
+```text
+supabase/migrations/20260706120000_add_service_coverage_place_fields.sql
+```
+
+Remote migration recorded by Supabase:
+
+```text
+20260708005230 add_service_coverage_place_fields
 ```
 
 ## Post-Migration Read-Only Checks

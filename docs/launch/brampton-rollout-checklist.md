@@ -17,7 +17,7 @@
 - [x] Approve and merge foundation branch to `main` through PR #33.
 - [ ] Approve any land acknowledgment changes.
 - [ ] Approve any partner or official relationship wording.
-- [ ] Approve production migration.
+- [x] Approve production migration.
 - [ ] Approve deployment.
 - [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
@@ -64,15 +64,16 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Confirm existing live columns match migration assumptions: `primary_place_id` and `coverage` are absent before migration.
 - [x] Confirm pending migration normalizes existing broad `services_public` grants before granting SELECT.
 - [x] Post-merge read-only Supabase preflight rerun confirmed `20260706120000` remains local-only and production still lacks `primary_place_id` and `coverage`.
-- [ ] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: CareConnect restore/provider proof is planned but not recorded as complete, so approval must either complete the proof or explicitly accept the risk.
-- [ ] Apply migration only after explicit human approval.
-- [ ] Run post-migration read-only checks for `primary_place_id`, `coverage`, public views, and search API.
+- [x] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: CareConnect restore/provider proof is planned but not recorded as complete; the project owner explicitly accepted this risk for the migration.
+- [x] Apply migration only after explicit human approval.
+- [x] Run post-migration DB read-only checks for `primary_place_id`, `coverage`, and public views.
+- [ ] Run post-deploy search API checks after deployment approval.
 
 ## Production Rollout After Approval
 
 - [x] Inspect private/shared operations source of truth for environment and release instructions.
 - [x] Perform authenticated read-only production schema preflight.
-- [ ] Apply migration.
+- [x] Apply migration.
 - [ ] Deploy application.
 - [ ] Smoke test Kingston search.
 - [ ] Smoke test Brampton selected-place behavior.
