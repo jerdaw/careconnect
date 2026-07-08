@@ -7,15 +7,15 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 
 # CareConnect: Product Roadmap
 
-> **Current Version**: v22.0 plus constrained Brampton multi-city launch readiness
-> **Next Milestone**: Brampton public-positioning decisions plus v22.0 Gate 0 C1/D4 blocker closure
+> **Current Version**: v22.0 plus constrained Brampton multi-city launch
+> **Next Milestone**: v22.0 Gate 0 C1/D4 blocker closure plus Brampton deferred-candidate review
 > **Last Updated**: 2026-07-08
 > **Platform Status**: Strategic Repositioning with bounded Brampton launch gates
 
 ## Current State
 
 - **Services**: 204 manually curated social services. Kingston remains live, and Brampton has an eight-record first launch set focused on urgent and core supports: six records at L2, with Knights Table and Ste. Louise held at L1 pending further verification.
-- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1732` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
+- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1733` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
 - **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -29,7 +29,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 - **Languages**: 7 locales at translation-key parity
 - **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
 - **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed first launch set; Ste. Louise is approved as the eighth Brampton record, six original launch records are upgraded to L2, and deferred Brampton candidates remain draft-only until the same L1 workflow approves a program-level shape.
-- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed on 2026-07-07 without sensitive-output collection; the production DB migration, application deployment, original seven-record production data sync, and broad Ontario/Canada coverage correction are applied and verified. The Ste. Louise/eight-record/L2 follow-up is approved locally and remains bounded to the Brampton sync path before production is considered current.
+- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed without sensitive-output collection; the production DB migration, application deployments, original seven-record sync, broad Ontario/Canada coverage correction, and approved eight-record/L2 follow-up are applied and verified. Production is current for the approved Brampton first-launch set.
 - **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. The About-page land/source-context wording is approved for Kingston and Brampton; official/partner wording remains approval-gated, with Brampton source research recorded in launch docs.
 - **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
 - **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
@@ -93,7 +93,7 @@ Brampton is the exception now in progress because it is a bounded, approved city
 
 1. Keep Brampton land acknowledgment and official/partner wording behind explicit review.
 2. Continue deferred Brampton verification only through the same L1 workflow.
-3. Keep the provider-assisted CareConnect restore evidence recorded in the private/shared operations source of truth. Current public-safe status: Supabase Support reported triggering a latest-backup restore on 2026-07-08, and post-restore health, schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Recurring autonomous restore-proof automation remains a hardening follow-up.
+3. Keep provider-assisted restore evidence, bounded app redeploy proof, and monitoring evidence recorded in the private/shared operations source of truth. Current public-safe status: Supabase Support reported triggering a latest-backup restore on 2026-07-08, post-restore checks passed, a bounded app redeploy proof passed, and public health/route-sweep monitoring evidence was captured. Recurring restore-proof cadence remains a hardening follow-up.
 4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
 5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
 6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
@@ -152,7 +152,7 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ### Brampton Constrained Multi-City Launch Closeout ✅ PRODUCTION COMPLETE
 
-**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, seven-row production data sync, broad-record coverage correction, and restore-evidence recording are complete; public wording and future expansion remain gated
+**Status**: Foundation, first launch records, local QA, merge, production DB migration, deployment, Brampton production data syncs, broad-record coverage correction, and restore/monitoring evidence recording are complete; official/partner wording and future expansion remain gated
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
@@ -161,24 +161,24 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 **Current technical position**
 
 1. Multi-city registry, explicit coverage, selected-place search, search API filters, OpenAPI coverage shape, DB mapping/export behavior, and Brampton regression tests are implemented.
-2. Seven Brampton L1 records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
+2. Eight Brampton records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
 3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
 4. Browser a11y, strict Axe regression coverage, desktop/tablet/mobile visual QA, and DB smoke now run locally via user-space dependencies; all passed on 2026-07-07.
 5. PR #33 merged the foundation to `main`; post-merge local verification passed.
 6. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed.
 7. The Brampton production DB migration was applied after owner approval; post-migration checks confirmed `primary_place_id` and `coverage` on `services` and `services_public`, complete coverage backfill for 196 production services, `services` RLS still enabled, and `services_public` still `security_invoker=true`.
-8. CareConnect `main` commit `d7cc6e4` was deployed after owner approval and public health checks passed.
-9. The seven approved Brampton L1 records were synced to production Supabase after owner approval; post-sync checks confirmed all seven are present with Brampton coverage and embeddings.
+8. CareConnect `main` commit `add8b2f0dbdd` was deployed after owner approval and public health checks passed.
+9. The approved Brampton records were synced to production Supabase after owner approval; post-sync checks confirmed all eight are present with Brampton coverage and embeddings, six at L2 and Knights Table plus Ste. Louise at L1.
 10. Broad Ontario/Canada production coverage correction was applied after owner approval on 2026-07-08 for the 72 reviewed existing broad records, updating only `scope`, `primary_place_id`, and `coverage`.
-11. Post-correction DB checks confirmed all 72 reviewed records match target broad coverage, with 49 provincial and 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
-12. Post-correction public smokes passed: health stayed healthy at `d7cc6e4`, Kingston food search returned results, Brampton food/crisis searches include broad Ontario/Canada records, Brampton food/shelter searches include the seven launch records, known Kingston-only records stayed out of Brampton searches, and invalid `filters.placeId` still returns `400`.
-13. Provider-assisted restore evidence was received from Supabase Support on 2026-07-08; post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed.
+11. Post-correction DB checks confirmed all 72 reviewed records match target broad coverage, with 49 provincial and 23 national records, 72 embeddings present, and 0 Brampton IDs in the correction set.
+12. Post-follow-up public smokes passed: health returned healthy at `add8b2f0dbdd`, Kingston food search returned results, Brampton food/crisis/shelter searches include applicable broad Ontario/Canada records and the approved Brampton launch records, known Kingston-only records stayed out of Brampton searches, and invalid `filters.placeId` still returns `400`.
+13. Provider-assisted restore evidence was received from Supabase Support on 2026-07-08; post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. A later bounded app redeploy proof and public health/route-sweep monitoring evidence passed and are recorded in private/shared operations material.
 
 **Immediate blockers and tracked follow-ups**
 
-1. Human approval: land acknowledgment wording and any official/partner wording.
-2. Backup/rollback hardening follow-up: provider-assisted CareConnect restore evidence is now recorded as received, with post-restore checks passed. Recurring autonomous restore-proof automation remains a private/shared-ops hardening follow-up.
-3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
+1. Human approval: any official/partner wording.
+2. Backup/rollback hardening follow-up: provider-assisted CareConnect restore evidence, bounded app redeploy proof, and public monitoring evidence are recorded in private/shared operations material. Future restore-proof cadence and any rollback-specific drill remain private/shared-ops hardening follow-ups.
+3. Deferred Brampton candidates and any future L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
 **Next agent-suitable work**
 
@@ -187,9 +187,9 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 
 **Human-gated work**
 
-1. Approve final Brampton land acknowledgment wording, if any is used publicly.
-2. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
-3. Approve future Brampton L2/L3 verification or deferred candidate promotion.
+1. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
+2. Approve future Brampton L2/L3 verification or deferred candidate promotion.
+3. Approve any rollback-specific production drill if that narrower proof is required.
 
 **Canonical references**
 

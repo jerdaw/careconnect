@@ -10,16 +10,16 @@ Branch: `main` after PR #33 merge
 - Kingston live behavior: verified by local and server search regressions.
 - Brampton first-launch behavior: verified by local and server search regressions.
 - Brampton repo service data: eight approved records in `data/services.json`; six records are L2 and Knights Table plus Ste. Louise remain L1 pending further verification.
-- Brampton production service data: original seven approved L1 records synced to production Supabase after approval; the approved eight-record/L2 follow-up is prepared for bounded production sync.
+- Brampton production service data: approved eight-record launch set synced to production Supabase after approval; six records are L2 and Knights Table plus Ste. Louise remain L1 pending further verification.
 - Broad production service coverage: applied after approval. Existing production broad Ontario/Canada records that were backfilled as Kingston-local now have broad coverage, and Brampton selected-place searches can reuse applicable broad canonical records.
 - Production migration: applied after approval; post-migration DB checks passed.
-- Deployment: application release `d7cc6e4` deployed and public health checks passed.
+- Deployment: application release `add8b2f0dbdd` deployed and public health checks passed.
 
 ## Approval Gates
 
 - Additional Brampton record promotions require the same L1 approval workflow.
 - Human approval required before any future broad Ontario/Canada production coverage correction.
-- Human approval required before executing the prepared seven-ID Brampton data rollback or any future eight-record rollback.
+- Human approval required before executing any prepared Brampton data rollback.
 - About-page land/source-context wording is approved; partner relationship wording remains approval-gated.
 
 ## Evidence Log
@@ -60,6 +60,10 @@ Branch: `main` after PR #33 merge
 - 2026-07-08: Post-correction public smokes passed. Health stayed healthy at `version: "d7cc6e4"`; Kingston food search returned results; Brampton food and crisis searches included broad Ontario/Canada records; Brampton food and shelter searches included the seven launch records; known Kingston-only records stayed out of Brampton searches; invalid `filters.placeId` still returned `400`.
 - 2026-07-08: Owner approved proceeding with the remaining autonomous closeout. Ste. Louise was promoted from draft to a live L1 Brampton food-bank record; Peel Centralized Shelter Intake, Wilkinson Road Shelter, Victim Services of Peel, Safe Centre of Peel, Region of Peel Ontario Works/Emergency Assistance, and Regeneration Marketplace Food Bank were upgraded to L2 based on official plus secondary source review; Knights Table remains L1 pending address/program-split resolution. No record was upgraded to L3.
 - 2026-07-08: About-page land/source-context wording was approved and updated to include Brampton source context while explicitly avoiding endorsement, consultation, or approval claims.
+- 2026-07-08: Approved eight-record/L2 production sync completed through the bounded Brampton data path. Post-sync DB checks confirmed 204 total production services, eight Brampton-primary rows, explicit coverage and embeddings for all eight approved Brampton IDs, six Brampton records at L2, and Knights Table plus Ste. Louise at L1. Prepared rollback SQL was not executed.
+- 2026-07-08: CareConnect `main` commit `add8b2f0dbdd` was deployed after owner approval. Public health returned healthy with `version: "add8b2f0dbdd"`.
+- 2026-07-08: Post-deploy public smokes passed: Brampton food search included Ste. Louise, Knights Table, Regeneration, applicable broad Ontario/Canada records, and the other Brampton launch records; Brampton shelter search included shelter records; Kingston food search still returned results; invalid `filters.placeId` still returned `400`; `/en/about` contained the approved source-context wording.
+- 2026-07-08: Private/shared operations evidence recorded provider-assisted restore evidence, bounded app redeploy proof, and public health/route-sweep monitoring evidence. Public docs intentionally omit project identifiers, private runtime paths, support-message details, and operator procedure details.
 
 ## Findings
 
@@ -68,7 +72,7 @@ Branch: `main` after PR #33 merge
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
 - Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
 - Live Supabase schema migration is complete; application deployment is complete.
-- The repo now contains eight approved Brampton service rows. Production still requires the bounded approved Brampton sync follow-up before the live database is current with Ste. Louise and the L2 updates.
+- The repo and production Supabase now contain the approved eight-record Brampton launch set, including Ste. Louise and the L2 updates.
 - Broad Ontario/Canada production data follow-up: complete. The approved correction is applied and Brampton selected-place results now include applicable broad canonical records.
 
 ## Technical Verification
@@ -79,15 +83,15 @@ Branch: `main` after PR #33 merge
 - Targeted Vitest suite: pass, 15 files and 230 tests passed in the original Brampton readiness pass.
 - Autonomous closeout targeted suite: pass, `npm test -- tests/scripts/broad-coverage-production-correction.test.ts tests/api/v1/search-api.test.ts tests/hooks/useServices.test.ts tests/lib/places/coverage.test.ts --run`, 4 files and 53 tests passed on 2026-07-08.
 - Brampton promotion suite: pass, 5 files and 39 tests passed.
-- Full Vitest suite: pass, 218 files and 1732 tests passed, 24 skipped on 2026-07-08.
+- Full Vitest suite: pass, 218 files and 1733 tests passed, 24 skipped on 2026-07-08 after the eight-record follow-up.
 - Lint: pass, `npm run lint`.
 - Type check: pass, `npm run type-check`.
 - Format check: pass, `npm run format:check`.
 - i18n audit: pass, 7 locales with 1219 keys each and no missing or extra keys.
-- Reference check: pass across 151 files.
-- Data validation: pending rerun after the eight-record/L2 follow-up.
-- DB validation alias: pending rerun after the eight-record/L2 follow-up.
-- Embedding consistency check: pending rerun after the eight-record/L2 follow-up.
+- Reference check: pass across 156 files after the eight-record follow-up.
+- Data validation: pass, 204 services validated after the eight-record/L2 follow-up.
+- DB validation alias: pass, 204 services validated after the eight-record/L2 follow-up.
+- Embedding consistency check: pass, 204 services and 204 embeddings after the eight-record/L2 follow-up.
 - Build: pass, `SKIP_EMBEDDINGS=1 npm run build`; Next.js production build completed and postbuild embedding generation was intentionally skipped.
 - Whitespace diff check: pass, `git diff --check`.
 - Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests, rerun on 2026-07-08.
@@ -95,8 +99,8 @@ Branch: `main` after PR #33 merge
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack, rerun on 2026-07-08.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
-- Production approval packet: prepared; migration, deployment, original seven-row production data sync, and broad-record coverage correction applied after approval.
-- Production data sync: original seven applied after approval; eight-record/L2 follow-up pending bounded sync, rollback prep, and post-sync smokes.
+- Production approval packet: prepared and updated; migration, deployments, original seven-row production data sync, broad-record coverage correction, approved eight-record/L2 follow-up, and private/shared-ops restore/monitoring evidence were completed after approval.
+- Production data sync: original seven applied after approval; eight-record/L2 follow-up applied after approval with rollback SQL prepared and post-sync smokes passed.
 - Future verification queue: updated with 2026-07-08 L2 decisions; BMCC, CCS, and PCHS remain deferred.
 
 ## Technical Residual Risks
@@ -104,9 +108,9 @@ Branch: `main` after PR #33 merge
 - Browser visual QA is documented in `docs/launch/brampton-manual-qa.md`.
 - Production migration was applied after explicit approval. The application deployment was performed on 2026-07-08 and health checks passed.
 - Live Supabase schema inspection completed through the Supabase CLI and authenticated Supabase tooling. The Brampton coverage migration is applied in production.
-- Production data inspection previously confirmed the seven approved Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings. The Ste. Louise/L2 follow-up still requires a bounded production sync.
+- Production data inspection confirmed the approved eight Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, embeddings, and the reviewed L1/L2 levels.
 - Existing production broad records were corrected after approval because the migration had backfilled several repo-broad records as Kingston-local from the previous live values. Rollback SQL remains prepared but is not indicated and must not be executed without explicit approval.
-- Provider-assisted CareConnect restore evidence has been received from Supabase Support and post-restore checks passed. Recurring autonomous restore-proof automation remains a private-ops hardening follow-up.
+- Provider-assisted CareConnect restore evidence has been received from Supabase Support and post-restore checks passed. A bounded app redeploy proof and public route monitoring evidence are recorded in private/shared operations material. Recurring restore-proof cadence remains a private-ops hardening follow-up.
 
 ## Browser And Accessibility QA
 
@@ -173,23 +177,24 @@ Branch: `main` after PR #33 merge
 - Post-migration data check: pass. Production has 196 services, 196 services with non-null coverage, 195 Kingston-local records with `primary_place_id = 'kingston-on'`, and one Canada-wide record with national coverage.
 - Post-migration public view check: pass. `services_public` remains a `security_invoker=true` view, and `anon`/`authenticated` have SELECT-only access to `services_public`.
 - Post-deploy data gap check: pass. Production has 0 rows for the seven approved Brampton IDs, so Brampton selected-place searches correctly return empty results until the seven-row data sync is approved and applied.
-- Post-sync data check: pass for the approved seven Brampton rows. Production has all seven approved IDs, all seven with Brampton primary place, explicit coverage, null legacy scope, and embeddings.
+- Post-sync data check: pass for the original seven Brampton rows. Production had all seven approved IDs, all seven with Brampton primary place, explicit coverage, null legacy scope, and embeddings.
 - Post-sync broad coverage check: corrected after approval. The production write updated 72 reviewed broad records, with 49 provincial records and 23 national records.
 - Broad coverage manifest verification: pass. The verifier command confirmed the prepared apply SQL, rollback SQL, manifest reviewed-ID set, byte counts, hashes, guardrails, reviewed ID count, and dry-run-only flag before any approval-gated production write.
-- Post-correction broad coverage DB check: pass. All 72 reviewed IDs now match target broad coverage, all 72 still have embeddings, Brampton remains at 7 primary rows, and no Brampton IDs were in the correction set.
-- Post-correction broad coverage public smoke: pass. Brampton food, crisis, and 211 searches include applicable broad records, and checked Kingston-only records remain excluded from Brampton selected-place results.
+- Post-correction broad coverage DB check: pass. All 72 reviewed IDs now match target broad coverage, all 72 still have embeddings, and no Brampton IDs were in the correction set.
+- Eight-record/L2 follow-up data check: pass. Production has all eight approved Brampton IDs, all eight with Brampton primary place, explicit coverage, null legacy scope, and embeddings; six are L2 and Knights Table plus Ste. Louise remain L1.
+- Post-follow-up public smoke: pass. Brampton food, Ste. Louise, and shelter searches include the approved records plus applicable broad records; Kingston search still works; invalid `filters.placeId` still returns `400`.
 
 ## Final Readiness Decision
 
 - Foundation/readiness code: merged to `main` in PR #33 after local and GitHub verification.
-- Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set. The rows are live in production.
+- Ready to publish Brampton live records: yes for the approved eight-record first launch set. The rows are live in production.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Production deployment: applied after approval; health and Kingston/API guardrail smoke checks passed.
 - Ready for Brampton public results: yes for the approved first-launch set and applicable broad Ontario/Canada canonical reuse.
 
 ## Recommended Next Human Decisions
 
-1. Approve or reject executing the prepared seven-ID Brampton data rollback. Current recommendation: do not roll back unless the desired outcome is to remove Brampton public results.
-2. Approve any land acknowledgment or official relationship wording before publication.
+1. Do not execute the prepared Brampton data rollback unless a future incident specifically requires removing or reverting the Brampton records and the rollback is separately approved.
+2. Approve any future official relationship or partner wording before publication.
 3. Continue Brampton expansion through deferred L1 reviews only.
-4. Keep the provider-assisted restore evidence in the private/shared operations source of truth, and add recurring autonomous restore-proof automation only as follow-up hardening.
+4. Keep provider-assisted restore evidence, app redeploy proof, and monitoring evidence in the private/shared operations source of truth; use recurring restore-proof checks only as follow-up hardening.

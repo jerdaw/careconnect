@@ -9,7 +9,7 @@ This folder is for Brampton expansion research drafts and review artifacts only.
 - Minimum visible threshold: L1, current within the active freshness window
 - Kingston remains live while Brampton records are reviewed
 
-2026-07-07 update: the first seven Brampton L1 records were approved and promoted to `data/services.json`. The draft files remain here as provenance and review artifacts.
+2026-07-08 update: the approved Brampton launch set now has eight live records in `data/services.json`. Six records are L2; Knights Table and Ste. Louise remain L1 pending further verification. The draft files remain here as provenance and review artifacts.
 
 ## Draft Rules
 

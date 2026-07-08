@@ -82,7 +82,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Smoke test Kingston search.
 - [x] Smoke test Brampton selected-place behavior before data sync: valid empty result set, confirming rows are not live yet.
 - [x] Sync the original seven approved Brampton L1 rows into production Supabase after explicit approval.
-- [ ] Sync the approved eight-record Brampton follow-up into production Supabase after the bounded helper, rollback SQL, and post-sync smokes are ready.
+- [x] Sync the approved eight-record Brampton follow-up into production Supabase after the bounded helper and rollback SQL were ready.
 - [x] Smoke test Brampton selected-place behavior after data sync.
 - [x] Prepare broad Ontario/Canada coverage correction dry-run and rollback SQL from a read-only production snapshot; see `docs/launch/brampton-broad-coverage-correction-approval.md`.
 - [x] Verify the prepared broad Ontario/Canada correction manifest and SQL artifacts with `npm run sync:broad-coverage:verify`; latest result on 2026-07-08 was `ok: true`.
@@ -96,7 +96,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - Application rollback is not indicated after the successful deployment and smoke checks. If a future incident requires it, revert only after explicit approval through the documented app rollback path.
 - If approved Brampton data records cause a future issue, remove or correct them only through an approved follow-up data commit or an explicitly approved production correction.
 - [x] Prepare exact seven-ID data rollback for approval after the broad-service post-sync smoke miss; see `docs/launch/brampton-seven-id-data-rollback-prep.md`. Do not execute without explicit approval.
-- [ ] Prepare exact eight-record follow-up rollback SQL before applying the Ste. Louise/L2 production sync. Do not execute rollback without explicit approval.
+- [x] Prepare exact eight-record follow-up rollback SQL before applying the Ste. Louise/L2 production sync. Do not execute rollback without explicit approval.
 - [x] Prepare broad-record correction rollback SQL. Do not execute without explicit approval after a failed approved correction smoke.
 - Production schema rollback is not indicated and must not run without explicit database rollback approval.
 
@@ -104,6 +104,9 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 - [ ] Monitor feedback channels.
 - [x] Record provider-assisted CareConnect restore evidence through the private/shared operations workflow. Current public-safe status: latest-backup restore evidence received from Supabase Support on 2026-07-08, with post-restore checks passed.
-- [ ] Add recurring autonomous CareConnect restore-proof automation through the private/shared operations workflow, if desired as follow-up hardening.
+- [x] Record bounded CareConnect app redeploy proof through the private/shared operations workflow.
+- [x] Set up private/shared operations restore-proof readiness checks for recurring hardening.
+- [x] Record public health and route-sweep monitoring evidence through the private/shared operations workflow.
+- [ ] Run a synthetic alert delivery and explicit acknowledgement drill for CareConnect, if desired as follow-up hardening.
 - [x] Record the 2026-07-08 L2/L3 and deferred-candidate decisions in `data/drafts/brampton-on/reviews/2026-07-08-l2-verification-review.md`.
 - [ ] Expand Brampton only through the same L1 review workflow.

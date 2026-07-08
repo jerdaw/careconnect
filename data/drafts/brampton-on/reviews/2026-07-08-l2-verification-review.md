@@ -1,7 +1,7 @@
 # Brampton L2 Verification Review
 
 Date: 2026-07-08
-Status: live-data updates approved/applied locally; production sync requires the bounded Brampton sync path
+Status: live-data updates approved/applied locally and synced to production through the bounded Brampton sync path
 
 ## Summary
 
@@ -48,7 +48,7 @@ No record is L3. No provider or authorized representative has confirmed these re
 
 ## Production Sync Scope
 
-When production is synced, the exact approved Brampton live set is:
+The exact approved Brampton live set synced to production is:
 
 1. `brampton-peel-centralized-shelter-intake`
 2. `brampton-wilkinson-road-shelter`
@@ -59,4 +59,4 @@ When production is synced, the exact approved Brampton live set is:
 7. `brampton-knights-table-food-bank-meals`
 8. `brampton-ste-louise-food-bank`
 
-Definition of done for production: the bounded sync writes only these IDs, all have `primary_place_id = 'brampton-on'`, all have explicit `coverage`, all have embeddings, and any rollback SQL is prepared before a rollback is executed.
+Production definition of done: the bounded sync wrote only these IDs, all have `primary_place_id = 'brampton-on'`, all have explicit `coverage`, all have embeddings, and rollback SQL was prepared before any rollback decision. No rollback was executed.

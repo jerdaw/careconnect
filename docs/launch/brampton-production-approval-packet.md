@@ -2,13 +2,13 @@
 
 Date: 2026-07-07
 Updated: 2026-07-08
-Status: migration, deployment, original seven-record Brampton production data sync, and broad-record coverage correction approved/applied; eight-record/L2 follow-up prepared
+Status: migration, deployment, Brampton production data syncs, broad-record coverage correction, and eight-record/L2 follow-up approved/applied
 
 ## Decision Needed
 
-No broad-record production correction decision remains open. The owner approved applying the broad Ontario/Canada coverage correction on 2026-07-08, and post-correction DB checks plus public smokes passed.
+No Brampton launch production write decision remains open. The owner approved applying the broad Ontario/Canada coverage correction, adding Ste. Louise as the eighth Brampton live record, applying the reviewed Brampton L2 updates, deploying `add8b2f0dbdd`, and syncing the exact approved eight-record set. Post-write DB checks and public smokes passed.
 
-The owner approved adding Ste. Louise as the eighth Brampton live record and applying the reviewed Brampton L2 updates. Current recommendation: sync the exact approved eight-record set through the bounded helper, prepare rollback SQL before any production write, and do not execute any rollback unless post-sync smoke checks fail and rollback is separately approved.
+Current recommendation: do not execute any rollback unless a future incident specifically requires it and rollback is separately approved.
 
 ## What Is Already Confirmed
 
@@ -21,33 +21,37 @@ The owner approved adding Ste. Louise as the eighth Brampton live record and app
 - Existing live grants were broader than the repo baseline, so the applied migration explicitly revoked `services_public` privileges before granting expected read access.
 - The Brampton coverage migration was applied after owner approval using the exact reviewed SQL from `supabase/migrations/20260706120000_add_service_coverage_place_fields.sql`.
 - Supabase recorded the applied remote migration as `20260708005230 add_service_coverage_place_fields` because the normal `db push` path is blocked by historical migration drift.
-- CareConnect `main` commit `d7cc6e4` was deployed after owner approval, and public health checks returned `version: "d7cc6e4"`.
-- The project owner approved syncing exactly the seven approved Brampton L1 rows to production Supabase.
-- The seven approved Brampton IDs are present in production `services` with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
+- CareConnect `main` commit `d7cc6e4` was deployed after owner approval, and public health checks returned `version: "d7cc6e4"` for the first Brampton production release.
+- The project owner approved syncing exactly the seven approved Brampton L1 rows to production Supabase before the later eight-record/L2 follow-up.
+- The original seven approved Brampton IDs were present in production `services` with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings before the later eight-record/L2 follow-up.
 - Live Brampton selected-place searches return the approved seven-record first-launch set.
 - A post-sync broad-service smoke found that existing production broad records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have `coverage` backfilled as local `kingston-on`; this needs a separate approved correction.
 - A read-only production snapshot found 203 rows and generated dry-run SQL for 72 broad-record corrections: 49 provincial and 23 national. The prepared SQL updates only `scope`, `primary_place_id`, and `coverage`, references no Brampton launch IDs, and has a prepared rollback SQL file.
 - The broad-record correction manifest verifier passed on 2026-07-08. It confirmed the prepared apply and rollback SQL reviewed-ID sets, byte counts, hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
 - A fresh read-only production check on 2026-07-08 confirmed the seven Brampton rows remain live with Brampton coverage and embeddings, while a five-ID reviewed broad-record sample still had only one broad-shaped record before correction.
 - The owner approved applying the broad Ontario/Canada coverage correction on 2026-07-08. The original reviewed SQL failed before writing because production `services.scope` is a `service_scope` enum; a derived cast-corrected SQL pair was generated from the same reviewed artifacts, with the same 72 IDs, no Brampton IDs, the same three target columns, and exact 72-row assertions.
-- The cast-corrected apply SQL reported `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
-- Post-correction public smokes passed: health stayed healthy at `version: "d7cc6e4"`, Kingston selected-place food search returned results, Brampton food and crisis searches include broad Ontario/Canada records, Brampton food and shelter searches include the seven launch records, known Kingston-only records stayed out of Brampton selected-place searches, and invalid `filters.placeId` still returns `400`.
+- The cast-corrected apply SQL reported `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, the then-live 7 Brampton-primary rows unaffected, and 0 Brampton IDs in the correction set.
+- Post-correction public smokes passed before the eight-record/L2 follow-up: health stayed healthy at `version: "d7cc6e4"`, Kingston selected-place food search returned results, Brampton food and crisis searches included broad Ontario/Canada records, Brampton food and shelter searches included the seven launch records, known Kingston-only records stayed out of Brampton selected-place searches, and invalid `filters.placeId` still returned `400`.
 - Supabase Support reported triggering a latest-backup restore for the target project on 2026-07-08. Post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Detailed support evidence and project identifiers remain in private/shared operations material, not this public repo.
 - The owner approved the 2026-07-08 follow-up that promotes Ste. Louise to live L1, upgrades six Brampton records to L2, keeps Knights Table at L1, and keeps BMCC/CCS/PCHS deferred.
+- The eight-record/L2 production sync completed after approval. Production has 204 total services, eight Brampton-primary rows, explicit coverage and embeddings for all eight approved Brampton IDs, six Brampton records at L2, and Knights Table plus Ste. Louise at L1.
+- CareConnect `main` commit `add8b2f0dbdd` was deployed after owner approval. Public health returned healthy with `version: "add8b2f0dbdd"`.
+- Post-deploy public smokes passed for Brampton food, Ste. Louise, Brampton shelter, Kingston food, invalid-place validation, and approved About-page source-context wording.
+- Private/shared operations material records provider-assisted restore evidence, bounded app redeploy proof, and public health/route-sweep monitoring evidence. Public docs intentionally omit project identifiers, private runtime paths, support-message details, and operator procedure details.
 
 ## Must Not Proceed Until
 
 - The exact target environment is confirmed.
 - The approving human explicitly authorizes any future broad-record production data correction.
 - The approving human explicitly authorizes any seven-ID Brampton data rollback.
-- The approving human explicitly authorizes any eight-record follow-up rollback after a failed post-sync smoke.
+- The approving human explicitly authorizes any future Brampton data rollback after a failed smoke or incident review.
 - A data correction owner and decision path are identified for any follow-up production data write.
 
 The completed broad-record correction evidence is recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
 
 ## Backup And Rollback Posture
 
-Current public-safe finding: CareConnect has provider-assisted restore evidence from Supabase Support for a latest-backup restore triggered on 2026-07-08. Post-restore app health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Keep the detailed support trail in the private/shared operations source of truth. Recurring autonomous restore-proof automation remains follow-up hardening through the private/shared operations workflow.
+Current public-safe finding: CareConnect has provider-assisted restore evidence from Supabase Support for a latest-backup restore triggered on 2026-07-08. Post-restore app health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. A later bounded app redeploy proof and public health/route-sweep monitoring evidence also passed and are recorded in private/shared operations material. Keep detailed support trails and runtime details in the private/shared operations source of truth. Recurring restore-proof cadence remains follow-up hardening through the private/shared operations workflow.
 
 ## Read-Only Pre-Approval Commands
 
@@ -100,12 +104,14 @@ npx supabase db query --linked --output json "select count(*)::int as services_w
 
 ## Deployment Smoke Checks Completed
 
-- Public health returned healthy with `version: "d7cc6e4"`.
+- Initial public health returned healthy with `version: "d7cc6e4"` after the first Brampton production deployment.
 - `/` redirected to `/en`.
 - `/en` loaded successfully.
 - Kingston selected-place food search returned live results.
 - Invalid `filters.placeId` returned `400 Invalid request`.
 - Brampton selected-place `shelter` and `food` searches returned valid empty result sets before production data sync.
+- Follow-up deployment public health returned healthy with `version: "add8b2f0dbdd"`.
+- Follow-up public smokes passed for Brampton food, Ste. Louise, Brampton shelter, Kingston food, invalid-place validation, and approved About-page source-context wording.
 
 ## Seven-Record Production Data Sync Completed
 
@@ -142,9 +148,9 @@ Only these IDs were in scope:
 
 The bounded sync helper selects these exact IDs from `data/services.json`, attaches existing 384-dimensional embeddings from `data/embeddings.json`, sets legacy `scope` to null for those upsert rows, and upserts no other rows.
 
-## Eight-Record Follow-Up Sync Scope
+## Eight-Record Follow-Up Sync Completed
 
-The approved follow-up sync must write only these IDs:
+The approved follow-up sync wrote only these IDs:
 
 - `brampton-peel-centralized-shelter-intake`
 - `brampton-wilkinson-road-shelter`
@@ -155,9 +161,9 @@ The approved follow-up sync must write only these IDs:
 - `brampton-knights-table-food-bank-meals`
 - `brampton-ste-louise-food-bank`
 
-Rollback SQL must be prepared before apply. The write must keep `primary_place_id = 'brampton-on'`, explicit `coverage`, null legacy `scope` in production rows, and 384-dimensional embeddings for all eight IDs.
+Rollback SQL was prepared before apply and was not executed. Post-sync checks confirmed `primary_place_id = 'brampton-on'`, explicit `coverage`, null legacy `scope`, and 384-dimensional embeddings for all eight IDs. Six records are L2; Knights Table and Ste. Louise remain L1.
 
-## Application Smoke Checks After Data Sync Approval
+## Application Smoke Checks After Original Seven-Record Data Sync Approval
 
 - Public health returned healthy with `version: "d7cc6e4"`.
 - Kingston selected-place food search still returned live results.
@@ -166,6 +172,16 @@ Rollback SQL must be prepared before apply. The write must keep `primary_place_i
 - `/api/v1/search/services` still rejects invalid `filters.placeId` with `400 Invalid request`.
 - Public search introduces no raw user query logging or tracking; the search route records only boolean/length metadata through existing performance tracking.
 - Broad Ontario/Canada records did not appear in Brampton selected-place smokes because several existing production broad records still carry Kingston-local coverage. This is a separate production data correction from the seven Brampton-row sync.
+
+## Application Smoke Checks After Eight-Record Follow-Up
+
+- Public health returned healthy with `version: "add8b2f0dbdd"`.
+- Brampton selected-place food search included Ste. Louise, Knights Table, Regeneration, applicable broad Ontario/Canada records, and the other Brampton launch records.
+- Brampton selected-place Ste. Louise search returned `brampton-ste-louise-food-bank`.
+- Brampton selected-place shelter search included shelter records.
+- Kingston selected-place food search still returned live results.
+- `/api/v1/search/services` still rejects invalid `filters.placeId` with `400 Invalid request`.
+- `/en/about` contained the approved Brampton source-review context wording.
 
 ## Broad Coverage Correction Prep
 
@@ -203,6 +219,6 @@ Dry-run summary:
 - Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
 - Data correction must use a follow-up reviewed data commit or an explicitly approved production correction.
 - The prepared seven-ID Brampton data rollback is in `docs/launch/brampton-seven-id-data-rollback-prep.md` and was not executed.
-- The eight-record follow-up rollback SQL must be prepared before the follow-up sync and must not be executed without explicit approval.
+- The eight-record follow-up rollback SQL was prepared before the follow-up sync and was not executed. It must not be executed without explicit approval.
 - The broad-record correction rollback SQL is prepared locally, including the production enum-cast version, but must not be executed without explicit approval.
 - Schema rollback requires separate database rollback approval.
