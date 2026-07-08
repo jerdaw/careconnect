@@ -2,13 +2,13 @@
 
 Date: 2026-07-07
 Updated: 2026-07-08
-Status: migration, deployment, and seven-record Brampton production data sync approved/applied; broad-record coverage correction dry-run prepared but not applied
+Status: migration, deployment, seven-record Brampton production data sync, and broad-record coverage correction approved/applied
 
 ## Decision Needed
 
-Approve or reject the separate production data correction for existing broad Ontario/Canada records that were backfilled as Kingston-local during migration. The dry-run approval packet is `docs/launch/brampton-broad-coverage-correction-approval.md`.
+No broad-record production correction decision remains open. The owner approved applying the broad Ontario/Canada coverage correction on 2026-07-08, and post-correction DB checks plus public smokes passed.
 
-Approve or reject executing the prepared seven-ID Brampton data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md`. Current recommendation: do not roll back unless the intended outcome is to remove Brampton public results, because rollback would not fix the broad-record coverage gap.
+Approve or reject executing the prepared seven-ID Brampton data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md`. Current recommendation: do not roll back unless the intended outcome is to remove Brampton public results.
 
 ## What Is Already Confirmed
 
@@ -28,17 +28,20 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - A post-sync broad-service smoke found that existing production broad records such as `ontario-211-ontario`, `kids-help-phone`, and `ontario-naseeha` still have `coverage` backfilled as local `kingston-on`; this needs a separate approved correction.
 - A read-only production snapshot found 203 rows and generated dry-run SQL for 72 broad-record corrections: 49 provincial and 23 national. The prepared SQL updates only `scope`, `primary_place_id`, and `coverage`, references no Brampton launch IDs, and has a prepared rollback SQL file.
 - The broad-record correction manifest verifier passed on 2026-07-08. It confirmed the prepared apply and rollback SQL reviewed-ID sets, byte counts, hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
-- A fresh read-only production check on 2026-07-08 confirmed the seven Brampton rows remain live with Brampton coverage and embeddings, while a five-ID reviewed broad-record sample still has only one broad-shaped record; the broad correction remains unapplied.
+- A fresh read-only production check on 2026-07-08 confirmed the seven Brampton rows remain live with Brampton coverage and embeddings, while a five-ID reviewed broad-record sample still had only one broad-shaped record before correction.
+- The owner approved applying the broad Ontario/Canada coverage correction on 2026-07-08. The original reviewed SQL failed before writing because production `services.scope` is a `service_scope` enum; a derived cast-corrected SQL pair was generated from the same reviewed artifacts, with the same 72 IDs, no Brampton IDs, the same three target columns, and exact 72-row assertions.
+- The cast-corrected apply SQL reported `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
+- Post-correction public smokes passed: health stayed healthy at `version: "d7cc6e4"`, Kingston selected-place food search returned results, Brampton food and crisis searches include broad Ontario/Canada records, Brampton food and shelter searches include the seven launch records, known Kingston-only records stayed out of Brampton selected-place searches, and invalid `filters.placeId` still returns `400`.
 - Supabase Support reported triggering a latest-backup restore for the target project on 2026-07-08. Post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Detailed support evidence and project identifiers remain in private/shared operations material, not this public repo.
 
 ## Must Not Proceed Until
 
 - The exact target environment is confirmed.
-- The approving human explicitly authorizes any broad-record production data correction.
+- The approving human explicitly authorizes any future broad-record production data correction.
 - The approving human explicitly authorizes any seven-ID Brampton data rollback.
 - A data correction owner and decision path are identified for any follow-up production data write.
 
-The required approval text for the broad-record correction is recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
+The completed broad-record correction evidence is recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
 
 ## Backup And Rollback Posture
 
@@ -155,6 +158,8 @@ Prepared artifacts:
 - Read-only snapshot rows: `/tmp/careconnect-production-services-coverage-snapshot.rows.json`
 - Apply SQL: `/tmp/careconnect-broad-coverage-correction.sql`
 - Rollback SQL: `/tmp/careconnect-broad-coverage-rollback.sql`
+- Applied SQL after production enum cast: `/tmp/careconnect-broad-coverage-correction-service-scope-cast.sql`
+- Rollback SQL after production enum cast: `/tmp/careconnect-broad-coverage-rollback-service-scope-cast.sql`
 - Manifest: `/tmp/careconnect-broad-coverage-correction-manifest.json`
 - Verifier command:
 
@@ -174,12 +179,12 @@ Dry-run summary:
 - Generated SQL references no `brampton-` IDs.
 - Manifest records apply SQL SHA-256 `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee` and rollback SQL SHA-256 `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665`.
 - Manifest verifier result on 2026-07-08: `ok: true`, including reviewed-ID set, byte-count, hash, guardrail, and dry-run-only checks.
-- Production write was not executed.
+- Production write was executed after owner approval. The first reviewed SQL attempt made no changes because production required an explicit `service_scope` cast. The cast-corrected apply SQL updated exactly 72 rows and post-correction checks passed.
 
 ## Rollback Boundaries
 
 - Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
 - Data correction must use a follow-up reviewed data commit or an explicitly approved production correction.
 - The prepared seven-ID Brampton data rollback is in `docs/launch/brampton-seven-id-data-rollback-prep.md` and was not executed.
-- The broad-record correction rollback SQL is prepared locally but must not be executed without explicit approval if post-correction smoke checks fail.
+- The broad-record correction rollback SQL is prepared locally, including the production enum-cast version, but must not be executed without explicit approval.
 - Schema rollback requires separate database rollback approval.
