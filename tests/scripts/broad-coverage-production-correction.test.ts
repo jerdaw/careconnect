@@ -1,4 +1,5 @@
 /** @vitest-environment node */
+import { createHash } from "crypto"
 import { describe, expect, it } from "vitest"
 
 import servicesRaw from "@/data/services.json"
@@ -9,7 +10,10 @@ import {
   buildBroadCoverageCorrectionSql,
   type ProductionCoverageRow,
 } from "@/scripts/lib/broad-coverage-production-correction"
-import { parseBroadCoverageCorrectionArgs } from "@/scripts/prepare-broad-coverage-production-correction"
+import {
+  buildBroadCoverageCorrectionManifest,
+  parseBroadCoverageCorrectionArgs,
+} from "@/scripts/prepare-broad-coverage-production-correction"
 import type { Service } from "@/types/service"
 
 const services = servicesRaw as Service[]
@@ -201,6 +205,15 @@ describe("broad coverage correction CLI parser", () => {
         "--rollback-out",
       ])
     ).toThrow("--rollback-out requires a value")
+    expect(() =>
+      parseBroadCoverageCorrectionArgs([
+        "--snapshot",
+        "/tmp/snapshot.json",
+        "--sql-out",
+        "/tmp/out.sql",
+        "--manifest-out",
+      ])
+    ).toThrow("--manifest-out requires a value")
   })
 
   it("parses dry-run preparation arguments", () => {
@@ -209,6 +222,7 @@ describe("broad coverage correction CLI parser", () => {
         snapshotPath: "/tmp/snapshot.json",
         sqlOutPath: "/tmp/out.sql",
         rollbackOutPath: undefined,
+        manifestOutPath: undefined,
       }
     )
 
@@ -225,6 +239,90 @@ describe("broad coverage correction CLI parser", () => {
       snapshotPath: "/tmp/snapshot.json",
       sqlOutPath: "/tmp/out.sql",
       rollbackOutPath: "/tmp/rollback.sql",
+      manifestOutPath: undefined,
+    })
+
+    expect(
+      parseBroadCoverageCorrectionArgs([
+        "--snapshot",
+        "/tmp/snapshot.json",
+        "--sql-out",
+        "/tmp/out.sql",
+        "--rollback-out",
+        "/tmp/rollback.sql",
+        "--manifest-out",
+        "/tmp/manifest.json",
+      ])
+    ).toEqual({
+      snapshotPath: "/tmp/snapshot.json",
+      sqlOutPath: "/tmp/out.sql",
+      rollbackOutPath: "/tmp/rollback.sql",
+      manifestOutPath: "/tmp/manifest.json",
+    })
+  })
+})
+
+describe("broad coverage correction manifest", () => {
+  it("records hashes, guardrails, and exact correction scope for generated SQL", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const rollbackSql = buildBroadCoverageRollbackSql(plan)
+
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      rollbackSql,
+      applySqlPath: "/tmp/apply.sql",
+      rollbackSqlPath: "/tmp/rollback.sql",
+      generatedAt: "2026-07-08T13:00:00.000Z",
+    })
+
+    expect(manifest).toMatchObject({
+      schemaVersion: "careconnect-broad-coverage-correction-manifest-v1",
+      mode: "dry-run-sql-prep",
+      writesEnabled: false,
+      generatedAt: "2026-07-08T13:00:00.000Z",
+      summary: {
+        productionRowsRead: 4,
+        corrections: 3,
+        provincial: 1,
+        national: 2,
+      },
+      ids: ["ontario-211-ontario", "kids-help-phone", "ontario-naseeha"],
+      artifacts: {
+        applySql: {
+          path: "/tmp/apply.sql",
+          bytes: Buffer.byteLength(applySql),
+          sha256: createHash("sha256").update(applySql).digest("hex"),
+        },
+        rollbackSql: {
+          path: "/tmp/rollback.sql",
+          bytes: Buffer.byteLength(rollbackSql),
+          sha256: createHash("sha256").update(rollbackSql).digest("hex"),
+        },
+      },
+    })
+
+    expect(manifest.guardrails.applySql).toEqual({
+      hasBegin: true,
+      hasCommit: true,
+      targetsPublicServices: true,
+      setColumns: ["scope", "primary_place_id", "coverage"],
+      disallowedSetColumnsPresent: [],
+      mentionsBramptonIds: false,
+      hasExactAssertion: true,
+    })
+    expect(manifest.guardrails.rollbackSql).toEqual({
+      hasBegin: true,
+      hasCommit: true,
+      targetsPublicServices: true,
+      setColumns: ["scope", "primary_place_id", "coverage"],
+      disallowedSetColumnsPresent: [],
+      mentionsBramptonIds: false,
+      hasExactAssertion: true,
     })
   })
 })

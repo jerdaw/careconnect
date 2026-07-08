@@ -46,6 +46,7 @@ Generated SQL artifacts:
 ```text
 /tmp/careconnect-broad-coverage-correction.sql
 /tmp/careconnect-broad-coverage-rollback.sql
+/tmp/careconnect-broad-coverage-correction-manifest.json
 ```
 
 Dry-run summary:
@@ -70,6 +71,21 @@ Guardrail check:
 | Apply SQL has exact 72-row assertion               | pass   |
 | Rollback SQL has exact 72-row assertion            | pass   |
 | Generated SQL references no `brampton-` IDs        | pass   |
+
+Artifact identity:
+
+| Artifact     | SHA-256                                                            |
+| ------------ | ------------------------------------------------------------------ |
+| Apply SQL    | `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee` |
+| Rollback SQL | `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665` |
+
+Manifest path:
+
+```text
+/tmp/careconnect-broad-coverage-correction-manifest.json
+```
+
+The manifest records `writesEnabled: false`, the 72-ID reviewed set, SQL byte counts, SQL SHA-256 hashes, and guardrail facts for the generated apply and rollback SQL.
 
 The update assignment in both SQL files is limited to:
 
@@ -156,7 +172,7 @@ coverage = updates.coverage
 
 ## Post-Approval Execution Plan
 
-After exact approval, rerun a read-only target check, visually confirm the generated SQL file, then execute the prepared apply SQL through the authenticated Supabase CLI path.
+After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and verify the apply SQL SHA-256 still matches `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee`. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
 
 The transaction must abort if it cannot prove exactly 72 reviewed rows match the intended post-update values.
 

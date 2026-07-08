@@ -153,6 +153,7 @@ Prepared artifacts:
 - Read-only snapshot rows: `/tmp/careconnect-production-services-coverage-snapshot.rows.json`
 - Apply SQL: `/tmp/careconnect-broad-coverage-correction.sql`
 - Rollback SQL: `/tmp/careconnect-broad-coverage-rollback.sql`
+- Manifest: `/tmp/careconnect-broad-coverage-correction-manifest.json`
 
 Dry-run summary:
 
@@ -162,6 +163,7 @@ Dry-run summary:
 - Generated SQL updates only `scope`, `primary_place_id`, and `coverage`.
 - Generated SQL has exact 72-row assertions.
 - Generated SQL references no `brampton-` IDs.
+- Manifest records apply SQL SHA-256 `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee` and rollback SQL SHA-256 `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665`.
 - Production write was not executed.
 
 ## Rollback Boundaries

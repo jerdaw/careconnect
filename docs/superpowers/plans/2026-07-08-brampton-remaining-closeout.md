@@ -184,7 +184,7 @@ Run local checks that confirm:
 - Planner tests pass.
 - Read-only snapshot was captured from the linked production project.
 - Apply and rollback SQL files exist under `/tmp`.
-- Approval packet records row count, correction count, provincial/national split, exact corrected IDs, SQL artifact paths, and guardrail results.
+- Approval packet records row count, correction count, provincial/national split, exact corrected IDs, SQL artifact paths, manifest path, SQL SHA-256 hashes, and guardrail results.
 - No production write was run.
 
 ---
@@ -211,9 +211,11 @@ The packet must include:
 - Generated SQL paths:
   - `/tmp/careconnect-broad-coverage-correction.sql`
   - `/tmp/careconnect-broad-coverage-rollback.sql`
+  - `/tmp/careconnect-broad-coverage-correction-manifest.json`
 - Correction summary from the dry run.
 - Exact ID list from the dry run.
 - Guardrails: only `scope`, `primary_place_id`, and `coverage`; no schema changes; no service fact changes; no embeddings; no Brampton IDs.
+- Manifest: includes SQL byte counts, SHA-256 hashes, selected IDs, and guardrail facts.
 - Post-approval smoke checks.
 - Exact approval text required before production write.
 
