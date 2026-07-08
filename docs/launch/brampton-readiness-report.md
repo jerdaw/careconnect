@@ -9,8 +9,8 @@ Branch: `main` after PR #33 merge
 - Foundation code: verified and merged to `main` in PR #33.
 - Kingston live behavior: verified by local and server search regressions.
 - Brampton first-launch behavior: verified by local and server search regressions.
-- Brampton repo service data: seven approved L1 records added to `data/services.json`.
-- Brampton production service data: seven approved L1 records synced to production Supabase after approval.
+- Brampton repo service data: eight approved records in `data/services.json`; six records are L2 and Knights Table plus Ste. Louise remain L1 pending further verification.
+- Brampton production service data: original seven approved L1 records synced to production Supabase after approval; the approved eight-record/L2 follow-up is prepared for bounded production sync.
 - Broad production service coverage: applied after approval. Existing production broad Ontario/Canada records that were backfilled as Kingston-local now have broad coverage, and Brampton selected-place searches can reuse applicable broad canonical records.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Deployment: application release `d7cc6e4` deployed and public health checks passed.
@@ -19,8 +19,8 @@ Branch: `main` after PR #33 merge
 
 - Additional Brampton record promotions require the same L1 approval workflow.
 - Human approval required before any future broad Ontario/Canada production coverage correction.
-- Human approval required before executing the prepared seven-ID Brampton data rollback.
-- Human approval required for land acknowledgment and partner relationship wording.
+- Human approval required before executing the prepared seven-ID Brampton data rollback or any future eight-record rollback.
+- About-page land/source-context wording is approved; partner relationship wording remains approval-gated.
 
 ## Evidence Log
 
@@ -58,6 +58,8 @@ Branch: `main` after PR #33 merge
 - 2026-07-08: Project owner approved applying the broad Ontario/Canada coverage correction to production Supabase. The original reviewed SQL attempted no write because production `services.scope` is a `service_scope` enum; a derived enum-cast SQL pair was generated from the same reviewed artifacts, with the same 72 reviewed IDs, no Brampton IDs, only `scope`, `primary_place_id`, and `coverage` assignments, and exact 72-row assertions.
 - 2026-07-08: Applied the enum-cast broad coverage correction through the authenticated Supabase CLI path. The apply SQL returned `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match the target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
 - 2026-07-08: Post-correction public smokes passed. Health stayed healthy at `version: "d7cc6e4"`; Kingston food search returned results; Brampton food and crisis searches included broad Ontario/Canada records; Brampton food and shelter searches included the seven launch records; known Kingston-only records stayed out of Brampton searches; invalid `filters.placeId` still returned `400`.
+- 2026-07-08: Owner approved proceeding with the remaining autonomous closeout. Ste. Louise was promoted from draft to a live L1 Brampton food-bank record; Peel Centralized Shelter Intake, Wilkinson Road Shelter, Victim Services of Peel, Safe Centre of Peel, Region of Peel Ontario Works/Emergency Assistance, and Regeneration Marketplace Food Bank were upgraded to L2 based on official plus secondary source review; Knights Table remains L1 pending address/program-split resolution. No record was upgraded to L3.
+- 2026-07-08: About-page land/source-context wording was approved and updated to include Brampton source context while explicitly avoiding endorsement, consultation, or approval claims.
 
 ## Findings
 
@@ -66,7 +68,7 @@ Branch: `main` after PR #33 merge
 - Local DB smoke is no longer environment-blocked for this session; it passed using an extracted PostgreSQL client.
 - Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
 - Live Supabase schema migration is complete; application deployment is complete.
-- The seven approved Brampton L1 service rows are live in production.
+- The repo now contains eight approved Brampton service rows. Production still requires the bounded approved Brampton sync follow-up before the live database is current with Ste. Louise and the L2 updates.
 - Broad Ontario/Canada production data follow-up: complete. The approved correction is applied and Brampton selected-place results now include applicable broad canonical records.
 
 ## Technical Verification
@@ -83,9 +85,9 @@ Branch: `main` after PR #33 merge
 - Format check: pass, `npm run format:check`.
 - i18n audit: pass, 7 locales with 1219 keys each and no missing or extra keys.
 - Reference check: pass across 151 files.
-- Data validation: pass, 203 services.
-- DB validation alias: pass, 203 records.
-- Embedding consistency check: pass, 203 services, 203 embeddings, 384 dimensions.
+- Data validation: pending rerun after the eight-record/L2 follow-up.
+- DB validation alias: pending rerun after the eight-record/L2 follow-up.
+- Embedding consistency check: pending rerun after the eight-record/L2 follow-up.
 - Build: pass, `SKIP_EMBEDDINGS=1 npm run build`; Next.js production build completed and postbuild embedding generation was intentionally skipped.
 - Whitespace diff check: pass, `git diff --check`.
 - Browser a11y: pass, `npm run test:a11y -- --project=chromium`, 10 Chromium tests, rerun on 2026-07-08.
@@ -93,16 +95,16 @@ Branch: `main` after PR #33 merge
 - Visual QA capture: pass, `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`, 6 Chromium screenshot tests.
 - DB smoke: pass, `npm run test:db:smoke`, 2 smoke tests against the disposable local Supabase stack, rerun on 2026-07-08.
 - Restricted production control-plane preflight: pass, dev-space readiness and wrapper-gated CareConnect preflight/status/service-health checks completed without sensitive-output collection.
-- Production approval packet: prepared; migration, deployment, seven-row production data sync, and broad-record coverage correction applied after approval.
-- Production data sync: applied after approval for exactly seven Brampton L1 records; post-sync DB and core API smokes completed.
-- Future verification queue: prepared as draft-only; no additional Brampton records promoted.
+- Production approval packet: prepared; migration, deployment, original seven-row production data sync, and broad-record coverage correction applied after approval.
+- Production data sync: original seven applied after approval; eight-record/L2 follow-up pending bounded sync, rollback prep, and post-sync smokes.
+- Future verification queue: updated with 2026-07-08 L2 decisions; BMCC, CCS, and PCHS remain deferred.
 
 ## Technical Residual Risks
 
 - Browser visual QA is documented in `docs/launch/brampton-manual-qa.md`.
 - Production migration was applied after explicit approval. The application deployment was performed on 2026-07-08 and health checks passed.
 - Live Supabase schema inspection completed through the Supabase CLI and authenticated Supabase tooling. The Brampton coverage migration is applied in production.
-- Production data inspection confirmed the seven approved Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings.
+- Production data inspection previously confirmed the seven approved Brampton rows are in production with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings. The Ste. Louise/L2 follow-up still requires a bounded production sync.
 - Existing production broad records were corrected after approval because the migration had backfilled several repo-broad records as Kingston-local from the previous live values. Rollback SQL remains prepared but is not indicated and must not be executed without explicit approval.
 - Provider-assisted CareConnect restore evidence has been received from Supabase Support and post-restore checks passed. Recurring autonomous restore-proof automation remains a private-ops hardening follow-up.
 
@@ -127,8 +129,8 @@ Branch: `main` after PR #33 merge
 
 ### Human Approval Required
 
-- Land acknowledgment wording: unchanged. Brampton-specific wording remains gated until verified through reliable local or Indigenous-led public sources.
-- Land acknowledgment source review: updated in `docs/launch/brampton-public-positioning-drafts.md` with municipal, regional, and Indigenous-governance source links. Final wording remains human-approval gated.
+- Land/source-context wording: updated after approval. The About page now uses a reviewed Kingston/Brampton source-context note that does not imply endorsement, consultation, or approval.
+- Land acknowledgment source review: updated in `docs/launch/brampton-public-positioning-drafts.md` and `docs/launch/brampton-land-acknowledgment-review.md` with municipal, regional, and Indigenous-governance source links.
 - Partner page relationship wording: unchanged. Existing public copy frames source references as inputs for manual review, not endorsements or official partnerships.
 - Any copy implying official municipal, regional, provincial, or provider affiliation: no new affiliation wording added.
 
@@ -140,11 +142,11 @@ Branch: `main` after PR #33 merge
 
 - Draft candidate artifact: `data/drafts/brampton-on/candidates/2026-07-06-core-services.md`.
 - Candidate count: 11 candidates.
-- Promoted L1 count: 7 records.
-- Deferred count: 4 records.
+- Promoted count: 8 records.
+- Deferred count: 3 records.
 - Scope covered: shelter/housing crisis, victim and family-violence crisis support, Ontario Works/emergency assistance, food access, newcomer support, and community health/wellness.
 - Source reachability: pass. Every source URL used by the promoted Brampton records returned HTTP 200 during this readiness pass.
-- L1 status: seven candidates were approved and promoted to live data; deferred candidates remain draft-only.
+- L1/L2 status: eight candidates were approved and promoted to live data; six are L2, and Knights Table plus Ste. Louise remain L1 pending further verification. Deferred candidates remain draft-only.
 - Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated in repo data. Production broad-record coverage has been corrected so applicable broad records can appear in Brampton selected-place results.
 
 ## Duplicate And Canonical Review

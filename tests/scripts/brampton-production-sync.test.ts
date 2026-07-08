@@ -32,7 +32,7 @@ function serviceById(id: string): Service {
 }
 
 describe("Brampton production sync planner", () => {
-  it("pins the exact seven approved Brampton launch records", () => {
+  it("pins the exact approved Brampton launch records", () => {
     expect(APPROVED_BRAMPTON_SERVICE_IDS).toEqual([
       "brampton-peel-centralized-shelter-intake",
       "brampton-wilkinson-road-shelter",
@@ -41,8 +41,9 @@ describe("Brampton production sync planner", () => {
       "brampton-peel-ontario-works-emergency-assistance",
       "brampton-regeneration-marketplace-food-bank",
       "brampton-knights-table-food-bank-meals",
+      "brampton-ste-louise-food-bank",
     ])
-    expect(new Set(APPROVED_BRAMPTON_SERVICE_IDS).size).toBe(7)
+    expect(new Set(APPROVED_BRAMPTON_SERVICE_IDS).size).toBe(8)
   })
 
   it("selects only the approved Brampton services and maps embeddings for upsert", () => {
@@ -51,10 +52,10 @@ describe("Brampton production sync planner", () => {
     expect(plan.ids).toEqual([...APPROVED_BRAMPTON_SERVICE_IDS])
     expect(plan.rows.map((row) => row.id)).toEqual([...APPROVED_BRAMPTON_SERVICE_IDS])
     expect(plan.summary).toEqual({
-      expectedIds: 7,
-      selectedServices: 7,
-      rowsWithBramptonCoverage: 7,
-      rowsWithEmbeddings: 7,
+      expectedIds: 8,
+      selectedServices: 8,
+      rowsWithBramptonCoverage: 8,
+      rowsWithEmbeddings: 8,
     })
 
     for (const id of plan.ids) {
@@ -121,16 +122,16 @@ describe("Brampton production sync planner", () => {
 
 describe("Brampton production sync CLI guardrails", () => {
   it("uses an explicit approval token for write mode", () => {
-    expect(BRAMPTON_SYNC_APPROVAL_TOKEN).toBe("I_APPROVE_SYNCING_SEVEN_BRAMPTON_L1_RECORDS")
+    expect(BRAMPTON_SYNC_APPROVAL_TOKEN).toBe("I_APPROVE_SYNCING_APPROVED_BRAMPTON_RECORDS")
     expect(BRAMPTON_SYNC_APPROVAL_TOKEN.length).toBeGreaterThan(10)
   })
 
   it("requires the exact approval token before apply mode can write", () => {
     expect(() => assertBramptonSyncApplyApproval(undefined)).toThrow(
-      "BRAMPTON_SYNC_APPROVAL must equal I_APPROVE_SYNCING_SEVEN_BRAMPTON_L1_RECORDS before --apply can write"
+      "BRAMPTON_SYNC_APPROVAL must equal I_APPROVE_SYNCING_APPROVED_BRAMPTON_RECORDS before --apply can write"
     )
     expect(() => assertBramptonSyncApplyApproval("I approve")).toThrow(
-      "BRAMPTON_SYNC_APPROVAL must equal I_APPROVE_SYNCING_SEVEN_BRAMPTON_L1_RECORDS before --apply can write"
+      "BRAMPTON_SYNC_APPROVAL must equal I_APPROVE_SYNCING_APPROVED_BRAMPTON_RECORDS before --apply can write"
     )
     expect(() => assertBramptonSyncApplyApproval(BRAMPTON_SYNC_APPROVAL_TOKEN)).not.toThrow()
   })

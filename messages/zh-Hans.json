@@ -706,7 +706,7 @@
     "openHours": "营业时间",
     "summaryComingSoon": "简单语言摘要即将推出。",
     "verifiedService": "已验证服务",
-    "officialPartner": "官方合作伙伴",
+    "officialPartner": "服务提供方确认",
     "serviceMerged": "服务已合并",
     "permanentlyClosed": "永久关闭",
     "mergedDescription": "此服务已与另一个组织合并。请查看描述以获取新的联系详情。",
@@ -844,7 +844,7 @@
     "neverVerified": "此服务最近未经验证",
     "outdatedTooltip": "此信息已超过3个月，可能不准确。",
     "expiredTooltip": "此信息已超过 CareConnect 批准的 6 个月验证窗口，应直接再次确认。",
-    "verifiedTooltip": "信息已由合作伙伴在 {date} 确认",
+    "verifiedTooltip": "信息已由服务提供方在 {date} 确认",
     "levels": {
       "fresh": "最近已验证",
       "recent": "3个月内已验证",
@@ -980,8 +980,8 @@
       "secondaryCta": "查看来源"
     },
     "landAcknowledgment": {
-      "title": "土地承认",
-      "text": "金斯顿，也称为卡塔罗魁，位于休伦-温达特、阿尼西纳贝和豪德诺索尼联盟的祖传土地上。我们承认有责任以尊重和保护的态度对待土地、水和天空。"
+      "title": "土地与地点背景",
+      "text": "CareConnect 起始于 Kingston/Katarokwi，现在支持 Kingston 和 Brampton。Kingston/Katarokwi 位于 Huron-Wendat、Anishinaabe 和 Haudenosaunee Confederacy 的祖传和传统土地上。对于 Brampton，公开的市政、区域和原住民治理来源将该地区描述为与 Mississaugas of the Credit、Haudenosaunee 和 Wendat/Huron-Wendat 有关，包括 Treaty 19，即 1818 年的 Ajetance Purchase。这是 CareConnect 的来源审查背景，并不表示任何 Nation、市政机构或社区组织的认可、咨询或批准。"
     },
     "governance": {
       "title": "目录如何维护",
@@ -1048,7 +1048,7 @@
     "hero": {
       "eyebrow": "参考来源",
       "title": "CareConnect 如何审查来源信息",
-      "subtitle": "CareConnect 将公共和社区参考来源作为人工审查的输入。参考来源有助于指导整理；除非关系已经确认，否则不会被表述为背书或正式合作。"
+      "subtitle": "CareConnect 将公共和社区参考来源作为人工审查的输入。参考来源有助于指导整理；不会被表述为背书、赞助或合作关系。服务提供方确认的记录会在有文档依据时单独标注。"
     },
     "heroCard": {
       "title": "来源模型",
@@ -1056,7 +1056,7 @@
       "items": {
         "public": "公共和社区参考有助于发现服务并交叉核对详情。",
         "reviewed": "条目在作为已核实服务显示前会经过审查。",
-        "separate": "正式合作关系会在确认后单独标注。"
+        "separate": "服务提供方确认会在有文档依据时单独标注。"
       }
     },
     "sources": {
@@ -1243,7 +1243,7 @@
       },
       "termination": {
         "title": "终止",
-        "content": "任何一方均可终止此合作伙伴关系。CareConnect 可因违反条款或信息不准确而终止。"
+        "content": "任何一方均可终止此列表访问关系。CareConnect 可因违反条款或信息不准确而终止访问权限。"
       }
     },
     "eyebrow": "合作伙伴访问",
@@ -1316,7 +1316,7 @@
     "L0": "未验证",
     "L1": "基础验证",
     "L2": "已验证服务",
-    "L3": "官方合作伙伴"
+    "L3": "服务提供方确认"
   },
   "Distance": {
     "ontarioWide": "安大略省范围内可用",
@@ -1380,7 +1380,7 @@
       "email": "官方电子邮件",
       "site": "网站审核",
       "admin": "管理员验证",
-      "partner": "合作伙伴确认",
+      "partner": "服务提供方确认",
       "manual": "人工验证"
     }
   },

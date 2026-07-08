@@ -24,12 +24,32 @@ async function main(): Promise<void> {
 
   loadEnvironment()
 
-  const supabaseUrl = requiredEnv("NEXT_PUBLIC_SUPABASE_URL")
-  const serviceRoleKey = requiredEnv("SUPABASE_SECRET_KEY")
-  const supabase = createClient<Database>(supabaseUrl, serviceRoleKey)
   const services = readJson<Service[]>("data/services.json")
   const embeddings = readJson<Record<string, number[]>>("data/embeddings.json")
   const plan = buildBramptonProductionSyncPlan({ services, embeddings })
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const serviceRoleKey = process.env.SUPABASE_SECRET_KEY
+
+  if (mode === "dry-run" && (!supabaseUrl || !isUsableSupabaseSecretKey(serviceRoleKey))) {
+    printJson({
+      mode,
+      writesEnabled: false,
+      remoteReadEnabled: false,
+      targetHost: supabaseUrl ? hostFromUrl(supabaseUrl) : "not-configured",
+      selectedIds: plan.ids,
+      existingIds: null,
+      missingIds: null,
+      rowCount: plan.rows.length,
+      summary: plan.summary,
+      note: "Dry-run produced a local bounded plan only because Supabase write credentials are not configured.",
+    })
+    return
+  }
+
+  const requiredSupabaseUrl = requiredEnv("NEXT_PUBLIC_SUPABASE_URL")
+  const requiredServiceRoleKey = requiredEnv("SUPABASE_SECRET_KEY")
+  const supabase = createClient<Database>(requiredSupabaseUrl, requiredServiceRoleKey)
 
   const beforeExistingIds = await fetchExistingIds(supabase, plan.ids)
   const beforeMissingIds = missingIds(plan.ids, beforeExistingIds)
@@ -38,7 +58,8 @@ async function main(): Promise<void> {
     printJson({
       mode,
       writesEnabled: false,
-      targetHost: hostFromUrl(supabaseUrl),
+      remoteReadEnabled: true,
+      targetHost: hostFromUrl(requiredSupabaseUrl),
       selectedIds: plan.ids,
       existingIds: beforeExistingIds,
       missingIds: beforeMissingIds,
@@ -58,7 +79,7 @@ async function main(): Promise<void> {
   printJson({
     mode,
     writesEnabled: true,
-    targetHost: hostFromUrl(supabaseUrl),
+    targetHost: hostFromUrl(requiredSupabaseUrl),
     selectedIds: plan.ids,
     beforeExistingIds,
     beforeMissingIds,

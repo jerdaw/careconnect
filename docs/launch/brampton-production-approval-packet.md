@@ -2,13 +2,13 @@
 
 Date: 2026-07-07
 Updated: 2026-07-08
-Status: migration, deployment, seven-record Brampton production data sync, and broad-record coverage correction approved/applied
+Status: migration, deployment, original seven-record Brampton production data sync, and broad-record coverage correction approved/applied; eight-record/L2 follow-up prepared
 
 ## Decision Needed
 
 No broad-record production correction decision remains open. The owner approved applying the broad Ontario/Canada coverage correction on 2026-07-08, and post-correction DB checks plus public smokes passed.
 
-Approve or reject executing the prepared seven-ID Brampton data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md`. Current recommendation: do not roll back unless the intended outcome is to remove Brampton public results.
+The owner approved adding Ste. Louise as the eighth Brampton live record and applying the reviewed Brampton L2 updates. Current recommendation: sync the exact approved eight-record set through the bounded helper, prepare rollback SQL before any production write, and do not execute any rollback unless post-sync smoke checks fail and rollback is separately approved.
 
 ## What Is Already Confirmed
 
@@ -33,12 +33,14 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - The cast-corrected apply SQL reported `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
 - Post-correction public smokes passed: health stayed healthy at `version: "d7cc6e4"`, Kingston selected-place food search returned results, Brampton food and crisis searches include broad Ontario/Canada records, Brampton food and shelter searches include the seven launch records, known Kingston-only records stayed out of Brampton selected-place searches, and invalid `filters.placeId` still returns `400`.
 - Supabase Support reported triggering a latest-backup restore for the target project on 2026-07-08. Post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Detailed support evidence and project identifiers remain in private/shared operations material, not this public repo.
+- The owner approved the 2026-07-08 follow-up that promotes Ste. Louise to live L1, upgrades six Brampton records to L2, keeps Knights Table at L1, and keeps BMCC/CCS/PCHS deferred.
 
 ## Must Not Proceed Until
 
 - The exact target environment is confirmed.
 - The approving human explicitly authorizes any future broad-record production data correction.
 - The approving human explicitly authorizes any seven-ID Brampton data rollback.
+- The approving human explicitly authorizes any eight-record follow-up rollback after a failed post-sync smoke.
 - A data correction owner and decision path are identified for any follow-up production data write.
 
 The completed broad-record correction evidence is recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
@@ -140,6 +142,21 @@ Only these IDs were in scope:
 
 The bounded sync helper selects these exact IDs from `data/services.json`, attaches existing 384-dimensional embeddings from `data/embeddings.json`, sets legacy `scope` to null for those upsert rows, and upserts no other rows.
 
+## Eight-Record Follow-Up Sync Scope
+
+The approved follow-up sync must write only these IDs:
+
+- `brampton-peel-centralized-shelter-intake`
+- `brampton-wilkinson-road-shelter`
+- `brampton-victim-services-of-peel`
+- `brampton-safe-centre-of-peel`
+- `brampton-peel-ontario-works-emergency-assistance`
+- `brampton-regeneration-marketplace-food-bank`
+- `brampton-knights-table-food-bank-meals`
+- `brampton-ste-louise-food-bank`
+
+Rollback SQL must be prepared before apply. The write must keep `primary_place_id = 'brampton-on'`, explicit `coverage`, null legacy `scope` in production rows, and 384-dimensional embeddings for all eight IDs.
+
 ## Application Smoke Checks After Data Sync Approval
 
 - Public health returned healthy with `version: "d7cc6e4"`.
@@ -186,5 +203,6 @@ Dry-run summary:
 - Application rollback can revert to the previous release after explicit approval, but rollback is not currently indicated by the post-deploy smoke checks.
 - Data correction must use a follow-up reviewed data commit or an explicitly approved production correction.
 - The prepared seven-ID Brampton data rollback is in `docs/launch/brampton-seven-id-data-rollback-prep.md` and was not executed.
+- The eight-record follow-up rollback SQL must be prepared before the follow-up sync and must not be executed without explicit approval.
 - The broad-record correction rollback SQL is prepared locally, including the production enum-cast version, but must not be executed without explicit approval.
 - Schema rollback requires separate database rollback approval.

@@ -12,7 +12,7 @@
     "L0": "Non vérifié",
     "L1": "Vérification de base",
     "L2": "Service vérifié",
-    "L3": "Partenaire officiel"
+    "L3": "Fournisseur confirmé"
   },
   "UserGuide": {
     "title": "Guide d'utilisation - CareConnect",
@@ -306,7 +306,7 @@
     "neverVerified": "Ce service n'a pas été vérifié récemment",
     "outdatedTooltip": "Cette information a plus de 3 mois et peut être inexacte.",
     "expiredTooltip": "Cette information dépasse la fenêtre de vérification approuvée de 6 mois de CareConnect et doit être revérifiée directement.",
-    "verifiedTooltip": "Information confirmée par un partenaire le {date}",
+    "verifiedTooltip": "Information confirmée par un fournisseur le {date}",
     "levels": {
       "fresh": "Vérifié récemment",
       "recent": "Vérifié au cours des 3 derniers mois",
@@ -745,7 +745,7 @@
     "openHours": "Heures d'ouverture",
     "summaryComingSoon": "Résumé en langage simple à venir.",
     "verifiedService": "Service vérifié",
-    "officialPartner": "Partenaire Officiel",
+    "officialPartner": "Fournisseur confirmé",
     "serviceMerged": "Service fusionné",
     "permanentlyClosed": "Définitivement fermé",
     "mergedDescription": "Ce service a été fusionné avec une autre organisation. Veuillez vérifier la description pour les nouvelles coordonnées.",
@@ -1043,8 +1043,8 @@
       "secondaryCta": "Voir les sources"
     },
     "landAcknowledgment": {
-      "title": "Reconnaissance du territoire",
-      "text": "Kingston, connue sous le nom de Katarokwi, est située sur les terres ancestrales et traditionnelles des Huron-Wendat, des Anishinaabe et de la Confédération Haudenosaunee. Nous reconnaissons notre responsabilité d'honorer la terre, l'eau et le ciel avec respect et préservation."
+      "title": "Contexte du territoire et des lieux",
+      "text": "CareConnect a commence a Kingston/Katarokwi et prend maintenant en charge Kingston et Brampton. Kingston/Katarokwi se trouve sur les terres ancestrales et traditionnelles des Huron-Wendat, des Anishinaabe et de la Confederation Haudenosaunee. Pour Brampton, des sources publiques municipales, regionales et de gouvernance autochtone identifient ce territoire comme lie aux Mississaugas of the Credit, aux Haudenosaunee et aux Wendat/Huron-Wendat, y compris le Traite 19, l'achat Ajetance de 1818. Il s'agit du contexte de revue des sources de CareConnect et non d'une approbation, d'une consultation ou d'un appui de la part d'une Nation, d'une municipalite ou d'un organisme communautaire."
     },
     "governance": {
       "title": "Comment le répertoire est maintenu",
@@ -1108,7 +1108,7 @@
     "hero": {
       "eyebrow": "Sources de référence",
       "title": "Comment CareConnect examine les renseignements de source",
-      "subtitle": "CareConnect utilise des sources de référence publiques et communautaires comme points de départ pour l'examen manuel. Une source de référence aide la curation; elle n'est pas présentée comme une approbation ou un partenariat officiel sauf si cette relation est confirmée."
+      "subtitle": "CareConnect utilise des sources de référence publiques et communautaires comme points de départ pour l'examen manuel. Une source de référence aide la curation; elle n'est pas présentée comme une approbation, un parrainage ou un partenariat. Les dossiers confirmés par un fournisseur sont indiqués séparément lorsque cette confirmation est documentée."
     },
     "heroCard": {
       "title": "Le modèle de sources",
@@ -1116,7 +1116,7 @@
       "items": {
         "public": "Les références publiques et communautaires aident à repérer les services et à recouper les détails.",
         "reviewed": "Les fiches sont examinées avant d'apparaître comme services vérifiés.",
-        "separate": "Les partenariats officiels sont indiqués séparément lorsqu'ils sont confirmés."
+        "separate": "Les confirmations par un fournisseur sont indiquées séparément lorsqu'elles sont documentées."
       }
     },
     "sources": {
@@ -1313,7 +1313,7 @@
       },
       "termination": {
         "title": "Résiliation",
-        "content": "Chaque partie peut résilier ce partenariat. CareConnect peut résilier pour violation des conditions."
+        "content": "Chaque partie peut résilier cette relation d'accès à la fiche. CareConnect peut retirer l'accès en cas de violation des conditions ou d'informations inexactes."
       }
     },
     "eyebrow": "Accès partenaire",
@@ -1392,7 +1392,7 @@
       "email": "Courriel officiel",
       "site": "Audit du site web",
       "admin": "Vérifié par l'administrateur",
-      "partner": "Confirmé par le partenaire",
+      "partner": "Confirmé par le fournisseur",
       "manual": "Vérification manuelle"
     }
   },

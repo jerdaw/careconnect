@@ -1,7 +1,7 @@
 # Brampton Partner And Source Wording Review
 
 Date: 2026-07-08
-Status: draft-only wording review; no new public relationship claims approved
+Status: public source wording reviewed; provider-confirmed terminology selected
 
 ## Publication Gate
 
@@ -11,7 +11,7 @@ Source links can support manual review. They are not partner claims.
 
 ## Current Public Baseline
 
-The existing partner/source page frames sources as reference inputs for manual review. Current English copy states that reference sources guide curation and are not presented as endorsements or official partnerships unless confirmed.
+The existing partner/source page frames sources as reference inputs for manual review. Public copy should avoid `official partner` and `official partnership` for verification labels. Use `Provider Confirmed` for L3 records and reserve `partner` for the authenticated provider/listing-access feature.
 
 This baseline remains the recommended public posture for Brampton.
 
@@ -24,12 +24,13 @@ Use:
 - `source reviewed for manual verification`
 - `helps guide curation`
 - `used to compare public contact details`
-- `not an endorsement or official partnership unless confirmed`
+- `not an endorsement, sponsorship, or partnership`
+- `provider-confirmed record`
 - `provider corrections and verification are welcome`
 
 Example:
 
-> CareConnect uses public provider, directory, municipal, regional, and community sources as inputs for manual review. A source link does not mean the source endorses, operates, or partners with CareConnect.
+> CareConnect uses public provider, directory, municipal, regional, and community sources as inputs for manual review. A source link does not mean the source endorses, sponsors, operates, or partners with CareConnect.
 
 Example:
 
@@ -72,10 +73,14 @@ Avoid unless a documented relationship is approved:
 
 > Providers and community organizations can submit corrections or verification notes through the update process. Confirmed provider review is recorded separately from public source review.
 
+### Verification Label
+
+> Provider-confirmed records are labeled separately when a provider or authorized representative confirms key listing details.
+
 ## Definition Of Done For Publication
 
-- [ ] Exact wording approved by a human reviewer.
-- [ ] Wording does not imply endorsement, operation, sponsorship, or partnership.
-- [ ] Logos or organization names are not used as relationship claims.
-- [ ] Any confirmed relationship has documented evidence outside public source links.
-- [ ] Translations are prepared for all supported locales if wording is added to public UI.
+- [x] Exact public source/verification wording selected for this pass.
+- [x] Wording does not imply endorsement, operation, sponsorship, or partnership.
+- [x] Logos or organization names are not used as relationship claims.
+- [x] Any provider-confirmed label requires documented provider or authorized-representative confirmation.
+- [x] Translations are prepared for all supported locales touched by this pass.

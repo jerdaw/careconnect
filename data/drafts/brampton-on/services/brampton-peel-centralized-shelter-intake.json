@@ -24,18 +24,39 @@
   "application_process": "Call the Centralized Shelter Intake line for shelter access and screening.",
   "fees": "None listed by 211 Ontario.",
   "hours": {
-    "monday": { "open": "00:00", "close": "23:59" },
-    "tuesday": { "open": "00:00", "close": "23:59" },
-    "wednesday": { "open": "00:00", "close": "23:59" },
-    "thursday": { "open": "00:00", "close": "23:59" },
-    "friday": { "open": "00:00", "close": "23:59" },
-    "saturday": { "open": "00:00", "close": "23:59" },
-    "sunday": { "open": "00:00", "close": "23:59" },
+    "monday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "tuesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "wednesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "thursday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "friday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "saturday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "sunday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
     "notes": "Centralized Shelter Intake is listed as Monday to Sunday, 24 hours."
   },
   "hours_text": "Centralized Shelter Intake Monday to Sunday, 24 hours; Street Outreach hours require review if represented separately.",
   "last_verified": "2026-07-07",
-  "status": "Draft - pending human L1 approval",
+  "status": "Promoted to live L1 on 2026-07-08",
   "published": false,
   "primary_place_id": "brampton-on",
   "coverage": [

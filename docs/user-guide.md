@@ -163,7 +163,7 @@ Shows how we verified this service:
 
 - **L1 (Basic):** We confirmed it exists
 - **L2 (Vetted):** We contacted them directly
-- **L3 (Verified):** Official partnership (best)
+- **L3 (Provider Confirmed):** A provider or authorized representative confirmed key listing details (best)
 
 Higher levels mean more reliable information.
 

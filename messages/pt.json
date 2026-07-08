@@ -706,7 +706,7 @@
     "openHours": "Horário de abertura",
     "summaryComingSoon": "Resumo em linguagem simples brevemente.",
     "verifiedService": "Serviço verificado",
-    "officialPartner": "Parceiro oficial",
+    "officialPartner": "Fornecedor confirmado",
     "serviceMerged": "Serviço fundido",
     "permanentlyClosed": "Fechado permanentemente",
     "mergedDescription": "Este serviço foi fundido com outra organização. Verifique a descrição para novos detalhes de contacto.",
@@ -844,7 +844,7 @@
     "neverVerified": "Este serviço não foi verificado recentemente",
     "outdatedTooltip": "Esta informação tem mais de 3 meses e pode estar imprecisa.",
     "expiredTooltip": "Esta informação ultrapassa a janela de verificação aprovada de 6 meses da CareConnect e deve ser confirmada diretamente.",
-    "verifiedTooltip": "Informação confirmada por um parceiro em {date}",
+    "verifiedTooltip": "Informação confirmada por um fornecedor em {date}",
     "levels": {
       "fresh": "Verificado recentemente",
       "recent": "Verificado nos últimos 3 meses",
@@ -980,8 +980,8 @@
       "secondaryCta": "Ver fontes"
     },
     "landAcknowledgment": {
-      "title": "Reconhecimento de Terras",
-      "text": "Kingston, conhecida como Katarokwi, situa-se nos territórios ancestrais e tradicionais da Confederação Huron-Wendat, Anishinaabe e Haudenosaunee. Reconhecemos a nossa responsabilidade de respeitar e cuidar da terra, da água e dos céus."
+      "title": "Contexto do território e do lugar",
+      "text": "O CareConnect comecou em Kingston/Katarokwi e agora apoia Kingston e Brampton. Kingston/Katarokwi fica nas terras ancestrais e tradicionais dos Huron-Wendat, Anishinaabe e da Confederacao Haudenosaunee. Para Brampton, fontes publicas municipais, regionais e de governanca indigena identificam a area como conectada aos Mississaugas of the Credit, Haudenosaunee e Wendat/Huron-Wendat, incluindo o Tratado 19, a Compra Ajetance de 1818. Este e o contexto de revisao de fontes do CareConnect e nao implica endosso, consulta ou aprovacao de qualquer Nacao, municipio ou organizacao comunitaria."
     },
     "governance": {
       "title": "Como o diretório é mantido",
@@ -1048,7 +1048,7 @@
     "hero": {
       "eyebrow": "Fontes de referência",
       "title": "Como o CareConnect revê informações de fontes",
-      "subtitle": "O CareConnect utiliza fontes de referência públicas e comunitárias como insumos para revisão manual. Uma fonte de referência ajuda a orientar a curadoria; ela não é apresentada como endosso ou parceria oficial, a menos que essa relação seja confirmada."
+      "subtitle": "O CareConnect utiliza fontes de referência públicas e comunitárias como insumos para revisão manual. Uma fonte de referência ajuda a orientar a curadoria; ela não é apresentada como endosso, patrocínio ou parceria. Registros confirmados por fornecedores são identificados separadamente quando essa confirmação é documentada."
     },
     "heroCard": {
       "title": "O modelo de fontes",
@@ -1056,7 +1056,7 @@
       "items": {
         "public": "Referências públicas e comunitárias ajudam a identificar serviços e conferir detalhes.",
         "reviewed": "As listagens são revistas antes de aparecerem como serviços verificados.",
-        "separate": "Parcerias formais são identificadas separadamente quando confirmadas."
+        "separate": "Confirmações de fornecedores são identificadas separadamente quando documentadas."
       }
     },
     "sources": {
@@ -1243,7 +1243,7 @@
       },
       "termination": {
         "title": "Rescisão",
-        "content": "Qualquer uma das partes pode rescindir esta parceria. O CareConnect pode rescindir por violação dos termos ou informações imprecisas."
+        "content": "Qualquer uma das partes pode encerrar esta relação de acesso à listagem. O CareConnect pode encerrar o acesso por violação dos termos ou informações imprecisas."
       }
     },
     "eyebrow": "Acesso de parceiro",
@@ -1316,7 +1316,7 @@
     "L0": "Não verificado",
     "L1": "Verificação Básica",
     "L2": "Serviço Verificado",
-    "L3": "Parceiro Oficial"
+    "L3": "Fornecedor confirmado"
   },
   "Distance": {
     "ontarioWide": "Disponível em todo o Ontário",
@@ -1380,7 +1380,7 @@
       "email": "E-mail Oficial",
       "site": "Auditoria do Site",
       "admin": "Verificado por Admin",
-      "partner": "Confirmado por Parceiro",
+      "partner": "Confirmado por fornecedor",
       "manual": "Verificação manual"
     }
   },

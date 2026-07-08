@@ -24,16 +24,31 @@
   "eligibility_notes": "Public sources frame the centre around violence, abuse, and navigation support; program-specific eligibility requires human L1 confirmation.",
   "application_process": "Call or use provider contact paths. If in immediate danger, call 911.",
   "hours": {
-    "monday": { "open": "09:00", "close": "17:00" },
-    "tuesday": { "open": "09:00", "close": "17:00" },
-    "wednesday": { "open": "09:00", "close": "17:00" },
-    "thursday": { "open": "09:00", "close": "17:00" },
-    "friday": { "open": "09:00", "close": "17:00" },
+    "monday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "tuesday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "wednesday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "thursday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "friday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
     "notes": "Onsite services are listed as Monday to Friday, 9 AM to 5 PM; phone support is listed as 24/7."
   },
   "hours_text": "Onsite services Monday to Friday 9 AM to 5 PM; phone support available 24/7.",
   "last_verified": "2026-07-07",
-  "status": "Draft - pending human L1 approval",
+  "status": "Promoted to live L1 on 2026-07-08",
   "published": false,
   "primary_place_id": "brampton-on",
   "coverage": [

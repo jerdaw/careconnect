@@ -5,7 +5,7 @@ export enum VerificationLevel {
   L0 = "L0", // Unverified
   L1 = "L1", // Basic Verification (Existence confirmed)
   L2 = "L2", // Vetted (Contact made)
-  L3 = "L3", // Provider Confirmed (Official partnership or direct confirmation)
+  L3 = "L3", // Provider Confirmed (direct provider or authorized representative confirmation)
 }
 
 /**

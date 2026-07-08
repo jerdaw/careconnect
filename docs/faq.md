@@ -168,10 +168,10 @@ We use a **3-level verification system**:
 - We confirmed hours, location, and eligibility
 - ✅ More reliable information
 
-**Level 3 (L3) - Verified:**
+**Level 3 (L3) - Provider Confirmed:**
 
-- Official partnership with the service
-- They update their own information
+- A service provider or authorized representative confirmed key listing details
+- The provider may help maintain or correct its record
 - ✅ Most reliable information
 
 **Look for the verification badge** on each service card.
@@ -206,10 +206,10 @@ We use a **3-level verification system**:
 - We've confirmed details recently
 - Still call to confirm eligibility
 
-**L3 (Verified Partnership):**
+**L3 (Provider Confirmed):**
 
 - ✅ Best reliability
-- Service updates their own info
+- A provider or authorized representative confirmed key listing details
 - Most current information
 
 **Tip:** Prefer L2 and L3 services when possible.

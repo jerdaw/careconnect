@@ -1,0 +1,40 @@
+{
+  "id": "brampton-ste-louise-food-bank",
+  "name": "Ste. Louise Outreach Centre of Peel Food Bank",
+  "description": "Food bank support in Brampton through Ste. Louise Outreach Centre of Peel.",
+  "url": "https://stelouisefoodbank.ca/",
+  "phone": "905-454-2144",
+  "email": "stelouisefoodbank85@hotmail.com",
+  "verification_level": "L1",
+  "intent_category": "Food",
+  "provenance": {
+    "verified_by": "CareConnect curator",
+    "verified_at": "2026-07-08T18:00:00.000Z",
+    "evidence_url": "https://stelouisefoodbank.ca/contact-us",
+    "method": "public_source_review"
+  },
+  "identity_tags": [],
+  "synthetic_queries": [
+    "Ste Louise Brampton",
+    "food bank Brampton",
+    "Ste Louise Outreach Centre of Peel",
+    "food support Haggert Avenue"
+  ],
+  "address": "32 Haggert Avenue North, Brampton, ON L6X 1Y3",
+  "application_process": "Official registration page lists annual or first-time registration and monthly document submission by email; confirm current registration workflow before live promotion.",
+  "documents_required": "Official registration page lists current Canadian ID or immigration papers, banking profile, lease or mortgage papers, and monthly proof of address, income, rent, and bank statements.",
+  "hours_text": "211 Central lists food bank hours Tuesday and Thursday 10:30 AM to 12:30 PM, and Saturday 11:00 AM to 1:30 PM; official contact page displays current daily open status and should be checked before live promotion.",
+  "last_verified": "2026-07-08",
+  "status": "Promoted to live L1 on 2026-07-08",
+  "published": false,
+  "primary_place_id": "brampton-on",
+  "coverage": [
+    {
+      "kind": "local",
+      "placeIds": ["brampton-on"],
+      "label": "Brampton"
+    }
+  ],
+  "primary_phone_label": "Registration information",
+  "service_area": "Brampton"
+}

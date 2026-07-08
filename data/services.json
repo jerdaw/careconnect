@@ -12385,14 +12385,14 @@
     "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
     "phone": "905-450-1996",
     "address": "10 Peel Centre Dr, Suite A and B, Brampton, ON L6T 4B9",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Housing",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
-      "evidence_url": "https://211ontario.ca/service/78231605/peel-region-housing-and-shelter-peel-centralized-shelter-intake-and-homeless-supports/",
+      "verified_at": "2026-07-08T22:00:00.000Z",
+      "evidence_url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Peel Region shelter page and 211 Ontario both identify centralized shelter intake for Peel; eligibility details should be reviewed again before L2."
+      "verification_notes": "L2 review completed 2026-07-08. Peel Region shelter page and 211 Ontario align on the 905-450-1996 centralized shelter intake, 24/7 access, Peel regional coverage, eligibility framing, and Brampton intake address; street outreach remains represented only as contextual support."
     },
     "identity_tags": [
       {
@@ -12444,7 +12444,7 @@
       "notes": "Centralized Shelter Intake is listed as Monday to Sunday, 24 hours."
     },
     "hours_text": "Centralized Shelter Intake Monday to Sunday, 24 hours; Street Outreach hours require review if represented separately.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12476,14 +12476,14 @@
     "url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
     "phone": "905-450-1996",
     "address": "15 Wilkinson Road, Brampton, ON L6T 4M3",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Housing",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
-      "evidence_url": "https://211central.ca/record/73523437/",
+      "verified_at": "2026-07-08T22:00:00.000Z",
+      "evidence_url": "https://peelregion.ca/housing-social-support/homeless-support/shelters",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Peel Region public shelter page names Wilkinson Shelter in Brampton; 211 Central lists central intake and office details."
+      "verification_notes": "L2 review completed 2026-07-08. Peel Region shelter page identifies Wilkinson Shelter for adult men 25 years or older in Brampton and directs people to Central Intake; 211 Central confirms screening before intake, 24/7 shelter operation, site office details, address, and Peel coverage."
     },
     "identity_tags": [
       {
@@ -12536,7 +12536,7 @@
       "notes": "Shelter is listed as open Monday to Sunday, 24 hours; office hours differ."
     },
     "hours_text": "Shelter Monday to Sunday, 24 hours; office Monday to Friday 8 AM to 4 PM per 211 Central.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12567,14 +12567,14 @@
     "email": "info@vspeel.org",
     "phone": "905-568-1068",
     "address": "7750 Hurontario Street, Brampton, ON L6V 3W6",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Crisis",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
+      "verified_at": "2026-07-08T22:00:00.000Z",
       "evidence_url": "https://www.vspeel.org/",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Provider lists crisis line, Brampton mailing address, and 24-hour availability; ONVSP listing supports provider identity."
+      "verification_notes": "L2 review completed 2026-07-08. Provider site lists the 24/7 crisis line, Brampton mailing address, administration contact, and regional victim-support purpose; ONVSP and Peel Police public references align on provider identity and crisis phone."
     },
     "identity_tags": [
       {
@@ -12625,7 +12625,7 @@
       "notes": "Provider lists crisis line availability as 24 hours a day, 365 days a year."
     },
     "hours_text": "Crisis line available 24 hours a day, 365 days a year; office hours require confirmation.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12657,14 +12657,14 @@
     "email": "scop@cfspd.com",
     "phone": "905-450-4650",
     "address": "60 West Drive, Suite 110, Brampton, ON L6T 3T6",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Crisis",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
+      "verified_at": "2026-07-08T22:00:00.000Z",
       "evidence_url": "https://scopeel.org/contact-us/",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Provider contact page lists Brampton location, phone support, and onsite hours; 211 Ontario listing supports provider identity."
+      "verification_notes": "L2 review completed 2026-07-08. Provider contact page and 211 Central align on Brampton location, 905-450-4650 contact, Peel regional coverage, weekday onsite hours, and urgent after-hours routing through Victim Services of Peel."
     },
     "identity_tags": [
       {
@@ -12707,7 +12707,7 @@
       "notes": "Onsite services are listed as Monday to Friday, 9 AM to 5 PM; phone support is listed as 24/7."
     },
     "hours_text": "Onsite services Monday to Friday 9 AM to 5 PM; phone support available 24/7.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12737,14 +12737,14 @@
     "description_fr": "[Traduction en cours] Financial and emergency assistance access for Peel residents through Ontario Works and emergency assistance pathways.",
     "url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
     "phone": "905-793-9200",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Financial",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
+      "verified_at": "2026-07-08T22:00:00.000Z",
       "evidence_url": "https://peelregion.ca/services/ontario-works-or-emergency-assistance",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Peel Region page lists Ontario Works and emergency assistance application paths and Brampton/Mississauga phone number."
+      "verification_notes": "L2 review completed 2026-07-08. Peel Region page resolves Ontario Works and emergency-assistance eligibility, application paths, Brampton/Mississauga phone, toll-free phone, and application-status routing; directory sources align on regional Human Services contact details."
     },
     "identity_tags": [
       {
@@ -12763,7 +12763,7 @@
     "access_script": "Hi, I live in Peel and need financial or emergency assistance. Can you tell me whether I should apply for Ontario Works or emergency assistance?",
     "access_script_fr": "[Traduction en cours] Hi, I live in Peel and need financial or emergency assistance. Can you tell me whether I should apply for Ontario Works or emergency assistance?",
     "application_process": "Apply through Ontario government pathways or call the Brampton and Mississauga number listed by Peel Region.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12796,14 +12796,14 @@
     "email": "marketplace@regenbrampton.com",
     "phone": "905-796-5888 ext. 4000",
     "address": "253 Queen Street East, Brampton, ON L6W 2B8",
-    "verification_level": "L1",
+    "verification_level": "L2",
     "intent_category": "Food",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
+      "verified_at": "2026-07-08T22:00:00.000Z",
       "evidence_url": "https://regenbrampton.com/service/marketplace/",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval. Provider marketplace page lists address, phone extension, email, registration guidance, and hours."
+      "verification_notes": "L2 review completed 2026-07-08. Provider marketplace page and 211 Central align on the 253 Queen St E food-bank location, marketplace phone extension, email, hours, government-ID requirement, and Brampton/Peel food-bank coverage."
     },
     "identity_tags": [
       {
@@ -12823,7 +12823,7 @@
     "access_script_fr": "[Traduction en cours] Hi, I need groceries from the Marketplace. Can you tell me when I can come in and what I should bring for registration?",
     "application_process": "First-time visitors can register during hours of operation; provider says no appointment is needed and asks visitors to bring government-issued ID.",
     "hours_text": "Marketplace hours listed by provider: Monday closed; Tuesday 9 AM-11:30 AM and 1 PM-3:30 PM; Wednesday 9 AM-3:30 PM; Thursday 9 AM-11:30 AM and 1 PM-3:30 PM; Friday 9 AM-11:30 AM and 1 PM-3:30 PM; Saturday 8:30 AM-1:30 PM; Sunday closed.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12857,10 +12857,10 @@
     "intent_category": "Food",
     "provenance": {
       "verified_by": "CareConnect curator",
-      "verified_at": "2026-07-07T16:00:00.000Z",
+      "verified_at": "2026-07-08T22:00:00.000Z",
       "evidence_url": "https://knightstable.org/contact-us/",
       "method": "public_source_review",
-      "verification_notes": "Promoted after human approval and additional research. Official provider contact page and site move notice list 73 Hale Road. 211 Ontario still lists Our Pantry at 287 Glidden Rd, Unit 4; recheck before L2 and consider submitting an update to 211."
+      "verification_notes": "L1 retained after 2026-07-08 review. Official provider contact page and move notice list 73 Hale Road, while 211 Central and 211 Ontario continue to list program records at 287 Glidden Road, Unit 4. Keep live card conservative and complete a provider/direct directory correction check before any L2 upgrade or program split."
     },
     "identity_tags": [
       {
@@ -12882,7 +12882,7 @@
     "documents_required": "211 Ontario lists identification for all household members and proof of address; confirm with provider.",
     "fees": "None listed by 211 Ontario.",
     "hours_text": "Call to confirm current pantry and meal hours. 211 Ontario lists pantry hours Monday to Friday 10 AM to 3:30 PM for registered users, while the provider site indicates a move to 73 Hale Road.",
-    "last_verified": "2026-07-07",
+    "last_verified": "2026-07-08",
     "status": "Active",
     "primary_place_id": "brampton-on",
     "coverage": [
@@ -12890,10 +12890,93 @@
         "kind": "local",
         "placeIds": ["brampton-on"],
         "label": "Brampton",
-        "notes": "Provider site lists 73 Hale Road; 211 pantry address needs follow-up before L2."
+        "notes": "Provider site lists 73 Hale Road; 211 pantry/meal program addresses still need follow-up before L2."
       }
     ],
     "primary_phone_label": "Office",
+    "service_area": "Peel Region",
+    "plain_language_available": false,
+    "authority_tier": "established_nonprofit",
+    "resource_indicators": {
+      "service_area_size": "regional",
+      "staff_size": "small",
+      "annual_budget": "medium"
+    }
+  },
+  {
+    "id": "brampton-ste-louise-food-bank",
+    "name": "Ste. Louise Outreach Centre of Peel Food Bank",
+    "name_fr": "Banque alimentaire Ste. Louise Outreach Centre of Peel",
+    "description": "Food bank support in Brampton through Ste. Louise Outreach Centre of Peel.",
+    "description_fr": "[Traduction en cours] Food bank support in Brampton through Ste. Louise Outreach Centre of Peel.",
+    "url": "https://stelouisefoodbank.ca/",
+    "email": "stelouisefoodbank85@hotmail.com",
+    "phone": "905-454-2144",
+    "address": "32 Haggert Avenue North, Brampton, ON L6X 1Y3",
+    "verification_level": "L1",
+    "intent_category": "Food",
+    "provenance": {
+      "verified_by": "CareConnect curator",
+      "verified_at": "2026-07-08T22:00:00.000Z",
+      "evidence_url": "https://stelouisefoodbank.ca/contact-us",
+      "method": "public_source_review",
+      "verification_notes": "Promoted to live L1 after owner approval on 2026-07-08. Official contact and registration pages list address, client registration phone, email, document workflow, and support categories; 211 Central aligns on food-bank purpose, service area, address, client phone, hours, eligibility, and documents. Recheck registration workflow before L2."
+    },
+    "identity_tags": [
+      {
+        "tag": "Individuals and families in need",
+        "evidence_url": "https://211central.ca/record/69807287/"
+      }
+    ],
+    "synthetic_queries": [
+      "Ste Louise Brampton",
+      "food bank Brampton",
+      "Ste Louise Outreach Centre of Peel",
+      "food support Haggert Avenue"
+    ],
+    "synthetic_queries_fr": [
+      "[Traduction en cours] Ste Louise Brampton",
+      "[Traduction en cours] food bank Brampton",
+      "[Traduction en cours] Ste Louise Outreach Centre of Peel",
+      "[Traduction en cours] food support Haggert Avenue"
+    ],
+    "eligibility_notes": "211 Central lists individuals and families in need; call to confirm current registration fit.",
+    "eligibility_notes_fr": "[Traduction en cours] 211 Central lists individuals and families in need; call to confirm current registration fit.",
+    "access_script": "Hi, I need food support from Ste. Louise. Can you tell me how to register and what documents I should send or bring?",
+    "access_script_fr": "[Traduction en cours] Hi, I need food support from Ste. Louise. Can you tell me how to register and what documents I should send or bring?",
+    "application_process": "Call the registration information line and review the provider registration page. Public sources list registration/document steps; confirm current workflow before sending documents.",
+    "documents_required": "Official registration page lists identification or immigration papers, banking profile, lease or mortgage papers, monthly proof of address, income, rent, and bank statements. 211 Central also lists proof of address, income, rent, and bank statements.",
+    "fees": "None listed by 211 Central.",
+    "hours": {
+      "tuesday": {
+        "open": "10:30",
+        "close": "12:30"
+      },
+      "thursday": {
+        "open": "10:30",
+        "close": "12:30"
+      },
+      "saturday": {
+        "open": "11:00",
+        "close": "13:30"
+      },
+      "notes": "211 Central lists food-bank hours Tuesday and Thursday 10:30 AM to 12:30 PM, and Saturday 11:00 AM to 1:30 PM; official site may display current daily open status."
+    },
+    "hours_text": "211 Central lists food-bank hours Tuesday and Thursday 10:30 AM to 12:30 PM, and Saturday 11:00 AM to 1:30 PM; check the official contact page for current daily status.",
+    "languages": ["English", "Portuguese", "Spanish"],
+    "last_verified": "2026-07-08",
+    "status": "Active",
+    "primary_place_id": "brampton-on",
+    "coverage": [
+      {
+        "kind": "regional",
+        "placeIds": ["brampton-on"],
+        "regionIds": ["peel-region"],
+        "label": "Peel Region",
+        "notes": "Brampton food-bank location; 211 Central lists service area as Peel Region."
+      }
+    ],
+    "primary_phone_label": "Registration information",
     "service_area": "Peel Region",
     "plain_language_available": false,
     "authority_tier": "established_nonprofit",

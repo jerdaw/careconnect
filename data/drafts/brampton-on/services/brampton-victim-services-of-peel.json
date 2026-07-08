@@ -24,18 +24,39 @@
   "eligibility_notes": "Public sources identify support for people affected by crime, tragedy, or trauma; exact program limits require human L1 confirmation.",
   "application_process": "Call the 24-hour crisis line or use the provider contact paths.",
   "hours": {
-    "monday": { "open": "00:00", "close": "23:59" },
-    "tuesday": { "open": "00:00", "close": "23:59" },
-    "wednesday": { "open": "00:00", "close": "23:59" },
-    "thursday": { "open": "00:00", "close": "23:59" },
-    "friday": { "open": "00:00", "close": "23:59" },
-    "saturday": { "open": "00:00", "close": "23:59" },
-    "sunday": { "open": "00:00", "close": "23:59" },
+    "monday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "tuesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "wednesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "thursday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "friday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "saturday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "sunday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
     "notes": "Provider lists crisis line availability as 24 hours a day, 365 days a year."
   },
   "hours_text": "Crisis line available 24 hours a day, 365 days a year; office hours require confirmation.",
   "last_verified": "2026-07-07",
-  "status": "Draft - pending human L1 approval",
+  "status": "Promoted to live L1 on 2026-07-08",
   "published": false,
   "primary_place_id": "brampton-on",
   "coverage": [

@@ -25,18 +25,39 @@
   "documents_required": "Identification; contact for information.",
   "fees": "None listed by 211 Central.",
   "hours": {
-    "monday": { "open": "00:00", "close": "23:59" },
-    "tuesday": { "open": "00:00", "close": "23:59" },
-    "wednesday": { "open": "00:00", "close": "23:59" },
-    "thursday": { "open": "00:00", "close": "23:59" },
-    "friday": { "open": "00:00", "close": "23:59" },
-    "saturday": { "open": "00:00", "close": "23:59" },
-    "sunday": { "open": "00:00", "close": "23:59" },
+    "monday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "tuesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "wednesday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "thursday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "friday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "saturday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "sunday": {
+      "open": "00:00",
+      "close": "23:59"
+    },
     "notes": "Shelter is listed as open Monday to Sunday, 24 hours; office hours differ."
   },
   "hours_text": "Shelter Monday to Sunday, 24 hours; office Monday to Friday 8 AM to 4 PM per 211 Central.",
   "last_verified": "2026-07-07",
-  "status": "Draft - pending human L1 approval",
+  "status": "Promoted to live L1 on 2026-07-08",
   "published": false,
   "primary_place_id": "brampton-on",
   "coverage": [

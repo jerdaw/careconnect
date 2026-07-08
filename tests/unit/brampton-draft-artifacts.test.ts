@@ -27,7 +27,10 @@ const expectedDraftFiles = [
   "brampton-peel-ontario-works-emergency-assistance.json",
   "brampton-regeneration-marketplace-food-bank.json",
   "brampton-knights-table-food-bank-meals.json",
+  "brampton-ste-louise-food-bank.json",
 ]
+
+const pendingDraftFiles: string[] = []
 
 describe("Brampton draft service artifacts", () => {
   it("keeps promoted Brampton service records traceable to coverage-explicit draft artifacts", () => {
@@ -39,6 +42,24 @@ describe("Brampton draft service artifacts", () => {
 
       expect(draft.id).toBe(fileName.replace(/\.json$/, ""))
       expect(liveServiceIds.has(draft.id)).toBe(true)
+      expect(draft.primary_place_id).toBe("brampton-on")
+      expect(draft.coverage?.length).toBeGreaterThan(0)
+      expect(draft.coverage?.some((area) => area.placeIds?.includes("brampton-on"))).toBe(true)
+      expect(draft.coverage?.some((area) => area.placeIds?.includes("kingston-on"))).toBe(false)
+      expect(draft.provenance?.method).toBe("public_source_review")
+      expect(ServiceSchema.safeParse(draft).success).toBe(true)
+    }
+  })
+
+  it("keeps pending Brampton draft records out of live data until approval", () => {
+    const liveServiceIds = new Set(services.map((service) => service.id))
+
+    for (const fileName of pendingDraftFiles) {
+      const filePath = path.join(draftDir, fileName)
+      const draft = JSON.parse(fs.readFileSync(filePath, "utf8")) as DraftService
+
+      expect(draft.id).toBe(fileName.replace(/\.json$/, ""))
+      expect(liveServiceIds.has(draft.id)).toBe(false)
       expect(draft.primary_place_id).toBe("brampton-on")
       expect(draft.coverage?.length).toBeGreaterThan(0)
       expect(draft.coverage?.some((area) => area.placeIds?.includes("brampton-on"))).toBe(true)

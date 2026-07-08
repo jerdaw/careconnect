@@ -59,7 +59,7 @@ describe("About page surfaces", () => {
     renderWithProviders(<PartnersCopyProbe />, { messages: enMessages })
 
     expect(screen.getByRole("heading", { name: "How CareConnect reviews source information" })).toBeInTheDocument()
-    expect(screen.getByText(/not presented as an endorsement or official partnership/i)).toBeInTheDocument()
+    expect(screen.getByText(/not presented as an endorsement, sponsorship, or partnership/i)).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "Sources used to support review" })).toBeInTheDocument()
     expect(screen.getByText(/Province-wide social-service directory reference/i)).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "How references become verified listings" })).toBeInTheDocument()

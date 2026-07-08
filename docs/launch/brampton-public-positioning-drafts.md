@@ -1,9 +1,9 @@
 # Brampton Public Positioning Drafts
 
 Date: 2026-07-07
-Status: Brampton launch direction approved; gated sections remain review-only
+Status: Brampton launch direction and About-page source-context wording approved
 
-These notes record the approved public positioning direction for the Brampton first launch set. Land acknowledgment wording, official relationship wording, and production rollout copy remain gated until separately reviewed.
+These notes record the approved public positioning direction for the Brampton first launch set. Brampton-specific About-page source-context wording is approved, while formal endorsement, consultation, relationship, and production rollout claims remain gated until separately reviewed. Public relationship wording now uses source-reference and provider-confirmed language instead of official-partner claims.
 
 Detailed follow-up packets:
 
@@ -64,7 +64,7 @@ Avoid:
 
 ## Land Acknowledgment Source Checklist
 
-Do not publish Brampton-specific land acknowledgment wording until a human reviewer approves sources and wording.
+The approved About-page posture is a multi-city source-context note. It names Brampton source context only as CareConnect's review basis and explicitly avoids endorsement, consultation, approval, or relationship claims.
 
 Detailed review packet: `docs/launch/brampton-land-acknowledgment-review.md`.
 
@@ -75,11 +75,15 @@ Source review completed on 2026-07-07:
 - [Mississaugas of the Credit First Nation](https://mncfn.ca/): primary Indigenous-governance source for MCFN identity, treaty lands, and territory context.
 - [The Indigenous Network, listed by the Ontario Federation of Indigenous Friendship Centres](https://ofifc.org/friendship-centre/the-indigenous-network/): local Peel Indigenous community-service context.
 
-Before final publication, decide:
+Future wording outside the About page still requires review:
 
 - Whether CareConnect should use one Ontario-wide acknowledgment, separate city acknowledgments, or a concise project-level statement.
 - Whether Brampton wording should follow City of Brampton wording, Peel Region's interim wording, or a shorter product-context statement.
 - Whether any Indigenous-led review is available before using Brampton-specific wording in public UI.
+
+Approved About page posture:
+
+> CareConnect began in Kingston/Katarokwi and now supports Kingston and Brampton. Kingston/Katarokwi is on the ancestral and traditional homelands of the Huron-Wendat, Anishinaabe, and Haudenosaunee Confederacy. For Brampton, public municipal, regional, and Indigenous-governance sources identify the area as connected to the Mississaugas of the Credit, Haudenosaunee, and Wendat/Huron-Wendat, including Treaty 19, the Ajetance Purchase of 1818. This is CareConnect's source-review context and does not imply endorsement, consultation, or approval by any Nation, municipality, or community organization.
 
 Draft-only Brampton source synthesis:
 
@@ -91,10 +95,11 @@ Draft-only product-context option:
 
 Approval requirements:
 
-- [ ] Source list reviewed by a human.
-- [ ] Wording checked for accuracy and humility.
-- [ ] Wording does not imply Indigenous endorsement.
-- [ ] Wording fits the public product context and is not treated as a decorative footer.
+- [x] Source-context public posture selected for the multi-city About page.
+- [x] Source list reviewed for Brampton-specific wording.
+- [x] Source-context wording checked for accuracy and humility.
+- [x] Source-context wording does not imply Indigenous endorsement.
+- [x] Wording fits the public product context and is not treated as a decorative footer.
 
 ## Partner Page Direction
 
@@ -118,7 +123,7 @@ Draft paragraph:
 | Homepage supported regions | `CareConnect` umbrella with Kingston and Brampton as supported communities | Claims that coverage is complete or officially endorsed                        |
 | Brampton live copy         | Small reviewed launch set for urgent/core supports                         | Copy describing a full Brampton directory                                      |
 | Partner/source pages       | Public sources support manual review                                       | Any provider, municipal, regional, provincial, or Indigenous partnership claim |
-| Land acknowledgment        | Source checklist and draft-only options                                    | Final wording in public UI or docs                                             |
+| Land acknowledgment        | Approved About-page source-context wording                                 | Any broader formal acknowledgment, endorsement, or consultation wording        |
 | Project name               | `CareConnect` public umbrella                                              | Rebranding into a city-specific or region-specific product name                |
 | Production rollout copy    | Approval-gated release notes and smoke-test checklist                      | Public launch announcement that implies deploy is complete                     |
 
@@ -150,7 +155,7 @@ Option B:
 
 ## Land Acknowledgment Publication Gate
 
-Do not move Brampton-specific land acknowledgment wording into public UI until:
+Do not move Brampton-specific land/source wording beyond the approved About-page context until:
 
 - A human reviewer confirms the preferred source basis.
 - The wording avoids implying endorsement by any Nation, municipality, or community organization.

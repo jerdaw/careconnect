@@ -1,11 +1,13 @@
 # Brampton Land Acknowledgment Review
 
 Date: 2026-07-08
-Status: draft-only source review; no final public wording approved
+Status: approved public source-context wording selected
 
 ## Publication Gate
 
-Do not publish Brampton-specific land acknowledgment wording in public UI, release notes, partner pages, or launch materials until a human reviewer approves the exact source basis and final wording.
+Do not publish wording that implies endorsement, consultation, review, approval, partnership, or representation by any Nation, municipality, regional government, friendship centre, or community organization.
+
+The public About page may use approved source-context wording that identifies the public source basis for Kingston/Katarokwi and Brampton while stating that the wording is CareConnect's source-review context only.
 
 Final wording must not imply endorsement, consultation, review, or approval by any Nation, municipality, regional government, friendship centre, or community organization unless that relationship is explicitly confirmed.
 
@@ -28,6 +30,16 @@ Public municipal, regional, and Indigenous-governance sources identify Brampton/
 
 This synthesis is not final wording. It is only a review basis for a human decision.
 
+## Selected Public Posture
+
+Use Option B, but as source-context wording rather than a formal land acknowledgment. This is approved for the public About page because it is transparent about Brampton sources and explicitly avoids endorsement or consultation claims.
+
+Approved `Land and place context` card:
+
+> CareConnect began in Kingston/Katarokwi and now supports Kingston and Brampton. Kingston/Katarokwi is on the ancestral and traditional homelands of the Huron-Wendat, Anishinaabe, and Haudenosaunee Confederacy. For Brampton, public municipal, regional, and Indigenous-governance sources identify the area as connected to the Mississaugas of the Credit, Haudenosaunee, and Wendat/Huron-Wendat, including Treaty 19, the Ajetance Purchase of 1818. This is CareConnect's source-review context and does not imply endorsement, consultation, or approval by any Nation, municipality, or community organization.
+
+This is a source-context statement, not an endorsement claim or formal relationship claim.
+
 ## Wording Options For Review Only
 
 ### Option A: Minimal Product Context
@@ -40,7 +52,9 @@ Risk: concise, but may feel too informational and not sufficiently reflective.
 
 CareConnect is a community information project serving Kingston and Brampton. For Brampton, public municipal, regional, and Indigenous-governance sources identify the area as being within lands connected to the Mississaugas of the Credit, Haudenosaunee, and Wendat or Huron-Wendat, including Treaty 19, the Ajetance Purchase of 1818.
 
-Risk: safer as a product-context note, but still requires review for tone and completeness.
+Decision: publish only in the approved source-context form above.
+
+Risk: safer as a product-context note; future wording still needs review if it appears outside the About page.
 
 ### Option C: No Brampton-Specific Public Wording Yet
 
@@ -56,9 +70,16 @@ Risk: slower, but lowest risk of publishing premature wording.
 
 ## Definition Of Done For Publication
 
-- [ ] Human reviewer selects a source basis.
-- [ ] Human reviewer approves exact wording.
-- [ ] Wording avoids implying Indigenous endorsement or consultation.
-- [ ] Wording avoids implying municipal or regional endorsement.
-- [ ] Wording is reviewed in the exact UI/docs context where it will appear.
-- [ ] Kingston/Katarokwi and Brampton wording are checked for consistency.
+- [x] Human reviewer selects a source basis.
+- [x] Human reviewer approves exact wording.
+- [x] Wording avoids implying Indigenous endorsement or consultation.
+- [x] Wording avoids implying municipal or regional endorsement.
+- [x] Wording is reviewed in the About page context where it will appear.
+- [x] Kingston/Katarokwi and Brampton wording are checked for consistency.
+
+## Definition Of Done For Interim Public Posture
+
+- [x] Public UI no longer frames CareConnect as Kingston-only.
+- [x] Brampton-specific treaty and Nation wording is published only as reviewed source-context wording.
+- [x] Source-context wording avoids implying Indigenous, municipal, regional, provider, or community-organization endorsement.
+- [x] Source checklist remains available for future Brampton wording review.

@@ -12,7 +12,7 @@
     "L0": "Unverified",
     "L1": "Basic Verification",
     "L2": "Verified Service",
-    "L3": "Official Partner"
+    "L3": "Provider Confirmed"
   },
   "UserGuide": {
     "title": "User Guide - CareConnect",
@@ -863,7 +863,7 @@
     "neverVerified": "This service has not been verified recently",
     "outdatedTooltip": "This information is more than 3 months old and may be inaccurate.",
     "expiredTooltip": "This information is older than CareConnect's approved 6-month verification window and should be rechecked directly.",
-    "verifiedTooltip": "Information confirmed by a partner on {date}",
+    "verifiedTooltip": "Information confirmed by a provider on {date}",
     "levels": {
       "fresh": "Verified recently",
       "recent": "Verified within 3 months",
@@ -976,7 +976,7 @@
     "openHours": "Open Hours",
     "summaryComingSoon": "Plain language summary coming soon.",
     "verifiedService": "Verified Service",
-    "officialPartner": "Official Partner",
+    "officialPartner": "Provider Confirmed",
     "serviceMerged": "Service Merged",
     "permanentlyClosed": "Permanently Closed",
     "mergedDescription": "This service has been merged with another organization. Please check the description for the new contact details.",
@@ -1274,8 +1274,8 @@
       "secondaryCta": "View sources"
     },
     "landAcknowledgment": {
-      "title": "Land Acknowledgment",
-      "text": "Kingston, known as Katarokwi, is situated on the ancestral and traditional homelands of the Huron-Wendat, Anishinaabe, and Haudenosaunee Confederacy. We acknowledge our responsibility to honour the land, water, and skies with respect and preservation."
+      "title": "Land and place context",
+      "text": "CareConnect began in Kingston/Katarokwi and now supports Kingston and Brampton. Kingston/Katarokwi is on the ancestral and traditional homelands of the Huron-Wendat, Anishinaabe, and Haudenosaunee Confederacy. For Brampton, public municipal, regional, and Indigenous-governance sources identify the area as connected to the Mississaugas of the Credit, Haudenosaunee, and Wendat/Huron-Wendat, including Treaty 19, the Ajetance Purchase of 1818. This is CareConnect's source-review context and does not imply endorsement, consultation, or approval by any Nation, municipality, or community organization."
     },
     "governance": {
       "title": "How the directory is maintained",
@@ -1342,7 +1342,7 @@
     "hero": {
       "eyebrow": "Reference sources",
       "title": "How CareConnect reviews source information",
-      "subtitle": "CareConnect uses public and community reference sources as inputs for manual review. A reference source helps guide curation; it is not presented as an endorsement or official partnership unless that relationship is confirmed."
+      "subtitle": "CareConnect uses public and community reference sources as inputs for manual review. A reference source helps guide curation; it is not presented as an endorsement, sponsorship, or partnership. Provider-confirmed records are labeled separately when that confirmation is documented."
     },
     "heroCard": {
       "title": "The source model",
@@ -1350,7 +1350,7 @@
       "items": {
         "public": "Public and community references help identify services and cross-check details.",
         "reviewed": "Listings are reviewed before they appear as verified services.",
-        "separate": "Formal partnerships are labeled separately when confirmed."
+        "separate": "Provider confirmations are labeled separately when documented."
       }
     },
     "sources": {
@@ -1544,7 +1544,7 @@
       },
       "termination": {
         "title": "Termination",
-        "content": "Either party may terminate this partnership. CareConnect may terminate for terms violation or inaccurate info."
+        "content": "Either party may terminate this listing-access relationship. CareConnect may terminate access for terms violation or inaccurate info."
       }
     },
     "eyebrow": "Partner access",
@@ -1623,7 +1623,7 @@
       "email": "Official Email",
       "site": "Website Audit",
       "admin": "Admin Verified",
-      "partner": "Partner Confirmed",
+      "partner": "Provider Confirmed",
       "manual": "Manual Verification"
     }
   },

@@ -9,9 +9,10 @@ export const APPROVED_BRAMPTON_SERVICE_IDS = [
   "brampton-peel-ontario-works-emergency-assistance",
   "brampton-regeneration-marketplace-food-bank",
   "brampton-knights-table-food-bank-meals",
+  "brampton-ste-louise-food-bank",
 ] as const
 
-export const BRAMPTON_SYNC_APPROVAL_TOKEN = "I_APPROVE_SYNCING_SEVEN_BRAMPTON_L1_RECORDS"
+export const BRAMPTON_SYNC_APPROVAL_TOKEN = "I_APPROVE_SYNCING_APPROVED_BRAMPTON_RECORDS"
 
 export type BramptonSyncMode = "dry-run" | "apply"
 
