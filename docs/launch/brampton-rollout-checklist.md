@@ -66,7 +66,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Confirm existing live columns match migration assumptions: `primary_place_id` and `coverage` are absent before migration.
 - [x] Confirm pending migration normalizes existing broad `services_public` grants before granting SELECT.
 - [x] Post-merge read-only Supabase preflight rerun confirmed `20260706120000` remains local-only and production still lacks `primary_place_id` and `coverage`.
-- [x] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: CareConnect restore/provider proof is planned but not recorded as complete; the project owner explicitly accepted this risk for the migration.
+- [x] Confirm backup or rollback posture using `docs/launch/brampton-production-approval-packet.md` and the approved private/shared operations source of truth. Current finding: Supabase Support reported triggering a latest-backup restore on 2026-07-08, and post-restore health, schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed.
 - [x] Apply migration only after explicit human approval.
 - [x] Run post-migration DB read-only checks for `primary_place_id`, `coverage`, and public views.
 - [x] Run post-deploy search API checks after deployment approval.
@@ -100,6 +100,7 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 ## Post-Launch
 
 - [ ] Monitor feedback channels.
-- [ ] Complete CareConnect restore/provider proof through the private/shared operations workflow; current public-safe status is planned, not recorded complete.
+- [x] Record provider-assisted CareConnect restore evidence through the private/shared operations workflow. Current public-safe status: latest-backup restore evidence received from Supabase Support on 2026-07-08, with post-restore checks passed.
+- [ ] Add recurring autonomous CareConnect restore-proof automation through the private/shared operations workflow, if desired as follow-up hardening.
 - [ ] Use `data/drafts/brampton-on/reviews/2026-07-07-next-verification-queue.md` for L2/L3 and deferred-candidate sequencing.
 - [ ] Expand Brampton only through the same L1 review workflow.

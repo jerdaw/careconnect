@@ -25,7 +25,7 @@
 - Seven approved Brampton L1 records are live in production Supabase.
 - Read-only production check confirms all seven approved Brampton rows have `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit `coverage`, and embeddings.
 - Broad correction dry-run remains unapplied pending exact owner approval.
-- CareConnect-specific restore/provider proof remains tracked in the private/shared operations source of truth; public-safe status remains planned/not complete.
+- Provider-assisted CareConnect restore evidence remains tracked in the private/shared operations source of truth; public-safe status is latest-backup restore evidence received from Supabase Support on 2026-07-08, with post-restore checks passed.
 
 ## Verification
 

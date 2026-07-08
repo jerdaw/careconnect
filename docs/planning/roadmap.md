@@ -92,7 +92,7 @@ Brampton is the exception now in progress because it is a bounded, approved city
 ## What To Do Now
 
 1. Approve or reject the prepared broad Ontario/Canada production coverage correction before treating broad canonical reuse as live in Brampton selected-place production results.
-2. Complete CareConnect restore/provider proof in the private/shared operations source of truth, or keep its status explicitly recorded as an accepted hardening follow-up. Current status: planned, not recorded complete; no safe autonomous restore/provider proof runner was found on 2026-07-08.
+2. Keep the provider-assisted CareConnect restore evidence recorded in the private/shared operations source of truth. Current public-safe status: Supabase Support reported triggering a latest-backup restore on 2026-07-08, and post-restore health, schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Recurring autonomous restore-proof automation remains a hardening follow-up.
 3. Keep Brampton land acknowledgment and official/partner wording behind explicit review.
 4. Continue deferred Brampton verification only through the same L1 workflow.
 5. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
@@ -172,11 +172,12 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 9. The seven approved Brampton L1 records were synced to production Supabase after owner approval; post-sync checks confirmed all seven are present with Brampton coverage and embeddings.
 10. Broad Ontario/Canada production coverage correction has been prepared as a dry-run only: 72 existing broad records selected from a read-only production snapshot, with apply and rollback SQL guarded to update only `scope`, `primary_place_id`, and `coverage`.
 11. The broad-correction manifest verifier passed on 2026-07-08, confirming apply/rollback SQL reviewed-ID sets, byte counts, hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
+12. Provider-assisted restore evidence was received from Supabase Support on 2026-07-08; post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed.
 
-**Immediate blockers**
+**Immediate blockers and tracked follow-ups**
 
 1. Human approval: broad Ontario/Canada production coverage correction, land acknowledgment wording, and any official/partner wording.
-2. Backup/rollback hardening follow-up: CareConnect restore/provider proof is planned in private/shared operations material but not recorded as complete; a 2026-07-08 safe check found no autonomous restore/provider proof runner, and the project owner accepted that risk for the migration.
+2. Backup/rollback hardening follow-up: provider-assisted CareConnect restore evidence is now recorded as received, with post-restore checks passed. Recurring autonomous restore-proof automation remains a private/shared-ops hardening follow-up.
 3. Deferred Brampton candidates and L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
 
 **Next agent-suitable work**

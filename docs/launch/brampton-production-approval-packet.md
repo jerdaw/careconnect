@@ -29,7 +29,7 @@ Approve or reject executing the prepared seven-ID Brampton data rollback in `doc
 - A read-only production snapshot found 203 rows and generated dry-run SQL for 72 broad-record corrections: 49 provincial and 23 national. The prepared SQL updates only `scope`, `primary_place_id`, and `coverage`, references no Brampton launch IDs, and has a prepared rollback SQL file.
 - The broad-record correction manifest verifier passed on 2026-07-08. It confirmed the prepared apply and rollback SQL reviewed-ID sets, byte counts, hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
 - A fresh read-only production check on 2026-07-08 confirmed the seven Brampton rows remain live with Brampton coverage and embeddings, while a five-ID reviewed broad-record sample still has only one broad-shaped record; the broad correction remains unapplied.
-- The private/shared operations register records CareConnect-specific restore/provider proof as a planned target, not a completed proof.
+- Supabase Support reported triggering a latest-backup restore for the target project on 2026-07-08. Post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Detailed support evidence and project identifiers remain in private/shared operations material, not this public repo.
 
 ## Must Not Proceed Until
 
@@ -42,7 +42,7 @@ The required approval text for the broad-record correction is recorded in `docs/
 
 ## Backup And Rollback Posture
 
-Current public-safe finding: CareConnect has a documented runtime contract and a planned restore/provider proof target in the private/shared operations source of truth, but the CareConnect-specific restore/provider proof is not recorded as complete. A 2026-07-08 safe private-source check found no autonomous restore/provider proof runner for CareConnect. The project owner explicitly accepted this risk for the Brampton migration after the preflight checks passed. Complete the proof as follow-up hardening through the private/shared operations workflow.
+Current public-safe finding: CareConnect has provider-assisted restore evidence from Supabase Support for a latest-backup restore triggered on 2026-07-08. Post-restore app health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Keep the detailed support trail in the private/shared operations source of truth. Recurring autonomous restore-proof automation remains follow-up hardening through the private/shared operations workflow.
 
 ## Read-Only Pre-Approval Commands
 
