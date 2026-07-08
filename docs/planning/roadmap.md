@@ -171,7 +171,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 8. CareConnect `main` commit `d7cc6e4` was deployed after owner approval and public health checks passed.
 9. The seven approved Brampton L1 records were synced to production Supabase after owner approval; post-sync checks confirmed all seven are present with Brampton coverage and embeddings.
 10. Broad Ontario/Canada production coverage correction has been prepared as a dry-run only: 72 existing broad records selected from a read-only production snapshot, with apply and rollback SQL guarded to update only `scope`, `primary_place_id`, and `coverage`.
-11. The broad-correction manifest verifier passed on 2026-07-08, confirming apply/rollback SQL hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
+11. The broad-correction manifest verifier passed on 2026-07-08, confirming apply/rollback SQL reviewed-ID sets, byte counts, hashes, SQL guardrails, 72 reviewed IDs, and `writesEnabled: false`.
 
 **Immediate blockers**
 

@@ -359,6 +359,11 @@ describe("broad coverage correction manifest verifier", () => {
       failures: [],
       checked: {
         ids: 3,
+        idsMatchSummary: true,
+        applySqlIdsMatchManifest: true,
+        rollbackSqlIdsMatchManifest: true,
+        applySqlBytesMatch: true,
+        rollbackSqlBytesMatch: true,
         applySqlSha256Matches: true,
         rollbackSqlSha256Matches: true,
         applyGuardrailsMatch: true,
@@ -392,6 +397,75 @@ describe("broad coverage correction manifest verifier", () => {
     expect(result.ok).toBe(false)
     expect(result.failures).toContain("Apply SQL SHA-256 mismatch")
     expect(result.checked.applySqlSha256Matches).toBe(false)
+  })
+
+  it("rejects manifests whose reviewed ID list no longer matches the generated SQL", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const rollbackSql = buildBroadCoverageRollbackSql(plan)
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      rollbackSql,
+      applySqlPath: "/tmp/apply.sql",
+      rollbackSqlPath: "/tmp/rollback.sql",
+    })
+    const unsafeManifest = { ...manifest, ids: ["kids-help-phone"] }
+
+    const result = verifyBroadCoverageCorrectionManifest({
+      manifest: unsafeManifest,
+      applySql,
+      rollbackSql,
+    })
+
+    expect(result.ok).toBe(false)
+    expect(result.failures).toContain("Manifest IDs must match summary correction count")
+    expect(result.failures).toContain("Apply SQL reviewed IDs mismatch")
+    expect(result.failures).toContain("Rollback SQL reviewed IDs mismatch")
+    expect(result.checked.idsMatchSummary).toBe(false)
+    expect(result.checked.applySqlIdsMatchManifest).toBe(false)
+    expect(result.checked.rollbackSqlIdsMatchManifest).toBe(false)
+  })
+
+  it("rejects manifests whose artifact byte counts no longer match the SQL files", () => {
+    const plan = buildBroadCoverageCorrectionPlan({
+      services,
+      productionRows: productionSnapshot,
+    })
+    const applySql = buildBroadCoverageCorrectionSql(plan)
+    const rollbackSql = buildBroadCoverageRollbackSql(plan)
+    const manifest = buildBroadCoverageCorrectionManifest({
+      plan,
+      applySql,
+      rollbackSql,
+      applySqlPath: "/tmp/apply.sql",
+      rollbackSqlPath: "/tmp/rollback.sql",
+    })
+    const unsafeManifest = {
+      ...manifest,
+      artifacts: {
+        ...manifest.artifacts,
+        applySql: { ...manifest.artifacts.applySql, bytes: manifest.artifacts.applySql.bytes + 1 },
+        rollbackSql: manifest.artifacts.rollbackSql
+          ? { ...manifest.artifacts.rollbackSql, bytes: manifest.artifacts.rollbackSql.bytes + 1 }
+          : undefined,
+      },
+    }
+
+    const result = verifyBroadCoverageCorrectionManifest({
+      manifest: unsafeManifest,
+      applySql,
+      rollbackSql,
+    })
+
+    expect(result.ok).toBe(false)
+    expect(result.failures).toContain("Apply SQL byte count mismatch")
+    expect(result.failures).toContain("Rollback SQL byte count mismatch")
+    expect(result.checked.applySqlBytesMatch).toBe(false)
+    expect(result.checked.rollbackSqlBytesMatch).toBe(false)
   })
 
   it("rejects manifests that are not marked as dry-run only", () => {

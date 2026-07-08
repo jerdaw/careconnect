@@ -95,7 +95,7 @@ npm run sync:broad-coverage:verify -- \
   --manifest /tmp/careconnect-broad-coverage-correction-manifest.json
 ```
 
-Latest verifier result on 2026-07-08: pass, `ok: true`, 72 IDs checked, apply and rollback SQL SHA-256 values matched, apply and rollback guardrails matched, and `writesEnabled` was confirmed false.
+Latest verifier result on 2026-07-08: pass, `ok: true`, 72 IDs checked, manifest ID count matched the correction summary, apply and rollback SQL reviewed-ID sets matched the manifest, apply and rollback byte counts matched, apply and rollback SQL SHA-256 values matched, apply and rollback guardrails matched, and `writesEnabled` was confirmed false.
 
 Do not apply production SQL unless the manifest verifier returns `ok: true` immediately before execution.
 
@@ -184,7 +184,7 @@ coverage = updates.coverage
 
 ## Post-Approval Execution Plan
 
-After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and run the manifest verifier. The verifier must confirm the apply SQL SHA-256 still matches `c6bbeebbdb1695b55b009e5a99b6b412322f9c0e5c987bf6f87cc19bfe8211ee`, the rollback SQL SHA-256 still matches `5ff03a4fc2de73b7566a542698ead7cfdece01f96d755c8b8902dab292878665`, and both SQL files still match the recorded guardrails. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
+After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and run the manifest verifier. The verifier must confirm the reviewed ID count, apply and rollback SQL reviewed-ID sets, byte counts, SHA-256 values, and guardrails all still match the manifest. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
 
 The transaction must abort if it cannot prove exactly 72 reviewed rows match the intended post-update values.
 
