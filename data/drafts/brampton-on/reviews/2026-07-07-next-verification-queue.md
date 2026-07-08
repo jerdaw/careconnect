@@ -3,6 +3,8 @@
 Date: 2026-07-07
 Status: draft-only; no live data changes
 
+Detailed L2/L3 workplan: `docs/launch/brampton-l2-l3-verification-workplan.md`
+
 ## Guardrails
 
 - Do not promote any record from this queue to `data/services.json` without L1 approval.
