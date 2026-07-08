@@ -3,7 +3,9 @@
 Date: 2026-07-07
 Status: Brampton launch direction and About-page source-context wording approved
 
-These notes record the approved public positioning direction for the Brampton first launch set. Brampton-specific About-page source-context wording is approved, while formal endorsement, consultation, relationship, and production rollout claims remain gated until separately reviewed. Public relationship wording now uses source-reference and provider-confirmed language instead of official-partner claims.
+These notes record the approved public positioning direction for the Brampton first launch set. Brampton-specific About-page source-context wording is approved. Formal endorsement, consultation, relationship, and production rollout claims remain gated until separately reviewed. Public relationship wording now uses source-reference and provider-confirmed language instead of official-partner claims.
+
+Official/partner wording disposition on 2026-07-08: no new official, partner, endorsement, sponsorship, municipal/government affiliation, or Indigenous approval/consultation wording is being added for this launch. The approved public posture is that sources support manual review, provider-confirmed records are labeled separately when documented, and future formal relationship claims require a separate human approval gate.
 
 Detailed follow-up packets:
 

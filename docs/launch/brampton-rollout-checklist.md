@@ -16,7 +16,7 @@
 - [x] Approve first Brampton L1 records for `data/services.json`.
 - [x] Approve and merge foundation branch to `main` through PR #33.
 - [x] Approve About-page land/source-context wording.
-- [ ] Approve any partner or official relationship wording.
+- [x] Approve any partner or official relationship wording disposition: no new official, partner, endorsement, sponsorship, municipal/government affiliation, or Indigenous approval/consultation wording is being added for this launch. Current source-reference and provider-confirmed wording remains the approved public posture; future formal relationship claims remain approval-gated.
 - [x] Approve production migration.
 - [x] Approve deployment.
 - [x] Approve syncing the original seven approved Brampton L1 rows into production Supabase.
@@ -102,11 +102,11 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 
 ## Post-Launch
 
-- [ ] Monitor feedback channels.
+- [x] Monitor public-safe feedback and post-launch health channels through the private/shared operations workflow. No private feedback contents, raw headers, raw bodies, webhook URLs, recipient details, or secret values were copied into public docs.
 - [x] Record provider-assisted CareConnect restore evidence through the private/shared operations workflow. Current public-safe status: latest-backup restore evidence received from Supabase Support on 2026-07-08, with post-restore checks passed.
 - [x] Record bounded CareConnect app redeploy proof through the private/shared operations workflow.
 - [x] Set up private/shared operations restore-proof readiness checks for recurring hardening.
 - [x] Record public health and route-sweep monitoring evidence through the private/shared operations workflow.
-- [ ] Run a synthetic alert delivery and explicit acknowledgement drill for CareConnect, if desired as follow-up hardening.
+- [ ] Repeat the CareConnect synthetic alert delivery and explicit acknowledgement drill after route diagnosis. The 2026-07-08 closeout attempt was accepted by Alertmanager, but delivery and acknowledgement were not confirmed; no retry was run.
 - [x] Record the 2026-07-08 L2/L3 and deferred-candidate decisions in `data/drafts/brampton-on/reviews/2026-07-08-l2-verification-review.md`.
 - [ ] Expand Brampton only through the same L1 review workflow.
