@@ -1,63 +1,60 @@
-# PR Description: Brampton Multi-City Launch Readiness
+# PR Description: Brampton Production Data Closeout
 
 ## Summary
 
-- Keeps Kingston live.
-- Adds and verifies Brampton-ready multi-city foundations.
-- Preserves manual curation and L1 launch gates.
-- Promotes the approved seven-record Brampton first launch set to live data.
-- Adds launch readiness, QA, draft candidate, duplicate review, L1 review template, and rollout artifacts.
-- Fixes one active Kingston-specific feedback mailto subject so public UI language is supported-region neutral.
-- Adds strict a11y regression coverage, remediates recorded browser/a11y defects, and adds desktop/tablet/mobile visual QA capture.
+- Keeps Kingston live while Brampton is live with the approved seven-record L1 first launch set.
+- Records the completed production migration, deployment, and seven-record Supabase data sync.
+- Adds approval-ready broad Ontario/Canada coverage correction artifacts and verifier guardrails.
+- Documents the exact seven-ID Brampton rollback path for approval only.
+- Adds the final autonomous closeout plan for the remaining safe/reliable work.
+- Leaves broad-record correction, rollback execution, land acknowledgment wording, official relationship wording, and future L2/L3 promotions behind explicit approval gates.
 
 ## Data Governance
 
 - No fabricated service data.
 - Seven Brampton records were promoted to live search after project-owner approval.
-- Draft candidates remain in `data/drafts/brampton-on`.
-- Human approval remains required before promoting additional Brampton draft records.
-- Land acknowledgment, official relationship wording, production migration, and deployment remain approval-gated.
-- Public-positioning closeout: approval-ready wording options prepared; no final land acknowledgment, official relationship wording, or partnership claims published.
+- Deferred Brampton candidates remain draft-only.
+- Existing broad Ontario/Canada production records still need the prepared approval-gated correction before Brampton selected-place searches can reuse all intended canonical broad records.
+- The prepared broad correction updates only `scope`, `primary_place_id`, and `coverage` for the reviewed broad-record ID set.
+- The prepared broad correction does not add rows, delete rows, change service facts, change embeddings, change schema, deploy app code, or touch Brampton launch rows.
+
+## Production State
+
+- Production app health is healthy at `version: "d7cc6e4"`.
+- Production migration is applied.
+- Seven approved Brampton L1 records are live in production Supabase.
+- Read-only production check confirms all seven approved Brampton rows have `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit `coverage`, and embeddings.
+- Broad correction dry-run remains unapplied pending exact owner approval.
+- CareConnect-specific restore/provider proof remains tracked in the private/shared operations source of truth; public-safe status remains planned/not complete.
 
 ## Verification
 
-- `npm test -- tests/lib/places/registry.test.ts tests/lib/places/coverage.test.ts tests/lib/search/index.test.ts tests/hooks/useServices.test.ts tests/api/v1/search-api.test.ts tests/components/home/PlaceSelector.test.tsx tests/components/home/RotatingRegionHero.test.tsx tests/lib/search/map-service-public.test.ts tests/api/v1/services/export.test.ts tests/lib/service-db.test.ts tests/lib/services.test.ts tests/components/ServiceCard.test.tsx tests/components/home/SearchResultsList.test.tsx tests/lib/ai/query-expander.test.ts tests/unit/openapi-pilot-events.test.ts --run`: passed, 15 files and 230 tests.
-- `npm test -- tests/unit/brampton-live-launch-data.test.ts tests/unit/brampton-draft-artifacts.test.ts tests/lib/places/coverage.test.ts tests/api/v1/search-api.test.ts tests/hooks/useServices.test.ts --run`: passed, 5 files and 39 tests.
-- `npm test -- tests/components/home/PlaceSelector.test.tsx tests/components/home/SearchResultsList.test.tsx tests/hooks/useSearch.test.ts tests/hooks/useServices.test.ts --run`: passed, 4 files and 29 tests.
-- `npm test -- tests/lib/service-db.test.ts tests/lib/services.test.ts tests/lib/search/map-service-public.test.ts tests/api/v1/services/export.test.ts tests/api/v1/search-api.test.ts --run`: passed, 5 files and 29 tests.
-- `npm test -- --run`: passed, 216 files, 1703 tests, 24 skipped.
-- `npm run lint`: passed.
-- `npm run type-check`: passed.
-- `npm run format:check`: passed.
-- `npm run i18n-audit`: passed, 7 locales with 1219 keys each.
-- `npm run check:refs`: passed across 151 files.
-- `npm run validate-data`: passed, 203 services.
-- `npm run db:validate`: passed, 203 records.
-- `npm run check:embeddings`: passed, 203 services, 203 embeddings, 384 dimensions.
-- `SKIP_EMBEDDINGS=1 npm run build`: passed; postbuild embedding generation was intentionally skipped.
-- `git diff --check`: passed.
-- Brampton source URL reachability check: passed, 14 source URLs returned HTTP 200 on 2026-07-07.
-- `npm run test:db:smoke`: passed with extracted user-space PostgreSQL client binaries, 2 smoke tests.
-- `npx playwright test tests/e2e/accessibility-regression.spec.ts --project=chromium`: passed, 5 Chromium route tests with no serious or critical WCAG A/AA Axe violations.
-- `npm run test:a11y -- --project=chromium`: passed with extracted user-space Chromium libraries, 10 Chromium tests and 0 Axe violations on audited routes. Optional semantic worker fetch failure is caught and logged as a warning, with no unhandled rejection in the output.
-- `npx playwright test tests/e2e/brampton-visual-qa.spec.ts --project=chromium`: passed, 6 Chromium screenshot tests across desktop, tablet, and mobile homepage/search states.
-- Restricted production control-plane readiness, preflight summary, status summary, and CareConnect service-health checks: passed without collecting secret values or raw sensitive output.
-- Authenticated live Supabase schema inspection: passed through `npx supabase db query --linked` after CLI login and project linking. The Brampton coverage migration is not applied; live `services`/`services_public` lack `primary_place_id` and `coverage`; existing live grants are broader than the repo baseline expects, so the pending migration now normalizes `services_public` grants before granting SELECT.
+- `npm test -- tests/scripts/check-v22-gate0-exit.test.ts tests/scripts/check-v22-evidence-intake.test.ts --run`: passed, 2 files and 29 tests.
+- `npm test -- --run`: passed, 218 files and 1732 tests, 24 skipped.
+- Pre-push hook for `origin/codex/brampton-production-data-closeout`: passed full Vitest, 218 files and 1732 tests, 24 skipped.
+- `npm run sync:broad-coverage:verify -- --manifest /tmp/careconnect-broad-coverage-correction-manifest.json`: passed with `ok: true`, 72 reviewed IDs, matching apply/rollback ID sets, byte counts, SHA-256 hashes, guardrails, and `writesEnabled: false`.
+- `npm test -- tests/scripts/broad-coverage-production-correction.test.ts --run`: passed, 1 file and 19 tests.
+- Public health check: passed, `status: "healthy"` and `version: "d7cc6e4"`.
+- Read-only production seven-row aggregate: passed, 7 found, 7 Brampton-primary, 7 null legacy scope, 7 with coverage, 7 with embeddings.
+- Read-only production broad-record sample: confirmed correction remains needed; four of five sampled broad records still have Kingston-local coverage.
+- Public-positioning scan: Brampton-specific land acknowledgment wording remains in draft/review docs only.
+- Deferred-candidate hygiene check: passed, deferred Brampton candidate IDs are not live and exactly seven Brampton-primary records are present in `data/services.json`.
 
 ## Rollout Notes
 
-- Production migration requires explicit approval. Read-only schema preflight is complete.
-- Deployment requires explicit approval.
-- Brampton can be positioned as a live supported place with a small first L1 launch set, not a complete local directory.
-- Browser visual QA screenshot review is documented in `docs/launch/brampton-manual-qa.md`.
-- Land acknowledgment source research is documented, but final wording remains approval-gated.
+- Do not apply the broad Ontario/Canada coverage correction without the exact approval text recorded in `docs/launch/brampton-broad-coverage-correction-approval.md`.
+- Do not execute the seven-ID Brampton rollback unless the owner explicitly approves removal of the seven live Brampton rows.
+- Do not publish land acknowledgment or official/partner relationship wording without exact wording approval.
+- Continue future Brampton expansion through the same L1 review workflow.
 
 ## Reviewer Checklist
 
-- [x] Location selector behavior is transparent.
 - [x] Kingston behavior remains intact.
-- [x] Brampton first-launch behavior is honest.
-- [x] Coverage contracts are consistent across TypeScript, Zod, OpenAPI, DB mapping, and UI.
+- [x] Brampton first-launch behavior is honest and bounded.
+- [x] Approved Brampton rows are live in repo data and production data.
+- [x] Broad correction SQL and rollback SQL are prepared and verifier-checked.
 - [x] Public docs do not imply official partnerships.
 - [x] Deferred draft service candidates are not live data.
-- [ ] Production migration remains unapplied until approval.
+- [ ] Broad Ontario/Canada production coverage correction remains unapplied until approval.
+- [ ] Land acknowledgment wording remains approval-gated.
+- [ ] Official/partner relationship wording remains approval-gated.
