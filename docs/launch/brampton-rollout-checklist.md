@@ -20,7 +20,7 @@
 - [x] Approve production migration.
 - [x] Approve deployment.
 - [x] Approve syncing the seven approved Brampton L1 rows into production Supabase.
-- [ ] Approve broad Ontario/Canada production coverage correction.
+- [x] Approve broad Ontario/Canada production coverage correction.
 - [x] Resolve the Knights Table address mismatch for L1 using the official provider contact page; recheck the 211 Ontario pantry listing before L2.
 
 ## Data Launch After Approval
@@ -84,9 +84,9 @@ LD_LIBRARY_PATH=/tmp/careconnect-local-deps/usr/lib/x86_64-linux-gnu:${LD_LIBRAR
 - [x] Smoke test Brampton selected-place behavior after data sync.
 - [x] Prepare broad Ontario/Canada coverage correction dry-run and rollback SQL from a read-only production snapshot; see `docs/launch/brampton-broad-coverage-correction-approval.md`.
 - [x] Verify the prepared broad Ontario/Canada correction manifest and SQL artifacts with `npm run sync:broad-coverage:verify`; latest result on 2026-07-08 was `ok: true`.
-- [x] Reconfirm read-only production state after verifier prep: health healthy at `d7cc6e4`, seven Brampton rows live with coverage and embeddings, and sampled broad records still show the correction remains unapplied.
-- [ ] Apply broad Ontario/Canada coverage correction after explicit approval.
-- [ ] Smoke test broad Ontario/Canada services after correction: currently blocked by approval-gated production data correction.
+- [x] Reconfirm read-only production state after verifier prep: health healthy at `d7cc6e4`, seven Brampton rows live with coverage and embeddings, and sampled broad records showed the correction was still needed before approval.
+- [x] Apply broad Ontario/Canada coverage correction after explicit approval.
+- [x] Smoke test broad Ontario/Canada services after correction.
 - [x] Confirm no user search logging was introduced.
 
 ## Rollback

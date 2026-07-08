@@ -1,11 +1,11 @@
 # Brampton Broad Coverage Correction Approval Packet
 
 Date: 2026-07-08
-Status: dry-run prepared; production write not executed
+Status: approved, applied, and post-correction smokes passed
 
 ## Decision Needed
 
-Approve or reject applying the prepared production correction for existing broad Ontario/Canada records that were backfilled as Kingston-local coverage during the Brampton coverage migration.
+Completed on 2026-07-08 after owner approval.
 
 Required approval text before any production write:
 
@@ -184,21 +184,48 @@ coverage = updates.coverage
 
 ## Post-Approval Execution Plan
 
-After exact approval, rerun a read-only target check, visually confirm the generated SQL file, and run the manifest verifier. The verifier must confirm the reviewed ID count, apply and rollback SQL reviewed-ID sets, byte counts, SHA-256 values, and guardrails all still match the manifest. Then execute the prepared apply SQL through the authenticated Supabase CLI path.
+After exact approval, the read-only target check was rerun, the generated SQL file was visually checked, and the manifest verifier returned `ok: true`. The verifier confirmed the reviewed ID count, apply and rollback SQL reviewed-ID sets, byte counts, SHA-256 values, and guardrails all matched the manifest.
+
+The first execution attempt used `/tmp/careconnect-broad-coverage-correction.sql` and made no changes because production `services.scope` is a `service_scope` enum while the reviewed SQL used text values. A derived enum-cast SQL pair was generated from the reviewed artifacts:
+
+| Artifact              | Path                                                                | SHA-256                                                            |
+| --------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Applied enum-cast SQL | `/tmp/careconnect-broad-coverage-correction-service-scope-cast.sql` | `923904812439cdfadaa691bb6dacadcf888a799aab34b976d38837a1275fcb47` |
+| Enum-cast rollback    | `/tmp/careconnect-broad-coverage-rollback-service-scope-cast.sql`   | `6ecce3ca94f0363fb95bc589ec21add5ad76cd96154a5935a6368f77224a20d5` |
+
+The derived SQL differed only by casting `updates.scope` to `service_scope` in the assignment and casting `services.scope::text` in the assertion comparison. A guardrail comparison confirmed the same 72 reviewed IDs, no `brampton-` IDs, only `scope`, `primary_place_id`, and `coverage` assignments, and exact 72-row assertions in both apply and rollback SQL.
 
 The transaction must abort if it cannot prove exactly 72 reviewed rows match the intended post-update values.
+
+Execution result: pass. The cast-corrected apply SQL returned `updated_rows: 72`.
+
+Post-correction DB check:
+
+| Metric                  | Count |
+| ----------------------- | ----: |
+| Production rows         |   203 |
+| Rows with coverage      |   203 |
+| Brampton-primary rows   |     7 |
+| Reviewed IDs            |    72 |
+| Reviewed IDs found      |    72 |
+| Matching target         |    72 |
+| Mismatching target      |     0 |
+| Reviewed provincial     |    49 |
+| Reviewed national       |    23 |
+| Reviewed with embedding |    72 |
+| Brampton IDs corrected  |     0 |
 
 ## Post-Correction Smoke Checks
 
 After an approved apply:
 
-1. Confirm `https://careconnect.ing/api/v1/health` is healthy and still reports `version: "d7cc6e4"`.
-2. Confirm Kingston selected-place food search still returns Kingston results.
-3. Confirm Brampton selected-place food and shelter searches still return the approved Brampton first-launch set.
-4. Confirm a Brampton selected-place search includes applicable broad Ontario/Canada canonical records.
-5. Confirm Brampton selected-place search still excludes Kingston-only local records.
-6. Confirm invalid `filters.placeId` still returns `400 Invalid request`.
-7. Run a read-only production query confirming the 72 reviewed IDs now have broad coverage.
+1. Pass: `https://careconnect.ing/api/v1/health` returned healthy and still reported `version: "d7cc6e4"`.
+2. Pass: Kingston selected-place food search still returned Kingston results.
+3. Pass: Brampton selected-place food and shelter searches returned the approved Brampton first-launch set.
+4. Pass: Brampton selected-place food, crisis, and 211 searches included applicable broad Ontario/Canada canonical records such as `ontario-211-ontario`, `ontario-victim-support-line`, and `ontario-naseeha`.
+5. Pass: Brampton selected-place searches excluded known Kingston-only local records checked during the smoke.
+6. Pass: invalid `filters.placeId` still returned `400 Invalid request`.
+7. Pass: read-only production query confirmed the 72 reviewed IDs now have broad coverage.
 
 ## Rollback Boundary
 
@@ -206,6 +233,7 @@ Rollback SQL is prepared at:
 
 ```text
 /tmp/careconnect-broad-coverage-rollback.sql
+/tmp/careconnect-broad-coverage-rollback-service-scope-cast.sql
 ```
 
-If post-correction smoke checks fail, prepare the rollback SQL for approval before executing it. Do not execute rollback automatically.
+Post-correction smoke checks passed, so rollback is not indicated. Do not execute rollback without explicit approval.

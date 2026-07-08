@@ -11,14 +11,14 @@ Branch: `main` after PR #33 merge
 - Brampton first-launch behavior: verified by local and server search regressions.
 - Brampton repo service data: seven approved L1 records added to `data/services.json`.
 - Brampton production service data: seven approved L1 records synced to production Supabase after approval.
-- Broad production service coverage: follow-up required. Existing production broad Ontario/Canada records were previously backfilled as Kingston-local and do not yet serve Brampton selected-place searches; dry-run correction SQL and rollback SQL are prepared for approval only.
+- Broad production service coverage: applied after approval. Existing production broad Ontario/Canada records that were backfilled as Kingston-local now have broad coverage, and Brampton selected-place searches can reuse applicable broad canonical records.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Deployment: application release `d7cc6e4` deployed and public health checks passed.
 
 ## Approval Gates
 
 - Additional Brampton record promotions require the same L1 approval workflow.
-- Human approval required before any broad Ontario/Canada production coverage correction.
+- Human approval required before any future broad Ontario/Canada production coverage correction.
 - Human approval required before executing the prepared seven-ID Brampton data rollback.
 - Human approval required for land acknowledgment and partner relationship wording.
 
@@ -53,8 +53,11 @@ Branch: `main` after PR #33 merge
 - 2026-07-08: Prepared the exact seven-ID data rollback in `docs/launch/brampton-seven-id-data-rollback-prep.md` for approval only. It was not executed.
 - 2026-07-08: Captured a fresh read-only production coverage snapshot with 203 rows and generated dry-run broad-coverage correction SQL, rollback SQL, and a manifest with SHA-256 hashes. The dry run selected 72 existing broad records, 49 provincial and 23 national. Guardrails confirmed the SQL updates only `scope`, `primary_place_id`, and `coverage`, has exact 72-row assertions, and references no Brampton launch IDs. Production write was not executed; see `docs/launch/brampton-broad-coverage-correction-approval.md`.
 - 2026-07-08: Added and ran the broad-coverage manifest verifier. `npm run sync:broad-coverage:verify -- --manifest /tmp/careconnect-broad-coverage-correction-manifest.json` returned `ok: true`, confirmed 72 reviewed IDs, matched manifest ID count to the correction summary, matched apply and rollback SQL reviewed-ID sets to the manifest, matched apply and rollback SQL byte counts and SHA-256 values, matched apply and rollback SQL guardrails, and confirmed `writesEnabled: false`.
-- 2026-07-08: Reconfirmed production state read-only after verifier prep. Public health returned healthy at `version: "d7cc6e4"`. Supabase read-only checks found all seven Brampton rows still present with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings. A reviewed broad-record sample found 1 of 5 sampled IDs already broad-shaped, confirming the 72-record broad correction remains unapplied.
+- 2026-07-08: Reconfirmed production state read-only after verifier prep. Public health returned healthy at `version: "d7cc6e4"`. Supabase read-only checks found all seven Brampton rows still present with `primary_place_id = 'brampton-on'`, null legacy `scope`, explicit coverage, and embeddings. A reviewed broad-record sample found 1 of 5 sampled IDs already broad-shaped, confirming the 72-record broad correction was still needed before approval.
 - 2026-07-08: Supabase Support reported triggering a latest-backup restore for the target project. Post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. Public docs intentionally omit project identifiers and private support details. Recurring autonomous restore-proof automation remains private/shared-ops follow-up hardening.
+- 2026-07-08: Project owner approved applying the broad Ontario/Canada coverage correction to production Supabase. The original reviewed SQL attempted no write because production `services.scope` is a `service_scope` enum; a derived enum-cast SQL pair was generated from the same reviewed artifacts, with the same 72 reviewed IDs, no Brampton IDs, only `scope`, `primary_place_id`, and `coverage` assignments, and exact 72-row assertions.
+- 2026-07-08: Applied the enum-cast broad coverage correction through the authenticated Supabase CLI path. The apply SQL returned `updated_rows: 72`. Post-correction DB checks confirmed all 72 reviewed IDs match the target broad coverage, with 49 provincial records, 23 national records, 72 embeddings present, 7 Brampton-primary rows still live, and 0 Brampton IDs in the correction set.
+- 2026-07-08: Post-correction public smokes passed. Health stayed healthy at `version: "d7cc6e4"`; Kingston food search returned results; Brampton food and crisis searches included broad Ontario/Canada records; Brampton food and shelter searches included the seven launch records; known Kingston-only records stayed out of Brampton searches; invalid `filters.placeId` still returned `400`.
 
 ## Findings
 
@@ -64,7 +67,7 @@ Branch: `main` after PR #33 merge
 - Full viewport visual QA is captured and documented for desktop, tablet, and mobile.
 - Live Supabase schema migration is complete; application deployment is complete.
 - The seven approved Brampton L1 service rows are live in production.
-- Remaining production data follow-up: broad Ontario/Canada records need a separate approved correction before Brampton selected-place results can include the intended broad canonical records. Approval-ready SQL is prepared, but the production write remains gated.
+- Broad Ontario/Canada production data follow-up: complete. The approved correction is applied and Brampton selected-place results now include applicable broad canonical records.
 
 ## Technical Verification
 
@@ -142,7 +145,7 @@ Branch: `main` after PR #33 merge
 - Scope covered: shelter/housing crisis, victim and family-violence crisis support, Ontario Works/emergency assistance, food access, newcomer support, and community health/wellness.
 - Source reachability: pass. Every source URL used by the promoted Brampton records returned HTTP 200 during this readiness pass.
 - L1 status: seven candidates were approved and promoted to live data; deferred candidates remain draft-only.
-- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated in repo data. Production broad-record coverage still needs a separate approved correction before this reuse is reflected in Brampton selected-place results.
+- Broad canonical reuse: existing 988, ConnexOntario, Kids Help Phone, Health811, 211 Ontario, and Ontario Victim Support Line records are reused rather than duplicated in repo data. Production broad-record coverage has been corrected so applicable broad records can appear in Brampton selected-place results.
 
 ## Duplicate And Canonical Review
 
@@ -169,8 +172,10 @@ Branch: `main` after PR #33 merge
 - Post-migration public view check: pass. `services_public` remains a `security_invoker=true` view, and `anon`/`authenticated` have SELECT-only access to `services_public`.
 - Post-deploy data gap check: pass. Production has 0 rows for the seven approved Brampton IDs, so Brampton selected-place searches correctly return empty results until the seven-row data sync is approved and applied.
 - Post-sync data check: pass for the approved seven Brampton rows. Production has all seven approved IDs, all seven with Brampton primary place, explicit coverage, null legacy scope, and embeddings.
-- Post-sync broad coverage check: follow-up required. Production broad records inspected during the smoke still carry Kingston-local coverage, so broad Ontario/Canada reuse in Brampton needs a separate approved correction. Dry-run correction prep selected 72 broad records for approval.
+- Post-sync broad coverage check: corrected after approval. The production write updated 72 reviewed broad records, with 49 provincial records and 23 national records.
 - Broad coverage manifest verification: pass. The verifier command confirmed the prepared apply SQL, rollback SQL, manifest reviewed-ID set, byte counts, hashes, guardrails, reviewed ID count, and dry-run-only flag before any approval-gated production write.
+- Post-correction broad coverage DB check: pass. All 72 reviewed IDs now match target broad coverage, all 72 still have embeddings, Brampton remains at 7 primary rows, and no Brampton IDs were in the correction set.
+- Post-correction broad coverage public smoke: pass. Brampton food, crisis, and 211 searches include applicable broad records, and checked Kingston-only records remain excluded from Brampton selected-place results.
 
 ## Final Readiness Decision
 
@@ -178,12 +183,11 @@ Branch: `main` after PR #33 merge
 - Ready to publish Brampton live records: yes for the approved seven-record L1 first launch set. The rows are live in production.
 - Production migration: applied after approval; post-migration DB checks passed.
 - Production deployment: applied after approval; health and Kingston/API guardrail smoke checks passed.
-- Ready for Brampton public results: yes for the approved first-launch set. Do not claim broad Ontario/Canada canonical reuse in Brampton production results until the separate broad-coverage data correction is approved and applied.
+- Ready for Brampton public results: yes for the approved first-launch set and applicable broad Ontario/Canada canonical reuse.
 
 ## Recommended Next Human Decisions
 
-1. Approve or reject the prepared broad Ontario/Canada production coverage correction for the 72 reviewed existing canonical records.
-2. Approve or reject executing the prepared seven-ID Brampton data rollback. Current recommendation: do not roll back unless the desired outcome is to remove Brampton public results; rollback would not fix the broad-record coverage gap.
-3. Approve any land acknowledgment or official relationship wording before publication.
-4. Continue Brampton expansion through deferred L1 reviews only.
-5. Keep the provider-assisted restore evidence in the private/shared operations source of truth, and add recurring autonomous restore-proof automation only as follow-up hardening.
+1. Approve or reject executing the prepared seven-ID Brampton data rollback. Current recommendation: do not roll back unless the desired outcome is to remove Brampton public results.
+2. Approve any land acknowledgment or official relationship wording before publication.
+3. Continue Brampton expansion through deferred L1 reviews only.
+4. Keep the provider-assisted restore evidence in the private/shared operations source of truth, and add recurring autonomous restore-proof automation only as follow-up hardening.
