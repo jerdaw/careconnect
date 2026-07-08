@@ -15,7 +15,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ## Current State
 
 - **Services**: 203 manually curated social services. Kingston remains live, and Brampton has a seven-record L1 first launch set focused on urgent and core supports.
-- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1730` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
+- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1732` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
 - **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
 - **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
 - **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
@@ -126,7 +126,7 @@ or owner-owned items:
    - Admin-facing data-quality dashboard.
    - Browser-console follow-up only for new repeat findings from future browser QA runs.
 6. **Brampton bounded launch gates**
-   - Prepare and decide the broad Ontario/Canada coverage correction after the first seven Brampton rows are live.
+   - Broad Ontario/Canada coverage correction is applied and verified for the first launch.
    - Keep land acknowledgment and official/partner wording human-approved.
    - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
 
@@ -150,9 +150,9 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 
 ## Active Work
 
-### Brampton Constrained Multi-City Launch Closeout 🔄 ACTIVE
+### Brampton Constrained Multi-City Launch Closeout ✅ PRODUCTION COMPLETE
 
-**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, seven-row production data sync, and broad-record coverage correction are complete; public wording and future expansion remain gated
+**Status**: Foundation, first L1 records, local QA, merge, production DB migration, deployment, seven-row production data sync, broad-record coverage correction, and restore-evidence recording are complete; public wording and future expansion remain gated
 **Priority**: High, bounded
 **Created**: 2026-07-06
 
@@ -182,7 +182,7 @@ Brampton is the next supported-place step, not a broad regional expansion. Kings
 
 **Next agent-suitable work**
 
-1. Keep docs, tests, and data-validation evidence aligned with production correction evidence.
+1. Keep docs, tests, and data-validation evidence aligned if production state changes.
 2. Continue deferred Brampton verification only when a specific candidate is approved for the L1 workflow.
 
 **Human-gated work**

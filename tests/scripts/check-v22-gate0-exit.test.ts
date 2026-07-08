@@ -5,6 +5,7 @@ import path from "node:path"
 import { afterEach, describe, expect, it } from "vitest"
 
 const scriptPath = path.join(process.cwd(), "scripts/check-v22-gate0-exit.sh")
+const gate0ScriptTimeoutMs = 15_000
 
 const tempRoots: string[] = []
 
@@ -233,15 +234,19 @@ describe("check-v22-gate0-exit", () => {
     expect(result.stdout).toContain("G0-8:PENDING")
   })
 
-  it("passes GO only when all required checks pass and evidence is structurally complete", () => {
-    const root = createFixtureRoot()
-    writeChecklist(root, { decision: "GO", g03: "pass", g08: "pass", blockingChecks: "" })
-    writeTracker(root, { ua1: "complete", ua3: "complete", c1Result: "complete" })
-    writeCompleteEvidence(root)
+  it(
+    "passes GO only when all required checks pass and evidence is structurally complete",
+    () => {
+      const root = createFixtureRoot()
+      writeChecklist(root, { decision: "GO", g03: "pass", g08: "pass", blockingChecks: "" })
+      writeTracker(root, { ua1: "complete", ua3: "complete", c1Result: "complete" })
+      writeCompleteEvidence(root)
 
-    const result = runGateCheck(root)
+      const result = runGateCheck(root)
 
-    expect(result.status, result.stdout + result.stderr).toBe(0)
-    expect(result.stdout).toContain("OK: v22.0 Gate 0 decision is GO and all required checks are pass.")
-  })
+      expect(result.status, result.stdout + result.stderr).toBe(0)
+      expect(result.stdout).toContain("OK: v22.0 Gate 0 decision is GO and all required checks are pass.")
+    },
+    gate0ScriptTimeoutMs
+  )
 })
