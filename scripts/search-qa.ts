@@ -75,6 +75,9 @@ const SCENARIOS: TestScenario[] = [
   {
     query: "groceries help",
     expectedServiceNames: [
+      "Regeneration Marketplace Food Bank",
+      "Ste. Louise Outreach Centre of Peel Food Bank",
+      "SLC Food Pantry",
       "Partners in Mission Food Bank",
       "The Good Food Box",
       "St. Vincent de Paul Society (WearHouse & Pantry)",
