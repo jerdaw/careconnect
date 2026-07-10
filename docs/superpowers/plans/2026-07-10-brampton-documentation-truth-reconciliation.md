@@ -35,7 +35,7 @@
 - Consumes: completed launch facts from `docs/launch/brampton-readiness-report.md`, `docs/launch/brampton-production-approval-packet.md`, and `docs/planning/roadmap.md`
 - Produces: one active planning entry point that distinguishes completed Brampton launch work from remaining verification and Gate 0 work
 
-- [ ] **Step 1: Demonstrate the stale planning guidance**
+- [x] **Step 1: Demonstrate the stale planning guidance**
 
 Run:
 
@@ -47,7 +47,7 @@ grep -F "Approve production migration/deploy only after preflight" docs/planning
 
 Expected: all three commands print a match, proving the active index still directs contributors toward completed work.
 
-- [ ] **Step 2: Update the planning status and quick-start description**
+- [x] **Step 2: Update the planning status and quick-start description**
 
 Set the frontmatter date and active status to:
 
@@ -65,7 +65,7 @@ Update the Brampton readiness report description to:
 - Current Brampton launch evidence, completed production/QA status, and remaining verification/approval gates
 ```
 
-- [ ] **Step 3: Replace stale active-track and dependency wording**
+- [x] **Step 3: Replace stale active-track and dependency wording**
 
 Replace the second active track with:
 
@@ -80,7 +80,7 @@ Rename `Current dependencies:` to `Current dependencies and completed prerequisi
 - Brampton first-launch production, accessibility, visual QA, and broad-coverage closeout already recorded
 ```
 
-- [ ] **Step 4: Replace the obsolete Brampton launch-gate procedure**
+- [x] **Step 4: Replace the obsolete Brampton launch-gate procedure**
 
 Replace Option 1 with:
 
@@ -95,7 +95,7 @@ Use the active roadmap and verification workplan for the remaining Brampton trac
 4. Require explicit approval before any future promotion, L2/L3 change, or official/partner wording
 ```
 
-- [ ] **Step 5: Verify the planning index correction**
+- [x] **Step 5: Verify the planning index correction**
 
 Run:
 
@@ -110,7 +110,7 @@ npm test -- --run tests/unit/documentation-hygiene.test.ts
 
 Expected: every `test` command exits `0`; the documentation-hygiene test file passes.
 
-- [ ] **Step 6: Mark Task 1 complete and commit**
+- [x] **Step 6: Mark Task 1 complete and commit**
 
 Change Task 1 checkboxes in this plan to `[x]`, then run:
 
