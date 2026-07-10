@@ -1,7 +1,7 @@
 # Brampton L2/L3 Verification Workplan
 
 Date: 2026-07-08
-Status: six L2 upgrades applied locally; Ste. Louise promoted L1; production sync pending bounded apply
+Status: approved eight-record production sync complete; six records at L2; Knights Table and Ste. Louise remain at L1
 
 ## Guardrails
 
@@ -21,7 +21,7 @@ Detailed L2 source review: `data/drafts/brampton-on/reviews/2026-07-08-l2-verifi
 | L2    | Vetted             | Reviewer completes provider contact or stronger cross-source verification resolving key service details such as intake, eligibility, hours, or address. |
 | L3    | Provider confirmed | Provider or authorized representative confirms the record, or a formal approved provider relationship supports the record.                              |
 
-## Promoted Seven-Record Follow-Up
+## Promoted Eight-Record Follow-Up
 
 | Record                                                | Current Level | Next Target | Required Work                                                                                                                                        | Done When                                                                                                      |
 | ----------------------------------------------------- | ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
@@ -36,12 +36,11 @@ Detailed L2 source review: `data/drafts/brampton-on/reviews/2026-07-08-l2-verifi
 
 ## Deferred L1 Candidates
 
-| Candidate                                       | Current State    | Next Target | Required Work                                                                                                             | Done When                                                                    |
-| ----------------------------------------------- | ---------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Ste. Louise Outreach Centre of Peel             | Promoted live L1 | L2 review   | Recheck current registration workflow and hours before any L2 upgrade.                                                    | Registration and hours are verified without conflicting intake instructions. |
-| Brampton Multicultural Community Centre         | Draft-only       | L1 decision | Identify specific emergency/core programs rather than creating a broad organization record.                               | Program-level candidate shape is selected or deferral remains documented.    |
-| Catholic Crosscultural Services Brampton Office | Draft-only       | L1 decision | Verify office details, program scope, intake path, language-access notes, and whether office-level record is appropriate. | Office/program canonical decision is documented before any promotion.        |
-| Punjabi Community Health Services               | Draft-only       | L1 decision | Verify Brampton location/program details, intake, eligibility, and whether narrower program records are needed.           | Program-specific or organization-level decision is documented with sources.  |
+| Candidate                                       | Current State | Next Target | Required Work                                                                                                             | Done When                                                                   |
+| ----------------------------------------------- | ------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Brampton Multicultural Community Centre         | Draft-only    | L1 decision | Identify specific emergency/core programs rather than creating a broad organization record.                               | Program-level candidate shape is selected or deferral remains documented.   |
+| Catholic Crosscultural Services Brampton Office | Draft-only    | L1 decision | Verify office details, program scope, intake path, language-access notes, and whether office-level record is appropriate. | Office/program canonical decision is documented before any promotion.       |
+| Punjabi Community Health Services               | Draft-only    | L1 decision | Verify Brampton location/program details, intake, eligibility, and whether narrower program records are needed.           | Program-specific or organization-level decision is documented with sources. |
 
 ## Broad Canonical Reuse
 
@@ -54,15 +53,16 @@ Keep these as broad Ontario/Canada records unless a distinct Brampton program wi
 - 211 Ontario
 - Ontario Victim Support Line
 
-Production broad-record reuse in Brampton selected-place results depends on the separate approved broad coverage correction in `docs/launch/brampton-broad-coverage-correction-approval.md`.
+The approved broad Ontario/Canada coverage correction is applied and verified. Production Brampton selected-place results include applicable broad canonical services; see `docs/launch/brampton-broad-coverage-correction-approval.md` for the public-safe approval and verification record.
 
 ## Review Sequence
 
-1. Complete broad coverage correction decision before using production Brampton search results as evidence of broad canonical reuse.
+1. Preserve broad canonical reuse from the applied coverage correction; do not create Brampton-local duplicates.
 2. Upgrade promoted launch records toward L2 only where source/contact evidence resolves key details.
 3. Resolve Knights Table address and program split before any L2 claim.
-4. Review deferred candidates one at a time through the L1 template in `docs/data/brampton-l1-review-template.md`; use `data/drafts/brampton-on/reviews/2026-07-08-deferred-candidate-research.md` for the current deferred-candidate research packet.
-5. Promote no additional live records until human approval is recorded.
+4. Recheck Ste. Louise registration workflow and hours before any L2 claim.
+5. Review deferred candidates one at a time through the L1 template in `docs/data/brampton-l1-review-template.md`; use `data/drafts/brampton-on/reviews/2026-07-08-deferred-candidate-research.md` for the current deferred-candidate research packet.
+6. Promote no additional live records until human approval is recorded.
 
 ## Definition Of Done
 
@@ -71,4 +71,4 @@ Production broad-record reuse in Brampton selected-place results depends on the 
 - [x] Broad services are not duplicated locally.
 - [x] Address, phone, intake, hours, eligibility, and coverage facts are sourced or omitted.
 - [x] Human approval is recorded before live data promotion or verification-level increase.
-- [ ] Production Supabase is synced with the bounded approved Brampton record set after deploy/rollback evidence is ready.
+- [x] Production Supabase is synced with the bounded approved eight-record Brampton set; post-sync checks passed on 2026-07-08.

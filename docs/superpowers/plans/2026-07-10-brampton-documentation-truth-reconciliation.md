@@ -135,7 +135,7 @@ Expected: commit succeeds with only the planning index and plan-progress changes
 - Consumes: eight-record production state and broad-coverage completion evidence from the authoritative sources
 - Produces: one verification workplan with eight promoted live records, three deferred candidates, completed production prerequisites, and explicit remaining L1/L2/L3 gates
 
-- [ ] **Step 1: Demonstrate the stale workplan state**
+- [x] **Step 1: Demonstrate the stale workplan state**
 
 Run:
 
@@ -148,7 +148,7 @@ grep -F -- "- [ ] Production Supabase is synced" docs/launch/brampton-l2-l3-veri
 
 Expected: the stale phrases match, Ste. Louise appears twice, and the production-sync checkbox is unchecked.
 
-- [ ] **Step 2: Correct promoted and deferred record state**
+- [x] **Step 2: Correct promoted and deferred record state**
 
 Replace the status and promoted heading with:
 
@@ -162,7 +162,7 @@ Status: approved eight-record production sync complete; six records at L2; Knigh
 
 Remove the Ste. Louise row from `Deferred L1 Candidates`. Keep its existing L1-to-L2 evidence row in the promoted table. Leave BMCC, CCS, and PCHS unchanged as the three draft-only deferred candidates.
 
-- [ ] **Step 3: Record broad-coverage completion and the remaining review sequence**
+- [x] **Step 3: Record broad-coverage completion and the remaining review sequence**
 
 Replace the broad-canonical status paragraph with:
 
@@ -181,7 +181,7 @@ Replace the review sequence with:
 6. Promote no additional live records until human approval is recorded.
 ```
 
-- [ ] **Step 4: Close the production-sync definition-of-done item**
+- [x] **Step 4: Close the production-sync definition-of-done item**
 
 Replace the unchecked item with:
 
@@ -189,7 +189,7 @@ Replace the unchecked item with:
 - [x] Production Supabase is synced with the bounded approved eight-record Brampton set; post-sync checks passed on 2026-07-08.
 ```
 
-- [ ] **Step 5: Verify internal workplan consistency**
+- [x] **Step 5: Verify internal workplan consistency**
 
 Run:
 
@@ -204,7 +204,7 @@ test "$(grep -Fc -- "- [x] Production Supabase is synced with the bounded approv
 
 Expected: every command exits `0`, proving the record count, status, and completion marker are internally consistent.
 
-- [ ] **Step 6: Mark Task 2 complete and commit**
+- [x] **Step 6: Mark Task 2 complete and commit**
 
 Change Task 2 checkboxes in this plan to `[x]`, then run:
 
