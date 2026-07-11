@@ -34,6 +34,8 @@
     "db:verify": "node --import tsx scripts/verify-db-integrity.ts",
     "tools:search": "node --import tsx scripts/search-cli.ts",
     "search:qa": "node --import tsx scripts/search-qa.ts",
+    "search:report": "node --import tsx scripts/search-test-runner.ts --write",
+    "search:report:check": "node --import tsx scripts/search-test-runner.ts --check",
     "verify:search-ranking": "node --import tsx scripts/verify-search-ranking.ts",
     "verify:rls": "node --import tsx scripts/verify-rls.ts",
     "normalize:services": "node --import tsx scripts/normalize-services.ts",

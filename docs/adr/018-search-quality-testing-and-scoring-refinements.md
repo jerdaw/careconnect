@@ -30,8 +30,8 @@ Implemented a **Golden Set + Sampling** testing strategy:
 - **Sampled Coverage**: 150 additional queries testing 95%+ result rate
 - **Crisis Detection Tests**: 9 safety-critical query patterns
 - **Deterministic CI Tests**: `tests/search/golden-set.test.ts` with 61 Vitest tests
-- **Test Runner**: `scripts/search-test-runner.ts` for comprehensive analysis (200 queries)
-- **Quality Report**: `tests/fixtures/search-quality-report.md` documenting issues and recommendations
+- **Test Runner**: `scripts/search-test-runner.ts` for deterministic local-only analysis (200 queries)
+- **Quality Artifacts**: JSON and Markdown generated together from one fixed-date report
 
 **Pass Criteria:**
 
@@ -72,7 +72,7 @@ After: Requires either 2+ token matches OR a specific token (4+ characters)
 
 - `tests/fixtures/care-taxonomy.json` - Comprehensive 17-category hierarchy (98 sub-categories)
 - `tests/fixtures/search-test-queries.json` - 200 test queries with expectations
-- `tests/fixtures/search-quality-report.md` - Analysis and recommendations
+- `tests/fixtures/search-quality-report.md` - Generated deterministic summary and failures
 - `tests/search/golden-set.test.ts` - Deterministic regression tests
 
 **Existing Enhancements:**
@@ -100,7 +100,7 @@ After: Requires either 2+ token matches OR a specific token (4+ characters)
 
 ### Neutral
 
-1. **Test Coverage**: 100% pass rate on golden set (50/50 queries), 98.7% on sampled coverage
+1. **Test Coverage**: 100% pass rate on golden set (50/50 queries), 96.7% on sampled coverage
 2. **Performance**: All 200 queries complete in <2 seconds
 3. **CI Integration**: Tests run on every commit, preventing regressions
 
@@ -135,6 +135,17 @@ When a user reports a bad search result:
 3. Fix via synonyms, keywords, or scoring adjustments
 4. Tests pass → regression protected
 
+### Deterministic Report Workflow
+
+The tracked JSON and Markdown artifacts are generated together against checked-in local services at `metadata.evaluationAsOf` from `tests/fixtures/search-test-queries.json`. The runner does not load `.env.local` or query Supabase, and tracked output excludes wall-clock timestamps and execution duration.
+
+```bash
+npm run search:report       # regenerate both tracked artifacts
+npm run search:report:check # fail if either artifact is stale
+```
+
+Use `--out-dir <path>` with the runner for isolated comparison runs. The evaluation date is regression-fixture metadata, not a claim about current production freshness.
+
 ### Scoring Weight Configuration
 
 All scoring weights centralized in `lib/search/scoring.ts::WEIGHTS`:
@@ -158,7 +169,7 @@ export const WEIGHTS = {
 - Add more golden queries as issues are discovered (target: 100 queries)
 - A/B testing framework for scoring weight changes
 - User feedback integration to identify poor results
-- Periodic re-runs of `search-test-runner.ts` to generate updated reports
+- Periodic `npm run search:report:check` runs and reviewed fixture-date updates when the regression baseline intentionally changes
 
 ## References
 

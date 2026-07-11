@@ -6,7 +6,8 @@
     "totalQueries": 200,
     "goldenSetCount": 50,
     "sampledCoverageCount": 150,
-    "lastUpdated": "2025-02-03"
+    "lastUpdated": "2025-02-03",
+    "evaluationAsOf": "2026-06-30T12:00:00.000Z"
   },
   "goldenSet": {
     "description": "Hand-curated queries with specific expected service matches. Use for regression testing and search quality evaluation.",
