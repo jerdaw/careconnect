@@ -42,6 +42,35 @@ describe("Notifications Unsubscribe API", () => {
     expect(res.status).toBe(400)
   })
 
+  it("returns 400 for malformed JSON before rate limiting or database setup", async () => {
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: "{",
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    await expect(res.json()).resolves.toEqual({ error: "Invalid JSON" })
+    expect(res.headers.get("content-type")).toContain("application/json")
+    expect(checkRateLimit).not.toHaveBeenCalled()
+    expect(createClient).not.toHaveBeenCalled()
+  })
+
+  it("returns the existing missing-endpoint response for JSON null", async () => {
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: "null",
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    await expect(res.json()).resolves.toEqual({ error: "Missing endpoint" })
+    expect(checkRateLimit).not.toHaveBeenCalled()
+    expect(createClient).not.toHaveBeenCalled()
+  })
+
   it("deletes subscription and returns 200", async () => {
     mockSupabase.eq.mockResolvedValue({ error: null })
 

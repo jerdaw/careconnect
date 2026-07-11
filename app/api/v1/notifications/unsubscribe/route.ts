@@ -6,7 +6,21 @@ import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-
 
 export async function POST(req: NextRequest) {
   try {
-    const { endpoint } = (await req.json()) as { endpoint: string }
+    let body: unknown
+    try {
+      body = await req.json()
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+      }
+      throw error
+    }
+
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ error: "Missing endpoint" }, { status: 400 })
+    }
+
+    const { endpoint } = body as { endpoint: string }
 
     if (!endpoint) {
       return NextResponse.json({ error: "Missing endpoint" }, { status: 400 })

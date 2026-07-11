@@ -68,6 +68,35 @@ describe("Notifications Subscribe API", () => {
     expect(res.status).toBe(400)
   })
 
+  it("returns 400 for malformed JSON before rate limiting or database setup", async () => {
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: "{",
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    await expect(res.json()).resolves.toEqual({ error: "Invalid JSON" })
+    expect(res.headers.get("content-type")).toContain("application/json")
+    expect(checkRateLimit).not.toHaveBeenCalled()
+    expect(createClient).not.toHaveBeenCalled()
+  })
+
+  it("returns the existing invalid-payload response for JSON null", async () => {
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: "null",
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    await expect(res.json()).resolves.toEqual({ error: "Invalid subscription payload" })
+    expect(checkRateLimit).not.toHaveBeenCalled()
+    expect(createClient).not.toHaveBeenCalled()
+  })
+
   it("inserts new subscription if not found", async () => {
     mockBuilder.single.mockResolvedValue({ data: null, error: null })
     // Insert needs to behave as a promise resolving to null error
