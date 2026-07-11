@@ -276,7 +276,7 @@ Expected: the branch contains only `.gitignore`, the design/plan documents, and 
 
 - [x] **Step 4: Record exact validation evidence in this plan**
 
-Append a `## Completion Record` section containing the date, command results, exact Vitest file/test counts, strict MkDocs result, final changed-file list, and confirmation that the protected-path diff is empty. Change Task 3 checkboxes to `[x]`.
+Append a `## Completion Record` section containing the date, command results, exact Vitest file/test counts, strict MkDocs result, final changed-file list, and confirmation that the protected-path diff is empty. Mark every completed Task 3 step `[x]`; leave an unavailable optional check unchecked with its blocker recorded.
 
 - [x] **Step 5: Commit the completion record**
 
