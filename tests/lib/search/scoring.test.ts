@@ -109,25 +109,28 @@ describe("Search Scoring", () => {
     })
   })
 
-  describe("calculateScore (Placeholder)", () => {
-    it("should return a non-negative score", () => {
-      // Current implementation is a placeholder but might have identity boost logic
-      const score = calculateScore(mockService, "query")
-      expect(score).toBeGreaterThanOrEqual(0)
+  describe("calculateScore", () => {
+    it("should score a relevant query", () => {
+      const score = calculateScore(mockService, "food")
+      expect(score).toBeGreaterThan(0)
     })
 
-    it("should apply identity boost", () => {
+    it("should return zero for an unrelated query", () => {
+      const score = calculateScore(mockService, "unrelated")
+      expect(score).toBe(0)
+    })
+
+    it("should increase the score for opted-in matching identity context", () => {
       const context: UserContext = {
         identities: ["indigenous"],
         ageGroup: "youth",
         hasOptedIn: true,
       }
-      // calculateScore has some identity boost logic in the placeholder
-      // but base score is 0. 0 * boost = 0.
-      // So this test might just verify it doesn't crash unless we modify the impl to have a base score.
-      // The impl creates 'score = 0' then multiplies, so it stays 0.
-      const score = calculateScore(mockService, "query", undefined, { userContext: context })
-      expect(score).toBe(0)
+
+      const baselineScore = calculateScore(mockService, "indigenous")
+      const contextualScore = calculateScore(mockService, "indigenous", undefined, { userContext: context })
+
+      expect(contextualScore).toBeGreaterThan(baselineScore)
     })
   })
 })
