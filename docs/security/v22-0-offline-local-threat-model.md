@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-10
+last_updated: 2026-07-11
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -81,6 +81,16 @@ production-readiness evidence gates.
 `tests/db/pilot-replay.test.ts` now runs in the disposable Supabase integration lane. It launches two authenticated owner writes concurrently with the same client-supplied event UUID, verifies exactly one succeeds and one real primary-key conflict is classified as an idempotent duplicate, and confirms through a service-role read that exactly one row persists. GitHub's `test-db-integration` job passed this test on 2026-07-10, satisfying F3's stated integration verification method.
 
 This evidence verifies the repository's deterministic disposable-database contract. It does not assert that any production schema or environment matches the tested migrations.
+
+## 2026-07-11 F5 Partial Non-Destructive Recovery Evidence
+
+A local production build was exercised through the in-app browser with local search data and no Supabase credentials. The aggregate-only baseline recorded 204 cached services, 204 cached embeddings, zero pending feedback items, zero reserved pilot-draft keys in local or session storage, and present `lastSync` and export-version metadata. A direct public service-export check returned HTTP 200 with 204 services.
+
+Browser networking was then switched offline. `navigator.onLine` changed to `false`, the export request became unreachable, and the UI displayed its offline warning plus last-update status. No IndexedDB store, queue, cache, draft, or user preference was cleared. Restoring connectivity changed `navigator.onLine` to `true`, removed the offline warning, and produced the structured `OfflineSync` `network_restore` log. The post-recovery audit again found 204 services, 204 embeddings, zero pending feedback, zero pilot drafts, present sync/version metadata, and a successful 204-service export.
+
+This verifies F5's aggregate queue audit and non-destructive online recovery path for one local in-app-browser run. It does not verify cache rehydration after missing, stale, or corrupted service data because the existing fresh cache was intentionally left intact; F5 therefore remains `no`. The safe completion path is an explicitly disposable browser profile where aggregate queue counts are confirmed empty before clearing only service, embedding, and stale metadata stores, followed by observed repopulation from the public export.
+
+The browser also rejected service-worker registration with a `SecurityError`, and an offline search attempted to load an uncached chunk, so this evidence does not claim full offline navigation, multi-browser coverage, device-loss recovery, or destructive cache-corruption recovery.
 
 ## Validation Checklist
 

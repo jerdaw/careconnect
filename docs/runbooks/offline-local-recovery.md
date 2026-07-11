@@ -1,6 +1,6 @@
 # Runbook Summary: Offline Local Data Recovery
 
-**Last Updated:** 2026-06-12
+**Last Updated:** 2026-07-11
 
 This public summary describes safe recovery principles for browser-local
 CareConnect data when IndexedDB, cache storage, or offline queues appear stale
@@ -140,19 +140,45 @@ clearing queues, exporting raw payloads, or modifying verified service data.
    - Clear the affected local database only after queue preservation is either
      complete or explicitly waived by the appropriate owner.
 
+## 2026-07-11 Non-Destructive Dry Run
+
+The local production app was exercised in the in-app browser with local search data and no Supabase credentials. Only aggregate counts and key-name prefixes were inspected.
+
+| Observation           | Online Baseline | Offline                               | Recovered Online |
+| --------------------- | --------------: | ------------------------------------- | ---------------: |
+| `navigator.onLine`    |          `true` | `false`                               |           `true` |
+| Cached services       |             204 | Preserved; no store was cleared       |              204 |
+| Cached embeddings     |             204 | Preserved; no store was cleared       |              204 |
+| Pending feedback      |               0 | Audited before recovery               |                0 |
+| Reserved pilot drafts |               0 | Audited by key prefix only            |                0 |
+| Sync/version metadata |         present | Preserved                             |          present |
+| Service export        |  200 / 204 rows | Unreachable while network was offline |   200 / 204 rows |
+| User-visible state    |          online | Offline warning with last-update age  |  Warning cleared |
+
+Restoring connectivity produced the structured `OfflineSync` `network_restore` event. The fresh cache remained intact, so the sync path correctly treated it as already current rather than rewriting it. No destructive recovery step was necessary or authorized.
+
+Observed limitation: the in-app browser rejected service-worker registration with a `SecurityError`, and an offline search attempted to load an uncached JavaScript chunk. This run therefore verifies the aggregate audit and non-destructive re-sync path, not full offline navigation or recovery from an intentionally corrupted database.
+
 ## Verification Checklist
 
-- [ ] User-visible offline/search symptom is reproduced.
-- [ ] Local store counts are recorded without raw payload contents.
-- [ ] Non-destructive online re-sync is attempted.
-- [ ] Queued write stores are audited before any destructive clearing.
-- [ ] Service cache rehydrates from `/api/v1/services/export`.
-- [ ] Public notes exclude raw queries, free-text feedback, names, phone
+- [x] User-visible offline/search symptom is reproduced.
+- [x] Local store counts are recorded without raw payload contents.
+- [x] Non-destructive online re-sync is attempted.
+- [x] Queued write stores are audited before any destructive clearing.
+- [ ] Service cache rehydrates from `/api/v1/services/export` after a safe disposable-profile cache reset.
+- [x] Public notes exclude raw queries, free-text feedback, names, phone
       numbers, email addresses, street addresses, private dashboard links, and
       live environment details.
 
 ## Current Limitation
 
-This repo currently documents the recovery workflow, but F5 is not fully
-verified until a dry run records evidence that the queue audit and re-sync steps
-work as expected.
+F5 remains unverified because the dry run retained a fresh cache and therefore
+did not observe service/embedding rehydration after missing, stale, or corrupted
+local data. To complete it safely, use an explicitly disposable browser profile,
+confirm aggregate queue and pilot-draft counts are zero, clear only the service,
+embedding, and stale metadata stores, trigger online sync, and confirm all three
+are repopulated from `/api/v1/services/export`.
+
+Full offline navigation, service-worker compatibility in this browser surface,
+device loss, and recovery when queued writes are present remain outside the
+partial evidence.
