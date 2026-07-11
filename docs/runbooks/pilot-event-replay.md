@@ -1,6 +1,6 @@
 # Runbook Summary: Pilot Event Replay and Duplicate Suppression
 
-**Last Updated:** 2026-06-12
+**Last Updated:** 2026-07-10
 
 This public summary defines replay criteria for v22 pilot event submissions.
 It intentionally excludes production database access steps, private dashboard
@@ -59,7 +59,7 @@ as idempotent duplicate retries.
 
 ## Verification Standard
 
-F3 remains unverified until both conditions are true:
+F3 requires both conditions:
 
 1. Unit/API/storage tests confirm deterministic, privacy-safe replay
    fingerprints and supplied-ID duplicate handling.
@@ -67,6 +67,12 @@ F3 remains unverified until both conditions are true:
    by storage, such as through a database unique constraint, conflict-handling
    write path, or an equivalent trusted persistence mechanism.
 
-The current repo-local policy satisfies the first condition only. Live repeated
-submission evidence against a real backing store is still required before F3 can
-be marked verified.
+Both conditions are now covered. `tests/db/pilot-replay.test.ts` races two
+authenticated writes with the same supplied UUID against the disposable
+Supabase integration stack. The test requires exactly one successful insert,
+one idempotent duplicate result, and exactly one persisted row. GitHub's
+`test-db-integration` job passed this evidence on 2026-07-10.
+
+This closes the repository's F3 verification method for the disposable test
+stack only. It is not production-schema evidence; production assumptions still
+require a separate read-only live-schema preflight before any operational use.

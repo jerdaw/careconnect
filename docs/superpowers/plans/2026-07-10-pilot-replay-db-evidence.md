@@ -6,6 +6,8 @@
 
 **Tech Stack:** TypeScript, Vitest, Supabase JS, disposable local Supabase/PostgreSQL.
 
+**Status:** Completed on 2026-07-10. GitHub's disposable `test-db-integration` lane passed the concurrent replay test; the regular suite passed 1,733 tests with 24 skips, and lint, type-check, format, references, root hygiene, and the threat-model consistency guard passed locally.
+
 ---
 
 ### Task 1: Add the failing DB integration contract
