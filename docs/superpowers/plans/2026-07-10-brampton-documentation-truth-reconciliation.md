@@ -8,9 +8,8 @@
 
 **Tech Stack:** Markdown, MkDocs 1.x/Material, Node.js 22, Vitest, Prettier, repository reference checker
 
-**Status:** Implemented; repository validation passed, while the strict MkDocs
-build remains blocked by local WSL instability and a bounded Windows fallback
-timeout (2026-07-10).
+**Status:** Content reconciliation implemented; required repository validation
+passed; optional strict MkDocs remains environment-blocked (2026-07-10).
 
 ## Global Constraints
 
@@ -249,21 +248,16 @@ git diff --check
 
 Expected: all commands pass.
 
-- [ ] **Step 2: Run the strict MkDocs build in an isolated Python environment — blocked locally**
+- [ ] **Step 2: Run the strict MkDocs build in an isolated Python environment — environment-blocked as of 2026-07-10**
 
 Run:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -fsSLo /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.12/virtualenv.pyz
-python3 /tmp/virtualenv.pyz --clear .venv
+python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m mkdocs build --strict
 ```
-
-Use this privilege-free `virtualenv` zipapp fallback because the available
-stdlib `venv` lacks `ensurepip` and `sudo` is unavailable. Do not add a tracked
-dependency or modify the system Python installation.
 
 Expected: dependencies install inside ignored `.venv/`, and the strict documentation build completes successfully with output under ignored `site/`.
 
@@ -318,17 +312,36 @@ Date: 2026-07-10
 - `npm test -- --run tests/unit/documentation-hygiene.test.ts`: 1 Vitest
   file passed, 19 tests passed.
 - `git diff --check`: passed.
+- Task 3 Step 6 clean-state evidence at commit `92cce536`:
+
+  ```text
+  $ git status --short --branch
+  ## codex/brampton-doc-truth-reconcile...origin/codex/brampton-doc-truth-reconcile
+  [exit 0]
+
+  $ git log --oneline --decorate -6
+  92cce536 (HEAD -> codex/brampton-doc-truth-reconcile, origin/codex/brampton-doc-truth-reconcile) docs: record Brampton reconciliation validation
+  d90dbbf7 docs: reconcile Brampton verification workplan
+  9e458a98 docs: close stale Brampton planning gates
+  895b74b6 docs: plan Brampton truth reconciliation
+  9300634d docs: design Brampton truth reconciliation
+  a454247a chore: ignore local worktrees
+  [exit 0]
+
+  $ git diff main...HEAD --check
+  [no output]
+  [exit 0]
+  ```
+
 - Final branch scope: `.gitignore`,
   `docs/launch/brampton-l2-l3-verification-workplan.md`,
   `docs/planning/README.md`, this implementation plan, and its design spec.
 - Protected-path audit for `data/services.json`, `data/embeddings.json`,
   `data/drafts`, `supabase`, `app`, `components`, `lib`, `scripts`, and `tests`:
   empty.
-- Strict MkDocs status: blocked in this local environment. The ignored Python
-  3.12 environment was recreated with the privilege-free `virtualenv` zipapp,
-  and `requirements.txt` installed successfully. A WSL service crash returned
-  `Wsl/Service/E_UNEXPECTED` during the strict build. An isolated Windows
-  Python 3.13 fallback reached MkDocs after applying a process-scoped Git safe
-  directory, but did not complete within the bounded 304-second run. No strict
-  build success is claimed; CI or another stable runtime should run
-  `python -m mkdocs build --strict` before merge.
+- Strict MkDocs status: environment-blocked. The prescribed
+  `python3 -m venv .venv` command exited `1` because the available WSL Python
+  lacks `ensurepip`; no strict build pass is claimed.
+- Design/plan resolution: the approved design permits the optional strict
+  MkDocs limitation to remain recorded and Step 2 to remain unchecked; no pass
+  is claimed.
