@@ -1,10 +1,10 @@
 #!/bin/bash
 # Copy Vercel optimization config to another repo
-# Usage: ./scripts/copy-vercel-config.sh ../visitbrief
+# Usage: ./scripts/archive/copy-vercel-config.sh ../visitbrief
 
 if [ -z "$1" ]; then
-  echo "Usage: ./scripts/copy-vercel-config.sh <target-repo-path>"
-  echo "Example: ./scripts/copy-vercel-config.sh ../visitbrief"
+  echo "Usage: ./scripts/archive/copy-vercel-config.sh <target-repo-path>"
+  echo "Example: ./scripts/archive/copy-vercel-config.sh ../visitbrief"
   exit 1
 fi
 

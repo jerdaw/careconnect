@@ -2,11 +2,11 @@
 
 ## Context
 
-Threat-model finding F5 requires execution evidence that browser-local queue auditing and non-destructive re-sync work as documented. Unit and component coverage already protect the underlying IndexedDB, feedback queue, aggregate audit, and online-event behavior, but the runbook still records no browser dry run.
+Threat-model finding F5 requires execution evidence that browser-local queue auditing, non-destructive re-sync, and safe cache rehydration work as documented. Unit and component coverage already protect the underlying IndexedDB, feedback queue, aggregate audit, and online-event behavior, but the runbook still needs direct browser evidence.
 
 ## Decision
 
-Run one local-browser recovery exercise against the checked-in app in local search mode:
+Run two bounded local-browser recovery exercises against the checked-in app in local search mode:
 
 1. Load the app online and wait for the normal offline sync to populate IndexedDB.
 2. Record only aggregate object-store counts and metadata presence; never inspect or emit queued payloads.
@@ -15,6 +15,9 @@ Run one local-browser recovery exercise against the checked-in app in local sear
 5. Restore connectivity, trigger the documented non-destructive online recovery path, and confirm `/api/v1/services/export` succeeds.
 6. Re-audit aggregate counts and confirm the service cache remains populated and freshness metadata is present.
 7. Leave all queue stores and verified service data untouched.
+8. On a fresh local origin, repeat the aggregate audit and require zero queued feedback and zero pilot drafts.
+9. Clear only cached services, cached embeddings, `lastSync`, and export `version`.
+10. Reload online and confirm the normal sync path repopulates both caches and freshness metadata without changing queue/draft counts.
 
 If every step is directly observed, record a public-safe evidence note and mark F5 verified for this local-browser workflow only. Do not claim production, multi-browser, device-loss, or unrecoverable-corruption coverage.
 
@@ -22,7 +25,8 @@ If every step is directly observed, record a public-safe evidence note and mark 
 
 - Stop if the browser cannot reliably control online/offline state.
 - Stop if aggregate inspection would require reading or exposing raw queued payloads.
-- Stop before clearing any queue, cache, database, service worker, or user preference.
+- Stop before clearing any queue, service worker, user preference, or whole database.
+- Clear cache/freshness state only on an explicitly disposable origin after all queued-write counts are confirmed zero.
 - Stop if the app requires credentials or private environment configuration.
 
 ## Validation
