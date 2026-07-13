@@ -4,6 +4,13 @@ import { createMockRequest, parseResponse } from "../../utils/api-test-utils"
 import { assertAdminRole } from "@/lib/auth/authorization"
 // createServerClient import removed
 
+const mockWithCircuitBreaker = vi.hoisted(() => vi.fn())
+const observedBreakerErrors: unknown[] = []
+
+vi.mock("@/lib/resilience/supabase-breaker", () => ({
+  withCircuitBreaker: mockWithCircuitBreaker,
+}))
+
 // Mock next/headers
 vi.mock("next/headers", () => ({
   cookies: vi.fn().mockReturnValue({
@@ -40,6 +47,15 @@ vi.mock("@/lib/auth/authorization", () => ({
 describe("Admin Save API", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    observedBreakerErrors.length = 0
+    mockWithCircuitBreaker.mockImplementation(async (operation: () => Promise<unknown>) => {
+      try {
+        return await operation()
+      } catch (error) {
+        observedBreakerErrors.push(error)
+        throw error
+      }
+    })
     mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: "admin-id" } }, error: null })
     vi.mocked(assertAdminRole).mockResolvedValue(undefined as any)
 
@@ -101,6 +117,72 @@ describe("Admin Save API", () => {
         operation: "UPDATE",
       })
     )
+    expect(mockWithCircuitBreaker).toHaveBeenCalledTimes(2)
+    expect(mockWithCircuitBreaker.mock.calls.every((call) => call.length === 1)).toBe(true)
+    expect(mockSupabase.rpc).toHaveBeenCalledWith("log_admin_action", expect.any(Object))
+  })
+
+  it("returns 500 and stops the mutation when the circuit breaker rejects", async () => {
+    mockWithCircuitBreaker.mockRejectedValueOnce(new Error("Circuit open"))
+
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ service: { id: "1", name: "New" } }),
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(500)
+    expect(mockQueryBuilder.upsert).not.toHaveBeenCalled()
+  })
+
+  it("returns 500 and skips audit writes when the upsert circuit is open", async () => {
+    mockWithCircuitBreaker
+      .mockImplementationOnce((operation: () => Promise<unknown>) => operation())
+      .mockRejectedValueOnce(new Error("Circuit open"))
+
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ service: { id: "1", name: "New" } }),
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(500)
+    expect(mockQueryBuilder.upsert).not.toHaveBeenCalled()
+    expect(mockQueryBuilder.insert).not.toHaveBeenCalled()
+    expect(mockSupabase.rpc).not.toHaveBeenCalled()
+  })
+
+  it("returns 500 when the service read resolves with a database error", async () => {
+    mockQueryBuilder.single.mockResolvedValue({ data: null, error: { code: "XX000", message: "read failed" } })
+
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ service: { id: "1", name: "New" } }),
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(500)
+    expect(mockQueryBuilder.upsert).not.toHaveBeenCalled()
+    expect(observedBreakerErrors).toEqual([expect.objectContaining({ code: "XX000", message: "read failed" })])
+  })
+
+  it("returns 500 and skips audit writes when the upsert resolves with a database error", async () => {
+    mockQueryBuilder.upsert.mockResolvedValue({ error: { code: "XX000", message: "upsert failed" } })
+
+    const req = createMockRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ service: { id: "1", name: "New" } }),
+      headers: { "Content-Type": "application/json" },
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(500)
+    expect(mockQueryBuilder.insert).not.toHaveBeenCalled()
+    expect(mockSupabase.rpc).not.toHaveBeenCalled()
+    expect(observedBreakerErrors).toEqual([expect.objectContaining({ code: "XX000", message: "upsert failed" })])
   })
 
   it("adds new service if not found (CREATE)", async () => {

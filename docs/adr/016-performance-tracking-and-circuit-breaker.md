@@ -443,6 +443,9 @@ CIRCUIT_BREAKER_TIMEOUT=30000
 ### Phase 3: Complete Rollout (In Progress ⚠️)
 
 - [ ] Protect remaining API routes (POST, PUT, DELETE endpoints)
+  - [x] Protect the admin service-save read and upsert, including resolved Supabase errors.
+  - [ ] Decide transactional or explicitly degraded semantics before coupling post-save audit writes to the breaker.
+  - [ ] Continue with the remaining admin push/reindex and other direct Supabase mutation routes.
 - [ ] Protect authorization checks (consider trade-offs)
 - [ ] Add authentication to health check endpoint
 - [ ] Add `/api/v1/metrics` endpoint (dev/staging only)
