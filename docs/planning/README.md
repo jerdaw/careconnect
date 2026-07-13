@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-10
+last_updated: 2026-07-13
 owner: jer
 tags: [planning, roadmap, governance, public-docs, multi-city, brampton]
 ---
@@ -15,16 +15,16 @@ This directory contains planning and strategy documents for CareConnect.
 > Treat those references as historical only; current operational guidance uses
 > the CareConnect name and `careconnect.ing`.
 
-## Active Planning: v22.0 and Brampton
+## Active Planning: v22.0
 
-**Status:** v22 Gate 0 decision work remains `NO-GO` pending C1/D4 closure. The approved eight-record Brampton first-launch set is live in production; future verification, expansion, and official/partner wording remain approval-gated.
+**Status:** v22 Gate 0 remains `NO-GO` pending C1/D4 closure. Service reverification is the parallel safety priority. The approved eight-record Brampton first launch is complete; future verification, expansion, and official/partner wording remain approval-gated rather than an active launch track.
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
 
 1. **[Roadmap](roadmap.md)** ⭐ START HERE
-   - Current product state, active work, completed work, Brampton launch gates, and follow-ups
-   - **Reading time:** 10 minutes
+   - Executive status, ordered priorities, stop rules, active decision work, and deferred tracks
+   - **Reading time:** 7 minutes
 
 2. **[v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
    - Strategic objective, hypotheses, kill rules, and stage gates
@@ -180,12 +180,15 @@ docs/planning/
 
 ### What is active now?
 
-Two tracks are active:
+One strategic track is active: **v22.0 Non-Duplicate Value Decision Plan**. It tests whether CareConnect provides measurable last-mile value relative to 211 while preserving explicit privacy and stop rules.
 
-1. **v22.0: Non-Duplicate Value Decision Plan**
-   - The strategic planning track for proving non-duplicate value relative to 211 through measured connection outcomes, strict privacy constraints, and explicit kill criteria.
-2. **Brampton constrained multi-city launch closeout and bounded verification**
-   - The approved eight-record first-launch set is live in production. Further records and L2/L3 changes continue only through the governed verification and approval workflow.
+Three human-owned lanes run in parallel:
+
+1. Reverify services, starting with the 42 stale Crisis records.
+2. Supply the missing C1 legal/API terms evidence.
+3. Supply the missing D4 partner-operations execution evidence.
+
+Brampton's approved eight-record launch is complete. Further candidates or L2/L3 changes are gated follow-up work, not a second active roadmap track.
 
 ### Why Now?
 
@@ -216,21 +219,21 @@ Current dependencies and completed prerequisites:
 - Gate 0 blocker closure (`C1`, `D4`)
 - Baseline evidence already published
 - Integration feasibility decision already recorded in conditional mode
-- Offline/local threat-model completion already recorded
+- Offline F3 replay and F5 bounded recovery evidence recorded; F1 queue inspection and F2 authenticated sign-out QA remain evidence-gated
 - Brampton first-launch production, accessibility, visual QA, and broad-coverage closeout already recorded
 
 ---
 
 ## How to Proceed
 
-### Option 1: Continue Bounded Brampton Verification
+### Option 1: Reverify Services
 
-Use the active roadmap and verification workplan for the remaining Brampton track:
+Use the dated freshness worksheet and the open verification issues:
 
-1. Resolve Knights Table address and program-split evidence before any L2 decision
-2. Recheck Ste. Louise registration and hours before any L2 decision
-3. Review BMCC, CCS, and PCHS one at a time through the L1 template
-4. Require explicit approval before any future promotion, L2/L3 change, or official/partner wording
+1. Start with the 42 stale Crisis records in issue #13.
+2. Continue the general quarterly queue in issue #14.
+3. Update facts and `provenance.verified_at` only after real phone/web/source evidence is recorded.
+4. Regenerate the freshness audit after each reviewable verification batch.
 
 ### Option 2: Close Gate 0
 
@@ -239,18 +242,15 @@ Use the active roadmap and Gate 0 tracker to close the remaining v22 blocking it
 1. Attach candidate partner legal/API terms for C1 review
 2. Attach named pilot partner and outreach execution evidence for D4
 
-### Option 3: Ask Questions
+### Option 3: Continue a Specifically Approved Brampton Record
 
-Review documents and ask clarifying questions about scope, timeline, or approach.
-
-### Option 4: Request Changes
-
-Propose modifications to scope, timeline, or implementation strategy.
+Use the Brampton verification workplan only after a candidate or L2/L3 change is explicitly approved. Do not treat the completed first launch as permission for broad regional expansion.
 
 ---
 
 ## Document Updates
 
+- **2026-07-13:** Reorganized the roadmap around one active strategic track, a P0 service/legal/partner evidence stack, explicit completion conditions, and concise maintenance/deferral rules; moved Brampton to a completed bounded-launch track and corrected F1/F2 threat-model status
 - **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
 - **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers
 - **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
