@@ -7,7 +7,21 @@ import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-
 
 export async function POST(req: NextRequest) {
   try {
-    const { subscription, categories, locale } = (await req.json()) as {
+    let body: unknown
+    try {
+      body = await req.json()
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+      }
+      throw error
+    }
+
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ error: "Invalid subscription payload" }, { status: 400 })
+    }
+
+    const { subscription, categories, locale } = body as {
       subscription: { endpoint: string; keys: { p256dh: string; auth: string } }
       categories: NotificationCategory[]
       locale: string
