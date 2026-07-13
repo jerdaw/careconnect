@@ -1,3 +1,10 @@
+---
+status: archived
+last_updated: 2026-07-13
+owner: jer
+tags: [planning, roadmap, audit, governance]
+---
+
 # Roadmap Audit Summary - 2026-02-11
 
 This public summary preserves the technical and governance outcomes from the February 2026 roadmap audit while excluding private personal strategy and application-planning content.

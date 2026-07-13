@@ -92,6 +92,10 @@ This directory contains planning and strategy documents for CareConnect.
   - Completed repo-health maintenance report covering scoped code fixes, docs updates, verification status, and remaining follow-ups
   - **Reading time:** 10-15 minutes
 
+- [Roadmap Audit Archive (2026-02-11)](archive/2026-02-11-roadmap-audit.md)
+  - Historical public summary of the roadmap findings that informed the later v20-v22 work
+  - **Reading time:** 5 minutes
+
 - **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
   - Canonical sign-off record for Gate 0 decisions
   - **Reading time:** 10 minutes
