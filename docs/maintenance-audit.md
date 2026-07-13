@@ -478,10 +478,10 @@ Generated files: `npm run build` regenerated embeddings during postbuild, but `d
 ## Completed Follow-up
 
 - **Notification JSON errors (2026-07-10):** The subscribe and unsubscribe routes now return their existing flat `400` envelopes for malformed or non-object JSON before rate limiting or database setup. A shared parser was intentionally not added because the two routes use flat envelopes that are incompatible with the shared nested API-error helper; revisit an abstraction only when enough routes share the same response and validation contract.
+- **MkDocs build validation (2026-07-13):** Installed the pinned `requirements.txt` stack into an isolated temporary dependency directory and ran the documented non-strict `mkdocs build` command against the current branch. The build exited `0` in 34.41 seconds and produced 446 site files. Strict mode is not claimed: it aborts on 413 existing warnings, primarily the intentionally broad unnav'd documentation inventory and unavailable local Cairo imaging libraries. No generated site files or Python dependencies were added to the repository.
 
 ## Remaining Recommendations
 
-- Install Python docs dependencies from `requirements.txt` and run `mkdocs build`.
 - Run Playwright/accessibility checks during an intentional browser validation window or via CI/manual dispatch.
 - Review `npm outdated --long` through Dependabot or a focused dependency-upgrade branch with migration notes and full verification.
 - Consider a focused CSP hardening pass for nonce/inline-script reduction while preserving WebLLM support.
