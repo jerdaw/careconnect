@@ -1,12 +1,12 @@
 # Offline Recovery Dry-Run Implementation Plan
 
-**Goal:** Execute and document the non-destructive browser recovery workflow required by threat-model finding F5.
+**Goal:** Execute and document the browser recovery workflow required by threat-model finding F5, including safe cache rehydration.
 
-**Architecture:** Use the real local app and browser IndexedDB, inspect aggregate counts only, exercise browser offline/online transitions, and rely on the existing `OfflineSync` network-restoration path. This is evidence work, not a runtime feature change.
+**Architecture:** Use the real local app and browser IndexedDB, inspect aggregate counts only, exercise browser offline/online transitions, and complete cache rehydration on a fresh local origin after proving queued-write counts are zero. This is evidence work, not a runtime feature change.
 
 **Tech Stack:** Next.js local server, in-app browser automation, IndexedDB, Vitest.
 
-**Status:** Partially completed on 2026-07-11. The aggregate-only production-browser dry run verified initial cache population, queue/draft auditing, offline state, the online recovery event, retained stores, sync metadata, and service-export reachability. F5 remains unverified because the fresh cache was not cleared and rehydrated. Complete it only in an explicitly disposable browser profile after confirming queue counts are zero, as documented in the runbook.
+**Status:** Completed on 2026-07-13. The first aggregate-only browser run verified cache population, queue/draft auditing, offline state, online recovery, and service-export reachability. A second run on a fresh local origin confirmed zero queued writes, cleared only cache/freshness state, and observed automatic repopulation to 204 services and 204 embeddings with metadata restored. F5 is verified for this bounded local workflow.
 
 ---
 
@@ -26,7 +26,15 @@
 4. Restore connectivity and wait for the online-event sync path.
 5. Confirm service export is reachable and the cache remains populated with sync metadata present.
 
-### Task 3: Record scoped evidence
+### Task 3: Exercise disposable-profile cache rehydration
+
+1. Use a fresh local origin and confirm service, embedding, queue, draft, and metadata aggregates.
+2. Stop unless pending feedback and both pilot-draft counts are exactly zero.
+3. Clear only `services`, `embeddings`, `lastSync`, and `version`.
+4. Confirm cache counts are zero while queue/draft counts remain zero.
+5. Reload online and confirm services, embeddings, and metadata are repopulated.
+
+### Task 4: Record scoped evidence
 
 **Files:**
 
@@ -35,10 +43,10 @@
 
 1. Add a dated aggregate-only dry-run record.
 2. Mark F5 verified only if every required observation succeeds.
-3. Explicitly limit the claim to the local browser and non-destructive path.
+3. Explicitly limit the claim to the bounded local browser paths.
 4. Leave F1 and F2 unchanged.
 
-### Task 4: Validate and deliver
+### Task 5: Validate and deliver
 
 1. Run focused offline audit/sync/component tests.
 2. Run threat-model consistency, lint, type-check, format, references, root hygiene, and diff checks.
