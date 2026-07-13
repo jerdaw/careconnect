@@ -7,136 +7,64 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 
 # CareConnect: Product Roadmap
 
-> **Current Version**: v22.0 plus constrained Brampton multi-city launch
-> **Next Milestone**: v22.0 Gate 0 C1/D4 blocker closure plus Brampton deferred-candidate review
+> **Current Version**: v22.0 non-duplicate value decision plan
+> **Decision Gate**: Gate 0 exit is `NO-GO`
+> **Immediate Priority**: service reverification plus C1/D4 evidence closure
+> **Brampton Status**: approved eight-record first launch is complete; further changes are gated
 > **Last Updated**: 2026-07-13
-> **Platform Status**: Strategic Repositioning with bounded Brampton launch gates
+> **Platform Status**: technically mature, operating as a constrained public directory while evidence gates remain open
 
-## Current State
+## Executive Status
 
-- **Services**: 204 manually curated social services. The 2026-07-13 freshness audit finds 8 fresh, 1 due-but-visible, and 195 beyond the 180-day visibility limit, leaving 9 visible while manual reverification is pending. Brampton's eight-record first launch set is current: six records are L2, with Knights Table and Ste. Louise held at L1 pending further verification.
-- **Tests**: default Vitest suite green as of 2026-07-08 (`218` files; `1733` passed; `24` skipped during `npm test -- --run` in the Brampton closeout pass)
-- **DB integration lane**: PR DB integration checks are green, local Supabase-backed retrieval, route, export, search, and policy tests remain healthy, and `npm run test:db:smoke` passed on 2026-07-07 with 2 DB smoke tests.
-- **Coverage**: `74.14%` statements / `78.85%` branches / `84.26%` functions / `74.14%` lines from `npm run test:coverage` on 2026-07-05
-- **Repo hygiene**: `npm run check:refs`, `npm run check:embeddings`, typed service DB write paths, dashboard server actions, and dependency cleanup are complete
-- **Maintenance audit**: the 2026-07-05 maintenance pass fixed invalid search-mode fallback, malformed search JSON handling, generic API error redaction, environment-validator drift, MkDocs nav drift, and a repeated service-card context lookup; deferred follow-ups remain in [Maintenance Audit](../maintenance-audit.md)
-- **Code-adjacent writing hygiene**: the 2026-07-05 professionalization audit tightened public docs, contributor examples, governance wording, and durable test comments while preserving historical archives and deliberate AI/provenance records; see [Professionalization Audit](../audits/2026-07-05-professionalization-audit.md)
-- **Public repository hygiene**: public docs now follow ADR-022, with private deployment coordinates, alert routing, maintainer-only operational details, and real platform contracts excluded from public GitHub documentation
-- **Dependency audit**: `npm audit --audit-level=high` on 2026-07-05 reports `0` vulnerabilities; broader dependency updates remain deferred to a focused owner-reviewed branch
-- **Bundle baseline**: localized home route first-load JS is `315 kB` after lazy AI and semantic-search startup deferral
-- **E2E**: default Chromium suite is skip-free; production/server-mode checks live in dedicated opt-in commands
-- **Accessibility**: WCAG 2.1 AA automation remains in place. The 2026-07-07 Brampton closeout remediated the logged `color-contrast` and `aria-hidden-focus` findings, added strict Axe regression coverage, handled optional semantic-search worker failures as keyword-only fallback, and passed the Chromium a11y suite.
-- **Languages**: 7 locales at translation-key parity
-- **Place-aware multi-city foundation**: `PlaceId`, explicit `coverage`, selected-place search behavior, OpenAPI contracts, DB mapping/export tests, and Brampton-vs-Kingston regression coverage are implemented.
-- **Brampton launch status**: Brampton is configured as a live supported place with a small reviewed first launch set; Ste. Louise is approved as the eighth Brampton record, six original launch records are upgraded to L2, and deferred Brampton candidates remain draft-only until the same L1 workflow approves a program-level shape.
-- **Brampton production gate**: PR #33 merged the foundation to `main`; restricted production control-plane readiness/status/service-health checks passed without sensitive-output collection; the production DB migration, application deployments, original seven-record sync, broad Ontario/Canada coverage correction, and approved eight-record/L2 follow-up are applied and verified. Production is current for the approved Brampton first-launch set.
-- **Brampton public positioning**: homepage/region language uses the `CareConnect` umbrella name and supported-community wording. The About-page land/source-context wording is approved for Kingston and Brampton; official/partner wording remains approval-gated, with Brampton source research recorded in launch docs.
-- **Homepage search UX**: resting hero now keeps quick-search chips and a restrained service/category/language metrics rail, while compact utility/category filters appear only in the active search/results state
-- **About page UX**: `/about` now uses a coherent trust/context layout, shared content rail, smooth page-level background, and primary CTA styling aligned with the theme button system
-- **Public and operational surface polish**: `/about/partners`, `/submit-service`, `/settings`, `/service/[id]`, `/login`, `/offline`, static legal/help/trust pages, and authenticated `/dashboard/**` plus `/admin/**` surfaces now share the polished page system; authenticated visual QA remains environment-gated and tracked below
-- **Dashboard trust/resilience**: partner overview metrics are live, degraded read states are explicit, and localized dashboard/admin redirects now preserve locale
-- **Search explainability**: public search results now surface deduplicated match reasons with an accessible disclosure for deeper scoring context
-- **Public provenance boundary**: public `services_public`, search, and detail responses preserve provenance shape while replacing UUID-shaped `verified_by` values with `CareConnect Admin`; source `services.provenance` remains unchanged for authenticated ownership and audit workflows
-- **Stale-data governance**: search excludes records beyond the 180-day freshness window, freshness badges distinguish expired records, and direct-linked detail pages show an explicit stale-record warning; the 2026-07-13 freshness audit finds 9 records visible and 195 hidden pending reverification
-- **Freshness policy alignment**: governance and planning docs now treat 180 days as the hard visibility limit, 90 days as a priority-service target, and the v22 90-day window as a review checkpoint rather than a guaranteed build schedule
-- **Workflow runtime hygiene**: active GitHub Actions use Node-24-compatible major versions, and release automation uses `gh release create` instead of the archived release action
-- **GitHub automation hygiene**: bundle analysis, Dependabot review gates, scheduled governance reminders, and finding workflows now run quiet-by-default; critical-only mode keeps repo reminders manual unless action is required
-- **URL health governance**: the monthly health check writes an Actions summary, auto-closes its finding issue when the report returns clean, and can use bounded official provider override probes for repeat CI-only false positives without changing curated public URLs
-- **Lint hygiene**: repo-wide ESLint now ignores local MkDocs build output under `site/`, so `npm run lint` remains actionable even when docs artifacts exist locally
-- **Semantic search resilience**: browser embedding-worker failures now fail closed to keyword-only search, and embedding request errors settle cleanly instead of emitting synthetic vectors
-- **Pilot metric stack**: M2/M4/M5/M6/M7 source schema, recompute path, and scorecard snapshot flow are implemented; values remain data-dependent rather than schema-blocked
-- **Pilot readiness reporting**: scoped JSON/Markdown/CSV readiness exports now exist for bounded A6/A16 follow-through without mutating curated service data
-- **Service freshness reporting**: `npm run check-staleness -- --as-of YYYY-MM-DD --out-dir <dir>` exports full-directory JSON/Markdown/CSV freshness queues without mutating curated service data; the active snapshot is [Service Freshness Audit (2026-07-13)](../audits/service-freshness/2026-07-13/staleness-summary.md)
-- **v22 autonomous maintenance checkpoint**: Gate 0 evidence guards, offline privacy/recovery hardening, pilot event contracts, OpenAPI route coverage, readiness-audit validation, active-doc hygiene guards, Search QA parity, runtime-security-header setup messaging, and the read-only embeddings check are packaged as reviewable checkpoints with completed maintenance records archived; no additional autonomous hardening is planned before external C1/D4 evidence arrives
-- **Auth/admin regression guardrails**: magic-link redirect, locale callback, safe `next`, admin dashboard envelope parsing, and reindex guardrail behavior now have focused regression coverage; authenticated production smoke automation remains private-ops gated rather than a public-repo workflow
-- **Closeout triage checkpoint**: the 2026-07-01 triage pass found no repo-side issue that should interrupt Gate 0 discipline; see [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
-- **Limited public-directory disposition**: the 2026-07-02 owner self-review allows only a constrained public-directory pilot; full Gate 0 remains `NO-GO` until C1 and D4 evidence is attached; see [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
-- **Current-state closeout audit**: the 2026-07-01 route audit fixed a Simplified Chinese content-policy rich-text issue and the approved production deploy now serves `version=c42d057`; see [CareConnect Current-State Closeout Audit (2026-07-01)](../implementation/careconnect-current-state-closeout-audit-2026-07-01.md)
-- **French service-data gaps**: French names, descriptions, eligibility notes, and access scripts are complete for all applicable records; governed content follow-through remains for 192 `hours_text_fr` fields and 132 `synthetic_queries_fr` sets.
-- **Offline**: PWA with IndexedDB fallback, background sync, and snapshot-age/stale-data messaging on offline surfaces
-- **Privacy-safe mapping**: service-detail pages gate third-party map previews behind explicit user action
-- **Partner write hardening**: partner-facing service mutation routes now use explicit editable-field allowlists, role-aware service ownership checks, and owner/admin-only delete semantics
-- **Search parity and freshness**: local and server search now align on `location` and `openNow` filters, including empty-query open-now browsing; local and server ranking now share the same scoring engine; offline export fingerprints are stable and successful syncs invalidate the in-memory service cache
-- **Privacy-safe sharing and analytics**: share-target hydration now uses a short-lived first-party cookie, printable cards generate inline QR codes locally, search analytics store only locale + result count, and detail-page analytics distinguish internal views from outbound referrals
-- **Observability**: Axiom metrics, Slack alerting, SLO monitoring, and runbooks are live; `OPERATIONAL_NOTIFICATION_MODE=critical_only` gates interrupting Slack alerts to critical incidents and matching recoveries
-- **Health visibility**: `/api/v1/health` is public and read-only, while `/api/v1/health/probe` is the authenticated uptime-sampling and alert-evaluation path
-- **Proxy auth resilience**: refreshed Supabase session cookies now survive the locale proxy pass and protected-route redirects
-- **DB-authoritative runtime data**: search/detail loading no longer overlays live DB reads with local JSON metadata when Supabase is available
-- **DB rollout safety**: `npm run backfill:db-runtime-fields` now exists to fill blank runtime/search fields in existing Supabase environments after the JSON-overlay removal without overwriting non-empty live values, and the current production Supabase environment has been backfilled successfully
-- **Deployment**: active deployment facts are maintained privately; public docs now describe only high-level release and verification boundaries
-- **Ops documentation truth**: public incident, rollback, alerting, and launch QA docs now omit private host paths, alert channels, and exact live procedures
-- **Feedback retention copy**: privacy copy no longer promises a fixed automatic 90-day feedback deletion timeline that the implementation does not evidence
-- **Deploy documentation boundary**: exact deployment contracts are maintained in private operations material; public docs keep only reproducible local checks and high-level architecture
-- **Branding**: CareConnect rename is complete across this repo and the `jerdaw/careconnect` GitHub repo slug
-- **211 sync posture**: quarantined to explicit manual runs only; no scheduled or mock-data ingestion path remains active
-- **Data quality gaps** (`npm run audit:data` on 2026-07-07):
-  - Scope: 7 missing by the legacy `scope` audit path; these are Brampton coverage-first records and schema validation passes
-  - Coordinates (any): 65 missing
-  - Coordinates (required): 18 missing
-  - Kingston missing address: 17
-  - Access scripts: 0 missing
-  - Structured hours (active services): 13 missing
-  - Hours text (active services): 11 missing
-  - French name, description, eligibility notes, and access scripts: complete for all applicable records by `npm run bilingual-check`
-  - French hours text for records with `hours_text`: 192 missing
-  - French synthetic queries for records with `synthetic_queries`: 132 missing
+| Area                    | Current state                                                                                                                                                                                                                                                   | Authoritative evidence                                                                    |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Strategic decision      | v22 Gate 0 exit remains `NO-GO`; the constrained public-directory disposition is not full pilot approval.                                                                                                                                                       | [Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)                 |
+| Service availability    | 204 records: 8 fresh, 1 due-but-visible, and 195 stale/hidden. The 42 stale Crisis records are the first verification lane.                                                                                                                                     | [2026-07-13 Freshness Audit](../audits/service-freshness/2026-07-13/staleness-summary.md) |
+| Gate 0 evidence         | `G0-3 / C1` lacks partner legal/API terms and clause review. `G0-8 / D4` lacks named partners, outreach ownership, and dated execution evidence.                                                                                                                | [User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)              |
+| Brampton                | The approved eight-record launch is complete. Six records are L2; Knights Table and Ste. Louise remain L1. Deferred candidates and any future L2/L3 changes stay gated.                                                                                         | [Brampton Readiness Report](../launch/brampton-readiness-report.md)                       |
+| Offline threat model    | F3 replay evidence and F5 bounded cache-rehydration evidence are complete. F1 queue-payload inspection and F2 authenticated sign-out QA still require real queue/session evidence before activation.                                                            | [Offline/Local Threat Model](../security/v22-0-offline-local-threat-model.md)             |
+| Technical baseline      | The default Vitest, DB integration, lint, type-check, build, reference, accessibility, and deterministic search-report lanes are established. Workflow runtime hygiene is current. Routine work should maintain these lanes, not invent new scope.              | [Maintenance Audit](../maintenance-audit.md)                                              |
+| Public/private boundary | Application behavior and public-safe evidence belong here; active deployment facts are maintained privately. Credentials, provider-console actions, exact deployment state, and shared-host operations remain in the private/shared operations source of truth. | [ADR-022](../adr/022-public-documentation-boundary.md)                                    |
 
-## Decision Summary
+Freshness governance treats 180 days as the hard visibility limit and 90 days as the priority-service reverification target. The v22 90-day window is a review checkpoint rather than a guaranteed build schedule.
 
-CareConnect is not currently in a broad directory-expansion phase.
+## Priority Order
 
-The active question is whether the project can prove non-duplicate value relative to 211 through measurable last-mile outcomes such as connection success, reliability, and referral completion. Until that is demonstrated, roadmap priority stays on governance closure, pilot readiness, and evidence discipline rather than new feature expansion.
+The first four lanes are parallel human-owned priorities. Repository work follows only when their evidence arrives or when a concrete regression appears.
 
-Brampton is the exception now in progress because it is a bounded, approved city-step launch with a small high-confidence emergency/core set. Treat it as a controlled multi-city foundation and relocation-support launch, not as a mandate to fill the region or compete with 211 on directory breadth.
+| Order | Workstream                       | Next action                                                                                                                                                | Completion condition                                                                     |
+| ----- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| P0-A  | Crisis-service reverification    | Complete [issue #13](https://github.com/jerdaw/careconnect/issues/13) from the 42-record Crisis queue; call, check official web sources, and verify hours. | Evidence-backed facts are committed, validation passes, and the monthly cycle is closed. |
+| P0-B  | General-service reverification   | Continue [issue #14](https://github.com/jerdaw/careconnect/issues/14) from the dated worksheet without changing `verified_at` before real verification.    | The current quarterly queue is evidence-backed and the freshness audit is regenerated.   |
+| P0-C  | `G0-3 / C1` legal evidence       | Complete [issue #28](https://github.com/jerdaw/careconnect/issues/28): attach terms, review C1-1 through C1-4, and record the legal recommendation.        | C1 evidence is accepted and Gate 0 trackers are synchronized.                            |
+| P0-D  | `G0-8 / D4` partner-ops evidence | Complete [issue #29](https://github.com/jerdaw/careconnect/issues/29): name partners and owners and attach dated outreach execution evidence.              | D4 evidence is accepted and Gate 0 trackers are synchronized.                            |
+| P1    | Gate reassessment                | After C1 and D4 close, run `npm run check:v22-evidence` and `npm run check:v22-gate0`, then record an explicit `GO` or reaffirmed `NO-GO`.                 | The decision and its evidence are internally consistent and owner-approved.              |
+| P2    | Pilot execution, only after `GO` | Resume v19/v21 in the order documented below and complete F1/F2 with real queue and authenticated-session evidence.                                        | Gate 1 produces measurable outcomes against the published success thresholds.            |
 
-## What To Do Now
+## Maintenance and Deferral Rules
 
-1. Keep Brampton land acknowledgment and official/partner wording behind explicit review.
-2. Continue deferred Brampton verification only through the same L1 workflow.
-3. Keep provider-assisted restore evidence, bounded app redeploy proof, and monitoring evidence recorded in the private/shared operations source of truth. Current public-safe status: Supabase Support reported triggering a latest-backup restore on 2026-07-08, post-restore checks passed, a bounded app redeploy proof passed, and public health/route-sweep monitoring evidence was captured. Recurring restore-proof cadence remains a hardening follow-up.
-4. Keep the constrained public-directory pilot within the 2026-07-02 limited-disposition boundaries; do not treat it as full Gate 0 approval.
-5. Complete `UA-1 / G0-3`: attach candidate partner legal/API terms and finish C1 clause-level review.
-6. Complete `UA-3 / G0-8`: attach the named pilot partner list, outreach owner assignment, and dated D4 execution evidence.
-7. Execute the verification queue using the [2026-07-13 service freshness audit](../audits/service-freshness/2026-07-13/staleness-summary.md), starting with 42 stale Crisis records; update service facts and provenance only after manual evidence is recorded.
-8. Keep the repo stable while Gate 0 is blocked: maintain tests, keep docs aligned, and avoid speculative feature work. Use the [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md) as the current finish-now/defer guide.
+### Allowed while Gate 0 is blocked
 
-## Roadmap Items Kept After 2026-07-01 Closeout
+1. Fix concrete regressions in data safety, crisis behavior, accessibility, auth/admin reliability, or established validation lanes.
+2. Keep the roadmap, evidence trackers, tests, and public/private documentation boundary aligned with verified state changes.
+3. Continue Brampton candidates only after a specific record is approved for the governed L1 workflow.
+4. Record provider restore, deployment, monitoring, and credential-dependent evidence only in the private/shared operations source of truth.
 
-The July 2026 closeout intentionally moved the remaining work out of the active
-closeout workstream and back onto the roadmap. Treat these as explicit backlog
-or owner-owned items:
+### Deferred until a prerequisite changes
 
-1. **Gate 0 evidence**
-   - `G0-3 / C1`: attach candidate partner legal/API terms and complete clause-level review.
-   - `G0-8 / D4`: attach the named pilot partner list, outreach owners, and dated partner-operations evidence.
-   - 2026-07-02 limited public-directory disposition is recorded, but it does not close full Gate 0.
-2. **Service verification**
-   - Issue `#13`: monthly crisis-service verification.
-   - Issue `#14`: quarterly general-service verification.
-   - Work from `docs/audits/service-freshness/2026-07-13/verification-worksheet.csv`; as of 2026-07-13, 195 records are hidden pending reverification, 1 is visible but due, and 8 are fresh.
-3. **Deferred production automation**
-   - Optional synthetic-mailbox live auth/admin smoke.
-   - Optional production reindex guardrail automation, explicit and on-demand only.
-4. **Human-owned provider work**
-   - Provider-console, credential, and private configuration actions remain outside public-repo automation unless a later approved private-ops path covers them.
-5. **Noncritical maintenance backlog**
-   - Broad UI polish that does not affect launch safety, admin reliability, or user-facing correctness.
-   - Advanced French service-data enrichment beyond the completed French access-script merge.
-   - Remaining DB migration-history cleanup.
-   - Admin-facing data-quality dashboard.
-   - Browser-console follow-up only for new repeat findings from future browser QA runs.
-6. **Brampton bounded launch gates**
-   - Broad Ontario/Canada coverage correction is applied and verified for the first launch.
-   - Keep land acknowledgment and official/partner wording human-approved.
-   - Queue deferred Brampton candidates and L2/L3 verification after the first launch is stable.
+- Broad UI polish, advanced French enrichment, the admin data-quality dashboard, and breaking dependency upgrades.
+- Remaining DB migration-history cleanup until its schema/history approach is explicitly approved.
+- Authenticated dashboard/admin visual QA until a valid local Supabase environment and signed-in sessions are available.
+- Optional production smoke/reindex automation until an approved private-operations path exists.
+- Deferred Brampton candidates and future L2/L3 upgrades until individually approved and verified.
 
-## What Not To Do Now
+### Explicit stop rules
 
 1. Do not expand directory breadth to compete with 211.
-2. Do not start new pilot-facing features before Gate 0 evidence is accepted.
-3. Do not restart v19 launch execution while v22 remains `NO-GO`.
-4. Do not pull forward public packaging work before real pilot evidence exists.
-5. Do not pull forward parked enrichment or external-validation work unless it directly supports the active gate.
+2. Do not start new pilot-facing features or restart v19 while Gate 0 remains `NO-GO`.
+3. Do not treat prep-only packets, automated URL checks, or generated audits as service, legal, or partner verification.
+4. Do not update service facts or `provenance.verified_at` without real verification evidence.
+5. Do not pull forward public packaging or external-validation work before real pilot evidence exists.
 
 ## Cross-Repo Docs Platform Policy
 
@@ -148,58 +76,25 @@ As of 2026-04-15, CareConnect follows the shared documentation-platform policy u
 4. CareConnect is a later-wave candidate because it depends on `social`, `git-revision-date-localized`, and `swagger-ui-tag`, so it should not be the proving ground.
 5. If Zensical stalls or fails to deliver the required compatibility in a reasonable window, use Sphinx + MyST as the mature fallback for any future standalone docs rebuild instead of starting fresh on MkDocs.
 
-## Active Work
+## Completed Bounded Launch Track
 
 ### Brampton Constrained Multi-City Launch Closeout ✅ PRODUCTION COMPLETE
 
-**Status**: Foundation, first launch records, local QA, merge, production DB migration, deployment, Brampton production data syncs, broad-record coverage correction, and restore/monitoring evidence recording are complete; official/partner wording and future expansion remain gated
-**Priority**: High, bounded
-**Created**: 2026-07-06
+**Status:** The multi-city foundation, approved data, production rollout, accessibility and visual QA, broad-coverage correction, and bounded recovery/monitoring evidence are complete.
 
-Brampton is the next supported-place step, not a broad regional expansion. Kingston remains live. Brampton has a small high-confidence L1 emergency/core set and grows only through the same manual review workflow.
+| Outcome                 | Final state                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Supported-place launch  | Eight Brampton records are live with explicit coverage and regenerated embeddings; six are L2 and two remain L1.                  |
+| Search and API behavior | Place-aware local/server search, exports, OpenAPI contracts, DB mapping, and Kingston/Brampton regressions are covered.           |
+| Verification boundary   | Deferred candidates remain draft-only. Any future candidate or L2/L3 change must pass the governed record-level workflow.         |
+| Public wording boundary | Partnership, endorsement, official, and future land/source-context wording remains human-approved.                                |
+| Operations boundary     | Exact migration, deployment, restore, monitoring, and rollback evidence remains in the private/shared operations source of truth. |
 
-**Current technical position**
+No Brampton implementation is active by default. Repository follow-through is limited to keeping docs/tests aligned with verified changes or processing a specifically approved record.
 
-1. Multi-city registry, explicit coverage, selected-place search, search API filters, OpenAPI coverage shape, DB mapping/export behavior, and Brampton regression tests are implemented.
-2. Eight Brampton records are live in `data/services.json`, with embeddings regenerated and source reachability verified.
-3. Deferred Brampton candidates remain draft-only under `data/drafts/brampton-on/`.
-4. Browser a11y, strict Axe regression coverage, desktop/tablet/mobile visual QA, and DB smoke now run locally via user-space dependencies; all passed on 2026-07-07.
-5. PR #33 merged the foundation to `main`; post-merge local verification passed.
-6. Restricted production control-plane readiness/status/service-health checks and authenticated live Supabase schema inspection passed.
-7. The Brampton production DB migration was applied after owner approval; post-migration checks confirmed `primary_place_id` and `coverage` on `services` and `services_public`, complete coverage backfill for 196 production services, `services` RLS still enabled, and `services_public` still `security_invoker=true`.
-8. CareConnect `main` commit `add8b2f0dbdd` was deployed after owner approval and public health checks passed.
-9. The approved Brampton records were synced to production Supabase after owner approval; post-sync checks confirmed all eight are present with Brampton coverage and embeddings, six at L2 and Knights Table plus Ste. Louise at L1.
-10. Broad Ontario/Canada production coverage correction was applied after owner approval on 2026-07-08 for the 72 reviewed existing broad records, updating only `scope`, `primary_place_id`, and `coverage`.
-11. Post-correction DB checks confirmed all 72 reviewed records match target broad coverage, with 49 provincial and 23 national records, 72 embeddings present, and 0 Brampton IDs in the correction set.
-12. Post-follow-up public smokes passed: health returned healthy at `add8b2f0dbdd`, Kingston food search returned results, Brampton food/crisis/shelter searches include applicable broad Ontario/Canada records and the approved Brampton launch records, known Kingston-only records stayed out of Brampton searches, and invalid `filters.placeId` still returns `400`.
-13. Provider-assisted restore evidence was received from Supabase Support on 2026-07-08; post-restore public health, live schema, service-count, seven-row Brampton, and Kingston/Brampton search smokes passed. A later bounded app redeploy proof and public health/route-sweep monitoring evidence passed and are recorded in private/shared operations material.
+References: [readiness](../launch/brampton-readiness-report.md), [rollout](../launch/brampton-rollout-checklist.md), [manual QA](../launch/brampton-manual-qa.md), and [verification workplan](../launch/brampton-l2-l3-verification-workplan.md).
 
-**Immediate blockers and tracked follow-ups**
-
-1. Human approval: any official/partner wording.
-2. Backup/rollback hardening follow-up: provider-assisted CareConnect restore evidence, bounded app redeploy proof, and public monitoring evidence are recorded in private/shared operations material. Future restore-proof cadence and any rollback-specific drill remain private/shared-ops hardening follow-ups.
-3. Deferred Brampton candidates and any future L2/L3 upgrades remain outside the launch set until they pass the same review workflow.
-
-**Next agent-suitable work**
-
-1. Keep docs, tests, and data-validation evidence aligned if production state changes.
-2. Continue deferred Brampton verification only when a specific candidate is approved for the L1 workflow.
-
-**Human-gated work**
-
-1. Approve any wording that could imply partnership, endorsement, or official municipal/regional/provider relationship.
-2. Approve future Brampton L2/L3 verification or deferred candidate promotion.
-3. Approve any rollback-specific production drill if that narrower proof is required.
-
-**Canonical references**
-
-- [Brampton Launch Readiness Report](../launch/brampton-readiness-report.md)
-- [Brampton Rollout Checklist](../launch/brampton-rollout-checklist.md)
-- [Brampton Manual QA](../launch/brampton-manual-qa.md)
-- [Brampton Public Positioning Drafts](../launch/brampton-public-positioning-drafts.md)
-- [Brampton Broad Coverage Correction Approval Packet](../launch/brampton-broad-coverage-correction-approval.md)
-- [Multi-City Brampton Foundation Design](../superpowers/specs/2026-07-06-multi-city-brampton-foundation-design.md)
-- [Multi-City Brampton Foundation Plan](../superpowers/plans/2026-07-06-multi-city-brampton-foundation.md)
+## Active Strategic Work
 
 ### v22.0: Non-Duplicate Value Decision Plan 🔄 ACTIVE
 
@@ -265,19 +160,6 @@ The 90-day window is a review target rather than a guaranteed engineering schedu
 - [v22.0 Limited Public Directory Pilot Risk Disposition (2026-07-02)](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
 - [v22.0 Autonomous Gate 0 Maintenance Pass Archive (2026-06-13)](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
 - [v22.0 Worktree Checkpoint (2026-06-13)](../implementation/v22-0-worktree-checkpoint-2026-06-13.md)
-
-## Parallel Maintenance While Gate 0 Waits
-
-These items are backlog candidates, not default next steps. Start one only as an explicitly named bounded task and only if it does not distract from Gate 0 closure:
-
-1. Keep the default E2E suite skip-free and keep the opt-in production/server suites healthy.
-2. Verify and document the remaining v22 threat-model mitigation items before pilot activation.
-3. Keep public deployment docs boundary-safe; exact shared-runtime contracts belong in private operations material.
-4. Expand exact-English duplicate i18n auditing from the current focused namespaces to all used translation keys after the remaining legacy translation debt is localized.
-5. From the external-validation backlog, only execute items that strengthen pilot readiness or evidence discipline.
-6. Keep docs dependencies bounded to the MkDocs 1.x line during routine maintenance, but defer any platform migration here until the earlier Zensical waves succeed and this repo's required plugin parity is proven.
-7. Complete authenticated desktop/mobile visual QA for `/dashboard/**` and `/admin/**` once a valid local Supabase environment and signed-in partner/admin session are available. The authenticated-surface implementation is code-complete, but authenticated browser review remains environment-gated because this local workspace currently lacks `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
-8. Keep dependency audit status green; split future breaking dependency remediation into reviewed plans instead of bundling it into routine maintenance.
 
 ## On Hold
 
@@ -369,7 +251,8 @@ References:
 
 ### Recent Completed Milestones
 
-- **Brampton multi-city foundation and first L1 launch set (2026-07-07)**: implemented place-aware coverage/search foundations, promoted the approved seven-record Brampton L1 launch set, regenerated embeddings, verified Kingston/Brampton regression behavior, recorded production/readiness gates, and kept deferred candidates draft-only.
+- **Autonomous closeout and evidence refresh (2026-07-13)**: merged the focused roadmap-truth, scoring-contract, admin circuit-breaker, authorization-doc, notification-JSON, Next.js patch, deterministic search-report, disposable-DB replay, and offline-recovery batches; completed F3/F5 repository evidence; refreshed the 204-record freshness queue; and left only human/external evidence work active.
+- **Brampton multi-city foundation and first launch (2026-07-07)**: implemented place-aware coverage/search foundations, promoted the approved initial seven-record L1 launch set and later approved eighth record, regenerated embeddings, verified Kingston/Brampton regression behavior, completed the bounded production rollout, and kept deferred candidates draft-only.
 - **Brampton launch QA and positioning evidence (2026-07-07)**: unblocked local Chromium a11y and DB smoke runs with user-space dependencies, documented passing QA plus a11y/browser-console follow-ups, completed draft-only land acknowledgment source research, and preserved production migration/deploy/partner wording as explicit approval gates.
 - **Closeout triage checkpoint (2026-07-01)**: recorded the current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation; no additional repo-side implementation is recommended before Gate 0 evidence unless a concrete regression appears.
 - **Auth/admin regression guardrails (2026-07-01)**: added focused auth callback/login/admin regression coverage and a non-production browser smoke spec after the production auth/admin troubleshooting pass.
