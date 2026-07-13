@@ -32,7 +32,11 @@ interface GoldenQuery {
 }
 
 const goldenQueries = testQueries.goldenSet.queries as GoldenQuery[]
-const GOLDEN_SET_REFERENCE_DATE = new Date("2026-06-30T12:00:00.000Z")
+const GOLDEN_SET_REFERENCE_DATE = new Date(testQueries.metadata.evaluationAsOf)
+
+if (Number.isNaN(GOLDEN_SET_REFERENCE_DATE.getTime())) {
+  throw new Error("search-test-queries metadata.evaluationAsOf must be a valid ISO date")
+}
 
 beforeAll(() => {
   // Golden-set tests measure search quality against the checked-in fixture.

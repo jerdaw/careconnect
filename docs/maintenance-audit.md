@@ -475,12 +475,15 @@ New untracked files to review:
 
 Generated files: `npm run build` regenerated embeddings during postbuild, but `data/embeddings.json` remained unchanged in `git diff --stat`.
 
+## Completed Follow-up
+
+- **Notification JSON errors (2026-07-10):** The subscribe and unsubscribe routes now return their existing flat `400` envelopes for malformed or non-object JSON before rate limiting or database setup. A shared parser was intentionally not added because the two routes use flat envelopes that are incompatible with the shared nested API-error helper; revisit an abstraction only when enough routes share the same response and validation contract.
+
 ## Remaining Recommendations
 
 - Install Python docs dependencies from `requirements.txt` and run `mkdocs build`.
 - Run Playwright/accessibility checks during an intentional browser validation window or via CI/manual dispatch.
 - Review `npm outdated --long` through Dependabot or a focused dependency-upgrade branch with migration notes and full verification.
-- Consider a focused API ergonomics pass to add a shared safe JSON parsing helper to routes with custom response shapes.
 - Consider a focused CSP hardening pass for nonce/inline-script reduction while preserving WebLLM support.
 
 ## Risks, Assumptions, And Intentionally Unchanged Areas

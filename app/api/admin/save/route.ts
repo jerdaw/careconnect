@@ -6,6 +6,7 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { env } from "@/lib/env"
 import { mapServiceToDatabaseUpsert } from "@/lib/service-db"
+import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import type { Service } from "@/types/service"
 
 export async function POST(req: NextRequest) {
@@ -38,15 +39,19 @@ export async function POST(req: NextRequest) {
     }
 
     // 1. Fetch current data for audit log (optional but good practice)
-    const { data: oldService } = await supabase.from("services").select("*").eq("id", service.id).single()
+    const { data: oldService } = await withCircuitBreaker(async () => {
+      const result = await supabase.from("services").select("*").eq("id", service.id).single()
+      if (result.error && result.error.code !== "PGRST116") throw result.error
+      return result
+    })
 
     // 2. Transact to Supabase
     // We use upsert to create or update
-    const { error: upsertError } = await supabase.from("services").upsert(mapServiceToDatabaseUpsert(service))
-
-    if (upsertError) {
-      return createApiError(`Database error: ${upsertError.message}`, 500)
-    }
+    await withCircuitBreaker(async () => {
+      const result = await supabase.from("services").upsert(mapServiceToDatabaseUpsert(service))
+      if (result.error) throw result.error
+      return result
+    })
 
     // 3. Audit Log
     await supabase.from("audit_logs").insert({
