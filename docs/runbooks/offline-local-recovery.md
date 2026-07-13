@@ -1,6 +1,6 @@
 # Runbook Summary: Offline Local Data Recovery
 
-**Last Updated:** 2026-07-11
+**Last Updated:** 2026-07-13
 
 This public summary describes safe recovery principles for browser-local
 CareConnect data when IndexedDB, cache storage, or offline queues appear stale
@@ -159,26 +159,43 @@ Restoring connectivity produced the structured `OfflineSync` `network_restore` e
 
 Observed limitation: the in-app browser rejected service-worker registration with a `SecurityError`, and an offline search attempted to load an uncached JavaScript chunk. This run therefore verifies the aggregate audit and non-destructive re-sync path, not full offline navigation or recovery from an intentionally corrupted database.
 
+## 2026-07-13 Disposable-Profile Cache Rehydration Dry Run
+
+The remaining recovery step was exercised on the fresh local origin
+`http://127.0.0.1:3000` with local search data and no Supabase credentials. The
+origin was used only for this dry run. Before any clearing, the aggregate audit
+reported 204 cached services, 204 cached embeddings, zero pending feedback
+items, zero reserved pilot-draft keys in both browser storage areas, and present
+`lastSync` and export-version metadata.
+
+Only the `services` and `embeddings` stores plus the `lastSync` and `version`
+metadata entries were cleared. The `pendingFeedback` store, pilot-draft storage,
+preferences, and all other browser state were left untouched. An immediate
+aggregate audit confirmed zero services, zero embeddings, absent sync/version
+metadata, and unchanged zero queue/draft counts.
+
+Reloading the online app triggered the normal `OfflineSync` initial-sync path.
+The browser logged a successful offline-data sync, and the final aggregate audit
+reported 204 services, 204 embeddings, restored `lastSync` and export-version
+metadata, and zero pending feedback and pilot drafts. This directly verifies
+cache rehydration from the public service export while preserving queued-write
+stores.
+
 ## Verification Checklist
 
 - [x] User-visible offline/search symptom is reproduced.
 - [x] Local store counts are recorded without raw payload contents.
 - [x] Non-destructive online re-sync is attempted.
 - [x] Queued write stores are audited before any destructive clearing.
-- [ ] Service cache rehydrates from `/api/v1/services/export` after a safe disposable-profile cache reset.
+- [x] Service cache rehydrates from `/api/v1/services/export` after a safe disposable-profile cache reset.
 - [x] Public notes exclude raw queries, free-text feedback, names, phone
       numbers, email addresses, street addresses, private dashboard links, and
       live environment details.
 
-## Current Limitation
+## Evidence Boundary
 
-F5 remains unverified because the dry run retained a fresh cache and therefore
-did not observe service/embedding rehydration after missing, stale, or corrupted
-local data. To complete it safely, use an explicitly disposable browser profile,
-confirm aggregate queue and pilot-draft counts are zero, clear only the service,
-embedding, and stale metadata stores, trigger online sync, and confirm all three
-are repopulated from `/api/v1/services/export`.
-
-Full offline navigation, service-worker compatibility in this browser surface,
-device loss, and recovery when queued writes are present remain outside the
-partial evidence.
+The two dry runs verify aggregate queue auditing, online recovery, and cache
+rehydration for the local in-app-browser workflow. Full offline navigation,
+service-worker compatibility in this browser surface, device loss, production
+environments, and recovery when queued writes are present remain outside this
+evidence.

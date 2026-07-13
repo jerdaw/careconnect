@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-11
+last_updated: 2026-07-13
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -60,13 +60,17 @@ Out of scope:
 | F2         | high     | Confirm expiry and clear-on-sign-out behavior for pilot drafts in local storage                | Engineering           | 2026-03-21 | Manual QA scenario + unit tests around storage cleanup    | no       |
 | F3         | medium   | Add replay detection criteria (idempotency key + duplicate event suppression) to pilot runbook | Engineering           | 2026-03-21 | Integration test using repeated submission payload        | yes      |
 | F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | Focused component tests + offline UI walkthrough evidence | yes      |
-| F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | no       |
+| F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | yes      |
 
 ## 2026-06-12 Mitigation Evidence Audit
 
 This audit covered repo-local implementation evidence only. It did not inspect
 private/shared operations material and does not close any partner, legal, or
 production-readiness evidence gates.
+
+The results in this table are the 2026-06-12 snapshot. Later dated sections
+supersede the F3 and F5 verification results without rewriting the historical
+audit record.
 
 | Finding ID | Evidence Inspected                                                                                                                                                                                                                                                                                                                                                            | Current Result                                                                                                                                                                                                                                                                                                                                   |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -91,6 +95,26 @@ Browser networking was then switched offline. `navigator.onLine` changed to `fal
 This verifies F5's aggregate queue audit and non-destructive online recovery path for one local in-app-browser run. It does not verify cache rehydration after missing, stale, or corrupted service data because the existing fresh cache was intentionally left intact; F5 therefore remains `no`. The safe completion path is an explicitly disposable browser profile where aggregate queue counts are confirmed empty before clearing only service, embedding, and stale metadata stores, followed by observed repopulation from the public export.
 
 The browser also rejected service-worker registration with a `SecurityError`, and an offline search attempted to load an uncached chunk, so this evidence does not claim full offline navigation, multi-browser coverage, device-loss recovery, or destructive cache-corruption recovery.
+
+## 2026-07-13 F5 Disposable-Profile Rehydration Evidence
+
+A fresh local browser origin was used with local search data and no Supabase
+credentials. Before clearing, the aggregate audit recorded 204 services, 204
+embeddings, zero pending feedback, zero reserved pilot-draft keys in local and
+session storage, and present `lastSync` and export-version metadata.
+
+Only the service and embedding stores plus the two freshness metadata entries
+were cleared. The next audit recorded zero services, zero embeddings, absent
+metadata, and unchanged zero queue/draft counts. Reloading online then triggered
+the normal `OfflineSync` path; a successful sync log was observed, and the final
+audit recorded 204 services, 204 embeddings, restored metadata, and unchanged
+zero queue/draft counts.
+
+Together with the 2026-07-11 non-destructive run, this satisfies F5's documented
+runbook-plus-dry-run verification method. The claim is limited to the local
+disposable-profile workflow and does not cover production, device loss, full
+offline navigation, service-worker compatibility, or recovery when queued
+writes are present.
 
 ## Validation Checklist
 

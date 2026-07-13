@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-04
+last_updated: 2026-07-13
 owner: jer
 tags: [audit, data-quality, verification, freshness]
 ---
@@ -25,11 +25,12 @@ Each run writes:
 
 ## Current Snapshot
 
-The 2026-07-04 snapshot records:
+The 2026-07-13 snapshot records:
 
-- Total services: 196
-- Visible within the 180-day window but due for reverification: 49
-- Hidden pending reverification: 147
+- Total services: 204
+- Fresh: 8
+- Visible within the 180-day window but due for reverification: 1
+- Hidden pending reverification: 195
 - Unknown verification date: 0
 
 Use the worksheet to drive manual verification. Update `data/services.json` only
