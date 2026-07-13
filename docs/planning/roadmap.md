@@ -28,6 +28,11 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 
 Freshness governance treats 180 days as the hard visibility limit and 90 days as the priority-service reverification target. The v22 90-day window is a review checkpoint rather than a guaranteed build schedule.
 
+**Repository-only execution queue:** empty. The P0 lanes below require real
+service, legal, or partner evidence. Until one of those inputs changes, repo
+work is limited to concrete regressions, security/dependency maintenance, and
+truth updates that preserve the established validation and safety boundaries.
+
 ## Priority Order
 
 The first four lanes are parallel human-owned priorities. Repository work follows only when their evidence arrives or when a concrete regression appears.
