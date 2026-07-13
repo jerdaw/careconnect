@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-07
+last_updated: 2026-07-10
 owner: jer
 tags: [planning, roadmap, governance, public-docs, multi-city, brampton]
 ---
@@ -17,7 +17,7 @@ This directory contains planning and strategy documents for CareConnect.
 
 ## Active Planning: v22.0 and Brampton
 
-**Status:** v22 Gate 0 decision work remains `NO-GO` pending C1/D4 closure. Brampton constrained multi-city launch readiness is active with foundation/data work complete and production/a11y/approval gates still open.
+**Status:** v22 Gate 0 decision work remains `NO-GO` pending C1/D4 closure. The approved eight-record Brampton first-launch set is live in production; future verification, expansion, and official/partner wording remain approval-gated.
 **Created:** 2026-02-27
 
 ### Quick Start (Read These First)
@@ -31,7 +31,7 @@ This directory contains planning and strategy documents for CareConnect.
    - **Reading time:** 15 minutes
 
 3. **[Brampton Launch Readiness Report](../launch/brampton-readiness-report.md)**
-   - Current Brampton launch evidence, production blockers, QA status, and approval gates
+   - Current Brampton launch evidence, completed production/QA status, and remaining verification/approval gates
    - **Reading time:** 10 minutes
 
 ### Detailed Documentation (Optional)
@@ -184,8 +184,8 @@ Two tracks are active:
 
 1. **v22.0: Non-Duplicate Value Decision Plan**
    - The strategic planning track for proving non-duplicate value relative to 211 through measured connection outcomes, strict privacy constraints, and explicit kill criteria.
-2. **Brampton constrained multi-city launch readiness**
-   - The bounded first city-step after Kingston, limited to a small reviewed L1 emergency/core set until production gates and future curation approvals are complete.
+2. **Brampton constrained multi-city launch closeout and bounded verification**
+   - The approved eight-record first-launch set is live in production. Further records and L2/L3 changes continue only through the governed verification and approval workflow.
 
 ### Why Now?
 
@@ -211,28 +211,26 @@ Pilot cost remains bounded by existing infrastructure and partner participation 
 
 ### Dependencies
 
-Current dependencies:
+Current dependencies and completed prerequisites:
 
 - Gate 0 blocker closure (`C1`, `D4`)
 - Baseline evidence already published
 - Integration feasibility decision already recorded in conditional mode
 - Offline/local threat-model completion already recorded
-- Brampton migration/deploy approval after completed authenticated live Supabase schema preflight
-- Brampton a11y/browser-console/manual visual QA follow-up closure or explicit acceptance
+- Brampton first-launch production, accessibility, visual QA, and broad-coverage closeout already recorded
 
 ---
 
 ## How to Proceed
 
-### Option 1: Close Brampton Launch Gates
+### Option 1: Continue Bounded Brampton Verification
 
-Use the active roadmap and launch checklist to finish the bounded Brampton track:
+Use the active roadmap and verification workplan for the remaining Brampton track:
 
-1. Fix or explicitly accept the logged a11y findings
-2. Triage the semantic-search worker console error
-3. Complete desktop/tablet/mobile screenshot QA
-4. Review the completed live schema preflight
-5. Approve production migration/deploy only after preflight and rollback posture are accepted
+1. Resolve Knights Table address and program-split evidence before any L2 decision
+2. Recheck Ste. Louise registration and hours before any L2 decision
+3. Review BMCC, CCS, and PCHS one at a time through the L1 template
+4. Require explicit approval before any future promotion, L2/L3 change, or official/partner wording
 
 ### Option 2: Close Gate 0
 

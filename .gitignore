@@ -90,6 +90,9 @@ docs/llms.txt
 venv/
 .venv/
 
+# local Git worktrees
+.worktrees/
+
 # capacitor
 android/
 ios/
