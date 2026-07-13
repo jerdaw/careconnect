@@ -1,5 +1,6 @@
 import { createHmac } from "node:crypto"
 import { createClient, type SupabaseClient } from "@supabase/supabase-js"
+import type { Database } from "@/types/supabase"
 
 const env = {
   url: process.env.SUPABASE_URL!,
@@ -32,8 +33,8 @@ function createJwt(userId: string, role: "authenticated" | "service_role" = "aut
   return `${encodedHeader}.${encodedPayload}.${base64UrlEncode(signature)}`
 }
 
-function createBaseClient(key: string, authorization?: string): SupabaseClient {
-  return createClient(env.url, key, {
+function createBaseClient(key: string, authorization?: string): SupabaseClient<Database> {
+  return createClient<Database>(env.url, key, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
@@ -72,4 +73,8 @@ export const seededIds = {
 export const seededUsers = {
   owner: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
   viewer: "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+}
+
+export const seededOrganizations = {
+  primary: "11111111-1111-1111-1111-111111111111",
 }

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-06-12
+last_updated: 2026-07-10
 owner: jer
 tags: [security, v22.0, threat-model, offline, privacy]
 ---
@@ -58,7 +58,7 @@ Out of scope:
 | ---------- | -------- | ---------------------------------------------------------------------------------------------- | --------------------- | ---------- | --------------------------------------------------------- | -------- |
 | F1         | high     | Enforce local queue payload minimization (no personal contact fields, no free-text notes)      | Engineering           | 2026-03-21 | Schema + payload inspection against pilot event contracts | no       |
 | F2         | high     | Confirm expiry and clear-on-sign-out behavior for pilot drafts in local storage                | Engineering           | 2026-03-21 | Manual QA scenario + unit tests around storage cleanup    | no       |
-| F3         | medium   | Add replay detection criteria (idempotency key + duplicate event suppression) to pilot runbook | Engineering           | 2026-03-21 | Integration test using repeated submission payload        | no       |
+| F3         | medium   | Add replay detection criteria (idempotency key + duplicate event suppression) to pilot runbook | Engineering           | 2026-03-21 | Integration test using repeated submission payload        | yes      |
 | F4         | medium   | Ensure stale data timestamp surfacing in pilot UI/operations process                           | Product + Engineering | 2026-03-21 | Focused component tests + offline UI walkthrough evidence | yes      |
 | F5         | medium   | Define local corruption recovery steps in runbook (resync + queued item audit)                 | Engineering           | 2026-03-21 | Documented runbook step + dry-run execution               | no       |
 
@@ -75,6 +75,12 @@ production-readiness evidence gates.
 | F3         | `lib/pilot/event-replay-policy.ts`, `lib/pilot/storage.ts`, pilot event routes, `tests/lib/pilot/event-replay-policy.test.ts`, `tests/lib/pilot/storage.test.ts`, route tests                                                                                                                                                                                                 | Replay criteria, deterministic privacy-safe fingerprints, and supplied-ID primary-key retry handling are unit/API/storage covered. Non-primary duplicate constraints are not suppressed as idempotent retries. Live repeated-submission integration evidence remains missing, so `Verified` stays `no`.                                          |
 | F4         | Existing threat-model record                                                                                                                                                                                                                                                                                                                                                  | Previously verified stale-state surfacing remains recorded as `yes`; this pass did not re-open it.                                                                                                                                                                                                                                               |
 | F5         | `docs/runbooks/offline-local-recovery.md`, `lib/offline/local-recovery-audit.ts`, `tests/lib/offline/local-recovery-audit.test.ts`, `lib/offline/feedback.ts`, `tests/lib/offline/feedback.test.ts`, `lib/offline/db.ts`, `lib/offline/sync.ts`, `tests/unit/lib/offline/sync.test.ts`, `components/offline/OfflineSync.tsx`, `tests/components/offline/OfflineSync.test.tsx` | A public-safe recovery workflow and aggregate audit helper now cover queue counts, cache counts, sync metadata, non-destructive re-sync, destructive-clearing safeguards, API-schema validation before feedback queue storage/replay, and sanitized sync failure metadata. Dry-run execution evidence remains missing, so `Verified` stays `no`. |
+
+## 2026-07-10 F3 Backing-Store Evidence
+
+`tests/db/pilot-replay.test.ts` now runs in the disposable Supabase integration lane. It launches two authenticated owner writes concurrently with the same client-supplied event UUID, verifies exactly one succeeds and one real primary-key conflict is classified as an idempotent duplicate, and confirms through a service-role read that exactly one row persists. GitHub's `test-db-integration` job passed this test on 2026-07-10, satisfying F3's stated integration verification method.
+
+This evidence verifies the repository's deterministic disposable-database contract. It does not assert that any production schema or environment matches the tested migrations.
 
 ## Validation Checklist
 
