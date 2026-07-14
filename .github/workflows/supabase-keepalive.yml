@@ -13,44 +13,74 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: read
+    env:
+      CARECONNECT_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      CARECONNECT_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+      VISITBRIEF_SUPABASE_URL: ${{ secrets.VISITBRIEF_SUPABASE_URL }}
+      VISITBRIEF_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VISITBRIEF_SUPABASE_PUBLISHABLE_KEY }}
 
     steps:
       - name: Validate required secrets
-        env:
-          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
-        run: |
-          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
-            echo "::error::Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY repository secrets."
-            exit 1
-          fi
-
-      - name: Query the Supabase Data API
-        env:
-          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
         run: |
           set -euo pipefail
 
-          endpoint="${SUPABASE_URL%/}/rest/v1/services_public?select=id&limit=1"
-          echo "Running three minimal Data API queries against the services_public view."
-
-          for attempt in 1 2 3; do
-            http_code="$(curl --silent --show-error \
-              --output "/tmp/supabase-keepalive-${attempt}.json" \
-              --write-out "%{http_code}" \
-              --connect-timeout 10 \
-              --max-time 30 \
-              -H "apikey: ${SUPABASE_ANON_KEY}" \
-              -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
-              -H "Accept: application/json" \
-              -H "Cache-Control: no-cache" \
-              "${endpoint}")"
-
-            if [ "${http_code}" -ne 200 ]; then
-              echo "::error::Supabase Data API keepalive query ${attempt} failed with HTTP ${http_code}."
-              exit 1
+          missing=0
+          for variable in \
+            CARECONNECT_SUPABASE_URL \
+            CARECONNECT_SUPABASE_PUBLISHABLE_KEY \
+            VISITBRIEF_SUPABASE_URL \
+            VISITBRIEF_SUPABASE_PUBLISHABLE_KEY; do
+            if [ -z "${!variable}" ]; then
+              echo "::error::Missing required repository secret for ${variable}."
+              missing=1
             fi
           done
 
-          echo "Supabase Data API keepalive succeeded (3/3 queries)."
+          if [ "${missing}" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Query every Supabase Data API
+        run: |
+          set -euo pipefail
+
+          query_project() {
+            local project_name="$1"
+            local project_url="$2"
+            local publishable_key="$3"
+            local resource="$4"
+            local endpoint="${project_url%/}/rest/v1/${resource}?select=id&limit=1"
+
+            echo "Running three minimal Data API queries for ${project_name}."
+
+            for attempt in 1 2 3; do
+              http_code="$(curl --silent --show-error \
+                --output "/tmp/${project_name}-supabase-keepalive-${attempt}.json" \
+                --write-out "%{http_code}" \
+                --connect-timeout 10 \
+                --max-time 30 \
+                -H "apikey: ${publishable_key}" \
+                -H "Authorization: Bearer ${publishable_key}" \
+                -H "Accept: application/json" \
+                -H "Cache-Control: no-cache" \
+                "${endpoint}")"
+
+              if [ "${http_code}" -ne 200 ]; then
+                echo "::error::${project_name} Data API query ${attempt} failed with HTTP ${http_code}."
+                return 1
+              fi
+            done
+
+            echo "${project_name} Data API keepalive succeeded (3/3 queries)."
+          }
+
+          query_project \
+            "careconnect" \
+            "${CARECONNECT_SUPABASE_URL}" \
+            "${CARECONNECT_SUPABASE_PUBLISHABLE_KEY}" \
+            "services_public"
+          query_project \
+            "visitbrief" \
+            "${VISITBRIEF_SUPABASE_URL}" \
+            "${VISITBRIEF_SUPABASE_PUBLISHABLE_KEY}" \
+            "profiles"
