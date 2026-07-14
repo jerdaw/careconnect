@@ -2,13 +2,17 @@ name: Supabase Keepalive
 
 on:
   schedule:
-    - cron: "17 8 * * *" # Once daily at 8:17 UTC (Supabase pauses after 7 days; daily ping is sufficient)
+    # Supabase evaluates Free projects over a 7-day activity window. Run daily
+    # so delayed scheduled jobs still leave a wide safety margin.
+    - cron: "17 8 * * *"
   workflow_dispatch:
 
 jobs:
   keepalive:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
 
     steps:
       - name: Validate required secrets
@@ -21,26 +25,32 @@ jobs:
             exit 1
           fi
 
-      - name: Send keepalive request to Supabase Auth API
+      - name: Query the Supabase Data API
         env:
           SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
         run: |
           set -euo pipefail
 
-          endpoint="${SUPABASE_URL%/}/auth/v1/settings"
-          echo "Pinging Supabase Auth endpoint: ${endpoint}"
+          endpoint="${SUPABASE_URL%/}/rest/v1/services_public?select=id&limit=1"
+          echo "Running three minimal Data API queries against the services_public view."
 
-          http_code="$(curl -sS -o /tmp/supabase-keepalive-response.json -w "%{http_code}" \
-            -H "apikey: ${SUPABASE_ANON_KEY}" \
-            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
-            -H "Accept: application/json" \
-            "${endpoint}")"
+          for attempt in 1 2 3; do
+            http_code="$(curl --silent --show-error \
+              --output "/tmp/supabase-keepalive-${attempt}.json" \
+              --write-out "%{http_code}" \
+              --connect-timeout 10 \
+              --max-time 30 \
+              -H "apikey: ${SUPABASE_ANON_KEY}" \
+              -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+              -H "Accept: application/json" \
+              -H "Cache-Control: no-cache" \
+              "${endpoint}")"
 
-          if [ "${http_code}" -ne 200 ]; then
-            echo "::error::Supabase keepalive failed with HTTP ${http_code}"
-            cat /tmp/supabase-keepalive-response.json || true
-            exit 1
-          fi
+            if [ "${http_code}" -ne 200 ]; then
+              echo "::error::Supabase Data API keepalive query ${attempt} failed with HTTP ${http_code}."
+              exit 1
+            fi
+          done
 
-          echo "Supabase keepalive succeeded."
+          echo "Supabase Data API keepalive succeeded (3/3 queries)."
