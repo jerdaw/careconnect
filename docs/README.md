@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-05
+last_updated: 2026-07-14
 owner: jer
 tags: [documentation, index, public-docs]
 ---
@@ -22,6 +22,7 @@ private/shared operations source of truth.
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
 - [Maintenance Audit](maintenance-audit.md) - Latest repo-health audit, verification status, and follow-ups
 - [Deployment Boundary](deployment/direct-vps-proof.md) - Public deployment architecture notes
+- [Supabase Project Availability](deployment/supabase-project-availability.md) - Public-safe keepalive workflow contract
 - [Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md) - Decision record for public/private documentation split
 - [Release Checklist](deployment/production-checklist.md) - Public-safe release verification checklist
 - [Incident Response Overview](operations/incident-response-plan.md) - Public incident-response principles

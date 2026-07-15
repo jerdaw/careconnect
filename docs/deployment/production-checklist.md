@@ -1,6 +1,6 @@
 # Public Release Checklist
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-07-14
 
 This checklist covers public-safe release verification for CareConnect. Exact production deployment, rollback, host access, release-root, environment-file, monitoring, and shared-infrastructure details are intentionally excluded from public documentation.
 
@@ -55,5 +55,6 @@ Maintainers should observe health, errors, and search availability after a live 
 ## References
 
 - [Deployment Architecture Notes](direct-vps-proof.md)
+- [Supabase Free-Project Availability](supabase-project-availability.md)
 - [OpenAPI Specification](../api/openapi.yaml)
 - [Testing Guidelines](../development/testing-guidelines.md)

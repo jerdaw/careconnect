@@ -494,3 +494,41 @@ Generated files: `npm run build` regenerated embeddings during postbuild, but `d
 - `NEXT_PUBLIC_SEARCH_MODE` now treats invalid values as `local`, matching the documented privacy-first default.
 - `validate:env` may still fail in local workspaces with placeholder values; that is a production-readiness signal, not a regression.
 - Service data, embeddings source records, Supabase schema semantics, RLS policies, release process, production deployment instructions, dependency versions, and public posture decisions were intentionally left unchanged.
+
+## Supabase Availability Maintenance Checkpoint (2026-07-14)
+
+### Scope And Cleanup
+
+- Reviewed repository instructions, documentation/testing/roadmap guidance,
+  branch and pull-request state, current Actions status, tracked changes, and
+  ignored/generated paths before editing.
+- Found no generated temporary or junk files inside the repository and no
+  missing ignore rule. Existing generated outputs and intentional assets were
+  preserved.
+- Kept the work to the existing Supabase keepalive workflow contract,
+  public-safe documentation, and a regression test. No schema, RLS, service
+  data, dependency, or application behavior changed.
+
+### Documentation And Planning
+
+- Added `docs/deployment/supabase-project-availability.md` and linked it from
+  the documentation index and public release checklist.
+- Recorded the daily Data API query contract, least-privilege key requirement,
+  verification procedure, and safe rollback path.
+- No product roadmap item or implementation plan was activated or archived;
+  this was bounded operational maintenance with no remaining CareConnect code
+  task.
+
+### Verification
+
+- `npm run lint`: passed.
+- `npm run type-check`: passed.
+- `npm run format:check`: passed.
+- Full `npm test -- --run`: passed, including the new workflow-contract tests.
+- `npm run build`: passed.
+- `npm run check:refs`: passed.
+- Practical provider check: GitHub Actions run `29334088916` reported `3/3
+queries` for both configured Supabase projects.
+- Playwright and accessibility browser suites were not run locally because no
+  browser-only behavior changed and the testing guidance leaves those checks to
+  an intentional browser window or CI.
