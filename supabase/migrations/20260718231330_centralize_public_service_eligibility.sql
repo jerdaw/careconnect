@@ -18,7 +18,7 @@ select
   last_verified, verification_status, category, tags,
   scope, virtual_delivery, primary_phone_label, created_at,
   authority_tier, resource_indicators,
-  synthetic_queries, synthetic_queries_fr, coordinates,
+  synthetic_queries, synthetic_queries_fr, coordinates, embedding,
   hours_text, hours_text_fr, eligibility_fr, application_process_fr,
   access_script, access_script_fr, primary_place_id, coverage
 from public.services
@@ -67,7 +67,7 @@ grant select (
   last_verified, verification_status, category, tags,
   scope, virtual_delivery, primary_phone_label, created_at,
   authority_tier, resource_indicators,
-  synthetic_queries, synthetic_queries_fr, coordinates,
+  synthetic_queries, synthetic_queries_fr, coordinates, embedding,
   hours_text, hours_text_fr, eligibility_fr, application_process_fr,
   access_script, access_script_fr, primary_place_id, coverage,
   published, deleted_at

@@ -60,6 +60,23 @@ function normalizeAuthorityTier(authorityTier: ServicePublicAuthorityTier): Auth
   return undefined
 }
 
+function normalizeEmbedding(embedding: ServicePublic["embedding"]): number[] | undefined {
+  let parsed: unknown = embedding
+
+  if (typeof embedding === "string") {
+    try {
+      parsed = JSON.parse(embedding)
+    } catch {
+      return undefined
+    }
+  }
+
+  return Array.isArray(parsed) &&
+    parsed.every((value): value is number => typeof value === "number" && Number.isFinite(value))
+    ? parsed
+    : undefined
+}
+
 function isIdentityTag(value: unknown): value is IdentityTag {
   return (
     typeof value === "object" &&
@@ -127,6 +144,7 @@ export function mapServicePublicToService(service: ServicePublic): Service {
     authority_tier: normalizeAuthorityTier(service.authority_tier ?? null),
     resource_indicators: service.resource_indicators ?? undefined,
     coordinates: service.coordinates ?? undefined,
+    embedding: normalizeEmbedding(service.embedding),
     access_script: service.access_script ?? undefined,
     access_script_fr: service.access_script_fr ?? undefined,
   }

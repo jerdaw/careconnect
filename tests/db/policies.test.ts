@@ -26,7 +26,7 @@ describe("DB policies", () => {
     expect(publicShapeRows?.[0]).not.toHaveProperty("deleted_at")
   })
 
-  it("sanitizes UUID-shaped provenance verifier IDs in services_public", async () => {
+  it("does not expose raw provenance in services_public", async () => {
     const serviceRoleClient = createServiceRoleClient()
     const anonClient = createAnonClient()
     const id = "db-public-uuid-provenance"
@@ -39,6 +39,7 @@ describe("DB policies", () => {
         verification_status: "L2",
         category: "Food",
         published: true,
+        last_verified: new Date().toISOString(),
         provenance: {
           verified_by: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
           verified_at: "2026-03-01T12:00:00Z",
@@ -48,16 +49,10 @@ describe("DB policies", () => {
       })
       expect(insertError).toBeNull()
 
-      const { data: publicRows, error: publicError } = await anonClient
-        .from("services_public")
-        .select("id, provenance")
-        .eq("id", id)
+      const { data: publicRows, error: publicError } = await anonClient.from("services_public").select("*").eq("id", id)
       expect(publicError).toBeNull()
-      expect(publicRows?.[0]?.provenance).toEqual(
-        expect.objectContaining({
-          verified_by: "CareConnect Admin",
-        })
-      )
+      expect(publicRows).toHaveLength(1)
+      expect(publicRows?.[0]).not.toHaveProperty("provenance")
 
       const { data: sourceRows, error: sourceError } = await serviceRoleClient
         .from("services")

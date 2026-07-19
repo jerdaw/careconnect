@@ -45,10 +45,10 @@ describe("DB retrieval", () => {
       lng: -76.5,
     })
     expect(service?.provenance).toEqual({
-      verified_by: "Test Verifier",
-      verified_at: "2026-03-05T12:00:00Z",
-      evidence_url: "https://example.test/evidence/housing",
-      method: "email",
+      verified_by: "",
+      verified_at: "",
+      evidence_url: "",
+      method: "",
     })
     expect(service?.identity_tags).toEqual([
       {

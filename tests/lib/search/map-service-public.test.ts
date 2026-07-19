@@ -39,6 +39,7 @@ describe("mapServicePublicToService", () => {
     authority_tier: "community",
     resource_indicators: { staff_size: "medium" },
     coordinates: { lat: 44.2312, lng: -76.486 },
+    embedding: [0.1, 0.2, 0.3],
     provenance: {
       verified_by: "casey",
       verified_at: "2026-03-01T00:00:00.000Z",
@@ -53,6 +54,7 @@ describe("mapServicePublicToService", () => {
     expect(mapped.hours).toEqual(baseService.hours)
     expect(mapped.accessibility).toEqual(baseService.accessibility)
     expect(mapped.coordinates).toEqual(baseService.coordinates)
+    expect(mapped.embedding).toEqual(baseService.embedding)
     expect(mapped.intent_category).toBe(IntentCategory.Food)
     expect(mapped.verification_level).toBe(VerificationLevel.L2)
     expect(mapped.identity_tags).toEqual([
@@ -60,6 +62,20 @@ describe("mapServicePublicToService", () => {
       { tag: "Women", evidence_url: "" },
     ])
     expect(mapped.provenance).toEqual(baseService.provenance)
+  })
+
+  it("normalizes serialized embeddings and rejects malformed values", () => {
+    const serialized = mapServicePublicToService({
+      ...baseService,
+      embedding: "[0.1,0.2,0.3]",
+    })
+    const malformed = mapServicePublicToService({
+      ...baseService,
+      embedding: '[0.1,"bad"]',
+    })
+
+    expect(serialized.embedding).toEqual([0.1, 0.2, 0.3])
+    expect(malformed.embedding).toBeUndefined()
   })
 
   it("replaces UUID-shaped public provenance verifier IDs with a public label", () => {

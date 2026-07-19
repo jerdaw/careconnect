@@ -65,6 +65,7 @@ export interface ServicePublic {
   authority_tier?: ServicePublicAuthorityTier
   resource_indicators?: ResourceIndicators | null
   coordinates?: ServicePublicCoordinates
+  embedding?: number[] | string | null
   provenance?: ServicePublicProvenance
   access_script?: string | null
   access_script_fr?: string | null

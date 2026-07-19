@@ -1,5 +1,10 @@
 BEGIN;
 
+-- The disposable integration bootstrap represents trusted backend setup.
+-- Declare that context explicitly so production-equivalent governance triggers
+-- continue to reject unauthenticated membership writes.
+SELECT set_config('request.jwt.claim.role', 'service_role', true);
+
 INSERT INTO organizations (id, name, email)
 VALUES (
   '11111111-1111-1111-1111-111111111111',

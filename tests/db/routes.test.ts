@@ -18,7 +18,7 @@ describe("DB-backed routes", () => {
     expect(listResponse.status).toBe(200)
     expect(listBody.data.map((service) => service.id)).toEqual([seededIds.food])
     expect(listBody.meta.total).toBe(1)
-    expect(listResponse.headers.get("Cache-Control")).toContain("s-maxage=60")
+    expect(listResponse.headers.get("Cache-Control")).toBe("private, no-store, max-age=0")
 
     const detailRequest = new NextRequest(`http://localhost/api/v1/services/${seededIds.food}`)
     const detailResponse = await getService(detailRequest, { params: Promise.resolve({ id: seededIds.food }) })
