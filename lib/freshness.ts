@@ -17,10 +17,11 @@ export function getVerifiedAt(source?: FreshnessSource | string | null): string 
   }
 
   if (typeof source === "string") {
-    return source
+    return source.trim() || undefined
   }
 
-  return source.provenance?.verified_at ?? source.last_verified ?? undefined
+  const provenanceVerifiedAt = source.provenance?.verified_at?.trim()
+  return provenanceVerifiedAt || source.last_verified?.trim() || undefined
 }
 
 export function getDaysSinceVerified(source?: FreshnessSource | string | null): number | null {

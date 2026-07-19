@@ -6,6 +6,7 @@ import { ThumbsUp, CheckCircle2, ShieldCheck, MessageSquare, TrendingUp } from "
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { logger } from "@/lib/logger"
+import { getPublicFreshnessCutoff } from "@/lib/public-service-governance"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -55,45 +56,39 @@ async function loadImpactMetrics(): Promise<ImpactMetrics> {
 
   try {
     const supabase = await createClient()
-    const [
-      helpfulYesResult,
-      helpfulNoResult,
-      totalIssuesResult,
-      resolvedIssuesResult,
-      totalServicesResult,
-      verifiedRecentlyResult,
-    ] = await withCircuitBreaker(async () =>
+    const [feedbackResult, totalServicesResult, verifiedRecentlyResult] = await withCircuitBreaker(async () =>
       Promise.all([
-        supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "helpful_yes"),
-        supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "helpful_no"),
-        supabase.from("feedback").select("*", { count: "exact", head: true }).eq("feedback_type", "issue"),
         supabase
-          .from("feedback")
-          .select("*", { count: "exact", head: true })
-          .eq("feedback_type", "issue")
-          .eq("status", "resolved"),
-        supabase.from("services").select("*", { count: "exact", head: true }).is("deleted_at", null),
+          .from("feedback_aggregations")
+          .select("helpful_yes_count, helpful_no_count, total_issues_count, resolved_issues_count"),
         supabase
-          .from("services")
-          .select("*", { count: "exact", head: true })
-          .is("deleted_at", null)
+          .from("services_public")
+          .select("id", { count: "exact", head: true })
+          .gte("last_verified", getPublicFreshnessCutoff()),
+        supabase
+          .from("services_public")
+          .select("id", { count: "exact", head: true })
           .gte("last_verified", ninetyDaysAgo.toISOString()),
       ])
     )
 
-    if (helpfulYesResult.error) throw helpfulYesResult.error
-    if (helpfulNoResult.error) throw helpfulNoResult.error
-    if (totalIssuesResult.error) throw totalIssuesResult.error
-    if (resolvedIssuesResult.error) throw resolvedIssuesResult.error
+    if (feedbackResult.error) throw feedbackResult.error
     if (totalServicesResult.error) throw totalServicesResult.error
     if (verifiedRecentlyResult.error) throw verifiedRecentlyResult.error
 
+    const feedbackTotals = (feedbackResult.data || []).reduce(
+      (totals, row) => ({
+        helpfulYes: totals.helpfulYes + (row.helpful_yes_count || 0),
+        helpfulNo: totals.helpfulNo + (row.helpful_no_count || 0),
+        totalIssues: totals.totalIssues + (row.total_issues_count || 0),
+        resolvedIssues: totals.resolvedIssues + (row.resolved_issues_count || 0),
+      }),
+      { helpfulYes: 0, helpfulNo: 0, totalIssues: 0, resolvedIssues: 0 }
+    )
+
     return {
       degraded: false,
-      helpfulYes: helpfulYesResult.count || 0,
-      helpfulNo: helpfulNoResult.count || 0,
-      totalIssues: totalIssuesResult.count || 0,
-      resolvedIssues: resolvedIssuesResult.count || 0,
+      ...feedbackTotals,
       totalServices: totalServicesResult.count || 0,
       verifiedRecently: verifiedRecentlyResult.count || 0,
     }

@@ -5,6 +5,8 @@ import { assertServiceOwnership } from "@/lib/auth/authorization"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
 import { sanitizePublicServiceProvenance } from "@/lib/public-provenance"
+import { getPublicFreshnessCutoff } from "@/lib/public-service-governance"
+import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
 import {
   getDirectServiceWriteUnsupportedFields,
   mapPartnerServiceEditToServiceUpdate,
@@ -28,10 +30,20 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return createApiError("Service ID is required", 400)
   }
 
+  const rateLimit = await checkRateLimit(getClientIp(request), 120, 60 * 1000, "api:v1:services:detail")
+  if (!rateLimit.success) {
+    return createApiError("Rate limit exceeded. Try again later.", 429, undefined, createRateLimitHeaders(rateLimit))
+  }
+
   try {
     // Query the public view (accessible by anon users) instead of the protected services table
     const { data, error } = await withCircuitBreaker(async () =>
-      supabase.from("services_public").select("*").eq("id", id).single()
+      supabase
+        .from("services_public")
+        .select("*")
+        .eq("id", id)
+        .gte("last_verified", getPublicFreshnessCutoff())
+        .single()
     )
 
     if (error || !data) {
@@ -97,7 +109,12 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       })
     }
 
-    const updates = mapPartnerServiceEditToServiceUpdate(validation.data)
+    const updates = {
+      ...mapPartnerServiceEditToServiceUpdate(validation.data),
+      published: false,
+      verification_status: "L0",
+      last_verified: null,
+    }
 
     const { data, error } = await withCircuitBreaker(async () =>
       supabaseAuth.from("services").update(updates).eq("id", id).select().single()
@@ -161,7 +178,12 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
       })
     }
 
-    const updates = mapPartnerServiceEditToServiceUpdate(validation.data)
+    const updates = {
+      ...mapPartnerServiceEditToServiceUpdate(validation.data),
+      published: false,
+      verification_status: "L0",
+      last_verified: null,
+    }
 
     const { data, error } = await withCircuitBreaker(async () =>
       supabaseAuth.from("services").update(updates).eq("id", id).select().single()

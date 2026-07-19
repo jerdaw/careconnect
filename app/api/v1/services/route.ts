@@ -14,6 +14,7 @@ import { ServiceCreateSchema } from "@/lib/schemas/service-create"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { env } from "@/lib/env"
 import { mapCreateInputToServiceInsert } from "@/lib/service-db"
+import { getPublicFreshnessCutoff } from "@/lib/public-service-governance"
 
 /**
  * GET /api/v1/services
@@ -52,12 +53,12 @@ export async function GET(request: NextRequest) {
 
   try {
     let query = supabase
-      .from("services")
+      .from("services_public")
       .select(
         "id, name, name_fr, description, description_fr, address, address_fr, phone, url, email, hours, category, verification_status",
         { count: "exact" }
       )
-
+      .gte("last_verified", getPublicFreshnessCutoff())
     // Apply category filter
     if (category) {
       query = query.eq("category", category)
@@ -97,7 +98,10 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
+    response.headers.set(
+      "Cache-Control",
+      q ? "private, no-store, max-age=0" : "public, s-maxage=60, stale-while-revalidate=300"
+    )
 
     return response
   } catch (err) {

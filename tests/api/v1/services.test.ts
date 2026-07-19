@@ -12,6 +12,7 @@ const { mockSupabaseChain } = vi.hoisted(() => {
   mockChain.from = vi.fn(() => mockChain)
   mockChain.select = vi.fn(() => mockChain)
   mockChain.eq = vi.fn(() => mockChain)
+  mockChain.gte = vi.fn(() => mockChain)
   mockChain.or = vi.fn(() => mockChain)
   mockChain.range = vi.fn(() => Promise.resolve({ data: [], count: 0, error: null }))
   mockChain.insert = vi.fn(() => mockChain)
@@ -109,9 +110,16 @@ describe("API v1 Services", () => {
     expect(status).toBe(200)
     expect(data.data).toHaveLength(1)
     expect(data.data[0].name).toBe("Service")
-    expect(mockSupabaseChain.from).toHaveBeenCalledWith("services")
+    expect(mockSupabaseChain.from).toHaveBeenCalledWith("services_public")
   })
 
+  it("GET prevents shared caching when a search query is present", async () => {
+    const req = createMockRequest("http://localhost/api/v1/services?q=food")
+    const res = await GET(req)
+
+    expect(res.status).toBe(200)
+    expect(res.headers.get("Cache-Control")).toBe("private, no-store, max-age=0")
+  })
   it("GET validates rate limit", async () => {
     const { checkRateLimit } = await import("@/lib/rate-limit")
     ;(checkRateLimit as unknown as { mockReturnValue: (val: unknown) => void }).mockReturnValue({

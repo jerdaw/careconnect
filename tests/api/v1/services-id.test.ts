@@ -4,10 +4,12 @@ import { DELETE, GET, PATCH, PUT } from "@/app/api/v1/services/[id]/route"
 import { createMockRequest } from "@/tests/utils/api-test-utils"
 import { createServerClient } from "@supabase/ssr"
 import { supabase } from "@/lib/supabase"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 const createChainMock = () => ({
   select: vi.fn().mockReturnThis(),
   eq: vi.fn().mockReturnThis(),
+  gte: vi.fn().mockReturnThis(),
   single: vi.fn(),
   update: vi.fn().mockReturnThis(),
   delete: vi.fn().mockReturnThis(),
@@ -22,6 +24,15 @@ vi.mock("@/lib/supabase", () => ({
   },
 }))
 
+vi.mock("@/lib/rate-limit", () => ({
+  checkRateLimit: vi.fn().mockResolvedValue({ success: true, remaining: 119, reset: 4102444800 }),
+  getClientIp: vi.fn().mockReturnValue("127.0.0.1"),
+  createRateLimitHeaders: vi.fn().mockReturnValue({
+    "X-RateLimit-Remaining": "0",
+    "X-RateLimit-Reset": "4102444800",
+    "Retry-After": "60",
+  }),
+}))
 const mockGetUser = vi.fn()
 const tableChains: Record<string, any> = {}
 
@@ -82,6 +93,7 @@ describe("API v1 Services [id]", () => {
     vi.mocked(supabase.from).mockReturnValue(publicChain as any)
     publicChain.single.mockResolvedValue({ data: { id: "123", name: "Test Service" }, error: null })
     mockGetUser.mockResolvedValue({ data: { user: { id: "user-1" } }, error: null })
+    vi.mocked(checkRateLimit).mockResolvedValue({ success: true, remaining: 119, reset: 4102444800 })
   })
 
   describe("GET (Public)", () => {
@@ -91,6 +103,16 @@ describe("API v1 Services [id]", () => {
       expect(res.status).toBe(400)
     })
 
+    it("returns 429 when the public detail rate limit is exceeded", async () => {
+      vi.mocked(checkRateLimit).mockResolvedValue({ success: false, remaining: 0, reset: 4102444800 })
+
+      const req = createMockRequest("http://localhost/api/v1/services/123")
+      const res = await GET(req, { params: Promise.resolve({ id: "123" }) })
+
+      expect(res.status).toBe(429)
+      expect(res.headers.get("Retry-After")).toBe("60")
+      expect(publicChain.single).not.toHaveBeenCalled()
+    })
     it("returns 404 if service not found", async () => {
       publicChain.single.mockResolvedValue({ data: null, error: { message: "Not found" } })
 
@@ -165,11 +187,16 @@ describe("API v1 Services [id]", () => {
       const res = await PUT(req, { params: Promise.resolve({ id: "123" }) })
 
       expect(res.status).toBe(200)
-      expect(servicesChain.update).toHaveBeenCalledWith({
-        name: "Updated",
-        eligibility: "Must be 18+",
-        hours_text: "Mon-Fri 9-5",
-      })
+      expect(servicesChain.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "Updated",
+          eligibility: "Must be 18+",
+          hours_text: "Mon-Fri 9-5",
+          published: false,
+          verification_status: "L0",
+          last_verified: null,
+        })
+      )
     })
 
     it("rejects non-http service URLs", async () => {
@@ -258,6 +285,9 @@ describe("API v1 Services [id]", () => {
       expect(servicesChain.update).toHaveBeenCalledWith(
         expect.objectContaining({
           access_script: "Say hello",
+          published: false,
+          verification_status: "L0",
+          last_verified: null,
         })
       )
     })

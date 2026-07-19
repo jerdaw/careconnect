@@ -67,7 +67,6 @@ describe("Feedback V1 API Route", () => {
         message: null,
         service_id: "123",
         category_searched: null,
-        status: "pending",
       },
     ])
   })
@@ -98,7 +97,6 @@ describe("Feedback V1 API Route", () => {
         message: "Need more pantries",
         service_id: null,
         category_searched: "Food",
-        status: "pending",
       },
     ])
   })

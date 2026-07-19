@@ -2,6 +2,8 @@ import { createHash } from "node:crypto"
 import { NextResponse } from "next/server"
 import { loadServices } from "@/lib/search/data"
 import { normalizeProvenance } from "@/lib/provenance"
+import { sanitizePublicProvenance } from "@/lib/public-provenance"
+import { isPublicServiceEligible } from "@/lib/public-service-governance"
 import type { Service, Provenance } from "@/types/service"
 import { logger } from "@/lib/logger"
 import { checkRateLimit, createRateLimitHeaders, getClientIp } from "@/lib/rate-limit"
@@ -37,7 +39,7 @@ function sanitizeForPublicExport(service: Service): PublicExportService {
 
   return {
     ...rest,
-    provenance: normalizeProvenance(rest.provenance),
+    provenance: sanitizePublicProvenance(normalizeProvenance(rest.provenance)),
   }
 }
 
@@ -64,9 +66,7 @@ export async function GET(request: Request) {
     }
 
     const services = await loadServices()
-    const publicServices = services
-      .filter((s) => s.published !== false && !s.deleted_at)
-      .map((s) => sanitizeForPublicExport(s))
+    const publicServices = services.filter(isPublicServiceEligible).map((s) => sanitizeForPublicExport(s))
     const publicIds = new Set(publicServices.map((s) => s.id))
     const embeddings = services
       .filter((s) => s.embedding && publicIds.has(s.id))

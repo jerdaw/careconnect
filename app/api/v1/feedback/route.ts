@@ -48,7 +48,6 @@ export async function POST(request: NextRequest) {
       feedback_type,
       message: message || null,
       category_searched: category_searched || null,
-      status: "pending",
     })
 
     if (insertError) {

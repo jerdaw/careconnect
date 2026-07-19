@@ -17,6 +17,15 @@ describe("freshness policy helpers", () => {
     ).toBe("2026-02-01T00:00:00.000Z")
   })
 
+  it("falls back to last_verified when normalized provenance is empty", () => {
+    expect(
+      getVerifiedAt({
+        last_verified: "2026-07-18T00:00:00.000Z",
+        provenance: { verified_at: "" },
+      })
+    ).toBe("2026-07-18T00:00:00.000Z")
+  })
+
   it("marks records beyond the governance window as expired", () => {
     const expired = new Date()
     expired.setDate(expired.getDate() - (FRESHNESS_GOVERNANCE_WINDOW_DAYS + 10))

@@ -4,7 +4,7 @@ import type { Database } from "@/types/supabase"
 
 export type FeedbackInsertPayload = Pick<
   Database["public"]["Tables"]["feedback"]["Insert"],
-  "service_id" | "feedback_type" | "message" | "category_searched" | "description" | "status"
+  "service_id" | "feedback_type" | "message" | "category_searched" | "description"
 >
 
 export type LegacyFeedbackType = "wrong_phone" | "wrong_address" | "service_closed" | "other"
@@ -23,6 +23,5 @@ export function mapLegacyFeedbackPayload(input: {
     feedback_type: "issue",
     description: input.feedbackType,
     message: input.message?.trim() || null,
-    status: "pending",
   }
 }

@@ -67,7 +67,6 @@ describe("Feedback API Route", () => {
         feedback_type: "issue",
         description: "wrong_phone",
         message: "New number is 555-0199",
-        status: "pending",
       },
     ])
   })

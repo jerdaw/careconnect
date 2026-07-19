@@ -29,10 +29,11 @@ vi.mock("@/data/services.json", () => ({
       description: "Static description",
       url: "https://careconnect.ing/service-1",
       verification_level: VerificationLevel.L2,
+      published: true,
       intent_category: IntentCategory.Food,
       provenance: {
         verified_by: "Static Verifier",
-        verified_at: "2026-01-01T00:00:00Z",
+        verified_at: "2026-07-01T00:00:00Z",
         evidence_url: "https://careconnect.ing/evidence/service-1",
         method: "phone",
       },
@@ -63,7 +64,8 @@ describe("getServiceById", () => {
       error: null,
     })
 
-    const eq = vi.fn().mockReturnValue({ single })
+    const gte = vi.fn().mockReturnValue({ single })
+    const eq = vi.fn().mockReturnValue({ gte })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -108,7 +110,8 @@ describe("getServiceById", () => {
       error: null,
     })
 
-    const eq = vi.fn().mockReturnValue({ single })
+    const gte = vi.fn().mockReturnValue({ single })
+    const eq = vi.fn().mockReturnValue({ gte })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -134,7 +137,8 @@ describe("getServiceById", () => {
       },
     })
 
-    const eq = vi.fn().mockReturnValue({ single })
+    const gte = vi.fn().mockReturnValue({ single })
+    const eq = vi.fn().mockReturnValue({ gte })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -143,6 +147,23 @@ describe("getServiceById", () => {
     expect(service?.name).toBe("Static Service")
     expect(service?.synthetic_queries).toEqual(["food help"])
     expect(service?.provenance?.verified_by).toBe("Static Verifier")
+  })
+
+  it("treats an authoritative public-view miss as not found", async () => {
+    const single = vi.fn().mockResolvedValue({
+      data: null,
+      error: {
+        code: "PGRST116",
+        message: "not found",
+      },
+    })
+
+    const gte = vi.fn().mockReturnValue({ single })
+    const eq = vi.fn().mockReturnValue({ gte })
+    const select = vi.fn().mockReturnValue({ eq })
+    vi.mocked(supabase.from).mockReturnValue({ select } as any)
+
+    await expect(getServiceById("service-1")).resolves.toBeNull()
   })
 
   it("does not refresh last_verified during generic service updates", async () => {

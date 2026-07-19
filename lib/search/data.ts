@@ -4,7 +4,9 @@ import { env } from "@/lib/env"
 import { trackPerformance } from "@/lib/performance/tracker"
 import { withCircuitBreaker, isSupabaseAvailable } from "@/lib/resilience/supabase-breaker"
 import { logger } from "@/lib/logger"
-import { mapServiceRowToService } from "@/lib/service-db"
+import { mapServicePublicToService } from "@/lib/search/map-service-public"
+import { isPublicServiceEligible } from "@/lib/public-service-governance"
+import type { ServicePublic } from "@/types/service-public"
 
 // In-memory cache for the server instance
 let dataCache: { services: Service[] } | null = null
@@ -58,7 +60,7 @@ export const loadServices = async (): Promise<Service[]> => {
           // Wrap Supabase call with circuit breaker
           return await withCircuitBreaker(
             async () => {
-              const { data, error } = await supabase.from("services").select("*")
+              const { data, error } = await supabase.from("services_public").select("*")
               return { data, error }
             },
             // Fallback: Skip to JSON load if circuit is open
@@ -72,7 +74,9 @@ export const loadServices = async (): Promise<Service[]> => {
       )
 
       if (!result.error && result.data && result.data.length > 0) {
-        const mappedData: Service[] = result.data.map((row) => mapServiceRowToService(row)).filter((s) => !s.deleted_at) // Filter soft deletes
+        const mappedData: Service[] = result.data
+          .map((row) => mapServicePublicToService(row as unknown as ServicePublic))
+          .filter(isPublicServiceEligible)
 
         dataCache = { services: mappedData }
         return mappedData

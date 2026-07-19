@@ -77,6 +77,75 @@ describe("Export API", () => {
     expect(data.version).toBe(response.headers.get("ETag")?.replaceAll('"', ""))
   })
 
+  it("filters services that are not eligible for public export", async () => {
+    const verifiedAt = new Date().toISOString()
+    vi.mocked(loadServices).mockResolvedValueOnce([
+      {
+        id: "eligible",
+        name: "Eligible service",
+        published: true,
+        verification_level: "L2",
+        last_verified: verifiedAt,
+      },
+      {
+        id: "expired",
+        name: "Expired service",
+        published: true,
+        verification_level: "L2",
+        last_verified: "2000-01-01T00:00:00.000Z",
+      },
+      {
+        id: "unverified",
+        name: "Unverified service",
+        published: true,
+        verification_level: "L0",
+        last_verified: verifiedAt,
+      },
+      {
+        id: "deleted",
+        name: "Deleted service",
+        published: true,
+        deleted_at: verifiedAt,
+        verification_level: "L2",
+        last_verified: verifiedAt,
+      },
+      {
+        id: "missing-date",
+        name: "Missing verification date",
+        published: true,
+        verification_level: "L2",
+      },
+    ] as any)
+
+    const response = await GET(new Request("http://localhost:3000/api/v1/services/export"))
+    const data = (await response.json()) as { count: number; services: Array<{ id: string }> }
+
+    expect(data.count).toBe(1)
+    expect(data.services.map((service) => service.id)).toEqual(["eligible"])
+  })
+
+  it("redacts internal verifier UUIDs from public export provenance", async () => {
+    vi.mocked(loadServices).mockResolvedValueOnce([
+      {
+        id: "s1",
+        name: "Service 1",
+        published: true,
+        verification_level: "L2",
+        last_verified: new Date().toISOString(),
+        provenance: {
+          verified_by: "11111111-1111-4111-8111-111111111111",
+          verified_at: new Date().toISOString(),
+          evidence_url: "https://careconnect.ing/evidence/s1",
+          method: "phone",
+        },
+      },
+    ] as any)
+
+    const response = await GET(new Request("http://localhost:3000/api/v1/services/export"))
+    const data = (await response.json()) as { services: Array<{ provenance: { verified_by: string } }> }
+
+    expect(data.services[0]?.provenance.verified_by).toBe("CareConnect Admin")
+  })
   it("should return a stable fingerprint for identical payloads", async () => {
     vi.mocked(checkRateLimit).mockResolvedValue({ success: true, remaining: 59, reset: 4102444800 })
 

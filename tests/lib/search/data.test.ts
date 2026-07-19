@@ -44,13 +44,22 @@ describe("Search Data Loading", () => {
   })
 
   it("loads services directly from Supabase without JSON overlay metadata", async () => {
-    const mockData = [{ id: "1", name: "Service 1 (DB)", verification_status: 3 }]
+    const freshlyVerifiedAt = new Date().toISOString()
+    const mockData = [
+      {
+        id: "1",
+        name: "Service 1 (DB)",
+        verification_status: "L2",
+        last_verified: freshlyVerifiedAt,
+      },
+    ]
     ;(supabase.from as any).mockReturnValue({
       select: vi.fn().mockResolvedValue({ data: mockData, error: null }),
     })
 
     const services = await loadServices()
 
+    expect(supabase.from).toHaveBeenCalledWith("services_public")
     expect(services).toHaveLength(1)
     expect(services[0]!.name).toBe("Service 1 (DB)")
     expect(services[0]!.synthetic_queries).toEqual([])
@@ -70,10 +79,11 @@ describe("Search Data Loading", () => {
     expect(services.find((s) => s.id === "1")?.embedding).toEqual([0.1, 0.2])
   })
 
-  it("filters out soft-deleted services from DB", async () => {
+  it("filters out services outside the public freshness boundary", async () => {
+    const freshlyVerifiedAt = new Date().toISOString()
     const mockData = [
-      { id: "1", name: "Active", deleted_at: null },
-      { id: "2", name: "Deleted", deleted_at: "2023-01-01" },
+      { id: "1", name: "Fresh", verification_status: "L2", last_verified: freshlyVerifiedAt },
+      { id: "2", name: "Expired", verification_status: "L2", last_verified: "2023-01-01T00:00:00.000Z" },
     ]
     ;(supabase.from as any).mockReturnValue({
       select: vi.fn().mockResolvedValue({ data: mockData, error: null }),
