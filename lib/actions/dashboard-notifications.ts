@@ -65,8 +65,6 @@ export async function markNotificationReadAction(input: unknown): Promise<Notifi
     logger.error("Failed to mark notification as read", error, {
       component: "DashboardNotificationActions",
       action: "markNotificationRead",
-      notificationId,
-      userId: auth.user.id,
     })
     return { success: false, error: error.message }
   }
@@ -97,7 +95,6 @@ export async function markAllNotificationsReadAction(input: unknown): Promise<No
     logger.error("Failed to mark all notifications as read", error, {
       component: "DashboardNotificationActions",
       action: "markAllNotificationsRead",
-      userId: auth.user.id,
     })
     return { success: false, error: error.message }
   }

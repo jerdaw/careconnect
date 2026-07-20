@@ -191,7 +191,7 @@ const withPWA = withPWAInit({
       },
       {
         // Services API GET responses (public data only; excludes export endpoint above)
-        urlPattern: /\/api\/v1\/services(?!\/export)(\/|$)/,
+        urlPattern: /\/api\/v1\/services(?!\/export)(?![^#]*[?&]q=)(\/|$)/,
         handler: "StaleWhileRevalidate",
         method: "GET",
         options: {

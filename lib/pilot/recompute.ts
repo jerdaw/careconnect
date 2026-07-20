@@ -25,6 +25,8 @@ type QueryResult<T> = {
   error: DatabaseError | null
 }
 
+export const PILOT_RECOMPUTE_MAX_SOURCE_ROWS = 10_000
+
 export type PilotMetricRecomputeResult = {
   data: {
     scorecard: ReturnType<typeof computePilotMetricSnapshots>["scorecard"]
@@ -78,6 +80,17 @@ async function readRows<T>(
     return { data: [], error, missingTable: null }
   }
 
+  if ((data?.length ?? 0) > PILOT_RECOMPUTE_MAX_SOURCE_ROWS) {
+    return {
+      data: [],
+      error: {
+        code: "PILOT_RECOMPUTE_SOURCE_LIMIT",
+        message: `${tableName} exceeds the bounded recompute source-row limit`,
+      },
+      missingTable: null,
+    }
+  }
+
   return { data: data ?? [], error: null, missingTable: null }
 }
 
@@ -95,7 +108,8 @@ export async function recomputePilotMetrics(
         .from("pilot_contact_attempt_events")
         .select("id, attempted_at, attempt_outcome, entity_key_hash")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("recorded_by_org_id", orgId)) as QueryResult<{
+        .eq("recorded_by_org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         id: string
         attempted_at: string
         attempt_outcome: Database["public"]["Tables"]["pilot_contact_attempt_events"]["Row"]["attempt_outcome"]
@@ -115,7 +129,8 @@ export async function recomputePilotMetrics(
         .from("pilot_referral_events")
         .select("id, created_at, referral_state")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("source_org_id", orgId)) as QueryResult<{
+        .eq("source_org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         id: string
         created_at: string
         referral_state: Database["public"]["Tables"]["pilot_referral_events"]["Row"]["referral_state"]
@@ -134,7 +149,8 @@ export async function recomputePilotMetrics(
         .from("pilot_connection_events")
         .select("connected_at, contact_attempt_event_id, referral_event_id")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("org_id", orgId)) as QueryResult<{
+        .eq("org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         connected_at: string
         contact_attempt_event_id: string | null
         referral_event_id: string | null
@@ -153,7 +169,8 @@ export async function recomputePilotMetrics(
         .from("pilot_service_scope")
         .select("service_id, sla_tier")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("org_id", orgId)) as QueryResult<{
+        .eq("org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         service_id: string
         sla_tier: Database["public"]["Tables"]["pilot_service_scope"]["Row"]["sla_tier"]
       }>
@@ -171,7 +188,8 @@ export async function recomputePilotMetrics(
         .from("service_operational_status_events")
         .select("service_id, checked_at, status_code")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("org_id", orgId)) as QueryResult<{
+        .eq("org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         service_id: string
         checked_at: string
         status_code: Database["public"]["Tables"]["service_operational_status_events"]["Row"]["status_code"]
@@ -190,7 +208,8 @@ export async function recomputePilotMetrics(
         .from("pilot_data_decay_audits")
         .select("audited_at, is_fatal, fatal_error_category")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("org_id", orgId)) as QueryResult<{
+        .eq("org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         audited_at: string
         is_fatal: boolean
         fatal_error_category: Database["public"]["Tables"]["pilot_data_decay_audits"]["Row"]["fatal_error_category"]
@@ -209,7 +228,8 @@ export async function recomputePilotMetrics(
         .from("pilot_preference_fit_events")
         .select("recorded_at, preferred_via_careconnect")
         .eq("pilot_cycle_id", pilotCycleId)
-        .eq("org_id", orgId)) as QueryResult<{
+        .eq("org_id", orgId)
+        .limit(PILOT_RECOMPUTE_MAX_SOURCE_ROWS + 1)) as QueryResult<{
         recorded_at: string
         preferred_via_careconnect: boolean
       }>

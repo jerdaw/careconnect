@@ -70,8 +70,6 @@ async function requireOrganizationPermission(
     logger.warn("Dashboard settings permission denied", {
       component: "DashboardSettingsActions",
       action: permission,
-      orgId,
-      userId: user.id,
       error: error instanceof Error ? error.message : String(error),
     })
     return { supabase: null, user: null, error: "Unauthorized" }
@@ -98,7 +96,6 @@ export async function updateOrganizationAction(input: unknown): Promise<Dashboar
     logger.error("Failed to update organization", error, {
       component: "DashboardSettingsActions",
       action: "updateOrganization",
-      organizationId,
     })
     return { success: false, error: error.message }
   }
@@ -138,7 +135,6 @@ export async function upsertOrganizationSettingsAction(input: unknown): Promise<
     logger.error("Failed to upsert organization settings", error, {
       component: "DashboardSettingsActions",
       action: "upsertSettings",
-      organizationId: payload.organizationId,
     })
     return { success: false, error: error.message }
   }

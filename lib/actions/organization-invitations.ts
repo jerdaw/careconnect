@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { assertPermission } from "@/lib/auth/authorization"
 import { logger } from "@/lib/logger"
-import type { RolePermissions } from "@/lib/rbac"
+import { getAssignableRoles, type OrganizationRole, type RolePermissions } from "@/lib/rbac"
 import { createClient } from "@/utils/supabase/server"
 
 const OrganizationIdSchema = z.string().uuid()
@@ -47,9 +47,10 @@ type InvitationPermissionResult =
       user: NonNullable<
         Awaited<ReturnType<Awaited<ReturnType<typeof createClient>>["auth"]["getUser"]>>["data"]["user"]
       >
+      role: OrganizationRole
       error: null
     }
-  | { supabase: null; user: null; error: string }
+  | { supabase: null; user: null; role: null; error: string }
 
 async function requireInvitationPermission(
   orgId: string,
@@ -62,11 +63,12 @@ async function requireInvitationPermission(
   } = await supabase.auth.getUser()
 
   if (authError || !user) {
-    return { supabase: null, user: null, error: "Unauthorized" }
+    return { supabase: null, user: null, role: null, error: "Unauthorized" }
   }
 
+  let role: OrganizationRole
   try {
-    await assertPermission(supabase, user.id, orgId, permission)
+    role = await assertPermission(supabase, user.id, orgId, permission)
   } catch (error) {
     logger.warn("Invitation permission denied", {
       component: "OrganizationInvitationActions",
@@ -75,10 +77,10 @@ async function requireInvitationPermission(
       userId: user.id,
       error: error instanceof Error ? error.message : String(error),
     })
-    return { supabase: null, user: null, error: "Unauthorized" }
+    return { supabase: null, user: null, role: null, error: "Unauthorized" }
   }
 
-  return { supabase, user, error: null }
+  return { supabase, user, role, error: null }
 }
 
 export async function listOrganizationInvitations(organizationId: string): Promise<InvitationListItem[]> {
@@ -144,6 +146,9 @@ export async function createOrganizationInvitation(input: unknown): Promise<Invi
     return { success: false, error: auth.error }
   }
 
+  if (!getAssignableRoles(auth.role).includes(payload.role)) {
+    return { success: false, error: "Insufficient permissions to assign this role" }
+  }
   const { data: token, error: tokenError } = await auth.supabase.rpc("generate_invitation_token")
   if (tokenError || !token) {
     logger.error("Failed to generate invitation token", tokenError, {

@@ -20,6 +20,7 @@ vi.mock("@/lib/logger", () => ({
 vi.mock("@/lib/rate-limit", () => ({
   getClientIp: vi.fn(() => "127.0.0.1"),
   checkRateLimit: vi.fn(() => Promise.resolve({ success: true })),
+  createRateLimitHeaders: vi.fn(() => ({ "Retry-After": "300" })),
 }))
 
 vi.mock("@/lib/pilot/auth", () => ({
@@ -58,7 +59,9 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.mocked(checkRateLimit).mockResolvedValue({ success: true } as never)
+    vi.mocked(checkRateLimit)
+      .mockReset()
+      .mockResolvedValue({ success: true } as never)
     vi.mocked(requireAuthenticatedUser).mockResolvedValue({
       error: null,
       supabaseAuth: {} as never,
@@ -97,6 +100,31 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
     expect(requireAuthenticatedUser).not.toHaveBeenCalled()
   })
 
+  it("blocks when the verified user recompute budget is exhausted", async () => {
+    vi.mocked(checkRateLimit)
+      .mockResolvedValueOnce({ success: true } as never)
+      .mockResolvedValueOnce({ success: false, reset: 4102444800 } as never)
+
+    const response = await POST(createRequest())
+
+    expect(response.status).toBe(429)
+    expect(response.headers.get("Retry-After")).toBe("300")
+    expect(assertPermission).toHaveBeenCalled()
+    expect(recomputePilotMetrics).not.toHaveBeenCalled()
+  })
+
+  it("blocks when the verified organization recompute budget is exhausted", async () => {
+    vi.mocked(checkRateLimit)
+      .mockResolvedValueOnce({ success: true } as never)
+      .mockResolvedValueOnce({ success: true } as never)
+      .mockResolvedValueOnce({ success: false, reset: 4102444800 } as never)
+
+    const response = await POST(createRequest())
+
+    expect(response.status).toBe(429)
+    expect(response.headers.get("Retry-After")).toBe("300")
+    expect(recomputePilotMetrics).not.toHaveBeenCalled()
+  })
   it("returns 401 when auth is missing", async () => {
     vi.mocked(requireAuthenticatedUser).mockResolvedValue({
       error: null,
@@ -170,5 +198,20 @@ describe("POST /api/v1/pilot/metrics/recompute", () => {
     expect(json.data.success).toBe(true)
     expect(json.data.snapshotsWritten).toBe(9)
     expect(json.data.scorecard.m4_freshness_sla_compliance).toBe(0.8)
+    expect(checkRateLimit).toHaveBeenCalledTimes(3)
+    expect(checkRateLimit).toHaveBeenNthCalledWith(
+      2,
+      expect.stringMatching(/^[a-f0-9]{64}$/),
+      2,
+      5 * 60 * 1000,
+      "api:v1:pilot:metrics:recompute:user"
+    )
+    expect(checkRateLimit).toHaveBeenNthCalledWith(
+      3,
+      expect.stringMatching(/^[a-f0-9]{64}$/),
+      6,
+      5 * 60 * 1000,
+      "api:v1:pilot:metrics:recompute:org"
+    )
   })
 })

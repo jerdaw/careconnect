@@ -1,16 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getPublicAppUrl } from "@/lib/brand"
+import { safeRelativeRedirect } from "@/lib/auth/redirect"
 import { createClient } from "@/utils/supabase/server"
 
 const SUPPORTED_LOCALES = new Set(["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"])
-
-function safeRelativeRedirect(value: string | null): string {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/en/dashboard"
-  }
-
-  return value
-}
 
 function localeFromPath(pathname: string): string {
   const firstSegment = pathname.split("/").filter(Boolean)[0]
@@ -42,6 +35,6 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.redirect(
-    new URL(safeRelativeRedirect(request.nextUrl.searchParams.get("next")), getPublicAppUrl())
+    new URL(safeRelativeRedirect(request.nextUrl.searchParams.get("next"), getPublicAppUrl()), getPublicAppUrl())
   )
 }

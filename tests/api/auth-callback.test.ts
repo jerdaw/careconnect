@@ -42,7 +42,10 @@ describe("auth callback route", () => {
   })
 
   it("falls back to the localized login page when the exchange fails", async () => {
-    mockExchangeCodeForSession.mockResolvedValue({ data: {}, error: new Error("exchange failed") })
+    mockExchangeCodeForSession.mockResolvedValue({
+      data: {},
+      error: new Error("exchange failed"),
+    })
     const request = new NextRequest("https://careconnect.ing/fr/auth/callback?code=test-code&next=%2Ffr%2Fadmin")
 
     const response = await GET(request)
@@ -71,6 +74,15 @@ describe("auth callback route", () => {
     expect(response.headers.get("location")).toBe("https://careconnect.ing/en/dashboard")
   })
 
+  it("rejects separator-confused next paths after a successful exchange", async () => {
+    const request = new NextRequest(
+      "https://careconnect.ing/en/auth/callback?code=test-code&next=%2F%5Cexample.org%2Fadmin"
+    )
+
+    const response = await GET(request)
+
+    expect(response.headers.get("location")).toBe("https://careconnect.ing/en/dashboard")
+  })
   it("rejects internal localhost-style next paths after a successful exchange", async () => {
     const request = new NextRequest(
       "https://careconnect.ing/en/auth/callback?code=test-code&next=http%3A%2F%2F0.0.0.0%3A3000%2Fen%2Fadmin"

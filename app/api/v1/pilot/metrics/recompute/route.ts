@@ -1,6 +1,7 @@
+import { createHash } from "node:crypto"
 import { NextRequest } from "next/server"
 import { createApiError, createApiResponse, handleApiError, validateContentType } from "@/lib/api-utils"
-import { getClientIp, checkRateLimit } from "@/lib/rate-limit"
+import { createRateLimitHeaders, getClientIp, checkRateLimit } from "@/lib/rate-limit"
 import { requireAuthenticatedUser } from "@/lib/pilot/auth"
 import { PilotMetricsRecomputeSchema } from "@/lib/schemas/pilot-events"
 import { assertPermission } from "@/lib/auth/authorization"
@@ -28,6 +29,26 @@ export async function POST(request: NextRequest) {
 
     const payload = validation.data
     await assertPermission(auth.supabaseAuth, auth.user.id, payload.org_id, "canCreateServices")
+
+    const userRateLimit = await checkRateLimit(
+      createHash("sha256").update(auth.user.id).digest("hex"),
+      2,
+      5 * 60 * 1000,
+      "api:v1:pilot:metrics:recompute:user"
+    )
+    if (!userRateLimit.success) {
+      return createApiError("Rate limit exceeded", 429, undefined, createRateLimitHeaders(userRateLimit))
+    }
+
+    const orgRateLimit = await checkRateLimit(
+      createHash("sha256").update(payload.org_id).digest("hex"),
+      6,
+      5 * 60 * 1000,
+      "api:v1:pilot:metrics:recompute:org"
+    )
+    if (!orgRateLimit.success) {
+      return createApiError("Rate limit exceeded", 429, undefined, createRateLimitHeaders(orgRateLimit))
+    }
 
     const recomputed = await recomputePilotMetrics(auth.supabaseAuth, payload.pilot_cycle_id, payload.org_id)
     if (recomputed.missingTables.length > 0) {

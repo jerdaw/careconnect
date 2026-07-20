@@ -2,7 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
-import { OrganizationRole, canModifyRole, canRemoveMember } from "@/lib/rbac"
+import { OrganizationRole, canModifyRole, canRemoveMember, getAssignableRoles } from "@/lib/rbac"
 import { ChangeMemberRoleSchema, RemoveMemberSchema, TransferOwnershipSchema } from "@/lib/schemas/member"
 import { logger } from "@/lib/logger"
 
@@ -155,6 +155,9 @@ export async function changeMemberRole(
     return { success: false, error: "Insufficient permissions to change this role" }
   }
 
+  if (!getAssignableRoles(userMembership.role).includes(newRole as OrganizationRole)) {
+    return { success: false, error: "Insufficient permissions to assign this role" }
+  }
   // Update the role
   const { error: updateError } = await supabase
     .from("organization_members")

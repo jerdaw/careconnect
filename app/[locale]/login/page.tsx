@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase"
 import { getPublicAppUrl } from "@/lib/brand"
+import { safeRelativeRedirect } from "@/lib/auth/redirect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AccessibleFormField } from "@/components/forms/AccessibleFormField"
@@ -21,14 +22,6 @@ const LOGIN_POINTS = [
 
 const SUPPORTED_LOCALES = new Set(["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"])
 
-function safeRelativeRedirect(value: string | null): string {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/en/dashboard"
-  }
-
-  return value
-}
-
 function authCallbackUrl(nextPath: string): string {
   const baseUrl =
     process.env.NODE_ENV === "development" && typeof window !== "undefined" ? window.location.origin : getPublicAppUrl()
@@ -42,11 +35,14 @@ function authCallbackUrl(nextPath: string): string {
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+  const [message, setMessage] = useState<{
+    type: "success" | "error"
+    text: string
+  } | null>(null)
   const t = useTranslations("Login")
   const authConfigured = hasSupabaseCredentials()
   const searchParams = useSearchParams()
-  const nextPath = safeRelativeRedirect(searchParams.get("next"))
+  const nextPath = safeRelativeRedirect(searchParams.get("next"), getPublicAppUrl())
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
