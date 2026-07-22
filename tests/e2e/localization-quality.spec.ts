@@ -32,7 +32,7 @@ type LocaleMessages = {
     hero: { subtitle: string }
     stats: { servicesValue: string; categoriesValue: string; languagesValue: string }
   }
-  Navigation: { language: string }
+  Navigation: { language: string; openMenu: string }
   Search: { label: string }
   Feedback: { categories: Record<string, string> }
 }
@@ -68,11 +68,22 @@ test.describe("Localization public-quality matrix", () => {
       })
 
       for (const route of STATIC_ROUTES) {
-        await page.goto(`/${locale}${route}`, { waitUntil: "domcontentloaded" })
-        await expectLocalizedDocument(page, locale)
+        const routePage = await page.context().newPage()
+        await mockSupabase(routePage)
+        routePage.on("console", (message) => {
+          if (
+            message.type() === "error" &&
+            /hydration|hydrated|did not match|server rendered html/i.test(message.text())
+          ) {
+            hydrationErrors.push(message.text())
+          }
+        })
+        await routePage.goto(`/${locale}${route}`, { waitUntil: "load" })
+        await expectLocalizedDocument(routePage, locale)
+        await routePage.close()
       }
 
-      await page.goto(`/${locale}`, { waitUntil: "domcontentloaded" })
+      await page.goto(`/${locale}`, { waitUntil: "load" })
       const messages = getMessages(locale)
       await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", messages.Home.hero.subtitle)
       await expect(page.getByText(messages.Home.stats.servicesValue, { exact: true })).toBeVisible()
@@ -87,7 +98,7 @@ test.describe("Localization public-quality matrix", () => {
         const context = await browser.newContext({ javaScriptEnabled: false })
         const page = await context.newPage()
         try {
-          await page.goto(`/${locale}${route}`, { waitUntil: "domcontentloaded" })
+          await page.goto(`/${locale}${route}`, { waitUntil: "load" })
           await expectLocalizedDocument(page, locale)
         } finally {
           await context.close()
@@ -96,14 +107,15 @@ test.describe("Localization public-quality matrix", () => {
     }
 
     test(`${locale} representative mobile routes do not overflow or expose raw keys`, async ({ page }) => {
-      await page.setViewportSize({ width: 390, height: 844 })
-      await mockSupabase(page)
-
       for (const route of MOBILE_ROUTES) {
-        await page.goto(`/${locale}${route}`, { waitUntil: "domcontentloaded" })
-        await expectLocalizedDocument(page, locale)
-        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+        const routePage = await page.context().newPage()
+        await routePage.setViewportSize({ width: 390, height: 844 })
+        await mockSupabase(routePage)
+        await routePage.goto(`/${locale}${route}`, { waitUntil: "load" })
+        await expectLocalizedDocument(routePage, locale)
+        const overflow = await routePage.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
         expect(overflow).toBeLessThanOrEqual(1)
+        await routePage.close()
       }
     })
   }
@@ -114,13 +126,19 @@ test.describe("Localization public-quality matrix", () => {
       const english = getMessages("en")
       const target = getMessages(locale)
 
-      await page.goto("/en/settings")
-      await page.getByRole("button", { name: english.Navigation.language }).click()
+      await page.goto("/en/settings", { waitUntil: "load" })
+      if ((page.viewportSize()?.width ?? 1280) < 1024) {
+        await page.getByRole("button", { name: english.Navigation.openMenu }).click()
+      }
+      await page.getByRole("button", { name: english.Navigation.language }).last().click()
       await page.locator(`[data-locale="${locale}"]`).click()
 
       await expect(page).toHaveURL(new RegExp(`/${locale}/settings$`))
       await expect(page.locator("html")).toHaveAttribute("lang", locale)
-      await expect(page.getByRole("button", { name: target.Navigation.language })).toBeVisible()
+      if ((page.viewportSize()?.width ?? 1280) < 1024) {
+        await page.getByRole("button", { name: target.Navigation.openMenu }).click()
+      }
+      await expect(page.getByRole("button", { name: target.Navigation.language }).last()).toBeVisible()
     })
   }
 })

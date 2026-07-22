@@ -3,6 +3,7 @@ import { cpSync, existsSync } from "node:fs"
 import path from "node:path"
 
 const [, , suitePath, ...forwardedArgs] = process.argv
+const hasExplicitProject = forwardedArgs.some((arg) => arg === "--project" || arg.startsWith("--project="))
 
 if (!suitePath) {
   console.error("Usage: node --import tsx scripts/run-playwright-with-server.ts <suitePath> [playwright args...]")
@@ -97,7 +98,8 @@ async function main() {
     throw error
   }
 
-  const playwright = spawnInherited("npx", ["playwright", "test", suitePath, "--project=chromium", ...forwardedArgs], {
+  const projectArgs = hasExplicitProject ? [] : ["--project=chromium"]
+  const playwright = spawnInherited("npx", ["playwright", "test", suitePath, ...projectArgs, ...forwardedArgs], {
     ...process.env,
     PLAYWRIGHT_BASE_URL: SERVER_URL,
   })
