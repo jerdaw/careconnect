@@ -8,15 +8,20 @@ test.describe("Robust Accessibility Audit", () => {
     await mockSupabase(page)
   })
 
-  const routes = ["/en", "/en?q=health", "/en/dashboard", "/en/submit-service", "/en/service/kids-help-phone"]
+  const routes = [
+    "/en",
+    "/en?q=health",
+    "/en/dashboard",
+    "/en/submit-service",
+    "/en/service/brampton-safe-centre-of-peel",
+  ]
 
   for (const route of routes) {
     test(`audit ${route}`, async ({ page }) => {
       console.log(`Starting audit for ${route}...`)
-      await page.goto(route)
+      await page.goto(route, { waitUntil: "domcontentloaded" })
 
       // Wait for hydration and dynamic content more robustly
-      await page.waitForLoadState("networkidle")
       await page.waitForTimeout(5000) // generous 5s wait for hydration/animations
 
       // Ensure we are in a predictable state (dark mode)

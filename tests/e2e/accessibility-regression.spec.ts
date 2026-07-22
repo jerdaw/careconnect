@@ -3,7 +3,13 @@ import AxeBuilder from "@axe-core/playwright"
 
 import { mockSupabase } from "./utils"
 
-const regressionRoutes = ["/en", "/en?q=health", "/en/dashboard", "/en/submit-service", "/en/service/kids-help-phone"]
+const regressionRoutes = [
+  "/en",
+  "/en?q=health",
+  "/en/dashboard",
+  "/en/submit-service",
+  "/en/service/brampton-safe-centre-of-peel",
+]
 
 test.describe("Brampton closeout accessibility regressions", () => {
   test.beforeEach(async ({ page }) => {
@@ -12,8 +18,7 @@ test.describe("Brampton closeout accessibility regressions", () => {
 
   for (const route of regressionRoutes) {
     test(`${route} has no serious WCAG A/AA Axe violations`, async ({ page }) => {
-      await page.goto(route)
-      await page.waitForLoadState("networkidle")
+      await page.goto(route, { waitUntil: "domcontentloaded" })
       await page.waitForTimeout(5000)
       await page.evaluate(() => document.documentElement.classList.add("dark"))
 

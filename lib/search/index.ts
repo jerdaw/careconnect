@@ -1,4 +1,3 @@
-import { VerificationLevel } from "@/types/service"
 import { SearchResult, SearchOptions } from "./types"
 import { loadServices } from "./data"
 import { tokenize } from "./utils"
@@ -13,7 +12,7 @@ import { expandQuery as expandSynonyms } from "./synonyms"
 import { findClosestMatch } from "./levenshtein"
 import { getSearchTerms } from "./data"
 import { trackPerformance } from "@/lib/performance/tracker"
-import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
+import { isPublicServiceEligible } from "@/lib/public-service-governance"
 import { serviceServesPlace } from "@/lib/places/coverage"
 
 const SEMANTIC_SIMILARITY_THRESHOLD = 0.01
@@ -66,9 +65,7 @@ export const searchServices = async (query: string, options: SearchOptions = {})
         filteredServices = filteredServices.filter((service) => serviceServesPlace(service, placeId))
       }
 
-      filteredServices = filteredServices.filter(
-        (service) => service.verification_level !== VerificationLevel.L0 && !isBeyondGovernanceFreshnessWindow(service)
-      )
+      filteredServices = filteredServices.filter(isPublicServiceEligible)
 
       // Special Case: Empty Query but filters are active
       if (query.trim().length === 0) {

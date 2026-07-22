@@ -10,7 +10,7 @@ import { ServicePublic } from "@/types/service-public"
 import { trackPerformance } from "@/lib/performance/tracker"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { CircuitOpenError } from "@/lib/resilience/circuit-breaker"
-import { isBeyondGovernanceFreshnessWindow } from "@/lib/freshness"
+import { isPublicServiceEligible } from "@/lib/public-service-governance"
 import { sanitizePublicServiceProvenance } from "@/lib/public-provenance"
 import { serviceServesPlace } from "@/lib/places/coverage"
 
@@ -93,9 +93,7 @@ export async function POST(request: NextRequest) {
         if (placeId) {
           services = services.filter((service) => serviceServesPlace(service, placeId))
         }
-        services = services
-          .map((service) => sanitizePublicServiceProvenance(service))
-          .filter((service) => !isBeyondGovernanceFreshnessWindow(service))
+        services = services.map((service) => sanitizePublicServiceProvenance(service)).filter(isPublicServiceEligible)
 
         // 7. Server-Side Scoring (The "Hybrid" Part)
         // Apply full scoring logic: Authority, Verification, Freshness, Completeness, Proximity, Intent

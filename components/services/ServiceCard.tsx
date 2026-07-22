@@ -55,6 +55,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const locale = useLocale()
   const t = useTranslations()
+  const tCategory = useTranslations("Feedback.categories")
   const { context: userContext } = useUserContext()
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
@@ -64,6 +65,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const rawDescription = locale === "fr" && service.description_fr ? service.description_fr : service.description
   const address = locale === "fr" && service.address_fr ? service.address_fr : service.address
 
+  const nameLanguage = locale === "fr" && service.name_fr ? "fr" : "en"
+  const descriptionLanguage = locale === "fr" && service.description_fr ? "fr" : "en"
+  const addressLanguage = locale === "fr" && service.address_fr ? "fr" : "en"
   // Apply Highlighting
   const nameHtml = highlightMatches(rawName, highlightTokens)
   const descriptionHtml = highlightMatches(rawDescription, highlightTokens)
@@ -112,6 +116,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               {/* Title Row with inline badges */}
               <div className="flex flex-wrap items-center gap-1.5">
                 <h2
+                  lang={nameLanguage}
                   className="truncate text-sm leading-tight font-semibold text-neutral-900 dark:text-neutral-950"
                   dangerouslySetInnerHTML={{ __html: nameHtml }}
                 />
@@ -143,7 +148,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                         onScopeFilter?.("provincial")
                       }}
                     >
-                      {badge.label}
+                      {badge.kind === "provincial"
+                        ? t("Distance.ontarioWide")
+                        : badge.kind === "national"
+                          ? t("Distance.canadaWide")
+                          : badge.label}
                     </Badge>
                   )
                 })}
@@ -188,7 +197,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </div>
               {/* Meta row: category + distance/scope */}
               <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-neutral-700 dark:text-neutral-700">
-                <span className="font-medium">{service.intent_category}</span>
+                <span className="font-medium">{tCategory(service.intent_category)}</span>
                 <span className="text-neutral-500 dark:text-neutral-500">•</span>
                 <span>
                   {service.scope === "ontario"
@@ -202,21 +211,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </div>
             </div>
           </div>
-
           {/* Description - single line */}
           <p
+            lang={descriptionLanguage}
             className="mt-1.5 line-clamp-1 text-[13px] text-neutral-700 dark:text-neutral-700"
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
-
           <ServiceMatchReasons reasons={matchReasons} />
-
           {/* Contact Info - inline */}
           <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-neutral-700 dark:text-neutral-700">
             {address && (
               <div className="flex items-center gap-1 truncate">
                 <MapPin className="h-3.5 w-3.5 shrink-0 text-neutral-600 dark:text-neutral-600" />
-                <span className="max-w-[180px] truncate">{address}</span>
+                <span className="max-w-[180px] truncate" lang={addressLanguage}>
+                  {address}
+                </span>
               </div>
             )}
             {service.phone && (
@@ -235,7 +244,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </div>
             )}
           </div>
-
           {/* Footer: Tags + Actions - minimal spacing */}
           <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
             <div className="flex min-w-0 flex-wrap items-center gap-1">

@@ -26,10 +26,25 @@ vi.mock("@/lib/ai/engine", () => ({
 
 // Mock data loading
 vi.mock("@/lib/search/data", () => ({
-  loadServices: vi
-    .fn()
-    .mockResolvedValue([{ id: "1", name: "Test Service", description: "A test service", intent_category: "food" }]),
+  loadServices: vi.fn().mockResolvedValue([
+    {
+      id: "1",
+      name: "Test Service",
+      description: "A test service",
+      intent_category: "food",
+      verification_level: "L1",
+      last_verified: new Date().toISOString(),
+    },
+  ]),
 }))
+
+function makeEligibleServices(services: Array<Record<string, unknown>>) {
+  return services.map((service) => ({
+    ...service,
+    verification_level: "L1",
+    last_verified: typeof service.last_verified === "string" ? service.last_verified : new Date().toISOString(),
+  }))
+}
 
 describe("searchServices Logic", () => {
   beforeEach(() => {
@@ -79,7 +94,7 @@ describe("searchServices Logic", () => {
       { id: "1", name: "Food Bank", description: "Provides food", intent_category: "food", verification_level: 1 },
       { id: "2", name: "Shelter", description: "Provides housing", intent_category: "housing", verification_level: 1 },
     ]
-    ;(loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(makeEligibleServices(mockServices))
 
     const results = await searchServices("", { category: "food" })
     expect(results).toHaveLength(1)
@@ -98,7 +113,7 @@ describe("searchServices Logic", () => {
         intent_category: "Crisis",
       },
     ]
-    ;(loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(makeEligibleServices(mockServices))
 
     const results = await searchServices("suicide")
 
@@ -111,7 +126,7 @@ describe("searchServices Logic", () => {
     const mockServices = [
       { id: "1", name: "Service 1", description: "Service 1 desc", embedding: [0.1, 0.9], verification_level: 1 },
     ]
-    ;(loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(makeEligibleServices(mockServices))
 
     const results = await searchServices("query", {
       vectorOverride: [0.1, 0.9],
@@ -140,7 +155,7 @@ describe("searchServices Logic", () => {
         intent_category: "food",
       },
     ]
-    ;(loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(makeEligibleServices(mockServices))
 
     const results = await searchServices("Near", {
       location: { lat: 44.23, lng: -76.48 },
@@ -171,7 +186,7 @@ describe("searchServices Logic", () => {
         intent_category: "food",
       },
     ]
-    ;(loadServices as any).mockResolvedValue(mockServices)
+    ;(loadServices as any).mockResolvedValue(makeEligibleServices(mockServices))
 
     const results = await searchServices("service")
 
@@ -179,32 +194,34 @@ describe("searchServices Logic", () => {
   })
 
   it("filters Kingston-only services out of Brampton searches", async () => {
-    ;(loadServices as any).mockResolvedValue([
-      {
-        id: "kingston-food",
-        name: "Kingston Food",
-        description: "Food support",
-        verification_level: "L1",
-        intent_category: "Food",
-        coverage: [{ kind: "local", placeIds: ["kingston-on"] }],
-      },
-      {
-        id: "brampton-food",
-        name: "Brampton Food",
-        description: "Food support",
-        verification_level: "L1",
-        intent_category: "Food",
-        coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
-      },
-      {
-        id: "ontario-food",
-        name: "Ontario Food Line",
-        description: "Food support",
-        verification_level: "L1",
-        intent_category: "Food",
-        coverage: [{ kind: "provincial", label: "Ontario-wide" }],
-      },
-    ])
+    ;(loadServices as any).mockResolvedValue(
+      makeEligibleServices([
+        {
+          id: "kingston-food",
+          name: "Kingston Food",
+          description: "Food support",
+          verification_level: "L1",
+          intent_category: "Food",
+          coverage: [{ kind: "local", placeIds: ["kingston-on"] }],
+        },
+        {
+          id: "brampton-food",
+          name: "Brampton Food",
+          description: "Food support",
+          verification_level: "L1",
+          intent_category: "Food",
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+        },
+        {
+          id: "ontario-food",
+          name: "Ontario Food Line",
+          description: "Food support",
+          verification_level: "L1",
+          intent_category: "Food",
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+        },
+      ])
+    )
 
     const results = await searchServices("food", { placeId: "brampton-on" })
 
@@ -212,28 +229,48 @@ describe("searchServices Logic", () => {
   })
 
   it("ranks selected-place coverage ahead of broad coverage when relevance is comparable", async () => {
-    ;(loadServices as any).mockResolvedValue([
-      {
-        id: "ontario-food",
-        name: "Food Support",
-        description: "Food support",
-        verification_level: "L1",
-        intent_category: "Food",
-        coverage: [{ kind: "provincial", label: "Ontario-wide" }],
-      },
-      {
-        id: "brampton-food",
-        name: "Food Support",
-        description: "Food support",
-        verification_level: "L1",
-        intent_category: "Food",
-        coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
-      },
-    ])
+    ;(loadServices as any).mockResolvedValue(
+      makeEligibleServices([
+        {
+          id: "ontario-food",
+          name: "Food Support",
+          description: "Food support",
+          verification_level: "L1",
+          intent_category: "Food",
+          coverage: [{ kind: "provincial", label: "Ontario-wide" }],
+        },
+        {
+          id: "brampton-food",
+          name: "Food Support",
+          description: "Food support",
+          verification_level: "L1",
+          intent_category: "Food",
+          coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+        },
+      ])
+    )
 
     const results = await searchServices("food", { placeId: "brampton-on" })
 
     expect(results.map((result) => result.service.id)).toEqual(["brampton-food", "ontario-food"])
     expect(results[0]?.matchReasons).toContain("Local coverage for selected place")
+  })
+
+  it("does not surface unmatched services only because they cover the selected place", async () => {
+    ;(loadServices as any).mockResolvedValue([
+      {
+        id: "brampton-food",
+        name: "Brampton Food",
+        description: "Food support",
+        verification_level: "L1",
+        intent_category: "Food",
+        provenance: { verified_at: new Date().toISOString() },
+        coverage: [{ kind: "local", placeIds: ["brampton-on"] }],
+      },
+    ])
+
+    const results = await searchServices("orthodontist", { placeId: "brampton-on" })
+
+    expect(results).toEqual([])
   })
 })

@@ -17,7 +17,6 @@ import {
   findDuplicateEnglishKeys,
   findUsedKeysInFiles,
   getAllKeys,
-  isOptionalForEDIA,
   readTranslationFilesFromDir,
 } from "@/lib/i18n/audit"
 
@@ -88,15 +87,8 @@ export function main() {
     }
 
     const localeKeys = new Set(getAllKeys(messages))
-    const isEDIALocale = !["en", "fr"].includes(locale)
-
     // Find missing keys
-    const missingKeys = [...sourceKeys].filter((key) => {
-      if (localeKeys.has(key)) return false
-      // For EDIA locales, some keys are optional
-      if (isEDIALocale && isOptionalForEDIA(key)) return false
-      return true
-    })
+    const missingKeys = [...sourceKeys].filter((key) => !localeKeys.has(key))
 
     // Find extra keys (in locale but not in source)
     const extraKeys = [...localeKeys].filter((key) => !sourceKeys.has(key))
@@ -113,11 +105,7 @@ export function main() {
       extraKeys,
     })
 
-    if (missingKeys.length > 0) {
-      if (["en", "fr"].includes(locale)) {
-        hasErrors = true
-      }
-    }
+    if (missingKeys.length > 0) hasErrors = true
 
     if (duplicateEnglishKeys.length > 0) {
       hasErrors = true

@@ -4,19 +4,27 @@ test("service worker is registered in the production browser flow", async ({ pag
   await page.goto("/en")
   await page.waitForLoadState("domcontentloaded")
 
-  await page.waitForFunction(async () => {
-    if (!("serviceWorker" in navigator)) {
-      return false
+  const registration = await page.evaluate(async () => {
+    if (!("serviceWorker" in navigator)) return null
+    const ready = await navigator.serviceWorker.ready
+    const worker = ready.active
+    if (worker && worker.state !== "activated") {
+      await new Promise<void>((resolve) => {
+        worker.addEventListener("statechange", () => {
+          if (worker.state === "activated") resolve()
+        })
+      })
     }
-
-    const registrations = await navigator.serviceWorker.getRegistrations()
-    return registrations.length > 0
+    return {
+      scope: ready.scope,
+      activeState: ready.active?.state ?? null,
+      scriptURL: ready.active?.scriptURL ?? null,
+    }
   })
 
-  const registrationCount = await page.evaluate(async () => {
-    const registrations = await navigator.serviceWorker.getRegistrations()
-    return registrations.length
+  expect(registration).toEqual({
+    scope: "http://localhost:3000/",
+    activeState: "activated",
+    scriptURL: "http://localhost:3000/sw.js",
   })
-
-  expect(registrationCount).toBeGreaterThan(0)
 })

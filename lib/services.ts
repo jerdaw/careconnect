@@ -6,7 +6,7 @@ import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
 import { mapServiceToDatabaseUpdate } from "@/lib/service-db"
 import { hasSupabaseCredentials } from "@/lib/supabase"
 import { mapServicePublicToService } from "@/lib/search/map-service-public"
-import { getPublicFreshnessCutoff, isPublicServiceEligible } from "@/lib/public-service-governance"
+import { isPublicServiceEligible } from "@/lib/public-service-governance"
 import type {
   ServicePublicAuthorityTier,
   ServicePublicCoverage,
@@ -102,12 +102,7 @@ export async function getServiceById(id: string): Promise<Service | null> {
 
     // Query the public view (accessible by anon users) instead of the protected services table
     const { data, error } = await withCircuitBreaker(async () =>
-      supabase
-        .from("services_public")
-        .select("*")
-        .eq("id", id)
-        .gte("last_verified", getPublicFreshnessCutoff())
-        .single()
+      supabase.from("services_public").select("*").eq("id", id).single()
     )
 
     if (error) {
@@ -124,7 +119,7 @@ export async function getServiceById(id: string): Promise<Service | null> {
 
     const serviceRow = data as ServiceRow
 
-    return mapServicePublicToService({
+    const service = mapServicePublicToService({
       ...serviceRow,
       id: String(serviceRow.id ?? id),
       name: String(serviceRow.name ?? ""),
@@ -176,6 +171,8 @@ export async function getServiceById(id: string): Promise<Service | null> {
       access_script: typeof serviceRow.access_script === "string" ? serviceRow.access_script : null,
       access_script_fr: typeof serviceRow.access_script_fr === "string" ? serviceRow.access_script_fr : null,
     })
+
+    return isPublicServiceEligible(service) ? service : null
   } catch (error) {
     logger.error("Unexpected error in getServiceById", error as Error, { id })
     return null

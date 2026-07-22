@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
-import { getMessages } from "next-intl/server"
+import { getMessages, getTranslations } from "next-intl/server"
 import "../globals.css"
 import { AuthProvider } from "@/components/layout/AuthProvider"
 import { ErrorBoundary } from "@/components/error/ErrorBoundary"
@@ -14,26 +14,31 @@ import { OfflineSync } from "@/components/offline/OfflineSync"
 import { OfflineBanner } from "@/components/ui/OfflineBanner"
 import { BRAND_NAME, getPublicBaseUrl } from "@/lib/brand"
 
-export const metadata: Metadata = {
-  metadataBase: new URL(getPublicBaseUrl()),
-  title: BRAND_NAME,
-  description: "Find local support services for food, housing, crisis, and health in supported Ontario communities.",
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Home.hero" })
+
+  return {
+    metadataBase: new URL(getPublicBaseUrl()),
     title: BRAND_NAME,
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  icons: {
-    icon: [
-      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
+    description: t("subtitle"),
+    manifest: "/manifest.json",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: BRAND_NAME,
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    icons: {
+      icon: [
+        { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+        { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    },
+  }
 }
 
 export const viewport: Viewport = {

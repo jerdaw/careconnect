@@ -53,10 +53,23 @@ const DETAIL_PANEL_CLASS =
 const CONTACT_ICON_CLASS =
   "shrink-0 rounded-xl bg-accent-50 p-2.5 text-accent-700 ring-1 ring-black/5 dark:bg-accent-500/10 dark:text-accent-200 dark:ring-white/10"
 
+const WEEKDAYS = [
+  { key: "monday", date: "2024-01-01T12:00:00Z" },
+  { key: "tuesday", date: "2024-01-02T12:00:00Z" },
+  { key: "wednesday", date: "2024-01-03T12:00:00Z" },
+  { key: "thursday", date: "2024-01-04T12:00:00Z" },
+  { key: "friday", date: "2024-01-05T12:00:00Z" },
+  { key: "saturday", date: "2024-01-06T12:00:00Z" },
+  { key: "sunday", date: "2024-01-07T12:00:00Z" },
+] as const
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id, locale } = await params
   const service = await getServiceById(id)
-  if (!service) return { title: "Service Not Found" }
+  if (!service) {
+    const t = await getTranslations({ locale, namespace: "ServiceDetail" })
+    return { title: t("notFound") }
+  }
 
   const name = locale === "fr" && service.name_fr ? service.name_fr : service.name
   const description = locale === "fr" && service.description_fr ? service.description_fr : service.description
@@ -71,8 +84,9 @@ export default async function ServicePage({ params, searchParams }: Props) {
   const { id, locale } = await params
   const { view, matchReason } = await searchParams
   const service = await getServiceById(id)
-  const t = await getTranslations("ServiceDetail")
-  const tBadge = await getTranslations("VerificationLevels")
+  const t = await getTranslations({ locale, namespace: "ServiceDetail" })
+  const tBadge = await getTranslations({ locale, namespace: "VerificationLevels" })
+  const tCategory = await getTranslations({ locale, namespace: "Feedback.categories" })
   const searchMatchReasons = normalizeMatchReasons(
     Array.isArray(matchReason) ? matchReason : matchReason ? [matchReason] : []
   )
@@ -99,13 +113,27 @@ export default async function ServicePage({ params, searchParams }: Props) {
     )
   }
 
-  const name = locale === "fr" && service.name_fr ? service.name_fr : service.name
-  const description = (locale === "fr" && service.description_fr ? service.description_fr : service.description).split(
-    "\n"
-  )
-  const address = locale === "fr" && service.address_fr ? service.address_fr : service.address
-  const accessScript = locale === "fr" && service.access_script_fr ? service.access_script_fr : service.access_script
-  const accessScriptIsEnglishFallback = locale === "fr" && !!service.access_script && !service.access_script_fr
+  const isFrench = locale === "fr"
+  const name = isFrench && service.name_fr ? service.name_fr : service.name
+  const descriptionSource = isFrench && service.description_fr ? service.description_fr : service.description
+  const description = descriptionSource.split("\n")
+  const address = isFrench && service.address_fr ? service.address_fr : service.address
+  const fees = isFrench && service.fees_fr ? service.fees_fr : service.fees
+  const documentsRequired =
+    isFrench && service.documents_required_fr ? service.documents_required_fr : service.documents_required
+  const eligibility =
+    isFrench && (service.eligibility_notes_fr || service.eligibility_fr)
+      ? service.eligibility_notes_fr || service.eligibility_fr
+      : service.eligibility_notes || service.eligibility
+  const applicationProcess =
+    isFrench && service.application_process_fr ? service.application_process_fr : service.application_process
+  const hoursText = isFrench && service.hours_text_fr ? service.hours_text_fr : service.hours_text
+  const accessScript = isFrench && service.access_script_fr ? service.access_script_fr : service.access_script
+  const accessScriptIsEnglishFallback = locale !== "en" && !!accessScript && !(isFrench && service.access_script_fr)
+  const contentLanguage = (hasFrenchTranslation: boolean) => (isFrench && hasFrenchTranslation ? "fr" : "en")
+  const nameLanguage = contentLanguage(!!service.name_fr)
+  const descriptionLanguage = contentLanguage(!!service.description_fr)
+  const addressLanguage = contentLanguage(!!service.address_fr)
 
   const isVerified =
     service.verification_level === VerificationLevel.L2 || service.verification_level === VerificationLevel.L3
@@ -131,7 +159,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                   <div className="flex-1 space-y-5">
                     <div className="flex flex-wrap items-center gap-3">
                       <Badge variant="outline" className="border-neutral-200/80 bg-white/70 py-1 text-sm">
-                        {service.intent_category}
+                        {tCategory(service.intent_category)}
                       </Badge>
                       {service.verification_level === VerificationLevel.L3 ? (
                         <Badge
@@ -163,7 +191,10 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       </div>
                     )}
 
-                    <h1 className="heading-display max-w-4xl text-3xl leading-tight font-bold text-neutral-950 md:text-5xl dark:text-white">
+                    <h1
+                      lang={nameLanguage}
+                      className="heading-display max-w-4xl text-3xl leading-tight font-bold text-neutral-950 md:text-5xl dark:text-white"
+                    >
                       {name}
                     </h1>
 
@@ -173,7 +204,9 @@ export default async function ServicePage({ params, searchParams }: Props) {
                           className="text-accent-700 dark:text-accent-300 mt-1 h-5 w-5 shrink-0"
                           aria-hidden="true"
                         />
-                        <span className="text-lg leading-relaxed">{address}</span>
+                        <span className="text-lg leading-relaxed" lang={addressLanguage}>
+                          {address}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -219,7 +252,10 @@ export default async function ServicePage({ params, searchParams }: Props) {
                   <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-neutral-950 dark:text-white">
                     {t("aboutService")}
                   </h2>
-                  <div className="prose prose-neutral dark:prose-invert max-w-none leading-relaxed text-neutral-700 dark:text-neutral-300">
+                  <div
+                    lang={descriptionLanguage}
+                    className="prose prose-neutral dark:prose-invert max-w-none leading-relaxed text-neutral-700 dark:text-neutral-300"
+                  >
                     {description.map((paragraph, idx) => (
                       <p key={idx} className="mb-4">
                         {paragraph}
@@ -229,52 +265,67 @@ export default async function ServicePage({ params, searchParams }: Props) {
                 </div>
               </Card>
 
-              {(service.fees || service.documents_required) && (
+              {(fees || documentsRequired) && (
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                  {service.fees && (
+                  {fees && (
                     <Card padding="none" className={DETAIL_SURFACE_CLASS}>
                       <div className="p-6 md:p-7">
                         <h2 className="mb-3 flex items-center gap-2 text-xl font-bold text-neutral-950 dark:text-white">
                           <Wallet className="text-accent-700 dark:text-accent-300 h-6 w-6" aria-hidden="true" />
                           {t("fees")}
                         </h2>
-                        <p className="text-neutral-700 dark:text-neutral-300">{service.fees}</p>
+                        <p className="text-neutral-700 dark:text-neutral-300" lang={contentLanguage(!!service.fees_fr)}>
+                          {fees}
+                        </p>
                       </div>
                     </Card>
                   )}
-                  {service.documents_required && (
+                  {documentsRequired && (
                     <Card padding="none" className={DETAIL_SURFACE_CLASS}>
                       <div className="p-6 md:p-7">
                         <h2 className="mb-3 flex items-center gap-2 text-xl font-bold text-neutral-950 dark:text-white">
                           <FileText className="text-accent-700 dark:text-accent-300 h-6 w-6" aria-hidden="true" />
                           {t("documents")}
                         </h2>
-                        <p className="text-neutral-700 dark:text-neutral-300">{service.documents_required}</p>
+                        <p
+                          className="text-neutral-700 dark:text-neutral-300"
+                          lang={contentLanguage(!!service.documents_required_fr)}
+                        >
+                          {documentsRequired}
+                        </p>
                       </div>
                     </Card>
                   )}
                 </div>
               )}
 
-              {(service.eligibility || service.eligibility_notes) && (
+              {eligibility && (
                 <Card padding="none" className={DETAIL_SURFACE_CLASS}>
                   <div className="p-6 md:p-8">
                     <h2 className="mb-5 flex items-center gap-2 text-2xl font-bold text-neutral-950 dark:text-white">
                       <CheckCircle2 className="text-accent-700 dark:text-accent-300 h-6 w-6" aria-hidden="true" />
                       {t("eligibility")}
                     </h2>
-                    <div className={DETAIL_PANEL_CLASS}>
-                      <p>{service.eligibility_notes || service.eligibility}</p>
+                    <div
+                      className={DETAIL_PANEL_CLASS}
+                      lang={contentLanguage(!!(service.eligibility_notes_fr || service.eligibility_fr))}
+                    >
+                      <p>{eligibility}</p>
                     </div>
                   </div>
                 </Card>
               )}
 
-              {service.application_process && (
+              {applicationProcess && (
                 <Card padding="none" className={DETAIL_SURFACE_CLASS}>
                   <div className="p-6 md:p-8">
                     <h2 className="mb-4 text-2xl font-bold text-neutral-950 dark:text-white">{t("accessProcess")}</h2>
-                    <p className="text-neutral-700 dark:text-neutral-300">{service.application_process}</p>
+                    <p
+                      className="text-neutral-700 dark:text-neutral-300"
+                      lang={contentLanguage(!!service.application_process_fr)}
+                    >
+                      {applicationProcess}
+                    </p>
                   </div>
                 </Card>
               )}
@@ -293,7 +344,9 @@ export default async function ServicePage({ params, searchParams }: Props) {
                           {t("accessScriptEnglishFallbackNotice")}
                         </p>
                       )}
-                      <p className="mt-4 whitespace-pre-line">{accessScript}</p>
+                      <p className="mt-4 whitespace-pre-line" lang={contentLanguage(!!service.access_script_fr)}>
+                        {accessScript}
+                      </p>
                     </div>
                   </div>
                 </Card>
@@ -307,7 +360,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       {Object.entries(service.accessibility).map(
                         ([key, value]) =>
                           value && (
-                            <Badge key={key} variant="secondary" className="capitalize">
+                            <Badge key={key} variant="secondary" className="capitalize" lang="en">
                               {key.replace("_", " ")}
                             </Badge>
                           )
@@ -387,7 +440,9 @@ export default async function ServicePage({ params, searchParams }: Props) {
                         </div>
                         <div className="flex-1">
                           <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{t("location")}</p>
-                          <p className="text-neutral-900 dark:text-neutral-200">{address}</p>
+                          <p className="text-neutral-900 dark:text-neutral-200" lang={addressLanguage}>
+                            {address}
+                          </p>
                           <Button variant="link" className="mt-1 h-auto p-0 text-xs" asChild>
                             <a
                               href={`https://maps.google.com/?q=${encodeURIComponent(address)}`}
@@ -409,7 +464,7 @@ export default async function ServicePage({ params, searchParams }: Props) {
                       </div>
                     )}
 
-                    {(service.hours || service.hours_text) && (
+                    {(service.hours || hoursText) && (
                       <div className="flex items-start gap-3">
                         <div className={CONTACT_ICON_CLASS}>
                           <Clock className="h-5 w-5" aria-hidden="true" />
@@ -419,33 +474,39 @@ export default async function ServicePage({ params, searchParams }: Props) {
                             {t("hours")}
                           </p>
                           <div className="text-sm">
-                            {service.hours_text && (
-                              <div className="mb-3 font-medium whitespace-pre-line text-neutral-900 dark:text-neutral-200">
-                                {service.hours_text}
+                            {hoursText && (
+                              <div
+                                className="mb-3 font-medium whitespace-pre-line text-neutral-900 dark:text-neutral-200"
+                                lang={contentLanguage(!!service.hours_text_fr)}
+                              >
+                                {hoursText}
                               </div>
                             )}
                             {service.hours &&
-                              ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map(
-                                (day) => {
-                                  const dayHours = (service.hours as any)[day]
-                                  if (!dayHours) return null
-                                  return (
-                                    <div
-                                      key={day}
-                                      className="flex justify-between border-b border-neutral-100 py-0.5 last:border-0 dark:border-white/10"
-                                    >
-                                      <span className="w-24 text-neutral-500 capitalize dark:text-neutral-400">
-                                        {day}
-                                      </span>
-                                      <span className="font-medium text-neutral-900 dark:text-neutral-200">
-                                        {dayHours.open} - {dayHours.close}
-                                      </span>
-                                    </div>
-                                  )
-                                }
-                              )}
+                              WEEKDAYS.map(({ key: day, date }) => {
+                                const dayHours = (service.hours as any)[day]
+                                if (!dayHours) return null
+                                return (
+                                  <div
+                                    key={day}
+                                    className="flex justify-between border-b border-neutral-100 py-0.5 last:border-0 dark:border-white/10"
+                                  >
+                                    <span className="w-24 text-neutral-500 capitalize dark:text-neutral-400">
+                                      {new Intl.DateTimeFormat(locale, { weekday: "long", timeZone: "UTC" }).format(
+                                        new Date(date)
+                                      )}
+                                    </span>
+                                    <span className="font-medium text-neutral-900 dark:text-neutral-200">
+                                      {dayHours.open} - {dayHours.close}
+                                    </span>
+                                  </div>
+                                )
+                              })}
                             {service.hours?.notes && (
-                              <p className="mt-2 rounded-lg bg-neutral-50/80 p-2 text-xs text-neutral-500 italic dark:bg-white/[0.04] dark:text-neutral-400">
+                              <p
+                                className="mt-2 rounded-lg bg-neutral-50/80 p-2 text-xs text-neutral-500 italic dark:bg-white/[0.04] dark:text-neutral-400"
+                                lang={locale === "en" ? undefined : "en"}
+                              >
                                 {t("note")} {service.hours.notes}
                               </p>
                             )}

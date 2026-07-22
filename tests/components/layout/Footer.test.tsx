@@ -37,6 +37,7 @@ describe("Footer", () => {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       accessibility: "Accessibility",
+      email: "Email",
       copyright: "© 2026 CareConnect. All rights reserved.",
     }
     return translations[key] || key
@@ -99,7 +100,7 @@ describe("Footer", () => {
       render(<Footer />)
 
       expect(screen.getByLabelText("GitHub")).toBeInTheDocument()
-      expect(screen.getByLabelText("Contact by Email")).toBeInTheDocument()
+      expect(screen.getByLabelText("Email")).toBeInTheDocument()
     })
   })
 
@@ -156,8 +157,8 @@ describe("Footer", () => {
       const githubLink = screen.getByLabelText("GitHub")
       expect(githubLink).toHaveAccessibleName("GitHub")
 
-      const emailLink = screen.getByLabelText("Contact by Email")
-      expect(emailLink).toHaveAccessibleName("Contact by Email")
+      const emailLink = screen.getByLabelText("Email")
+      expect(emailLink).toHaveAccessibleName("Email")
     })
 
     it("should have all links accessible", () => {

@@ -8,6 +8,7 @@ import Image from "next/image"
 export function Footer() {
   const t = useTranslations("Footer")
   const locale = useLocale()
+  const tService = useTranslations("ServiceDetail")
   const isNonEnglish = locale !== "en"
 
   return (
@@ -21,13 +22,7 @@ export function Footer() {
           <div className="space-y-5 md:pr-4">
             <div className="flex items-center gap-3">
               <div className="relative flex h-9 items-center justify-center transition-all">
-                <Image
-                  src="/logo.png"
-                  alt="CareConnect Logo"
-                  width={64}
-                  height={32}
-                  className="h-7 w-auto object-contain"
-                />
+                <Image src="/logo.png" alt="CareConnect" width={64} height={32} className="h-7 w-auto object-contain" />
               </div>
               <span className="heading-display text-xl font-bold tracking-tight text-white">CareConnect</span>
             </div>
@@ -44,7 +39,7 @@ export function Footer() {
               </a>
               <a
                 href="mailto:feedback@careconnect.ing"
-                aria-label="Contact by Email"
+                aria-label={tService("email")}
                 className="rounded-full bg-white/5 p-2 transition-colors hover:bg-white/10"
               >
                 <Mail className="h-5 w-5 text-neutral-400" />

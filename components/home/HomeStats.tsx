@@ -7,9 +7,10 @@ import { fadeInUp, staggerContainer } from "@/lib/motion"
 
 export default function HomeStats() {
   const t = useTranslations("Home.stats")
+  const tAnalytics = useTranslations("Analytics")
 
   const stats = [
-    { value: t("servicesValue"), label: t("services") },
+    { value: t("servicesValue"), label: tAnalytics("totalServices") },
     { value: t("categoriesValue"), label: t("categories") },
     { value: t("languagesValue"), label: t("languages") },
   ]

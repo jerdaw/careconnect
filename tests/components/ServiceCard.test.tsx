@@ -3,7 +3,9 @@ import ServiceCard from "@/components/services/ServiceCard"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { TestWrapper } from "@/tests/utils/test-wrapper"
 import { mockService } from "@/tests/utils/mocks"
+import { IntentCategory } from "@/types/service"
 
+import frMessages from "@/messages/fr.json"
 // Mock useUserContext to avoid context errors
 vi.mock("@/hooks/useUserContext", () => ({
   useUserContext: () => ({
@@ -96,6 +98,23 @@ describe("ServiceCard Component", () => {
     fireEvent.click(phoneLink)
 
     expect(mockTrackEvent).toHaveBeenCalledWith(mockService.id, "click_call")
+  })
+
+  it("localizes category and broad-coverage labels", () => {
+    render(
+      <TestWrapper locale="fr" messages={frMessages}>
+        <ServiceCard
+          service={{
+            ...mockService,
+            intent_category: IntentCategory.Food,
+            scope: "ontario",
+          }}
+        />
+      </TestWrapper>
+    )
+
+    expect(screen.getAllByText(frMessages.Feedback.categories.Food)[0]).toBeInTheDocument()
+    expect(screen.getAllByText(frMessages.Distance.ontarioWide)[0]).toBeInTheDocument()
   })
 
   it("preserves match reasons in the details link", () => {

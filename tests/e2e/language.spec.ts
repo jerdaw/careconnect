@@ -15,9 +15,8 @@ test.describe("Language Switching", () => {
     const searchInput = page.getByRole("textbox", { name: /search for services/i })
     await expect(searchInput).toBeVisible()
 
-    // The language selector is a <select> element with aria-label="Select language"
-    const languageSelect = page.getByLabel("Select language")
-    await languageSelect.selectOption("fr")
+    await page.getByRole("button", { name: "Language" }).click()
+    await page.locator('[data-locale="fr"]').click()
 
     // Verify URL changes to French locale
     await expect(page).toHaveURL(/\/fr/)

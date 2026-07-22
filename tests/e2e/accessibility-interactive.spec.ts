@@ -4,7 +4,7 @@ import AxeBuilder from "@axe-core/playwright"
 test.describe("Interactive Accessibility Audit", () => {
   test.setTimeout(90000)
   test("Emergency Modal should be accessible and trap focus", async ({ page }) => {
-    await page.goto("/en")
+    await page.goto("/en", { waitUntil: "domcontentloaded" })
 
     // 1. Handle Mobile Menu if present
     const mobileMenuButton = page.getByRole("button", { name: /open menu/i })
@@ -41,8 +41,8 @@ test.describe("Interactive Accessibility Audit", () => {
   })
 
   test("Feedback/Issue Modal should be accessible", async ({ page }) => {
-    // Use a service that exists in seed data
-    await page.goto("/en/service/kids-help-phone")
+    // Use a currently public-eligible service.
+    await page.goto("/en/service/brampton-safe-centre-of-peel", { waitUntil: "domcontentloaded" })
 
     // 1. Trigger Modal (from TrustPanel)
     // en.json: Trust.updateHint is "Are you a provider? Click to submit a correction request."
@@ -68,8 +68,7 @@ test.describe("Interactive Accessibility Audit", () => {
     await expect(textarea).toBeVisible()
   })
   test("Skip to main content link should work", async ({ page }) => {
-    await page.goto("/en")
-    await page.waitForLoadState("networkidle")
+    await page.goto("/en", { waitUntil: "domcontentloaded" })
 
     const skipLink = page.locator('a[href="#main-content"]')
 
@@ -94,8 +93,7 @@ test.describe("Interactive Accessibility Audit", () => {
   })
 
   test("Keyboard navigation should follow a logical loop", async ({ page }) => {
-    await page.goto("/en")
-    await page.waitForLoadState("networkidle")
+    await page.goto("/en", { waitUntil: "domcontentloaded" })
 
     // Press Tab multiple times and ensure we only hit interactive elements
     let tabCount = 0
@@ -128,7 +126,7 @@ test.describe("Interactive Accessibility Audit", () => {
   })
 
   test("All form inputs should have descriptive labels", async ({ page }) => {
-    await page.goto("/en/submit-service")
+    await page.goto("/en/submit-service", { waitUntil: "domcontentloaded" })
 
     const inputs = page.locator('input:not([type="hidden"]), textarea, select')
     const count = await inputs.count()

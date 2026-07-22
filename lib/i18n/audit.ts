@@ -4,14 +4,6 @@ import path from "node:path"
 export const LOCALES = ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"] as const
 export const SOURCE_LOCALE = "en"
 
-export const OPTIONAL_KEYS_FOR_EDIA = [
-  /^Terms\.sections\./,
-  /^Privacy\.sections\./,
-  /^AccessibilityPolicy\.(?!title|lastUpdated)/,
-  /^PartnerTerms\.sections\./,
-  /^ContentPolicy\.sections\./,
-]
-
 export const DUPLICATE_ENGLISH_ALLOWLIST = new Set<string>([
   "ServiceDetail.kingston",
   "Admin.observability.performance.metrics.p50",
@@ -49,10 +41,6 @@ export function getMessageValue(messages: Record<string, unknown>, key: string):
 
     return (current as Record<string, unknown>)[segment]
   }, messages)
-}
-
-export function isOptionalForEDIA(key: string): boolean {
-  return OPTIONAL_KEYS_FOR_EDIA.some((pattern) => pattern.test(key))
 }
 
 function escapeRegExp(value: string): string {

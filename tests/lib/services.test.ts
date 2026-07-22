@@ -64,8 +64,7 @@ describe("getServiceById", () => {
       error: null,
     })
 
-    const gte = vi.fn().mockReturnValue({ single })
-    const eq = vi.fn().mockReturnValue({ gte })
+    const eq = vi.fn().mockReturnValue({ single })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -110,8 +109,7 @@ describe("getServiceById", () => {
       error: null,
     })
 
-    const gte = vi.fn().mockReturnValue({ single })
-    const eq = vi.fn().mockReturnValue({ gte })
+    const eq = vi.fn().mockReturnValue({ single })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -137,8 +135,7 @@ describe("getServiceById", () => {
       },
     })
 
-    const gte = vi.fn().mockReturnValue({ single })
-    const eq = vi.fn().mockReturnValue({ gte })
+    const eq = vi.fn().mockReturnValue({ single })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 
@@ -158,8 +155,7 @@ describe("getServiceById", () => {
       },
     })
 
-    const gte = vi.fn().mockReturnValue({ single })
-    const eq = vi.fn().mockReturnValue({ gte })
+    const eq = vi.fn().mockReturnValue({ single })
     const select = vi.fn().mockReturnValue({ eq })
     vi.mocked(supabase.from).mockReturnValue({ select } as any)
 

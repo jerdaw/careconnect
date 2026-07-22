@@ -1,6 +1,6 @@
 "use client"
 
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { usePathname, useRouter } from "@/i18n/routing"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -19,6 +19,7 @@ const LOCALES = [
 
 export default function LanguageSwitcher() {
   const locale = useLocale()
+  const t = useTranslations("Navigation")
   const router = useRouter()
   const pathname = usePathname()
 
@@ -37,10 +38,10 @@ export default function LanguageSwitcher() {
             "hover:bg-neutral-100 dark:hover:bg-neutral-800",
             "text-neutral-600 dark:text-neutral-300"
           )}
-          aria-label="Select Language"
+          aria-label={t("language")}
         >
           <Languages className="h-5 w-5" />
-          <span className="sr-only">Select Language</span>
+          <span className="sr-only">{t("language")}</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-48 p-2" align="end">
@@ -48,6 +49,7 @@ export default function LanguageSwitcher() {
           {LOCALES.map((loc) => (
             <button
               key={loc.code}
+              data-locale={loc.code}
               onClick={() => changeLanguage(loc.code)}
               className={cn(
                 "flex w-full items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",

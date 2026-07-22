@@ -10,6 +10,9 @@ import ModelStatus from "@/components/home/ModelStatus"
 import ScopeFilterBar from "@/components/home/ScopeFilterBar"
 
 const messages = {
+  Analytics: {
+    totalServices: "Total Services",
+  },
   Search: {
     crisis: "Crisis",
     health: "Health",
@@ -37,7 +40,7 @@ const messages = {
       ariaLabel: "Browse {category} services",
     },
     stats: {
-      servicesValue: "196",
+      servicesValue: "204",
       services: "Services",
       categoriesValue: "12",
       categories: "Categories",
@@ -120,7 +123,8 @@ describe("Home surface smoke coverage", () => {
       { messages }
     )
 
-    expect(screen.getByText("196")).toBeInTheDocument()
+    expect(screen.getByText("204")).toBeInTheDocument()
+    expect(screen.getByText("Total Services")).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "How it works" })).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "Private Search" })).toBeInTheDocument()
     expect(screen.getByRole("heading", { name: "Filter Results" })).toBeInTheDocument()

@@ -185,14 +185,11 @@ export function rankServicesByQuery(
           allowFilterOnlyBaseMatch: options.allowFilterOnlyBaseMatch,
         })
 
+        const hasPlaceBoost = ranked.score > 0 && options.placeId && hasPlaceSpecificCoverage(service, options.placeId)
+
         return {
-          score:
-            ranked.score +
-            (options.placeId && hasPlaceSpecificCoverage(service, options.placeId) ? WEIGHTS.placeSpecificCoverage : 0),
-          matchReasons:
-            options.placeId && hasPlaceSpecificCoverage(service, options.placeId)
-              ? [...ranked.reasons, "Local coverage for selected place"]
-              : ranked.reasons,
+          score: ranked.score + (hasPlaceBoost ? WEIGHTS.placeSpecificCoverage : 0),
+          matchReasons: hasPlaceBoost ? [...ranked.reasons, "Local coverage for selected place"] : ranked.reasons,
         }
       })(),
     }))

@@ -6,6 +6,7 @@ import LanguageSwitcher from "@/components/layout/LanguageSwitcher"
 // Mock dependencies
 vi.mock("next-intl", () => ({
   useLocale: vi.fn(),
+  useTranslations: vi.fn(() => (key: string) => (key === "language" ? "Language" : key)),
 }))
 
 vi.mock("@/i18n/routing", () => ({
@@ -41,15 +42,15 @@ describe("LanguageSwitcher", () => {
     it("should render language switcher button", () => {
       render(<LanguageSwitcher />)
 
-      const button = screen.getByRole("button", { name: /select language/i })
+      const button = screen.getByRole("button", { name: /language/i })
       expect(button).toBeInTheDocument()
     })
 
     it("should have accessible label", () => {
       render(<LanguageSwitcher />)
 
-      const button = screen.getByRole("button", { name: /select language/i })
-      expect(button).toHaveAccessibleName("Select Language")
+      const button = screen.getByRole("button", { name: /language/i })
+      expect(button).toHaveAccessibleName("Language")
     })
 
     it("should display Languages icon", () => {
@@ -66,7 +67,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       expect(screen.getByText("English")).toBeInTheDocument()
@@ -84,7 +85,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       // Find the French button
@@ -107,7 +108,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       // Click on French
@@ -124,7 +125,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const spanishButton = screen.getByText("Español")
@@ -139,7 +140,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       // Flags are emojis/text, check they're present (getAllByText for duplicates)
@@ -155,7 +156,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const arabicButton = screen.getByText("العربية").closest("button")
@@ -166,7 +167,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const englishButton = screen.getByText("English").closest("button")
@@ -181,7 +182,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const chineseButton = screen.getByText("中文").closest("button")
@@ -194,7 +195,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const frenchButton = screen.getByText("Français (CA)").closest("button")
@@ -209,7 +210,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       // Test changing to French
@@ -224,7 +225,7 @@ describe("LanguageSwitcher", () => {
 
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const chineseButton = screen.getByText("中文")
@@ -238,7 +239,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
       await user.click(triggerButton)
 
       const languageButtons = screen.getAllByRole("button").slice(1) // Exclude trigger
@@ -253,7 +254,7 @@ describe("LanguageSwitcher", () => {
       const user = userEvent.setup()
       render(<LanguageSwitcher />)
 
-      const triggerButton = screen.getByRole("button", { name: /select language/i })
+      const triggerButton = screen.getByRole("button", { name: /language/i })
 
       // Focus and activate trigger
       await user.tab()

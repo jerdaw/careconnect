@@ -86,7 +86,7 @@ export function Header({ forceSolid = false }: { forceSolid?: boolean } = {}) {
               <div className={cn("relative flex h-9 items-center justify-center rounded-xl transition-all")}>
                 <Image
                   src="/logo.png"
-                  alt="CareConnect Logo"
+                  alt="CareConnect"
                   width={64}
                   height={32}
                   className="h-7 w-auto object-contain"

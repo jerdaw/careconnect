@@ -1,10 +1,13 @@
 import { test, expect } from "@playwright/test"
-import { mockSupabase } from "./utils"
+import { mockSupabase, seedOfflineServices } from "./utils"
 
 import { readFileSync } from "node:fs"
 import path from "node:path"
 
 import exportServices from "./fixtures/services-export.json"
+
+// Playwright routes cannot intercept requests already handled by Workbox.
+test.use({ serviceWorkers: "block" })
 
 const LOCALES = ["en", "fr", "zh-Hans", "ar", "pt", "es", "pa"] as const
 
@@ -47,6 +50,13 @@ test("search still works after going offline (IndexedDB cache)", async ({ page, 
   if (!expectedServiceName) {
     throw new Error("Missing expected service fixture: tests/e2e/fixtures/services-export.json")
   }
+  const freshExportServices = exportServices.map((service) => ({
+    ...service,
+    provenance: {
+      ...service.provenance,
+      verified_at: new Date().toISOString(),
+    },
+  }))
 
   await page.route("**/api/v1/services/export", async (route) => {
     await route.fulfill({
@@ -54,9 +64,9 @@ test("search still works after going offline (IndexedDB cache)", async ({ page, 
       contentType: "application/json",
       body: JSON.stringify({
         version: "test",
-        count: exportServices.length,
-        services: exportServices,
-        embeddings: exportServices.map((s) => ({ id: s.id, embedding: [0, 0, 0] })),
+        count: freshExportServices.length,
+        services: freshExportServices,
+        embeddings: freshExportServices.map((s) => ({ id: s.id, embedding: [0, 0, 0] })),
       }),
     })
   })
@@ -71,44 +81,26 @@ test("search still works after going offline (IndexedDB cache)", async ({ page, 
 
   await page.goto("/")
   await page.waitForURL(/\/en/)
+  await seedOfflineServices(page, freshExportServices)
 
-  await page.waitForResponse(/\/api\/v1\/services\/export/, { timeout: 30_000 })
-
-  // Ensure the offline DB has at least 1 service before switching offline.
-  await page.waitForFunction(
-    async (minCount) => {
-      const openDb = () =>
-        new Promise<IDBDatabase>((resolve, reject) => {
-          const req = indexedDB.open("careconnect-offline-v1")
-          req.onerror = () => reject(req.error)
-          req.onsuccess = () => resolve(req.result)
-        })
-
-      const countServices = (db: IDBDatabase) =>
-        new Promise<number>((resolve, reject) => {
-          const tx = db.transaction("services", "readonly")
-          const store = tx.objectStore("services")
-          const req = store.count()
-          req.onerror = () => reject(req.error)
-          req.onsuccess = () => resolve(req.result)
-        })
-
-      const db = await openDb()
-      try {
-        const count = await countServices(db)
-        return count >= Number(minCount)
-      } finally {
-        db.close()
-      }
-    },
-    exportServices.length,
-    { timeout: 30_000 }
+  await page.reload({ waitUntil: "load" })
+  await page.getByRole("button", { name: "Language" }).click()
+  await expect(page.getByRole("button", { name: "English" })).toBeVisible()
+  await page.keyboard.press("Escape")
+  await page.evaluate(
+    () => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
   )
-
-  await context.setOffline(true)
 
   const searchInput = page.locator('input[type="text"]').first()
   await searchInput.fill("food")
+  const resultHeading = page.getByRole("heading", { level: 2, name: expectedServiceName })
+  await expect(resultHeading).toBeVisible()
+  await searchInput.fill("")
 
-  await expect(page.getByText(expectedServiceName)).toBeVisible()
+  await context.setOffline(true)
+  await page.evaluate(() => window.dispatchEvent(new Event("offline")))
+  await expect(page.getByText("Using offline mode. Information may be outdated.")).toBeVisible()
+
+  await searchInput.fill("food")
+  await expect(resultHeading).toBeVisible()
 })
