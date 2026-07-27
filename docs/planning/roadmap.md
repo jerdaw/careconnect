@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-13
+last_updated: 2026-07-26
 owner: jer
 tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ---
@@ -11,7 +11,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 > **Decision Gate**: Gate 0 exit is `NO-GO`
 > **Immediate Priority**: service reverification plus C1/D4 evidence closure
 > **Brampton Status**: approved eight-record first launch is complete; further changes are gated
-> **Last Updated**: 2026-07-13
+> **Last Updated**: 2026-07-26
 > **Platform Status**: technically mature, operating as a constrained public directory while evidence gates remain open
 
 ## Executive Status
@@ -19,7 +19,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 | Area                    | Current state                                                                                                                                                                                                                                                   | Authoritative evidence                                                                    |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Strategic decision      | v22 Gate 0 exit remains `NO-GO`; the constrained public-directory disposition is not full pilot approval.                                                                                                                                                       | [Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)                 |
-| Service availability    | 204 records: 8 fresh, 1 due-but-visible, and 195 stale/hidden. The 42 stale Crisis records are the first verification lane.                                                                                                                                     | [2026-07-13 Freshness Audit](../audits/service-freshness/2026-07-13/staleness-summary.md) |
+| Service availability    | 204 records: 8 fresh/visible and 196 stale/hidden. The 42 stale Crisis records are the first verification lane.                                                                                                                                                 | [2026-07-26 Freshness Audit](../audits/service-freshness/2026-07-26/staleness-summary.md) |
 | Gate 0 evidence         | `G0-3 / C1` lacks partner legal/API terms and clause review. `G0-8 / D4` lacks named partners, outreach ownership, and dated execution evidence.                                                                                                                | [User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)              |
 | Brampton                | The approved eight-record launch is complete. Six records are L2; Knights Table and Ste. Louise remain L1. Deferred candidates and any future L2/L3 changes stay gated.                                                                                         | [Brampton Readiness Report](../launch/brampton-readiness-report.md)                       |
 | Offline threat model    | F3 replay evidence and F5 bounded cache-rehydration evidence are complete. F1 queue-payload inspection and F2 authenticated sign-out QA still require real queue/session evidence before activation.                                                            | [Offline/Local Threat Model](../security/v22-0-offline-local-threat-model.md)             |
@@ -256,6 +256,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Public eligibility and localization quality maintenance (2026-07-22)**: unified public eligibility across local/server search, offline export, suggestions, and detail reads; corrected inventory presentation; localized metadata, not-found handling, category/coverage labels, service-field language annotations, and weekday names; enforced strict seven-locale message parity; and stabilized the localization browser matrix without changing curated service facts.
 - **Autonomous closeout and evidence refresh (2026-07-13)**: merged the focused roadmap-truth, scoring-contract, admin circuit-breaker, authorization-doc, notification-JSON, Next.js patch, deterministic search-report, disposable-DB replay, and offline-recovery batches; completed F3/F5 repository evidence; refreshed the 204-record freshness queue; and left only human/external evidence work active.
 - **Brampton multi-city foundation and first launch (2026-07-07)**: implemented place-aware coverage/search foundations, promoted the approved initial seven-record L1 launch set and later approved eighth record, regenerated embeddings, verified Kingston/Brampton regression behavior, completed the bounded production rollout, and kept deferred candidates draft-only.
 - **Brampton launch QA and positioning evidence (2026-07-07)**: unblocked local Chromium a11y and DB smoke runs with user-space dependencies, documented passing QA plus a11y/browser-console follow-ups, completed draft-only land acknowledgment source research, and preserved production migration/deploy/partner wording as explicit approval gates.

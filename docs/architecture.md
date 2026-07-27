@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-03
+last_updated: 2026-07-26
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -54,14 +54,14 @@ graph TD
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads the optional browser embedding worker in the background and upgrades local search with vector similarity only after the model initializes successfully. If worker initialization or embedding generation fails, the app fails closed to keyword-only search instead of emitting synthetic vectors.
 4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching the full filtered candidate set from the DB and scoring it in-memory using the same TypeScript pipeline as local mode so synthetic-query and intent-only matches are preserved. The shared request contract now carries `category`, `location`, and `openNow` filters in both modes, including empty-query "open now" browsing.
-5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
+5. **Unified Public Eligibility**: Local search, server search, offline export, search-term generation, and service-detail reads share `isPublicServiceEligible()`. A public record must be published, not deleted, L1-L3, and inside the 180-day visibility window. This keeps stale, draft, deleted, L0, and unknown-freshness records out of every public discovery path.
 6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
 
 ### Search Modes
 
 The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MODE`:
 
-1. **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
+1. **Local (Default)**: Loads the governed service bundle and applies public eligibility before ranking in the browser. Offline synchronization stores the sanitized public export. This mode is best for offline support and zero-latency typing.
 2. **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
 
 ### AI Assistant Architecture
@@ -219,8 +219,13 @@ sequenceDiagram
   - `is_provincial` flag allows services to be promoted in search results globally.
   - Provincial services display a "Province-Wide" badge for clarity.
 - **Language Selection**:
-  - `LanguageSelector` component in `Header` provides 7-locale switching.
+  - `LanguageSwitcher` component in `Header` provides 7-locale switching.
   - Arabic triggers RTL (Right-to-Left) direction in root layout.
+- **Localized Presentation**:
+  - Route metadata and the localized catch-all not-found page use the active locale.
+  - Service cards and detail pages translate categories and broad-coverage labels.
+  - French service fields are preferred on French routes; English fallbacks carry explicit `lang` annotations for assistive technology.
+  - Structured weekday names use `Intl.DateTimeFormat` with the route locale.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 
 ### Partner Claim Workflow

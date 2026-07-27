@@ -22,12 +22,16 @@ describe("public inventory counts", () => {
       (service) => service.primary_place_id === "brampton-on" && !serviceServesPlace(service, DEFAULT_PLACE_ID)
     ).length
     const categoryCount = new Set(services.map((service) => service.intent_category)).size
+    const readme = readFileSync(path.join(process.cwd(), "README.md"), "utf8")
 
     expect(services).toHaveLength(EXPECTED_INVENTORY_SERVICES)
     expect(defaultPlaceCount).toBe(EXPECTED_DEFAULT_PLACE_SERVICES)
     expect(bramptonOnlyCount).toBe(EXPECTED_BRAMPTON_ONLY_SERVICES)
     expect(categoryCount).toBe(EXPECTED_CATEGORIES)
     expect(routing.locales).toHaveLength(EXPECTED_LANGUAGES)
+    expect(readme).toContain("**204 manually curated records**")
+    expect(readme).toContain("196 cover Kingston and 8 are Brampton-only")
+    expect(readme).not.toContain("196 highest-impact services")
 
     for (const locale of routing.locales) {
       const messages = JSON.parse(readFileSync(path.join(process.cwd(), "messages", `${locale}.json`), "utf8")) as {

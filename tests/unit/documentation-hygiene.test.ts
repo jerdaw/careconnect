@@ -190,7 +190,8 @@ describe("documentation hygiene", () => {
     expect(roadmap).toContain("180 days as the hard visibility limit")
     expect(roadmap).toContain("review checkpoint rather than a guaranteed build schedule")
 
-    expect(architecture).toContain("Governance Freshness Enforcement")
+    expect(architecture).toContain("Unified Public Eligibility")
+    expect(architecture).toContain("isPublicServiceEligible()")
     expect(architecture).toContain("Result Explainability")
     expect(architecture).toContain("180-day governance limit")
   })
@@ -260,6 +261,8 @@ describe("documentation hygiene", () => {
     expect(architecture).not.toContain("211 Ontario API (Raw Data) + Manual Verification (Golden Dataset)")
     expect(architecture).toContain("not currently represented in runtime types or search scoring")
     expect(architecture).toContain("7-locale switching")
+    expect(architecture).toContain("LanguageSwitcher")
+    expect(architecture).not.toContain("LanguageSelector")
     expect(architecture).toContain("public/sw.js")
 
     expect(routing).toContain("7 locales")

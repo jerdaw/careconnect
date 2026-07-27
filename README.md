@@ -10,10 +10,10 @@
 
 Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of the **196 highest-impact services** currently available through the Kingston directory. Brampton expansion starts with a smaller high-confidence emergency and core-service set before broader coverage. Every visible entry is:
+The governed inventory contains **204 manually curated records**: 196 cover Kingston and 8 are Brampton-only. Public search applies publication, deletion, verification-level, and 180-day freshness rules before displaying a record, so inventory size is not the same as the currently visible service count. Every visible entry is:
 
-- **Verified** — No broken links or disconnected phone numbers.
-- **Accessible** — Clear eligibility requirements.
+- **Eligible for display** — Published, not deleted, L1-L3, and within the freshness window.
+- **Manually curated** — Service facts require human-reviewed evidence.
 - **Identity-Aware** — Evidence-backed safety tags for vulnerable populations.
 
 ---

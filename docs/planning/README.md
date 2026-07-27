@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-13
+last_updated: 2026-07-26
 owner: jer
 tags: [planning, roadmap, governance, public-docs, multi-city, brampton]
 ---
@@ -254,6 +254,7 @@ Use the Brampton verification workplan only after a candidate or L2/L3 change is
 
 ## Document Updates
 
+- **2026-07-26:** Reconciled the public inventory and localization maintenance release, added the current 204-record freshness snapshot (8 visible, 196 hidden), and kept the remaining service/legal/partner work in its existing evidence-gated lanes
 - **2026-07-13:** Reorganized the roadmap around one active strategic track, a P0 service/legal/partner evidence stack, explicit completion conditions, and concise maintenance/deferral rules; moved Brampton to a completed bounded-launch track and corrected F1/F2 threat-model status
 - **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
 - **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers

@@ -1,13 +1,13 @@
 ---
 status: stable
-last_updated: 2026-01-23
+last_updated: 2026-07-26
 owner: jer
 tags: [development, localization, i18n]
 ---
 
 # Multi-lingual Development Guide
 
-**Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 7 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
+**Goal:** Provide accessible services across CareConnect's supported Ontario communities. All public-facing interfaces support seven locales.
 
 ## 1. Supported Languages
 
@@ -28,11 +28,12 @@ tags: [development, localization, i18n]
 - **Separation of Content**: Hardcoded strings in `tsx` files are prohibited.
 - **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
 - **Server message loading**: When loading dictionaries in Server Components (e.g. the root layout), pass the route locale into `next-intl` (`getMessages({ locale })`) so rewritten routes (e.g. `/offline` → `/{locale}/offline`) render the correct language.
+- **Metadata and errors**: Generate route metadata with the route locale, and keep unknown localized routes inside `app/[locale]/` so the localized not-found page is used.
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
-  - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
-  - **Provincial Services (scope: 'ontario' or 'canada')**: All 7 languages for name/description/eligibility fields.
-  - **Schema**: The `scope` field (enum: `'kingston'`, `'ontario'`, `'canada'`) indicates geographic availability. The legacy `is_provincial` field is deprecated.
+  - Service records currently provide English/French pairs (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
+  - French routes prefer the French field when present. Other locales use the English service-data fallback until the service schema supports additional localized fields.
+  - Geographic coverage is independent of interface locale and is represented by place coverage plus broad `scope` values.
 
 ## 3. Implementation Rules
 
@@ -42,10 +43,11 @@ tags: [development, localization, i18n]
 4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
 5. **Content Fallbacks**:
 
-- For local services, the UI defaults to `name` if `name_fr` is missing.
-- For provincial services, specific localization logic exists to handle expanded content.
+- French service fields fall back to English when the French value is missing.
+- Add `lang="en"` to English service-data fallbacks on non-English routes and `lang="fr"` to French content so screen readers use the correct pronunciation rules.
+- Translate category names, broad-coverage labels, metadata, and structured weekday names through messages or locale-aware formatters; do not display raw enum or weekday keys.
 
-6. **Language Switching**: Use the `LanguageSelector` component in the `Header`. Do not use manual links.
+6. **Language Switching**: Use the `LanguageSwitcher` component in the `Header`. Do not use manual links.
 7. **Date/Time**: Use `Intl.DateTimeFormat` or `next-intl` formatting utilities to ensure cultural correctness.
 
 ## 4. Maintenance
@@ -82,22 +84,23 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 3. **Extra Keys**: Warns about keys in locales that don't exist in EN
 4. **Usage Check**: Scans code for `t()` calls to find potentially unused keys
 
-**Sample Output:**
+**Expected Output:**
 
 ```text
-📊 AUDIT RESULTS
-═══════════════════════════════════════════════════════════════
-✅ EN - 377 keys
-✅ FR - 377 keys
-✅ AR - 383 keys
-✅ ZH-HANS - 383 keys
-✅ ES - 383 keys
+✅ EN
+✅ FR
+✅ AR
+✅ ZH-HANS
+✅ ES
+✅ PA
+✅ PT
+All locale key sets match English.
 ```
 
 ### Ongoing Work
 
 - **Accessibility**: ARIA labels must be descriptive in all languages.
-- **Human Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
+- **Human Review**: Periodic human review of every translated locale is required, with extra attention to preview locales.
 - **Maintenance**: Ensure any new keys added to `en.json` are immediately propagated to all other 6 languages.
 
 ---
@@ -108,23 +111,23 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 CareConnect flags translated content that is still under review so users can make safer decisions:
 
-1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
+1. **Preview Locale Notification** (`ar`, `zh-Hans`, `es`, `pa`, `pt`)
    - A dismissible floating pill appears at the bottom-right of every page
    - Informs users that the page includes translated content under review
    - Contains a "Got it" button for acknowledgment
    - Stored in localStorage to remember dismissal
 
 2. **Footer Disclaimer** (all non-English locales)
-   - A subtle note appears in the footer for fr/ar/zh-Hans/es
+   - A subtle note appears in the footer for every non-English locale
    - Text: "Some translations are under review. Report errors to feedback@careconnect.ing"
 
 ### Translation Quality Tiers
 
-| Tier     | Locales               | Quality Level                  | Review Status |
-| :------- | :-------------------- | :----------------------------- | :------------ |
-| Primary  | `en`                  | Source of truth                | N/A           |
-| Official | `fr`                  | Reviewed translated content    | Reviewed      |
-| Preview  | `ar`, `zh-Hans`, `es` | Best-effort translated content | Needs review  |
+| Tier     | Locales                           | Quality Level                  | Review Status |
+| :------- | :-------------------------------- | :----------------------------- | :------------ |
+| Primary  | `en`                              | Source of truth                | N/A           |
+| Official | `fr`                              | Reviewed translated content    | Reviewed      |
+| Preview  | `ar`, `zh-Hans`, `es`, `pa`, `pt` | Best-effort translated content | Needs review  |
 
 ### Reporting Translation Errors
 
@@ -134,7 +137,7 @@ Users can report translation errors to `feedback@careconnect.ing`. Corrections s
 2. Legal/financial content
 3. General UI strings (lowest priority)
 
-## 6. Security Considerations
+## 5. Security Considerations
 
 Localized content in the database (e.g., `name_fr`, `description_fr`) is often rendered using `dangerouslySetInnerHTML` for term highlighting.
 
