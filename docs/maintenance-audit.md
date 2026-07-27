@@ -532,3 +532,45 @@ queries` for both configured Supabase projects.
 - Playwright and accessibility browser suites were not run locally because no
   browser-only behavior changed and the testing guidance leaves those checks to
   an intentional browser window or CI.
+
+## Supabase Keepalive Alerting Checkpoint (2026-07-27)
+
+### Scope And Cleanup
+
+- Rechecked the CareConnect and VisitBrief repository instructions,
+  documentation/testing/roadmap guidance, clean working trees, branch
+  inventories, open pull requests, and current Actions results before editing.
+- Confirmed `CLAUDE.md` and `GEMINI.md` remain relative symlinks to
+  `AGENTS.md`.
+- Found no disposable untracked artifact or missing ignore rule. Local agent
+  configuration, dependency directories, and intentional generated assets were
+  preserved.
+
+### Documentation And Planning
+
+- Updated `docs/deployment/supabase-project-availability.md` with the persistent
+  failure-issue contract, recovery closure behavior, label dependency, and
+  operator verification command.
+- No ADR, product roadmap item, or implementation plan was created or archived.
+  This change completed a bounded reliability safeguard without changing
+  application architecture, database schema, RLS, or product scope.
+
+### Verification
+
+- Supabase Management API state: CareConnect and VisitBrief both reported
+  `ACTIVE_HEALTHY`.
+- GitHub Actions manual run `30260843914` and scheduled run `30262611669`
+  reported `3/3 queries` for both projects.
+- The `automated` label exists and no `Supabase Keepalive Failure` issue remains
+  open after the successful scheduled run.
+- Focused Vitest workflow contract: passed, `3/3` tests.
+- `npm run lint`, `npm run type-check`, `npm run format:check`,
+  `npm run check:refs`, `npm run check:root`, and `npm run build`: passed.
+- The production build regenerated embeddings during `postbuild`; tracked
+  service data and `data/embeddings.json` remained unchanged.
+- Non-strict MkDocs build: passed using the pinned `requirements.txt`
+  dependencies in an isolated temporary environment. Existing broad-nav and
+  historical-link warnings remain outside this checkpoint; the updated page
+  introduced no build failure.
+- Playwright and accessibility browser suites were not run locally because no
+  browser-only behavior changed.

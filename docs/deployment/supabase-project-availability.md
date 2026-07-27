@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-14
+last_updated: 2026-07-27
 owner: jer
 tags: [deployment, supabase, reliability, github-actions]
 ---
@@ -27,6 +27,10 @@ The workflow at `.github/workflows/supabase-keepalive.yml`:
 - sends both `apikey` and bearer authorization headers using public client
   keys;
 - requires HTTP `200` for all three queries to each project;
+- opens or refreshes one `Supabase Keepalive Failure` issue when secret
+  validation or a Data API query fails;
+- closes that issue after the next successful run while preserving a failed
+  workflow conclusion for the triggering run;
 - never uses a service-role key and does not print response bodies.
 
 The selected resources already have the explicit Data API grants required for
@@ -59,6 +63,19 @@ project fails, inspect the HTTP status without printing the saved response
 body, then check project availability, the repository secret names, Data API
 grants, and the selected resource.
 
+The failure issue is intentionally persistent rather than one issue per run:
+
+```bash
+gh issue list \
+  --state open \
+  --search '"Supabase Keepalive Failure" in:title'
+```
+
+The workflow updates the issue with the latest run URL and closes it only after
+both projects complete a healthy keepalive. The `automated` repository label
+must remain available so the workflow can create the issue on the first
+failure.
+
 ## Change Safety
 
 When changing the workflow:
@@ -67,7 +84,8 @@ When changing the workflow:
 2. Use a one-row limit and a public client key.
 3. Update `tests/unit/supabase-keepalive-workflow.test.ts` with the contract.
 4. Manually dispatch once and confirm both projects report `3/3 queries`.
-5. Record private provider or billing details in the shared private operations
+5. Confirm the scheduled run remains green and no failure issue remains open.
+6. Record private provider or billing details in the shared private operations
    repository, not in this public repository.
 
 ## Rollback
