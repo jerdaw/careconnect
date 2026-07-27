@@ -8,7 +8,7 @@ This file contains the core architecture and development guidelines for CareConn
 
 ---
 status: stable
-last_updated: 2026-07-03
+last_updated: 2026-07-26
 owner: jer
 tags: [architecture, overview, system-design]
 ---
@@ -62,14 +62,14 @@ graph TD
 2. **Fuzzy Search ("Did you mean?")**: If results are low, the Levenshtein algorithm suggests alternative queries based on service names and tags.
 3. **Lazy Semantic Search**: Loads the optional browser embedding worker in the background and upgrades local search with vector similarity only after the model initializes successfully. If worker initialization or embedding generation fails, the app fails closed to keyword-only search instead of emitting synthetic vectors.
 4. **Search API (v16.0 Enhancements)**: A server-side alternative (`POST /api/v1/search/services`) that implements complex ranking factors including authority tiers, data completeness boosts, intent targeting, and continuous proximity decay. It uses a hybrid strategy: fetching the full filtered candidate set from the DB and scoring it in-memory using the same TypeScript pipeline as local mode so synthetic-query and intent-only matches are preserved. The shared request contract now carries `category`, `location`, and `openNow` filters in both modes, including empty-query "open now" browsing.
-5. **Governance Freshness Enforcement**: Both local and server search exclude records that fall outside the 180-day public-visibility window so stale listings do not keep ranking with only a soft penalty.
+5. **Unified Public Eligibility**: Local search, server search, offline export, search-term generation, and service-detail reads share `isPublicServiceEligible()`. A public record must be published, not deleted, L1-L3, and inside the 180-day visibility window. This keeps stale, draft, deleted, L0, and unknown-freshness records out of every public discovery path.
 6. **Result Explainability**: Public result cards and linked detail pages can surface normalized match reasons so users can inspect why a service ranked for their query.
 
 ### Search Modes
 
 The application supports two search modes, controlled by `NEXT_PUBLIC_SEARCH_MODE`:
 
-1. **Local (Default)**: Downloads a compressed JSON bundle of all services. Search logic runs entirely in the browser. Best for offline support and zero-latency typing.
+1. **Local (Default)**: Loads the governed service bundle and applies public eligibility before ranking in the browser. Offline synchronization stores the sanitized public export. This mode is best for offline support and zero-latency typing.
 2. **Server**: Sends `POST` requests to the Librarian API. The server executes the query and returns results. Best for large datasets (>1000 items) and devices with limited RAM. (Note: Server mode does not load the JSON bundle, saving bandwidth).
 
 ### AI Assistant Architecture
@@ -227,8 +227,13 @@ sequenceDiagram
   - `is_provincial` flag allows services to be promoted in search results globally.
   - Provincial services display a "Province-Wide" badge for clarity.
 - **Language Selection**:
-  - `LanguageSelector` component in `Header` provides 7-locale switching.
+  - `LanguageSwitcher` component in `Header` provides 7-locale switching.
   - Arabic triggers RTL (Right-to-Left) direction in root layout.
+- **Localized Presentation**:
+  - Route metadata and the localized catch-all not-found page use the active locale.
+  - Service cards and detail pages translate categories and broad-coverage labels.
+  - French service fields are preferred on French routes; English fallbacks carry explicit `lang` annotations for assistive technology.
+  - Structured weekday names use `Intl.DateTimeFormat` with the route locale.
 - **Internal Links**: `ServiceCard` now links to internal detail pages instead of external URLs.
 
 ### Partner Claim Workflow
@@ -934,14 +939,14 @@ Next.js App Router `cookies()` and `headers()` are async. Use the standardized m
 
 ---
 status: stable
-last_updated: 2026-01-23
+last_updated: 2026-07-26
 owner: jer
 tags: [development, localization, i18n]
 ---
 
 # Multi-lingual Development Guide
 
-**Goal:** Provide accessible services to Kingston's diverse population. All public-facing interfaces now support 7 languages for Tier 5 EDIA (Equity, Diversity, Inclusion, Accessibility) goals.
+**Goal:** Provide accessible services across CareConnect's supported Ontario communities. All public-facing interfaces support seven locales.
 
 ## 1. Supported Languages
 
@@ -962,11 +967,12 @@ tags: [development, localization, i18n]
 - **Separation of Content**: Hardcoded strings in `tsx` files are prohibited.
 - **Library**: `next-intl` handles dictionary management via `messages/{locale}.json`.
 - **Server message loading**: When loading dictionaries in Server Components (e.g. the root layout), pass the route locale into `next-intl` (`getMessages({ locale })`) so rewritten routes (e.g. `/offline` → `/{locale}/offline`) render the correct language.
+- **Metadata and errors**: Generate route metadata with the route locale, and keep unknown localized routes inside `app/[locale]/` so the localized not-found page is used.
 - **RTL Support**: Arabic triggers `dir="rtl"` in the layout. Use logical CSS properties (e.g., `ms-2` instead of `ml-2`) or Radix/Tailwind utilities that handle direction automatically.
 - **Data Layer**:
-  - **Local Services (scope: 'kingston')**: English/French only (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
-  - **Provincial Services (scope: 'ontario' or 'canada')**: All 7 languages for name/description/eligibility fields.
-  - **Schema**: The `scope` field (enum: `'kingston'`, `'ontario'`, `'canada'`) indicates geographic availability. The legacy `is_provincial` field is deprecated.
+  - Service records currently provide English/French pairs (`name`/`name_fr`, `fees`/`fees_fr`, `hours_text`/`hours_text_fr`, etc.).
+  - French routes prefer the French field when present. Other locales use the English service-data fallback until the service schema supports additional localized fields.
+  - Geographic coverage is independent of interface locale and is represented by place coverage plus broad `scope` values.
 
 ## 3. Implementation Rules
 
@@ -976,10 +982,11 @@ tags: [development, localization, i18n]
 4. **RTL Hygiene**: Avoid absolute `left`/`right` positioning. Use `inset-inline-start`/`end`.
 5. **Content Fallbacks**:
 
-- For local services, the UI defaults to `name` if `name_fr` is missing.
-- For provincial services, specific localization logic exists to handle expanded content.
+- French service fields fall back to English when the French value is missing.
+- Add `lang="en"` to English service-data fallbacks on non-English routes and `lang="fr"` to French content so screen readers use the correct pronunciation rules.
+- Translate category names, broad-coverage labels, metadata, and structured weekday names through messages or locale-aware formatters; do not display raw enum or weekday keys.
 
-6. **Language Switching**: Use the `LanguageSelector` component in the `Header`. Do not use manual links.
+6. **Language Switching**: Use the `LanguageSwitcher` component in the `Header`. Do not use manual links.
 7. **Date/Time**: Use `Intl.DateTimeFormat` or `next-intl` formatting utilities to ensure cultural correctness.
 
 ## 4. Maintenance
@@ -1016,22 +1023,23 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 3. **Extra Keys**: Warns about keys in locales that don't exist in EN
 4. **Usage Check**: Scans code for `t()` calls to find potentially unused keys
 
-**Sample Output:**
+**Expected Output:**
 
 ```text
-📊 AUDIT RESULTS
-═══════════════════════════════════════════════════════════════
-✅ EN - 377 keys
-✅ FR - 377 keys
-✅ AR - 383 keys
-✅ ZH-HANS - 383 keys
-✅ ES - 383 keys
+✅ EN
+✅ FR
+✅ AR
+✅ ZH-HANS
+✅ ES
+✅ PA
+✅ PT
+All locale key sets match English.
 ```
 
 ### Ongoing Work
 
 - **Accessibility**: ARIA labels must be descriptive in all languages.
-- **Human Review**: Periodic human review of static JSON files is required for `ar`, `zh-Hans`, and `es`.
+- **Human Review**: Periodic human review of every translated locale is required, with extra attention to preview locales.
 - **Maintenance**: Ensure any new keys added to `en.json` are immediately propagated to all other 6 languages.
 
 ---
@@ -1042,23 +1050,23 @@ The `i18n-audit` script (`scripts/i18n-key-audit.ts`) performs these checks:
 
 CareConnect flags translated content that is still under review so users can make safer decisions:
 
-1. **EDIA Locale Notification** (`ar`, `zh-Hans`, `es`)
+1. **Preview Locale Notification** (`ar`, `zh-Hans`, `es`, `pa`, `pt`)
    - A dismissible floating pill appears at the bottom-right of every page
    - Informs users that the page includes translated content under review
    - Contains a "Got it" button for acknowledgment
    - Stored in localStorage to remember dismissal
 
 2. **Footer Disclaimer** (all non-English locales)
-   - A subtle note appears in the footer for fr/ar/zh-Hans/es
+   - A subtle note appears in the footer for every non-English locale
    - Text: "Some translations are under review. Report errors to feedback@careconnect.ing"
 
 ### Translation Quality Tiers
 
-| Tier     | Locales               | Quality Level                  | Review Status |
-| :------- | :-------------------- | :----------------------------- | :------------ |
-| Primary  | `en`                  | Source of truth                | N/A           |
-| Official | `fr`                  | Reviewed translated content    | Reviewed      |
-| Preview  | `ar`, `zh-Hans`, `es` | Best-effort translated content | Needs review  |
+| Tier     | Locales                           | Quality Level                  | Review Status |
+| :------- | :-------------------------------- | :----------------------------- | :------------ |
+| Primary  | `en`                              | Source of truth                | N/A           |
+| Official | `fr`                              | Reviewed translated content    | Reviewed      |
+| Preview  | `ar`, `zh-Hans`, `es`, `pa`, `pt` | Best-effort translated content | Needs review  |
 
 ### Reporting Translation Errors
 
@@ -1068,7 +1076,7 @@ Users can report translation errors to `feedback@careconnect.ing`. Corrections s
 2. Legal/financial content
 3. General UI strings (lowest priority)
 
-## 6. Security Considerations
+## 5. Security Considerations
 
 Localized content in the database (e.g., `name_fr`, `description_fr`) is often rendered using `dangerouslySetInnerHTML` for term highlighting.
 
@@ -1376,7 +1384,7 @@ clearLocation()
 
 ---
 status: stable
-last_updated: 2026-07-13
+last_updated: 2026-07-26
 owner: jer
 tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 ---
@@ -1387,7 +1395,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 > **Decision Gate**: Gate 0 exit is `NO-GO`
 > **Immediate Priority**: service reverification plus C1/D4 evidence closure
 > **Brampton Status**: approved eight-record first launch is complete; further changes are gated
-> **Last Updated**: 2026-07-13
+> **Last Updated**: 2026-07-26
 > **Platform Status**: technically mature, operating as a constrained public directory while evidence gates remain open
 
 ## Executive Status
@@ -1395,7 +1403,7 @@ tags: [planning, roadmap, v22.0, governance, multi-city, brampton]
 | Area                    | Current state                                                                                                                                                                                                                                                   | Authoritative evidence                                                                    |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Strategic decision      | v22 Gate 0 exit remains `NO-GO`; the constrained public-directory disposition is not full pilot approval.                                                                                                                                                       | [Gate 0 Exit Checklist](../implementation/v22-0-gate-0-exit-checklist.md)                 |
-| Service availability    | 204 records: 8 fresh, 1 due-but-visible, and 195 stale/hidden. The 42 stale Crisis records are the first verification lane.                                                                                                                                     | [2026-07-13 Freshness Audit](../audits/service-freshness/2026-07-13/staleness-summary.md) |
+| Service availability    | 204 records: 8 fresh/visible and 196 stale/hidden. The 42 stale Crisis records are the first verification lane.                                                                                                                                                 | [2026-07-26 Freshness Audit](../audits/service-freshness/2026-07-26/staleness-summary.md) |
 | Gate 0 evidence         | `G0-3 / C1` lacks partner legal/API terms and clause review. `G0-8 / D4` lacks named partners, outreach ownership, and dated execution evidence.                                                                                                                | [User Action Tracker](../implementation/v22-0-gate-0-user-action-tracker.md)              |
 | Brampton                | The approved eight-record launch is complete. Six records are L2; Knights Table and Ste. Louise remain L1. Deferred candidates and any future L2/L3 changes stay gated.                                                                                         | [Brampton Readiness Report](../launch/brampton-readiness-report.md)                       |
 | Offline threat model    | F3 replay evidence and F5 bounded cache-rehydration evidence are complete. F1 queue-payload inspection and F2 authenticated sign-out QA still require real queue/session evidence before activation.                                                            | [Offline/Local Threat Model](../security/v22-0-offline-local-threat-model.md)             |
@@ -1632,6 +1640,7 @@ References:
 
 ### Recent Completed Milestones
 
+- **Public eligibility and localization quality maintenance (2026-07-22)**: unified public eligibility across local/server search, offline export, suggestions, and detail reads; corrected inventory presentation; localized metadata, not-found handling, category/coverage labels, service-field language annotations, and weekday names; enforced strict seven-locale message parity; and stabilized the localization browser matrix without changing curated service facts.
 - **Autonomous closeout and evidence refresh (2026-07-13)**: merged the focused roadmap-truth, scoring-contract, admin circuit-breaker, authorization-doc, notification-JSON, Next.js patch, deterministic search-report, disposable-DB replay, and offline-recovery batches; completed F3/F5 repository evidence; refreshed the 204-record freshness queue; and left only human/external evidence work active.
 - **Brampton multi-city foundation and first launch (2026-07-07)**: implemented place-aware coverage/search foundations, promoted the approved initial seven-record L1 launch set and later approved eighth record, regenerated embeddings, verified Kingston/Brampton regression behavior, completed the bounded production rollout, and kept deferred candidates draft-only.
 - **Brampton launch QA and positioning evidence (2026-07-07)**: unblocked local Chromium a11y and DB smoke runs with user-space dependencies, documented passing QA plus a11y/browser-console follow-ups, completed draft-only land acknowledgment source research, and preserved production migration/deploy/partner wording as explicit approval gates.
