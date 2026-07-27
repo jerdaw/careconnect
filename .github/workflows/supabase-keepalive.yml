@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: read
+      issues: write
     env:
       CARECONNECT_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       CARECONNECT_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
@@ -21,6 +22,7 @@ jobs:
 
     steps:
       - name: Validate required secrets
+        id: validate
         run: |
           set -euo pipefail
 
@@ -41,6 +43,8 @@ jobs:
           fi
 
       - name: Query every Supabase Data API
+        id: data-api
+        continue-on-error: true
         run: |
           set -euo pipefail
 
@@ -84,3 +88,58 @@ jobs:
             "${VISITBRIEF_SUPABASE_URL}" \
             "${VISITBRIEF_SUPABASE_PUBLISHABLE_KEY}" \
             "profiles"
+
+      - name: Sync persistent keepalive failure issue
+        if: always()
+        env:
+          FAILURE_DETECTED: ${{ steps.validate.outcome != 'success' || steps.data-api.outcome != 'success' }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+
+          title="Supabase Keepalive Failure"
+          issue_number="$(
+            gh issue list \
+              --state open \
+              --limit 100 \
+              --json number,title \
+              --jq 'map(select(.title == "Supabase Keepalive Failure")) | first | .number // empty'
+          )"
+
+          if [ "${FAILURE_DETECTED}" != "true" ]; then
+            if [ -n "${issue_number}" ]; then
+              gh issue close "${issue_number}" \
+                --comment "Resolved by a successful database keepalive run: ${RUN_URL}"
+            fi
+            exit 0
+          fi
+
+          body="$(
+            printf '%s\n' \
+              "The daily Supabase database keepalive failed." \
+              "" \
+              "Run: ${RUN_URL}" \
+              "" \
+              "Required response:" \
+              "1. Inspect the run log to identify the affected project." \
+              "2. Confirm the project state in Supabase." \
+              "3. Resume the project if it is paused." \
+              "4. Rerun this workflow and confirm all database queries succeed." \
+              "" \
+              "This issue is updated in place and closes automatically after a successful run."
+          )"
+
+          if [ -n "${issue_number}" ]; then
+            gh issue edit "${issue_number}" --body "${body}"
+          else
+            gh issue create \
+              --title "${title}" \
+              --label "automated" \
+              --body "${body}"
+          fi
+
+      - name: Fail after reporting a Data API error
+        if: steps.data-api.outcome == 'failure'
+        run: exit 1

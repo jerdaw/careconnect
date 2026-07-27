@@ -24,4 +24,15 @@ describe("Supabase keepalive workflow", () => {
     expect(workflow).not.toContain('/rest/v1/"')
     expect(workflow).not.toMatch(/service[_-]?role/i)
   })
+
+  it("opens one persistent issue on failure and closes it after recovery", () => {
+    expect(workflow).toContain("issues: write")
+    expect(workflow).toContain("continue-on-error: true")
+    expect(workflow).toContain("if: always()")
+    expect(workflow).toContain('title="Supabase Keepalive Failure"')
+    expect(workflow).toContain("gh issue create")
+    expect(workflow).toContain("gh issue edit")
+    expect(workflow).toContain("gh issue close")
+    expect(workflow).toContain("if: steps.data-api.outcome == 'failure'")
+  })
 })
