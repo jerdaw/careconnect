@@ -1750,6 +1750,14 @@
     "navigationDescription": "Use a orientação de serviços mantida pelo 211 Ontario em vez das listagens desativadas do CareConnect.",
     "visit211": "Visitar 211 Ontario",
     "call211": "Ligar para 211",
+    "localDataTitle": "Seus dados neste dispositivo",
+    "localDataDescription": "Pesquisas salvas, preferências opcionais de idade ou identidade e comentários na fila permanecem neste dispositivo. Você pode baixar uma cópia ou apagá-los. Estes controles não enviam nada.",
+    "exportLocalData": "Baixar meus dados locais",
+    "clearLocalData": "Apagar meus dados locais",
+    "clearConfirmation": "Apagar deste dispositivo as pesquisas salvas, as preferências pessoais opcionais e os comentários na fila? Esta ação não pode ser desfeita.",
+    "localDataExported": "O download dos seus dados locais está pronto.",
+    "localDataCleared": "Seus dados locais salvos foram apagados.",
+    "localDataError": "Este navegador não conseguiu concluir a ação de dados locais.",
     "boundary": "Esta página não lista, verifica nem endossa prestadores de serviços."
   }
 }

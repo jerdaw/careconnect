@@ -21,6 +21,10 @@ describe("retirement release static contract", () => {
 
     expect(nextConfig).not.toMatch(/cacheName:\s*["']services-api["']/)
     expect(nextConfig).not.toMatch(/cacheName:\s*["']services-export["']/)
+    expect(nextConfig).toContain("NormalModuleReplacementPlugin")
+    expect(nextConfig).toContain('path.join(retirementDataDirectory, "services.json")')
+    expect(nextConfig).toContain('path.join(retirementDataDirectory, "embeddings.json")')
+    expect(readRepoFile("package.json")).toContain("check:retirement-artifacts")
   })
 
   it("clears prior directory caches and offline service data during upgrade", () => {
@@ -29,6 +33,7 @@ describe("retirement release static contract", () => {
     for (const cacheName of [
       "services-api",
       "services-export",
+      "json-cache",
       "start-url",
       "offline-fallback",
       "pwa-assets",
@@ -44,7 +49,13 @@ describe("retirement release static contract", () => {
     expect(worker).toContain('"services", "embeddings", "meta"')
     expect(worker).not.toContain('"pendingFeedback"')
     expect(worker).toContain("indexedDB.deleteDatabase(databaseName)")
-    expect(worker).toContain("self.clients.claim()")
+    expect(worker).toContain("self.clients")
+    expect(worker).toContain(".claim()")
+    expect(worker).toContain('"kcc-vector-store"')
+    expect(worker).toContain('"workbox-expiration"')
+    expect(worker).toContain('"cache-entries"')
+    expect(worker).toContain("client.navigate(retirementPathForClient(client.url))")
+    expect(worker).toContain("self.registration.unregister()")
   })
 
   it("does not register a new long-lived worker and removes prior actionable screenshots", () => {

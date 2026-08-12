@@ -1,6 +1,7 @@
 export const RETIREMENT_CACHE_PREFIXES = [
   "services-api",
   "services-export",
+  "json-cache",
   "start-url",
   "offline-fallback",
   "pwa-assets",
@@ -21,7 +22,14 @@ export const RETIREMENT_OFFLINE_DATABASES = [
   "kcc-offline-v1",
 ] as const
 
-export const RETIREMENT_VECTOR_DATABASES = ["careconnect-vector-store", "helpbridge-vector-store"] as const
+export const RETIREMENT_VECTOR_DATABASES = [
+  "careconnect-vector-store",
+  "helpbridge-vector-store",
+  "kcc-vector-store",
+] as const
+
+export const RETIREMENT_WORKBOX_EXPIRATION_DATABASE = "workbox-expiration"
+export const RETIREMENT_WORKBOX_EXPIRATION_STORE = "cache-entries"
 
 const RETIREMENT_OFFLINE_STORES = ["services", "embeddings", "meta"] as const
 
@@ -31,6 +39,7 @@ export interface RetirementCleanupResult {
   serviceWorkersUnregistered: number
   storageKeysRemoved: number
   vectorDatabasesDeleted: number
+  workboxMetadataDeleted: number
 }
 
 interface RetirementCleanupDependencies {
@@ -77,12 +86,52 @@ function clearIndexedDbStores(indexedDb: IDBFactory, databaseName: string): Prom
   })
 }
 
-function deleteIndexedDb(indexedDb: IDBFactory, databaseName: string): Promise<boolean> {
+export function deleteRetirementIndexedDb(indexedDb: IDBFactory, databaseName: string): Promise<boolean> {
   return new Promise((resolve) => {
     const request = indexedDb.deleteDatabase(databaseName)
     request.onsuccess = () => resolve(true)
     request.onerror = () => resolve(false)
     request.onblocked = () => resolve(false)
+  })
+}
+
+function clearWorkboxExpirationMetadata(indexedDb: IDBFactory): Promise<number> {
+  return new Promise((resolve) => {
+    const request = indexedDb.open(RETIREMENT_WORKBOX_EXPIRATION_DATABASE)
+
+    request.onupgradeneeded = () => request.transaction?.abort()
+    request.onerror = () => resolve(0)
+    request.onsuccess = () => {
+      const database = request.result
+      if (!database.objectStoreNames.contains(RETIREMENT_WORKBOX_EXPIRATION_STORE)) {
+        database.close()
+        resolve(0)
+        return
+      }
+
+      let deleted = 0
+      const transaction = database.transaction(RETIREMENT_WORKBOX_EXPIRATION_STORE, "readwrite")
+      const cursorRequest = transaction.objectStore(RETIREMENT_WORKBOX_EXPIRATION_STORE).openCursor()
+      cursorRequest.onsuccess = () => {
+        const cursor = cursorRequest.result
+        if (!cursor) return
+
+        const cacheName = (cursor.value as { cacheName?: unknown } | null)?.cacheName
+        if (typeof cacheName === "string" && isRetirementCacheName(cacheName)) {
+          cursor.delete()
+          deleted += 1
+        }
+        cursor.continue()
+      }
+
+      const finish = (count: number) => {
+        database.close()
+        resolve(count)
+      }
+      transaction.oncomplete = () => finish(deleted)
+      transaction.onerror = () => finish(0)
+      transaction.onabort = () => finish(0)
+    }
   })
 }
 
@@ -121,14 +170,17 @@ export async function clearRetiredClientData(
 
   let offlineDatabasesCleared = 0
   let vectorDatabasesDeleted = 0
+  let workboxMetadataDeleted = 0
   if (indexedDb) {
     const cleared = await Promise.all(
       RETIREMENT_OFFLINE_DATABASES.map((databaseName) => clearIndexedDbStores(indexedDb, databaseName))
     )
     offlineDatabasesCleared = cleared.filter(Boolean).length
 
+    workboxMetadataDeleted = await clearWorkboxExpirationMetadata(indexedDb)
+
     const deleted = await Promise.all(
-      RETIREMENT_VECTOR_DATABASES.map((databaseName) => deleteIndexedDb(indexedDb, databaseName))
+      RETIREMENT_VECTOR_DATABASES.map((databaseName) => deleteRetirementIndexedDb(indexedDb, databaseName))
     )
     vectorDatabasesDeleted = deleted.filter(Boolean).length
   }
@@ -136,7 +188,9 @@ export async function clearRetiredClientData(
   let serviceWorkersUnregistered = 0
   if (serviceWorkerRegistrations) {
     const registrations = await serviceWorkerRegistrations().catch(() => [])
-    const unregisterResults = await Promise.all(registrations.map((registration) => registration.unregister()))
+    const unregisterResults = await Promise.all(
+      registrations.map((registration) => registration.unregister().catch(() => false))
+    )
     serviceWorkersUnregistered = unregisterResults.filter(Boolean).length
   }
 
@@ -146,5 +200,6 @@ export async function clearRetiredClientData(
     serviceWorkersUnregistered,
     storageKeysRemoved,
     vectorDatabasesDeleted,
+    workboxMetadataDeleted,
   }
 }

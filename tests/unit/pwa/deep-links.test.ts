@@ -1,47 +1,26 @@
 /** @vitest-environment node */
-import { describe, it, expect } from "vitest"
+import { describe, expect, it } from "vitest"
 import { readFileSync } from "node:fs"
 import path from "node:path"
 
-type AssetLinksEntry = {
-  relation: string[]
-  target: { namespace: string; package_name: string; sha256_cert_fingerprints: string[] }
-}
-
 type AppleAppSiteAssociation = {
   applinks?: {
-    details?: Array<{
-      appIDs?: string[]
-      components?: Array<Record<string, unknown>>
-    }>
+    details?: unknown[]
   }
 }
 
-describe("Deep link association files", () => {
-  it("assetlinks.json package_name matches Capacitor appId", async () => {
+describe("retired deep-link association files", () => {
+  it("does not delegate retired public URLs to the Android application", () => {
     const assetLinksPath = path.join(process.cwd(), "public", ".well-known", "assetlinks.json")
-    const assetLinks = JSON.parse(readFileSync(assetLinksPath, "utf8")) as AssetLinksEntry[]
+    const assetLinks = JSON.parse(readFileSync(assetLinksPath, "utf8")) as unknown[]
 
-    const capConfigPath = path.join(process.cwd(), "capacitor.config.ts")
-    const capConfig = readFileSync(capConfigPath, "utf8")
-
-    // lightweight check without executing TS
-    const match = capConfig.match(/appId:\s*\"([^\"]+)\"/)
-    expect(match?.[1]).toBeTruthy()
-    const appId = match?.[1] as string
-
-    expect(assetLinks[0]?.target?.package_name).toBe(appId)
+    expect(assetLinks).toEqual([])
   })
 
-  it("apple-app-site-association matches current routes", () => {
+  it("does not associate retired routes with the iOS application", () => {
     const aasaPath = path.join(process.cwd(), "public", ".well-known", "apple-app-site-association")
     const aasa = JSON.parse(readFileSync(aasaPath, "utf8")) as AppleAppSiteAssociation
 
-    const components = aasa.applinks?.details?.[0]?.components || []
-    const patterns = components.map((c) => String((c as any)["/"] || ""))
-
-    // Current app route is `/[locale]/service/[id]` (singular).
-    expect(patterns.some((p) => p.includes("/*/service/"))).toBe(true)
-    expect(patterns.some((p) => p.includes("/*/services/"))).toBe(false)
+    expect(aasa.applinks?.details).toEqual([])
   })
 })

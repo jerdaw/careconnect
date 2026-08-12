@@ -21,6 +21,8 @@ describe("PublicServiceRetired", () => {
     expect(screen.getByRole("link", { name: content.text988 })).toHaveAttribute("href", "sms:988")
     expect(screen.getByRole("link", { name: content.call211 })).toHaveAttribute("href", "tel:211")
     expect(screen.getByRole("link", { name: content.visit211 })).toHaveAttribute("href", "https://211ontario.ca/")
+    expect(screen.getByRole("button", { name: content.exportLocalData })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: content.clearLocalData })).toBeInTheDocument()
 
     expect(container.querySelector("form")).toBeNull()
     expect(container.querySelector("input, textarea, select")).toBeNull()

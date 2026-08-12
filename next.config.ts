@@ -1,5 +1,7 @@
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
+import path from "node:path"
+import { PUBLIC_SERVICE_MODE } from "./lib/public-service-mode-value"
 
 const withNextIntl = createNextIntlPlugin()
 
@@ -72,13 +74,31 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  webpack: (config) => {
+  webpack: (config, { webpack }) => {
     // See https://webpack.js.org/configuration/resolve/#resolvealias
     config.resolve.alias = {
       ...config.resolve.alias,
       sharp$: false,
       "onnxruntime-node$": false,
     }
+
+    if (PUBLIC_SERVICE_MODE === "retired") {
+      const retirementDataDirectory = path.resolve(process.cwd(), "data", "retirement")
+
+      // Middleware cannot protect hashed static chunks. Replace the governed
+      // corpus at compilation time so no public client artifact can contain it.
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(
+          /[\\/]data[\\/]services\.json$/,
+          path.join(retirementDataDirectory, "services.json")
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+          /[\\/]data[\\/]embeddings\.json$/,
+          path.join(retirementDataDirectory, "embeddings.json")
+        )
+      )
+    }
+
     return config
   },
   // Apply security headers to all routes

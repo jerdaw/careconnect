@@ -40,16 +40,28 @@ The prepared source-controlled retirement mode has this contract:
 7. The retirement manifest contains no search, crisis-directory, dashboard, or
    share-target shortcuts. The retirement sitemap is empty and is omitted from
    `robots.txt`.
-8. The retirement worker creates no new service-response caches. On upgrade,
-   the worker and retirement page remove the prior service, start-URL,
-   fallback, asset, framework, and Workbox precache entries; clear service,
-   embedding, and sync metadata from current and legacy offline databases;
-   remove vector databases; and unregister existing workers. Locally queued
-   `pendingFeedback` is not treated as directory data and is not deleted by
-   this packet.
-9. The prior actionable public screenshots are removed. Replacement public
-   screenshots show only the non-service retirement surface.
-10. Source/history and the dated pre-retirement visual baseline remain in Git.
+8. The retirement build substitutes empty service and embedding modules before
+   client compilation. A post-build check rejects any generated static chunk or
+   service worker that contains corpus-only or embedding signatures.
+9. The retirement worker creates no new service-response caches. On upgrade,
+   the worker and retirement page remove current and historical service, JSON,
+   start-URL, fallback, asset, framework, and Workbox precache entries; clear
+   service, embedding, and sync metadata from current and legacy offline
+   databases; remove current and historical vector databases; and selectively
+   remove only CareConnect-owned Workbox expiration metadata.
+10. After cleanup, the retirement worker claims and navigates connected open
+    clients to their localized retired route, then unregisters itself. A device
+    that never reconnects cannot receive this release and may retain its prior
+    offline copy until it reconnects or the user clears site data.
+11. Saved searches, optional age/identity preferences, and queued
+    `pendingFeedback` are not silently deleted. The retirement page offers an
+    on-device JSON download and a separately confirmed local clear action;
+    those controls make no network request.
+12. Public iOS and Android association metadata delegates no URLs to the
+    retired mobile application.
+13. The prior actionable public screenshots are removed. Replacement public
+    screenshots show only the non-service retirement surface.
+14. Source/history and the dated pre-retirement visual baseline remain in Git.
 
 ## Mandatory Live Preflight
 
@@ -58,9 +70,14 @@ Stop unless every item below is true:
 1. The exact candidate commit is reviewed, the working tree is clean, required
    CI is green, and the local production build plus retirement route,
    accessibility, i18n, and rollback-policy tests pass.
-2. The private/shared operations source confirms a current, trusted recovery
-   path and the exact pre-transition release that can be restored. A repository
-   build alone is not recovery proof.
+2. The private/shared operations source confirms the exact pre-transition
+   release that can be restored. The July 8 provider-assisted recovery proof is
+   valid historical evidence, but it is not a current August 12 private
+   database export. This frontend-only release must leave Supabase, service
+   data, and workflows untouched. Before deployment, require either an approved
+   encrypted current export or explicit owner acceptance of the bounded
+   no-database-change risk using the existing provider recovery proof. Do not
+   claim that a current recoverable private database artifact exists.
 3. The shared operations preflight confirms no diff to
    `.github/workflows/supabase-keepalive.yml`, a latest successful scheduled
    run, and continued repository, Actions, and required-secret availability.
@@ -107,20 +124,33 @@ The transition is accepted only when all checks pass:
   remain available.
 - `robots.txt`, `sitemap.xml`, and `manifest.json` do not advertise an active
   directory or service-detail routes.
+- Generated client chunks and `sw.js` contain no governed service-corpus or
+  embedding signature. Hashed static paths cannot be treated as proxy-protected.
+- Apple and Android association files delegate no retired directory, service,
+  account, or settings URL.
 - The page exposes working `tel:911`, `tel:988`, `sms:988`, `tel:211`, and the
   official 211 Ontario link, with no serious or critical WCAG 2.1 A/AA issue.
 - The rendered page initiates no CareConnect service-data, Supabase auth/data,
   analytics, feedback, location, offline-sync, or chat request.
-- After the upgrade cleanup runs, prior service, start-URL, offline-fallback,
-  asset, framework, and Workbox precache entries are absent;
+- After the upgrade cleanup runs, prior service, JSON, start-URL,
+  offline-fallback, asset, framework, and Workbox precache entries are absent;
   service/embedding records are absent from current and legacy IndexedDB
-  stores; old actionable screenshot paths are unavailable; existing service
-  workers are unregistered; and subsequent service API requests fail closed.
+  stores; current and historical vector databases are absent; CareConnect-owned
+  Workbox expiration entries are removed without deleting unrelated metadata;
+  old actionable screenshot paths are unavailable; connected open clients are
+  moved to the localized retirement route; existing service workers are
+  unregistered; and subsequent service API requests fail closed.
+- Saved searches, optional local personalization, and queued feedback remain
+  until the user downloads or explicitly confirms clearing them. Both controls
+  operate locally and initiate no service or analytics request.
 
 Stop and roll back if any former public route or cache still discloses an
 actionable CareConnect listing, if emergency routing is missing or misleading,
-if localization/accessibility materially fails, or if a preserved CareConnect
-health contract or the independently verified keepalive contract regresses.
+if localization/accessibility materially fails, if a generated static artifact
+contains governed corpus data, if connected prior clients remain on an old
+directory surface, if user-authored local data is deleted without confirmation,
+or if a preserved CareConnect health contract or the independently verified
+keepalive contract regresses.
 
 ## Rollback
 
@@ -147,6 +177,8 @@ default resolution.
   directory claims or service routes.
 - Upgrade cache/IndexedDB/unregistration results and the independent shared
   keepalive workflow result.
+- Post-build corpus/embedding exclusion result, connected-client transition
+  result, and local user-data export/clear test result.
 - The explicit approval and final go/rollback decision in the existing private
   operations record.
 

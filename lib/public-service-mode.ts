@@ -1,6 +1,7 @@
 import { routing } from "@/i18n/routing"
+import { PUBLIC_SERVICE_MODE, type PublicServiceMode } from "@/lib/public-service-mode-value"
 
-export type PublicServiceMode = "active" | "retired"
+export { PUBLIC_SERVICE_MODE, type PublicServiceMode }
 
 /**
  * One-way release switch for the prepared public-directory retirement.
@@ -10,15 +11,52 @@ export type PublicServiceMode = "active" | "retired"
  * approval recorded in the retirement disposition are complete. Rollback is a
  * release rollback, not a production data mutation.
  */
-export const PUBLIC_SERVICE_MODE: PublicServiceMode = "retired"
-
 const HEALTH_PATHS = new Set(["/api/health", "/api/v1/health", "/api/v1/health/probe"])
 const supportedLocales = new Set<string>(routing.locales)
+const supportedLocalesByLanguageTag = new Map(routing.locales.map((locale) => [locale.toLowerCase(), locale]))
 
 export type PublicServiceRouteDecision =
   | { action: "pass" }
   | { action: "gone" }
   | { action: "rewrite"; pathname: string }
+
+function supportedLocaleForLanguageTag(languageTag: string): string | undefined {
+  const normalized = languageTag.trim().toLowerCase()
+  const exactLocale = supportedLocalesByLanguageTag.get(normalized)
+  if (exactLocale) return exactLocale
+
+  if (normalized === "zh-cn" || normalized === "zh-sg" || normalized.startsWith("zh-hans")) {
+    return "zh-Hans"
+  }
+
+  return supportedLocalesByLanguageTag.get(normalized.split("-")[0] ?? "")
+}
+
+export function resolveRequestLocale(cookieLocale?: string, acceptLanguage?: string | null): string {
+  if (cookieLocale && supportedLocales.has(cookieLocale)) return cookieLocale
+
+  const acceptedLanguages = (acceptLanguage ?? "")
+    .split(",")
+    .map((entry, index) => {
+      const [languageTag = "", ...parameters] = entry.trim().split(";")
+      const qualityParameter = parameters.find((parameter) => parameter.trim().startsWith("q="))
+      const parsedQuality = qualityParameter ? Number.parseFloat(qualityParameter.trim().slice(2)) : 1
+      return {
+        index,
+        languageTag,
+        quality: Number.isFinite(parsedQuality) ? parsedQuality : 0,
+      }
+    })
+    .filter(({ quality }) => quality > 0)
+    .sort((left, right) => right.quality - left.quality || left.index - right.index)
+
+  for (const { languageTag } of acceptedLanguages) {
+    const locale = supportedLocaleForLanguageTag(languageTag)
+    if (locale) return locale
+  }
+
+  return routing.defaultLocale
+}
 
 export function resolvePublicServiceLocale(pathname: string, preferredLocale?: string): string {
   const pathLocale = pathname.split("/").filter(Boolean)[0]

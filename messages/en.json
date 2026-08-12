@@ -1750,6 +1750,14 @@
     "navigationDescription": "Use 211 Ontario's maintained service navigation instead of CareConnect's retired listings.",
     "visit211": "Visit 211 Ontario",
     "call211": "Call 211",
+    "localDataTitle": "Your data on this device",
+    "localDataDescription": "Saved searches, optional age or identity preferences, and queued feedback stay on this device. You can download a copy or clear them. Nothing is uploaded by these controls.",
+    "exportLocalData": "Download my local data",
+    "clearLocalData": "Clear my local data",
+    "clearConfirmation": "Clear saved searches, optional personal preferences, and queued feedback from this device? This cannot be undone.",
+    "localDataExported": "Your local data download is ready.",
+    "localDataCleared": "Your saved local data has been cleared.",
+    "localDataError": "This browser could not complete the local data action.",
     "boundary": "This page does not list, verify, or endorse service providers."
   }
 }

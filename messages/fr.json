@@ -1750,6 +1750,14 @@
     "navigationDescription": "Utilisez le service d’orientation maintenu par 211 Ontario plutôt que les fiches retirées de CareConnect.",
     "visit211": "Consulter 211 Ontario",
     "call211": "Composer le 211",
+    "localDataTitle": "Vos données sur cet appareil",
+    "localDataDescription": "Les recherches enregistrées, les préférences facultatives d’âge ou d’identité et les commentaires en attente restent sur cet appareil. Vous pouvez en télécharger une copie ou les effacer. Ces commandes ne téléversent rien.",
+    "exportLocalData": "Télécharger mes données locales",
+    "clearLocalData": "Effacer mes données locales",
+    "clearConfirmation": "Effacer de cet appareil les recherches enregistrées, les préférences personnelles facultatives et les commentaires en attente? Cette action est irréversible.",
+    "localDataExported": "Le téléchargement de vos données locales est prêt.",
+    "localDataCleared": "Vos données locales enregistrées ont été effacées.",
+    "localDataError": "Ce navigateur n’a pas pu terminer l’action sur les données locales.",
     "boundary": "Cette page ne répertorie, ne vérifie ni ne recommande aucun fournisseur de services."
   }
 }

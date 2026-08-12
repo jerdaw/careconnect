@@ -154,6 +154,22 @@ describe("proxy retirement routing", () => {
     expect(response.headers.get("x-middleware-rewrite")).toBe("http://localhost:3000/pa/retired")
   })
 
+  it.each([
+    ["fr-CA,fr;q=0.9,en;q=0.5", "fr"],
+    ["es-MX,es;q=0.9", "es"],
+    ["ar-SA,ar;q=0.9", "ar"],
+    ["zh-CN,zh;q=0.9", "zh-Hans"],
+    ["pa-IN,pa;q=0.9", "pa"],
+    ["pt-BR,pt;q=0.9", "pt"],
+  ])("negotiates a no-cookie root request from Accept-Language %s", async (acceptLanguage, locale) => {
+    const request = new NextRequest("http://localhost:3000/", {
+      headers: { "accept-language": acceptLanguage },
+    })
+    const response = await proxy(request)
+
+    expect(response.headers.get("x-middleware-rewrite")).toBe(`http://localhost:3000/${locale}/retired`)
+  })
+
   it("returns 410 without data or auth work for non-health APIs", async () => {
     const request = new NextRequest("http://localhost:3000/api/v1/services?limit=1")
     const response = await proxy(request)

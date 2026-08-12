@@ -8,6 +8,7 @@ import {
   PUBLIC_SERVICE_MODE,
   decidePublicServiceRoute,
   isPublicServiceRetired,
+  resolveRequestLocale,
   type PublicServiceMode,
 } from "@/lib/public-service-mode"
 
@@ -40,8 +41,7 @@ export async function proxy(request: NextRequest, publicServiceMode: PublicServi
   const { pathname } = request.nextUrl
 
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
-  const preferredLocale =
-    cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
+  const preferredLocale = resolveRequestLocale(cookieLocale, request.headers.get("accept-language"))
   const publicServiceDecision = decidePublicServiceRoute(pathname, preferredLocale, publicServiceMode)
 
   if (publicServiceDecision.action === "gone") {

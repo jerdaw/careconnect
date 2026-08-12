@@ -2,8 +2,10 @@
 import { describe, expect, it, vi } from "vitest"
 import {
   clearRetiredClientData,
+  deleteRetirementIndexedDb,
   isRetirementCacheName,
   RETIREMENT_SERVICE_STORAGE_KEYS,
+  RETIREMENT_VECTOR_DATABASES,
 } from "@/lib/retirement/client-data-cleanup"
 
 describe("retirement client data cleanup", () => {
@@ -11,6 +13,7 @@ describe("retirement client data cleanup", () => {
     for (const cacheName of [
       "services-api",
       "services-export-v2",
+      "json-cache-v1",
       "start-url",
       "offline-fallback",
       "pwa-assets",
@@ -55,6 +58,27 @@ describe("retirement client data cleanup", () => {
       serviceWorkersUnregistered: 1,
       storageKeysRemoved: 3,
       vectorDatabasesDeleted: 0,
+      workboxMetadataDeleted: 0,
     })
+  })
+
+  it("includes every current and historical vector database", () => {
+    expect(RETIREMENT_VECTOR_DATABASES).toEqual([
+      "careconnect-vector-store",
+      "helpbridge-vector-store",
+      "kcc-vector-store",
+    ])
+  })
+
+  it("reports a blocked vector-database deletion without treating it as success", async () => {
+    const request = {} as IDBOpenDBRequest
+    const indexedDb = {
+      deleteDatabase: vi.fn(() => request),
+    } as unknown as IDBFactory
+    const deletion = deleteRetirementIndexedDb(indexedDb, "kcc-vector-store")
+
+    request.onblocked?.({} as IDBVersionChangeEvent)
+
+    await expect(deletion).resolves.toBe(false)
   })
 })

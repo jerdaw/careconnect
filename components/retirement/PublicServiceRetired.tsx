@@ -1,6 +1,10 @@
 import { Archive, ExternalLink, MessageCircle, Phone, ShieldAlert } from "lucide-react"
+import {
+  RetirementLocalDataControls,
+  type RetirementLocalDataContent,
+} from "@/components/retirement/RetirementLocalDataControls"
 
-export interface PublicServiceRetiredContent {
+export interface PublicServiceRetiredContent extends RetirementLocalDataContent {
   boundary: string
   call211: string
   call911: string
@@ -134,6 +138,8 @@ export function PublicServiceRetired({ content }: PublicServiceRetiredProps) {
                 </a>
               </div>
             </section>
+
+            <RetirementLocalDataControls content={content} />
 
             <p className="mt-8 border-t border-slate-200 pt-6 text-sm leading-6 text-slate-600">{content.boundary}</p>
           </section>

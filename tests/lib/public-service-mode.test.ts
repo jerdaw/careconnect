@@ -4,6 +4,7 @@ import {
   decidePublicServiceRoute,
   isPublicServiceRetired,
   resolvePublicServiceLocale,
+  resolveRequestLocale,
 } from "@/lib/public-service-mode"
 
 describe("public service retirement policy", () => {
@@ -39,6 +40,12 @@ describe("public service retirement policy", () => {
 
   it("defaults unsupported locale input to English", () => {
     expect(resolvePublicServiceLocale("/unsupported/path", "unsupported")).toBe("en")
+  })
+
+  it("respects quality ordering and cookie precedence for request locales", () => {
+    expect(resolveRequestLocale(undefined, "en;q=0.4,fr-CA;q=0.9")).toBe("fr")
+    expect(resolveRequestLocale("pa", "fr-CA,fr;q=0.9")).toBe("pa")
+    expect(resolveRequestLocale(undefined, "zh-CN")).toBe("zh-Hans")
   })
 
   it("keeps the complete active routing contract available to a release rollback", () => {
