@@ -65,9 +65,12 @@ async function main() {
   }
   const embeddingSignature = JSON.stringify(firstEmbedding.slice(0, 12)).slice(1, -1)
 
-  const artifactFiles = (await walkFiles(clientRoot))
-    .filter((filePath) => /\.(?:js|json|map)$/.test(filePath))
-    .concat(serviceWorkerPath)
+  const artifactFiles = (await walkFiles(clientRoot)).filter((filePath) => /\.(?:js|json|map)$/.test(filePath))
+  const serviceWorkerExists = await fs
+    .access(serviceWorkerPath)
+    .then(() => true)
+    .catch(() => false)
+  if (serviceWorkerExists) artifactFiles.push(serviceWorkerPath)
   const violations: string[] = []
 
   for (const artifactPath of artifactFiles) {
@@ -82,7 +85,7 @@ async function main() {
   }
 
   console.log(
-    `Retirement artifact check passed across ${artifactFiles.length} generated files using ${corpusMarkers.length} corpus-only markers.`
+    `Retirement artifact check passed across ${artifactFiles.length} generated files using ${corpusMarkers.length} corpus-only markers${serviceWorkerExists ? ", including the generated service worker" : "; no service worker was generated in this build mode"}.`
   )
 }
 
