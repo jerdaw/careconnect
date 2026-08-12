@@ -32,6 +32,7 @@ The screenshots are stored as JPEG/JFIF images.
 | [`live-home-mobile.jpg`](live-home-mobile.jpg)                   | Full-page mobile capture at `390 × 844`; retained despite page-animation duplication so the rendering behaviour is preserved | `da90af7eae4172040929f01baf6c88d35701381f605d4e5eb233153a2c4fc589` |
 | [`live-impact-desktop.jpg`](live-impact-desktop.jpg)             | Full public impact page at the default desktop viewport                                                                      | `5cafdd34e5135f99fe8a024dd923641cf03182187fb6fdd5b969ae98f63d0cf2` |
 
-These artifacts are local and uncommitted until the broader retirement packet
-is reviewed. They contain only public page content and no authenticated or
-private operational data.
+These artifacts contain only public page content and no authenticated or
+private operational data. See the
+[retirement disposition](../../careconnect-public-service-retirement-disposition-2026-08-12.md)
+for the authoritative transition and review status.

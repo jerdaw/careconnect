@@ -1729,5 +1729,27 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "CareConnect 服务目录已停用",
+    "metadataDescription": "CareConnect 公共服务目录已停止提供。紧急求助和官方服务导航选项仍然可用。",
+    "skipToContent": "跳到主要内容",
+    "eyebrow": "服务更新",
+    "title": "CareConnect 服务目录已停止提供",
+    "description": "CareConnect 不再显示或搜索本地服务记录。所保留的项目并非正在运营的服务目录。",
+    "safetyTitle": "立即寻求帮助",
+    "safetyDescription": "CareConnect 不会监控此页面，也无法应对紧急情况。",
+    "emergencyTitle": "紧迫危险",
+    "emergencyDescription": "如果您或他人正面临紧迫危险，请立即拨打 911。",
+    "call911": "拨打 911",
+    "suicideTitle": "自杀危机支持",
+    "suicideDescription": "在加拿大，可拨打或短信联系 988，全天候获得自杀危机支持。",
+    "call988": "拨打 988",
+    "text988": "短信 988",
+    "navigationTitle": "查找社区和社会服务",
+    "navigationDescription": "请使用由 211 Ontario 维护的服务导航，而不是 CareConnect 已停用的服务记录。",
+    "visit211": "访问 211 Ontario",
+    "call211": "拨打 211",
+    "boundary": "此页面不列出、不核实也不推荐任何服务提供者。"
   }
 }

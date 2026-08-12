@@ -20,6 +20,7 @@ private/shared operations source of truth.
 - [Architecture](architecture.md) - System design, data flow, and core concepts
 - [Current Roadmap](planning/roadmap.md) - Retirement transition status, gates, and stop rules
 - [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md) - Current owner decision and transition boundary
+- [Retirement Transition and Rollback Packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) - Public-safe preflight, acceptance, and rollback contract for the prepared release
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
 - [Maintenance Audit](maintenance-audit.md) - Latest repo-health audit, verification status, and follow-ups
@@ -77,6 +78,7 @@ private/shared operations source of truth.
 
 - [Current Roadmap](planning/roadmap.md)
 - [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)
+- [Retirement Transition and Rollback Packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md)
 - [Archive](planning/archive/)
 - [Historical v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)
 - [Superseded v22 Limited Public Directory Pilot Risk Disposition](implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)

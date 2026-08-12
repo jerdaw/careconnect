@@ -4,6 +4,12 @@ import { routing } from "./i18n/routing"
 import { createServerClient, type CookieOptions } from "@supabase/ssr"
 import { env } from "@/lib/env"
 import { logger } from "@/lib/logger"
+import {
+  PUBLIC_SERVICE_MODE,
+  decidePublicServiceRoute,
+  isPublicServiceRetired,
+  type PublicServiceMode,
+} from "@/lib/public-service-mode"
 
 // Initialize Internationalization Middleware
 const intlMiddleware = createMiddleware(routing)
@@ -30,8 +36,50 @@ function applyResponseCookies(source: NextResponse, target: NextResponse) {
   }
 }
 
-export async function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest, publicServiceMode: PublicServiceMode = PUBLIC_SERVICE_MODE) {
   const { pathname } = request.nextUrl
+
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
+  const preferredLocale =
+    cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
+  const publicServiceDecision = decidePublicServiceRoute(pathname, preferredLocale, publicServiceMode)
+
+  if (publicServiceDecision.action === "gone") {
+    return NextResponse.json(
+      {
+        error: "The CareConnect public directory has been retired.",
+      },
+      {
+        status: 410,
+        headers: {
+          "Cache-Control": "no-store, max-age=0",
+          "X-Robots-Tag": "noindex, nofollow, noarchive",
+        },
+      }
+    )
+  }
+
+  if (publicServiceDecision.action === "rewrite") {
+    const url = request.nextUrl.clone()
+    url.pathname = publicServiceDecision.pathname
+    url.search = ""
+
+    const retirementResponse = NextResponse.rewrite(url)
+    retirementResponse.headers.set("Cache-Control", "no-store, max-age=0")
+    retirementResponse.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")
+    return retirementResponse
+  }
+
+  if (pathname === "/api" || pathname.startsWith("/api/")) {
+    return NextResponse.next()
+  }
+
+  if (isPublicServiceRetired(publicServiceMode)) {
+    const retirementResponse = intlMiddleware(request)
+    retirementResponse.headers.set("Cache-Control", "no-store, max-age=0")
+    retirementResponse.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")
+    return retirementResponse
+  }
 
   if (isAuthCallbackPath(pathname)) {
     return NextResponse.next({
@@ -40,10 +88,6 @@ export async function proxy(request: NextRequest) {
       },
     })
   }
-
-  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value
-  const preferredLocale =
-    cookieLocale && (routing.locales as readonly string[]).includes(cookieLocale) ? cookieLocale : routing.defaultLocale
 
   // Ensure Workbox navigation fallback (`/offline`) resolves to a real page.
   // We rewrite (not redirect) so the response is cached under `/offline`.
@@ -127,8 +171,8 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: ["/((?!api|_next|_vercel|auth/callback|.*\\..*).*)"],
+  // API routes must be matched explicitly so a dotted suffix cannot bypass
+  // the retirement 410 contract. The general route keeps genuine static
+  // assets, `/_next`, and `/_vercel` outside proxy work.
+  matcher: ["/api/:path*", "/((?!api(?:/|$)|_next|_vercel|.*\\..*).*)"],
 }

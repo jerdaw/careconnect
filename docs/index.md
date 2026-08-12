@@ -21,11 +21,11 @@ Manual curation remains the data-governance model. The software can display evid
 
 ## Current Disposition
 
-Controlled retirement of the public directory is approved in principle. The bounded evidence screen and any separately approved transition work remain pending.
+Controlled retirement of the public directory is approved in principle. The bounded evidence screen is closed, and a reversible retirement release is prepared in a draft change pending live preflight and explicit deployment approval.
 
-CareConnect is still publicly available during this transition. This documentation change does not retire the service, alter service records, or authorize a deployment. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
+CareConnect is still publicly available during this transition. The draft release does not retire the live service, alter service records, or authorize a deployment. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
 
-See the [current roadmap](planning/roadmap.md) and [public-service retirement disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md). CareConnect is not a clinical decision support system, emergency service, or official government or 211 service.
+See the [current roadmap](planning/roadmap.md), [public-service retirement disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md), and [transition/rollback packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md). CareConnect is not a clinical decision support system, emergency service, or official government or 211 service.
 
 Public documentation intentionally excludes deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory.
 

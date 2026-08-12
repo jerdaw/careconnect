@@ -103,9 +103,8 @@ describe("PWA manifest assets", () => {
 
   it("screenshot sizes match expected dimensions", () => {
     const expectations: Array<{ publicPath: string; width: number; height: number }> = [
-      { publicPath: "/screenshots/mobile-search.png", width: 540, height: 720 },
-      { publicPath: "/screenshots/mobile-detail.png", width: 540, height: 720 },
-      { publicPath: "/screenshots/tablet-search.png", width: 1280, height: 720 },
+      { publicPath: "/screenshots/retirement-mobile.png", width: 540, height: 720 },
+      { publicPath: "/screenshots/retirement-tablet.png", width: 1280, height: 720 },
     ]
 
     for (const exp of expectations) {
@@ -113,6 +112,14 @@ describe("PWA manifest assets", () => {
       expect(existsSync(diskPath)).toBe(true)
       const size = readPngSize(diskPath)
       expect(size).toEqual({ width: exp.width, height: exp.height })
+    }
+
+    for (const retiredPath of [
+      "/screenshots/mobile-search.png",
+      "/screenshots/mobile-detail.png",
+      "/screenshots/tablet-search.png",
+    ]) {
+      expect(existsSync(publicPathToDiskPath(retiredPath))).toBe(false)
     }
   })
 

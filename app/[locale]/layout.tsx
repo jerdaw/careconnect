@@ -13,6 +13,7 @@ import { TranslationBanner } from "@/components/layout/TranslationBanner"
 import { OfflineSync } from "@/components/offline/OfflineSync"
 import { OfflineBanner } from "@/components/ui/OfflineBanner"
 import { BRAND_NAME, getPublicBaseUrl } from "@/lib/brand"
+import { isPublicServiceRetired } from "@/lib/public-service-mode"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -69,6 +70,14 @@ export default async function RootLayout({
   const { locale } = await params
 
   const messages = await getMessages({ locale })
+
+  if (isPublicServiceRetired()) {
+    return (
+      <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+        <body className={`${inter.variable} ${outfit.variable} font-sans antialiased`}>{children}</body>
+      </html>
+    )
+  }
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>

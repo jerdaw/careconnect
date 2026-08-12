@@ -9,7 +9,7 @@ tags: [planning, roadmap, governance, retirement]
 
 > **Current decision:** controlled public-service retirement approved in principle
 >
-> **Execution status:** bounded evidence screen and approved transition work pending
+> **Execution status:** evidence screen closed; retirement release prepared in a draft change; live preflight and approval pending
 >
 > **Public state:** the directory remains available until a separately approved live change
 >
@@ -17,30 +17,31 @@ tags: [planning, roadmap, governance, retirement]
 
 ## Executive Status
 
-| Area                  | Current state                                                                                                                                                                    | Authority or evidence                                                                                       |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Strategic disposition | Retire the actionable public directory unless the bounded screen credibly demonstrates meaningful recurring human use and an accountable steward accepts the service obligations | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md) |
-| Service inventory     | The governed snapshot contains 204 records; the dated 2026-08-12 freshness check identifies 8 visible records and 196 stale/hidden records                                       | Reproducible local staleness check; no service record was changed                                           |
-| Crisis stewardship    | Two visible crisis records are due under the 30-day crisis cadence. Any record change is a separate approval-gated action                                                        | Existing freshness policy and dated staleness check                                                         |
-| Use evidence          | Existing privacy-preserving aggregate evidence cannot by itself establish unique people, referrals, outcomes, or public benefit                                                  | Current analytics contracts and zero raw-query policy                                                       |
-| Shared operations     | A CareConnect-hosted keepalive also checks VisitBrief's Supabase project. No workflow or project-availability change is authorized by this roadmap                               | Public keepalive workflow contract plus private/shared operations source of truth                           |
-| Recovery boundary     | Live release, backup, rollback, shared-host, and environment details remain outside this public repository                                                                       | [ADR-022](../adr/022-public-documentation-boundary.md)                                                      |
+| Area                  | Current state                                                                                                                                                                                                                                                                                                                | Authority or evidence                                                                                            |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Strategic disposition | Retire the actionable public directory unless the bounded screen credibly demonstrates meaningful recurring human use and an accountable steward accepts the service obligations                                                                                                                                             | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
+| Service inventory     | The governed snapshot contains 204 records; the dated 2026-08-12 freshness check identifies 8 visible records and 196 stale/hidden records                                                                                                                                                                                   | Reproducible local staleness check; no service record was changed                                                |
+| Crisis stewardship    | Two visible crisis records are due under the 30-day crisis cadence. Any record change is a separate approval-gated action                                                                                                                                                                                                    | Existing freshness policy and dated staleness check                                                              |
+| Use evidence          | CC-2B was closed without a query because the allowed aggregate contract could not establish people, referrals, outcomes, or public benefit; 116 screen minutes remain unused                                                                                                                                                 | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
+| Prepared transition   | A reversible retirement surface and rollback packet are present only in the draft change; no live service, data, workflow, keepalive, redirect, or deployment state has changed                                                                                                                                              | [Transition and rollback packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) |
+| Shared operations     | The unchanged Actions workflow queries both CareConnect and VisitBrief Supabase Data APIs directly and is independent of the CareConnect frontend. The latest eight checked scheduled runs (2026-08-05 through 2026-08-12) succeeded. Keep the workflow, repository, Actions, required secrets, and Supabase projects intact | Public keepalive workflow contract plus private/shared operations source of truth                                |
+| Recovery boundary     | Live release, backup, rollback, shared-host, and environment details remain outside this public repository                                                                                                                                                                                                                   | [ADR-022](../adr/022-public-documentation-boundary.md)                                                           |
 
 ## Ordered Work
 
 ### CC-1 — Documentation truth
 
-Reconcile the canonical public status, navigation, roadmap, and decision record
-to "retirement approved, evidence screen pending." This is local,
-documentation-only work and does not change the public service.
+Completed in the draft change. Canonical public status, navigation, roadmap,
+and the decision record now distinguish the approved disposition, the closed
+screen, the draft transition, and the still-live public service.
 
 ### CC-2 — Bounded evidence screen
 
-Cap the complete screen at two hours. Use only existing aggregate-only evidence,
-current public/read-only state, boundary-safe cost and incident summaries, and
-the known effort and risk of transition. Do not add analytics, run production
-SQL, access raw logs or personal data, extract credentials, or alter Supabase
-or keepalive behavior.
+Closed after CC-2A used 4 of 120 minutes. CC-2B was not pursued because the
+available browser session was unauthenticated and the allowed aggregate
+endpoint contract could not establish people, referrals, outcomes, or benefit.
+Production SQL, raw logs, personal data, and credential extraction remained
+out of scope. The unused 116 minutes do not carry into a broader search.
 
 The screen may establish activity consistent with recurring human use, but
 aggregate requests alone do not prove unique users, referrals, outcomes, or
@@ -50,19 +51,19 @@ steward, continue toward controlled retirement.
 
 ### CC-3 — Reversible artifact preservation
 
-Preserve source/history, a reproducible local or private interactive build,
-dated screenshots or video, and technical evidence for accessibility, privacy,
-offline behavior, and governance. Do not keep real actionable listings public
-only to retain a public interactive example. A public synthetic prototype is
-not the default.
+Completed for the current local packet: source/history, a dated public visual
+baseline with hashes, and a reproducible retirement release remain preserved.
+No real actionable listing is retained as a public demo solely for optionality.
 
 ### CC-4 — Approval-gated transition
 
-Plan and execute public retirement only after the applicable recovery,
-cross-project, data, and deployment preflights pass and the owner explicitly
-approves the exact action. Service-record changes, Supabase changes, workflow or
-shared-keepalive changes, redirects, public copy changes, and deployment or
-retirement are distinct approval gates.
+The reversible surface and public-safe
+[transition/rollback packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md)
+are prepared in a draft change. Execute public retirement only after the applicable
+recovery and cross-project dependency preflights pass and the owner explicitly
+approves the exact live action. Service-record changes, Supabase changes,
+workflow or shared-keepalive changes, redirects, and deployment remain distinct
+approval gates.
 
 ## Allowed Before a Live-Change Approval
 

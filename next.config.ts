@@ -102,7 +102,10 @@ import withPWAInit from "@ducanh2912/next-pwa"
 const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development" || !!process.env.CI,
-  register: true,
+  // Existing registrations still discover this release's worker during a
+  // navigation update. Do not register a new long-lived worker after the
+  // retirement page clears old app caches and unregisters existing workers.
+  register: false,
   fallbacks: {
     document: "/offline",
   },
@@ -172,39 +175,9 @@ const withPWA = withPWAInit({
           },
         },
       },
-      {
-        // Offline-first bulk export (only caches successful GETs; 401/403 won't be cached)
-        urlPattern: /\/api\/v1\/services\/export(\?.*)?$/,
-        handler: "NetworkFirst",
-        method: "GET",
-        options: {
-          cacheName: "services-export",
-          networkTimeoutSeconds: 5,
-          expiration: {
-            maxEntries: 2,
-            maxAgeSeconds: 60 * 60 * 24, // 24 hours
-          },
-          cacheableResponse: {
-            statuses: [200],
-          },
-        },
-      },
-      {
-        // Services API GET responses (public data only; excludes export endpoint above)
-        urlPattern: /\/api\/v1\/services(?!\/export)(?![^#]*[?&]q=)(\/|$)/,
-        handler: "StaleWhileRevalidate",
-        method: "GET",
-        options: {
-          cacheName: "services-api",
-          expiration: {
-            maxEntries: 100,
-            maxAgeSeconds: 60 * 60 * 24, // 24 hours
-          },
-          cacheableResponse: {
-            statuses: [200],
-          },
-        },
-      },
+      // The retirement release must not create new caches of actionable
+      // service exports or service-detail API responses. The previous release
+      // remains the rollback artifact if public operation is explicitly restored.
     ],
   },
 })

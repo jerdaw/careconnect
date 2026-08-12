@@ -6,33 +6,30 @@ afterEach(() => {
 })
 
 describe("metadata routes", () => {
-  it("uses the careconnect fallback for robots", async () => {
+  it("disallows crawling and omits the sitemap in retirement mode", async () => {
     const { default: robots } = await import("@/app/robots")
 
-    expect(robots().sitemap).toBe("https://careconnect.ing/sitemap.xml")
+    expect(robots()).toEqual({
+      rules: [{ userAgent: "*", disallow: "/" }],
+    })
   })
 
-  it("uses NEXT_PUBLIC_BASE_URL for robots and sitemap", async () => {
+  it("returns an empty retirement sitemap if fetched directly", async () => {
     process.env.NEXT_PUBLIC_BASE_URL = "https://example.test"
     const { default: robots } = await import("@/app/robots")
     const { default: sitemap } = await import("@/app/sitemap")
 
     const entries = await sitemap()
 
-    expect(robots().sitemap).toBe("https://example.test/sitemap.xml")
-    expect(entries[0]?.url).toBe("https://example.test/en")
-    expect(entries[0]?.alternates?.languages?.fr).toBe("https://example.test/fr")
-    expect(entries.map((entry) => entry.url)).toEqual(
-      expect.arrayContaining([
-        "https://example.test/en/privacy",
-        "https://example.test/en/terms",
-        "https://example.test/en/content-policy",
-        "https://example.test/en/partner-terms",
-        "https://example.test/en/accessibility",
-        "https://example.test/en/faq",
-        "https://example.test/en/user-guide",
-        "https://example.test/en/impact",
-      ])
-    )
+    expect(robots().sitemap).toBeUndefined()
+    expect(entries).toEqual([])
+  })
+
+  it("preserves the prior crawler contract only for a recorded release rollback", async () => {
+    const { buildRobots } = await import("@/app/robots")
+    const { buildSitemap } = await import("@/app/sitemap")
+
+    expect(buildRobots("active").sitemap).toBe("https://careconnect.ing/sitemap.xml")
+    expect((await buildSitemap("active")).some((entry) => entry.url.includes("/service/"))).toBe(true)
   })
 })

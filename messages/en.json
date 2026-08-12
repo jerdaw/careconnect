@@ -1729,5 +1729,27 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "CareConnect directory retired",
+    "metadataDescription": "The CareConnect public directory is no longer available. Emergency and official navigation options remain available.",
+    "skipToContent": "Skip to main content",
+    "eyebrow": "Service update",
+    "title": "The CareConnect directory is no longer available",
+    "description": "CareConnect no longer displays or searches local service listings. The preserved project is not an active directory.",
+    "safetyTitle": "Get help now",
+    "safetyDescription": "CareConnect does not monitor this page and cannot respond to emergencies.",
+    "emergencyTitle": "Immediate danger",
+    "emergencyDescription": "Call 911 now if you or someone else is in immediate danger.",
+    "call911": "Call 911",
+    "suicideTitle": "Suicide crisis support",
+    "suicideDescription": "In Canada, call or text 988 for 24/7 suicide crisis support.",
+    "call988": "Call 988",
+    "text988": "Text 988",
+    "navigationTitle": "Find community and social services",
+    "navigationDescription": "Use 211 Ontario's maintained service navigation instead of CareConnect's retired listings.",
+    "visit211": "Visit 211 Ontario",
+    "call211": "Call 211",
+    "boundary": "This page does not list, verify, or endorse service providers."
   }
 }

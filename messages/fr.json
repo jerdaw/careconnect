@@ -1729,5 +1729,27 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "Répertoire CareConnect retiré",
+    "metadataDescription": "Le répertoire public CareConnect n’est plus accessible. Les options officielles d’urgence et d’orientation demeurent disponibles.",
+    "skipToContent": "Aller au contenu principal",
+    "eyebrow": "Mise à jour du service",
+    "title": "Le répertoire CareConnect n’est plus accessible",
+    "description": "CareConnect n’affiche plus les fiches de services locaux et ne permet plus d’y faire des recherches. Le projet conservé n’est pas un répertoire actif.",
+    "safetyTitle": "Obtenir de l’aide maintenant",
+    "safetyDescription": "CareConnect ne surveille pas cette page et ne peut pas intervenir en cas d’urgence.",
+    "emergencyTitle": "Danger immédiat",
+    "emergencyDescription": "Composez immédiatement le 911 si vous ou une autre personne êtes en danger immédiat.",
+    "call911": "Composer le 911",
+    "suicideTitle": "Soutien en cas de crise suicidaire",
+    "suicideDescription": "Au Canada, appelez ou textez le 988 pour obtenir du soutien en cas de crise suicidaire, 24 heures sur 24, 7 jours sur 7.",
+    "call988": "Appeler le 988",
+    "text988": "Texter le 988",
+    "navigationTitle": "Trouver des services communautaires et sociaux",
+    "navigationDescription": "Utilisez le service d’orientation maintenu par 211 Ontario plutôt que les fiches retirées de CareConnect.",
+    "visit211": "Consulter 211 Ontario",
+    "call211": "Composer le 211",
+    "boundary": "Cette page ne répertorie, ne vérifie ni ne recommande aucun fournisseur de services."
   }
 }

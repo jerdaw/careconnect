@@ -10,10 +10,12 @@ tags: [implementation, governance, public-service, retirement]
 ## Decision
 
 Controlled retirement of the actionable public directory is approved in
-principle. The bounded evidence screen and any separately approved transition
-work remain pending. CareConnect is still publicly available; this decision
-record does not change service records, databases, workflows, keepalive
-coverage, redirects, or deployments.
+principle. The bounded evidence screen is closed, and a reversible retirement
+surface is prepared in the draft transition change. CareConnect is still
+publicly available until that change passes its recovery/dependency preflight
+and receives explicit deployment approval. This decision record does not
+change service records, databases, workflows, keepalive coverage, redirects,
+or deployments.
 
 The default is to retain source/history and a reproducible non-service artifact,
 not to maintain or restore the 204-record corpus for optionality.
@@ -57,23 +59,23 @@ summaries. It did not run production SQL, access raw logs or personal data,
 extract credentials, change records or infrastructure, deploy, or contact
 anyone.
 
-| Evidence                     | Dated observation                                                                                                                                                                                                                                                                                               | Strength and limit                                                                                                                                 | Decision implication                                                                                                                                           |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Public availability          | On 2026-08-12 the health endpoint, English home page, public services API, impact page, robots file, sitemap, and both due crisis detail pages returned HTTP 200. Health reported `healthy` at release `1b561ec0b614`; the API returned 8 records.                                                              | Strong evidence that the current service is reachable, not evidence that people use or benefit from it.                                            | Retirement must be a controlled live change with rollback, not an assumption that the service is already absent.                                               |
-| Governed inventory           | The reproducible local check as of 2026-08-12 reported 204 total records: 6 fresh, 2 due, 196 stale, 0 unknown, 8 visible, and 196 hidden. The two due records are crisis records last verified 34 days earlier.                                                                                                | Strong snapshot evidence; no service fact or verification date was changed.                                                                        | Do not restore the stale corpus for optionality. The visible crisis records retain an active stewardship obligation until separately approved handling occurs. |
-| Direct outcome evidence      | The historical 2026-03-09 baseline recorded 0 contact attempts and 0 referrals for its bounded window. The public impact page on 2026-08-12 showed 0 feedback responses, 0 reported issues, and 0 feedback received, while showing 8 of 8 current public records as recently verified.                          | The historical baseline does not prove later absence of activity. Zero voluntary feedback does not prove zero use.                                 | No connection, referral, or outcome benefit is currently corroborated by the allowed evidence.                                                                 |
-| Analytics contract           | Search analytics store locale and result count with query text set to `NULL`. Detail analytics store service ID, event type, and timestamp. They do not provide a person, session, referrer, user agent, referral, or outcome field. The existing aggregate API requires authentication and organization scope. | Strong code-contract evidence. Existing counts could indicate activity but cannot reliably distinguish unique people, bots, referrals, or benefit. | Aggregate traffic alone cannot reverse the retirement default or justify corpus reverification.                                                                |
-| Operational automation       | The five most recent checked daily production-smoke runs and five most recent checked daily shared Supabase-keepalive runs were successful. No automated keepalive-failure issue was open. The keepalive also protects VisitBrief.                                                                              | Strong current workflow metadata; no raw logs were read. It proves routine availability checks, not public value.                                  | Retirement planning must preserve or replace VisitBrief's keepalive before changing the shared workflow.                                                       |
-| Operating-cost boundary      | Exact provider, billing, and infrastructure cost evidence remains private and incomplete in the public record.                                                                                                                                                                                                  | The allowed evidence does not establish a boundary-safe total or project-specific operating cost.                                                  | Do not claim cash savings. The disposition rests on stewardship and safety obligations rather than a financial-savings claim.                                  |
-| Incident and recovery burden | Existing value-safe operations records document provider-assisted database restore and application redeploy proof, prior production auth remediation, and a synthetic alert whose delivery was not confirmed. Current health is green.                                                                          | Establishes non-zero operations and transition burden, but not a recurring outage rate.                                                            | Do not describe retirement as costless. Require recovery and monitoring preflights before any live transition.                                                 |
-| Current work queues          | Four public issues remain open: two historical v22 external-evidence gates and two service-verification queues.                                                                                                                                                                                                 | Issue state reflects unfinished work, not a mandate to complete superseded strategy.                                                               | Supersede the v22 gates as active work and do not execute the verification queues for optionality.                                                             |
+| Evidence                     | Dated observation                                                                                                                                                                                                                                                                                                                                                                                                    | Strength and limit                                                                                                                                 | Decision implication                                                                                                                                                                                                             |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Public availability          | On 2026-08-12 the health endpoint, English home page, public services API, impact page, robots file, sitemap, and both due crisis detail pages returned HTTP 200. Health reported `healthy` at release `1b561ec0b614`; the API returned 8 records.                                                                                                                                                                   | Strong evidence that the current service is reachable, not evidence that people use or benefit from it.                                            | Retirement must be a controlled live change with rollback, not an assumption that the service is already absent.                                                                                                                 |
+| Governed inventory           | The reproducible local check as of 2026-08-12 reported 204 total records: 6 fresh, 2 due, 196 stale, 0 unknown, 8 visible, and 196 hidden. The two due records are crisis records last verified 34 days earlier.                                                                                                                                                                                                     | Strong snapshot evidence; no service fact or verification date was changed.                                                                        | Do not restore the stale corpus for optionality. The visible crisis records retain an active stewardship obligation until separately approved handling occurs.                                                                   |
+| Direct outcome evidence      | The historical 2026-03-09 baseline recorded 0 contact attempts and 0 referrals for its bounded window. The public impact page on 2026-08-12 showed 0 feedback responses, 0 reported issues, and 0 feedback received, while showing 8 of 8 current public records as recently verified.                                                                                                                               | The historical baseline does not prove later absence of activity. Zero voluntary feedback does not prove zero use.                                 | No connection, referral, or outcome benefit is currently corroborated by the allowed evidence.                                                                                                                                   |
+| Analytics contract           | Search analytics store locale and result count with query text set to `NULL`. Detail analytics store service ID, event type, and timestamp. They do not provide a person, session, referrer, user agent, referral, or outcome field. The existing aggregate API requires authentication and organization scope.                                                                                                      | Strong code-contract evidence. Existing counts could indicate activity but cannot reliably distinguish unique people, bots, referrals, or benefit. | Aggregate traffic alone cannot reverse the retirement default or justify corpus reverification.                                                                                                                                  |
+| Operational automation       | The five most recent checked daily production-smoke runs were successful. The latest eight checked scheduled shared Supabase-keepalive runs (2026-08-05 through 2026-08-12) were also successful, required secret names were present, and no automated keepalive-failure issue was open. The unchanged workflow queries both CareConnect and VisitBrief Supabase Data APIs directly; it does not call this frontend. | Strong current workflow metadata; no raw logs or secret values were read. It proves routine availability checks, not public value.                 | Frontend retirement does not require a keepalive migration. Keep the workflow, repository, Actions, required secrets, and Supabase projects intact; treat any later disable/delete as a separate dependency-separation decision. |
+| Operating-cost boundary      | Exact provider, billing, and infrastructure cost evidence remains private and incomplete in the public record.                                                                                                                                                                                                                                                                                                       | The allowed evidence does not establish a boundary-safe total or project-specific operating cost.                                                  | Do not claim cash savings. The disposition rests on stewardship and safety obligations rather than a financial-savings claim.                                                                                                    |
+| Incident and recovery burden | Existing value-safe operations records document provider-assisted database restore and application redeploy proof, prior production auth remediation, and a synthetic alert whose delivery was not confirmed. Current health is green.                                                                                                                                                                               | Establishes non-zero operations and transition burden, but not a recurring outage rate.                                                            | Do not describe retirement as costless. Require recovery and monitoring preflights before any live transition.                                                                                                                   |
+| Current work queues          | Four public issues remain open: two historical v22 external-evidence gates and two service-verification queues.                                                                                                                                                                                                                                                                                                      | Issue state reflects unfinished work, not a mandate to complete superseded strategy.                                                               | Supersede the v22 gates as active work and do not execute the verification queues for optionality.                                                                                                                               |
 
 ### CC-2A Result
 
 Recorded CC-2A window: `2026-08-12T13:03:52Z` to
 `2026-08-12T13:07:25Z` (4 minutes rounded up). Cumulative evidence-screen time
-used: 4 of 120 minutes; 116 minutes remain. CC-1 documentation and validation
-time is outside this evidence-screen total.
+used: 4 of 120 minutes. CC-1 documentation and validation time is outside this
+evidence-screen total.
 
 The allowed evidence did not corroborate meaningful recurring human use or an
 accountable steward. It therefore strengthens the controlled-retirement
@@ -81,12 +83,41 @@ default, but it does not authorize a live change. Current aggregate production
 counts were not queried and, by contract, could establish only activity rather
 than unique people, referrals, outcomes, or benefit.
 
-The next gate is an explicit owner decision on whether to spend the remainder
-of the two-hour screen on CC-2B: a narrowly specified, authenticated,
-read-only aggregate review with no raw rows, logs, personal data, credentials,
-or production mutation. If CC-2B is not approved, or if it finds only
-uncorroborated activity, proceed to the separately approval-gated transition
-preflight rather than extending evidence collection.
+### CC-2B Close Decision (2026-08-12)
+
+CC-2B was not pursued. The available browser session was unauthenticated, and
+the screen continued to prohibit production SQL, raw-log access, personal-data
+access, and credential extraction. More importantly, the authenticated
+aggregate endpoint contract could provide activity counts only; it could not
+establish people, referrals, outcomes, or benefit. A query within the approved
+boundary therefore could not satisfy the continuation gate.
+
+The evidence screen is closed at 4 of 120 minutes. The remaining 116 minutes
+are unused, not deferred to a broader search. This decision does **not** claim
+zero use; it records that the allowed evidence cannot corroborate the benefit
+and stewardship required to continue an actionable public directory.
+
+## Locally Prepared Retirement Surface (2026-08-12)
+
+The draft transition change prepares, but does not deploy, a source-controlled
+retirement mode that:
+
+1. rewrites interactive public routes to a localized non-directory page;
+2. returns `410 Gone` from non-health API routes while preserving the existing
+   health endpoints;
+3. presents only official emergency routing (`911`, call/text `988`) and 211
+   Ontario navigation, without real CareConnect listings, search, forms,
+   accounts, location access, analytics, offline synchronization, or chat;
+4. removes service-data routes from the retirement sitemap and install
+   shortcuts, prevents new service-response PWA caches, and clears prior
+   service/offline caches plus offline service and embedding data during an
+   upgrade; and
+5. preserves source/history and the dated pre-retirement visual baseline.
+
+The exact public-safe preflight, acceptance, rollback, and evidence contract is
+the [retirement transition and rollback packet](careconnect-retirement-transition-and-rollback-2026-08-12.md).
+No live state changes merely because this implementation exists in a draft pull
+request.
 
 ## Current Operating Boundary
 
@@ -100,6 +131,9 @@ Until a separately approved transition action is executed:
    requires its own recovery preflight and explicit approval.
 5. Exact production, backup, rollback, environment, and shared-host details
    remain in the private/shared operations source of truth.
+6. The prepared retirement code must remain undeployed until the
+   recovery/dependency preflight passes and the owner approves the exact live
+   transition.
 
 ## Artifact Preservation
 

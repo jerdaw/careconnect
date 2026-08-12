@@ -1,5 +1,11 @@
 # Runbook: PWA & Mobile Infrastructure Testing
 
+> **Historical/conditional protocol:** this runbook documents the active-directory
+> PWA contract before the approved retirement transition. It does not authorize
+> restoring offline directory behavior, service ingestion, feature work, or a
+> public deployment. During retirement work, follow the current roadmap and the
+> retirement transition/rollback packet instead.
+
 This runbook provides a step-by-step guide for manually verifying the Progressive Web App (PWA) features and mobile infrastructure introduced in v15.0.
 
 ## 1. Installation & Environment

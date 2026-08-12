@@ -24,10 +24,10 @@ requirements, while verification claims must stay tied to dated evidence.
 ## Current Strategic Disposition (2026-08-12)
 
 Controlled retirement of the public directory has been approved in principle;
-the bounded evidence screen and any separately approved transition work remain
-pending. The public service is still available during this transition. A
-documentation update must not be described as a completed deployment or data
-change.
+the bounded evidence screen is closed and a reversible retirement release is
+prepared in a draft change. The public service is still available
+during this transition. Local code or documentation must not be described as a
+completed deployment or data change.
 
 Until the disposition is reopened:
 

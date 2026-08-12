@@ -1729,5 +1729,27 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "Diretório CareConnect desativado",
+    "metadataDescription": "O diretório público CareConnect não está mais disponível. As opções oficiais de emergência e orientação continuam disponíveis.",
+    "skipToContent": "Pular para o conteúdo principal",
+    "eyebrow": "Atualização do serviço",
+    "title": "O diretório CareConnect não está mais disponível",
+    "description": "O CareConnect não exibe nem pesquisa mais listagens de serviços locais. O projeto preservado não é um diretório ativo.",
+    "safetyTitle": "Obtenha ajuda agora",
+    "safetyDescription": "O CareConnect não monitora esta página e não pode responder a emergências.",
+    "emergencyTitle": "Perigo imediato",
+    "emergencyDescription": "Ligue para 911 agora se você ou outra pessoa estiver em perigo imediato.",
+    "call911": "Ligar para 911",
+    "suicideTitle": "Apoio em crise suicida",
+    "suicideDescription": "No Canadá, ligue ou envie uma mensagem de texto para 988 para obter apoio em crise suicida 24 horas por dia.",
+    "call988": "Ligar para 988",
+    "text988": "Enviar mensagem para 988",
+    "navigationTitle": "Encontrar serviços comunitários e sociais",
+    "navigationDescription": "Use a orientação de serviços mantida pelo 211 Ontario em vez das listagens desativadas do CareConnect.",
+    "visit211": "Visitar 211 Ontario",
+    "call211": "Ligar para 211",
+    "boundary": "Esta página não lista, verifica nem endossa prestadores de serviços."
   }
 }
