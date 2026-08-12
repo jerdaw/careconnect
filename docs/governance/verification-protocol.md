@@ -1,18 +1,30 @@
 ---
 status: stable
-last_updated: 2026-04-05
+last_updated: 2026-08-12
 owner: jer
 tags: [governance, verification, protocol]
 ---
 
 # Service Verification Protocol
 
+> [!IMPORTANT]
+> **Retirement-transition boundary:** This protocol is preserved as historical
+> and conditional safety guidance. It does not authorize active feature or
+> service-record changes, new ingestion, provider outreach or partnership work,
+> pilot reverification, or Brampton pre-launch execution. Use it only for
+> separately approved safety work or after the
+> [current roadmap](../planning/roadmap.md) reopens an operationally stewarded
+> service scope.
+
 **Version**: 1.1  
 **Effective Date**: January 3, 2026
 
 ## 1. Objective
 
-To maintain the highest level of accuracy and safety for service listings in CareConnect (CareConnect), ensuring users can trust the information provided.
+To define accuracy and safety requirements for separately approved record work
+or a reopened, operationally stewarded CareConnect service scope. This objective
+is not an active maintenance or expansion mandate during the retirement
+transition.
 
 ## 2. Verification Levels (L-Scale)
 
@@ -24,7 +36,11 @@ To maintain the highest level of accuracy and safety for service listings in Car
 | **L3** | Partner     | Managed by Provider                    | Provider has claimed listing, accepted Terms, and updates data directly.                              |
 | **L4** | Accredited  | Official Government Source             | Data sync via API from municipal/provincial databases.                                                |
 
-## 3. Verification Process
+## 3. Historical/Conditional Verification Process
+
+The steps below document the previously established process. They are not an
+active intake, outreach, partnership, or reverification queue under the current
+disposition.
 
 ### Step 1: Ingestion (L0)
 
@@ -54,6 +70,10 @@ To maintain the highest level of accuracy and safety for service listings in Car
 - Track outreach progress in a governance-safe way (no PII) when needed, e.g. `data/verification/l3-candidates.csv`.
 
 ## 4. Maintenance Cycle
+
+These cadences apply only to an approved, actively stewarded public scope. They
+do not authorize pilot reverification or restoration of hidden records during
+the retirement transition.
 
 - **Crisis / highly volatile listings**: Review monthly where operationally feasible.
 - **Pilot / priority listings**: Target re-verification within 90 days.

@@ -113,7 +113,9 @@ describe("documentation hygiene", () => {
     const contracts = [readDoc("platform-ops-contract.yaml"), readDoc("platform-ops-contract.example.yaml")]
 
     expect(readme).toContain("Public Documentation Boundary")
-    expect(roadmap).toContain("active deployment facts are maintained privately")
+    expect(roadmap).toContain(
+      "Live release, backup, rollback, shared-host, and environment details remain outside this public repository"
+    )
     for (const contract of contracts) {
       expect(contract).toContain("careconnect-example")
       expect(contract).toContain("example.org")
@@ -152,7 +154,7 @@ describe("documentation hygiene", () => {
     const loadTesting = readDoc("docs/testing/load-testing.md")
     const releaseWorkflow = readDoc(".github/workflows/release.yml")
 
-    expect(roadmap).toContain("Workflow runtime hygiene")
+    expect(roadmap).toContain("Changes to crisis records, GitHub workflows, VisitBrief keepalive coverage")
     expect(roadmap).not.toContain("Audit the remaining GitHub Actions Node 24 warnings")
 
     expect(releaseProcess).toContain("gh release create")
@@ -184,11 +186,11 @@ describe("documentation hygiene", () => {
     expect(verificationProtocol).toContain("not verified for >180 days are downgraded to L0")
     expect(verificationProtocol).not.toContain(">12 months")
 
-    expect(planningReadme).toContain("Target ~90-day decision review cycle")
-    expect(planningReadme).toContain("not a guaranteed delivery schedule")
+    expect(planningReadme).toContain("controlled public-service retirement transition")
+    expect(planningReadme).toContain("Do not restore or reverify the corpus for optionality")
 
-    expect(roadmap).toContain("180 days as the hard visibility limit")
-    expect(roadmap).toContain("review checkpoint rather than a guaranteed build schedule")
+    expect(roadmap).toContain("8 visible records and 196 stale/hidden records")
+    expect(roadmap).toContain("Corpus restoration, optionality reverification")
 
     expect(architecture).toContain("Unified Public Eligibility")
     expect(architecture).toContain("isPublicServiceEligible()")
@@ -225,7 +227,10 @@ describe("documentation hygiene", () => {
     const docsIndex = readDoc("docs/README.md")
 
     expect(docsIndex).toContain("[`implementation/`](implementation/)")
-    expect(docsIndex).toContain("[v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)")
+    expect(docsIndex).toContain(
+      "[Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)"
+    )
+    expect(docsIndex).toContain("[Historical v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)")
     expect(docsIndex).toContain("[Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md)")
   })
 
@@ -273,21 +278,24 @@ describe("documentation hygiene", () => {
     expect(serviceSchema).toContain('z.enum(["L0", "L1", "L2", "L3"])')
   })
 
-  it("tracks the latest maintenance archive in planning docs", () => {
+  it("keeps superseded maintenance records available through the historical archive", () => {
     const planningIndex = readDoc("docs/planning/README.md")
     const roadmap = readDoc("docs/planning/roadmap.md")
     const components = readDoc("docs/development/components.md")
 
-    expect(planningIndex).toContain("2026-06-04-public-github-cleanup.md")
-    expect(planningIndex).toContain("2026-04-30-v20-0-about-page-polish.md")
-    expect(planningIndex).toContain("2026-04-29-v20-0-homepage-search-ux-polish.md")
-    expect(planningIndex).toContain("2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md")
-    expect(planningIndex).toContain("2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md")
-    expect(roadmap).toContain("Public GitHub cleanup (2026-06-05)")
-    expect(roadmap).toContain("About page polish (2026-04-30)")
-    expect(roadmap).toContain("Homepage search UX polish (2026-04-29)")
-    expect(roadmap).toContain("Quiet GitHub automation and URL health hardening (2026-04-23)")
-    expect(roadmap).toContain("Gate 0 prep and deploy-contract alignment (2026-04-28)")
+    const historicalArchives = [
+      "docs/planning/archive/2026-06-04-public-github-cleanup.md",
+      "docs/planning/archive/2026-04-30-v20-0-about-page-polish.md",
+      "docs/planning/archive/2026-04-29-v20-0-homepage-search-ux-polish.md",
+      "docs/planning/archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md",
+      "docs/planning/archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md",
+    ]
+
+    expect(planningIndex).toContain("[Planning Archive](archive/README.md)")
+    expect(roadmap).toContain("[Historical planning archive](archive/README.md)")
+    for (const relPath of historicalArchives) {
+      expect(existsSync(path.join(repoRoot(), relPath)), relPath).toBe(true)
+    }
     expect(components).toContain("About Page Surfaces")
     expect(components).toContain("AboutTrustOverview")
   })

@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-07-14
+last_updated: 2026-08-12
 owner: jer
 tags: [documentation, index, public-docs]
 ---
@@ -18,6 +18,8 @@ private/shared operations source of truth.
 ## Quick Links
 
 - [Architecture](architecture.md) - System design, data flow, and core concepts
+- [Current Roadmap](planning/roadmap.md) - Retirement transition status, gates, and stop rules
+- [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md) - Current owner decision and transition boundary
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
 - [Maintenance Audit](maintenance-audit.md) - Latest repo-health audit, verification status, and follow-ups
@@ -32,22 +34,22 @@ private/shared operations source of truth.
 
 ## Directories
 
-| Directory                            | Purpose                                                             |
-| ------------------------------------ | ------------------------------------------------------------------- |
-| [`adr/`](adr/)                       | Architecture Decision Records                                       |
-| [`api/`](api/)                       | API reference and OpenAPI spec                                      |
-| [`audits/`](audits/)                 | Privacy, accessibility, and governance review notes                 |
-| [`community/`](community/)           | Acknowledgments and community docs                                  |
-| [`development/`](development/)       | Developer guides (testing, i18n, hooks, components)                 |
-| [`deployment/`](deployment/)         | Public deployment architecture notes and local release checks       |
-| [`governance/`](governance/)         | Standards, verification protocols, documentation guidelines         |
-| [`implementation/`](implementation/) | Active implementation records, control docs, and execution evidence |
-| [`legal/`](legal/)                   | AI/privacy risk notes, data licenses, and boundary statements       |
-| [`planning/`](planning/)             | Roadmap, version planning, and archived versions                    |
-| [`runbooks/`](runbooks/)             | Public troubleshooting summaries                                    |
-| [`security/`](security/)             | Database security and breach response                               |
-| [`templates/`](templates/)           | Standard document templates (ADR, guides, plans)                    |
-| [`whitepapers/`](whitepapers/)       | Privacy architecture and research papers                            |
+| Directory                            | Purpose                                                                 |
+| ------------------------------------ | ----------------------------------------------------------------------- |
+| [`adr/`](adr/)                       | Architecture Decision Records                                           |
+| [`api/`](api/)                       | API reference and OpenAPI spec                                          |
+| [`audits/`](audits/)                 | Privacy, accessibility, and governance review notes                     |
+| [`community/`](community/)           | Acknowledgments and community docs                                      |
+| [`development/`](development/)       | Developer guides (testing, i18n, hooks, components)                     |
+| [`deployment/`](deployment/)         | Public deployment architecture notes and local release checks           |
+| [`governance/`](governance/)         | Standards, verification protocols, documentation guidelines             |
+| [`implementation/`](implementation/) | Current decision records plus historical control and execution evidence |
+| [`legal/`](legal/)                   | AI/privacy risk notes, data licenses, and boundary statements           |
+| [`planning/`](planning/)             | Roadmap, version planning, and archived versions                        |
+| [`runbooks/`](runbooks/)             | Public troubleshooting summaries                                        |
+| [`security/`](security/)             | Database security and breach response                                   |
+| [`templates/`](templates/)           | Standard document templates (ADR, guides, plans)                        |
+| [`whitepapers/`](whitepapers/)       | Privacy architecture and research papers                                |
 
 ## Development Guides
 
@@ -74,6 +76,7 @@ private/shared operations source of truth.
 ## Planning & Roadmaps
 
 - [Current Roadmap](planning/roadmap.md)
+- [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)
 - [Archive](planning/archive/)
-- [v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)
-- [v22 Limited Public Directory Pilot Risk Disposition](implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
+- [Historical v22 Gate 0 Controls](implementation/v22-0-gate-0-exit-checklist.md)
+- [Superseded v22 Limited Public Directory Pilot Risk Disposition](implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)

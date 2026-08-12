@@ -1,28 +1,31 @@
 # CareConnect
 
-> A verified, governance-first search engine for social services in supported Ontario communities—starting with Kingston and expanding next to Brampton.
+> A governance-first social-services search project whose public records are controlled by publication and freshness rules.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
-![Coverage](https://img.shields.io/badge/Coverage-65%25-yellow.svg)
+![Status: Retirement transition](https://img.shields.io/badge/Status-Retirement%20transition-orange.svg)
 
 ## Manual Curation, Not Scraping
 
 Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
-The governed inventory contains **204 manually curated records**: 196 cover Kingston and 8 are Brampton-only. Public search applies publication, deletion, verification-level, and 180-day freshness rules before displaying a record, so inventory size is not the same as the currently visible service count. Every visible entry is:
+The governed inventory contains **204 manually curated records**. Public search applies publication, deletion, verification-level, and 180-day freshness rules before displaying a record, so inventory size is not the same as the currently visible service count. Every visible entry must be:
 
-- **Eligible for display** — Published, not deleted, L1-L3, and within the freshness window.
-- **Manually curated** — Service facts require human-reviewed evidence.
-- **Identity-Aware** — Evidence-backed safety tags for vulnerable populations.
+- **Published and active** — Published and not marked deleted.
+- **Verification-eligible** — Assigned an L1-L3 verification level.
+- **Within the visibility window** — Not older than the 180-day freshness cutoff.
+
+Manual curation remains the data-governance model. The software can display evidence-backed safety and identity tags when a record contains them; those tags are an optional capability, not a universal property of visible records.
 
 ---
 
 ## Project Status
 
-**v22.0** - decision-gated pilot / public-interest prototype.
+**Current disposition:** controlled retirement of the public directory is approved in principle; the bounded evidence screen and any separately approved transition work remain pending.
 
-CareConnect is an active, health-adjacent community resource discovery project. It is not a clinical decision support system, not an emergency service, and not an official government or 211 service. Current work is focused on governance, verification, privacy-conscious design, and evidence for whether the project creates non-duplicate value relative to existing referral pathways.
+CareConnect is still publicly available during this transition. This documentation change does not retire the service, alter any service record, or authorize a deployment. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
+
+See the [current roadmap](docs/planning/roadmap.md) and [public-service retirement disposition](docs/implementation/careconnect-public-service-retirement-disposition-2026-08-12.md). CareConnect is not a clinical decision support system, emergency service, or official government or 211 service.
 
 ## Public Documentation Boundary
 
@@ -124,7 +127,7 @@ Push notifications and external integrations are optional and disabled unless ex
 
 ### Additional Capabilities
 
-- **Place-Aware Service Coverage** — Kingston remains live while Brampton is added through reviewed local and regional records.
+- **Place-Aware Filtering** — The software supports place-aware coverage metadata and filtering. Current public visibility is determined by publication, deletion, verification-level, and freshness rules; no regional expansion is active.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -244,18 +247,22 @@ These commands require `k6` to be installed locally and available on your `PATH`
 
 #### Utility Scripts
 
-| Command                                                | Description                                               |
-| :----------------------------------------------------- | :-------------------------------------------------------- |
-| `npm run tools:search "food bank"`                     | Run the local CLI search tool                             |
-| `npm run search:qa`                                    | Run curated local search QA scenarios                     |
-| `npm run verify:search-ranking`                        | Verify API ranking against a running local app            |
-| `npm run verify:rls`                                   | Check public/private Supabase access boundaries           |
-| `npm run audit:pilot-readiness -- --scope-file <path>` | Export scoped pilot readiness JSON/Markdown/CSV artifacts |
-| `npm run check:v22-evidence`                           | Validate C1/D4 Gate 0 evidence-intake consistency         |
-| `npm run check:v22-threat-model`                       | Validate v22 threat-model Gate 0 consistency              |
-| `npm run check:v22-gate0`                              | Enforce the current v22 Gate 0 decision from docs         |
-| `npm run normalize:services -- --dry-run`              | Preview legacy schema normalization without writing data  |
-| `npm run ingest:import-response -- --help`             | Show draft-import CLI usage                               |
+| Command                                                | Description                                              |
+| :----------------------------------------------------- | :------------------------------------------------------- |
+| `npm run tools:search "food bank"`                     | Run the local CLI search tool                            |
+| `npm run search:qa`                                    | Run curated local search QA scenarios                    |
+| `npm run verify:search-ranking`                        | Verify API ranking against a running local app           |
+| `npm run verify:rls`                                   | Check public/private Supabase access boundaries          |
+| `npm run audit:pilot-readiness -- --scope-file <path>` | Historical v22 pilot-readiness artifact exporter         |
+| `npm run check:v22-evidence`                           | Historical v22 C1/D4 evidence consistency validator      |
+| `npm run check:v22-threat-model`                       | Historical v22 threat-model consistency validator        |
+| `npm run check:v22-gate0`                              | Historical v22 Gate 0 document validator                 |
+| `npm run normalize:services -- --dry-run`              | Preview legacy schema normalization without writing data |
+| `npm run ingest:import-response -- --help`             | Show draft-import CLI usage                              |
+
+The v22 commands remain available to validate preserved historical artifacts.
+They do not enforce the current retirement disposition or authorize pilot
+execution.
 
 `npm run db:types` requires a Docker-capable local environment because it boots the minimal local Supabase profile before generating `types/supabase.ts`.
 
@@ -344,14 +351,17 @@ This project is community-led. Safety and accuracy take precedence over volume.
 ### Documentation
 
 - [Roadmap](docs/planning/roadmap.md)
+- [Public-service retirement disposition](docs/implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)
 - [Documentation Guidelines](docs/documentation-guidelines.md)
 - [Testing Standards](docs/development/testing-guidelines.md)
 - [Multi-Lingual Development Guide](docs/development/bilingual-guide.md)
 - [Acknowledgments & Governance](docs/community/acknowledgments.md)
 
-### Adding a Service
+### Adding a Service (Inactive)
 
-Proposed services must meet these criteria:
+New service intake is dormant during the retirement transition. The criteria
+below are preserved as conditional history; they are not an invitation to
+submit records and do not authorize ingestion.
 
 - Serves a supported CareConnect place, or is clearly available province-wide or Canada-wide.
 - Has a verifiable phone number or physical address.

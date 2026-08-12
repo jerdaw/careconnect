@@ -2,6 +2,18 @@
 
 Welcome! This guide will help you get up and running with the CareConnect codebase.
 
+> [!IMPORTANT]
+> **Retirement-transition boundary:** Controlled retirement of the public
+> directory is approved in principle; the evidence screen and any live
+> transition remain pending. Contributions are currently limited to approved
+> documentation truth, reversible artifact preservation, and separately scoped
+> critical security, safety, or data-loss work. This guide does not authorize
+> active feature or service-data changes, new ingestion, provider outreach or
+> partnership work, pilot reverification, or Brampton pre-launch execution.
+> The procedures below are preserved as technical reference and become active
+> only after the [current roadmap](docs/planning/roadmap.md) explicitly reopens
+> the relevant work and any required approval is recorded.
+
 ## Quick Start Checklist
 
 - [ ] **Prerequisites**: Node.js 22+, npm 10+
@@ -17,7 +29,7 @@ Welcome! This guide will help you get up and running with the CareConnect codeba
 
 CareConnect is a **governance-first, manually curated** social services search engine. Key principles:
 
-1. **Data Integrity Over Speed** – No auto-scraping. Every service is manually verified.
+1. **Data Integrity Over Speed** – No auto-scraping. Service facts require manual evidence, and verification claims must remain tied to dated evidence.
 2. **Privacy by Design** – Search queries stay on-device by default. Zero tracking.
 3. **Accessibility First** – WCAG 2.1 AA compliance. Keyboard nav + screen reader support.
 4. **Verify Before Modifying** – Read existing code patterns before making changes.
@@ -244,7 +256,9 @@ describe("calculateProximity", () => {
 
 ### Service Directory
 
-Services are stored in `data/services.json` (~196 services). **This is manually curated data** – never auto-generate or fabricate service information.
+Services are stored in `data/services.json` (204 governed records as of
+2026-08-12). Public visibility is freshness-gated. **This is manually curated
+data** – never auto-generate or fabricate service information.
 
 ### Data Validation
 
@@ -257,6 +271,10 @@ npm run phone-validate     # Phone number validation (requires Twilio)
 ```
 
 ### Modifying Service Data
+
+This workflow is dormant and conditional. It does not authorize a service-data
+edit during the retirement transition; a record-specific change requires the
+approval defined by the current roadmap and retirement disposition.
 
 ```bash
 # 1. Edit data/services.json (manual curation only!)
