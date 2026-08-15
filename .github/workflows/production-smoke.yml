@@ -9,6 +9,11 @@ concurrency:
   group: careconnect-production-smoke
   cancel-in-progress: false
 
+env:
+  BASE_URL: https://careconnect.ing
+  # Update only when a later public application release is explicitly approved and deployed.
+  EXPECTED_PUBLIC_VERSION: ef91ac67c8a7
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -28,18 +33,23 @@ jobs:
         run: |
           # Cloudflare blocks Python's default urllib user agent on this route.
           # Use curl for the probe and Python only for JSON validation.
-          curl -fsS -A 'CareConnectProductionSmoke/1.0' https://careconnect.ing/api/v1/health | python3 -c '
+          curl -fsS -A 'CareConnectProductionSmoke/1.0' \
+            "$BASE_URL/api/v1/health" > health.json
+          python3 - <<'PY'
           import json
-          import sys
+          import os
 
-          payload = json.load(sys.stdin)
+          with open("health.json", encoding="utf-8") as response:
+              payload = json.load(response)
+
           assert payload.get("status") in {"healthy", "degraded"}, payload
+          assert payload.get("version") == os.environ["EXPECTED_PUBLIC_VERSION"], payload
           print(payload)
-          '
+          PY
 
       - name: Verify apex response
         run: |
-          curl -sSI https://careconnect.ing > apex.headers
+          curl -sSI "$BASE_URL" > apex.headers
           grep -Eq '^HTTP/.* (200|307)' apex.headers
 
       - name: Verify www redirect
@@ -48,12 +58,73 @@ jobs:
           grep -Eq '^HTTP/.* 308' www.headers
           grep -Eqi '^location: https://careconnect\.ing/?$' www.headers
 
-      - name: Verify robots and sitemap host
+      - name: Verify localized retirement and emergency routing
         run: |
-          curl -fsS https://careconnect.ing/robots.txt > robots.txt
-          grep -Fx 'Sitemap: https://careconnect.ing/sitemap.xml' robots.txt
-          curl -fsS https://careconnect.ing/sitemap.xml > sitemap.xml
-          grep -F '<loc>https://careconnect.ing/' sitemap.xml
+          for cc_locale in en fr zh-Hans ar pt es pa; do
+            curl -fsS -A 'CareConnectProductionSmoke/1.0' \
+              -D "locale-${cc_locale}.headers" \
+              -o "locale-${cc_locale}.html" \
+              "$BASE_URL/$cc_locale"
+            tr -d '\r' < "locale-${cc_locale}.headers" > "locale-${cc_locale}.normalized.headers"
+            grep -Eqi '^cache-control: .*no-store' "locale-${cc_locale}.normalized.headers"
+            grep -Eqi '^x-robots-tag: .*noindex' "locale-${cc_locale}.normalized.headers"
+            grep -Fq "<html lang=\"${cc_locale}\"" "locale-${cc_locale}.html"
+          done
+
+          grep -Fq '<html lang="ar" dir="rtl">' locale-ar.html
+          grep -Fq 'href="tel:911"' locale-en.html
+          grep -Fq 'href="tel:988"' locale-en.html
+          grep -Fq 'href="sms:988"' locale-en.html
+          grep -Fq 'href="tel:211"' locale-en.html
+          grep -Fq 'href="https://211ontario.ca/"' locale-en.html
+
+      - name: Verify non-health APIs fail closed
+        run: |
+          check_gone() {
+            cc_method="$1"
+            cc_route="$2"
+            cc_label="$3"
+            cc_status="$(curl -sS -A 'CareConnectProductionSmoke/1.0' \
+              -X "$cc_method" \
+              -D "${cc_label}.headers" \
+              -o "${cc_label}.json" \
+              -w '%{http_code}' \
+              "$BASE_URL$cc_route")"
+            test "$cc_status" = 410
+            tr -d '\r' < "${cc_label}.headers" > "${cc_label}.normalized.headers"
+            grep -Eqi '^cache-control: *no-store, *max-age=0$' "${cc_label}.normalized.headers"
+            grep -Eqi '^x-robots-tag: .*noindex' "${cc_label}.normalized.headers"
+          }
+
+          check_gone GET /api/v1/services services
+          check_gone GET /api/v1/services/foo.json dotted-services
+          check_gone POST /api/v1/search/services search
+
+      - name: Verify retired discovery metadata
+        run: |
+          curl -fsS "$BASE_URL/robots.txt" > robots.txt
+          grep -Fxq 'Disallow: /' robots.txt
+          if grep -Fq 'Sitemap:' robots.txt; then
+            echo 'robots.txt must not advertise a retirement sitemap' >&2
+            exit 1
+          fi
+
+          curl -fsS "$BASE_URL/sitemap.xml" > sitemap.xml
+          if grep -Fq '<loc>' sitemap.xml; then
+            echo 'retirement sitemap must not advertise public routes' >&2
+            exit 1
+          fi
+
+          curl -fsS "$BASE_URL/manifest.json" > manifest.json
+          python3 - <<'PY'
+          import json
+
+          with open("manifest.json", encoding="utf-8") as response:
+              manifest = json.load(response)
+
+          assert not manifest.get("shortcuts"), manifest
+          assert "share_target" not in manifest, manifest
+          PY
 
       - name: Verify runtime security headers
         run: npm run validate:security-headers:runtime
