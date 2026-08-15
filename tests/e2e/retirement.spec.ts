@@ -70,14 +70,15 @@ test.describe("controlled public-directory retirement", () => {
       applinks: { details: [] },
     })
 
-    const generatedWorkerResponse = await request.get("/sw.js")
-    expect(generatedWorkerResponse.status()).toBe(200)
-    expect(generatedWorkerResponse.headers()["cache-control"]).toBe("no-store, no-cache, must-revalidate, max-age=0")
-    expect(generatedWorkerResponse.headers()["cdn-cache-control"]).toBe("no-store")
-    expect(generatedWorkerResponse.headers()["service-worker-allowed"]).toBe("/")
-    const generatedWorker = await generatedWorkerResponse.text()
-    expect(generatedWorker).toContain("/retirement-cleanup-sw-20260815.js")
-    expect(generatedWorker).not.toContain('importScripts("/custom-sw.js")')
+    const retirementWorkerResponse = await request.get("/sw.js")
+    expect(retirementWorkerResponse.status()).toBe(200)
+    expect(retirementWorkerResponse.headers()["cache-control"]).toBe("no-store, no-cache, must-revalidate, max-age=0")
+    expect(retirementWorkerResponse.headers()["cdn-cache-control"]).toBe("no-store")
+    expect(retirementWorkerResponse.headers()["service-worker-allowed"]).toBe("/")
+    const retirementWorker = await retirementWorkerResponse.text()
+    expect(retirementWorker).toContain('importScripts("/retirement-cleanup-sw-20260815.js")')
+    expect(retirementWorker).not.toContain('importScripts("/custom-sw.js")')
+    expect(retirementWorker).not.toContain("precacheAndRoute")
 
     for (const workerPath of ["/custom-sw.js", "/retirement-cleanup-sw-20260815.js"]) {
       const workerResponse = await request.get(workerPath)

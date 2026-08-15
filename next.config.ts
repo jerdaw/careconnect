@@ -145,7 +145,7 @@ import withPWAInit from "@ducanh2912/next-pwa"
 
 const withPWA = withPWAInit({
   dest: "public",
-  disable: process.env.NODE_ENV === "development" || !!process.env.CI,
+  disable: process.env.NODE_ENV === "development" || !!process.env.CI || PUBLIC_SERVICE_MODE === "retired",
   // Existing registrations still discover this release's worker during a
   // navigation update. Do not register a new long-lived worker after the
   // retirement page clears old app caches and unregisters existing workers.

@@ -63,7 +63,8 @@ storybook-static/
 next-env.d.ts
 
 # pwa
-public/sw.js
+# The retired public surface intentionally source-controls a minimal update
+# worker at public/sw.js. Generated Workbox support files remain ignored.
 public/workbox-*.js
 public/fallback-*.js
 

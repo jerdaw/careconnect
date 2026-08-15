@@ -62,6 +62,7 @@ describe("retirement release static contract", () => {
     const nextConfig = readRepoFile("next.config.ts")
 
     expect(nextConfig).toMatch(/register:\s*false/)
+    expect(nextConfig).toContain('PUBLIC_SERVICE_MODE === "retired"')
     for (const oldScreenshot of ["mobile-detail.png", "mobile-search.png", "tablet-search.png"]) {
       expect(existsSync(path.join(process.cwd(), "public", "screenshots", oldScreenshot))).toBe(false)
     }
@@ -72,6 +73,7 @@ describe("retirement release static contract", () => {
 
   it("cache-busts retirement worker logic and prevents intermediary worker caching", () => {
     const nextConfig = readRepoFile("next.config.ts")
+    const retirementWorker = readRepoFile("public/sw.js")
     const compatibilityWorker = readRepoFile("public/custom-sw.js")
 
     expect(nextConfig).toContain('importScripts: ["/retirement-cleanup-sw-20260815.js"]')
@@ -79,6 +81,10 @@ describe("retirement release static contract", () => {
     expect(nextConfig).toContain('source: "/sw.js"')
     expect(nextConfig).toContain('{ key: "CDN-Cache-Control", value: "no-store" }')
     expect(nextConfig).toContain('{ key: "Service-Worker-Allowed", value: "/" }')
+    expect(retirementWorker).toContain('importScripts("/retirement-cleanup-sw-20260815.js")')
+    expect(retirementWorker).toContain("self.skipWaiting()")
+    expect(retirementWorker).not.toContain("precacheAndRoute")
+    expect(retirementWorker).not.toContain("workbox")
     expect(compatibilityWorker).toContain('importScripts("/retirement-cleanup-sw-20260815.js")')
   })
 })
