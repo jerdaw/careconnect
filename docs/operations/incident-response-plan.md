@@ -38,6 +38,27 @@ partner/admin operations, or another public directory.
 6. Publish only public-safe user communications.
 7. Record private operational details in ignored maintainer notes.
 
+## Automated Coverage
+
+- The daily, manually dispatchable `Production Smoke` workflow verifies the
+  exact approved public release, localized retirement pages, emergency links,
+  fail-closed non-health APIs, retired discovery metadata, and runtime security
+  headers. A failure opens or refreshes one persistent issue; a later successful
+  run closes it automatically.
+- The separate daily `Supabase Keepalive` workflow queries the CareConnect and
+  VisitBrief Data APIs and maintains its own persistent failure issue. It does
+  not call or verify the CareConnect frontend.
+- Pull-request and main-branch CI verify the source, tests, production build,
+  retirement client-artifact boundary, and container build when code changes.
+- Legacy URL-health, staleness, crisis-verification, and general-verification
+  workflows are manual-only with dry-run defaults. They are not standing
+  maintenance signals and do not authorize listing refresh or corpus work.
+
+These public checks cannot prove the continued availability of private rollback
+artifacts, a current database export, host backups, or provider recovery. Verify
+those private assets only during an approved release or a genuine incident by
+following the shared operations source of truth.
+
 ## Related Docs
 
 - [Runbooks Overview](../runbooks/README.md)

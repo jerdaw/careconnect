@@ -41,6 +41,19 @@ describe("Production Smoke workflow", () => {
     expect(workflow).not.toContain("grep -F '<loc>https://careconnect.ing/' sitemap.xml")
   })
 
+  it("surfaces one persistent failure issue and closes it after recovery", () => {
+    expect(workflow).toContain("report-smoke-result:")
+    expect(workflow).toContain("needs: smoke")
+    expect(workflow).toContain("if: always()")
+    expect(workflow).toContain("issues: write")
+    expect(workflow).toContain("FAILURE_DETECTED: ${{ needs.smoke.result != 'success' }}")
+    expect(workflow).toContain('title="Production Smoke Failure"')
+    expect(workflow).toContain("gh issue create")
+    expect(workflow).toContain("gh issue edit")
+    expect(workflow).toContain("gh issue close")
+    expect(workflow).toContain("This issue is updated in place and closes automatically after a successful run.")
+  })
+
   it("does not overlap the independent Supabase keepalive contract", () => {
     expect(workflow).not.toMatch(/supabase/i)
     expect(workflow).not.toMatch(/keepalive/i)
