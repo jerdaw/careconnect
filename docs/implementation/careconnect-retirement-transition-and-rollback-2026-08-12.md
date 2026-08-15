@@ -1,6 +1,6 @@
 ---
-status: draft
-last_updated: 2026-08-12
+status: stable
+last_updated: 2026-08-15
 owner: jer
 tags: [implementation, retirement, transition, rollback, public-service]
 ---
@@ -9,19 +9,19 @@ tags: [implementation, retirement, transition, rollback, public-service]
 
 ## Status and Scope
 
-This packet defines the smallest reversible release that can retire the
-actionable CareConnect directory. The implementation is prepared in a draft
-pull request; it is **not deployed** and does not authorize a deployment,
-redirect, service-record change, Supabase change, workflow change, or shared
-keepalive change.
+This packet records the smallest reversible release used to retire the
+actionable CareConnect directory. The frontend retirement was deployed from
+main revision `ef91ac67c8a7` on 2026-08-15 after explicit approval and the
+required preflight. It did not authorize or perform a redirect, service-record
+change, Supabase change, workflow change, or shared keepalive change.
 
 Environment-specific release commands, host paths, credentials, backup
 locations, monitoring destinations, and dependency inventory remain in the
 private/shared operations source of truth.
 
-## Candidate Release Contract
+## Deployed Release Contract
 
-The prepared source-controlled retirement mode has this contract:
+The deployed source-controlled retirement mode has this contract:
 
 1. All interactive public routes resolve to a localized non-directory page.
 2. Non-health API routes fail closed with `410 Gone` and `no-store`/`noindex`
@@ -63,9 +63,24 @@ The prepared source-controlled retirement mode has this contract:
     screenshots show only the non-service retirement surface.
 14. Source/history and the dated pre-retirement visual baseline remain in Git.
 
-## Mandatory Live Preflight
+## Deployment Outcome (2026-08-15)
 
-Stop unless every item below is true:
+The exact main release passed the production build and client-artifact guard,
+then passed the restricted health check, a 12-of-12 shared service-status
+summary, 119 public contract checks across all seven locales and 21 live client
+chunks, and all five production Chromium retirement/upgrade scenarios. Those
+browser scenarios include WCAG A/AA checks, legacy cache and IndexedDB cleanup,
+preservation plus consented handling of user-authored local data, worker
+unregistration, and transition of an already-open prior client.
+
+The shared Supabase keepalive workflow was unchanged and its latest scheduled
+run remained successful. A signed prior release remains the bounded rollback
+target in the private/shared operations record. A device that never reconnects
+still cannot receive the retirement release or its cleanup worker.
+
+## Live Preflight Used
+
+The deployment proceeded only after every item below was true:
 
 1. The exact candidate commit is reviewed, the working tree is clean, required
    CI is green, and the local production build plus retirement route,
@@ -74,10 +89,9 @@ Stop unless every item below is true:
    release that can be restored. The July 8 provider-assisted recovery proof is
    valid historical evidence, but it is not a current August 12 private
    database export. This frontend-only release must leave Supabase, service
-   data, and workflows untouched. Before deployment, require either an approved
-   encrypted current export or explicit owner acceptance of the bounded
-   no-database-change risk using the existing provider recovery proof. Do not
-   claim that a current recoverable private database artifact exists.
+   data, and workflows untouched. The owner explicitly accepted the bounded
+   no-database-change risk using the existing provider recovery proof. No
+   current recoverable private database artifact was claimed.
 3. The shared operations preflight confirms no diff to
    `.github/workflows/supabase-keepalive.yml`, a latest successful scheduled
    run, and continued repository, Actions, and required-secret availability.
@@ -85,22 +99,22 @@ Stop unless every item below is true:
    directly; it does not call this frontend or its health endpoints. Any later
    workflow, repository, Actions, secret, or Supabase-project disable/delete is
    a separate dependency-separation decision.
-4. The owner reviews the proposed release and rollback target and explicitly
-   approves the live deployment. Approval of this code or pull request is not
-   deployment approval.
+4. The owner reviewed the proposed release and rollback target and explicitly
+   approved the live deployment. Approval of the code or pull request alone
+   was not treated as deployment approval.
 5. No unresolved evidence suggests that the transition would remove an
    actively stewarded public benefit. Aggregate activity alone is not enough.
 
-## Approval-Gated Transition Sequence
+## Transition Sequence Used
 
-Only after the mandatory preflight and explicit approval:
+After the mandatory preflight and explicit approval, the release process:
 
 1. Record the candidate and rollback commit identifiers and dated public `GET`
    baselines for the home page, one service-detail URL, the public service API,
    and the preserved health endpoints.
-2. Deploy the reviewed candidate using the private release runbook. Do not
-   modify service records, database state, Supabase configuration, workflows,
-   shared keepalive coverage, or DNS/domain routing as part of this release.
+2. Deployed the reviewed candidate using the private release runbook without
+   modifying service records, database state, Supabase configuration,
+   workflows, shared keepalive coverage, or DNS/domain routing.
 3. Verify the acceptance checks below from a fresh browser context and through
    the established health/monitoring path.
 4. Preserve the dated results and make a separate decision on any later data,

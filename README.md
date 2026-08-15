@@ -21,9 +21,9 @@ Manual curation remains the data-governance model. The software can display evid
 
 ## Project Status
 
-**Current disposition:** controlled retirement of the public directory is approved in principle; the bounded evidence screen is closed, and a reversible retirement release is prepared in a draft change pending live preflight and explicit deployment approval.
+**Current disposition:** controlled retirement of the public directory was deployed and verified on 2026-08-15. The public frontend now exposes a localized non-service retirement surface; the governed corpus, Supabase resources, workflows, and shared keepalive were left unchanged.
 
-CareConnect is still publicly available during this transition. The draft release does not retire the live service, alter any service record, or authorize a deployment. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
+CareConnect no longer exposes an actionable public directory. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
 
 See the [current roadmap](docs/planning/roadmap.md), [public-service retirement disposition](docs/implementation/careconnect-public-service-retirement-disposition-2026-08-12.md), and [transition/rollback packet](docs/implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md). CareConnect is not a clinical decision support system, emergency service, or official government or 211 service.
 
