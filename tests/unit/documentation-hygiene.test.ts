@@ -186,7 +186,7 @@ describe("documentation hygiene", () => {
     expect(verificationProtocol).toContain("not verified for >180 days are downgraded to L0")
     expect(verificationProtocol).not.toContain(">12 months")
 
-    expect(planningReadme).toContain("controlled public-service retirement transition")
+    expect(planningReadme).toContain("controlled public-service retirement is complete")
     expect(planningReadme).toContain("Do not restore or reverify the corpus for optionality")
 
     expect(roadmap).toContain("8 visible records and 196 stale/hidden records")
@@ -196,6 +196,44 @@ describe("documentation hygiene", () => {
     expect(architecture).toContain("isPublicServiceEligible()")
     expect(architecture).toContain("Result Explainability")
     expect(architecture).toContain("180-day governance limit")
+  })
+
+  it("keeps completed retirement and exception-only stewardship authoritative", () => {
+    const agents = readDoc("AGENTS.md")
+    const contributing = readDoc("CONTRIBUTING.md")
+    const readme = readDoc("README.md")
+    const docsHome = readDoc("docs/index.md")
+    const docsIndex = readDoc("docs/README.md")
+    const planningReadme = readDoc("docs/planning/README.md")
+    const roadmap = readDoc("docs/planning/roadmap.md")
+    const incidentResponse = readDoc("docs/operations/incident-response-plan.md")
+    const productionChecklist = readDoc("docs/deployment/production-checklist.md")
+    const adminOverview = readDoc("docs/operations/admin-operations-guide.md")
+
+    expect(roadmap).toContain("Exception-Only Post-Retirement Stewardship")
+    expect(roadmap).toContain("no standing maintenance, validation, or evidence campaign")
+    expect(roadmap).toContain("Existing automation is the default")
+    expect(agents).toContain("Post-retirement stewardship is exception-only and automated by default")
+    expect(contributing).toContain("Controlled retirement of the public directory")
+    expect(contributing).toContain("is complete")
+
+    for (const entryPoint of [readme, docsHome]) {
+      expect(entryPoint).toContain("Status-Retired-lightgrey")
+      expect(entryPoint).toContain("Preserved Technical Capabilities")
+      expect(entryPoint).not.toContain("Retirement%20transition")
+      expect(entryPoint).not.toContain("during the retirement transition")
+    }
+
+    expect(docsIndex).toContain("deployed retirement release")
+    expect(docsIndex).not.toContain("prepared release")
+    expect(planningReadme).toMatch(/The actionable public directory is no\s+longer available/)
+    expect(planningReadme).not.toContain("The public directory is still available")
+    expect(incidentResponse).toContain("Incident response does not authorize restoration of search")
+    expect(incidentResponse).not.toContain("Restore critical public search")
+    expect(productionChecklist).toContain("CareConnect has no standing release or manual")
+    expect(productionChecklist).not.toContain("search availability")
+    expect(adminOverview).toMatch(/These\s+surfaces are inactive/)
+    expect(adminOverview).toContain("There is no routine admin, partner, listing, feedback, or validation work")
   })
 
   it("keeps private shared-runtime facts out of active public entry points", () => {

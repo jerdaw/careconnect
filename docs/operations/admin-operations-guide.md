@@ -1,10 +1,19 @@
-# Admin Operations Overview
+# Preserved Admin Capabilities Overview
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-08-15
 
-CareConnect includes authenticated admin and partner surfaces for managing organizations, service listings, feedback, and operational health. This public page describes capabilities without exposing private operating procedures.
+CareConnect's source preserves authenticated admin and partner implementation
+for organizations, service listings, feedback, and operational health. These
+surfaces are inactive under the completed public-directory retirement and are
+not current operational services. This public page describes preserved code
+capabilities without exposing private operating procedures.
 
-## Public-Safe Scope
+There is no routine admin, partner, listing, feedback, or validation work.
+Existing automation is the default for required status signals. Human action is
+limited to a genuine safety, status, security, privacy, rollback,
+infrastructure, or data-loss incident and does not reopen these surfaces.
+
+## Preserved Implementation Scope
 
 - partner organization and member management,
 - service listing review and update workflows,
@@ -21,5 +30,5 @@ CareConnect includes authenticated admin and partner surfaces for managing organ
 
 ## Related Docs
 
-- [RBAC and Authorization](../architecture.md#partner-dashboard--rbac)
+- [RBAC and Authorization](../architecture.md#partner-dashboard-rbac)
 - [Database Security](../security/database-security.md)

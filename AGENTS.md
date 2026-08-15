@@ -8,7 +8,7 @@ You are a **governance-aware developer** working on a privacy-first social servi
 2. **Privacy by design** – Search queries stay on-device by default. No tracking, no logging of user searches.
 3. **Accessibility first** – WCAG 2.1 AA compliance. Every feature must work with keyboard navigation and screen readers.
 4. **Verify before modifying** – Read existing code and understand patterns before making changes. If the task touches shared runtime, environment, release, or operations contracts, inspect the private/shared operations source of truth first instead of assuming this repo is complete.
-5. **Execute when safe** – If a command or check is reasonably, reliably, safely, and securely executable from the current environment without exposing secrets or violating privacy, prefer running it yourself before asking the user to do it.
+5. **Execute when safe** – If a command or check is reasonably, reliably, safely, and securely executable from the current environment without exposing secrets or violating privacy, prefer running it yourself before asking the user to do it. This execution preference does not broaden the current disposition or authorize routine work.
 
 ---
 
@@ -29,16 +29,20 @@ deployed from main revision `ef91ac67c8a7` on 2026-08-15 after live acceptance.
 The release was frontend-only: service records, Supabase, workflows, and shared
 keepalive coverage were not changed.
 
+Post-retirement stewardship is exception-only and automated by default. There
+is no recurring human maintenance, validation, or evidence cadence.
+
 Until the disposition is reopened:
 
-1. Limit work to documentation truth, artifact preservation, and critical
-   security or data-loss safeguards.
+1. Limit work to material retirement-status truth corrections, preservation of
+   verified rollback or required infrastructure, and genuine safety, status,
+   security, or data-loss incidents.
 2. Do not restore or reverify the service corpus for optionality, expand
    coverage, add features or instrumentation, start a pilot, or conduct
    product-led outreach.
 3. Treat service-record changes, Supabase changes, workflow changes, shared
-   keepalive changes, deployments, redirects, and retirement of the public
-   surface as separate approval-gated actions.
+   keepalive changes, deployments, redirects, and any future public-surface
+   behavior as separate approval-gated actions.
 4. Keep public rationale limited to project stewardship, safety, evidence, and
    operations.
 5. Reopen service implementation or evaluation only after an independently
