@@ -124,7 +124,7 @@ describe("PWA manifest assets", () => {
   })
 
   it("custom service worker uses store-quality icon paths", () => {
-    const swPath = path.join(getRepoRoot(), "public", "custom-sw.js")
+    const swPath = path.join(getRepoRoot(), "public", "retirement-cleanup-sw-20260815.js")
     const sw = readFileSync(swPath, "utf8")
 
     expect(sw).toContain("/icons/icon-192.png")
