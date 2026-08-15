@@ -1419,6 +1419,8 @@ tags: [planning, roadmap, governance, retirement]
 > **Public state:** localized non-service retirement surface; no actionable CareConnect directory
 >
 > **Active product work:** none
+>
+> **Stewardship:** exception-only and automated by default; no recurring human maintenance cadence
 
 ## Executive Status
 
@@ -1468,14 +1470,27 @@ exact live action. The deployed main revision is `ef91ac67c8a7`. Service-record
 changes, Supabase changes, workflow or shared-keepalive changes, redirects, and
 future deployments remain distinct approval gates.
 
-## Allowed Post-Retirement Maintenance
+## Exception-Only Post-Retirement Stewardship
 
-1. Canonical public documentation updates.
-2. Public `GET` checks and bounded retirement-surface verification.
-3. Local, reversible artifact-preservation work that does not expose secrets or
-   actionable stale listings.
-4. Documentation, reference, lint, type, and targeted local validation.
-5. Critical security or data-loss containment within separately approved scope.
+CareConnect has no standing maintenance, validation, or evidence campaign.
+Existing automation is the default for preserving retirement status and
+required infrastructure. Human work begins only when a material public-truth
+change, an automated safety/status/security signal, or a rollback,
+infrastructure, or data-loss risk requires a bounded response.
+
+Permitted responses are limited to:
+
+1. Correcting canonical public retirement status when it becomes materially
+   inaccurate.
+2. Preserving or recovering verified rollback and required infrastructure
+   artifacts within their existing approval boundaries.
+3. Containing a genuine safety, status, security, or data-loss incident within
+   separately approved scope.
+4. Running only the change-triggered or incident-triggered public `GET` checks
+   and local validation needed to verify that response.
+
+Do not create a periodic manual check, documentation-hygiene, content-refresh,
+or validation cadence for optional assurance.
 
 ## Blocked by Default
 
@@ -1520,8 +1535,8 @@ not authorize current execution.
 ## Documentation-Platform Boundary
 
 CareConnect remains on the current MkDocs 1.x/Material stack. Do not start a
-documentation-platform migration during the retirement transition; any shared
-migration wave requires separate cross-project approval.
+documentation-platform migration while the post-retirement disposition remains
+in force; any shared migration wave requires separate cross-project approval.
 
 ## Historical Anchor Compatibility
 
@@ -1541,4 +1556,4 @@ for the completed historical record.
 ### Category B: Test Coverage (60h) — Largest Gap
 
 Superseded as an active estimate. Current validation is limited to checks
-required for approved maintenance, preservation, and transition work.
+required for an approved exception response or preservation action.
