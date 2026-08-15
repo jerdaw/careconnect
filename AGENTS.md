@@ -21,18 +21,18 @@ inventory contains 204 records; public visibility is freshness-gated and was 8
 records as of 2026-08-12. Accessibility and identity-aware design remain core
 requirements, while verification claims must stay tied to dated evidence.
 
-## Current Strategic Disposition (2026-08-12)
+## Current Strategic Disposition (updated 2026-08-15)
 
-Controlled retirement of the public directory has been approved in principle;
-the bounded evidence screen is closed and a reversible retirement release is
-prepared in a draft change. The public service is still available
-during this transition. Local code or documentation must not be described as a
-completed deployment or data change.
+Controlled retirement of the public directory is complete. The bounded
+evidence screen is closed, and the localized non-service retirement surface was
+deployed from main revision `ef91ac67c8a7` on 2026-08-15 after live acceptance.
+The release was frontend-only: service records, Supabase, workflows, and shared
+keepalive coverage were not changed.
 
 Until the disposition is reopened:
 
-1. Limit work to documentation truth, the approved evidence screen, artifact
-   preservation, and critical security or data-loss safeguards.
+1. Limit work to documentation truth, artifact preservation, and critical
+   security or data-loss safeguards.
 2. Do not restore or reverify the service corpus for optionality, expand
    coverage, add features or instrumentation, start a pilot, or conduct
    product-led outreach.

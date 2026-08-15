@@ -1,39 +1,39 @@
 ---
 status: stable
-last_updated: 2026-08-12
+last_updated: 2026-08-15
 owner: jer
 tags: [planning, roadmap, governance, retirement]
 ---
 
 # CareConnect: Product Roadmap
 
-> **Current decision:** controlled public-service retirement approved in principle
+> **Current decision:** controlled public-service retirement completed
 >
-> **Execution status:** evidence screen closed; retirement release prepared in a draft change; live preflight and approval pending
+> **Execution status:** evidence screen closed; frontend retirement deployed and verified on 2026-08-15
 >
-> **Public state:** the directory remains available until a separately approved live change
+> **Public state:** localized non-service retirement surface; no actionable CareConnect directory
 >
 > **Active product work:** none
 
 ## Executive Status
 
-| Area                  | Current state                                                                                                                                                                                                                                                                                                                | Authority or evidence                                                                                            |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Strategic disposition | Retire the actionable public directory unless the bounded screen credibly demonstrates meaningful recurring human use and an accountable steward accepts the service obligations                                                                                                                                             | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
-| Service inventory     | The governed snapshot contains 204 records; the dated 2026-08-12 freshness check identifies 8 visible records and 196 stale/hidden records                                                                                                                                                                                   | Reproducible local staleness check; no service record was changed                                                |
-| Crisis stewardship    | Two visible crisis records are due under the 30-day crisis cadence. Any record change is a separate approval-gated action                                                                                                                                                                                                    | Existing freshness policy and dated staleness check                                                              |
-| Use evidence          | CC-2B was closed without a query because the allowed aggregate contract could not establish people, referrals, outcomes, or public benefit; 116 screen minutes remain unused                                                                                                                                                 | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
-| Prepared transition   | A reversible retirement surface and rollback packet are present only in the draft change; no live service, data, workflow, keepalive, redirect, or deployment state has changed                                                                                                                                              | [Transition and rollback packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) |
-| Shared operations     | The unchanged Actions workflow queries both CareConnect and VisitBrief Supabase Data APIs directly and is independent of the CareConnect frontend. The latest eight checked scheduled runs (2026-08-05 through 2026-08-12) succeeded. Keep the workflow, repository, Actions, required secrets, and Supabase projects intact | Public keepalive workflow contract plus private/shared operations source of truth                                |
-| Recovery boundary     | Live release, backup, rollback, shared-host, and environment details remain outside this public repository                                                                                                                                                                                                                   | [ADR-022](../adr/022-public-documentation-boundary.md)                                                           |
+| Area                  | Current state                                                                                                                                                                                                                                                                                       | Authority or evidence                                                                                            |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Strategic disposition | Retire the actionable public directory unless the bounded screen credibly demonstrates meaningful recurring human use and an accountable steward accepts the service obligations                                                                                                                    | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
+| Service inventory     | The governed snapshot contains 204 records; the dated 2026-08-12 freshness check identifies 8 visible records and 196 stale/hidden records                                                                                                                                                          | Reproducible local staleness check; no service record was changed                                                |
+| Crisis stewardship    | The frontend retirement exposes no service records. The two records that were due at the 2026-08-12 snapshot remain unchanged in the underlying inventory; any record change is a separate approval-gated action                                                                                    | Existing freshness policy and dated staleness check                                                              |
+| Use evidence          | CC-2B was closed without a query because the allowed aggregate contract could not establish people, referrals, outcomes, or public benefit; 116 screen minutes remain unused                                                                                                                        | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
+| Frontend retirement   | The localized retirement surface was deployed from main revision `ef91ac67c8a7` on 2026-08-15 and passed the public and browser acceptance contract. Service data, Supabase, workflows, shared keepalive, and DNS were unchanged                                                                    | [Transition and rollback packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) |
+| Shared operations     | The unchanged Actions workflow queries both CareConnect and VisitBrief Supabase Data APIs directly and is independent of the CareConnect frontend. Its latest checked scheduled run on 2026-08-15 succeeded. Keep the workflow, repository, Actions, required secrets, and Supabase projects intact | Public keepalive workflow contract plus private/shared operations source of truth                                |
+| Recovery boundary     | Live release, backup, rollback, shared-host, and environment details remain outside this public repository                                                                                                                                                                                          | [ADR-022](../adr/022-public-documentation-boundary.md)                                                           |
 
 ## Ordered Work
 
 ### CC-1 — Documentation truth
 
-Completed in the draft change. Canonical public status, navigation, roadmap,
-and the decision record now distinguish the approved disposition, the closed
-screen, the draft transition, and the still-live public service.
+Completed. Canonical public status, navigation, roadmap, and the decision
+record distinguish the closed evidence screen, the deployed frontend
+retirement, and the unchanged data/shared-service boundary.
 
 ### CC-2 — Bounded evidence screen
 
@@ -51,24 +51,22 @@ steward, continue toward controlled retirement.
 
 ### CC-3 — Reversible artifact preservation
 
-Completed for the current local packet: source/history, a dated public visual
-baseline with hashes, and a reproducible retirement release remain preserved.
+Completed: source/history, a dated public visual baseline with hashes, and a
+reproducible retirement release remain preserved.
 No real actionable listing is retained as a public demo solely for optionality.
 
 ### CC-4 — Approval-gated transition
 
-The reversible surface and public-safe
-[transition/rollback packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md)
-are prepared in a draft change. Execute public retirement only after the applicable
-recovery and cross-project dependency preflights pass and the owner explicitly
-approves the exact live action. Service-record changes, Supabase changes,
-workflow or shared-keepalive changes, redirects, and deployment remain distinct
-approval gates.
+Completed on 2026-08-15 after the recovery and cross-project dependency
+preflights passed and the owner approved the bounded database-recovery risk and
+exact live action. The deployed main revision is `ef91ac67c8a7`. Service-record
+changes, Supabase changes, workflow or shared-keepalive changes, redirects, and
+future deployments remain distinct approval gates.
 
-## Allowed Before a Live-Change Approval
+## Allowed Post-Retirement Maintenance
 
 1. Canonical public documentation updates.
-2. Public `GET` checks and inspection of existing aggregate-only evidence.
+2. Public `GET` checks and bounded retirement-surface verification.
 3. Local, reversible artifact-preservation work that does not expose secrets or
    actionable stale listings.
 4. Documentation, reference, lint, type, and targeted local validation.
