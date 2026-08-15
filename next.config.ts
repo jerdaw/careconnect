@@ -105,6 +105,30 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Service-worker scripts must never be retained by browser or CDN
+        // caches across the controlled retirement transition.
+        source: "/sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" },
+          { key: "CDN-Cache-Control", value: "no-store" },
+          { key: "Service-Worker-Allowed", value: "/" },
+        ],
+      },
+      {
+        source: "/retirement-cleanup-sw-20260815.js",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" },
+          { key: "CDN-Cache-Control", value: "no-store" },
+        ],
+      },
+      {
+        source: "/custom-sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" },
+          { key: "CDN-Cache-Control", value: "no-store" },
+        ],
+      },
+      {
         // iOS Universal Links requires this file to be served as JSON (no extension).
         source: "/.well-known/apple-app-site-association",
         headers: [{ key: "Content-Type", value: "application/json" }],
@@ -130,7 +154,9 @@ const withPWA = withPWAInit({
     document: "/offline",
   },
   workboxOptions: {
-    importScripts: ["/custom-sw.js"],
+    // Use a release-specific URL so a previously cached custom worker cannot
+    // suppress retirement cleanup or the connected-client transition.
+    importScripts: ["/retirement-cleanup-sw-20260815.js"],
     // Allow the main localized app chunk to be precached while keeping a bounded install size.
     maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
     runtimeCaching: [

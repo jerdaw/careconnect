@@ -69,6 +69,22 @@ test.describe("controlled public-directory retirement", () => {
     expect(await (await request.get("/.well-known/apple-app-site-association")).json()).toEqual({
       applinks: { details: [] },
     })
+
+    const generatedWorkerResponse = await request.get("/sw.js")
+    expect(generatedWorkerResponse.status()).toBe(200)
+    expect(generatedWorkerResponse.headers()["cache-control"]).toBe("no-store, no-cache, must-revalidate, max-age=0")
+    expect(generatedWorkerResponse.headers()["cdn-cache-control"]).toBe("no-store")
+    expect(generatedWorkerResponse.headers()["service-worker-allowed"]).toBe("/")
+    const generatedWorker = await generatedWorkerResponse.text()
+    expect(generatedWorker).toContain("/retirement-cleanup-sw-20260815.js")
+    expect(generatedWorker).not.toContain('importScripts("/custom-sw.js")')
+
+    for (const workerPath of ["/custom-sw.js", "/retirement-cleanup-sw-20260815.js"]) {
+      const workerResponse = await request.get(workerPath)
+      expect(workerResponse.status()).toBe(200)
+      expect(workerResponse.headers()["cache-control"]).toBe("no-store, no-cache, must-revalidate, max-age=0")
+      expect(workerResponse.headers()["cdn-cache-control"]).toBe("no-store")
+    }
   })
 
   test("upgrade removes prior listing data while preserving user-authored data for consented handling", async ({

@@ -28,7 +28,7 @@ describe("retirement release static contract", () => {
   })
 
   it("clears prior directory caches and offline service data during upgrade", () => {
-    const worker = readRepoFile("public/custom-sw.js")
+    const worker = readRepoFile("public/retirement-cleanup-sw-20260815.js")
 
     for (const cacheName of [
       "services-api",
@@ -68,5 +68,17 @@ describe("retirement release static contract", () => {
     for (const retirementScreenshot of ["retirement-mobile.png", "retirement-tablet.png"]) {
       expect(existsSync(path.join(process.cwd(), "public", "screenshots", retirementScreenshot))).toBe(true)
     }
+  })
+
+  it("cache-busts retirement worker logic and prevents intermediary worker caching", () => {
+    const nextConfig = readRepoFile("next.config.ts")
+    const compatibilityWorker = readRepoFile("public/custom-sw.js")
+
+    expect(nextConfig).toContain('importScripts: ["/retirement-cleanup-sw-20260815.js"]')
+    expect(nextConfig).not.toContain('importScripts: ["/custom-sw.js"]')
+    expect(nextConfig).toContain('source: "/sw.js"')
+    expect(nextConfig).toContain('{ key: "CDN-Cache-Control", value: "no-store" }')
+    expect(nextConfig).toContain('{ key: "Service-Worker-Allowed", value: "/" }')
+    expect(compatibilityWorker).toContain('importScripts("/retirement-cleanup-sw-20260815.js")')
   })
 })
