@@ -85,7 +85,7 @@ async function main() {
   }
 
   console.log(
-    `Retirement artifact check passed across ${artifactFiles.length} generated files using ${corpusMarkers.length} corpus-only markers${serviceWorkerExists ? ", including the generated service worker" : "; no service worker was generated in this build mode"}.`
+    `Retirement artifact check passed across ${artifactFiles.length} generated files using ${corpusMarkers.length} corpus-only markers${serviceWorkerExists ? ", including the service worker" : "; no service worker was generated in this build mode"}.`
   )
 }
 
