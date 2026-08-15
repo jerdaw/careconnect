@@ -1,9 +1,9 @@
 # CareConnect
 
-> A governance-first social-services search project whose public records are controlled by publication and freshness rules.
+> A preserved governance-first social-services search project; its actionable public directory is retired.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Status: Retirement transition](https://img.shields.io/badge/Status-Retirement%20transition-orange.svg)
+![Status: Retired](https://img.shields.io/badge/Status-Retired-lightgrey.svg)
 
 ## Manual Curation, Not Scraping
 
@@ -29,7 +29,7 @@ See the [current roadmap](planning/roadmap.md), [public-service retirement dispo
 
 Public documentation intentionally excludes deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory.
 
-## Current Features
+## Preserved Technical Capabilities
 
 ### Performance & Resilience (v17.5)
 
@@ -279,7 +279,7 @@ This project is community-led. Safety and accuracy take precedence over volume.
 
 ### Adding a Service (Inactive)
 
-New service intake is dormant during the retirement transition. The criteria
+New service intake remains inactive after public-directory retirement. The criteria
 below are preserved as conditional history; they are not an invitation to
 submit records and do not authorize ingestion.
 

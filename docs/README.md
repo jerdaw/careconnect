@@ -1,6 +1,6 @@
 ---
 status: stable
-last_updated: 2026-08-12
+last_updated: 2026-08-15
 owner: jer
 tags: [documentation, index, public-docs]
 ---
@@ -18,18 +18,18 @@ private/shared operations source of truth.
 ## Quick Links
 
 - [Architecture](architecture.md) - System design, data flow, and core concepts
-- [Current Roadmap](planning/roadmap.md) - Retirement transition status, gates, and stop rules
-- [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md) - Current owner decision and transition boundary
-- [Retirement Transition and Rollback Packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) - Public-safe preflight, acceptance, and rollback contract for the prepared release
+- [Current Roadmap](planning/roadmap.md) - Completed retirement status, exception-only stewardship, and reopening gates
+- [Public-Service Retirement Disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md) - Completed owner decision and post-retirement boundary
+- [Retirement Transition and Rollback Packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md) - Public-safe acceptance, evidence, and rollback contract for the deployed retirement release
 - [Contributor Guide](../AGENTS.md) - Canonical contributor and agent instructions
 - [AI Context](llms.txt) - Consolidated docs for LLMs (generated via `npx tsx scripts/generate-llms-txt.ts`; not tracked in git)
-- [Maintenance Audit](maintenance-audit.md) - Latest repo-health audit, verification status, and follow-ups
+- [Maintenance Audit](maintenance-audit.md) - Dated 2026-07-05 historical repo-health audit
 - [Deployment Boundary](deployment/direct-vps-proof.md) - Public deployment architecture notes
 - [Supabase Project Availability](deployment/supabase-project-availability.md) - Public-safe keepalive workflow contract
 - [Public Documentation Boundary ADR](adr/022-public-documentation-boundary.md) - Decision record for public/private documentation split
-- [Release Checklist](deployment/production-checklist.md) - Public-safe release verification checklist
-- [Incident Response Overview](operations/incident-response-plan.md) - Public incident-response principles
-- [Admin Operations Guide](operations/admin-operations-guide.md) - Current admin and partner ops surfaces
+- [Release Checklist](deployment/production-checklist.md) - Conditional public-safe checklist for an approved post-retirement release
+- [Incident Response Overview](operations/incident-response-plan.md) - Exception-only retirement/status/security incident principles
+- [Admin Operations Guide](operations/admin-operations-guide.md) - Preserved inactive admin and partner implementation surfaces
 - [Database Change Safety](operations/database-migration-and-rollback.md) - Public DB change principles
 - [International Privacy Notes](legal/international-privacy-compliance-notes.md) - Current privacy posture and boundaries
 

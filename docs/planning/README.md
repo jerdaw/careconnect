@@ -1,17 +1,19 @@
 ---
 status: stable
-last_updated: 2026-08-12
+last_updated: 2026-08-15
 owner: jer
 tags: [planning, roadmap, governance, public-docs]
 ---
 
 # Planning Documents
 
-CareConnect is in a controlled public-service retirement transition. Retirement
-is approved in principle, the bounded evidence screen is closed, and a
-reversible retirement release is prepared in a draft change. The public directory is
-still available, so draft implementation status must not be mistaken for a
-completed live change.
+CareConnect's controlled public-service retirement is complete. The bounded
+evidence screen is closed, and the localized non-service retirement surface
+was deployed and verified on 2026-08-15. The actionable public directory is no
+longer available.
+
+Post-retirement stewardship is exception-only and automated by default. There
+is no recurring human maintenance, validation, or evidence cadence.
 
 ## Start Here
 
@@ -21,19 +23,19 @@ completed live change.
 3. [Retirement Transition and Rollback Packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md)
    — public-safe live preflight, acceptance, rollback, and evidence contract.
 
-These two documents are the current planning authority. Detailed v19-v22 plans,
+These documents are the current planning authority. Detailed v19-v22 plans,
 checklists, and implementation records remain useful historical evidence, but
 they no longer authorize pilot execution, corpus reverification, partner
 outreach, expansion, or feature work.
 
-## Active Work
+## Completed Retirement Work
 
-| Order | Work                                         | Boundary                                                                                                               | Completion condition                                                              |
-| ----- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| CC-1  | Reconcile canonical public documentation     | Complete in draft PR; no live state changed                                                                            | Canonical navigation and status surfaces agree                                    |
-| CC-2  | Close the bounded evidence screen            | Closed at 4 of 120 minutes; CC-2B not pursued; no new tracking, SQL, raw logs, or credentials                          | The disposition records why allowed evidence cannot satisfy the continuation gate |
-| CC-3  | Preserve a reproducible non-service artifact | Complete in draft PR; source/history and dated visual baseline retained                                                | Code/history, hashes, screenshots, and local validation are recoverable           |
-| CC-4  | Execute the selected public transition       | Reversible release prepared in a draft change; recovery/dependency preflight and explicit live approval still required | Public state matches the approved disposition and rollback evidence is preserved  |
+| Order | Work                                         | Boundary                                                                                      | Completion condition                                                              |
+| ----- | -------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| CC-1  | Reconcile canonical public documentation     | Completed; canonical navigation and status surfaces record the deployed retirement            | Canonical navigation and status surfaces agree                                    |
+| CC-2  | Close the bounded evidence screen            | Closed at 4 of 120 minutes; CC-2B not pursued; no new tracking, SQL, raw logs, or credentials | The disposition records why allowed evidence cannot satisfy the continuation gate |
+| CC-3  | Preserve a reproducible non-service artifact | Completed; source/history, dated visual baseline, and signed release evidence retained        | Code/history, hashes, screenshots, and local validation are recoverable           |
+| CC-4  | Execute the selected public transition       | Completed on 2026-08-15 after recovery/dependency preflight and explicit live approval        | Public state matches the approved disposition and rollback evidence is preserved  |
 
 ## Stop Rules
 

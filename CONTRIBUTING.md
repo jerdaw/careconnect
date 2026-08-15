@@ -3,11 +3,12 @@
 Welcome! This guide will help you get up and running with the CareConnect codebase.
 
 > [!IMPORTANT]
-> **Retirement-transition boundary:** Controlled retirement of the public
-> directory is approved in principle; the evidence screen and any live
-> transition remain pending. Contributions are currently limited to approved
-> documentation truth, reversible artifact preservation, and separately scoped
-> critical security, safety, or data-loss work. This guide does not authorize
+> **Post-retirement boundary:** Controlled retirement of the public directory
+> is complete. Stewardship is exception-only and automated by default, with no
+> standing human maintenance or validation cadence. Contributions are limited
+> to material retirement-status truth corrections, preservation of verified
+> rollback or required infrastructure, and separately scoped genuine security,
+> safety, status, or data-loss incidents. This guide does not authorize
 > active feature or service-data changes, new ingestion, provider outreach or
 > partnership work, pilot reverification, or Brampton pre-launch execution.
 > The procedures below are preserved as technical reference and become active
@@ -273,7 +274,7 @@ npm run phone-validate     # Phone number validation (requires Twilio)
 ### Modifying Service Data
 
 This workflow is dormant and conditional. It does not authorize a service-data
-edit during the retirement transition; a record-specific change requires the
+edit under the post-retirement disposition; a record-specific change requires the
 approval defined by the current roadmap and retirement disposition.
 
 ```bash
