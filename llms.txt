@@ -1426,7 +1426,7 @@ tags: [planning, roadmap, governance, retirement]
 
 | Area                  | Current state                                                                                                                                                                                                                                                                                       | Authority or evidence                                                                                            |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Strategic disposition | Retire the actionable public directory unless the bounded screen credibly demonstrates meaningful recurring human use and an accountable steward accepts the service obligations                                                                                                                    | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
+| Strategic disposition | The actionable public directory was retired on 2026-08-15 after the bounded screen did not corroborate meaningful recurring human benefit or identify an accountable steward                                                                                                                        | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
 | Service inventory     | The governed snapshot contains 204 records; the dated 2026-08-12 freshness check identifies 8 visible records and 196 stale/hidden records                                                                                                                                                          | Reproducible local staleness check; no service record was changed                                                |
 | Crisis stewardship    | The frontend retirement exposes no service records. The two records that were due at the 2026-08-12 snapshot remain unchanged in the underlying inventory; any record change is a separate approval-gated action                                                                                    | Existing freshness policy and dated staleness check                                                              |
 | Use evidence          | CC-2B was closed without a query because the allowed aggregate contract could not establish people, referrals, outcomes, or public benefit; 116 screen minutes remain unused                                                                                                                        | [Retirement disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)      |
@@ -1450,11 +1450,11 @@ endpoint contract could not establish people, referrals, outcomes, or benefit.
 Production SQL, raw logs, personal data, and credential extraction remained
 out of scope. The unused 116 minutes do not carry into a broader search.
 
-The screen may establish activity consistent with recurring human use, but
-aggregate requests alone do not prove unique users, referrals, outcomes, or
-benefit. If meaningful use is credibly corroborated, require a fixed-deadline
-stewardship decision. Without both corroborated benefit and an accountable
-steward, continue toward controlled retirement.
+The screen could have established activity consistent with recurring human
+use, but aggregate requests alone would not have proved unique users,
+referrals, outcomes, or benefit. No qualifying evidence or accountable steward
+was documented; the screen closed and did not carry forward into another
+evidence campaign.
 
 ### CC-3 — Reversible artifact preservation
 
