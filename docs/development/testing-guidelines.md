@@ -118,8 +118,9 @@ To conserve CI minutes while on GitHub free tier:
 1. `test-e2e` runs on `workflow_dispatch` by default.
 2. To run E2E on a `main` push, include `[run-e2e]` in the commit message.
 3. Use manual dispatch for intentional E2E validation windows.
-4. Use the separate manual `Production Smoke` workflow for public-host checks
-   (`careconnect.ing`) instead of trying to turn deploys into an automatic CI step.
+4. Use the separate daily scheduled and manually dispatchable
+   `Production Smoke` workflow for public-host checks (`careconnect.ing`)
+   instead of trying to turn deploys into an automatic CI step.
 
 Local helper behavior:
 

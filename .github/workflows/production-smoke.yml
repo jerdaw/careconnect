@@ -17,6 +17,8 @@ env:
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
 
@@ -130,3 +132,62 @@ jobs:
         run: npm run validate:security-headers:runtime
         env:
           SECURITY_HEADERS_BASE_URL: https://careconnect.ing
+
+  report-smoke-result:
+    needs: smoke
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      FAILURE_DETECTED: ${{ needs.smoke.result != 'success' }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Sync persistent production smoke failure issue
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          title="Production Smoke Failure"
+          issue_number="$(
+            gh issue list \
+              --state open \
+              --limit 100 \
+              --json number,title \
+              --jq 'map(select(.title == "Production Smoke Failure")) | first | .number // empty'
+          )"
+
+          if [ "${FAILURE_DETECTED}" != "true" ]; then
+            if [ -n "${issue_number}" ]; then
+              gh issue close "${issue_number}" \
+                --comment "Resolved by a successful production retirement smoke run: ${RUN_URL}"
+            fi
+            exit 0
+          fi
+
+          body="$(
+            printf '%s\n' \
+              "The scheduled CareConnect production retirement smoke failed." \
+              "" \
+              "Run: ${RUN_URL}" \
+              "" \
+              "Required response:" \
+              "1. Inspect the failed check without collecting user data." \
+              "2. Preserve or restore the truthful retirement surface, emergency routing, and health/status contract." \
+              "3. Do not restore directory, search, service-record, admin, or partner surfaces." \
+              "4. Rerun this workflow and confirm the full retirement contract succeeds." \
+              "" \
+              "This issue is updated in place and closes automatically after a successful run."
+          )"
+
+          if [ -n "${issue_number}" ]; then
+            gh issue edit "${issue_number}" --body "${body}"
+          else
+            gh issue create \
+              --title "${title}" \
+              --label "automated" \
+              --body "${body}"
+          fi
