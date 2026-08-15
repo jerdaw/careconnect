@@ -236,6 +236,38 @@ describe("documentation hygiene", () => {
     expect(adminOverview).toContain("There is no routine admin, partner, listing, feedback, or validation work")
   })
 
+  it("keeps legacy public launch and governance artifacts non-authoritative", () => {
+    const legacyDocs = [
+      "docs/launch-materials/press-kit.md",
+      "docs/launch-materials/README.md",
+      "docs/operations/beta-testing-plan.md",
+      "docs/operations/launch-monitoring-checklist.md",
+      "docs/governance/data-enrichment-sop.md",
+      "docs/governance/city-expansion-curation.md",
+      "docs/governance/advisory_board_charter.md",
+      "docs/governance/verification-protocol.md",
+    ]
+
+    for (const relPath of legacyDocs) {
+      const content = readDoc(relPath)
+      const normalized = content.replace(/^>\s?/gm, "")
+      expect(content, relPath).toContain("**Retired-project boundary:**")
+      expect(content, relPath).toContain("current roadmap")
+      expect(normalized, relPath).toMatch(/does\s+not\s+authorize/)
+    }
+
+    const roadmap = readDoc("docs/planning/roadmap.md")
+    const verificationProtocol = readDoc("docs/governance/verification-protocol.md")
+
+    expect(roadmap).toContain("The actionable public directory was retired on 2026-08-15")
+    expect(roadmap).toContain("the screen closed and did not carry forward")
+    expect(roadmap).not.toContain("Retire the actionable public directory unless")
+    expect(roadmap).not.toContain("The screen may establish activity")
+    expect(roadmap).not.toContain("continue toward controlled retirement")
+    expect(verificationProtocol).not.toContain("CareConnect can still audit a monthly sample")
+    expect(verificationProtocol).toContain("create no recurring work schedule")
+  })
+
   it("keeps private shared-runtime facts out of active public entry points", () => {
     const readme = readDoc("README.md")
     const agents = readDoc("AGENTS.md")

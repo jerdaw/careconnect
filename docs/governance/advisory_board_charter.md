@@ -1,11 +1,19 @@
 ---
-status: stable
-last_updated: 2026-01-15
+status: historical
+last_updated: 2026-08-15
 owner: jer
 tags: [governance, charter, advisory-board]
 ---
 
 # Advisory Board Charter: CareConnect
+
+> [!IMPORTANT]
+> **Retired-project boundary:** This is an unimplemented historical draft, not
+> evidence of an established or active board. The proposed recruitment,
+> reviews, audits, meetings, and oversight cadence below are inactive. This
+> document does not authorize outreach, recruitment, periodic review, safety
+> validation, or recurring governance work. See the
+> [current roadmap](../planning/roadmap.md) for the only active boundary.
 
 ## 1. Purpose
 

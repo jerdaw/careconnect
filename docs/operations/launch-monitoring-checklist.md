@@ -1,6 +1,14 @@
-# Public Launch Observation Checklist
+# Historical Public Launch Observation Checklist
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-08-15
+
+> [!IMPORTANT]
+> **Retired-project boundary:** This checklist records a former launch contract
+> and must not be executed under the completed retirement disposition. It does
+> not authorize launch, public-directory restoration, service or crisis-flow
+> validation, feedback monitoring, or recurring manual observation. Existing
+> automation is the default; human work is exception-only under the
+> [current roadmap](../planning/roadmap.md).
 
 This checklist describes public-safe launch observation. Exact monitoring dashboards, alert routing, host commands, and rollback procedures are private/shared operations material.
 

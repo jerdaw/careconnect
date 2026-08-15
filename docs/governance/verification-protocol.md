@@ -8,7 +8,7 @@ tags: [governance, verification, protocol]
 # Service Verification Protocol
 
 > [!IMPORTANT]
-> **Retirement-transition boundary:** This protocol is preserved as historical
+> **Retired-project boundary:** This protocol is preserved as historical
 > and conditional safety guidance. It does not authorize active feature or
 > service-record changes, new ingestion, provider outreach or partnership work,
 > pilot reverification, or Brampton pre-launch execution. Use it only for
@@ -23,8 +23,8 @@ tags: [governance, verification, protocol]
 
 To define accuracy and safety requirements for separately approved record work
 or a reopened, operationally stewarded CareConnect service scope. This objective
-is not an active maintenance or expansion mandate during the retirement
-transition.
+is not an active maintenance or expansion mandate under the post-retirement
+disposition.
 
 ## 2. Verification Levels (L-Scale)
 
@@ -69,16 +69,16 @@ disposition.
 - Identity verification via work email.
 - Track outreach progress in a governance-safe way (no PII) when needed, e.g. `data/verification/l3-candidates.csv`.
 
-## 4. Maintenance Cycle
+## 4. Historical/Conditional Maintenance Cycle
 
 These cadences apply only to an approved, actively stewarded public scope. They
 do not authorize pilot reverification or restoration of hidden records during
-the retirement transition.
+the post-retirement disposition and create no recurring work schedule.
 
 - **Crisis / highly volatile listings**: Review monthly where operationally feasible.
 - **Pilot / priority listings**: Target re-verification within 90 days.
 - **General directory listings**: Must be re-verified within 180 days to remain publicly visible.
-- **Sampling discipline**: CareConnect can still audit a monthly sample across L0-L2 listings to catch decay earlier.
+- **Historical sampling discipline**: A reopened, actively stewarded service could audit a monthly sample across L0-L2 listings to catch decay earlier.
 - **Stale Data**: Listings not verified for >180 days are downgraded to L0, hidden from search, and may surface only with an explicit stale warning when directly linked.
 
 ## 5. Dispute Resolution

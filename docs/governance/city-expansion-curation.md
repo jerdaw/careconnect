@@ -1,4 +1,11 @@
-# City Expansion Curation Rules
+# City Expansion Curation Rules (Historical/Conditional)
+
+> [!IMPORTANT]
+> **Retired-project boundary:** This document preserves former expansion safety
+> rules; no city expansion or Brampton launch is active. It does not authorize
+> research, ingestion, validation, content refresh, expansion, or launch work.
+> Apply it only if the [current roadmap](../planning/roadmap.md) reopens a
+> governed public-service scope and the required approvals are recorded.
 
 CareConnect expands one supported place at a time. A place can be added to the app before it has broad coverage, but public copy must be clear when a place is in preview or has a small core-service dataset.
 

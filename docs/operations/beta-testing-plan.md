@@ -1,6 +1,15 @@
-# Public Beta Testing Plan
+# Historical Public Beta Testing Plan
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-08-15
+
+> [!IMPORTANT]
+> **Retired-project boundary:** This is a historical methodology artifact, not
+> an active beta plan. The actionable public directory was retired on
+> 2026-08-15. The goals, test areas, and privacy rules below are preserved only
+> as dated evidence. This document does not authorize participant recruitment,
+> testing, service validation, feedback collection, outreach, analytics, or a
+> recurring evaluation cadence. See the
+> [current roadmap](../planning/roadmap.md) for the only active boundary.
 
 This public beta-testing plan focuses on methodology, not private launch operations or participant management.
 

@@ -1,12 +1,21 @@
 # Launch Materials - CareConnect
 
-**Purpose**: Ready-to-use templates and guides for beta and public launch
+> [!IMPORTANT]
+> **Retired-project boundary:** These materials are historical launch artifacts,
+> not ready-to-use current instructions. The actionable public directory was
+> retired on 2026-08-15. The templates, schedules, outreach suggestions,
+> pending tasks, metrics, contacts, and calls to action below are retained only
+> as dated evidence. This document does not authorize launch, beta testing,
+> media or partner outreach, content publication, or recurring communications.
+> See the [current roadmap](../planning/roadmap.md) for the only active boundary.
+
+**Purpose**: Historical archive of templates and guides prepared for a former beta and public launch
 **Created**: February 2026 (v19.0 Phase 5)
-**Status**: Complete ✅
+**Status**: Retired and inactive
 
 ---
 
-## Contents
+## Historical Contents
 
 ### 1. Press Kit (`press-kit.md`)
 
@@ -84,7 +93,7 @@
 
 ---
 
-## Quick Start
+## Historical Quick Start (Inactive)
 
 ### For Beta Launch (Immediate)
 
@@ -146,13 +155,13 @@ For major announcements (beta launch, public launch):
 - [x] Social media templates (all platforms, multiple variants)
 - [x] Launch assets guide (complete specifications)
 
-### Pending (User Execution)
+### Former Pending Tasks (Inactive)
 
 - [ ] Create logo and visual assets (see Assets Guide)
 - [ ] Schedule social media posts (see Templates)
 - [ ] Distribute press kit to media contacts
 
-### Optional (Post-Launch)
+### Former Optional Post-Launch Tasks (Inactive)
 
 - [ ] Demo video (60-90 seconds)
 - [ ] Print materials (posters, flyers)
@@ -160,7 +169,7 @@ For major announcements (beta launch, public launch):
 
 ---
 
-## Success Metrics
+## Historical Success Metrics (Inactive)
 
 Track these metrics post-launch:
 
@@ -271,4 +280,7 @@ Quality > quantity. Better to post 2 great posts than 7 mediocre ones.
 
 ---
 
-**Ready to launch?** Start with the press kit and social media templates, create your critical assets, and share CareConnect with your community. 🚀
+**Historical call to action (inactive):** The former materials instructed
+maintainers to start with the press kit and social-media templates, create
+assets, and share CareConnect with the community. That instruction is not
+current authorization.
