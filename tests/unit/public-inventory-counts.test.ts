@@ -30,7 +30,8 @@ describe("public inventory counts", () => {
     expect(categoryCount).toBe(EXPECTED_CATEGORIES)
     expect(routing.locales).toHaveLength(EXPECTED_LANGUAGES)
     expect(readme).toContain("**204 manually curated records**")
-    expect(readme).toContain("196 cover Kingston and 8 are Brampton-only")
+    expect(readme).toContain("inventory size is not the same as the currently visible service count")
+    expect(readme).not.toContain("196 cover Kingston and 8 are Brampton-only")
     expect(readme).not.toContain("196 highest-impact services")
 
     for (const locale of routing.locales) {

@@ -1,17 +1,31 @@
 ---
 status: stable
-last_updated: 2026-04-05
+last_updated: 2026-08-12
 owner: jer
 tags: [governance, standards, verification]
 ---
 
 # Governance Protocol: The CareConnect Local Verification Standard
 
+> [!IMPORTANT]
+> **Retirement-transition boundary:** This standard is preserved as a
+> historical and conditional safety protocol. It does not authorize active
+> feature or service-record changes, new ingestion, provider outreach or
+> partnership work, pilot reverification, or Brampton pre-launch execution.
+> Apply it only to separately approved safety work or after the
+> [current roadmap](../planning/roadmap.md) explicitly reopens an operationally
+> stewarded service scope.
+
 **Document Version:** 1.1
 **Effective Date:** Dec 29, 2025
-**Scope:** All services listed in the CareConnect database.
+**Current Scope:** Conditional safety rules for governed records when specific
+service work is separately approved or an operationally stewarded public scope
+is reopened.
 
-This standard supersedes the earlier Kingston-specific framing while preserving the same accuracy-over-coverage rule. Kingston remains a live supported place; Brampton records must meet the same visible-listing threshold before launch.
+This standard superseded the earlier Kingston-specific framing while preserving
+the same accuracy-over-coverage rule. Its former Kingston and Brampton launch
+framing is historical; no Brampton pre-launch execution is active under the
+current disposition.
 
 ---
 
@@ -42,7 +56,10 @@ Every service in the database must be assigned a verification level.
 | **L3** | **Provider Confirmed.** Direct contact (email/phone) with service provider confirming details.                                             | ✅ **VISIBLE** (Preferred) |
 | **L4** | **Official Partner.** Signed MOU or Data Sharing Agreement.                                                                                | 🌟 **FEATURED**            |
 
-> **Current Pilot Standard:** All visible services must be **L1 or higher** and must remain within the active freshness window.
+> **Conditional display standard:** If an operationally stewarded public scope
+> is approved, visible services must be **L1 or higher** and remain within the
+> active freshness window. This rule does not authorize reverification or
+> publication during the retirement transition.
 
 ---
 
@@ -60,6 +77,10 @@ To tag a service as `2SLGBTQI+ Friendly` or `Indigenous-Led`, the record must in
 ---
 
 ## 4. Maintenance Cycle
+
+The cadences below define the safety standard for an approved, actively
+stewarded service. They do not create an active reverification queue or
+authorize restoration of the corpus during the retirement transition.
 
 - **Crisis Services:** Verify monthly.
 - **Pilot / priority services:** Target re-verification within 90 days.

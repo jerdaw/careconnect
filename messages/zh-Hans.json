@@ -1729,5 +1729,35 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "CareConnect 服务目录已停用",
+    "metadataDescription": "CareConnect 公共服务目录已停止提供。紧急求助和官方服务导航选项仍然可用。",
+    "skipToContent": "跳到主要内容",
+    "eyebrow": "服务更新",
+    "title": "CareConnect 服务目录已停止提供",
+    "description": "CareConnect 不再显示或搜索本地服务记录。所保留的项目并非正在运营的服务目录。",
+    "safetyTitle": "立即寻求帮助",
+    "safetyDescription": "CareConnect 不会监控此页面，也无法应对紧急情况。",
+    "emergencyTitle": "紧迫危险",
+    "emergencyDescription": "如果您或他人正面临紧迫危险，请立即拨打 911。",
+    "call911": "拨打 911",
+    "suicideTitle": "自杀危机支持",
+    "suicideDescription": "在加拿大，可拨打或短信联系 988，全天候获得自杀危机支持。",
+    "call988": "拨打 988",
+    "text988": "短信 988",
+    "navigationTitle": "查找社区和社会服务",
+    "navigationDescription": "请使用由 211 Ontario 维护的服务导航，而不是 CareConnect 已停用的服务记录。",
+    "visit211": "访问 211 Ontario",
+    "call211": "拨打 211",
+    "localDataTitle": "此设备上的个人数据",
+    "localDataDescription": "已保存的搜索、可选的年龄或身份偏好以及待发送的反馈只保留在此设备上。您可以下载副本或将其清除。这些控件不会上传任何内容。",
+    "exportLocalData": "下载我的本地数据",
+    "clearLocalData": "清除我的本地数据",
+    "clearConfirmation": "要清除此设备上的已保存搜索、可选个人偏好和待发送反馈吗？此操作无法撤销。",
+    "localDataExported": "您的本地数据下载已准备好。",
+    "localDataCleared": "您保存的本地数据已清除。",
+    "localDataError": "此浏览器无法完成本地数据操作。",
+    "boundary": "此页面不列出、不核实也不推荐任何服务提供者。"
   }
 }

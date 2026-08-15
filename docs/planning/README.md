@@ -1,280 +1,66 @@
 ---
 status: stable
-last_updated: 2026-07-26
+last_updated: 2026-08-12
 owner: jer
-tags: [planning, roadmap, governance, public-docs, multi-city, brampton]
+tags: [planning, roadmap, governance, public-docs]
 ---
 
 # Planning Documents
 
-This directory contains planning and strategy documents for CareConnect.
-
-> Historical note: files under `docs/planning/archive/` preserve earlier phases
-> of the project and may still use pre-CareConnect naming or transitional
-> branding.
-> Treat those references as historical only; current operational guidance uses
-> the CareConnect name and `careconnect.ing`.
-
-## Active Planning: v22.0
-
-**Status:** v22 Gate 0 remains `NO-GO` pending C1/D4 closure. Service reverification is the parallel safety priority. The approved eight-record Brampton first launch is complete; future verification, expansion, and official/partner wording remain approval-gated rather than an active launch track.
-**Created:** 2026-02-27
-
-### Quick Start (Read These First)
-
-1. **[Roadmap](roadmap.md)** ⭐ START HERE
-   - Executive status, ordered priorities, stop rules, active decision work, and deferred tracks
-   - **Reading time:** 7 minutes
-
-2. **[v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)**
-   - Strategic objective, hypotheses, kill rules, and stage gates
-   - **Reading time:** 15 minutes
-
-3. **[Brampton Launch Readiness Report](../launch/brampton-readiness-report.md)**
-   - Current Brampton launch evidence, completed production/QA status, and remaining verification/approval gates
-   - **Reading time:** 10 minutes
-
-### Detailed Documentation (Optional)
-
-- [Brampton Rollout Checklist](../launch/brampton-rollout-checklist.md)
-  - Operational checklist for local QA, production schema preflight, migration/deploy approval, rollback, and post-launch work
-  - **Reading time:** 5 minutes
-
-- [Brampton Manual QA](../launch/brampton-manual-qa.md)
-  - Browser/a11y, DB smoke, viewport, selector, and search QA evidence plus current follow-up defects
-  - **Reading time:** 5 minutes
-
-- [Brampton Public Positioning Drafts](../launch/brampton-public-positioning-drafts.md)
-  - Supported-region copy direction, partner/source-reference wording, and draft-only land acknowledgment source review
-  - **Reading time:** 5 minutes
-
-- [Public GitHub Cleanup Archive (2026-06-04)](archive/2026-06-04-public-github-cleanup.md)
-  - Completed public documentation boundary cleanup, private-note preservation, ADR-022 creation, and boundary-safe script/test updates
-  - **Reading time:** 5 minutes
-
-- [v20.0 Public and Operational Surface Polish Archive (2026-05-01)](archive/2026-05-01-v20-0-public-and-operational-surface-polish.md)
-  - Completed reference sources, suggest-service intake, settings, public workflow, static legal/help/trust, and authenticated operational surface polish
-  - **Reading time:** 5 minutes
-
-- [v20.0 About Page Polish Archive (2026-04-30)](archive/2026-04-30-v20-0-about-page-polish.md)
-  - Completed About page layout, background, section rhythm, shared-rail alignment, and CTA styling polish
-  - **Reading time:** 5 minutes
-
-- [v20.0 Homepage Search UX Polish Archive (2026-04-29)](archive/2026-04-29-v20-0-homepage-search-ux-polish.md)
-  - Completed homepage search/filter spacing, active-filter UX polish, metrics-rail refinement, and homepage credibility flow polish
-  - **Reading time:** 5 minutes
-
-- [v20.0 Repo Audit Truth Remediation Archive (2026-04-24)](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)
-  - Completed closeout for the 2026-04-23 audit findings and remediation wave
-  - **Reading time:** 5-10 minutes
-
-- [v22.0 Gate 0 Prep and Deploy Contract Alignment Archive (2026-04-28)](archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md)
-  - Completed autonomous maintenance pass for prep-only Gate 0 evidence packets, deploy-contract alignment, and validation
-  - **Reading time:** 5 minutes
-
-- [v22.0 Autonomous Gate 0 Maintenance Archive (2026-06-13)](../implementation/archive/2026-06-13-v22-0-autonomous-gate0-maintenance.md)
-  - Completed bounded repo-local maintenance pass for evidence guards, D4 artifact-inventory validation, offline recovery/privacy, pilot event contracts, and readiness validation while leaving C1/D4 evidence externally blocked
-  - **Reading time:** 10 minutes
-
-- [Autonomous Maintenance Plan Archive (2026-06-28)](archive/2026-06-28-autonomous-maintenance-plan.md)
-  - Completed documentation, validation, local CI parity, and read-only embeddings freshness maintenance queue while leaving v22 C1/D4 evidence externally blocked
-  - **Reading time:** 5-10 minutes
-
-- [CareConnect Closeout Triage Checkpoint (2026-07-01)](../implementation/careconnect-closeout-triage-2026-07-01.md)
-  - Current finish-now/defer/human-owned matrix after auth/admin regression hardening and CI validation
-  - **Reading time:** 5 minutes
-
-- [Residual Security Closure Archive (2026-07-03)](archive/2026-07-03-residual-security-closure.md)
-  - Completed public provenance projection hardening and related API/schema verification
-  - **Reading time:** 5 minutes
-
-- [Maintenance Audit (2026-07-05)](../maintenance-audit.md)
-  - Completed repo-health maintenance report covering scoped code fixes, docs updates, verification status, and remaining follow-ups
-  - **Reading time:** 10-15 minutes
-
-- [Roadmap Audit Archive (2026-02-11)](archive/2026-02-11-roadmap-audit.md)
-  - Historical public summary of the roadmap findings that informed the later v20-v22 work
-  - **Reading time:** 5 minutes
-
-- **[v22.0 Approval Checklist](v22-0-approval-checklist.md)**
-  - Canonical sign-off record for Gate 0 decisions
-  - **Reading time:** 10 minutes
-
-- **[v22.0 Phase 0 Implementation Plan](../implementation/v22-0-phase-0-implementation-plan.md)**
-  - Technical execution spec for pilot instrumentation and governance evidence
-  - **Reading time:** 20-30 minutes
-
-- **[CareConnect Rebrand Archive](archive/2026-03-18-careconnect-rebrand.md)**
-  - Historical record of the completed repo + runtime rename
-  - **Reading time:** 5 minutes
-
-- **[v20.0 DB Integration Test Lane Archive](archive/2026-03-24-v20-0-db-integration-test-lane.md)**
-  - Historical record of the completed real DB integration test lane and the remaining migration-history follow-up
-  - **Reading time:** 5 minutes
-
-- **[v20.0 Repo Audit Remediation Archive](archive/2026-03-29-v20-0-repo-audit-remediation.md)**
-  - Historical record of the completed repo-maintenance batch: typed service writes, dashboard action extraction, search typing cleanup, script/reference hygiene, and dependency cleanup
-  - **Reading time:** 5-10 minutes
-
-- **[v20.0 Runtime Hardening and Performance Remediation Archive](archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md)**
-  - Historical record of the completed audit-driven hardening wave: privacy/governance fixes, org-scoped service creation, CSV import repair, lazy AI/search loading, and workflow cleanup
-  - **Reading time:** 5-10 minutes
-
-- **[v20.0 Workflow Runtime Cleanup and 211 Sync Quarantine Archive](archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md)**
-  - Historical record of the completed maintenance wave that quarantined the experimental 211 sync path and closed the remaining GitHub Actions runtime follow-up
-  - **Reading time:** 5 minutes
-
-- **[v21.0 External Validation Plan](v21-external-validation-plan.md)**
-  - Public-interest external-validation backlog, ordered by current strategic value
-  - Read this only after the main roadmap so the v22 gate-first constraints stay clear
-  - **Reading time:** 10-15 minutes
-
-- **[v22.0 Pilot Metric Instrumentation and Tier 0 Hardening Archive](archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md)**
-  - Completed closeout for the A3/A11/A22 bundle plus bounded A6/A16 readiness tooling
-  - Use this when you need a concise historical record of what landed on 2026-04-01
-  - **Reading time:** 5-10 minutes
-
-- **[v20.0 Semantic Search Fail-Closed and Lint Hygiene Archive](archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md)**
-  - Completed closeout for the semantic worker fail-closed hardening, lint-boundary cleanup, and related docs/test updates
-  - Use this when you need the historical record for the 2026-04-15 maintenance pass
-  - **Reading time:** 5 minutes
-
-- **[v20.0 Quiet GitHub Automation and URL Health Hardening Archive](archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md)**
-  - Completed closeout for the quiet-by-default GitHub automation rollout, bot-issue reconciliation, and URL-health false-positive hardening
-  - Use this when you need the historical record for the 2026-04-23 maintenance pass
-  - **Reading time:** 5 minutes
-
-- **[v20.0 Repo Audit Truth Remediation Archive](archive/2026-04-24-v20-0-repo-audit-truth-remediation.md)**
-  - Completed closeout for the 2026-04-23 audit findings after the direct-VPS docs/privacy/planning reconciliation pass
-  - Use this when you need the historical record for the 2026-04-24 maintenance pass
-  - **Reading time:** 5 minutes
-
----
-
-## Document Navigation
-
-```
-docs/planning/
-├── README.md ← You are here
-├── roadmap.md (main roadmap, updated for v22.0 and Brampton)
-├── archive/ (completed version plans)
-├── archive/2026-06-04-public-github-cleanup.md
-├── archive/2026-05-01-v20-0-public-and-operational-surface-polish.md
-├── archive/2026-04-30-v20-0-about-page-polish.md
-├── archive/2026-04-29-v20-0-homepage-search-ux-polish.md
-├── archive/2026-04-28-v22-0-gate-0-prep-and-deploy-contract-alignment.md
-├── archive/2026-04-24-v20-0-repo-audit-truth-remediation.md
-├── archive/2026-04-23-v20-0-quiet-github-automation-and-url-health-hardening.md
-├── v21-external-validation-plan.md
-├── archive/2026-04-15-v20-0-semantic-search-fail-closed-and-lint-hygiene.md
-├── archive/2026-04-01-v22-0-pilot-metric-instrumentation-and-tier-0-hardening.md
-├── v22-0-non-duplicate-value-decision-plan.md
-├── v22-0-approval-checklist.md
-├── archive/2026-04-01-v20-0-workflow-runtime-cleanup-and-211-sync-quarantine.md
-├── archive/2026-06-28-autonomous-maintenance-plan.md
-├── archive/2026-06-28-autonomous-maintenance-status.md
-├── archive/2026-03-18-careconnect-rebrand.md
-├── archive/2026-03-30-v20-0-runtime-hardening-and-performance-remediation.md
-└── archive/2026-03-29-v20-0-repo-audit-remediation.md
-```
-
----
-
-## Quick Reference
-
-### What is active now?
-
-One strategic track is active: **v22.0 Non-Duplicate Value Decision Plan**. It tests whether CareConnect provides measurable last-mile value relative to 211 while preserving explicit privacy and stop rules.
-
-Three human-owned lanes run in parallel:
-
-1. Reverify services, starting with the 42 stale Crisis records.
-2. Supply the missing C1 legal/API terms evidence.
-3. Supply the missing D4 partner-operations execution evidence.
-
-Brampton's approved eight-record launch is complete. Further candidates or L2/L3 changes are gated follow-up work, not a second active roadmap track.
-
-### Why Now?
-
-The platform is technically mature, but the next decision is strategic rather than purely technical:
-
-- Avoid direct breadth competition with 211
-- Validate measurable last-mile outcome value
-- Keep governance and privacy redlines explicit before expanding pilot work
-
-### Timeline
-
-**Target ~90-day decision review cycle**
-
-- Phase 0: baseline + governance locks
-- Phase 1: pilot execution
-- Phase 2: objective go / conditional / stop decision
-
-This is a decision checkpoint target, not a guaranteed delivery schedule. The review window assumes external blockers such as legal review and partner evidence close in time to support a meaningful decision.
-
-### Cost
-
-Pilot cost remains bounded by existing infrastructure and partner participation assumptions documented in the v22 plan.
-
-### Dependencies
-
-Current dependencies and completed prerequisites:
-
-- Gate 0 blocker closure (`C1`, `D4`)
-- Baseline evidence already published
-- Integration feasibility decision already recorded in conditional mode
-- Offline F3 replay and F5 bounded recovery evidence recorded; F1 queue inspection and F2 authenticated sign-out QA remain evidence-gated
-- Brampton first-launch production, accessibility, visual QA, and broad-coverage closeout already recorded
-
----
-
-## How to Proceed
-
-### Option 1: Reverify Services
-
-Use the dated freshness worksheet and the open verification issues:
-
-1. Start with the 42 stale Crisis records in issue #13.
-2. Continue the general quarterly queue in issue #14.
-3. Update facts and `provenance.verified_at` only after real phone/web/source evidence is recorded.
-4. Regenerate the freshness audit after each reviewable verification batch.
-
-### Option 2: Close Gate 0
-
-Use the active roadmap and Gate 0 tracker to close the remaining v22 blocking items:
-
-1. Attach candidate partner legal/API terms for C1 review
-2. Attach named pilot partner and outreach execution evidence for D4
-
-### Option 3: Continue a Specifically Approved Brampton Record
-
-Use the Brampton verification workplan only after a candidate or L2/L3 change is explicitly approved. Do not treat the completed first launch as permission for broad regional expansion.
-
----
-
-## Document Updates
-
-- **2026-07-26:** Reconciled the public inventory and localization maintenance release, added the current 204-record freshness snapshot (8 visible, 196 hidden), and kept the remaining service/legal/partner work in its existing evidence-gated lanes
-- **2026-07-13:** Reorganized the roadmap around one active strategic track, a P0 service/legal/partner evidence stack, explicit completion conditions, and concise maintenance/deferral rules; moved Brampton to a completed bounded-launch track and corrected F1/F2 threat-model status
-- **2026-03-24:** Planning index updated to reflect Gate 0 `NO-GO` blockers and current close-out order
-- **2026-03-29:** Planning index updated to reflect completed C2 closure and remaining C1/D4 blockers
-- **2026-03-29:** Added v20.0 repo-audit remediation archive and removed the stale reference to a nonexistent active v20 migration-recovery plan
-- **2026-03-30:** Added the v20.0 runtime hardening and performance remediation archive and refreshed roadmap baseline metrics after the audit-driven maintenance wave
-- **2026-04-01:** Added the v20.0 workflow runtime cleanup and 211 sync quarantine archive after closing the remaining Node-runtime workflow follow-up
-- **2026-04-01:** Added the v22.0 Tier 0 external-validation support archive and updated the roadmap to treat pilot metric, public-claim, and focused privacy test hardening as complete baseline capability
-- **2026-04-01:** Added the re-triaged v21 external-validation plan to the planning index and aligned the main roadmap with the new tiered sequencing
-- **2026-04-03:** Finalized the CareConnect rebrand archive after the GitHub repo rename to `jerdaw/careconnect`
-- **2026-04-15:** Added the semantic-search fail-closed and lint-hygiene archive after restoring actionable repo-wide linting and hardening the embedding-worker fallback path
-- **2026-04-23:** Added the quiet GitHub automation and URL-health hardening archive after converting recurring governance workflows to quiet-by-default issue reuse and stabilizing the monthly health check against CI-only false positives
-- **2026-04-24:** Archived the repo audit follow-up/remediation wave after the direct-VPS docs/privacy/planning reconciliation pass completed
-- **2026-04-28:** Archived the Gate 0 prep and deploy-contract alignment pass after adding prep-only C1/D4 evidence packets, syncing tracker wording, and validating the sudo-required shared frontend env-file contract
-- **2026-04-29:** Archived the homepage search UX polish pass after moving filters into the active search/results state, restoring and refining the service/category/language metrics rail, folding trust-strip content into the `How It Works` flow, and validating spacing/contrast updates
-- **2026-04-30:** Archived the About page polish pass after consolidating trust/context content, restoring the smooth page-level background, aligning sections on a shared rail, and validating CTA styling updates
-- **2026-05-03:** Refreshed roadmap baselines from current local validation, corrected the production/full dependency audit status, and added bounded dependency-audit remediation to active maintenance
-- **2026-06-04:** Added the public GitHub cleanup archive after establishing ADR-022 and sanitizing public deployment, operations, planning, legal, and observability documentation
-- **2026-07-05:** Added the maintenance audit checkpoint and refreshed roadmap test, coverage, and dependency-audit baselines after the repo-health pass
-- **2026-07-07:** Updated the active roadmap for the Brampton constrained multi-city launch track, refreshed 203-record data-quality counts, linked launch readiness docs, and reordered next work around a11y/browser QA, completed authenticated schema preflight, and approval gates
-- **2026-03-24:** v20.0 DB integration test lane archived; migration-history cleanup remains on the active roadmap
-- **2026-03-18:** Planning index updated for v22.0 and CareConnect rebrand archive
-- **2026-03-18:** CareConnect rebrand archived in `docs/planning/archive/2026-03-18-careconnect-rebrand.md`
-- Next review: After any `UA-1` / `UA-2` / `UA-3` evidence update or the next material roadmap change
+CareConnect is in a controlled public-service retirement transition. Retirement
+is approved in principle, the bounded evidence screen is closed, and a
+reversible retirement release is prepared in a draft change. The public directory is
+still available, so draft implementation status must not be mistaken for a
+completed live change.
+
+## Start Here
+
+1. [Current Roadmap](roadmap.md) — active priorities, gates, and stop rules.
+2. [Public-Service Retirement Disposition](../implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)
+   — owner decision, evidence boundary, and reopening requirements.
+3. [Retirement Transition and Rollback Packet](../implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md)
+   — public-safe live preflight, acceptance, rollback, and evidence contract.
+
+These two documents are the current planning authority. Detailed v19-v22 plans,
+checklists, and implementation records remain useful historical evidence, but
+they no longer authorize pilot execution, corpus reverification, partner
+outreach, expansion, or feature work.
+
+## Active Work
+
+| Order | Work                                         | Boundary                                                                                                               | Completion condition                                                              |
+| ----- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| CC-1  | Reconcile canonical public documentation     | Complete in draft PR; no live state changed                                                                            | Canonical navigation and status surfaces agree                                    |
+| CC-2  | Close the bounded evidence screen            | Closed at 4 of 120 minutes; CC-2B not pursued; no new tracking, SQL, raw logs, or credentials                          | The disposition records why allowed evidence cannot satisfy the continuation gate |
+| CC-3  | Preserve a reproducible non-service artifact | Complete in draft PR; source/history and dated visual baseline retained                                                | Code/history, hashes, screenshots, and local validation are recoverable           |
+| CC-4  | Execute the selected public transition       | Reversible release prepared in a draft change; recovery/dependency preflight and explicit live approval still required | Public state matches the approved disposition and rollback evidence is preserved  |
+
+## Stop Rules
+
+1. Do not restore or reverify the corpus for optionality.
+2. Do not start a pilot, partner pitch, housing workflow, research conversion,
+   feature expansion, or new instrumentation.
+3. Do not treat aggregate traffic as proof of unique people, referrals,
+   outcomes, or public benefit.
+4. Do not alter crisis records, Supabase, shared keepalive behavior, workflows,
+   or the public deployment without the applicable explicit approval and
+   recovery preflight.
+5. Keep public rationale limited to project stewardship, safety, evidence, and
+   operations; retain private operations details in their existing source of
+   truth.
+
+## Historical Plans
+
+The following documents are retained for traceability and are not active
+execution authority:
+
+- [v22.0 Non-Duplicate Value Decision Plan](v22-0-non-duplicate-value-decision-plan.md)
+- [v22.0 Approval Checklist](v22-0-approval-checklist.md)
+- [Superseded v22 Limited Public Directory Pilot Risk Disposition](../implementation/v22-0-limited-public-directory-pilot-risk-disposition-2026-07-02.md)
+- [v21.0 External Validation Plan](v21-external-validation-plan.md)
+- [v19.0 Launch Preparation Plan](v19-0-launch-preparation.md)
+- [Planning Archive](archive/README.md)
+
+Historical note: archived documents may use earlier project names or describe
+work that was valid in an earlier phase. Current guidance uses the CareConnect
+name and the disposition linked above.

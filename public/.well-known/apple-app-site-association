@@ -1,39 +1,5 @@
 {
   "applinks": {
-    "details": [
-      {
-        "appIDs": ["PLACEHOLDER_TEAM_ID.ca.careconnect.app"],
-        "components": [
-          {
-            "/": "/*/service/*",
-            "comment": "Matches service detail pages for any locale"
-          },
-          {
-            "/": "/*/dashboard/*",
-            "comment": "Matches dashboard pages"
-          },
-          {
-            "/": "/*/about/*",
-            "comment": "Matches about pages"
-          },
-          {
-            "/": "/*/settings",
-            "comment": "Matches user settings"
-          },
-          {
-            "/": "/*/privacy",
-            "comment": "Matches privacy policy"
-          },
-          {
-            "/": "/*/terms",
-            "comment": "Matches terms"
-          },
-          {
-            "/": "/*",
-            "comment": "Matches locale home (e.g., /en)"
-          }
-        ]
-      }
-    ]
+    "details": []
   }
 }

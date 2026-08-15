@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next"
 import { promises as fs } from "fs"
 import path from "path"
 import { getPublicBaseUrl } from "@/lib/brand"
+import { PUBLIC_SERVICE_MODE, isPublicServiceRetired, type PublicServiceMode } from "@/lib/public-service-mode"
 
 const BASE_URL = getPublicBaseUrl()
 
@@ -42,7 +43,13 @@ async function loadServiceIds(): Promise<string[]> {
   }
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export async function buildSitemap(
+  publicServiceMode: PublicServiceMode = PUBLIC_SERVICE_MODE
+): Promise<MetadataRoute.Sitemap> {
+  if (isPublicServiceRetired(publicServiceMode)) {
+    return []
+  }
+
   const entries: MetadataRoute.Sitemap = []
 
   // Homepage
@@ -83,4 +90,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   return entries
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  return buildSitemap()
 }

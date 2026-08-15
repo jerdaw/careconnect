@@ -16,7 +16,39 @@ You are a **governance-aware developer** working on a privacy-first social servi
 
 **Mission**: "The Semantic Bridge" for Kingston Social Services – a verified, governance-first search engine for food, crisis, and housing support in Kingston, ON.
 
-**Philosophy**: Manual Curation over Automatic Extraction. ~196 High-Impact Services. Verified, Accessible, Identity-Aware.
+**Philosophy**: Manual Curation over Automatic Extraction. The governed
+inventory contains 204 records; public visibility is freshness-gated and was 8
+records as of 2026-08-12. Accessibility and identity-aware design remain core
+requirements, while verification claims must stay tied to dated evidence.
+
+## Current Strategic Disposition (2026-08-12)
+
+Controlled retirement of the public directory has been approved in principle;
+the bounded evidence screen is closed and a reversible retirement release is
+prepared in a draft change. The public service is still available
+during this transition. Local code or documentation must not be described as a
+completed deployment or data change.
+
+Until the disposition is reopened:
+
+1. Limit work to documentation truth, the approved evidence screen, artifact
+   preservation, and critical security or data-loss safeguards.
+2. Do not restore or reverify the service corpus for optionality, expand
+   coverage, add features or instrumentation, start a pilot, or conduct
+   product-led outreach.
+3. Treat service-record changes, Supabase changes, workflow changes, shared
+   keepalive changes, deployments, redirects, and retirement of the public
+   surface as separate approval-gated actions.
+4. Keep public rationale limited to project stewardship, safety, evidence, and
+   operations.
+5. Reopen service implementation or evaluation only after an independently
+   supported need, an accountable operations/freshness steward, institutional
+   governance, a bounded evaluation or decision, and comparison with simpler
+   alternatives are all documented.
+
+Authoritative public status:
+[roadmap](docs/planning/roadmap.md) and
+[retirement disposition](docs/implementation/careconnect-public-service-retirement-disposition-2026-08-12.md).
 
 **Tech Stack**:
 | Layer | Technology | Version |

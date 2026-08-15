@@ -1,28 +1,31 @@
 # CareConnect
 
-> A verified, governance-first search engine for social services in supported Ontario communities, starting with Kingston and Brampton.
+> A governance-first social-services search project whose public records are controlled by publication and freshness rules.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Status: Pilot](https://img.shields.io/badge/Status-Pilot-orange.svg)
-![Coverage](https://img.shields.io/badge/Coverage-65%25-yellow.svg)
+![Status: Retirement transition](https://img.shields.io/badge/Status-Retirement%20transition-orange.svg)
 
 ## Manual Curation, Not Scraping
 
 Large-scale scraping of municipal data produces noise, not value. CareConnect takes a different path: **manual curation over automated extraction**.
 
-We maintain a hand-verified dataset of **203 visible service records**. Kingston remains live, and Brampton starts with a smaller high-confidence emergency and core-service set before broader coverage. Every visible entry is:
+The governed inventory contains **204 manually curated records**. Public search applies publication, deletion, verification-level, and 180-day freshness rules before displaying a record, so inventory size is not the same as the currently visible service count. Every visible entry must be:
 
-- **Verified** — No broken links or disconnected phone numbers.
-- **Accessible** — Clear eligibility requirements.
-- **Identity-Aware** — Evidence-backed safety tags for vulnerable populations.
+- **Published and active** — Published and not marked deleted.
+- **Verification-eligible** — Assigned an L1-L3 verification level.
+- **Within the visibility window** — Not older than the 180-day freshness cutoff.
+
+Manual curation remains the data-governance model. The software can display evidence-backed safety and identity tags when a record contains them; those tags are an optional capability, not a universal property of visible records.
 
 ---
 
-## Current Version
+## Current Disposition
 
-**v22.0** - Non-Duplicate Value Decision Plan, Phase 0 (2026-03-29)
+Controlled retirement of the public directory is approved in principle. The bounded evidence screen is closed, and a reversible retirement release is prepared in a draft change pending live preflight and explicit deployment approval.
 
-CareConnect is an active, decision-gated pilot / public-interest prototype. It is not a clinical decision support system, not an emergency service, and not an official government or 211 service.
+CareConnect is still publicly available during this transition. The draft release does not retire the live service, alter service records, or authorize a deployment. No pilot, partner outreach, corpus restoration, coverage expansion, or research conversion is active. The repository continues to preserve the privacy, accessibility, governance, and offline-search implementation as a technical artifact.
+
+See the [current roadmap](planning/roadmap.md), [public-service retirement disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md), and [transition/rollback packet](implementation/careconnect-retirement-transition-and-rollback-2026-08-12.md). CareConnect is not a clinical decision support system, emergency service, or official government or 211 service.
 
 Public documentation intentionally excludes deployment details, credentials, monitoring configuration, private operational notes, exact production paths, and shared-host inventory.
 
@@ -99,7 +102,7 @@ Public documentation intentionally excludes deployment details, credentials, mon
 
 ### Additional Capabilities
 
-- **Place-Aware Service Coverage** — Kingston remains live while Brampton starts with reviewed local and regional records.
+- **Place-Aware Filtering** — The software supports place-aware coverage metadata and filtering. Current public visibility is determined by publication, deletion, verification-level, and freshness rules; no regional expansion is active.
 - **Semantic and Fuzzy Search** — Natural language queries ("I feel unsafe") and typo correction ("fod" → "food").
 - **Privacy by Design** — No tracking cookies and no search logging. Only functional first-party cookies are used when needed for locale, auth, or short-lived share-target handoff. All inference runs in-browser or anonymously.
 - **Service Detail Pages** — Rich metadata, contact information, and localized content for each listing.
@@ -267,15 +270,18 @@ This project is community-led. Safety and accuracy take precedence over volume.
 ### Documentation
 
 - [Roadmap](planning/roadmap.md)
-- [Historical Planning Archive](planning/archive/)
+- [Public-service retirement disposition](implementation/careconnect-public-service-retirement-disposition-2026-08-12.md)
+- [Historical Planning Archive](planning/archive/README.md)
 - [Documentation Guidelines](governance/documentation-guidelines.md)
 - [Testing Standards](development/testing.md)
 - [Multi-Lingual Development Guide](development/bilingual-guide.md)
 - [Acknowledgments & Governance](community/acknowledgments.md)
 
-### Adding a Service
+### Adding a Service (Inactive)
 
-Proposed services must meet these criteria:
+New service intake is dormant during the retirement transition. The criteria
+below are preserved as conditional history; they are not an invitation to
+submit records and do not authorize ingestion.
 
 - Serves a supported CareConnect place, or is clearly available province-wide or Canada-wide.
 - Has a verifiable phone number or physical address.

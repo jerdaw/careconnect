@@ -1729,5 +1729,35 @@
         }
       }
     }
+  },
+  "Retirement": {
+    "metadataTitle": "CareConnect directory retired",
+    "metadataDescription": "The CareConnect public directory is no longer available. Emergency and official navigation options remain available.",
+    "skipToContent": "Skip to main content",
+    "eyebrow": "Service update",
+    "title": "The CareConnect directory is no longer available",
+    "description": "CareConnect no longer displays or searches local service listings. The preserved project is not an active directory.",
+    "safetyTitle": "Get help now",
+    "safetyDescription": "CareConnect does not monitor this page and cannot respond to emergencies.",
+    "emergencyTitle": "Immediate danger",
+    "emergencyDescription": "Call 911 now if you or someone else is in immediate danger.",
+    "call911": "Call 911",
+    "suicideTitle": "Suicide crisis support",
+    "suicideDescription": "In Canada, call or text 988 for 24/7 suicide crisis support.",
+    "call988": "Call 988",
+    "text988": "Text 988",
+    "navigationTitle": "Find community and social services",
+    "navigationDescription": "Use 211 Ontario's maintained service navigation instead of CareConnect's retired listings.",
+    "visit211": "Visit 211 Ontario",
+    "call211": "Call 211",
+    "localDataTitle": "Your data on this device",
+    "localDataDescription": "Saved searches, optional age or identity preferences, and queued feedback stay on this device. You can download a copy or clear them. Nothing is uploaded by these controls.",
+    "exportLocalData": "Download my local data",
+    "clearLocalData": "Clear my local data",
+    "clearConfirmation": "Clear saved searches, optional personal preferences, and queued feedback from this device? This cannot be undone.",
+    "localDataExported": "Your local data download is ready.",
+    "localDataCleared": "Your saved local data has been cleared.",
+    "localDataError": "This browser could not complete the local data action.",
+    "boundary": "This page does not list, verify, or endorse service providers."
   }
 }
