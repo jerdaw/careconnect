@@ -1,11 +1,21 @@
 ---
-status: stable
-last_updated: 2026-01-23
+status: historical
+last_updated: 2026-08-15
 owner: jer
 tags: [governance, data-quality, enrichment, sop]
 ---
 
 # Data Enrichment Standard Operating Procedure
+
+> [!IMPORTANT]
+> **Retired-project boundary:** This SOP is historical and conditional. The
+> actionable public directory was retired on 2026-08-15. The audits, target
+> metrics, enrichment methods, provider outreach, and maintenance cadences
+> below are preserved only as technical evidence. This document does not
+> authorize enrichment, validation, content refresh, provider contact, data
+> changes, expansion, or recurring manual work. Use it only after the
+> [current roadmap](../planning/roadmap.md) explicitly reopens the relevant
+> service scope and separate data approval is recorded.
 
 **Version**: 1.0  
 **Effective Date**: January 21, 2026
@@ -272,7 +282,10 @@ When a provider confirmation is received:
 | `scripts/geocode-services.ts`        | Batch geocoding     |
 | `scripts/audit-plain-language.ts`    | Readability scoring |
 
-## 8. Ongoing Maintenance
+## 8. Historical Maintenance Cadence (Inactive)
+
+The former cadence below is retained for traceability and creates no current
+work queue or schedule.
 
 - **Monthly:** Run data audit, address new gaps
 - **Quarterly:** Verify coordinates still accurate

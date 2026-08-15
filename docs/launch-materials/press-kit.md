@@ -1,12 +1,26 @@
 # CareConnect - Press Kit
 
+> [!IMPORTANT]
+> **Retired-project boundary:** This press kit is a historical launch artifact,
+> not current public status or approved communications copy. The actionable
+> public directory was retired on 2026-08-15. The live-pilot, visible-record,
+> expansion, partnership, outreach, metric, contact, and boilerplate statements
+> below are preserved only as dated evidence. This document does not authorize
+> distribution, outreach, launch activity, content refresh, or recurring work.
+> See the [current roadmap](../planning/roadmap.md) for the only active boundary.
+
 **Last Updated**: July 2026
 **Version**: 1.1 - Live Pilot
 **Contact**: feedback@careconnect.ing
 
 ---
 
-## Quick Facts
+## Historical Launch Copy (Inactive)
+
+The remaining body records the former launch narrative and must not be used as
+present-tense project copy.
+
+### Quick Facts
 
 | Detail              | Information                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------- |
