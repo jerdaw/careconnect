@@ -60,6 +60,7 @@ jobs:
       - name: Link Checker (Lychee)
         uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411
         with:
+          # Preserve the historical research URL, but exclude its intermittent Actions timeout.
           args: >-
             --verbose
             --no-progress
@@ -70,6 +71,7 @@ jobs:
             --exclude 'https://huggingface.co/docs/transformers.js/'
             --exclude 'https://laws-lois.justice.gc.ca/eng/acts/P-8.6/FullText.html'
             --exclude 'https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/'
+            --exclude 'https://kingstonhomebase.ca/'
             ./docs/README.md
             ./docs/ACCESSIBILITY_GUIDE.md
             ./docs/architecture.md
