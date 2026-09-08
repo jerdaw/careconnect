@@ -1,5 +1,5 @@
 /** @vitest-environment node */
-import { describe, it, expect, vi } from "vitest"
+import { afterAll, beforeAll, describe, it, expect, vi } from "vitest"
 import { GET } from "@/app/api/v1/services/export/route"
 import { checkRateLimit } from "@/lib/rate-limit"
 import { loadServices } from "@/lib/search/data"
@@ -33,6 +33,15 @@ vi.mock("@/lib/rate-limit", () => ({
 }))
 
 describe("Export API", () => {
+  beforeAll(() => {
+    // Keep the dated fixtures within the normal freshness window without mocking timers.
+    vi.setSystemTime(new Date("2026-04-01T00:00:00.000Z"))
+  })
+
+  afterAll(() => {
+    vi.useRealTimers()
+  })
+
   it("should return 429 when rate limited", async () => {
     vi.mocked(checkRateLimit).mockResolvedValue({ success: false, remaining: 0, reset: 4102444800 })
 
