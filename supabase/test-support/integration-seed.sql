@@ -53,6 +53,8 @@ INSERT INTO services (
   published,
   provenance
 )
+-- Keep every synthetic row fresh at bootstrap so visibility tests exercise the
+-- intended publication, deletion, and verification-status boundaries.
 VALUES
   (
     'db-food-complete',
@@ -72,7 +74,7 @@ VALUES
     ARRAY['English', 'French'],
     ARRAY['1', '2'],
     '{"wheelchair":true}'::jsonb,
-    '2026-03-01T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'L2',
     'Food',
     '[{"tag":"families","evidence_url":"https://example.test/evidence/families"}]'::jsonb,
@@ -108,7 +110,7 @@ VALUES
     ARRAY['French'],
     ARRAY['4'],
     '{"wheelchair":false,"elevator":true}'::jsonb,
-    '2026-03-05T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'L3',
     'Housing',
     '[{"tag":"newcomers","evidence_url":"https://example.test/evidence/newcomers"}]'::jsonb,
@@ -144,7 +146,7 @@ VALUES
     ARRAY['English', 'French'],
     NULL,
     '{"wheelchair":false}'::jsonb,
-    '2026-03-10T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'L3',
     'Crisis',
     '[]'::jsonb,
@@ -183,7 +185,7 @@ VALUES
     NULL,
     NULL,
     NULL,
-    '2026-03-02T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'L2',
     'Food',
     '[]'::jsonb,
@@ -219,7 +221,7 @@ VALUES
     NULL,
     NULL,
     NULL,
-    '2026-03-03T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'L2',
     'Food',
     '[]'::jsonb,
@@ -255,7 +257,7 @@ VALUES
     NULL,
     NULL,
     NULL,
-    '2026-03-04T12:00:00Z',
+    CURRENT_TIMESTAMP,
     'draft',
     'Housing',
     '[]'::jsonb,
