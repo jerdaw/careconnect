@@ -51,7 +51,7 @@
 </code></pre></div> <h3 id=boundaries-three-tier>Boundaries (Three-Tier)</h3> <p>The most impactful section. Prevents costly mistakes and clarifies decision authority.</p> <div class=highlight><pre><span></span><code><a id=__codelineno-6-1 name=__codelineno-6-1 href=#__codelineno-6-1></a>### ✅ Always
 <a id=__codelineno-6-2 name=__codelineno-6-2 href=#__codelineno-6-2></a>- Run `npm run lint` and `npm run type-check` before committing
 <a id=__codelineno-6-3 name=__codelineno-6-3 href=#__codelineno-6-3></a>- Write tests for new functionality
-<a id=__codelineno-6-4 name=__codelineno-6-4 href=#__codelineno-6-4></a>- Use the project&#39;s logger instead of console.log
+<a id=__codelineno-6-4 name=__codelineno-6-4 href=#__codelineno-6-4></a>- Use the project's logger instead of console.log
 <a id=__codelineno-6-5 name=__codelineno-6-5 href=#__codelineno-6-5></a>- Handle errors explicitly (no silent catches)
 <a id=__codelineno-6-6 name=__codelineno-6-6 href=#__codelineno-6-6></a>- Update types when changing data structures
 <a id=__codelineno-6-7 name=__codelineno-6-7 href=#__codelineno-6-7></a>
@@ -75,8 +75,8 @@
 // Good: Explicit error handling
 const result = await fetchUser(id)
 if (result.error) {
-  logger.error(&quot;Failed to fetch user&quot;, { id, error: result.error })
-  return { error: &quot;User not found&quot; }
+  logger.error("Failed to fetch user", { id, error: result.error })
+  return { error: "User not found" }
 }
 return { data: result.data }
 ```

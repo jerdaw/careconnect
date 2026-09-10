@@ -188,7 +188,7 @@
 <a id=__codelineno-4-23 name=__codelineno-4-23 href=#__codelineno-4-23></a>   ∞ (was 0%)
 <a id=__codelineno-4-24 name=__codelineno-4-24 href=#__codelineno-4-24></a>
 <a id=__codelineno-4-25 name=__codelineno-4-25 href=#__codelineno-4-25></a>🎯 RELIABILITY
-<a id=__codelineno-4-26 name=__codelineno-4-26 href=#__codelineno-4-26></a>   Before: No SLOs (can&#39;t measure success)
+<a id=__codelineno-4-26 name=__codelineno-4-26 href=#__codelineno-4-26></a>   Before: No SLOs (can't measure success)
 <a id=__codelineno-4-27 name=__codelineno-4-27 href=#__codelineno-4-27></a>   After:  99.5% uptime target (measurable)
 <a id=__codelineno-4-28 name=__codelineno-4-28 href=#__codelineno-4-28></a>   Defined
 <a id=__codelineno-4-29 name=__codelineno-4-29 href=#__codelineno-4-29></a>
@@ -249,9 +249,9 @@
 </code></pre></div> <hr> <h2 id=why-v180-is-critical>🎯 Why v18.0 is Critical</h2> <div class=highlight><pre><span></span><code><a id=__codelineno-6-1 name=__codelineno-6-1 href=#__codelineno-6-1></a>WITHOUT v18.0:
 <a id=__codelineno-6-2 name=__codelineno-6-2 href=#__codelineno-6-2></a>┌───────────────────────────────────────────────────┐
 <a id=__codelineno-6-3 name=__codelineno-6-3 href=#__codelineno-6-3></a>│  😟 Launch with blind spots                      │
-<a id=__codelineno-6-4 name=__codelineno-6-4 href=#__codelineno-6-4></a>│  • Can&#39;t detect outages quickly                  │
-<a id=__codelineno-6-5 name=__codelineno-6-5 href=#__codelineno-6-5></a>│  • Can&#39;t measure if SLOs are met                 │
-<a id=__codelineno-6-6 name=__codelineno-6-6 href=#__codelineno-6-6></a>│  • Users don&#39;t know if we&#39;re down                │
+<a id=__codelineno-6-4 name=__codelineno-6-4 href=#__codelineno-6-4></a>│  • Can't detect outages quickly                  │
+<a id=__codelineno-6-5 name=__codelineno-6-5 href=#__codelineno-6-5></a>│  • Can't measure if SLOs are met                 │
+<a id=__codelineno-6-6 name=__codelineno-6-6 href=#__codelineno-6-6></a>│  • Users don't know if we're down                │
 <a id=__codelineno-6-7 name=__codelineno-6-7 href=#__codelineno-6-7></a>│  • Incomplete circuit breaker (some routes       │
 <a id=__codelineno-6-8 name=__codelineno-6-8 href=#__codelineno-6-8></a>│    still vulnerable to cascading failures)       │
 <a id=__codelineno-6-9 name=__codelineno-6-9 href=#__codelineno-6-9></a>│  • No systematic way to troubleshoot issues      │
@@ -264,7 +264,7 @@
 <a id=__codelineno-6-16 name=__codelineno-6-16 href=#__codelineno-6-16></a>┌───────────────────────────────────────────────────┐
 <a id=__codelineno-6-17 name=__codelineno-6-17 href=#__codelineno-6-17></a>│  ✨ Launch with confidence                       │
 <a id=__codelineno-6-18 name=__codelineno-6-18 href=#__codelineno-6-18></a>│  • Automated alerts (&lt;5min detection)            │
-<a id=__codelineno-6-19 name=__codelineno-6-19 href=#__codelineno-6-19></a>│  • SLO tracking (know if we&#39;re reliable)         │
+<a id=__codelineno-6-19 name=__codelineno-6-19 href=#__codelineno-6-19></a>│  • SLO tracking (know if we're reliable)         │
 <a id=__codelineno-6-20 name=__codelineno-6-20 href=#__codelineno-6-20></a>│  • Public status page (transparent comms)        │
 <a id=__codelineno-6-21 name=__codelineno-6-21 href=#__codelineno-6-21></a>│  • 100% circuit breaker (all routes protected)   │
 <a id=__codelineno-6-22 name=__codelineno-6-22 href=#__codelineno-6-22></a>│  • Documented procedures (fast resolution)       │
@@ -285,7 +285,7 @@
 <a id=__codelineno-7-12 name=__codelineno-7-12 href=#__codelineno-7-12></a>Total: 24-32 hours (4-5 days of work spread over 4 weeks)
 </code></pre></div> <hr> <h2 id=what-success-looks-like>🎓 What Success Looks Like</h2> <p><strong>Day 1 of Production (with v18.0):</strong></p> <div class=highlight><pre><span></span><code><a id=__codelineno-8-1 name=__codelineno-8-1 href=#__codelineno-8-1></a>09:00 AM - Launch! 🚀
 <a id=__codelineno-8-2 name=__codelineno-8-2 href=#__codelineno-8-2></a>09:15 AM - Metrics flowing into Axiom ✅
-<a id=__codelineno-8-3 name=__codelineno-8-3 href=#__codelineno-8-3></a>09:30 AM - Status page shows &quot;Operational&quot; ✅
+<a id=__codelineno-8-3 name=__codelineno-8-3 href=#__codelineno-8-3></a>09:30 AM - Status page shows "Operational" ✅
 <a id=__codelineno-8-4 name=__codelineno-8-4 href=#__codelineno-8-4></a>10:00 AM - First 100 users, p95 latency: 320ms ✅
 <a id=__codelineno-8-5 name=__codelineno-8-5 href=#__codelineno-8-5></a>10:15 AM - Circuit breaker: CLOSED (normal) ✅
 <a id=__codelineno-8-6 name=__codelineno-8-6 href=#__codelineno-8-6></a>12:00 PM - SLO tracking: 100% uptime so far ✅
@@ -293,15 +293,15 @@
 <a id=__codelineno-8-8 name=__codelineno-8-8 href=#__codelineno-8-8></a>🔴 14:30 PM - Database hiccup (Supabase brief outage)
 <a id=__codelineno-8-9 name=__codelineno-8-9 href=#__codelineno-8-9></a>    → Circuit breaker opens automatically
 <a id=__codelineno-8-10 name=__codelineno-8-10 href=#__codelineno-8-10></a>    → Alert sent to Slack (#alerts) within 30s
-<a id=__codelineno-8-11 name=__codelineno-8-11 href=#__codelineno-8-11></a>    → Team checks runbook: &quot;Circuit Breaker Open&quot;
-<a id=__codelineno-8-12 name=__codelineno-8-12 href=#__codelineno-8-12></a>    → Status page auto-updated: &quot;Degraded Performance&quot;
+<a id=__codelineno-8-11 name=__codelineno-8-11 href=#__codelineno-8-11></a>    → Team checks runbook: "Circuit Breaker Open"
+<a id=__codelineno-8-12 name=__codelineno-8-12 href=#__codelineno-8-12></a>    → Status page auto-updated: "Degraded Performance"
 <a id=__codelineno-8-13 name=__codelineno-8-13 href=#__codelineno-8-13></a>
 <a id=__codelineno-8-14 name=__codelineno-8-14 href=#__codelineno-8-14></a>14:35 PM - Supabase recovers
 <a id=__codelineno-8-15 name=__codelineno-8-15 href=#__codelineno-8-15></a>    → Circuit transitions to HALF_OPEN
 <a id=__codelineno-8-16 name=__codelineno-8-16 href=#__codelineno-8-16></a>    → Test request succeeds
 <a id=__codelineno-8-17 name=__codelineno-8-17 href=#__codelineno-8-17></a>    → Circuit closes (normal operation restored)
-<a id=__codelineno-8-18 name=__codelineno-8-18 href=#__codelineno-8-18></a>    → Alert: &quot;Circuit breaker recovered&quot;
-<a id=__codelineno-8-19 name=__codelineno-8-19 href=#__codelineno-8-19></a>    → Status page updated: &quot;Operational&quot;
+<a id=__codelineno-8-18 name=__codelineno-8-18 href=#__codelineno-8-18></a>    → Alert: "Circuit breaker recovered"
+<a id=__codelineno-8-19 name=__codelineno-8-19 href=#__codelineno-8-19></a>    → Status page updated: "Operational"
 <a id=__codelineno-8-20 name=__codelineno-8-20 href=#__codelineno-8-20></a>
 <a id=__codelineno-8-21 name=__codelineno-8-21 href=#__codelineno-8-21></a>Total outage: 5 minutes
 <a id=__codelineno-8-22 name=__codelineno-8-22 href=#__codelineno-8-22></a>User impact: Minimal (fast failure, clear communication)

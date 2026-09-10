@@ -36,16 +36,16 @@
 <a id=__codelineno-1-35 name=__codelineno-1-35 href=#__codelineno-1-35></a>#### 1) Hours Parsing (output field: `hours`)
 <a id=__codelineno-1-36 name=__codelineno-1-36 href=#__codelineno-1-36></a>Goal: Convert `hours_text` into a structured weekly schedule object compatible with our schema:
 <a id=__codelineno-1-37 name=__codelineno-1-37 href=#__codelineno-1-37></a>- `hours` is either `null` (unknown/unparseable) OR an object with:
-<a id=__codelineno-1-38 name=__codelineno-1-38 href=#__codelineno-1-38></a>  - optional day keys: monday..sunday, each as `{ &quot;open&quot;: &quot;HH:MM&quot;, &quot;close&quot;: &quot;HH:MM&quot; }`
+<a id=__codelineno-1-38 name=__codelineno-1-38 href=#__codelineno-1-38></a>  - optional day keys: monday..sunday, each as `{ "open": "HH:MM", "close": "HH:MM" }`
 <a id=__codelineno-1-39 name=__codelineno-1-39 href=#__codelineno-1-39></a>  - optional `notes` (string)
 <a id=__codelineno-1-40 name=__codelineno-1-40 href=#__codelineno-1-40></a>
 <a id=__codelineno-1-41 name=__codelineno-1-41 href=#__codelineno-1-41></a>Rules:
-<a id=__codelineno-1-42 name=__codelineno-1-42 href=#__codelineno-1-42></a>- Time format must be 24-hour **HH:MM** with leading zeros (e.g., &quot;09:00&quot;, &quot;17:30&quot;).
+<a id=__codelineno-1-42 name=__codelineno-1-42 href=#__codelineno-1-42></a>- Time format must be 24-hour **HH:MM** with leading zeros (e.g., "09:00", "17:30").
 <a id=__codelineno-1-43 name=__codelineno-1-43 href=#__codelineno-1-43></a>- If a day is closed/unknown, OMIT that day key (do not use null open/close).
-<a id=__codelineno-1-44 name=__codelineno-1-44 href=#__codelineno-1-44></a>- For “24/7” services: include all 7 days as `{ &quot;open&quot;: &quot;00:00&quot;, &quot;close&quot;: &quot;23:59&quot; }`.
-<a id=__codelineno-1-45 name=__codelineno-1-45 href=#__codelineno-1-45></a>- For split schedules (e.g., &quot;9-12, 1-5&quot;): use earliest open and latest close; put the mid-day closure in `notes`.
+<a id=__codelineno-1-44 name=__codelineno-1-44 href=#__codelineno-1-44></a>- For “24/7” services: include all 7 days as `{ "open": "00:00", "close": "23:59" }`.
+<a id=__codelineno-1-45 name=__codelineno-1-45 href=#__codelineno-1-45></a>- For split schedules (e.g., "9-12, 1-5"): use earliest open and latest close; put the mid-day closure in `notes`.
 <a id=__codelineno-1-46 name=__codelineno-1-46 href=#__codelineno-1-46></a>- If `hours_text` is empty/null or clearly incomplete: use web research to find official hours. If you can’t confidently determine hours, `hours: null`.
-<a id=__codelineno-1-47 name=__codelineno-1-47 href=#__codelineno-1-47></a>- If the text says “By appointment”: set `hours` to `{ &quot;notes&quot;: &quot;By appointment only&quot; }`.
+<a id=__codelineno-1-47 name=__codelineno-1-47 href=#__codelineno-1-47></a>- If the text says “By appointment”: set `hours` to `{ "notes": "By appointment only" }`.
 <a id=__codelineno-1-48 name=__codelineno-1-48 href=#__codelineno-1-48></a>- If multiple channels are listed (phone/text/chat): prefer the broadest “main availability” and add details to `notes`.
 <a id=__codelineno-1-49 name=__codelineno-1-49 href=#__codelineno-1-49></a>- If timezones are present (e.g., “ET”): keep the hours as written and note the timezone in `notes`.
 <a id=__codelineno-1-50 name=__codelineno-1-50 href=#__codelineno-1-50></a>- If parsing is ambiguous, choose `hours: null` rather than guessing.
@@ -66,12 +66,12 @@
 <a id=__codelineno-1-65 name=__codelineno-1-65 href=#__codelineno-1-65></a>4) address (only if present)
 <a id=__codelineno-1-66 name=__codelineno-1-66 href=#__codelineno-1-66></a>
 <a id=__codelineno-1-67 name=__codelineno-1-67 href=#__codelineno-1-67></a>Crisis rule:
-<a id=__codelineno-1-68 name=__codelineno-1-68 href=#__codelineno-1-68></a>- If `intent_category` is &quot;Crisis&quot; and you produce an access script, append: &quot;If you are in immediate danger, call 911.&quot;
+<a id=__codelineno-1-68 name=__codelineno-1-68 href=#__codelineno-1-68></a>- If `intent_category` is "Crisis" and you produce an access script, append: "If you are in immediate danger, call 911."
 <a id=__codelineno-1-69 name=__codelineno-1-69 href=#__codelineno-1-69></a>
 <a id=__codelineno-1-70 name=__codelineno-1-70 href=#__codelineno-1-70></a>Skip rule:
-<a id=__codelineno-1-71 name=__codelineno-1-71 href=#__codelineno-1-71></a>- If `existing.has_hours` is true, output `&quot;hours&quot;: null` (do not replace existing structured hours).
-<a id=__codelineno-1-72 name=__codelineno-1-72 href=#__codelineno-1-72></a>- If `existing.has_access_script` is true, output `&quot;access_script&quot;: null` (do not replace existing curated scripts).
-<a id=__codelineno-1-73 name=__codelineno-1-73 href=#__codelineno-1-73></a>- If there is no usable contact method (no phone/url/email/address) AND you cannot find a reliable one via research, output `&quot;access_script&quot;: null`.
+<a id=__codelineno-1-71 name=__codelineno-1-71 href=#__codelineno-1-71></a>- If `existing.has_hours` is true, output `"hours": null` (do not replace existing structured hours).
+<a id=__codelineno-1-72 name=__codelineno-1-72 href=#__codelineno-1-72></a>- If `existing.has_access_script` is true, output `"access_script": null` (do not replace existing curated scripts).
+<a id=__codelineno-1-73 name=__codelineno-1-73 href=#__codelineno-1-73></a>- If there is no usable contact method (no phone/url/email/address) AND you cannot find a reliable one via research, output `"access_script": null`.
 <a id=__codelineno-1-74 name=__codelineno-1-74 href=#__codelineno-1-74></a>
 <a id=__codelineno-1-75 name=__codelineno-1-75 href=#__codelineno-1-75></a>### Output
 <a id=__codelineno-1-76 name=__codelineno-1-76 href=#__codelineno-1-76></a>Return valid JSON in ONE of these two formats:
@@ -84,9 +84,9 @@
 <a id=__codelineno-1-83 name=__codelineno-1-83 href=#__codelineno-1-83></a>
 <a id=__codelineno-1-84 name=__codelineno-1-84 href=#__codelineno-1-84></a>The enrichment array items MUST be:
 <a id=__codelineno-1-85 name=__codelineno-1-85 href=#__codelineno-1-85></a>{
-<a id=__codelineno-1-86 name=__codelineno-1-86 href=#__codelineno-1-86></a>  &quot;id&quot;: &quot;&lt;original id&gt;&quot;,
-<a id=__codelineno-1-87 name=__codelineno-1-87 href=#__codelineno-1-87></a>  &quot;hours&quot;: &lt;object or null&gt;,
-<a id=__codelineno-1-88 name=__codelineno-1-88 href=#__codelineno-1-88></a>  &quot;access_script&quot;: &lt;string or null&gt;
+<a id=__codelineno-1-86 name=__codelineno-1-86 href=#__codelineno-1-86></a>  "id": "&lt;original id&gt;",
+<a id=__codelineno-1-87 name=__codelineno-1-87 href=#__codelineno-1-87></a>  "hours": &lt;object or null&gt;,
+<a id=__codelineno-1-88 name=__codelineno-1-88 href=#__codelineno-1-88></a>  "access_script": &lt;string or null&gt;
 <a id=__codelineno-1-89 name=__codelineno-1-89 href=#__codelineno-1-89></a>}
 <a id=__codelineno-1-90 name=__codelineno-1-90 href=#__codelineno-1-90></a>
 <a id=__codelineno-1-91 name=__codelineno-1-91 href=#__codelineno-1-91></a>### Hard requirements
@@ -101,21 +101,21 @@
 <a id=__codelineno-1-100 name=__codelineno-1-100 href=#__codelineno-1-100></a>  - a JSON object with `processed_batch_output` (enrichment array) and `research_sources` (array).
 <a id=__codelineno-1-101 name=__codelineno-1-101 href=#__codelineno-1-101></a>- Every output item has exactly 3 keys: id, hours, access_script.
 <a id=__codelineno-1-102 name=__codelineno-1-102 href=#__codelineno-1-102></a>- No duplicate IDs; output count equals input count.
-<a id=__codelineno-1-103 name=__codelineno-1-103 href=#__codelineno-1-103></a>- Any time values match `^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$` and are normalized to leading-zero HH:MM (e.g., &quot;9:00&quot; -&gt; &quot;09:00&quot;).
-<a id=__codelineno-1-104 name=__codelineno-1-104 href=#__codelineno-1-104></a>- Never emit `{ &quot;open&quot;: null, &quot;close&quot;: null }` day objects. Omit the day key instead.
+<a id=__codelineno-1-103 name=__codelineno-1-103 href=#__codelineno-1-103></a>- Any time values match `^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$` and are normalized to leading-zero HH:MM (e.g., "9:00" -&gt; "09:00").
+<a id=__codelineno-1-104 name=__codelineno-1-104 href=#__codelineno-1-104></a>- Never emit `{ "open": null, "close": null }` day objects. Omit the day key instead.
 <a id=__codelineno-1-105 name=__codelineno-1-105 href=#__codelineno-1-105></a>
 <a id=__codelineno-1-106 name=__codelineno-1-106 href=#__codelineno-1-106></a>### research_sources format (if using Option A)
 <a id=__codelineno-1-107 name=__codelineno-1-107 href=#__codelineno-1-107></a>`research_sources` MUST be an array of objects:
 <a id=__codelineno-1-108 name=__codelineno-1-108 href=#__codelineno-1-108></a>{
-<a id=__codelineno-1-109 name=__codelineno-1-109 href=#__codelineno-1-109></a>  &quot;id&quot;: &quot;&lt;original id&gt;&quot;,
-<a id=__codelineno-1-110 name=__codelineno-1-110 href=#__codelineno-1-110></a>  &quot;sources&quot;: [
+<a id=__codelineno-1-109 name=__codelineno-1-109 href=#__codelineno-1-109></a>  "id": "&lt;original id&gt;",
+<a id=__codelineno-1-110 name=__codelineno-1-110 href=#__codelineno-1-110></a>  "sources": [
 <a id=__codelineno-1-111 name=__codelineno-1-111 href=#__codelineno-1-111></a>    {
-<a id=__codelineno-1-112 name=__codelineno-1-112 href=#__codelineno-1-112></a>      &quot;url&quot;: &quot;https://...&quot;,
-<a id=__codelineno-1-113 name=__codelineno-1-113 href=#__codelineno-1-113></a>      &quot;what_verified&quot;: &quot;Hours / access method / phone number / etc.&quot;,
-<a id=__codelineno-1-114 name=__codelineno-1-114 href=#__codelineno-1-114></a>      &quot;confidence&quot;: &quot;high&quot; | &quot;medium&quot; | &quot;low&quot;
+<a id=__codelineno-1-112 name=__codelineno-1-112 href=#__codelineno-1-112></a>      "url": "https://...",
+<a id=__codelineno-1-113 name=__codelineno-1-113 href=#__codelineno-1-113></a>      "what_verified": "Hours / access method / phone number / etc.",
+<a id=__codelineno-1-114 name=__codelineno-1-114 href=#__codelineno-1-114></a>      "confidence": "high" | "medium" | "low"
 <a id=__codelineno-1-115 name=__codelineno-1-115 href=#__codelineno-1-115></a>    }
 <a id=__codelineno-1-116 name=__codelineno-1-116 href=#__codelineno-1-116></a>  ],
-<a id=__codelineno-1-117 name=__codelineno-1-117 href=#__codelineno-1-117></a>  &quot;notes&quot;: &quot;Optional: conflicts, ambiguity, timezone, seasonal/holiday caveats&quot;
+<a id=__codelineno-1-117 name=__codelineno-1-117 href=#__codelineno-1-117></a>  "notes": "Optional: conflicts, ambiguity, timezone, seasonal/holiday caveats"
 <a id=__codelineno-1-118 name=__codelineno-1-118 href=#__codelineno-1-118></a>}
 <a id=__codelineno-1-119 name=__codelineno-1-119 href=#__codelineno-1-119></a>
 <a id=__codelineno-1-120 name=__codelineno-1-120 href=#__codelineno-1-120></a>If you can execute code, write a small script to:
@@ -140,10 +140,10 @@
 <a id=__codelineno-6-6 name=__codelineno-6-6 href=#__codelineno-6-6></a>### Input
 <a id=__codelineno-6-7 name=__codelineno-6-7 href=#__codelineno-6-7></a>You have an uploaded JSON file with:
 <a id=__codelineno-6-8 name=__codelineno-6-8 href=#__codelineno-6-8></a>{
-<a id=__codelineno-6-9 name=__codelineno-6-9 href=#__codelineno-6-9></a>  &quot;batch&quot;: &lt;number&gt;,
-<a id=__codelineno-6-10 name=__codelineno-6-10 href=#__codelineno-6-10></a>  &quot;total_batches&quot;: &lt;number&gt;,
-<a id=__codelineno-6-11 name=__codelineno-6-11 href=#__codelineno-6-11></a>  &quot;items&quot;: [
-<a id=__codelineno-6-12 name=__codelineno-6-12 href=#__codelineno-6-12></a>    { &quot;id&quot;: &quot;...&quot;, &quot;name&quot;: &quot;...&quot;, &quot;name_fr&quot;: &quot;...&quot;, &quot;scope&quot;: &quot;...&quot;, &quot;access_script&quot;: &quot;...&quot; }
+<a id=__codelineno-6-9 name=__codelineno-6-9 href=#__codelineno-6-9></a>  "batch": &lt;number&gt;,
+<a id=__codelineno-6-10 name=__codelineno-6-10 href=#__codelineno-6-10></a>  "total_batches": &lt;number&gt;,
+<a id=__codelineno-6-11 name=__codelineno-6-11 href=#__codelineno-6-11></a>  "items": [
+<a id=__codelineno-6-12 name=__codelineno-6-12 href=#__codelineno-6-12></a>    { "id": "...", "name": "...", "name_fr": "...", "scope": "...", "access_script": "..." }
 <a id=__codelineno-6-13 name=__codelineno-6-13 href=#__codelineno-6-13></a>  ]
 <a id=__codelineno-6-14 name=__codelineno-6-14 href=#__codelineno-6-14></a>}
 <a id=__codelineno-6-15 name=__codelineno-6-15 href=#__codelineno-6-15></a>
@@ -158,10 +158,10 @@
 <a id=__codelineno-6-24 name=__codelineno-6-24 href=#__codelineno-6-24></a>### Output (strict JSON only)
 <a id=__codelineno-6-25 name=__codelineno-6-25 href=#__codelineno-6-25></a>Return Option A:
 <a id=__codelineno-6-26 name=__codelineno-6-26 href=#__codelineno-6-26></a>{
-<a id=__codelineno-6-27 name=__codelineno-6-27 href=#__codelineno-6-27></a>  &quot;processed_batch_output&quot;: [
-<a id=__codelineno-6-28 name=__codelineno-6-28 href=#__codelineno-6-28></a>    { &quot;id&quot;: &quot;&lt;id&gt;&quot;, &quot;access_script_fr&quot;: &quot;&lt;translated french script&gt;&quot; }
+<a id=__codelineno-6-27 name=__codelineno-6-27 href=#__codelineno-6-27></a>  "processed_batch_output": [
+<a id=__codelineno-6-28 name=__codelineno-6-28 href=#__codelineno-6-28></a>    { "id": "&lt;id&gt;", "access_script_fr": "&lt;translated french script&gt;" }
 <a id=__codelineno-6-29 name=__codelineno-6-29 href=#__codelineno-6-29></a>  ],
-<a id=__codelineno-6-30 name=__codelineno-6-30 href=#__codelineno-6-30></a>  &quot;research_sources&quot;: []
+<a id=__codelineno-6-30 name=__codelineno-6-30 href=#__codelineno-6-30></a>  "research_sources": []
 <a id=__codelineno-6-31 name=__codelineno-6-31 href=#__codelineno-6-31></a>}
 <a id=__codelineno-6-32 name=__codelineno-6-32 href=#__codelineno-6-32></a>
 <a id=__codelineno-6-33 name=__codelineno-6-33 href=#__codelineno-6-33></a>Hard requirements:
