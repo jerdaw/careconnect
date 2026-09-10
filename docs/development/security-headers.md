@@ -413,7 +413,7 @@ Before deploying security header changes:
 ### Standards & Specifications
 
 - [MDN Web Docs: Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
-- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
+- [OWASP Secure Headers Project](https://github.com/OWASP/www-project-secure-headers)
 - [MDN Web Docs: HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 
 ### Testing Tools
@@ -424,7 +424,7 @@ Before deploying security header changes:
 
 ### Best Practices
 
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [OWASP Top 10](https://owasp.org/projects/top-ten)
 - [Chrome HSTS Preload List](https://hstspreload.org/)
 - [CSP Best Practices](https://web.dev/articles/csp)
 

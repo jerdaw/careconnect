@@ -170,6 +170,20 @@ describe("documentation hygiene", () => {
     expect(releaseWorkflow).not.toContain("actions/create-release@v1")
   })
 
+  it("keeps CRTC link-check exceptions exact and fail-closed", () => {
+    const docsWorkflow = readDoc(".github/workflows/deploy-docs.yml")
+    const exclusions = Array.from(docsWorkflow.matchAll(/--exclude '([^']+)'/g), (match) => match[1]!)
+    const crtcExclusions = exclusions.filter((url) => url.includes("crtc"))
+
+    expect(crtcExclusions).toEqual([
+      "^https://crtc\\.gc\\.ca/eng/com500/faq500\\.htm$",
+      "^https://crtc\\.gc\\.ca/eng/com500/guide\\.htm$",
+    ])
+    expect(docsWorkflow).toContain("fail: true")
+    expect(docsWorkflow).toContain("./docs/implementation/v22*.md")
+    expect(docsWorkflow).not.toContain("--accept 403")
+  })
+
   it("keeps active freshness policy docs aligned with runtime governance", () => {
     const standards = readDoc("docs/governance/standards.md")
     const verificationProtocol = readDoc("docs/governance/verification-protocol.md")
