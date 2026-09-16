@@ -11,9 +11,11 @@ vi.mock("@huggingface/transformers", () => ({
 const mockDecodeAudioData = vi.fn()
 const mockGetChannelData = vi.fn().mockReturnValue(new Float32Array([0.1, 0.2]))
 
-global.AudioContext = vi.fn().mockImplementation(() => ({
-  decodeAudioData: mockDecodeAudioData,
-})) as unknown as typeof AudioContext
+global.AudioContext = vi.fn().mockImplementation(function () {
+  return {
+    decodeAudioData: mockDecodeAudioData,
+  }
+}) as unknown as typeof AudioContext
 ;(global as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext = global.AudioContext
 
 describe("Audio Transcriber", () => {

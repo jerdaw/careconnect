@@ -41,7 +41,9 @@ describe("WebLLMEngine", () => {
   it("initializes with worker successfully", async () => {
     // Mock Worker
     const mockWorker = { terminate: vi.fn() }
-    global.Worker = vi.fn().mockImplementation(() => mockWorker) as any
+    global.Worker = vi.fn().mockImplementation(function () {
+      return mockWorker
+    }) as any
 
     vi.mocked(WebLLM.CreateWebWorkerMLCEngine).mockResolvedValue(mockEngineInstance)
 
@@ -53,7 +55,7 @@ describe("WebLLMEngine", () => {
 
   it("falls back to main thread if worker initialization fails", async () => {
     // Mock Worker fail
-    global.Worker = vi.fn().mockImplementation(() => {
+    global.Worker = vi.fn().mockImplementation(function () {
       throw new Error("Worker failed")
     }) as any
 

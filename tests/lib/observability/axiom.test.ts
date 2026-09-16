@@ -5,10 +5,12 @@ const { mockIngest, mockFlush, MockAxiom, mockLogger } = vi.hoisted(() => {
   return {
     mockIngest: vi.fn().mockResolvedValue(undefined),
     mockFlush: vi.fn().mockResolvedValue(undefined),
-    MockAxiom: vi.fn().mockImplementation(() => ({
-      ingest: mockIngest,
-      flush: mockFlush,
-    })),
+    MockAxiom: vi.fn().mockImplementation(function () {
+      return {
+        ingest: mockIngest,
+        flush: mockFlush,
+      }
+    }),
     mockLogger: {
       info: vi.fn(),
       warn: vi.fn(),

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { getServiceById, updateService } from "@/lib/services"
 import { supabase } from "@/lib/supabase"
 import { withCircuitBreaker } from "@/lib/resilience/supabase-breaker"
@@ -46,6 +46,13 @@ vi.mock("@/data/services.json", () => ({
 describe("getServiceById", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    // Keep dated fixtures inside the real 180-day publication window.
+    vi.useFakeTimers({ toFake: ["Date"] })
+    vi.setSystemTime(new Date("2026-07-01T00:00:00Z"))
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
   })
 
   it("returns the DB-backed public row without overlaying static metadata", async () => {

@@ -35,7 +35,9 @@ describe("useSemanticSearch Hook", () => {
       terminate: vi.fn(),
     }
 
-    global.Worker = vi.fn(() => mockWorker) as any
+    global.Worker = vi.fn(function () {
+      return mockWorker
+    }) as any
   })
 
   afterEach(() => {

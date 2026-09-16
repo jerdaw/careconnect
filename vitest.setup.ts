@@ -104,22 +104,26 @@ if (typeof window !== "undefined") {
 
 // Mock IntersectionObserver
 if (typeof global !== "undefined") {
-  global.IntersectionObserver = vi.fn(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-    takeRecords: vi.fn(),
-    root: null,
-    rootMargin: "",
-    thresholds: [],
-  })) as unknown as typeof IntersectionObserver
+  global.IntersectionObserver = vi.fn(function () {
+    return {
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+      takeRecords: vi.fn(),
+      root: null,
+      rootMargin: "",
+      thresholds: [],
+    }
+  }) as unknown as typeof IntersectionObserver
 
   // Mock ResizeObserver
-  global.ResizeObserver = vi.fn().mockImplementation(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-  }))
+  global.ResizeObserver = vi.fn().mockImplementation(function () {
+    return {
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    }
+  })
 }
 
 // Global Next.js mocks
