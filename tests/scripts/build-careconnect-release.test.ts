@@ -74,6 +74,7 @@ function writeRequiredSource(source: string): void {
   chmodSync(join(source, "scripts/deploy-vps-proof.sh"), 0o755)
   chmodSync(join(source, "scripts/archive/deploy-vps-proof.sh"), 0o755)
   writeFileSync(join(source, ".env.example"), "PLACEHOLDER=value\n")
+  writeFileSync(join(source, ".npmrc"), "engine-strict=true\nsave-exact=true\npackage-lock=true\n")
   writeFileSync(join(source, ".gitignore"), "node_modules/\npnpm-lock.yaml\n")
   writeFileSync(join(source, "AGENTS.md"), "# Test instructions\n")
   symlinkSync("AGENTS.md", join(source, "CLAUDE.md"))
@@ -333,6 +334,19 @@ describe("CareConnect signed release builder", () => {
     const rejected = build(fixture.source, runGit(fixture.source, "rev-parse", "HEAD"), join(root, "out"), key)
     expect(rejected.status).toBe(2)
     expect(rejected.stderr).toContain("env-like file")
+  })
+
+  it("rejects credential-bearing npm configuration", () => {
+    const root = temporaryRoot("release-npmrc-secret")
+    const fixture = makeSource(root)
+    const key = makeSigningKey(root)
+    writeFileSync(join(fixture.source, ".npmrc"), "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\n")
+    runGit(fixture.source, "add", ".npmrc")
+    runGit(fixture.source, "commit", "-m", "test: add unsafe npm credentials")
+    runGit(fixture.source, "update-ref", "refs/remotes/origin/main", "HEAD")
+    const rejected = build(fixture.source, runGit(fixture.source, "rev-parse", "HEAD"), join(root, "out"), key)
+    expect(rejected.status).toBe(2)
+    expect(rejected.stderr).toContain("unsafe npm configuration")
   })
 
   it("rejects a group-writable signing key", () => {

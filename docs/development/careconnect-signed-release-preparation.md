@@ -41,6 +41,10 @@ The builder fails closed unless:
 
 Only `.env.example` is allowed among `.env*` members. The only accepted
 symlinks are `CLAUDE.md` and `GEMINI.md`, both targeting `AGENTS.md`.
+The root `.npmrc` is accepted only when every active line is one of the
+credential-free reproducibility settings enforced by the builder; registry,
+authentication, interpolation, duplicate, and nested `.npmrc` configuration is
+rejected.
 Existing output files are never overwritten.
 
 The `--allow-ephemeral-output-for-testing` option exists solely for automated

@@ -41,11 +41,15 @@ REQUIRED_MEMBERS = {
 }
 SENSITIVE_BASENAMES = {
     ".netrc",
-    ".npmrc",
     ".pypirc",
     "credentials.json",
     "secret.json",
     "secrets.json",
+}
+SAFE_NPMRC_SETTINGS = {
+    "engine-strict": "true",
+    "package-lock": "true",
+    "save-exact": "true",
 }
 SENSITIVE_SUFFIXES = {".key", ".kdbx", ".p12", ".pem", ".pfx"}
 REVISION_RE = re.compile(r"^[0-9a-fA-F]{7,40}$")
@@ -153,6 +157,8 @@ def require_safe_path(path: PurePosixPath) -> None:
             raise BuildError("source tree contains an env-like file")
 
     basename = path.name.lower()
+    if basename == ".npmrc" and path.as_posix() != ".npmrc":
+        raise BuildError("source tree contains an unsafe npm configuration")
     if (
         basename in SENSITIVE_BASENAMES
         or PRIVATE_KEY_BASENAME_RE.fullmatch(basename)
@@ -163,6 +169,28 @@ def require_safe_path(path: PurePosixPath) -> None:
         or "service_account" in basename
     ):
         raise BuildError("source tree contains a secret-like member name")
+
+
+def validate_safe_npmrc(repo: Path, object_id: str) -> None:
+    raw = git_output(repo, "cat-file", "blob", object_id)
+    if len(raw) > 4096:
+        raise BuildError("source tree contains an unsafe npm configuration")
+    try:
+        content = raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise BuildError("source tree contains an unsafe npm configuration") from exc
+
+    observed: set[str] = set()
+    for raw_line in content.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith(("#", ";")):
+            continue
+        if "=" not in line:
+            raise BuildError("source tree contains an unsafe npm configuration")
+        key, value = (part.strip() for part in line.split("=", 1))
+        if key in observed or SAFE_NPMRC_SETTINGS.get(key) != value:
+            raise BuildError("source tree contains an unsafe npm configuration")
+        observed.add(key)
 
 
 def source_members(repo: Path, revision: str) -> dict[str, tuple[str, str]]:
@@ -185,6 +213,8 @@ def source_members(repo: Path, revision: str) -> dict[str, tuple[str, str]]:
             target = git_output(repo, "cat-file", "blob", object_id).decode("utf-8")
             if ALLOWED_SYMLINKS.get(name) != target:
                 raise BuildError("source tree contains an unsupported symlink")
+        if name == ".npmrc":
+            validate_safe_npmrc(repo, object_id)
         members[name] = (mode, object_id)
         if len(members) > MAX_MEMBER_COUNT:
             raise BuildError("source tree has too many members")
