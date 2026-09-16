@@ -20,13 +20,15 @@ describe("useVoiceInput", () => {
 
     // Mock MediaRecorder
     if (typeof window !== "undefined") {
-      ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => ({
-        start: vi.fn(),
-        stop: vi.fn(),
-        ondataavailable: null,
-        onstop: null,
-        state: "inactive",
-      })) as any
+      ;(global as any).MediaRecorder = vi.fn().mockImplementation(function () {
+        return {
+          start: vi.fn(),
+          stop: vi.fn(),
+          ondataavailable: null,
+          onstop: null,
+          state: "inactive",
+        }
+      }) as any
       ;(global.MediaRecorder as any).isTypeSupported = vi.fn().mockReturnValue(true)
 
       // Mock navigator.mediaDevices
@@ -123,7 +125,7 @@ describe("useVoiceInput", () => {
     vi.mocked(transcribeAudio).mockResolvedValue("test transcription")
 
     let mockMediaRecorder: any
-    ;(global as any).MediaRecorder = vi.fn().mockImplementation((_stream) => {
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(function (_stream) {
       mockMediaRecorder = {
         start: vi.fn(),
         stop: vi.fn(() => {
@@ -163,7 +165,7 @@ describe("useVoiceInput", () => {
     const onResult = vi.fn()
 
     let mockMediaRecorder: any
-    ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => {
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(function () {
       mockMediaRecorder = {
         start: vi.fn(),
         stop: vi.fn(() => {
@@ -199,7 +201,7 @@ describe("useVoiceInput", () => {
     vi.mocked(transcribeAudio).mockRejectedValue(new Error("Transcription failed"))
 
     let mockMediaRecorder: any
-    ;(global as any).MediaRecorder = vi.fn().mockImplementation(() => {
+    ;(global as any).MediaRecorder = vi.fn().mockImplementation(function () {
       mockMediaRecorder = {
         start: vi.fn(),
         stop: vi.fn(() => {

@@ -1,9 +1,19 @@
 import { createHash } from "node:crypto"
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs"
+import {
+  chmodSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { spawnSync, type SpawnSyncReturns } from "node:child_process"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 
 const repoRoot = resolve(__dirname, "../..")
 const builder = join(repoRoot, "scripts/releases/build-careconnect-release.py")
@@ -32,8 +42,16 @@ function temporaryRoot(label: string): string {
 }
 
 function run(command: string, args: string[], cwd?: string, input?: Buffer): SpawnSyncReturns<string> {
+  // Git hooks export repository-local variables, including GIT_INDEX_FILE.
+  // Fixture commands (and the builder's child Git processes) must use only
+  // their disposable repository, never the invoking commit's index or refs.
+  const env = { ...process.env }
+  for (const key of Object.keys(env)) {
+    if (key.startsWith("GIT_")) delete env[key]
+  }
   return spawnSync(command, args, {
     cwd,
+    env,
     encoding: "utf8",
     input,
     timeout: 120_000,
@@ -112,6 +130,22 @@ afterEach(() => {
 })
 
 describe("CareConnect signed release builder", () => {
+  it("isolates disposable Git fixtures from the invoking hook environment", () => {
+    const root = temporaryRoot("release-git-environment")
+    const callerIndex = join(root, "caller-index")
+    writeFileSync(callerIndex, "caller index sentinel")
+    vi.stubEnv("GIT_INDEX_FILE", callerIndex)
+    vi.stubEnv("GIT_DIR", join(root, "not-the-fixture-repository"))
+    vi.stubEnv("GIT_WORK_TREE", root)
+    try {
+      const { source } = makeSource(root)
+      expect(runGit(source, "rev-parse", "--show-toplevel")).toBe(realpathSync(source))
+      expect(readFileSync(callerIndex, "utf8")).toBe("caller index sentinel")
+    } finally {
+      vi.unstubAllEnvs()
+    }
+  })
+
   it("creates and verifies a reproducible exact-main source release", () => {
     const root = temporaryRoot("release-main")
     const { source, revision, tree } = makeSource(root)
