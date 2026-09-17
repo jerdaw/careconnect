@@ -11,9 +11,12 @@ describe("Production Smoke workflow", () => {
     expect(workflow).toContain("workflow_dispatch:")
   })
 
-  it("checks the exact deployed retirement release", () => {
-    expect(workflow).toContain("EXPECTED_PUBLIC_VERSION: ef91ac67c8a7")
-    expect(workflow).toContain('payload.get("version") == os.environ["EXPECTED_PUBLIC_VERSION"]')
+  it("keeps scheduled/default checks on the prior release and bounds manual overrides", () => {
+    expect(workflow).toContain("expected_public_version:")
+    expect(workflow).toContain("default: ef91ac67c8a7")
+    expect(workflow).toContain("github.event.inputs.expected_public_version || 'ef91ac67c8a7'")
+    expect(workflow).toContain('expected in {"0b1f213f8a81", "ef91ac67c8a7"}')
+    expect(workflow).toContain('payload.get("version") == expected')
     expect(workflow).toContain('payload.get("status") in {"healthy", "degraded"}')
   })
 

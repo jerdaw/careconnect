@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: "17 12 * * *"
   workflow_dispatch:
+    inputs:
+      expected_public_version:
+        description: "Expected APP_VERSION for this manual smoke run"
+        required: false
+        type: string
+        default: ef91ac67c8a7
 
 concurrency:
   group: careconnect-production-smoke
@@ -11,8 +17,10 @@ concurrency:
 
 env:
   BASE_URL: https://careconnect.ing
-  # Update only when a later public application release is explicitly approved and deployed.
-  EXPECTED_PUBLIC_VERSION: ef91ac67c8a7
+  # Scheduled runs remain pinned to the prior live release. A manual run may
+  # pin the explicitly deployed candidate or the prior release after rollback.
+  EXPECTED_PUBLIC_VERSION: >-
+    ${{ github.event.inputs.expected_public_version || 'ef91ac67c8a7' }}
 
 jobs:
   smoke:
@@ -44,8 +52,10 @@ jobs:
           with open("health.json", encoding="utf-8") as response:
               payload = json.load(response)
 
+          expected = os.environ["EXPECTED_PUBLIC_VERSION"]
+          assert expected in {"0b1f213f8a81", "ef91ac67c8a7"}, expected
           assert payload.get("status") in {"healthy", "degraded"}, payload
-          assert payload.get("version") == os.environ["EXPECTED_PUBLIC_VERSION"], payload
+          assert payload.get("version") == expected, payload
           print(payload)
           PY
 
