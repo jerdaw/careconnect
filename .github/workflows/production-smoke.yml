@@ -53,7 +53,12 @@ jobs:
               payload = json.load(response)
 
           expected = os.environ["EXPECTED_PUBLIC_VERSION"]
-          assert expected in {"0b1f213f8a81", "ef91ac67c8a7"}, expected
+          assert expected in {
+              "0b1f213f8a81",
+              "0b1f213f8a813579bc702cec2523344cbff85537",
+              "ef91ac67c8a7",
+              "ef91ac67c8a7929a965e4f0f6a8d7d6b30414185",
+          }, expected
           assert payload.get("status") in {"healthy", "degraded"}, payload
           assert payload.get("version") == expected, payload
           print(payload)
