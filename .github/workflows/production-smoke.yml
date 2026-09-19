@@ -9,7 +9,7 @@ on:
         description: "Expected APP_VERSION for this manual smoke run"
         required: false
         type: string
-        default: ef91ac67c8a7
+        default: 0b1f213f8a813579bc702cec2523344cbff85537
 
 concurrency:
   group: careconnect-production-smoke
@@ -17,10 +17,10 @@ concurrency:
 
 env:
   BASE_URL: https://careconnect.ing
-  # Scheduled runs remain pinned to the prior live release. A manual run may
-  # pin the explicitly deployed candidate or the prior release after rollback.
+  # Scheduled runs remain pinned to the explicitly deployed candidate. A
+  # manual run may pin the prior release after rollback.
   EXPECTED_PUBLIC_VERSION: >-
-    ${{ github.event.inputs.expected_public_version || 'ef91ac67c8a7' }}
+    ${{ github.event.inputs.expected_public_version || '0b1f213f8a813579bc702cec2523344cbff85537' }}
 
 jobs:
   smoke:

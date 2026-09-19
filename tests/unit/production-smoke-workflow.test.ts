@@ -11,10 +11,12 @@ describe("Production Smoke workflow", () => {
     expect(workflow).toContain("workflow_dispatch:")
   })
 
-  it("keeps scheduled/default checks on the prior release and bounds manual overrides", () => {
+  it("keeps scheduled/default checks on the deployed candidate and bounds manual overrides", () => {
     expect(workflow).toContain("expected_public_version:")
-    expect(workflow).toContain("default: ef91ac67c8a7")
-    expect(workflow).toContain("github.event.inputs.expected_public_version || 'ef91ac67c8a7'")
+    expect(workflow).toContain("default: 0b1f213f8a813579bc702cec2523344cbff85537")
+    expect(workflow).toContain(
+      "github.event.inputs.expected_public_version || '0b1f213f8a813579bc702cec2523344cbff85537'"
+    )
     expect(workflow).toContain('"0b1f213f8a81"')
     expect(workflow).toContain('"0b1f213f8a813579bc702cec2523344cbff85537"')
     expect(workflow).toContain('"ef91ac67c8a7"')
